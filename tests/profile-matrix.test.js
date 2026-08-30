@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { RECIPES } from "../src/data/recipes.js";
+import { ALL_RECIPES as RECIPES } from "../src/data/corpus-v1.js";
 import { normalizeProfile } from "../src/domain/profile.js";
 import { rankRecipes } from "../src/domain/recommendation.js";
 import { planSlots } from "../src/domain/planner.js";

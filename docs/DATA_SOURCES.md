@@ -1,34 +1,61 @@
 # Data Sources & Licensing Audit
 
-Audit date: 2026-08-30.
+Audit date: 2026-08-31.
 
-## Shipped V0 corpus
-V0 ships only project-authored structured recipes and ingredient mappings. No third-party recipe text, photographs or database dump is bundled. This keeps the first public runtime legally narrow while the data architecture is validated.
+## Shipped project-authored corpus
+The public runtime ships only project-authored structured recipes, ingredient mappings and substitution guidance. No third-party recipe text, photographs or recipe-database dump is bundled.
+
+V0.9.3 established the accepted shell/core baseline. V1 Content Gate A expands the authored corpus, ingredient ontology and substitution graph without changing this provenance boundary.
 
 The repository intentionally has **no general licence yet**. Until a later explicit licensing decision, original repository content remains under default copyright. External source licences are recorded independently and are not implied to license this repository.
 
+### Project-authored V0 recipe corpus
+- Source marker: `Culinary Recommender project-authored V0 corpus`
+- Source reference: `data/project-authored-v0`
+- Recipe provenance state: original project-authored content
+- Nutrition state: rough `INFERRED_ESTIMATE`, low confidence
+
+### Project-authored V1 recipe expansion
+- Source marker: `Culinary Recommender project-authored V1 corpus`
+- Source reference: `data/project-authored-v1`
+- Ingestion version: `1.0.0`
+- No copied third-party recipe prose or external recipe dataset is used
+- Nutrition remains rough `INFERRED_ESTIMATE`, low confidence until the separate Nutrition Evidence Upgrade
+
+### Ingredient ontology and substitution graph
+The canonical ingredient ontology, English/Spanish aliases, family relationships and controlled substitution guidance are project-authored application data. Substitutions are deliberately labelled by quality rather than represented as equivalences:
+
+- `close_substitute`
+- `functional_substitute`
+- `flavour_direction`
+- `texture_substitute`
+- `dietary_substitute`
+- `emergency_approximation`
+
+Allergen and permanent-exclusion constraints override substitution suggestions.
+
 ## Nutrition candidates
 ### USDA FoodData Central — APPROVED CANDIDATE, NOT YET INGESTED
-USDA states FoodData Central data are public domain and published under CC0 1.0. Its API requires a data.gov API key, so V0 tests/runtime do not call it. A later controlled offline import is compatible with the architecture and can preserve FDC IDs/provenance.
+USDA FoodData Central remains the leading candidate for the V1 nutrition evidence upgrade. Runtime API access is not required: the preferred architecture is a bounded, static, provenance-preserving preprocessing step that retains authoritative source identifiers and uncertainty state.
 
 Official reference: https://fdc.nal.usda.gov/api-guide/
 
-### BEDCA / AESAN — EXCLUDED FROM V0 BUNDLING
-BEDCA's published conditions permit public access but state that non-personal/educational/non-commercial electronic reuse is subject to express authorization, and data may not be altered in meaning. Because this public consumer application should not inherit an ambiguous/non-commercial-only data dependency, BEDCA is not bundled in V0.
+No USDA nutrient values are bundled by Content Gate A. Current recipe nutrient values remain project-authored estimates rather than authoritative composition data.
+
+### BEDCA / AESAN — NOT INGESTED
+BEDCA remains excluded from bundling unless reuse/licensing constraints are re-checked and explicitly resolved for this public application.
 
 Terms reference: https://www.bedca.net/bdpub/UsoBD.pdf
 
 ### Open Food Facts — COMPATIBILITY REVIEW REQUIRED
-The database is ODbL and requires attribution/share-alike for derivative databases. That can be useful for branded-product intelligence later, but combining it into the app's own canonical database raises database-licensing architecture questions. V0 therefore does not bundle it.
+Open Food Facts remains unbundled. Its ODbL database terms require an explicit compatibility and derived-database architecture decision before any integration into the canonical public data layer.
 
 Terms overview: https://support.openfoodfacts.org/help/es-es/12/api-data-reuse/94-are-there-conditions-to-use-the-api
 
 ## Recipe dataset candidates
-- ForkRecipe: CC BY-SA 4.0; structured and promising, but share-alike/provenance implications should be designed before ingestion.
-- Epicurious-derived 5k dataset examples online: CC BY-SA 3.0 is asserted by downstream repositories; source-chain verification is needed before use.
-- Open Recipe Archive: project states original repository data are CC0, but it is young/small and still needs source-level review.
+Previously identified third-party recipe datasets remain **not ingested**. Public visibility alone is not sufficient provenance. Any future recipe source must pass source-chain, licence, attribution, transformation and canonical-schema review before inclusion.
 
-No candidate is ingested merely because it is publicly visible. Recipe count is subordinate to provenance, structure and editorial quality.
+Recipe count is subordinate to provenance, structure, culinary quality and editorial control.
 
-## V0 nutrition state
-Project-authored recipe nutrient values are rough, low-confidence `INFERRED_ESTIMATE` values used to exercise ranking and UI. They must not be presented as authoritative composition data. Replacing these with normalized authoritative ingredient composition is a V1 data task, not a silent rewrite.
+## Current nutrition state
+Project-authored recipe nutrient values are rough, low-confidence `INFERRED_ESTIMATE` values used for ranking and UI. They must not be presented as authoritative composition data. Replacing them progressively with normalized authoritative ingredient composition is a separate V1 evidence task and must preserve provenance and uncertainty rather than silently adding false precision.

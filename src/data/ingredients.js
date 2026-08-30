@@ -1,89 +1,187 @@
+const item = (id, family, name, aliases = [], allergens = [], pantryCandidate = false, families = []) => ({
+  id,
+  family,
+  families: [...new Set([family, ...families])],
+  name,
+  aliases,
+  allergens,
+  pantryCandidate
+});
+
 export const INGREDIENTS = {
-  olive_oil: { id: "olive_oil", family: "fat", name: "olive oil", aliases: ["aceite de oliva", "extra virgin olive oil", "evoo"], allergens: [], pantryCandidate: true },
-  salt: { id: "salt", family: "seasoning", name: "salt", aliases: ["sal"], allergens: [], pantryCandidate: true },
-  black_pepper: { id: "black_pepper", family: "seasoning", name: "black pepper", aliases: ["pepper", "pimienta negra"], allergens: [], pantryCandidate: true },
-  garlic: { id: "garlic", family: "allium", name: "garlic", aliases: ["ajo", "garlic clove", "garlic cloves"], allergens: [], pantryCandidate: true },
-  onion: { id: "onion", family: "allium", name: "onion", aliases: ["onions", "cebolla", "yellow onion"], allergens: [], pantryCandidate: true },
-  tomato: { id: "tomato", family: "tomato", name: "tomato", aliases: ["tomatoes", "tomate", "fresh tomato"], allergens: [], pantryCandidate: false },
-  canned_tomato: { id: "canned_tomato", family: "tomato", name: "canned tomato", aliases: ["crushed tomato", "tomate triturado", "tinned tomato"], allergens: [], pantryCandidate: true },
-  bell_pepper: { id: "bell_pepper", family: "pepper", name: "bell pepper", aliases: ["pepper", "pimiento", "red pepper"], allergens: [], pantryCandidate: false },
-  spinach: { id: "spinach", family: "leafy_green", name: "spinach", aliases: ["espinaca", "baby spinach"], allergens: [], pantryCandidate: false },
-  kale: { id: "kale", family: "leafy_green", name: "kale", aliases: ["curly kale"], allergens: [], pantryCandidate: false },
-  cabbage: { id: "cabbage", family: "brassica", name: "cabbage", aliases: ["col", "white cabbage"], allergens: [], pantryCandidate: false },
-  courgette: { id: "courgette", family: "squash", name: "courgette", aliases: ["zucchini", "calabacin", "calabacín"], allergens: [], pantryCandidate: false },
-  aubergine: { id: "aubergine", family: "nightshade", name: "aubergine", aliases: ["eggplant", "berenjena"], allergens: [], pantryCandidate: false },
-  carrot: { id: "carrot", family: "root", name: "carrot", aliases: ["carrots", "zanahoria"], allergens: [], pantryCandidate: false },
-  potato: { id: "potato", family: "tuber", name: "potato", aliases: ["potatoes", "patata", "papa"], allergens: [], pantryCandidate: true },
-  sweet_potato: { id: "sweet_potato", family: "tuber", name: "sweet potato", aliases: ["batata", "boniato"], allergens: [], pantryCandidate: false },
-  broccoli: { id: "broccoli", family: "brassica", name: "broccoli", aliases: ["brócoli", "brocoli"], allergens: [], pantryCandidate: false },
-  green_beans: { id: "green_beans", family: "vegetable", name: "green beans", aliases: ["judias verdes", "judías verdes"], allergens: [], pantryCandidate: false },
-  lemon: { id: "lemon", family: "citrus", name: "lemon", aliases: ["limón", "lemon juice"], allergens: [], pantryCandidate: false },
-  lime: { id: "lime", family: "citrus", name: "lime", aliases: ["lima", "lime juice"], allergens: [], pantryCandidate: false },
-  parsley: { id: "parsley", family: "herb", name: "parsley", aliases: ["perejil"], allergens: [], pantryCandidate: false },
-  coriander: { id: "coriander", family: "herb", name: "coriander", aliases: ["cilantro", "fresh coriander"], allergens: [], pantryCandidate: false },
-  basil: { id: "basil", family: "herb", name: "basil", aliases: ["albahaca"], allergens: [], pantryCandidate: false },
-  cumin: { id: "cumin", family: "spice", name: "ground cumin", aliases: ["cumin", "comino"], allergens: [], pantryCandidate: true },
-  smoked_paprika: { id: "smoked_paprika", family: "spice", name: "smoked paprika", aliases: ["paprika", "pimenton", "pimentón"], allergens: [], pantryCandidate: true },
-  curry_powder: { id: "curry_powder", family: "spice", name: "curry powder", aliases: ["curry"], allergens: [], pantryCandidate: true },
-  chilli: { id: "chilli", family: "spice", name: "chilli", aliases: ["chili", "guindilla", "chilli flakes"], allergens: [], pantryCandidate: true },
-  rice: { id: "rice", family: "grain", name: "rice", aliases: ["arroz", "long grain rice"], allergens: [], pantryCandidate: true },
-  brown_rice: { id: "brown_rice", family: "grain", name: "brown rice", aliases: ["arroz integral"], allergens: [], pantryCandidate: true },
-  couscous: { id: "couscous", family: "grain", name: "couscous", aliases: ["cuscus", "cuscús"], allergens: ["gluten"], pantryCandidate: true },
-  pasta: { id: "pasta", family: "grain", name: "pasta", aliases: ["spaghetti", "penne"], allergens: ["gluten"], pantryCandidate: true },
-  wholewheat_pasta: { id: "wholewheat_pasta", family: "grain", name: "wholewheat pasta", aliases: ["whole wheat pasta", "pasta integral"], allergens: ["gluten"], pantryCandidate: true },
-  noodles: { id: "noodles", family: "grain", name: "wheat noodles", aliases: ["noodle", "fideos"], allergens: ["gluten"], pantryCandidate: true },
-  oats: { id: "oats", family: "grain", name: "oats", aliases: ["oatmeal", "avena"], allergens: ["gluten"], pantryCandidate: true },
-  bread: { id: "bread", family: "grain", name: "bread", aliases: ["pan", "wholegrain bread"], allergens: ["gluten"], pantryCandidate: true },
-  lentils: { id: "lentils", family: "legume", name: "lentils", aliases: ["lentil", "lentejas", "brown lentils"], allergens: [], pantryCandidate: true },
-  red_lentils: { id: "red_lentils", family: "legume", name: "red lentils", aliases: ["lenteja roja", "red split lentils"], allergens: [], pantryCandidate: true },
-  chickpeas: { id: "chickpeas", family: "legume", name: "chickpeas", aliases: ["garbanzos", "garbanzo beans"], allergens: [], pantryCandidate: true },
-  white_beans: { id: "white_beans", family: "legume", name: "white beans", aliases: ["cannellini beans", "judias blancas", "judías blancas"], allergens: [], pantryCandidate: true },
-  black_beans: { id: "black_beans", family: "legume", name: "black beans", aliases: ["frijoles negros"], allergens: [], pantryCandidate: true },
-  tofu_firm: { id: "tofu_firm", family: "soy", name: "firm tofu", aliases: ["tofu"], allergens: ["soy"], pantryCandidate: false },
-  tempeh: { id: "tempeh", family: "soy", name: "tempeh", aliases: [], allergens: ["soy"], pantryCandidate: false },
-  edamame: { id: "edamame", family: "soy", name: "edamame", aliases: ["soy beans"], allergens: ["soy"], pantryCandidate: false },
-  eggs: { id: "eggs", family: "egg", name: "eggs", aliases: ["egg", "huevo", "huevos"], allergens: ["egg"], pantryCandidate: false },
-  greek_yogurt: { id: "greek_yogurt", family: "dairy", name: "Greek yogurt", aliases: ["yogurt", "yoghurt", "yogur griego"], allergens: ["milk"], pantryCandidate: false },
-  cottage_cheese: { id: "cottage_cheese", family: "dairy", name: "cottage cheese", aliases: ["queso cottage"], allergens: ["milk"], pantryCandidate: false },
-  feta: { id: "feta", family: "dairy", name: "feta", aliases: ["feta cheese", "queso feta"], allergens: ["milk"], pantryCandidate: false },
-  parmesan: { id: "parmesan", family: "dairy", name: "Parmesan", aliases: ["parmesan cheese", "parmigiano"], allergens: ["milk"], pantryCandidate: false },
-  chicken_breast: { id: "chicken_breast", family: "poultry", name: "chicken breast", aliases: ["chicken", "pechuga de pollo"], allergens: [], pantryCandidate: false },
-  turkey_mince: { id: "turkey_mince", family: "poultry", name: "turkey mince", aliases: ["ground turkey", "pavo picado"], allergens: [], pantryCandidate: false },
-  salmon: { id: "salmon", family: "fish", name: "salmon", aliases: ["salmón"], allergens: ["fish"], pantryCandidate: false },
-  tuna: { id: "tuna", family: "fish", name: "tuna", aliases: ["atún", "canned tuna"], allergens: ["fish"], pantryCandidate: true },
-  prawns: { id: "prawns", family: "shellfish", name: "prawns", aliases: ["shrimp", "gambas"], allergens: ["crustacean"], pantryCandidate: false },
-  beef_mince: { id: "beef_mince", family: "beef", name: "lean beef mince", aliases: ["ground beef", "carne picada"], allergens: [], pantryCandidate: false },
-  peanuts: { id: "peanuts", family: "nut", name: "peanuts", aliases: ["cacahuetes", "peanut"], allergens: ["peanut"], pantryCandidate: true },
-  peanut_butter: { id: "peanut_butter", family: "nut", name: "peanut butter", aliases: ["crema de cacahuete"], allergens: ["peanut"], pantryCandidate: true },
-  almonds: { id: "almonds", family: "nut", name: "almonds", aliases: ["almendras"], allergens: ["tree_nut"], pantryCandidate: true },
-  tahini: { id: "tahini", family: "seed", name: "tahini", aliases: ["sesame paste"], allergens: ["sesame"], pantryCandidate: true },
-  sesame_oil: { id: "sesame_oil", family: "fat", name: "sesame oil", aliases: ["aceite de sésamo"], allergens: ["sesame"], pantryCandidate: true },
-  soy_sauce: { id: "soy_sauce", family: "seasoning", name: "soy sauce", aliases: ["soya sauce", "salsa de soja"], allergens: ["soy", "gluten"], pantryCandidate: true },
-  coconut_milk: { id: "coconut_milk", family: "coconut", name: "coconut milk", aliases: ["leche de coco"], allergens: [], pantryCandidate: true },
-  quinoa: { id: "quinoa", family: "pseudo_grain", name: "quinoa", aliases: [], allergens: [], pantryCandidate: true },
-  tortilla: { id: "tortilla", family: "flatbread", name: "tortilla wrap", aliases: ["wrap", "tortilla"], allergens: ["gluten"], pantryCandidate: true },
-  corn_tortilla: { id: "corn_tortilla", family: "flatbread", name: "corn tortilla", aliases: ["tortilla de maiz", "tortilla de maíz"], allergens: [], pantryCandidate: true },
-  avocado: { id: "avocado", family: "fruit", name: "avocado", aliases: ["aguacate"], allergens: [], pantryCandidate: false },
-  banana: { id: "banana", family: "fruit", name: "banana", aliases: ["plátano", "platano"], allergens: [], pantryCandidate: false },
-  apple: { id: "apple", family: "fruit", name: "apple", aliases: ["manzana"], allergens: [], pantryCandidate: false },
-  frozen_berries: { id: "frozen_berries", family: "fruit", name: "frozen berries", aliases: ["berries", "frutos rojos congelados"], allergens: [], pantryCandidate: false }
+  olive_oil: item("olive_oil", "fat", "olive oil", ["aceite de oliva", "extra virgin olive oil", "evoo"], [], true),
+  neutral_oil: item("neutral_oil", "fat", "neutral cooking oil", ["vegetable oil", "sunflower oil", "aceite vegetal", "aceite de girasol"], [], true),
+  sesame_oil: item("sesame_oil", "fat", "sesame oil", ["aceite de sésamo", "aceite de sesamo"], ["sesame"], true, ["sesame"]),
+  butter: item("butter", "dairy", "butter", ["mantequilla"], ["milk"], true),
+
+  salt: item("salt", "seasoning", "salt", ["sal"], [], true),
+  black_pepper: item("black_pepper", "seasoning", "black pepper", ["pepper", "pimienta negra"], [], true),
+  garlic: item("garlic", "allium", "garlic", ["ajo", "garlic clove", "garlic cloves"], [], true),
+  onion: item("onion", "allium", "onion", ["onions", "cebolla", "yellow onion"], [], true),
+  red_onion: item("red_onion", "allium", "red onion", ["cebolla roja", "cebolla morada"], [], false),
+  spring_onion: item("spring_onion", "allium", "spring onion", ["green onion", "scallion", "cebolleta"], [], false),
+  leek: item("leek", "allium", "leek", ["puerro"], [], false),
+  fresh_ginger: item("fresh_ginger", "aromatic", "fresh ginger", ["ginger", "jengibre"], [], true),
+
+  tomato: item("tomato", "tomato", "tomato", ["tomatoes", "tomate", "fresh tomato"], [], false),
+  cherry_tomato: item("cherry_tomato", "tomato", "cherry tomatoes", ["cherry tomato", "tomates cherry"], [], false),
+  canned_tomato: item("canned_tomato", "tomato", "canned tomato", ["crushed tomato", "tomate triturado", "tinned tomato"], [], true),
+  passata: item("passata", "tomato", "tomato passata", ["passata", "tomate tamizado"], [], true),
+  tomato_paste: item("tomato_paste", "tomato", "tomato paste", ["tomato puree", "concentrado de tomate", "tomate concentrado"], [], true),
+  bell_pepper: item("bell_pepper", "pepper", "bell pepper", ["pimiento", "red pepper", "sweet pepper"], [], false),
+  spinach: item("spinach", "leafy_green", "spinach", ["espinaca", "baby spinach"], [], false),
+  kale: item("kale", "leafy_green", "kale", ["curly kale"], [], false),
+  lettuce: item("lettuce", "leafy_green", "lettuce", ["lechuga"], [], false),
+  rocket: item("rocket", "leafy_green", "rocket", ["arugula", "rúcula", "rucula"], [], false),
+  cabbage: item("cabbage", "brassica", "cabbage", ["col", "white cabbage"], [], false),
+  cauliflower: item("cauliflower", "brassica", "cauliflower", ["coliflor"], [], false),
+  broccoli: item("broccoli", "brassica", "broccoli", ["brócoli", "brocoli"], [], false),
+  courgette: item("courgette", "squash", "courgette", ["zucchini", "calabacin", "calabacín"], [], false),
+  aubergine: item("aubergine", "nightshade", "aubergine", ["eggplant", "berenjena"], [], false),
+  carrot: item("carrot", "root", "carrot", ["carrots", "zanahoria"], [], false),
+  celery: item("celery", "vegetable", "celery", ["apio"], [], false),
+  mushroom: item("mushroom", "fungus", "mushrooms", ["mushroom", "champignon", "champiñón", "champiñones"], [], false),
+  green_beans: item("green_beans", "vegetable", "green beans", ["judias verdes", "judías verdes"], [], false),
+  peas: item("peas", "legume_vegetable", "peas", ["green peas", "guisantes", "frozen peas"], [], true, ["legume"]),
+  sweetcorn: item("sweetcorn", "vegetable", "sweetcorn", ["corn", "maiz", "maíz", "corn kernels"], [], true),
+  cucumber: item("cucumber", "vegetable", "cucumber", ["pepino"], [], false),
+  potato: item("potato", "tuber", "potato", ["potatoes", "patata", "papa"], [], true),
+  sweet_potato: item("sweet_potato", "tuber", "sweet potato", ["batata", "boniato"], [], false),
+  pumpkin: item("pumpkin", "squash", "pumpkin", ["calabaza"], [], false),
+
+  lemon: item("lemon", "citrus", "lemon", ["limón", "limon", "lemon juice"], [], false),
+  lime: item("lime", "citrus", "lime", ["lima", "lime juice"], [], false),
+  orange: item("orange", "citrus", "orange", ["naranja"], [], false),
+  avocado: item("avocado", "fruit", "avocado", ["aguacate"], [], false),
+  banana: item("banana", "fruit", "banana", ["plátano", "platano"], [], false),
+  apple: item("apple", "fruit", "apple", ["manzana"], [], false),
+  mango: item("mango", "fruit", "mango", [], [], false),
+  frozen_berries: item("frozen_berries", "fruit", "frozen berries", ["berries", "frutos rojos congelados"], [], false),
+
+  parsley: item("parsley", "herb", "parsley", ["perejil"], [], false),
+  coriander: item("coriander", "herb", "coriander", ["cilantro", "fresh coriander"], [], false),
+  basil: item("basil", "herb", "basil", ["albahaca"], [], false),
+  mint: item("mint", "herb", "mint", ["menta", "hierbabuena"], [], false),
+  oregano: item("oregano", "herb", "oregano", ["orégano"], [], true),
+  thyme: item("thyme", "herb", "thyme", ["tomillo"], [], true),
+  rosemary: item("rosemary", "herb", "rosemary", ["romero"], [], true),
+
+  cumin: item("cumin", "spice", "ground cumin", ["cumin", "comino"], [], true),
+  smoked_paprika: item("smoked_paprika", "spice", "smoked paprika", ["paprika", "pimenton", "pimentón"], [], true),
+  turmeric: item("turmeric", "spice", "ground turmeric", ["turmeric", "cúrcuma", "curcuma"], [], true),
+  ground_coriander: item("ground_coriander", "spice", "ground coriander", ["coriander powder", "cilantro molido"], [], true),
+  curry_powder: item("curry_powder", "spice", "curry powder", ["curry"], [], true),
+  garam_masala: item("garam_masala", "spice", "garam masala", [], [], true),
+  cinnamon: item("cinnamon", "spice", "ground cinnamon", ["cinnamon", "canela"], [], true),
+  chilli: item("chilli", "chilli", "chilli", ["chili", "guindilla"], [], true, ["spice"]),
+  chilli_flakes: item("chilli_flakes", "chilli", "chilli flakes", ["chili flakes", "red pepper flakes", "copos de chile"], [], true, ["spice"]),
+
+  rice: item("rice", "grain", "rice", ["arroz", "long grain rice"], [], true, ["rice"]),
+  brown_rice: item("brown_rice", "grain", "brown rice", ["arroz integral"], [], true, ["rice"]),
+  basmati_rice: item("basmati_rice", "grain", "basmati rice", ["arroz basmati"], [], true, ["rice"]),
+  jasmine_rice: item("jasmine_rice", "grain", "jasmine rice", ["arroz jazmín", "arroz jazmin"], [], true, ["rice"]),
+  risotto_rice: item("risotto_rice", "grain", "risotto rice", ["arborio rice", "arroz arborio"], [], true, ["rice"]),
+  couscous: item("couscous", "grain", "couscous", ["cuscus", "cuscús"], ["gluten"], true, ["wheat"]),
+  bulgur: item("bulgur", "grain", "bulgur", ["bulgur wheat", "trigo bulgur"], ["gluten"], true, ["wheat"]),
+  barley: item("barley", "grain", "barley", ["cebada"], ["gluten"], true),
+  pasta: item("pasta", "grain", "pasta", ["spaghetti", "penne"], ["gluten"], true, ["pasta", "wheat"]),
+  wholewheat_pasta: item("wholewheat_pasta", "grain", "wholewheat pasta", ["whole wheat pasta", "pasta integral"], ["gluten"], true, ["pasta", "wheat"]),
+  orzo: item("orzo", "grain", "orzo pasta", ["orzo", "risoni"], ["gluten"], true, ["pasta", "wheat"]),
+  noodles: item("noodles", "grain", "wheat noodles", ["noodle", "fideos"], ["gluten"], true, ["noodle", "wheat"]),
+  rice_noodles: item("rice_noodles", "grain", "rice noodles", ["rice noodle", "fideos de arroz"], [], true, ["noodle", "rice"]),
+  oats: item("oats", "grain", "oats", ["oatmeal", "avena"], ["gluten"], true),
+  bread: item("bread", "grain", "bread", ["pan", "wholegrain bread"], ["gluten"], true, ["wheat"]),
+  tortilla: item("tortilla", "flatbread", "tortilla wrap", ["wrap", "flour tortilla", "tortilla de trigo"], ["gluten"], true, ["wheat"]),
+  corn_tortilla: item("corn_tortilla", "flatbread", "corn tortilla", ["tortilla de maiz", "tortilla de maíz"], [], true, ["corn"]),
+  quinoa: item("quinoa", "pseudo_grain", "quinoa", [], [], true),
+
+  lentils: item("lentils", "legume", "lentils", ["lentil", "lentejas", "brown lentils"], [], true),
+  red_lentils: item("red_lentils", "legume", "red lentils", ["lenteja roja", "red split lentils"], [], true),
+  chickpeas: item("chickpeas", "legume", "chickpeas", ["garbanzos", "garbanzo beans"], [], true),
+  white_beans: item("white_beans", "legume", "white beans", ["cannellini beans", "judias blancas", "judías blancas"], [], true, ["bean"]),
+  black_beans: item("black_beans", "legume", "black beans", ["frijoles negros"], [], true, ["bean"]),
+  kidney_beans: item("kidney_beans", "legume", "kidney beans", ["red kidney beans", "alubias rojas"], [], true, ["bean"]),
+  pinto_beans: item("pinto_beans", "legume", "pinto beans", ["frijoles pintos"], [], true, ["bean"]),
+
+  tofu_firm: item("tofu_firm", "soy", "firm tofu", ["tofu"], ["soy"], false),
+  tempeh: item("tempeh", "soy", "tempeh", [], ["soy"], false),
+  edamame: item("edamame", "soy", "edamame", ["soy beans", "soybeans"], ["soy"], false, ["legume"]),
+  miso: item("miso", "soy", "miso paste", ["miso"], ["soy"], true),
+  soy_sauce: item("soy_sauce", "seasoning", "soy sauce", ["soya sauce", "salsa de soja"], ["soy", "gluten"], true, ["soy"]),
+
+  eggs: item("eggs", "egg", "eggs", ["egg", "huevo", "huevos"], ["egg"], false),
+  greek_yogurt: item("greek_yogurt", "dairy", "Greek yogurt", ["yogurt", "yoghurt", "yogur griego"], ["milk"], false),
+  cottage_cheese: item("cottage_cheese", "dairy", "cottage cheese", ["queso cottage"], ["milk"], false),
+  feta: item("feta", "dairy", "feta", ["feta cheese", "queso feta"], ["milk"], false),
+  parmesan: item("parmesan", "dairy", "Parmesan", ["parmesan cheese", "parmigiano"], ["milk"], false),
+  ricotta: item("ricotta", "dairy", "ricotta", ["ricotta cheese", "queso ricotta"], ["milk"], false),
+  mozzarella: item("mozzarella", "dairy", "mozzarella", ["mozzarella cheese"], ["milk"], false),
+  milk: item("milk", "dairy", "milk", ["leche"], ["milk"], false),
+  oat_milk: item("oat_milk", "plant_milk", "oat drink", ["oat milk", "bebida de avena"], ["gluten"], false, ["oat"]),
+  soy_milk: item("soy_milk", "plant_milk", "soy drink", ["soy milk", "soya milk", "bebida de soja"], ["soy"], false, ["soy"]),
+  coconut_milk: item("coconut_milk", "coconut", "coconut milk", ["leche de coco"], [], true),
+  coconut_cream: item("coconut_cream", "coconut", "coconut cream", ["crema de coco"], [], true),
+  desiccated_coconut: item("desiccated_coconut", "coconut", "desiccated coconut", ["shredded coconut", "coco rallado"], [], true),
+
+  chicken_breast: item("chicken_breast", "poultry", "chicken breast", ["chicken", "pechuga de pollo"], [], false, ["chicken"]),
+  chicken_thigh: item("chicken_thigh", "poultry", "chicken thigh", ["chicken thighs", "muslo de pollo"], [], false, ["chicken"]),
+  turkey_mince: item("turkey_mince", "poultry", "turkey mince", ["ground turkey", "pavo picado"], [], false, ["turkey"]),
+  beef_mince: item("beef_mince", "beef", "lean beef mince", ["ground beef", "carne picada"], [], false),
+  pork_tenderloin: item("pork_tenderloin", "pork", "pork tenderloin", ["pork fillet", "solomillo de cerdo"], [], false),
+
+  salmon: item("salmon", "fish", "salmon", ["salmón", "salmon fillet"], ["fish"], false, ["seafood"]),
+  tuna: item("tuna", "fish", "tuna", ["atún", "canned tuna", "tinned tuna"], ["fish"], true, ["seafood"]),
+  cod: item("cod", "fish", "cod", ["bacalao", "cod fillet"], ["fish"], false, ["seafood"]),
+  hake: item("hake", "fish", "hake", ["merluza", "hake fillet"], ["fish"], false, ["seafood"]),
+  sardines: item("sardines", "fish", "sardines", ["sardine", "sardinas", "canned sardines"], ["fish"], true, ["seafood"]),
+  prawns: item("prawns", "shellfish", "prawns", ["shrimp", "gambas"], ["crustacean"], false, ["seafood"]),
+  fish_sauce: item("fish_sauce", "seasoning", "fish sauce", ["salsa de pescado"], ["fish"], true, ["seafood"]),
+
+  peanuts: item("peanuts", "nut", "peanuts", ["cacahuetes", "peanut"], ["peanut"], true, ["peanut"]),
+  peanut_butter: item("peanut_butter", "nut", "peanut butter", ["crema de cacahuete"], ["peanut"], true, ["peanut"]),
+  almonds: item("almonds", "nut", "almonds", ["almendras"], ["tree_nut"], true, ["tree_nut"]),
+  walnuts: item("walnuts", "nut", "walnuts", ["nueces", "walnut"], ["tree_nut"], true, ["tree_nut"]),
+  cashews: item("cashews", "nut", "cashews", ["anacardos", "cashew nuts"], ["tree_nut"], true, ["tree_nut"]),
+  tahini: item("tahini", "seed", "tahini", ["sesame paste"], ["sesame"], true, ["sesame"]),
+  sesame_seeds: item("sesame_seeds", "seed", "sesame seeds", ["sesame", "semillas de sésamo", "semillas de sesamo"], ["sesame"], true, ["sesame"]),
+  pumpkin_seeds: item("pumpkin_seeds", "seed", "pumpkin seeds", ["pepitas", "semillas de calabaza"], [], true),
+  sunflower_seeds: item("sunflower_seeds", "seed", "sunflower seeds", ["semillas de girasol"], [], true),
+
+  rice_vinegar: item("rice_vinegar", "acid", "rice vinegar", ["vinagre de arroz"], [], true),
+  balsamic_vinegar: item("balsamic_vinegar", "acid", "balsamic vinegar", ["vinagre balsámico", "vinagre balsamico"], [], true),
+  honey: item("honey", "sweetener", "honey", ["miel"], [], true),
+  maple_syrup: item("maple_syrup", "sweetener", "maple syrup", ["sirope de arce"], [], true)
 };
+
+function normalizeAlias(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[.,]/g, "")
+    .replace(/\s+/g, " ");
+}
 
 const aliasIndex = new Map();
 for (const ingredient of Object.values(INGREDIENTS)) {
-  aliasIndex.set(ingredient.id, ingredient.id);
-  aliasIndex.set(ingredient.name.toLowerCase(), ingredient.id);
-  for (const alias of ingredient.aliases) aliasIndex.set(alias.toLowerCase(), ingredient.id);
+  aliasIndex.set(normalizeAlias(ingredient.id.replaceAll("_", " ")), ingredient.id);
+  aliasIndex.set(normalizeAlias(ingredient.name), ingredient.id);
+  for (const alias of ingredient.aliases) aliasIndex.set(normalizeAlias(alias), ingredient.id);
 }
 
 export function normalizeIngredient(value) {
   if (!value) return null;
-  const cleaned = String(value).trim().toLowerCase().replace(/[.,]/g, "").replace(/\s+/g, " ");
-  return aliasIndex.get(cleaned) || null;
+  return aliasIndex.get(normalizeAlias(value)) || null;
 }
 
 export function ingredientById(id) {
   return INGREDIENTS[id] || null;
+}
+
+export function ingredientFamilies(id) {
+  const ingredient = ingredientById(id);
+  return ingredient ? ingredient.families || [ingredient.family] : [];
 }
 
 export const DEFAULT_PANTRY_STAPLES = ["olive_oil", "salt", "black_pepper", "garlic", "onion", "rice", "cumin", "smoked_paprika"];

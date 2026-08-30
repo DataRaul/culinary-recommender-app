@@ -4,9 +4,10 @@ import { DEFAULT_PROFILE, normalizeProfile } from "../src/domain/profile.js";
 import { suggestSubstitutions, resolveAvailability } from "../src/domain/substitution.js";
 import { RECIPES } from "../src/data/recipes.js";
 
-test("substitution labels preserve approximation type", () => {
+test("substitution labels preserve explicit V1 quality type", () => {
   const options = suggestSubstitutions("feta", normalizeProfile(DEFAULT_PROFILE));
-  assert.ok(options.some(item => item.type === "approximate_local"));
+  assert.ok(options.some(item => item.type === "close_substitute"));
+  assert.ok(options.some(item => item.type === "dietary_substitute"));
   assert.ok(options.every(item => item.note.length > 5));
 });
 

@@ -46,6 +46,25 @@ The integrated shell/core baseline is accepted:
 
 Future recipe, ingredient, nutrition-evidence, price, image and UX additions are additive. They do not reopen this accepted shell/core gate unless a later change materially alters these contracts.
 
+## V1 Content Gate A — IMPLEMENTED / VALIDATION_PENDING
+This bounded additive gate expands what the accepted deterministic shell knows without altering its accepted interaction contracts:
+
+- project-authored structured recipe expansion across the existing broad cuisine taxonomy;
+- materially broader canonical ingredient ontology with English/Spanish aliases;
+- hierarchical family membership for generalized exclusions such as rice, pasta/noodle, coconut, seafood and nut/seed families;
+- six-class controlled substitution graph: close, functional, flavour-direction, texture, dietary and emergency approximation;
+- substitution safety remains subordinate to hard allergen, permanent-exclusion and temporary-availability constraints;
+- full-corpus integrity tests plus the existing 15,552-profile matrix now exercise the expanded corpus;
+- V1 runtime bootstraps the additive corpus before the unchanged app shell and precaches the new static data for offline operation;
+- no third-party recipe dataset, paid API, runtime LLM or private Knowledge Core runtime access is introduced.
+
+Gate A becomes COMPLETE only after public PR validation, comprehensive browser acceptance, clean merge and post-merge validation/deployment verification.
+
+## V1 Content Gates B–D — NEXT / NOT YET COMPLETE
+- B: Nutrition Evidence Upgrade using authoritative static mappings with explicit provenance and uncertainty.
+- C: stronger deterministic cost intelligence for Spain/Canary assumptions without live supermarket pricing.
+- D: broaden and normalize culinary technique, failure-risk, convenience and learning metadata.
+
 The Culinary & Nutrition Brain remains separately **NOT_AUTHORIZED**.
 
 ## Deferred
