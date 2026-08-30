@@ -161,10 +161,8 @@ export function normalizeProfile(input = {}) {
   for (const key of ["excludedIngredientIds", "unavailableIngredientIds", "currentPantryIngredientIds", "pantryStapleIds"]) {
     profile[key] = [...new Set(Array.isArray(profile[key]) ? profile[key].filter(Boolean) : [])];
   }
-  profile.priorityPacks = normalizePriorityPacks(
-    hasPriorityPackInput ? input.priorityPacks : profile.priorityPacks,
-    hasPriorityPackInput ? null : input.preset
-  );
+  const packSource = hasPriorityPackInput ? input.priorityPacks : (input.preset ? [] : profile.priorityPacks);
+  profile.priorityPacks = normalizePriorityPacks(packSource, hasPriorityPackInput ? null : input.preset);
   profile.preset = null;
   return profile;
 }
