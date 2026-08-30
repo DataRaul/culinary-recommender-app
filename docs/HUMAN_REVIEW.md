@@ -18,21 +18,16 @@ The original public V0 review passed:
 14. report confusing UI;
 15. report recommendations that feel obviously wrong.
 
-## Gate 9A — FRIDGE SEARCH IMPLEMENTED / HUMAN_PENDING
-16. Search **salmon** with secondary ingredient **rice**; confirm recipes using both are ranked ahead of other salmon recipes.
-17. Turn on **require all secondary ingredients** and confirm recipes missing rice disappear rather than being silently retained.
-18. As an experienced profile, temporarily choose **Beginner-simple** + a fast time limit and confirm search respects today's simpler request without changing the saved profile.
-19. As a beginner profile, give yourself more time and choose **Explore something new**; confirm skill remains a hard ceiling while discovery can still move upward within eligible recipes.
-20. Try an impossible or safety-conflicting search and confirm the app explains why no result survives rather than relaxing dietary/allergen/exclusion/availability constraints.
+## Gate 9A — ACCEPTED
+The deterministic fridge-first Search shell is accepted as functional. Automated acceptance covers main-ingredient hard filtering, secondary-ingredient ranking, require-all behavior, temporary time/skill/discovery overrides without saved-profile mutation, and preservation of safety constraints.
 
-## Gate 9B — COMPOSABLE PROFILE HUMAN_GATE
-The V0.9.2 correction should be reviewed together with the still-pending Search checks:
-21. Confirm the old one-choice preset dropdown is gone and the UI explicitly says **choose up to 3** priority packs.
-22. Select **Meal Prep → Lunch**, **Culinary Explorer → Dinner**, plus one all-meals pack; confirm all three remain selected and the fourth selection is rejected clearly.
-23. Build a plan containing lunch and dinner; confirm lunch and dinner recommendations can reflect different scoped packs while hard skill/time/diet constraints remain unchanged.
-24. Confirm cuisine preferences are visibly multi-select and prominently include **Indian** and **Thai / Southeast Asian**; **Local / Canarian** should appear later rather than first.
-25. In Search, choose **Lunch** or **Dinner** under “Cooking for” and confirm the matching scoped priority pack is used; choosing **Ingredients first · neutral preferences** should ignore all soft priority packs without weakening safety constraints.
+## Gate 9B — ACCEPTED
+The composable profile shell is accepted as functional. Automated acceptance covers up to three scoped priority packs, fourth-pack rejection, cuisine multi-select, lunch/dinner scoping, Search scope behavior, and neutral ingredients-first behavior without weakening hard constraints.
 
-V1.0 remains blocked until the combined Gate 9A/9B check is accepted.
+## Preference and safety controls — ACCEPTED
+Temporary **Can't get right now** availability and durable **Always exclude** preferences are separate. Permanent exclusions are saved locally as an unbounded deduplicated list subject only to practical browser-storage limits; there is no product-level small-number cap. Family-level exclusions such as **coconut** block every encoded ingredient in that ontology family, while future-only preferences such as **pineapple** are retained for later corpus expansion. Declared allergen controls remain hard filters for both recipes and substitutions.
 
-Failure report format: **screen / profile or action / expected / observed / screenshot if useful**.
+## Baseline decision
+The V0.9.3 shell/core functionality is accepted. Future work may expand recipe breadth, ingredient ontology coverage, nutrition evidence, prices, images and other deferred capabilities without reopening this core-functionality gate unless a later change materially alters these contracts.
+
+Failure report format for future regressions: **screen / profile or action / expected / observed / screenshot if useful**.

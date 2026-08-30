@@ -2,8 +2,8 @@
 
 ## Order of operations
 1. normalize profile;
-2. apply hard meal-type, dietary, skill, time, explicit ingredient and declared-allergen constraints;
-3. resolve known availability substitutions; unresolved required ingredients fail closed;
+2. apply hard meal-type, dietary, skill, time, permanent ingredient and declared-allergen constraints;
+3. resolve known temporary-availability substitutions; unresolved required ingredients fail closed;
 4. score eligible recipes by interpretable base components;
 5. apply bounded soft priority-pack bonuses that match the current meal scope;
 6. stable-sort by score then recipe ID;
@@ -37,6 +37,22 @@ This permits patterns such as **Meal Prep â†’ Lunch** plus **Culinary Explorer â
 ## Cuisine behavior
 Cuisine preference is independent of priority packs. Multiple cuisines can be selected simultaneously. A matching cuisine receives the existing soft cuisine-fit benefit; non-matching cuisines remain eligible. No selected cuisine therefore becomes a hidden hard filter.
 
+## Ingredient availability and permanent exclusions
+Temporary availability and durable dislike are separate state machines.
+
+### Temporary unavailable
+`unavailableIngredientIds` means the ingredient cannot be obtained right now. The availability resolver may choose the first supported substitute that survives all hard safety and preference constraints. If a required unavailable ingredient has no supported candidate, the recipe is rejected.
+
+### Permanent exclusion
+`excludedIngredientIds` means the ingredient must not appear. The hard-filter pass removes recipes before scoring, and substitution candidates are checked against the same exclusion boundary so a replacement can never reintroduce a permanent dislike.
+
+Exclusions may be exact canonical IDs or encoded ingredient-family IDs. Family matching uses the canonical ingredient ontology. For example, exclusion token `coconut` matches `coconut_milk` because that ingredient belongs to the coconut family. This allows a user to express **no coconut in any encoded form**, rather than accidentally excluding only one current representation.
+
+Unknown but well-formed future tokens can persist in local profile state. They do not create fake knowledge or block unrelated recipes; if a future corpus later uses the same canonical token, the stored hard preference immediately applies.
+
+## Declared allergens
+Declared allergens are hard filters over the recipe's mapped allergen metadata and over substitution candidates. They are not soft score components. The user-facing V0 vocabulary matches the current ontology: gluten, milk, egg, fish, crustacean, soy, peanut, tree nut and sesame. This mechanism cannot establish cross-contamination safety.
+
 ## Fridge-first search
 Search uses the same evaluator rather than a separate recommendation truth.
 
@@ -44,7 +60,7 @@ Search uses the same evaluator rather than a separate recommendation truth.
 2. Hard pre-filter the corpus to recipes that explicitly contain the main ingredient.
 3. If `require all secondary ingredients` is enabled, remove candidates that omit any requested secondary ingredient.
 4. Build a temporary search profile. The user may keep saved soft preferences or neutralize them, and may temporarily override meal context, maximum time, skill ceiling and variety/discovery mood.
-5. Dietary mode, declared allergens, explicit ingredient exclusions and unresolved availability remain hard constraints in both profile modes.
+5. Dietary mode, declared allergens, permanent ingredient exclusions and unresolved temporary availability remain hard constraints in both profile modes.
 6. When saved preferences are used, a selected lunch/dinner search context activates only the matching scoped priority packs. `Any meal` activates only all-meals packs.
 7. Choosing the neutral ingredients-first lens clears cuisine and priority-pack soft preferences but leaves all safety constraints intact.
 8. Rank eligible candidates first by the number of exact secondary-ingredient matches, then by the deterministic recommendation score, then by recipe ID.
@@ -56,4 +72,4 @@ This makes searches such as `salmon + rice` deterministic: recipes containing bo
 The planner greedily selects each requested slot from deterministic ranked candidates, adding a bounded reuse bonus and penalties for repeated cuisine, main protein and flavour. Exact recipe duplication is prohibited inside one plan when enough candidates exist.
 
 ## Shortfall principle
-Impossible combinations return an explicit shortfall and top hard-filter causes. The engine does not silently relax allergies, dietary mode, maximum skill, maximum time, explicit ingredient exclusions or unresolved availability.
+Impossible combinations return an explicit shortfall and top hard-filter causes. The engine does not silently relax allergies, dietary mode, maximum skill, maximum time, permanent ingredient exclusions or unresolved availability.

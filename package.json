@@ -1,6 +1,6 @@
 {
   "name": "culinary-recommender-app",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "private": true,
   "type": "module",
   "description": "Deterministic mobile-first culinary recommendation and meal-planning PWA.",
@@ -8,7 +8,7 @@
     "check": "node scripts/check-static.mjs",
     "test": "node --test tests/*.test.js",
     "test:matrix": "node tests/profile-matrix.test.js",
-    "test:browser": "node scripts/browser-smoke.mjs",
+    "test:browser": "node scripts/browser-smoke.mjs && node scripts/browser-acceptance.mjs",
     "validate": "npm run check && npm test"
   },
   "devDependencies": {

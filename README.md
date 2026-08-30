@@ -11,21 +11,19 @@
 | Recommender | ✅ COMPLETE | V0.3 / Gate 3 | future policy evidence |
 | Planning | ✅ COMPLETE | V0.4 / Gate 4 | broader corpus |
 | Grocery / pantry / substitution / budget | ✅ COMPLETE | V0.4 / Gate 5 | price evidence later |
-| UX/UI | ✅ COMPLETE | V0.5 / Gate 6 | human acceptance |
-| Automated acceptance | ✅ COMPLETE | V0.9 / Gate 7 | human acceptance |
-| Public deployment | ✅ COMPLETE | V0.9 / Gate 8 | human acceptance |
+| UX/UI | ✅ COMPLETE | V0.5 / Gate 6 | additive refinement |
+| Automated acceptance | ✅ COMPLETE | V0.9 / Gate 7 | regression protection |
+| Public deployment | ✅ COMPLETE | V0.9 / Gate 8 | additive refinement |
 | Base human review | ✅ ACCEPTED | V0.9 / Gate 9 | additive UX extensions |
-| Fridge search | ✅ IMPLEMENTED / HUMAN_PENDING | V0.9.1 / Gate 9A | combined acceptance |
-| Composable profile | 🟠 HUMAN_GATE | V0.9.2 / Gate 9B | V1.0 acceptance |
+| Fridge search | ✅ ACCEPTED | V0.9.1 / Gate 9A | corpus breadth |
+| Composable profile | ✅ ACCEPTED | V0.9.2 / Gate 9B | corpus breadth |
+| Preference safety + broad automation | ✅ ACCEPTED | V0.9.3 | additive product growth |
 | Culinary & Nutrition Brain | 🔒 NOT_AUTHORIZED | Deferred | September KC refresh + explicit authorization |
 
-**Current version:** V0.9.2 combined human-review candidate  
-**Current gate:** Gate 9B — Profile Composition + Search Acceptance  
-**Current status:** HUMAN_GATE  
-**Completed:** deterministic engine, project-authored corpus, ingredient ontology, exact-slot planner, grocery/pantry/substitution/cost, public deployment, base Gate 9 human acceptance, fridge-first search implementation  
-**New before V1.0:** composable meal-scoped priority packs and a clearer global cuisine chooser  
-**Next gate:** V1.0 acceptance after the combined Gate 9A/9B human check  
-**Human action required:** verify priority-pack composition, cuisine choices and the previously added Search flow  
+**Current version:** V0.9.3 accepted shell/core baseline  
+**Current status:** CORE_FUNCTIONALITY_ACCEPTED  
+**Completed:** deterministic engine, project-authored corpus, ingredient ontology, exact-slot planner, grocery/pantry/substitution/cost, public deployment, fridge-first search, composable meal-scoped priority packs, permanent ingredient exclusions, user-facing allergen hard filters and broad automated browser acceptance  
+**Next work:** additive recipe/corpus, ingredient, evidence and UX expansion without reopening the accepted core unless a later change materially alters these contracts  
 **Major deferred:** nutrient-gap awareness, supplements, images, local price intelligence, fitness adapter, advanced culinary exploration, Culinary & Nutrition Brain  
 **Public app URL:** https://dataraul.github.io/culinary-recommender-app/
 
@@ -40,12 +38,23 @@ Priority packs are bounded soft ranking signals. They never weaken hard dietary,
 Three is the V0 cap because it is enough to express a primary mode plus two contextual priorities while keeping the interaction legible and preventing stacked soft bonuses from dominating the transparent base score.
 
 ### Cuisine discovery
-Cuisine remains independent and multi-select. The chooser now foregrounds broad corpus-backed discovery choices: **Mediterranean, Italian, Spanish, Indian, Thai / Southeast Asian, East Asian, Middle Eastern and Latin American**. **Local / Canarian** remains available because the target food environment includes the Canary Islands, but it sits at the end rather than being privileged over globally prominent choices. Leaving every cuisine unchecked means no cuisine preference.
+Cuisine remains independent and multi-select. The chooser foregrounds broad corpus-backed discovery choices: **Mediterranean, Italian, Spanish, Indian, Thai / Southeast Asian, East Asian, Middle Eastern and Latin American**. **Local / Canarian** remains available because the target food environment includes the Canary Islands, but it sits at the end rather than being privileged over globally prominent choices. Leaving every cuisine unchecked means no cuisine preference.
 
 ### Fridge-first search
-The **Search** tab adds a second entry path inspired by the workout app's library/search pattern: start with a main ingredient already in the fridge, optionally add secondary ingredients, then temporarily choose meal context, time, effort/skill and discovery mood. The main ingredient is a hard pre-filter. Secondary ingredients improve ranking by default or can be made required. Saved dietary mode, allergens, explicit exclusions and unavailable ingredients remain hard constraints even when profile preferences are temporarily neutralized.
+The **Search** tab provides a second entry path: start with a main ingredient already in the fridge, optionally add secondary ingredients, then temporarily choose meal context, time, effort/skill and discovery mood. The main ingredient is a hard pre-filter. Secondary ingredients improve ranking by default or can be made required. Saved dietary mode, allergens, permanent ingredient exclusions and temporary unavailable ingredients remain hard constraints even when soft profile preferences are neutralized.
 
 Example: **salmon + rice** ranks a recipe using both ahead of other salmon recipes. An experienced cook can temporarily ask for beginner-simple/fast food, while a beginner with free time can keep the beginner skill ceiling but choose a more exploratory discovery mood. Lunch- or dinner-scoped priority packs participate only when the matching search meal context is selected.
+
+### Temporary availability vs permanent dislikes
+The Pantry surface deliberately separates two different intentions:
+
+- **Can't get right now** — temporary availability state. The engine may use a supported safe substitution; if no supported replacement exists, the affected recipe fails closed for now.
+- **Always exclude** — a durable hard preference. No substitution is attempted and any matching recipe is removed. Generic encoded ingredient families are supported: entering **coconut** blocks every coconut form represented by the ontology, including the current `coconut_milk` ingredient. A not-yet-corpus ingredient such as **pineapple** is retained as a future exclusion token so later corpus expansion does not silently forget the preference.
+
+Permanent ingredient exclusions are stored as a deduplicated local list with **no product-level small-number cap**. The practical ceiling is browser local-storage capacity, far beyond normal culinary preference use. These preferences remain removable by the user.
+
+### Declared allergens
+Profile includes explicit mapped allergen hard filters for gluten, milk/dairy, egg, fish, crustaceans, soy, peanut, tree nuts and sesame. They constrain both recipes and substitutions. The app still states the important boundary: its small mapped corpus cannot guarantee cross-contamination safety, so severe allergies require label checking and appropriate professional guidance.
 
 ## Runtime principles
 - no account or backend required;
@@ -62,9 +71,10 @@ The app is published as a static GitHub Pages site from `main` / repository root
 
 ```bash
 npm run validate
+npm run test:browser
 ```
 
-The deterministic suite includes direct domain tests, the 15,552-combination representative profile matrix, ingredient-search tests, scoped-priority-pack tests and one targeted Playwright mobile browser smoke flow without live third-party data.
+The automated suite covers direct deterministic domain behavior, the **15,552-combination** representative profile matrix, fridge search, scoped priority packs, hard exclusions and allergens, storage/export-import, and two Chromium browser layers: a targeted mobile smoke plus a broader mobile/desktop acceptance journey. The broader browser journey exercises profile composition, cuisines, exact slots, swapping, groceries, pantry state, temporary availability, substitutions, permanent exclusions, search, require-all ingredient matching, user-facing allergen controls, export/import, responsive overflow and offline service-worker recovery.
 
 ## Data and licensing
 The shipped V0 recipe corpus is project-authored and no third-party recipe database is bundled. USDA FoodData Central is an approved future CC0 nutrition candidate; BEDCA is excluded from V0 bundling because its published reuse terms require care; Open Food Facts remains a future ODbL compatibility decision. See `docs/DATA_SOURCES.md`.
