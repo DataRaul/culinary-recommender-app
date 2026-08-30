@@ -30,12 +30,16 @@ async function mobileAcceptance() {
   if (!(await page.getByRole("checkbox", { name: "Thai / Southeast Asian" }).isChecked())) throw new Error("Southeast Asian cuisine preference did not persist in UI");
   await page.getByRole("checkbox", { name: "Local / Canarian" }).waitFor();
 
-  // Exact-slot planning: choose one lunch and one dinner only.
-  const slots = page.locator('input[name="slot"]');
-  for (let i = 0; i < await slots.count(); i++) await slots.nth(i).uncheck({ force: true });
-  await page.locator('input[name="slot"][value="mon-lunch"]').check({ force: true });
-  await page.locator('input[name="slot"][value="wed-dinner"]').check({ force: true });
+  // Exact-slot planning: trigger the same checkbox change events while avoiding sticky-nav pointer geometry.
+  await page.locator('input[name="slot"]').evaluateAll(inputs => {
+    for (const input of inputs) {
+      const shouldBeChecked = input.value === "mon-lunch" || input.value === "wed-dinner";
+      if (input.checked !== shouldBeChecked) input.click();
+    }
+  });
   await page.getByText("2 selected").waitFor();
+  const selectedSlotIds = await page.locator('input[name="slot"]:checked').evaluateAll(inputs => inputs.map(input => input.value));
+  if (selectedSlotIds.join("|") !== "mon-lunch|wed-dinner") throw new Error(`Unexpected selected slots: ${selectedSlotIds.join(",")}`);
   await page.getByRole("button", { name: /Build my plan/ }).click();
   await page.getByRole("heading", { name: /2 meals, built as a portfolio/ }).waitFor();
   if (await page.locator(".recipe-card").count() !== 2) throw new Error("Exact-slot plan did not contain exactly two recipes");
@@ -101,7 +105,7 @@ async function mobileAcceptance() {
   await page.getByRole("button", { name: /Find dishes/ }).click();
   const firstSearchTitle = await page.locator(".search-result-card h3").first().innerText();
   if (!/salmon/i.test(firstSearchTitle)) throw new Error("Salmon search did not return a salmon recipe first");
-  await page.getByLabel("Require all listed secondary ingredients").check();
+  await page.getByLabel("Require all listed secondary ingredients").check({ force: true });
   await page.getByRole("button", { name: /Find dishes/ }).click();
   const requireAllCards = await page.locator(".search-result-card").count();
   if (requireAllCards < 1) throw new Error("Require-all salmon + rice unexpectedly produced no result");
