@@ -15,23 +15,25 @@
 | V0.9.2 / Gate 9B | ACCEPTED | up-to-three meal-scoped priority packs + cuisine-choice correction + scoped Search context |
 | V0.9.3 | ACCEPTED BASELINE | permanent exclusions, mapped allergen hard filters, broad integrated browser acceptance |
 | V1.0 / Content Gate A | COMPLETE | expanded project-authored recipes + hierarchical ingredient ontology + six-class substitution graph |
-| V1.0 / Content Gate B1 | IMPLEMENTED / VALIDATION_PENDING | USDA Foundation source ledger + NutritionSource evidence coverage + fail-closed calculation framework |
-| V1.0 / Content Gate B2 | NEXT | static authoritative nutrient-density import + unit/weight normalization + progressive per-serving replacement |
-| V1.0 / Content Gate C | IMPLEMENTED / VALIDATION_PENDING | Spain/Canary ingredient classes + package/availability/reuse-aware portfolio cost heuristic |
-| V1.0 / Content Gate D | IMPLEMENTED / VALIDATION_PENDING | normalized culinary technique/risk/execution/convenience/learning intelligence across full corpus |
+| V1.0.1 / Content Gate B foundation | COMPLETE | USDA source/identity ledger + NutritionSource evidence coverage + fail-partial calculation framework |
+| V1.0.2 / Content Gate B1 | IMPLEMENTED / VALIDATION_PENDING | bounded USDA Foundation per-100g static composition for 14 canonical ingredients + evidence-safe recipe calculation |
+| V1.0.1 / Content Gate C | COMPLETE | Spain/Canary ingredient classes + package/availability/reuse-aware portfolio cost heuristic |
+| V1.0.1 / Content Gate D | COMPLETE | normalized culinary technique/risk/execution/convenience/learning intelligence across full corpus |
+| V1.x / Nutrition B2 | NEXT | expand defensible USDA mappings/forms and explicit gram-weight/unit normalization |
+| V1.x / Corpus breadth | NEXT | coverage-driven authored recipes for high-value Search and planner gaps |
 | Brain P0 | NOT_AUTHORIZED | future Culinary & Nutrition Brain |
-| App V1.x | DEFERRED | public-safe Brain-derived upgrades after explicit Brain authorization |
+| App Brain-derived V1.x | DEFERRED | public-safe Brain-derived upgrades after explicit Brain authorization |
 
 Content Gate A was merged through PR #6 at `1742bd40691cca614db2e12ccaa47499bea48a57` after green deterministic/browser validation and green post-merge validation/Pages deployment.
 
-The accepted shell/core is not reopened by routine corpus and ontology growth. V1 content work remains additive behind the stable `RecipeSource`, `NutritionSource`, `IngredientNormalizer`, `RecommendationPolicy`, planner, substitution and cost interfaces.
+Gates B foundation, C and D were merged through PR #7 at `59ae06755d1c681aa5f56d4f20e8bdaf1d01bec2`; deterministic/static tests, the 15,552-profile matrix, comprehensive Chromium acceptance, post-merge validation and Pages deployment were green.
 
-The nutrition path is intentionally split. B1 establishes verified source identity, provenance and deterministic calculation contracts. B2 may replace low-confidence recipe estimates only when authoritative static densities and defensible unit/weight normalization are actually present. Identity matching alone must never be used to claim authoritative nutrient values.
+The accepted shell/core is not reopened by routine corpus, ontology or evidence growth. V1 content work remains additive behind stable `RecipeSource`, `NutritionSource`, `IngredientNormalizer`, `RecommendationPolicy`, planner, substitution and cost interfaces.
 
-Cost remains relative, deterministic and explainable. V1 improves portfolio estimates through ingredient classes, package burden, Canary availability and reuse without live supermarket pricing or false euro precision.
+Nutrition evidence is intentionally progressive. The first static composition tranche bundles only a small public-domain Foundation extract and keeps per-nutrient missingness explicit. Recipe-level authoritative replacement occurs only when all required ingredients, tracked nutrients and quantity units are supported. Partial evidence remains auditable but does not overwrite the current low-confidence project estimate.
 
-Culinary quality is normalized from project-authored structured metadata and instructions. Deterministic technique inference closes legacy metadata gaps while preserving inspectability and allowing later editorial refinement.
+The next nutrition step is breadth rather than loosened certainty: add clearly matched ingredient/form records and explicit gram weights/unit mappings where defensible. Do not use generic spoon/piece guesses to inflate coverage.
 
-The profile remains composable rather than persona-bound. Cuisine remains independent and multi-select. Fridge search continues to reuse the same hard safety and recommendation truth.
+Cost remains relative, deterministic and explainable. Culinary quality remains normalized from project-authored structured metadata and instructions. Fridge search and planning continue to reuse the same hard safety truth.
 
 The Culinary & Nutrition Brain remains a separate future authorization boundary. The public app must not call private Knowledge Core at runtime.
