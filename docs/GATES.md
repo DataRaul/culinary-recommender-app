@@ -24,8 +24,11 @@ Local and public CI validation pass. Matrix covers 15,552 deterministic profile 
 ## Gate 8 — COMPLETE
 Public deployment verified at https://dataraul.github.io/culinary-recommender-app/. Hosting is deliberately simple: GitHub Pages publishes from `main` / repository root, with no dedicated Pages deployment workflow.
 
-## Gate 9 — HUMAN_GATE
-Human acceptance review is the designed hard stop. V1.0 is not declared until the user completes the review checklist and either accepts the candidate or reports failures for repair.
+## Gate 9 — BASE ACCEPTED
+The original 15-point human acceptance review passed. Before V1.0, the user requested one additive feature: fridge-first ingredient search.
+
+## Gate 9A — HUMAN_GATE
+V0.9.1 adds a deterministic Search tab. Main ingredient is a hard pre-filter; optional secondary ingredients are ranking preferences unless explicitly required. Search can temporarily override time, skill ceiling and discovery mood without mutating the saved profile. Choosing an ingredients-first lens neutralizes soft profile preferences only; dietary mode, declared allergens, explicit exclusions and unavailable ingredients remain hard constraints. V1.0 remains blocked until this extension receives human acceptance.
 
 ## Deferred
 D1 nutrient-gap awareness, D2 supplement routine checker, D3 images, D4 local grocery prices, D5 fitness integration, D6 advanced culinary exploration and Brain P0 are DEFERRED/NOT_AUTHORIZED rather than failed.
