@@ -1,38 +1,39 @@
 # Human Acceptance Review — Gate 9 / 9A / 9B
 
 ## Gate 9 — ACCEPTED
-The original public V0 review passed:
-1. first-time onboarding;
-2. Budget Beginner profile;
-3. Mediterranean + vegetarian + high-protein profile;
-4. advanced/exploratory profile;
-5. generate only selected meal slots;
-6. swap one recipe without rebuilding everything;
-7. mark an ingredient unavailable;
-8. inspect substitution wording;
-9. inspect combined grocery list;
-10. inspect approximate cost tier and uncertainty;
-11. edit pantry/default staples;
-12. test on a phone viewport/device;
-13. intentionally create a constrained/impossible combination;
-14. report confusing UI;
-15. report recommendations that feel obviously wrong.
+The original public V0 review passed, covering onboarding, representative profiles, exact-slot planning, swapping, availability, substitutions, groceries, cost wording, pantry editing, mobile use, constrained profiles, confusing UI and obviously wrong recommendations.
 
-## Gate 9A — FRIDGE SEARCH IMPLEMENTED / HUMAN_PENDING
-16. Search **salmon** with secondary ingredient **rice**; confirm recipes using both are ranked ahead of other salmon recipes.
-17. Turn on **require all secondary ingredients** and confirm recipes missing rice disappear rather than being silently retained.
-18. As an experienced profile, temporarily choose **Beginner-simple** + a fast time limit and confirm search respects today's simpler request without changing the saved profile.
-19. As a beginner profile, give yourself more time and choose **Explore something new**; confirm skill remains a hard ceiling while discovery can still move upward within eligible recipes.
-20. Try an impossible or safety-conflicting search and confirm the app explains why no result survives rather than relaxing dietary/allergen/exclusion/availability constraints.
+## V0.9.3 — OBJECTIVE ACCEPTANCE AUTOMATED
+The formerly manual objective checks from Gates 9A/9B are now covered by deterministic tests and Chromium acceptance flows in public CI. The latest candidate automatically verifies:
 
-## Gate 9B — COMPOSABLE PROFILE HUMAN_GATE
-The V0.9.2 correction should be reviewed together with the still-pending Search checks:
-21. Confirm the old one-choice preset dropdown is gone and the UI explicitly says **choose up to 3** priority packs.
-22. Select **Meal Prep → Lunch**, **Culinary Explorer → Dinner**, plus one all-meals pack; confirm all three remain selected and the fourth selection is rejected clearly.
-23. Build a plan containing lunch and dinner; confirm lunch and dinner recommendations can reflect different scoped packs while hard skill/time/diet constraints remain unchanged.
-24. Confirm cuisine preferences are visibly multi-select and prominently include **Indian** and **Thai / Southeast Asian**; **Local / Canarian** should appear later rather than first.
-25. In Search, choose **Lunch** or **Dinner** under “Cooking for” and confirm the matching scoped priority pack is used; choosing **Ingredients first · neutral preferences** should ignore all soft priority packs without weakening safety constraints.
+- **salmon + rice** ingredient ranking;
+- **require all secondary ingredients** filtering;
+- temporary Search time/skill/discovery overrides without mutating the saved profile;
+- safety-conflicting Search failing closed rather than relaxing constraints;
+- up to three composable priority packs with lunch/dinner/all-meals scope;
+- rejection of a fourth priority pack;
+- independent multi-select cuisine preferences including Indian and Thai / Southeast Asian, with Local / Canarian retained later in the chooser;
+- exact lunch/dinner slot planning and one-dish swap invariants;
+- groceries and pantry persistence;
+- temporary **Can't get right now** availability state plus supported substitution handling;
+- durable **Always exclude** hard preferences;
+- family-wide **coconut** exclusion blocking the current coconut-milk recipe and substitution re-entry;
+- future **pineapple** exclusion persistence despite no current V0 pineapple recipe;
+- user-facing mapped allergen hard filters, including Fish blocking salmon Search;
+- JSON export/import round trip;
+- mobile and desktop horizontal-overflow checks;
+- service-worker control and offline shell reload.
 
-V1.0 remains blocked until the combined Gate 9A/9B check is accepted.
+The automated suite also retains the 15,552-combination representative profile matrix and direct deterministic domain tests. Automated success establishes implementation invariants, not subjective food quality or universal device/browser compatibility.
+
+## REMAINING HUMAN HARD STOP
+Before declaring V1.0, only the irreducibly human product checks remain:
+
+1. Open the deployed app on your actual device and confirm the interaction feels understandable and comfortable rather than merely technically functional.
+2. Look at a few recommendations you would personally consider cooking and confirm they feel sensible/appetizing for the selected priorities.
+3. Flag any wording, hierarchy or interaction that is confusing even though automation passes.
+4. If the candidate feels ready, explicitly accept it.
+
+You do **not** need to repeat the objective interaction checklist that CI now covers.
 
 Failure report format: **screen / profile or action / expected / observed / screenshot if useful**.
