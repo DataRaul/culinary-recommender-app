@@ -4,6 +4,7 @@ on:
     branches: [v1-usda-static-composition]
     paths:
       - '.github/workflows/usda-static-extract.yml'
+      - 'scripts/extract-usda-foundation.mjs'
 permissions:
   contents: read
 jobs:
