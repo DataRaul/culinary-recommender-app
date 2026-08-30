@@ -1,8 +1,35 @@
+import { activePriorityPacks, normalizeProfile } from "./profile.js";
 import { resolveAvailability } from "./substitution.js";
-import { normalizeProfile } from "./profile.js";
 
 const clamp01 = value => Math.max(0, Math.min(1, value));
 const closeness = (a, b, span = 3) => clamp01(1 - Math.abs(a - b) / span);
+
+function packAdjustment(recipe, profile, mealType, components) {
+  const packs = activePriorityPacks(profile, mealType);
+  if (!packs.length) return { bonus: 0, packs: [] };
+
+  const signals = {
+    budget: components.budget,
+    speed: components.speed,
+    simplicity: closeness(recipe.culinary.difficulty, 1),
+    nutrition: components.nutrition,
+    protein: components.protein,
+    availability: components.availability,
+    mealPrep: recipe.convenience.mealPrepSuitability / 4,
+    batch: recipe.convenience.batchSuitability / 4,
+    leftovers: recipe.convenience.leftoverSuitability / 4,
+    portable: recipe.convenience.portability / 4,
+    novelty: recipe.discovery.novelty / 4,
+    learning: recipe.discovery.techniqueLearningValue / 4,
+    challenge: recipe.culinary.difficulty / 4
+  };
+
+  let rawBonus = 0;
+  for (const pack of packs) {
+    for (const [signal, weight] of Object.entries(pack.signals || {})) rawBonus += (signals[signal] || 0) * weight;
+  }
+  return { bonus: Number(Math.min(0.24, rawBonus).toFixed(6)), packs };
+}
 
 export function hardConstraintReasons(recipe, rawProfile, mealType = null) {
   const profile = normalizeProfile(rawProfile);
@@ -23,7 +50,8 @@ export function hardConstraintReasons(recipe, rawProfile, mealType = null) {
 
 export function evaluateRecipe(recipe, rawProfile, context = {}) {
   const profile = normalizeProfile(rawProfile);
-  const hardReasons = hardConstraintReasons(recipe, profile, context.mealType || null);
+  const mealType = context.mealType || null;
+  const hardReasons = hardConstraintReasons(recipe, profile, mealType);
   if (hardReasons.length) return { recipe, eligible: false, hardReasons, score: -Infinity, components: {}, explanation: "" };
 
   const nutrition = recipe.nutrition.perServing;
@@ -32,7 +60,7 @@ export function evaluateRecipe(recipe, rawProfile, context = {}) {
   const budgetScore = recipe.economics.costTier <= profile.budget ? 1 : clamp01(1 - (recipe.economics.costTier - profile.budget) * 0.35);
   const speedScore = clamp01(1 - recipe.time.totalMinutes / Math.max(profile.maxMinutes * 1.4, 1));
   const skillScore = closeness(recipe.culinary.difficulty, profile.skill);
-  const cuisineScore = profile.cuisinePreferences.length === 0 || profile.cuisinePreferences.includes("Any") ? 0.7 : profile.cuisinePreferences.includes(recipe.culinary.cuisine) ? 1 : 0.45;
+  const cuisineScore = profile.cuisinePreferences.length === 0 ? 0.7 : profile.cuisinePreferences.includes(recipe.culinary.cuisine) ? 1 : 0.45;
   const proteinScore = clamp01((nutrition.proteinG || 0) / proteinTarget);
   const mealPrepScore = recipe.convenience.mealPrepSuitability / 4;
   const noveltyScore = profile.variety <= 1 ? closeness(recipe.discovery.novelty, 1) : profile.variety >= 4 ? recipe.discovery.novelty / 4 : closeness(recipe.discovery.novelty, profile.variety);
@@ -69,7 +97,9 @@ export function evaluateRecipe(recipe, rawProfile, context = {}) {
     pantry: 0.05,
     substitutionPenalty: -0.08
   };
-  const score = Object.entries(components).reduce((sum, [key, value]) => sum + value * weights[key], 0);
+  const baseScore = Object.entries(components).reduce((sum, [key, value]) => sum + value * weights[key], 0);
+  const pack = packAdjustment(recipe, profile, mealType, components);
+  const score = baseScore + pack.bonus;
 
   const reasons = [];
   if (components.budget >= 0.95) reasons.push(`${"€".repeat(recipe.economics.costTier)} budget fit`);
@@ -79,12 +109,16 @@ export function evaluateRecipe(recipe, rawProfile, context = {}) {
   if (components.cuisine === 1) reasons.push(`${recipe.culinary.cuisine} preference`);
   if (components.pantry > 0) reasons.push(`${pantryMatches} current-pantry ingredient${pantryMatches === 1 ? "" : "s"}`);
   if (availability.adaptations.length) reasons.push(`${availability.adaptations.length} supported substitution${availability.adaptations.length === 1 ? "" : "s"}`);
+  if (pack.packs.length) reasons.push(`${pack.packs.map(item => item.label).join(" + ")} priority`);
 
   return {
     recipe,
     eligible: true,
     hardReasons: [],
     score: Number(score.toFixed(6)),
+    baseScore: Number(baseScore.toFixed(6)),
+    priorityPackBonus: pack.bonus,
+    activePriorityPacks: pack.packs.map(item => ({ id: item.id, scope: item.scope, label: item.label })),
     components,
     availability,
     explanation: `Recommended because it fits ${reasons.slice(0, 4).join(", ") || "your selected profile"}.`
