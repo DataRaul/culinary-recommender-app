@@ -1,9 +1,9 @@
-import { RECIPES, recipeById } from "../data/recipes.js";
+import { ALL_RECIPES, recipeByIdV1 } from "../data/corpus-v1.js";
 
 export const publicRecipeSource = {
-  list: () => RECIPES.map(recipe => structuredClone(recipe)),
+  list: () => ALL_RECIPES.map(recipe => structuredClone(recipe)),
   getById: id => {
-    const recipe = recipeById(id);
+    const recipe = recipeByIdV1(id);
     return recipe ? structuredClone(recipe) : null;
   }
 };
