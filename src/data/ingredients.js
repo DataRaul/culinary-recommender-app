@@ -56,6 +56,7 @@ export const INGREDIENTS = {
   banana: item("banana", "fruit", "banana", ["plátano", "platano"], [], false),
   apple: item("apple", "fruit", "apple", ["manzana"], [], false),
   mango: item("mango", "fruit", "mango", [], [], false),
+  pineapple: item("pineapple", "fruit", "pineapple", ["piña", "pina", "fresh pineapple"], [], false),
   frozen_berries: item("frozen_berries", "fruit", "frozen berries", ["berries", "frutos rojos congelados"], [], false),
 
   parsley: item("parsley", "herb", "parsley", ["perejil"], [], false),
