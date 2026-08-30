@@ -1,7 +1,7 @@
-# Human Acceptance Review — Gate 9
+# Human Acceptance Review — Gate 9 / 9A
 
-Run only after the public V0 URL is verified.
-
+## Gate 9 — ACCEPTED
+The original public V0 review passed:
 1. first-time onboarding;
 2. Budget Beginner profile;
 3. Mediterranean + vegetarian + high-protein profile;
@@ -17,5 +17,13 @@ Run only after the public V0 URL is verified.
 13. intentionally create a constrained/impossible combination;
 14. report confusing UI;
 15. report recommendations that feel obviously wrong.
+
+## Gate 9A — FRIDGE SEARCH HUMAN_GATE
+Run after V0.9.1 is deployed:
+16. Search **salmon** with secondary ingredient **rice**; confirm recipes using both are ranked ahead of other salmon recipes.
+17. Turn on **require all secondary ingredients** and confirm recipes missing rice disappear rather than being silently retained.
+18. As an experienced profile, temporarily choose **Beginner-simple** + a fast time limit and confirm search respects today's simpler request without changing the saved profile.
+19. As a beginner profile, give yourself more time and choose **Explore something new**; confirm skill remains a hard ceiling while discovery can still move upward within eligible recipes.
+20. Try an impossible or safety-conflicting search and confirm the app explains why no result survives rather than relaxing dietary/allergen/exclusion/availability constraints.
 
 Failure report format: **screen / profile or action / expected / observed / screenshot if useful**.
