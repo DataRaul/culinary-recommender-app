@@ -1,4 +1,4 @@
-import { INGREDIENTS, normalizeIngredient, ingredientById } from "../data/ingredients.js";
+import { INGREDIENTS, normalizeIngredient, ingredientById, ingredientFamilies } from "../data/ingredients.js";
 
 const SPECIAL_EXCLUSION_ALIASES = new Map([
   ["coco", "coconut"],
@@ -17,13 +17,14 @@ function slugify(value) {
     .replace(/^_+|_+$/g, "");
 }
 
-const familyExists = id => Object.values(INGREDIENTS).some(ingredient => ingredient.family === id);
+const familyExists = id => Object.values(INGREDIENTS).some(ingredient =>
+  ingredient.family === id || ingredient.families?.includes(id)
+);
 
 export function ingredientMatchesPermanentExclusion(ingredientId, exclusionId) {
   if (!ingredientId || !exclusionId) return false;
   if (ingredientId === exclusionId) return true;
-  const ingredient = ingredientById(ingredientId);
-  if (ingredient?.family === exclusionId) return true;
+  if (ingredientFamilies(ingredientId).includes(exclusionId)) return true;
   return ingredientId.startsWith(`${exclusionId}_`);
 }
 
