@@ -1,0 +1,21 @@
+.bottom-nav { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.search-heading h1 { max-width: 14ch; }
+.search-ingredient-grid, .search-intent-grid { display: grid; gap: .85rem; }
+.search-ingredient-grid { grid-template-columns: 1fr; }
+.search-intent-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 1rem; }
+.search-check { width: fit-content; margin-top: .8rem; }
+.search-safety-note { margin: 1rem 0; padding: .8rem; border-radius: var(--radius-sm); background: #eef3ef; color: var(--muted); font-size: .84rem; }
+.search-safety-note strong { color: var(--text); }
+.search-submit { width: 100%; }
+.search-result-summary { margin: 1.4rem 0 .6rem; }
+.search-result-summary h2 { margin: .25rem 0 .4rem; font-size: clamp(1.4rem, 4vw, 2rem); }
+.search-result-card .reason strong { color: var(--primary); }
+@media (max-width: 430px) {
+  .bottom-nav { gap: .1rem; }
+  .bottom-nav button { font-size: .68rem; padding-inline: .2rem; }
+}
+@media (min-width: 720px) {
+  .search-ingredient-grid { grid-template-columns: .9fr 1.1fr; }
+  .search-intent-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .search-submit { width: fit-content; min-width: 180px; }
+}
