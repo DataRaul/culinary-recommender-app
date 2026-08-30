@@ -1,9 +1,10 @@
 import { SUBSTITUTIONS } from "../data/substitutions.js";
 import { ingredientById } from "../data/ingredients.js";
+import { isIngredientPermanentlyExcluded } from "./exclusions.js";
 
 const conflicts = (ingredient, profile) => {
   if (!ingredient) return true;
-  if (profile.excludedIngredientIds?.includes(ingredient.id)) return true;
+  if (isIngredientPermanentlyExcluded(ingredient.id, profile.excludedIngredientIds)) return true;
   if (profile.unavailableIngredientIds?.includes(ingredient.id)) return true;
   return ingredient.allergens.some(allergen => profile.allergens?.includes(allergen));
 };
