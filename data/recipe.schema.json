@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dataraul.github.io/culinary-recommender-app/data/recipe.schema.json",
+  "title": "Culinary Recommender Canonical Recipe",
+  "type": "object",
+  "required": ["id","identity","provenance","culinary","time","ingredients","instructions","equipment","serving","nutrition","dietaryTags","allergySafety","economics","convenience","discovery","geography"],
+  "properties": {
+    "id": {"type":"string","minLength":1},
+    "identity": {"type":"object","required":["canonicalTitle","language"]},
+    "provenance": {"type":"object","required":["source","license","originalAdaptedStatus","ingestionVersion"]},
+    "culinary": {"type":"object","required":["cuisine","mealTypes","difficulty","techniqueComplexity","failureRisk"]},
+    "time": {"type":"object","required":["prepMinutes","activeMinutes","passiveMinutes","totalMinutes"]},
+    "ingredients": {"type":"array","minItems":1,"items":{"type":"object","required":["canonicalIngredientId","originalText","normalizedIngredient","required"]}},
+    "instructions": {"type":"array","minItems":1,"items":{"type":"object","required":["order","stage","text"]}},
+    "equipment": {"type":"object","required":["required","optional","substitutable"]},
+    "serving": {"type":"object","required":["servings","scalable","minimumSensibleBatch"]},
+    "nutrition": {"type":"object","required":["perServing","provenance","estimationState","confidence"]},
+    "dietaryTags": {"type":"array"},
+    "allergySafety": {"type":"object","required":["declaredAllergens","confidence"]},
+    "economics": {"type":"object","required":["costTier","ingredientCostAssumptions","confidence"]},
+    "convenience": {"type":"object"},
+    "discovery": {"type":"object"},
+    "geography": {"type":"object"}
+  }
+}

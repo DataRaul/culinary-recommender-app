@@ -1,0 +1,10 @@
+{
+  "name": "Culinary Recommender",
+  "short_name": "Culinary",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f2ea",
+  "theme_color": "#16352f",
+  "description": "Deterministic culinary recommendations, meal planning and grocery lists.",
+  "icons": []
+}
