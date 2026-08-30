@@ -13,7 +13,8 @@ export function buildSearchProfile(rawProfile, options = {}) {
         speed: 1,
         cuisinePreferences: [],
         proteinEmphasis: 1,
-        mealPrep: 1
+        mealPrep: 1,
+        priorityPacks: []
       })
     : saved;
 
@@ -50,7 +51,7 @@ export function searchRecipesByIngredients(recipes, rawProfile, query = {}) {
       continue;
     }
 
-    const evaluation = evaluateRecipe(recipe, profile);
+    const evaluation = evaluateRecipe(recipe, profile, { mealType: query.mealType || null });
     const ingredientCoverage = secondaryIngredientIds.length
       ? secondaryMatches.length / secondaryIngredientIds.length
       : 1;
@@ -81,6 +82,7 @@ export function searchRecipesByIngredients(recipes, rawProfile, query = {}) {
     requiredSecondaryMismatchCount,
     shortfall: explainShortfall(blocked),
     profile,
+    mealType: query.mealType || null,
     error: null
   };
 }
