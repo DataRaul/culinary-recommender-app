@@ -38,34 +38,65 @@ The integrated shell/core baseline is accepted:
 
 - Pantry separates **Can't get right now** from **Always exclude**;
 - permanent ingredient exclusions are hard and substitution-proof;
-- permanent exclusion storage is a deduplicated local list with no product-level small-number cap; practical limits are browser-storage limits rather than a culinary preference count;
-- ontology-family exclusions are supported, e.g. `coconut` blocks every encoded coconut-family ingredient including current `coconut_milk`;
-- future exclusion tokens such as `pineapple` persist even when the current small corpus has no matching recipe;
-- mapped allergen hard filters are user-configurable from Profile and constrain substitutions as well as recipes;
+- permanent exclusion storage is a deduplicated local list with no product-level small-number cap;
+- ontology-family exclusions are supported and future exclusion tokens persist;
+- mapped allergen hard filters constrain substitutions as well as recipes;
 - broad automated browser acceptance exercises integrated user journeys in addition to the 15,552-profile deterministic matrix.
 
 Future recipe, ingredient, nutrition-evidence, price, image and UX additions are additive. They do not reopen this accepted shell/core gate unless a later change materially alters these contracts.
 
-## V1 Content Gate A — IMPLEMENTED / VALIDATION_PENDING
-This bounded additive gate expands what the accepted deterministic shell knows without altering its accepted interaction contracts:
+## V1 Content Gate A — COMPLETE
+Merged through PR #6 to `main` at `1742bd40691cca614db2e12ccaa47499bea48a57` after green deterministic and comprehensive Chromium validation. Post-merge validation and GitHub Pages deployment also passed.
 
-- project-authored structured recipe expansion across the existing broad cuisine taxonomy;
-- materially broader canonical ingredient ontology with English/Spanish aliases;
-- hierarchical family membership for generalized exclusions such as rice, pasta/noodle, coconut, seafood and nut/seed families;
-- six-class controlled substitution graph: close, functional, flavour-direction, texture, dietary and emergency approximation;
-- substitution safety remains subordinate to hard allergen, permanent-exclusion and temporary-availability constraints;
-- full-corpus integrity tests plus the existing 15,552-profile matrix now exercise the expanded corpus;
-- V1 runtime bootstraps the additive corpus before the unchanged app shell and precaches the new static data for offline operation;
-- no third-party recipe dataset, paid API, runtime LLM or private Knowledge Core runtime access is introduced.
+Delivered:
+- materially broader project-authored structured recipe corpus;
+- expanded canonical ingredient ontology with English/Spanish aliases;
+- hierarchical family membership for generalized exclusions;
+- six-class controlled substitution graph;
+- full-corpus integrity coverage plus the existing 15,552-profile matrix;
+- additive V1 runtime bootstrap and offline caching;
+- no third-party recipe database, paid API, runtime LLM or private Knowledge Core runtime dependency.
 
-Gate A becomes COMPLETE only after public PR validation, comprehensive browser acceptance, clean merge and post-merge validation/deployment verification.
+## V1 Content Gate B — EVIDENCE FOUNDATION IMPLEMENTED / COMPOSITION IMPORT PENDING
+The authoritative nutrition path is now structurally separated from the current estimates:
 
-## V1 Content Gates B–D — NEXT / NOT YET COMPLETE
-- B: Nutrition Evidence Upgrade using authoritative static mappings with explicit provenance and uncertainty.
-- C: stronger deterministic cost intelligence for Spain/Canary assumptions without live supermarket pricing.
-- D: broaden and normalize culinary technique, failure-risk, convenience and learning metadata.
+- USDA FoodData Central Foundation Foods is source/licence verified for static use;
+- selected source release is Version 15.0 / 2026-04-30;
+- an initial canonical-ingredient identity ledger records verified Foundation catalogue matches;
+- identity records are explicitly `IDENTITY_VERIFIED_COMPOSITION_PENDING`;
+- a concrete public `NutritionSource` reports evidence coverage without relabelling current estimates as authoritative;
+- deterministic per-serving calculation machinery accepts only supported mass units and reports partial/unsupported coverage rather than guessing piece/tablespoon weights.
 
-The Culinary & Nutrition Brain remains separately **NOT_AUTHORIZED**.
+This is a legitimate bounded terminal state for the evidence foundation. Gate B is **not** claiming authoritative nutrient composition yet. The remaining B tranche is a static composition-density import plus unit/weight normalization coverage.
+
+## V1 Content Gate C — IMPLEMENTED / VALIDATION_PENDING
+Cost intelligence now combines:
+
+- existing project-authored per-recipe cost tiers as the strongest prior;
+- deterministic ingredient cost classes;
+- Spain/Canary availability assumptions;
+- one-off package burden;
+- cross-meal ingredient reuse credit;
+- explicit low confidence and no live-price/fake-euro claim.
+
+The existing `estimatePortfolioCost` contract is preserved while returning additional explainable portfolio fields.
+
+## V1 Content Gate D — IMPLEMENTED / VALIDATION_PENDING
+A deterministic full-corpus culinary-quality layer now normalizes:
+
+- explicit and instruction-inferred techniques;
+- failure risk;
+- active/passive execution load;
+- equipment burden;
+- difficulty / technique depth;
+- meal-prep, batch, freezer, leftover and portability suitability;
+- flavour, spice, familiarity, novelty and learning value;
+- exploration and convenience scores.
+
+Technique inference is deterministic over project-authored instructions and remains inspectable; it is not runtime generation.
+
+## Brain P0 — NOT AUTHORIZED
+The dedicated Culinary & Nutrition Brain remains a separate future human authorization boundary. This repository may prepare stable public interfaces and evidence artifacts but must not create or call the Brain early.
 
 ## Deferred
-D1 nutrient-gap awareness, D2 supplement routine checker, D3 images, D4 local grocery prices, D5 fitness integration, D6 advanced culinary exploration and Brain P0 are DEFERRED/NOT_AUTHORIZED rather than failed.
+D1 nutrient-gap awareness, D2 supplement routine checker, D3 images, D4 live/local grocery prices, D5 fitness integration, D6 advanced culinary exploration and Brain P0 remain DEFERRED/NOT_AUTHORIZED rather than failed.
