@@ -1,8 +1,20 @@
 import { loadState, saveState } from "./domain/storage.js";
 import { resolvePermanentExclusion, permanentExclusionLabel } from "./domain/exclusions.js";
 
-const RETURN_KEY = "culinary-recommender.return-pantry";
-const MESSAGE_KEY = "culinary-recommender.exclusion-message";
+const RETURN_VIEW_KEY = "culinary-recommender.return-view";
+const MESSAGE_KEY = "culinary-recommender.safety-message";
+
+const ALLERGEN_OPTIONS = [
+  ["gluten", "Gluten"],
+  ["milk", "Milk / dairy"],
+  ["egg", "Egg"],
+  ["fish", "Fish"],
+  ["crustacean", "Crustaceans · prawns / shrimp"],
+  ["soy", "Soy"],
+  ["peanut", "Peanut"],
+  ["tree_nut", "Tree nuts"],
+  ["sesame", "Sesame"]
+];
 
 function showMessage(message) {
   const toast = document.querySelector("#toast");
@@ -12,8 +24,8 @@ function showMessage(message) {
   setTimeout(() => { toast.hidden = true; }, 2800);
 }
 
-function reloadToPantry(message) {
-  sessionStorage.setItem(RETURN_KEY, "1");
+function reloadToView(view, message) {
+  sessionStorage.setItem(RETURN_VIEW_KEY, view);
   sessionStorage.setItem(MESSAGE_KEY, message);
   location.reload();
 }
@@ -26,7 +38,9 @@ function savePermanentExclusion(raw) {
   saveState(state);
   const note = resolved.futureOnly
     ? `${resolved.label} is permanently excluded and reserved for future corpus matches.`
-    : `${resolved.label} is permanently excluded from recommendations.`;
+    : resolved.familyWide
+      ? `${resolved.label} is permanently excluded in all encoded forms.`
+      : `${resolved.label} is permanently excluded from recommendations.`;
   return { ok: true, message: note };
 }
 
@@ -34,7 +48,7 @@ function removePermanentExclusion(id) {
   const state = loadState();
   state.profile.excludedIngredientIds = (state.profile.excludedIngredientIds || []).filter(value => value !== id);
   saveState(state);
-  reloadToPantry(`${permanentExclusionLabel(id)} is no longer permanently excluded.`);
+  reloadToView("pantry", `${permanentExclusionLabel(id)} is no longer permanently excluded.`);
 }
 
 function enhancePantry() {
@@ -58,7 +72,7 @@ function enhancePantry() {
   panel.id = "permanentExclusionPanel";
   panel.innerHTML = `
     <h2>Always exclude</h2>
-    <p class="hint">For ingredients you simply do not want. These are hard exclusions: no substitution and no recommendation containing the ingredient. They stay saved locally until you remove them.</p>
+    <p class="hint">For ingredients you simply do not want. These are hard exclusions: no substitution and no recommendation containing the ingredient. A generic family such as <strong>coconut</strong> blocks all encoded coconut forms, not only coconut milk.</p>
     <form id="permanentExclusionForm" class="inline-form">
       <label class="field grow"><span>Ingredient to avoid</span><input id="permanentExclusionInput" autocomplete="off" placeholder="e.g. coconut or pineapple"></label>
       <button class="secondary-action" type="submit">Exclude</button>
@@ -72,19 +86,50 @@ function enhancePantry() {
     const input = panel.querySelector("#permanentExclusionInput");
     const result = savePermanentExclusion(input?.value || "");
     if (!result.ok) { showMessage(result.message); return; }
-    reloadToPantry(result.message);
+    reloadToView("pantry", result.message);
   });
   panel.querySelectorAll("[data-remove-exclusion]").forEach(button => button.addEventListener("click", () => removePermanentExclusion(button.dataset.removeExclusion)));
 }
 
-const observer = new MutationObserver(enhancePantry);
-observer.observe(document.querySelector("#app"), { childList: true, subtree: true });
-enhancePantry();
+function enhanceProfileSafety() {
+  const profileHeading = [...document.querySelectorAll("h1")].find(element => element.textContent.trim() === "Profile & privacy");
+  if (!profileHeading || document.querySelector("#allergenSafetyPanel")) return;
+  const anchor = document.querySelector(".confidence-note");
+  if (!anchor) return;
 
-if (sessionStorage.getItem(RETURN_KEY) === "1") {
-  sessionStorage.removeItem(RETURN_KEY);
+  const selected = new Set(loadState().profile.allergens || []);
+  const panel = document.createElement("section");
+  panel.className = "panel";
+  panel.id = "allergenSafetyPanel";
+  panel.innerHTML = `
+    <h2>Declared allergens · hard safety filters</h2>
+    <p class="hint">Select mapped allergens that recipes must not contain. These filters are hard and also constrain substitutions. This small app cannot guarantee cross-contamination safety, so labels and professional guidance still matter for severe allergies.</p>
+    <div class="ingredient-grid">${ALLERGEN_OPTIONS.map(([id, label]) => `<label class="check-row"><input type="checkbox" data-allergen="${id}" ${selected.has(id) ? "checked" : ""}><span>${label}</span></label>`).join("")}</div>
+    <div class="button-row"><button id="saveAllergens" class="secondary-action" type="button">Save allergen filters</button></div>`;
+  anchor.before(panel);
+
+  panel.querySelector("#saveAllergens")?.addEventListener("click", () => {
+    const state = loadState();
+    state.profile.allergens = [...panel.querySelectorAll("[data-allergen]:checked")].map(input => input.dataset.allergen);
+    saveState(state);
+    reloadToView("profile", "Allergen hard filters saved locally.");
+  });
+}
+
+function enhance() {
+  enhancePantry();
+  enhanceProfileSafety();
+}
+
+const observer = new MutationObserver(enhance);
+observer.observe(document.querySelector("#app"), { childList: true, subtree: true });
+enhance();
+
+const returnView = sessionStorage.getItem(RETURN_VIEW_KEY);
+if (returnView) {
+  sessionStorage.removeItem(RETURN_VIEW_KEY);
   setTimeout(() => {
-    document.querySelector('#bottomNav button[data-view="pantry"]')?.click();
+    document.querySelector(`#bottomNav button[data-view="${returnView}"]`)?.click();
     const message = sessionStorage.getItem(MESSAGE_KEY);
     sessionStorage.removeItem(MESSAGE_KEY);
     showMessage(message);
