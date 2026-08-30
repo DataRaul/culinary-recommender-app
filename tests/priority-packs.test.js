@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { RECIPES } from "../src/data/recipes.js";
-import { activePriorityPacks, MAX_PRIORITY_PACKS, normalizeProfile } from "../src/domain/profile.js";
+import { activePriorityPacks, CUISINE_CHOICES, MAX_PRIORITY_PACKS, normalizeProfile } from "../src/domain/profile.js";
 import { evaluateRecipe } from "../src/domain/recommendation.js";
 
 test("priority packs are composable, unique, scoped and capped at three", () => {
@@ -44,4 +44,11 @@ test("meal-scoped packs influence only their intended meal context", () => {
   assert.deepEqual(dinner.activePriorityPacks.map(item => item.id), ["culinary_explorer"]);
   assert.ok(lunch.priorityPackBonus > 0);
   assert.ok(dinner.priorityPackBonus > 0);
+});
+
+test("cuisine chooser foregrounds broad discovery and keeps local Canarian last", () => {
+  const labels = CUISINE_CHOICES.map(item => item.label);
+  assert.ok(labels.indexOf("Indian") < labels.indexOf("Local / Canarian"));
+  assert.ok(labels.indexOf("Thai / Southeast Asian") < labels.indexOf("Local / Canarian"));
+  assert.equal(labels.at(-1), "Local / Canarian");
 });
