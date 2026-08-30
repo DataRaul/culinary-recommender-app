@@ -1,6 +1,6 @@
 import { RECIPES } from "./data/recipes.js";
 import { DEFAULT_PANTRY_STAPLES, normalizeIngredient, ingredientById } from "./data/ingredients.js";
-import { PRESETS, CUISINES, applyPreset, normalizeProfile } from "./domain/profile.js";
+import { PRIORITY_PACKS, CUISINE_CHOICES, MAX_PRIORITY_PACKS, PACK_SCOPE_LABELS, normalizeProfile } from "./domain/profile.js";
 import { planSlots, swapSlot, allWeekSlots } from "./domain/planner.js";
 import { buildGroceryList } from "./domain/grocery.js";
 import { estimatePortfolioCost } from "./domain/cost.js";
@@ -37,13 +37,26 @@ function renderHeaderStatus() {
   statusPill.textContent = `${RECIPES.length} curated V0 recipes · deterministic`;
 }
 
+function priorityPackControls(profile) {
+  const selected = new Map((profile.priorityPacks || []).map(item => [item.id, item.scope]));
+  const cards = Object.entries(PRIORITY_PACKS).map(([id, pack]) => {
+    const checked = selected.has(id);
+    const scope = selected.get(id) || "all";
+    const scopes = Object.entries(PACK_SCOPE_LABELS).map(([value, label]) => `<option value="${value}" ${scope === value ? "selected" : ""}>${escapeHtml(label)}</option>`).join("");
+    return `<div class="priority-pack-card ${checked ? "selected" : ""}">
+      <label class="priority-pack-choice"><input type="checkbox" name="priorityPack" value="${id}" ${checked ? "checked" : ""}><span><strong>${escapeHtml(pack.label)}</strong><small>${escapeHtml(pack.description)}</small></span></label>
+      <label class="pack-scope"><span>Use for</span><select data-pack-scope="${id}" ${checked ? "" : "disabled"}>${scopes}</select></label>
+    </div>`;
+  }).join("");
+  return `<fieldset class="fieldset priority-pack-fieldset"><legend>Priority packs · choose up to ${MAX_PRIORITY_PACKS}</legend><p class="hint">Mix modes instead of choosing one persona. Each pack can apply to all meals, lunch only, or dinner only — for example Meal Prep at lunch and Culinary Explorer at dinner.</p><div class="priority-pack-grid">${cards}</div><p id="priorityPackCount" class="micro">${profile.priorityPacks.length} of ${MAX_PRIORITY_PACKS} selected.</p></fieldset>`;
+}
+
 function profileControls() {
   const p = state.profile;
-  const presetOptions = Object.entries(PRESETS).map(([id, preset]) => `<option value="${id}" ${p.preset === id ? "selected" : ""}>${escapeHtml(preset.label)}</option>`).join("");
-  const cuisineOptions = CUISINES.filter(item => item !== "Any").map(item => `<label class="check-chip"><input type="checkbox" name="cuisine" value="${escapeHtml(item)}" ${p.cuisinePreferences.includes(item) ? "checked" : ""}><span>${escapeHtml(item)}</span></label>`).join("");
+  const cuisineOptions = CUISINE_CHOICES.map(item => `<label class="check-chip"><input type="checkbox" name="cuisine" value="${escapeHtml(item.value)}" ${p.cuisinePreferences.includes(item.value) ? "checked" : ""}><span>${escapeHtml(item.label)}</span></label>`).join("");
   return `
+    ${priorityPackControls(p)}
     <div class="field-grid">
-      <label class="field"><span>Preset</span><select id="presetSelect">${presetOptions}</select></label>
       <label class="field"><span>Dietary mode</span><select id="dietaryMode">
         <option value="unrestricted" ${p.dietaryMode === "unrestricted" ? "selected" : ""}>Unrestricted</option>
         <option value="vegetarian" ${p.dietaryMode === "vegetarian" ? "selected" : ""}>Vegetarian</option>
@@ -71,7 +84,7 @@ function profileControls() {
         ${[[1,"Irrelevant"],[2,"Useful"],[3,"Important"],[4,"Central"]].map(([value,label]) => `<option value="${value}" ${p.mealPrep === value ? "selected" : ""}>${label}</option>`).join("")}
       </select></label>
     </div>
-    <fieldset class="fieldset"><legend>Cuisine preferences</legend><div class="chip-grid">${cuisineOptions}</div></fieldset>`;
+    <fieldset class="fieldset"><legend>Cuisine preferences · choose any</legend><p class="hint">These are soft discovery preferences, not hard filters. Choose several, or leave all unchecked for no cuisine preference. Local / Canarian stays available but is not privileged over broader cuisines.</p><div class="chip-grid">${cuisineOptions}</div></fieldset>`;
 }
 
 function slotPicker() {
@@ -109,11 +122,40 @@ function bindProfileControls() {
     });
     persist();
   };
-  document.querySelector("#presetSelect")?.addEventListener("change", event => {
-    state.profile = applyPreset(state.profile, event.target.value);
-    persist(); render();
-  });
+
+  const selectedPackValues = () => [...document.querySelectorAll('input[name="priorityPack"]:checked')].map(input => ({
+    id: input.value,
+    scope: document.querySelector(`[data-pack-scope="${input.value}"]`)?.value || "all"
+  }));
+  const refreshPackUi = () => {
+    const selected = selectedPackValues();
+    document.querySelectorAll('input[name="priorityPack"]').forEach(input => {
+      const scope = document.querySelector(`[data-pack-scope="${input.value}"]`);
+      const card = input.closest(".priority-pack-card");
+      if (scope) scope.disabled = !input.checked;
+      card?.classList.toggle("selected", input.checked);
+    });
+    const count = document.querySelector("#priorityPackCount");
+    if (count) count.textContent = `${selected.length} of ${MAX_PRIORITY_PACKS} selected.`;
+  };
+  const savePacks = () => {
+    state.profile = normalizeProfile({ ...state.profile, priorityPacks: selectedPackValues() });
+    persist();
+    refreshPackUi();
+  };
+  document.querySelectorAll('input[name="priorityPack"]').forEach(input => input.addEventListener("change", () => {
+    if (input.checked && selectedPackValues().length > MAX_PRIORITY_PACKS) {
+      input.checked = false;
+      announce(`Choose up to ${MAX_PRIORITY_PACKS} priority packs.`);
+      refreshPackUi();
+      return;
+    }
+    savePacks();
+  }));
+  document.querySelectorAll("[data-pack-scope]").forEach(select => select.addEventListener("change", savePacks));
+
   document.querySelectorAll("#dietaryMode,#maxMinutes,#skill,#budget,#proteinEmphasis,#nutritionPriority,#variety,#mealPrep,input[name='cuisine']").forEach(el => el.addEventListener("change", read));
+  refreshPackUi();
 }
 
 function generatePlan() {
