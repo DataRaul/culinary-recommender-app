@@ -1,8 +1,7 @@
-import { normalizeIngredient, ingredientById } from "../data/ingredients.js";
+import { INGREDIENTS, normalizeIngredient, ingredientById } from "../data/ingredients.js";
 
 const SPECIAL_EXCLUSION_ALIASES = new Map([
-  ["coconut", "coconut_milk"],
-  ["coco", "coconut_milk"],
+  ["coco", "coconut"],
   ["pineapple", "pineapple"],
   ["pina", "pineapple"],
   ["piña", "pineapple"]
@@ -18,28 +17,53 @@ function slugify(value) {
     .replace(/^_+|_+$/g, "");
 }
 
+const familyExists = id => Object.values(INGREDIENTS).some(ingredient => ingredient.family === id);
+
+export function ingredientMatchesPermanentExclusion(ingredientId, exclusionId) {
+  if (!ingredientId || !exclusionId) return false;
+  if (ingredientId === exclusionId) return true;
+  const ingredient = ingredientById(ingredientId);
+  if (ingredient?.family === exclusionId) return true;
+  return ingredientId.startsWith(`${exclusionId}_`);
+}
+
+export function isIngredientPermanentlyExcluded(ingredientId, excludedIngredientIds = []) {
+  return (excludedIngredientIds || []).some(exclusionId => ingredientMatchesPermanentExclusion(ingredientId, exclusionId));
+}
+
 export function resolvePermanentExclusion(value) {
   const raw = String(value || "").trim();
   if (!raw) return null;
+
+  // A generic family name such as "coconut" intentionally takes precedence over one current form.
+  const rawId = slugify(raw);
+  if (familyExists(rawId)) {
+    return { id: rawId, label: raw.toLowerCase(), recognized: true, familyWide: true, futureOnly: false };
+  }
+
   const normalized = normalizeIngredient(raw);
   if (normalized) {
-    return { id: normalized, label: ingredientById(normalized)?.name || raw, recognized: true, futureOnly: false };
+    return { id: normalized, label: ingredientById(normalized)?.name || raw, recognized: true, familyWide: false, futureOnly: false };
   }
+
   const special = SPECIAL_EXCLUSION_ALIASES.get(raw.toLowerCase());
   if (special) {
+    const familyWide = familyExists(special);
     const ingredient = ingredientById(special);
     return {
       id: special,
-      label: special === "pineapple" ? "pineapple" : ingredient?.name || raw,
-      recognized: Boolean(ingredient),
-      futureOnly: !ingredient
+      label: special === "pineapple" ? "pineapple" : raw.toLowerCase(),
+      recognized: familyWide || Boolean(ingredient),
+      familyWide,
+      futureOnly: !familyWide && !ingredient
     };
   }
-  const id = slugify(raw);
-  if (!id) return null;
-  return { id, label: raw.toLowerCase(), recognized: false, futureOnly: true };
+
+  if (!rawId) return null;
+  return { id: rawId, label: raw.toLowerCase(), recognized: false, familyWide: false, futureOnly: true };
 }
 
 export function permanentExclusionLabel(id) {
+  if (familyExists(id)) return `${String(id).replaceAll("_", " ")} · all forms`;
   return ingredientById(id)?.name || String(id || "").replaceAll("_", " ");
 }
