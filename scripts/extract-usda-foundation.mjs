@@ -48,59 +48,89 @@ for (const name of csvFiles) {
   tables.set(name, rows);
 }
 
+const normalizedKey = key => String(key || "").trim().toLowerCase();
+function rowValue(row, wantedKey) {
+  const wanted = normalizedKey(wantedKey);
+  const actual = Object.keys(row || {}).find(key => normalizedKey(key) === wanted);
+  return actual ? row[actual] : undefined;
+}
+
 function findTable(required) {
   for (const [name, rows] of tables) {
-    const keys = new Set(Object.keys(rows[0] || {}).map(k => k.toLowerCase()));
-    if (required.every(key => keys.has(key))) return { name, rows };
+    const keys = new Set(Object.keys(rows[0] || {}).map(normalizedKey));
+    if (required.every(key => keys.has(normalizedKey(key)))) return { name, rows };
   }
   throw new Error(`Could not locate table with columns: ${required.join(", ")}`);
 }
 
-const ndbTable = findTable(["fdc_id", "ndb_number"]);
-const foodTable = findTable(["fdc_id", "description"]);
-const nutrientTable = findTable(["fdc_id", "nutrient_id", "amount"]);
+const ndbTable = tables.has("foundation_food.csv")
+  ? { name: "foundation_food.csv", rows: tables.get("foundation_food.csv") }
+  : findTable(["fdc_id", "ndb_number"]);
+const foodTable = tables.has("food.csv")
+  ? { name: "food.csv", rows: tables.get("food.csv") }
+  : findTable(["fdc_id", "description"]);
+const nutrientTable = tables.has("food_nutrient.csv")
+  ? { name: "food_nutrient.csv", rows: tables.get("food_nutrient.csv") }
+  : findTable(["fdc_id", "nutrient_id", "amount"]);
+
 const targetByNdb = new Map(Object.entries(TARGETS).map(([ingredientId, ndb]) => [ndb, ingredientId]));
 const fdcToIngredient = new Map();
 const identities = {};
 
 for (const row of ndbTable.rows) {
-  const ndb = String(row.ndb_number || "").trim();
+  const ndb = String(rowValue(row, "ndb_number") || "").trim().replace(/^0+/, "") || "0";
   const ingredientId = targetByNdb.get(ndb);
   if (!ingredientId) continue;
-  const fdcId = String(row.fdc_id).trim();
+  const fdcId = String(rowValue(row, "fdc_id") || "").trim();
+  if (!fdcId) continue;
   fdcToIngredient.set(fdcId, ingredientId);
   identities[ingredientId] = { ndbNumber: ndb, fdcId };
 }
 
-const foodByFdc = new Map(foodTable.rows.map(row => [String(row.fdc_id).trim(), row]));
+const foodByFdc = new Map(foodTable.rows.map(row => [String(rowValue(row, "fdc_id") || "").trim(), row]));
 for (const [fdcId, ingredientId] of fdcToIngredient) {
   const food = foodByFdc.get(fdcId) || {};
-  identities[ingredientId].description = food.description || null;
-  identities[ingredientId].publicationDate = food.publication_date || null;
-  identities[ingredientId].dataType = food.data_type || "Foundation";
+  identities[ingredientId].description = rowValue(food, "description") || null;
+  identities[ingredientId].publicationDate = rowValue(food, "publication_date") || null;
+  identities[ingredientId].dataType = rowValue(food, "data_type") || "Foundation";
 }
 
 const wantedNutrients = new Set(["1003", "1004", "1005", "1008", "1079", "2047", "2048"]);
 const nutrients = Object.fromEntries(Object.keys(TARGETS).map(id => [id, []]));
 for (const row of nutrientTable.rows) {
-  const fdcId = String(row.fdc_id).trim();
+  const fdcId = String(rowValue(row, "fdc_id") || "").trim();
   const ingredientId = fdcToIngredient.get(fdcId);
   if (!ingredientId) continue;
-  const nutrientId = String(row.nutrient_id).trim();
+  const nutrientId = String(rowValue(row, "nutrient_id") || "").trim();
   if (!wantedNutrients.has(nutrientId)) continue;
+  const amountRaw = rowValue(row, "amount");
+  const amount = Number(amountRaw);
+  if (!Number.isFinite(amount)) continue;
+  const numericOrNull = key => {
+    const raw = rowValue(row, key);
+    if (raw === undefined || raw === null || raw === "") return null;
+    const value = Number(raw);
+    return Number.isFinite(value) ? value : null;
+  };
   nutrients[ingredientId].push({
     nutrientId,
-    amount: Number(row.amount),
-    dataPoints: row.data_points ? Number(row.data_points) : null,
-    derivationId: row.derivation_id || null,
-    min: row.min ? Number(row.min) : null,
-    max: row.max ? Number(row.max) : null,
-    median: row.median ? Number(row.median) : null
+    amount,
+    dataPoints: numericOrNull("data_points"),
+    derivationId: rowValue(row, "derivation_id") || null,
+    min: numericOrNull("min"),
+    max: numericOrNull("max"),
+    median: numericOrNull("median")
   });
 }
 
 const missingIdentities = Object.keys(TARGETS).filter(id => !identities[id]);
-if (missingIdentities.length) throw new Error(`Missing mapped NDB identities: ${missingIdentities.join(", ")}`);
+if (missingIdentities.length) {
+  const sample = ndbTable.rows.slice(0, 5).map(row => ({
+    fdcId: rowValue(row, "fdc_id"),
+    ndbNumber: rowValue(row, "ndb_number")
+  }));
+  throw new Error(`Missing mapped NDB identities: ${missingIdentities.join(", ")}; table=${ndbTable.name}; sample=${JSON.stringify(sample)}`);
+}
 
 const result = {
   source: {
