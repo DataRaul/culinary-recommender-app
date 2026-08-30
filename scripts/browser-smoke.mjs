@@ -5,6 +5,19 @@ const errors = [];
 page.on("pageerror", error => errors.push(error.message));
 await page.goto(process.env.APP_URL || "http://127.0.0.1:4173", { waitUntil: "networkidle" });
 await page.getByRole("heading", { name: "What should you cook?" }).waitFor();
+
+await page.getByText("Priority packs · choose up to 3").waitFor();
+await page.getByRole("checkbox", { name: /Meal Prep/ }).check();
+await page.locator('[data-pack-scope="meal_prep"]').selectOption("lunch");
+await page.getByRole("checkbox", { name: /Culinary Explorer/ }).check();
+await page.locator('[data-pack-scope="culinary_explorer"]').selectOption("dinner");
+if ((await page.locator('input[name="priorityPack"]:checked').count()) !== 3) throw new Error("Expected three selected priority packs");
+await page.getByRole("checkbox", { name: /Weeknight Fast/ }).check();
+if ((await page.locator('input[name="priorityPack"]:checked').count()) !== 3) throw new Error("Priority pack limit should remain capped at three");
+await page.getByText("Indian", { exact: true }).waitFor();
+await page.getByText("Thai / Southeast Asian", { exact: true }).waitFor();
+await page.getByText("Local / Canarian", { exact: true }).waitFor();
+
 await page.getByLabel("Dietary mode").selectOption("vegetarian");
 await page.getByLabel("Protein emphasis").selectOption("4");
 await page.getByRole("button", { name: /Build my plan/ }).click();
@@ -19,6 +32,7 @@ await page.getByRole("button", { name: "Search" }).click();
 await page.getByRole("heading", { name: "Cook what you already have" }).waitFor();
 await page.getByLabel(/Main ingredient/).fill("chickpeas");
 await page.getByLabel(/Other ingredients/).fill("lemon");
+await page.getByLabel("Cooking for").selectOption("dinner");
 await page.getByLabel("Time today").selectOption("60");
 await page.getByLabel("Effort / skill today").selectOption("4");
 await page.getByRole("button", { name: /Find dishes/ }).click();
