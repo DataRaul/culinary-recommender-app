@@ -18,7 +18,7 @@ async function mobileAcceptance() {
   await mealPrep.locator("select").selectOption("lunch");
   await explorer.getByRole("checkbox").check();
   await explorer.locator("select").selectOption("dinner");
-  await weeknight.getByRole("checkbox").check();
+  await weeknight.getByRole("checkbox").click();
   if (await weeknight.getByRole("checkbox").isChecked()) throw new Error("Fourth priority pack should be rejected");
   await page.getByText("3 of 3 selected.").waitFor();
 
