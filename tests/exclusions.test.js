@@ -2,21 +2,26 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { RECIPES } from "../src/data/recipes.js";
 import { DEFAULT_PROFILE, normalizeProfile } from "../src/domain/profile.js";
-import { resolvePermanentExclusion } from "../src/domain/exclusions.js";
+import { ingredientMatchesPermanentExclusion, resolvePermanentExclusion } from "../src/domain/exclusions.js";
 import { rankRecipes } from "../src/domain/recommendation.js";
 import { searchRecipesByIngredients } from "../src/domain/search.js";
 
-test("known and future permanent exclusions normalize deterministically", () => {
-  assert.equal(resolvePermanentExclusion("coconut").id, "coconut_milk");
+test("known, family-wide and future permanent exclusions normalize deterministically", () => {
+  const coconut = resolvePermanentExclusion("coconut");
+  assert.equal(coconut.id, "coconut");
+  assert.equal(coconut.familyWide, true);
+  assert.equal(coconut.futureOnly, false);
+  assert.equal(resolvePermanentExclusion("coco").id, "coconut");
   assert.equal(resolvePermanentExclusion("leche de coco").id, "coconut_milk");
+  assert.equal(ingredientMatchesPermanentExclusion("coconut_milk", "coconut"), true);
   const pineapple = resolvePermanentExclusion("pineapple");
   assert.equal(pineapple.id, "pineapple");
   assert.equal(pineapple.futureOnly, true);
   assert.equal(resolvePermanentExclusion("Piña").id, "pineapple");
 });
 
-test("permanent exclusions are hard filters, not substitution requests", () => {
-  const profile = normalizeProfile({ ...DEFAULT_PROFILE, skill: 4, maxMinutes: 90, excludedIngredientIds: ["coconut_milk"] });
+test("family-wide permanent exclusions are hard filters, not substitution requests", () => {
+  const profile = normalizeProfile({ ...DEFAULT_PROFILE, skill: 4, maxMinutes: 90, excludedIngredientIds: ["coconut"] });
   const ranked = rankRecipes(RECIPES, profile, { mealType: "dinner" });
   assert.ok(ranked.eligible.every(item => !item.recipe.ingredients.some(ingredient => ingredient.canonicalIngredientId === "coconut_milk")));
   const blocked = ranked.rejected.find(item => item.recipe.id === "indian_tempeh_coconut_curry");
@@ -24,8 +29,8 @@ test("permanent exclusions are hard filters, not substitution requests", () => {
   assert.ok(blocked.hardReasons.some(reason => reason.includes("contains excluded ingredient: coconut_milk")));
 });
 
-test("ingredient search also honors permanent exclusions", () => {
-  const profile = normalizeProfile({ ...DEFAULT_PROFILE, skill: 4, maxMinutes: 90, excludedIngredientIds: ["coconut_milk"] });
+test("ingredient search also honors family-wide permanent exclusions", () => {
+  const profile = normalizeProfile({ ...DEFAULT_PROFILE, skill: 4, maxMinutes: 90, excludedIngredientIds: ["coconut"] });
   const result = searchRecipesByIngredients(RECIPES, profile, {
     mainIngredientId: "tempeh",
     followProfilePreferences: false,
