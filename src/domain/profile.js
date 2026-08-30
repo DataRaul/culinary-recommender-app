@@ -8,12 +8,90 @@ export const PROFILE_DIMENSIONS = {
   mealPrep: [1, 2, 3, 4]
 };
 
-export const CUISINES = ["Any", "Canarian", "Spanish", "Mediterranean", "Italian", "Indian", "East Asian", "Southeast Asian", "Middle Eastern", "Latin American"];
+export const CUISINE_CHOICES = [
+  { value: "Mediterranean", label: "Mediterranean" },
+  { value: "Italian", label: "Italian" },
+  { value: "Spanish", label: "Spanish" },
+  { value: "Indian", label: "Indian" },
+  { value: "Southeast Asian", label: "Thai / Southeast Asian" },
+  { value: "East Asian", label: "East Asian" },
+  { value: "Middle Eastern", label: "Middle Eastern" },
+  { value: "Latin American", label: "Latin American" },
+  { value: "Canarian", label: "Local / Canarian" }
+];
+export const CUISINES = ["Any", ...CUISINE_CHOICES.map(item => item.value)];
 export const DIETARY_MODES = ["unrestricted", "vegetarian", "vegan"];
+
+export const MAX_PRIORITY_PACKS = 3;
+export const PACK_SCOPES = ["all", "lunch", "dinner"];
+export const PACK_SCOPE_LABELS = {
+  all: "All meals",
+  lunch: "Lunch",
+  dinner: "Dinner"
+};
+
+export const PRIORITY_PACKS = {
+  budget_easy: {
+    label: "Budget & Easy",
+    description: "Economical, simple choices when cost and effort matter.",
+    signals: { budget: 0.07, speed: 0.04, simplicity: 0.05 }
+  },
+  healthy_convenience: {
+    label: "Healthy Convenience",
+    description: "Nutrition-aware food that stays practical on busy days.",
+    signals: { nutrition: 0.07, speed: 0.06, protein: 0.03 }
+  },
+  premium_healthy: {
+    label: "Premium Healthy",
+    description: "Prioritize nutrition and quality without pushing cost down.",
+    signals: { nutrition: 0.08, availability: 0.03, novelty: 0.03 }
+  },
+  meal_prep: {
+    label: "Meal Prep",
+    description: "Batch-friendly, portable food with useful leftovers.",
+    signals: { mealPrep: 0.07, batch: 0.04, leftovers: 0.04, portable: 0.03 }
+  },
+  culinary_explorer: {
+    label: "Culinary Explorer",
+    description: "Favor novelty and learning while keeping hard limits intact.",
+    signals: { novelty: 0.09, learning: 0.05, challenge: 0.02 }
+  },
+  advanced_technique: {
+    label: "Technique Builder",
+    description: "Reward recipes that teach more and use higher-skill methods.",
+    signals: { learning: 0.08, challenge: 0.07, novelty: 0.03 }
+  },
+  high_protein_convenience: {
+    label: "High-Protein Convenience",
+    description: "Protein-forward choices that remain fast and prep-friendly.",
+    signals: { protein: 0.08, speed: 0.05, mealPrep: 0.04 }
+  },
+  weeknight_fast: {
+    label: "Weeknight Fast",
+    description: "Push strongly toward quick, straightforward cooking.",
+    signals: { speed: 0.08, simplicity: 0.08 }
+  }
+};
+
+// Backward-compatible alias for code or exported backups created before V0.9.2.
+export const PRESETS = PRIORITY_PACKS;
+
+const LEGACY_PRESET_MAP = {
+  budget_beginner: "budget_easy",
+  healthy_convenience: "healthy_convenience",
+  premium_healthy: "premium_healthy",
+  meal_prep_worker: "meal_prep",
+  culinary_explorer: "culinary_explorer",
+  advanced_cook: "advanced_technique",
+  high_protein_convenience: "high_protein_convenience",
+  mediterranean_everyday: "healthy_convenience",
+  vegetarian_explorer: "culinary_explorer"
+};
 
 export const DEFAULT_PROFILE = {
   name: "My cooking profile",
-  preset: "healthy_convenience",
+  preset: null,
+  priorityPacks: [{ id: "healthy_convenience", scope: "all" }],
   budget: 2,
   nutritionPriority: 3,
   speed: 3,
@@ -32,27 +110,42 @@ export const DEFAULT_PROFILE = {
   objective: "make healthy cooking easy"
 };
 
-export const PRESETS = {
-  budget_beginner: { label: "Budget Beginner", budget: 1, nutritionPriority: 2, speed: 3, maxMinutes: 30, skill: 1, variety: 1, proteinEmphasis: 2, mealPrep: 2, objective: "reduce cost" },
-  healthy_convenience: { label: "Healthy Convenience", budget: 2, nutritionPriority: 4, speed: 4, maxMinutes: 30, skill: 2, variety: 2, proteinEmphasis: 3, mealPrep: 2, objective: "make healthy cooking easy" },
-  premium_healthy: { label: "Premium Healthy", budget: 4, nutritionPriority: 4, speed: 2, maxMinutes: 50, skill: 2, variety: 3, proteinEmphasis: 3, mealPrep: 1, objective: "make healthy cooking easy" },
-  meal_prep_worker: { label: "Meal Prep Worker", budget: 2, nutritionPriority: 3, speed: 3, maxMinutes: 40, skill: 2, variety: 2, proteinEmphasis: 3, mealPrep: 4, objective: "meal prep" },
-  culinary_explorer: { label: "Culinary Explorer", budget: 3, nutritionPriority: 2, speed: 1, maxMinutes: 70, skill: 3, variety: 4, proteinEmphasis: 2, mealPrep: 1, objective: "discover new food" },
-  advanced_cook: { label: "Advanced Cook", budget: 4, nutritionPriority: 2, speed: 1, maxMinutes: 90, skill: 4, variety: 4, proteinEmphasis: 2, mealPrep: 1, objective: "learn techniques" },
-  high_protein_convenience: { label: "High-Protein Convenience", budget: 2, nutritionPriority: 3, speed: 4, maxMinutes: 30, skill: 2, variety: 2, proteinEmphasis: 4, mealPrep: 3, objective: "increase protein" },
-  mediterranean_everyday: { label: "Mediterranean Everyday", budget: 2, nutritionPriority: 3, speed: 3, maxMinutes: 35, skill: 2, variety: 2, cuisinePreferences: ["Mediterranean", "Spanish", "Canarian"], proteinEmphasis: 2, mealPrep: 2, objective: "make healthy cooking easy" },
-  vegetarian_explorer: { label: "Vegetarian Explorer", budget: 2, nutritionPriority: 3, speed: 2, maxMinutes: 45, skill: 2, variety: 4, dietaryMode: "vegetarian", proteinEmphasis: 3, mealPrep: 2, objective: "discover new food" }
-};
-
 const clamp = value => Math.max(1, Math.min(4, Number(value) || 1));
 
-export function applyPreset(profile, presetId) {
-  const preset = PRESETS[presetId];
-  if (!preset) return { ...profile };
-  return normalizeProfile({ ...profile, ...preset, preset: presetId });
+function normalizePriorityPacks(value, legacyPreset = null) {
+  const source = Array.isArray(value) ? value : [];
+  const normalized = [];
+  const seen = new Set();
+  for (const item of source) {
+    const id = typeof item === "string" ? item : item?.id;
+    const scope = typeof item === "object" && PACK_SCOPES.includes(item?.scope) ? item.scope : "all";
+    if (!PRIORITY_PACKS[id] || seen.has(id)) continue;
+    normalized.push({ id, scope });
+    seen.add(id);
+    if (normalized.length >= MAX_PRIORITY_PACKS) break;
+  }
+  if (!normalized.length && legacyPreset) {
+    const mapped = LEGACY_PRESET_MAP[legacyPreset] || legacyPreset;
+    if (PRIORITY_PACKS[mapped]) normalized.push({ id: mapped, scope: "all" });
+  }
+  return normalized;
+}
+
+export function applyPreset(profile, presetId, scope = "all") {
+  const mapped = LEGACY_PRESET_MAP[presetId] || presetId;
+  if (!PRIORITY_PACKS[mapped]) return normalizeProfile(profile);
+  return normalizeProfile({ ...profile, preset: null, priorityPacks: [{ id: mapped, scope }] });
+}
+
+export function activePriorityPacks(rawProfile, mealType = null) {
+  const profile = normalizeProfile(rawProfile);
+  return profile.priorityPacks
+    .filter(item => item.scope === "all" || (mealType && item.scope === mealType))
+    .map(item => ({ ...item, ...PRIORITY_PACKS[item.id] }));
 }
 
 export function normalizeProfile(input = {}) {
+  const hasPriorityPackInput = Object.prototype.hasOwnProperty.call(input || {}, "priorityPacks");
   const profile = { ...DEFAULT_PROFILE, ...input };
   profile.budget = clamp(profile.budget);
   profile.nutritionPriority = clamp(profile.nutritionPriority);
@@ -63,10 +156,15 @@ export function normalizeProfile(input = {}) {
   profile.mealPrep = clamp(profile.mealPrep);
   profile.maxMinutes = Math.max(10, Math.min(180, Number(profile.maxMinutes) || 35));
   profile.dietaryMode = DIETARY_MODES.includes(profile.dietaryMode) ? profile.dietaryMode : "unrestricted";
-  profile.cuisinePreferences = [...new Set(Array.isArray(profile.cuisinePreferences) ? profile.cuisinePreferences.filter(Boolean) : [])];
+  profile.cuisinePreferences = [...new Set(Array.isArray(profile.cuisinePreferences) ? profile.cuisinePreferences.filter(value => CUISINES.includes(value) && value !== "Any") : [])];
   profile.allergens = [...new Set(Array.isArray(profile.allergens) ? profile.allergens.filter(Boolean) : [])];
   for (const key of ["excludedIngredientIds", "unavailableIngredientIds", "currentPantryIngredientIds", "pantryStapleIds"]) {
     profile[key] = [...new Set(Array.isArray(profile[key]) ? profile[key].filter(Boolean) : [])];
   }
+  profile.priorityPacks = normalizePriorityPacks(
+    hasPriorityPackInput ? input.priorityPacks : profile.priorityPacks,
+    hasPriorityPackInput ? null : input.preset
+  );
+  profile.preset = null;
   return profile;
 }
