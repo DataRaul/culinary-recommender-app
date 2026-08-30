@@ -18,14 +18,14 @@ Combined grocery list, pantry assumptions, current-pantry preference, cannot-obt
 ## Gate 6 — COMPLETE
 Mobile-first navigation, onboarding, plan, groceries, pantry, profile/export-import, shortfall/error communication, focus/contrast/touch/reduced-motion baseline.
 
-## Gate 7 — COMPLETE LOCALLY / CI PENDING MERGE
-Local `npm run validate` passes. Matrix covers 15,552 deterministic profile combinations. Public GitHub Actions adds Chromium smoke testing on standard hosted runners.
+## Gate 7 — COMPLETE
+Local and public CI validation pass. Matrix covers 15,552 deterministic profile combinations. Public GitHub Actions runs validation and Chromium smoke testing on standard hosted runners.
 
-## Gate 8 — READY
-Pages workflow is prepared. Deployment remains contingent on successful public workflow execution and GitHub Pages enablement.
+## Gate 8 — COMPLETE
+Public deployment verified at https://dataraul.github.io/culinary-recommender-app/. Hosting is deliberately simple: GitHub Pages publishes from `main` / repository root, with no dedicated Pages deployment workflow.
 
 ## Gate 9 — HUMAN_GATE
-Human review begins only after a working public URL is verified.
+Human acceptance review is the designed hard stop. V1.0 is not declared until the user completes the review checklist and either accepts the candidate or reports failures for repair.
 
 ## Deferred
 D1 nutrient-gap awareness, D2 supplement routine checker, D3 images, D4 local grocery prices, D5 fitness integration, D6 advanced culinary exploration and Brain P0 are DEFERRED/NOT_AUTHORIZED rather than failed.
