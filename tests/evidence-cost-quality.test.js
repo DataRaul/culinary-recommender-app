@@ -3,37 +3,52 @@ import assert from "node:assert/strict";
 import { ALL_RECIPES } from "../src/data/corpus-v1.js";
 import { INGREDIENTS } from "../src/data/ingredients.js";
 import { NUTRITION_IDENTITY_EVIDENCE, USDA_FOUNDATION_SOURCE } from "../src/data/nutrition-evidence.js";
+import { USDA_FOUNDATION_COMPOSITION_SOURCE, USDA_FOUNDATION_DENSITIES_V1 } from "../src/data/usda-foundation-nutrients-v1.js";
 import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
 import { analyzePortfolioCost } from "../src/domain/cost.js";
 import { culinaryQualityCoverage, culinaryQualityProfile } from "../src/domain/culinary-quality.js";
 
-test("USDA identity ledger is source-scoped and never masquerades as imported composition", () => {
+test("USDA Foundation ledger binds canonical identities to the bounded April 2026 static extract", () => {
   assert.equal(USDA_FOUNDATION_SOURCE.dataType, "Foundation");
-  assert.equal(USDA_FOUNDATION_SOURCE.state, "SOURCE_VERIFIED_STATIC_IMPORT_NOT_BUNDLED");
+  assert.equal(USDA_FOUNDATION_SOURCE.state, "BOUNDED_STATIC_COMPOSITION_BUNDLED");
+  assert.equal(USDA_FOUNDATION_COMPOSITION_SOURCE.releaseVersion, "15.0");
+  assert.equal(USDA_FOUNDATION_COMPOSITION_SOURCE.releaseDate, "2026-04-30");
+  assert.equal(Object.keys(USDA_FOUNDATION_DENSITIES_V1).length, 14);
+  assert.equal(USDA_FOUNDATION_DENSITIES_V1.chicken_breast.fdcId, "2646170");
+  assert.equal(USDA_FOUNDATION_DENSITIES_V1.black_beans.fdcId, "2644285");
+  assert.equal(USDA_FOUNDATION_DENSITIES_V1.avocado.fdcId, "2710824");
+  assert.equal(USDA_FOUNDATION_DENSITIES_V1.cashews.fdcId, "2515374");
+  assert.equal(USDA_FOUNDATION_DENSITIES_V1.banana.nutrientIds.energyKcal, "2048");
+  assert.equal(USDA_FOUNDATION_DENSITIES_V1.chicken_breast.per100g.fibreG, null);
+  assert.ok(USDA_FOUNDATION_DENSITIES_V1.banana.per100g.fibreG > 0);
+
   const identifiers = new Set();
   for (const record of Object.values(NUTRITION_IDENTITY_EVIDENCE)) {
     assert.ok(INGREDIENTS[record.canonicalIngredientId]);
     assert.equal(record.sourceId, USDA_FOUNDATION_SOURCE.id);
     assert.equal(record.sourceIdentifierType, "NDB_NUMBER");
-    assert.equal(record.state, "IDENTITY_VERIFIED_COMPOSITION_PENDING");
+    assert.ok(record.fdcId);
+    assert.ok(record.state.startsWith("STATIC_COMPOSITION_IMPORTED_"));
     assert.ok(record.description.length > 8);
     assert.ok(!identifiers.has(record.sourceIdentifier));
     identifiers.add(record.sourceIdentifier);
   }
 });
 
-test("public NutritionSource preserves current estimates while exposing evidence coverage honestly", () => {
+test("public NutritionSource preserves project estimate when USDA recipe coverage is partial", () => {
   const recipe = ALL_RECIPES.find(item => item.id === "med_tuna_white_bean_salad");
   const estimate = publicNutritionSource.estimate(recipe);
   assert.deepEqual(estimate.perServing, recipe.nutrition.perServing);
   assert.equal(estimate.method, recipe.nutrition.estimationState);
-  assert.equal(estimate.evidence.compositionImported, false);
-  assert.equal(estimate.evidence.coverage.compositionState, "NOT_IMPORTED");
+  assert.equal(estimate.evidence.compositionImported, true);
+  assert.equal(estimate.evidence.coverage.compositionState, "BOUNDED_STATIC_COMPOSITION_AVAILABLE");
   assert.ok(estimate.evidence.coverage.mappedIngredientIds.includes("tuna"));
   assert.ok(estimate.evidence.coverage.mappedIngredientIds.includes("white_beans"));
+  assert.equal(estimate.evidence.staticCalculation.complete, false);
+  assert.equal(estimate.evidence.state, "PARTIAL_STATIC_EVIDENCE_ESTIMATE_PRESERVED");
 });
 
-test("static nutrient-density calculator handles mass deterministically and fails closed on unsupported units", () => {
+test("static nutrient calculator never treats an unsupported unit as a complete recipe", () => {
   const syntheticRecipe = {
     ingredients: [
       { canonicalIngredientId: "chickpeas", quantity: 200, unit: "g" },
@@ -46,12 +61,47 @@ test("static nutrient-density calculator handles mass deterministically and fail
     olive_oil: { energyKcal: 900, proteinG: 0, carbohydrateG: 0, fatG: 100, fibreG: 0 }
   };
   const result = calculatePerServingFromDensities(syntheticRecipe, densities);
-  assert.equal(result.perServing.energyKcal, 100);
-  assert.equal(result.perServing.proteinG, 10);
-  assert.equal(result.perServing.fibreG, 8);
+  assert.equal(result.perServing.energyKcal, null);
+  assert.equal(result.perServing.proteinG, null);
+  assert.equal(result.knownContributionPerServing.energyKcal, 100);
+  assert.equal(result.knownContributionPerServing.proteinG, 10);
+  assert.equal(result.knownContributionPerServing.fibreG, 8);
   assert.equal(result.complete, false);
   assert.equal(result.calculationState, "PARTIAL_STATIC_CALCULATION");
   assert.deepEqual(result.skipped, [{ ingredientId: "olive_oil", reason: "unsupported_quantity_unit" }]);
+});
+
+test("missing USDA nutrient fields remain null while other tracked fields can be complete", () => {
+  const chicken = {
+    ingredients: [{ canonicalIngredientId: "chicken_breast", quantity: 100, unit: "g" }],
+    serving: { servings: 1 }
+  };
+  const result = calculatePerServingFromDensities(chicken, USDA_FOUNDATION_DENSITIES_V1);
+  assert.equal(result.perServing.energyKcal, 112);
+  assert.equal(result.perServing.proteinG, 22.5);
+  assert.equal(result.perServing.carbohydrateG, 0);
+  assert.equal(result.perServing.fatG, 1.9);
+  assert.equal(result.perServing.fibreG, null);
+  assert.equal(result.nutrientCoverage.fibreG.complete, false);
+  assert.equal(result.complete, false);
+});
+
+test("complete mass-only USDA coverage produces a deterministic authoritative calculation", () => {
+  const syntheticRecipe = {
+    ingredients: [
+      { canonicalIngredientId: "banana", quantity: 100, unit: "g" },
+      { canonicalIngredientId: "cashews", quantity: 100, unit: "g" }
+    ],
+    serving: { servings: 2 },
+    nutrition: { perServing: { energyKcal: 999 }, estimationState: "INFERRED_ESTIMATE", confidence: "low" }
+  };
+  const result = calculatePerServingFromDensities(syntheticRecipe, USDA_FOUNDATION_DENSITIES_V1);
+  assert.equal(result.complete, true);
+  assert.deepEqual(result.perServing, { energyKcal: 311, proteinG: 9.1, carbohydrateG: 29.6, fatG: 19.6, fibreG: 2.9 });
+  const estimate = publicNutritionSource.estimate(syntheticRecipe);
+  assert.equal(estimate.method, "USDA_FDC_FOUNDATION_STATIC_CALCULATION");
+  assert.equal(estimate.confidence, "medium");
+  assert.deepEqual(estimate.perServing, result.perServing);
 });
 
 const makePlanItem = (id, costTier, ingredientIds) => ({
