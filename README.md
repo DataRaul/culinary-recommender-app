@@ -1,6 +1,6 @@
 # Culinary Recommender
 
-> **Public V0 control surface** — deterministic, mobile-first culinary recommendations, partial-week planning, substitutions and groceries.
+> **Public V0 control surface** — deterministic, mobile-first culinary recommendations, fridge-first search, partial-week planning, substitutions and groceries.
 
 ## Control panel
 
@@ -14,23 +14,28 @@
 | UX/UI | ✅ COMPLETE | V0.5 / Gate 6 | human acceptance |
 | Automated acceptance | ✅ COMPLETE | V0.9 / Gate 7 | human acceptance |
 | Public deployment | ✅ COMPLETE | V0.9 / Gate 8 | human acceptance |
-| Human review | 🟠 HUMAN_GATE | V0.9 / Gate 9 | V1.0 acceptance |
+| Base human review | ✅ ACCEPTED | V0.9 / Gate 9 | fridge-search extension |
+| Fridge search | 🟠 HUMAN_GATE | V0.9.1 / Gate 9A | V1.0 acceptance |
 | Culinary & Nutrition Brain | 🔒 NOT_AUTHORIZED | Deferred | September KC refresh + explicit authorization |
 
-**Current version:** V0.9 human-review candidate  
-**Current gate:** Gate 9 — Human Acceptance Review  
+**Current version:** V0.9.1 fridge-search human-review candidate  
+**Current gate:** Gate 9A — Fridge Search Acceptance  
 **Current status:** HUMAN_GATE  
-**Completed:** deterministic engine, 24-recipe project-authored corpus, ingredient ontology, exact-slot planner, grocery/pantry/substitution/cost, polished mobile UI, 15,552-profile matrix, public CI, public deployment  
-**Being built:** nothing until human review evidence is received  
-**Next gate:** V1.0 acceptance after Gate 9  
-**Human action required:** complete the Gate 9 review checklist and report failures or acceptance  
+**Completed:** deterministic engine, 24-recipe project-authored corpus, ingredient ontology, exact-slot planner, grocery/pantry/substitution/cost, public deployment, base Gate 9 human acceptance  
+**New before V1.0:** deterministic fridge-first ingredient search with temporary time/skill/discovery overrides  
+**Next gate:** V1.0 acceptance after Gate 9A  
+**Human action required:** test the Search tab and report failures or acceptance  
 **Major deferred:** nutrient-gap awareness, supplements, images, local price intelligence, fitness adapter, advanced culinary exploration, Culinary & Nutrition Brain  
 **Public app URL:** https://dataraul.github.io/culinary-recommender-app/
 
 ## What it does
 Choose exactly which lunch/dinner slots need help, then tune budget, nutrition priority, time, skill, variety, cuisine, protein emphasis and meal-prep preference. The app ranks recipes deterministically, optimizes the group for reuse/diversity, explains recommendations, supports one-dish swaps, remembers pantry/availability locally and builds one grocery list.
 
-The target flow already covered by deterministic tests is: **2 lunches + 3 dinners · moderate budget · Mediterranean leaning · vegetarian · high protein · ≤35 minutes · intermediate · slightly adventurous**.
+The **Search** tab adds a second entry path inspired by the workout app's library/search pattern: start with a main ingredient already in the fridge, optionally add secondary ingredients, then temporarily choose today's time, effort/skill and discovery mood. The main ingredient is a hard pre-filter. Secondary ingredients improve ranking by default or can be made required. Saved dietary mode, allergens, explicit exclusions and unavailable ingredients remain hard constraints even when profile preferences are temporarily neutralized.
+
+Example: **salmon + rice** ranks a recipe using both ahead of other salmon recipes. An experienced cook can temporarily ask for beginner-simple/fast food, while a beginner with free time can keep the beginner skill ceiling but choose a more exploratory discovery mood.
+
+The target planning flow already covered by deterministic tests is: **2 lunches + 3 dinners · moderate budget · Mediterranean leaning · vegetarian · high protein · ≤35 minutes · intermediate · slightly adventurous**.
 
 ## Runtime principles
 - no account or backend required;
@@ -38,7 +43,7 @@ The target flow already covered by deterministic tests is: **2 lunches + 3 dinne
 - no private Knowledge Core dependency;
 - hard constraints run before ranking;
 - identical inputs/data/version produce identical recommendations;
-- impossible profiles show a shortfall rather than silently weakening hard constraints;
+- impossible profiles and searches show a shortfall rather than silently weakening hard constraints;
 - nutrition/cost uncertainty is explicit;
 - local state is versioned and exportable/importable.
 
@@ -49,7 +54,7 @@ The app is published as a static GitHub Pages site from `main` / repository root
 npm run validate
 ```
 
-The deterministic suite includes 16 direct tests plus a 15,552-combination representative profile matrix. Public CI also runs one targeted Playwright mobile browser smoke test without live third-party data.
+The deterministic suite includes direct domain tests, the 15,552-combination representative profile matrix, ingredient-search tests and one targeted Playwright mobile browser smoke flow without live third-party data.
 
 ## Data and licensing
 The shipped V0 recipe corpus is project-authored and no third-party recipe database is bundled. USDA FoodData Central is an approved future CC0 nutrition candidate; BEDCA is excluded from V0 bundling because its published reuse terms require care; Open Food Facts remains a future ODbL compatibility decision. See `docs/DATA_SOURCES.md`.
