@@ -54,3 +54,49 @@ test("allergen hard constraints remain active in ingredients-first mode", () => 
   assert.equal(result.eligible.length, 0);
   assert.ok(result.shortfall.some(item => item.reason === "declared allergen: fish"));
 });
+
+test("search meal context activates only matching scoped priority packs", () => {
+  const profile = {
+    ...DEFAULT_PROFILE,
+    dietaryMode: "unrestricted",
+    skill: 4,
+    maxMinutes: 90,
+    priorityPacks: [
+      { id: "meal_prep", scope: "lunch" },
+      { id: "culinary_explorer", scope: "dinner" },
+      { id: "healthy_convenience", scope: "all" }
+    ]
+  };
+  const result = searchRecipesByIngredients(RECIPES, profile, {
+    mainIngredientId: "chickpeas",
+    followProfilePreferences: true,
+    mealType: "dinner",
+    skill: 4,
+    maxMinutes: 90
+  });
+  assert.ok(result.eligible.length > 0);
+  const ids = result.eligible[0].activePriorityPacks.map(item => item.id);
+  assert.ok(ids.includes("culinary_explorer"));
+  assert.ok(ids.includes("healthy_convenience"));
+  assert.ok(!ids.includes("meal_prep"));
+});
+
+test("ingredients-first neutral lens clears soft priority packs", () => {
+  const profile = {
+    ...DEFAULT_PROFILE,
+    dietaryMode: "unrestricted",
+    skill: 4,
+    maxMinutes: 90,
+    priorityPacks: [{ id: "culinary_explorer", scope: "all" }]
+  };
+  const result = searchRecipesByIngredients(RECIPES, profile, {
+    mainIngredientId: "chickpeas",
+    followProfilePreferences: false,
+    mealType: "dinner",
+    skill: 4,
+    maxMinutes: 90
+  });
+  assert.ok(result.eligible.length > 0);
+  assert.deepEqual(result.profile.priorityPacks, []);
+  assert.deepEqual(result.eligible[0].activePriorityPacks, []);
+});
