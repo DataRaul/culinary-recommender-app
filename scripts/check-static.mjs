@@ -11,7 +11,7 @@ for (const file of files.filter(file => extname(file) === ".js" || extname(file)
   if (result.status !== 0) { console.error(result.stderr); process.exit(result.status || 1); }
 }
 const html = readFileSync(join(root,"index.html"),"utf8");
-for (const required of ["<main","aria-label=\"Main navigation\"","manifest.webmanifest","src/app.js","search.css","profile-packs.css"]) if (!html.includes(required)) throw new Error(`index.html missing ${required}`);
+for (const required of ["<main","aria-label=\"Main navigation\"","manifest.webmanifest","src/bootstrap.js","search.css","profile-packs.css"]) if (!html.includes(required)) throw new Error(`index.html missing ${required}`);
 const css = readFileSync(join(root,"styles.css"),"utf8");
 for (const token of ["--bg:","--surface:","--text:","--focus:","prefers-reduced-motion"]) if (!css.includes(token)) throw new Error(`styles.css missing ${token}`);
 const profileCss = readFileSync(join(root,"profile-packs.css"),"utf8");
