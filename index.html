@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#16352f">
+  <meta name="description" content="A deterministic, mobile-first culinary recommendation and meal-planning app.">
+  <title>Culinary Recommender</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="app-header"><button id="brandButton" class="brand" type="button" aria-label="Open current plan"><span class="brand-mark">CR</span><span><strong>Culinary Recommender</strong><small>Plan food around real life</small></span></button><span id="statusPill" class="status-pill">Loading…</span></header>
+  <main id="app" class="app-shell" aria-live="polite"></main>
+  <nav id="bottomNav" class="bottom-nav" aria-label="Main navigation" hidden>
+    <button data-view="start" type="button"><span>Ideas</span></button>
+    <button data-view="plan" type="button"><span>Plan</span></button>
+    <button data-view="groceries" type="button"><span>Groceries</span></button>
+    <button data-view="pantry" type="button"><span>Pantry</span></button>
+    <button data-view="profile" type="button"><span>Profile</span></button>
+  </nav>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
