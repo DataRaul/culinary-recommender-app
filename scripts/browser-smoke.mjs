@@ -12,7 +12,7 @@ await page.locator('[data-pack-scope="meal_prep"]').selectOption("lunch");
 await page.getByRole("checkbox", { name: /Culinary Explorer/ }).check();
 await page.locator('[data-pack-scope="culinary_explorer"]').selectOption("dinner");
 if ((await page.locator('input[name="priorityPack"]:checked').count()) !== 3) throw new Error("Expected three selected priority packs");
-await page.getByRole("checkbox", { name: /Weeknight Fast/ }).check();
+await page.getByRole("checkbox", { name: /Weeknight Fast/ }).click();
 if ((await page.locator('input[name="priorityPack"]:checked').count()) !== 3) throw new Error("Priority pack limit should remain capped at three");
 await page.getByText("Indian", { exact: true }).waitFor();
 await page.getByText("Thai / Southeast Asian", { exact: true }).waitFor();
