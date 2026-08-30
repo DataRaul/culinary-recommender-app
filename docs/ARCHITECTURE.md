@@ -11,10 +11,29 @@ Stable application contracts
  RecommendationPolicy | PortfolioPlanner | SubstitutionEngine | CostEstimator
  PantryStore | PreferenceStore
  ↓
-V0 public deterministic implementations
+Public deterministic implementations
  ↓
-Versioned public recipe/ingredient data + local browser state
+Versioned public recipe/ingredient/evidence data + local browser state
 ```
+
+## V1 content and evidence layers
+The accepted shell is intentionally insulated from data expansion.
+
+```text
+project-authored recipe corpus ───────→ RecipeSource
+canonical ingredient ontology ───────→ IngredientNormalizer / exclusions / search
+controlled substitution graph ───────→ SubstitutionEngine
+USDA Foundation identity ledger ─────→ NutritionSource evidence coverage
+future static nutrient densities ────→ NutritionSource calculation layer
+Spain/Canary cost heuristics ────────→ CostEstimator
+structured recipe metadata ──────────→ culinary-quality normalization
+```
+
+The nutrition identity ledger and numeric composition data are separate artifacts. `IDENTITY_VERIFIED_COMPOSITION_PENDING` means only that the canonical ingredient has a reviewed Foundation catalogue match. It does not authorize replacing recipe estimates. Static nutrient-density values must be present and unit conversion must be defensible before a calculated value is labelled authoritative-derived.
+
+The cost estimator remains relative. It combines authored recipe tiers with ingredient cost classes, one-off package burden, Canary availability assumptions and cross-meal reuse. It does not infer live prices or fabricate exact euros.
+
+The culinary-quality layer normalizes difficulty, failure risk, technique depth, active-share, equipment burden, convenience, storage, flavour, spice, novelty, familiarity and learning value. Missing explicit technique tags may be deterministically inferred from project-authored instruction language; the inference source remains visible and inspectable.
 
 ## Profile composition boundary
 The saved profile separates three kinds of intent:
