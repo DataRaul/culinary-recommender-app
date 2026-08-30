@@ -19,13 +19,27 @@ It is not primarily a diet app and does not assign permanent personas. The profi
 
 The three-pack cap is deliberate for V0: it supports a baseline plus contextual lunch/dinner intent without allowing stacked soft bonuses to dominate explainability.
 
+## Ingredient intent semantics
+The app must not conflate temporary availability with durable preference.
+
+- `currentPantryIngredientIds` means the user currently has the ingredient and is a soft utilization signal.
+- `unavailableIngredientIds` means **Can't get right now**. It is temporary availability state; a supported safe substitution may be used, otherwise the affected recipe fails closed.
+- `excludedIngredientIds` means **Always exclude / I don't want this**. It is a durable hard filter. No substitution may reintroduce a permanently excluded ingredient.
+- generic encoded ingredient families may be excluded as one durable preference. Example: `coconut` blocks all ontology ingredients in the coconut family, including `coconut_milk`.
+- a user-entered ingredient not yet represented in the V0 corpus may be retained as a deterministic future exclusion token. Example: `pineapple` remains stored so future corpus expansion does not silently forget the preference.
+
+Temporary unavailable state and permanent exclusions are independently removable and persist locally.
+
+## Allergen safety controls
+Mapped declared allergens are user-configurable hard filters and also constrain substitution candidates. V0 exposes gluten, milk/dairy, egg, fish, crustaceans, soy, peanut, tree nuts and sesame, matching the current ontology vocabulary. This is recipe-data filtering, not a guarantee against cross-contamination or an individualized medical recommendation.
+
 ## V0 boundaries
 - deterministic local recommendation policy;
 - deterministic ingredient-first search over the same canonical recipe corpus;
 - main ingredient is a hard search pre-filter;
 - secondary ingredients are ranking preferences unless the user explicitly makes them required;
 - temporary search intent never silently mutates the saved profile;
-- dietary mode, declared allergens, explicit ingredient exclusions and unavailable ingredients stay hard constraints even when soft profile preferences are neutralized;
+- dietary mode, declared allergens, permanent ingredient exclusions and unavailable ingredients remain hard constraints even when soft profile preferences are neutralized;
 - no runtime LLM calls;
 - no account/backend requirement;
 - no paid inference or data API;
