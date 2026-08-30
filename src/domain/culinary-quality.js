@@ -3,8 +3,36 @@ const RISK = { low: 1, medium: 2, high: 3, very_high: 4 };
 
 const toFour = value => Math.max(1, Math.min(4, Math.round(Number(value) || 1)));
 
+const TECHNIQUE_RULES = [
+  ["pan-browning", /\b(brown|sear|saute|sauté|pan-roast|pan roast)\b/],
+  ["stir-frying", /\bstir-fry|stir fry\b/],
+  ["simmering", /\bsimmer\b/],
+  ["boiling", /\bboil\b/],
+  ["steaming", /\bsteam\b/],
+  ["toasting", /\btoast\b/],
+  ["gentle-poaching", /\bpoach|cook gently|gently until\b/],
+  ["egg-setting", /\bwhisk eggs|beat eggs|mostly set|nearly set|scramble\b/],
+  ["glazing", /\bglaze|coat .*miso|coat .*sauce\b/],
+  ["emulsifying", /\bemuls|beat in butter|cooking water.*loosen|loosen.*cooking water\b/],
+  ["mashing-blending", /\bmash|blend\b/],
+  ["roasting-grilling", /\broast|under a grill|grill\b/],
+  ["cold-assembly", /\bcombine|assemble|dress with|toss with\b/]
+];
+
+function inferTechniques(recipe) {
+  const explicit = (recipe.culinary?.techniques || []).filter(Boolean);
+  const instructionText = (recipe.instructions || []).map(step => step.text || "").join(" ").toLowerCase();
+  const inferred = TECHNIQUE_RULES.filter(([, rule]) => rule.test(instructionText)).map(([name]) => name);
+  const techniques = [...new Set([...explicit, ...inferred])];
+  return {
+    techniques,
+    source: explicit.length && inferred.some(name => !explicit.includes(name)) ? "explicit_plus_inferred" : explicit.length ? "explicit" : inferred.length ? "inferred_from_authored_instructions" : "none"
+  };
+}
+
 export function culinaryQualityProfile(recipe) {
-  const techniques = [...new Set((recipe.culinary?.techniques || []).filter(Boolean))];
+  const techniqueProfile = inferTechniques(recipe);
+  const techniques = techniqueProfile.techniques;
   const requiredEquipment = [...new Set((recipe.equipment?.required || []).filter(Boolean))];
   const totalMinutes = Math.max(1, Number(recipe.time?.totalMinutes) || 1);
   const activeMinutes = Math.max(0, Number(recipe.time?.activeMinutes) || 0);
@@ -30,6 +58,7 @@ export function culinaryQualityProfile(recipe) {
   return {
     schemaVersion: "culinary-quality-v1",
     techniques,
+    techniqueSource: techniqueProfile.source,
     techniqueDepth,
     failureRisk: recipe.culinary?.failureRisk || "low",
     failureRiskLevel: failureRisk,
@@ -52,7 +81,7 @@ export function culinaryQualityProfile(recipe) {
     },
     explorationScore,
     executionLoad,
-    state: "NORMALIZED_FROM_STRUCTURED_RECIPE_METADATA"
+    state: "NORMALIZED_FROM_AUTHORED_RECIPE_METADATA"
   };
 }
 
@@ -60,10 +89,12 @@ export function culinaryQualityCoverage(recipes = []) {
   const profiles = recipes.map(culinaryQualityProfile);
   const missingTechnique = profiles.filter(profile => profile.techniques.length === 0).length;
   const missingFlavour = profiles.filter(profile => profile.flavourProfile.length === 0).length;
+  const inferredTechniqueCount = profiles.filter(profile => profile.techniqueSource.includes("inferred")).length;
   return {
     recipeCount: profiles.length,
     normalizedCount: profiles.length,
     techniqueTaggedCount: profiles.length - missingTechnique,
+    inferredTechniqueCount,
     flavourTaggedCount: profiles.length - missingFlavour,
     completeNormalization: true,
     editorialGaps: {
