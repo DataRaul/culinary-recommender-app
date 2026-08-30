@@ -22,18 +22,19 @@ async function mobileAcceptance() {
   if (await weeknight.getByRole("checkbox").isChecked()) throw new Error("Fourth priority pack should be rejected");
   await page.getByText("3 of 3 selected.").waitFor();
 
-  // Cuisine preferences are independent and multi-select.
-  await page.getByRole("checkbox", { name: "Indian" }).check();
-  await page.getByRole("checkbox", { name: "Thai / Southeast Asian" }).check();
+  // Cuisine preferences are independent and multi-select. The inputs are visually styled inside label chips,
+  // so force the underlying checkbox action while still asserting the persisted DOM state afterward.
+  await page.getByRole("checkbox", { name: "Indian" }).check({ force: true });
+  await page.getByRole("checkbox", { name: "Thai / Southeast Asian" }).check({ force: true });
   if (!(await page.getByRole("checkbox", { name: "Indian" }).isChecked())) throw new Error("Indian cuisine preference did not persist in UI");
   if (!(await page.getByRole("checkbox", { name: "Thai / Southeast Asian" }).isChecked())) throw new Error("Southeast Asian cuisine preference did not persist in UI");
   await page.getByRole("checkbox", { name: "Local / Canarian" }).waitFor();
 
   // Exact-slot planning: choose one lunch and one dinner only.
   const slots = page.locator('input[name="slot"]');
-  for (let i = 0; i < await slots.count(); i++) await slots.nth(i).uncheck();
-  await page.locator('input[name="slot"][value="mon-lunch"]').check();
-  await page.locator('input[name="slot"][value="wed-dinner"]').check();
+  for (let i = 0; i < await slots.count(); i++) await slots.nth(i).uncheck({ force: true });
+  await page.locator('input[name="slot"][value="mon-lunch"]').check({ force: true });
+  await page.locator('input[name="slot"][value="wed-dinner"]').check({ force: true });
   await page.getByText("2 selected").waitFor();
   await page.getByRole("button", { name: /Build my plan/ }).click();
   await page.getByRole("heading", { name: /2 meals, built as a portfolio/ }).waitFor();
