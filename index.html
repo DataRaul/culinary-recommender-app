@@ -8,12 +8,14 @@
   <title>Culinary Recommender</title>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./search.css">
 </head>
 <body>
   <header class="app-header"><button id="brandButton" class="brand" type="button" aria-label="Open current plan"><span class="brand-mark">CR</span><span><strong>Culinary Recommender</strong><small>Plan food around real life</small></span></button><span id="statusPill" class="status-pill">Loading…</span></header>
   <main id="app" class="app-shell" aria-live="polite"></main>
   <nav id="bottomNav" class="bottom-nav" aria-label="Main navigation" hidden>
     <button data-view="start" type="button"><span>Ideas</span></button>
+    <button data-view="search" type="button"><span>Search</span></button>
     <button data-view="plan" type="button"><span>Plan</span></button>
     <button data-view="groceries" type="button"><span>Groceries</span></button>
     <button data-view="pantry" type="button"><span>Pantry</span></button>
@@ -21,5 +23,6 @@
   </nav>
   <div id="toast" class="toast" role="status" hidden></div>
   <script type="module" src="./src/app.js"></script>
+  <script type="module" src="./src/search-ui.js"></script>
 </body>
 </html>
