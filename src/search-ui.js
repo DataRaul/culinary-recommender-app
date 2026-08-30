@@ -24,6 +24,11 @@ function searchForm() {
       <p class="hint">The main ingredient is a hard pre-filter. Other ingredients improve ranking; turn on “require all” when you specifically need to use every listed item.</p>
       <label class="check-row search-check"><input id="searchRequireAll" type="checkbox"><span>Require all listed secondary ingredients</span></label>
       <div class="search-intent-grid">
+        <label class="field"><span>Cooking for</span><select id="searchMealType">
+          ${option("any", "Any meal", true)}
+          ${option("lunch", "Lunch")}
+          ${option("dinner", "Dinner")}
+        </select></label>
         <label class="field"><span>Recommendation lens</span><select id="searchProfileMode">
           ${option("profile", "Use my saved preferences", true)}
           ${option("ingredients", "Ingredients first · neutral preferences")}
@@ -51,7 +56,7 @@ function searchForm() {
           ${option("4", "Explore something new")}
         </select></label>
       </div>
-      <div class="search-safety-note"><strong>Safety stays on.</strong> Dietary mode, declared allergens, explicit exclusions and unavailable ingredients remain hard constraints even when you choose the neutral “ingredients first” lens.</div>
+      <div class="search-safety-note"><strong>Safety stays on.</strong> Dietary mode, declared allergens, explicit exclusions and unavailable ingredients remain hard constraints even when you choose the neutral “ingredients first” lens. Lunch/dinner priority packs apply only when that meal context is selected.</div>
       <button class="primary-action search-submit" type="submit">Find dishes <span aria-hidden="true">→</span></button>
     </form>
   </section>
@@ -129,11 +134,13 @@ function bindSearchForm() {
     const timeValue = document.querySelector("#searchTime").value;
     const skillValue = document.querySelector("#searchSkill").value;
     const varietyValue = document.querySelector("#searchVariety").value;
+    const mealTypeValue = document.querySelector("#searchMealType").value;
     const result = searchRecipesByIngredients(RECIPES, state.profile, {
       mainIngredientId: mainId,
       secondaryIngredientIds: secondary.recognized,
       requireAllSecondary: document.querySelector("#searchRequireAll").checked,
       followProfilePreferences: document.querySelector("#searchProfileMode").value === "profile",
+      mealType: mealTypeValue === "any" ? null : mealTypeValue,
       maxMinutes: timeValue === "profile" ? null : Number(timeValue),
       skill: skillValue === "profile" ? null : Number(skillValue),
       variety: varietyValue === "profile" ? null : Number(varietyValue)

@@ -16,6 +16,6 @@
 }
 @media (min-width: 720px) {
   .search-ingredient-grid { grid-template-columns: .9fr 1.1fr; }
-  .search-intent-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .search-intent-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
   .search-submit { width: fit-content; min-width: 180px; }
 }

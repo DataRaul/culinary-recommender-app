@@ -11,7 +11,9 @@ for (const file of files.filter(file => extname(file) === ".js" || extname(file)
   if (result.status !== 0) { console.error(result.stderr); process.exit(result.status || 1); }
 }
 const html = readFileSync(join(root,"index.html"),"utf8");
-for (const required of ["<main","aria-label=\"Main navigation\"","manifest.webmanifest","src/app.js"]) if (!html.includes(required)) throw new Error(`index.html missing ${required}`);
+for (const required of ["<main","aria-label=\"Main navigation\"","manifest.webmanifest","src/app.js","search.css","profile-packs.css"]) if (!html.includes(required)) throw new Error(`index.html missing ${required}`);
 const css = readFileSync(join(root,"styles.css"),"utf8");
 for (const token of ["--bg:","--surface:","--text:","--focus:","prefers-reduced-motion"]) if (!css.includes(token)) throw new Error(`styles.css missing ${token}`);
+const profileCss = readFileSync(join(root,"profile-packs.css"),"utf8");
+for (const token of ["priority-pack-grid","priority-pack-card","pack-scope"]) if (!profileCss.includes(token)) throw new Error(`profile-packs.css missing ${token}`);
 console.log(`Static checks passed for ${files.length} files.`);

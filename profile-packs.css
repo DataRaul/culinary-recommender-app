@@ -1,0 +1,18 @@
+.priority-pack-fieldset { padding-top: 0; margin-bottom: 1rem; }
+.priority-pack-grid { display: grid; gap: .65rem; grid-template-columns: 1fr; }
+.priority-pack-card { display: grid; gap: .65rem; padding: .8rem; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fff; transition: border-color .15s ease, background .15s ease, box-shadow .15s ease; }
+.priority-pack-card.selected { background: #eef3e8; border-color: #8b9d63; box-shadow: inset 0 0 0 1px #8b9d63; }
+.priority-pack-choice { display: flex; gap: .7rem; align-items: flex-start; cursor: pointer; }
+.priority-pack-choice input { min-height: auto; width: 20px; height: 20px; margin-top: .1rem; accent-color: var(--primary); }
+.priority-pack-choice span { display: grid; gap: .2rem; }
+.priority-pack-choice strong { line-height: 1.15; }
+.priority-pack-choice small { color: var(--muted); line-height: 1.35; }
+.pack-scope { display: grid; grid-template-columns: auto minmax(120px, 1fr); gap: .6rem; align-items: center; color: var(--muted); font-size: .78rem; }
+.pack-scope select { min-height: 40px; width: 100%; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); padding: .45rem .6rem; }
+.pack-scope select:disabled { opacity: .55; cursor: not-allowed; }
+@media (min-width: 720px) {
+  .priority-pack-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 980px) {
+  .priority-pack-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
