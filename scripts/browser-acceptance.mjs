@@ -9,6 +9,8 @@ async function mobileAcceptance() {
   page.on("pageerror", error => errors.push(error.message));
   await page.goto(baseUrl, { waitUntil: "networkidle" });
   await page.getByRole("heading", { name: "What should you cook?" }).waitFor();
+  const mobileOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
+  if (mobileOverflow) throw new Error("Mobile layout has unexpected horizontal overflow");
 
   // Composable priority packs: default Healthy Convenience + lunch Meal Prep + dinner Culinary Explorer.
   const mealPrep = page.locator(".priority-pack-card").filter({ hasText: "Meal Prep" });
@@ -75,7 +77,7 @@ async function mobileAcceptance() {
   await page.locator("#permanentExclusionInput").fill("coconut");
   await page.locator("#permanentExclusionForm").getByRole("button", { name: "Exclude" }).click();
   await page.getByRole("heading", { name: /Pantry & cannot-find list/ }).waitFor();
-  await page.locator("#permanentExclusionPanel").getByRole("button", { name: /coconut milk ×/ }).waitFor();
+  await page.locator("#permanentExclusionPanel").getByRole("button", { name: /coconut · all forms ×/ }).waitFor();
 
   await page.locator("#permanentExclusionInput").fill("pineapple");
   await page.locator("#permanentExclusionForm").getByRole("button", { name: "Exclude" }).click();
@@ -83,11 +85,11 @@ async function mobileAcceptance() {
   await page.locator("#permanentExclusionPanel").getByRole("button", { name: /pineapple ×/ }).waitFor();
 
   const persisted = JSON.parse(await page.evaluate(() => localStorage.getItem("culinary-recommender.state.v1")));
-  if (!persisted.profile.excludedIngredientIds.includes("coconut_milk")) throw new Error("Coconut permanent exclusion did not persist");
+  if (!persisted.profile.excludedIngredientIds.includes("coconut")) throw new Error("Coconut family exclusion did not persist");
   if (!persisted.profile.excludedIngredientIds.includes("pineapple")) throw new Error("Future pineapple exclusion did not persist");
   if (!persisted.profile.unavailableIngredientIds.includes("tahini")) throw new Error("Temporary unavailability did not remain separate");
 
-  // Search honors permanent exclusion: current tempeh recipe contains coconut milk.
+  // Search honors permanent family exclusion: current tempeh recipe contains coconut milk.
   await page.getByRole("button", { name: "Search" }).click();
   await page.getByRole("heading", { name: "Cook what you already have" }).waitFor();
   await page.getByLabel(/Main ingredient/).fill("tempeh");
@@ -111,6 +113,24 @@ async function mobileAcceptance() {
   if (requireAllCards < 1) throw new Error("Require-all salmon + rice unexpectedly produced no result");
   const requireAllText = await page.locator(".search-result-card").allTextContents();
   if (!requireAllText.every(text => /rice/i.test(text))) throw new Error("Require-all results did not all use rice");
+
+  // User-facing allergen configuration: save fish as a hard safety filter, then prove salmon is blocked.
+  await page.getByRole("button", { name: "Profile" }).click();
+  await page.getByRole("heading", { name: "Profile & privacy" }).waitFor();
+  await page.locator('#allergenSafetyPanel [data-allergen="fish"]').check({ force: true });
+  await page.locator("#saveAllergens").click();
+  await page.getByRole("heading", { name: "Profile & privacy" }).waitFor();
+  await page.locator("#allergenSafetyPanel").waitFor();
+  const allergyState = JSON.parse(await page.evaluate(() => localStorage.getItem("culinary-recommender.state.v1")));
+  if (!allergyState.profile.allergens.includes("fish")) throw new Error("Fish allergen filter did not persist");
+  await page.getByRole("button", { name: "Search" }).click();
+  await page.getByLabel(/Main ingredient/).fill("salmon");
+  await page.getByLabel("Recommendation lens").selectOption("ingredients");
+  await page.getByLabel("Time today").selectOption("60");
+  await page.getByLabel("Effort / skill today").selectOption("4");
+  await page.getByRole("button", { name: /Find dishes/ }).click();
+  const allergySearchText = await page.locator("#searchResults").innerText();
+  if (!allergySearchText.includes("declared allergen: fish")) throw new Error("User-facing fish allergen did not block salmon search");
 
   // Profile export/import round trip in-browser.
   await page.getByRole("button", { name: "Profile" }).click();
@@ -144,6 +164,23 @@ async function desktopAcceptance() {
   await page.getByRole("heading", { name: "Cook what you already have" }).waitFor();
   await page.getByRole("button", { name: "Profile" }).click();
   await page.getByRole("heading", { name: "Profile & privacy" }).waitFor();
+  await page.locator("#allergenSafetyPanel").waitFor();
+
+  // PWA shell should continue to load offline once the service worker has installed and controls the page.
+  const hasServiceWorker = await page.evaluate(async () => {
+    if (!("serviceWorker" in navigator)) return false;
+    await navigator.serviceWorker.ready;
+    return true;
+  });
+  if (!hasServiceWorker) throw new Error("Service worker did not become ready");
+  await page.reload({ waitUntil: "networkidle" });
+  const controlled = await page.evaluate(() => Boolean(navigator.serviceWorker.controller));
+  if (!controlled) throw new Error("Service worker did not control the reloaded app");
+  await page.context().setOffline(true);
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await page.getByRole("heading", { name: /Profile & privacy|What should you cook\?/ }).waitFor();
+  await page.context().setOffline(false);
+
   if (errors.length) throw new Error(`Desktop page errors: ${errors.join(" | ")}`);
   await page.close();
 }
