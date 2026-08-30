@@ -1,5 +1,6 @@
 import { activePriorityPacks, normalizeProfile } from "./profile.js";
 import { resolveAvailability } from "./substitution.js";
+import { isIngredientPermanentlyExcluded } from "./exclusions.js";
 
 const clamp01 = value => Math.max(0, Math.min(1, value));
 const closeness = (a, b, span = 3) => clamp01(1 - Math.abs(a - b) / span);
@@ -39,7 +40,7 @@ export function hardConstraintReasons(recipe, rawProfile, mealType = null) {
   if (recipe.culinary.difficulty > profile.skill) reasons.push("above selected cooking skill");
   if (recipe.time.totalMinutes > profile.maxMinutes) reasons.push(`over ${profile.maxMinutes}-minute limit`);
   const ingredientIds = recipe.ingredients.map(item => item.canonicalIngredientId);
-  const excluded = ingredientIds.filter(id => profile.excludedIngredientIds.includes(id));
+  const excluded = ingredientIds.filter(id => isIngredientPermanentlyExcluded(id, profile.excludedIngredientIds));
   if (excluded.length) reasons.push(`contains excluded ingredient: ${excluded.join(", ")}`);
   const allergenHits = recipe.allergySafety.declaredAllergens.filter(allergen => profile.allergens.includes(allergen));
   if (allergenHits.length) reasons.push(`declared allergen: ${allergenHits.join(", ")}`);
