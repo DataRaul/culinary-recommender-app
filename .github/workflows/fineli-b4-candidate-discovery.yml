@@ -1,4 +1,4 @@
-name: One-off Fineli B4 candidate discovery
+name: One-off Fineli B4 package inspection
 on:
   push:
     branches: [v1-european-evidence-b4]
@@ -7,18 +7,26 @@ on:
 permissions:
   contents: read
 jobs:
-  discover:
+  inspect:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: Capture bounded official Fineli API candidates
-        run: node scripts/discover-fineli-candidates.mjs scripts/fineli-b4-targets.json /tmp/fineli-b4-candidates.json
+      - name: Download official Fineli Basic package 2
+        run: |
+          curl --fail --location --retry 3 \
+            --user-agent 'Mozilla/5.0 culinary-recommender-evidence-audit' \
+            --referer 'https://fineli.fi/fineli/fi/avoin-data' \
+            --output /tmp/fineli.zip 'https://fineli.fi/fineli/content/file/49'
+      - name: Extract package
+        run: |
+          mkdir -p /tmp/fineli
+          unzip -q /tmp/fineli.zip -d /tmp/fineli
+          find /tmp/fineli -type f -printf '%P\n' | sort > /tmp/fineli-files.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: fineli-b4-candidate-discovery
-          path: /tmp/fineli-b4-candidates.json
+          name: fineli-b4-official-package
+          path: |
+            /tmp/fineli/**
+            /tmp/fineli-files.txt
           retention-days: 1
