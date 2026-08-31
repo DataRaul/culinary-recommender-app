@@ -1,15 +1,20 @@
 import {
   nutritionEvidenceCoverage,
   nutritionEvidenceForIngredient,
-  USDA_FOUNDATION_DENSITIES,
   USDA_FOUNDATION_SOURCE
 } from "../data/nutrition-evidence.js";
+import { CIQUAL_2025_SOURCE } from "../data/ciqual-nutrients-b4.js";
 import { USDA_FOUNDATION_COMPOSITION_SOURCE } from "../data/usda-foundation-nutrients-v1.js";
 import {
   USDA_FOUNDATION_PORTION_SOURCE,
   usdaFoundationAmbiguousPortion,
   usdaFoundationPortionConversion
 } from "../data/usda-foundation-portions-v1.js";
+import {
+  EUROPEAN_PRIMARY_DENSITIES_V1,
+  EUROPEAN_PRIMARY_POLICY_V1,
+  europeanPrimaryPolicyCoverage
+} from "./nutrition-source-policy.js";
 
 const quantityToGrams = ingredient => {
   const quantity = ingredient?.quantity;
@@ -58,10 +63,21 @@ const nutrientKeys = ["energyKcal", "proteinG", "carbohydrateG", "fatG", "fibreG
 const roundToTenths = value => Math.round((value + Number.EPSILON * Math.max(1, Math.abs(value))) * 10) / 10;
 const roundNutrient = (key, value) => key === "energyKcal" ? Math.round(value) : roundToTenths(value);
 
+const semanticCompatibility = (key, semantics) => {
+  if (key !== "carbohydrateG") return { compatible: true, reason: null };
+  const unique = [...semantics];
+  if (unique.length <= 1) return { compatible: true, reason: null };
+  const incompatible = unique.includes("CARBOHYDRATE_BY_DIFFERENCE_USDA_1005") && unique.includes("AVAILABLE_CARBOHYDRATE_CIQUAL_CHOAVL");
+  return incompatible
+    ? { compatible: false, reason: "mixed_incompatible_carbohydrate_semantics" }
+    : { compatible: true, reason: null };
+};
+
 export function calculatePerServingFromDensities(recipe, densityMap = {}) {
   const ingredients = (recipe.ingredients || []).filter(ingredient => ingredient.required !== false);
   const totals = Object.fromEntries(nutrientKeys.map(key => [key, 0]));
   const coveredCounts = Object.fromEntries(nutrientKeys.map(key => [key, 0]));
+  const semanticSets = Object.fromEntries(nutrientKeys.map(key => [key, new Set()]));
   const used = [];
   const skipped = [];
 
@@ -69,6 +85,7 @@ export function calculatePerServingFromDensities(recipe, densityMap = {}) {
     const ingredientId = ingredient.canonicalIngredientId;
     const densityRecord = densityMap[ingredientId];
     const density = densityRecord?.per100g || densityRecord;
+    const nutrientProvenance = densityRecord?.provenanceByNutrient || {};
     const quantityResolution = quantityToGrams(ingredient);
     if (!density || quantityResolution.grams === null) {
       skipped.push({
@@ -92,24 +109,34 @@ export function calculatePerServingFromDensities(recipe, densityMap = {}) {
       totals[key] += Number(value) * factor;
       coveredCounts[key] += 1;
       availableNutrients.push(key);
+      const semantic = nutrientProvenance[key]?.semantic;
+      if (semantic) semanticSets[key].add(semantic);
     }
     used.push({
       ingredientId,
       grams,
       quantityEvidence: quantityResolution.quantityEvidence,
       availableNutrients,
-      missingNutrients
+      missingNutrients,
+      ...(Object.keys(nutrientProvenance).length ? { provenanceByNutrient: nutrientProvenance } : {})
     });
   }
 
   const servings = Math.max(1, Number(recipe.serving?.servings) || 1);
   const totalIngredients = ingredients.length;
   const knownContributionPerServing = Object.fromEntries(nutrientKeys.map(key => [key, roundNutrient(key, totals[key] / servings)]));
-  const nutrientCoverage = Object.fromEntries(nutrientKeys.map(key => [key, {
-    coveredIngredients: coveredCounts[key],
-    totalIngredients,
-    complete: totalIngredients > 0 && coveredCounts[key] === totalIngredients
-  }]));
+  const nutrientCoverage = Object.fromEntries(nutrientKeys.map(key => {
+    const semantics = [...semanticSets[key]];
+    const compatibility = semanticCompatibility(key, semanticSets[key]);
+    return [key, {
+      coveredIngredients: coveredCounts[key],
+      totalIngredients,
+      semantics,
+      semanticCompatibility: compatibility.compatible,
+      semanticIssue: compatibility.reason,
+      complete: totalIngredients > 0 && coveredCounts[key] === totalIngredients && compatibility.compatible
+    }];
+  }));
   const perServing = Object.fromEntries(nutrientKeys.map(key => [
     key,
     nutrientCoverage[key].complete ? knownContributionPerServing[key] : null
@@ -133,20 +160,24 @@ export const publicNutritionSource = {
     const ingredientIds = (recipe.ingredients || []).map(item => item.canonicalIngredientId);
     const coverage = nutritionEvidenceCoverage(ingredientIds);
     const identities = coverage.mappedIngredientIds.map(ingredientId => nutritionEvidenceForIngredient(ingredientId));
-    const staticCalculation = calculatePerServingFromDensities(recipe, USDA_FOUNDATION_DENSITIES);
+    const europeanPrimaryCoverage = europeanPrimaryPolicyCoverage(ingredientIds);
+    const staticCalculation = calculatePerServingFromDensities(recipe, EUROPEAN_PRIMARY_DENSITIES_V1);
     const authoritativeRecipeCalculation = staticCalculation.complete;
     return {
       perServing: authoritativeRecipeCalculation ? staticCalculation.perServing : { ...(recipe.nutrition?.perServing || {}) },
-      method: authoritativeRecipeCalculation ? "USDA_FDC_FOUNDATION_STATIC_CALCULATION" : recipe.nutrition?.estimationState || "INFERRED_ESTIMATE",
+      method: authoritativeRecipeCalculation ? "EUROPEAN_PRIMARY_STATIC_CALCULATION_V1" : recipe.nutrition?.estimationState || "INFERRED_ESTIMATE",
       confidence: authoritativeRecipeCalculation ? "medium" : recipe.nutrition?.confidence || "low",
       provenance: authoritativeRecipeCalculation
-        ? "Calculated deterministically from reviewed bounded USDA FoodData Central Foundation Foods per-100g composition and evidence-backed quantity weights; cooking/yield uncertainty remains."
+        ? "Calculated deterministically under the Canary/Spain/Europe source-selection policy from reviewed USDA Foundation and/or ANSES-Ciqual composition, with exact per-nutrient provenance and evidence-backed quantity weights; incompatible carbohydrate semantics are never mixed and cooking/yield uncertainty remains."
         : recipe.nutrition?.provenance || "Project-authored estimate.",
       evidence: {
         source: USDA_FOUNDATION_SOURCE,
+        sources: [USDA_FOUNDATION_SOURCE, CIQUAL_2025_SOURCE],
+        sourcePolicy: EUROPEAN_PRIMARY_POLICY_V1,
         compositionSource: USDA_FOUNDATION_COMPOSITION_SOURCE,
         portionSource: USDA_FOUNDATION_PORTION_SOURCE,
         coverage,
+        europeanPrimaryCoverage,
         identities,
         compositionImported: true,
         portionEvidenceImported: true,
