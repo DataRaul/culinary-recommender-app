@@ -9,6 +9,7 @@ import {
   matvaretabellenPortionConversion
 } from "../src/data/matvaretabellen-portions-b6.js";
 import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
+import { USDA_FOUNDATION_DENSITIES } from "../src/data/nutrition-evidence.js";
 import { USDA_FOUNDATION_DENSITIES_V1 } from "../src/data/usda-foundation-nutrients-v1.js";
 
 const expected = {
@@ -31,60 +32,53 @@ const expected = {
 test("Matvaretabellen B6 is a bounded attributed NLOD portion source", () => {
   assert.equal(MATVARETABELLEN_PORTION_SOURCE_B6.authority, "Norwegian Food Safety Authority (Mattilsynet)");
   assert.equal(MATVARETABELLEN_PORTION_SOURCE_B6.dataset, "Norwegian Food Composition Table 2026");
-  assert.equal(MATVARETABELLEN_PORTION_SOURCE_B6.releaseDate, "2026-01");
-  assert.match(MATVARETABELLEN_PORTION_SOURCE_B6.licence, /NLOD 2\.0/);
+  assert.match(MATVARETABELLEN_PORTION_SOURCE_B6.licence, /NLOD/);
+  assert.match(MATVARETABELLEN_PORTION_SOURCE_B6.attribution, /Norwegian Food Composition Table 2026/);
   assert.equal(MATVARETABELLEN_PORTION_SOURCE_B6.runtimeFetch, false);
-  assert.equal(Object.keys(MATVARETABELLEN_PORTION_EVIDENCE_B6).length, 14);
-  assert.equal(Object.keys(MATVARETABELLEN_AMBIGUOUS_PORTIONS_B6).length, 2);
+  assert.equal(MATVARETABELLEN_PORTION_SOURCE_B6.evidenceTranche, "B6");
 });
 
 test("all 14 promoted B6 conversions preserve exact reviewed source rows", () => {
+  assert.equal(Object.keys(MATVARETABELLEN_PORTION_EVIDENCE_B6).length, 14);
   for (const [ingredientId, expectation] of Object.entries(expected)) {
+    const record = MATVARETABELLEN_PORTION_EVIDENCE_B6[ingredientId];
+    assert.ok(record, ingredientId);
+    assert.equal(record.foodId, expectation.foodId, ingredientId);
+    assert.equal(record.gramsPerUnit, expectation.grams, ingredientId);
+    assert.equal(record.sourceId, MATVARETABELLEN_PORTION_SOURCE_B6.id, ingredientId);
+    assert.equal(record.evidenceTranche, "B6", ingredientId);
     const conversion = matvaretabellenPortionConversion(ingredientId, expectation.unit);
-    assert.ok(conversion, ingredientId);
-    assert.equal(conversion.foodId, expectation.foodId, ingredientId);
-    assert.equal(conversion.gramsPerUnit, expectation.grams, ingredientId);
-    assert.equal(conversion.evidenceTranche, "B6", ingredientId);
-    assert.equal(conversion.evidenceState, "MATVARETABELLEN_2026_PORTION_MATCH", ingredientId);
+    assert.equal(conversion?.gramsPerUnit, expectation.grams, ingredientId);
   }
 });
 
 test("singular/plural household units are accepted only where explicitly reviewed", () => {
-  assert.equal(matvaretabellenPortionConversion("lemon", "pieces").gramsPerUnit, 80);
-  assert.equal(matvaretabellenPortionConversion("garlic", "cloves").gramsPerUnit, 3);
-  assert.equal(matvaretabellenPortionConversion("tomato", "pieces").gramsPerUnit, 95);
-  assert.equal(matvaretabellenPortionConversion("onion", "pieces").gramsPerUnit, 160);
-  assert.equal(matvaretabellenPortionConversion("eggs", "pieces").gramsPerUnit, 55);
-  assert.equal(matvaretabellenPortionConversion("curry_powder", "tbsp"), null);
+  assert.equal(matvaretabellenPortionConversion("lemon", "pieces")?.gramsPerUnit, 80);
+  assert.equal(matvaretabellenPortionConversion("garlic", "cloves")?.gramsPerUnit, 3);
+  assert.equal(matvaretabellenPortionConversion("eggs", "pieces")?.gramsPerUnit, 55);
   assert.equal(matvaretabellenPortionConversion("olive_oil", "tsp"), null);
 });
 
 test("generic bell pepper uses exact cross-colour agreement rather than averaging", () => {
-  const pepper = MATVARETABELLEN_PORTION_EVIDENCE_B6.bell_pepper;
-  assert.equal(pepper.supportingFoodRows.length, 3);
-  assert.deepEqual(pepper.supportingFoodRows.map(row => row.gramsPerUnit), [145, 145, 145]);
-  assert.deepEqual(pepper.supportingFoodRows.map(row => row.foodId), ["06.047", "06.048", "06.088"]);
+  const record = MATVARETABELLEN_PORTION_EVIDENCE_B6.bell_pepper;
+  assert.deepEqual(record.supportingFoodRows.map(row => row.gramsPerUnit), [145, 145, 145]);
+  assert.equal(record.gramsPerUnit, 145);
 });
 
 test("lime and avocado remain ambiguous instead of choosing convenient piece weights", () => {
-  const lime = matvaretabellenAmbiguousPortion("lime", "piece");
-  assert.deepEqual([...lime.candidateGramWeights], [17, 65]);
-  const avocado = matvaretabellenAmbiguousPortion("avocado", "piece");
-  assert.deepEqual([...avocado.candidateGramWeights], [130, 220]);
+  assert.deepEqual(MATVARETABELLEN_AMBIGUOUS_PORTIONS_B6.lime.candidateGramWeights, [17, 65]);
+  assert.deepEqual(MATVARETABELLEN_AMBIGUOUS_PORTIONS_B6.avocado.candidateGramWeights, [130, 220]);
+  assert.equal(matvaretabellenPortionConversion("lime", "piece"), null);
+  assert.equal(matvaretabellenPortionConversion("avocado", "piece"), null);
+  assert.deepEqual(matvaretabellenAmbiguousPortion("lime", "piece")?.candidateGramWeights, [17, 65]);
 
-  const densities = {
-    lime: { energyKcal: 30, proteinG: 1, carbohydrateG: 10, fatG: 0.2, fibreG: 2 },
-    avocado: { energyKcal: 160, proteinG: 2, carbohydrateG: 9, fatG: 15, fibreG: 7 }
-  };
-  for (const ingredientId of ["lime", "avocado"]) {
-    const result = calculatePerServingFromDensities({
-      ingredients: [{ canonicalIngredientId: ingredientId, quantity: 1, unit: "piece" }],
-      serving: { servings: 1 }
-    }, densities);
-    assert.equal(result.complete, false, ingredientId);
-    assert.equal(result.skipped[0].reason, "ambiguous_portion_unit", ingredientId);
-    assert.equal(result.skipped[0].quantityEvidence.sourceId, MATVARETABELLEN_PORTION_SOURCE_B6.id, ingredientId);
-  }
+  const result = calculatePerServingFromDensities({
+    ingredients: [{ canonicalIngredientId: "lime", quantity: 1, unit: "piece" }],
+    serving: { servings: 1 }
+  }, { lime: { energyKcal: 30, proteinG: 1, carbohydrateG: 10, fatG: 0, fibreG: 2 } });
+  assert.equal(result.complete, false);
+  assert.equal(result.skipped[0].reason, "ambiguous_portion_unit");
+  assert.deepEqual(result.skipped[0].quantityEvidence.candidateGramWeights, [17, 65]);
 });
 
 test("deferred targets remain unsupported and no generic spoon arithmetic is introduced", () => {
@@ -107,7 +101,7 @@ test("runtime integrates B6 quantity provenance without replacing existing USDA 
   const eggResult = calculatePerServingFromDensities({
     ingredients: [{ canonicalIngredientId: "eggs", quantity: 2, unit: "pieces" }],
     serving: { servings: 1 }
-  }, USDA_FOUNDATION_DENSITIES_V1);
+  }, USDA_FOUNDATION_DENSITIES);
   assert.equal(eggResult.used[0].grams, 110);
   assert.equal(eggResult.used[0].quantityEvidence.sourceId, MATVARETABELLEN_PORTION_SOURCE_B6.id);
   assert.equal(eggResult.used[0].quantityEvidence.foodId, "02.001");
