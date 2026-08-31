@@ -91,7 +91,9 @@ Evidence rules preserved:
 - automatic quantity conversion policy therefore remains unchanged from B2;
 - the combined bounded USDA ledger contains 29 reviewed Foundation composition records.
 
-## V1 European Evidence Gate B4 — IMPLEMENTED / VALIDATION_PENDING
+## V1 European Evidence Gate B4 — COMPLETE
+Merged through PR #12 to `main` at `fd33037ce48a75b60ac5b8ca7d7526b7ffb15061`; deterministic/static validation, the 15,552-profile matrix and Chromium acceptance passed before merge, followed by green post-merge validation and GitHub Pages deployment.
+
 This additive gate introduces a second official composition source as **corroboration/audit evidence only**, without changing the public NutritionSource's source-selection policy.
 
 Source:
@@ -117,10 +119,10 @@ Comparison policy:
 - no values are averaged across USDA and Ciqual;
 - no geography is assumed inherently more truthful;
 - exact food form, nutrient definition, method, geography, source version and licence stay visible;
-- material disagreements remain visible (for example the current reviewed canned-tuna forms differ in liquid/form and energy/protein/fat values);
+- material disagreements remain visible;
 - Ciqual-only evidence such as reviewed farmed raw salmon is represented as single-source evidence rather than fabricating a USDA mapping;
 - the B4 comparison layer exposes `NO_STATIC_EVIDENCE`, `SINGLE_SOURCE_EVIDENCE`, `MULTI_SOURCE_REVIEWED_EVIDENCE` and `MULTI_SOURCE_FORM_CAVEAT` states;
-- B4 never changes recipe ranking, hard constraints, displayed nutrition selection or project-authored fallback estimates.
+- B4 does not change recipe ranking, hard constraints, displayed nutrition selection or project-authored fallback estimates.
 
 European-source governance:
 
@@ -128,8 +130,6 @@ European-source governance:
 - Frida/DTU, NEVO/RIVM and BEDCA/AESAN remain candidates subject to exact reuse/licensing conditions;
 - EuroFIR FoodEXplorer remains outside the current cost/access contract;
 - EFSA FoodEx2 and EU regulatory datasets are a separate classification/regulatory truth lane, not composition-value replacements.
-
-Gate B4 becomes COMPLETE only after deterministic/static validation, the 15,552-profile matrix, Chromium acceptance, clean merge, post-merge validation and Pages deployment.
 
 **Next major human gate:** whether reviewed European composition evidence may become primary for Europe/Canary contexts or remain corroboration-only. That policy change is not pre-authorized by B4.
 
