@@ -1,5 +1,10 @@
-import { nutritionEvidenceCoverage, nutritionEvidenceForIngredient, USDA_FOUNDATION_SOURCE } from "../data/nutrition-evidence.js";
-import { USDA_FOUNDATION_COMPOSITION_SOURCE, USDA_FOUNDATION_DENSITIES_V1 } from "../data/usda-foundation-nutrients-v1.js";
+import {
+  nutritionEvidenceCoverage,
+  nutritionEvidenceForIngredient,
+  USDA_FOUNDATION_DENSITIES,
+  USDA_FOUNDATION_SOURCE
+} from "../data/nutrition-evidence.js";
+import { USDA_FOUNDATION_COMPOSITION_SOURCE } from "../data/usda-foundation-nutrients-v1.js";
 import {
   USDA_FOUNDATION_PORTION_SOURCE,
   usdaFoundationAmbiguousPortion,
@@ -128,14 +133,14 @@ export const publicNutritionSource = {
     const ingredientIds = (recipe.ingredients || []).map(item => item.canonicalIngredientId);
     const coverage = nutritionEvidenceCoverage(ingredientIds);
     const identities = coverage.mappedIngredientIds.map(ingredientId => nutritionEvidenceForIngredient(ingredientId));
-    const staticCalculation = calculatePerServingFromDensities(recipe, USDA_FOUNDATION_DENSITIES_V1);
+    const staticCalculation = calculatePerServingFromDensities(recipe, USDA_FOUNDATION_DENSITIES);
     const authoritativeRecipeCalculation = staticCalculation.complete;
     return {
       perServing: authoritativeRecipeCalculation ? staticCalculation.perServing : { ...(recipe.nutrition?.perServing || {}) },
       method: authoritativeRecipeCalculation ? "USDA_FDC_FOUNDATION_STATIC_CALCULATION" : recipe.nutrition?.estimationState || "INFERRED_ESTIMATE",
       confidence: authoritativeRecipeCalculation ? "medium" : recipe.nutrition?.confidence || "low",
       provenance: authoritativeRecipeCalculation
-        ? "Calculated deterministically from bounded USDA FoodData Central Foundation Foods per-100g composition and evidence-backed quantity weights; cooking/yield uncertainty remains."
+        ? "Calculated deterministically from reviewed bounded USDA FoodData Central Foundation Foods per-100g composition and evidence-backed quantity weights; cooking/yield uncertainty remains."
         : recipe.nutrition?.provenance || "Project-authored estimate.",
       evidence: {
         source: USDA_FOUNDATION_SOURCE,
