@@ -50,7 +50,8 @@ const quantityToGrams = ingredient => {
 };
 
 const nutrientKeys = ["energyKcal", "proteinG", "carbohydrateG", "fatG", "fibreG"];
-const roundNutrient = (key, value) => key === "energyKcal" ? Math.round(value) : Number(value.toFixed(1));
+const roundToTenths = value => Math.round((value + Number.EPSILON * Math.max(1, Math.abs(value))) * 10) / 10;
+const roundNutrient = (key, value) => key === "energyKcal" ? Math.round(value) : roundToTenths(value);
 
 export function calculatePerServingFromDensities(recipe, densityMap = {}) {
   const ingredients = (recipe.ingredients || []).filter(ingredient => ingredient.required !== false);
