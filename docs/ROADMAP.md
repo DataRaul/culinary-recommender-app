@@ -23,16 +23,17 @@
 | V1.0.7 / European primary-source policy | COMPLETE / USER-APPROVED | conditional Europe/Canary per-ingredient/per-nutrient source selection + semantic firewall + coherent USDA fallback |
 | V1.0.8 / Authoritative coverage audit | COMPLETE | corpus-level fail-closed measurement; 0/76 authoritative baseline |
 | V1.0.9 / Nutrition B5 | COMPLETE | 22 reviewed Ciqual records; 54 combined; density blockers reduced to 141 |
-| V1.0.10 / Nutrition B6 | VALIDATED MERGE CANDIDATE | 14 reviewed Matvaretabellen portion mappings + explicit ambiguity/defer states |
+| V1.0.10 / Nutrition B6 | COMPLETE | 14 reviewed Matvaretabellen portion mappings + explicit ambiguity/defer states |
 | V1.0.1 / Content Gate C | COMPLETE | Spain/Canary ingredient classes + package/availability/reuse-aware cost heuristic |
 | V1.0.1 / Content Gate D | COMPLETE | normalized culinary technique/risk/execution/convenience/learning intelligence |
 | V1.0.3 / Content Gate E | COMPLETE | 15 coverage-driven authored recipes + corpus/search audit + pineapple future-exclusion proof |
+| Brain P0 | AUTHORIZED / FOUNDATION BUILT | Knowledge Core official-source foundation + bounded free operator corpus + source/adacency governance |
+| App Brain adapter V1 | CALIBRATION SCAFFOLDING | static provenance-pinned public-safe policy contract; no ranking change |
 | V1.x / Recipe-unlock evidence | NEXT | target remaining composition/form and exact quantity blockers by recipe-level unlock value |
 | V1.x / Authoritative nutrition coverage | CONTINUOUS | expand reviewed evidence under the approved source policy without guessing |
 | V1.x / Corpus breadth | CONTINUOUS | target high-value Search/planner gaps rather than recipe-count growth |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
-| Brain P0 | NOT_AUTHORIZED | future Culinary & Nutrition Brain |
-| App Brain-derived V1.x | DEFERRED | public-safe Brain-derived upgrades only after explicit Brain authorization |
+| V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
 
 ## Completed V1 lineage
 
@@ -54,7 +55,7 @@ The deterministic B5 report remained fail-closed at **0 / 76** authoritative rec
 
 PR #17 merged at `5689b0e40c6c4d9d7040b0ee25b7cc41d898b751`; post-merge validation run `33443904301` and Pages run `33443903344` passed.
 
-## Nutrition B6 — validated candidate
+## Nutrition B6 — complete
 
 B6 responds directly to B5's newly exposed quantity bottleneck. It adds a bounded portion-evidence lane from the Norwegian Food Safety Authority's Norwegian Food Composition Table 2026, under verified **NLOD 2.0** reuse with attribution.
 
@@ -73,7 +74,45 @@ Integration Actions run `33445671486` passed all **83 deterministic tests** and 
 - mixed incompatible carbohydrate-semantic events: **16**;
 - newly authoritative recipes: **none**.
 
-B6 resolves or truthfully reclassifies **175 of 202** B5 unsupported-quantity events without weakening the evidence contract. Normal PR/browser validation and post-merge deployment verification remain before B6 can move from candidate to COMPLETE.
+B6 resolves or truthfully reclassifies **175 of 202** B5 unsupported-quantity events without weakening the evidence contract.
+
+PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`; post-merge validation run `33446325292` and Pages run `33446324922` both passed. B6 is therefore **COMPLETE**.
+
+## Culinary & Nutrition Brain P0 — authorized foundation
+
+The user explicitly authorized Brain P0 on 2026-08-31. Construction follows the Knowledge Core Brain Construction Protocol rather than app-local improvisation.
+
+The reviewed P0 calibration pin is `DataRaul/knowledge-core` commit `e5dcb29a7c6b78f59c062faf4c963c74aac10743`, domain `culinary_nutrition`. It contains:
+
+- official-source evidence and population/inference boundaries from WHO/FAO, AESAN, EFSA and NNR;
+- healthy-diet and composition-provenance reasoning;
+- planning, affordability, pantry-reuse and uncertainty objects;
+- a bounded free operator pass using J. Kenji López-Alt, Helen Rennie and the Jacques Pépin Foundation;
+- technique objects for equipment/workflow, browning, sauce/emulsion control, feedback-driven learning and substitution by culinary function;
+- a high-level WHO/AESAN food-safety object;
+- source-state, used-source and adjacency governance.
+
+The operator pass reached P0 saturation without adding a fourth generalist source merely for count. Operator material remains culinary technique/workflow evidence, not nutrition, medical or food-safety authority.
+
+### Long-form / content decision
+
+Book and paper work is residual-gap gated:
+
+- Harold McGee / *On Food and Cooking* → recommended when deeper food chemistry changes a concrete decision;
+- Samin Nosrat / *Salt, Fat, Acid, Heat* → selective candidate when flavor-balancing diagnosis remains under-specified;
+- peer-reviewed cooking/yield/nutrient-retention research → priority when it can unblock authoritative recipe nutrition;
+- cuisine-specific expert/primary sources → preferred for authenticity/adaptation (`CN12`);
+- *The Food Lab* → deferred for now because the free Kenji lane already supplies substantial overlapping mechanism evidence.
+
+No candidate book is marked as a used Knowledge Core source before material canonical use.
+
+## App Brain adapter — calibration scaffolding
+
+The app-side boundary is recorded in `docs/BRAIN_ADAPTER_CONTRACT.md` and `src/data/brain-public-policy-v1.js`, pinned to Knowledge Core commit `e5dcb29a7c6b78f59c062faf4c963c74aac10743`.
+
+Current state: `CALIBRATION_ONLY_NO_RANKING_CHANGE`.
+
+The public app does not fetch private Knowledge Core at runtime. Only narrow, versioned, source-safe static exports are eligible. Brain authorization does not silently authorize changes to ranking, eligibility, substitutions or nutrition outputs; each behavior change requires an explicit public artifact, deterministic negative/regression tests and normal PR/matrix/browser validation.
 
 ## Current nutrition policy
 
@@ -95,7 +134,7 @@ Routine evidence expansion may continue under this accepted architecture without
 
 ## Next recipe-unlock evidence work
 
-After a legitimate B6 merge, priority shifts from broad quantity discovery to **recipe-unlock analysis**:
+With B6 complete, priority shifts from broad quantity discovery to **recipe-unlock analysis**:
 
 1. identify recipes one or two blockers away from authoritative calculation;
 2. target high-frequency remaining composition/form blockers only where source form can be reviewed strongly;
@@ -114,10 +153,10 @@ EFSA FoodEx2 and EU Commission regulatory datasets remain a separate classificat
 
 ## Standing architecture
 
-The accepted shell/core is not reopened by routine corpus, ontology or evidence growth. V1 work remains additive behind stable `RecipeSource`, `NutritionSource`, `IngredientNormalizer`, `RecommendationPolicy`, planner, substitution and cost interfaces.
+The accepted shell/core is not reopened by routine corpus, ontology, evidence or Brain-calibration growth. V1 work remains additive behind stable `RecipeSource`, `NutritionSource`, `IngredientNormalizer`, `RecommendationPolicy`, planner, substitution and cost interfaces.
 
 Future nutrition breadth must come from reviewed source/form identity plus explicit quantity evidence. Generic spoon/piece averages remain prohibited merely to increase apparent coverage.
 
 Cost remains relative, deterministic and explainable. Culinary quality remains normalized from project-authored structured metadata and instructions. Fridge Search, planner, allergens, dietary restrictions and permanent exclusions continue to use the same hard safety truth.
 
-The Culinary & Nutrition Brain remains a separate future authorization boundary. The public app must not call private Knowledge Core at runtime.
+The Culinary & Nutrition Brain is now authorized, but the public app must still never call private Knowledge Core at runtime. Downstream behavior changes remain separately evidence- and test-gated.

@@ -17,7 +17,7 @@
 | Gate 9B | ACCEPTED | up-to-three meal-scoped priority packs + independent cuisine preferences |
 | V0.9.3 | ACCEPTED BASELINE | permanent exclusions, mapped allergens, broad integrated acceptance |
 
-The accepted shell/core is not reopened by routine corpus, ontology or evidence growth. Hard constraints remain fail-closed. Priority packs and cuisines remain bounded soft signals.
+The accepted shell/core is not reopened by routine corpus, ontology, evidence or Brain-calibration growth. Hard constraints remain fail-closed. Priority packs and cuisines remain bounded soft signals.
 
 ## V1 Content Gate A — COMPLETE
 
@@ -113,9 +113,9 @@ The integrated B5 coverage result remained fail-closed:
 
 PR #17 merged at `5689b0e40c6c4d9d7040b0ee25b7cc41d898b751`. Post-merge validation run `33443904301` and Pages run `33443903344` passed.
 
-## V1.0.10 Nutrition B6 — VALIDATED MERGE CANDIDATE
+## V1.0.10 Nutrition B6 — COMPLETE
 
-B6 introduces a separate bounded **quantity / portion evidence** lane from the Norwegian Food Safety Authority's Norwegian Food Composition Table 2026.
+B6 introduced a separate bounded **quantity / portion evidence** lane from the Norwegian Food Safety Authority's Norwegian Food Composition Table 2026.
 
 Licence/reuse is resolved for this bounded attributed gate:
 
@@ -146,7 +146,9 @@ Integration audit run `33445671486` passed all **83 deterministic tests** and th
 - mixed incompatible carbohydrate-semantic events: **16**;
 - newly authoritative recipes: **none**.
 
-B6 therefore resolves or truthfully reclassifies **175 of 202** B5 unsupported-quantity events without manufacturing recipe completeness. The candidate is ready for normal PR/browser validation once documentation, PWA precache and transient-workflow cleanup are complete.
+B6 therefore resolves or truthfully reclassifies **175 of 202** B5 unsupported-quantity events without manufacturing recipe completeness.
+
+PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`. Post-merge validation run `33446325292` and Pages deployment run `33446324922` both passed, so the B6 gate is terminally **COMPLETE**.
 
 ## V1 Content Gate C — COMPLETE
 
@@ -162,12 +164,20 @@ Merged through PR #9 at `3e0be5adcde9ec9567c0595ac4e8fc71dd237ee4`; PR/post-merg
 
 Delivered 15 coverage-driven project-authored recipes, broader ingredient/Search coverage, canonical bilingual pineapple promotion and regression proof that previously stored future exclusions remain hard when new recipes later introduce that ingredient.
 
-## Brain P0 — NOT AUTHORIZED
+## Brain P0 — AUTHORIZED / KNOWLEDGE CORE FOUNDATION BUILT
 
-The dedicated Culinary & Nutrition Brain remains a separate future human authorization boundary. The public app must not call private Knowledge Core at runtime. Public-safe policy/data artifacts may be prepared behind accepted stable interfaces, but the Brain itself must not be created or activated without explicit authorization.
+The user explicitly authorized the dedicated Culinary & Nutrition Brain on 2026-08-31.
+
+Knowledge Core canonical construction and the bounded free operator pass are represented by `DataRaul/knowledge-core` commit `e5dcb29a7c6b78f59c062faf4c963c74aac10743` in domain `culinary_nutrition`. The foundation preserves official nutrition/food-safety authority, population-vs-individual boundaries, evidence provenance, conditional culinary technique, functional substitutions, planning/affordability reasoning, high-level home food safety, and recommendation uncertainty.
+
+The public-app side is intentionally narrower. `src/data/brain-public-policy-v1.js` and `docs/BRAIN_ADAPTER_CONTRACT.md` record a static reviewed public-safe calibration contract pinned to that Knowledge Core commit. State: `CALIBRATION_ONLY_NO_RANKING_CHANGE`.
+
+The public app **must not call private Knowledge Core at runtime**. Brain authorization does not automatically change recommendation ranking, eligibility, substitutions or nutrition calculations. Any such behavior change requires a separately reviewed public-safe export plus deterministic tests, normal PR validation, the profile matrix and browser acceptance.
+
+The free operator pass is saturated for P0 fundamentals. Additional books/content are residual-gap gated rather than automatic: Harold McGee for deeper chemistry when needed; Samin Nosrat selectively for flavor-balancing gaps; peer-reviewed cooking/yield/nutrient-retention research when authoritative nutrition needs it; and cuisine-specific sources for authenticity/adaptation. *The Food Lab* is currently deferred because of high overlap with the free Kenji lane.
 
 ## Deferred / future lanes
 
-Nutrient-gap awareness, supplement-routine checking, recipe images, live/local grocery prices, fitness integration, advanced culinary exploration and Brain P0 remain DEFERRED/NOT_AUTHORIZED rather than failed.
+Nutrient-gap awareness, supplement-routine checking, recipe images, live/local grocery prices, fitness integration and advanced culinary exploration remain DEFERRED rather than failed. Brain P0 itself is no longer deferred; downstream behavior changes remain separately gated.
 
-The next ordinary nutrition work after a legitimate B6 merge is coverage-driven: target the remaining composition/form blockers and residual exact quantity semantics that can unlock complete recipes, while preserving the carbohydrate semantic firewall and all source/licensing provenance.
+The next ordinary nutrition work is coverage-driven: target the remaining composition/form blockers and residual exact quantity semantics that can unlock complete recipes, while preserving the carbohydrate semantic firewall and all source/licensing provenance.
