@@ -1,0 +1,24 @@
+name: One-off Ciqual 2025 B4 component catalogue
+on:
+  push:
+    branches: [v1-european-evidence-b4]
+    paths:
+      - '.github/workflows/ciqual-b4-components.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Download official Ciqual 2025 component XML
+        run: |
+          curl --fail --location --retry 3 \
+            --output /tmp/const.xml \
+            'https://entrepot.recherche.data.gouv.fr/api/access/datafile/:persistentId?persistentId=doi:10.57745/FWSPCX'
+          test "$(stat -c%s /tmp/const.xml)" -gt 10000
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ciqual-b4-components
+          path: /tmp/const.xml
+          retention-days: 1
