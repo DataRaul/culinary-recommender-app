@@ -104,6 +104,21 @@ Merged through PR #9 at `3e0be5adcde9ec9567c0595ac4e8fc71dd237ee4`; PR and post-
 
 Delivered 15 coverage-driven project-authored recipes, broader ingredient/Search coverage, canonical bilingual pineapple promotion, deterministic corpus/search auditing, and regression proof that previously stored future exclusions remain hard when new recipes later introduce that ingredient.
 
+## V1.0.9 Nutrition B5 — VALIDATED MERGE CANDIDATE
+
+PR #17 expands the bounded Ciqual lane by **22 manually reviewed food/form records** while preserving the frozen 32-record B4 tranche. Runtime evidence therefore exposes B4 and B5 separately and a combined reviewed Ciqual count of **54**.
+
+The source-selection contract is unchanged: no averaging, stronger USDA form wins, Ciqual `D` does not displace available reviewed USDA, B5-only reviewed `D` may be used as the only source, and carbohydrate semantics remain fail-closed. Deferred weak/form-mismatched candidates such as cumin seed for ground cumin, generic paprika for smoked paprika, unspecified tofu for firm tofu and egg-containing noodles for generic wheat noodles remain unpromoted.
+
+Deterministic B5 coverage audit run `33443162092` passed and measured:
+- authoritative recipes: **0 / 76**;
+- missing-density blocker events: **141**, down from 356;
+- unsupported-quantity-unit blocker events: **202**, up from 86 because many former density blockers now advance to the next truthful quantity blocker;
+- mixed incompatible carbohydrate-semantic events: **16**, with the semantic firewall still rejecting incompatible totals;
+- newly authoritative recipes: **none**.
+
+PR validation run `33443356698` passed deterministic/static tests and Chromium acceptance on the pre-documentation candidate. Final merge remains gated on the current PR head validating green; post-merge validation and Pages deployment remain required before B5 is considered complete.
+
 ## Brain P0 — NOT AUTHORIZED
 
 The dedicated Culinary & Nutrition Brain remains a separate future human authorization boundary. The public app must not call private Knowledge Core at runtime. Public-safe policy/data artifacts may be prepared behind the accepted stable interfaces, but the Brain itself must not be created or activated without explicit authorization.
