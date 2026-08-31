@@ -11,6 +11,11 @@ import {
   usdaFoundationPortionConversion
 } from "../data/usda-foundation-portions-v1.js";
 import {
+  MATVARETABELLEN_PORTION_SOURCE_B6,
+  matvaretabellenAmbiguousPortion,
+  matvaretabellenPortionConversion
+} from "../data/matvaretabellen-portions-b6.js";
+import {
   CIQUAL_RUNTIME_SOURCE_V1,
   EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
@@ -27,32 +32,70 @@ const quantityToGrams = ingredient => {
   if (unit === "kg") return { grams: quantity * 1000, reason: null, quantityEvidence: { state: "DIRECT_MASS", unit: "kg" } };
 
   const ingredientId = ingredient?.canonicalIngredientId;
-  const portion = usdaFoundationPortionConversion(ingredientId, unit);
-  if (portion) {
+  const usdaPortion = usdaFoundationPortionConversion(ingredientId, unit);
+  if (usdaPortion) {
     return {
-      grams: quantity * portion.gramsPerUnit,
+      grams: quantity * usdaPortion.gramsPerUnit,
       reason: null,
       quantityEvidence: {
-        state: portion.evidenceState,
+        state: usdaPortion.evidenceState,
+        sourceId: USDA_FOUNDATION_PORTION_SOURCE.id,
         inputUnit: unit,
-        gramsPerUnit: portion.gramsPerUnit,
-        sourceUnit: portion.sourceUnit,
-        modifier: portion.modifier,
-        fdcId: portion.fdcId
+        gramsPerUnit: usdaPortion.gramsPerUnit,
+        sourceUnit: usdaPortion.sourceUnit,
+        modifier: usdaPortion.modifier,
+        fdcId: usdaPortion.fdcId
       }
     };
   }
 
-  const ambiguous = usdaFoundationAmbiguousPortion(ingredientId, unit);
-  if (ambiguous) {
+  const matvaretabellenPortion = matvaretabellenPortionConversion(ingredientId, unit);
+  if (matvaretabellenPortion) {
+    return {
+      grams: quantity * matvaretabellenPortion.gramsPerUnit,
+      reason: null,
+      quantityEvidence: {
+        state: matvaretabellenPortion.evidenceState,
+        sourceId: MATVARETABELLEN_PORTION_SOURCE_B6.id,
+        evidenceTranche: matvaretabellenPortion.evidenceTranche,
+        inputUnit: unit,
+        gramsPerUnit: matvaretabellenPortion.gramsPerUnit,
+        sourceUnit: matvaretabellenPortion.portionName,
+        foodId: matvaretabellenPortion.foodId,
+        foodName: matvaretabellenPortion.foodName
+      }
+    };
+  }
+
+  const usdaAmbiguous = usdaFoundationAmbiguousPortion(ingredientId, unit);
+  if (usdaAmbiguous) {
     return {
       grams: null,
       reason: "ambiguous_portion_unit",
       quantityEvidence: {
         state: "USDA_FOUNDATION_PORTION_AMBIGUOUS",
+        sourceId: USDA_FOUNDATION_PORTION_SOURCE.id,
         inputUnit: unit,
-        reason: ambiguous.reason,
-        candidateGramWeights: [...ambiguous.candidateGramWeights]
+        reason: usdaAmbiguous.reason,
+        candidateGramWeights: [...usdaAmbiguous.candidateGramWeights]
+      }
+    };
+  }
+
+  const matvaretabellenAmbiguous = matvaretabellenAmbiguousPortion(ingredientId, unit);
+  if (matvaretabellenAmbiguous) {
+    return {
+      grams: null,
+      reason: "ambiguous_portion_unit",
+      quantityEvidence: {
+        state: matvaretabellenAmbiguous.evidenceState,
+        sourceId: MATVARETABELLEN_PORTION_SOURCE_B6.id,
+        evidenceTranche: matvaretabellenAmbiguous.evidenceTranche,
+        inputUnit: unit,
+        foodId: matvaretabellenAmbiguous.foodId,
+        foodName: matvaretabellenAmbiguous.foodName,
+        reason: matvaretabellenAmbiguous.reason,
+        candidateGramWeights: [...matvaretabellenAmbiguous.candidateGramWeights]
       }
     };
   }
@@ -178,9 +221,9 @@ export const publicNutritionSource = {
       method,
       confidence: authoritativeRecipeCalculation ? "medium" : recipe.nutrition?.confidence || "low",
       provenance: usesEuropeanPrimary
-        ? "Calculated deterministically under the Canary/Spain/Europe source-selection policy from reviewed USDA Foundation and/or ANSES-Ciqual composition, with exact per-nutrient provenance and evidence-backed quantity weights; incompatible carbohydrate semantics are never mixed and cooking/yield uncertainty remains."
+        ? "Calculated deterministically under the Canary/Spain/Europe source-selection policy from reviewed USDA Foundation and/or ANSES-Ciqual composition, with exact per-nutrient provenance and source-backed USDA and/or Matvaretabellen quantity weights; incompatible carbohydrate semantics are never mixed and cooking/yield uncertainty remains."
         : usesCoherentUsdaFallback
-          ? "European-primary selection was incomplete or semantically incompatible for a full recipe total, so the deterministic fully coherent reviewed USDA Foundation calculation was retained; cooking/yield uncertainty remains."
+          ? "European-primary selection was incomplete or semantically incompatible for a full recipe total, so the deterministic fully coherent reviewed USDA Foundation calculation was retained; source-backed USDA and/or Matvaretabellen quantity weights may be used and cooking/yield uncertainty remains."
           : recipe.nutrition?.provenance || "Project-authored estimate.",
       evidence: {
         source: USDA_FOUNDATION_SOURCE,
@@ -188,6 +231,7 @@ export const publicNutritionSource = {
         sourcePolicy: EUROPEAN_PRIMARY_POLICY_V1,
         compositionSource: USDA_FOUNDATION_COMPOSITION_SOURCE,
         portionSource: USDA_FOUNDATION_PORTION_SOURCE,
+        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6],
         coverage,
         europeanPrimaryCoverage,
         identities,

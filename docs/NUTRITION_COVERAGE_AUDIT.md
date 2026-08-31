@@ -6,11 +6,11 @@ Policy: user-approved Canary Islands / Spain / Europe conditional European-prima
 
 ## Purpose
 
-Measure how much of the current recipe corpus can legitimately replace project-authored nutrition estimates with complete authoritative static calculations under the existing fail-closed evidence rules.
+Measure how much of the recipe corpus can legitimately replace project-authored nutrition estimates with complete authoritative static calculations under the existing fail-closed evidence rules.
 
-This audit is diagnostic. It does not relax evidence requirements, change recipe ranking or convert partial evidence into authoritative nutrition.
+This audit is diagnostic. It does not relax evidence requirements, change recipe ranking or convert partial evidence into authoritative nutrition. The primary progress metric is **recipes newly made authoritative**, with blocker-event counts used to explain why coverage does or does not move.
 
-## Baseline result — PR #16 / V1.0.8
+## PR #16 / V1.0.8 baseline
 
 - recipes audited: **76**
 - complete authoritative static recipe calculations: **0**
@@ -20,86 +20,108 @@ This audit is diagnostic. It does not relax evidence requirements, change recipe
 - unsupported-quantity-unit blocker events: **86**
 - mixed incompatible carbohydrate-semantic events: **12**
 
-The zero-complete result is not treated as a failure of the evidence architecture. It demonstrates that the architecture is correctly refusing false completeness. A recipe becomes authoritative only when every required ingredient has sufficient reviewed composition, every required quantity resolves to defensible mass, every tracked nutrient is present, and the selected nutrient semantics can form one coherent recipe total.
+The zero-complete result is not an implementation failure. It demonstrates that the architecture correctly refuses false completeness. A recipe becomes authoritative only when every required ingredient has sufficient reviewed composition, every required quantity resolves to defensible mass, every tracked nutrient is present, and the selected nutrient semantics can form one coherent recipe total.
 
-## Highest-frequency baseline density blockers
+## Nutrition B5 / V1.0.9 measured result
 
-| Canonical ingredient | Blocker events |
-|---|---:|
-| onion | 29 |
-| garlic | 26 |
-| lemon | 25 |
-| olive_oil | 19 |
-| cumin | 18 |
-| lime | 18 |
-| tomato | 18 |
-| smoked_paprika | 17 |
-| bell_pepper | 16 |
-| cabbage | 14 |
-| parsley | 14 |
-| chickpeas | 12 |
-| spinach | 12 |
-| soy_sauce | 11 |
-| carrot | 8 |
-| fresh_ginger | 7 |
-| brown_rice | 6 |
-| tofu_firm | 6 |
+B5 added 22 strictly reviewed ANSES-Ciqual 2025 composition records while preserving the frozen 32-record B4 tranche. The integrated B5 report remained fail-closed:
 
-Some ingredients already had partial or source-specific evidence. A blocker count means the selected calculation lacked usable density at that recipe point; it does not mean the ingredient was absent from every source ledger.
+- recipes audited: **76**
+- complete authoritative static recipe calculations: **0**
+- recipes retaining project-authored estimates: **76**
+- missing-density blocker events: **141**
+- unsupported-quantity-unit blocker events: **202**
+- mixed incompatible carbohydrate-semantic events: **16**
+- newly authoritative recipe IDs: **none**
 
-## Quantity blockers
+Relative to PR #16, missing-density events fell by **215**. The rise from 86 to 202 unsupported-quantity events was diagnostic reclassification: once B5 supplied composition, many recipe points advanced to the next truthful blocker rather than being guessed into grams.
 
-The calculator accepts direct `g` / `kg` mass and only explicitly reviewed household conversions. Current source-backed automatic household conversion remains deliberately narrow.
+B5 merged through PR #17 at `5689b0e40c6c4d9d7040b0ee25b7cc41d898b751`; post-merge validation and Pages deployment passed.
 
-Frequent unsupported-unit cases include:
+## Nutrition B6 / V1.0.10 measured candidate
 
-- onion, red onion and garlic expressed as pieces/cloves;
-- eggs expressed as eggs rather than a sufficiently specified reviewed mass form;
-- carrots, cucumber, aubergine, avocado and mango expressed as pieces/fractions;
-- spring onion expressed as pieces;
-- oils, sauces and spices expressed in household measures where no exact source-backed mass mapping has been approved.
+B6 adds a bounded official portion-evidence lane from the Norwegian Food Safety Authority's **Norwegian Food Composition Table 2026**. The static subset is used under **NLOD 2.0** with attribution. No runtime fetch occurs and no Norwegian composition values are introduced by this gate.
 
-The project must not solve these blockers with generic internet averages. Acceptable future routes are:
+Only 14 exact food/unit mappings are promoted after manual review:
 
-1. official source-backed household weights whose food form/size semantics match the recipe;
-2. project-authored recipe quantities stated directly in grams where editorially appropriate;
-3. another documented authoritative weight source with compatible reuse terms.
+| Canonical ingredient | Recipe unit | Reviewed mass | Source food |
+|---|---|---:|---|
+| lemon | piece(s) | 80 g | `06.550` Lemon, raw |
+| garlic | clove(s) | 3 g | `06.038` Garlic, raw |
+| olive_oil | tbsp | 10 g | `08.112` Oil, olive, Extra Virgin |
+| tomato | piece(s) | 95 g | `06.754` Tomato, unspecified, raw |
+| bell_pepper | piece(s) | 145 g | exact agreement across green/red/yellow-orange raw rows |
+| soy_sauce | tbsp | 13 g | `10.126` Soy sauce |
+| onion | piece(s) | 160 g | `06.042` Onion, Norwegian, raw |
+| carrot | piece(s) | 80 g | `06.036` Carrot, Norwegian, raw |
+| cucumber | piece(s) | 325 g | `06.010` Cucumber, Norwegian, raw |
+| eggs | piece(s) | 55 g | `02.001` Egg, raw |
+| spring_onion | piece(s) | 19 g | `06.113` Scallion, spring onion, raw |
+| curry_powder | tsp | 3 g | `06.158` Curry powder |
+| aubergine | piece(s) | 285 g | `06.015` Aubergine, raw |
+| mango | piece(s) | 335 g | `06.542` Mango, raw |
 
-## Semantic blockers
+B6 deliberately does **not** promote convenient conversions where semantics are unresolved:
 
-The architecture treats USDA `1005` carbohydrate by difference and Ciqual `CHOAVL` available carbohydrate as incompatible semantics for summation. These are intentionally not added into one authoritative recipe carbohydrate total. Where a complete coherent reviewed USDA calculation exists, the approved policy may retain it as fallback; otherwise the recipe estimate remains primary.
+- lime: source exposes conflicting 17 g and 65 g piece rows → `ambiguous_portion_unit`;
+- avocado: source exposes 130 g small and 220 g large → `ambiguous_portion_unit` for bare piece;
+- `onion|small`: source does not establish a small-onion weight;
+- `sesame_oil|tsp`: source publishes tablespoon/decilitre, not teaspoon; no 1/3 spoon arithmetic is inferred;
+- `red_onion|piece`: no exact acceptable reviewed Matvaretabellen row is promoted.
 
-## Nutrition B5 measured candidate result — V1.0.9
-
-A bounded deterministic report was run on the integrated 22-record B5 branch in GitHub Actions run `33443162092` before the one-off audit workflow was removed.
-
-Result:
+The integrated B6 audit in Actions run `33445671486` passed all 83 deterministic tests and measured:
 
 - recipes audited: **76**
 - complete authoritative static recipe calculations: **0**
 - recipes retaining project-authored estimates: **76**
 - authoritative recipe ratio: **0.0000**
 - missing-density blocker events: **141**
-- unsupported-quantity-unit blocker events: **202**
+- unsupported-quantity-unit blocker events: **27**
+- explicitly ambiguous-portion blocker events: **20**
 - mixed incompatible carbohydrate-semantic events: **16**
 - newly authoritative recipe IDs: **none**
 
-Relative to the PR #16 baseline, missing-density events fell by **215**. The rise in unsupported-quantity events from 86 to 202 is primarily a blocker reclassification, not a weakening or regression: once B5 supplies a reviewed composition density, the audit can expose the next fail-closed blocker at that recipe point, often an unsupported piece, spoon, clove or other household quantity. The semantic-event count also rises because more recipes now reach multi-source composition evaluation; incompatible carbohydrate definitions remain rejected rather than silently combined.
+Relative to B5, B6 resolves or truthfully reclassifies **175 of 202** formerly unsupported quantity events while preserving 20 ambiguous events as explicit failures and leaving only 27 still unsupported. It still creates **0 / 76** authoritative recipes because composition and semantic blockers remain.
 
-This is the intended coverage-driven interpretation of B5: composition breadth materially improves evidence reach while revealing that defensible quantity normalization is now the dominant route to complete-recipe coverage. B5 deliberately leaves **0 / 76** authoritative rather than manufacturing completeness.
+This is a legitimate coverage gain without a headline recipe-count gain: the evidence graph is substantially closer to full recipe calculation while remaining fail-closed.
 
-The measured B5 snapshot is regression-tested in `tests/nutrition-coverage-audit.test.js`.
+## Current blocker interpretation
 
-## Prioritization rule after B5
+After B6, the dominant unresolved density families include high-frequency forms such as:
 
-Future nutrition evidence expansion should be driven by expected recipe-level unlocks rather than database size. Priority order is now:
+- cumin — 18;
+- smoked_paprika — 17;
+- tofu_firm — 6;
+- lentils — 5;
+- noodles — 4;
+- red_lentils — 4;
+- turkey_mince — 4;
+- plus smaller gaps across grains, sauces, proteins, herbs and pantry ingredients.
 
-1. high-frequency quantity blockers with authoritative portion/weight evidence or editorially justified explicit gram quantities;
-2. remaining high-frequency missing densities where the canonical form can be reviewed strongly;
-3. ingredient/nutrient gaps that unlock complete recipes rather than merely adding isolated evidence;
-4. semantic-coherence improvements without flattening distinct nutrient definitions.
+Quantity work is now narrower and more semantic:
 
-A future gate must continue to report **recipes newly made authoritative**, not only foods newly mapped.
+- 20 events are known ambiguous rather than unknown;
+- 27 events remain genuinely unsupported;
+- common examples include `onion|small`, `sesame_oil|tsp` and `red_onion|piece`.
+
+A future gate should prioritize **recipe-level unlock paths**, not database size. A candidate ingredient is high value when resolving it completes or nearly completes one or more recipes under coherent nutrient semantics.
+
+## Semantic blockers
+
+The architecture treats USDA `1005` carbohydrate by difference and Ciqual `CHOAVL` available carbohydrate as incompatible semantics for summation. They are never added into one authoritative recipe carbohydrate total.
+
+The B6 quantity gate does not alter this firewall. The measured count remains **16**. Where a complete coherent reviewed USDA calculation exists, the approved policy may retain it as fallback; otherwise the project-authored estimate remains primary.
+
+## Standing quantity rules
+
+The calculator accepts direct `g` / `kg` mass and only explicitly reviewed household conversions. Generic web averages, recipe-blog conversions, midpoint choices and unstated arithmetic transformations are prohibited merely to increase coverage.
+
+Acceptable future routes remain:
+
+1. official source-backed household weights matching exact canonical food/form/unit semantics;
+2. project-authored recipe quantities rewritten into explicit grams where editorially appropriate and truthful;
+3. another authoritative reusable portion-weight source with compatible licensing;
+4. explicit ontology/recipe-form refinement when ambiguity is caused by insufficient canonical semantics.
 
 ## Reproducibility
 
