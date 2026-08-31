@@ -10,8 +10,8 @@
 | Recipe corpus | ✅ COVERAGE EXPANSION COMPLETE | V1.0.3 / Gate E | coverage-driven iteration |
 | Ingredient ontology | ✅ V1 GATE A COMPLETE | hierarchical + bilingual | broader evidence/form coverage |
 | Substitutions | ✅ V1 GATE A COMPLETE | six-class controlled graph | contextual editorial edges |
-| Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.0.7 | authoritative coverage expansion |
-| European evidence | ✅ CONDITIONAL PRIMARY POLICY | Ciqual B4 + V1.0.7 | more reviewed European forms |
+| Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.0.9 B5 candidate | quantity/portion evidence |
+| European evidence | ✅ CONDITIONAL PRIMARY POLICY | Ciqual B4+B5 candidate | authoritative portion evidence |
 | Cost intelligence | ✅ COMPLETE | Gate C | empirical prices only if separately authorized |
 | Culinary quality | ✅ COMPLETE | Gate D | editorial refinement |
 | Recommender / planner | ✅ ACCEPTED CORE | V0.9.3 | richer public-safe policy later |
@@ -24,10 +24,11 @@
 | Culinary & Nutrition Brain | 🔒 NOT_AUTHORIZED | Deferred | explicit future authorization only |
 
 **Accepted shell/core:** V0.9.3  
-**Current functional V1.0.7 merge:** `cfa3b9115821b59321c7ef19e779ff3a578aa6b6`  
+**Authoritative coverage baseline:** V1.0.8 / PR #16 / `cdb9a9d9e6d2e0bf0f251bb37098d07dd64e3e9e`  
+**Nutrition B5:** V1.0.9 / PR #17 validated merge candidate  
 **Public app:** https://dataraul.github.io/culinary-recommender-app/
 
-The V1 lineage now includes project-authored corpus/ontology/substitution expansion, Spain/Canary cost intelligence, full-corpus culinary-quality normalization, bounded USDA Foundation evidence, evidence-backed quantity normalization, bounded ANSES-Ciqual 2025 European evidence, and the user-approved conditional European-primary source policy. Every merged implementation gate passed deterministic/static validation, the representative 15,552-profile matrix where applicable, comprehensive Chromium acceptance, post-merge validation and GitHub Pages deployment.
+The V1 lineage includes project-authored corpus/ontology/substitution expansion, Spain/Canary cost intelligence, full-corpus culinary-quality normalization, bounded USDA Foundation evidence, evidence-backed quantity normalization, bounded ANSES-Ciqual 2025 European evidence, the user-approved conditional European-primary source policy, and deterministic whole-corpus authoritative-nutrition coverage measurement.
 
 ## What it does
 
@@ -82,32 +83,47 @@ No generic internet spoon/piece averages are used merely to increase coverage.
 
 ### ANSES-Ciqual 2025 European evidence
 
-B4 adds a bounded **ANSES-Ciqual 2025** module:
+The frozen B4 tranche contains **32** manually reviewed ANSES-Ciqual 2025 food/form records. Nutrition B5 adds a separate strict tranche of **22** reviewed high-impact records, giving a combined bounded Ciqual ledger of **54** while preserving `evidenceTranche` provenance.
+
+Dataset facts remain:
 - dataset DOI `10.57745/RDMHWY`;
 - 3,484-food official catalogue / 74 constituents;
 - Etalab Open Licence 2.0 and required ANSES attribution;
-- 32 manually reviewed app-relevant food/form records, not the full database;
 - English/French identity, scientific name where available, form-review notes, per-field confidence and source codes retained.
+
+B5 deliberately rejects weak form matches including cumin seed for ground cumin, generic paprika for smoked paprika, unspecified tofu for firm tofu, cooked lentil forms for dry recipe quantities and egg-containing noodles for generic wheat noodles.
 
 USDA and Ciqual nutrient definitions are not flattened. In particular, USDA `1005` is carbohydrate by difference whereas Ciqual `CHOAVL` is available carbohydrate.
 
 ## Approved European-primary policy
 
-For the Canary Islands / Spain / Europe context, V1.0.7 applies a deterministic source policy **per ingredient and per nutrient**:
+For the Canary Islands / Spain / Europe context, source selection remains deterministic **per ingredient and per nutrient**:
 
 1. reviewed Ciqual evidence may become primary when its food-form match is equally good or better and the constituent confidence is `A`, `B` or `C`;
 2. a Ciqual `D` field does not displace an available reviewed USDA value;
 3. a stronger USDA food-form match remains primary;
 4. a reviewed source may supply a nutrient when the other source has no reviewed value;
 5. official values are never averaged;
-6. source, identifier, nutrient semantic, method, form confidence, field confidence and selection reason remain available in provenance;
+6. source, identifier, nutrient semantic, method, form confidence, field confidence, evidence tranche and selection reason remain available in provenance;
 7. USDA carbohydrate-by-difference and Ciqual `CHOAVL` are never summed into a single authoritative recipe carbohydrate total;
 8. if the European-selected mix cannot form a coherent complete recipe calculation but the reviewed USDA lane can, the coherent USDA calculation is retained;
 9. otherwise partial/incompatible evidence leaves the project-authored estimate primary.
 
 This policy changes nutrition evidence selection only. It does not relax recommendation hard constraints, allergy/dietary safety, permanent exclusions or medical boundaries.
 
+## Authoritative recipe coverage
+
+PR #16 established the initial 76-recipe baseline at **0 / 76 authoritative**, with 356 missing-density blockers, 86 unsupported-quantity blockers and 12 mixed carbohydrate-semantic incompatibilities.
+
+The integrated B5 candidate was measured in deterministic Actions run `33443162092` and remains truthfully **0 / 76 authoritative**. Missing-density blockers fall to **141**, while unsupported-quantity blockers rise to **202** and mixed carbohydrate-semantic events to **16**. This is diagnostic progression rather than rule weakening: as composition becomes available, the audit exposes the next unresolved household-quantity or semantic blocker instead of guessing. No recipe becomes newly authoritative in B5.
+
+The result makes quantity/portion evidence the highest-value next nutrition workstream.
+
+## European source status
+
 Fineli/THL Finland remains a strong open CC BY 4.0 candidate, but its documented API and official package returned HTTP 403 to standard GitHub-hosted runners during the bounded audit, so the project does not bypass that restriction or bundle Fineli data. Frida/DTU, NEVO/RIVM and BEDCA/AESAN remain governed by their exact reuse terms. EuroFIR remains outside the no-cost contract.
+
+Matvaretabellen / Norwegian Food Safety Authority is the leading next quantity-evidence candidate because it publishes portion sizes for foods commonly represented by pieces or slices. Reuse/licensing must be verified from authoritative terms before any bounded public subset is committed.
 
 EFSA FoodEx2 and EU Commission regulatory datasets form a separate classification/regulatory truth lane. Legal limits and authorisations are not converted into nutrient-composition measurements or recommendation rules without a future explicit behavior contract.
 
@@ -136,11 +152,12 @@ The app is a static GitHub Pages site published from `main` / repository root. P
 ```bash
 npm run validate
 npm run test:browser
+npm run report:nutrition-coverage
 ```
 
 ## Data and licensing
 
-Recipes and application ontology/substitution guidance are project-authored. USDA FoodData Central composition/portion metadata use the documented CC0/public-domain lane. The bounded Ciqual module retains Etalab Open Licence 2.0 attribution. Other European sources are evaluated independently under their exact access/reuse conditions.
+Recipes and application ontology/substitution guidance are project-authored. USDA FoodData Central composition/portion metadata use the documented CC0/public-domain lane. The bounded Ciqual modules retain Etalab Open Licence 2.0 attribution. Other European sources are evaluated independently under their exact access/reuse conditions.
 
 This repository currently has **no general licence**. Public visibility is not permission to reuse project-authored repository content.
 
@@ -153,6 +170,7 @@ This repository currently has **no general licence**. Public visibility is not p
 - `docs/DESIGN_SYSTEM.md`
 - `docs/DATA_SOURCES.md`
 - `docs/EUROPEAN_EVIDENCE.md`
+- `docs/NUTRITION_COVERAGE_AUDIT.md`
 - `docs/RECOMMENDATION_MODEL.md`
 - `docs/TESTING.md`
 - `docs/HUMAN_REVIEW.md`

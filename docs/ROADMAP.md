@@ -21,9 +21,12 @@
 | V1.0.5 / Nutrition B3 | COMPLETE | 15 additional reviewed Foundation forms + combined 29-record USDA ledger |
 | V1.0.6 / European evidence B4 | COMPLETE | bounded ANSES-Ciqual 2025 evidence + provenance-first USDA/Ciqual comparison |
 | V1.0.7 / European primary-source policy | COMPLETE / USER-APPROVED | conditional Europe/Canary per-ingredient/per-nutrient source selection + semantic firewall + coherent USDA fallback |
+| V1.0.8 / Authoritative coverage audit | COMPLETE | corpus-level fail-closed measurement; 0/76 authoritative baseline |
+| V1.0.9 / Nutrition B5 | VALIDATED MERGE CANDIDATE | 22 reviewed Ciqual records; 54 combined; coverage-driven blocker shift |
 | V1.0.1 / Content Gate C | COMPLETE | Spain/Canary ingredient classes + package/availability/reuse-aware cost heuristic |
 | V1.0.1 / Content Gate D | COMPLETE | normalized culinary technique/risk/execution/convenience/learning intelligence |
 | V1.0.3 / Content Gate E | COMPLETE | 15 coverage-driven authored recipes + corpus/search audit + pineapple future-exclusion proof |
+| V1.x / Quantity and portion evidence | NEXT | unlock recipe-level authoritative coverage with exact source-backed mass mappings; no generic averages |
 | V1.x / Authoritative nutrition coverage | CONTINUOUS | expand reviewed food forms and quantity evidence under the approved source policy |
 | V1.x / Corpus breadth | CONTINUOUS | target high-value Search/planner gaps rather than recipe-count growth |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
@@ -41,6 +44,16 @@ B1 merged through PR #8 at `5dc9c668df8ac96361657cd403b95bf05e859ac9`. Gate E me
 European Evidence B4 merged through PR #12 at `fd33037ce48a75b60ac5b8ca7d7526b7ffb15061`. It added 32 manually reviewed ANSES-Ciqual 2025 food/form mappings and a comparison layer that preserves food identity, nutrient definitions, method caveats, confidence and source provenance without averaging values.
 
 The European-primary policy was explicitly approved by the user and implemented through PR #13, merged at `cfa3b9115821b59321c7ef19e779ff3a578aa6b6`. PR validation, the 15,552-profile matrix, Chromium acceptance, post-merge validation and Pages deployment passed.
+
+The V1.0.8 authoritative nutrition coverage audit merged through PR #16 at `cdb9a9d9e6d2e0bf0f251bb37098d07dd64e3e9e`. It established the first whole-corpus baseline: 0/76 complete authoritative recipes, 356 missing-density blockers, 86 unsupported-quantity blockers and 12 mixed carbohydrate-semantic incompatibilities.
+
+## Nutrition B5 measured candidate
+
+PR #17 adds a strict B5 tranche of 22 reviewed ANSES-Ciqual food/form records without rewriting B4 history. The runtime exposes B4=32, B5=22, total=54 and preserves `evidenceTranche` per selected nutrient.
+
+The deterministic coverage report from Actions run `33443162092` remains fail-closed at **0 / 76** authoritative recipes while reducing missing-density blockers to **141**. Unsupported-quantity blockers rise to **202** because newly available composition evidence reveals the next blocker class rather than fabricating household conversions. Mixed incompatible carbohydrate-semantic events are **16** and remain rejected. No recipe becomes newly authoritative in B5.
+
+Pre-documentation PR validation run `33443356698` passed deterministic/static validation and Chromium acceptance. The current PR head must still be green before merge, followed by post-merge validation and Pages verification.
 
 ## Current nutrition policy
 
@@ -61,6 +74,8 @@ This policy is now part of the accepted V1 nutrition architecture. Routine evide
 ## European source backlog
 
 ANSES-Ciqual is the current bundled European national source. Fineli/THL remains attractive under CC BY 4.0, but both its documented API and official package returned HTTP 403 to standard GitHub-hosted runners during the bounded audit; no bypass is attempted. Frida/DTU, NEVO/RIVM and BEDCA/AESAN remain governed by their exact reuse terms. EuroFIR remains outside the no-cost contract.
+
+Matvaretabellen / Norwegian Food Safety Authority is the leading next quantity-evidence candidate because the 2026 table exposes portion sizes for foods commonly represented by piece/slice. Its exact reuse terms must be verified against authoritative licence metadata before any data is bundled. No ingestion occurs merely because the API is public.
 
 EFSA FoodEx2 and EU Commission regulatory datasets are a separate classification/regulatory evidence lane. They may be researched and represented as audit metadata, but regulatory limits/authorisations must not silently become composition values or recommendation rules without a future explicit behavior contract.
 

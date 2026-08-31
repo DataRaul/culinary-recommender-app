@@ -29,6 +29,21 @@ test("audit preserves blocker and semantic-incompatibility detail rather than tr
   assert.ok(Object.keys(audit.blockerCounts).length > 0, "expected current corpus to expose quantity/density blockers");
 });
 
+test("B5 coverage baseline records composition gains without manufacturing authoritative recipes", () => {
+  const audit = buildNutritionCoverageAudit(ALL_RECIPES, publicNutritionSource);
+  assert.equal(audit.recipeCount, 76);
+  assert.equal(audit.authoritativeRecipeCount, 0);
+  assert.equal(audit.estimateRecipeCount, 76);
+  assert.deepEqual(audit.authoritativeRecipeIds, []);
+  assert.deepEqual(audit.blockerCounts, {
+    missing_density: 141,
+    unsupported_quantity_unit: 202
+  });
+  assert.deepEqual(audit.semanticIssueCounts, {
+    mixed_incompatible_carbohydrate_semantics: 16
+  });
+});
+
 test("audit is fail-closed when NutritionSource is missing", () => {
   assert.throws(() => buildNutritionCoverageAudit(ALL_RECIPES, null), /nutritionSource\.estimate is required/);
 });
