@@ -59,24 +59,29 @@ const readPage = async pageid => {
 };
 
 const sampleTitles = new Set([
-  "Cookbook:Baba Ganoush",
   "Cookbook:Adobo Chicken (Philippine)",
-  "Cookbook:Ají de Gallina (Peruvian Chili Chicken)",
-  "Cookbook:Afghan Bread",
-  "Cookbook:Afang Soup",
-  "Cookbook:Agedashi Tofu",
+  "Cookbook:Baba Ganoush",
   "Cookbook:Baingan Bartha (South Indian Eggplant with Chili) II",
-  "Cookbook:Baked Beans"
+  "Cookbook:Baked Beans",
+  "Cookbook:Bruschetta",
+  "Cookbook:Caprese Salad",
+  "Cookbook:Gazpacho",
+  "Cookbook:Greek Chicken Wrap",
+  "Cookbook:Huevos Rancheros",
+  "Cookbook:Refried Beans",
+  "Cookbook:Spanish Omelet",
+  "Cookbook:Tzatziki"
 ]);
 
 const pages = await listRecipePages();
 const chosen = pages.filter(row => sampleTitles.has(row.title));
+const missingTitles = [...sampleTitles].filter(title => !chosen.some(row => row.title === title));
 const details = [];
 for (const row of chosen) {
   const page = await readPage(row.pageid);
   details.push({
     ...page,
-    wikitextPreview: page.wikitext.slice(0, 7000),
+    wikitextPreview: page.wikitext.slice(0, 9000),
     wikitextLength: page.wikitext.length
   });
   await new Promise(resolve => setTimeout(resolve, 150));
@@ -90,5 +95,6 @@ console.log(JSON.stringify({
   recipePageCount: pages.length,
   firstPage: pages[0] || null,
   lastPage: pages.at(-1) || null,
+  missingTitles,
   sampled: details
 }, null, 2));
