@@ -57,25 +57,57 @@ The first authoritative nutrition tranche remains deliberately bounded:
 - the project-authored recipe estimate remains primary unless every required ingredient, tracked nutrient and quantity conversion is complete;
 - complete coverage can produce a medium-confidence static calculation while retaining cooking/yield uncertainty.
 
-## V1 Nutrition Gate B2 — USDA PORTION EVIDENCE IMPLEMENTED / VALIDATION_PENDING
-This additive tranche expands quantity normalization only where USDA Foundation itself publishes a defensible gram weight for an already-reviewed food identity.
+## V1 Nutrition Gate B2 — COMPLETE
+Merged through PR #10 to `main` at `225cd4ade1bd7af374d465600118cff79dbd4c6c`; the corrected candidate passed deterministic/static validation, the 15,552-profile matrix and Chromium acceptance, followed by green post-merge validation and GitHub Pages deployment.
 
-The official 2026-04-30 Foundation `food_portion.csv` extract produced portion rows for only two of the 14 bounded mapped foods:
+The official 2026-04-30 Foundation `food_portion.csv` extract produced portion rows for only two of the original 14 bounded mapped foods:
 
 - banana / FDC `1105314`: one **peeled Banana = 115 g**, 102 data points, minimum acquisition year 2019;
 - tuna / FDC `334194`: one can has **107 g drained solids** and **142 g total can contents**, each with 48 data points.
 
 Implementation rules:
 
-- canonical banana `piece` / `pieces` may convert at 115 g per unit because the source measure is explicitly one peeled Banana;
-- raw portion evidence is retained separately from automatic conversion policy;
+- canonical banana `piece` / `pieces` converts at 115 g per unit because the source measure is explicitly one peeled Banana;
+- raw portion evidence remains separate from automatic conversion policy;
 - ordinary tuna `can` / `cans` is deliberately **ambiguous** and fails closed because USDA publishes two materially different can weights;
 - no generic household-weight table, internet average, recipe-blog conversion, teaspoon density or guessed onion/egg/clove weight is introduced;
 - direct `g`/`kg` behavior is unchanged;
 - every applied portion conversion carries quantity provenance into the static calculation audit;
 - partial calculations still cannot overwrite the project-authored recipe estimate.
 
-Gate B2 becomes COMPLETE only after deterministic/matrix/browser validation, clean merge, post-merge validation and Pages deployment. Future B tranches may expand mappings or portions only from reviewed source/form evidence.
+## V1 Nutrition Gate B3 — REVIEWED FOUNDATION COVERAGE IMPLEMENTED / VALIDATION_PENDING
+This additive tranche uses a discovery-first review over the same official USDA Foundation Foods Version 15.0 / 2026-04-30 release. Candidate search does not promote matches automatically.
+
+Fifteen additional canonical foods/forms were manually reviewed and selected from the Foundation catalogue:
+
+- broccoli;
+- whole egg (Grade A, large) — composition only; generic recipe pieces are not auto-weighted;
+- red onion;
+- generic onion represented specifically by yellow onion;
+- garlic;
+- generic mushroom represented specifically by white button mushroom;
+- mature raw carrot;
+- raw pineapple;
+- cucumber with peel;
+- generic rice represented specifically by raw unenriched white long-grain rice;
+- cauliflower;
+- aubergine/eggplant;
+- canned tomato paste without added salt;
+- crushed canned tomato;
+- spring onion/scallion.
+
+Evidence rules:
+
+- 13 of the 15 selected B3 records contain all five tracked nutrients;
+- cucumber lacks tracked fibre in the selected Foundation record and remains partial;
+- spring onion lacks tracked energy, carbohydrate and fat and remains partial;
+- cultivar/form-specific matches remain explicitly qualified rather than silently generalized;
+- ambiguous candidate families such as generic salmon, milk, yogurt, mango, apple and potato/sweet-potato varieties were not promoted merely to increase coverage;
+- B3 raw USDA household weights for chopped broccoli cup, large whole egg, yellow onion and red onion are retained as evidence only because current recipe semantics do not encode enough form/size/variety detail to apply them safely;
+- automatic quantity conversion policy therefore remains unchanged from B2;
+- the combined bounded ledger contains 29 reviewed Foundation composition records, while partial fields remain `null` and recipe estimates remain primary unless full required coverage is achieved.
+
+Gate B3 becomes COMPLETE only after deterministic/matrix/browser validation, clean merge, post-merge validation and Pages deployment.
 
 ## V1 Content Gate C — COMPLETE
 Merged through PR #7 to `main` at `59ae06755d1c681aa5f56d4f20e8bdaf1d01bec2` after green deterministic, matrix and Chromium validation; post-merge validation and Pages deployment passed.
