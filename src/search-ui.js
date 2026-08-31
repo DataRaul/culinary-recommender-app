@@ -8,6 +8,7 @@ const nav = document.querySelector("#bottomNav");
 const escapeHtml = value => String(value ?? "").replace(/[&<>\"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[char]));
 const labelIngredient = id => ingredientById(id)?.name || id?.replaceAll("_", " ") || "";
 const euroTier = tier => "€".repeat(Number(tier) || 0);
+const finiteNutrition = value => typeof value === "number" && Number.isFinite(value);
 
 function option(value, label, selected = false) {
   return `<option value="${value}" ${selected ? "selected" : ""}>${label}</option>`;
@@ -63,17 +64,30 @@ function searchForm() {
   <section id="searchResults" aria-live="polite"></section>`;
 }
 
+function nutritionLabel(recipe) {
+  const protein = recipe.nutrition?.perServing?.proteinG;
+  return finiteNutrition(protein) ? `~${protein}g protein` : "nutrition evidence pending";
+}
+
+function provenanceLine(recipe) {
+  const provenance = recipe.provenance;
+  if (provenance?.sourceType !== "EXTERNAL_OPEN_RECIPE") {
+    return `<p class="micro">Nutrition is a project-authored low-confidence estimate unless the separate reviewed NutritionSource can calculate the full recipe. Cost is a relative tier, not a live supermarket price.</p>`;
+  }
+  return `<p class="micro external-source">Adapted from <a href="${escapeHtml(provenance.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(provenance.sourceName)}</a> · <a href="${escapeHtml(provenance.sourceRevisionUrl)}" target="_blank" rel="noopener noreferrer">revision ${escapeHtml(provenance.sourceRevisionId)}</a> · <a href="${escapeHtml(provenance.licenseUrl)}" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>. ${escapeHtml(provenance.attribution)} ${escapeHtml(provenance.transformation)} Source nutrition values are not imported as authoritative composition.</p>`;
+}
+
 function resultCard(item) {
   const recipe = item.recipe;
   const matched = item.secondaryMatches.map(labelIngredient);
   const missing = item.missingSecondary.map(labelIngredient);
-  const n = recipe.nutrition.perServing;
+  const sourceBadge = recipe.provenance?.sourceType === "EXTERNAL_OPEN_RECIPE" ? " · open external recipe" : " · curated recipe";
   return `<article class="recipe-card search-result-card">
-    <div class="recipe-top"><div><p class="eyebrow">${escapeHtml(recipe.culinary.cuisine)} · ingredient match</p><h3>${escapeHtml(recipe.identity.canonicalTitle)}</h3></div><span class="cost-pill">${euroTier(recipe.economics.costTier)}</span></div>
-    <div class="meta-row"><span>${recipe.time.totalMinutes} min</span><span>Level ${recipe.culinary.difficulty}/4</span><span>~${n.proteinG}g protein</span><span>Novelty ${recipe.discovery.novelty}/4</span></div>
+    <div class="recipe-top"><div><p class="eyebrow">${escapeHtml(recipe.culinary.cuisine)} · ingredient match${sourceBadge}</p><h3>${escapeHtml(recipe.identity.canonicalTitle)}</h3></div><span class="cost-pill">${euroTier(recipe.economics.costTier)}</span></div>
+    <div class="meta-row"><span>${recipe.time.totalMinutes} min</span><span>Level ${recipe.culinary.difficulty}/4</span><span>${escapeHtml(nutritionLabel(recipe))}</span><span>Novelty ${recipe.discovery.novelty}/4</span></div>
     <p class="reason">Uses <strong>${escapeHtml(labelIngredient(item.mainIngredientId))}</strong>${matched.length ? ` + ${matched.map(escapeHtml).join(", ")}` : ""}. ${escapeHtml(item.explanation)}</p>
     ${missing.length ? `<p class="micro">Also requested but not used in this dish: ${missing.map(escapeHtml).join(", ")}.</p>` : ""}
-    <details><summary>Ingredients & method</summary><div class="recipe-detail"><ul>${recipe.ingredients.map(i => `<li>${i.quantity ?? ""} ${escapeHtml(i.unit || "")} ${escapeHtml(labelIngredient(i.canonicalIngredientId))}</li>`).join("")}</ul><ol>${recipe.instructions.map(step => `<li>${escapeHtml(step.text)}</li>`).join("")}</ol><p class="micro">Nutrition is a low-confidence V0 inferred estimate. Cost is a relative tier, not a live supermarket price.</p></div></details>
+    <details><summary>Ingredients & method</summary><div class="recipe-detail"><ul>${recipe.ingredients.map(i => `<li>${i.quantity ?? ""} ${escapeHtml(i.unit || "")} ${escapeHtml(labelIngredient(i.canonicalIngredientId))}${i.sourceQuantityExpression ? ` <span class="micro">(${escapeHtml(i.sourceQuantityExpression)})</span>` : ""}</li>`).join("")}</ul><ol>${recipe.instructions.map(step => `<li>${escapeHtml(step.text)}</li>`).join("")}</ol>${provenanceLine(recipe)}</div></details>
   </article>`;
 }
 
@@ -82,7 +96,7 @@ function renderSearchResults(result, mainId, secondaryIds) {
   if (!target) return;
 
   if (!result.catalogMatchCount) {
-    target.innerHTML = `<section class="shortfall"><strong>No V0 recipe currently uses ${escapeHtml(labelIngredient(mainId))}</strong><p>The search does not fabricate a recipe or silently replace your main ingredient. Try another ingredient already covered by the corpus.</p></section>`;
+    target.innerHTML = `<section class="shortfall"><strong>No recipe in the current universe uses ${escapeHtml(labelIngredient(mainId))}</strong><p>The search does not fabricate a recipe or silently replace your main ingredient. Try another ingredient already covered by the recipe universe.</p></section>`;
     return;
   }
 
@@ -126,7 +140,7 @@ function bindSearchForm() {
 
     const secondary = parseSecondary(document.querySelector("#searchSecondaryIngredients").value);
     if (secondary.unknown.length) {
-      resultTarget.innerHTML = `<section class="shortfall"><strong>Some secondary ingredients are not in the V0 ontology yet.</strong><p>${secondary.unknown.map(escapeHtml).join(", ")}</p><p>Remove or simplify those names before searching so the app never pretends it understood them.</p></section>`;
+      resultTarget.innerHTML = `<section class="shortfall"><strong>Some secondary ingredients are not in the ingredient ontology yet.</strong><p>${secondary.unknown.map(escapeHtml).join(", ")}</p><p>Remove or simplify those names before searching so the app never pretends it understood them.</p></section>`;
       return;
     }
 
