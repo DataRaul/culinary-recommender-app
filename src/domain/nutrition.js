@@ -1,6 +1,7 @@
 import {
   nutritionEvidenceCoverage,
   nutritionEvidenceForIngredient,
+  USDA_FOUNDATION_DENSITIES,
   USDA_FOUNDATION_SOURCE
 } from "../data/nutrition-evidence.js";
 import { CIQUAL_2025_SOURCE } from "../data/ciqual-nutrients-b4.js";
@@ -161,15 +162,26 @@ export const publicNutritionSource = {
     const coverage = nutritionEvidenceCoverage(ingredientIds);
     const identities = coverage.mappedIngredientIds.map(ingredientId => nutritionEvidenceForIngredient(ingredientId));
     const europeanPrimaryCoverage = europeanPrimaryPolicyCoverage(ingredientIds);
-    const staticCalculation = calculatePerServingFromDensities(recipe, EUROPEAN_PRIMARY_DENSITIES_V1);
-    const authoritativeRecipeCalculation = staticCalculation.complete;
+    const europeanStaticCalculation = calculatePerServingFromDensities(recipe, EUROPEAN_PRIMARY_DENSITIES_V1);
+    const usdaFallbackCalculation = calculatePerServingFromDensities(recipe, USDA_FOUNDATION_DENSITIES);
+    const usesEuropeanPrimary = europeanStaticCalculation.complete;
+    const usesCoherentUsdaFallback = !usesEuropeanPrimary && usdaFallbackCalculation.complete;
+    const authoritativeRecipeCalculation = usesEuropeanPrimary || usesCoherentUsdaFallback;
+    const staticCalculation = usesEuropeanPrimary ? europeanStaticCalculation : usesCoherentUsdaFallback ? usdaFallbackCalculation : europeanStaticCalculation;
+    const method = usesEuropeanPrimary
+      ? "EUROPEAN_PRIMARY_STATIC_CALCULATION_V1"
+      : usesCoherentUsdaFallback
+        ? "USDA_FDC_FOUNDATION_STATIC_CALCULATION"
+        : recipe.nutrition?.estimationState || "INFERRED_ESTIMATE";
     return {
       perServing: authoritativeRecipeCalculation ? staticCalculation.perServing : { ...(recipe.nutrition?.perServing || {}) },
-      method: authoritativeRecipeCalculation ? "EUROPEAN_PRIMARY_STATIC_CALCULATION_V1" : recipe.nutrition?.estimationState || "INFERRED_ESTIMATE",
+      method,
       confidence: authoritativeRecipeCalculation ? "medium" : recipe.nutrition?.confidence || "low",
-      provenance: authoritativeRecipeCalculation
+      provenance: usesEuropeanPrimary
         ? "Calculated deterministically under the Canary/Spain/Europe source-selection policy from reviewed USDA Foundation and/or ANSES-Ciqual composition, with exact per-nutrient provenance and evidence-backed quantity weights; incompatible carbohydrate semantics are never mixed and cooking/yield uncertainty remains."
-        : recipe.nutrition?.provenance || "Project-authored estimate.",
+        : usesCoherentUsdaFallback
+          ? "European-primary selection was incomplete or semantically incompatible for a full recipe total, so the deterministic fully coherent reviewed USDA Foundation calculation was retained; cooking/yield uncertainty remains."
+          : recipe.nutrition?.provenance || "Project-authored estimate.",
       evidence: {
         source: USDA_FOUNDATION_SOURCE,
         sources: [USDA_FOUNDATION_SOURCE, CIQUAL_2025_SOURCE],
@@ -181,7 +193,14 @@ export const publicNutritionSource = {
         identities,
         compositionImported: true,
         portionEvidenceImported: true,
+        europeanStaticCalculation,
+        usdaFallbackCalculation,
         staticCalculation,
+        sourceSelectionState: usesEuropeanPrimary
+          ? "EUROPEAN_PRIMARY_COMPLETE"
+          : usesCoherentUsdaFallback
+            ? "USDA_COHERENT_FALLBACK_COMPLETE"
+            : "NO_COMPLETE_AUTHORITATIVE_RECIPE_CALCULATION",
         state: authoritativeRecipeCalculation
           ? "AUTHORITATIVE_STATIC_RECIPE_CALCULATION_AVAILABLE"
           : staticCalculation.calculationState === "PARTIAL_STATIC_CALCULATION"
