@@ -1,11 +1,52 @@
 import { nutritionEvidenceCoverage, nutritionEvidenceForIngredient, USDA_FOUNDATION_SOURCE } from "../data/nutrition-evidence.js";
 import { USDA_FOUNDATION_COMPOSITION_SOURCE, USDA_FOUNDATION_DENSITIES_V1 } from "../data/usda-foundation-nutrients-v1.js";
+import {
+  USDA_FOUNDATION_PORTION_SOURCE,
+  usdaFoundationAmbiguousPortion,
+  usdaFoundationPortionConversion
+} from "../data/usda-foundation-portions-v1.js";
 
-const supportedMassToGrams = (quantity, unit) => {
-  if (typeof quantity !== "number" || !Number.isFinite(quantity)) return null;
-  if (unit === "g") return quantity;
-  if (unit === "kg") return quantity * 1000;
-  return null;
+const quantityToGrams = ingredient => {
+  const quantity = ingredient?.quantity;
+  const unit = String(ingredient?.unit || "").toLowerCase();
+  if (typeof quantity !== "number" || !Number.isFinite(quantity)) {
+    return { grams: null, reason: "invalid_quantity", quantityEvidence: null };
+  }
+  if (unit === "g") return { grams: quantity, reason: null, quantityEvidence: { state: "DIRECT_MASS", unit: "g" } };
+  if (unit === "kg") return { grams: quantity * 1000, reason: null, quantityEvidence: { state: "DIRECT_MASS", unit: "kg" } };
+
+  const ingredientId = ingredient?.canonicalIngredientId;
+  const portion = usdaFoundationPortionConversion(ingredientId, unit);
+  if (portion) {
+    return {
+      grams: quantity * portion.gramsPerUnit,
+      reason: null,
+      quantityEvidence: {
+        state: portion.evidenceState,
+        inputUnit: unit,
+        gramsPerUnit: portion.gramsPerUnit,
+        sourceUnit: portion.sourceUnit,
+        modifier: portion.modifier,
+        fdcId: portion.fdcId
+      }
+    };
+  }
+
+  const ambiguous = usdaFoundationAmbiguousPortion(ingredientId, unit);
+  if (ambiguous) {
+    return {
+      grams: null,
+      reason: "ambiguous_portion_unit",
+      quantityEvidence: {
+        state: "USDA_FOUNDATION_PORTION_AMBIGUOUS",
+        inputUnit: unit,
+        reason: ambiguous.reason,
+        candidateGramWeights: [...ambiguous.candidateGramWeights]
+      }
+    };
+  }
+
+  return { grams: null, reason: "unsupported_quantity_unit", quantityEvidence: null };
 };
 
 const nutrientKeys = ["energyKcal", "proteinG", "carbohydrateG", "fatG", "fibreG"];
@@ -22,12 +63,17 @@ export function calculatePerServingFromDensities(recipe, densityMap = {}) {
     const ingredientId = ingredient.canonicalIngredientId;
     const densityRecord = densityMap[ingredientId];
     const density = densityRecord?.per100g || densityRecord;
-    const grams = supportedMassToGrams(ingredient.quantity, ingredient.unit);
-    if (!density || grams === null) {
-      skipped.push({ ingredientId, reason: !density ? "missing_density" : "unsupported_quantity_unit" });
+    const quantityResolution = quantityToGrams(ingredient);
+    if (!density || quantityResolution.grams === null) {
+      skipped.push({
+        ingredientId,
+        reason: !density ? "missing_density" : quantityResolution.reason,
+        ...(quantityResolution.quantityEvidence ? { quantityEvidence: quantityResolution.quantityEvidence } : {})
+      });
       continue;
     }
 
+    const grams = quantityResolution.grams;
     const factor = grams / 100;
     const availableNutrients = [];
     const missingNutrients = [];
@@ -41,7 +87,13 @@ export function calculatePerServingFromDensities(recipe, densityMap = {}) {
       coveredCounts[key] += 1;
       availableNutrients.push(key);
     }
-    used.push({ ingredientId, grams, availableNutrients, missingNutrients });
+    used.push({
+      ingredientId,
+      grams,
+      quantityEvidence: quantityResolution.quantityEvidence,
+      availableNutrients,
+      missingNutrients
+    });
   }
 
   const servings = Math.max(1, Number(recipe.serving?.servings) || 1);
@@ -82,14 +134,16 @@ export const publicNutritionSource = {
       method: authoritativeRecipeCalculation ? "USDA_FDC_FOUNDATION_STATIC_CALCULATION" : recipe.nutrition?.estimationState || "INFERRED_ESTIMATE",
       confidence: authoritativeRecipeCalculation ? "medium" : recipe.nutrition?.confidence || "low",
       provenance: authoritativeRecipeCalculation
-        ? "Calculated deterministically from bounded USDA FoodData Central Foundation Foods per-100g composition and recipe mass quantities; cooking/yield uncertainty remains."
+        ? "Calculated deterministically from bounded USDA FoodData Central Foundation Foods per-100g composition and evidence-backed quantity weights; cooking/yield uncertainty remains."
         : recipe.nutrition?.provenance || "Project-authored estimate.",
       evidence: {
         source: USDA_FOUNDATION_SOURCE,
         compositionSource: USDA_FOUNDATION_COMPOSITION_SOURCE,
+        portionSource: USDA_FOUNDATION_PORTION_SOURCE,
         coverage,
         identities,
         compositionImported: true,
+        portionEvidenceImported: true,
         staticCalculation,
         state: authoritativeRecipeCalculation
           ? "AUTHORITATIVE_STATIC_RECIPE_CALCULATION_AVAILABLE"
