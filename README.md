@@ -28,7 +28,8 @@
 **Nutrition B5:** V1.0.9 / PR #17 / merged at `5689b0e40c6c4d9d7040b0ee25b7cc41d898b751`  
 **Nutrition B6:** V1.0.10 / PR #18 / merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`  
 **Culinary & Nutrition Brain P0 calibration pin:** Knowledge Core `e5dcb29a7c6b78f59c062faf4c963c74aac10743`  
-**Public app:** https://dataraul.github.io/culinary-recommender-app/  \n**Recipe Corpus Gate F candidate:** 84 recipes = 76 curated + 8 exact-revision Wikibooks records / 83 dish families / 2 external Search-only + 6 reference-only
+**Public app:** https://dataraul.github.io/culinary-recommender-app/  
+**Recipe Corpus Gate F candidate:** 84 recipes = 76 curated + 8 exact-revision Wikibooks records / 83 dish families / 2 external Search-only + 6 reference-only
 
 The V1 lineage includes project-authored corpus/ontology/substitution expansion, Spain/Canary cost intelligence, full-corpus culinary-quality normalization, bounded USDA Foundation evidence, bounded ANSES-Ciqual 2025 European composition evidence, the user-approved conditional European-primary source policy, deterministic whole-corpus authoritative-nutrition coverage measurement, the bounded Norwegian official portion-evidence lane, and now an explicitly authorized offline Culinary & Nutrition Brain calibration contract.
 
