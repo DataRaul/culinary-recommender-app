@@ -1,5 +1,5 @@
 // Generated from USDA FoodData Central Foundation Foods Version 15.0 / 2026-04-30.
-// Only portion rows for the already-reviewed bounded Foundation identities are retained.
+// Only portion rows for reviewed bounded Foundation identities are retained.
 // Absence of a row means USDA did not publish a portion weight for that selected food;
 // it must not be replaced with a generic household-weight guess.
 export const USDA_FOUNDATION_PORTION_SOURCE = {
@@ -53,12 +53,70 @@ export const USDA_FOUNDATION_PORTION_EVIDENCE_V1 = {
       dataPoints: 48,
       minYearAcquired: 2011
     }
+  ],
+  broccoli: [
+    {
+      fdcId: "747447",
+      ndbNumber: "11090",
+      description: "Broccoli, raw",
+      amount: 1,
+      gramWeight: 76,
+      measureUnitId: "1000",
+      measureUnit: "cup",
+      modifier: "chopped",
+      dataPoints: 12,
+      minYearAcquired: 2001
+    }
+  ],
+  eggs: [
+    {
+      fdcId: "748967",
+      ndbNumber: "1123",
+      description: "Eggs, Grade A, Large, egg whole",
+      amount: 1,
+      gramWeight: 50.3,
+      measureUnitId: "1099",
+      measureUnit: "egg",
+      modifier: "whole without shell",
+      dataPoints: 526,
+      minYearAcquired: 2019
+    }
+  ],
+  onion: [
+    {
+      fdcId: "790646",
+      ndbNumber: "100253",
+      description: "Onions, yellow, raw",
+      amount: 1,
+      gramWeight: 143,
+      measureUnitId: "1120",
+      measureUnit: "Onion",
+      modifier: "Edible",
+      dataPoints: 44,
+      minYearAcquired: 2019
+    }
+  ],
+  red_onion: [
+    {
+      fdcId: "790577",
+      ndbNumber: "100252",
+      description: "Onions, red, raw",
+      amount: 1,
+      gramWeight: 197,
+      measureUnitId: "1120",
+      measureUnit: "Onion",
+      modifier: "Edible",
+      dataPoints: 30,
+      minYearAcquired: 2019
+    }
   ]
 };
 
 // Automatic conversions are deliberately narrower than the raw portion evidence.
 // `piece` for canonical banana is accepted because the USDA measure is one peeled
-// Banana. Ordinary tuna `can` is intentionally NOT accepted: USDA publishes both
+// Banana. Other B3 household rows are retained as evidence only: canonical recipe
+// semantics do not yet encode egg size/grade, onion variety/size, or chopped-cup form.
+// Ordinary tuna `can` is intentionally NOT accepted: USDA publishes both
 // drained-solids and total-contents weights, so a bare `can` is ambiguous.
 export const USDA_FOUNDATION_PORTION_CONVERSIONS_V1 = {
   banana: {

@@ -1,4 +1,5 @@
 import { USDA_FOUNDATION_COMPOSITION_SOURCE, USDA_FOUNDATION_DENSITIES_V1 } from "./usda-foundation-nutrients-v1.js";
+import { USDA_FOUNDATION_DENSITIES_B3 } from "./usda-foundation-nutrients-b3.js";
 
 export const USDA_FOUNDATION_SOURCE = {
   id: "usda-fdc-foundation-2026-04",
@@ -11,13 +12,18 @@ export const USDA_FOUNDATION_SOURCE = {
   downloadPage: "https://fdc.nal.usda.gov/download-datasets/",
   staticCompositionSourceId: USDA_FOUNDATION_COMPOSITION_SOURCE.id,
   state: "BOUNDED_STATIC_COMPOSITION_BUNDLED",
-  note: "A bounded set of Foundation nutrient densities is bundled as static public data. Runtime API access is not required by the public app."
+  note: "Reviewed bounded Foundation nutrient densities are bundled as static public data. Runtime API access is not required by the public app."
+};
+
+export const USDA_FOUNDATION_DENSITIES = {
+  ...USDA_FOUNDATION_DENSITIES_V1,
+  ...USDA_FOUNDATION_DENSITIES_B3
 };
 
 const trackedKeys = ["energyKcal", "proteinG", "carbohydrateG", "fatG", "fibreG"];
 
 const evidence = (canonicalIngredientId, ndbNumber, description, matchConfidence = "high", notes = null) => {
-  const composition = USDA_FOUNDATION_DENSITIES_V1[canonicalIngredientId] || null;
+  const composition = USDA_FOUNDATION_DENSITIES[canonicalIngredientId] || null;
   const availableNutrients = composition ? trackedKeys.filter(key => composition.per100g[key] !== null && composition.per100g[key] !== undefined) : [];
   const missingTrackedNutrients = composition ? trackedKeys.filter(key => composition.per100g[key] === null || composition.per100g[key] === undefined) : trackedKeys;
   const compositionState = !composition
@@ -56,7 +62,23 @@ export const NUTRITION_IDENTITY_EVIDENCE = {
   almonds: evidence("almonds", 12061, "Nuts, almonds, whole, raw"),
   walnuts: evidence("walnuts", 12155, "Nuts, walnuts, English, halves, raw"),
   pumpkin_seeds: evidence("pumpkin_seeds", 12014, "Seeds, pumpkin seeds (pepitas), raw"),
-  sunflower_seeds: evidence("sunflower_seeds", 12036, "Seeds, sunflower seed, kernel, raw")
+  sunflower_seeds: evidence("sunflower_seeds", 12036, "Seeds, sunflower seed, kernel, raw"),
+
+  broccoli: evidence("broccoli", 11090, "Broccoli, raw"),
+  eggs: evidence("eggs", 1123, "Eggs, Grade A, Large, egg whole", "medium", "Canonical eggs do not encode size/grade, so composition is useful but the USDA large-egg household weight is not automatically applied."),
+  red_onion: evidence("red_onion", 100252, "Onions, red, raw"),
+  onion: evidence("onion", 100253, "Onions, yellow, raw", "medium", "Canonical onion is generic; yellow onion is retained as an explicit variety-qualified Foundation match."),
+  garlic: evidence("garlic", 11215, "Garlic, raw"),
+  mushroom: evidence("mushroom", 11260, "Mushrooms, white button", "medium", "Canonical mushroom is broader than white button; this match is not generalized to named mushroom varieties."),
+  carrot: evidence("carrot", 11124, "Carrots, mature, raw", "medium", "The Foundation record is mature raw carrot rather than baby/frozen carrot."),
+  pineapple: evidence("pineapple", 9266, "Pineapple, raw"),
+  cucumber: evidence("cucumber", 11205, "Cucumber, with peel, raw", "medium", "The selected Foundation record explicitly includes peel and does not publish fibre in the tracked extract."),
+  rice: evidence("rice", 20444, "Rice, white, long grain, unenriched, raw", "medium", "Canonical rice is generic; this record must not be presented as brown, basmati, jasmine or cooked rice."),
+  cauliflower: evidence("cauliflower", 11135, "Cauliflower, raw"),
+  aubergine: evidence("aubergine", 11209, "Eggplant, raw"),
+  tomato_paste: evidence("tomato_paste", 11546, "Tomato, paste, canned, without salt added", "high", "Specific canned no-salt-added form; sodium assumptions remain outside this tracked macronutrient tranche."),
+  canned_tomato: evidence("canned_tomato", 11693, "Tomatoes, crushed, canned", "medium", "Canonical canned tomato can cover several cut styles; this composition is specifically crushed canned tomato."),
+  spring_onion: evidence("spring_onion", 100391, "Green onion, (scallion), bulb and greens, root removed, raw", "high", "Selected Foundation record publishes only a subset of tracked nutrients, so it remains partial by design.")
 };
 
 export const nutritionEvidenceForIngredient = ingredientId => NUTRITION_IDENTITY_EVIDENCE[ingredientId] || null;
@@ -65,7 +87,7 @@ export const nutritionEvidenceCoverage = ingredientIds => {
   const unique = [...new Set((ingredientIds || []).filter(Boolean))];
   const mapped = unique.filter(id => NUTRITION_IDENTITY_EVIDENCE[id]);
   const unmapped = unique.filter(id => !NUTRITION_IDENTITY_EVIDENCE[id]);
-  const compositionMapped = mapped.filter(id => USDA_FOUNDATION_DENSITIES_V1[id]);
+  const compositionMapped = mapped.filter(id => USDA_FOUNDATION_DENSITIES[id]);
   const completeTracked = compositionMapped.filter(id => NUTRITION_IDENTITY_EVIDENCE[id].compositionState === "STATIC_COMPOSITION_IMPORTED_COMPLETE_FOR_TRACKED_FIELDS");
   const partialTracked = compositionMapped.filter(id => NUTRITION_IDENTITY_EVIDENCE[id].compositionState === "STATIC_COMPOSITION_IMPORTED_PARTIAL");
   return {

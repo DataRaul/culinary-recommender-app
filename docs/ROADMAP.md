@@ -17,11 +17,12 @@
 | V1.0 / Content Gate A | COMPLETE | expanded project-authored recipes + hierarchical ingredient ontology + six-class substitution graph |
 | V1.0.1 / Content Gate B foundation | COMPLETE | USDA source/identity ledger + NutritionSource evidence coverage + fail-partial calculation framework |
 | V1.0.2 / Content Gate B1 | COMPLETE | bounded USDA Foundation per-100g static composition for 14 canonical ingredients + evidence-safe recipe calculation |
+| V1.0.4 / Nutrition B2 | COMPLETE | USDA Foundation portion evidence + evidence-backed banana piece conversion + ambiguous tuna-can fail-closed handling |
+| V1.0.5 / Nutrition B3 | IMPLEMENTED / VALIDATION_PENDING | 15 additional manually reviewed Foundation forms + combined 29-record bounded ledger + evidence-only B3 household weights |
+| V1.x / European evidence B4 | RESEARCHING | official European/national composition sources + EU regulatory truth lane; no automatic source mixing |
 | V1.0.1 / Content Gate C | COMPLETE | Spain/Canary ingredient classes + package/availability/reuse-aware portfolio cost heuristic |
 | V1.0.1 / Content Gate D | COMPLETE | normalized culinary technique/risk/execution/convenience/learning intelligence across full corpus |
 | V1.0.3 / Content Gate E | COMPLETE | 15 coverage-driven authored recipes + deterministic corpus/search coverage audit + pineapple future-exclusion proof |
-| V1.0.4 / Nutrition B2 | IMPLEMENTED / VALIDATION_PENDING | USDA Foundation portion evidence + evidence-backed banana piece conversion + ambiguous tuna-can fail-closed handling |
-| V1.x / Nutrition B3 | NEXT | expand reviewed Foundation identity/form mappings and portion coverage where source evidence exists |
 | V1.x / Corpus breadth | CONTINUOUS | use coverage audit to target high-value Search/planner gaps rather than recipe-count growth |
 | Brain P0 | NOT_AUTHORIZED | future Culinary & Nutrition Brain |
 | App Brain-derived V1.x | DEFERRED | public-safe Brain-derived upgrades after explicit Brain authorization |
@@ -34,11 +35,15 @@ Gate B1 was merged through PR #8 at `5dc9c668df8ac96361657cd403b95bf05e859ac9`; 
 
 Gate E was merged through PR #9 at `3e0be5adcde9ec9567c0595ac4e8fc71dd237ee4`; PR validation, post-merge validation and Pages deployment all passed. Corpus growth is now coverage-driven, and the durable future-exclusion lifecycle has been proven against real pineapple recipes.
 
-Nutrition B2 uses the official Foundation `food_portion.csv` table rather than generic household-weight assumptions. In the bounded 14-food extract, USDA publishes a 115 g peeled-banana portion and two conflicting tuna can weights (107 g drained solids; 142 g total contents). The app therefore accepts canonical banana `piece(s)` through source-backed conversion and deliberately rejects an unqualified tuna `can` as ambiguous.
+Nutrition B2 was merged through PR #10 at `225cd4ade1bd7af374d465600118cff79dbd4c6c`; PR and post-merge deterministic/browser validation and Pages deployment passed. The official Foundation `food_portion.csv` table supports a 115 g peeled-banana portion while exposing two conflicting tuna can weights (107 g drained solids; 142 g total contents). The app accepts canonical banana `piece(s)` through source-backed conversion and deliberately rejects an unqualified tuna `can` as ambiguous.
+
+Nutrition B3 is discovery-first rather than keyword-first. Fifteen additional Foundation records were manually selected only after reviewing food form and canonical semantics. Thirteen have all five tracked nutrients; cucumber and spring onion remain explicitly partial. The combined bounded Foundation ledger contains 29 records. Source household weights found for broccoli, eggs and onions remain evidence-only because the canonical recipe model does not yet encode enough form/size/variety detail for automatic conversion.
+
+European evidence B4 is being researched as a complementary truth lane rather than a claim that one geography is inherently more accurate. Current candidates include official national composition sources with explicit provenance/licensing and EU-level regulatory datasets. Composition, classification, legal limits and health-claim authorisation are separate evidence types and must not be collapsed into one score.
 
 The accepted shell/core is not reopened by routine corpus, ontology or evidence growth. V1 content work remains additive behind stable `RecipeSource`, `NutritionSource`, `IngredientNormalizer`, `RecommendationPolicy`, planner, substitution and cost interfaces.
 
-Future nutrition breadth must come from reviewed source/form identity plus explicit portion evidence. Do not use generic spoon/piece averages merely to increase coverage.
+Future nutrition breadth must come from reviewed source/form identity plus explicit portion evidence. Do not use generic spoon/piece averages merely to increase coverage. Cross-source European/US comparison must preserve each source's exact food form, nutrient definition, value derivation and licence.
 
 Cost remains relative, deterministic and explainable. Culinary quality remains normalized from project-authored structured metadata and instructions. Fridge search and planning continue to reuse the same hard safety truth.
 

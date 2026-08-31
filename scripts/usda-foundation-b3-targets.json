@@ -1,0 +1,17 @@
+{
+  "onion": {"ndbNumber":"100253","expectedDescription":"Onions, yellow, raw"},
+  "red_onion": {"ndbNumber":"100252","expectedDescription":"Onions, red, raw"},
+  "spring_onion": {"ndbNumber":"100391","expectedDescription":"Green onion, (scallion), bulb and greens, root removed, raw"},
+  "garlic": {"ndbNumber":"11215","expectedDescription":"Garlic, raw"},
+  "canned_tomato": {"ndbNumber":"11693","expectedDescription":"Tomatoes, crushed, canned"},
+  "tomato_paste": {"ndbNumber":"11546","expectedDescription":"Tomato, paste, canned, without salt added"},
+  "broccoli": {"ndbNumber":"11090","expectedDescription":"Broccoli, raw"},
+  "cauliflower": {"ndbNumber":"11135","expectedDescription":"Cauliflower, raw"},
+  "cucumber": {"ndbNumber":"11205","expectedDescription":"Cucumber, with peel, raw"},
+  "mushroom": {"ndbNumber":"11260","expectedDescription":"Mushrooms, white button"},
+  "rice": {"ndbNumber":"20444","expectedDescription":"Rice, white, long grain, unenriched, raw"},
+  "pineapple": {"ndbNumber":"9266","expectedDescription":"Pineapple, raw"},
+  "eggs": {"ndbNumber":"1123","expectedDescription":"Eggs, Grade A, Large, egg whole"},
+  "carrot": {"ndbNumber":"11124","expectedDescription":"Carrots, mature, raw"},
+  "aubergine": {"ndbNumber":"11209","expectedDescription":"Eggplant, raw"}
+}

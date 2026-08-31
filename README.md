@@ -10,7 +10,8 @@
 | Recipe corpus | ✅ COVERAGE EXPANSION COMPLETE | V1.0.3 / Gate E | coverage-driven iteration |
 | Ingredient ontology | ✅ V1 GATE A COMPLETE | V1.0 + pineapple promotion | broader evidence/form coverage |
 | Substitutions | ✅ V1 GATE A COMPLETE | V1.0 | more contextual editorial edges |
-| Nutrition evidence | 🧪 PORTION EVIDENCE CANDIDATE | V1.0.4 / Nutrition B2 | broader reviewed USDA mappings/portions |
+| Nutrition evidence | 🧪 REVIEWED FOUNDATION B3 | V1.0.5 / Nutrition B3 | European bounded cross-source pilot |
+| European evidence | 🔎 SOURCE AUDIT ACTIVE | B4 research | Fineli/Ciqual bounded pilot after B3 |
 | Cost intelligence | ✅ COMPLETE | Gate C / PR #7 | later empirical price evidence if authorized |
 | Culinary quality | ✅ COMPLETE | Gate D / PR #7 | editorial refinement |
 | Recommender / planner | ✅ ACCEPTED CORE | V0.9.3 baseline | richer public-safe policy later |
@@ -23,11 +24,11 @@
 | Culinary & Nutrition Brain | 🔒 NOT_AUTHORIZED | Deferred | explicit future authorization only |
 
 **Accepted shell/core:** V0.9.3  
-**Current merged main before this candidate:** `3e0be5adcde9ec9567c0595ac4e8fc71dd237ee4`  
-**Candidate version:** V1.0.4 USDA Foundation Portion Evidence  
+**Current merged main before this candidate:** `225cd4ade1bd7af374d465600118cff79dbd4c6c`  
+**Candidate version:** V1.0.5 Reviewed Foundation Coverage B3  
 **Public app:** https://dataraul.github.io/culinary-recommender-app/
 
-Content Gate A expanded the project-authored corpus, bilingual/hierarchical ingredient ontology and six-class substitution graph. PR #7 completed explainable Spain/Canary cost intelligence and full-corpus culinary-quality normalization. PR #8 completed the first bounded USDA Foundation static composition lane. PR #9 completed coverage-driven Search/corpus expansion and proved durable future exclusions against real pineapple recipes. Each merged gate passed deterministic, matrix/browser and post-merge Pages validation.
+Content Gate A expanded the project-authored corpus, bilingual/hierarchical ingredient ontology and six-class substitution graph. PR #7 completed explainable Spain/Canary cost intelligence and full-corpus culinary-quality normalization. PR #8 completed the first bounded USDA Foundation static composition lane. PR #9 completed coverage-driven Search/corpus expansion. PR #10 completed evidence-backed USDA quantity normalization. Each merged gate passed deterministic, matrix/browser and post-merge Pages validation.
 
 ## What it does
 Choose exact lunch/dinner slots, tune budget, nutrition priority, time, skill, variety, cuisine, protein emphasis and meal-prep preference, and receive deterministic recommendations with ingredient reuse, substitutions and a combined grocery list. The accepted shell remains backend-free, account-free and runtime-LLM-free.
@@ -39,12 +40,10 @@ Dietary mode, allergens, permanent exclusions, unsupported temporary availabilit
 Search begins with a hard-required main ingredient and optional secondary ingredients. Today-specific time, effort and discovery intent can change without rewriting the saved profile. Neutral ingredient-first mode can suppress soft preferences but never safety constraints.
 
 ### Coverage-driven corpus growth
-V1.0.3 added 15 project-authored recipes selected for ingredient/Search usefulness rather than raw count. The tranche strengthened coverage for pineapple, pinto beans, barley, pumpkin, rice noodles, mango, mushrooms, peas, basmati, bulgur, turkey and hake across the existing cuisine taxonomy.
-
-`src/domain/corpus-coverage.js` provides a deterministic audit of cuisine, dietary, difficulty, cost, time, protein, meal-prep and canonical-ingredient usage. Ingredient-search coverage returns the exact recipe IDs that make a canonical ingredient searchable.
+V1.0.3 added 15 project-authored recipes selected for ingredient/Search usefulness rather than raw count. `src/domain/corpus-coverage.js` provides a deterministic audit of cuisine, dietary, difficulty, cost, time, protein, meal-prep and canonical-ingredient usage.
 
 ### Future exclusions survive ontology growth
-`pineapple` previously existed only as a durable future-exclusion token. V1.0.3 promoted it into the canonical English/Spanish ontology and added two pineapple recipes. The saved ID does not change: a profile that excluded `pineapple` before the ingredient existed continues to reject both recipes and blocks pineapple fridge Search.
+`pineapple` previously existed only as a durable future-exclusion token. V1.0.3 promoted it into the canonical English/Spanish ontology and added real pineapple recipes while preserving the same hard exclusion ID.
 
 ### Availability, exclusions and allergens are different states
 - **Can't get right now** may use an explicitly supported safe substitute; otherwise the recipe fails closed.
@@ -55,9 +54,11 @@ V1.0.3 added 15 project-authored recipes selected for ingredient/Search usefulne
 Replacement edges are labelled `close_substitute`, `functional_substitute`, `flavour_direction`, `texture_substitute`, `dietary_substitute`, or `emergency_approximation`. They describe culinary function, not equivalence.
 
 ## Nutrition evidence architecture
-The app has a real but intentionally **bounded** authoritative evidence lane based on **USDA FoodData Central Foundation Foods Version 15.0 (2026-04-30)**.
+The app has a real but intentionally **bounded** authoritative evidence lane. USDA FoodData Central Foundation Foods Version 15.0 / 2026-04-30 is one source family, not a claim that US composition is universally representative of European foods.
 
-A reproducible composition extractor selected 14 reviewed canonical ingredient matches from the official static Foundation CSV archive; the USDA bulk database is not bundled. The bounded module preserves NDB number, FDC ID, source description, publication date, tracked nutrient IDs and per-100g composition.
+The original B1 extract contains 14 reviewed Foundation identities. B3 adds 15 manually reviewed forms, bringing the bounded combined composition ledger to **29 canonical ingredients**. Candidate keyword matches are never promoted automatically.
+
+B3 additions include broccoli, egg, red/yellow onion, garlic, white-button mushroom, mature carrot, pineapple, cucumber, white long-grain rice, cauliflower, aubergine, tomato paste, crushed canned tomato and spring onion. Form-specific matches remain visibly qualified. Cucumber and spring onion retain missing tracked nutrients as `null` rather than inferred zeros.
 
 Tracked nutrient rules:
 - energy prefers Foundation nutrient `2048` (Atwater Specific Factors), with documented fallback capability;
@@ -65,14 +66,25 @@ Tracked nutrient rules:
 - a nutrient absent from the selected Foundation record is `null`, never zero.
 
 ### Evidence-backed quantity normalization
-Nutrition B2 separately extracts USDA Foundation `food_portion.csv` metadata for the same bounded identities. The selected release provides usable portion rows for only two foods:
+Nutrition B2 separately extracts USDA Foundation household-weight metadata. Canonical banana `piece` / `pieces` may use the source-backed 115 g peeled-banana conversion. A bare tuna `can` / `cans` is rejected as ambiguous because USDA publishes both 107 g drained-solids and 142 g total-content states.
 
-- banana: one **peeled Banana = 115 g**;
-- tuna: one can is **107 g drained solids** or **142 g total contents**.
+B3 also found source weights for a chopped broccoli cup, Grade-A large whole egg, yellow onion and red onion. Those rows are retained as evidence only: current recipe semantics do not encode enough form, size or variety detail to apply them safely. No generic spoon, cup, clove, egg, onion or other household-weight guesses are introduced.
 
-The runtime conversion policy is intentionally narrower than the evidence table. Canonical banana `piece` / `pieces` may use the 115 g source-backed conversion. A bare tuna `can` / `cans` is rejected as `ambiguous_portion_unit` because the source publishes two different states. No generic spoon, cup, clove, egg, onion or other household-weight guesses are introduced.
+Authoritative recipe calculation accepts direct `g`/`kg` plus reviewed unambiguous portion conversions. Unmapped ingredients, unsupported/ambiguous units or missing nutrients produce a **partial** calculation. Partial evidence remains auditable but does not replace the project-authored recipe estimate.
 
-Authoritative recipe calculation accepts direct `g`/`kg` plus reviewed unambiguous portion conversions. Unmapped ingredients, unsupported/ambiguous units or missing nutrients produce a **partial** calculation. Partial evidence is auditable but does not replace the existing project-authored recipe estimate. Only full ingredient/quantity/tracked-nutrient coverage can make the static USDA-derived recipe calculation primary, and cooking/yield uncertainty remains explicit.
+## European evidence lane
+A current official-source audit is documented in `docs/DATA_SOURCES.md`.
+
+Strong candidates:
+- **Fineli / Finnish THL** — official national composition data, JSON API, household measures, CC BY 4.0;
+- **Ciqual 2025 / ANSES France** — 3,484 foods, 74 constituents, public XML/XLSX, Etalab Open Licence 2.0 and constituent-level source metadata;
+- **Frida / DTU Denmark** — high-quality national data with FoodEx2/LanguaL and source/reference tables, subject to exact attribution/reuse terms;
+- **NEVO / RIVM Netherlands** — high-quality official per-value provenance, but stronger reuse conditions require explicit compliance before bundling;
+- **BEDCA / AESAN network Spain** — geographically valuable reference, but current public reuse terms are not permissive enough for casual redistribution.
+
+At EU level, EFSA FoodEx2 plus European Commission datasets for health claims, pesticides, additives, allergens, nutrients, novel foods and other food-safety controls form a separate regulatory truth lane. Regulatory/legal evidence is not mixed into nutrient composition values.
+
+The intended architecture is **multi-source provenance, not averaging**: preserve exact food form, geography, version, derivation and licence; prefer better-matching evidence when quality is comparable; expose disagreements rather than hiding them.
 
 ## Cost intelligence
 The deterministic relative €–€€€€ estimator combines authored recipe cost tiers with ingredient classes, Spain/Canary availability, one-off package burden and cross-meal reuse. It does not claim live supermarket prices or invented exact euro values.
@@ -98,7 +110,7 @@ npm run test:browser
 ```
 
 ## Data and licensing
-Recipes and application ontology/substitution guidance are project-authored. USDA FoodData Central composition and portion metadata are used through the documented CC0/public-domain static evidence lane. BEDCA remains unbundled pending reuse review; Open Food Facts remains a separate ODbL compatibility decision. See `docs/DATA_SOURCES.md`.
+Recipes and application ontology/substitution guidance are project-authored. USDA FoodData Central composition and portion metadata are used through the documented CC0/public-domain static evidence lane. European sources are evaluated independently under their exact national licences; no European dataset is silently copied into runtime. See `docs/DATA_SOURCES.md`.
 
 This repository currently has **no general licence**. Public visibility is not permission to reuse project-authored repository content.
 
