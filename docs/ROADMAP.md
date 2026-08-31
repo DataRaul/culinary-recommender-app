@@ -29,9 +29,10 @@
 | V1.0.3 / Content Gate E | COMPLETE | 15 coverage-driven authored recipes + corpus/search audit + pineapple future-exclusion proof |
 | Brain P0 | AUTHORIZED / FOUNDATION BUILT | Knowledge Core official-source foundation + bounded free operator corpus + source/adacency governance |
 | App Brain adapter V1 | CALIBRATION SCAFFOLDING | static provenance-pinned public-safe policy contract; no ranking change |
+| V1.1 / Recipe Corpus Gate F | OPEN / BLOCKING | mandatory Wikibooks-first external app corpus + recipe-universe coverage/provenance/rights audit |
 | V1.x / Recipe-unlock evidence | NEXT | target remaining composition/form and exact quantity blockers by recipe-level unlock value |
 | V1.x / Authoritative nutrition coverage | CONTINUOUS | expand reviewed evidence under the approved source policy without guessing |
-| V1.x / Corpus breadth | CONTINUOUS | target high-value Search/planner gaps rather than recipe-count growth |
+| V1.x / Corpus breadth | GATED | broaden through Gate F and measured coverage gaps rather than recipe-count growth |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
 
@@ -94,6 +95,14 @@ The reviewed P0 calibration pin is `DataRaul/knowledge-core` commit `e5dcb29a7c6
 
 The operator pass reached P0 saturation without adding a fourth generalist source merely for count. Operator material remains culinary technique/workflow evidence, not nutrition, medical or food-safety authority.
 
+### Recipe-universe requirements pin
+
+The current Recipe Universe / World Recipe Atlas reasoning contract is on Knowledge Core branch `agent/culinary-nutrition-brain-p0`, commit `84abde1560a2dad7ce3318cbfb6bd827681a39fb`.
+
+That contract makes the observed recipe jobs explicit: staple/everyday, canonical/classic, regional/traditional, contemporary/modern, genuinely new/trending, constraint-first and technique-learning. These are overlapping analytical tags rather than mutually exclusive quality classes. Coverage must also be measured across cuisine/geography, meal role, ingredient family, skill, time, budget, equipment and dietary constraints.
+
+The Brain must preserve dish-family identity, aliases/meaningful variants, authenticity uncertainty, substitution tolerance by culinary function, provenance and freshness semantics. Corpus frequency is not authenticity evidence and trend claims require recency evidence.
+
 ### Long-form / content decision
 
 Book and paper work is residual-gap gated:
@@ -113,6 +122,58 @@ The app-side boundary is recorded in `docs/BRAIN_ADAPTER_CONTRACT.md` and `src/d
 Current state: `CALIBRATION_ONLY_NO_RANKING_CHANGE`.
 
 The public app does not fetch private Knowledge Core at runtime. Only narrow, versioned, source-safe static exports are eligible. Brain authorization does not silently authorize changes to ranking, eligibility, substitutions or nutrition outputs; each behavior change requires an explicit public artifact, deterministic negative/regression tests and normal PR/matrix/browser validation.
+
+## V1.1 Recipe Corpus Gate F — OPEN / BLOCKING
+
+This gate converts recipe breadth from a project-authored sample into an app-owned external corpus program without weakening the existing source, safety or nutrition contracts.
+
+### Mandatory initial corpus
+
+**Wikibooks Cookbook is the mandatory first external recipe acquisition source for the public app**, subject to a bounded legal/provenance ingest audit covering the exact source revision, attribution, ShareAlike obligations and public-repository reuse path. The current Brain/Atlas snapshot identifies Wikibooks as the preferred broad open-content lane and observes 3,825 recipe pages plus 158 cuisine pages; these are navigation counts, not normalized dish-family counts or proof of balanced world coverage.
+
+If the audit finds a genuine blocking incompatibility, replacing Wikibooks requires an explicit governance decision. It must not be silently skipped for a more convenient corpus.
+
+### Ownership and runtime contract
+
+- ingestion belongs to the public app behind the existing `RecipeSource` boundary;
+- the private Brain/KC is never a runtime recipe database;
+- the existing 76 project-authored recipes remain curated validation/gap-fill assets rather than the complete recipe universe;
+- external records retain source identity, source/revision URL or equivalent locator, licence/reuse state, attribution requirements and transformation provenance;
+- normalization clusters aliases, duplicates and meaningful variants toward dish families rather than rewarding raw row count;
+- imported recipe content does **not** become authoritative nutrition evidence; `RecipeSource`, `NutritionSource` and regulatory evidence remain separate truth lanes.
+
+### Required coverage semantics
+
+The corpus and its audit must expose enough normalized metadata for the Brain/app to reason about:
+
+1. staple / everyday;
+2. canonical / classic;
+3. regional / traditional;
+4. contemporary / modern;
+5. genuinely new / trending;
+6. constraint-first;
+7. technique-learning recipes.
+
+The audit must also report gaps across geography/cuisine, meal role, ingredient family, skill, time, budget, equipment and dietary constraints. A large recipe count cannot satisfy the gate while these dimensions remain opaque.
+
+Freshness-sensitive/trending coverage is expected to need later sources because Wikibooks is a floor, not a complete universe. Additional corpora may be admitted only for a named coverage or evidence gain under the same provenance/rights rules.
+
+### Exit criteria
+
+Gate F remains **OPEN / BLOCKING** until all of the following are true:
+
+1. Wikibooks licensing/attribution/ShareAlike and source-revision audit is recorded and passes for the chosen ingest path;
+2. a bounded reproducible Wikibooks acquisition is normalized into an app-owned external `RecipeSource` implementation;
+3. provenance survives ingestion, transformation, deduplication and public rendering where attribution is required;
+4. deterministic tests prove external records can be searched/recommended without private KC runtime access;
+5. dish-family/alias/variant handling and duplicate policy are tested;
+6. the seven recipe-universe tags plus cross-cutting coverage dimensions are represented or truthfully marked unknown;
+7. a corpus coverage report distinguishes raw source pages, normalized records/families, duplicates/variants, unsupported records and coverage gaps;
+8. imported recipes cannot bypass allergen/dietary/permanent-exclusion hard constraints or nutrition evidence gates;
+9. the Brain/KC recipe-universe contract remains pinned and any behavior-driving export follows the existing Brain adapter gate;
+10. a human review confirms the external corpus is useful in the public app before Gate F is marked complete.
+
+Until then, `V1.x / Corpus breadth` is **GATED** rather than complete merely because authored recipes or Atlas candidates increase.
 
 ## Current nutrition policy
 
