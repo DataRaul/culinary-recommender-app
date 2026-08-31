@@ -52,12 +52,30 @@ The first authoritative nutrition tranche remains deliberately bounded:
 - energy prefers nutrient `2048` (Atwater Specific Factors), with documented fallback architecture;
 - protein (`1003`), carbohydrate (`1005`), fat (`1004`) and fibre (`1079`) remain individually provenance-aware;
 - missing tracked nutrients remain `null`, never zero;
-- only explicit `g`/`kg` quantities currently qualify for authoritative deterministic calculation;
+- explicit `g`/`kg` quantities qualify directly for deterministic calculation;
 - unsupported units, unmapped ingredients and missing nutrients make the calculation partial rather than guessed;
-- the project-authored recipe estimate remains primary unless every required ingredient, tracked nutrient and unit is complete;
-- complete mass-only coverage can produce a medium-confidence static calculation while retaining cooking/yield uncertainty.
+- the project-authored recipe estimate remains primary unless every required ingredient, tracked nutrient and quantity conversion is complete;
+- complete coverage can produce a medium-confidence static calculation while retaining cooking/yield uncertainty.
 
-The next nutrition tranche may expand defensible ingredient/form mappings and unit/weight normalization but must preserve fail-partial behavior.
+## V1 Nutrition Gate B2 — USDA PORTION EVIDENCE IMPLEMENTED / VALIDATION_PENDING
+This additive tranche expands quantity normalization only where USDA Foundation itself publishes a defensible gram weight for an already-reviewed food identity.
+
+The official 2026-04-30 Foundation `food_portion.csv` extract produced portion rows for only two of the 14 bounded mapped foods:
+
+- banana / FDC `1105314`: one **peeled Banana = 115 g**, 102 data points, minimum acquisition year 2019;
+- tuna / FDC `334194`: one can has **107 g drained solids** and **142 g total can contents**, each with 48 data points.
+
+Implementation rules:
+
+- canonical banana `piece` / `pieces` may convert at 115 g per unit because the source measure is explicitly one peeled Banana;
+- raw portion evidence is retained separately from automatic conversion policy;
+- ordinary tuna `can` / `cans` is deliberately **ambiguous** and fails closed because USDA publishes two materially different can weights;
+- no generic household-weight table, internet average, recipe-blog conversion, teaspoon density or guessed onion/egg/clove weight is introduced;
+- direct `g`/`kg` behavior is unchanged;
+- every applied portion conversion carries quantity provenance into the static calculation audit;
+- partial calculations still cannot overwrite the project-authored recipe estimate.
+
+Gate B2 becomes COMPLETE only after deterministic/matrix/browser validation, clean merge, post-merge validation and Pages deployment. Future B tranches may expand mappings or portions only from reviewed source/form evidence.
 
 ## V1 Content Gate C — COMPLETE
 Merged through PR #7 to `main` at `59ae06755d1c681aa5f56d4f20e8bdaf1d01bec2` after green deterministic, matrix and Chromium validation; post-merge validation and Pages deployment passed.
@@ -67,18 +85,17 @@ Cost intelligence combines authored per-recipe tiers, deterministic ingredient c
 ## V1 Content Gate D — COMPLETE
 Merged through PR #7 with Gate C. A deterministic full-corpus culinary-quality layer normalizes explicit/instruction-inferred techniques, failure risk, execution load, equipment burden, difficulty/technique depth, meal-prep/batch/freezer/leftover/portability suitability, flavour, spice, familiarity, novelty, learning and exploration. Technique inference is inspectable over project-authored instructions, not runtime generation.
 
-## V1 Content Gate E — SEARCH COVERAGE EXPANSION IMPLEMENTED / VALIDATION_PENDING
-This bounded additive gate targets ingredient/search usefulness rather than arbitrary recipe count:
+## V1 Content Gate E — COMPLETE
+Merged through PR #9 to `main` at `3e0be5adcde9ec9567c0595ac4e8fc71dd237ee4`; PR deterministic/static validation, the 15,552-profile matrix and Chromium acceptance passed, followed by green post-merge validation and GitHub Pages deployment.
 
-- adds 15 project-authored structured recipes focused on underused but already-supported ingredients such as pinto beans, barley, pumpkin, rice noodles, mango, mushrooms, peas, basmati, bulgur, turkey and hake;
-- promotes `pineapple` from a future-only exclusion token into the canonical bilingual ingredient ontology;
-- adds two real pineapple recipes in different cuisine contexts;
-- explicitly proves a previously stored `excludedIngredientIds: ["pineapple"]` preference remains a hard filter after those recipes arrive;
-- adds deterministic corpus coverage and ingredient-search coverage auditing;
-- preserves cuisine taxonomy, hard constraints, planner/search contracts and project-authored provenance;
-- does not introduce third-party recipes, runtime inference, paid data or Brain dependency.
+Delivered:
 
-Gate E becomes COMPLETE only after public deterministic/matrix/browser validation, clean merge, post-merge validation and Pages deployment.
+- 15 project-authored structured recipes focused on real ingredient/Search coverage gaps;
+- broader coverage for pineapple, pinto beans, barley, pumpkin, rice noodles, mango, mushrooms, peas, basmati, bulgur, turkey and hake;
+- canonical bilingual `pineapple` ontology promotion;
+- regression proof that an earlier stored `excludedIngredientIds: ["pineapple"]` remains a hard ranking/Search exclusion after real pineapple recipes arrive;
+- deterministic corpus and ingredient-search coverage auditing;
+- unchanged cuisine taxonomy, planner/Search contracts, safety hierarchy and project-authored provenance.
 
 ## Brain P0 — NOT AUTHORIZED
 The dedicated Culinary & Nutrition Brain remains a separate future human authorization boundary. This repository may prepare stable public interfaces and evidence artifacts but must not create or call the Brain early.
