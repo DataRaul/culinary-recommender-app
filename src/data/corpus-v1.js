@@ -11,7 +11,10 @@ for (const recipe of [...EXPANDED_RECIPES, ...SEARCH_COVERAGE_RECIPES]) {
   }
 }
 
-export const AUTHORED_RECIPES = RECIPES;
+// Snapshot the authored lane before any browser runtime adapter appends external records
+// to the legacy RECIPES array. This keeps authored baselines and public status counts
+// stable even though the accepted shell still consumes RECIPES directly.
+export const AUTHORED_RECIPES = Object.freeze([...RECIPES]);
 export const EXTERNAL_RECIPES = Object.freeze(WIKIBOOKS_GATE_F_RECIPES.map(recipe => ({
   ...recipe,
   mainProtein: recipe.mainProtein ?? null,
