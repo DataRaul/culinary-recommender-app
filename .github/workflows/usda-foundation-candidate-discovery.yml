@@ -1,0 +1,28 @@
+name: One-off USDA Foundation candidate discovery
+on:
+  push:
+    branches: [v1-nutrition-b3-foundation-coverage]
+    paths:
+      - '.github/workflows/usda-foundation-candidate-discovery.yml'
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download official USDA Foundation Foods April 2026 CSV
+        run: curl --fail --location --retry 3 --output /tmp/foundation.zip 'https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_foundation_food_csv_2026-04-30.zip'
+      - name: Extract archive
+        run: mkdir -p /tmp/foundation && unzip -q /tmp/foundation.zip -d /tmp/foundation
+      - name: Discover bounded candidate matches
+        run: |
+          CSV_DIR="$(find /tmp/foundation -type f -name 'foundation_food.csv' -printf '%h\n' | head -n1)"
+          test -n "$CSV_DIR"
+          node scripts/discover-usda-foundation-candidates.mjs "$CSV_DIR" /tmp/usda-foundation-candidates.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: usda-foundation-candidate-discovery
+          path: /tmp/usda-foundation-candidates.json
+          retention-days: 1
