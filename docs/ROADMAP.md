@@ -11,43 +11,65 @@
 | V0.9 / Gate 7 | COMPLETE | deterministic unit/static/browser/matrix acceptance |
 | V0.9 / Gate 8 | COMPLETE | GitHub Pages public deployment |
 | V0.9 / Gate 9 | ACCEPTED | original human acceptance review |
-| V0.9.1 / Gate 9A | ACCEPTED | fridge-first ingredient search + temporary today-intent overrides |
-| V0.9.2 / Gate 9B | ACCEPTED | up-to-three meal-scoped priority packs + cuisine-choice correction + scoped Search context |
+| V0.9.1 / Gate 9A | ACCEPTED | fridge-first ingredient Search + temporary today-intent overrides |
+| V0.9.2 / Gate 9B | ACCEPTED | up-to-three meal-scoped priority packs + independent cuisine choices |
 | V0.9.3 | ACCEPTED BASELINE | permanent exclusions, mapped allergen hard filters, broad integrated browser acceptance |
 | V1.0 / Content Gate A | COMPLETE | expanded project-authored recipes + hierarchical ingredient ontology + six-class substitution graph |
-| V1.0.1 / Content Gate B foundation | COMPLETE | USDA source/identity ledger + NutritionSource evidence coverage + fail-partial calculation framework |
-| V1.0.2 / Content Gate B1 | COMPLETE | bounded USDA Foundation per-100g static composition for 14 canonical ingredients + evidence-safe recipe calculation |
-| V1.0.4 / Nutrition B2 | COMPLETE | USDA Foundation portion evidence + evidence-backed banana piece conversion + ambiguous tuna-can fail-closed handling |
-| V1.0.5 / Nutrition B3 | COMPLETE | 15 additional manually reviewed Foundation forms + combined 29-record bounded ledger + evidence-only B3 household weights |
-| V1.0.6 / European evidence B4 | IMPLEMENTED / VALIDATION_PENDING | bounded Ciqual 2025 secondary evidence + provenance-first USDA/Ciqual comparison; no automatic source selection |
-| V1.x / European primary-source policy | HUMAN_GATE | decide whether reviewed European evidence may become primary for Europe/Canary contexts or remains corroboration-only |
-| V1.0.1 / Content Gate C | COMPLETE | Spain/Canary ingredient classes + package/availability/reuse-aware portfolio cost heuristic |
-| V1.0.1 / Content Gate D | COMPLETE | normalized culinary technique/risk/execution/convenience/learning intelligence across full corpus |
-| V1.0.3 / Content Gate E | COMPLETE | 15 coverage-driven authored recipes + deterministic corpus/search coverage audit + pineapple future-exclusion proof |
-| V1.x / Corpus breadth | CONTINUOUS | use coverage audit to target high-value Search/planner gaps rather than recipe-count growth |
+| V1.0.1 / Content Gate B foundation | COMPLETE | source/identity ledger + NutritionSource evidence coverage + fail-partial calculation framework |
+| V1.0.2 / Nutrition B1 | COMPLETE | bounded USDA Foundation per-100g static composition for 14 canonical ingredients |
+| V1.0.4 / Nutrition B2 | COMPLETE | USDA portion evidence + source-backed banana conversion + ambiguous tuna-can fail closed |
+| V1.0.5 / Nutrition B3 | COMPLETE | 15 additional reviewed Foundation forms + combined 29-record USDA ledger |
+| V1.0.6 / European evidence B4 | COMPLETE | bounded ANSES-Ciqual 2025 evidence + provenance-first USDA/Ciqual comparison |
+| V1.0.7 / European primary-source policy | COMPLETE / USER-APPROVED | conditional Europe/Canary per-ingredient/per-nutrient source selection + semantic firewall + coherent USDA fallback |
+| V1.0.1 / Content Gate C | COMPLETE | Spain/Canary ingredient classes + package/availability/reuse-aware cost heuristic |
+| V1.0.1 / Content Gate D | COMPLETE | normalized culinary technique/risk/execution/convenience/learning intelligence |
+| V1.0.3 / Content Gate E | COMPLETE | 15 coverage-driven authored recipes + corpus/search audit + pineapple future-exclusion proof |
+| V1.x / Authoritative nutrition coverage | CONTINUOUS | expand reviewed food forms and quantity evidence under the approved source policy |
+| V1.x / Corpus breadth | CONTINUOUS | target high-value Search/planner gaps rather than recipe-count growth |
+| V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
 | Brain P0 | NOT_AUTHORIZED | future Culinary & Nutrition Brain |
-| App Brain-derived V1.x | DEFERRED | public-safe Brain-derived upgrades after explicit Brain authorization |
+| App Brain-derived V1.x | DEFERRED | public-safe Brain-derived upgrades only after explicit Brain authorization |
 
-Content Gate A was merged through PR #6 at `1742bd40691cca614db2e12ccaa47499bea48a57` after green deterministic/browser validation and green post-merge validation/Pages deployment.
+## Completed V1 lineage
 
-Gates B foundation, C and D were merged through PR #7 at `59ae06755d1c681aa5f56d4f20e8bdaf1d01bec2`; deterministic/static tests, the 15,552-profile matrix, comprehensive Chromium acceptance, post-merge validation and Pages deployment were green.
+Content Gate A merged through PR #6 at `1742bd40691cca614db2e12ccaa47499bea48a57` after green deterministic/browser validation and green post-merge validation/Pages deployment.
 
-Gate B1 was merged through PR #8 at `5dc9c668df8ac96361657cd403b95bf05e859ac9`; public validation, matrix/browser acceptance, post-merge validation and Pages deployment all passed. The authoritative lane is real but deliberately partial: complete USDA-derived recipe values replace estimates only under full ingredient/nutrient/quantity coverage.
+Gates B foundation, C and D merged through PR #7 at `59ae06755d1c681aa5f56d4f20e8bdaf1d01bec2`; deterministic/static tests, the 15,552-profile matrix, comprehensive Chromium acceptance, post-merge validation and Pages deployment were green.
 
-Gate E was merged through PR #9 at `3e0be5adcde9ec9567c0595ac4e8fc71dd237ee4`; PR validation, post-merge validation and Pages deployment all passed. Corpus growth is now coverage-driven, and the durable future-exclusion lifecycle has been proven against real pineapple recipes.
+B1 merged through PR #8 at `5dc9c668df8ac96361657cd403b95bf05e859ac9`. Gate E merged through PR #9 at `3e0be5adcde9ec9567c0595ac4e8fc71dd237ee4`. B2 merged through PR #10 at `225cd4ade1bd7af374d465600118cff79dbd4c6c`. B3 merged through PR #11 at `016db58fb01ca0e7cbf8354faf9ca38469e6e0b1`. Each passed its PR validation plus post-merge validation and Pages deployment.
 
-Nutrition B2 was merged through PR #10 at `225cd4ade1bd7af374d465600118cff79dbd4c6c`; PR and post-merge deterministic/browser validation and Pages deployment passed. The official Foundation `food_portion.csv` table supports a 115 g peeled-banana portion while exposing two conflicting tuna can weights (107 g drained solids; 142 g total contents). The app accepts canonical banana `piece(s)` through source-backed conversion and deliberately rejects an unqualified tuna `can` as ambiguous.
+European Evidence B4 merged through PR #12 at `fd33037ce48a75b60ac5b8ca7d7526b7ffb15061`. It added 32 manually reviewed ANSES-Ciqual 2025 food/form mappings and a comparison layer that preserves food identity, nutrient definitions, method caveats, confidence and source provenance without averaging values.
 
-Nutrition B3 was merged through PR #11 at `016db58fb01ca0e7cbf8354faf9ca38469e6e0b1`; PR validation, the 15,552-profile matrix, Chromium acceptance, post-merge validation and Pages deployment passed. Fifteen additional Foundation records were manually selected only after reviewing food form and canonical semantics. Thirteen have all five tracked nutrients; cucumber and spring onion remain explicitly partial. The combined bounded Foundation ledger contains 29 records. Source household weights found for broccoli, eggs and onions remain evidence-only because the canonical recipe model does not yet encode enough form/size/variety detail for automatic conversion.
+The European-primary policy was explicitly approved by the user and implemented through PR #13, merged at `cfa3b9115821b59321c7ef19e779ff3a578aa6b6`. PR validation, the 15,552-profile matrix, Chromium acceptance, post-merge validation and Pages deployment passed.
 
-European evidence B4 uses ANSES-Ciqual 2025 as a bounded complementary composition lane. Reviewed French/English food identities, scientific names, per-field confidence codes and source references are retained. Cross-source comparison does not average values or choose a winner. USDA carbohydrate-by-difference and Ciqual available carbohydrate (`CHOAVL`) are explicitly non-comparable; energy, protein and fibre retain method caveats. Ciqual-only foods such as reviewed farmed raw salmon can be surfaced as evidence without fabricating a USDA match.
+## Current nutrition policy
 
-Fineli/THL remains a strong open candidate by licence and machine-readable design, but its documented API and package currently return HTTP 403 to standard GitHub-hosted runners; no bypass is attempted. Frida/DTU, NEVO/RIVM, BEDCA/AESAN and EuroFIR remain separately governed by their reuse/access constraints. EFSA FoodEx2 and EU regulatory databases are a distinct classification/regulatory truth lane rather than a substitute for composition measurements.
+For the Canary Islands / Spain / Europe context:
+
+- source selection occurs per ingredient and per nutrient;
+- reviewed European evidence may be primary when food-form fit is equally good or better and constituent evidence is sufficiently strong;
+- Ciqual confidence `D` does not displace an available reviewed USDA value;
+- a stronger USDA form remains primary;
+- no cross-source averaging is permitted;
+- exact source/method/semantic provenance is retained;
+- USDA carbohydrate-by-difference and Ciqual available carbohydrate (`CHOAVL`) cannot be summed into one authoritative recipe carbohydrate total;
+- if the European-selected mix is incomplete or semantically incompatible but a complete coherent reviewed USDA recipe calculation exists, that USDA calculation remains authoritative;
+- otherwise incomplete evidence preserves the project-authored estimate.
+
+This policy is now part of the accepted V1 nutrition architecture. Routine evidence expansion may continue under it without reopening the decision.
+
+## European source backlog
+
+ANSES-Ciqual is the current bundled European national source. Fineli/THL remains attractive under CC BY 4.0, but both its documented API and official package returned HTTP 403 to standard GitHub-hosted runners during the bounded audit; no bypass is attempted. Frida/DTU, NEVO/RIVM and BEDCA/AESAN remain governed by their exact reuse terms. EuroFIR remains outside the no-cost contract.
+
+EFSA FoodEx2 and EU Commission regulatory datasets are a separate classification/regulatory evidence lane. They may be researched and represented as audit metadata, but regulatory limits/authorisations must not silently become composition values or recommendation rules without a future explicit behavior contract.
+
+## Standing architecture
 
 The accepted shell/core is not reopened by routine corpus, ontology or evidence growth. V1 content work remains additive behind stable `RecipeSource`, `NutritionSource`, `IngredientNormalizer`, `RecommendationPolicy`, planner, substitution and cost interfaces.
 
-Future nutrition breadth must come from reviewed source/form identity plus explicit portion evidence. Do not use generic spoon/piece averages merely to increase coverage. Cross-source European/US comparison must preserve each source's exact food form, nutrient definition, value derivation and licence.
+Future nutrition breadth must come from reviewed source/form identity plus explicit quantity/portion evidence. Generic spoon/piece averages remain prohibited merely to increase apparent coverage.
 
-Cost remains relative, deterministic and explainable. Culinary quality remains normalized from project-authored structured metadata and instructions. Fridge search and planning continue to reuse the same hard safety truth.
+Cost remains relative, deterministic and explainable. Culinary quality remains normalized from project-authored structured metadata and instructions. Fridge Search, planner, allergens, dietary restrictions and permanent exclusions continue to use the same hard safety truth.
 
 The Culinary & Nutrition Brain remains a separate future authorization boundary. The public app must not call private Knowledge Core at runtime.
