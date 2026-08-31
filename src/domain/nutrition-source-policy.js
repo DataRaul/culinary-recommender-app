@@ -27,6 +27,22 @@ export const EUROPEAN_PRIMARY_POLICY_V1 = {
   medicalPersonalization: "PROHIBITED"
 };
 
+// Preserve the frozen B4 source snapshot exactly as introduced while exposing the
+// later human-approved runtime policy separately. The raw B4 artifact therefore
+// remains auditable as corroboration-only evidence at introduction time; this
+// wrapper records that the same reviewed source is now eligible for explicit
+// per-ingredient/per-nutrient selection under EUROPEAN_PRIMARY_POLICY_V1.
+export const CIQUAL_RUNTIME_SOURCE_V1 = {
+  ...CIQUAL_2025_SOURCE,
+  evidenceIntroductionState: CIQUAL_2025_SOURCE.state,
+  evidenceIntroductionPolicy: CIQUAL_2025_SOURCE.runtimePolicy,
+  state: "BOUNDED_STATIC_REVIEWED_EVIDENCE_ELIGIBLE_FOR_POLICY_SELECTION",
+  runtimePolicy: "ELIGIBLE_VIA_EUROPEAN_PRIMARY_POLICY_V1",
+  sourceSelectionPolicyId: EUROPEAN_PRIMARY_POLICY_V1.id,
+  sourceSelectionContext: EUROPEAN_PRIMARY_POLICY_V1.context,
+  selectionBoundary: "EXPLICIT_PER_INGREDIENT_PER_NUTRIENT_POLICY_ONLY"
+};
+
 const formRank = confidence => ({ high: 3, medium: 2, low: 1 }[confidence] || 0);
 const ciqualFieldGoodEnoughToDisplace = confidence => ["A", "B", "C"].includes(confidence);
 
@@ -58,7 +74,7 @@ const sourceCandidate = (ingredientId, nutrientKey, source) => {
     const fieldConfidence = record.confidenceCodes?.[spec.confidenceField] || null;
     return {
       source: "ciqual",
-      sourceId: CIQUAL_2025_SOURCE.id,
+      sourceId: CIQUAL_RUNTIME_SOURCE_V1.id,
       sourceIdentifier: record.alimCode,
       value,
       semantic: spec.semantic,

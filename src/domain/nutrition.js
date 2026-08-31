@@ -4,7 +4,6 @@ import {
   USDA_FOUNDATION_DENSITIES,
   USDA_FOUNDATION_SOURCE
 } from "../data/nutrition-evidence.js";
-import { CIQUAL_2025_SOURCE } from "../data/ciqual-nutrients-b4.js";
 import { USDA_FOUNDATION_COMPOSITION_SOURCE } from "../data/usda-foundation-nutrients-v1.js";
 import {
   USDA_FOUNDATION_PORTION_SOURCE,
@@ -12,6 +11,7 @@ import {
   usdaFoundationPortionConversion
 } from "../data/usda-foundation-portions-v1.js";
 import {
+  CIQUAL_RUNTIME_SOURCE_V1,
   EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
   europeanPrimaryPolicyCoverage
@@ -184,7 +184,7 @@ export const publicNutritionSource = {
           : recipe.nutrition?.provenance || "Project-authored estimate.",
       evidence: {
         source: USDA_FOUNDATION_SOURCE,
-        sources: [USDA_FOUNDATION_SOURCE, CIQUAL_2025_SOURCE],
+        sources: [USDA_FOUNDATION_SOURCE, CIQUAL_RUNTIME_SOURCE_V1],
         sourcePolicy: EUROPEAN_PRIMARY_POLICY_V1,
         compositionSource: USDA_FOUNDATION_COMPOSITION_SOURCE,
         portionSource: USDA_FOUNDATION_PORTION_SOURCE,
