@@ -13,7 +13,7 @@
   },
   "orzo": {
     "alimCode": "9810",
-    "match": "medium-high",
+    "match": "medium",
     "description": "Pasta, dry, regular, raw",
     "notes": "Reviewed category-level match for canonical orzo/risoni: the ontology explicitly classifies orzo as wheat pasta with gluten, and the authored recipe quantifies dry grams before absorption cooking. No egg-pasta record is used. The source does not name the orzo shape, so provenance retains the category-level match rather than claiming exact shape identity."
   }
