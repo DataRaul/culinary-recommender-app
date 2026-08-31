@@ -10,8 +10,8 @@
 | Recipe corpus | ✅ COVERAGE EXPANSION COMPLETE | V1.0.3 / Gate E | coverage-driven iteration |
 | Ingredient ontology | ✅ V1 GATE A COMPLETE | V1.0 + pineapple promotion | broader evidence/form coverage |
 | Substitutions | ✅ V1 GATE A COMPLETE | V1.0 | more contextual editorial edges |
-| Nutrition evidence | 🧪 REVIEWED FOUNDATION B3 | V1.0.5 / Nutrition B3 | European bounded cross-source pilot |
-| European evidence | 🔎 SOURCE AUDIT ACTIVE | B4 research | Fineli/Ciqual bounded pilot after B3 |
+| Nutrition evidence | ✅ USDA B3 COMPLETE | V1.0.5 | multi-source corroboration |
+| European evidence | 🧪 BOUNDED CORROBORATION CANDIDATE | V1.0.6 / B4 | human source-selection policy gate |
 | Cost intelligence | ✅ COMPLETE | Gate C / PR #7 | later empirical price evidence if authorized |
 | Culinary quality | ✅ COMPLETE | Gate D / PR #7 | editorial refinement |
 | Recommender / planner | ✅ ACCEPTED CORE | V0.9.3 baseline | richer public-safe policy later |
@@ -24,11 +24,11 @@
 | Culinary & Nutrition Brain | 🔒 NOT_AUTHORIZED | Deferred | explicit future authorization only |
 
 **Accepted shell/core:** V0.9.3  
-**Current merged main before this candidate:** `225cd4ade1bd7af374d465600118cff79dbd4c6c`  
-**Candidate version:** V1.0.5 Reviewed Foundation Coverage B3  
+**Current merged main before this candidate:** `016db58fb01ca0e7cbf8354faf9ca38469e6e0b1`  
+**Candidate version:** V1.0.6 European Evidence Corroboration B4  
 **Public app:** https://dataraul.github.io/culinary-recommender-app/
 
-Content Gate A expanded the project-authored corpus, bilingual/hierarchical ingredient ontology and six-class substitution graph. PR #7 completed explainable Spain/Canary cost intelligence and full-corpus culinary-quality normalization. PR #8 completed the first bounded USDA Foundation static composition lane. PR #9 completed coverage-driven Search/corpus expansion. PR #10 completed evidence-backed USDA quantity normalization. Each merged gate passed deterministic, matrix/browser and post-merge Pages validation.
+Content Gate A expanded the project-authored corpus, bilingual/hierarchical ingredient ontology and six-class substitution graph. PR #7 completed Spain/Canary cost intelligence and culinary-quality normalization. PR #8 completed the first bounded USDA Foundation static composition lane. PR #9 completed coverage-driven Search/corpus expansion. PR #10 completed evidence-backed USDA quantity normalization. PR #11 expanded the reviewed Foundation composition ledger to 29 foods. Each merged gate passed deterministic, matrix/browser and post-merge Pages validation.
 
 ## What it does
 Choose exact lunch/dinner slots, tune budget, nutrition priority, time, skill, variety, cuisine, protein emphasis and meal-prep preference, and receive deterministic recommendations with ingredient reuse, substitutions and a combined grocery list. The accepted shell remains backend-free, account-free and runtime-LLM-free.
@@ -54,37 +54,39 @@ V1.0.3 added 15 project-authored recipes selected for ingredient/Search usefulne
 Replacement edges are labelled `close_substitute`, `functional_substitute`, `flavour_direction`, `texture_substitute`, `dietary_substitute`, or `emergency_approximation`. They describe culinary function, not equivalence.
 
 ## Nutrition evidence architecture
-The app has a real but intentionally **bounded** authoritative evidence lane. USDA FoodData Central Foundation Foods Version 15.0 / 2026-04-30 is one source family, not a claim that US composition is universally representative of European foods.
+The app has a real but intentionally bounded authoritative evidence lane. USDA FoodData Central Foundation Foods Version 15.0 / 2026-04-30 is one source family, not a claim that U.S. composition is universally representative of European foods.
 
-The original B1 extract contains 14 reviewed Foundation identities. B3 adds 15 manually reviewed forms, bringing the bounded combined composition ledger to **29 canonical ingredients**. Candidate keyword matches are never promoted automatically.
+The original B1 extract contains 14 reviewed Foundation identities. B3 added 15 manually reviewed forms, bringing the bounded combined composition ledger to **29 canonical ingredients**. Candidate keyword matches are never promoted automatically.
 
-B3 additions include broccoli, egg, red/yellow onion, garlic, white-button mushroom, mature carrot, pineapple, cucumber, white long-grain rice, cauliflower, aubergine, tomato paste, crushed canned tomato and spring onion. Form-specific matches remain visibly qualified. Cucumber and spring onion retain missing tracked nutrients as `null` rather than inferred zeros.
-
-Tracked nutrient rules:
+Tracked USDA nutrient rules:
 - energy prefers Foundation nutrient `2048` (Atwater Specific Factors), with documented fallback capability;
-- protein `1003`, carbohydrate `1005`, fat `1004`, fibre `1079`;
+- protein `1003`, carbohydrate-by-difference `1005`, fat `1004`, fibre `1079`;
 - a nutrient absent from the selected Foundation record is `null`, never zero.
 
 ### Evidence-backed quantity normalization
-Nutrition B2 separately extracts USDA Foundation household-weight metadata. Canonical banana `piece` / `pieces` may use the source-backed 115 g peeled-banana conversion. A bare tuna `can` / `cans` is rejected as ambiguous because USDA publishes both 107 g drained-solids and 142 g total-content states.
-
-B3 also found source weights for a chopped broccoli cup, Grade-A large whole egg, yellow onion and red onion. Those rows are retained as evidence only: current recipe semantics do not encode enough form, size or variety detail to apply them safely. No generic spoon, cup, clove, egg, onion or other household-weight guesses are introduced.
+Canonical banana `piece` / `pieces` may use the USDA source-backed 115 g peeled-banana conversion. A bare tuna `can` / `cans` is rejected as ambiguous because USDA publishes both 107 g drained-solids and 142 g total-content states. Other source household weights remain evidence-only when recipe form/size semantics are underspecified.
 
 Authoritative recipe calculation accepts direct `g`/`kg` plus reviewed unambiguous portion conversions. Unmapped ingredients, unsupported/ambiguous units or missing nutrients produce a **partial** calculation. Partial evidence remains auditable but does not replace the project-authored recipe estimate.
 
 ## European evidence lane
-A current official-source audit is documented in `docs/DATA_SOURCES.md`.
+B4 adds a bounded **ANSES-Ciqual 2025** secondary evidence module and a provenance-first USDA/Ciqual comparison layer.
 
-Strong candidates:
-- **Fineli / Finnish THL** — official national composition data, JSON API, household measures, CC BY 4.0;
-- **Ciqual 2025 / ANSES France** — 3,484 foods, 74 constituents, public XML/XLSX, Etalab Open Licence 2.0 and constituent-level source metadata;
-- **Frida / DTU Denmark** — high-quality national data with FoodEx2/LanguaL and source/reference tables, subject to exact attribution/reuse terms;
-- **NEVO / RIVM Netherlands** — high-quality official per-value provenance, but stronger reuse conditions require explicit compliance before bundling;
-- **BEDCA / AESAN network Spain** — geographically valuable reference, but current public reuse terms are not permissive enough for casual redistribution.
+Ciqual source facts retained in runtime evidence:
+- 2025 release, 3,484-food official catalogue;
+- dataset DOI `10.57745/RDMHWY`;
+- Etalab Open Licence 2.0 and required ANSES attribution;
+- 32 manually reviewed app-relevant food/form records only, not the complete source database;
+- English/French food identity, scientific name, per-field confidence code and source-code provenance.
 
-At EU level, EFSA FoodEx2 plus European Commission datasets for health claims, pesticides, additives, allergens, nutrients, novel foods and other food-safety controls form a separate regulatory truth lane. Regulatory/legal evidence is not mixed into nutrient composition values.
+Cross-source semantics remain explicit. USDA carbohydrate `1005` is carbohydrate by difference while Ciqual `31000` / `CHOAVL` is available carbohydrate, so B4 **does not calculate a carbohydrate agreement percentage**. Energy methods differ; protein and fibre remain method-dependent; fat is compared only with form/method caveats. Values are never averaged.
 
-The intended architecture is **multi-source provenance, not averaging**: preserve exact food form, geography, version, derivation and licence; prefer better-matching evidence when quality is comparable; expose disagreements rather than hiding them.
+The comparison layer distinguishes no evidence, one-source evidence, reviewed multi-source evidence and multi-source form caveats. It can expose material disagreement without selecting a winner. For example, reviewed Ciqual farmed raw salmon can exist as European evidence even though the bounded USDA lane currently has no salmon record.
+
+**B4 is corroboration-only.** It does not alter `publicNutritionSource`, displayed recipe nutrition, recommendation ranking, constraints or project-authored fallback estimates. Allowing European evidence to become primary is a separate human policy gate.
+
+Fineli/THL Finland remains a strong open candidate, but its documented API and download package returned HTTP 403 to standard GitHub-hosted runners during B4; the project does not bypass that restriction. Frida/DTU, NEVO/RIVM and BEDCA/AESAN remain governed by their exact reuse conditions. EuroFIR remains outside the no-cost contract.
+
+At EU level, EFSA FoodEx2 plus European regulatory datasets form a separate classification/regulatory truth lane. Regulatory/legal evidence is not mixed into measured food composition values. See `docs/EUROPEAN_EVIDENCE.md`.
 
 ## Cost intelligence
 The deterministic relative €–€€€€ estimator combines authored recipe cost tiers with ingredient classes, Spain/Canary availability, one-off package burden and cross-meal reuse. It does not claim live supermarket prices or invented exact euro values.
@@ -110,7 +112,7 @@ npm run test:browser
 ```
 
 ## Data and licensing
-Recipes and application ontology/substitution guidance are project-authored. USDA FoodData Central composition and portion metadata are used through the documented CC0/public-domain static evidence lane. European sources are evaluated independently under their exact national licences; no European dataset is silently copied into runtime. See `docs/DATA_SOURCES.md`.
+Recipes and application ontology/substitution guidance are project-authored. USDA FoodData Central composition/portion metadata use the documented CC0/public-domain lane. The bounded Ciqual B4 module retains its Etalab Open Licence 2.0 attribution and remains secondary evidence. Other European sources are evaluated independently under their exact access/reuse conditions. See `docs/DATA_SOURCES.md` and `docs/EUROPEAN_EVIDENCE.md`.
 
 This repository currently has **no general licence**. Public visibility is not permission to reuse project-authored repository content.
 
@@ -121,6 +123,7 @@ This repository currently has **no general licence**. Public visibility is not p
 - `docs/GATES.md`
 - `docs/DESIGN_SYSTEM.md`
 - `docs/DATA_SOURCES.md`
+- `docs/EUROPEAN_EVIDENCE.md`
 - `docs/RECOMMENDATION_MODEL.md`
 - `docs/TESTING.md`
 - `docs/HUMAN_REVIEW.md`
