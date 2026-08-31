@@ -11,7 +11,8 @@ import { USDA_FOUNDATION_COMPOSITION_SOURCE, USDA_FOUNDATION_DENSITIES_V1 } from
 import { USDA_FOUNDATION_DENSITIES_B3 } from "../src/data/usda-foundation-nutrients-b3.js";
 import {
   USDA_FOUNDATION_PORTION_EVIDENCE_V1,
-  USDA_FOUNDATION_PORTION_SOURCE
+  USDA_FOUNDATION_PORTION_SOURCE,
+  usdaFoundationPortionConversion
 } from "../src/data/usda-foundation-portions-v1.js";
 import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
 import { analyzePortfolioCost } from "../src/domain/cost.js";
@@ -58,21 +59,17 @@ test("B3 expands reviewed Foundation composition without pretending incomplete f
   assert.equal(NUTRITION_IDENTITY_EVIDENCE.broccoli.compositionState, "STATIC_COMPOSITION_IMPORTED_COMPLETE_FOR_TRACKED_FIELDS");
 });
 
-test("B3 household weights stay evidence-only when canonical recipe semantics are not specific enough", () => {
+test("USDA B3 household weights remain evidence-only when their own canonical semantics are insufficient", () => {
   assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.broccoli[0].gramWeight, 76);
   assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.broccoli[0].modifier, "chopped");
   assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.eggs[0].gramWeight, 50.3);
   assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.eggs[0].dataPoints, 526);
   assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.onion[0].gramWeight, 143);
   assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.red_onion[0].gramWeight, 197);
-
-  const genericEggRecipe = {
-    ingredients: [{ canonicalIngredientId: "eggs", quantity: 2, unit: "pieces" }],
-    serving: { servings: 1 }
-  };
-  const result = calculatePerServingFromDensities(genericEggRecipe, USDA_FOUNDATION_DENSITIES);
-  assert.equal(result.complete, false);
-  assert.equal(result.skipped[0].reason, "unsupported_quantity_unit");
+  assert.equal(usdaFoundationPortionConversion("broccoli", "cup"), null);
+  assert.equal(usdaFoundationPortionConversion("eggs", "pieces"), null);
+  assert.equal(usdaFoundationPortionConversion("onion", "piece"), null);
+  assert.equal(usdaFoundationPortionConversion("red_onion", "piece"), null);
 });
 
 test("B3 complete mass records can participate in deterministic static calculations", () => {
@@ -113,13 +110,13 @@ test("static nutrient calculator never treats an unsupported unit as a complete 
   const syntheticRecipe = {
     ingredients: [
       { canonicalIngredientId: "chickpeas", quantity: 200, unit: "g" },
-      { canonicalIngredientId: "olive_oil", quantity: 1, unit: "tbsp" }
+      { canonicalIngredientId: "sesame_oil", quantity: 1, unit: "tsp" }
     ],
     serving: { servings: 2 }
   };
   const densities = {
     chickpeas: { energyKcal: 100, proteinG: 10, carbohydrateG: 20, fatG: 2, fibreG: 8 },
-    olive_oil: { energyKcal: 900, proteinG: 0, carbohydrateG: 0, fatG: 100, fibreG: 0 }
+    sesame_oil: { energyKcal: 900, proteinG: 0, carbohydrateG: 0, fatG: 100, fibreG: 0 }
   };
   const result = calculatePerServingFromDensities(syntheticRecipe, densities);
   assert.equal(result.perServing.energyKcal, null);
@@ -129,7 +126,7 @@ test("static nutrient calculator never treats an unsupported unit as a complete 
   assert.equal(result.knownContributionPerServing.fibreG, 8);
   assert.equal(result.complete, false);
   assert.equal(result.calculationState, "PARTIAL_STATIC_CALCULATION");
-  assert.deepEqual(result.skipped, [{ ingredientId: "olive_oil", reason: "unsupported_quantity_unit" }]);
+  assert.deepEqual(result.skipped, [{ ingredientId: "sesame_oil", reason: "unsupported_quantity_unit" }]);
 });
 
 test("USDA Foundation portion evidence supports canonical banana pieces without generic guessing", () => {
