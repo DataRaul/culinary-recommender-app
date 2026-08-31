@@ -15,20 +15,20 @@ export const INGREDIENTS = {
   butter: item("butter", "dairy", "butter", ["mantequilla"], ["milk"], true),
 
   salt: item("salt", "seasoning", "salt", ["sal"], [], true),
-  black_pepper: item("black_pepper", "seasoning", "black pepper", ["pepper", "pimienta negra"], [], true),
+  black_pepper: item("black_pepper", "seasoning", "black pepper", ["pepper", "pimienta negra", "peppercorns", "white pepper"], [], true),
   garlic: item("garlic", "allium", "garlic", ["ajo", "garlic clove", "garlic cloves"], [], true),
-  onion: item("onion", "allium", "onion", ["onions", "cebolla", "yellow onion"], [], true),
+  onion: item("onion", "allium", "onion", ["onions", "cebolla", "yellow onion", "spanish onion", "white onion"], [], true),
   red_onion: item("red_onion", "allium", "red onion", ["cebolla roja", "cebolla morada"], [], false),
   spring_onion: item("spring_onion", "allium", "spring onion", ["green onion", "scallion", "cebolleta"], [], false),
   leek: item("leek", "allium", "leek", ["puerro"], [], false),
   fresh_ginger: item("fresh_ginger", "aromatic", "fresh ginger", ["ginger", "jengibre"], [], true),
 
-  tomato: item("tomato", "tomato", "tomato", ["tomatoes", "tomate", "fresh tomato"], [], false),
+  tomato: item("tomato", "tomato", "tomato", ["tomatoes", "tomate", "fresh tomato", "plum tomato", "plum tomatoes"], [], false),
   cherry_tomato: item("cherry_tomato", "tomato", "cherry tomatoes", ["cherry tomato", "tomates cherry"], [], false),
   canned_tomato: item("canned_tomato", "tomato", "canned tomato", ["crushed tomato", "tomate triturado", "tinned tomato"], [], true),
   passata: item("passata", "tomato", "tomato passata", ["passata", "tomate tamizado"], [], true),
   tomato_paste: item("tomato_paste", "tomato", "tomato paste", ["tomato puree", "concentrado de tomate", "tomate concentrado"], [], true),
-  bell_pepper: item("bell_pepper", "pepper", "bell pepper", ["pimiento", "red pepper", "sweet pepper"], [], false),
+  bell_pepper: item("bell_pepper", "pepper", "bell pepper", ["pimiento", "red pepper", "sweet pepper", "green bell pepper"], [], false),
   spinach: item("spinach", "leafy_green", "spinach", ["espinaca", "baby spinach"], [], false),
   kale: item("kale", "leafy_green", "kale", ["curly kale"], [], false),
   lettuce: item("lettuce", "leafy_green", "lettuce", ["lechuga"], [], false),
@@ -44,7 +44,7 @@ export const INGREDIENTS = {
   green_beans: item("green_beans", "vegetable", "green beans", ["judias verdes", "judías verdes"], [], false),
   peas: item("peas", "legume_vegetable", "peas", ["green peas", "guisantes", "frozen peas"], [], true, ["legume"]),
   sweetcorn: item("sweetcorn", "vegetable", "sweetcorn", ["corn", "maiz", "maíz", "corn kernels"], [], true),
-  cucumber: item("cucumber", "vegetable", "cucumber", ["pepino"], [], false),
+  cucumber: item("cucumber", "vegetable", "cucumber", ["cucumbers", "pepino"], [], false),
   potato: item("potato", "tuber", "potato", ["potatoes", "patata", "papa"], [], true),
   sweet_potato: item("sweet_potato", "tuber", "sweet potato", ["batata", "boniato"], [], false),
   pumpkin: item("pumpkin", "squash", "pumpkin", ["calabaza"], [], false),
@@ -66,6 +66,8 @@ export const INGREDIENTS = {
   oregano: item("oregano", "herb", "oregano", ["orégano"], [], true),
   thyme: item("thyme", "herb", "thyme", ["tomillo"], [], true),
   rosemary: item("rosemary", "herb", "rosemary", ["romero"], [], true),
+  dill: item("dill", "herb", "dill", ["eneldo"], [], false),
+  bay_leaf: item("bay_leaf", "herb", "bay leaf", ["bay leaves", "laurel", "hoja de laurel"], [], true),
 
   cumin: item("cumin", "spice", "ground cumin", ["cumin", "comino"], [], true),
   smoked_paprika: item("smoked_paprika", "spice", "smoked paprika", ["paprika", "pimenton", "pimentón"], [], true),
@@ -74,8 +76,9 @@ export const INGREDIENTS = {
   curry_powder: item("curry_powder", "spice", "curry powder", ["curry"], [], true),
   garam_masala: item("garam_masala", "spice", "garam masala", [], [], true),
   cinnamon: item("cinnamon", "spice", "ground cinnamon", ["cinnamon", "canela"], [], true),
-  chilli: item("chilli", "chilli", "chilli", ["chili", "guindilla"], [], true, ["spice"]),
+  chilli: item("chilli", "chilli", "chilli", ["chili", "guindilla", "chile pepper", "chile peppers"], [], true, ["spice"]),
   chilli_flakes: item("chilli_flakes", "chilli", "chilli flakes", ["chili flakes", "red pepper flakes", "copos de chile"], [], true, ["spice"]),
+  chilli_powder: item("chilli_powder", "chilli", "chilli powder", ["chili powder", "chile powder"], [], true, ["spice"]),
 
   rice: item("rice", "grain", "rice", ["arroz", "long grain rice"], [], true, ["rice"]),
   brown_rice: item("brown_rice", "grain", "brown rice", ["arroz integral"], [], true, ["rice"]),
@@ -93,7 +96,7 @@ export const INGREDIENTS = {
   oats: item("oats", "grain", "oats", ["oatmeal", "avena"], ["gluten"], true),
   bread: item("bread", "grain", "bread", ["pan", "wholegrain bread"], ["gluten"], true, ["wheat"]),
   tortilla: item("tortilla", "flatbread", "tortilla wrap", ["wrap", "flour tortilla", "tortilla de trigo"], ["gluten"], true, ["wheat"]),
-  corn_tortilla: item("corn_tortilla", "flatbread", "corn tortilla", ["tortilla de maiz", "tortilla de maíz"], [], true, ["corn"]),
+  corn_tortilla: item("corn_tortilla", "flatbread", "corn tortilla", ["tortilla de maiz", "tortilla de maíz", "corn tortillas"], [], true, ["corn"]),
   quinoa: item("quinoa", "pseudo_grain", "quinoa", [], [], true),
 
   lentils: item("lentils", "legume", "lentils", ["lentil", "lentejas", "brown lentils"], [], true),
@@ -116,7 +119,7 @@ export const INGREDIENTS = {
   feta: item("feta", "dairy", "feta", ["feta cheese", "queso feta"], ["milk"], false),
   parmesan: item("parmesan", "dairy", "Parmesan", ["parmesan cheese", "parmigiano"], ["milk"], false),
   ricotta: item("ricotta", "dairy", "ricotta", ["ricotta cheese", "queso ricotta"], ["milk"], false),
-  mozzarella: item("mozzarella", "dairy", "mozzarella", ["mozzarella cheese"], ["milk"], false),
+  mozzarella: item("mozzarella", "dairy", "mozzarella", ["mozzarella cheese", "fresh mozzarella"], ["milk"], false),
   milk: item("milk", "dairy", "milk", ["leche"], ["milk"], false),
   oat_milk: item("oat_milk", "plant_milk", "oat drink", ["oat milk", "bebida de avena"], ["gluten"], false, ["oat"]),
   soy_milk: item("soy_milk", "plant_milk", "soy drink", ["soy milk", "soya milk", "bebida de soja"], ["soy"], false, ["soy"]),
@@ -125,7 +128,7 @@ export const INGREDIENTS = {
   desiccated_coconut: item("desiccated_coconut", "coconut", "desiccated coconut", ["shredded coconut", "coco rallado"], [], true),
 
   chicken_breast: item("chicken_breast", "poultry", "chicken breast", ["chicken", "pechuga de pollo"], [], false, ["chicken"]),
-  chicken_thigh: item("chicken_thigh", "poultry", "chicken thigh", ["chicken thighs", "muslo de pollo"], [], false, ["chicken"]),
+  chicken_thigh: item("chicken_thigh", "poultry", "chicken thigh", ["chicken thighs", "muslo de pollo", "chicken pieces"], [], false, ["chicken"]),
   turkey_mince: item("turkey_mince", "poultry", "turkey mince", ["ground turkey", "pavo picado"], [], false, ["turkey"]),
   beef_mince: item("beef_mince", "beef", "lean beef mince", ["ground beef", "carne picada"], [], false),
   pork_tenderloin: item("pork_tenderloin", "pork", "pork tenderloin", ["pork fillet", "solomillo de cerdo"], [], false),
@@ -148,10 +151,13 @@ export const INGREDIENTS = {
   pumpkin_seeds: item("pumpkin_seeds", "seed", "pumpkin seeds", ["pepitas", "semillas de calabaza"], [], true),
   sunflower_seeds: item("sunflower_seeds", "seed", "sunflower seeds", ["semillas de girasol"], [], true),
 
+  vinegar: item("vinegar", "acid", "vinegar", ["white vinegar", "wine vinegar", "red wine vinegar", "coconut vinegar", "vinagre"], [], true),
   rice_vinegar: item("rice_vinegar", "acid", "rice vinegar", ["vinagre de arroz"], [], true),
   balsamic_vinegar: item("balsamic_vinegar", "acid", "balsamic vinegar", ["vinagre balsámico", "vinagre balsamico"], [], true),
+  sugar: item("sugar", "sweetener", "sugar", ["white sugar", "azúcar", "azucar"], [], true),
   honey: item("honey", "sweetener", "honey", ["miel"], [], true),
-  maple_syrup: item("maple_syrup", "sweetener", "maple syrup", ["sirope de arce"], [], true)
+  maple_syrup: item("maple_syrup", "sweetener", "maple syrup", ["sirope de arce"], [], true),
+  water: item("water", "water", "water", ["iced water", "agua"], [], true)
 };
 
 function normalizeAlias(value) {
