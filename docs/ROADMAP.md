@@ -16,11 +16,12 @@
 | V0.9.3 | ACCEPTED BASELINE | permanent exclusions, mapped allergen hard filters, broad integrated browser acceptance |
 | V1.0 / Content Gate A | COMPLETE | expanded project-authored recipes + hierarchical ingredient ontology + six-class substitution graph |
 | V1.0.1 / Content Gate B foundation | COMPLETE | USDA source/identity ledger + NutritionSource evidence coverage + fail-partial calculation framework |
-| V1.0.2 / Content Gate B1 | IMPLEMENTED / VALIDATION_PENDING | bounded USDA Foundation per-100g static composition for 14 canonical ingredients + evidence-safe recipe calculation |
+| V1.0.2 / Content Gate B1 | COMPLETE | bounded USDA Foundation per-100g static composition for 14 canonical ingredients + evidence-safe recipe calculation |
 | V1.0.1 / Content Gate C | COMPLETE | Spain/Canary ingredient classes + package/availability/reuse-aware portfolio cost heuristic |
 | V1.0.1 / Content Gate D | COMPLETE | normalized culinary technique/risk/execution/convenience/learning intelligence across full corpus |
+| V1.0.3 / Content Gate E | IMPLEMENTED / VALIDATION_PENDING | 15 coverage-driven authored recipes + deterministic corpus/search coverage audit + pineapple future-exclusion proof |
 | V1.x / Nutrition B2 | NEXT | expand defensible USDA mappings/forms and explicit gram-weight/unit normalization |
-| V1.x / Corpus breadth | NEXT | coverage-driven authored recipes for high-value Search and planner gaps |
+| V1.x / Corpus breadth | CONTINUOUS | use coverage audit to target high-value Search/planner gaps rather than recipe-count growth |
 | Brain P0 | NOT_AUTHORIZED | future Culinary & Nutrition Brain |
 | App Brain-derived V1.x | DEFERRED | public-safe Brain-derived upgrades after explicit Brain authorization |
 
@@ -28,9 +29,11 @@ Content Gate A was merged through PR #6 at `1742bd40691cca614db2e12ccaa47499bea4
 
 Gates B foundation, C and D were merged through PR #7 at `59ae06755d1c681aa5f56d4f20e8bdaf1d01bec2`; deterministic/static tests, the 15,552-profile matrix, comprehensive Chromium acceptance, post-merge validation and Pages deployment were green.
 
-The accepted shell/core is not reopened by routine corpus, ontology or evidence growth. V1 content work remains additive behind stable `RecipeSource`, `NutritionSource`, `IngredientNormalizer`, `RecommendationPolicy`, planner, substitution and cost interfaces.
+Gate B1 was merged through PR #8 at `5dc9c668df8ac96361657cd403b95bf05e859ac9`; public validation, matrix/browser acceptance, post-merge validation and Pages deployment all passed. The authoritative lane is therefore real but deliberately partial: complete USDA-derived recipe values replace estimates only under full ingredient/nutrient/mass-unit coverage.
 
-Nutrition evidence is intentionally progressive. The first static composition tranche bundles only a small public-domain Foundation extract and keeps per-nutrient missingness explicit. Recipe-level authoritative replacement occurs only when all required ingredients, tracked nutrients and quantity units are supported. Partial evidence remains auditable but does not overwrite the current low-confidence project estimate.
+Gate E turns corpus growth into a measurable coverage process. A deterministic audit records cuisine, dietary, time, protein, meal-prep and canonical-ingredient usage. The first tranche targets underused ingredients and demonstrates a lifecycle invariant: a durable future-only `pineapple` exclusion created before pineapple existed must become a recognized exclusion and continue blocking recommendations when pineapple enters the ontology and corpus.
+
+The accepted shell/core is not reopened by routine corpus, ontology or evidence growth. V1 content work remains additive behind stable `RecipeSource`, `NutritionSource`, `IngredientNormalizer`, `RecommendationPolicy`, planner, substitution and cost interfaces.
 
 The next nutrition step is breadth rather than loosened certainty: add clearly matched ingredient/form records and explicit gram weights/unit mappings where defensible. Do not use generic spoon/piece guesses to inflate coverage.
 
