@@ -1,0 +1,24 @@
+name: One-off Fineli B4 candidate discovery
+on:
+  push:
+    branches: [v1-european-evidence-b4]
+    paths:
+      - '.github/workflows/fineli-b4-candidate-discovery.yml'
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Capture bounded official Fineli API candidates
+        run: node scripts/discover-fineli-candidates.mjs scripts/fineli-b4-targets.json /tmp/fineli-b4-candidates.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fineli-b4-candidate-discovery
+          path: /tmp/fineli-b4-candidates.json
+          retention-days: 1
