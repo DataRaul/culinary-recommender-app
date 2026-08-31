@@ -27,72 +27,130 @@ Delivered a materially broader project-authored recipe corpus, bilingual/hierarc
 
 ## V1 Nutrition Foundation / B1 — COMPLETE
 
-The evidence framework and first bounded USDA Foundation tranche were completed through PRs #7 and #8. B1 merged at `5dc9c668df8ac96361657cd403b95bf05e859ac9`; PR and post-merge deterministic/browser validation and Pages deployment passed.
+The evidence framework and first bounded USDA Foundation tranche completed through PRs #7 and #8. B1 merged at `5dc9c668df8ac96361657cd403b95bf05e859ac9` with green PR/post-merge validation and Pages deployment.
 
-Rules remain:
+Standing rules:
+
 - USDA FoodData Central Foundation Foods Version 15.0 / 2026-04-30;
-- only manually reviewed bounded static records are committed, never the bulk USDA database;
+- only manually reviewed bounded static records are committed;
 - missing nutrient fields remain `null`, never zero;
-- direct `g`/`kg` quantities qualify for deterministic calculation;
-- unsupported quantities, unmapped foods or missing nutrients make the calculation partial rather than guessed;
-- recipe estimates are replaced only by a complete authoritative calculation.
+- direct `g` / `kg` quantities qualify for deterministic calculation;
+- unsupported quantities, unmapped foods or missing nutrients keep the calculation partial;
+- recipe estimates are replaced only by complete authoritative calculations.
 
 ## V1 Nutrition Gate B2 — COMPLETE
 
-Merged through PR #10 at `225cd4ade1bd7af374d465600118cff79dbd4c6c`; deterministic/static validation, the 15,552-profile matrix, Chromium acceptance, post-merge validation and Pages deployment passed.
+Merged through PR #10 at `225cd4ade1bd7af374d465600118cff79dbd4c6c`; deterministic/static, 15,552-profile matrix, Chromium, post-merge and Pages validation passed.
 
-USDA household-weight evidence remains separate from conversion policy:
-- banana: one peeled banana = 115 g; canonical `piece(s)` may use this conversion;
-- tuna: one can = 107 g drained solids or 142 g total contents; bare `can(s)` remains ambiguous and fails closed;
-- generic spoon/piece averages are prohibited.
+USDA household-weight evidence remains separate from conversion policy. Banana `piece(s)` may use the reviewed 115 g peeled weight. Tuna `can(s)` remains ambiguous because source rows distinguish 107 g drained solids and 142 g total contents. Generic spoon/piece averages are prohibited.
 
 ## V1 Nutrition Gate B3 — COMPLETE
 
-Merged through PR #11 at `016db58fb01ca0e7cbf8354faf9ca38469e6e0b1`; deterministic/static validation, matrix, Chromium, post-merge validation and Pages deployment passed.
+Merged through PR #11 at `016db58fb01ca0e7cbf8354faf9ca38469e6e0b1`; deterministic/static, matrix, Chromium, post-merge and Pages validation passed.
 
-Fifteen additional USDA Foundation forms were manually reviewed, bringing the bounded USDA ledger to 29 records. Thirteen B3 records have all five tracked nutrients; cucumber and spring onion remain explicitly partial. Broccoli, egg and onion household weights remain evidence-only because current canonical recipe semantics are not specific enough to apply them automatically.
+Fifteen additional USDA Foundation forms brought the bounded USDA composition ledger to 29 records. Broccoli, egg and onion household weights remain evidence-only where the app's canonical semantics are insufficient for automatic use.
 
 ## V1 European Evidence Gate B4 — COMPLETE
 
-Merged through PR #12 at `fd33037ce48a75b60ac5b8ca7d7526b7ffb15061`. Pre-merge deterministic/static validation, the 15,552-profile matrix and Chromium acceptance passed, followed by green post-merge validation and GitHub Pages deployment.
+Merged through PR #12 at `fd33037ce48a75b60ac5b8ca7d7526b7ffb15061` with green pre/post-merge validation and Pages deployment.
 
 B4 introduced ANSES-Ciqual 2025 as a bounded second official composition source:
+
 - dataset DOI `10.57745/RDMHWY`;
-- 3,484-food official catalogue / 74 constituents;
-- Etalab Open Licence 2.0 with required ANSES attribution;
-- 32 manually reviewed app-relevant food/form mappings only;
-- English/French identity, scientific name, match notes, per-field confidence (`A`–`D`) and source codes retained.
+- 3,484 foods / 74 constituents;
+- Etalab Open Licence 2.0 with ANSES attribution;
+- 32 manually reviewed app-relevant food/form mappings;
+- exact identity, match notes, per-field confidence and source codes retained.
 
-B4 also introduced a comparison/audit layer. It never averages sources and preserves semantic differences, especially USDA carbohydrate-by-difference (`1005`) versus Ciqual available carbohydrate (`CHOAVL`). B4 itself did not change product source selection.
-
-European-source governance recorded during B4:
-- Fineli/THL Finland remains a strong CC BY 4.0 candidate, but its documented API and official package returned HTTP 403 to standard GitHub-hosted runners; no bypass is attempted and no Fineli data is bundled;
-- Frida/DTU, NEVO/RIVM and BEDCA/AESAN remain governed by their exact reuse terms;
-- EuroFIR remains outside the current no-cost contract;
-- EFSA FoodEx2 and EU regulatory datasets remain a separate classification/regulatory truth lane rather than nutrient-composition replacements.
+B4 also introduced a comparison/audit layer. It never averages sources and preserves semantic differences, especially USDA carbohydrate-by-difference (`1005`) versus Ciqual available carbohydrate (`CHOAVL`). B4's original introduction state remains frozen history.
 
 ## V1.0.7 European Primary Nutrition Policy — COMPLETE / USER-APPROVED
 
-The user explicitly approved the conditional European-primary policy on 2026-08-31. It was implemented through PR #13 and merged to `main` at `cfa3b9115821b59321c7ef19e779ff3a578aa6b6`. The corrected candidate passed deterministic/static validation, the 15,552-profile matrix and Chromium acceptance. Post-merge validation and Pages deployment also passed.
+The user explicitly approved the conditional European-primary policy on 2026-08-31. PR #13 merged it to `main` at `cfa3b9115821b59321c7ef19e779ff3a578aa6b6`; deterministic/static validation, the 15,552-profile matrix, Chromium acceptance, post-merge validation and Pages deployment passed.
 
-The policy is deliberately conditional, not geographical dogma:
+The policy is conditional, not geographical dogma:
 
 1. source selection occurs **per ingredient and per tracked nutrient**;
-2. reviewed Ciqual evidence may become primary for Canary/Spain/Europe when its food-form match is equally good or better and its constituent confidence is `A`, `B` or `C`;
-3. Ciqual `D` confidence does not displace an available reviewed USDA value, although a reviewed `D` field may still be used when it is the only reviewed source;
+2. reviewed Ciqual evidence may become primary when food-form match is equally good or better and constituent confidence is `A`, `B` or `C`;
+3. Ciqual `D` does not displace an available reviewed USDA value, although reviewed `D` may remain usable where no reviewed USDA value exists;
 4. a stronger USDA food-form match remains primary;
-5. no values are averaged across official sources;
-6. exact source, identifier, nutrient semantic, method, form confidence, Ciqual field confidence and selection reason remain available in provenance;
+5. no official values are averaged;
+6. exact source, identifier, nutrient semantic, method, form confidence, field confidence, evidence tranche and selection reason remain available;
 7. USDA carbohydrate-by-difference and Ciqual `CHOAVL` are never summed into one authoritative recipe carbohydrate total;
-8. when the European-selected mix cannot form a coherent complete recipe total but the previously reviewed USDA lane can, the coherent full USDA calculation is retained rather than downgrading to a low-confidence authored estimate;
-9. if neither policy-selected nor coherent USDA coverage is complete, the project-authored estimate remains primary;
-10. nutrition source policy does not alter dietary/allergen/permanent-exclusion safety, recommendation ranking, medical boundaries or the accepted shell.
+8. when the Europe-selected mix is incomplete or semantically incompatible but the reviewed USDA lane can form a coherent complete recipe calculation, that coherent USDA calculation is retained;
+9. otherwise the project-authored estimate remains primary;
+10. composition policy does not alter dietary/allergen/permanent-exclusion safety, recommendation ranking, medical boundaries or the accepted shell.
 
-This human gate is now resolved. Future changes that materially alter these source-selection semantics require a new bounded policy decision; ordinary evidence coverage expansion under these rules does not.
+This human gate is resolved. Ordinary evidence expansion under these semantics does not reopen it.
+
+## V1.0.8 Authoritative Nutrition Coverage Audit — COMPLETE
+
+Merged through PR #16 at `cdb9a9d9e6d2e0bf0f251bb37098d07dd64e3e9e` after green validation/deployment.
+
+The first whole-corpus deterministic audit established:
+
+- recipes: **76**;
+- authoritative recipes: **0 / 76**;
+- missing-density blocker events: **356**;
+- unsupported-quantity blocker events: **86**;
+- mixed incompatible carbohydrate-semantic events: **12**.
+
+The zero result is accepted evidence that the fail-closed contract is working. Future evidence gates are evaluated by recipe-level unlocks and blocker reduction, not raw database size.
+
+## V1.0.9 Nutrition B5 — COMPLETE
+
+PR #17 added **22 manually reviewed ANSES-Ciqual food/form records** while preserving the frozen 32-record B4 tranche. Runtime composition evidence therefore exposes B4 and B5 separately and a combined reviewed Ciqual count of **54**.
+
+The source-selection contract remained unchanged. Deferred form mismatches such as cumin seed for ground cumin, generic paprika for smoked paprika, unspecified tofu for firm tofu and egg-containing noodles for generic wheat noodles stayed unpromoted.
+
+The integrated B5 coverage result remained fail-closed:
+
+- authoritative recipes: **0 / 76**;
+- missing-density blockers: **141**, down from 356;
+- unsupported-quantity blockers: **202**, because former density blockers advanced to their next truthful blocker;
+- mixed incompatible carbohydrate-semantic events: **16**;
+- newly authoritative recipes: **none**.
+
+PR #17 merged at `5689b0e40c6c4d9d7040b0ee25b7cc41d898b751`. Post-merge validation run `33443904301` and Pages run `33443903344` passed.
+
+## V1.0.10 Nutrition B6 — VALIDATED MERGE CANDIDATE
+
+B6 introduces a separate bounded **quantity / portion evidence** lane from the Norwegian Food Safety Authority's Norwegian Food Composition Table 2026.
+
+Licence/reuse is resolved for this bounded attributed gate:
+
+- licence: **NLOD 2.0 / Norsk lisens for offentlige data**;
+- attribution retained in the source record;
+- no runtime API fetch;
+- no bulk source database committed;
+- no Norwegian composition values introduced by B6.
+
+Fourteen manually reviewed food/unit mappings are promoted: lemon piece, garlic clove, extra-virgin olive-oil tablespoon, generic raw tomato piece, generic bell-pepper piece, soy-sauce tablespoon, raw-onion piece, carrot piece, cucumber piece, raw-egg piece, spring-onion piece, curry-powder teaspoon, aubergine piece and mango piece.
+
+Fail-closed cases remain explicit:
+
+- lime piece → ambiguous 17 g vs 65 g source rows;
+- avocado piece → ambiguous 130 g small vs 220 g large;
+- `onion|small` → deferred;
+- `sesame_oil|tsp` → deferred, no inferred spoon arithmetic;
+- `red_onion|piece` → deferred.
+
+The existing USDA banana conversion keeps precedence in its already-reviewed lane, and USDA tuna-can ambiguity remains unchanged.
+
+Integration audit run `33445671486` passed all **83 deterministic tests** and the authoritative coverage report. Measured B6 state:
+
+- authoritative recipes: **0 / 76**;
+- missing-density blockers: **141**;
+- unsupported-quantity blockers: **27**;
+- explicit ambiguous-portion blockers: **20**;
+- mixed incompatible carbohydrate-semantic events: **16**;
+- newly authoritative recipes: **none**.
+
+B6 therefore resolves or truthfully reclassifies **175 of 202** B5 unsupported-quantity events without manufacturing recipe completeness. The candidate is ready for normal PR/browser validation once documentation, PWA precache and transient-workflow cleanup are complete.
 
 ## V1 Content Gate C — COMPLETE
 
-Merged through PR #7 at `59ae06755d1c681aa5f56d4f20e8bdaf1d01bec2`. Spain/Canary cost intelligence combines authored recipe tiers, ingredient classes, availability assumptions, package burden and cross-meal reuse. It remains relative and does not claim live prices or fake euro precision.
+Merged through PR #7 at `59ae06755d1c681aa5f56d4f20e8bdaf1d01bec2`. Spain/Canary cost intelligence combines authored recipe tiers, ingredient classes, availability assumptions, package burden and cross-meal reuse. It remains relative and does not claim live prices or false euro precision.
 
 ## V1 Content Gate D — COMPLETE
 
@@ -100,29 +158,16 @@ Merged through PR #7. Full-corpus deterministic culinary-quality normalization c
 
 ## V1 Content Gate E — COMPLETE
 
-Merged through PR #9 at `3e0be5adcde9ec9567c0595ac4e8fc71dd237ee4`; PR and post-merge validation plus Pages deployment passed.
+Merged through PR #9 at `3e0be5adcde9ec9567c0595ac4e8fc71dd237ee4`; PR/post-merge validation and Pages deployment passed.
 
-Delivered 15 coverage-driven project-authored recipes, broader ingredient/Search coverage, canonical bilingual pineapple promotion, deterministic corpus/search auditing, and regression proof that previously stored future exclusions remain hard when new recipes later introduce that ingredient.
-
-## V1.0.9 Nutrition B5 — VALIDATED MERGE CANDIDATE
-
-PR #17 expands the bounded Ciqual lane by **22 manually reviewed food/form records** while preserving the frozen 32-record B4 tranche. Runtime evidence therefore exposes B4 and B5 separately and a combined reviewed Ciqual count of **54**.
-
-The source-selection contract is unchanged: no averaging, stronger USDA form wins, Ciqual `D` does not displace available reviewed USDA, B5-only reviewed `D` may be used as the only source, and carbohydrate semantics remain fail-closed. Deferred weak/form-mismatched candidates such as cumin seed for ground cumin, generic paprika for smoked paprika, unspecified tofu for firm tofu and egg-containing noodles for generic wheat noodles remain unpromoted.
-
-Deterministic B5 coverage audit run `33443162092` passed and measured:
-- authoritative recipes: **0 / 76**;
-- missing-density blocker events: **141**, down from 356;
-- unsupported-quantity-unit blocker events: **202**, up from 86 because many former density blockers now advance to the next truthful quantity blocker;
-- mixed incompatible carbohydrate-semantic events: **16**, with the semantic firewall still rejecting incompatible totals;
-- newly authoritative recipes: **none**.
-
-PR validation run `33443356698` passed deterministic/static tests and Chromium acceptance on the pre-documentation candidate. Final merge remains gated on the current PR head validating green; post-merge validation and Pages deployment remain required before B5 is considered complete.
+Delivered 15 coverage-driven project-authored recipes, broader ingredient/Search coverage, canonical bilingual pineapple promotion and regression proof that previously stored future exclusions remain hard when new recipes later introduce that ingredient.
 
 ## Brain P0 — NOT AUTHORIZED
 
-The dedicated Culinary & Nutrition Brain remains a separate future human authorization boundary. The public app must not call private Knowledge Core at runtime. Public-safe policy/data artifacts may be prepared behind the accepted stable interfaces, but the Brain itself must not be created or activated without explicit authorization.
+The dedicated Culinary & Nutrition Brain remains a separate future human authorization boundary. The public app must not call private Knowledge Core at runtime. Public-safe policy/data artifacts may be prepared behind accepted stable interfaces, but the Brain itself must not be created or activated without explicit authorization.
 
-## Deferred
+## Deferred / future lanes
 
 Nutrient-gap awareness, supplement-routine checking, recipe images, live/local grocery prices, fitness integration, advanced culinary exploration and Brain P0 remain DEFERRED/NOT_AUTHORIZED rather than failed.
+
+The next ordinary nutrition work after a legitimate B6 merge is coverage-driven: target the remaining composition/form blockers and residual exact quantity semantics that can unlock complete recipes, while preserving the carbohydrate semantic firewall and all source/licensing provenance.
