@@ -40,7 +40,9 @@ test("B6 portion evidence materially reduces unsupported quantities without manu
     missing_density: 141,
     unsupported_quantity_unit: 27
   });
-  assert.ok((audit.semanticIssueCounts.mixed_incompatible_carbohydrate_semantics || 0) >= 16);
+  assert.deepEqual(audit.semanticIssueCounts, {
+    mixed_incompatible_carbohydrate_semantics: 16
+  });
 });
 
 test("audit is fail-closed when NutritionSource is missing", () => {
