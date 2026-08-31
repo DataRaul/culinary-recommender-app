@@ -10,8 +10,8 @@
 | Recipe corpus | ✅ COVERAGE EXPANSION COMPLETE | V1.0.3 / Gate E | coverage-driven iteration |
 | Ingredient ontology | ✅ V1 GATE A COMPLETE | hierarchical + bilingual | broader evidence/form coverage |
 | Substitutions | ✅ V1 GATE A COMPLETE | six-class controlled graph | contextual editorial edges |
-| Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.0.10 B6 candidate | targeted composition + residual quantity gaps |
-| European evidence | ✅ CONDITIONAL PRIMARY POLICY | Ciqual B4+B5 + Matvaretabellen B6 candidate | recipe-level unlocks |
+| Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.0.10 B6 COMPLETE | targeted composition + residual quantity gaps |
+| European evidence | ✅ CONDITIONAL PRIMARY POLICY | Ciqual B4+B5 + Matvaretabellen B6 | recipe-level unlocks |
 | Cost intelligence | ✅ COMPLETE | Gate C | empirical prices only if separately authorized |
 | Culinary quality | ✅ COMPLETE | Gate D | editorial refinement |
 | Recommender / planner | ✅ ACCEPTED CORE | V0.9.3 | richer public-safe policy later |
@@ -21,15 +21,16 @@
 | Fridge Search | ✅ ACCEPTED | Gate 9A | broader ingredient/evidence coverage |
 | Composable profile | ✅ ACCEPTED | Gate 9B | broader recipe variety |
 | Preference safety | ✅ ACCEPTED | V0.9.3 | additive product growth |
-| Culinary & Nutrition Brain | 🔒 NOT_AUTHORIZED | Deferred | explicit future authorization only |
+| Culinary & Nutrition Brain | ✅ P0 AUTHORIZED / FOUNDATION BUILT | Knowledge Core `culinary_nutrition` + static adapter contract | deterministic calibration; behavior changes separately gated |
 
 **Accepted shell/core:** V0.9.3  
 **Authoritative coverage baseline:** V1.0.8 / PR #16 / `cdb9a9d9e6d2e0bf0f251bb37098d07dd64e3e9e`  
 **Nutrition B5:** V1.0.9 / PR #17 / merged at `5689b0e40c6c4d9d7040b0ee25b7cc41d898b751`  
-**Nutrition B6:** V1.0.10 candidate — reviewed Matvaretabellen portion evidence  
+**Nutrition B6:** V1.0.10 / PR #18 / merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`  
+**Culinary & Nutrition Brain P0 calibration pin:** Knowledge Core `e5dcb29a7c6b78f59c062faf4c963c74aac10743`  
 **Public app:** https://dataraul.github.io/culinary-recommender-app/
 
-The V1 lineage includes project-authored corpus/ontology/substitution expansion, Spain/Canary cost intelligence, full-corpus culinary-quality normalization, bounded USDA Foundation evidence, bounded ANSES-Ciqual 2025 European composition evidence, the user-approved conditional European-primary source policy, deterministic whole-corpus authoritative-nutrition coverage measurement, and now a bounded Norwegian official portion-evidence lane.
+The V1 lineage includes project-authored corpus/ontology/substitution expansion, Spain/Canary cost intelligence, full-corpus culinary-quality normalization, bounded USDA Foundation evidence, bounded ANSES-Ciqual 2025 European composition evidence, the user-approved conditional European-primary source policy, deterministic whole-corpus authoritative-nutrition coverage measurement, the bounded Norwegian official portion-evidence lane, and now an explicitly authorized offline Culinary & Nutrition Brain calibration contract.
 
 ## What it does
 
@@ -105,7 +106,7 @@ PR #16 established the initial 76-recipe baseline at **0 / 76 authoritative**, w
 
 B5 remained truthfully **0 / 76 authoritative** while reducing missing-density blockers to **141**. Its 202 unsupported-quantity events exposed the next dominant blocker class rather than being guessed away.
 
-The integrated B6 candidate was measured in deterministic Actions run `33445671486` and remains **0 / 76 authoritative**. B6 changes the blocker profile to:
+B6 was merged through PR #18 after deterministic validation and remains **0 / 76 authoritative**. Its integrated blocker profile is:
 
 - missing-density blocker events: **141**;
 - unsupported-quantity-unit blocker events: **27**;
@@ -113,13 +114,27 @@ The integrated B6 candidate was measured in deterministic Actions run `334456714
 - mixed incompatible carbohydrate-semantic events: **16**;
 - newly authoritative recipes: **none**.
 
-Thus reviewed portion evidence resolves or reclassifies **175** of B5's 202 formerly unsupported quantity events without manufacturing a complete recipe. The next recipe-level gains now require targeted remaining composition forms, residual exact quantity semantics and continued carbohydrate-semantic coherence.
+Thus reviewed portion evidence resolves or reclassifies **175** of B5's 202 formerly unsupported quantity events without manufacturing a complete recipe. The next recipe-level gains require targeted remaining composition forms, residual exact quantity semantics and continued carbohydrate-semantic coherence.
+
+PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`; post-merge validation run `33446325292` and Pages run `33446324922` both passed.
+
+## Culinary & Nutrition Brain P0
+
+Brain P0 was explicitly authorized on 2026-08-31 and constructed in `DataRaul/knowledge-core` under the Knowledge Core governance protocol. The current reviewed calibration pin is `e5dcb29a7c6b78f59c062faf4c963c74aac10743`.
+
+The Brain combines official WHO/FAO, AESAN, EFSA and NNR evidence with a bounded free operator corpus from J. Kenji López-Alt, Helen Rennie and the Jacques Pépin Foundation. Operator evidence is restricted to culinary technique/workflow; it does not become nutrition, food-safety or medical authority.
+
+The public app consumes no private Knowledge Core data at runtime. `src/data/brain-public-policy-v1.js` is a static, reviewed, provenance-pinned **calibration-only** artifact. It does not currently alter ranking, eligibility, substitutions or nutrition behavior. Any later behavior change requires a separately reviewed public-safe export, deterministic tests, normal PR validation and browser acceptance.
+
+The free operator pass is saturated for P0 fundamentals. Long-form acquisition is therefore gap-triggered: Harold McGee for deeper food chemistry if a concrete decision requires it; Samin Nosrat selectively if flavor-balancing diagnosis remains under-specified; peer-reviewed cooking/yield/nutrient-retention research when it can unblock authoritative recipe nutrition; and cuisine-specific expert/primary sources for authenticity/adaptation. *The Food Lab* is not an immediate ingestion priority because the current free Kenji corpus already covers substantial overlapping mechanism evidence.
+
+See `docs/BRAIN_ADAPTER_CONTRACT.md`.
 
 ## European source status
 
 Fineli/THL Finland remains a strong open CC BY 4.0 candidate, but its documented API and official package returned HTTP 403 to standard GitHub-hosted runners during the bounded audit, so the project does not bypass that restriction or bundle Fineli data. Frida/DTU, NEVO/RIVM and BEDCA/AESAN remain governed by their exact reuse terms. EuroFIR remains outside the no-cost contract.
 
-Matvaretabellen licensing has now been verified for the bounded attributed B6 portion subset under NLOD 2.0. B6 uses portion evidence only; it does not silently introduce Norwegian composition or change the European-primary composition policy.
+Matvaretabellen licensing has been verified for the bounded attributed B6 portion subset under NLOD 2.0. B6 uses portion evidence only; it does not silently introduce Norwegian composition or change the European-primary composition policy.
 
 EFSA FoodEx2 and EU Commission regulatory datasets form a separate classification/regulatory truth lane. Legal limits and authorisations are not converted into nutrient-composition measurements or recommendation rules without a future explicit behavior contract.
 
@@ -151,7 +166,7 @@ npm run report:nutrition-coverage
 
 ## Data and licensing
 
-Recipes and application ontology/substitution guidance are project-authored. USDA FoodData Central composition/portion metadata use the documented CC0/public-domain lane. The bounded Ciqual modules retain Etalab Open Licence 2.0 attribution. The bounded Matvaretabellen B6 portion module retains NLOD 2.0 source identity and attribution.
+Recipes and application ontology/substitution guidance are project-authored. USDA FoodData Central composition/portion metadata use the documented CC0/public-domain lane. The bounded Ciqual modules retain Etalab Open Licence 2.0 attribution. The bounded Matvaretabellen B6 portion module retains NLOD 2.0 source identity and attribution. Brain-derived public artifacts must contain only normalized source-safe reasoning and provenance metadata permitted by the adapter contract; copyrighted source prose/transcripts are not exported.
 
 This repository currently has **no general licence**. Public visibility is not permission to reuse project-authored repository content.
 
@@ -161,6 +176,7 @@ This repository currently has **no general licence**. Public visibility is not p
 - `docs/ARCHITECTURE.md`
 - `docs/ROADMAP.md`
 - `docs/GATES.md`
+- `docs/BRAIN_ADAPTER_CONTRACT.md`
 - `docs/DESIGN_SYSTEM.md`
 - `docs/DATA_SOURCES.md`
 - `docs/EUROPEAN_EVIDENCE.md`
