@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "wikibooks-gate-f-snapshot-v1",
+  "source": {
+    "name": "English Wikibooks Cookbook",
+    "api": "https://en.wikibooks.org/w/api.php",
+    "category": "Category:Recipes",
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "attribution": "Wikibooks contributors; see the source page history",
+    "runtimeFetch": false
+  },
+  "discoveryMeasuredRecipePages": 3792,
+  "discoveryRunId": 33450506372,
+  "snapshotPolicy": "Exact revisions only. Text recipe core only. Images and source nutrition templates are excluded. Incomplete or unsupported records fail closed.",
+  "records": [
+    {"id":"wikibooks_philippine_chicken_adobo","pageid":47816,"title":"Cookbook:Adobo Chicken (Philippine)","revid":4630209,"timestamp":"2026-04-12T18:40:29Z","dishFamilyId":"philippine_chicken_adobo","admissionState":"ADMIT_REFERENCE_METADATA_INCOMPLETE"},
+    {"id":"wikibooks_baba_ganoush","pageid":28381,"title":"Cookbook:Baba Ganoush","revid":4629606,"timestamp":"2026-04-08T17:17:22Z","dishFamilyId":"baba_ganoush","admissionState":"ADMIT_RECOMMENDATION_ELIGIBLE"},
+    {"id":"wikibooks_bruschetta_base","pageid":25256,"title":"Cookbook:Bruschetta","revid":4523487,"timestamp":"2025-07-13T19:16:22Z","dishFamilyId":"bruschetta","admissionState":"ADMIT_RECOMMENDATION_ELIGIBLE_BASE_VARIANT"},
+    {"id":"wikibooks_caprese_salad","pageid":424559,"title":"Cookbook:Caprese Salad","revid":4605277,"timestamp":"2025-12-04T00:34:05Z","dishFamilyId":"caprese_salad","admissionState":"ADMIT_REFERENCE_METADATA_INCOMPLETE"},
+    {"id":"wikibooks_gazpacho","pageid":12749,"title":"Cookbook:Gazpacho","revid":4518408,"timestamp":"2025-06-21T16:27:08Z","dishFamilyId":"gazpacho","admissionState":"ADMIT_REFERENCE_METADATA_INCOMPLETE"},
+    {"id":"wikibooks_huevos_rancheros","pageid":85337,"title":"Cookbook:Huevos Rancheros","revid":4511733,"timestamp":"2025-06-17T15:23:15Z","dishFamilyId":"huevos_rancheros","admissionState":"ADMIT_REFERENCE_METADATA_INCOMPLETE"},
+    {"id":"wikibooks_spanish_omelet","pageid":23021,"title":"Cookbook:Spanish Omelet","revid":4517807,"timestamp":"2025-06-21T03:06:54Z","dishFamilyId":"spanish_potato_omelet","admissionState":"ADMIT_REFERENCE_METADATA_INCOMPLETE"},
+    {"id":"wikibooks_tzatziki","pageid":128463,"title":"Cookbook:Tzatziki","revid":4519035,"timestamp":"2025-06-21T17:20:31Z","dishFamilyId":"tzatziki","admissionState":"ADMIT_REFERENCE_METADATA_INCOMPLETE"}
+  ],
+  "reviewedRejections": [
+    {"title":"Cookbook:Afang Soup","pageid":483771,"revid":4638949,"reason":"SOURCE_MARKED_INCOMPLETE"},
+    {"title":"Cookbook:Refried Beans","pageid":28881,"revid":4534235,"reason":"NO_BOUNDED_QUANTITIES_OR_SERVINGS_FOR_INITIAL_NORMALIZER"},
+    {"title":"Cookbook:Greek Chicken Wrap","pageid":206955,"revid":4515085,"reason":"COMPOSITE_GREEK_YOGURT_SAUCE_NOT_YET_NORMALIZED"},
+    {"title":"Cookbook:Baingan Bartha (South Indian Eggplant with Chili) II","pageid":462385,"revid":4630287,"reason":"MULTIPLE_UNQUANTIFIED_INGREDIENTS_AND_ALTERNATIVE_TOMATO_FORM"},
+    {"title":"Cookbook:Baked Beans","pageid":127882,"revid":4534255,"reason":"LONG_COOKING_RECIPE_RETAINED_FOR_LATER_CORPUS_EXPANSION_NOT_INITIAL_UI_TRANCHE"}
+  ]
+}
