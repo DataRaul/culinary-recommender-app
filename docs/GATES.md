@@ -75,39 +75,63 @@ Implementation rules:
 - every applied portion conversion carries quantity provenance into the static calculation audit;
 - partial calculations still cannot overwrite the project-authored recipe estimate.
 
-## V1 Nutrition Gate B3 — REVIEWED FOUNDATION COVERAGE IMPLEMENTED / VALIDATION_PENDING
-This additive tranche uses a discovery-first review over the same official USDA Foundation Foods Version 15.0 / 2026-04-30 release. Candidate search does not promote matches automatically.
+## V1 Nutrition Gate B3 — COMPLETE
+Merged through PR #11 to `main` at `016db58fb01ca0e7cbf8354faf9ca38469e6e0b1`; deterministic/static validation, the 15,552-profile matrix and Chromium acceptance passed, followed by green post-merge validation and GitHub Pages deployment.
 
-Fifteen additional canonical foods/forms were manually reviewed and selected from the Foundation catalogue:
+Fifteen additional canonical foods/forms were manually reviewed from the same official USDA Foundation Foods Version 15.0 / 2026-04-30 release. Candidate search did not promote matches automatically.
 
-- broccoli;
-- whole egg (Grade A, large) — composition only; generic recipe pieces are not auto-weighted;
-- red onion;
-- generic onion represented specifically by yellow onion;
-- garlic;
-- generic mushroom represented specifically by white button mushroom;
-- mature raw carrot;
-- raw pineapple;
-- cucumber with peel;
-- generic rice represented specifically by raw unenriched white long-grain rice;
-- cauliflower;
-- aubergine/eggplant;
-- canned tomato paste without added salt;
-- crushed canned tomato;
-- spring onion/scallion.
-
-Evidence rules:
+Evidence rules preserved:
 
 - 13 of the 15 selected B3 records contain all five tracked nutrients;
-- cucumber lacks tracked fibre in the selected Foundation record and remains partial;
+- cucumber lacks tracked fibre and remains partial;
 - spring onion lacks tracked energy, carbohydrate and fat and remains partial;
 - cultivar/form-specific matches remain explicitly qualified rather than silently generalized;
 - ambiguous candidate families such as generic salmon, milk, yogurt, mango, apple and potato/sweet-potato varieties were not promoted merely to increase coverage;
-- B3 raw USDA household weights for chopped broccoli cup, large whole egg, yellow onion and red onion are retained as evidence only because current recipe semantics do not encode enough form/size/variety detail to apply them safely;
+- source household weights for chopped broccoli cup, large whole egg, yellow onion and red onion remain evidence-only because current recipe semantics do not encode enough form/size/variety detail for safe automatic conversion;
 - automatic quantity conversion policy therefore remains unchanged from B2;
-- the combined bounded ledger contains 29 reviewed Foundation composition records, while partial fields remain `null` and recipe estimates remain primary unless full required coverage is achieved.
+- the combined bounded USDA ledger contains 29 reviewed Foundation composition records.
 
-Gate B3 becomes COMPLETE only after deterministic/matrix/browser validation, clean merge, post-merge validation and Pages deployment.
+## V1 European Evidence Gate B4 — IMPLEMENTED / VALIDATION_PENDING
+This additive gate introduces a second official composition source as **corroboration/audit evidence only**, without changing the public NutritionSource's source-selection policy.
+
+Source:
+
+- ANSES-Ciqual 2025, published 2025-11-19;
+- dataset DOI `10.57745/RDMHWY`;
+- 3,484-food official XML catalogue;
+- Etalab Open Licence 2.0 with explicit ANSES attribution;
+- 32 manually reviewed app-relevant food/form mappings are retained in a bounded static module rather than bundling the full Ciqual database.
+
+Evidence semantics:
+
+- Ciqual energy values preserve both Jones-with-fibre and EU 1169/2011 methods where available;
+- protein preserves Ciqual's Jones-factor definition and per-field confidence code;
+- Ciqual carbohydrate `CHOAVL` is available carbohydrate and is **not** treated as equivalent to USDA nutrient `1005` carbohydrate-by-difference;
+- fat may be compared with form/method caveats;
+- fibre remains method-dependent;
+- per-field Ciqual confidence codes (`A`–`D`) and source codes are preserved rather than collapsed into a single database score;
+- missing values remain missing rather than imputed.
+
+Comparison policy:
+
+- no values are averaged across USDA and Ciqual;
+- no geography is assumed inherently more truthful;
+- exact food form, nutrient definition, method, geography, source version and licence stay visible;
+- material disagreements remain visible (for example the current reviewed canned-tuna forms differ in liquid/form and energy/protein/fat values);
+- Ciqual-only evidence such as reviewed farmed raw salmon is represented as single-source evidence rather than fabricating a USDA mapping;
+- the B4 comparison layer exposes `NO_STATIC_EVIDENCE`, `SINGLE_SOURCE_EVIDENCE`, `MULTI_SOURCE_REVIEWED_EVIDENCE` and `MULTI_SOURCE_FORM_CAVEAT` states;
+- B4 never changes recipe ranking, hard constraints, displayed nutrition selection or project-authored fallback estimates.
+
+European-source governance:
+
+- Fineli/THL Finland remains a strong open CC BY 4.0 candidate, but its documented API and package returned HTTP 403 to standard GitHub-hosted runners during B4; no access-control bypass is attempted;
+- Frida/DTU, NEVO/RIVM and BEDCA/AESAN remain candidates subject to exact reuse/licensing conditions;
+- EuroFIR FoodEXplorer remains outside the current cost/access contract;
+- EFSA FoodEx2 and EU regulatory datasets are a separate classification/regulatory truth lane, not composition-value replacements.
+
+Gate B4 becomes COMPLETE only after deterministic/static validation, the 15,552-profile matrix, Chromium acceptance, clean merge, post-merge validation and Pages deployment.
+
+**Next major human gate:** whether reviewed European composition evidence may become primary for Europe/Canary contexts or remain corroboration-only. That policy change is not pre-authorized by B4.
 
 ## V1 Content Gate C — COMPLETE
 Merged through PR #7 to `main` at `59ae06755d1c681aa5f56d4f20e8bdaf1d01bec2` after green deterministic, matrix and Chromium validation; post-merge validation and Pages deployment passed.
