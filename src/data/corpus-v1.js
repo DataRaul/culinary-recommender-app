@@ -12,7 +12,20 @@ for (const recipe of [...EXPANDED_RECIPES, ...SEARCH_COVERAGE_RECIPES]) {
 }
 
 export const AUTHORED_RECIPES = RECIPES;
-export const EXTERNAL_RECIPES = WIKIBOOKS_GATE_F_RECIPES;
+export const EXTERNAL_RECIPES = Object.freeze(WIKIBOOKS_GATE_F_RECIPES.map(recipe => ({
+  ...recipe,
+  mainProtein: recipe.mainProtein ?? null,
+  discovery: {
+    flavourProfile: [],
+    ...(recipe.discovery || {})
+  },
+  governance: {
+    ...(recipe.governance || {}),
+    recommendationState: recipe.governance?.recommendationState === "ELIGIBLE"
+      ? "SEARCH_ONLY"
+      : recipe.governance?.recommendationState
+  }
+})));
 
 const universeIds = new Set(AUTHORED_RECIPES.map(recipe => recipe.id));
 const externalWithoutIdCollisions = EXTERNAL_RECIPES.filter(recipe => {
