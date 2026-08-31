@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { publicNutritionSource, calculatePerServingFromDensities } from "../src/domain/nutrition.js";
 import {
+  CIQUAL_RUNTIME_SOURCE_V1,
   EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
   selectEuropeanPrimaryNutrient,
@@ -12,6 +13,15 @@ test("European-primary policy is explicit, bounded and non-averaging", () => {
   assert.equal(EUROPEAN_PRIMARY_POLICY_V1.context, "CANARY_ISLANDS_SPAIN_EUROPE");
   assert.equal(EUROPEAN_PRIMARY_POLICY_V1.averaging, "PROHIBITED");
   assert.match(EUROPEAN_PRIMARY_POLICY_V1.carbohydrateRule, /MUST_NOT_BE_SUMMED/);
+});
+
+test("runtime source metadata preserves B4 introduction history while exposing later policy eligibility", () => {
+  assert.equal(CIQUAL_RUNTIME_SOURCE_V1.evidenceIntroductionPolicy, "CORROBORATION_ONLY_NOT_PRIMARY");
+  assert.equal(CIQUAL_RUNTIME_SOURCE_V1.evidenceIntroductionState, "BOUNDED_STATIC_SECONDARY_EVIDENCE");
+  assert.equal(CIQUAL_RUNTIME_SOURCE_V1.runtimePolicy, "ELIGIBLE_VIA_EUROPEAN_PRIMARY_POLICY_V1");
+  assert.equal(CIQUAL_RUNTIME_SOURCE_V1.sourceSelectionPolicyId, EUROPEAN_PRIMARY_POLICY_V1.id);
+  assert.equal(CIQUAL_RUNTIME_SOURCE_V1.sourceSelectionContext, EUROPEAN_PRIMARY_POLICY_V1.context);
+  assert.equal(CIQUAL_RUNTIME_SOURCE_V1.selectionBoundary, "EXPLICIT_PER_INGREDIENT_PER_NUTRIENT_POLICY_ONLY");
 });
 
 test("European source wins only where food-form and constituent evidence justify it", () => {
@@ -53,6 +63,8 @@ test("Ciqual-only reviewed foods become usable European primary evidence without
   assert.equal(estimate.method, "EUROPEAN_PRIMARY_STATIC_CALCULATION_V1");
   assert.deepEqual(estimate.perServing, { energyKcal: 48, proteinG: 3.5, carbohydrateG: 5, fatG: 1.6, fibreG: 0 });
   assert.equal(estimate.evidence.sourcePolicy.id, "european-primary-v1");
+  assert.equal(estimate.evidence.sources[1].runtimePolicy, "ELIGIBLE_VIA_EUROPEAN_PRIMARY_POLICY_V1");
+  assert.equal(estimate.evidence.sources[1].evidenceIntroductionPolicy, "CORROBORATION_ONLY_NOT_PRIMARY");
   assert.ok(estimate.evidence.staticCalculation.used[0].provenanceByNutrient.proteinG.source === "ciqual");
 });
 
