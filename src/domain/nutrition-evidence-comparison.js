@@ -1,4 +1,5 @@
 import { CIQUAL_2025_SOURCE, CIQUAL_DENSITIES_B4 } from "../data/ciqual-nutrients-b4.js";
+import { CIQUAL_DENSITIES_B5 } from "../data/ciqual-nutrients-b5.js";
 import { USDA_FOUNDATION_DENSITIES, USDA_FOUNDATION_SOURCE } from "../data/nutrition-evidence.js";
 
 const CIQUAL_CANONICAL_ALIASES = {
@@ -7,9 +8,16 @@ const CIQUAL_CANONICAL_ALIASES = {
   yogurt: "greek_yogurt"
 };
 
-export const CIQUAL_CANONICAL_DENSITIES_B4 = Object.fromEntries(
-  Object.entries(CIQUAL_DENSITIES_B4).map(([id, record]) => [CIQUAL_CANONICAL_ALIASES[id] || id, record])
+const canonicalize = records => Object.fromEntries(
+  Object.entries(records).map(([id, record]) => [CIQUAL_CANONICAL_ALIASES[id] || id, record])
 );
+
+export const CIQUAL_CANONICAL_DENSITIES_B4 = canonicalize(CIQUAL_DENSITIES_B4);
+export const CIQUAL_CANONICAL_DENSITIES_B5 = canonicalize(CIQUAL_DENSITIES_B5);
+export const CIQUAL_CANONICAL_DENSITIES = {
+  ...CIQUAL_CANONICAL_DENSITIES_B4,
+  ...CIQUAL_CANONICAL_DENSITIES_B5
+};
 
 const percentDifference = (left, right) => {
   if (![left, right].every(value => typeof value === "number" && Number.isFinite(value))) return null;
@@ -59,7 +67,8 @@ const nutrientComparison = (usda, ciqual) => ({
 
 export const nutritionEvidenceComparisonForIngredient = ingredientId => {
   const usda = USDA_FOUNDATION_DENSITIES[ingredientId] || null;
-  const ciqual = CIQUAL_CANONICAL_DENSITIES_B4[ingredientId] || null;
+  const ciqual = CIQUAL_CANONICAL_DENSITIES[ingredientId] || null;
+  const ciqualEvidenceTranche = CIQUAL_CANONICAL_DENSITIES_B5[ingredientId] ? "B5" : CIQUAL_CANONICAL_DENSITIES_B4[ingredientId] ? "B4" : null;
   const sourceCount = Number(Boolean(usda)) + Number(Boolean(ciqual));
   const formCaveat = Boolean(usda && ciqual && (ciqual.matchConfidence !== "high" || /differs|generic|specific|underspecified/i.test(ciqual.matchNotes || "")));
   const state = sourceCount === 0
@@ -73,7 +82,7 @@ export const nutritionEvidenceComparisonForIngredient = ingredientId => {
   return {
     canonicalIngredientId: ingredientId,
     state,
-    primarySelectionPolicy: "NO_AUTOMATIC_PRIMARY_SELECTION_IN_B4",
+    primarySelectionPolicy: "COMPARISON_ONLY_SELECTION_SEPARATE",
     sources: {
       usda: usda ? {
         source: USDA_FOUNDATION_SOURCE,
@@ -83,6 +92,7 @@ export const nutritionEvidenceComparisonForIngredient = ingredientId => {
       } : null,
       ciqual: ciqual ? {
         source: CIQUAL_2025_SOURCE,
+        evidenceTranche: ciqualEvidenceTranche,
         sourceIdentifier: ciqual.alimCode,
         description: ciqual.nameEn,
         descriptionFr: ciqual.nameFr,
@@ -107,6 +117,8 @@ export const nutritionEvidenceComparisonCoverage = ingredientIds => {
     multiSourceCount: comparisons.filter(item => item.sources.usda && item.sources.ciqual).length,
     usdaOnlyCount: comparisons.filter(item => item.sources.usda && !item.sources.ciqual).length,
     ciqualOnlyCount: comparisons.filter(item => !item.sources.usda && item.sources.ciqual).length,
+    ciqualB4EvidenceCount: comparisons.filter(item => item.sources.ciqual?.evidenceTranche === "B4").length,
+    ciqualB5EvidenceCount: comparisons.filter(item => item.sources.ciqual?.evidenceTranche === "B5").length,
     noEvidenceCount: count("NO_STATIC_EVIDENCE"),
     formCaveatCount: count("MULTI_SOURCE_FORM_CAVEAT"),
     comparisons
