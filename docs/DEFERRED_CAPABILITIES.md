@@ -8,6 +8,8 @@
 | D4 Local Grocery Price Intelligence | DEFERRED | lawful reliable price source or user/receipt evidence |
 | D5 Fitness Integration | DEFERRED | thin adapter; fitness and culinary ownership remain separate |
 | D6 Advanced Culinary Exploration | DEFERRED | technique curricula, regional depth, advanced challenges |
-| Culinary & Nutrition Brain P0 | NOT_AUTHORIZED | relevant Knowledge Core refresh plus explicit user authorization |
+| Culinary & Nutrition Brain P0 | AUTHORIZED / FOUNDATION BUILT | Knowledge Core canonical reasoning may produce narrow reviewed static public-safe exports; app runtime behavior remains separately gated |
 
-V0 product failures should become evidence for future Brain source-gap analysis rather than being hidden by premature LLM calls.
+Brain authorization does not permit runtime access to private Knowledge Core or automatic ranking changes. See `docs/BRAIN_ADAPTER_CONTRACT.md`.
+
+V0/V1 product failures should continue to become evidence for Brain source-gap analysis rather than being hidden by runtime LLM calls.
