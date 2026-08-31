@@ -4,6 +4,10 @@ import { ALL_RECIPES } from "../src/data/corpus-v1.js";
 import { INGREDIENTS } from "../src/data/ingredients.js";
 import { NUTRITION_IDENTITY_EVIDENCE, USDA_FOUNDATION_SOURCE } from "../src/data/nutrition-evidence.js";
 import { USDA_FOUNDATION_COMPOSITION_SOURCE, USDA_FOUNDATION_DENSITIES_V1 } from "../src/data/usda-foundation-nutrients-v1.js";
+import {
+  USDA_FOUNDATION_PORTION_EVIDENCE_V1,
+  USDA_FOUNDATION_PORTION_SOURCE
+} from "../src/data/usda-foundation-portions-v1.js";
 import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
 import { analyzePortfolioCost } from "../src/domain/cost.js";
 import { culinaryQualityCoverage, culinaryQualityProfile } from "../src/domain/culinary-quality.js";
@@ -41,6 +45,7 @@ test("public NutritionSource preserves project estimate when USDA recipe coverag
   assert.deepEqual(estimate.perServing, recipe.nutrition.perServing);
   assert.equal(estimate.method, recipe.nutrition.estimationState);
   assert.equal(estimate.evidence.compositionImported, true);
+  assert.equal(estimate.evidence.portionEvidenceImported, true);
   assert.equal(estimate.evidence.coverage.compositionState, "BOUNDED_STATIC_COMPOSITION_AVAILABLE");
   assert.ok(estimate.evidence.coverage.mappedIngredientIds.includes("tuna"));
   assert.ok(estimate.evidence.coverage.mappedIngredientIds.includes("white_beans"));
@@ -69,6 +74,43 @@ test("static nutrient calculator never treats an unsupported unit as a complete 
   assert.equal(result.complete, false);
   assert.equal(result.calculationState, "PARTIAL_STATIC_CALCULATION");
   assert.deepEqual(result.skipped, [{ ingredientId: "olive_oil", reason: "unsupported_quantity_unit" }]);
+});
+
+test("USDA Foundation portion evidence supports canonical banana pieces without generic guessing", () => {
+  assert.equal(USDA_FOUNDATION_PORTION_SOURCE.releaseVersion, "15.0");
+  assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.banana[0].gramWeight, 115);
+  assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.banana[0].modifier, "Peeled");
+  assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.banana[0].dataPoints, 102);
+
+  const bananaRecipe = {
+    ingredients: [{ canonicalIngredientId: "banana", quantity: 2, unit: "pieces" }],
+    serving: { servings: 2 }
+  };
+  const result = calculatePerServingFromDensities(bananaRecipe, USDA_FOUNDATION_DENSITIES_V1);
+  assert.equal(result.complete, true);
+  assert.deepEqual(result.perServing, {
+    energyKcal: 101,
+    proteinG: 0.9,
+    carbohydrateG: 26.5,
+    fatG: 0.3,
+    fibreG: 2
+  });
+  assert.equal(result.used[0].grams, 230);
+  assert.equal(result.used[0].quantityEvidence.state, "USDA_FOUNDATION_PORTION_MATCH");
+  assert.equal(result.used[0].quantityEvidence.gramsPerUnit, 115);
+});
+
+test("ambiguous USDA tuna can weights fail closed instead of choosing a convenient number", () => {
+  assert.deepEqual(USDA_FOUNDATION_PORTION_EVIDENCE_V1.tuna.map(item => item.gramWeight), [107, 142]);
+  const tunaRecipe = {
+    ingredients: [{ canonicalIngredientId: "tuna", quantity: 1, unit: "can" }],
+    serving: { servings: 1 }
+  };
+  const result = calculatePerServingFromDensities(tunaRecipe, USDA_FOUNDATION_DENSITIES_V1);
+  assert.equal(result.complete, false);
+  assert.equal(result.calculationState, "INSUFFICIENT_STATIC_DATA");
+  assert.equal(result.skipped[0].reason, "ambiguous_portion_unit");
+  assert.deepEqual(result.skipped[0].quantityEvidence.candidateGramWeights, [107, 142]);
 });
 
 test("missing USDA nutrient fields remain null while other tracked fields can be complete", () => {

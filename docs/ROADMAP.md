@@ -19,8 +19,9 @@
 | V1.0.2 / Content Gate B1 | COMPLETE | bounded USDA Foundation per-100g static composition for 14 canonical ingredients + evidence-safe recipe calculation |
 | V1.0.1 / Content Gate C | COMPLETE | Spain/Canary ingredient classes + package/availability/reuse-aware portfolio cost heuristic |
 | V1.0.1 / Content Gate D | COMPLETE | normalized culinary technique/risk/execution/convenience/learning intelligence across full corpus |
-| V1.0.3 / Content Gate E | IMPLEMENTED / VALIDATION_PENDING | 15 coverage-driven authored recipes + deterministic corpus/search coverage audit + pineapple future-exclusion proof |
-| V1.x / Nutrition B2 | NEXT | expand defensible USDA mappings/forms and explicit gram-weight/unit normalization |
+| V1.0.3 / Content Gate E | COMPLETE | 15 coverage-driven authored recipes + deterministic corpus/search coverage audit + pineapple future-exclusion proof |
+| V1.0.4 / Nutrition B2 | IMPLEMENTED / VALIDATION_PENDING | USDA Foundation portion evidence + evidence-backed banana piece conversion + ambiguous tuna-can fail-closed handling |
+| V1.x / Nutrition B3 | NEXT | expand reviewed Foundation identity/form mappings and portion coverage where source evidence exists |
 | V1.x / Corpus breadth | CONTINUOUS | use coverage audit to target high-value Search/planner gaps rather than recipe-count growth |
 | Brain P0 | NOT_AUTHORIZED | future Culinary & Nutrition Brain |
 | App Brain-derived V1.x | DEFERRED | public-safe Brain-derived upgrades after explicit Brain authorization |
@@ -29,13 +30,15 @@ Content Gate A was merged through PR #6 at `1742bd40691cca614db2e12ccaa47499bea4
 
 Gates B foundation, C and D were merged through PR #7 at `59ae06755d1c681aa5f56d4f20e8bdaf1d01bec2`; deterministic/static tests, the 15,552-profile matrix, comprehensive Chromium acceptance, post-merge validation and Pages deployment were green.
 
-Gate B1 was merged through PR #8 at `5dc9c668df8ac96361657cd403b95bf05e859ac9`; public validation, matrix/browser acceptance, post-merge validation and Pages deployment all passed. The authoritative lane is therefore real but deliberately partial: complete USDA-derived recipe values replace estimates only under full ingredient/nutrient/mass-unit coverage.
+Gate B1 was merged through PR #8 at `5dc9c668df8ac96361657cd403b95bf05e859ac9`; public validation, matrix/browser acceptance, post-merge validation and Pages deployment all passed. The authoritative lane is real but deliberately partial: complete USDA-derived recipe values replace estimates only under full ingredient/nutrient/quantity coverage.
 
-Gate E turns corpus growth into a measurable coverage process. A deterministic audit records cuisine, dietary, time, protein, meal-prep and canonical-ingredient usage. The first tranche targets underused ingredients and demonstrates a lifecycle invariant: a durable future-only `pineapple` exclusion created before pineapple existed must become a recognized exclusion and continue blocking recommendations when pineapple enters the ontology and corpus.
+Gate E was merged through PR #9 at `3e0be5adcde9ec9567c0595ac4e8fc71dd237ee4`; PR validation, post-merge validation and Pages deployment all passed. Corpus growth is now coverage-driven, and the durable future-exclusion lifecycle has been proven against real pineapple recipes.
+
+Nutrition B2 uses the official Foundation `food_portion.csv` table rather than generic household-weight assumptions. In the bounded 14-food extract, USDA publishes a 115 g peeled-banana portion and two conflicting tuna can weights (107 g drained solids; 142 g total contents). The app therefore accepts canonical banana `piece(s)` through source-backed conversion and deliberately rejects an unqualified tuna `can` as ambiguous.
 
 The accepted shell/core is not reopened by routine corpus, ontology or evidence growth. V1 content work remains additive behind stable `RecipeSource`, `NutritionSource`, `IngredientNormalizer`, `RecommendationPolicy`, planner, substitution and cost interfaces.
 
-The next nutrition step is breadth rather than loosened certainty: add clearly matched ingredient/form records and explicit gram weights/unit mappings where defensible. Do not use generic spoon/piece guesses to inflate coverage.
+Future nutrition breadth must come from reviewed source/form identity plus explicit portion evidence. Do not use generic spoon/piece averages merely to increase coverage.
 
 Cost remains relative, deterministic and explainable. Culinary quality remains normalized from project-authored structured metadata and instructions. Fridge search and planning continue to reuse the same hard safety truth.
 
