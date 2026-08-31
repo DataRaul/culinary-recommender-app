@@ -2,8 +2,13 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { ALL_RECIPES } from "../src/data/corpus-v1.js";
 import { INGREDIENTS } from "../src/data/ingredients.js";
-import { NUTRITION_IDENTITY_EVIDENCE, USDA_FOUNDATION_SOURCE } from "../src/data/nutrition-evidence.js";
+import {
+  NUTRITION_IDENTITY_EVIDENCE,
+  USDA_FOUNDATION_DENSITIES,
+  USDA_FOUNDATION_SOURCE
+} from "../src/data/nutrition-evidence.js";
 import { USDA_FOUNDATION_COMPOSITION_SOURCE, USDA_FOUNDATION_DENSITIES_V1 } from "../src/data/usda-foundation-nutrients-v1.js";
+import { USDA_FOUNDATION_DENSITIES_B3 } from "../src/data/usda-foundation-nutrients-b3.js";
 import {
   USDA_FOUNDATION_PORTION_EVIDENCE_V1,
   USDA_FOUNDATION_PORTION_SOURCE
@@ -37,6 +42,57 @@ test("USDA Foundation ledger binds canonical identities to the bounded April 202
     assert.ok(!identifiers.has(record.sourceIdentifier));
     identifiers.add(record.sourceIdentifier);
   }
+});
+
+test("B3 expands reviewed Foundation composition without pretending incomplete fields are known", () => {
+  assert.equal(Object.keys(USDA_FOUNDATION_DENSITIES_B3).length, 15);
+  assert.equal(Object.keys(USDA_FOUNDATION_DENSITIES).length, 29);
+  assert.equal(USDA_FOUNDATION_DENSITIES_B3.broccoli.fdcId, "747447");
+  assert.equal(USDA_FOUNDATION_DENSITIES_B3.eggs.fdcId, "748967");
+  assert.equal(USDA_FOUNDATION_DENSITIES_B3.pineapple.fdcId, "2346398");
+  assert.equal(USDA_FOUNDATION_DENSITIES_B3.canned_tomato.fdcId, "2685581");
+  assert.equal(USDA_FOUNDATION_DENSITIES_B3.cucumber.per100g.fibreG, null);
+  assert.equal(USDA_FOUNDATION_DENSITIES_B3.spring_onion.per100g.energyKcal, null);
+  assert.equal(NUTRITION_IDENTITY_EVIDENCE.cucumber.compositionState, "STATIC_COMPOSITION_IMPORTED_PARTIAL");
+  assert.equal(NUTRITION_IDENTITY_EVIDENCE.spring_onion.compositionState, "STATIC_COMPOSITION_IMPORTED_PARTIAL");
+  assert.equal(NUTRITION_IDENTITY_EVIDENCE.broccoli.compositionState, "STATIC_COMPOSITION_IMPORTED_COMPLETE_FOR_TRACKED_FIELDS");
+});
+
+test("B3 household weights stay evidence-only when canonical recipe semantics are not specific enough", () => {
+  assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.broccoli[0].gramWeight, 76);
+  assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.broccoli[0].modifier, "chopped");
+  assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.eggs[0].gramWeight, 50.3);
+  assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.eggs[0].dataPoints, 526);
+  assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.onion[0].gramWeight, 143);
+  assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.red_onion[0].gramWeight, 197);
+
+  const genericEggRecipe = {
+    ingredients: [{ canonicalIngredientId: "eggs", quantity: 2, unit: "pieces" }],
+    serving: { servings: 1 }
+  };
+  const result = calculatePerServingFromDensities(genericEggRecipe, USDA_FOUNDATION_DENSITIES);
+  assert.equal(result.complete, false);
+  assert.equal(result.skipped[0].reason, "unsupported_quantity_unit");
+});
+
+test("B3 complete mass records can participate in deterministic static calculations", () => {
+  const syntheticRecipe = {
+    ingredients: [
+      { canonicalIngredientId: "broccoli", quantity: 200, unit: "g" },
+      { canonicalIngredientId: "rice", quantity: 100, unit: "g" },
+      { canonicalIngredientId: "canned_tomato", quantity: 100, unit: "g" }
+    ],
+    serving: { servings: 2 }
+  };
+  const result = calculatePerServingFromDensities(syntheticRecipe, USDA_FOUNDATION_DENSITIES);
+  assert.equal(result.complete, true);
+  assert.deepEqual(result.perServing, {
+    energyKcal: 233,
+    proteinG: 7.7,
+    carbohydrateG: 50,
+    fatG: 1.1,
+    fibreG: 3.4
+  });
 });
 
 test("public NutritionSource preserves project estimate when USDA recipe coverage is partial", () => {
