@@ -1,0 +1,21 @@
+name: Gate F candidate validation
+on:
+  push:
+    branches: [v1-1-recipe-corpus-gate-f-wikibooks]
+    paths:
+      - .github/workflows/gate-f-candidate-validation.yml
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - run: npm run validate
+      - run: node scripts/report-recipe-universe-coverage.mjs
+      - run: node scripts/verify-wikibooks-gate-f-snapshot.mjs
