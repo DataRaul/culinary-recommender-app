@@ -10,7 +10,7 @@ import {
   nutritionEvidenceComparisonCoverage
 } from "../src/domain/nutrition-evidence-comparison.js";
 
-test("Ciqual 2025 secondary evidence preserves official source identity, licence and attribution", () => {
+test("Ciqual 2025 frozen B4 source snapshot preserves official identity, licence, attribution and introduction policy", () => {
   assert.equal(CIQUAL_2025_SOURCE.datasetDoi, "10.57745/RDMHWY");
   assert.equal(CIQUAL_2025_SOURCE.releaseDate, "2025-11-19");
   assert.equal(CIQUAL_2025_SOURCE.license, "Etalab Open Licence 2.0");
@@ -78,7 +78,7 @@ test("coverage audit separates multi-source, single-source and missing evidence 
   assert.deepEqual(coverage, nutritionEvidenceComparisonCoverage(["broccoli", "salmon", "black_beans", "olive_oil", "broccoli"]));
 });
 
-test("B4 corroboration does not alter public NutritionSource primary selection or recipe calculation", () => {
+test("partial Ciqual-only evidence remains fail-closed after European-primary authorization", () => {
   const syntheticRecipe = {
     ingredients: [{ canonicalIngredientId: "salmon", quantity: 100, unit: "g" }],
     serving: { servings: 1 },
@@ -93,6 +93,9 @@ test("B4 corroboration does not alter public NutritionSource primary selection o
   assert.deepEqual(estimate.perServing, syntheticRecipe.nutrition.perServing);
   assert.equal(estimate.method, "INFERRED_ESTIMATE");
   assert.equal(estimate.confidence, "low");
+  assert.equal(estimate.evidence.sourcePolicy.id, "european-primary-v1");
+  assert.equal(estimate.evidence.sources[1].runtimePolicy, "ELIGIBLE_VIA_EUROPEAN_PRIMARY_POLICY_V1");
+  assert.equal(estimate.evidence.sources[1].evidenceIntroductionPolicy, "CORROBORATION_ONLY_NOT_PRIMARY");
   assert.equal(estimate.evidence.staticCalculation.complete, false);
   assert.equal(estimate.evidence.coverage.mappedIngredientIds.includes("salmon"), false);
 });
