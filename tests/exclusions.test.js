@@ -6,7 +6,7 @@ import { ingredientMatchesPermanentExclusion, resolvePermanentExclusion } from "
 import { rankRecipes } from "../src/domain/recommendation.js";
 import { searchRecipesByIngredients } from "../src/domain/search.js";
 
-test("known, family-wide and future permanent exclusions normalize deterministically", () => {
+test("known and family-wide permanent exclusions normalize deterministically after ontology growth", () => {
   const coconut = resolvePermanentExclusion("coconut");
   assert.equal(coconut.id, "coconut");
   assert.equal(coconut.familyWide, true);
@@ -14,9 +14,14 @@ test("known, family-wide and future permanent exclusions normalize deterministic
   assert.equal(resolvePermanentExclusion("coco").id, "coconut");
   assert.equal(resolvePermanentExclusion("leche de coco").id, "coconut_milk");
   assert.equal(ingredientMatchesPermanentExclusion("coconut_milk", "coconut"), true);
+
+  // `pineapple` was accepted earlier as a future-only durable token. Once the
+  // ontology learns the real ingredient, the same stored ID becomes recognized
+  // without changing or losing the user's exclusion.
   const pineapple = resolvePermanentExclusion("pineapple");
   assert.equal(pineapple.id, "pineapple");
-  assert.equal(pineapple.futureOnly, true);
+  assert.equal(pineapple.recognized, true);
+  assert.equal(pineapple.futureOnly, false);
   assert.equal(resolvePermanentExclusion("Piña").id, "pineapple");
 });
 
