@@ -24,6 +24,21 @@ const tokenOverlap = (a, b) => {
   return common / Math.max(left.size, right.size);
 };
 
+const unitPortionNames = {
+  piece: ["pcs", "piece"],
+  pieces: ["pcs", "piece"],
+  clove: ["clove"],
+  cloves: ["clove"],
+  tbsp: ["tablespoon"],
+  tsp: ["teaspoon"],
+  small: ["pcs (small)", "small"]
+};
+
+const transformedPieceTerms = [
+  "juice", "mousse", "soup", "salad", "puree", "puree", "powder", "paste", "ketchup",
+  "canned", "pickled", "smoothie", "tart", "pie", "cake", "drink", "sauce", "cooked"
+];
+
 function collectUnsupportedTargets() {
   const counts = new Map();
   const recipesByTarget = new Map();
@@ -60,17 +75,41 @@ function collectUnsupportedTargets() {
     .sort((a, b) => b.blockerEvents - a.blockerEvents || a.ingredientId.localeCompare(b.ingredientId) || a.unit.localeCompare(b.unit));
 }
 
+function hasMatchingPortion(target, food) {
+  const expected = unitPortionNames[target.unit] || [];
+  if (!expected.length) return false;
+  return (food.portions || []).some(portion => expected.includes(normalize(portion.portionName)));
+}
+
 function candidateScore(target, food) {
   const foodName = normalize(food.foodName);
-  const terms = [target.canonicalName, ...(target.aliases || [])].map(normalize).filter(Boolean);
+  const canonical = normalize(target.canonicalName);
+  const aliases = [...new Set((target.aliases || []).map(normalize).filter(Boolean))];
   let score = 0;
-  for (const term of terms) {
-    if (foodName === term) score = Math.max(score, 100);
-    if (foodName.startsWith(`${term} `) || foodName.startsWith(`${term},`)) score = Math.max(score, 90);
-    if (foodName.includes(term)) score = Math.max(score, 70);
-    score = Math.max(score, Math.round(tokenOverlap(term, foodName) * 60));
+
+  if (foodName === canonical) score = 160;
+  else if (foodName === `${canonical} raw`) score = 155;
+  else if (foodName.startsWith(`${canonical} raw`)) score = 150;
+  else if (foodName.startsWith(`${canonical} `)) score = 130;
+  else if (foodName.includes(canonical)) score = 90;
+  score = Math.max(score, Math.round(tokenOverlap(canonical, foodName) * 75));
+
+  for (const alias of aliases) {
+    if (foodName === alias) score = Math.max(score, 125);
+    else if (foodName === `${alias} raw`) score = Math.max(score, 120);
+    else if (foodName.startsWith(`${alias} raw`)) score = Math.max(score, 115);
+    else if (foodName.startsWith(`${alias} `)) score = Math.max(score, 100);
+    else if (foodName.includes(alias)) score = Math.max(score, 70);
+    score = Math.max(score, Math.round(tokenOverlap(alias, foodName) * 55));
   }
-  if (food.portions?.length) score += 10;
+
+  if (hasMatchingPortion(target, food)) score += 35;
+  if (/\braw\b/.test(foodName)) score += 20;
+
+  if (["piece", "pieces", "clove", "cloves", "small"].includes(target.unit)) {
+    if (transformedPieceTerms.some(term => foodName.includes(term))) score -= 60;
+  }
+
   return score;
 }
 
@@ -91,11 +130,12 @@ const results = targets.map(target => {
       foodGroupId: food.foodGroupId,
       ediblePart: food.ediblePart,
       portions: food.portions,
+      matchingPortion: hasMatchingPortion(target, food),
       score: candidateScore(target, food)
     }))
     .filter(candidate => candidate.score >= 35)
-    .sort((a, b) => b.score - a.score || String(a.foodName).localeCompare(String(b.foodName)))
-    .slice(0, 8);
+    .sort((a, b) => b.score - a.score || Number(b.matchingPortion) - Number(a.matchingPortion) || String(a.foodName).localeCompare(String(b.foodName)))
+    .slice(0, 10);
 
   return { ...target, candidates };
 });
@@ -108,7 +148,7 @@ const report = {
     sourceAuthority: "Norwegian Food Safety Authority (Mattilsynet)",
     sourceVersion: "Norwegian Food Composition Table 2026",
     sourceRelease: "2026-01",
-    sourceLicense: "NLOD / Norsk lisens for offentlige data; attribution required",
+    sourceLicense: "NLOD 2.0 / Norsk lisens for offentlige data; attribution required",
     attribution: "Norwegian Food Composition Table 2026. The Norwegian Food Safety Authority. www.matvaretabellen.no"
   },
   rules: {
@@ -130,10 +170,13 @@ console.log(JSON.stringify({
   schemaVersion: report.schemaVersion,
   unsupportedTargetCount: report.unsupportedTargetCount,
   unsupportedBlockerEvents: report.unsupportedBlockerEvents,
-  topTargets: report.targets.slice(0, 30).map(({ ingredientId, unit, blockerEvents, candidates }) => ({
+  targets: report.targets.map(({ ingredientId, unit, blockerEvents, recipeIds, candidates }) => ({
     ingredientId,
     unit,
     blockerEvents,
-    candidates: candidates.slice(0, 4).map(({ foodId, foodName, portions, score }) => ({ foodId, foodName, score, portions }))
+    recipeIds,
+    candidates: candidates.slice(0, 6).map(({ foodId, foodName, portions, matchingPortion, score }) => ({
+      foodId, foodName, matchingPortion, score, portions
+    }))
   }))
 }, null, 2));
