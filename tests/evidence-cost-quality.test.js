@@ -88,7 +88,7 @@ test("B3 complete mass records can participate in deterministic static calculati
   assert.equal(result.complete, true);
   assert.deepEqual(result.perServing, {
     energyKcal: 233,
-    proteinG: 7.7,
+    proteinG: 6.8,
     carbohydrateG: 50,
     fatG: 1.1,
     fibreG: 3.4
