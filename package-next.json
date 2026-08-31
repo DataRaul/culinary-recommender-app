@@ -1,0 +1,20 @@
+{
+  "name": "culinary-recommender-app",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic mobile-first culinary recommendation and meal-planning PWA.",
+  "scripts": {
+    "check": "node scripts/check-static.mjs",
+    "test": "node --test tests/*.test.js",
+    "test:matrix": "node tests/profile-matrix.test.js",
+    "test:browser": "node scripts/browser-smoke.mjs && node scripts/browser-acceptance.mjs && node scripts/browser-gate-f-acceptance.mjs",
+    "report:nutrition-coverage": "node scripts/report-nutrition-coverage.mjs",
+    "report:recipe-universe": "node scripts/report-recipe-universe-coverage.mjs",
+    "verify:wikibooks-gate-f": "node scripts/verify-wikibooks-gate-f-snapshot.mjs",
+    "validate": "npm run check && npm test"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
