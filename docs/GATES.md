@@ -41,21 +41,23 @@ Merged through PR #6 to `main` at `1742bd40691cca614db2e12ccaa47499bea48a57` aft
 
 Delivered materially broader project-authored recipes, bilingual/hierarchical ingredient ontology, generalized exclusions and a six-class controlled substitution graph without third-party recipe ingestion, paid APIs, runtime LLM or private Knowledge Core runtime dependency.
 
-## V1 Content Gate B1 — BOUNDED STATIC COMPOSITION IMPLEMENTED / VALIDATION_PENDING
-The first authoritative nutrition tranche now goes beyond identity mapping while remaining deliberately bounded:
+## V1 Content Gate B1 — COMPLETE
+Merged through PR #8 to `main` at `5dc9c668df8ac96361657cd403b95bf05e859ac9`; PR validation, the 15,552-profile matrix, Chromium acceptance, post-merge validation and Pages deployment all passed.
+
+The first authoritative nutrition tranche remains deliberately bounded:
 
 - USDA FoodData Central Foundation Foods Version 15.0 / 2026-04-30 is the source release;
-- a one-off reproducible extractor downloaded the official static CSV archive and resolved 14 canonical ingredients to Foundation FDC IDs;
-- `src/data/usda-foundation-nutrients-v1.js` contains only the bounded per-100g composition records, not the USDA bulk database;
-- energy prefers Foundation nutrient `2048` (Atwater Specific Factors), with the architecture retaining documented fallback support rather than silently mixing energy definitions;
+- a reproducible extractor downloaded the official static CSV archive and resolved 14 canonical ingredients to Foundation FDC IDs;
+- only the bounded per-100g composition records are committed, not the USDA bulk database;
+- energy prefers nutrient `2048` (Atwater Specific Factors), with documented fallback architecture;
 - protein (`1003`), carbohydrate (`1005`), fat (`1004`) and fibre (`1079`) remain individually provenance-aware;
-- missing published tracked nutrients remain `null`, never zero;
-- only `g`/`kg` recipe quantities are currently accepted for authoritative deterministic calculation;
+- missing tracked nutrients remain `null`, never zero;
+- only explicit `g`/`kg` quantities currently qualify for authoritative deterministic calculation;
 - unsupported units, unmapped ingredients and missing nutrients make the calculation partial rather than guessed;
-- the current project-authored recipe estimate remains primary unless every required ingredient and tracked nutrient is complete for the recipe;
-- full mass-only coverage can produce a medium-confidence authoritative static calculation, with cooking/yield uncertainty still stated.
+- the project-authored recipe estimate remains primary unless every required ingredient, tracked nutrient and unit is complete;
+- complete mass-only coverage can produce a medium-confidence static calculation while retaining cooking/yield uncertainty.
 
-This gate is a **progressive evidence upgrade**, not a claim that every recipe now has authoritative USDA nutrition. The next nutrition tranche should expand defensible ingredient/form mappings and unit/weight normalization without sacrificing fail-partial behavior.
+The next nutrition tranche may expand defensible ingredient/form mappings and unit/weight normalization but must preserve fail-partial behavior.
 
 ## V1 Content Gate C — COMPLETE
 Merged through PR #7 to `main` at `59ae06755d1c681aa5f56d4f20e8bdaf1d01bec2` after green deterministic, matrix and Chromium validation; post-merge validation and Pages deployment passed.
@@ -64,6 +66,19 @@ Cost intelligence combines authored per-recipe tiers, deterministic ingredient c
 
 ## V1 Content Gate D — COMPLETE
 Merged through PR #7 with Gate C. A deterministic full-corpus culinary-quality layer normalizes explicit/instruction-inferred techniques, failure risk, execution load, equipment burden, difficulty/technique depth, meal-prep/batch/freezer/leftover/portability suitability, flavour, spice, familiarity, novelty, learning and exploration. Technique inference is inspectable over project-authored instructions, not runtime generation.
+
+## V1 Content Gate E — SEARCH COVERAGE EXPANSION IMPLEMENTED / VALIDATION_PENDING
+This bounded additive gate targets ingredient/search usefulness rather than arbitrary recipe count:
+
+- adds 15 project-authored structured recipes focused on underused but already-supported ingredients such as pinto beans, barley, pumpkin, rice noodles, mango, mushrooms, peas, basmati, bulgur, turkey and hake;
+- promotes `pineapple` from a future-only exclusion token into the canonical bilingual ingredient ontology;
+- adds two real pineapple recipes in different cuisine contexts;
+- explicitly proves a previously stored `excludedIngredientIds: ["pineapple"]` preference remains a hard filter after those recipes arrive;
+- adds deterministic corpus coverage and ingredient-search coverage auditing;
+- preserves cuisine taxonomy, hard constraints, planner/search contracts and project-authored provenance;
+- does not introduce third-party recipes, runtime inference, paid data or Brain dependency.
+
+Gate E becomes COMPLETE only after public deterministic/matrix/browser validation, clean merge, post-merge validation and Pages deployment.
 
 ## Brain P0 — NOT AUTHORIZED
 The dedicated Culinary & Nutrition Brain remains a separate future human authorization boundary. This repository may prepare stable public interfaces and evidence artifacts but must not create or call the Brain early.
