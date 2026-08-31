@@ -1,33 +1,38 @@
 # Data Sources & Licensing Audit
 
-Audit date: 2026-08-31.
+Audit/policy date: 2026-08-31.
 
 ## Shipped project-authored corpus
-The public runtime ships only project-authored structured recipes, ingredient mappings and substitution guidance. No third-party recipe text, photographs or recipe-database dump is bundled.
 
-The repository intentionally has **no general licence yet**. Until a later explicit licensing decision, original repository content remains under default copyright. External source licences are recorded independently and are not implied to license this repository.
+The public runtime ships project-authored structured recipes, ingredient mappings and substitution guidance. No third-party recipe text, photographs or recipe-database dump is bundled.
 
-### Project-authored recipe corpus
-- V0 source reference: `data/project-authored-v0`
-- V1 source reference: `data/project-authored-v1`
-- V1 search-coverage source reference: `data/project-authored-v1-search-coverage`
-- recipes remain original project-authored structured content;
-- no copied third-party recipe prose or external recipe dataset is used;
-- recipe nutrition fields remain low-confidence `INFERRED_ESTIMATE` values unless a recipe obtains complete authoritative static coverage through the separate NutritionSource.
+The repository intentionally has **no general licence yet**. Original project-authored repository content therefore remains under default copyright. External source licences are recorded independently and do not license the rest of the repository.
+
+### Project-authored recipe sources
+
+- `data/project-authored-v0`
+- `data/project-authored-v1`
+- `data/project-authored-v1-search-coverage`
+
+Recipe nutrition remains low-confidence `INFERRED_ESTIMATE` unless the separate deterministic NutritionSource can produce a complete authoritative calculation under the approved evidence policy.
 
 ### Ingredient ontology and substitution graph
-The canonical ingredient ontology, English/Spanish aliases, family relationships and controlled substitution guidance are project-authored application data. Substitutions are labelled `close_substitute`, `functional_substitute`, `flavour_direction`, `texture_substitute`, `dietary_substitute`, or `emergency_approximation`. Allergen and permanent-exclusion constraints override substitution suggestions.
+
+The canonical ingredient ontology, English/Spanish aliases, family relationships and controlled substitution guidance are project-authored application data. Substitution types are `close_substitute`, `functional_substitute`, `flavour_direction`, `texture_substitute`, `dietary_substitute`, or `emergency_approximation`. Allergens and permanent exclusions always override substitutions.
 
 ## Nutrition composition evidence
 
-### USDA FoodData Central Foundation Foods — PRIMARY STATIC CALCULATION LANE
-USDA FoodData Central remains one authoritative source family for V1 nutrition evidence; it is not treated as universally representative of European food supply.
+The app now has two bounded official composition families plus a deterministic Canary/Spain/Europe source-selection policy. This is not a claim that one geography is universally more truthful.
+
+### USDA FoodData Central Foundation Foods
 
 Verified source facts:
-- FoodData Central data are public-use CC0 / U.S. public-domain data;
-- selected Foundation Foods release: Version 15.0, published 2026-04-30;
-- official static Foundation downloads are available, so the public application requires no runtime API key or network call;
-- reusable extraction scripts retain only manually reviewed food identities and do not bundle the bulk USDA database.
+- public-use CC0 / U.S. public-domain data;
+- selected Foundation release: Version 15.0, 2026-04-30;
+- official static downloads are available;
+- runtime API access is not required;
+- reusable extraction scripts keep only manually reviewed source/form identities;
+- the bulk USDA database is not bundled.
 
 Official references:
 - https://fdc.nal.usda.gov/
@@ -35,95 +40,121 @@ Official references:
 - https://fdc.nal.usda.gov/log/
 - https://fdc.nal.usda.gov/Foundation_Foods_Documentation/
 
-The bounded composition ledger contains 29 manually reviewed Foundation identities across `src/data/usda-foundation-nutrients-v1.js` and `src/data/usda-foundation-nutrients-b3.js`.
+The bounded USDA composition ledger contains **29 manually reviewed Foundation identities** across `src/data/usda-foundation-nutrients-v1.js` and `src/data/usda-foundation-nutrients-b3.js`.
 
-Tracked USDA fields are:
-- energy: prefer `2048` (Atwater Specific Factors), with fallback architecture to `2047` / legacy `1008`;
+Tracked USDA semantics:
+- energy: nutrient `2048` Atwater Specific Factors preferred, with documented fallback architecture;
 - protein: `1003`;
 - carbohydrate by difference: `1005`;
-- fat: `1004`;
+- total fat: `1004`;
 - fibre: `1079` where published.
 
-Missing fields remain `null`; **null is never interpreted as zero**.
+Missing fields stay `null`; null is never interpreted as zero.
 
 ### USDA household-weight evidence
-`src/data/usda-foundation-portions-v1.js` preserves source household-weight rows separately from automatic conversion policy.
 
-Reviewed evidence includes:
+`src/data/usda-foundation-portions-v1.js` preserves source portion rows separately from conversion policy.
+
+Reviewed rows include:
 - banana: one peeled banana = 115 g;
-- tuna: one can = 107 g drained solids or 142 g total contents;
+- tuna can: 107 g drained solids or 142 g total contents;
 - broccoli: one chopped cup = 76 g;
 - Grade-A large whole egg = 50.3 g;
 - yellow onion edible portion = 143 g;
 - red onion edible portion = 197 g.
 
-Automatic conversion remains deliberately narrower:
-- canonical banana `piece` / `pieces` may use 115 g;
-- bare tuna `can` / `cans` fails as ambiguous;
-- broccoli/egg/onion weights remain evidence-only because current recipe semantics do not encode enough chopped-form, egg-size/grade or onion variety/size detail.
+Automatic conversion is deliberately narrower:
+- canonical banana `piece(s)` may use 115 g;
+- bare tuna `can(s)` is ambiguous and fails closed;
+- broccoli/egg/onion household weights remain evidence-only because current recipe semantics do not encode enough form/size/variety detail.
 
-No generic household-weight table, search-engine average, recipe-blog conversion or hidden spoon/piece assumption is used to increase apparent coverage.
+Generic internet averages, recipe-blog conversions and hidden spoon/piece assumptions are prohibited as a way to inflate coverage.
 
-### Recipe calculation boundary
-A USDA-derived recipe calculation becomes primary only when every required ingredient has a reviewed static density, every required quantity has direct mass or an unambiguous reviewed conversion, and every tracked nutrient is present. Otherwise the project-authored estimate remains primary and partial static evidence remains audit metadata only.
+## ANSES-Ciqual 2025
 
-Even a complete static ingredient calculation remains medium confidence because cooking/yield effects and food-form assumptions can matter.
-
-## ANSES-Ciqual 2025 — BOUNDED SECONDARY / CORROBORATION LANE
-B4 adds a second official composition source without changing the NutritionSource primary-selection policy.
+European Evidence B4 added a bounded ANSES-Ciqual 2025 source and completed through PR #12 at `fd33037ce48a75b60ac5b8ca7d7526b7ffb15061` with green PR/post-merge validation and Pages deployment.
 
 Source facts:
 - authority: ANSES, France;
-- dataset: Table de composition nutritionnelle des aliments Ciqual 2025;
+- dataset: *Table de composition nutritionnelle des aliments Ciqual 2025*;
 - publication date: 2025-11-19;
 - dataset DOI: `10.57745/RDMHWY`;
-- official catalogue: 3,484 foods / 74 constituents;
+- catalogue: 3,484 foods / 74 constituents;
 - licence: **Etalab Open Licence 2.0**;
-- required attribution is retained in `CIQUAL_2025_SOURCE`.
+- required ANSES attribution retained.
 
 Official XML inputs used by the reproducible extractor:
 - food catalogue: DOI `10.57745/OH8KXC`;
 - constituent catalogue: DOI `10.57745/FWSPCX`;
 - composition table: DOI `10.57745/O73GDX`.
 
-The full Ciqual database is **not** committed. `src/data/ciqual-nutrients-b4.js` contains only 32 manually reviewed app-relevant food/form records. It retains food code, English/French identity, scientific name where available, reviewed match notes, per-field confidence code and composition source codes.
+The full source database is not committed. `src/data/ciqual-nutrients-b4.js` contains only **32 manually reviewed app-relevant food/form records**, preserving food code, English/French identity, scientific name where available, form-review notes, per-field confidence (`A`–`D`) and composition source codes.
 
 ### Cross-source semantic firewall
-The B4 comparison layer never assumes identically named nutrients are method-identical:
 
-- USDA energy prefers Atwater-specific energy; Ciqual retains Jones-with-fibre and EU 1169/2011 energy values;
-- USDA protein and Ciqual Jones-factor protein are method-dependent;
-- USDA `1005` carbohydrate by difference and Ciqual `31000` / `CHOAVL` available carbohydrate are **not directly comparable**;
-- fat is compared only with form/method caveats;
-- fibre remains method-dependent.
+The project does not flatten similarly named nutrients into an assumed common definition:
+- USDA energy and Ciqual EU/Jones energy methods remain explicit;
+- protein methods remain explicit;
+- USDA `1005` carbohydrate by difference and Ciqual `31000` / `CHOAVL` available carbohydrate are distinct semantics;
+- fat comparisons retain food-form/method caveats;
+- fibre methods remain explicit.
 
-`src/domain/nutrition-evidence-comparison.js` therefore exposes source values, food-form caveats, confidence/provenance and carefully labelled relative differences where meaningful. It does **not** average sources or choose a winner.
+`src/domain/nutrition-evidence-comparison.js` remains a provenance/disagreement audit layer and never averages official sources.
 
-B4 is corroboration-only: Ciqual values do not change `publicNutritionSource`, displayed recipe values, recommendation ranking, constraints or project-authored fallbacks.
+## Approved Canary/Spain/Europe source-selection policy
 
-See `docs/EUROPEAN_EVIDENCE.md` for the full European-source and regulatory audit.
+The user approved conditional European-primary evidence on 2026-08-31. PR #13 implemented the policy and merged at `cfa3b9115821b59321c7ef19e779ff3a578aa6b6`; deterministic/static validation, the 15,552-profile matrix, Chromium acceptance, post-merge validation and Pages deployment passed.
+
+`src/domain/nutrition-source-policy.js` applies source selection **per ingredient and per tracked nutrient**:
+
+1. reviewed Ciqual may become primary where the food-form match is equally good or better and constituent confidence is `A`, `B` or `C`;
+2. Ciqual confidence `D` does not displace an available reviewed USDA value;
+3. a stronger USDA food-form match stays primary;
+4. a reviewed field may come from the only available source when the other source has no reviewed value;
+5. no cross-source averaging;
+6. exact source, identifier, semantic, method, form confidence, Ciqual field confidence and selection reason are retained;
+7. composition selection is independent of regulatory/legal evidence.
+
+### Recipe-coherence boundary
+
+The calculator may not manufacture a recipe total from incompatible nutrient semantics.
+
+Specifically:
+- USDA carbohydrate-by-difference and Ciqual `CHOAVL` are never summed into one authoritative carbohydrate result;
+- if the Europe-selected field mix cannot produce a complete coherent recipe calculation but the reviewed USDA lane can, the coherent USDA calculation remains authoritative;
+- otherwise incomplete evidence preserves the project-authored estimate and remains audit metadata only.
+
+Even a complete static calculation remains medium confidence because cooking/yield and exact food form can still matter.
 
 ## Other European composition candidates
 
-### Fineli / THL Finland — OPEN, CURRENT CI ACCESS BLOCKED
-Fineli documents CC BY 4.0 reuse and machine-readable API/download access. During B4, both the documented API and official package returned HTTP 403 to standard GitHub-hosted runners. The project does not attempt to bypass this restriction and bundles no Fineli data.
+### Fineli / THL Finland — open licence, current CI access blocked
+
+Fineli documents **CC BY 4.0** reuse and machine-readable data. During B4 both the documented API and official downloadable package returned HTTP 403 from standard GitHub-hosted runners. No bypass is attempted and no Fineli data is bundled.
+
+If legitimate access later becomes available, Fineli may be integrated as another source under the existing provenance/source-selection contract.
 
 ### Frida / DTU Denmark
-High-quality national composition/provenance data with FoodEx2/LanguaL metadata. Exact current reuse/attribution terms must be preserved before a public derivative is bundled.
+
+High-quality national composition/provenance data with FoodEx2/LanguaL metadata. Exact current redistribution and attribution terms must be confirmed before any public derived subset is bundled.
 
 ### NEVO / RIVM Netherlands
-Strong national provenance, including source/reference information, but current reuse conditions are more restrictive than Ciqual's licence. No data is bundled without a compatibility decision.
+
+Strong official provenance, including per-value source/reference information, but current reuse conditions are more restrictive than Ciqual's open-data licence. No data is bundled without a compatibility decision.
 
 ### BEDCA / AESAN Spain
-Geographically valuable for Spain/Canary food forms, but public availability does not establish unrestricted redistribution. BEDCA remains unbundled pending explicit reuse/licensing resolution.
+
+Highly relevant to Spanish/Canary food forms, but public access does not imply unrestricted redistribution. BEDCA remains unbundled until exact reuse/licensing terms permit a defensible public derivative.
 
 ### EuroFIR FoodEXplorer
-Useful cross-national harmonisation, but membership/pay-per-view access and underlying national licence constraints place it outside the current no-cost public-data contract.
 
-## EU regulatory / food-standards truth lane — SEPARATE FROM COMPOSITION
-EFSA and European Commission sources answer legal/classification/safety questions rather than providing interchangeable nutrient measurements.
+Useful for cross-national harmonisation, but membership/pay-per-view access and underlying national licences place it outside the current no-cost contract.
 
-Relevant future sources include:
+## EU regulatory / food-standards truth lane — separate from composition
+
+EFSA and European Commission resources answer legal/classification/safety questions rather than interchangeable nutrient-measurement questions.
+
+Relevant future audit sources include:
 - EFSA FoodEx2 classification/data standardisation;
 - EU Register of nutrition and health claims;
 - EU Pesticides Database / maximum-residue limits;
@@ -133,29 +164,33 @@ Relevant future sources include:
 - nutrient/reference-intake rules;
 - contaminants and other food-safety controls.
 
-These should enter a separate `RegulatoryEvidenceSource` or public-safe distilled artifact. Regulatory limits must never be converted into composition measurements or silently alter recommendation behavior without an explicit safety/product contract.
+These may be researched and represented through a separate `RegulatoryEvidenceSource` or public-safe distilled artifact. They must not be converted into composition values or silently change recommendation behavior without a future explicit product/safety contract.
 
-## Cross-source evidence rule
-The evidence review does **not** support a blanket claim that Europe or the United States is categorically more truthful. The project instead requires:
+## Standing cross-source evidence rules
+
+The project requires:
 1. exact source food identity and form;
 2. nutrient definition/method preservation;
 3. analytical/derived/reference provenance where available;
 4. geography and source-version preservation;
 5. licence/attribution preservation;
-6. no averaging of conflicting sources merely to create one number;
+6. no averaging merely to create consensus;
 7. visible disagreement/uncertainty;
-8. separate composition and regulatory evidence classes.
+8. separate composition and regulatory evidence classes;
+9. deterministic source selection under the approved Europe/Canary policy rather than a blanket geography winner.
 
-The next human-gated policy question is whether reviewed European composition evidence may become primary for Europe/Canary contexts when form and evidence quality support it, or remains corroboration-only.
+## Open Food Facts — compatibility review required
 
-## Open Food Facts — COMPATIBILITY REVIEW REQUIRED
-Open Food Facts remains unbundled. Its ODbL terms require an explicit compatibility and derived-database architecture decision before integration.
+Open Food Facts remains unbundled. Its ODbL terms require an explicit compatibility/derived-database architecture decision before integration.
 
 ## Recipe dataset candidates
-Third-party recipe datasets remain **not ingested**. Public visibility alone is not sufficient provenance. Recipe count remains subordinate to provenance, structure, culinary quality and editorial control.
+
+Third-party recipe datasets remain **not ingested**. Public availability alone is insufficient provenance. Recipe count remains subordinate to source legitimacy, structure, culinary quality and editorial control.
 
 ## Cost evidence state
-Cost is a relative deterministic heuristic rather than live market data. V1 uses project-authored Spain/Canary ingredient classes, package-sensitivity flags, availability assumptions and portfolio reuse effects. These are intentionally low-confidence planning heuristics and do not claim current supermarket prices or exact euros per serving.
+
+Cost remains a relative deterministic heuristic using project-authored Spain/Canary ingredient classes, package-sensitivity flags, availability assumptions and portfolio reuse. It does not claim current supermarket prices or exact euros per serving.
 
 ## Current nutrition state
-The app now contains a bounded USDA calculation lane and a bounded Ciqual corroboration lane. Coverage remains partial. The existence of official ingredient records must never be presented as if the whole corpus has authoritative recipe nutrition.
+
+The app has a bounded 29-record USDA Foundation lane, a bounded 32-record Ciqual lane and an approved deterministic Europe/Canary source-selection policy. Authoritative recipe coverage is still intentionally partial: official ingredient records do not imply that the whole corpus has authoritative recipe nutrition.
