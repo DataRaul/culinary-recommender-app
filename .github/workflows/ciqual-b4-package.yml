@@ -1,0 +1,25 @@
+name: One-off Ciqual 2025 B4 package acquisition
+on:
+  push:
+    branches: [v1-european-evidence-b4]
+    paths:
+      - '.github/workflows/ciqual-b4-package.yml'
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download official Ciqual 2025 XLSX
+        run: |
+          curl --fail --location --retry 3 \
+            --output /tmp/ciqual-2025.xlsx \
+            'https://entrepot.recherche.data.gouv.fr/api/access/datafile/:persistentId?persistentId=doi:10.57745/RPWYZD'
+          test "$(stat -c%s /tmp/ciqual-2025.xlsx)" -gt 1000000
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ciqual-2025-official-xlsx
+          path: /tmp/ciqual-2025.xlsx
+          retention-days: 1
