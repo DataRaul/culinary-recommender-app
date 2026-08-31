@@ -15,13 +15,15 @@ test("European-primary policy is explicit, bounded and non-averaging", () => {
   assert.match(EUROPEAN_PRIMARY_POLICY_V1.carbohydrateRule, /MUST_NOT_BE_SUMMED/);
 });
 
-test("runtime source metadata preserves B4 introduction history while exposing later policy eligibility", () => {
+test("runtime source metadata preserves B4 introduction history while exposing B4+B5 runtime eligibility", () => {
   assert.equal(CIQUAL_RUNTIME_SOURCE_V1.evidenceIntroductionPolicy, "CORROBORATION_ONLY_NOT_PRIMARY");
   assert.equal(CIQUAL_RUNTIME_SOURCE_V1.evidenceIntroductionState, "BOUNDED_STATIC_SECONDARY_EVIDENCE");
   assert.equal(CIQUAL_RUNTIME_SOURCE_V1.runtimePolicy, "ELIGIBLE_VIA_EUROPEAN_PRIMARY_POLICY_V1");
   assert.equal(CIQUAL_RUNTIME_SOURCE_V1.sourceSelectionPolicyId, EUROPEAN_PRIMARY_POLICY_V1.id);
   assert.equal(CIQUAL_RUNTIME_SOURCE_V1.sourceSelectionContext, EUROPEAN_PRIMARY_POLICY_V1.context);
   assert.equal(CIQUAL_RUNTIME_SOURCE_V1.selectionBoundary, "EXPLICIT_PER_INGREDIENT_PER_NUTRIENT_POLICY_ONLY");
+  assert.deepEqual(CIQUAL_RUNTIME_SOURCE_V1.evidenceTranches, ["B4", "B5"]);
+  assert.deepEqual(CIQUAL_RUNTIME_SOURCE_V1.boundedRecordCounts, { b4: 32, b5: 22, total: 54 });
 });
 
 test("European source wins only where food-form and constituent evidence justify it", () => {
@@ -34,6 +36,31 @@ test("European source wins only where food-form and constituent evidence justify
   assert.equal(onionProtein.selectionReason, "EUROPEAN_FORM_MATCH_STRONGER");
   assert.equal(onionCarbohydrate.source, "ciqual");
   assert.equal(onionCarbohydrate.semantic, "AVAILABLE_CARBOHYDRATE_CIQUAL_CHOAVL");
+});
+
+test("B5-only reviewed ingredients select Ciqual without weakening provenance", () => {
+  for (const [ingredientId, nutrientKey] of [
+    ["olive_oil", "proteinG"],
+    ["curry_powder", "fibreG"],
+    ["hake", "proteinG"]
+  ]) {
+    const selection = selectEuropeanPrimaryNutrient(ingredientId, nutrientKey);
+    assert.equal(selection.source, "ciqual", `${ingredientId}/${nutrientKey}`);
+    assert.equal(selection.evidenceTranche, "B5", `${ingredientId}/${nutrientKey}`);
+    assert.equal(selection.selectionReason, "ONLY_REVIEWED_SOURCE_AVAILABLE", `${ingredientId}/${nutrientKey}`);
+  }
+});
+
+test("Ciqual D remains conservative when USDA exists while B5-only D can remain usable", () => {
+  const onionEnergy = selectEuropeanPrimaryNutrient("onion", "energyKcal");
+  assert.equal(onionEnergy.source, "usda");
+  assert.equal(onionEnergy.selectionReason, "CIQUAL_D_CONFIDENCE_DOES_NOT_DISPLACE_USDA");
+
+  const hakeEnergy = selectEuropeanPrimaryNutrient("hake", "energyKcal");
+  assert.equal(hakeEnergy.source, "ciqual");
+  assert.equal(hakeEnergy.fieldConfidence, "D");
+  assert.equal(hakeEnergy.evidenceTranche, "B5");
+  assert.equal(hakeEnergy.selectionReason, "ONLY_REVIEWED_SOURCE_AVAILABLE");
 });
 
 test("stronger USDA form remains primary instead of losing to geography", () => {
@@ -68,7 +95,7 @@ test("Ciqual-only reviewed foods become usable European primary evidence without
   assert.ok(estimate.evidence.staticCalculation.used[0].provenanceByNutrient.proteinG.source === "ciqual");
 });
 
-test("incompatible USDA and Ciqual carbohydrate semantics fail closed at recipe level", () => {
+test("B5 leaves the carbohydrate semantic firewall unchanged", () => {
   const recipe = {
     ingredients: [
       { canonicalIngredientId: "broccoli", quantity: 100, unit: "g" },
@@ -100,11 +127,14 @@ test("USDA remains authoritative when it is the only reviewed source", () => {
   assert.deepEqual(estimate.perServing, { energyKcal: 533, proteinG: 17.4, carbohydrateG: 36.3, fatG: 38.9, fibreG: 4.1 });
 });
 
-test("policy coverage preserves per-nutrient source decisions deterministically", () => {
-  const first = europeanPrimaryPolicyCoverage(["onion", "tuna", "salmon", "cashews", "onion"]);
-  const second = europeanPrimaryPolicyCoverage(["onion", "tuna", "salmon", "cashews", "onion"]);
+test("policy coverage preserves B4/B5 per-nutrient decisions deterministically", () => {
+  const input = ["onion", "tuna", "salmon", "cashews", "olive_oil", "hake", "onion"];
+  const first = europeanPrimaryPolicyCoverage(input);
+  const second = europeanPrimaryPolicyCoverage(input);
   assert.deepEqual(first, second);
-  assert.equal(first.ingredientCount, 4);
+  assert.equal(first.ingredientCount, 6);
   assert.ok(first.ciqualSelectedCount > 0);
   assert.ok(first.usdaSelectedCount > 0);
+  assert.ok(first.ciqualB4SelectedCount > 0);
+  assert.ok(first.ciqualB5SelectedCount > 0);
 });
