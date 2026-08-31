@@ -1,4 +1,5 @@
 import { CIQUAL_2025_SOURCE, CIQUAL_DENSITIES_B4 } from "../data/ciqual-nutrients-b4.js";
+import { CIQUAL_DENSITIES_B5 } from "../data/ciqual-nutrients-b5.js";
 import {
   USDA_FOUNDATION_DENSITIES,
   USDA_FOUNDATION_SOURCE,
@@ -11,9 +12,27 @@ const CIQUAL_CANONICAL_ALIASES = {
   yogurt: "greek_yogurt"
 };
 
-export const CIQUAL_CANONICAL_DENSITIES = Object.fromEntries(
-  Object.entries(CIQUAL_DENSITIES_B4).map(([id, record]) => [CIQUAL_CANONICAL_ALIASES[id] || id, record])
-);
+const canonicalizeCiqual = (records, evidenceTranche) => Object.entries(records).map(([id, record]) => [
+  CIQUAL_CANONICAL_ALIASES[id] || id,
+  { ...record, evidenceTranche }
+]);
+
+const CIQUAL_B4_CANONICAL_ENTRIES = canonicalizeCiqual(CIQUAL_DENSITIES_B4, "B4");
+const CIQUAL_B5_CANONICAL_ENTRIES = canonicalizeCiqual(CIQUAL_DENSITIES_B5, "B5");
+const b4Ids = new Set(CIQUAL_B4_CANONICAL_ENTRIES.map(([id]) => id));
+const duplicateB5Ids = CIQUAL_B5_CANONICAL_ENTRIES.map(([id]) => id).filter(id => b4Ids.has(id));
+if (duplicateB5Ids.length) throw new Error(`Ciqual B5 duplicates frozen B4 canonical IDs: ${duplicateB5Ids.sort().join(", ")}`);
+
+export const CIQUAL_CANONICAL_DENSITIES = Object.fromEntries([
+  ...CIQUAL_B4_CANONICAL_ENTRIES,
+  ...CIQUAL_B5_CANONICAL_ENTRIES
+]);
+
+export const CIQUAL_BOUNDED_RECORD_COUNTS = {
+  b4: CIQUAL_B4_CANONICAL_ENTRIES.length,
+  b5: CIQUAL_B5_CANONICAL_ENTRIES.length,
+  total: CIQUAL_B4_CANONICAL_ENTRIES.length + CIQUAL_B5_CANONICAL_ENTRIES.length
+};
 
 export const EUROPEAN_PRIMARY_POLICY_V1 = {
   id: "european-primary-v1",
@@ -28,10 +47,9 @@ export const EUROPEAN_PRIMARY_POLICY_V1 = {
 };
 
 // Preserve the frozen B4 source snapshot exactly as introduced while exposing the
-// later human-approved runtime policy separately. The raw B4 artifact therefore
-// remains auditable as corroboration-only evidence at introduction time; this
-// wrapper records that the same reviewed source is now eligible for explicit
-// per-ingredient/per-nutrient selection under EUROPEAN_PRIMARY_POLICY_V1.
+// later human-approved runtime policy separately. B5 extends the same official
+// Ciqual 2025 dataset through another bounded manual review tranche; it does not
+// rewrite B4 records or broaden selection rules.
 export const CIQUAL_RUNTIME_SOURCE_V1 = {
   ...CIQUAL_2025_SOURCE,
   evidenceIntroductionState: CIQUAL_2025_SOURCE.state,
@@ -40,7 +58,9 @@ export const CIQUAL_RUNTIME_SOURCE_V1 = {
   runtimePolicy: "ELIGIBLE_VIA_EUROPEAN_PRIMARY_POLICY_V1",
   sourceSelectionPolicyId: EUROPEAN_PRIMARY_POLICY_V1.id,
   sourceSelectionContext: EUROPEAN_PRIMARY_POLICY_V1.context,
-  selectionBoundary: "EXPLICIT_PER_INGREDIENT_PER_NUTRIENT_POLICY_ONLY"
+  selectionBoundary: "EXPLICIT_PER_INGREDIENT_PER_NUTRIENT_POLICY_ONLY",
+  evidenceTranches: ["B4", "B5"],
+  boundedRecordCounts: CIQUAL_BOUNDED_RECORD_COUNTS
 };
 
 const formRank = confidence => ({ high: 3, medium: 2, low: 1 }[confidence] || 0);
@@ -76,6 +96,7 @@ const sourceCandidate = (ingredientId, nutrientKey, source) => {
       source: "ciqual",
       sourceId: CIQUAL_RUNTIME_SOURCE_V1.id,
       sourceIdentifier: record.alimCode,
+      evidenceTranche: record.evidenceTranche,
       value,
       semantic: spec.semantic,
       method: spec.method,
@@ -98,6 +119,7 @@ const sourceCandidate = (ingredientId, nutrientKey, source) => {
     source: "usda",
     sourceId: USDA_FOUNDATION_SOURCE.id,
     sourceIdentifier: record.fdcId,
+    evidenceTranche: null,
     value,
     semantic: spec.semantic,
     method: spec.method,
@@ -145,6 +167,7 @@ export const europeanPrimaryDensityForIngredient = ingredientId => {
       source: selections[key].source,
       sourceId: selections[key].sourceId,
       sourceIdentifier: selections[key].sourceIdentifier,
+      evidenceTranche: selections[key].evidenceTranche,
       semantic: selections[key].semantic,
       method: selections[key].method,
       selectionReason: selections[key].selectionReason,
@@ -176,6 +199,8 @@ export const europeanPrimaryPolicyCoverage = ingredientIds => {
     evidenceIngredientCount: records.filter(item => item.record).length,
     ciqualSelectedCount: selections.filter(item => item.source === "ciqual").length,
     usdaSelectedCount: selections.filter(item => item.source === "usda").length,
+    ciqualB4SelectedCount: selections.filter(item => item.source === "ciqual" && item.evidenceTranche === "B4").length,
+    ciqualB5SelectedCount: selections.filter(item => item.source === "ciqual" && item.evidenceTranche === "B5").length,
     selections
   };
 };
