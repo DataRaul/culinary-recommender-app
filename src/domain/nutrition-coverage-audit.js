@@ -7,6 +7,8 @@ export function buildNutritionCoverageAudit(recipes = [], nutritionSource) {
   const methodCounts = new Map();
   const blockerCounts = new Map();
   const blockerIngredientCounts = new Map();
+  const missingNutrientFieldCounts = new Map();
+  const missingNutrientIngredientCounts = new Map();
   const semanticIssueCounts = new Map();
   const authoritativeRecipeIds = [];
   const estimateRecipeIds = [];
@@ -35,6 +37,20 @@ export function buildNutritionCoverageAudit(recipes = [], nutritionSource) {
       blockers.push({ ingredientId: skipped.ingredientId || null, reason });
     }
 
+    // A used ingredient can still make the recipe incomplete when an otherwise
+    // valid reviewed density leaves one or more tracked nutrient fields null.
+    // Keep this separate from skipped quantity/density blockers so the audit can
+    // explain recipes that have no skipped ingredients yet still fail closed.
+    const nutrientFieldGaps = [];
+    for (const used of calculation.used || []) {
+      for (const nutrient of used.missingNutrients || []) {
+        const ingredientId = used.ingredientId || null;
+        increment(missingNutrientFieldCounts, nutrient);
+        if (ingredientId) increment(missingNutrientIngredientCounts, ingredientId);
+        nutrientFieldGaps.push({ ingredientId, nutrient });
+      }
+    }
+
     const semanticIssues = [];
     for (const [nutrient, coverage] of Object.entries(calculation.nutrientCoverage || {})) {
       if (!coverage?.semanticCompatibility) {
@@ -50,6 +66,7 @@ export function buildNutritionCoverageAudit(recipes = [], nutritionSource) {
       method,
       authoritative,
       blockers: blockers.sort((a, b) => `${a.ingredientId}:${a.reason}`.localeCompare(`${b.ingredientId}:${b.reason}`)),
+      nutrientFieldGaps: nutrientFieldGaps.sort((a, b) => `${a.ingredientId}:${a.nutrient}`.localeCompare(`${b.ingredientId}:${b.nutrient}`)),
       semanticIssues: semanticIssues.sort((a, b) => a.nutrient.localeCompare(b.nutrient))
     });
   }
@@ -65,6 +82,8 @@ export function buildNutritionCoverageAudit(recipes = [], nutritionSource) {
     methodCounts: sortedObject(methodCounts),
     blockerCounts: sortedObject(blockerCounts),
     blockerIngredientCounts: sortedObject(blockerIngredientCounts),
+    missingNutrientFieldCounts: sortedObject(missingNutrientFieldCounts),
+    missingNutrientIngredientCounts: sortedObject(missingNutrientIngredientCounts),
     semanticIssueCounts: sortedObject(semanticIssueCounts),
     authoritativeRecipeIds: authoritativeRecipeIds.sort(),
     estimateRecipeIds: estimateRecipeIds.sort(),
