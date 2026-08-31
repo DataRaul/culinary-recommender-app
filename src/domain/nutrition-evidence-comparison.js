@@ -1,5 +1,6 @@
 import { CIQUAL_2025_SOURCE, CIQUAL_DENSITIES_B4 } from "../data/ciqual-nutrients-b4.js";
 import { CIQUAL_DENSITIES_B5 } from "../data/ciqual-nutrients-b5.js";
+import { CIQUAL_DENSITIES_B7 } from "../data/ciqual-nutrients-b7.js";
 import { USDA_FOUNDATION_DENSITIES, USDA_FOUNDATION_SOURCE } from "../data/nutrition-evidence.js";
 
 const CIQUAL_CANONICAL_ALIASES = {
@@ -14,9 +15,11 @@ const canonicalize = records => Object.fromEntries(
 
 export const CIQUAL_CANONICAL_DENSITIES_B4 = canonicalize(CIQUAL_DENSITIES_B4);
 export const CIQUAL_CANONICAL_DENSITIES_B5 = canonicalize(CIQUAL_DENSITIES_B5);
+export const CIQUAL_CANONICAL_DENSITIES_B7 = canonicalize(CIQUAL_DENSITIES_B7);
 export const CIQUAL_CANONICAL_DENSITIES = {
   ...CIQUAL_CANONICAL_DENSITIES_B4,
-  ...CIQUAL_CANONICAL_DENSITIES_B5
+  ...CIQUAL_CANONICAL_DENSITIES_B5,
+  ...CIQUAL_CANONICAL_DENSITIES_B7
 };
 
 const percentDifference = (left, right) => {
@@ -65,12 +68,20 @@ const nutrientComparison = (usda, ciqual) => ({
   }
 });
 
+const trancheFor = ingredientId => CIQUAL_CANONICAL_DENSITIES_B7[ingredientId]
+  ? "B7"
+  : CIQUAL_CANONICAL_DENSITIES_B5[ingredientId]
+    ? "B5"
+    : CIQUAL_CANONICAL_DENSITIES_B4[ingredientId]
+      ? "B4"
+      : null;
+
 export const nutritionEvidenceComparisonForIngredient = ingredientId => {
   const usda = USDA_FOUNDATION_DENSITIES[ingredientId] || null;
   const ciqual = CIQUAL_CANONICAL_DENSITIES[ingredientId] || null;
-  const ciqualEvidenceTranche = CIQUAL_CANONICAL_DENSITIES_B5[ingredientId] ? "B5" : CIQUAL_CANONICAL_DENSITIES_B4[ingredientId] ? "B4" : null;
+  const ciqualEvidenceTranche = trancheFor(ingredientId);
   const sourceCount = Number(Boolean(usda)) + Number(Boolean(ciqual));
-  const formCaveat = Boolean(usda && ciqual && (ciqual.matchConfidence !== "high" || /differs|generic|specific|underspecified/i.test(ciqual.matchNotes || "")));
+  const formCaveat = Boolean(usda && ciqual && (ciqual.matchConfidence !== "high" || /differs|generic|specific|underspecified|category-level/i.test(ciqual.matchNotes || "")));
   const state = sourceCount === 0
     ? "NO_STATIC_EVIDENCE"
     : sourceCount === 1
@@ -119,6 +130,7 @@ export const nutritionEvidenceComparisonCoverage = ingredientIds => {
     ciqualOnlyCount: comparisons.filter(item => !item.sources.usda && item.sources.ciqual).length,
     ciqualB4EvidenceCount: comparisons.filter(item => item.sources.ciqual?.evidenceTranche === "B4").length,
     ciqualB5EvidenceCount: comparisons.filter(item => item.sources.ciqual?.evidenceTranche === "B5").length,
+    ciqualB7EvidenceCount: comparisons.filter(item => item.sources.ciqual?.evidenceTranche === "B7").length,
     noEvidenceCount: count("NO_STATIC_EVIDENCE"),
     formCaveatCount: count("MULTI_SOURCE_FORM_CAVEAT"),
     comparisons
