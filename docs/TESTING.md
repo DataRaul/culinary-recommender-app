@@ -20,7 +20,9 @@ Coverage includes:
 - fridge-search main-ingredient hard filtering;
 - secondary-ingredient ranking and require-all behavior;
 - temporary meal/time/skill/discovery overrides without saved-profile mutation;
-- neutral ingredient-first search clearing soft cuisine/priority-pack preferences while preserving allergen and permanent-exclusion constraints.
+- neutral ingredient-first search clearing soft cuisine/priority-pack preferences while preserving allergen and permanent-exclusion constraints;
+- Brain public-policy provenance pinning, source-safe/non-clinical hard boundaries and explicit prohibition of private Knowledge Core runtime dependency;
+- a calibration-only Brain guard that fails if public runtime source code starts importing `brain-public-policy-v1.js` before a separately authorized behavior gate.
 
 ## Browser acceptance
 Public CI installs pinned Playwright/Chromium and runs two browser layers against a local static server with no live third-party data.
@@ -50,6 +52,8 @@ The broader flow exercises:
 - service-worker control and offline shell reload.
 
 The browser suite is intended to catch integration, persistence and interaction failures that pure domain tests cannot see. It does not claim to represent every physical device/browser combination or subjective recommendation quality.
+
+The current Brain P0 app artifact is calibration-only and intentionally disconnected from runtime ranking, so the existing browser expectations must remain unchanged. A later Brain-derived behavior gate must add browser cases for every user-visible behavior it changes.
 
 ## CI cost policy
 One standard Ubuntu job, no matrix, no larger runners. The repository is public, so validation uses GitHub's standard public-repository Actions allowance rather than private-repository minutes.
