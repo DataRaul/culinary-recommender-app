@@ -29,7 +29,7 @@
 | V1.0.3 / Content Gate E | COMPLETE | 15 coverage-driven authored recipes + corpus/search audit + pineapple future-exclusion proof |
 | Brain P0 | AUTHORIZED / FOUNDATION BUILT | Knowledge Core official-source foundation + bounded free operator corpus + source/adacency governance |
 | App Brain adapter V1 | CALIBRATION SCAFFOLDING | static provenance-pinned public-safe policy contract; no ranking change |
-| V1.1 / Recipe Corpus Gate F | OPEN / BLOCKING | mandatory Wikibooks-first external app corpus + recipe-universe coverage/provenance/rights audit |
+| V1.1 / Recipe Corpus Gate F | VALIDATED CANDIDATE / HUMAN ACCEPTANCE REQUIRED | bounded Wikibooks RecipeSource + exact provenance + coverage/safety validation; public acceptance pending |
 | V1.x / Recipe-unlock evidence | NEXT | target remaining composition/form and exact quantity blockers by recipe-level unlock value |
 | V1.x / Authoritative nutrition coverage | CONTINUOUS | expand reviewed evidence under the approved source policy without guessing |
 | V1.x / Corpus breadth | GATED | broaden through Gate F and measured coverage gaps rather than recipe-count growth |
@@ -123,15 +123,13 @@ Current state: `CALIBRATION_ONLY_NO_RANKING_CHANGE`.
 
 The public app does not fetch private Knowledge Core at runtime. Only narrow, versioned, source-safe static exports are eligible. Brain authorization does not silently authorize changes to ranking, eligibility, substitutions or nutrition outputs; each behavior change requires an explicit public artifact, deterministic negative/regression tests and normal PR/matrix/browser validation.
 
-## V1.1 Recipe Corpus Gate F — OPEN / BLOCKING
+## V1.1 Recipe Corpus Gate F — VALIDATED CANDIDATE / HUMAN ACCEPTANCE REQUIRED
 
 This gate converts recipe breadth from a project-authored sample into an app-owned external corpus program without weakening the existing source, safety or nutrition contracts.
 
 ### Mandatory initial corpus
 
-**Wikibooks Cookbook is the mandatory first external recipe acquisition source for the public app**, subject to a bounded legal/provenance ingest audit covering the exact source revision, attribution, ShareAlike obligations and public-repository reuse path. The current Brain/Atlas snapshot identifies Wikibooks as the preferred broad open-content lane and observes 3,825 recipe pages plus 158 cuisine pages; these are navigation counts, not normalized dish-family counts or proof of balanced world coverage.
-
-If the audit finds a genuine blocking incompatibility, replacing Wikibooks requires an explicit governance decision. It must not be silently skipped for a more convenient corpus.
+**Wikibooks Cookbook is the mandatory first external recipe acquisition source for the public app.** The rights/provenance audit has passed for a bounded text-only CC BY-SA 4.0 path with exact revision URLs, contributor attribution, ShareAlike and transformation notices. A current bounded discovery measured **3,792** recipe pages; that count is navigation/discovery evidence, not a bundled-corpus or world-coverage claim. Only eight reviewed exact revisions are admitted and no Wikibooks images/media are bundled.
 
 ### Ownership and runtime contract
 
@@ -158,9 +156,13 @@ The audit must also report gaps across geography/cuisine, meal role, ingredient 
 
 Freshness-sensitive/trending coverage is expected to need later sources because Wikibooks is a floor, not a complete universe. Additional corpora may be admitted only for a named coverage or evidence gain under the same provenance/rights rules.
 
+### Current candidate state
+
+The public RecipeSource universe is **84 recipes**: 76 curated authored records plus eight exact-revision Wikibooks records, normalized into **83 dish families**. One Spanish-potato-omelet family explicitly preserves authored and external variants. Two external recipes are Search-only; six remain reference-only because hard source metadata is incomplete. Modern/trending role coverage remains an explicit gap. Source recipe nutrition is not imported as authoritative composition and the private Knowledge Core remains offline.
+
 ### Exit criteria
 
-Gate F remains **OPEN / BLOCKING** until all of the following are true:
+The technical candidate implements and tests the following requirements; Gate F remains incomplete until the final human acceptance item is satisfied:
 
 1. Wikibooks licensing/attribution/ShareAlike and source-revision audit is recorded and passes for the chosen ingest path;
 2. a bounded reproducible Wikibooks acquisition is normalized into an app-owned external `RecipeSource` implementation;
@@ -173,7 +175,7 @@ Gate F remains **OPEN / BLOCKING** until all of the following are true:
 9. the Brain/KC recipe-universe contract remains pinned and any behavior-driving export follows the existing Brain adapter gate;
 10. a human review confirms the external corpus is useful in the public app before Gate F is marked complete.
 
-Until then, `V1.x / Corpus breadth` is **GATED** rather than complete merely because authored recipes or Atlas candidates increase.
+The technical candidate is validated only as a bounded first external tranche. `V1.x / Corpus breadth` remains **GATED**, and Gate F cannot be marked COMPLETE, until the user accepts the deployed public corpus.
 
 ## Current nutrition policy
 
@@ -193,9 +195,9 @@ For the Canary Islands / Spain / Europe context:
 
 Routine evidence expansion may continue under this accepted architecture without reopening the policy decision.
 
-## Next recipe-unlock evidence work
+## Post-Gate-F recipe-unlock evidence work
 
-With B6 complete, priority shifts from broad quantity discovery to **recipe-unlock analysis**:
+After Gate F human acceptance, priority returns to **recipe-unlock analysis** rather than broad quantity discovery:
 
 1. identify recipes one or two blockers away from authoritative calculation;
 2. target high-frequency remaining composition/form blockers only where source form can be reviewed strongly;

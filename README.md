@@ -7,7 +7,7 @@
 | Area | Status | Current stage | Next ordinary work |
 |---|---|---|---|
 | Foundation | ✅ COMPLETE | V0.1 / Gate 1 | — |
-| Recipe corpus | ✅ COVERAGE EXPANSION COMPLETE | V1.0.3 / Gate E | coverage-driven iteration |
+| Recipe corpus | 🟡 VALIDATED CANDIDATE / HUMAN ACCEPTANCE REQUIRED | V1.1 / Gate F | human public-corpus acceptance |
 | Ingredient ontology | ✅ V1 GATE A COMPLETE | hierarchical + bilingual | broader evidence/form coverage |
 | Substitutions | ✅ V1 GATE A COMPLETE | six-class controlled graph | contextual editorial edges |
 | Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.0.10 B6 COMPLETE | targeted composition + residual quantity gaps |
@@ -28,7 +28,7 @@
 **Nutrition B5:** V1.0.9 / PR #17 / merged at `5689b0e40c6c4d9d7040b0ee25b7cc41d898b751`  
 **Nutrition B6:** V1.0.10 / PR #18 / merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`  
 **Culinary & Nutrition Brain P0 calibration pin:** Knowledge Core `e5dcb29a7c6b78f59c062faf4c963c74aac10743`  
-**Public app:** https://dataraul.github.io/culinary-recommender-app/
+**Public app:** https://dataraul.github.io/culinary-recommender-app/  \n**Recipe Corpus Gate F candidate:** 84 recipes = 76 curated + 8 exact-revision Wikibooks records / 83 dish families / 2 external Search-only + 6 reference-only
 
 The V1 lineage includes project-authored corpus/ontology/substitution expansion, Spain/Canary cost intelligence, full-corpus culinary-quality normalization, bounded USDA Foundation evidence, bounded ANSES-Ciqual 2025 European composition evidence, the user-approved conditional European-primary source policy, deterministic whole-corpus authoritative-nutrition coverage measurement, the bounded Norwegian official portion-evidence lane, and now an explicitly authorized offline Culinary & Nutrition Brain calibration contract.
 
@@ -53,6 +53,16 @@ Search begins with a hard-required main ingredient and optional secondary ingred
 ### Controlled substitutions
 
 Replacement edges are labelled `close_substitute`, `functional_substitute`, `flavour_direction`, `texture_substitute`, `dietary_substitute`, or `emergency_approximation`. They describe culinary function rather than false equivalence.
+
+## Recipe Corpus Gate F candidate
+
+Gate F adds a bounded **text-only English Wikibooks Cookbook** RecipeSource under **CC BY-SA 4.0** after an exact rights/attribution/ShareAlike audit. Broad discovery measured **3,792** pages in `Category:Recipes`; only **eight manually reviewed exact revisions** are bundled. No Wikibooks images or bulk source dump are committed.
+
+The public recipe universe is now **84 recipes**: 76 project-authored plus eight open external records, normalized to **83 dish families**. The explicit cross-source `spanish_potato_omelet` family retains both the authored and Wikibooks variants. **Baba Ganoush** and **Bruschetta base** are `SEARCH_ONLY`; the other six records remain `REFERENCE_ONLY_INCOMPLETE_HARD_METADATA` because source-backed time/serving or other hard metadata are incomplete. Unknown values stay unknown rather than being guessed.
+
+External records preserve page ID/title, exact revision ID/timestamp, canonical and revision URLs, Wikibooks contributor attribution, CC BY-SA 4.0, transformation notice and review state. Source recipe nutrition is deliberately **not** imported as authoritative composition; RecipeSource, NutritionSource and regulatory evidence remain separate. Allergens, dietary rules, permanent exclusions, quantity semantics and fail-closed nutrition/recommendation policy continue to apply.
+
+The seven-role audit currently covers canonical/classic and regional/traditional across all eight records, with partial staple/everyday, constraint-first and technique-learning coverage. `contemporary_modern` and `genuinely_new_trending` remain explicit gaps. Gate F is not COMPLETE until human acceptance of the deployed public corpus.
 
 ## Nutrition evidence architecture
 
@@ -162,11 +172,13 @@ The app is a static GitHub Pages site published from `main` / repository root. P
 npm run validate
 npm run test:browser
 npm run report:nutrition-coverage
+npm run report:recipe-universe
+npm run verify:wikibooks-gate-f
 ```
 
 ## Data and licensing
 
-Recipes and application ontology/substitution guidance are project-authored. USDA FoodData Central composition/portion metadata use the documented CC0/public-domain lane. The bounded Ciqual modules retain Etalab Open Licence 2.0 attribution. The bounded Matvaretabellen B6 portion module retains NLOD 2.0 source identity and attribution. Brain-derived public artifacts must contain only normalized source-safe reasoning and provenance metadata permitted by the adapter contract; copyrighted source prose/transcripts are not exported.
+The original 76 curated recipes and application ontology/substitution guidance are project-authored. The Gate F candidate additionally bundles eight transformed, exact-revision English Wikibooks recipe records under CC BY-SA 4.0 with attribution and ShareAlike controls documented in `docs/WIKIBOOKS_GATE_F_RIGHTS_AUDIT.md` and `THIRD_PARTY_NOTICES.md`. USDA FoodData Central composition/portion metadata use the documented CC0/public-domain lane. The bounded Ciqual modules retain Etalab Open Licence 2.0 attribution. The bounded Matvaretabellen B6 portion module retains NLOD 2.0 source identity and attribution. Brain-derived public artifacts must contain only normalized source-safe reasoning and provenance metadata permitted by the adapter contract; copyrighted source prose/transcripts are not exported.
 
 This repository currently has **no general licence**. Public visibility is not permission to reuse project-authored repository content.
 
