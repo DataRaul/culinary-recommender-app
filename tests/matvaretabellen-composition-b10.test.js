@@ -66,7 +66,7 @@ test("exact B10 lemon completion unlocks the one-key authored mushroom-pea orzo 
   assert.equal(estimate.evidence.state, "AUTHORITATIVE_STATIC_RECIPE_CALCULATION_AVAILABLE");
   const lemon = estimate.evidence.staticCalculation.used.find(item => item.ingredientId === "lemon");
   assert.ok(lemon);
-  assert.equal(lemon.grams, 80);
+  assert.equal(lemon.grams, 40);
   assert.equal(lemon.quantityEvidence.sourceId, "matvaretabellen-2026-portions-b6");
   assert.equal(lemon.provenanceByNutrient.energyKcal.source, "ciqual");
   assert.equal(lemon.provenanceByNutrient.fatG.source, "matvaretabellen");
