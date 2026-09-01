@@ -16,6 +16,10 @@ import {
   matvaretabellenPortionConversion
 } from "../data/matvaretabellen-portions-b6.js";
 import {
+  USDA_SR_LEGACY_PORTION_SOURCE_B8,
+  usdaSrLegacyPortionConversion
+} from "../data/usda-sr-legacy-portions-b8.js";
+import {
   CIQUAL_RUNTIME_SOURCE_V1,
   EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
@@ -32,6 +36,26 @@ const quantityToGrams = ingredient => {
   if (unit === "kg") return { grams: quantity * 1000, reason: null, quantityEvidence: { state: "DIRECT_MASS", unit: "kg" } };
 
   const ingredientId = ingredient?.canonicalIngredientId;
+  const srLegacyPortion = usdaSrLegacyPortionConversion(ingredientId, unit);
+  if (srLegacyPortion) {
+    return {
+      grams: quantity * srLegacyPortion.gramsPerUnit,
+      reason: null,
+      quantityEvidence: {
+        state: srLegacyPortion.evidenceState,
+        sourceId: USDA_SR_LEGACY_PORTION_SOURCE_B8.id,
+        evidenceTranche: srLegacyPortion.evidenceTranche,
+        inputUnit: unit,
+        gramsPerUnit: srLegacyPortion.gramsPerUnit,
+        sourceUnit: srLegacyPortion.sourceUnit,
+        modifier: srLegacyPortion.modifier,
+        fdcId: srLegacyPortion.fdcId,
+        ndbNumber: srLegacyPortion.ndbNumber,
+        portionRowId: srLegacyPortion.portionRowId
+      }
+    };
+  }
+
   const usdaPortion = usdaFoundationPortionConversion(ingredientId, unit);
   if (usdaPortion) {
     return {
@@ -221,9 +245,9 @@ export const publicNutritionSource = {
       method,
       confidence: authoritativeRecipeCalculation ? "medium" : recipe.nutrition?.confidence || "low",
       provenance: usesEuropeanPrimary
-        ? "Calculated deterministically under the Canary/Spain/Europe source-selection policy from reviewed USDA Foundation and/or ANSES-Ciqual composition, with exact per-nutrient provenance and source-backed USDA and/or Matvaretabellen quantity weights; incompatible carbohydrate semantics are never mixed and cooking/yield uncertainty remains."
+        ? "Calculated deterministically under the Canary/Spain/Europe source-selection policy from reviewed USDA Foundation and/or ANSES-Ciqual composition, with exact per-nutrient provenance and source-backed USDA, Matvaretabellen and/or SR Legacy quantity weights; incompatible carbohydrate semantics are never mixed and cooking/yield uncertainty remains."
         : usesCoherentUsdaFallback
-          ? "European-primary selection was incomplete or semantically incompatible for a full recipe total, so the deterministic fully coherent reviewed USDA Foundation calculation was retained; source-backed USDA and/or Matvaretabellen quantity weights may be used and cooking/yield uncertainty remains."
+          ? "European-primary selection was incomplete or semantically incompatible for a full recipe total, so the deterministic fully coherent reviewed USDA Foundation calculation was retained; source-backed USDA, Matvaretabellen and/or SR Legacy quantity weights may be used and cooking/yield uncertainty remains."
           : recipe.nutrition?.provenance || "Project-authored estimate.",
       evidence: {
         source: USDA_FOUNDATION_SOURCE,
@@ -231,7 +255,7 @@ export const publicNutritionSource = {
         sourcePolicy: EUROPEAN_PRIMARY_POLICY_V1,
         compositionSource: USDA_FOUNDATION_COMPOSITION_SOURCE,
         portionSource: USDA_FOUNDATION_PORTION_SOURCE,
-        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6],
+        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, USDA_SR_LEGACY_PORTION_SOURCE_B8],
         coverage,
         europeanPrimaryCoverage,
         identities,
