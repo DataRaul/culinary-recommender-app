@@ -9,6 +9,12 @@ def replace_once(path, old, new):
     p.write_text(text.replace(old, new, 1))
 
 
+def normalize_trailing_whitespace(path):
+    p = Path(path)
+    text = p.read_text()
+    p.write_text("\n".join(line.rstrip() for line in text.splitlines()) + "\n")
+
+
 replace_once(
     "README.md",
     "| Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.1.1 B7 COMPLETE | residual composition/form + exact quantity unlocks |",
@@ -90,3 +96,12 @@ for path, section in append_sections.items():
     heading = section.strip().splitlines()[0]
     if heading not in text:
         p.write_text(text.rstrip() + section + "\n")
+
+for path in (
+    "README.md",
+    "docs/ROADMAP.md",
+    "docs/GATES.md",
+    "docs/EUROPEAN_EVIDENCE.md",
+    "docs/TESTING.md",
+):
+    normalize_trailing_whitespace(path)
