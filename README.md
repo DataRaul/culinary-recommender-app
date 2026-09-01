@@ -7,10 +7,10 @@
 | Area | Status | Current stage | Next ordinary work |
 |---|---|---|---|
 | Foundation | ✅ COMPLETE | V0.1 / Gate 1 | — |
-| Recipe corpus | ✅ COMPLETE / USER-ACCEPTED | V1.1 / Gate F | coverage-driven breadth under the same rights/provenance rules |
+| Recipe corpus | ✅ COMPLETE / USER-ACCEPTED | V1.1 / Gate F; F2 control plane merged / runtime gated | bounded F2 review under the same rights/provenance rules |
 | Ingredient ontology | ✅ V1 GATE A COMPLETE | hierarchical + bilingual | broader evidence/form coverage |
 | Substitutions | ✅ V1 GATE A COMPLETE | six-class controlled graph | contextual editorial edges |
-| Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.1.2 B8 CANDIDATE | first authoritative authored recipe earned; residual composition/form + semantic unlocks |
+| Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.1.2 B8 COMPLETE | 1/76 authoritative; target residual recipe-level unlocks |
 | European evidence | ✅ CONDITIONAL PRIMARY POLICY | Ciqual B4+B5+B7 + Matvaretabellen B6 | residual recipe-level unlocks |
 | Cost intelligence | ✅ COMPLETE | Gate C | empirical prices only if separately authorized |
 | Culinary quality | ✅ COMPLETE | Gate D | editorial refinement |
@@ -27,11 +27,13 @@
 **Authoritative coverage baseline:** V1.0.8 / PR #16 / `cdb9a9d9e6d2e0bf0f251bb37098d07dd64e3e9e`
 **Nutrition B5:** V1.0.9 / PR #17 / merged at `5689b0e40c6c4d9d7040b0ee25b7cc41d898b751`
 **Nutrition B6:** V1.0.10 / PR #18 / merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`
+**Nutrition B8:** V1.1.2 / PR #26 / COMPLETE / merged at `51658632c1684e9206d24ed331ded116b730e412`
 **Culinary & Nutrition Brain P0 calibration pin:** Knowledge Core `e5dcb29a7c6b78f59c062faf4c963c74aac10743`
 **Public app:** https://dataraul.github.io/culinary-recommender-app/
 **Recipe Corpus Gate F:** COMPLETE / USER-ACCEPTED · 84 recipes = 76 curated + 8 exact-revision Wikibooks records / 83 dish families / 2 external Search-only + 6 reference-only
+**Recipe Corpus Gate F2:** CONTROL PLANE MERGED / RUNTIME GATED · PRs #24/#25/#27 · 0 newly admitted recipes · runtime activation not authorized
 
-The V1 lineage includes project-authored corpus/ontology/substitution expansion, Spain/Canary cost intelligence, full-corpus culinary-quality normalization, bounded USDA Foundation evidence, bounded ANSES-Ciqual 2025 European composition evidence, the user-approved conditional European-primary source policy, deterministic whole-corpus authoritative-nutrition coverage measurement, the bounded Norwegian official portion-evidence lane, and now an explicitly authorized offline Culinary & Nutrition Brain calibration contract.
+The V1 lineage includes project-authored corpus/ontology/substitution expansion, Spain/Canary cost intelligence, full-corpus culinary-quality normalization, bounded USDA Foundation evidence, bounded ANSES-Ciqual 2025 European composition evidence, the user-approved conditional European-primary source policy, deterministic whole-corpus authoritative-nutrition coverage measurement, bounded Norwegian official portion evidence, exact SR Legacy B8 quantity evidence, revision-aware Gate F2 breadth controls, and an explicitly authorized offline Culinary & Nutrition Brain calibration contract.
 
 ## What it does
 
@@ -65,6 +67,12 @@ External records preserve page ID/title, exact revision ID/timestamp, canonical 
 
 The seven-role audit currently covers canonical/classic and regional/traditional across all eight records, with partial staple/everyday, constraint-first and technique-learning coverage. `contemporary_modern` and `genuinely_new_trending` remain explicit gaps. Gate F is **COMPLETE / USER-ACCEPTED** after the 2026-09-01 assistant-run acceptance checks and user continuation decision.
 
+## Recipe Corpus Gate F2 — control plane merged / runtime gated
+
+F2 adds scalable metadata-only discovery, immutable reviewed exact-revision history, a revision-aware review queue, source-presence anomaly holds, reproducible compact indexing and bounded current category hints. The merged lineage is PR #24, PR #25 and PR #27.
+
+Category hints are **current metadata only**, not revision-pinned evidence. They may prioritize review but cannot establish hard metadata, authenticity, regional/canonical status, trend/newness, nutrition, safety, dietary truth, recommendation eligibility or runtime behavior. F2 has admitted **0** new public recipes and automatic runtime activation remains **not authorized**.
+
 ## Nutrition evidence architecture
 
 The public app has a bounded, deterministic, multi-source evidence architecture. It does **not** assume that Europe or the United States is inherently more truthful. Evidence is selected according to reviewed food-form fit, field quality and semantic compatibility while preserving exact provenance.
@@ -93,7 +101,7 @@ Nutrition B6 adds a separate bounded Matvaretabellen / Norwegian Food Safety Aut
 
 B6 promotes only 14 manually reviewed mappings: lemon 80 g/piece, garlic 3 g/clove, extra-virgin olive oil 10 g/tbsp, generic raw tomato 95 g/piece, generic bell pepper 145 g/piece, soy sauce 13 g/tbsp, raw onion 160 g/piece, carrot 80 g/piece, cucumber 325 g/piece, raw egg 55 g/piece, spring onion 19 g/piece, curry powder 3 g/tsp, aubergine 285 g/piece and mango 335 g/piece.
 
-B6 also records non-conversions explicitly. Lime remains ambiguous because the same source food exposes conflicting 17 g and 65 g piece rows. Avocado remains ambiguous between 130 g small and 220 g large. `onion|small`, `sesame_oil|tsp` and `red_onion|piece` remain unsupported. No generic spoon arithmetic, cross-food average or convenient midpoint is introduced.
+B6 also records non-conversions explicitly. Lime remains ambiguous because the same source food exposes conflicting 17 g and 65 g piece rows. Avocado remains ambiguous between 130 g small and 220 g large. At the B6 stage, `onion|small`, `sesame_oil|tsp` and `red_onion|piece` remained unsupported. No generic spoon arithmetic, cross-food average or convenient midpoint was introduced. B8 later resolved only the exact `onion|small` state through a separate SR Legacy 70 g row; the other B6 deferrals remain unchanged.
 
 ## Approved European-primary policy
 
@@ -117,7 +125,7 @@ PR #16 established the initial 76-recipe baseline at **0 / 76 authoritative**, w
 
 B5 remained truthfully **0 / 76 authoritative** while reducing missing-density blockers to **141**. Its 202 unsupported-quantity events exposed the next dominant blocker class rather than being guessed away.
 
-B6 was merged through PR #18 after deterministic validation and remains **0 / 76 authoritative**. Its integrated blocker profile is:
+B6 was merged through PR #18 after deterministic validation and remains **0 / 76 authoritative** at the B6 stage. Its integrated blocker profile was:
 
 - missing-density blocker events: **141**;
 - unsupported-quantity-unit blocker events: **27**;
@@ -125,24 +133,25 @@ B6 was merged through PR #18 after deterministic validation and remains **0 / 76
 - mixed incompatible carbohydrate-semantic events: **16**;
 - newly authoritative recipes: **none**.
 
-Thus reviewed portion evidence resolves or reclassifies **175** of B5's 202 formerly unsupported quantity events without manufacturing a complete recipe. The next recipe-level gains require targeted remaining composition forms, residual exact quantity semantics and continued carbohydrate-semantic coherence.
+Thus reviewed portion evidence resolved or reclassified **175** of B5's 202 formerly unsupported quantity events without manufacturing a complete recipe. The next recipe-level gains required targeted remaining composition forms, residual exact quantity semantics and continued carbohydrate-semantic coherence.
 
 PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`; post-merge validation run `33446325292` and Pages run `33446324922` both passed.
 
-Nutrition B7 targets composition by recipe-level unlock value rather than database size. Its strict three-record Ciqual tranche reduces the frozen **76-authored-recipe** missing-density blocker count from **141 to 133** while remaining **0 / 76 authoritative**. Unsupported-quantity blockers remain **27**, explicit ambiguous-portion blockers remain **20**, and mixed incompatible carbohydrate-semantic events remain **16**. The audit now separately exposes tracked nutrient-field gaps on otherwise usable ingredient rows. The eight external Gate F RecipeSource records remain a separate corpus lane and do not alter this authored baseline.
+Nutrition B7 targeted composition by recipe-level unlock value rather than database size. Its strict three-record Ciqual tranche reduced the frozen **76-authored-recipe** missing-density blocker count from **141 to 133** while remaining **0 / 76 authoritative**. Unsupported-quantity blockers remained **27**, explicit ambiguous-portion blockers remained **20**, and mixed incompatible carbohydrate-semantic events remained **16**. The audit separately exposes tracked nutrient-field gaps on otherwise usable ingredient rows. The eight external Gate F RecipeSource records remain a separate corpus lane and do not alter this authored baseline.
 
-
-## Nutrition B8 — first authoritative recipe candidate
+## Nutrition B8 — COMPLETE / first authoritative authored recipe
 
 B8 keeps recipe-level unlock value as the optimization target. One exact USDA FoodData Central **SR Legacy final-release (2018-04)** quantity row is admitted: raw onion FDC `170000` / NDB `11282`, portion row `85862`, explicitly labelled `small`, **1 = 70 g**. This is a quantity-only B8 lane: SR Legacy composition is not imported, ordinary onion `piece` remains the B6 Matvaretabellen 160 g mapping, and no diameter, red-onion or other size inference is introduced.
 
-Candidate validation run `33494074325` measured the first complete authoritative authored recipe, **`indian_chicken_spinach_curry`**, moving the authored baseline to **1 / 76 authoritative** and **75 / 76 estimate-preserved**. Missing-density blockers remain **133**, unsupported quantity falls **27 → 7**, explicit ambiguous portions remain **20**, and mixed incompatible carbohydrate semantics remain **16**. Missing tracked-field events remain carbohydrate 28, energy 5, fat 65 and fibre 36.
+The measured candidate phase first established **`indian_chicken_spinach_curry`** as a complete authoritative authored recipe. Final B8 validation run `33533992457` passed strict repository hygiene, **109 deterministic tests**, static validation, nutrition coverage, exact-source checks and Chromium/browser acceptance. PR #26 merged B8 at `51658632c1684e9206d24ed331ded116b730e412`; normal PR validation run `33535410091`, post-merge validation run `33535630446` and Pages run `33535629306` all succeeded.
+
+The terminal authored state is **1 / 76 authoritative** and **75 / 76 estimate-preserved**. Missing-density blockers remain **133**, unsupported quantity is **7** after the B8 reduction from 27, explicit ambiguous portions remain **20**, and mixed incompatible carbohydrate semantics remain **16**. Missing tracked-field events remain carbohydrate 28, energy 5, fat 65 and fibre 36.
 
 B8 also exactly reviewed the highest-priority Foundation 2026-04 candidates without promoting weak or non-unlocking rows. Dry lentils, 93/7 raw ground turkey and full-fat cottage cheese remain deferred because tracked fibre is unpublished; turkey/cottage cheese are additionally more form-specific than their canonical IDs. Sesame butter remains deferred for tahini identity review; iodized salt is rejected for complete composition because tracked macros/fibre are unpublished; crushed canned tomato is not passata; prepared edamame is not forced onto an unspecified preparation state; exact smoked paprika remains unresolved. See `docs/NUTRITION_COVERAGE_AUDIT.md` and `scripts/usda-foundation-b8-reviewed-decisions.json`.
 
 ## Culinary & Nutrition Brain P0
 
-Brain P0 was explicitly authorized on 2026-08-31 and constructed in `DataRaul/knowledge-core` under the Knowledge Core governance protocol. The current reviewed calibration pin is `e5dcb29a7c6b78f59c062faf4c963c74aac10743`.
+Brain P0 was explicitly authorized on 2026-08-31 and constructed in `DataRaul/knowledge-core` under the Knowledge Core governance protocol. The reviewed public calibration pin remains `e5dcb29a7c6b78f59c062faf4c963c74aac10743`.
 
 The Brain combines official WHO/FAO, AESAN, EFSA and NNR evidence with a bounded free operator corpus from J. Kenji López-Alt, Helen Rennie and the Jacques Pépin Foundation. Operator evidence is restricted to culinary technique/workflow; it does not become nutrition, food-safety or medical authority.
 
@@ -190,7 +199,7 @@ npm run verify:wikibooks-gate-f
 
 ## Data and licensing
 
-The original 76 curated recipes and application ontology/substitution guidance are project-authored. The Gate F candidate additionally bundles eight transformed, exact-revision English Wikibooks recipe records under CC BY-SA 4.0 with attribution and ShareAlike controls documented in `docs/WIKIBOOKS_GATE_F_RIGHTS_AUDIT.md` and `THIRD_PARTY_NOTICES.md`. USDA FoodData Central composition/portion metadata use the documented CC0/public-domain lane. The bounded Ciqual modules retain Etalab Open Licence 2.0 attribution. The bounded Matvaretabellen B6 portion module retains NLOD 2.0 source identity and attribution. Brain-derived public artifacts must contain only normalized source-safe reasoning and provenance metadata permitted by the adapter contract; copyrighted source prose/transcripts are not exported.
+The original 76 curated recipes and application ontology/substitution guidance are project-authored. The accepted Gate F corpus additionally bundles eight transformed, exact-revision English Wikibooks recipe records under CC BY-SA 4.0 with attribution and ShareAlike controls documented in `docs/WIKIBOOKS_GATE_F_RIGHTS_AUDIT.md` and `THIRD_PARTY_NOTICES.md`. USDA FoodData Central composition/portion metadata use the documented CC0/public-domain lane. The bounded Ciqual modules retain Etalab Open Licence 2.0 attribution. The bounded Matvaretabellen B6 portion module retains NLOD 2.0 source identity and attribution. The B8 SR Legacy row is quantity-only and retains its exact dataset/release/record provenance. Brain-derived public artifacts must contain only normalized source-safe reasoning and provenance metadata permitted by the adapter contract; copyrighted source prose/transcripts are not exported.
 
 This repository currently has **no general licence**. Public visibility is not permission to reuse project-authored repository content.
 
@@ -200,6 +209,7 @@ This repository currently has **no general licence**. Public visibility is not p
 - `docs/ARCHITECTURE.md`
 - `docs/ROADMAP.md`
 - `docs/GATES.md`
+- `docs/REPO_STATUS.md`
 - `docs/BRAIN_ADAPTER_CONTRACT.md`
 - `docs/DESIGN_SYSTEM.md`
 - `docs/DATA_SOURCES.md`
