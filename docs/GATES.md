@@ -150,6 +150,12 @@ B6 therefore resolves or truthfully reclassifies **175 of 202** B5 unsupported-q
 
 PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`. Post-merge validation run `33446325292` and Pages deployment run `33446324922` both passed, so the B6 gate is terminally **COMPLETE**.
 
+## V1.1.1 Nutrition B7 — COMPLETE
+
+B7 adds exactly three manually reviewed ANSES-Ciqual 2025 composition forms for direct recipe-unlock value: raw quinoa (`9340`), raw shrimp/prawn (`10021`) and dry regular pasta (`9810`) as an explicit category-level orzo/risoni match. The bounded Ciqual ledger becomes **57 = B4 32 + B5 22 + B7 3**. Barley, courgette, cottage cheese, salt, smoked paprika and tortilla remain deferred.
+
+The user-approved European-primary policy is unchanged: no averaging, no Ciqual `D` displacement of available USDA, stronger food-form evidence wins, exact provenance remains, and USDA carbohydrate-by-difference is not mixed with Ciqual `CHOAVL` into an authoritative total. Candidate run `33455005170` passed **100 / 100** deterministic tests, profile matrix, coverage reports, exact Wikibooks verification and all browser layers. The authored baseline remains **0 / 76 authoritative**, while missing-density blockers fall **141 → 133**; unsupported quantity stays 27, ambiguous portions 20, and mixed carbohydrate semantics 16. Missing nutrient fields are now separately audited. B7 introduces no runtime API, private KC dependency, bulk source dump or new human policy gate.
+
 ## V1 Content Gate C — COMPLETE
 
 Merged through PR #7 at `59ae06755d1c681aa5f56d4f20e8bdaf1d01bec2`. Spain/Canary cost intelligence combines authored recipe tiers, ingredient classes, availability assumptions, package burden and cross-meal reuse. It remains relative and does not claim live prices or false euro precision.
@@ -233,4 +239,4 @@ All technical criteria passed. The user's 2026-09-01 instruction to run the acce
 
 Nutrient-gap awareness, supplement-routine checking, recipe images, live/local grocery prices, fitness integration and advanced culinary exploration remain DEFERRED rather than failed. Brain P0 itself is no longer deferred; downstream behavior changes remain separately gated.
 
-After Gate F human acceptance, the next ordinary nutrition work is coverage-driven: target the remaining composition/form blockers and residual exact quantity semantics that can unlock complete recipes, while preserving the carbohydrate semantic firewall and all source/licensing provenance.
+After B7, the next ordinary nutrition work remains coverage-driven: target residual composition/form blockers, missing tracked nutrient fields and exact quantity semantics with the highest recipe-level unlock value, while preserving the carbohydrate semantic firewall and all source/licensing provenance.
