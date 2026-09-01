@@ -78,6 +78,19 @@
       "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
       "boundary": "B11 maps only canonical red_lentils, including its red split lentils alias. It does not authorize generic lentils, cooked lentils or canned lentils.",
       "runtimeChange": true
+    },
+    "olive_oil": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B12_FIELD_COMPLETION",
+      "candidateClass": "COMPOSITION_FIELD_COMPLETION",
+      "sourceId": "matvaretabellen-2026-composition-b12",
+      "foodId": "08.112",
+      "foodName": "Oil, olive, Extra Virgin",
+      "scientificName": "Olea europea L.",
+      "formMatch": "EXACT_EXTRA_VIRGIN_OLIVE_OIL",
+      "completedTrackedFields": ["carbohydrateG"],
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B12 may fill only olive_oil carbohydrate because that tracked field is absent from all existing reviewed USDA/Ciqual candidates. Populated Ciqual B5 energy, protein, fat and fibre remain selected. The exact extra-virgin record is supported by the canonical EVOO alias and does not authorize other oil families.",
+      "runtimeChange": true
     }
   }
 }
