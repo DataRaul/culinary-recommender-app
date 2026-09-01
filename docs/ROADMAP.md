@@ -29,12 +29,13 @@
 | V1.0.3 / Content Gate E | COMPLETE | 15 coverage-driven authored recipes + corpus/search audit + pineapple future-exclusion proof |
 | Brain P0 | AUTHORIZED / BRANCH-BUILT / KC MERGE PENDING | official-source foundation + bounded free operator corpus + World Recipe Atlas reasoning/verification; private KC `main` not yet updated |
 | App Brain adapter V1 | COMPLETE / CALIBRATION-ONLY | PR #19 merged and green; static provenance-pinned public-safe policy contract; no ranking change |
-| World Recipe Atlas V0 | ACTIVE / DISCOVERY + IDENTITY PILOT | 338 seed families / 20 macro-regions; 20 identity-verified; multilingual metadata acquisition/alias-resolution design; zero public recipes authorized by Atlas status alone |
+| World Recipe Atlas V0 | ACTIVE / VERIFIED PILOT EXPANSION | 338 seed families / 20 macro-regions; 20 identity + structure + variant aware; 4 transformation aware; P4 linked 20/20; zero public export eligibility |
 | V1.1 / Recipe Corpus Gate F | COMPLETE / USER-ACCEPTED | bounded Wikibooks RecipeSource + exact provenance + coverage/safety validation; user authorized assistant-run acceptance checks and continuation on 2026-09-01 |
+| V1.1 / Recipe Corpus Gate F2 | BRANCH-LOCAL / NOT PUBLICLY ACTIVATED | scalable metadata-only discovery, immutable exact-revision review ledger, revision-aware review queue, compact generated index and runtime-separation tests |
 | V1.1.1 / Nutrition B7 | COMPLETE | strict Ciqual recipe-unlock tranche: quinoa + prawns + category-level dry-pasta/orzo; authored missing-density blockers 141→133; still 0/76 authoritative |
 | V1.x / Recipe-unlock evidence | NEXT | target residual composition/form, nutrient-field and exact quantity blockers by recipe-level unlock value; independent of external RecipeSource breadth |
 | V1.x / Authoritative nutrition coverage | CONTINUOUS | expand reviewed evidence under the approved source policy without guessing |
-| V1.x / Corpus breadth | GATED / ATLAS DISCOVERY ACTIVE | broaden through Gate F and measured coverage gaps rather than recipe-count growth |
+| V1.x / Corpus breadth | F2 CONTROL PLANE ACTIVE / RUNTIME GATED | broaden through revision-aware review and measured coverage gaps rather than raw recipe-count growth; no automatic admission |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
 
@@ -47,20 +48,24 @@ The Brain and recipe-database directions are now architecturally aligned, but th
 - Atlas breadth cannot bypass Gate F, and an `IDENTITY_VERIFIED` family is not automatically a public recipe;
 - imported recipe content cannot become authoritative nutrition evidence merely by being imported.
 
-The private Knowledge Core development branch `agent/culinary-nutrition-brain-p0` is currently **34 commits ahead of KC `main` and 0 behind**. Its current branch head is `4b3dadd322029d6defb6e43c2283cf39de6e7110`. This is a development/reference pin only until the private KC PR, validator and merge gate complete. The public app's already-reviewed calibration artifact intentionally remains pinned to the narrower earlier commit `e5dcb29a7c6b78f59c062faf4c963c74aac10743` and remains `CALIBRATION_ONLY_NO_RANKING_CHANGE`.
+The private Knowledge Core development branch `agent/culinary-nutrition-brain-p0` is currently **45 commits ahead of KC `main` and 3 behind** after `main` advanced independently. Its current branch head is `274c20cd18b39848126570c18a9e5e73c92ef49d`. This is a development/reference pin only until the private KC reconciliation/validator/PR/merge gate completes; no claim is made that the branch already includes the three newer `main` commits. The public app's already-reviewed calibration artifact intentionally remains pinned to the narrower earlier commit `e5dcb29a7c6b78f59c062faf4c963c74aac10743` and remains `CALIBRATION_ONLY_NO_RANKING_CHANGE`.
 
 Current Atlas state on the KC branch:
 
 - model-native seed: **338 dish-family candidates across 20 macro-regional buckets**;
 - source-backed identity pilot: **20 / 338 `IDENTITY_VERIFIED`**, one pilot family per macro-region;
 - identity-unverified remainder: **318 / 338**;
-- structure-verified: **0**;
+- structure-verified: **20 / 20 current promoted cohort**;
+- variant-aware: **20 / 20 current promoted cohort**;
+- transformation-aware: **4 / 20 current promoted cohort** — Paella Valenciana, couscous, ceviche and hāngi;
+- P4 technique-prerequisite linked: **20 / 20 current promoted cohort**;
 - app-authoring eligible: **0**;
 - public-export eligible: **0**;
+- audit-only public corpus critic: **ACTIVE / NO PUBLIC BEHAVIOR**;
 - current English Wikibooks source-navigation baseline: **3,825 recipe pages and 158 cuisine pages**; these are source-page counts, not normalized dish-family counts;
-- multilingual discovery/alias-resolution is now part of the Brain design so English-source coverage is not mistaken for world-cuisine coverage;
+- multilingual discovery/alias-resolution is part of the Brain design so English-source coverage is not mistaken for world-cuisine coverage;
 - metadata-only acquisition helper: `scripts/culinary_world_recipe_atlas_acquisition.py` in Knowledge Core; it is designed to collect source metadata rather than bulk recipe prose/images/nutrition;
-- dedicated Culinary Brain/Atlas validation is wired into the Knowledge Core validation workflow, but private CI has not yet been used to certify/merge this branch.
+- dedicated Culinary Brain/Atlas and corpus-critic validation are wired into the Knowledge Core validation workflow, but no GitHub Actions have been spent on the active branch during this F2 continuation.
 
 The earlier Recipe Universe requirements commit `84abde1560a2dad7ce3318cbfb6bd827681a39fb` remains useful historical lineage, but it is no longer the current Atlas development head. Future roadmap references should distinguish the stable public calibration pin, the historical recipe-universe requirements pin and the current unmerged KC development head rather than using one SHA for all three purposes.
 
@@ -68,8 +73,8 @@ The earlier Recipe Universe requirements commit `84abde1560a2dad7ce3318cbfb6bd82
 
 Three lanes may proceed independently under their own gates:
 
-1. **KC Brain/Atlas integration lane** — validate the 34-commit Knowledge Core branch, reconcile its private `main` merge and then replace branch-only development references with a merged canonical pin.
-2. **Gate F corpus lane** — implement the bounded external `RecipeSource` path in the public app, beginning with the required Wikibooks rights/provenance audit and normalized acquisition; Atlas discovery supplies verification/coverage intelligence but is not the runtime corpus.
+1. **KC Brain/Atlas integration lane** — reconcile the current 45-ahead / 3-behind Knowledge Core branch against the independently advanced `main`, preserve Brain governance, and stop before the human PR/merge gate.
+2. **Gate F2 corpus breadth lane** — continue the branch-local metadata-only discovery → revision-aware review queue → bounded review → admit/reject → ontology/hard-metadata → compact-index control plane. Gate F itself is already complete; F2 does not reactivate or rewrite it.
 3. **Recipe-unlock nutrition lane** — B7 completed the first post-Gate-F composition tranche; continue targeting residual composition/form/nutrient-field/quantity blockers against the 76 curated-recipe baseline and separately admitted recipes by measured unlock value.
 
 Brain-derived ranking/eligibility/substitution behavior remains a fourth, **separately gated** lane and is not authorized by any of the three above.
@@ -127,17 +132,17 @@ The user explicitly authorized Brain P0 on 2026-08-31. Construction follows the 
 
 The reviewed public-app calibration pin remains `DataRaul/knowledge-core` commit `e5dcb29a7c6b78f59c062faf4c963c74aac10743`, domain `culinary_nutrition`. It contains the official-source foundation and bounded free operator layer that were reviewed for the public calibration contract.
 
-The broader Brain/Atlas work is now on the unmerged Knowledge Core branch `agent/culinary-nutrition-brain-p0`, current head `4b3dadd322029d6defb6e43c2283cf39de6e7110`. It adds World Recipe Atlas discovery/verification, multilingual discovery/alias-resolution reasoning, source-role/licensing governance, the 338-family seed, the 20-family identity pilot, a source-coverage baseline, metadata-only acquisition machinery and a dedicated validator.
+The broader Brain/Atlas work is on the unmerged Knowledge Core branch `agent/culinary-nutrition-brain-p0`, current head `274c20cd18b39848126570c18a9e5e73c92ef49d`. It adds World Recipe Atlas discovery/verification, multilingual discovery/alias-resolution reasoning, source-role/licensing governance, the 338-family seed, 20 identity/structure/variant-aware families, four transformation-aware families, P4 linkage for all 20 promoted families, a source-coverage baseline, metadata-only acquisition machinery, the audit-only public corpus critic and dedicated validators. KC `main` has also advanced independently, so branch reconciliation remains required before any merge gate.
 
 The operator pass reached P0 saturation without adding a fourth generalist source merely for count. Operator material remains culinary technique/workflow evidence, not nutrition, medical or food-safety authority.
 
 ### Recipe-universe / World Recipe Atlas contract
 
-The Brain now treats recipe-universe coverage as overlapping culinary jobs rather than one popularity list: staple/everyday, canonical/classic, regional/traditional, contemporary/modern, genuinely new/trending, constraint-first and technique-learning. Coverage must also be measured across cuisine/geography, meal role, ingredient family, skill, time, budget, equipment and dietary constraints.
+The Brain treats recipe-universe coverage as overlapping culinary jobs rather than one popularity list: staple/everyday, canonical/classic, regional/traditional, contemporary/modern, genuinely new/trending, constraint-first and technique-learning. Coverage must also be measured across cuisine/geography, meal role, ingredient family, skill, time, budget, equipment and dietary constraints.
 
 The Atlas preserves dish-family identity, source label lineage, aliases/transliterations, meaningful variants, authenticity uncertainty, substitution tolerance by culinary function, provenance and freshness semantics. Corpus frequency is not authenticity evidence and trend claims require recency evidence.
 
-A family can move through distinct states such as discovery, identity verification, structure verification, variant awareness, app-authoring eligibility and public-export eligibility. The current pilot deliberately stops at identity verification; no source recipe or Atlas family has been promoted directly into public app behavior.
+A family can move through distinct states such as discovery, identity verification, structure verification, variant awareness, transformation awareness, technique linkage, app-authoring eligibility and public-export eligibility. The current promoted cohort has advanced to 20 identity/structure/variant-aware families, four transformation-aware families and 20/20 P4 technique linkage; **none** has gained app-authoring or public-export eligibility, and no source recipe or Atlas family has been promoted directly into public app behavior.
 
 ### Long-form / content decision
 
@@ -168,22 +173,24 @@ This gate converts recipe breadth from a project-authored sample into an app-own
 
 ### Brain-side prerequisites already advanced
 
-The Brain-side work now supplies:
+The Brain-side work supplies:
 
 - a governed source-role and rights framework distinguishing open-content, discovery-only, non-commercial and production-rights-dependent recipe sources;
 - a current Wikibooks navigation baseline rather than an assumed corpus size;
 - a 338-family / 20-region discovery seed and explicit state machine;
-- a 20-family identity-verification pilot;
+- a 20-family identity/structure/variant-aware promoted cohort;
+- four transformation-aware families and 20/20 P4 technique linkage without publication eligibility;
 - multilingual discovery and fail-closed alias-resolution reasoning;
-- metadata-only acquisition machinery designed to keep live source acquisition outside deterministic CI/runtime.
+- metadata-only acquisition machinery designed to keep live source acquisition outside deterministic CI/runtime;
+- an audit-only public corpus critic that may prioritize review but cannot grant admission or public behavior.
 
-These advances reduce Gate F uncertainty but **do not complete Gate F**, because the gate is specifically about the public app's external runtime corpus and acceptance.
+These advances reduce corpus-breadth uncertainty but do not bypass the public app's `RecipeSource`, rights, ontology, hard-metadata, nutrition or acceptance gates.
 
 ### Mandatory initial corpus
 
 **Wikibooks Cookbook is the first external recipe acquisition source for the public app.** The exact rights/provenance audit is complete and passes for a bounded **text-only CC BY-SA 4.0** path with page/revision provenance, Wikibooks contributor attribution, ShareAlike and transformation notices. No Wikibooks images or other media are admitted.
 
-The Brain/Atlas source-navigation snapshot on its separate development lineage recorded 3,825 English recipe pages plus 158 cuisine pages. The later bounded Gate F acquisition run measured **3,792 current pages in English Wikibooks `Category:Recipes`**. These are discovery/navigation counts, not normalized dish-family counts or claims of balanced world coverage. Gate F bundles only **eight manually reviewed exact revisions**.
+The Brain/Atlas source-navigation snapshot on its separate development lineage recorded 3,825 English recipe pages plus 158 cuisine pages. The bounded Gate F exact-discovery snapshot measured **3,792 pages in English Wikibooks `Category:Recipes`**. Gate F2 separately records a 2026-09-01 rendered category navigation count of **3,825** as `DYNAMIC_CATEGORY_NAVIGATION_COUNT_ONLY`; it does not replace the 3,792 exact-discovery measurement or identify which source-page events produced the net difference. These are discovery/navigation measurements, not normalized dish-family counts or claims of balanced world coverage. Gate F bundles only **eight manually reviewed exact revisions**.
 
 ### Ownership and runtime contract
 
@@ -212,9 +219,11 @@ Freshness-sensitive/trending coverage is expected to need later sources because 
 
 ### Current candidate state
 
-The app-owned RecipeSource universe is now **84 recipes**: 76 curated project-authored records plus eight exact-revision Wikibooks records, normalized into **83 dish families**. The `spanish_potato_omelet` family explicitly preserves one authored and one external variant instead of silently replacing either.
+The app-owned RecipeSource universe remains **84 recipes**: 76 curated project-authored records plus eight exact-revision Wikibooks records, normalized into **83 dish families**. The `spanish_potato_omelet` family explicitly preserves one authored and one external variant instead of silently replacing either.
 
 Only **Baba Ganoush** and **Bruschetta (base)** are `SEARCH_ONLY`; six external records remain `REFERENCE_ONLY_INCOMPLETE_HARD_METADATA` because source-backed hard metadata is incomplete. Missing time/serving values remain unknown rather than guessed. The seven-role audit truthfully leaves `contemporary_modern` and `genuinely_new_trending` uncovered in this first tranche.
+
+Gate F2 is branch-local at `v1-recipe-corpus-gate-f2-breadth-foundation`. Its current control plane adds metadata-only broad discovery, an immutable reviewed exact-revision ledger, `TRACKED_PAGE_NEW_REVISION` / `TRACKED_PAGE_METADATA_CHANGED` / `NEW_SOURCE_PAGE` review-queue events, explicit source-universe completeness, a reproducible compact generated index, and tests preventing generated-index runtime imports. F2 newly admitted recipes remain **0** and `runtimeActivationAuthorized` remains false.
 
 External source nutrition is explicitly **not** imported as authoritative NutritionSource composition. RecipeSource, NutritionSource and regulatory evidence remain separate truth lanes; allergens, dietary constraints, permanent exclusions, quantity semantics and fail-closed recommendation policy remain intact. The private Knowledge Core remains offline at runtime. The authored 76-recipe B6 nutrition baseline remains frozen independently.
 
@@ -276,13 +285,13 @@ EFSA FoodEx2 and EU Commission regulatory datasets remain a separate classificat
 
 The Brain/Atlas reconciliation exposes several adjacent items, but none should be silently activated by this documentation update:
 
-- **Knowledge Core merge/validation:** the branch is built and ahead of `main`, but it still needs the private validator/PR/merge gate before the broader Brain/Atlas state is canonical on KC `main`.
-- **`docs/GATES.md`:** still references the older Recipe Universe pin and does not yet record the 338/20 Atlas state, the 20-family identity pilot, multilingual discovery, or the fact that PR #19 is merged. It should be reconciled in the same factual direction after this roadmap change is accepted.
-- **`README.md`:** the Brain section currently describes only the original P0/calibration state. It should gain the branch-only Atlas state and explicitly distinguish the stable public calibration pin from the current unmerged Brain development head.
-- **`docs/BRAIN_ADAPTER_CONTRACT.md`:** its ownership boundary remains correct, but a future revision should explicitly add the Atlas distinction: verified family metadata may inform an app-authoring brief, while source recipe content/public runtime ingestion belongs to Gate F and `RecipeSource`.
+- **Knowledge Core merge/validation:** the branch is currently 45 commits ahead of and 3 behind `main`; the three newer `main` commits must be reconciled without weakening Brain governance before the human validator/PR/merge gate.
+- **`docs/GATES.md`:** still references older Brain/Atlas lineage and should be reconciled to the 338 / 20 identity+structure+variant / 4 transformation / P4 20/20 state and Gate F2 branch-local control plane.
+- **`README.md`:** the Brain section should distinguish the stable public calibration pin from the current unmerged Brain development head and the audit-only corpus critic.
+- **`docs/BRAIN_ADAPTER_CONTRACT.md`:** its ownership boundary remains correct, but a future revision should explicitly add the Atlas distinction: verified family metadata may inform an app-authoring brief, while source recipe content/public runtime ingestion belongs to Gate F/F2 and `RecipeSource`.
 - **`docs/DEFERRED_CAPABILITIES.md`:** Brain P0 is still described only as `FOUNDATION BUILT`; it should eventually distinguish the active Atlas discovery/verification lane from still-deferred advanced culinary exploration.
-- **Advanced culinary exploration / recipe images / fitness integration:** no automatic activation. Atlas breadth strengthens their future inputs, but Gate F, text/data quality and the existing separate-gate rules still apply.
-- **Trending/new recipes:** the Atlas establishes that freshness-sensitive discovery needs a separate recency-evidence lane; Wikibooks alone should not be treated as sufficient coverage for current trends.
+- **Advanced culinary exploration / recipe images / fitness integration:** no automatic activation. Atlas breadth strengthens their future inputs, but Gate F/F2, text/data quality and the existing separate-gate rules still apply.
+- **Trending/new recipes:** the Atlas and corpus critic establish that freshness-sensitive discovery needs a separate recency-evidence lane; Wikibooks corpus frequency or edit recency alone is not trend evidence.
 
 ## Standing architecture
 
@@ -292,4 +301,4 @@ Future nutrition breadth must come from reviewed source/form identity plus expli
 
 Cost remains relative, deterministic and explainable. Culinary quality remains normalized from project-authored structured metadata and instructions. Fridge Search, planner, allergens, dietary restrictions and permanent exclusions continue to use the same hard safety truth.
 
-The Culinary & Nutrition Brain is authorized and its broader Atlas development is active on an unmerged Knowledge Core branch, but the public app must still never call private Knowledge Core at runtime. Downstream behavior changes remain separately evidence- and test-gated.
+The Culinary & Nutrition Brain is authorized and its broader Atlas development is active on an unmerged Knowledge Core branch, while Gate F2 remains a branch-local public-app control plane with no automatic admission or runtime activation. The public app must never call private Knowledge Core at runtime. Downstream behavior changes remain separately evidence- and test-gated.
