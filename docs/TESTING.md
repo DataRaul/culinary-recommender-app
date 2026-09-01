@@ -95,3 +95,9 @@ The current Brain P0 app artifact is calibration-only and intentionally disconne
 
 ## CI cost policy
 One standard Ubuntu job per validation workflow, no matrix, no larger runners. The repository is public, so validation uses GitHub's standard public-repository Actions allowance rather than private-repository minutes.
+
+## Nutrition B8 candidate checks
+
+B8 adds deterministic proof that the SR Legacy final-release raw-onion row is pinned exactly to FDC `170000`, NDB `11282`, portion row `85862`, modifier `small`, 70 g; only canonical `onion|small` may use it. Generic onion piece stays on the B6 Matvaretabellen 160 g mapping, red onion and other size classes remain unsupported by this evidence, and SR Legacy is not a composition source in B8.
+
+The B8 review-decision tests also prove that partial/form-qualified Foundation candidates remain unpromoted, crushed canned tomato does not become passata, prepared edamame is not forced onto an unspecified form, generic paprika does not become smoked paprika, and missing nutrient fields remain unknown rather than assumed zero.

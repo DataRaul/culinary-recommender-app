@@ -10,7 +10,7 @@
 | Recipe corpus | ✅ COMPLETE / USER-ACCEPTED | V1.1 / Gate F | coverage-driven breadth under the same rights/provenance rules |
 | Ingredient ontology | ✅ V1 GATE A COMPLETE | hierarchical + bilingual | broader evidence/form coverage |
 | Substitutions | ✅ V1 GATE A COMPLETE | six-class controlled graph | contextual editorial edges |
-| Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.1.1 B7 COMPLETE | residual composition/form + exact quantity unlocks |
+| Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.1.2 B8 CANDIDATE | first authoritative authored recipe earned; residual composition/form + semantic unlocks |
 | European evidence | ✅ CONDITIONAL PRIMARY POLICY | Ciqual B4+B5+B7 + Matvaretabellen B6 | residual recipe-level unlocks |
 | Cost intelligence | ✅ COMPLETE | Gate C | empirical prices only if separately authorized |
 | Culinary quality | ✅ COMPLETE | Gate D | editorial refinement |
@@ -23,12 +23,12 @@
 | Preference safety | ✅ ACCEPTED | V0.9.3 | additive product growth |
 | Culinary & Nutrition Brain | ✅ P0 AUTHORIZED / FOUNDATION BUILT | Knowledge Core `culinary_nutrition` + static adapter contract | deterministic calibration; behavior changes separately gated |
 
-**Accepted shell/core:** V0.9.3  
-**Authoritative coverage baseline:** V1.0.8 / PR #16 / `cdb9a9d9e6d2e0bf0f251bb37098d07dd64e3e9e`  
-**Nutrition B5:** V1.0.9 / PR #17 / merged at `5689b0e40c6c4d9d7040b0ee25b7cc41d898b751`  
-**Nutrition B6:** V1.0.10 / PR #18 / merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`  
-**Culinary & Nutrition Brain P0 calibration pin:** Knowledge Core `e5dcb29a7c6b78f59c062faf4c963c74aac10743`  
-**Public app:** https://dataraul.github.io/culinary-recommender-app/  
+**Accepted shell/core:** V0.9.3
+**Authoritative coverage baseline:** V1.0.8 / PR #16 / `cdb9a9d9e6d2e0bf0f251bb37098d07dd64e3e9e`
+**Nutrition B5:** V1.0.9 / PR #17 / merged at `5689b0e40c6c4d9d7040b0ee25b7cc41d898b751`
+**Nutrition B6:** V1.0.10 / PR #18 / merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`
+**Culinary & Nutrition Brain P0 calibration pin:** Knowledge Core `e5dcb29a7c6b78f59c062faf4c963c74aac10743`
+**Public app:** https://dataraul.github.io/culinary-recommender-app/
 **Recipe Corpus Gate F:** COMPLETE / USER-ACCEPTED · 84 recipes = 76 curated + 8 exact-revision Wikibooks records / 83 dish families / 2 external Search-only + 6 reference-only
 
 The V1 lineage includes project-authored corpus/ontology/substitution expansion, Spain/Canary cost intelligence, full-corpus culinary-quality normalization, bounded USDA Foundation evidence, bounded ANSES-Ciqual 2025 European composition evidence, the user-approved conditional European-primary source policy, deterministic whole-corpus authoritative-nutrition coverage measurement, the bounded Norwegian official portion-evidence lane, and now an explicitly authorized offline Culinary & Nutrition Brain calibration contract.
@@ -130,6 +130,15 @@ Thus reviewed portion evidence resolves or reclassifies **175** of B5's 202 form
 PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`; post-merge validation run `33446325292` and Pages run `33446324922` both passed.
 
 Nutrition B7 targets composition by recipe-level unlock value rather than database size. Its strict three-record Ciqual tranche reduces the frozen **76-authored-recipe** missing-density blocker count from **141 to 133** while remaining **0 / 76 authoritative**. Unsupported-quantity blockers remain **27**, explicit ambiguous-portion blockers remain **20**, and mixed incompatible carbohydrate-semantic events remain **16**. The audit now separately exposes tracked nutrient-field gaps on otherwise usable ingredient rows. The eight external Gate F RecipeSource records remain a separate corpus lane and do not alter this authored baseline.
+
+
+## Nutrition B8 — first authoritative recipe candidate
+
+B8 keeps recipe-level unlock value as the optimization target. One exact USDA FoodData Central **SR Legacy final-release (2018-04)** quantity row is admitted: raw onion FDC `170000` / NDB `11282`, portion row `85862`, explicitly labelled `small`, **1 = 70 g**. This is a quantity-only B8 lane: SR Legacy composition is not imported, ordinary onion `piece` remains the B6 Matvaretabellen 160 g mapping, and no diameter, red-onion or other size inference is introduced.
+
+Candidate validation run `33494074325` measured the first complete authoritative authored recipe, **`indian_chicken_spinach_curry`**, moving the authored baseline to **1 / 76 authoritative** and **75 / 76 estimate-preserved**. Missing-density blockers remain **133**, unsupported quantity falls **27 → 7**, explicit ambiguous portions remain **20**, and mixed incompatible carbohydrate semantics remain **16**. Missing tracked-field events remain carbohydrate 28, energy 5, fat 65 and fibre 36.
+
+B8 also exactly reviewed the highest-priority Foundation 2026-04 candidates without promoting weak or non-unlocking rows. Dry lentils, 93/7 raw ground turkey and full-fat cottage cheese remain deferred because tracked fibre is unpublished; turkey/cottage cheese are additionally more form-specific than their canonical IDs. Sesame butter remains deferred for tahini identity review; iodized salt is rejected for complete composition because tracked macros/fibre are unpublished; crushed canned tomato is not passata; prepared edamame is not forced onto an unspecified preparation state; exact smoked paprika remains unresolved. See `docs/NUTRITION_COVERAGE_AUDIT.md` and `scripts/usda-foundation-b8-reviewed-decisions.json`.
 
 ## Culinary & Nutrition Brain P0
 

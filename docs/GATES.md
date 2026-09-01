@@ -240,3 +240,9 @@ All technical criteria passed. The user's 2026-09-01 instruction to run the acce
 Nutrient-gap awareness, supplement-routine checking, recipe images, live/local grocery prices, fitness integration and advanced culinary exploration remain DEFERRED rather than failed. Brain P0 itself is no longer deferred; downstream behavior changes remain separately gated.
 
 After B7, the next ordinary nutrition work remains coverage-driven: target residual composition/form blockers, missing tracked nutrient fields and exact quantity semantics with the highest recipe-level unlock value, while preserving the carbohydrate semantic firewall and all source/licensing provenance.
+
+## Nutrition B8 — first authoritative recipe candidate
+
+B8 stays inside the approved fail-closed contract and adds one bounded quantity-only USDA FoodData Central SR Legacy row: raw onion FDC `170000` / NDB `11282`, exact portion row `85862`, modifier `small`, 70 g. SR Legacy composition is not imported. Generic onion piece remains the B6 160 g Matvaretabellen row and no size/diameter/red-onion inference is allowed.
+
+Candidate run `33494074325` measured 1/76 authoritative authored recipes (`indian_chicken_spinach_curry`), 75/76 estimate-preserved, missing-density 133, unsupported quantity 7, ambiguous portions 20 and mixed carbohydrate semantics 16. Foundation review decisions remain fail-closed in `scripts/usda-foundation-b8-reviewed-decisions.json`; no weak candidate is promoted for count.
