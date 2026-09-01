@@ -31,14 +31,15 @@ test("audit preserves every fail-closed shortfall class rather than treating par
   assert.ok(Object.keys(audit.missingNutrientFieldCounts).length > 0, "expected current corpus to expose tracked nutrient field gaps");
 });
 
-test("B8 small-onion plus B9 exact basmati evidence earn two authored authoritative recipes without weakening other blockers", () => {
+test("B8-B10 exact evidence earns three authored authoritative recipes without weakening other blockers", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
-  assert.equal(audit.authoritativeRecipeCount, 2);
-  assert.equal(audit.estimateRecipeCount, 74);
+  assert.equal(audit.authoritativeRecipeCount, 3);
+  assert.equal(audit.estimateRecipeCount, 73);
   assert.deepEqual(audit.authoritativeRecipeIds, [
     "indian_chicken_spinach_curry",
-    "indian_chickpea_cauliflower_curry"
+    "indian_chickpea_cauliflower_curry",
+    "italian_mushroom_pea_orzo"
   ]);
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
@@ -48,8 +49,8 @@ test("B8 small-onion plus B9 exact basmati evidence earn two authored authoritat
   assert.deepEqual(audit.missingNutrientFieldCounts, {
     carbohydrateG: 28,
     energyKcal: 5,
-    fatG: 65,
-    fibreG: 36
+    fatG: 40,
+    fibreG: 11
   });
   assert.deepEqual(audit.semanticIssueCounts, {
     mixed_incompatible_carbohydrate_semantics: 16
