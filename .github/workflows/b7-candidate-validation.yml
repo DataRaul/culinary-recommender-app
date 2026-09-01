@@ -1,0 +1,29 @@
+name: Nutrition B7 candidate validation
+on:
+  push:
+    branches: [v1-nutrition-b7-recipe-unlocks-v2]
+    paths:
+      - .github/workflows/b7-candidate-validation.yml
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v1-nutrition-b7-recipe-unlocks-v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - run: npm run validate
+      - run: npm run test:matrix
+      - run: npm run report:nutrition-coverage
+      - run: npm run report:recipe-universe
+      - run: npm run verify:wikibooks-gate-f
+      - run: npx playwright install --with-deps chromium
+      - name: Start static server
+        run: python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/culinary-http.log 2>&1 &
+      - run: npm run test:browser
