@@ -1,0 +1,7 @@
+{
+  "lentils": {"ndbNumber":"100312","expectedDescription":"Lentils, dry"},
+  "turkey_mince": {"ndbNumber":"5665","expectedDescription":"Turkey, ground, 93% lean/ 7% fat, raw"},
+  "cottage_cheese": {"ndbNumber":"1012","expectedDescription":"Cottage cheese, full fat, large or small curd"},
+  "salt": {"ndbNumber":"2047","expectedDescription":"Salt, table, iodized"},
+  "tahini": {"ndbNumber":"100271","expectedDescription":"Sesame butter, creamy"}
+}
