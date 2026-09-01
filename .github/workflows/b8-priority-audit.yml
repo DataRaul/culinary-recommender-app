@@ -9,6 +9,7 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -18,3 +19,13 @@ jobs:
           node-version: 22
       - run: npm install --ignore-scripts
       - run: node scripts/report-nutrition-unlock-priorities.mjs
+      - name: Download official USDA Foundation 2026-04 release
+        run: |
+          curl -fsSL --retry 3 -o /tmp/foundation.zip https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_foundation_food_csv_2026-04-30.zip
+          rm -rf /tmp/foundation && mkdir -p /tmp/foundation
+          unzip -q /tmp/foundation.zip -d /tmp/foundation
+          find /tmp/foundation -name foundation_food.csv -print -quit
+      - name: Discover bounded residual Foundation candidates
+        run: |
+          root="$(dirname "$(find /tmp/foundation -name foundation_food.csv -print -quit)")"
+          node scripts/usda-b8-discover.mjs "$root" scripts/usda-b8-unlock-targets.json /tmp/usda-b8-candidates.json
