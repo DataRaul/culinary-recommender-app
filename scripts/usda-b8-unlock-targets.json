@@ -1,0 +1,18 @@
+{
+  "lemon": {"queries":["lemon"],"reason":"near-unlock nutrient-field gaps"},
+  "tofu_firm": {"queries":["tofu"],"reason":"six density blockers; require explicit firm form"},
+  "lentils": {"queries":["lentil"],"reason":"five density blockers; require recipe-compatible dry/raw form"},
+  "turkey_mince": {"queries":["turkey, ground","ground turkey"],"reason":"four density blockers; require explicit raw ground form"},
+  "cottage_cheese": {"queries":["cottage cheese"],"reason":"two near-unlock density blockers"},
+  "passata": {"queries":["tomato sauce","tomato puree","tomatoes, crushed"],"reason":"two density blockers; require passata-compatible unsweetened form"},
+  "basmati_rice": {"queries":["basmati"],"reason":"three density blockers; require dry/raw basmati form"},
+  "smoked_paprika": {"queries":["paprika"],"reason":"seventeen density blockers; smoking state must be explicit"},
+  "salt": {"queries":["salt, table","table salt"],"reason":"one near-unlock density blocker"},
+  "black_pepper": {"queries":["pepper, black","black pepper"],"reason":"two density blockers; ground/dried form preferred"},
+  "tahini": {"queries":["sesame butter","tahini"],"reason":"three density blockers"},
+  "rice_noodles": {"queries":["rice noodles","rice noodle"],"reason":"three density blockers; require dry/raw recipe form"},
+  "miso": {"queries":["miso"],"reason":"three density blockers"},
+  "rice_vinegar": {"queries":["rice vinegar"],"reason":"three density blockers"},
+  "turmeric": {"queries":["turmeric"],"reason":"three density blockers; ground/dried form preferred"},
+  "edamame": {"queries":["edamame","soybeans, green"],"reason":"three density blockers; require recipe-compatible frozen/raw or cooked state"}
+}
