@@ -1,6 +1,6 @@
 # Data Sources & Licensing Audit
 
-Audit/policy date: 2026-08-31.
+Audit/policy date: 2026-09-01.
 
 ## RecipeSource lanes
 
@@ -40,6 +40,15 @@ Verified source facts:
 The bounded USDA composition ledger contains **29 manually reviewed Foundation identities** across `src/data/usda-foundation-nutrients-v1.js` and `src/data/usda-foundation-nutrients-b3.js`.
 
 Tracked semantics include energy, protein, USDA `1005` carbohydrate by difference, total fat and fibre where published. Missing fields stay `null`; null is never interpreted as zero.
+
+Nutrition B8 reviewed additional Foundation candidates against recipe-unlock value but did **not** promote them simply because a source row existed. The exact review decisions are frozen in `scripts/usda-foundation-b8-reviewed-decisions.json`:
+
+- `Lentils, dry` / FDC `2644283` — exact dry form but tracked fibre unpublished; deferred because it does not complete a current near-unlock recipe.
+- `Turkey, ground, 93% lean/ 7% fat, raw` / FDC `2514747` — useful raw ground form, but the fat ratio is more specific than canonical `turkey_mince` and tracked fibre is unpublished; deferred.
+- full-fat cottage cheese / FDC `2346384` — form-qualified and missing tracked fibre; deferred.
+- `Sesame butter, creamy` / FDC `2262073` — tracked fields complete, but identity equivalence to canonical tahini is not strict enough for this tranche; deferred.
+- iodized table salt / FDC `746775` — energy is published but tracked protein, carbohydrate, fat and fibre are not; rejected for complete composition rather than assuming zeros.
+- crushed canned tomato is rejected for `passata`; prepared frozen edamame is not applied to an unspecified preparation state.
 
 Official references:
 - https://fdc.nal.usda.gov/
@@ -130,17 +139,37 @@ B6 also preserves explicit ambiguity/defer states:
 
 - lime piece: conflicting 17 g and 65 g source rows → ambiguous;
 - avocado piece: 130 g small vs 220 g large → ambiguous;
-- `onion|small`: no source-backed small-size mapping approved;
+- `onion|small`: no source-backed small-size mapping approved in B6;
 - `sesame_oil|tsp`: source does not publish the required teaspoon mapping; tablespoon-to-teaspoon arithmetic is not inferred;
 - `red_onion|piece`: no exact acceptable reviewed row promoted.
 
-Generic web averages, recipe-blog conversions, midpoint choices and hidden household arithmetic are prohibited as a way to inflate coverage.
+### USDA FoodData Central SR Legacy — B8 small-onion portion only
+
+Nutrition B8 adds one separate bounded **quantity-only** source row from the official FoodData Central **SR Legacy final release (2018-04)**. It does not import SR Legacy composition.
+
+Source contract in `src/data/usda-sr-legacy-portions-b8.js`:
+
+- source: USDA FoodData Central — SR Legacy;
+- release/archive: `FoodData_Central_sr_legacy_food_csv_2018-04.zip`;
+- food: FDC `170000`, NDB `11282`, `Onions, raw`;
+- exact portion row: `85862`;
+- source modifier: `small`;
+- amount: `1`;
+- mass: **70 g**;
+- licence/reuse: U.S. government public-domain / CC0-compatible lane;
+- runtime fetch: **none**;
+- evidence tranche: `B8`;
+- composition use in this tranche: **prohibited**.
+
+Automatic conversion is intentionally exact: only canonical `onion` with unit `small` receives 70 g. Generic onion `piece` remains the B6 160 g Matvaretabellen mapping, and neither `red_onion|small` nor other inferred size classes are created.
+
+Generic web averages, recipe-blog conversions, midpoint choices and hidden household arithmetic remain prohibited as a way to inflate coverage.
 
 ## Approved Canary/Spain/Europe source-selection policy
 
 The user approved conditional European-primary composition evidence on 2026-08-31. PR #13 merged the policy at `cfa3b9115821b59321c7ef19e779ff3a578aa6b6` with green deterministic/static, matrix, browser, post-merge and Pages validation.
 
-`src/domain/nutrition-source-policy.js` applies composition selection **per ingredient and per tracked nutrient** across reviewed USDA and Ciqual evidence:
+`src/domain/nutrition-source-policy.js` applies composition selection **per ingredient and per tracked nutrient** across reviewed USDA Foundation and Ciqual evidence:
 
 1. reviewed Ciqual may become primary where food-form match is equally good or better and constituent confidence is `A`, `B` or `C`;
 2. Ciqual `D` does not displace an available reviewed USDA value;
@@ -150,11 +179,13 @@ The user approved conditional European-primary composition evidence on 2026-08-3
 6. exact source, identifier, semantic, method, form confidence, Ciqual confidence, evidence tranche and selection reason are retained;
 7. composition selection is independent of quantity and regulatory evidence.
 
+B8 does **not** broaden this composition-source set. SR Legacy is quantity-only, and Matvaretabellen remains quantity-only under B6. A future Norwegian or SR-Legacy composition lane would require its own reviewed policy decision rather than being inferred from portion-source approval.
+
 ### Cross-source semantic firewall
 
 The project does not flatten similarly named nutrients into an assumed common definition. Most importantly, USDA `1005` carbohydrate by difference and Ciqual `31000` / `CHOAVL` available carbohydrate are distinct semantics and are never summed together into one authoritative recipe carbohydrate total.
 
-If Europe-selected fields cannot produce a coherent complete recipe but a fully reviewed coherent USDA lane can, USDA remains the authoritative recipe fallback. If neither path is complete, the project-authored estimate remains primary.
+If Europe-selected fields cannot produce a coherent complete recipe but a fully reviewed coherent USDA Foundation lane can, USDA remains the authoritative recipe fallback. If neither path is complete, the project-authored estimate remains primary.
 
 ## Authoritative recipe-coverage state
 
@@ -191,7 +222,22 @@ The quantity evidence therefore resolves or truthfully reclassifies 175 of B5's 
 
 B7 is deliberately bounded to three reviewed Ciqual forms selected for direct recipe-level value: raw quinoa (`9340`), raw shrimp/prawn (`10021`) and dry regular pasta (`9810`) as a transparent category-level match for canonical orzo/risoni. The official Ciqual 2025 source, Etalab licence, nutrient semantics, confidence codes and European-primary selection policy are unchanged.
 
-Against the frozen 76 authored recipes, B7 remains **0 / 76 authoritative** while reducing missing-density blockers from **141 to 133**. Unsupported quantity remains **27**, explicit ambiguous portions **20**, and mixed incompatible carbohydrate semantics **16**. Missing tracked nutrient fields are now reported separately from skipped ingredient blockers. Gate F's eight external recipes remain outside this authored baseline.
+Against the frozen 76 authored recipes, B7 remains **0 / 76 authoritative** while reducing missing-density blockers from **141 to 133**. Unsupported quantity remains **27**, explicit ambiguous portions **20**, and mixed incompatible carbohydrate semantics **16**. Missing tracked nutrient fields are reported separately from skipped ingredient blockers. Gate F's eight external recipes remain outside this authored baseline.
+
+### B8 / first recipe unlock candidate
+
+Candidate validation run `33494074325` measured:
+
+- authoritative recipes: **1 / 76**;
+- project-authored estimates retained: **75 / 76**;
+- first authoritative recipe: `indian_chicken_spinach_curry`;
+- missing-density blockers: **133**;
+- unsupported-quantity blockers: **7**;
+- explicit ambiguous-portion blockers: **20**;
+- mixed incompatible carbohydrate-semantic events: **16**;
+- missing tracked-field events: carbohydrate **28**, energy **5**, fat **65**, fibre **36**.
+
+The only admitted B8 runtime evidence at this point is the exact SR Legacy small-onion portion row. Foundation candidates that do not improve recipe completeness enough to justify their form/field limitations remain deferred or rejected in the review ledger.
 
 ## Other European source state
 
