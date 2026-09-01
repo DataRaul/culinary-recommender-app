@@ -31,7 +31,7 @@ test("audit preserves every fail-closed shortfall class rather than treating par
   assert.ok(Object.keys(audit.missingNutrientFieldCounts).length > 0, "expected current corpus to expose tracked nutrient field gaps");
 });
 
-test("B8-B10 exact evidence earns three authored authoritative recipes without weakening other blockers", () => {
+test("B8-B11 exact evidence preserves three authored authoritative recipes while exposing newly visible quantity blockers", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
   assert.equal(audit.authoritativeRecipeCount, 3);
@@ -43,8 +43,8 @@ test("B8-B10 exact evidence earns three authored authoritative recipes without w
   ]);
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
-    missing_density: 130,
-    unsupported_quantity_unit: 7
+    missing_density: 105,
+    unsupported_quantity_unit: 28
   });
   assert.deepEqual(audit.missingNutrientFieldCounts, {
     carbohydrateG: 28,
