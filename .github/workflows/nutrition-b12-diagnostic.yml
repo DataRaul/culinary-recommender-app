@@ -17,3 +17,6 @@ jobs:
       - run: npm install --ignore-scripts
       - run: node --test tests/matvaretabellen-composition-b12.test.js
       - run: node scripts/report-nutrition-unlock-priorities.mjs
+      - name: Print authoritative recipe IDs
+        run: >-
+          node --input-type=module -e 'import { AUTHORED_RECIPES } from "./src/data/corpus-v1.js"; import { publicNutritionSource } from "./src/domain/nutrition.js"; import { buildNutritionCoverageAudit } from "./src/domain/nutrition-coverage-audit.js"; const a=buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource); console.log(JSON.stringify({authoritativeRecipeCount:a.authoritativeRecipeCount, authoritativeRecipeIds:a.authoritativeRecipeIds, estimateRecipeCount:a.estimateRecipeCount}, null, 2));'
