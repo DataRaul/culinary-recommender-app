@@ -14,6 +14,7 @@
     "report:recipe-corpus-f2": "node scripts/report-wikibooks-gate-f2-coverage.mjs",
     "build:recipe-corpus-f2": "node scripts/build-wikibooks-gate-f2-index.mjs",
     "discover:recipe-corpus-f2": "node scripts/discover-wikibooks-gate-f2.mjs",
+    "queue:recipe-corpus-f2": "node scripts/build-wikibooks-gate-f2-review-queue.mjs",
     "verify:wikibooks-gate-f": "node scripts/verify-wikibooks-gate-f-snapshot.mjs",
     "validate": "npm run check && npm test"
   },
