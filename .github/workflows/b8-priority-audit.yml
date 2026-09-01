@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: 22
       - run: npm install --ignore-scripts
+      - run: npm run validate
       - run: node scripts/report-nutrition-unlock-priorities.mjs
       - name: Download official USDA Foundation 2026-04 release
         run: |
