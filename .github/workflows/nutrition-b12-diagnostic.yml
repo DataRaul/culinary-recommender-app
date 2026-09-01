@@ -1,0 +1,19 @@
+name: Nutrition B12 diagnostic
+
+on:
+  push:
+    branches:
+      - agent/nutrition-b12-olive-oil-matvaretabellen-completion
+  workflow_dispatch:
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - run: node --test tests/matvaretabellen-composition-b12.test.js
+      - run: node scripts/report-nutrition-unlock-priorities.mjs
