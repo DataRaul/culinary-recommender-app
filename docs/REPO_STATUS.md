@@ -100,10 +100,24 @@ Brain-derived ranking, eligibility, substitution or nutrition behavior remains s
 
 ## Concurrency / Knowledge Core boundary
 
-This repository-status reconciliation makes no `DataRaul/knowledge-core` write and does not assert a fresh Knowledge Core branch SHA. Brain/Atlas work may advance independently and must be reconciled from GitHub before any cross-repository handover or public behavior change.
+Fresh reconciliation at this status-cleanup checkpoint:
 
-## Documentation reconciliation note
+- Knowledge Core `main`: `043de7274ee85ce56ef1618f9b1bb31f7a99f6fc`
+- active Brain branch: `agent/culinary-nutrition-brain-p0`
+- branch head: `81d19c9e84c1f685fb555d0c584c7389fa370df7`
+- comparison: **49 ahead / 3 behind**, merge base `0ab4c0d7a1882a494bc92ff0bdd6421764394eca`
+- Knowledge Core open PRs: **none** at the reconciliation checkpoint.
 
-Some older current-state labels in `README.md`, `docs/ROADMAP.md`, `docs/GATES.md`, `docs/TESTING.md` and `docs/NUTRITION_COVERAGE_AUDIT.md` still use pre-merge wording such as **B8 candidate** or **F2 branch-local**. Those phrases are stale as current-status labels but may remain valid where they describe historical candidate runs.
+This public-app lane made no Knowledge Core write. Another chat may own the active Brain branch, so Knowledge Core remains read-only here. The latest KC history-aware F2 adapter/critic work predates public-app PR #27 category-hint semantics; when ownership becomes free, that firewall may be reconciled without granting recipe-admission, nutrition or runtime authority.
 
-Future cleanup must change only present-tense/current-state wording and preserve historical B4-B7 and candidate-run chronology.
+## Documentation reconciliation — branch-local complete
+
+Current-state semantics have now been reconciled branch-locally in:
+
+- `README.md` — B8 is **COMPLETE**; first authoritative authored recipe and 1/76 state are explicit; Gate F2 is **CONTROL PLANE MERGED / RUNTIME GATED**;
+- `docs/ROADMAP.md` — present-tense B8/F2 state and current KC branch facts are reconciled while historical gate chronology is preserved;
+- `docs/GATES.md` — terminal B8 state and merged-but-runtime-gated F2 control-plane state are explicit.
+
+`docs/TESTING.md` retains **Nutrition B8 candidate checks** because that section describes the historical validation phase rather than present repository status. `docs/NUTRITION_COVERAGE_AUDIT.md` likewise retains its **measured candidate** section and candidate-run metrics while already exposing the post-B8 current blocker interpretation. Those historical labels are intentional and should not be rewritten as though the later merge state existed during the candidate measurement.
+
+The status-cleanup branch is intentionally not opened as a PR because opening a PR would trigger GitHub Actions. No Actions were spent by this branch-local documentation reconciliation. The next cost/human gate for this branch is explicit approval to open the bounded status PR and run its validation.
