@@ -5,6 +5,9 @@ import {
   MATVARETABELLEN_COMPOSITION_SOURCE_B12,
   matvaretabellenCompositionB12CompletionForIngredient
 } from "../src/data/matvaretabellen-composition-b12.js";
+import { AUTHORED_RECIPES } from "../src/data/corpus-v1.js";
+import { publicNutritionSource } from "../src/domain/nutrition.js";
+import { buildNutritionCoverageAudit } from "../src/domain/nutrition-coverage-audit.js";
 import { EUROPEAN_PRIMARY_DENSITIES_V1, europeanPrimaryPolicyCoverage, selectEuropeanPrimaryNutrient } from "../src/domain/nutrition-source-policy.js";
 
 test("B12 source is explicit static Matvaretabellen field-completion evidence", () => {
@@ -70,4 +73,28 @@ test("B12 provenance is visible without changing the separate B6 portion contrac
   const coverage = europeanPrimaryPolicyCoverage(["olive_oil"]);
   assert.equal(coverage.matvaretabellenB12SelectedCount, 1);
   assert.equal(coverage.ciqualB5SelectedCount, 4);
+});
+
+test("B12 measured corpus effect makes italian_red_lentil_pasta authoritative", () => {
+  const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
+  const detail = audit.recipeDetails.find(item => item.recipeId === "italian_red_lentil_pasta");
+  assert.ok(detail);
+  assert.equal(detail.authoritative, true);
+  assert.deepEqual(detail.blockers, []);
+  assert.deepEqual(detail.nutrientFieldGaps, []);
+  assert.deepEqual(detail.semanticIssues, []);
+});
+
+test("B12 does not weaken the carbohydrate firewall for an actual olive-oil recipe", () => {
+  const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
+  const detail = audit.recipeDetails.find(item => item.recipeId === "med_hake_couscous_green_beans");
+  assert.ok(detail);
+  assert.equal(detail.authoritative, false);
+  assert.deepEqual(detail.blockers, []);
+  assert.deepEqual(detail.nutrientFieldGaps, []);
+  assert.deepEqual(detail.semanticIssues, [{
+    nutrient: "carbohydrateG",
+    issue: "mixed_incompatible_carbohydrate_semantics",
+    semantics: ["AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO", "CARBOHYDRATE_BY_DIFFERENCE_USDA_1005"]
+  }]);
 });
