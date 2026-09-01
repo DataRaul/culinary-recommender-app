@@ -27,8 +27,13 @@ test("Gate F2 review ledger preserves the accepted Gate F floor without authoriz
   assert.deepEqual(report.missingRecipeRoles, ["contemporary_modern", "genuinely_new_trending"]);
 });
 
-test("Gate F2 compact index is metadata-only and retains exact per-record provenance", () => {
+test("Gate F2 compact index is metadata-only and retains exact per-record provenance", async () => {
   const index = buildGateF2CompactIndex(ledger);
+  const generated = await readFile(
+    new URL("../data/generated/wikibooks-gate-f2-index-v1.json", import.meta.url),
+    "utf8"
+  );
+  assert.equal(generated, `${JSON.stringify(index)}\n`);
 
   assert.equal(index.runtimeActivationAuthorized, false);
   assert.equal(index.admittedRecordCount, 8);

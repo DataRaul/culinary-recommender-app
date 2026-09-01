@@ -12,7 +12,7 @@ const ledger = JSON.parse(
 const index = buildGateF2CompactIndex(ledger);
 
 await mkdir(dirname(outputPath), { recursive: true });
-await writeFile(outputPath, `${JSON.stringify(index, null, 2)}\n`, "utf8");
+await writeFile(outputPath, `${JSON.stringify(index)}\n`, "utf8");
 
 console.log(JSON.stringify({
   output: outputPath,
