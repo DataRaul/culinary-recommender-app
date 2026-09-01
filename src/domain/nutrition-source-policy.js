@@ -14,6 +14,10 @@ import {
   MATVARETABELLEN_COMPOSITION_SOURCE_B11
 } from "../data/matvaretabellen-composition-b11.js";
 import {
+  MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12,
+  MATVARETABELLEN_COMPOSITION_SOURCE_B12
+} from "../data/matvaretabellen-composition-b12.js";
+import {
   USDA_FOUNDATION_DENSITIES,
   USDA_FOUNDATION_SOURCE,
   nutritionEvidenceForIngredient
@@ -110,6 +114,18 @@ if (overlappingMatvaretabellenB11Ids.length) {
   throw new Error(`Matvaretabellen B11 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB11Ids.sort().join(", ")}`);
 }
 
+const matvaretabellenB12CompletionIds = Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12);
+const invalidB12CompletionIds = matvaretabellenB12CompletionIds.filter(ingredientId =>
+  !Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) ||
+  Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B9, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B11, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, ingredientId)
+);
+if (invalidB12CompletionIds.length) {
+  throw new Error(`Matvaretabellen B12 must remain a Ciqual-only exact field-completion lane with no earlier Matvaretabellen overlap: ${invalidB12CompletionIds.sort().join(", ")}`);
+}
+
 const formRank = confidence => ({ high: 3, medium: 2, low: 1 }[confidence] || 0);
 const ciqualFieldGoodEnoughToDisplace = confidence => ["A", "B", "C"].includes(confidence);
 
@@ -200,6 +216,10 @@ const sourceCandidate = (ingredientId, nutrientKey, source) => {
     return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B11, MATVARETABELLEN_COMPOSITION_SOURCE_B11);
   }
 
+  if (source === "matvaretabellen-b12") {
+    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12, MATVARETABELLEN_COMPOSITION_SOURCE_B12);
+  }
+
   const record = USDA_FOUNDATION_DENSITIES[ingredientId];
   if (!record) return null;
   const spec = USDA_FIELDS[nutrientKey];
@@ -232,7 +252,9 @@ export const selectEuropeanPrimaryNutrient = (ingredientId, nutrientKey) => {
   const usda = sourceCandidate(ingredientId, nutrientKey, "usda");
   const ciqual = sourceCandidate(ingredientId, nutrientKey, "ciqual");
   if (!usda && !ciqual) {
-    const completion = sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b10");
+    const completion =
+      sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b10") ||
+      sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b12");
     return completion ? { ...completion, selectionReason: "EUROPEAN_EXACT_FIELD_COMPLETION" } : null;
   }
   if (!usda) return { ...ciqual, selectionReason: "ONLY_REVIEWED_SOURCE_AVAILABLE" };
@@ -286,7 +308,8 @@ export const EUROPEAN_PRIMARY_DENSITIES_V1 = Object.fromEntries(
     ...Object.keys(CIQUAL_CANONICAL_DENSITIES),
     ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B9),
     ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10),
-    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B11)
+    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B11),
+    ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12)
   ])]
     .map(ingredientId => [ingredientId, europeanPrimaryDensityForIngredient(ingredientId)])
     .filter(([, record]) => record)
@@ -311,6 +334,7 @@ export const europeanPrimaryPolicyCoverage = ingredientIds => {
     matvaretabellenB9SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B9").length,
     matvaretabellenB10SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B10").length,
     matvaretabellenB11SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B11").length,
+    matvaretabellenB12SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B12").length,
     selections
   };
 };
