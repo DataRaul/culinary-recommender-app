@@ -37,11 +37,11 @@ const oliveOil = Object.freeze({
     fibreG: 0.0
   }),
   fieldEvidence: Object.freeze({
-    energyKcal: Object.freeze({ sourceCode: null, valueType: "published", method: "Published energy in 100 g: 3717 kJ / 889 kcal" }),
-    proteinG: Object.freeze({ sourceCode: "50", valueType: "Assumed zero", method: "Official food composition table value" }),
+    energyKcal: Object.freeze({ sourceCode: null, valueType: "published", method: "Published energy in 100 g: 889 kcal" }),
+    proteinG: Object.freeze({ sourceCode: "50", valueType: "published", method: "Official food composition table value" }),
     carbohydrateG: Object.freeze({ sourceCode: "MI0181", valueType: "Best estimate", method: "Carbohydrate, available calculated from sugar and starch (CHO = SUGAR + STARCH)" }),
-    fatG: Object.freeze({ sourceCode: "210", valueType: "Best estimate", method: "Food composition table value" }),
-    fibreG: Object.freeze({ sourceCode: "50", valueType: "Assumed zero", method: "Official food composition table value" })
+    fatG: Object.freeze({ sourceCode: "210", valueType: "published", method: "Official food composition table value" }),
+    fibreG: Object.freeze({ sourceCode: "50", valueType: "published", method: "Official food composition table value" })
   }),
   evidenceState: "MATVARETABELLEN_2026_EXACT_FIELD_COMPLETION_MATCH",
   sourceId: MATVARETABELLEN_COMPOSITION_SOURCE_B12.id,
