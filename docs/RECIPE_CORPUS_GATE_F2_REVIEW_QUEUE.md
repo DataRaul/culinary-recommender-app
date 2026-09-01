@@ -1,12 +1,16 @@
 # Recipe Corpus Gate F2 — Review Queue and Source-Universe Semantics
 
-Status: **MAIN CONTROL PLANE + BRANCH-LOCAL SOURCE-PRESENCE HARDENING / NO RUNTIME ACTIVATION**
+Status: **CONTROL PLANE MERGED / RUNTIME GATED**
 
-Current follow-up branch: `v1-recipe-corpus-gate-f2-source-presence-holds`
+Current merged lineage:
 
-The Gate F2 breadth/review foundation merged through PR #24 at `0745f8990b3eca0003fdecd083cdc52830f5a233`. PR validation run `33531034797`, post-merge validation run `33532299918`, and Pages run `33532298831` all passed. The merged control plane does not authorize new recipes, runtime source fetching, source nutrition, private Knowledge Core runtime access, or automatic admission.
+- PR #24 — revision-aware breadth/review foundation — `0745f8990b3eca0003fdecd083cdc52830f5a233`;
+- PR #25 — source-presence anomaly holds — `be143c545d6268413ec68bece7d29c4be18f84b0`;
+- PR #27 — bounded current category hints — `e3d87bdec2880aae2b9ae59a8cde106a9bafb0c8`.
 
-This follow-up hardening adds fail-closed source-presence comparison for **complete** exact-revision discovery snapshots. It remains branch-local until separately reviewed.
+The earlier follow-up branch `v1-recipe-corpus-gate-f2-source-presence-holds` is historical; its source-presence hardening is now merged. The merged control plane does not authorize new recipes, runtime source fetching, source nutrition, private Knowledge Core runtime access or automatic admission.
+
+Category hints added by PR #27 are current weak source-navigation metadata only. They are not revision-pinned evidence and cannot authorize hard metadata, authenticity, trend status, dietary truth, nutrition, recommendation eligibility, coverage promotion or runtime behavior.
 
 ## Revision-aware review queue
 
@@ -53,7 +57,7 @@ A partial discovery snapshot cannot masquerade as a complete source-universe mea
 
 A complete source-universe snapshot provides information that a bounded partial snapshot cannot: whether a previously active/pending tracked source page is no longer present in the enumerated `Category:Recipes` universe.
 
-The follow-up control compares complete discovery page IDs against every tracked page that has **any immutable history row** in one of these presence-relevant states:
+The control compares complete discovery page IDs against every tracked page that has **any immutable history row** in one of these presence-relevant states:
 
 - `DISCOVERED_UNREVIEWED`;
 - `REVIEW_READY`;
@@ -85,6 +89,26 @@ Queue summaries therefore expose separately:
 
 This preserves backward meaning for the existing `holdCount` while making complete-universe disappearance events explicit.
 
+## Current category-hint enrichment
+
+PR #27 adds a bounded second-stage acquisition pass for current MediaWiki category metadata associated with pages already present in a Gate F2 discovery snapshot.
+
+The pass:
+
+- uses bounded page-ID batches;
+- drains MediaWiki property continuation correctly;
+- preserves rows aligned with the discovery records;
+- fails closed on malformed category payloads;
+- fails on unexpected page IDs;
+- fails on conflicting titles/states;
+- fails on repeated continuation tokens;
+- inherits discovery completeness rather than inventing stronger completeness;
+- removes category hints from records no longer present.
+
+Category hints are deliberately not part of immutable exact-revision evidence. They may prioritize review only.
+
+Do not infer popularity, authenticity, canonicality, cuisine truth, technique, dietary suitability, trend status or public eligibility from category presence or edit recency.
+
 ## Current source navigation observation
 
 On 2026-09-01 the rendered English Wikibooks `Category:Recipes` page reported **3,825** recipe pages:
@@ -114,9 +138,11 @@ npm run validate
 
 The discovery and review-queue outputs remain ignored local cache by default. Broad metadata discovery does not itself modify the reviewed ledger.
 
+Category-hint acquisition remains a separate bounded enrichment step. It does not change review state or public runtime state.
+
 ## Firewalls preserved
 
-This control-plane hardening preserves all prior Gate F / F2 boundaries:
+The merged control plane preserves all prior Gate F / F2 boundaries:
 
 - CC BY-SA 4.0 page-level provenance remains mandatory;
 - extra page-level attribution/licensing notices remain review gates;
@@ -129,12 +155,13 @@ This control-plane hardening preserves all prior Gate F / F2 boundaries:
 - no automatic admission exists;
 - no generated F2 control-plane artifact is imported by browser runtime;
 - source disappearance never deletes or downgrades a tracked record automatically;
-- follow-up PR, Actions and merge remain separately gated.
+- category hints are not admission, authenticity, nutrition, trend or runtime authority;
+- future admission/behavior PRs, Actions and merge remain separately gated.
 
 ## Current terminal state
 
-The merged review queue is revision-aware across immutable multi-revision page history, source-universe completeness is explicit, source-title/provenance metadata drift is review-visible, and stale/internally inconsistent revision ordering fails closed into a hold state.
+The merged F2 control plane is revision-aware across immutable multi-revision page history, exposes source-universe completeness, makes source-title/provenance metadata drift review-visible, fails stale/internally inconsistent revision ordering closed into hold states, and makes presence-relevant tracked pages missing from a complete source snapshot visible as non-destructive source-presence holds.
 
-The current branch additionally makes presence-relevant tracked pages missing from a complete source snapshot visible as separate, non-destructive source-presence holds while refusing to infer removals from partial snapshots.
+The merged category-hint layer can prioritize review with bounded current source-navigation metadata without upgrading that metadata into evidence authority.
 
-No newly discovered page has been admitted and no public runtime behavior has changed.
+F2 newly admitted recipes remain **0**. `runtimeActivationAuthorized` remains false. No public runtime behavior has changed merely because the control plane is merged.
