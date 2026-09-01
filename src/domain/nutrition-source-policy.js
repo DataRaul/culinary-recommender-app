@@ -6,6 +6,10 @@ import {
   MATVARETABELLEN_COMPOSITION_SOURCE_B9
 } from "../data/matvaretabellen-composition-b9.js";
 import {
+  MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10,
+  MATVARETABELLEN_COMPOSITION_SOURCE_B10
+} from "../data/matvaretabellen-composition-b10.js";
+import {
   USDA_FOUNDATION_DENSITIES,
   USDA_FOUNDATION_SOURCE,
   nutritionEvidenceForIngredient
@@ -51,6 +55,7 @@ export const EUROPEAN_PRIMARY_POLICY_V1 = {
   principle: "Prefer reviewed European composition when food-form match is equally good or better and constituent evidence is sufficient; otherwise retain the stronger available source.",
   geographyTieBreak: "EUROPEAN_SOURCE_WINS_EQUAL_FORM_MATCH_WHEN_CIQUAL_FIELD_CONFIDENCE_IS_A_B_OR_C",
   dConfidenceRule: "CIQUAL_D_DOES_NOT_DISPLACE_AVAILABLE_USDA_BUT_MAY_BE_USED_WHEN_IT_IS_THE_ONLY_REVIEWED_SOURCE",
+  fieldCompletionRule: "EXACT_REVIEWED_MATVARETABELLEN_MAY_FILL_ONLY_A_TRACKED_FIELD_MISSING_FROM_ALL_EXISTING_REVIEWED_USDA_AND_CIQUAL_CANDIDATES",
   carbohydrateRule: "USDA_CARBOHYDRATE_BY_DIFFERENCE_AND_EUROPEAN_AVAILABLE_CARBOHYDRATE_ARE_DISTINCT_SEMANTICS_AND_MUST_NOT_BE_SUMMED_IN_ONE_AUTHORITATIVE_RECIPE_TOTAL",
   averaging: "PROHIBITED",
   regulatoryEvidence: "SEPARATE_FROM_COMPOSITION",
@@ -82,6 +87,14 @@ if (overlappingMatvaretabellenIds.length) {
   throw new Error(`Matvaretabellen B9 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenIds.sort().join(", ")}`);
 }
 
+const matvaretabellenCompletionIds = Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10);
+const invalidCompletionIds = matvaretabellenCompletionIds.filter(ingredientId =>
+  !Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) || Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId)
+);
+if (invalidCompletionIds.length) {
+  throw new Error(`Matvaretabellen B10 must remain a Ciqual-only exact field-completion lane: ${invalidCompletionIds.sort().join(", ")}`);
+}
+
 const formRank = confidence => ({ high: 3, medium: 2, low: 1 }[confidence] || 0);
 const ciqualFieldGoodEnoughToDisplace = confidence => ["A", "B", "C"].includes(confidence);
 
@@ -111,6 +124,30 @@ const MATVARETABELLEN_FIELDS = {
 
 const finiteOrNull = value => typeof value === "number" && Number.isFinite(value) ? value : null;
 
+const matvaretabellenCandidate = (ingredientId, nutrientKey, records, sourceMetadata) => {
+  const record = records[ingredientId];
+  if (!record) return null;
+  const spec = MATVARETABELLEN_FIELDS[nutrientKey];
+  const value = finiteOrNull(record.per100g?.[spec.field]);
+  if (value === null) return null;
+  const evidence = record.fieldEvidence?.[nutrientKey] || null;
+  return {
+    source: "matvaretabellen",
+    sourceId: sourceMetadata.id,
+    sourceIdentifier: record.foodId,
+    evidenceTranche: record.evidenceTranche,
+    value,
+    semantic: spec.semantic,
+    method: evidence?.method || "MATVARETABELLEN_PUBLISHED_VALUE",
+    formConfidence: record.matchConfidence,
+    fieldConfidence: null,
+    description: record.foodName,
+    matchNotes: record.matchNotes,
+    scientificName: record.scientificName || null,
+    sourceCodes: evidence?.sourceCode ? [evidence.sourceCode] : []
+  };
+};
+
 const sourceCandidate = (ingredientId, nutrientKey, source) => {
   if (source === "ciqual") {
     const record = CIQUAL_CANONICAL_DENSITIES[ingredientId];
@@ -136,28 +173,12 @@ const sourceCandidate = (ingredientId, nutrientKey, source) => {
     };
   }
 
-  if (source === "matvaretabellen") {
-    const record = MATVARETABELLEN_COMPOSITION_DENSITIES_B9[ingredientId];
-    if (!record) return null;
-    const spec = MATVARETABELLEN_FIELDS[nutrientKey];
-    const value = finiteOrNull(record.per100g?.[spec.field]);
-    if (value === null) return null;
-    const evidence = record.fieldEvidence?.[nutrientKey] || null;
-    return {
-      source: "matvaretabellen",
-      sourceId: MATVARETABELLEN_COMPOSITION_SOURCE_B9.id,
-      sourceIdentifier: record.foodId,
-      evidenceTranche: record.evidenceTranche,
-      value,
-      semantic: spec.semantic,
-      method: evidence?.method || "MATVARETABELLEN_PUBLISHED_VALUE",
-      formConfidence: record.matchConfidence,
-      fieldConfidence: null,
-      description: record.foodName,
-      matchNotes: record.matchNotes,
-      scientificName: record.scientificName || null,
-      sourceCodes: evidence?.sourceCode ? [evidence.sourceCode] : []
-    };
+  if (source === "matvaretabellen-b9") {
+    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B9, MATVARETABELLEN_COMPOSITION_SOURCE_B9);
+  }
+
+  if (source === "matvaretabellen-b10") {
+    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, MATVARETABELLEN_COMPOSITION_SOURCE_B10);
   }
 
   const record = USDA_FOUNDATION_DENSITIES[ingredientId];
@@ -184,12 +205,15 @@ const sourceCandidate = (ingredientId, nutrientKey, source) => {
 };
 
 export const selectEuropeanPrimaryNutrient = (ingredientId, nutrientKey) => {
-  const matvaretabellen = sourceCandidate(ingredientId, nutrientKey, "matvaretabellen");
-  if (matvaretabellen) return { ...matvaretabellen, selectionReason: "ONLY_REVIEWED_SOURCE_AVAILABLE" };
+  const standaloneMatvaretabellen = sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b9");
+  if (standaloneMatvaretabellen) return { ...standaloneMatvaretabellen, selectionReason: "ONLY_REVIEWED_SOURCE_AVAILABLE" };
 
   const usda = sourceCandidate(ingredientId, nutrientKey, "usda");
   const ciqual = sourceCandidate(ingredientId, nutrientKey, "ciqual");
-  if (!usda && !ciqual) return null;
+  if (!usda && !ciqual) {
+    const completion = sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b10");
+    return completion ? { ...completion, selectionReason: "EUROPEAN_EXACT_FIELD_COMPLETION" } : null;
+  }
   if (!usda) return { ...ciqual, selectionReason: "ONLY_REVIEWED_SOURCE_AVAILABLE" };
   if (!ciqual) return { ...usda, selectionReason: "ONLY_REVIEWED_SOURCE_AVAILABLE" };
 
@@ -239,7 +263,8 @@ export const EUROPEAN_PRIMARY_DENSITIES_V1 = Object.fromEntries(
   [...new Set([
     ...Object.keys(USDA_FOUNDATION_DENSITIES),
     ...Object.keys(CIQUAL_CANONICAL_DENSITIES),
-    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B9)
+    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B9),
+    ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10)
   ])]
     .map(ingredientId => [ingredientId, europeanPrimaryDensityForIngredient(ingredientId)])
     .filter(([, record]) => record)
@@ -262,6 +287,7 @@ export const europeanPrimaryPolicyCoverage = ingredientIds => {
     ciqualB5SelectedCount: selections.filter(item => item.source === "ciqual" && item.evidenceTranche === "B5").length,
     ciqualB7SelectedCount: selections.filter(item => item.source === "ciqual" && item.evidenceTranche === "B7").length,
     matvaretabellenB9SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B9").length,
+    matvaretabellenB10SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B10").length,
     selections
   };
 };
