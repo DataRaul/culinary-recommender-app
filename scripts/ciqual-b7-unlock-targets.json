@@ -1,0 +1,11 @@
+{
+  "quinoa": {"queries":["quinoa"],"priorityRecipes":["med_quinoa_egg_spinach_bowl"],"currentBlocker":"missing_density"},
+  "barley": {"queries":["barley"],"priorityRecipes":["med_salmon_barley_spinach"],"currentBlocker":"missing_density"},
+  "courgette": {"queries":["courgette","zucchini"],"priorityRecipes":["med_lemon_chicken_couscous"],"currentBlocker":"missing_density"},
+  "prawns": {"queries":["prawn","shrimp"],"priorityRecipes":["med_prawn_tomato_couscous"],"currentBlocker":"missing_density"},
+  "cottage_cheese": {"queries":["cottage cheese"],"priorityRecipes":["spanish_pepper_cottage_frittata"],"currentBlocker":"missing_density"},
+  "orzo": {"queries":["orzo","pasta, dry","pasta dry"],"priorityRecipes":["italian_mushroom_pea_orzo"],"currentBlocker":"missing_density"},
+  "tortilla": {"queries":["tortilla","wrap"],"priorityRecipes":["med_greek_yogurt_chickpea_wrap"],"currentBlocker":"missing_density"},
+  "salt": {"queries":["salt"],"priorityRecipes":["spanish_potato_onion_tortilla"],"currentBlocker":"missing_density"},
+  "smoked_paprika": {"queries":["paprika"],"priorityRecipes":["canarian_hake_sweet_potato_tomato"],"currentBlocker":"missing_density","knownConcern":"smoking state must be explicit"}
+}
