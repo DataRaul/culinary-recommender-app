@@ -100,15 +100,49 @@ Brain-derived ranking, eligibility, substitution or nutrition behavior remains s
 
 ## Concurrency / Knowledge Core boundary
 
-Fresh reconciliation at this status-cleanup checkpoint:
+Fresh reconciliation at this checkpoint:
 
 - Knowledge Core `main`: `043de7274ee85ce56ef1618f9b1bb31f7a99f6fc`
 - active Brain branch: `agent/culinary-nutrition-brain-p0`
 - branch head: `81d19c9e84c1f685fb555d0c584c7389fa370df7`
 - comparison: **49 ahead / 3 behind**, merge base `0ab4c0d7a1882a494bc92ff0bdd6421764394eca`
+- Knowledge Core `main`-only divergence is currently confined to `ops/WORKSTREAM_STATUS.md` and `ops/runner_registry.csv`;
 - Knowledge Core open PRs: **none** at the reconciliation checkpoint.
 
-This public-app lane made no Knowledge Core write. Another chat may own the active Brain branch, so Knowledge Core remains read-only here. The latest KC history-aware F2 adapter/critic work predates public-app PR #27 category-hint semantics; when ownership becomes free, that firewall may be reconciled without granting recipe-admission, nutrition or runtime authority.
+This public-app lane made no Knowledge Core write. Knowledge Core remains read-only here. The active KC Culinary adapter/corpus critic predates public-app PR #27 category-hint semantics and should be reconciled in a separate Brain lane rather than by this repository lane.
+
+## Knowledge Core platform integration — branch-local reconciled
+
+The Culinary Lab has now been aligned to the same generalized Knowledge Core platform-adapter architecture used by the other downstream repositories.
+
+Canonical KC architecture inspected:
+
+- `DataRaul/knowledge-core/docs/KNOWLEDGE_CORE_PLATFORM_ADAPTER_ARCHITECTURE.md` on KC `main`;
+- canonical rule: **Expose Knowledge Core as the platform, not each individual capability as a separate repo-local integration.**
+
+Representative downstream patterns inspected:
+
+- Market Lab's thin platform routing boundary and project-local evidence authority;
+- the workout recommender's Knowledge Core integration/reasoning-coverage contract and local runtime authority.
+
+Culinary now records the same architecture in:
+
+- `docs/KNOWLEDGE_CORE_INTEGRATION.md`;
+- `docs/BRAIN_ADAPTER_CONTRACT.md`;
+- `docs/ARCHITECTURE.md`;
+- `docs/DEFERRED_CAPABILITIES.md`.
+
+The Knowledge Core specialist `adapters/repo_culinary_recommender_app.md` remains valid as a specialist contract but is explicitly consumed **through** the generalized Knowledge Core platform boundary. It does not create a second integration model.
+
+The integration remains routed/advisory:
+
+- Knowledge Core owns reusable culinary/nutrition reasoning and Brain/Atlas methodology;
+- Culinary Lab owns current recipes, evidence, runtime state, tests and public admission/behavior;
+- private Knowledge Core is never a browser/runtime dependency;
+- behavior-driving Brain exports must be narrow, versioned, source-safe, exact-pin-bound and separately tested/gated;
+- public-safe Lab blocker/corpus metadata may travel back to Knowledge Core only as offline research/review input, not automatic canonical promotion.
+
+No ranking, eligibility, substitution, nutrition or recipe-admission behavior is activated by this architecture reconciliation.
 
 ## Documentation reconciliation — branch-local complete
 
@@ -116,8 +150,11 @@ Current-state semantics have now been reconciled branch-locally in:
 
 - `README.md` — B8 is **COMPLETE**; first authoritative authored recipe and 1/76 state are explicit; Gate F2 is **CONTROL PLANE MERGED / RUNTIME GATED**;
 - `docs/ROADMAP.md` — present-tense B8/F2 state and current KC branch facts are reconciled while historical gate chronology is preserved;
-- `docs/GATES.md` — terminal B8 state and merged-but-runtime-gated F2 control-plane state are explicit.
+- `docs/GATES.md` — terminal B8 state and merged-but-runtime-gated F2 control-plane state are explicit;
+- `docs/RECIPE_CORPUS_GATE_F2_REVIEW_QUEUE.md` — the old branch-local source-presence wording is reconciled to the PR #24/#25/#27 merged control-plane state while preserving the fail-closed queue semantics;
+- `docs/BRAIN_ADAPTER_CONTRACT.md` and `docs/ARCHITECTURE.md` — Culinary's Brain relationship is routed through the generalized Knowledge Core platform boundary rather than a bespoke integration;
+- `docs/DEFERRED_CAPABILITIES.md` — private Brain/Atlas maturity is distinguished from still-gated public behavior.
 
 `docs/TESTING.md` retains **Nutrition B8 candidate checks** because that section describes the historical validation phase rather than present repository status. `docs/NUTRITION_COVERAGE_AUDIT.md` likewise retains its **measured candidate** section and candidate-run metrics while already exposing the post-B8 current blocker interpretation. Those historical labels are intentional and should not be rewritten as though the later merge state existed during the candidate measurement.
 
-The status-cleanup branch is intentionally not opened as a PR because opening a PR would trigger GitHub Actions. No Actions were spent by this branch-local documentation reconciliation. The next cost/human gate for this branch is explicit approval to open the bounded status PR and run its validation.
+The branch is intentionally not opened as a PR because opening a PR would trigger GitHub Actions. No Actions were spent by this branch-local documentation/integration reconciliation. The next cost/human gate for this branch is explicit approval to open the bounded PR and run its validation.
