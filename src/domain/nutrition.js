@@ -10,6 +10,7 @@ import {
   usdaFoundationAmbiguousPortion,
   usdaFoundationPortionConversion
 } from "../data/usda-foundation-portions-v1.js";
+import { MATVARETABELLEN_COMPOSITION_SOURCE_B9 } from "../data/matvaretabellen-composition-b9.js";
 import {
   MATVARETABELLEN_PORTION_SOURCE_B6,
   matvaretabellenAmbiguousPortion,
@@ -130,12 +131,16 @@ const quantityToGrams = ingredient => {
 const nutrientKeys = ["energyKcal", "proteinG", "carbohydrateG", "fatG", "fibreG"];
 const roundToTenths = value => Math.round((value + Number.EPSILON * Math.max(1, Math.abs(value))) * 10) / 10;
 const roundNutrient = (key, value) => key === "energyKcal" ? Math.round(value) : roundToTenths(value);
+const AVAILABLE_CARBOHYDRATE_SEMANTICS = new Set([
+  "AVAILABLE_CARBOHYDRATE_CIQUAL_CHOAVL",
+  "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO"
+]);
 
 const semanticCompatibility = (key, semantics) => {
   if (key !== "carbohydrateG") return { compatible: true, reason: null };
   const unique = [...semantics];
   if (unique.length <= 1) return { compatible: true, reason: null };
-  const incompatible = unique.includes("CARBOHYDRATE_BY_DIFFERENCE_USDA_1005") && unique.includes("AVAILABLE_CARBOHYDRATE_CIQUAL_CHOAVL");
+  const incompatible = unique.includes("CARBOHYDRATE_BY_DIFFERENCE_USDA_1005") && unique.some(semantic => AVAILABLE_CARBOHYDRATE_SEMANTICS.has(semantic));
   return incompatible
     ? { compatible: false, reason: "mixed_incompatible_carbohydrate_semantics" }
     : { compatible: true, reason: null };
@@ -245,15 +250,16 @@ export const publicNutritionSource = {
       method,
       confidence: authoritativeRecipeCalculation ? "medium" : recipe.nutrition?.confidence || "low",
       provenance: usesEuropeanPrimary
-        ? "Calculated deterministically under the Canary/Spain/Europe source-selection policy from reviewed USDA Foundation and/or ANSES-Ciqual composition, with exact per-nutrient provenance and source-backed USDA, Matvaretabellen and/or SR Legacy quantity weights; incompatible carbohydrate semantics are never mixed and cooking/yield uncertainty remains."
+        ? "Calculated deterministically under the Canary/Spain/Europe source-selection policy from reviewed USDA Foundation, ANSES-Ciqual and bounded Matvaretabellen composition, with exact per-nutrient provenance and source-backed USDA, Matvaretabellen and/or SR Legacy quantity weights; incompatible carbohydrate semantics are never mixed and cooking/yield uncertainty remains."
         : usesCoherentUsdaFallback
           ? "European-primary selection was incomplete or semantically incompatible for a full recipe total, so the deterministic fully coherent reviewed USDA Foundation calculation was retained; source-backed USDA, Matvaretabellen and/or SR Legacy quantity weights may be used and cooking/yield uncertainty remains."
           : recipe.nutrition?.provenance || "Project-authored estimate.",
       evidence: {
         source: USDA_FOUNDATION_SOURCE,
-        sources: [USDA_FOUNDATION_SOURCE, CIQUAL_RUNTIME_SOURCE_V1],
+        sources: [USDA_FOUNDATION_SOURCE, CIQUAL_RUNTIME_SOURCE_V1, MATVARETABELLEN_COMPOSITION_SOURCE_B9],
         sourcePolicy: EUROPEAN_PRIMARY_POLICY_V1,
         compositionSource: USDA_FOUNDATION_COMPOSITION_SOURCE,
+        compositionSources: [USDA_FOUNDATION_COMPOSITION_SOURCE, CIQUAL_RUNTIME_SOURCE_V1, MATVARETABELLEN_COMPOSITION_SOURCE_B9],
         portionSource: USDA_FOUNDATION_PORTION_SOURCE,
         portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, USDA_SR_LEGACY_PORTION_SOURCE_B8],
         coverage,

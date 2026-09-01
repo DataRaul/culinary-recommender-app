@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "nutrition-unlock-reviewed-decisions-v1",
+  "reviewDate": "2026-09-01",
+  "purpose": "Preserve post-B8 evidence decisions without rewriting historical tranche ledgers or weakening canonical identity boundaries.",
+  "decisions": {
+    "smoked_paprika": {
+      "decision": "DEFER_NO_EXACT_AUTHORITATIVE_COMPOSITION_RECORD",
+      "candidateClass": "COMPOSITION_EVIDENCE",
+      "reviewedSourceFamilies": [
+        "ANSES-Ciqual 2025",
+        "official European food-composition authorities",
+        "USDA FoodData Central official datasets"
+      ],
+      "observations": [
+        "Ciqual 2025 exposes generic Paprika, powder (alimCode 11049), not an exact smoked-paprika food identity.",
+        "The existing USDA Foundation B8 review found no exact smoked-paprika Foundation candidate.",
+        "No exact authoritative composition record meeting the current identity, provenance, constituent and semantic requirements was admitted in this review."
+      ],
+      "boundary": "Generic paprika, pepper powder, branded/commercial records and inferred equivalence remain inadmissible for canonical smoked_paprika.",
+      "runtimeChange": false
+    },
+    "basmati_rice": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B9",
+      "candidateClass": "COMPOSITION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-composition-b9",
+      "foodId": "05.305",
+      "foodName": "Rice, Basmati, uncooked",
+      "scientificName": "Oryza sativa L.",
+      "formMatch": "EXACT_DRY_UNCOOKED_BASMATI",
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B9 maps only canonical basmati_rice. It does not authorize generic rice, jasmine rice or other rice-form inference.",
+      "runtimeChange": true
+    }
+  }
+}

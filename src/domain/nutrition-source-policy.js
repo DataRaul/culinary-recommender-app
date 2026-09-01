@@ -2,6 +2,10 @@ import { CIQUAL_2025_SOURCE, CIQUAL_DENSITIES_B4 } from "../data/ciqual-nutrient
 import { CIQUAL_DENSITIES_B5 } from "../data/ciqual-nutrients-b5.js";
 import { CIQUAL_DENSITIES_B7 } from "../data/ciqual-nutrients-b7.js";
 import {
+  MATVARETABELLEN_COMPOSITION_DENSITIES_B9,
+  MATVARETABELLEN_COMPOSITION_SOURCE_B9
+} from "../data/matvaretabellen-composition-b9.js";
+import {
   USDA_FOUNDATION_DENSITIES,
   USDA_FOUNDATION_SOURCE,
   nutritionEvidenceForIngredient
@@ -47,7 +51,7 @@ export const EUROPEAN_PRIMARY_POLICY_V1 = {
   principle: "Prefer reviewed European composition when food-form match is equally good or better and constituent evidence is sufficient; otherwise retain the stronger available source.",
   geographyTieBreak: "EUROPEAN_SOURCE_WINS_EQUAL_FORM_MATCH_WHEN_CIQUAL_FIELD_CONFIDENCE_IS_A_B_OR_C",
   dConfidenceRule: "CIQUAL_D_DOES_NOT_DISPLACE_AVAILABLE_USDA_BUT_MAY_BE_USED_WHEN_IT_IS_THE_ONLY_REVIEWED_SOURCE",
-  carbohydrateRule: "USDA_CARBOHYDRATE_BY_DIFFERENCE_AND_CIQUAL_CHOAVL_ARE_DISTINCT_SEMANTICS_AND_MUST_NOT_BE_SUMMED_IN_ONE_AUTHORITATIVE_RECIPE_TOTAL",
+  carbohydrateRule: "USDA_CARBOHYDRATE_BY_DIFFERENCE_AND_EUROPEAN_AVAILABLE_CARBOHYDRATE_ARE_DISTINCT_SEMANTICS_AND_MUST_NOT_BE_SUMMED_IN_ONE_AUTHORITATIVE_RECIPE_TOTAL",
   averaging: "PROHIBITED",
   regulatoryEvidence: "SEPARATE_FROM_COMPOSITION",
   medicalPersonalization: "PROHIBITED"
@@ -70,6 +74,14 @@ export const CIQUAL_RUNTIME_SOURCE_V1 = {
   boundedRecordCounts: CIQUAL_BOUNDED_RECORD_COUNTS
 };
 
+const matvaretabellenCompositionIds = Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B9);
+const overlappingMatvaretabellenIds = matvaretabellenCompositionIds.filter(ingredientId =>
+  Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) || Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId)
+);
+if (overlappingMatvaretabellenIds.length) {
+  throw new Error(`Matvaretabellen B9 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenIds.sort().join(", ")}`);
+}
+
 const formRank = confidence => ({ high: 3, medium: 2, low: 1 }[confidence] || 0);
 const ciqualFieldGoodEnoughToDisplace = confidence => ["A", "B", "C"].includes(confidence);
 
@@ -87,6 +99,14 @@ const CIQUAL_FIELDS = {
   carbohydrateG: { field: "carbohydrateAvailableG", confidenceField: "carbohydrateAvailableG", semantic: "AVAILABLE_CARBOHYDRATE_CIQUAL_CHOAVL", method: "CIQUAL_CHOAVL" },
   fatG: { field: "fatG", confidenceField: "fatG", semantic: "TOTAL_FAT", method: "CIQUAL" },
   fibreG: { field: "fibreG", confidenceField: "fibreG", semantic: "DIETARY_FIBRE_CIQUAL", method: "CIQUAL" }
+};
+
+const MATVARETABELLEN_FIELDS = {
+  energyKcal: { field: "energyKcal", semantic: "ENERGY_MATVARETABELLEN_PUBLISHED" },
+  proteinG: { field: "proteinG", semantic: "PROTEIN_MATVARETABELLEN" },
+  carbohydrateG: { field: "carbohydrateG", semantic: "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO" },
+  fatG: { field: "fatG", semantic: "TOTAL_FAT" },
+  fibreG: { field: "fibreG", semantic: "DIETARY_FIBRE_MATVARETABELLEN" }
 };
 
 const finiteOrNull = value => typeof value === "number" && Number.isFinite(value) ? value : null;
@@ -116,6 +136,30 @@ const sourceCandidate = (ingredientId, nutrientKey, source) => {
     };
   }
 
+  if (source === "matvaretabellen") {
+    const record = MATVARETABELLEN_COMPOSITION_DENSITIES_B9[ingredientId];
+    if (!record) return null;
+    const spec = MATVARETABELLEN_FIELDS[nutrientKey];
+    const value = finiteOrNull(record.per100g?.[spec.field]);
+    if (value === null) return null;
+    const evidence = record.fieldEvidence?.[nutrientKey] || null;
+    return {
+      source: "matvaretabellen",
+      sourceId: MATVARETABELLEN_COMPOSITION_SOURCE_B9.id,
+      sourceIdentifier: record.foodId,
+      evidenceTranche: record.evidenceTranche,
+      value,
+      semantic: spec.semantic,
+      method: evidence?.method || "MATVARETABELLEN_PUBLISHED_VALUE",
+      formConfidence: record.matchConfidence,
+      fieldConfidence: null,
+      description: record.foodName,
+      matchNotes: record.matchNotes,
+      scientificName: record.scientificName || null,
+      sourceCodes: evidence?.sourceCode ? [evidence.sourceCode] : []
+    };
+  }
+
   const record = USDA_FOUNDATION_DENSITIES[ingredientId];
   if (!record) return null;
   const spec = USDA_FIELDS[nutrientKey];
@@ -140,6 +184,9 @@ const sourceCandidate = (ingredientId, nutrientKey, source) => {
 };
 
 export const selectEuropeanPrimaryNutrient = (ingredientId, nutrientKey) => {
+  const matvaretabellen = sourceCandidate(ingredientId, nutrientKey, "matvaretabellen");
+  if (matvaretabellen) return { ...matvaretabellen, selectionReason: "ONLY_REVIEWED_SOURCE_AVAILABLE" };
+
   const usda = sourceCandidate(ingredientId, nutrientKey, "usda");
   const ciqual = sourceCandidate(ingredientId, nutrientKey, "ciqual");
   if (!usda && !ciqual) return null;
@@ -189,7 +236,11 @@ export const europeanPrimaryDensityForIngredient = ingredientId => {
 };
 
 export const EUROPEAN_PRIMARY_DENSITIES_V1 = Object.fromEntries(
-  [...new Set([...Object.keys(USDA_FOUNDATION_DENSITIES), ...Object.keys(CIQUAL_CANONICAL_DENSITIES)])]
+  [...new Set([
+    ...Object.keys(USDA_FOUNDATION_DENSITIES),
+    ...Object.keys(CIQUAL_CANONICAL_DENSITIES),
+    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B9)
+  ])]
     .map(ingredientId => [ingredientId, europeanPrimaryDensityForIngredient(ingredientId)])
     .filter(([, record]) => record)
 );
@@ -206,9 +257,11 @@ export const europeanPrimaryPolicyCoverage = ingredientIds => {
     evidenceIngredientCount: records.filter(item => item.record).length,
     ciqualSelectedCount: selections.filter(item => item.source === "ciqual").length,
     usdaSelectedCount: selections.filter(item => item.source === "usda").length,
+    matvaretabellenSelectedCount: selections.filter(item => item.source === "matvaretabellen").length,
     ciqualB4SelectedCount: selections.filter(item => item.source === "ciqual" && item.evidenceTranche === "B4").length,
     ciqualB5SelectedCount: selections.filter(item => item.source === "ciqual" && item.evidenceTranche === "B5").length,
     ciqualB7SelectedCount: selections.filter(item => item.source === "ciqual" && item.evidenceTranche === "B7").length,
+    matvaretabellenB9SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B9").length,
     selections
   };
 };
