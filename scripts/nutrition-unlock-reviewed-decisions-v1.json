@@ -43,6 +43,41 @@
       "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
       "boundary": "B10 may fill only tracked lemon fields absent from all existing reviewed USDA/Ciqual candidates. Existing populated Ciqual lemon fields remain selected; B10 does not replace them or broaden lemon to juice/peel forms.",
       "runtimeChange": true
+    },
+    "cumin": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B11",
+      "candidateClass": "COMPOSITION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-composition-b11",
+      "foodId": "06.266",
+      "foodName": "Cumin seeds, ground",
+      "scientificName": "Cuminum cyminum L.",
+      "formMatch": "EXACT_GROUND_CUMIN",
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B11 maps only canonical cumin as ground cumin. It does not authorize a separate whole-cumin-seed identity or generic spice-family inference.",
+      "runtimeChange": true
+    },
+    "turmeric": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B11",
+      "candidateClass": "COMPOSITION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-composition-b11",
+      "foodId": "06.153",
+      "foodName": "Turmeric, ground",
+      "scientificName": "Curcuma longa L.",
+      "formMatch": "EXACT_GROUND_TURMERIC",
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B11 maps only canonical turmeric as ground turmeric. It does not authorize whole-root turmeric or generic spice-family inference.",
+      "runtimeChange": true
+    },
+    "red_lentils": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B11",
+      "candidateClass": "COMPOSITION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-composition-b11",
+      "foodId": "06.184",
+      "foodName": "Lentils, red, uncooked",
+      "formMatch": "EXACT_RED_DRY_UNCOOKED_LENTILS",
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B11 maps only canonical red_lentils, including its red split lentils alias. It does not authorize generic lentils, cooked lentils or canned lentils.",
+      "runtimeChange": true
     }
   }
 }

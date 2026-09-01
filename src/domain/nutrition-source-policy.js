@@ -10,6 +10,10 @@ import {
   MATVARETABELLEN_COMPOSITION_SOURCE_B10
 } from "../data/matvaretabellen-composition-b10.js";
 import {
+  MATVARETABELLEN_COMPOSITION_DENSITIES_B11,
+  MATVARETABELLEN_COMPOSITION_SOURCE_B11
+} from "../data/matvaretabellen-composition-b11.js";
+import {
   USDA_FOUNDATION_DENSITIES,
   USDA_FOUNDATION_SOURCE,
   nutritionEvidenceForIngredient
@@ -93,6 +97,17 @@ const invalidCompletionIds = matvaretabellenCompletionIds.filter(ingredientId =>
 );
 if (invalidCompletionIds.length) {
   throw new Error(`Matvaretabellen B10 must remain a Ciqual-only exact field-completion lane: ${invalidCompletionIds.sort().join(", ")}`);
+}
+
+const matvaretabellenB11Ids = Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B11);
+const overlappingMatvaretabellenB11Ids = matvaretabellenB11Ids.filter(ingredientId =>
+  Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) ||
+  Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B9, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, ingredientId)
+);
+if (overlappingMatvaretabellenB11Ids.length) {
+  throw new Error(`Matvaretabellen B11 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB11Ids.sort().join(", ")}`);
 }
 
 const formRank = confidence => ({ high: 3, medium: 2, low: 1 }[confidence] || 0);
@@ -181,6 +196,10 @@ const sourceCandidate = (ingredientId, nutrientKey, source) => {
     return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, MATVARETABELLEN_COMPOSITION_SOURCE_B10);
   }
 
+  if (source === "matvaretabellen-b11") {
+    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B11, MATVARETABELLEN_COMPOSITION_SOURCE_B11);
+  }
+
   const record = USDA_FOUNDATION_DENSITIES[ingredientId];
   if (!record) return null;
   const spec = USDA_FIELDS[nutrientKey];
@@ -205,7 +224,9 @@ const sourceCandidate = (ingredientId, nutrientKey, source) => {
 };
 
 export const selectEuropeanPrimaryNutrient = (ingredientId, nutrientKey) => {
-  const standaloneMatvaretabellen = sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b9");
+  const standaloneMatvaretabellen =
+    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b9") ||
+    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b11");
   if (standaloneMatvaretabellen) return { ...standaloneMatvaretabellen, selectionReason: "ONLY_REVIEWED_SOURCE_AVAILABLE" };
 
   const usda = sourceCandidate(ingredientId, nutrientKey, "usda");
@@ -264,7 +285,8 @@ export const EUROPEAN_PRIMARY_DENSITIES_V1 = Object.fromEntries(
     ...Object.keys(USDA_FOUNDATION_DENSITIES),
     ...Object.keys(CIQUAL_CANONICAL_DENSITIES),
     ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B9),
-    ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10)
+    ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10),
+    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B11)
   ])]
     .map(ingredientId => [ingredientId, europeanPrimaryDensityForIngredient(ingredientId)])
     .filter(([, record]) => record)
@@ -288,6 +310,7 @@ export const europeanPrimaryPolicyCoverage = ingredientIds => {
     ciqualB7SelectedCount: selections.filter(item => item.source === "ciqual" && item.evidenceTranche === "B7").length,
     matvaretabellenB9SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B9").length,
     matvaretabellenB10SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B10").length,
+    matvaretabellenB11SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B11").length,
     selections
   };
 };
