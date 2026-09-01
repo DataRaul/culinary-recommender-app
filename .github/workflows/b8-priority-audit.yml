@@ -5,6 +5,7 @@ on:
     branches: [v1-nutrition-b8-residual-unlocks]
     paths:
       - .github/workflows/b8-priority-audit.yml
+      - scripts/patch-b8-docs.py
 permissions:
   contents: write
 jobs:
