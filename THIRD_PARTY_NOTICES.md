@@ -15,3 +15,15 @@ Gate F may bundle a bounded set of recipe text adapted from the English Wikibook
 This notice applies only to the bundled/adapted Wikibooks-derived content identified by its per-record provenance. It does not grant a licence to unrelated project-authored application code, project-authored recipes, or other repository content.
 
 Gate F does not bundle Wikibooks/Commons images or other non-text media. Those assets can use different licences and require separate review.
+
+## Norwegian Food Composition Table data
+
+Bounded nutrition evidence may include static values derived from the Norwegian Food Composition Table published by the Norwegian Food Safety Authority (Mattilsynet).
+
+- Source: Norwegian Food Composition Table 2026
+- Website: https://www.matvaretabellen.no/
+- Licence: Norwegian Licence for Open Government Data (NLOD) 2.0
+- Attribution: Norwegian Food Composition Table 2026. The Norwegian Food Safety Authority. www.matvaretabellen.no
+- Reuse boundary: only explicitly reviewed source rows and fields identified by project provenance are bundled. The application does not fetch Matvaretabellen at runtime and does not infer unreviewed food identities from nearby records.
+
+The B6 household-portion evidence and B9 composition evidence are separate source roles. Admission of one role does not silently authorize the other.
