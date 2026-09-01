@@ -31,16 +31,16 @@ test("audit preserves every fail-closed shortfall class rather than treating par
   assert.ok(Object.keys(audit.missingNutrientFieldCounts).length > 0, "expected current corpus to expose tracked nutrient field gaps");
 });
 
-test("B7 composition evidence reduces authored density blockers without manufacturing authoritative recipes", () => {
+test("B8 exact small-onion evidence earns the first authored authoritative recipe without weakening other blockers", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
-  assert.equal(audit.authoritativeRecipeCount, 0);
-  assert.equal(audit.estimateRecipeCount, 76);
-  assert.deepEqual(audit.authoritativeRecipeIds, []);
+  assert.equal(audit.authoritativeRecipeCount, 1);
+  assert.equal(audit.estimateRecipeCount, 75);
+  assert.deepEqual(audit.authoritativeRecipeIds, ["indian_chicken_spinach_curry"]);
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
     missing_density: 133,
-    unsupported_quantity_unit: 27
+    unsupported_quantity_unit: 7
   });
   assert.deepEqual(audit.semanticIssueCounts, {
     mixed_incompatible_carbohydrate_semantics: 16

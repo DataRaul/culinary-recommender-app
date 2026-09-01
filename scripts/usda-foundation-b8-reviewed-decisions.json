@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "usda-foundation-b8-reviewed-decisions-v1",
+  "source": {
+    "name": "USDA FoodData Central — Foundation Foods",
+    "releaseDate": "2026-04-30",
+    "releaseVersion": "15.0",
+    "archive": "FoodData_Central_foundation_food_csv_2026-04-30.zip"
+  },
+  "decisions": {
+    "lentils": {
+      "fdcId": "2644283",
+      "ndbNumber": "100312",
+      "description": "Lentils, dry",
+      "identityAssessment": "high",
+      "runtimeDecision": "DEFER_PARTIAL_NO_RECIPE_UNLOCK",
+      "reason": "Exact dry-form candidate, but the bounded Foundation record does not publish tracked fibre. Promoting it would reclassify current density blockers into nutrient-field gaps without completing a near-unlock recipe."
+    },
+    "turkey_mince": {
+      "fdcId": "2514747",
+      "ndbNumber": "5665",
+      "description": "Turkey, ground, 93% lean/ 7% fat, raw",
+      "identityAssessment": "medium_form_qualified",
+      "runtimeDecision": "DEFER_PARTIAL_NO_RECIPE_UNLOCK",
+      "reason": "Raw ground form matches recipe timing, but 93/7 fat level is more specific than canonical turkey_mince and tracked fibre is unpublished. Do not claim exact generic equivalence or assume fibre zero."
+    },
+    "cottage_cheese": {
+      "fdcId": "2346384",
+      "ndbNumber": "1012",
+      "description": "Cottage cheese, full fat, large or small curd",
+      "identityAssessment": "medium_form_qualified",
+      "runtimeDecision": "DEFER_PARTIAL_NO_RECIPE_UNLOCK",
+      "reason": "Full-fat status is more specific than canonical cottage_cheese and tracked fibre is unpublished."
+    },
+    "tahini": {
+      "fdcId": "2262073",
+      "ndbNumber": "100271",
+      "description": "Sesame butter, creamy",
+      "identityAssessment": "review_required",
+      "runtimeDecision": "DEFER_IDENTITY_NOT_STRICT_ENOUGH_FOR_B8",
+      "reason": "The record is nutritionally complete for tracked fields, but B8 does not equate every sesame butter record with canonical tahini without stronger identity review; it is not a current near-unlock target."
+    },
+    "salt": {
+      "fdcId": "746775",
+      "ndbNumber": "2047",
+      "description": "Salt, table, iodized",
+      "identityAssessment": "medium_form_qualified",
+      "runtimeDecision": "REJECT_INCOMPLETE_TRACKED_COMPOSITION",
+      "reason": "The exact extraction publishes energy but not the tracked protein, carbohydrate, fat or fibre fields. Missing fields remain unknown; B8 does not hardcode assumed zeros."
+    },
+    "passata": {
+      "fdcId": "2685581",
+      "ndbNumber": "11693",
+      "description": "Tomatoes, crushed, canned",
+      "identityAssessment": "wrong_form",
+      "runtimeDecision": "REJECT_WRONG_FORM",
+      "reason": "Crushed canned tomato is not passata/strained tomato purée."
+    },
+    "edamame": {
+      "fdcId": "2758981",
+      "ndbNumber": "11212",
+      "description": "Edamame, frozen, prepared",
+      "identityAssessment": "wrong_or_ambiguous_preparation_state",
+      "runtimeDecision": "DEFER_WRONG_FORM",
+      "reason": "Authored recipe semantics do not establish that edamame is already prepared before the recipe step."
+    },
+    "smoked_paprika": {
+      "identityAssessment": "no_foundation_candidate",
+      "runtimeDecision": "UNRESOLVED_EXACT_SMOKED_FORM_REQUIRED",
+      "reason": "The bounded Foundation 2026-04 catalogue produced no candidate. Generic paprika remains prohibited as a substitute for smoked paprika."
+    },
+    "lemon": {
+      "identityAssessment": "no_foundation_candidate",
+      "runtimeDecision": "UNRESOLVED_TRACKED_FIELDS",
+      "reason": "The bounded Foundation 2026-04 catalogue produced no lemon candidate suitable for replacing the existing reviewed European composition lane."
+    },
+    "basmati_rice": {
+      "identityAssessment": "no_foundation_candidate",
+      "runtimeDecision": "UNRESOLVED_CURRENT_COMPOSITION_POLICY",
+      "reason": "The bounded Foundation 2026-04 catalogue produced no dry basmati candidate. B8 does not broaden composition-source classes merely to remove this blocker."
+    }
+  }
+}

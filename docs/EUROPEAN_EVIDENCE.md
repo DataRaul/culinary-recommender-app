@@ -83,11 +83,11 @@ This policy does not alter recommendation ranking, dietary/allergen/permanent-ex
 
 ## 4. Matvaretabellen 2026 — bounded European quantity evidence B6
 
-Authority: **Norwegian Food Safety Authority (Mattilsynet)**.  
-Source table: **Norwegian Food Composition Table 2026**.  
-Release: January 2026.  
-Licence: **NLOD 2.0 / Norsk lisens for offentlige data**.  
-Required attribution is retained in `src/data/matvaretabellen-portions-b6.js`.  
+Authority: **Norwegian Food Safety Authority (Mattilsynet)**.
+Source table: **Norwegian Food Composition Table 2026**.
+Release: January 2026.
+Licence: **NLOD 2.0 / Norsk lisens for offentlige data**.
+Required attribution is retained in `src/data/matvaretabellen-portions-b6.js`.
 Runtime fetch: **none**.
 
 B6 uses Matvaretabellen only as a **portion/mass evidence source**. It does not import Norwegian nutrient composition and therefore does not change the existing USDA/Ciqual composition-selection hierarchy.
@@ -200,3 +200,9 @@ The project must continue to:
 - keep nutrient definitions explicit;
 - keep composition, quantity and regulatory evidence separate;
 - prefer reviewed form/quality evidence under the approved policy rather than assuming geography alone determines truth.
+
+## Nutrition B8 — source-policy boundary preserved
+
+B8 does not broaden the approved Foundation + Ciqual composition policy. Its only admitted runtime evidence is an exact USDA SR Legacy **portion** row for raw `onion|small` = 70 g (FDC `170000`, NDB `11282`, portion row `85862`). Matvaretabellen remains quantity-only under B6 and SR Legacy remains quantity-only under B8. A future Norwegian or SR-Legacy composition lane would require separate reviewed policy rather than being inferred from portion-source approval.
+
+The resulting authored audit is 1/76 authoritative, with unsupported quantity reduced from 27 to 7 while missing density remains 133, ambiguous portions 20 and mixed carbohydrate semantics 16.

@@ -33,7 +33,8 @@
 | V1.1 / Recipe Corpus Gate F | COMPLETE / USER-ACCEPTED | bounded Wikibooks RecipeSource + exact provenance + coverage/safety validation; user authorized assistant-run acceptance checks and continuation on 2026-09-01 |
 | V1.1 / Recipe Corpus Gate F2 | BRANCH-LOCAL / NOT PUBLICLY ACTIVATED | scalable metadata-only discovery, immutable exact-revision review ledger, revision-aware review queue, compact generated index and runtime-separation tests |
 | V1.1.1 / Nutrition B7 | COMPLETE | strict Ciqual recipe-unlock tranche: quinoa + prawns + category-level dry-pasta/orzo; authored missing-density blockers 141→133; still 0/76 authoritative |
-| V1.x / Recipe-unlock evidence | NEXT | target residual composition/form, nutrient-field and exact quantity blockers by recipe-level unlock value; independent of external RecipeSource breadth |
+| V1.1.2 / Nutrition B8 | CANDIDATE | exact SR Legacy small-onion quantity evidence earns first authoritative authored recipe; strict Foundation review defers partial/wrong-form rows |
+| V1.x / Recipe-unlock evidence | CONTINUOUS | target residual composition/form, nutrient-field and exact quantity blockers by recipe-level unlock value; independent of external RecipeSource breadth |
 | V1.x / Authoritative nutrition coverage | CONTINUOUS | expand reviewed evidence under the approved source policy without guessing |
 | V1.x / Corpus breadth | F2 CONTROL PLANE ACTIVE / RUNTIME GATED | broaden through revision-aware review and measured coverage gaps rather than raw recipe-count growth; no automatic admission |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
@@ -125,6 +126,15 @@ PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`; post-merge validati
 ## Nutrition B7 — complete
 
 B7 optimizes for recipe-level blocker reduction rather than source row count. Three strict ANSES-Ciqual 2025 forms are admitted: raw quinoa (`9340`), raw shrimp/prawn (`10021`) and dry regular pasta (`9810`) as a category-level orzo/risoni match. The combined bounded Ciqual ledger is now **57**. Candidate run `33455005170` passed 100/100 deterministic tests, profile matrix, coverage reports, exact Wikibooks verification and the full Chromium suite. The frozen authored baseline remains **0/76 authoritative**, while missing-density blockers fall **141 → 133**; unsupported quantity remains 27, ambiguous portions 20, and mixed carbohydrate semantics 16. Missing tracked nutrient fields are separately visible.
+
+
+## Nutrition B8 — first authoritative recipe candidate
+
+B8 admits one exact USDA FoodData Central SR Legacy portion row: raw onion FDC `170000` / NDB `11282`, portion row `85862`, source modifier `small`, **70 g**. The source is quantity-only in B8; composition-source policy remains Foundation + Ciqual, Matvaretabellen remains B6 portion-only, and no generic-small or diameter inference is introduced.
+
+Candidate run `33494074325` passed 104/104 deterministic tests and measured **1/76 authoritative authored recipes**: `indian_chicken_spinach_curry`. Unsupported quantity falls **27→7**; missing density remains **133**, ambiguous portions **20**, mixed carbohydrate semantics **16**, and tracked-field gaps remain visible separately.
+
+Exact Foundation 2026-04 review also confirms that dry lentils, 93/7 raw ground turkey and full-fat cottage cheese are partial because tracked fibre is unpublished; tahini/sesame-butter identity remains insufficiently strict for this tranche; iodized salt is incomplete for tracked composition; crushed canned tomato is not passata; prepared edamame is not mapped to an unspecified state; exact smoked paprika remains unresolved. B8 therefore prefers one earned recipe unlock to a larger but weaker evidence ledger.
 
 ## Culinary & Nutrition Brain P0 — authorized foundation and active Atlas development
 
