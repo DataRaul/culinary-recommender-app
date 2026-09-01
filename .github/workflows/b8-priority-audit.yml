@@ -29,3 +29,18 @@ jobs:
         run: |
           root="$(dirname "$(find /tmp/foundation -name foundation_food.csv -print -quit)")"
           node scripts/usda-b8-discover.mjs "$root" scripts/usda-b8-unlock-targets.json /tmp/usda-b8-candidates.json
+      - name: Extract reviewed Foundation B8 candidates exactly
+        run: |
+          root="$(dirname "$(find /tmp/foundation -name foundation_food.csv -print -quit)")"
+          node scripts/extract-usda-foundation-b3.mjs "$root" scripts/usda-foundation-b8-reviewed-targets.json /tmp/usda-foundation-b8-extract.json
+          cat /tmp/usda-foundation-b8-extract.json
+      - name: Download official USDA SR Legacy 2018-04 release
+        run: |
+          curl -fsSL --retry 3 -o /tmp/sr.zip https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_sr_legacy_food_csv_2018-04.zip
+          rm -rf /tmp/sr && mkdir -p /tmp/sr
+          unzip -q /tmp/sr.zip -d /tmp/sr
+          find /tmp/sr -name sr_legacy_food.csv -print -quit
+      - name: Inspect exact SR Legacy raw-onion portions
+        run: |
+          root="$(dirname "$(find /tmp/sr -name sr_legacy_food.csv -print -quit)")"
+          node scripts/usda-sr-legacy-b8-onion.mjs "$root" /tmp/usda-sr-legacy-b8-onion.json
