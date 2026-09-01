@@ -6,6 +6,11 @@ import {
 const isNonEmptyString = value => typeof value === "string" && value.trim().length > 0;
 const isIsoDateTime = value => isNonEmptyString(value) && Number.isFinite(Date.parse(value));
 const DISCOVERY_UNIVERSE_STATES = new Set(["SOURCE_EXHAUSTED", "LIMIT_REACHED"]);
+const SOURCE_PRESENCE_REVIEW_STATES = new Set([
+  "DISCOVERED_UNREVIEWED",
+  "REVIEW_READY",
+  "ADMITTED"
+]);
 
 export function validateGateF2DiscoverySnapshot(snapshot) {
   const errors = [];
@@ -127,6 +132,12 @@ export function assertValidGateF2DiscoverySnapshot(snapshot) {
   return snapshot;
 }
 
+function newestTracked(rows) {
+  return rows
+    .slice()
+    .sort((a, b) => (b.revid || 0) - (a.revid || 0))[0] || null;
+}
+
 function classifyTrackedDiscovery(latestTracked, exact, discovered) {
   if (!latestTracked) {
     return {
@@ -171,6 +182,46 @@ function classifyTrackedDiscovery(latestTracked, exact, discovered) {
   };
 }
 
+function buildSourcePresenceHolds(trackedByPage, discovery) {
+  if (!discovery.sourceUniverseComplete) return [];
+
+  const discoveredPageids = new Set(discovery.records.map(record => record.pageid));
+  const holds = [];
+
+  for (const [pageid, tracked] of trackedByPage.entries()) {
+    if (discoveredPageids.has(pageid)) continue;
+
+    const presenceRelevantReviewStates = [...new Set(
+      tracked
+        .map(record => record.reviewState)
+        .filter(reviewState => SOURCE_PRESENCE_REVIEW_STATES.has(reviewState))
+    )].sort();
+    if (!presenceRelevantReviewStates.length) continue;
+
+    const latestTracked = newestTracked(tracked);
+    if (!latestTracked) continue;
+
+    holds.push({
+      id: `wikibooks_source_presence_hold_${pageid}_${latestTracked.revid}`,
+      pageid,
+      holdReason: "TRACKED_PAGE_NOT_IN_COMPLETE_DISCOVERY",
+      holdAction: "HOLD_SOURCE_PRESENCE_ANOMALY",
+      presenceRelevantReviewStates,
+      trackedReviewState: latestTracked.reviewState,
+      trackedTitle: latestTracked.title,
+      trackedRevisionId: latestTracked.revid,
+      trackedRevisionTimestamp: latestTracked.timestamp ?? null,
+      sourceUniverseState: discovery.sourceUniverseState,
+      sourceUniverseComplete: true,
+      mayDeleteTrackedRecord: false,
+      mayOverwriteTrackedRecord: false,
+      runtimeActivationAuthorized: false
+    });
+  }
+
+  return holds.sort((a, b) => a.pageid - b.pageid || a.trackedRevisionId - b.trackedRevisionId);
+}
+
 export function buildGateF2ReviewQueue(ledger, discovery) {
   assertValidGateF2Ledger(ledger);
   assertValidGateF2DiscoverySnapshot(discovery);
@@ -188,9 +239,7 @@ export function buildGateF2ReviewQueue(ledger, discovery) {
   for (const discovered of discovery.records) {
     const tracked = trackedByPage.get(discovered.pageid) || [];
     const exact = tracked.find(record => record.revid === discovered.revid) || null;
-    const latestTracked = tracked
-      .slice()
-      .sort((a, b) => (b.revid || 0) - (a.revid || 0))[0] || null;
+    const latestTracked = newestTracked(tracked);
 
     if (latestTracked &&
         exact &&
@@ -229,6 +278,9 @@ export function buildGateF2ReviewQueue(ledger, discovery) {
 
   reviewQueue.sort((a, b) => a.pageid - b.pageid || a.discoveredRevisionId - b.discoveredRevisionId);
 
+  const sourcePresenceHolds = buildSourcePresenceHolds(trackedByPage, discovery);
+  const revisionOrderHoldCount = reviewQueue.filter(row => row.queueAction === "HOLD_SOURCE_ORDER_ANOMALY").length;
+
   const queueReasonCounts = {
     NEW_SOURCE_PAGE: reviewQueue.filter(row => row.queueReason === "NEW_SOURCE_PAGE").length,
     TRACKED_PAGE_NEW_REVISION: reviewQueue.filter(row => row.queueReason === "TRACKED_PAGE_NEW_REVISION").length,
@@ -252,8 +304,16 @@ export function buildGateF2ReviewQueue(ledger, discovery) {
     unchangedTrackedRevisionCount,
     reviewQueueCount: reviewQueue.length,
     reviewEventCount: reviewQueue.filter(row => row.queueAction === "REVIEW_SOURCE_EVENT").length,
-    holdCount: reviewQueue.filter(row => row.queueAction === "HOLD_SOURCE_ORDER_ANOMALY").length,
+    holdCount: revisionOrderHoldCount,
+    revisionOrderHoldCount,
+    sourcePresenceAuditEligible: discovery.sourceUniverseComplete,
+    sourcePresenceHoldCount: sourcePresenceHolds.length,
+    totalHoldCount: revisionOrderHoldCount + sourcePresenceHolds.length,
+    sourcePresenceReasonCounts: {
+      TRACKED_PAGE_NOT_IN_COMPLETE_DISCOVERY: sourcePresenceHolds.length
+    },
     queueReasonCounts,
-    reviewQueue
+    reviewQueue,
+    sourcePresenceHolds
   };
 }
