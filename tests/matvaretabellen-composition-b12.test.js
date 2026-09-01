@@ -95,6 +95,10 @@ test("B12 does not weaken the carbohydrate firewall for an actual olive-oil reci
   assert.deepEqual(detail.semanticIssues, [{
     nutrient: "carbohydrateG",
     issue: "mixed_incompatible_carbohydrate_semantics",
-    semantics: ["AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO", "CARBOHYDRATE_BY_DIFFERENCE_USDA_1005"]
+    semantics: [
+      "AVAILABLE_CARBOHYDRATE_CIQUAL_CHOAVL",
+      "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "CARBOHYDRATE_BY_DIFFERENCE_USDA_1005"
+    ]
   }]);
 });
