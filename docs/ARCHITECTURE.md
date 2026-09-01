@@ -114,11 +114,33 @@ Priority packs never rewrite base profile fields or relax hard constraints. The 
 
 Fridge-first Search uses the same `RecipeEvaluator` truth as planning. Ingredient matching is a retrieval layer; meal context is passed into the evaluator so lunch/dinner priority packs behave consistently. Neutral ingredients-first mode may clear soft preferences but never safety constraints.
 
-## Future Brain firewall
+## Knowledge Core platform integration
 
-The UI never depends directly on Knowledge Core or a private Brain. A future Culinary & Nutrition Brain may produce a narrow, versioned public export of scoring policies, ingredient relationships, substitution rules, difficulty criteria and safe nutrition rules only after explicit authorization. That export must implement the same stable public behavioral boundary.
+The UI never depends directly on Knowledge Core or a private Brain. Culinary uses the same generalized Knowledge Core platform-adapter architecture as other downstream repositories:
 
-Knowledge Core remains canonical for reusable reasoning; this repository remains canonical for public runtime, UI, public data, user state and application validation.
+```text
+current Culinary Lab question / evidence
+        ↓
+thin generalized Knowledge Core routing boundary
+        ↓
+smallest sufficient reusable KC capability / object set
+        ↓
+return to project-local evidence, tests and gates
+        ↓
+Culinary Lab remains operational authority
+```
+
+Knowledge Core remains canonical for reusable reasoning. This repository remains canonical for public runtime, UI, public data, recipe admission, NutritionSource evidence/calculation, user state and application validation.
+
+The Knowledge Core specialist contract `adapters/repo_culinary_recommender_app.md` is consumed through the generalized platform boundary; it does not create a separate integration architecture.
+
+Behavior-driving Brain material may enter only as a narrow, versioned, source-safe static export after offline review. Every such export must pin its exact Knowledge Core commit/schema and then pass this repository's deterministic tests, normal PR validation and browser acceptance.
+
+The reverse path is audit/research-only: pinned public-safe Lab metadata may inform the Knowledge Core corpus critic or future Brain research priorities, but app evidence cannot directly promote canonical Brain knowledge.
+
+World Recipe Atlas verification does not bypass `RecipeSource`, Gate F/F2, rights/provenance, ontology, hard metadata, nutrition or safety gates.
+
+See `docs/KNOWLEDGE_CORE_INTEGRATION.md` and `docs/BRAIN_ADAPTER_CONTRACT.md`.
 
 ## Local-first persistence
 
@@ -132,4 +154,5 @@ Knowledge Core remains canonical for reusable reasoning; this repository remains
 - deterministic combination testing;
 - explicit shortfall when candidates are exhausted;
 - progressive disclosure for details;
-- visible system state and recovery paths.
+- visible system state and recovery paths;
+- one generalized Knowledge Core platform boundary with project-local operational authority.
