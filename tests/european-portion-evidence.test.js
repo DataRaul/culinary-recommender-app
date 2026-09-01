@@ -8,6 +8,7 @@ import {
   matvaretabellenAmbiguousPortion,
   matvaretabellenPortionConversion
 } from "../src/data/matvaretabellen-portions-b6.js";
+import { USDA_SR_LEGACY_PORTION_SOURCE_B8 } from "../src/data/usda-sr-legacy-portions-b8.js";
 import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
 import { USDA_FOUNDATION_DENSITIES } from "../src/data/nutrition-evidence.js";
 import { USDA_FOUNDATION_DENSITIES_V1 } from "../src/data/usda-foundation-nutrients-v1.js";
@@ -81,7 +82,7 @@ test("lime and avocado remain ambiguous instead of choosing convenient piece wei
   assert.deepEqual(result.skipped[0].quantityEvidence.candidateGramWeights, [17, 65]);
 });
 
-test("deferred targets remain unsupported and no generic spoon arithmetic is introduced", () => {
+test("B6 deferred targets remain unsupported by B6 and no generic spoon arithmetic is introduced", () => {
   assert.ok(MATVARETABELLEN_DEFERRED_PORTION_TARGETS_B6["onion|small"]);
   assert.ok(MATVARETABELLEN_DEFERRED_PORTION_TARGETS_B6["sesame_oil|tsp"]);
   assert.ok(MATVARETABELLEN_DEFERRED_PORTION_TARGETS_B6["red_onion|piece"]);
@@ -115,12 +116,15 @@ test("runtime integrates B6 quantity provenance without replacing existing USDA 
   assert.notEqual(bananaResult.used[0].quantityEvidence.sourceId, MATVARETABELLEN_PORTION_SOURCE_B6.id);
 });
 
-test("public nutrition evidence exposes both bounded portion sources", () => {
+test("public nutrition evidence exposes all bounded portion sources without making SR Legacy a composition source", () => {
   const estimate = publicNutritionSource.estimate({
     ingredients: [{ canonicalIngredientId: "banana", quantity: 100, unit: "g" }],
     serving: { servings: 1 },
     nutrition: { perServing: { energyKcal: 1 }, estimationState: "INFERRED_ESTIMATE", confidence: "low" }
   });
-  assert.equal(estimate.evidence.portionSources.length, 2);
+  assert.equal(estimate.evidence.portionSources.length, 3);
   assert.equal(estimate.evidence.portionSources[1].id, MATVARETABELLEN_PORTION_SOURCE_B6.id);
+  assert.equal(estimate.evidence.portionSources[2].id, USDA_SR_LEGACY_PORTION_SOURCE_B8.id);
+  assert.equal(USDA_SR_LEGACY_PORTION_SOURCE_B8.compositionUse, "PROHIBITED_IN_THIS_TRANCHE");
+  assert.equal(estimate.evidence.sources.some(source => source.id === USDA_SR_LEGACY_PORTION_SOURCE_B8.id), false);
 });
