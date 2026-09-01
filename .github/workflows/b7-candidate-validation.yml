@@ -5,7 +5,7 @@ on:
     paths:
       - .github/workflows/b7-candidate-validation.yml
 permissions:
-  contents: read
+  contents: write
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -14,6 +14,124 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: v1-nutrition-b7-recipe-unlocks-v2
+          fetch-depth: 0
+      - name: Reconcile B7 documentation
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace(path, old, new, label):
+              p = Path(path)
+              text = p.read_text()
+              if old not in text:
+                  raise SystemExit(f"missing B7 docs anchor: {path}: {label}")
+              p.write_text(text.replace(old, new, 1))
+
+          # README
+          replace("README.md",
+              "| Recipe corpus | 🟡 VALIDATED CANDIDATE / HUMAN ACCEPTANCE REQUIRED | V1.1 / Gate F | human public-corpus acceptance |",
+              "| Recipe corpus | ✅ COMPLETE / USER-ACCEPTED | V1.1 / Gate F | coverage-driven breadth under the same rights/provenance rules |",
+              "readme corpus row")
+          replace("README.md",
+              "| Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.0.10 B6 COMPLETE | targeted composition + residual quantity gaps |",
+              "| Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.1.1 B7 COMPLETE | residual composition/form + exact quantity unlocks |",
+              "readme nutrition row")
+          replace("README.md",
+              "| European evidence | ✅ CONDITIONAL PRIMARY POLICY | Ciqual B4+B5 + Matvaretabellen B6 | recipe-level unlocks |",
+              "| European evidence | ✅ CONDITIONAL PRIMARY POLICY | Ciqual B4+B5+B7 + Matvaretabellen B6 | residual recipe-level unlocks |",
+              "readme European row")
+          replace("README.md",
+              "**Nutrition B6:** V1.0.10 / PR #18 / merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`  ",
+              "**Nutrition B6:** V1.0.10 / PR #18 / merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`  \n**Nutrition B7:** V1.1.1 / strict three-record Ciqual recipe-unlock tranche / validated fail-closed candidate  ",
+              "readme B7 lineage")
+          replace("README.md",
+              "**Recipe Corpus Gate F candidate:** 84 recipes = 76 curated + 8 exact-revision Wikibooks records / 83 dish families / 2 external Search-only + 6 reference-only",
+              "**Recipe Corpus Gate F:** COMPLETE / USER-ACCEPTED · 84 recipes = 76 curated + 8 exact-revision Wikibooks records / 83 dish families / 2 external Search-only + 6 reference-only",
+              "readme Gate F status")
+          replace("README.md", "## Recipe Corpus Gate F candidate", "## Recipe Corpus Gate F — accepted", "readme Gate F heading")
+          replace("README.md",
+              "The seven-role audit currently covers canonical/classic and regional/traditional across all eight records, with partial staple/everyday, constraint-first and technique-learning coverage. `contemporary_modern` and `genuinely_new_trending` remain explicit gaps. Gate F is not COMPLETE until human acceptance of the deployed public corpus.",
+              "The seven-role audit currently covers canonical/classic and regional/traditional across all eight records, with partial staple/everyday, constraint-first and technique-learning coverage. `contemporary_modern` and `genuinely_new_trending` remain explicit gaps. Gate F is **COMPLETE / USER-ACCEPTED** after the 2026-09-01 assistant-run acceptance checks and user continuation decision.",
+              "readme Gate F terminal")
+          replace("README.md",
+              "The frozen B4 tranche contains **32** manually reviewed ANSES-Ciqual 2025 food/form records. Nutrition B5 added a separate strict tranche of **22**, giving a combined bounded Ciqual composition ledger of **54** while preserving `evidenceTranche` provenance.",
+              "The frozen B4 tranche contains **32** manually reviewed ANSES-Ciqual 2025 food/form records. Nutrition B5 added a separate strict tranche of **22**. Nutrition B7 adds only **three** recipe-unlock records — raw quinoa, raw shrimp/prawn and dry regular pasta as a category-level orzo match — giving a combined bounded Ciqual composition ledger of **57** while preserving `evidenceTranche` provenance.",
+              "readme Ciqual counts")
+          replace("README.md",
+              "B5 deliberately rejects weak form matches including cumin seed for ground cumin, generic paprika for smoked paprika, unspecified tofu for firm tofu, cooked lentil forms for dry recipe quantities and egg-containing noodles for generic wheat noodles.",
+              "B5 deliberately rejects weak form matches including cumin seed for ground cumin, generic paprika for smoked paprika, unspecified tofu for firm tofu, cooked lentil forms for dry recipe quantities and egg-containing noodles for generic wheat noodles. B7 remains equally strict: barley, courgette, cottage cheese, salt, smoked paprika and tortilla stay deferred in this tranche rather than being filled by weak or underspecified matches.",
+              "readme B7 defer")
+          replace("README.md",
+              "PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`; post-merge validation run `33446325292` and Pages run `33446324922` both passed.",
+              "PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`; post-merge validation run `33446325292` and Pages run `33446324922` both passed.\n\nNutrition B7 then targets composition by recipe-level unlock value rather than database size. The strict three-record Ciqual tranche reduces the **76-authored-recipe** missing-density blocker count from **141 to 133** while remaining **0 / 76 authoritative**. Unsupported-quantity blockers remain **27**, explicit ambiguous-portion blockers remain **20**, and mixed incompatible carbohydrate-semantic events remain **16**. The audit now separately exposes tracked nutrient-field gaps on otherwise usable ingredient rows, so partial composition remains inspectable rather than being mistaken for completeness. The eight external Gate F RecipeSource records remain a separate corpus lane and do not alter this frozen authored baseline.",
+              "readme B7 coverage")
+
+          # DATA_SOURCES
+          replace("docs/DATA_SOURCES.md",
+              "The public runtime ships two explicitly separated recipe lanes: 76 project-authored structured recipes and a bounded eight-record English Wikibooks Gate F candidate.",
+              "The public runtime ships two explicitly separated recipe lanes: 76 project-authored structured recipes and a bounded eight-record English Wikibooks Gate F corpus accepted on 2026-09-01.",
+              "data Gate F lane")
+          replace("docs/DATA_SOURCES.md", "### English Wikibooks Cookbook — Gate F candidate", "### English Wikibooks Cookbook — Gate F accepted corpus", "data Gate F heading")
+          replace("docs/DATA_SOURCES.md",
+              "The frozen historical B4 module contains **32 manually reviewed food/form identities**. Nutrition B5 / V1.0.9 added a separate **22-record** tranche without rewriting B4, giving **54** reviewed Ciqual composition records at runtime. Exact food code, English/French identity, scientific name where present, form-review notes, values, per-field confidence codes and source codes are retained. Runtime provenance records `evidenceTranche: \"B4\"` or `\"B5\"`.",
+              "The frozen historical B4 module contains **32 manually reviewed food/form identities**. Nutrition B5 / V1.0.9 added a separate **22-record** tranche without rewriting B4. Nutrition B7 / V1.1.1 adds a strict **3-record** recipe-unlock tranche — quinoa `9340`, shrimp/prawn `10021`, and dry regular pasta `9810` as a category-level orzo match — giving **57** reviewed Ciqual composition records at runtime. Exact food code, English/French identity, scientific name where present, form-review notes, values, per-field confidence codes and source codes are retained. Runtime provenance records `evidenceTranche: \"B4\"`, `\"B5\"` or `\"B7\"`.",
+              "data Ciqual counts")
+          replace("docs/DATA_SOURCES.md",
+              "B5 deliberately leaves weak form matches unbundled, including cumin seed for ground cumin, generic paprika for smoked paprika, unspecified tofu for firm tofu, cooked lentil forms where recipes may mean dry and egg-containing noodles for a generic wheat-noodle identity.",
+              "B5 deliberately leaves weak form matches unbundled, including cumin seed for ground cumin, generic paprika for smoked paprika, unspecified tofu for firm tofu, cooked lentil forms where recipes may mean dry and egg-containing noodles for a generic wheat-noodle identity. B7 applies the same rule: barley, courgette, cottage cheese, salt, smoked paprika and tortilla remain deferred in the first unlock tranche. No weak candidate is promoted merely to reduce a blocker count.",
+              "data B7 defer")
+          replace("docs/DATA_SOURCES.md", "### B6 / V1.0.10 candidate", "### B6 / V1.0.10 complete", "data B6 heading")
+          replace("docs/DATA_SOURCES.md",
+              "The quantity evidence therefore resolves or truthfully reclassifies 175 of B5's 202 unsupported-quantity events without guessing. Composition and semantic gaps still prevent a complete authoritative recipe.",
+              "The quantity evidence therefore resolves or truthfully reclassifies 175 of B5's 202 unsupported-quantity events without guessing. Composition and semantic gaps still prevent a complete authoritative recipe.\n\n### B7 / V1.1.1 recipe-unlock composition\n\nThe first B7 tranche is deliberately bounded to three reviewed Ciqual forms selected for direct recipe-level value: raw quinoa (`9340`), raw shrimp/prawn (`10021`) and dry regular pasta (`9810`) as a transparent category-level match for canonical orzo/risoni. The official Ciqual 2025 source, Etalab licence, nutrient semantics, confidence codes and European-primary selection policy are unchanged; B7 broadens evidence, not policy.\n\nMeasured against the frozen 76 authored recipes, B7 remains **0 / 76 authoritative** while reducing missing-density blocker events from **141 to 133**. Unsupported-quantity blockers remain **27**, explicit ambiguous-portion blockers remain **20**, and mixed incompatible carbohydrate-semantic events remain **16**. The nutrition audit now also reports missing tracked nutrient fields separately from skipped ingredient blockers. The eight external Gate F recipes remain outside this authored baseline, and imported recipe text still cannot become composition authority.",
+              "data B7 coverage")
+
+          # GATES
+          replace("docs/GATES.md",
+              "PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`. Post-merge validation run `33446325292` and Pages deployment run `33446324922` both passed, so the B6 gate is terminally **COMPLETE**.\n\n## V1 Content Gate C — COMPLETE",
+              "PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`. Post-merge validation run `33446325292` and Pages deployment run `33446324922` both passed, so the B6 gate is terminally **COMPLETE**.\n\n## V1.1.1 Nutrition B7 — COMPLETE\n\nB7 resumes the recipe-unlock evidence lane after Gate F acceptance. It adds exactly three manually reviewed ANSES-Ciqual 2025 composition forms selected for direct authored-recipe value: raw quinoa (`9340`), raw shrimp/prawn (`10021`) and dry regular pasta (`9810`) as an explicitly category-level orzo/risoni match. The bounded Ciqual runtime ledger therefore becomes **57 records = B4 32 + B5 22 + B7 3**.\n\nThe existing user-approved European-primary policy is unchanged: no averaging, no Ciqual `D` displacement of available USDA, stronger food-form evidence wins, exact provenance is retained, and USDA carbohydrate-by-difference remains semantically incompatible with Ciqual `CHOAVL` for mixed authoritative totals. Barley, courgette, cottage cheese, salt, smoked paprika and tortilla remain deferred rather than weakly matched.\n\nCandidate run `33455005170` passed **100 / 100 deterministic tests**, profile matrix, nutrition and recipe-universe reports, exact Wikibooks verification and all three Chromium/browser layers. Measured authored-corpus state remains fail-closed: **0 / 76 authoritative**, missing-density blockers **141 → 133**, unsupported-quantity blockers **27**, explicit ambiguous-portion blockers **20**, mixed carbohydrate-semantic incompatibilities **16**. The audit additionally exposes missing tracked nutrient fields separately from skipped quantity/density blockers. Gate F's eight external recipes remain a separate RecipeSource lane.\n\nB7 introduces no new human policy gate, runtime API, private Knowledge Core dependency or bulk Ciqual source dump. It is complete when merged with normal PR/post-merge validation.\n\n## V1 Content Gate C — COMPLETE",
+              "gates B7 section")
+          replace("docs/GATES.md",
+              "After Gate F human acceptance, the next ordinary nutrition work is coverage-driven: target the remaining composition/form blockers and residual exact quantity semantics that can unlock complete recipes, while preserving the carbohydrate semantic firewall and all source/licensing provenance.",
+              "After B7, the next ordinary nutrition work remains coverage-driven: target the residual composition/form blockers, missing tracked nutrient fields and exact quantity semantics with the highest recipe-level unlock value, while preserving the carbohydrate semantic firewall and all source/licensing provenance.",
+              "gates next work")
+
+          # ROADMAP
+          replace("docs/ROADMAP.md",
+              "| V1.x / Recipe-unlock evidence | PARALLEL NEXT | target remaining composition/form and exact quantity blockers by recipe-level unlock value; independent of Gate F corpus ingestion |",
+              "| V1.1.1 / Nutrition B7 | COMPLETE | strict Ciqual recipe-unlock tranche: quinoa + prawns + category-level dry-pasta/orzo; authored missing-density blockers 141→133; still 0/76 authoritative |\n| V1.x / Recipe-unlock evidence | NEXT | target residual composition/form, nutrient-field and exact quantity blockers by recipe-level unlock value; independent of external RecipeSource breadth |",
+              "roadmap B7 row")
+          replace("docs/ROADMAP.md",
+              "PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`; post-merge validation run `33446325292` and Pages run `33446324922` both passed. B6 is therefore **COMPLETE**.\n\n## Culinary & Nutrition Brain P0 — authorized foundation and active Atlas development",
+              "PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`; post-merge validation run `33446325292` and Pages run `33446324922` both passed. B6 is therefore **COMPLETE**.\n\n## Nutrition B7 — complete\n\nB7 returns to composition evidence after the Gate F corpus decision and optimizes for recipe-level blocker reduction rather than source row count. Three strict ANSES-Ciqual 2025 forms are admitted: raw quinoa (`9340`), raw shrimp/prawn (`10021`) and dry regular pasta (`9810`) as a deliberately category-level orzo/risoni match. The combined bounded Ciqual ledger is now **57 records** across B4/B5/B7. Barley, courgette, cottage cheese, salt, smoked paprika and tortilla remain deferred in this tranche.\n\nThe approved European-primary rules do not change. Candidate run `33455005170` passed 100/100 deterministic tests, profile matrix, coverage reports, exact Wikibooks verification and the complete Chromium suite. The frozen authored baseline remains **0/76 authoritative**, while missing-density blockers fall **141 → 133**; unsupported quantity stays 27, explicit ambiguous portions 20, and mixed carbohydrate-semantic incompatibilities 16. Missing tracked nutrient fields are now separately visible in the audit instead of being hidden inside an incomplete result. The eight external Gate F records remain independent RecipeSource data.\n\n## Culinary & Nutrition Brain P0 — authorized foundation and active Atlas development",
+              "roadmap B7 section")
+          replace("docs/ROADMAP.md",
+              "3. **Recipe-unlock nutrition lane** — continue targeted composition/form/quantity work against the current 76 curated recipes and later admitted recipes; this does not need to wait for Gate F.",
+              "3. **Recipe-unlock nutrition lane** — B7 has completed the first post-Gate-F composition tranche; continue targeting residual composition/form/nutrient-field/quantity blockers against the 76 curated-recipe baseline and separately admitted recipes by measured unlock value.",
+              "roadmap parallel lane")
+
+          # TESTING
+          replace("docs/TESTING.md",
+              "- truthful recipe-universe coverage reporting, including missing contemporary/modern and genuinely-new/trending roles rather than invented classifications.",
+              "- truthful recipe-universe coverage reporting, including missing contemporary/modern and genuinely-new/trending roles rather than invented classifications;\n- B7's exact three-record Ciqual tranche, evidence-tranche provenance and explicit deferred-target assertions;\n- B7 source-policy regression proof that no averaging, carbohydrate-semantic relaxation or Ciqual-D-over-USDA displacement is introduced;\n- nutrition coverage auditing of missing tracked nutrient fields separately from skipped density/quantity blockers.",
+              "testing B7 bullets")
+          replace("docs/TESTING.md",
+              "The deterministic recipe-universe audit is expected to report 84 total recipes: 76 authored plus eight exact-revision Wikibooks records, 83 dish families, one explicit cross-source family, two Search-only external recipes and six reference-only external records. Unknown source-backed hard metadata stays unknown.\n\n## Browser acceptance",
+              "The deterministic recipe-universe audit is expected to report 84 total recipes: 76 authored plus eight exact-revision Wikibooks records, 83 dish families, one explicit cross-source family, two Search-only external recipes and six reference-only external records. Unknown source-backed hard metadata stays unknown.\n\n## Nutrition B7 candidate checks\n\nB7 runs the normal deterministic/browser suite plus `npm run report:nutrition-coverage`. Candidate run `33455005170` passed 100/100 Node tests, the 15,552-profile matrix, both coverage reports, exact Wikibooks verification and all browser layers. The authored-recipe audit must remain **0/76 authoritative** and records the deliberate blocker movement from missing-density **141 to 133** with unsupported quantity **27**, ambiguous portions **20**, and mixed carbohydrate semantics **16**. Any apparent gain that requires guessing a food form, quantity conversion, missing nutrient field or carbohydrate equivalence fails the gate.\n\n## Browser acceptance",
+              "testing B7 section")
+
+          for path in ["README.md", "docs/DATA_SOURCES.md", "docs/GATES.md", "docs/ROADMAP.md", "docs/TESTING.md"]:
+              assert "Gate F candidate" not in Path(path).read_text() or path == "docs/TESTING.md", f"stale Gate F candidate wording in {path}"
+          PY
+          git diff --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md docs/DATA_SOURCES.md docs/GATES.md docs/ROADMAP.md docs/TESTING.md
+          if ! git diff --cached --quiet; then
+            git commit -m "Document strict Nutrition B7 recipe-unlock evidence"
+            git push origin HEAD:v1-nutrition-b7-recipe-unlocks-v2
+          fi
       - uses: actions/setup-node@v4
         with:
           node-version: 22
