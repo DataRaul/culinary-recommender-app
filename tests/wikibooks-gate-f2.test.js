@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { EXTERNAL_RECIPES } from "../src/data/corpus-v1.js";
 import {
   buildGateF2CompactIndex,
   gateF2CoverageReport,
@@ -25,6 +26,30 @@ test("Gate F2 review ledger preserves the accepted Gate F floor without authoriz
   assert.equal(report.nutritionFirewallCount, 8);
   assert.equal(report.exactRevisionPinnedCount, 13);
   assert.deepEqual(report.missingRecipeRoles, ["contemporary_modern", "genuinely_new_trending"]);
+});
+
+test("Gate F2 admitted seed records remain synchronized with the accepted Gate F runtime lane", () => {
+  const admitted = ledger.records.filter(record => record.reviewState === "ADMITTED");
+  const byId = new Map(admitted.map(record => [record.id, record]));
+
+  assert.equal(admitted.length, EXTERNAL_RECIPES.length);
+  assert.deepEqual(
+    [...byId.keys()].sort(),
+    EXTERNAL_RECIPES.map(recipe => recipe.id).sort()
+  );
+
+  for (const recipe of EXTERNAL_RECIPES) {
+    const record = byId.get(recipe.id);
+    assert.ok(record, `missing Gate F2 ledger row for ${recipe.id}`);
+    assert.equal(record.pageid, recipe.provenance.sourcePageId);
+    assert.equal(record.title, recipe.provenance.sourcePageTitle);
+    assert.equal(record.revid, recipe.provenance.sourceRevisionId);
+    assert.equal(record.timestamp, recipe.provenance.sourceRevisionTimestamp);
+    assert.equal(record.dishFamilyId, recipe.corpusMetadata.dishFamilyId);
+    assert.equal(record.admissionState, recipe.corpusMetadata.admissionState);
+    assert.equal(record.recommendationState, recipe.governance.recommendationState);
+    assert.equal(record.nutritionState, recipe.nutrition.estimationState);
+  }
 });
 
 test("Gate F2 compact index is metadata-only and retains exact per-record provenance", async () => {
@@ -52,6 +77,13 @@ test("Gate F2 compact index is metadata-only and retains exact per-record proven
     assert.equal("instructions" in record, false);
     assert.equal("sourceText" in record, false);
   }
+});
+
+test("Gate F2 generated control-plane index is not imported by the runtime corpus", async () => {
+  const corpusModule = await readFile(new URL("../src/data/corpus-v1.js", import.meta.url), "utf8");
+  assert.equal(corpusModule.includes("wikibooks-gate-f2"), false);
+  assert.equal(corpusModule.includes("data/generated"), false);
+  assert.equal(ledger.runtimeActivationAuthorized, false);
 });
 
 test("Gate F2 accepts future exact-revision discovery metadata without granting admission", () => {
