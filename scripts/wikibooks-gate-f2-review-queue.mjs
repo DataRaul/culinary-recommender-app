@@ -5,6 +5,7 @@ import {
 
 const isNonEmptyString = value => typeof value === "string" && value.trim().length > 0;
 const isIsoDateTime = value => isNonEmptyString(value) && Number.isFinite(Date.parse(value));
+const DISCOVERY_UNIVERSE_STATES = new Set(["SOURCE_EXHAUSTED", "LIMIT_REACHED"]);
 
 export function validateGateF2DiscoverySnapshot(snapshot) {
   const errors = [];
@@ -14,6 +15,10 @@ export function validateGateF2DiscoverySnapshot(snapshot) {
   }
   if (snapshot.source?.id !== GATE_F2_SOURCE.id) {
     errors.push(`source.id must be ${GATE_F2_SOURCE.id}`);
+  }
+  if (snapshot.source?.license !== GATE_F2_SOURCE.license ||
+      snapshot.source?.licenseUrl !== GATE_F2_SOURCE.licenseUrl) {
+    errors.push("source licence must match the Gate F2 source contract");
   }
   if (snapshot.source?.runtimeFetch !== false) {
     errors.push("source.runtimeFetch must remain false");
@@ -27,6 +32,20 @@ export function validateGateF2DiscoverySnapshot(snapshot) {
   if (snapshot.acquisitionMode !== "METADATA_AND_EXACT_REVISION_IDS_ONLY") {
     errors.push("acquisitionMode must remain metadata-only");
   }
+  if (!isIsoDateTime(snapshot.acquiredAt)) {
+    errors.push("acquiredAt must be an ISO date-time");
+  }
+  if (!Number.isInteger(snapshot.requestedLimit) || snapshot.requestedLimit <= 0 || snapshot.requestedLimit > 10000) {
+    errors.push("requestedLimit must be an integer between 1 and 10000");
+  }
+  if (!DISCOVERY_UNIVERSE_STATES.has(snapshot.sourceUniverseState)) {
+    errors.push("sourceUniverseState must be SOURCE_EXHAUSTED or LIMIT_REACHED");
+  }
+  if (typeof snapshot.sourceUniverseComplete !== "boolean") {
+    errors.push("sourceUniverseComplete must be boolean");
+  } else if (snapshot.sourceUniverseComplete !== (snapshot.sourceUniverseState === "SOURCE_EXHAUSTED")) {
+    errors.push("sourceUniverseComplete must agree with sourceUniverseState");
+  }
   if (snapshot.runtimeActivationAuthorized !== false) {
     errors.push("runtimeActivationAuthorized must remain false");
   }
@@ -36,6 +55,12 @@ export function validateGateF2DiscoverySnapshot(snapshot) {
   }
   if (snapshot.returnedRecordCount !== snapshot.records.length) {
     errors.push("returnedRecordCount must equal records.length");
+  }
+  if (snapshot.records.length > snapshot.requestedLimit) {
+    errors.push("records length must not exceed requestedLimit");
+  }
+  if (snapshot.sourceUniverseState === "LIMIT_REACHED" && snapshot.records.length !== snapshot.requestedLimit) {
+    errors.push("LIMIT_REACHED snapshots must contain requestedLimit records");
   }
 
   const ids = new Set();
@@ -118,16 +143,22 @@ export function buildGateF2ReviewQueue(ledger, discovery) {
 
   for (const discovered of discovery.records) {
     const tracked = trackedByPage.get(discovered.pageid) || [];
-    const exact = tracked.find(record => record.revid === discovered.revid);
+    const exact = tracked.find(record => record.revid === discovered.revid) || null;
 
-    if (exact) {
+    if (exact && exact.title === discovered.title) {
       unchangedTrackedRevisionCount += 1;
       continue;
     }
 
-    const latestTracked = tracked
+    const latestTracked = exact || tracked
       .slice()
       .sort((a, b) => (b.revid || 0) - (a.revid || 0))[0] || null;
+
+    const queueReason = exact
+      ? "TRACKED_PAGE_METADATA_CHANGED"
+      : latestTracked
+        ? "TRACKED_PAGE_NEW_REVISION"
+        : "NEW_SOURCE_PAGE";
 
     reviewQueue.push({
       id: discovered.id,
@@ -135,10 +166,12 @@ export function buildGateF2ReviewQueue(ledger, discovery) {
       title: discovered.title,
       discoveredRevisionId: discovered.revid,
       discoveredRevisionTimestamp: discovered.timestamp,
-      queueReason: latestTracked ? "TRACKED_PAGE_NEW_REVISION" : "NEW_SOURCE_PAGE",
+      queueReason,
       trackedReviewState: latestTracked?.reviewState ?? null,
+      trackedTitle: latestTracked?.title ?? null,
       trackedRevisionId: latestTracked?.revid ?? null,
       trackedRevisionTimestamp: latestTracked?.timestamp ?? null,
+      titleChanged: latestTracked ? latestTracked.title !== discovered.title : false,
       reviewState: "DISCOVERED_UNREVIEWED",
       recommendationState: "NOT_APPLICABLE",
       hardMetadataState: "NOT_REVIEWED",
@@ -156,6 +189,8 @@ export function buildGateF2ReviewQueue(ledger, discovery) {
     schemaVersion: "wikibooks-gate-f2-review-queue-v1",
     sourceId: GATE_F2_SOURCE.id,
     discoverySnapshotAcquiredAt: discovery.acquiredAt,
+    discoverySourceUniverseState: discovery.sourceUniverseState,
+    discoverySourceUniverseComplete: discovery.sourceUniverseComplete,
     generatedFromLedgerSchema: ledger.schemaVersion,
     generatedFromDiscoverySchema: discovery.schemaVersion,
     runtimeActivationAuthorized: false,
@@ -166,7 +201,8 @@ export function buildGateF2ReviewQueue(ledger, discovery) {
     reviewQueueCount: reviewQueue.length,
     queueReasonCounts: {
       NEW_SOURCE_PAGE: reviewQueue.filter(row => row.queueReason === "NEW_SOURCE_PAGE").length,
-      TRACKED_PAGE_NEW_REVISION: reviewQueue.filter(row => row.queueReason === "TRACKED_PAGE_NEW_REVISION").length
+      TRACKED_PAGE_NEW_REVISION: reviewQueue.filter(row => row.queueReason === "TRACKED_PAGE_NEW_REVISION").length,
+      TRACKED_PAGE_METADATA_CHANGED: reviewQueue.filter(row => row.queueReason === "TRACKED_PAGE_METADATA_CHANGED").length
     },
     reviewQueue
   };

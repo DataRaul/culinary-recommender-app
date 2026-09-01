@@ -37,8 +37,10 @@ const discoveryFixture = () => ({
   source: GATE_F2_SOURCE,
   acquiredAt: "2026-09-01T10:00:00Z",
   acquisitionMode: "METADATA_AND_EXACT_REVISION_IDS_ONLY",
-  requestedLimit: 3,
-  returnedRecordCount: 3,
+  requestedLimit: 4,
+  returnedRecordCount: 4,
+  sourceUniverseState: "SOURCE_EXHAUSTED",
+  sourceUniverseComplete: true,
   runtimeActivationAuthorized: false,
   records: [
     discoveryRecord({
@@ -54,6 +56,13 @@ const discoveryFixture = () => ({
       title: "Cookbook:Bruschetta",
       revid: 999999997,
       timestamp: "2026-09-01T09:30:00Z"
+    }),
+    discoveryRecord({
+      id: "wikibooks_discovery_424559",
+      pageid: 424559,
+      title: "Cookbook:Caprese",
+      revid: 4605277,
+      timestamp: "2025-12-04T00:34:05Z"
     }),
     discoveryRecord({
       id: "wikibooks_discovery_999999996",
@@ -139,7 +148,7 @@ test("Gate F2 generated control-plane index is not imported by the runtime corpu
   assert.equal(ledger.runtimeActivationAuthorized, false);
 });
 
-test("Gate F2 discovery snapshot remains metadata-only and fail-closed", () => {
+test("Gate F2 discovery snapshot remains metadata-only, complete-state explicit and fail-closed", () => {
   const discovery = discoveryFixture();
   assert.deepEqual(validateGateF2DiscoverySnapshot(discovery), []);
 
@@ -147,24 +156,40 @@ test("Gate F2 discovery snapshot remains metadata-only and fail-closed", () => {
   invalid.records[0].runtimeArtifact = { module: "not-allowed.js", recipeId: "bad" };
   invalid.records[0].recommendationState = "SEARCH_ONLY";
   invalid.records[0].coverage = { cuisine: "Guessed" };
+  invalid.sourceUniverseState = "LIMIT_REACHED";
   const errors = validateGateF2DiscoverySnapshot(invalid);
   assert.ok(errors.some(error => error.includes("runtimeArtifact must be null")));
   assert.ok(errors.some(error => error.includes("recommendationState must be NOT_APPLICABLE")));
   assert.ok(errors.some(error => error.includes("coverage must remain null before review")));
+  assert.ok(errors.some(error => error.includes("sourceUniverseComplete must agree")));
 });
 
-test("Gate F2 review queue never overwrites a reviewed exact revision", () => {
+test("Gate F2 partial discovery snapshots cannot masquerade as a complete source universe", () => {
+  const discovery = discoveryFixture();
+  discovery.sourceUniverseState = "LIMIT_REACHED";
+  discovery.sourceUniverseComplete = false;
+  assert.deepEqual(validateGateF2DiscoverySnapshot(discovery), []);
+
+  discovery.requestedLimit = 5;
+  const errors = validateGateF2DiscoverySnapshot(discovery);
+  assert.ok(errors.some(error => error.includes("LIMIT_REACHED snapshots must contain requestedLimit records")));
+});
+
+test("Gate F2 review queue never overwrites a reviewed revision and surfaces provenance metadata drift", () => {
   const discovery = discoveryFixture();
   const queue = buildGateF2ReviewQueue(ledger, discovery);
 
   assert.equal(queue.runtimeActivationAuthorized, false);
   assert.equal(queue.automaticAdmissionAuthorized, false);
-  assert.equal(queue.discoveredRecordCount, 3);
+  assert.equal(queue.discoverySourceUniverseState, "SOURCE_EXHAUSTED");
+  assert.equal(queue.discoverySourceUniverseComplete, true);
+  assert.equal(queue.discoveredRecordCount, 4);
   assert.equal(queue.unchangedTrackedRevisionCount, 1);
-  assert.equal(queue.reviewQueueCount, 2);
+  assert.equal(queue.reviewQueueCount, 3);
   assert.deepEqual(queue.queueReasonCounts, {
     NEW_SOURCE_PAGE: 1,
-    TRACKED_PAGE_NEW_REVISION: 1
+    TRACKED_PAGE_NEW_REVISION: 1,
+    TRACKED_PAGE_METADATA_CHANGED: 1
   });
 
   const changed = queue.reviewQueue.find(row => row.pageid === 25256);
@@ -172,9 +197,19 @@ test("Gate F2 review queue never overwrites a reviewed exact revision", () => {
   assert.equal(changed.trackedReviewState, "ADMITTED");
   assert.equal(changed.trackedRevisionId, 4523487);
   assert.equal(changed.discoveredRevisionId, 999999997);
+  assert.equal(changed.titleChanged, false);
   assert.equal(changed.mayOverwriteTrackedRecord, false);
   assert.equal(changed.reviewState, "DISCOVERED_UNREVIEWED");
   assert.equal(changed.runtimeArtifact, null);
+
+  const metadataChanged = queue.reviewQueue.find(row => row.pageid === 424559);
+  assert.equal(metadataChanged.queueReason, "TRACKED_PAGE_METADATA_CHANGED");
+  assert.equal(metadataChanged.trackedRevisionId, 4605277);
+  assert.equal(metadataChanged.discoveredRevisionId, 4605277);
+  assert.equal(metadataChanged.trackedTitle, "Cookbook:Caprese Salad");
+  assert.equal(metadataChanged.title, "Cookbook:Caprese");
+  assert.equal(metadataChanged.titleChanged, true);
+  assert.equal(metadataChanged.mayOverwriteTrackedRecord, false);
 
   const added = queue.reviewQueue.find(row => row.pageid === 999999996);
   assert.equal(added.queueReason, "NEW_SOURCE_PAGE");

@@ -96,6 +96,9 @@ export async function discoverWikibooksGateF2({ limit = DEFAULT_LIMIT } = {}) {
 
   records.sort((a, b) => a.pageid - b.pageid || a.revid - b.revid);
 
+  const sourceUniverseComplete = continuation === null;
+  const sourceUniverseState = sourceUniverseComplete ? "SOURCE_EXHAUSTED" : "LIMIT_REACHED";
+
   return {
     schemaVersion: "wikibooks-gate-f2-discovery-v1",
     source: GATE_F2_SOURCE,
@@ -103,6 +106,8 @@ export async function discoverWikibooksGateF2({ limit = DEFAULT_LIMIT } = {}) {
     acquisitionMode: "METADATA_AND_EXACT_REVISION_IDS_ONLY",
     requestedLimit: limit,
     returnedRecordCount: records.length,
+    sourceUniverseState,
+    sourceUniverseComplete,
     runtimeActivationAuthorized: false,
     records
   };
@@ -117,6 +122,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   console.log(JSON.stringify({
     output: outputPath,
     returnedRecordCount: snapshot.returnedRecordCount,
+    sourceUniverseState: snapshot.sourceUniverseState,
+    sourceUniverseComplete: snapshot.sourceUniverseComplete,
     runtimeActivationAuthorized: snapshot.runtimeActivationAuthorized
   }, null, 2));
 }

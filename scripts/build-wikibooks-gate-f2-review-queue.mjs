@@ -25,6 +25,8 @@ await writeFile(outputPath, `${JSON.stringify(queue, null, 2)}\n`, "utf8");
 console.log(JSON.stringify({
   output: outputPath,
   discoveredRecordCount: queue.discoveredRecordCount,
+  discoverySourceUniverseState: queue.discoverySourceUniverseState,
+  discoverySourceUniverseComplete: queue.discoverySourceUniverseComplete,
   unchangedTrackedRevisionCount: queue.unchangedTrackedRevisionCount,
   reviewQueueCount: queue.reviewQueueCount,
   queueReasonCounts: queue.queueReasonCounts,
