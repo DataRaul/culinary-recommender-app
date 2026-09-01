@@ -8,7 +8,11 @@ page.on("pageerror", error => errors.push(error.message));
 
 await page.goto(baseUrl, { waitUntil: "networkidle" });
 await page.getByRole("heading", { name: "What should you cook?" }).waitFor();
-await page.getByText("84 recipes · 76 curated + 8 open external · deterministic", { exact: true }).waitFor();
+const statusPill = page.locator("#statusPill");
+await statusPill.waitFor({ state: "attached" });
+if ((await statusPill.textContent())?.trim() !== "84 recipes · 76 curated + 8 open external · deterministic") {
+  throw new Error(`Gate F runtime status is incorrect: ${(await statusPill.textContent())?.trim()}`);
+}
 
 await page.getByRole("button", { name: "Search" }).click();
 await page.getByRole("heading", { name: "Cook what you already have" }).waitFor();
