@@ -8,16 +8,20 @@ This note records the Gate F2 review-queue semantics added after the original br
 
 ## Revision-aware review queue
 
-The F2 discovery snapshot is now compared against the immutable reviewed ledger before any review work begins.
+The F2 discovery snapshot is compared against the immutable reviewed ledger before any review work begins.
 
 A discovered row is handled as follows:
 
 - same page ID, same exact revision ID, same title → skip as an unchanged reviewed revision;
-- same page ID, newer/different revision ID → queue as `TRACKED_PAGE_NEW_REVISION`;
-- same page ID and same exact revision ID but changed source title → queue as `TRACKED_PAGE_METADATA_CHANGED`;
-- page ID not present in the reviewed ledger → queue as `NEW_SOURCE_PAGE`.
+- same page ID, higher revision ID with a later timestamp → queue as `TRACKED_PAGE_NEW_REVISION` / `REVIEW_SOURCE_EVENT`;
+- same page ID and same exact revision ID but changed source title → queue as `TRACKED_PAGE_METADATA_CHANGED` / `REVIEW_SOURCE_EVENT`;
+- page ID not present in the reviewed ledger → queue as `NEW_SOURCE_PAGE` / `REVIEW_SOURCE_EVENT`;
+- same page ID with a lower revision ID than the newest tracked revision → `TRACKED_PAGE_REVISION_REGRESSION` / `HOLD_SOURCE_ORDER_ANOMALY`;
+- same page ID with a higher revision ID but a timestamp not later than the newest tracked revision → `TRACKED_PAGE_REVISION_ORDER_INCONSISTENT` / `HOLD_SOURCE_ORDER_ANOMALY`.
 
-Every queued row remains:
+The last two states are not treated as new source evidence. They are explicit source-ordering anomalies that must be investigated before review proceeds.
+
+Every queued/held row remains:
 
 - `DISCOVERED_UNREVIEWED`;
 - `recommendationState: NOT_APPLICABLE`;
@@ -28,11 +32,11 @@ Every queued row remains:
 - `coverage: null`;
 - `mayOverwriteTrackedRecord: false`.
 
-A changed source revision is therefore a new review event. It never silently replaces an admitted or rejected exact revision.
+A changed source revision is therefore a new review event. A stale or internally inconsistent discovery observation is held. Neither may silently replace an admitted or rejected exact revision.
 
 ## Source-universe completeness
 
-Discovery snapshots now state whether enumeration actually exhausted the source category or stopped at the requested limit.
+Discovery snapshots state whether enumeration actually exhausted the source category or stopped at the requested limit.
 
 Allowed states:
 
@@ -88,6 +92,6 @@ This control-plane expansion preserves all prior Gate F / F2 boundaries:
 
 ## Current terminal state
 
-The review queue is now revision-aware, source-universe completeness is explicit, and source-title/provenance metadata drift is review-visible.
+The review queue is revision-aware, source-universe completeness is explicit, source-title/provenance metadata drift is review-visible, and stale/internally inconsistent revision ordering fails closed into a hold state.
 
 No newly discovered page has been admitted and no public runtime behavior has changed.

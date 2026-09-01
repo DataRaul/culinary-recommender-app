@@ -186,14 +186,20 @@ test("Gate F2 review queue never overwrites a reviewed revision and surfaces pro
   assert.equal(queue.discoveredRecordCount, 4);
   assert.equal(queue.unchangedTrackedRevisionCount, 1);
   assert.equal(queue.reviewQueueCount, 3);
+  assert.equal(queue.reviewEventCount, 3);
+  assert.equal(queue.holdCount, 0);
   assert.deepEqual(queue.queueReasonCounts, {
     NEW_SOURCE_PAGE: 1,
     TRACKED_PAGE_NEW_REVISION: 1,
-    TRACKED_PAGE_METADATA_CHANGED: 1
+    TRACKED_PAGE_METADATA_CHANGED: 1,
+    TRACKED_PAGE_REVISION_REGRESSION: 0,
+    TRACKED_PAGE_REVISION_ORDER_INCONSISTENT: 0
   });
 
   const changed = queue.reviewQueue.find(row => row.pageid === 25256);
   assert.equal(changed.queueReason, "TRACKED_PAGE_NEW_REVISION");
+  assert.equal(changed.queueAction, "REVIEW_SOURCE_EVENT");
+  assert.equal(changed.revisionOrderState, "NEWER_REVISION");
   assert.equal(changed.trackedReviewState, "ADMITTED");
   assert.equal(changed.trackedRevisionId, 4523487);
   assert.equal(changed.discoveredRevisionId, 999999997);
@@ -204,6 +210,8 @@ test("Gate F2 review queue never overwrites a reviewed revision and surfaces pro
 
   const metadataChanged = queue.reviewQueue.find(row => row.pageid === 424559);
   assert.equal(metadataChanged.queueReason, "TRACKED_PAGE_METADATA_CHANGED");
+  assert.equal(metadataChanged.queueAction, "REVIEW_SOURCE_EVENT");
+  assert.equal(metadataChanged.revisionOrderState, "SAME_REVISION");
   assert.equal(metadataChanged.trackedRevisionId, 4605277);
   assert.equal(metadataChanged.discoveredRevisionId, 4605277);
   assert.equal(metadataChanged.trackedTitle, "Cookbook:Caprese Salad");
@@ -213,8 +221,55 @@ test("Gate F2 review queue never overwrites a reviewed revision and surfaces pro
 
   const added = queue.reviewQueue.find(row => row.pageid === 999999996);
   assert.equal(added.queueReason, "NEW_SOURCE_PAGE");
+  assert.equal(added.queueAction, "REVIEW_SOURCE_EVENT");
+  assert.equal(added.revisionOrderState, "UNTRACKED");
   assert.equal(added.trackedRevisionId, null);
   assert.equal(added.mayOverwriteTrackedRecord, false);
+});
+
+test("Gate F2 holds stale or internally inconsistent source revision ordering instead of calling it new", () => {
+  const discovery = discoveryFixture();
+  discovery.requestedLimit = 2;
+  discovery.returnedRecordCount = 2;
+  discovery.sourceUniverseState = "LIMIT_REACHED";
+  discovery.sourceUniverseComplete = false;
+  discovery.records = [
+    discoveryRecord({
+      id: "wikibooks_discovery_25256",
+      pageid: 25256,
+      title: "Cookbook:Bruschetta",
+      revid: 4523000,
+      timestamp: "2025-06-01T00:00:00Z"
+    }),
+    discoveryRecord({
+      id: "wikibooks_discovery_28381",
+      pageid: 28381,
+      title: "Cookbook:Baba Ganoush",
+      revid: 999999995,
+      timestamp: "2026-01-01T00:00:00Z"
+    })
+  ];
+
+  assert.deepEqual(validateGateF2DiscoverySnapshot(discovery), []);
+  const queue = buildGateF2ReviewQueue(ledger, discovery);
+
+  assert.equal(queue.reviewQueueCount, 2);
+  assert.equal(queue.reviewEventCount, 0);
+  assert.equal(queue.holdCount, 2);
+  assert.equal(queue.queueReasonCounts.TRACKED_PAGE_REVISION_REGRESSION, 1);
+  assert.equal(queue.queueReasonCounts.TRACKED_PAGE_REVISION_ORDER_INCONSISTENT, 1);
+
+  const regression = queue.reviewQueue.find(row => row.pageid === 25256);
+  assert.equal(regression.queueReason, "TRACKED_PAGE_REVISION_REGRESSION");
+  assert.equal(regression.queueAction, "HOLD_SOURCE_ORDER_ANOMALY");
+  assert.equal(regression.revisionOrderState, "OLDER_REVISION");
+  assert.equal(regression.mayOverwriteTrackedRecord, false);
+
+  const inconsistent = queue.reviewQueue.find(row => row.pageid === 28381);
+  assert.equal(inconsistent.queueReason, "TRACKED_PAGE_REVISION_ORDER_INCONSISTENT");
+  assert.equal(inconsistent.queueAction, "HOLD_SOURCE_ORDER_ANOMALY");
+  assert.equal(inconsistent.revisionOrderState, "INCONSISTENT_REVISION_ORDER");
+  assert.equal(inconsistent.mayOverwriteTrackedRecord, false);
 });
 
 test("Gate F2 accepts future exact-revision discovery metadata without granting admission", () => {

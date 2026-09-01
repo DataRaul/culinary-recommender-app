@@ -127,6 +127,50 @@ export function assertValidGateF2DiscoverySnapshot(snapshot) {
   return snapshot;
 }
 
+function classifyTrackedDiscovery(latestTracked, exact, discovered) {
+  if (!latestTracked) {
+    return {
+      queueReason: "NEW_SOURCE_PAGE",
+      queueAction: "REVIEW_SOURCE_EVENT",
+      revisionOrderState: "UNTRACKED"
+    };
+  }
+
+  if (exact) {
+    return {
+      queueReason: "TRACKED_PAGE_METADATA_CHANGED",
+      queueAction: "REVIEW_SOURCE_EVENT",
+      revisionOrderState: "SAME_REVISION"
+    };
+  }
+
+  if (discovered.revid < latestTracked.revid) {
+    return {
+      queueReason: "TRACKED_PAGE_REVISION_REGRESSION",
+      queueAction: "HOLD_SOURCE_ORDER_ANOMALY",
+      revisionOrderState: "OLDER_REVISION"
+    };
+  }
+
+  const discoveredTime = Date.parse(discovered.timestamp);
+  const trackedTime = Date.parse(latestTracked.timestamp);
+  if (discovered.revid > latestTracked.revid &&
+      Number.isFinite(trackedTime) &&
+      discoveredTime <= trackedTime) {
+    return {
+      queueReason: "TRACKED_PAGE_REVISION_ORDER_INCONSISTENT",
+      queueAction: "HOLD_SOURCE_ORDER_ANOMALY",
+      revisionOrderState: "INCONSISTENT_REVISION_ORDER"
+    };
+  }
+
+  return {
+    queueReason: "TRACKED_PAGE_NEW_REVISION",
+    queueAction: "REVIEW_SOURCE_EVENT",
+    revisionOrderState: "NEWER_REVISION"
+  };
+}
+
 export function buildGateF2ReviewQueue(ledger, discovery) {
   assertValidGateF2Ledger(ledger);
   assertValidGateF2DiscoverySnapshot(discovery);
@@ -153,12 +197,7 @@ export function buildGateF2ReviewQueue(ledger, discovery) {
     const latestTracked = exact || tracked
       .slice()
       .sort((a, b) => (b.revid || 0) - (a.revid || 0))[0] || null;
-
-    const queueReason = exact
-      ? "TRACKED_PAGE_METADATA_CHANGED"
-      : latestTracked
-        ? "TRACKED_PAGE_NEW_REVISION"
-        : "NEW_SOURCE_PAGE";
+    const classification = classifyTrackedDiscovery(latestTracked, exact, discovered);
 
     reviewQueue.push({
       id: discovered.id,
@@ -166,7 +205,9 @@ export function buildGateF2ReviewQueue(ledger, discovery) {
       title: discovered.title,
       discoveredRevisionId: discovered.revid,
       discoveredRevisionTimestamp: discovered.timestamp,
-      queueReason,
+      queueReason: classification.queueReason,
+      queueAction: classification.queueAction,
+      revisionOrderState: classification.revisionOrderState,
       trackedReviewState: latestTracked?.reviewState ?? null,
       trackedTitle: latestTracked?.title ?? null,
       trackedRevisionId: latestTracked?.revid ?? null,
@@ -185,6 +226,14 @@ export function buildGateF2ReviewQueue(ledger, discovery) {
 
   reviewQueue.sort((a, b) => a.pageid - b.pageid || a.discoveredRevisionId - b.discoveredRevisionId);
 
+  const queueReasonCounts = {
+    NEW_SOURCE_PAGE: reviewQueue.filter(row => row.queueReason === "NEW_SOURCE_PAGE").length,
+    TRACKED_PAGE_NEW_REVISION: reviewQueue.filter(row => row.queueReason === "TRACKED_PAGE_NEW_REVISION").length,
+    TRACKED_PAGE_METADATA_CHANGED: reviewQueue.filter(row => row.queueReason === "TRACKED_PAGE_METADATA_CHANGED").length,
+    TRACKED_PAGE_REVISION_REGRESSION: reviewQueue.filter(row => row.queueReason === "TRACKED_PAGE_REVISION_REGRESSION").length,
+    TRACKED_PAGE_REVISION_ORDER_INCONSISTENT: reviewQueue.filter(row => row.queueReason === "TRACKED_PAGE_REVISION_ORDER_INCONSISTENT").length
+  };
+
   return {
     schemaVersion: "wikibooks-gate-f2-review-queue-v1",
     sourceId: GATE_F2_SOURCE.id,
@@ -199,11 +248,9 @@ export function buildGateF2ReviewQueue(ledger, discovery) {
     discoveredRecordCount: discovery.records.length,
     unchangedTrackedRevisionCount,
     reviewQueueCount: reviewQueue.length,
-    queueReasonCounts: {
-      NEW_SOURCE_PAGE: reviewQueue.filter(row => row.queueReason === "NEW_SOURCE_PAGE").length,
-      TRACKED_PAGE_NEW_REVISION: reviewQueue.filter(row => row.queueReason === "TRACKED_PAGE_NEW_REVISION").length,
-      TRACKED_PAGE_METADATA_CHANGED: reviewQueue.filter(row => row.queueReason === "TRACKED_PAGE_METADATA_CHANGED").length
-    },
+    reviewEventCount: reviewQueue.filter(row => row.queueAction === "REVIEW_SOURCE_EVENT").length,
+    holdCount: reviewQueue.filter(row => row.queueAction === "HOLD_SOURCE_ORDER_ANOMALY").length,
+    queueReasonCounts,
     reviewQueue
   };
 }
