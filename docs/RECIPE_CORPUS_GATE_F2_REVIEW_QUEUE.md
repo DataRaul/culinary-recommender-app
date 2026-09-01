@@ -10,16 +10,18 @@ This note records the Gate F2 review-queue semantics added after the original br
 
 The F2 discovery snapshot is compared against the immutable reviewed ledger before any review work begins.
 
+A page may legitimately have more than one immutable reviewed ledger row over time. Therefore queue classification always compares discovery against the **newest tracked revision for that page**, not merely against any exact historical page/revision match still present in the ledger.
+
 A discovered row is handled as follows:
 
-- same page ID, same exact revision ID, same title → skip as an unchanged reviewed revision;
+- same page ID, same exact **newest tracked** revision ID, same title → skip as an unchanged reviewed revision;
 - same page ID, higher revision ID with a later timestamp → queue as `TRACKED_PAGE_NEW_REVISION` / `REVIEW_SOURCE_EVENT`;
-- same page ID and same exact revision ID but changed source title → queue as `TRACKED_PAGE_METADATA_CHANGED` / `REVIEW_SOURCE_EVENT`;
+- same page ID and same exact newest tracked revision ID but changed source title → queue as `TRACKED_PAGE_METADATA_CHANGED` / `REVIEW_SOURCE_EVENT`;
 - page ID not present in the reviewed ledger → queue as `NEW_SOURCE_PAGE` / `REVIEW_SOURCE_EVENT`;
-- same page ID with a lower revision ID than the newest tracked revision → `TRACKED_PAGE_REVISION_REGRESSION` / `HOLD_SOURCE_ORDER_ANOMALY`;
+- same page ID with a lower revision ID than the newest tracked revision → `TRACKED_PAGE_REVISION_REGRESSION` / `HOLD_SOURCE_ORDER_ANOMALY`, even when that lower revision exactly matches an older immutable ledger row;
 - same page ID with a higher revision ID but a timestamp not later than the newest tracked revision → `TRACKED_PAGE_REVISION_ORDER_INCONSISTENT` / `HOLD_SOURCE_ORDER_ANOMALY`.
 
-The last two states are not treated as new source evidence. They are explicit source-ordering anomalies that must be investigated before review proceeds.
+The last two states are not treated as new source evidence. They are explicit source-ordering anomalies that must be investigated before review proceeds. Historical exact matches are never allowed to make a stale observation appear current merely because that old revision remains in immutable review history.
 
 Every queued/held row remains:
 
@@ -92,6 +94,6 @@ This control-plane expansion preserves all prior Gate F / F2 boundaries:
 
 ## Current terminal state
 
-The review queue is revision-aware, source-universe completeness is explicit, source-title/provenance metadata drift is review-visible, and stale/internally inconsistent revision ordering fails closed into a hold state.
+The review queue is revision-aware across immutable multi-revision page history, source-universe completeness is explicit, source-title/provenance metadata drift is review-visible, and stale/internally inconsistent revision ordering fails closed into a hold state.
 
 No newly discovered page has been admitted and no public runtime behavior has changed.
