@@ -58,10 +58,6 @@ jobs:
         run: |
           root="$(dirname "$(find /tmp/sr -name sr_legacy_food.csv -print -quit)")"
           node scripts/usda-sr-legacy-b8-onion.mjs "$root" /tmp/usda-sr-legacy-b8-onion.json
-      - name: Diagnose repository hygiene before strict check
-        run: |
-          git status --short
-          git diff --check || true
       - run: git diff --check
       - name: Commit reconciled B8 docs after green candidate validation
         run: |

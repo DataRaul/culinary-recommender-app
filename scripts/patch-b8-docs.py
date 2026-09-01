@@ -95,7 +95,7 @@ for path, section in append_sections.items():
     text = p.read_text()
     heading = section.strip().splitlines()[0]
     if heading not in text:
-        p.write_text(text.rstrip() + section + "\n")
+        p.write_text(text.rstrip() + section.rstrip() + "\n")
 
 for path in (
     "README.md",
