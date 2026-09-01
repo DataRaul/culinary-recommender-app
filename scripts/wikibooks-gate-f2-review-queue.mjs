@@ -136,19 +136,19 @@ function classifyTrackedDiscovery(latestTracked, exact, discovered) {
     };
   }
 
-  if (exact) {
-    return {
-      queueReason: "TRACKED_PAGE_METADATA_CHANGED",
-      queueAction: "REVIEW_SOURCE_EVENT",
-      revisionOrderState: "SAME_REVISION"
-    };
-  }
-
   if (discovered.revid < latestTracked.revid) {
     return {
       queueReason: "TRACKED_PAGE_REVISION_REGRESSION",
       queueAction: "HOLD_SOURCE_ORDER_ANOMALY",
       revisionOrderState: "OLDER_REVISION"
+    };
+  }
+
+  if (exact) {
+    return {
+      queueReason: "TRACKED_PAGE_METADATA_CHANGED",
+      queueAction: "REVIEW_SOURCE_EVENT",
+      revisionOrderState: "SAME_REVISION"
     };
   }
 
@@ -188,15 +188,18 @@ export function buildGateF2ReviewQueue(ledger, discovery) {
   for (const discovered of discovery.records) {
     const tracked = trackedByPage.get(discovered.pageid) || [];
     const exact = tracked.find(record => record.revid === discovered.revid) || null;
+    const latestTracked = tracked
+      .slice()
+      .sort((a, b) => (b.revid || 0) - (a.revid || 0))[0] || null;
 
-    if (exact && exact.title === discovered.title) {
+    if (latestTracked &&
+        exact &&
+        exact.revid === latestTracked.revid &&
+        exact.title === discovered.title) {
       unchangedTrackedRevisionCount += 1;
       continue;
     }
 
-    const latestTracked = exact || tracked
-      .slice()
-      .sort((a, b) => (b.revid || 0) - (a.revid || 0))[0] || null;
     const classification = classifyTrackedDiscovery(latestTracked, exact, discovered);
 
     reviewQueue.push({
