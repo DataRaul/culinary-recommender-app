@@ -30,7 +30,7 @@
 | Brain P0 | AUTHORIZED / BRANCH-BUILT / KC MERGE PENDING | official-source foundation + bounded free operator corpus + World Recipe Atlas reasoning/verification; private KC `main` not yet updated |
 | App Brain adapter V1 | COMPLETE / CALIBRATION-ONLY | PR #19 merged and green; static provenance-pinned public-safe policy contract; no ranking change |
 | World Recipe Atlas V0 | ACTIVE / DISCOVERY + IDENTITY PILOT | 338 seed families / 20 macro-regions; 20 identity-verified; multilingual metadata acquisition/alias-resolution design; zero public recipes authorized by Atlas status alone |
-| V1.1 / Recipe Corpus Gate F | VALIDATED CANDIDATE / HUMAN ACCEPTANCE REQUIRED | bounded Wikibooks RecipeSource + exact provenance + coverage/safety validation; public acceptance pending |
+| V1.1 / Recipe Corpus Gate F | COMPLETE / USER-ACCEPTED | bounded Wikibooks RecipeSource + exact provenance + coverage/safety validation; user authorized assistant-run acceptance checks and continuation on 2026-09-01 |
 | V1.x / Recipe-unlock evidence | PARALLEL NEXT | target remaining composition/form and exact quantity blockers by recipe-level unlock value; independent of Gate F corpus ingestion |
 | V1.x / Authoritative nutrition coverage | CONTINUOUS | expand reviewed evidence under the approved source policy without guessing |
 | V1.x / Corpus breadth | GATED / ATLAS DISCOVERY ACTIVE | broaden through Gate F and measured coverage gaps rather than recipe-count growth |
@@ -157,7 +157,7 @@ Current behavior state remains `CALIBRATION_ONLY_NO_RANKING_CHANGE`.
 
 The public app does not fetch private Knowledge Core at runtime. Only narrow, versioned, source-safe static exports are eligible. Brain authorization or Atlas expansion does not silently authorize changes to ranking, eligibility, substitutions or nutrition outputs; each behavior change requires an explicit public artifact, deterministic negative/regression tests and normal PR/matrix/browser validation.
 
-## V1.1 Recipe Corpus Gate F — VALIDATED CANDIDATE / HUMAN ACCEPTANCE REQUIRED
+## V1.1 Recipe Corpus Gate F — COMPLETE / USER-ACCEPTED
 
 This gate converts recipe breadth from a project-authored sample into an app-owned external corpus program without weakening the existing source, safety or nutrition contracts.
 
@@ -228,7 +228,7 @@ The technical candidate implements and validates the following requirements; Gat
 9. the Brain/KC recipe-universe contract remains pinned and any behavior-driving export follows the existing Brain adapter gate;
 10. a human review confirms the external corpus is useful in the public app before Gate F is marked complete.
 
-All technical Gate F criteria are represented in the candidate and automated validation. **Human acceptance of the deployed public external corpus is the sole remaining Gate F exit decision.** Until that acceptance is explicit, Gate F must not be marked COMPLETE; `V1.x / Corpus breadth` remains **GATED** rather than complete merely because authored recipes or Atlas candidates increase.
+All technical Gate F criteria passed. On 2026-09-01, after being presented with the explicit Gate F acceptance request, the user instructed the assistant to run the checks itself and continue. The assistant-run deterministic, Chromium, provenance, planner-non-leakage, post-merge and Pages checks were green, so that instruction records the required human acceptance decision. Gate F is therefore **COMPLETE / USER-ACCEPTED**. Future corpus breadth remains governed by measured coverage gaps and the same rights/provenance/safety rules rather than raw recipe-count growth.
 
 ## Current nutrition policy
 
