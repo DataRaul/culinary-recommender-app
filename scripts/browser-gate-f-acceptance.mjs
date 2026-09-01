@@ -24,12 +24,16 @@ await page.getByRole("button", { name: /Find dishes/ }).click();
 
 const baba = page.locator(".search-result-card").filter({ hasText: "Baba Ganoush" });
 await baba.waitFor();
-const text = await baba.innerText();
-for (const expected of ["open external recipe", "nutrition evidence pending", "revision 4629606", "CC BY-SA 4.0", "Wikibooks contributors"]) {
-  if (!text.includes(expected)) throw new Error(`Gate F external Search card missing: ${expected}`);
+const visibleSummary = (await baba.innerText()).toLowerCase();
+for (const expected of ["open external recipe", "nutrition evidence pending"]) {
+  if (!visibleSummary.includes(expected)) throw new Error(`Gate F external Search summary missing: ${expected}`);
 }
-if (!text.includes("Source nutrition values are not imported as authoritative composition")) {
-  throw new Error("Gate F nutrition-source firewall is not visible in Search provenance");
+
+const details = baba.locator("details");
+await details.evaluate(element => { element.open = true; });
+const provenanceText = (await details.innerText()).toLowerCase();
+for (const expected of ["revision 4629606", "cc by-sa 4.0", "wikibooks contributors", "recipe text has been normalized and adapted into the culinary recommender schema", "source nutrition values are not imported as authoritative composition"]) {
+  if (!provenanceText.includes(expected)) throw new Error(`Gate F external Search provenance missing: ${expected}`);
 }
 
 const sourceLink = baba.getByRole("link", { name: "English Wikibooks Cookbook" });
