@@ -1,5 +1,6 @@
 import { CIQUAL_2025_SOURCE, CIQUAL_DENSITIES_B4 } from "../data/ciqual-nutrients-b4.js";
 import { CIQUAL_DENSITIES_B5 } from "../data/ciqual-nutrients-b5.js";
+import { CIQUAL_DENSITIES_B7 } from "../data/ciqual-nutrients-b7.js";
 import {
   USDA_FOUNDATION_DENSITIES,
   USDA_FOUNDATION_SOURCE,
@@ -19,19 +20,25 @@ const canonicalizeCiqual = (records, evidenceTranche) => Object.entries(records)
 
 const CIQUAL_B4_CANONICAL_ENTRIES = canonicalizeCiqual(CIQUAL_DENSITIES_B4, "B4");
 const CIQUAL_B5_CANONICAL_ENTRIES = canonicalizeCiqual(CIQUAL_DENSITIES_B5, "B5");
+const CIQUAL_B7_CANONICAL_ENTRIES = canonicalizeCiqual(CIQUAL_DENSITIES_B7, "B7");
 const b4Ids = new Set(CIQUAL_B4_CANONICAL_ENTRIES.map(([id]) => id));
+const b5Ids = new Set(CIQUAL_B5_CANONICAL_ENTRIES.map(([id]) => id));
 const duplicateB5Ids = CIQUAL_B5_CANONICAL_ENTRIES.map(([id]) => id).filter(id => b4Ids.has(id));
 if (duplicateB5Ids.length) throw new Error(`Ciqual B5 duplicates frozen B4 canonical IDs: ${duplicateB5Ids.sort().join(", ")}`);
+const duplicateB7Ids = CIQUAL_B7_CANONICAL_ENTRIES.map(([id]) => id).filter(id => b4Ids.has(id) || b5Ids.has(id));
+if (duplicateB7Ids.length) throw new Error(`Ciqual B7 duplicates earlier canonical IDs: ${duplicateB7Ids.sort().join(", ")}`);
 
 export const CIQUAL_CANONICAL_DENSITIES = Object.fromEntries([
   ...CIQUAL_B4_CANONICAL_ENTRIES,
-  ...CIQUAL_B5_CANONICAL_ENTRIES
+  ...CIQUAL_B5_CANONICAL_ENTRIES,
+  ...CIQUAL_B7_CANONICAL_ENTRIES
 ]);
 
 export const CIQUAL_BOUNDED_RECORD_COUNTS = {
   b4: CIQUAL_B4_CANONICAL_ENTRIES.length,
   b5: CIQUAL_B5_CANONICAL_ENTRIES.length,
-  total: CIQUAL_B4_CANONICAL_ENTRIES.length + CIQUAL_B5_CANONICAL_ENTRIES.length
+  b7: CIQUAL_B7_CANONICAL_ENTRIES.length,
+  total: CIQUAL_B4_CANONICAL_ENTRIES.length + CIQUAL_B5_CANONICAL_ENTRIES.length + CIQUAL_B7_CANONICAL_ENTRIES.length
 };
 
 export const EUROPEAN_PRIMARY_POLICY_V1 = {
@@ -47,9 +54,9 @@ export const EUROPEAN_PRIMARY_POLICY_V1 = {
 };
 
 // Preserve the frozen B4 source snapshot exactly as introduced while exposing the
-// later human-approved runtime policy separately. B5 extends the same official
-// Ciqual 2025 dataset through another bounded manual review tranche; it does not
-// rewrite B4 records or broaden selection rules.
+// later human-approved runtime policy separately. Later bounded review tranches
+// extend the same official Ciqual 2025 dataset without rewriting earlier records
+// or broadening source-selection rules.
 export const CIQUAL_RUNTIME_SOURCE_V1 = {
   ...CIQUAL_2025_SOURCE,
   evidenceIntroductionState: CIQUAL_2025_SOURCE.state,
@@ -59,7 +66,7 @@ export const CIQUAL_RUNTIME_SOURCE_V1 = {
   sourceSelectionPolicyId: EUROPEAN_PRIMARY_POLICY_V1.id,
   sourceSelectionContext: EUROPEAN_PRIMARY_POLICY_V1.context,
   selectionBoundary: "EXPLICIT_PER_INGREDIENT_PER_NUTRIENT_POLICY_ONLY",
-  evidenceTranches: ["B4", "B5"],
+  evidenceTranches: ["B4", "B5", "B7"],
   boundedRecordCounts: CIQUAL_BOUNDED_RECORD_COUNTS
 };
 
@@ -201,6 +208,7 @@ export const europeanPrimaryPolicyCoverage = ingredientIds => {
     usdaSelectedCount: selections.filter(item => item.source === "usda").length,
     ciqualB4SelectedCount: selections.filter(item => item.source === "ciqual" && item.evidenceTranche === "B4").length,
     ciqualB5SelectedCount: selections.filter(item => item.source === "ciqual" && item.evidenceTranche === "B5").length,
+    ciqualB7SelectedCount: selections.filter(item => item.source === "ciqual" && item.evidenceTranche === "B7").length,
     selections
   };
 };
