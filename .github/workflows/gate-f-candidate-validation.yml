@@ -44,17 +44,16 @@ jobs:
               "Gate F heading",
           )
 
-          mandatory_pattern = re.compile(
-              r"### Mandatory initial corpus\n\n.*?\n\n### Ownership and runtime contract",
-              re.S,
-          )
-          mandatory_replacement = """### Mandatory initial corpus
-
-**Wikibooks Cookbook is the first external recipe acquisition source for the public app.** The exact rights/provenance audit is complete and passes for a bounded **text-only CC BY-SA 4.0** path with page/revision provenance, Wikibooks contributor attribution, ShareAlike and transformation notices. No Wikibooks images or other media are admitted.
-
-The Brain/Atlas source-navigation snapshot on its separate development lineage recorded 3,825 English recipe pages plus 158 cuisine pages. The later bounded Gate F acquisition run measured **3,792 current pages in English Wikibooks `Category:Recipes`**. These are discovery/navigation counts, not normalized dish-family counts or claims of balanced world coverage. Gate F bundles only **eight manually reviewed exact revisions**.
-
-### Ownership and runtime contract"""
+          mandatory_pattern = re.compile(r"### Mandatory initial corpus\n\n.*?\n\n### Ownership and runtime contract", re.S)
+          mandatory_replacement = "\n".join([
+              "### Mandatory initial corpus",
+              "",
+              "**Wikibooks Cookbook is the first external recipe acquisition source for the public app.** The exact rights/provenance audit is complete and passes for a bounded **text-only CC BY-SA 4.0** path with page/revision provenance, Wikibooks contributor attribution, ShareAlike and transformation notices. No Wikibooks images or other media are admitted.",
+              "",
+              "The Brain/Atlas source-navigation snapshot on its separate development lineage recorded 3,825 English recipe pages plus 158 cuisine pages. The later bounded Gate F acquisition run measured **3,792 current pages in English Wikibooks `Category:Recipes`**. These are discovery/navigation counts, not normalized dish-family counts or claims of balanced world coverage. Gate F bundles only **eight manually reviewed exact revisions**.",
+              "",
+              "### Ownership and runtime contract",
+          ])
           text, count = mandatory_pattern.subn(mandatory_replacement, text, count=1)
           if count != 1:
               raise SystemExit("ROADMAP reconciliation anchor missing: Mandatory initial corpus section")
