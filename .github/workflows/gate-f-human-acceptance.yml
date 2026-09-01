@@ -60,9 +60,15 @@ jobs:
           )
           replace(
               "docs/GATES.md",
-              "- final human review accepts the usefulness and truthfulness of the deployed external corpus.",
+              "- human acceptance confirms the external corpus is useful in the public app.",
               "- final human acceptance: on 2026-09-01 the user, after receiving the explicit Gate F review request, instructed the assistant to run the checks itself and continue; the assistant-run acceptance checks were green, satisfying the human decision gate.",
               "gates human item",
+          )
+          replace(
+              "docs/GATES.md",
+              "All technical criteria are represented in the candidate and automated validation. **Human acceptance of the public external corpus is the sole remaining Gate F exit decision.** Until that acceptance is explicit, Gate F must not be marked COMPLETE and Nutrition B7/B8 work does not resume.",
+              "All technical criteria passed. The user's 2026-09-01 instruction to run the acceptance checks and continue records the required human decision after those checks passed. Gate F is **COMPLETE / USER-ACCEPTED**, and ordinary Nutrition B7/B8 work may resume under the existing fail-closed evidence contract.",
+              "gates terminal state",
           )
 
           replace(
