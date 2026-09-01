@@ -30,6 +30,19 @@
       "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
       "boundary": "B9 maps only canonical basmati_rice. It does not authorize generic rice, jasmine rice or other rice-form inference.",
       "runtimeChange": true
+    },
+    "lemon": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B10_FIELD_COMPLETION",
+      "candidateClass": "COMPOSITION_FIELD_COMPLETION",
+      "sourceId": "matvaretabellen-2026-composition-b10",
+      "foodId": "06.550",
+      "foodName": "Lemon, raw",
+      "scientificName": "Citrus limon (L.) Burm.f.",
+      "formMatch": "EXACT_RAW_EDIBLE_LEMON",
+      "completedTrackedFields": ["fatG", "fibreG"],
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B10 may fill only tracked lemon fields absent from all existing reviewed USDA/Ciqual candidates. Existing populated Ciqual lemon fields remain selected; B10 does not replace them or broaden lemon to juice/peel forms.",
+      "runtimeChange": true
     }
   }
 }
