@@ -15,10 +15,26 @@ jobs:
         with:
           ref: v1-1-recipe-corpus-gate-f-wikibooks
           fetch-depth: 0
-      - name: Reconcile Gate F into current main roadmap
+      - name: Reconcile current main and Gate F roadmap
         shell: bash
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
+          set +e
+          git merge --no-edit origin/main
+          merge_status=$?
+          set -e
+          if [ "$merge_status" -ne 0 ]; then
+            unresolved="$(git diff --name-only --diff-filter=U)"
+            if [ "$unresolved" != "docs/ROADMAP.md" ]; then
+              echo "Unexpected merge conflicts: $unresolved" >&2
+              exit 1
+            fi
+            git checkout --ours docs/ROADMAP.md
+            git add docs/ROADMAP.md
+            git commit --no-edit
+          fi
           git show origin/main:docs/ROADMAP.md > docs/ROADMAP.md
           python3 - <<'PY'
           from pathlib import Path
@@ -72,13 +88,11 @@ jobs:
           p.write_text(text)
           PY
           git diff --check
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if ! git diff --quiet -- docs/ROADMAP.md; then
             git add docs/ROADMAP.md
             git commit -m "Reconcile Gate F with current roadmap"
-            git push origin HEAD:v1-1-recipe-corpus-gate-f-wikibooks
           fi
+          git push origin HEAD:v1-1-recipe-corpus-gate-f-wikibooks
       - uses: actions/setup-node@v4
         with:
           node-version: 22
