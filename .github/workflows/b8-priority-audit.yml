@@ -1,0 +1,20 @@
+name: Nutrition B8 priority audit
+on:
+  push:
+    branches: [v1-nutrition-b8-residual-unlocks]
+    paths:
+      - .github/workflows/b8-priority-audit.yml
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v1-nutrition-b8-residual-unlocks
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - run: node scripts/report-nutrition-unlock-priorities.mjs
