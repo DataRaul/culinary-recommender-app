@@ -1,0 +1,407 @@
+{
+  "schemaVersion": "wikibooks-gate-f2-review-ledger-v1",
+  "source": {
+    "id": "WIKIBOOKS_COOKBOOK_GATE_F2",
+    "name": "English Wikibooks Cookbook",
+    "api": "https://en.wikibooks.org/w/api.php",
+    "category": "Category:Recipes",
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "attribution": "Wikibooks contributors; see the source page history",
+    "runtimeFetch": false,
+    "imagesBundled": false,
+    "sourceNutritionImportedAsAuthority": false
+  },
+  "discoveryMeasuredRecipePages": 3792,
+  "discoveryMeasurementBasis": "Existing Gate F discovery snapshot; F2 does not force equality with other source-navigation measurements.",
+  "runtimeActivationAuthorized": false,
+  "policy": {
+    "textAcquisition": "TEXT_ONLY_AFTER_REVIEW",
+    "media": "EXCLUDED",
+    "nutrition": "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED",
+    "unknownMetadata": "FAIL_CLOSED",
+    "runtime": "STATIC_ONLY_NO_LIVE_SOURCE_DEPENDENCY",
+    "publicActivation": "SEPARATELY_GATED"
+  },
+  "records": [
+    {
+      "id": "wikibooks_philippine_chicken_adobo",
+      "pageid": 47816,
+      "title": "Cookbook:Adobo Chicken (Philippine)",
+      "revid": 4630209,
+      "timestamp": "2026-04-12T18:40:29Z",
+      "reviewState": "ADMITTED",
+      "dishFamilyId": "philippine_chicken_adobo",
+      "admissionState": "ADMIT_REFERENCE_METADATA_INCOMPLETE",
+      "recommendationState": "REFERENCE_ONLY_INCOMPLETE_HARD_METADATA",
+      "hardMetadataState": "SEARCH_GATE_INCOMPLETE",
+      "ingredientMappingState": "NORMALIZED_GATE_F_V1",
+      "nutritionState": "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED",
+      "runtimeArtifact": {
+        "module": "src/data/external/wikibooks-gate-f-v1.js",
+        "recipeId": "wikibooks_philippine_chicken_adobo"
+      },
+      "coverage": {
+        "cuisine": "Filipino",
+        "region": "Philippines",
+        "country": "Philippines",
+        "mealTypes": [
+          "lunch",
+          "dinner"
+        ],
+        "recipeRoles": [
+          "canonical_classic",
+          "regional_traditional",
+          "staple_everyday"
+        ],
+        "constraintTags": [],
+        "techniqueTags": []
+      }
+    },
+    {
+      "id": "wikibooks_baba_ganoush",
+      "pageid": 28381,
+      "title": "Cookbook:Baba Ganoush",
+      "revid": 4629606,
+      "timestamp": "2026-04-08T17:17:22Z",
+      "reviewState": "ADMITTED",
+      "dishFamilyId": "baba_ganoush",
+      "admissionState": "ADMIT_RECOMMENDATION_ELIGIBLE",
+      "recommendationState": "SEARCH_ONLY",
+      "hardMetadataState": "SEARCH_GATE_COMPLETE",
+      "ingredientMappingState": "NORMALIZED_GATE_F_V1",
+      "nutritionState": "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED",
+      "runtimeArtifact": {
+        "module": "src/data/external/wikibooks-gate-f-v1.js",
+        "recipeId": "wikibooks_baba_ganoush"
+      },
+      "coverage": {
+        "cuisine": "Middle Eastern",
+        "region": "Middle East / Mediterranean",
+        "country": null,
+        "mealTypes": [
+          "lunch",
+          "dinner"
+        ],
+        "recipeRoles": [
+          "canonical_classic",
+          "regional_traditional",
+          "constraint_first",
+          "technique_learning"
+        ],
+        "constraintTags": [
+          "vegetarian",
+          "vegan"
+        ],
+        "techniqueTags": [
+          "roasted"
+        ]
+      }
+    },
+    {
+      "id": "wikibooks_bruschetta_base",
+      "pageid": 25256,
+      "title": "Cookbook:Bruschetta",
+      "revid": 4523487,
+      "timestamp": "2025-07-13T19:16:22Z",
+      "reviewState": "ADMITTED",
+      "dishFamilyId": "bruschetta",
+      "admissionState": "ADMIT_RECOMMENDATION_ELIGIBLE_BASE_VARIANT",
+      "recommendationState": "SEARCH_ONLY",
+      "hardMetadataState": "SEARCH_GATE_COMPLETE",
+      "ingredientMappingState": "NORMALIZED_GATE_F_V1",
+      "nutritionState": "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED",
+      "runtimeArtifact": {
+        "module": "src/data/external/wikibooks-gate-f-v1.js",
+        "recipeId": "wikibooks_bruschetta_base"
+      },
+      "coverage": {
+        "cuisine": "Italian",
+        "region": "Italy",
+        "country": "Italy",
+        "mealTypes": [
+          "lunch",
+          "dinner"
+        ],
+        "recipeRoles": [
+          "canonical_classic",
+          "regional_traditional",
+          "technique_learning"
+        ],
+        "constraintTags": [
+          "vegetarian"
+        ],
+        "techniqueTags": []
+      }
+    },
+    {
+      "id": "wikibooks_caprese_salad",
+      "pageid": 424559,
+      "title": "Cookbook:Caprese Salad",
+      "revid": 4605277,
+      "timestamp": "2025-12-04T00:34:05Z",
+      "reviewState": "ADMITTED",
+      "dishFamilyId": "caprese_salad",
+      "admissionState": "ADMIT_REFERENCE_METADATA_INCOMPLETE",
+      "recommendationState": "REFERENCE_ONLY_INCOMPLETE_HARD_METADATA",
+      "hardMetadataState": "SEARCH_GATE_INCOMPLETE",
+      "ingredientMappingState": "NORMALIZED_GATE_F_V1",
+      "nutritionState": "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED",
+      "runtimeArtifact": {
+        "module": "src/data/external/wikibooks-gate-f-v1.js",
+        "recipeId": "wikibooks_caprese_salad"
+      },
+      "coverage": {
+        "cuisine": "Italian",
+        "region": "Italy",
+        "country": "Italy",
+        "mealTypes": [
+          "lunch",
+          "dinner"
+        ],
+        "recipeRoles": [
+          "canonical_classic",
+          "regional_traditional"
+        ],
+        "constraintTags": [
+          "vegetarian"
+        ],
+        "techniqueTags": []
+      }
+    },
+    {
+      "id": "wikibooks_gazpacho",
+      "pageid": 12749,
+      "title": "Cookbook:Gazpacho",
+      "revid": 4518408,
+      "timestamp": "2025-06-21T16:27:08Z",
+      "reviewState": "ADMITTED",
+      "dishFamilyId": "gazpacho",
+      "admissionState": "ADMIT_REFERENCE_METADATA_INCOMPLETE",
+      "recommendationState": "REFERENCE_ONLY_INCOMPLETE_HARD_METADATA",
+      "hardMetadataState": "SEARCH_GATE_INCOMPLETE",
+      "ingredientMappingState": "NORMALIZED_GATE_F_V1",
+      "nutritionState": "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED",
+      "runtimeArtifact": {
+        "module": "src/data/external/wikibooks-gate-f-v1.js",
+        "recipeId": "wikibooks_gazpacho"
+      },
+      "coverage": {
+        "cuisine": "Spanish",
+        "region": "Spain",
+        "country": "Spain",
+        "mealTypes": [
+          "lunch",
+          "dinner"
+        ],
+        "recipeRoles": [
+          "canonical_classic",
+          "regional_traditional",
+          "constraint_first",
+          "staple_everyday"
+        ],
+        "constraintTags": [
+          "vegetarian",
+          "vegan"
+        ],
+        "techniqueTags": [
+          "refrigerated"
+        ]
+      }
+    },
+    {
+      "id": "wikibooks_huevos_rancheros",
+      "pageid": 85337,
+      "title": "Cookbook:Huevos Rancheros",
+      "revid": 4511733,
+      "timestamp": "2025-06-17T15:23:15Z",
+      "reviewState": "ADMITTED",
+      "dishFamilyId": "huevos_rancheros",
+      "admissionState": "ADMIT_REFERENCE_METADATA_INCOMPLETE",
+      "recommendationState": "REFERENCE_ONLY_INCOMPLETE_HARD_METADATA",
+      "hardMetadataState": "SEARCH_GATE_INCOMPLETE",
+      "ingredientMappingState": "NORMALIZED_GATE_F_V1",
+      "nutritionState": "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED",
+      "runtimeArtifact": {
+        "module": "src/data/external/wikibooks-gate-f-v1.js",
+        "recipeId": "wikibooks_huevos_rancheros"
+      },
+      "coverage": {
+        "cuisine": "Mexican",
+        "region": "Mexico",
+        "country": "Mexico",
+        "mealTypes": [
+          "lunch"
+        ],
+        "recipeRoles": [
+          "canonical_classic",
+          "regional_traditional",
+          "staple_everyday"
+        ],
+        "constraintTags": [
+          "vegetarian"
+        ],
+        "techniqueTags": [
+          "pan_fried"
+        ]
+      }
+    },
+    {
+      "id": "wikibooks_spanish_omelet",
+      "pageid": 23021,
+      "title": "Cookbook:Spanish Omelet",
+      "revid": 4517807,
+      "timestamp": "2025-06-21T03:06:54Z",
+      "reviewState": "ADMITTED",
+      "dishFamilyId": "spanish_potato_omelet",
+      "admissionState": "ADMIT_REFERENCE_METADATA_INCOMPLETE",
+      "recommendationState": "REFERENCE_ONLY_INCOMPLETE_HARD_METADATA",
+      "hardMetadataState": "SEARCH_GATE_INCOMPLETE",
+      "ingredientMappingState": "NORMALIZED_GATE_F_V1",
+      "nutritionState": "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED",
+      "runtimeArtifact": {
+        "module": "src/data/external/wikibooks-gate-f-v1.js",
+        "recipeId": "wikibooks_spanish_omelet"
+      },
+      "coverage": {
+        "cuisine": "Spanish",
+        "region": "Spain",
+        "country": "Spain",
+        "mealTypes": [
+          "lunch",
+          "dinner"
+        ],
+        "recipeRoles": [
+          "canonical_classic",
+          "regional_traditional",
+          "staple_everyday",
+          "technique_learning"
+        ],
+        "constraintTags": [
+          "vegetarian"
+        ],
+        "techniqueTags": [
+          "pan_fried"
+        ]
+      }
+    },
+    {
+      "id": "wikibooks_tzatziki",
+      "pageid": 128463,
+      "title": "Cookbook:Tzatziki",
+      "revid": 4519035,
+      "timestamp": "2025-06-21T17:20:31Z",
+      "reviewState": "ADMITTED",
+      "dishFamilyId": "tzatziki",
+      "admissionState": "ADMIT_REFERENCE_METADATA_INCOMPLETE",
+      "recommendationState": "REFERENCE_ONLY_INCOMPLETE_HARD_METADATA",
+      "hardMetadataState": "SEARCH_GATE_INCOMPLETE",
+      "ingredientMappingState": "NORMALIZED_GATE_F_V1",
+      "nutritionState": "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED",
+      "runtimeArtifact": {
+        "module": "src/data/external/wikibooks-gate-f-v1.js",
+        "recipeId": "wikibooks_tzatziki"
+      },
+      "coverage": {
+        "cuisine": "Greek",
+        "region": "Greece",
+        "country": "Greece",
+        "mealTypes": [
+          "lunch",
+          "dinner"
+        ],
+        "recipeRoles": [
+          "canonical_classic",
+          "regional_traditional",
+          "constraint_first"
+        ],
+        "constraintTags": [
+          "vegetarian"
+        ],
+        "techniqueTags": [
+          "refrigerated"
+        ]
+      }
+    },
+    {
+      "id": "wikibooks_reject_afang_soup",
+      "pageid": 483771,
+      "title": "Cookbook:Afang Soup",
+      "revid": 4638949,
+      "timestamp": null,
+      "revisionTimestampState": "NOT_RECORDED_IN_GATE_F_V1_REJECTION_SNAPSHOT",
+      "reviewState": "REJECTED",
+      "rejectionReason": "SOURCE_MARKED_INCOMPLETE",
+      "recommendationState": "NOT_APPLICABLE",
+      "hardMetadataState": "REJECTED",
+      "ingredientMappingState": "NOT_APPLICABLE",
+      "nutritionState": "NOT_APPLICABLE",
+      "runtimeArtifact": null,
+      "coverage": null
+    },
+    {
+      "id": "wikibooks_reject_refried_beans",
+      "pageid": 28881,
+      "title": "Cookbook:Refried Beans",
+      "revid": 4534235,
+      "timestamp": null,
+      "revisionTimestampState": "NOT_RECORDED_IN_GATE_F_V1_REJECTION_SNAPSHOT",
+      "reviewState": "REJECTED",
+      "rejectionReason": "NO_BOUNDED_QUANTITIES_OR_SERVINGS_FOR_INITIAL_NORMALIZER",
+      "recommendationState": "NOT_APPLICABLE",
+      "hardMetadataState": "REJECTED",
+      "ingredientMappingState": "NOT_APPLICABLE",
+      "nutritionState": "NOT_APPLICABLE",
+      "runtimeArtifact": null,
+      "coverage": null
+    },
+    {
+      "id": "wikibooks_reject_greek_chicken_wrap",
+      "pageid": 206955,
+      "title": "Cookbook:Greek Chicken Wrap",
+      "revid": 4515085,
+      "timestamp": null,
+      "revisionTimestampState": "NOT_RECORDED_IN_GATE_F_V1_REJECTION_SNAPSHOT",
+      "reviewState": "REJECTED",
+      "rejectionReason": "COMPOSITE_GREEK_YOGURT_SAUCE_NOT_YET_NORMALIZED",
+      "recommendationState": "NOT_APPLICABLE",
+      "hardMetadataState": "REJECTED",
+      "ingredientMappingState": "NOT_APPLICABLE",
+      "nutritionState": "NOT_APPLICABLE",
+      "runtimeArtifact": null,
+      "coverage": null
+    },
+    {
+      "id": "wikibooks_reject_baingan_bhartha_ii",
+      "pageid": 462385,
+      "title": "Cookbook:Baingan Bartha (South Indian Eggplant with Chili) II",
+      "revid": 4630287,
+      "timestamp": null,
+      "revisionTimestampState": "NOT_RECORDED_IN_GATE_F_V1_REJECTION_SNAPSHOT",
+      "reviewState": "REJECTED",
+      "rejectionReason": "MULTIPLE_UNQUANTIFIED_INGREDIENTS_AND_ALTERNATIVE_TOMATO_FORM",
+      "recommendationState": "NOT_APPLICABLE",
+      "hardMetadataState": "REJECTED",
+      "ingredientMappingState": "NOT_APPLICABLE",
+      "nutritionState": "NOT_APPLICABLE",
+      "runtimeArtifact": null,
+      "coverage": null
+    },
+    {
+      "id": "wikibooks_reject_baked_beans",
+      "pageid": 127882,
+      "title": "Cookbook:Baked Beans",
+      "revid": 4534255,
+      "timestamp": null,
+      "revisionTimestampState": "NOT_RECORDED_IN_GATE_F_V1_REJECTION_SNAPSHOT",
+      "reviewState": "REJECTED",
+      "rejectionReason": "LONG_COOKING_RECIPE_RETAINED_FOR_LATER_CORPUS_EXPANSION_NOT_INITIAL_UI_TRANCHE",
+      "recommendationState": "NOT_APPLICABLE",
+      "hardMetadataState": "REJECTED",
+      "ingredientMappingState": "NOT_APPLICABLE",
+      "nutritionState": "NOT_APPLICABLE",
+      "runtimeArtifact": null,
+      "coverage": null
+    }
+  ]
+}

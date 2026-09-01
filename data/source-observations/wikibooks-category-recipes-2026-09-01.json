@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "wikibooks-gate-f2-source-navigation-observation-v1",
+  "observedDate": "2026-09-01",
+  "source": {
+    "name": "English Wikibooks Cookbook",
+    "category": "Category:Recipes",
+    "url": "https://en.wikibooks.org/wiki/Category:Recipes"
+  },
+  "observationType": "DYNAMIC_CATEGORY_NAVIGATION_COUNT_ONLY",
+  "observedRecipePageCount": 3825,
+  "historicalExactDiscoveryMeasuredRecipePages": 3792,
+  "netCountDifference": 33,
+  "differenceDoesNotIdentifyPageEvents": true,
+  "exactRevisionSnapshotCaptured": false,
+  "mayReplaceHistoricalExactDiscoveryMeasurement": false,
+  "runtimeActivationAuthorized": false,
+  "automaticAdmissionAuthorized": false,
+  "notes": "The rendered category count is a current navigation observation only. It is not a revision-pinned discovery snapshot, does not identify which pages were added/removed/moved, and cannot admit or update recipes."
+}
