@@ -178,15 +178,13 @@ The public app **must not call private Knowledge Core at runtime**. Brain author
 
 The free operator pass is saturated for P0 fundamentals. Additional books/content are residual-gap gated rather than automatic: Harold McGee for deeper chemistry when needed; Samin Nosrat selectively for flavor-balancing gaps; peer-reviewed cooking/yield/nutrient-retention research when authoritative nutrition needs it; and cuisine-specific sources for authenticity/adaptation. *The Food Lab* is currently deferred because of high overlap with the free Kenji lane.
 
-## V1.1 Recipe Corpus Gate F — OPEN / BLOCKING
+## V1.1 Recipe Corpus Gate F — VALIDATED CANDIDATE / HUMAN ACCEPTANCE REQUIRED
 
 Purpose: establish a real app-owned external recipe universe while keeping the Brain as reasoning/verification authority rather than a private runtime database.
 
 ### Mandatory source floor
 
-**Wikibooks Cookbook is mandatory as the first external app acquisition source.** The Brain's World Recipe Atlas currently identifies it as the preferred broad open-content lane. Before public ingestion, the app must record a bounded audit of the exact source revision, attribution requirements, ShareAlike obligations and chosen reuse/transformation path.
-
-A failed rights/provenance audit is a legitimate blocker. It is not permission to silently skip Wikibooks: substituting another initial corpus requires an explicit governance decision.
+**Wikibooks Cookbook is the first external app acquisition source.** The bounded rights/provenance audit is complete and records exact revision provenance, Wikibooks contributor attribution, ShareAlike obligations and a text-only CC BY-SA 4.0 transformation path. No Wikibooks images/media are admitted. The broad discovery count is 3,792 recipe pages, but only eight reviewed exact revisions are bundled.
 
 ### Corpus contract
 
@@ -212,9 +210,11 @@ Wikibooks is a minimum corpus, not a completeness claim. Later sources may be ad
 
 External recipe content never becomes authoritative composition evidence by import. `RecipeSource`, `NutritionSource` and regulatory evidence remain separate truth lanes. External recipes must pass the same ingredient normalization, allergen/dietary/permanent-exclusion logic, quantity semantics and fail-closed nutrition rules as authored recipes.
 
-### Exit criteria
+### Candidate state and exit criterion
 
-Gate F remains `OPEN / BLOCKING` until:
+The technical Gate F candidate now measures **84 recipes / 83 dish families**, with eight exact-revision Wikibooks records, one explicit cross-source family, two external `SEARCH_ONLY` recipes and six `REFERENCE_ONLY_INCOMPLETE_HARD_METADATA` records. `contemporary_modern` and `genuinely_new_trending` remain explicit role gaps. The authored 76-recipe B6 nutrition baseline remains frozen independently.
+
+Technical validation covers the following criteria; Gate F remains incomplete until the final human acceptance item passes:
 
 - Wikibooks rights/attribution/ShareAlike/source-revision audit passes for the selected ingest path;
 - a bounded reproducible Wikibooks acquisition is implemented as an app-owned external `RecipeSource`;
@@ -227,10 +227,10 @@ Gate F remains `OPEN / BLOCKING` until:
 - the Brain recipe-universe contract remains pinned and behavior-driving exports remain separately gated;
 - human acceptance confirms the external corpus is useful in the public app.
 
-Until these criteria pass, corpus breadth remains a gated workstream and cannot be declared complete from authored-recipe or Atlas growth alone.
+All technical criteria are represented in the candidate and automated validation. **Human acceptance of the public external corpus is the sole remaining Gate F exit decision.** Until that acceptance is explicit, Gate F must not be marked COMPLETE and Nutrition B7/B8 work does not resume.
 
 ## Deferred / future lanes
 
 Nutrient-gap awareness, supplement-routine checking, recipe images, live/local grocery prices, fitness integration and advanced culinary exploration remain DEFERRED rather than failed. Brain P0 itself is no longer deferred; downstream behavior changes remain separately gated.
 
-The next ordinary nutrition work is coverage-driven: target the remaining composition/form blockers and residual exact quantity semantics that can unlock complete recipes, while preserving the carbohydrate semantic firewall and all source/licensing provenance.
+After Gate F human acceptance, the next ordinary nutrition work is coverage-driven: target the remaining composition/form blockers and residual exact quantity semantics that can unlock complete recipes, while preserving the carbohydrate semantic firewall and all source/licensing provenance.

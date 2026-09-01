@@ -1,10 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { ALL_RECIPES } from "../src/data/corpus-v1.js";
+import { ALL_RECIPES, AUTHORED_RECIPES } from "../src/data/corpus-v1.js";
 import { publicNutritionSource } from "../src/domain/nutrition.js";
 import { buildNutritionCoverageAudit } from "../src/domain/nutrition-coverage-audit.js";
 
-test("nutrition coverage audit is deterministic and partitions the full corpus", () => {
+test("nutrition coverage audit is deterministic and partitions the full recipe universe", () => {
   const first = buildNutritionCoverageAudit(ALL_RECIPES, publicNutritionSource);
   const second = buildNutritionCoverageAudit(ALL_RECIPES, publicNutritionSource);
   assert.deepEqual(first, second);
@@ -29,8 +29,8 @@ test("audit preserves blocker and semantic-incompatibility detail rather than tr
   assert.ok(Object.keys(audit.blockerCounts).length > 0, "expected current corpus to expose quantity/density blockers");
 });
 
-test("B6 portion evidence materially reduces unsupported quantities without manufacturing authoritative recipes", () => {
-  const audit = buildNutritionCoverageAudit(ALL_RECIPES, publicNutritionSource);
+test("frozen B6 authored-corpus baseline remains unchanged by the separate external RecipeSource lane", () => {
+  const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
   assert.equal(audit.authoritativeRecipeCount, 0);
   assert.equal(audit.estimateRecipeCount, 76);

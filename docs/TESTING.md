@@ -22,10 +22,30 @@ Coverage includes:
 - temporary meal/time/skill/discovery overrides without saved-profile mutation;
 - neutral ingredient-first search clearing soft cuisine/priority-pack preferences while preserving allergen and permanent-exclusion constraints;
 - Brain public-policy provenance pinning, source-safe/non-clinical hard boundaries and explicit prohibition of private Knowledge Core runtime dependency;
-- a calibration-only Brain guard that fails if public runtime source code starts importing `brain-public-policy-v1.js` before a separately authorized behavior gate.
+- a calibration-only Brain guard that fails if public runtime source code starts importing `brain-public-policy-v1.js` before a separately authorized behavior gate;
+- Gate F external RecipeSource licensing/provenance pins, canonical ingredient resolution, dish-family normalization and nutrition-source separation;
+- Gate F fail-closed recommendation governance: reference-only records never enter recommendation, Search-only records are limited to Search, and allergens/permanent exclusions remain hard;
+- frozen authored nutrition coverage remaining scoped to the 76 authored recipes while generic corpus audits may inspect the 84-recipe universe;
+- truthful recipe-universe coverage reporting, including missing contemporary/modern and genuinely-new/trending roles rather than invented classifications.
+
+## Gate F deterministic evidence checks
+
+The Gate F candidate runs all of the following before PR cleanup:
+
+```bash
+npm run validate
+npm run test:matrix
+npm run report:recipe-universe
+npm run verify:wikibooks-gate-f
+npm run test:browser
+```
+
+`verify:wikibooks-gate-f` is the only networked candidate check: it verifies the eight frozen MediaWiki revision IDs against the official Wikibooks API. Runtime application behavior remains static and has no Wikibooks API dependency.
+
+The deterministic recipe-universe audit is expected to report 84 total recipes: 76 authored plus eight exact-revision Wikibooks records, 83 dish families, one explicit cross-source family, two Search-only external recipes and six reference-only external records. Unknown source-backed hard metadata stays unknown.
 
 ## Browser acceptance
-Public CI installs pinned Playwright/Chromium and runs two browser layers against a local static server with no live third-party data.
+Public CI installs pinned Playwright/Chromium and runs three browser layers against a local static server. Application runtime behavior uses no live third-party data.
 
 ### Targeted smoke
 390×844 mobile flow covering load → planning → groceries → pantry → Search.
@@ -51,9 +71,20 @@ The broader flow exercises:
 - 1280×900 desktop layout with no horizontal overflow;
 - service-worker control and offline shell reload.
 
+### Gate F external-corpus acceptance
+The Gate F browser layer proves that:
+- the runtime status truthfully reports `84 recipes · 76 curated + 8 open external · deterministic`;
+- an aubergine Search surfaces Wikibooks Baba Ganoush;
+- the result is visibly labelled as an open external recipe;
+- nutrition is shown as `evidence pending`, not as an invented or source-imported authoritative value;
+- exact revision `4629606`, CC BY-SA 4.0, Wikibooks contributor attribution and the transformation notice are visible;
+- the source page and exact-revision URLs are present;
+- the source-nutrition firewall is visible;
+- Search-only Baba Ganoush and Bruschetta do not leak into weekly planning.
+
 The browser suite is intended to catch integration, persistence and interaction failures that pure domain tests cannot see. It does not claim to represent every physical device/browser combination or subjective recommendation quality.
 
-The current Brain P0 app artifact is calibration-only and intentionally disconnected from runtime ranking, so the existing browser expectations must remain unchanged. A later Brain-derived behavior gate must add browser cases for every user-visible behavior it changes.
+The current Brain P0 app artifact is calibration-only and intentionally disconnected from runtime ranking, so existing authored-recipe expectations must remain unchanged except for the explicitly gated external Search lane. A later Brain-derived behavior gate must add browser cases for every user-visible behavior it changes.
 
 ## CI cost policy
-One standard Ubuntu job, no matrix, no larger runners. The repository is public, so validation uses GitHub's standard public-repository Actions allowance rather than private-repository minutes.
+One standard Ubuntu job per validation workflow, no matrix, no larger runners. The repository is public, so validation uses GitHub's standard public-repository Actions allowance rather than private-repository minutes.

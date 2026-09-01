@@ -2,15 +2,25 @@
 
 Audit/policy date: 2026-08-31.
 
-## Shipped project-authored corpus
+## RecipeSource lanes
 
-The public runtime ships project-authored structured recipes, ingredient mappings, culinary metadata and substitution guidance. No third-party recipe text, photographs or recipe-database dump is bundled.
+The public runtime ships two explicitly separated recipe lanes: 76 project-authored structured recipes and a bounded eight-record English Wikibooks Gate F candidate. Ingredient mappings, culinary metadata and substitution guidance remain app-owned normalization/governance data. No third-party photographs, media or bulk recipe-database dump is bundled.
 
 The repository intentionally has **no general licence yet**. Original project-authored repository content therefore remains under default copyright. External source licences are recorded independently and do not license the rest of the repository.
 
 Project-authored recipe source labels include `data/project-authored-v0`, `data/project-authored-v1` and `data/project-authored-v1-search-coverage`.
 
-Recipe nutrition remains low-confidence `INFERRED_ESTIMATE` unless the deterministic NutritionSource can produce a complete authoritative calculation under the approved evidence policy.
+Recipe nutrition remains low-confidence `INFERRED_ESTIMATE` unless the deterministic NutritionSource can produce a complete authoritative calculation under the approved evidence policy. Wikibooks source nutrition, where present, is not promoted into NutritionSource authority.
+
+### English Wikibooks Cookbook — Gate F candidate
+
+Rights audit: **PASS FOR BOUNDED TEXT-ONLY INGEST**. Chosen downstream licence: **CC BY-SA 4.0**. The project preserves page/revision provenance, canonical and exact-revision URLs, Wikibooks contributor attribution, licence URL, transformation notice and any additional page-specific attribution obligations. Pages with obligations that cannot be faithfully retained are rejected. See `docs/WIKIBOOKS_GATE_F_RIGHTS_AUDIT.md` and `THIRD_PARTY_NOTICES.md`.
+
+A bounded MediaWiki discovery run measured **3,792** pages in English Wikibooks `Category:Recipes`. This is a discovery count, not a bundled-corpus claim. Gate F freezes only **eight manually reviewed exact revisions** in `scripts/wikibooks-gate-f-snapshot-v1.json`, verified by `scripts/verify-wikibooks-gate-f-snapshot.mjs`. No Wikibooks images or other media are used.
+
+The normalized candidate universe is **84 recipes / 83 dish families**: 76 authored plus eight Wikibooks records, with one explicit cross-source Spanish-potato-omelet family. Two external records are `SEARCH_ONLY` and six are `REFERENCE_ONLY_INCOMPLETE_HARD_METADATA`; missing source-backed time/serving metadata remains unknown. Role coverage is intentionally incomplete: `contemporary_modern` and `genuinely_new_trending` are recorded as gaps.
+
+External recipe content remains behind `RecipeSource`. `RecipeSource`, `NutritionSource` and regulatory evidence are separate truth lanes, and external recipes cannot bypass allergens, dietary constraints, permanent exclusions, quantity semantics or fail-closed recommendation/nutrition rules. The private Knowledge Core is not a runtime data source.
 
 The canonical ingredient ontology, English/Spanish aliases, family relationships, exclusion semantics and controlled substitution graph are project-authored application data. Allergens and permanent exclusions always override substitutions.
 
@@ -222,9 +232,9 @@ The project requires:
 9. separate composition, quantity and regulatory evidence classes;
 10. deterministic source selection under the approved Europe/Canary policy rather than a blanket geography winner.
 
-## Open Food Facts and third-party recipes
+## Open Food Facts and other third-party recipe sources
 
-Open Food Facts remains unbundled because its ODbL terms require an explicit compatibility/derived-database architecture decision. Third-party recipe datasets likewise remain unbundled; public availability alone is insufficient provenance.
+Open Food Facts remains unbundled because its ODbL terms require an explicit compatibility/derived-database architecture decision. Beyond the bounded Wikibooks Gate F lane, other third-party recipe datasets remain unbundled until a source-specific rights/provenance review passes; public availability alone is insufficient provenance.
 
 ## Cost evidence state
 

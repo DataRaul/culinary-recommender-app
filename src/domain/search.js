@@ -51,7 +51,7 @@ export function searchRecipesByIngredients(recipes, rawProfile, query = {}) {
       continue;
     }
 
-    const evaluation = evaluateRecipe(recipe, profile, { mealType: query.mealType || null });
+    const evaluation = evaluateRecipe(recipe, profile, { mealType: query.mealType || null, mode: "search" });
     const ingredientCoverage = secondaryIngredientIds.length
       ? secondaryMatches.length / secondaryIngredientIds.length
       : 1;

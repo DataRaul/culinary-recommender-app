@@ -32,13 +32,25 @@ function packAdjustment(recipe, profile, mealType, components) {
   return { bonus: Number(Math.min(0.24, rawBonus).toFixed(6)), packs };
 }
 
-export function hardConstraintReasons(recipe, rawProfile, mealType = null) {
+export function hardConstraintReasons(recipe, rawProfile, mealType = null, context = {}) {
   const profile = normalizeProfile(rawProfile);
   const reasons = [];
+  const externalState = recipe.governance?.recommendationState;
+  if (externalState === "REFERENCE_ONLY_INCOMPLETE_HARD_METADATA") {
+    reasons.push("external recipe lacks source-backed hard recommendation metadata");
+  } else if (externalState === "SEARCH_ONLY" && context.mode !== "search") {
+    reasons.push("external recipe is admitted for ingredient search only");
+  } else if (externalState && !["ELIGIBLE", "SEARCH_ONLY"].includes(externalState)) {
+    reasons.push("external recipe is not admitted for recommendation");
+  }
   if (mealType && !recipe.culinary.mealTypes.includes(mealType)) reasons.push(`not tagged for ${mealType}`);
   if (profile.dietaryMode !== "unrestricted" && !recipe.dietaryTags.includes(profile.dietaryMode)) reasons.push(`not ${profile.dietaryMode}`);
   if (recipe.culinary.difficulty > profile.skill) reasons.push("above selected cooking skill");
-  if (recipe.time.totalMinutes > profile.maxMinutes) reasons.push(`over ${profile.maxMinutes}-minute limit`);
+  if (typeof recipe.time?.totalMinutes !== "number" || !Number.isFinite(recipe.time.totalMinutes)) {
+    if (recipe.provenance?.sourceType === "EXTERNAL_OPEN_RECIPE") reasons.push("external recipe time is unknown");
+  } else if (recipe.time.totalMinutes > profile.maxMinutes) {
+    reasons.push(`over ${profile.maxMinutes}-minute limit`);
+  }
   const ingredientIds = recipe.ingredients.map(item => item.canonicalIngredientId);
   const excluded = ingredientIds.filter(id => isIngredientPermanentlyExcluded(id, profile.excludedIngredientIds));
   if (excluded.length) reasons.push(`contains excluded ingredient: ${excluded.join(", ")}`);
@@ -52,10 +64,10 @@ export function hardConstraintReasons(recipe, rawProfile, mealType = null) {
 export function evaluateRecipe(recipe, rawProfile, context = {}) {
   const profile = normalizeProfile(rawProfile);
   const mealType = context.mealType || null;
-  const hardReasons = hardConstraintReasons(recipe, profile, mealType);
+  const hardReasons = hardConstraintReasons(recipe, profile, mealType, context);
   if (hardReasons.length) return { recipe, eligible: false, hardReasons, score: -Infinity, components: {}, explanation: "" };
 
-  const nutrition = recipe.nutrition.perServing;
+  const nutrition = recipe.nutrition?.perServing || {};
   const proteinTarget = profile.proteinEmphasis >= 4 ? 30 : profile.proteinEmphasis >= 3 ? 22 : 15;
   const nutritionScore = clamp01((nutrition.fibreG || 0) / 14) * 0.5 + clamp01((nutrition.proteinG || 0) / proteinTarget) * 0.5;
   const budgetScore = recipe.economics.costTier <= profile.budget ? 1 : clamp01(1 - (recipe.economics.costTier - profile.budget) * 0.35);
