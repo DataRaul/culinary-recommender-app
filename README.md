@@ -7,11 +7,11 @@
 | Area | Status | Current stage | Next ordinary work |
 |---|---|---|---|
 | Foundation | ✅ COMPLETE | V0.1 / Gate 1 | — |
-| Recipe corpus | 🟡 VALIDATED CANDIDATE / HUMAN ACCEPTANCE REQUIRED | V1.1 / Gate F | human public-corpus acceptance |
+| Recipe corpus | ✅ COMPLETE / USER-ACCEPTED | V1.1 / Gate F | coverage-driven breadth under the same rights/provenance rules |
 | Ingredient ontology | ✅ V1 GATE A COMPLETE | hierarchical + bilingual | broader evidence/form coverage |
 | Substitutions | ✅ V1 GATE A COMPLETE | six-class controlled graph | contextual editorial edges |
-| Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.0.10 B6 COMPLETE | targeted composition + residual quantity gaps |
-| European evidence | ✅ CONDITIONAL PRIMARY POLICY | Ciqual B4+B5 + Matvaretabellen B6 | recipe-level unlocks |
+| Nutrition evidence | ✅ MULTI-SOURCE POLICY ACTIVE | V1.1.1 B7 COMPLETE | residual composition/form + exact quantity unlocks |
+| European evidence | ✅ CONDITIONAL PRIMARY POLICY | Ciqual B4+B5+B7 + Matvaretabellen B6 | residual recipe-level unlocks |
 | Cost intelligence | ✅ COMPLETE | Gate C | empirical prices only if separately authorized |
 | Culinary quality | ✅ COMPLETE | Gate D | editorial refinement |
 | Recommender / planner | ✅ ACCEPTED CORE | V0.9.3 | richer public-safe policy later |
@@ -29,7 +29,7 @@
 **Nutrition B6:** V1.0.10 / PR #18 / merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`  
 **Culinary & Nutrition Brain P0 calibration pin:** Knowledge Core `e5dcb29a7c6b78f59c062faf4c963c74aac10743`  
 **Public app:** https://dataraul.github.io/culinary-recommender-app/  
-**Recipe Corpus Gate F candidate:** 84 recipes = 76 curated + 8 exact-revision Wikibooks records / 83 dish families / 2 external Search-only + 6 reference-only
+**Recipe Corpus Gate F:** COMPLETE / USER-ACCEPTED · 84 recipes = 76 curated + 8 exact-revision Wikibooks records / 83 dish families / 2 external Search-only + 6 reference-only
 
 The V1 lineage includes project-authored corpus/ontology/substitution expansion, Spain/Canary cost intelligence, full-corpus culinary-quality normalization, bounded USDA Foundation evidence, bounded ANSES-Ciqual 2025 European composition evidence, the user-approved conditional European-primary source policy, deterministic whole-corpus authoritative-nutrition coverage measurement, the bounded Norwegian official portion-evidence lane, and now an explicitly authorized offline Culinary & Nutrition Brain calibration contract.
 
@@ -55,7 +55,7 @@ Search begins with a hard-required main ingredient and optional secondary ingred
 
 Replacement edges are labelled `close_substitute`, `functional_substitute`, `flavour_direction`, `texture_substitute`, `dietary_substitute`, or `emergency_approximation`. They describe culinary function rather than false equivalence.
 
-## Recipe Corpus Gate F candidate
+## Recipe Corpus Gate F — accepted
 
 Gate F adds a bounded **text-only English Wikibooks Cookbook** RecipeSource under **CC BY-SA 4.0** after an exact rights/attribution/ShareAlike audit. Broad discovery measured **3,792** pages in `Category:Recipes`; only **eight manually reviewed exact revisions** are bundled. No Wikibooks images or bulk source dump are committed.
 
@@ -63,7 +63,7 @@ The public recipe universe is now **84 recipes**: 76 project-authored plus eight
 
 External records preserve page ID/title, exact revision ID/timestamp, canonical and revision URLs, Wikibooks contributor attribution, CC BY-SA 4.0, transformation notice and review state. Source recipe nutrition is deliberately **not** imported as authoritative composition; RecipeSource, NutritionSource and regulatory evidence remain separate. Allergens, dietary rules, permanent exclusions, quantity semantics and fail-closed nutrition/recommendation policy continue to apply.
 
-The seven-role audit currently covers canonical/classic and regional/traditional across all eight records, with partial staple/everyday, constraint-first and technique-learning coverage. `contemporary_modern` and `genuinely_new_trending` remain explicit gaps. Gate F is not COMPLETE until human acceptance of the deployed public corpus.
+The seven-role audit currently covers canonical/classic and regional/traditional across all eight records, with partial staple/everyday, constraint-first and technique-learning coverage. `contemporary_modern` and `genuinely_new_trending` remain explicit gaps. Gate F is **COMPLETE / USER-ACCEPTED** after the 2026-09-01 assistant-run acceptance checks and user continuation decision.
 
 ## Nutrition evidence architecture
 
@@ -77,11 +77,11 @@ Tracked USDA fields include energy, protein, carbohydrate by difference, total f
 
 ### ANSES-Ciqual 2025
 
-The frozen B4 tranche contains **32** manually reviewed ANSES-Ciqual 2025 food/form records. Nutrition B5 added a separate strict tranche of **22**, giving a combined bounded Ciqual composition ledger of **54** while preserving `evidenceTranche` provenance.
+The frozen B4 tranche contains **32** manually reviewed ANSES-Ciqual 2025 food/form records. Nutrition B5 added a separate strict tranche of **22**. Nutrition B7 adds only **three** recipe-unlock records — raw quinoa, raw shrimp/prawn and dry regular pasta as a category-level orzo match — giving a combined bounded Ciqual composition ledger of **57** while preserving `evidenceTranche` provenance.
 
 Dataset facts remain: DOI `10.57745/RDMHWY`, 3,484 foods / 74 constituents, Etalab Open Licence 2.0, exact ANSES attribution, English/French identity and per-field confidence/source codes.
 
-B5 deliberately rejects weak form matches including cumin seed for ground cumin, generic paprika for smoked paprika, unspecified tofu for firm tofu, cooked lentil forms for dry recipe quantities and egg-containing noodles for generic wheat noodles.
+B5 deliberately rejects weak form matches including cumin seed for ground cumin, generic paprika for smoked paprika, unspecified tofu for firm tofu, cooked lentil forms for dry recipe quantities and egg-containing noodles for generic wheat noodles. B7 remains equally strict: barley, courgette, cottage cheese, salt, smoked paprika and tortilla stay deferred in this tranche rather than being filled by weak or underspecified matches.
 
 ### Evidence-backed quantity normalization
 
@@ -128,6 +128,8 @@ B6 was merged through PR #18 after deterministic validation and remains **0 / 76
 Thus reviewed portion evidence resolves or reclassifies **175** of B5's 202 formerly unsupported quantity events without manufacturing a complete recipe. The next recipe-level gains require targeted remaining composition forms, residual exact quantity semantics and continued carbohydrate-semantic coherence.
 
 PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`; post-merge validation run `33446325292` and Pages run `33446324922` both passed.
+
+Nutrition B7 targets composition by recipe-level unlock value rather than database size. Its strict three-record Ciqual tranche reduces the frozen **76-authored-recipe** missing-density blocker count from **141 to 133** while remaining **0 / 76 authoritative**. Unsupported-quantity blockers remain **27**, explicit ambiguous-portion blockers remain **20**, and mixed incompatible carbohydrate-semantic events remain **16**. The audit now separately exposes tracked nutrient-field gaps on otherwise usable ingredient rows. The eight external Gate F RecipeSource records remain a separate corpus lane and do not alter this authored baseline.
 
 ## Culinary & Nutrition Brain P0
 

@@ -31,7 +31,8 @@
 | App Brain adapter V1 | COMPLETE / CALIBRATION-ONLY | PR #19 merged and green; static provenance-pinned public-safe policy contract; no ranking change |
 | World Recipe Atlas V0 | ACTIVE / DISCOVERY + IDENTITY PILOT | 338 seed families / 20 macro-regions; 20 identity-verified; multilingual metadata acquisition/alias-resolution design; zero public recipes authorized by Atlas status alone |
 | V1.1 / Recipe Corpus Gate F | COMPLETE / USER-ACCEPTED | bounded Wikibooks RecipeSource + exact provenance + coverage/safety validation; user authorized assistant-run acceptance checks and continuation on 2026-09-01 |
-| V1.x / Recipe-unlock evidence | PARALLEL NEXT | target remaining composition/form and exact quantity blockers by recipe-level unlock value; independent of Gate F corpus ingestion |
+| V1.1.1 / Nutrition B7 | COMPLETE | strict Ciqual recipe-unlock tranche: quinoa + prawns + category-level dry-pasta/orzo; authored missing-density blockers 141→133; still 0/76 authoritative |
+| V1.x / Recipe-unlock evidence | NEXT | target residual composition/form, nutrient-field and exact quantity blockers by recipe-level unlock value; independent of external RecipeSource breadth |
 | V1.x / Authoritative nutrition coverage | CONTINUOUS | expand reviewed evidence under the approved source policy without guessing |
 | V1.x / Corpus breadth | GATED / ATLAS DISCOVERY ACTIVE | broaden through Gate F and measured coverage gaps rather than recipe-count growth |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
@@ -69,7 +70,7 @@ Three lanes may proceed independently under their own gates:
 
 1. **KC Brain/Atlas integration lane** — validate the 34-commit Knowledge Core branch, reconcile its private `main` merge and then replace branch-only development references with a merged canonical pin.
 2. **Gate F corpus lane** — implement the bounded external `RecipeSource` path in the public app, beginning with the required Wikibooks rights/provenance audit and normalized acquisition; Atlas discovery supplies verification/coverage intelligence but is not the runtime corpus.
-3. **Recipe-unlock nutrition lane** — continue targeted composition/form/quantity work against the current 76 curated recipes and later admitted recipes; this does not need to wait for Gate F.
+3. **Recipe-unlock nutrition lane** — B7 completed the first post-Gate-F composition tranche; continue targeting residual composition/form/nutrient-field/quantity blockers against the 76 curated-recipe baseline and separately admitted recipes by measured unlock value.
 
 Brain-derived ranking/eligibility/substitution behavior remains a fourth, **separately gated** lane and is not authorized by any of the three above.
 
@@ -115,6 +116,10 @@ Integration Actions run `33445671486` passed all **83 deterministic tests** and 
 B6 resolves or truthfully reclassifies **175 of 202** B5 unsupported-quantity events without weakening the evidence contract.
 
 PR #18 merged at `dee06f276f0323b5d359b8dc311ae23aac3b2d75`; post-merge validation run `33446325292` and Pages run `33446324922` both passed. B6 is therefore **COMPLETE**.
+
+## Nutrition B7 — complete
+
+B7 optimizes for recipe-level blocker reduction rather than source row count. Three strict ANSES-Ciqual 2025 forms are admitted: raw quinoa (`9340`), raw shrimp/prawn (`10021`) and dry regular pasta (`9810`) as a category-level orzo/risoni match. The combined bounded Ciqual ledger is now **57**. Candidate run `33455005170` passed 100/100 deterministic tests, profile matrix, coverage reports, exact Wikibooks verification and the full Chromium suite. The frozen authored baseline remains **0/76 authoritative**, while missing-density blockers fall **141 → 133**; unsupported quantity remains 27, ambiguous portions 20, and mixed carbohydrate semantics 16. Missing tracked nutrient fields are separately visible.
 
 ## Culinary & Nutrition Brain P0 — authorized foundation and active Atlas development
 

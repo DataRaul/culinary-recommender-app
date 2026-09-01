@@ -26,7 +26,10 @@ Coverage includes:
 - Gate F external RecipeSource licensing/provenance pins, canonical ingredient resolution, dish-family normalization and nutrition-source separation;
 - Gate F fail-closed recommendation governance: reference-only records never enter recommendation, Search-only records are limited to Search, and allergens/permanent exclusions remain hard;
 - frozen authored nutrition coverage remaining scoped to the 76 authored recipes while generic corpus audits may inspect the 84-recipe universe;
-- truthful recipe-universe coverage reporting, including missing contemporary/modern and genuinely-new/trending roles rather than invented classifications.
+- truthful recipe-universe coverage reporting, including missing contemporary/modern and genuinely-new/trending roles rather than invented classifications;
+- B7 exact three-record Ciqual provenance and explicit deferred-target assertions;
+- B7 regression proof for no averaging, no carbohydrate-semantic relaxation and no Ciqual-D-over-USDA displacement;
+- missing tracked nutrient fields audited separately from skipped density/quantity blockers.
 
 ## Gate F deterministic evidence checks
 
@@ -43,6 +46,10 @@ npm run test:browser
 `verify:wikibooks-gate-f` is the only networked candidate check: it verifies the eight frozen MediaWiki revision IDs against the official Wikibooks API. Runtime application behavior remains static and has no Wikibooks API dependency.
 
 The deterministic recipe-universe audit is expected to report 84 total recipes: 76 authored plus eight exact-revision Wikibooks records, 83 dish families, one explicit cross-source family, two Search-only external recipes and six reference-only external records. Unknown source-backed hard metadata stays unknown.
+
+## Nutrition B7 checks
+
+Candidate run `33455005170` passed 100/100 Node tests, the 15,552-profile matrix, nutrition and recipe-universe reports, exact Wikibooks verification and all browser layers. The authored audit must remain **0/76 authoritative** and measures missing-density **141→133**, unsupported quantity **27**, ambiguous portions **20**, and mixed carbohydrate semantics **16**. Any apparent gain that needs guessed food forms, quantity conversions, missing nutrient values or carbohydrate equivalence fails closed.
 
 ## Browser acceptance
 Public CI installs pinned Playwright/Chromium and runs three browser layers against a local static server. Application runtime behavior uses no live third-party data.

@@ -4,7 +4,7 @@ Audit/policy date: 2026-08-31.
 
 ## RecipeSource lanes
 
-The public runtime ships two explicitly separated recipe lanes: 76 project-authored structured recipes and a bounded eight-record English Wikibooks Gate F candidate. Ingredient mappings, culinary metadata and substitution guidance remain app-owned normalization/governance data. No third-party photographs, media or bulk recipe-database dump is bundled.
+The public runtime ships two explicitly separated recipe lanes: 76 project-authored structured recipes and a bounded eight-record English Wikibooks Gate F corpus accepted on 2026-09-01. Ingredient mappings, culinary metadata and substitution guidance remain app-owned normalization/governance data. No third-party photographs, media or bulk recipe-database dump is bundled.
 
 The repository intentionally has **no general licence yet**. Original project-authored repository content therefore remains under default copyright. External source licences are recorded independently and do not license the rest of the repository.
 
@@ -12,7 +12,7 @@ Project-authored recipe source labels include `data/project-authored-v0`, `data/
 
 Recipe nutrition remains low-confidence `INFERRED_ESTIMATE` unless the deterministic NutritionSource can produce a complete authoritative calculation under the approved evidence policy. Wikibooks source nutrition, where present, is not promoted into NutritionSource authority.
 
-### English Wikibooks Cookbook — Gate F candidate
+### English Wikibooks Cookbook — Gate F accepted corpus
 
 Rights audit: **PASS FOR BOUNDED TEXT-ONLY INGEST**. Chosen downstream licence: **CC BY-SA 4.0**. The project preserves page/revision provenance, canonical and exact-revision URLs, Wikibooks contributor attribution, licence URL, transformation notice and any additional page-specific attribution obligations. Pages with obligations that cannot be faithfully retained are rejected. See `docs/WIKIBOOKS_GATE_F_RIGHTS_AUDIT.md` and `THIRD_PARTY_NOTICES.md`.
 
@@ -64,9 +64,9 @@ Official XML inputs used by the bounded reproducible extraction path:
 
 The full source database is not committed.
 
-The frozen historical B4 module contains **32 manually reviewed food/form identities**. Nutrition B5 / V1.0.9 added a separate **22-record** tranche without rewriting B4, giving **54** reviewed Ciqual composition records at runtime. Exact food code, English/French identity, scientific name where present, form-review notes, values, per-field confidence codes and source codes are retained. Runtime provenance records `evidenceTranche: "B4"` or `"B5"`.
+The frozen historical B4 module contains **32 manually reviewed food/form identities**. Nutrition B5 / V1.0.9 added a separate **22-record** tranche without rewriting B4. Nutrition B7 / V1.1.1 adds a strict **3-record** recipe-unlock tranche — quinoa `9340`, shrimp/prawn `10021`, and dry regular pasta `9810` as a category-level orzo match — giving **57** reviewed Ciqual composition records at runtime. Exact food code, English/French identity, scientific name where present, form-review notes, values, per-field confidence codes and source codes are retained. Runtime provenance records `evidenceTranche: "B4"`, `"B5"` or `"B7"`.
 
-B5 deliberately leaves weak form matches unbundled, including cumin seed for ground cumin, generic paprika for smoked paprika, unspecified tofu for firm tofu, cooked lentil forms where recipes may mean dry and egg-containing noodles for a generic wheat-noodle identity.
+B5 deliberately leaves weak form matches unbundled, including cumin seed for ground cumin, generic paprika for smoked paprika, unspecified tofu for firm tofu, cooked lentil forms where recipes may mean dry and egg-containing noodles for a generic wheat-noodle identity. B7 applies the same rule: barley, courgette, cottage cheese, salt, smoked paprika and tortilla remain deferred in the first unlock tranche. No weak candidate is promoted merely to reduce a blocker count.
 
 ## Quantity / portion evidence
 
@@ -174,7 +174,7 @@ If Europe-selected fields cannot produce a coherent complete recipe but a fully 
 
 B5 merged through PR #17 at `5689b0e40c6c4d9d7040b0ee25b7cc41d898b751` with green post-merge validation and Pages deployment.
 
-### B6 / V1.0.10 candidate
+### B6 / V1.0.10 complete
 
 Deterministic Actions run `33445671486` measured:
 
@@ -186,6 +186,12 @@ Deterministic Actions run `33445671486` measured:
 - newly authoritative recipes: **none**.
 
 The quantity evidence therefore resolves or truthfully reclassifies 175 of B5's 202 unsupported-quantity events without guessing. Composition and semantic gaps still prevent a complete authoritative recipe.
+
+### B7 / V1.1.1 recipe-unlock composition
+
+B7 is deliberately bounded to three reviewed Ciqual forms selected for direct recipe-level value: raw quinoa (`9340`), raw shrimp/prawn (`10021`) and dry regular pasta (`9810`) as a transparent category-level match for canonical orzo/risoni. The official Ciqual 2025 source, Etalab licence, nutrient semantics, confidence codes and European-primary selection policy are unchanged.
+
+Against the frozen 76 authored recipes, B7 remains **0 / 76 authoritative** while reducing missing-density blockers from **141 to 133**. Unsupported quantity remains **27**, explicit ambiguous portions **20**, and mixed incompatible carbohydrate semantics **16**. Missing tracked nutrient fields are now reported separately from skipped ingredient blockers. Gate F's eight external recipes remain outside this authored baseline.
 
 ## Other European source state
 
