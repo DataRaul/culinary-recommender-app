@@ -1,3 +1,4 @@
+# Temporary branch-only B8 evidence and validation workflow; delete before PR.
 name: Nutrition B8 priority audit
 on:
   push:
