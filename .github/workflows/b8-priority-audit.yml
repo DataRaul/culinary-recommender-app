@@ -29,6 +29,8 @@ jobs:
       - run: npm run verify:wikibooks-gate-f
       - name: Install pinned Chromium
         run: npx playwright install --with-deps chromium
+      - name: Start static server
+        run: python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/culinary-http.log 2>&1 &
       - run: npm run test:browser
       - name: Download official USDA Foundation 2026-04 release
         run: |
