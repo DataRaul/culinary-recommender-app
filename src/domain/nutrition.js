@@ -22,6 +22,10 @@ import {
   matvaretabellenPortionConversionB15
 } from "../data/matvaretabellen-portions-b15.js";
 import {
+  MATVARETABELLEN_PORTION_SOURCE_B17,
+  matvaretabellenPortionConversionB17
+} from "../data/matvaretabellen-portions-b17.js";
+import {
   USDA_SR_LEGACY_PORTION_SOURCE_B8,
   usdaSrLegacyPortionConversion
 } from "../data/usda-sr-legacy-portions-b8.js";
@@ -111,6 +115,26 @@ const quantityToGrams = ingredient => {
         sourceUnit: matvaretabellenPortionB15.portionName,
         foodId: matvaretabellenPortionB15.foodId,
         foodName: matvaretabellenPortionB15.foodName
+      }
+    };
+  }
+
+  const matvaretabellenPortionB17 = matvaretabellenPortionConversionB17(ingredientId, unit);
+  if (matvaretabellenPortionB17) {
+    return {
+      grams: quantity * matvaretabellenPortionB17.gramsPerUnit,
+      reason: null,
+      quantityEvidence: {
+        state: matvaretabellenPortionB17.evidenceState,
+        sourceId: MATVARETABELLEN_PORTION_SOURCE_B17.id,
+        evidenceTranche: matvaretabellenPortionB17.evidenceTranche,
+        inputUnit: unit,
+        gramsPerUnit: matvaretabellenPortionB17.gramsPerUnit,
+        sourceUnit: matvaretabellenPortionB17.sourcePortionName,
+        sourcePortionId: matvaretabellenPortionB17.sourcePortionId,
+        sourcePortionUnit: matvaretabellenPortionB17.sourcePortionUnit,
+        foodId: matvaretabellenPortionB17.foodId,
+        foodName: matvaretabellenPortionB17.foodName
       }
     };
   }
@@ -284,7 +308,7 @@ export const publicNutritionSource = {
         compositionSource: USDA_FOUNDATION_COMPOSITION_SOURCE,
         compositionSources: [USDA_FOUNDATION_COMPOSITION_SOURCE, CIQUAL_RUNTIME_SOURCE_V1, MATVARETABELLEN_COMPOSITION_SOURCE_B9, MATVARETABELLEN_COMPOSITION_SOURCE_B10],
         portionSource: USDA_FOUNDATION_PORTION_SOURCE,
-        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, MATVARETABELLEN_PORTION_SOURCE_B15, USDA_SR_LEGACY_PORTION_SOURCE_B8],
+        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, MATVARETABELLEN_PORTION_SOURCE_B15, MATVARETABELLEN_PORTION_SOURCE_B17, USDA_SR_LEGACY_PORTION_SOURCE_B8],
         coverage,
         europeanPrimaryCoverage,
         identities,

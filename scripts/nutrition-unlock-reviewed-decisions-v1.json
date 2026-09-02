@@ -148,7 +148,7 @@
       "formMatch": "EXACT_SESAME_PASTE_TAHINI",
       "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
       "boundary": "B16 maps only canonical tahini from the exact source identity Sesame paste, tahini. It resolves the earlier B8 generic sesame-butter identity deferral but does not authorize generic sesame butter, sesame seed, tahini sauce/dressing, sweetened sesame products, or any household-unit conversion.",
-      "quantityState": "SEPARATE_PORTION_EVIDENCE_STILL_REQUIRED_FOR_AUTHORED_HOUSEHOLD_UNITS",
+      "quantityState": "EXACT_B17_TBSP_PORTION_EVIDENCE_AVAILABLE",
       "runtimeChange": true
     }
   },
@@ -197,6 +197,25 @@
       "gramsPerUnit": 3,
       "boundary": "B15 uses the published 3 g teaspoon row only for canonical ground turmeric. It does not authorize tablespoon arithmetic, whole turmeric root, or generic spice-family portion inference.",
       "roleSeparation": "B15 is portion evidence only. B11 independently supplies exact composition evidence for canonical ground turmeric.",
+      "runtimeChange": true
+    },
+    "tahini": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B17_PORTION",
+      "candidateClass": "PORTION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-portions-b17",
+      "foodId": "06.702",
+      "foodName": "Sesame paste, tahini",
+      "sourcePortionId": "spiseskje",
+      "publishedPortion": "tablespoon",
+      "sourcePortionUnit": "stk",
+      "sourceQuantity": 16,
+      "sourceUnit": "g",
+      "acceptedCanonicalUnits": [
+        "tbsp"
+      ],
+      "gramsPerUnit": 16,
+      "boundary": "B17 uses only the official food 06.702 source row id 'spiseskje': tablespoon = 16 g for canonical tahini. The same food's separate 'For a slice of bread' = 15 g row is not interchangeable. No teaspoon conversion, generic sesame-butter mapping, tahini-sauce mapping or household arithmetic is authorized.",
+      "roleSeparation": "B17 is portion evidence only. B16 independently supplies exact composition evidence for canonical tahini.",
       "runtimeChange": true
     }
   }
