@@ -18,6 +18,10 @@ import {
   matvaretabellenPortionConversion
 } from "../data/matvaretabellen-portions-b6.js";
 import {
+  MATVARETABELLEN_PORTION_SOURCE_B15,
+  matvaretabellenPortionConversionB15
+} from "../data/matvaretabellen-portions-b15.js";
+import {
   USDA_SR_LEGACY_PORTION_SOURCE_B8,
   usdaSrLegacyPortionConversion
 } from "../data/usda-sr-legacy-portions-b8.js";
@@ -89,6 +93,24 @@ const quantityToGrams = ingredient => {
         sourceUnit: matvaretabellenPortion.portionName,
         foodId: matvaretabellenPortion.foodId,
         foodName: matvaretabellenPortion.foodName
+      }
+    };
+  }
+
+  const matvaretabellenPortionB15 = matvaretabellenPortionConversionB15(ingredientId, unit);
+  if (matvaretabellenPortionB15) {
+    return {
+      grams: quantity * matvaretabellenPortionB15.gramsPerUnit,
+      reason: null,
+      quantityEvidence: {
+        state: matvaretabellenPortionB15.evidenceState,
+        sourceId: MATVARETABELLEN_PORTION_SOURCE_B15.id,
+        evidenceTranche: matvaretabellenPortionB15.evidenceTranche,
+        inputUnit: unit,
+        gramsPerUnit: matvaretabellenPortionB15.gramsPerUnit,
+        sourceUnit: matvaretabellenPortionB15.portionName,
+        foodId: matvaretabellenPortionB15.foodId,
+        foodName: matvaretabellenPortionB15.foodName
       }
     };
   }
@@ -262,7 +284,7 @@ export const publicNutritionSource = {
         compositionSource: USDA_FOUNDATION_COMPOSITION_SOURCE,
         compositionSources: [USDA_FOUNDATION_COMPOSITION_SOURCE, CIQUAL_RUNTIME_SOURCE_V1, MATVARETABELLEN_COMPOSITION_SOURCE_B9, MATVARETABELLEN_COMPOSITION_SOURCE_B10],
         portionSource: USDA_FOUNDATION_PORTION_SOURCE,
-        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, USDA_SR_LEGACY_PORTION_SOURCE_B8],
+        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, MATVARETABELLEN_PORTION_SOURCE_B15, USDA_SR_LEGACY_PORTION_SOURCE_B8],
         coverage,
         europeanPrimaryCoverage,
         identities,
