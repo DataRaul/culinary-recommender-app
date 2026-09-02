@@ -1,0 +1,296 @@
+name: Nutrition B18 finalize exact cottage-cheese composition
+
+on:
+  push:
+    branches:
+      - agent/nutrition-b18-cottage-cheese-exact-composition
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.event.head_commit.message == 'Add temporary B18 finalization workflow'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - name: Implement bounded B18 exact cottage-cheese composition evidence
+        run: |
+          cat > src/data/matvaretabellen-composition-b18.js <<'EOF'
+          // Bounded static composition evidence from the official Norwegian Food Composition Table 2026.
+          // This tranche is composition-only and does not alter the separate household-portion contracts.
+          // Only the exact reviewed Cottage cheese identity is bundled; no neighboring cheese/dairy identity is inferred.
+
+          export const MATVARETABELLEN_COMPOSITION_SOURCE_B18 = Object.freeze({
+            id: "matvaretabellen-2026-composition-b18",
+            authority: "Norwegian Food Safety Authority (Mattilsynet)",
+            dataset: "Norwegian Food Composition Table 2026",
+            releaseDate: "2026-01",
+            apiUrl: "https://www.matvaretabellen.no/api/en/foods.json",
+            website: "https://www.matvaretabellen.no/en/cottage-cheese/",
+            license: "NLOD 2.0 / Norsk lisens for offentlige data",
+            requiredAttribution: "Norwegian Food Composition Table 2026. The Norwegian Food Safety Authority. www.matvaretabellen.no",
+            country: "Norway",
+            region: "Europe",
+            state: "BOUNDED_STATIC_REVIEWED_COMPOSITION_EVIDENCE",
+            runtimePolicy: "ELIGIBLE_VIA_EUROPEAN_PRIMARY_POLICY_V1",
+            evidenceTranche: "B18",
+            runtimeFetch: false,
+            compositionScope: "EXACT_REVIEWED_FOOD_RECORDS_ONLY",
+            carbohydrateSemantic: "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO"
+          });
+
+          const cottageCheese = Object.freeze({
+            canonicalIngredientId: "cottage_cheese",
+            foodId: "01.028",
+            foodName: "Cottage cheese",
+            foodEx2: "Cottage cheese (A02QG)",
+            foodForm: "EXACT_COTTAGE_CHEESE",
+            matchConfidence: "high",
+            matchNotes: "Exact source identity explicitly names cottage cheese without a fat-level qualifier. It does not authorize ricotta, quark, cream cheese, curd cheese, or another dairy identity.",
+            per100g: Object.freeze({
+              energyKcal: 97,
+              proteinG: 13.0,
+              carbohydrateG: 1.5,
+              fatG: 4.3,
+              fibreG: 0.0
+            }),
+            fieldEvidence: Object.freeze({
+              energyKcal: Object.freeze({ sourceCode: null, valueType: "published", method: "Published energy in 100 g: 406 kJ / 97 kcal" }),
+              proteinG: Object.freeze({ sourceCode: "114a", valueType: "Best estimate", method: "Data from the industry to the Food Composition Table 2021, unspecified/verified value" }),
+              carbohydrateG: Object.freeze({ sourceCode: "MI0181", valueType: "Best estimate", method: "Carbohydrate, available calculated from sugar and starch (CHO = SUGAR + STARCH)" }),
+              fatG: Object.freeze({ sourceCode: "114a", valueType: "Best estimate", method: "Data from the industry to the Food Composition Table 2021, unspecified/verified value" }),
+              fibreG: Object.freeze({ sourceCode: "50", valueType: "Logical zero", method: "Estimated as a naturally occurring zero value, not analysed" })
+            }),
+            evidenceState: "MATVARETABELLEN_2026_EXACT_COMPOSITION_MATCH",
+            sourceId: MATVARETABELLEN_COMPOSITION_SOURCE_B18.id,
+            evidenceTranche: "B18"
+          });
+
+          export const MATVARETABELLEN_COMPOSITION_DENSITIES_B18 = Object.freeze({
+            cottage_cheese: cottageCheese
+          });
+
+          export const matvaretabellenCompositionB18ForIngredient = ingredientId => MATVARETABELLEN_COMPOSITION_DENSITIES_B18[ingredientId] || null;
+          EOF
+
+          cat > tests/matvaretabellen-composition-b18.test.js <<'EOF'
+          import test from "node:test";
+          import assert from "node:assert/strict";
+          import {
+            MATVARETABELLEN_COMPOSITION_DENSITIES_B18,
+            MATVARETABELLEN_COMPOSITION_SOURCE_B18,
+            matvaretabellenCompositionB18ForIngredient
+          } from "../src/data/matvaretabellen-composition-b18.js";
+          import { AUTHORED_RECIPES } from "../src/data/corpus-v1.js";
+          import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
+          import { buildNutritionCoverageAudit } from "../src/domain/nutrition-coverage-audit.js";
+          import {
+            EUROPEAN_PRIMARY_DENSITIES_V1,
+            europeanPrimaryPolicyCoverage,
+            selectEuropeanPrimaryNutrient
+          } from "../src/domain/nutrition-source-policy.js";
+
+          test("B18 source is explicit static Matvaretabellen standalone cottage-cheese composition evidence", () => {
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B18.id, "matvaretabellen-2026-composition-b18");
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B18.authority, "Norwegian Food Safety Authority (Mattilsynet)");
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B18.releaseDate, "2026-01");
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B18.evidenceTranche, "B18");
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B18.runtimeFetch, false);
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B18.state, "BOUNDED_STATIC_REVIEWED_COMPOSITION_EVIDENCE");
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B18.runtimePolicy, "ELIGIBLE_VIA_EUROPEAN_PRIMARY_POLICY_V1");
+            assert.match(MATVARETABELLEN_COMPOSITION_SOURCE_B18.license, /NLOD 2\.0/);
+          });
+
+          test("B18 admits exactly the official Cottage cheese identity and direct published tracked fields", () => {
+            assert.deepEqual(Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B18), ["cottage_cheese"]);
+            const cottage = matvaretabellenCompositionB18ForIngredient("cottage_cheese");
+            assert.equal(cottage.foodId, "01.028");
+            assert.equal(cottage.foodName, "Cottage cheese");
+            assert.equal(cottage.foodEx2, "Cottage cheese (A02QG)");
+            assert.equal(cottage.foodForm, "EXACT_COTTAGE_CHEESE");
+            assert.deepEqual(cottage.per100g, {
+              energyKcal: 97,
+              proteinG: 13,
+              carbohydrateG: 1.5,
+              fatG: 4.3,
+              fibreG: 0
+            });
+            assert.equal(cottage.fieldEvidence.proteinG.sourceCode, "114a");
+            assert.equal(cottage.fieldEvidence.carbohydrateG.sourceCode, "MI0181");
+            assert.equal(cottage.fieldEvidence.fatG.sourceCode, "114a");
+            assert.equal(cottage.fieldEvidence.fibreG.sourceCode, "50");
+            assert.equal(cottage.fieldEvidence.fibreG.valueType, "Logical zero");
+          });
+
+          test("B18 exact identity does not bleed into neighboring cheese or dairy identities", () => {
+            for (const unsupported of ["ricotta", "quark", "cream_cheese", "curd_cheese"]) {
+              assert.equal(matvaretabellenCompositionB18ForIngredient(unsupported), null, unsupported);
+              const selection = selectEuropeanPrimaryNutrient(unsupported, "carbohydrateG");
+              assert.notEqual(selection?.sourceId, MATVARETABELLEN_COMPOSITION_SOURCE_B18.id, unsupported);
+            }
+          });
+
+          test("European-primary policy selects exact B18 cottage-cheese provenance for every tracked nutrient", () => {
+            for (const nutrient of ["energyKcal", "proteinG", "carbohydrateG", "fatG", "fibreG"]) {
+              const selection = selectEuropeanPrimaryNutrient("cottage_cheese", nutrient);
+              assert.equal(selection.source, "matvaretabellen", nutrient);
+              assert.equal(selection.sourceId, MATVARETABELLEN_COMPOSITION_SOURCE_B18.id, nutrient);
+              assert.equal(selection.sourceIdentifier, "01.028", nutrient);
+              assert.equal(selection.evidenceTranche, "B18", nutrient);
+              assert.equal(selection.selectionReason, "ONLY_REVIEWED_SOURCE_AVAILABLE", nutrient);
+            }
+            assert.equal(selectEuropeanPrimaryNutrient("cottage_cheese", "carbohydrateG").semantic, "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO");
+            const coverage = europeanPrimaryPolicyCoverage(["cottage_cheese"]);
+            assert.equal(coverage.matvaretabellenB18SelectedCount, 5);
+            assert.equal(coverage.matvaretabellenSelectedCount, 5);
+          });
+
+          test("B18 composition evidence does not authorize household portions", () => {
+            const cottage = matvaretabellenCompositionB18ForIngredient("cottage_cheese");
+            assert.equal(cottage.gramsPerUnit, undefined);
+            assert.equal(cottage.units, undefined);
+            assert.equal(cottage.sourcePortionId, undefined);
+          });
+
+          test("B18 exact cottage cheese unlocks only the recipe whose other evidence is complete", () => {
+            const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
+            assert.equal(audit.authoritativeRecipeCount, 15);
+            const frittata = audit.recipeDetails.find(detail => detail.recipeId === "spanish_pepper_cottage_frittata");
+            assert.equal(frittata.authoritative, true);
+            assert.deepEqual(frittata.blockers, []);
+            const pasta = audit.recipeDetails.find(detail => detail.recipeId === "med_cottage_tomato_pasta");
+            assert.equal(pasta.authoritative, false);
+            assert.deepEqual(pasta.blockers.map(blocker => [blocker.ingredientId, blocker.reason]), [["passata", "missing_density"]]);
+          });
+
+          test("B18 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {
+            const recipe = {
+              ingredients: [
+                { canonicalIngredientId: "cottage_cheese", quantity: 100, unit: "g" },
+                { canonicalIngredientId: "synthetic_usda", quantity: 100, unit: "g" }
+              ],
+              serving: { servings: 1 }
+            };
+            const densityMap = {
+              cottage_cheese: EUROPEAN_PRIMARY_DENSITIES_V1.cottage_cheese,
+              synthetic_usda: {
+                per100g: { energyKcal: 1, proteinG: 1, carbohydrateG: 1, fatG: 1, fibreG: 1 },
+                provenanceByNutrient: {
+                  carbohydrateG: { semantic: "CARBOHYDRATE_BY_DIFFERENCE_USDA_1005" }
+                }
+              }
+            };
+            const result = calculatePerServingFromDensities(recipe, densityMap);
+            assert.equal(result.nutrientCoverage.carbohydrateG.semanticCompatibility, false);
+            assert.equal(result.nutrientCoverage.carbohydrateG.semanticIssue, "mixed_incompatible_carbohydrate_semantics");
+            assert.equal(result.perServing.carbohydrateG, null);
+            assert.equal(result.complete, false);
+          });
+          EOF
+
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          p = Path('src/domain/nutrition-source-policy.js')
+          s = p.read_text()
+          old = '''import {\n  MATVARETABELLEN_COMPOSITION_DENSITIES_B16,\n  MATVARETABELLEN_COMPOSITION_SOURCE_B16\n} from "../data/matvaretabellen-composition-b16.js";'''
+          new = old + '''\nimport {\n  MATVARETABELLEN_COMPOSITION_DENSITIES_B18,\n  MATVARETABELLEN_COMPOSITION_SOURCE_B18\n} from "../data/matvaretabellen-composition-b18.js";'''
+          if old not in s: raise SystemExit('B18 import anchor missing')
+          s = s.replace(old, new, 1)
+
+          old = '''if (overlappingMatvaretabellenB16Ids.length) {\n  throw new Error(`Matvaretabellen B16 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB16Ids.sort().join(", ")}`);\n}\n'''
+          new = old + '''\nconst matvaretabellenB18Ids = Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B18);\nconst overlappingMatvaretabellenB18Ids = matvaretabellenB18Ids.filter(ingredientId =>\n  Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) ||\n  Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B9, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B11, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B14, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B16, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13, ingredientId)\n);\nif (overlappingMatvaretabellenB18Ids.length) {\n  throw new Error(`Matvaretabellen B18 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB18Ids.sort().join(", ")}`);\n}\n'''
+          if old not in s: raise SystemExit('B18 overlap anchor missing')
+          s = s.replace(old, new, 1)
+
+          old = '''  if (source === "matvaretabellen-b16") {\n    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B16, MATVARETABELLEN_COMPOSITION_SOURCE_B16);\n  }\n'''
+          new = old + '''\n  if (source === "matvaretabellen-b18") {\n    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B18, MATVARETABELLEN_COMPOSITION_SOURCE_B18);\n  }\n'''
+          if old not in s: raise SystemExit('B18 source anchor missing')
+          s = s.replace(old, new, 1)
+
+          old = '''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b14") ||\n    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b16");'''
+          new = '''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b14") ||\n    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b16") ||\n    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b18");'''
+          if old not in s: raise SystemExit('B18 standalone anchor missing')
+          s = s.replace(old, new, 1)
+
+          old = '''    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B14),\n    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B16)'''
+          new = '''    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B14),\n    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B16),\n    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B18)'''
+          if old not in s: raise SystemExit('B18 density anchor missing')
+          s = s.replace(old, new, 1)
+
+          old = '''    matvaretabellenB16SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B16").length,'''
+          new = old + '''\n    matvaretabellenB18SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B18").length,'''
+          if old not in s: raise SystemExit('B18 coverage anchor missing')
+          s = s.replace(old, new, 1)
+          p.write_text(s)
+
+          p = Path('scripts/nutrition-unlock-reviewed-decisions-v1.json')
+          data = json.loads(p.read_text())
+          data['decisions']['cottage_cheese'] = {
+            'decision': 'ADMIT_EXACT_MATVARETABELLEN_2026_B18',
+            'candidateClass': 'COMPOSITION_EVIDENCE',
+            'sourceId': 'matvaretabellen-2026-composition-b18',
+            'foodId': '01.028',
+            'foodName': 'Cottage cheese',
+            'formMatch': 'EXACT_COTTAGE_CHEESE',
+            'carbohydrateSemantic': 'AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO',
+            'boundary': 'B18 maps only canonical cottage_cheese from exact source identity Cottage cheese. It resolves the earlier B8 full-fat-specific and unpublished-fibre deferral without broadening to ricotta, quark, cream cheese, curd cheese, or another dairy identity.',
+            'quantityState': 'COMPOSITION_ONLY_NO_HOUSEHOLD_PORTION_AUTHORIZATION',
+            'runtimeChange': True
+          }
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+
+          p = Path('THIRD_PARTY_NOTICES.md')
+          s = p.read_text()
+          old = 'B6, B15 and B17 are separate bounded portion-evidence roles. B9, B11, B14 and B16 are standalone exact composition roles.'
+          new = 'B6, B15 and B17 are separate bounded portion-evidence roles. B9, B11, B14, B16 and B18 are standalone exact composition roles.'
+          if old not in s: raise SystemExit('notice anchor missing')
+          p.write_text(s.replace(old, new, 1))
+
+          p = Path('tests/nutrition-coverage-audit.test.js')
+          s = p.read_text()
+          s = s.replace('test("B17 exact tahini tablespoon evidence unlocks only source-backed authored tahini recipes", () => {', 'test("B18 exact cottage-cheese composition adds one bounded authored unlock without weakening fail-closed controls", () => {', 1)
+          s = s.replace('assert.equal(audit.authoritativeRecipeCount, 14);', 'assert.equal(audit.authoritativeRecipeCount, 15);', 1)
+          s = s.replace('assert.equal(audit.estimateRecipeCount, 62);', 'assert.equal(audit.estimateRecipeCount, 61);', 1)
+          anchor = '    "middle_eastern_red_lentil_carrot_soup"\n  ]);'
+          replacement = '    "middle_eastern_red_lentil_carrot_soup",\n    "spanish_pepper_cottage_frittata"\n  ]);'
+          if anchor not in s: raise SystemExit('authoritative list anchor missing')
+          s = s.replace(anchor, replacement, 1)
+          s = s.replace('missing_density: 99,', 'missing_density: 97,', 1)
+          p.write_text(s)
+          PY
+      - name: Run focused B18 validation
+        run: node --test tests/matvaretabellen-composition-b18.test.js tests/nutrition-coverage-audit.test.js tests/european-evidence.test.js tests/european-portion-evidence.test.js
+      - name: Run full deterministic suite
+        run: npm test
+      - name: Verify measured B18 truth
+        run: |
+          node scripts/report-nutrition-unlock-priorities.mjs > /tmp/b18-report.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const report = JSON.parse(fs.readFileSync('/tmp/b18-report.json', 'utf8'));
+          const expectedBlockers = { ambiguous_portion_unit: 20, missing_density: 97, unsupported_quantity_unit: 7 };
+          const expectedFields = { carbohydrateG: 9, energyKcal: 5, fatG: 18, fibreG: 11 };
+          if (report.authoredRecipeCount !== 76) throw new Error(`authored=${report.authoredRecipeCount}`);
+          if (report.authoritativeRecipeCount !== 15) throw new Error(`authoritative=${report.authoritativeRecipeCount}`);
+          if (JSON.stringify(report.blockerCounts) !== JSON.stringify(expectedBlockers)) throw new Error(`blockers=${JSON.stringify(report.blockerCounts)}`);
+          if (JSON.stringify(report.missingNutrientFieldCounts) !== JSON.stringify(expectedFields)) throw new Error(`fields=${JSON.stringify(report.missingNutrientFieldCounts)}`);
+          if (report.semanticIssueCounts?.mixed_incompatible_carbohydrate_semantics !== 16) throw new Error(`semantic=${JSON.stringify(report.semanticIssueCounts)}`);
+          console.log(JSON.stringify({authoredRecipeCount: report.authoredRecipeCount, authoritativeRecipeCount: report.authoritativeRecipeCount, estimateRecipeCount: report.authoredRecipeCount - report.authoritativeRecipeCount, blockerCounts: report.blockerCounts, missingNutrientFieldCounts: report.missingNutrientFieldCounts, semanticIssueCounts: report.semanticIssueCounts}, null, 2));
+          NODE
+      - name: Remove temporary B18 workflows and commit finalized tranche
+        run: |
+          git rm .github/workflows/nutrition-b18-cottage-diagnostic.yml .github/workflows/nutrition-b18-finalize.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add THIRD_PARTY_NOTICES.md scripts/nutrition-unlock-reviewed-decisions-v1.json src/data/matvaretabellen-composition-b18.js src/domain/nutrition-source-policy.js tests/matvaretabellen-composition-b18.test.js tests/nutrition-coverage-audit.test.js
+          git commit -m "Nutrition B18: add exact cottage cheese composition evidence"
+          git push origin HEAD:agent/nutrition-b18-cottage-cheese-exact-composition
