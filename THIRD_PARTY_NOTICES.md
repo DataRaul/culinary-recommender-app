@@ -24,6 +24,6 @@ Bounded nutrition evidence may include static values derived from the Norwegian 
 - Website: https://www.matvaretabellen.no/
 - Licence: Norwegian Licence for Open Government Data (NLOD) 2.0
 - Attribution: Norwegian Food Composition Table 2026. The Norwegian Food Safety Authority. www.matvaretabellen.no
-- Reuse boundary: only explicitly reviewed source rows and fields identified by project provenance are bundled. The application does not fetch Matvaretabellen at runtime and does not infer unreviewed food identities from nearby records.
+- Reuse boundary: only explicitly reviewed source rows and fields identified by project provenance are bundled. The application does not fetch Matvaretabellen at runtime and does not infer unreviewed food identities, portions or conversions from nearby records.
 
-The B6 household-portion evidence and bounded B9/B10/B11/B12/B13/B14 composition evidence are separate source roles. B10, B12 and B13 are further restricted to exact tracked-field completion where existing reviewed composition has no value. Admission of one role does not silently authorize another.
+B6 and B15 are separate bounded portion-evidence roles. B9, B11 and B14 are standalone exact composition roles. B10, B12 and B13 are exact tracked-field completion roles where existing reviewed composition has no value. Composition evidence never implies portion evidence, portion evidence never implies composition evidence, and admission in any one tranche does not silently authorize another role or food identity.
