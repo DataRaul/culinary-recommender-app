@@ -8,6 +8,7 @@ import {
   matvaretabellenAmbiguousPortion,
   matvaretabellenPortionConversion
 } from "../src/data/matvaretabellen-portions-b6.js";
+import { MATVARETABELLEN_PORTION_SOURCE_B15 } from "../src/data/matvaretabellen-portions-b15.js";
 import { USDA_SR_LEGACY_PORTION_SOURCE_B8 } from "../src/data/usda-sr-legacy-portions-b8.js";
 import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
 import { USDA_FOUNDATION_DENSITIES } from "../src/data/nutrition-evidence.js";
@@ -116,15 +117,17 @@ test("runtime integrates B6 quantity provenance without replacing existing USDA 
   assert.notEqual(bananaResult.used[0].quantityEvidence.sourceId, MATVARETABELLEN_PORTION_SOURCE_B6.id);
 });
 
-test("public nutrition evidence exposes all bounded portion sources without making SR Legacy a composition source", () => {
+test("public nutrition evidence exposes all bounded portion sources without making quantity-only tranches composition sources", () => {
   const estimate = publicNutritionSource.estimate({
     ingredients: [{ canonicalIngredientId: "banana", quantity: 100, unit: "g" }],
     serving: { servings: 1 },
     nutrition: { perServing: { energyKcal: 1 }, estimationState: "INFERRED_ESTIMATE", confidence: "low" }
   });
-  assert.equal(estimate.evidence.portionSources.length, 3);
+  assert.equal(estimate.evidence.portionSources.length, 4);
   assert.equal(estimate.evidence.portionSources[1].id, MATVARETABELLEN_PORTION_SOURCE_B6.id);
-  assert.equal(estimate.evidence.portionSources[2].id, USDA_SR_LEGACY_PORTION_SOURCE_B8.id);
+  assert.equal(estimate.evidence.portionSources[2].id, MATVARETABELLEN_PORTION_SOURCE_B15.id);
+  assert.equal(estimate.evidence.portionSources[3].id, USDA_SR_LEGACY_PORTION_SOURCE_B8.id);
   assert.equal(USDA_SR_LEGACY_PORTION_SOURCE_B8.compositionUse, "PROHIBITED_IN_THIS_TRANCHE");
+  assert.equal(estimate.evidence.sources.some(source => source.id === MATVARETABELLEN_PORTION_SOURCE_B15.id), false);
   assert.equal(estimate.evidence.sources.some(source => source.id === USDA_SR_LEGACY_PORTION_SOURCE_B8.id), false);
 });
