@@ -162,6 +162,20 @@
       "boundary": "B18 maps only canonical cottage_cheese from exact source identity Cottage cheese. It resolves the earlier B8 full-fat-specific and unpublished-fibre deferral without broadening to ricotta, quark, cream cheese, curd cheese, or another dairy identity.",
       "quantityState": "COMPOSITION_ONLY_NO_HOUSEHOLD_PORTION_AUTHORIZATION",
       "runtimeChange": true
+    },
+    "bulgur": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B19",
+      "candidateClass": "COMPOSITION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-composition-b19",
+      "foodId": "05.233",
+      "foodName": "Bulgur, uncooked",
+      "scientificName": "Triticum aestivum L.",
+      "foodEx2": "Bulgur (A004G)",
+      "formMatch": "EXACT_UNCOOKED_BULGUR",
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B19 maps only canonical bulgur to exact source identity Bulgur, uncooked. All three authored bulgur gram inputs are hydrated or cooked by subsequent recipe instructions, establishing pre-cooking form. It does not authorize cooked bulgur, generic wheat or grains, or any household portion from the same source row.",
+      "quantityState": "COMPOSITION_ONLY_NO_HOUSEHOLD_PORTION_AUTHORIZATION",
+      "runtimeChange": true
     }
   },
   "portionEvidenceDecisions": {
