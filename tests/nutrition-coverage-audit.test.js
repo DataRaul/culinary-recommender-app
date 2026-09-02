@@ -31,11 +31,11 @@ test("audit preserves every fail-closed shortfall class rather than treating par
   assert.ok(Object.keys(audit.missingNutrientFieldCounts).length > 0, "expected current corpus to expose tracked nutrient field gaps");
 });
 
-test("B17 exact tahini tablespoon evidence unlocks only source-backed authored tahini recipes", () => {
+test("B18 exact cottage-cheese composition adds one bounded authored unlock without weakening fail-closed controls", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
-  assert.equal(audit.authoritativeRecipeCount, 14);
-  assert.equal(audit.estimateRecipeCount, 62);
+  assert.equal(audit.authoritativeRecipeCount, 15);
+  assert.equal(audit.estimateRecipeCount, 61);
   assert.deepEqual(audit.authoritativeRecipeIds, [
     "indian_chicken_spinach_curry",
     "indian_chickpea_cauliflower_curry",
@@ -50,11 +50,12 @@ test("B17 exact tahini tablespoon evidence unlocks only source-backed authored t
     "med_quinoa_egg_spinach_bowl",
     "middle_eastern_chicken_tahini_bowl",
     "middle_eastern_chickpea_tahini_plate",
-    "middle_eastern_red_lentil_carrot_soup"
+    "middle_eastern_red_lentil_carrot_soup",
+    "spanish_pepper_cottage_frittata"
   ]);
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
-    missing_density: 99,
+    missing_density: 97,
     unsupported_quantity_unit: 7
   });
   assert.deepEqual(audit.missingNutrientFieldCounts, {

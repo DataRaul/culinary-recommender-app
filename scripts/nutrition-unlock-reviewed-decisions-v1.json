@@ -150,6 +150,18 @@
       "boundary": "B16 maps only canonical tahini from the exact source identity Sesame paste, tahini. It resolves the earlier B8 generic sesame-butter identity deferral but does not authorize generic sesame butter, sesame seed, tahini sauce/dressing, sweetened sesame products, or any household-unit conversion.",
       "quantityState": "EXACT_B17_TBSP_PORTION_EVIDENCE_AVAILABLE",
       "runtimeChange": true
+    },
+    "cottage_cheese": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B18",
+      "candidateClass": "COMPOSITION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-composition-b18",
+      "foodId": "01.028",
+      "foodName": "Cottage cheese",
+      "formMatch": "EXACT_COTTAGE_CHEESE",
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B18 maps only canonical cottage_cheese from exact source identity Cottage cheese. It resolves the earlier B8 full-fat-specific and unpublished-fibre deferral without broadening to ricotta, quark, cream cheese, curd cheese, or another dairy identity.",
+      "quantityState": "COMPOSITION_ONLY_NO_HOUSEHOLD_PORTION_AUTHORIZATION",
+      "runtimeChange": true
     }
   },
   "portionEvidenceDecisions": {
