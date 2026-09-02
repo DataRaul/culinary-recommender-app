@@ -1,6 +1,6 @@
 {
   "schemaVersion": "nutrition-unlock-reviewed-decisions-v1",
-  "reviewDate": "2026-09-01",
+  "reviewDate": "2026-09-02",
   "purpose": "Preserve post-B8 evidence decisions without rewriting historical tranche ledgers or weakening canonical identity boundaries.",
   "decisions": {
     "smoked_paprika": {
@@ -116,6 +116,18 @@
       "completedTrackedFields": ["fatG"],
       "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
       "boundary": "B13 may fill only cherry_tomato fat because that tracked field is absent from all existing reviewed USDA/Ciqual candidates. Populated Ciqual B5 fields remain selected. Imported origin does not broaden this row to generic tomato, cooked tomato or non-cherry varieties.",
+      "runtimeChange": true
+    },
+    "courgette": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B14",
+      "candidateClass": "COMPOSITION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-composition-b14",
+      "foodId": "06.085",
+      "foodName": "Squash, zucchini, raw",
+      "scientificName": "Cucurbita pepo L.",
+      "formMatch": "EXACT_RAW_COURGETTE_ZUCCHINI",
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B14 maps only canonical courgette, whose ontology explicitly includes zucchini as an alias. It does not authorize generic squash, pumpkin, cooked courgette or cultivar-specific inference.",
       "runtimeChange": true
     }
   }
