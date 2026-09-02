@@ -5,9 +5,8 @@ import {
   MATVARETABELLEN_COMPOSITION_SOURCE_B16,
   matvaretabellenCompositionB16ForIngredient
 } from "../src/data/matvaretabellen-composition-b16.js";
-import { AUTHORED_RECIPES } from "../src/data/corpus-v1.js";
-import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
-import { buildNutritionCoverageAudit } from "../src/domain/nutrition-coverage-audit.js";
+import { MATVARETABELLEN_PORTION_SOURCE_B17 } from "../src/data/matvaretabellen-portions-b17.js";
+import { calculatePerServingFromDensities } from "../src/domain/nutrition.js";
 import {
   EUROPEAN_PRIMARY_DENSITIES_V1,
   europeanPrimaryPolicyCoverage,
@@ -70,13 +69,25 @@ test("European-primary policy selects exact B16 tahini provenance for every trac
 });
 
 test("B16 composition evidence does not invent tahini household-unit conversions", () => {
-  const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  const tahiniBlockers = audit.recipeDetails.flatMap(detail => detail.blockers
-    .filter(blocker => blocker.ingredientId === "tahini")
-    .map(blocker => ({ recipeId: detail.recipeId, reason: blocker.reason })));
-  assert.equal(tahiniBlockers.length, 3);
-  assert.deepEqual([...new Set(tahiniBlockers.map(item => item.reason))], ["unsupported_quantity_unit"]);
-  assert.equal(audit.authoritativeRecipeCount, 12);
+  const tahini = matvaretabellenCompositionB16ForIngredient("tahini");
+  assert.equal(tahini.gramsPerUnit, undefined);
+  assert.equal(tahini.units, undefined);
+  assert.equal(tahini.sourcePortionId, undefined);
+
+  const tablespoon = calculatePerServingFromDensities({
+    ingredients: [{ canonicalIngredientId: "tahini", quantity: 1, unit: "tbsp" }],
+    serving: { servings: 1 }
+  }, EUROPEAN_PRIMARY_DENSITIES_V1);
+  assert.equal(tablespoon.complete, true);
+  assert.equal(tablespoon.used[0].quantityEvidence.sourceId, MATVARETABELLEN_PORTION_SOURCE_B17.id);
+  assert.notEqual(tablespoon.used[0].quantityEvidence.sourceId, MATVARETABELLEN_COMPOSITION_SOURCE_B16.id);
+
+  const teaspoon = calculatePerServingFromDensities({
+    ingredients: [{ canonicalIngredientId: "tahini", quantity: 1, unit: "tsp" }],
+    serving: { servings: 1 }
+  }, EUROPEAN_PRIMARY_DENSITIES_V1);
+  assert.equal(teaspoon.complete, false);
+  assert.equal(teaspoon.skipped[0].reason, "unsupported_quantity_unit");
 });
 
 test("B16 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {
