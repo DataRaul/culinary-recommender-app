@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   diagnose:
-    if: github.event.head_commit.message == 'Repair B20 cod diagnostic recipe identity'
+    if: github.event.head_commit.message == 'Repair B20 cod diagnostic authored form'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +32,7 @@ jobs:
             }));
           assert.equal(rows.length, 1);
           assert.equal(rows[0].recipeId, 'med_cod_chickpea_tomato_stew');
-          assert.deepEqual([rows[0].ingredient.quantity, rows[0].ingredient.unit, rows[0].ingredient.preparation], [320, 'g', 'skinless fillet']);
+          assert.deepEqual([rows[0].ingredient.quantity, rows[0].ingredient.unit, rows[0].ingredient.preparation], [300, 'g', 'large pieces']);
           assert.ok(rows[0].instructions.some(text => /cod/i.test(text)));
           assert.ok(rows[0].instructions.some(text => /until cooked|cook/i.test(text)), 'recipe must establish cooking after ingredient declaration');
           console.log(JSON.stringify(rows, null, 2));
