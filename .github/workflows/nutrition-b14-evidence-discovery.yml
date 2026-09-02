@@ -1,0 +1,48 @@
+name: Nutrition B14 evidence discovery
+
+on:
+  push:
+    branches:
+      - agent/nutrition-b14-evidence-discovery
+
+permissions:
+  contents: read
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Inspect exact Matvaretabellen targets
+        shell: bash
+        run: |
+          node --input-type=module <<'EOF'
+          const url = 'https://www.matvaretabellen.no/api/en/foods.json';
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`fetch failed ${response.status}`);
+          const data = await response.json();
+          const targets = ['06.085', '06.266', '06.153'];
+          const seen = new Set();
+          const walk = (value, path = '$') => {
+            if (value && typeof value === 'object') {
+              let serialized = '';
+              try { serialized = JSON.stringify(value); } catch {}
+              for (const target of targets) {
+                if (serialized.includes(target)) {
+                  const key = `${target}:${path}`;
+                  if (!seen.has(key)) {
+                    seen.add(key);
+                    console.log(`TARGET ${target} AT ${path}`);
+                    console.log(JSON.stringify(value, null, 2));
+                  }
+                }
+              }
+              if (Array.isArray(value)) value.forEach((v, i) => walk(v, `${path}[${i}]`));
+              else Object.entries(value).forEach(([k,v]) => walk(v, `${path}.${k}`));
+            }
+          };
+          walk(data);
+          EOF
