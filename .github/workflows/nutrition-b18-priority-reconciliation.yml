@@ -1,0 +1,24 @@
+name: Nutrition B18 priority reconciliation
+
+on:
+  push:
+    branches:
+      - agent/nutrition-b18-priority-reconciliation
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - name: Regenerate merged B17 nutrition unlock priorities
+        run: |
+          echo '===B18_PRIORITY_REPORT_BEGIN==='
+          node scripts/report-nutrition-unlock-priorities.mjs
+          echo '===B18_PRIORITY_REPORT_END==='
