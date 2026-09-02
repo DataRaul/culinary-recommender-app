@@ -31,23 +31,29 @@ test("audit preserves every fail-closed shortfall class rather than treating par
   assert.ok(Object.keys(audit.missingNutrientFieldCounts).length > 0, "expected current corpus to expose tracked nutrient field gaps");
 });
 
-test("B8-B14 exact evidence preserves the six authoritative recipes while converting courgette density gaps into explicit quantity blockers", () => {
+test("B15 separate exact portion evidence resolves only source-backed quantities and unlocks six recipes without manufactured conversions", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
-  assert.equal(audit.authoritativeRecipeCount, 6);
-  assert.equal(audit.estimateRecipeCount, 70);
+  assert.equal(audit.authoritativeRecipeCount, 12);
+  assert.equal(audit.estimateRecipeCount, 64);
   assert.deepEqual(audit.authoritativeRecipeIds, [
     "indian_chicken_spinach_curry",
     "indian_chickpea_cauliflower_curry",
+    "indian_red_lentil_spinach_dal",
+    "indian_turmeric_chicken_pea_rice",
     "italian_mushroom_pea_orzo",
     "italian_red_lentil_pasta",
+    "med_chicken_orzo_vegetables",
+    "med_lemon_chicken_couscous",
     "med_prawn_tomato_couscous",
-    "med_quinoa_egg_spinach_bowl"
+    "med_quinoa_chickpea_bowl",
+    "med_quinoa_egg_spinach_bowl",
+    "middle_eastern_red_lentil_carrot_soup"
   ]);
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
     missing_density: 102,
-    unsupported_quantity_unit: 31
+    unsupported_quantity_unit: 7
   });
   assert.deepEqual(audit.missingNutrientFieldCounts, {
     carbohydrateG: 9,
