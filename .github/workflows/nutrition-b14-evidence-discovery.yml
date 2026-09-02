@@ -11,6 +11,7 @@ permissions:
 jobs:
   diagnostic:
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,24 +26,11 @@ jobs:
           if (!response.ok) throw new Error(`fetch failed ${response.status}`);
           const data = await response.json();
           const targets = ['06.085', '06.266', '06.153'];
-          const seen = new Set();
-          const walk = (value, path = '$') => {
-            if (value && typeof value === 'object') {
-              let serialized = '';
-              try { serialized = JSON.stringify(value); } catch {}
-              for (const target of targets) {
-                if (serialized.includes(target)) {
-                  const key = `${target}:${path}`;
-                  if (!seen.has(key)) {
-                    seen.add(key);
-                    console.log(`TARGET ${target} AT ${path}`);
-                    console.log(JSON.stringify(value, null, 2));
-                  }
-                }
-              }
-              if (Array.isArray(value)) value.forEach((v, i) => walk(v, `${path}[${i}]`));
-              else Object.entries(value).forEach(([k,v]) => walk(v, `${path}.${k}`));
-            }
-          };
-          walk(data);
+          console.log('ROOT', Array.isArray(data) ? `array:${data.length}` : Object.keys(data));
+          const rows = Array.isArray(data) ? data : Object.values(data).flatMap(v => Array.isArray(v) ? v : []);
+          for (const target of targets) {
+            const matches = rows.filter(row => JSON.stringify(row).includes(target));
+            console.log(`TARGET ${target} MATCHES ${matches.length}`);
+            for (const row of matches.slice(0, 5)) console.log(JSON.stringify(row, null, 2));
+          }
           EOF
