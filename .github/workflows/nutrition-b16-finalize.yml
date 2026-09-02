@@ -1,0 +1,208 @@
+name: Nutrition B16 finalize
+
+on:
+  push:
+    branches:
+      - agent/nutrition-b16-tahini-matvaretabellen-unlock
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - name: Apply bounded B16 integration
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          p = Path('src/domain/nutrition-source-policy.js')
+          s = p.read_text()
+          def rep(old, new):
+              global s
+              if s.count(old) != 1:
+                  raise SystemExit(f'expected exactly one policy match, found {s.count(old)}: {old[:100]!r}')
+              s = s.replace(old, new)
+
+          rep('''import {\n  MATVARETABELLEN_COMPOSITION_DENSITIES_B14,\n  MATVARETABELLEN_COMPOSITION_SOURCE_B14\n} from "../data/matvaretabellen-composition-b14.js";\n''', '''import {\n  MATVARETABELLEN_COMPOSITION_DENSITIES_B14,\n  MATVARETABELLEN_COMPOSITION_SOURCE_B14\n} from "../data/matvaretabellen-composition-b14.js";\nimport {\n  MATVARETABELLEN_COMPOSITION_DENSITIES_B16,\n  MATVARETABELLEN_COMPOSITION_SOURCE_B16\n} from "../data/matvaretabellen-composition-b16.js";\n''')
+
+          rep('''if (overlappingMatvaretabellenB14Ids.length) {\n  throw new Error(`Matvaretabellen B14 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB14Ids.sort().join(", ")}`);\n}\n\nconst formRank''', '''if (overlappingMatvaretabellenB14Ids.length) {\n  throw new Error(`Matvaretabellen B14 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB14Ids.sort().join(", ")}`);\n}\n\nconst matvaretabellenB16Ids = Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B16);\nconst overlappingMatvaretabellenB16Ids = matvaretabellenB16Ids.filter(ingredientId =>\n  Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) ||\n  Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B9, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B11, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B14, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13, ingredientId)\n);\nif (overlappingMatvaretabellenB16Ids.length) {\n  throw new Error(`Matvaretabellen B16 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB16Ids.sort().join(", ")}`);\n}\n\nconst formRank''')
+
+          rep('''  if (source === "matvaretabellen-b14") {\n    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B14, MATVARETABELLEN_COMPOSITION_SOURCE_B14);\n  }\n\n  const record''', '''  if (source === "matvaretabellen-b14") {\n    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B14, MATVARETABELLEN_COMPOSITION_SOURCE_B14);\n  }\n\n  if (source === "matvaretabellen-b16") {\n    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B16, MATVARETABELLEN_COMPOSITION_SOURCE_B16);\n  }\n\n  const record''')
+
+          rep('''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b11") ||\n    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b14");''', '''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b11") ||\n    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b14") ||\n    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b16");''')
+
+          rep('''    ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13),\n    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B14)\n''', '''    ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13),\n    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B14),\n    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B16)\n''')
+
+          rep('''    matvaretabellenB14SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B14").length,\n    selections''', '''    matvaretabellenB14SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B14").length,\n    matvaretabellenB16SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B16").length,\n    selections''')
+          p.write_text(s)
+
+          notice = Path('THIRD_PARTY_NOTICES.md')
+          ns = notice.read_text()
+          old = 'B9, B11 and B14 are standalone exact composition roles.'
+          new = 'B9, B11, B14 and B16 are standalone exact composition roles.'
+          if ns.count(old) != 1:
+              raise SystemExit('unexpected Matvaretabellen role notice state')
+          notice.write_text(ns.replace(old, new))
+
+          decisions_path = Path('scripts/nutrition-unlock-reviewed-decisions-v1.json')
+          decisions = json.loads(decisions_path.read_text())
+          decisions['decisions']['tahini'] = {
+              'decision': 'ADMIT_EXACT_MATVARETABELLEN_2026_B16',
+              'candidateClass': 'COMPOSITION_EVIDENCE',
+              'sourceId': 'matvaretabellen-2026-composition-b16',
+              'foodId': '06.702',
+              'foodName': 'Sesame paste, tahini',
+              'formMatch': 'EXACT_SESAME_PASTE_TAHINI',
+              'carbohydrateSemantic': 'AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO',
+              'boundary': 'B16 maps only canonical tahini from the exact source identity Sesame paste, tahini. It resolves the earlier B8 generic sesame-butter identity deferral but does not authorize generic sesame butter, sesame seed, tahini sauce/dressing, sweetened sesame products, or any household-unit conversion.',
+              'quantityState': 'SEPARATE_PORTION_EVIDENCE_STILL_REQUIRED_FOR_AUTHORED_HOUSEHOLD_UNITS',
+              'runtimeChange': True
+          }
+          decisions_path.write_text(json.dumps(decisions, indent=2, ensure_ascii=False) + '\n')
+
+          audit_path = Path('tests/nutrition-coverage-audit.test.js')
+          a = audit_path.read_text()
+          old_title = 'test("B15 separate exact portion evidence resolves only source-backed quantities and unlocks six recipes without manufactured conversions", () => {'
+          new_title = 'test("B16 exact tahini composition resolves identity while remaining fail-closed on unsupported tahini quantities", () => {'
+          if a.count(old_title) != 1:
+              raise SystemExit('unexpected audit title state')
+          a = a.replace(old_title, new_title)
+          old_counts = '''  assert.deepEqual(audit.blockerCounts, {\n    ambiguous_portion_unit: 20,\n    missing_density: 102,\n    unsupported_quantity_unit: 7\n  });'''
+          new_counts = '''  assert.deepEqual(audit.blockerCounts, {\n    ambiguous_portion_unit: 20,\n    missing_density: 99,\n    unsupported_quantity_unit: 10\n  });'''
+          if a.count(old_counts) != 1:
+              raise SystemExit('unexpected audit blocker baseline')
+          a = a.replace(old_counts, new_counts)
+          audit_path.write_text(a)
+          PY
+
+          cat > tests/matvaretabellen-composition-b16.test.js <<'EOF'
+          import test from "node:test";
+          import assert from "node:assert/strict";
+          import {
+            MATVARETABELLEN_COMPOSITION_DENSITIES_B16,
+            MATVARETABELLEN_COMPOSITION_SOURCE_B16,
+            matvaretabellenCompositionB16ForIngredient
+          } from "../src/data/matvaretabellen-composition-b16.js";
+          import { AUTHORED_RECIPES } from "../src/data/corpus-v1.js";
+          import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
+          import { buildNutritionCoverageAudit } from "../src/domain/nutrition-coverage-audit.js";
+          import {
+            EUROPEAN_PRIMARY_DENSITIES_V1,
+            europeanPrimaryPolicyCoverage,
+            selectEuropeanPrimaryNutrient
+          } from "../src/domain/nutrition-source-policy.js";
+
+          test("B16 source is explicit static Matvaretabellen standalone tahini composition evidence", () => {
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B16.id, "matvaretabellen-2026-composition-b16");
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B16.authority, "Norwegian Food Safety Authority (Mattilsynet)");
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B16.releaseDate, "2026-01");
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B16.evidenceTranche, "B16");
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B16.runtimeFetch, false);
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B16.state, "BOUNDED_STATIC_REVIEWED_COMPOSITION_EVIDENCE");
+            assert.equal(MATVARETABELLEN_COMPOSITION_SOURCE_B16.runtimePolicy, "ELIGIBLE_VIA_EUROPEAN_PRIMARY_POLICY_V1");
+            assert.match(MATVARETABELLEN_COMPOSITION_SOURCE_B16.license, /NLOD 2\.0/);
+          });
+
+          test("B16 admits exactly the source identity sesame paste, tahini", () => {
+            assert.deepEqual(Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B16), ["tahini"]);
+            const tahini = matvaretabellenCompositionB16ForIngredient("tahini");
+            assert.equal(tahini.foodId, "06.702");
+            assert.equal(tahini.foodName, "Sesame paste, tahini");
+            assert.equal(tahini.foodEx2, "Sesame paste (tahini) (sesamus indicum) (A01BM)");
+            assert.deepEqual(tahini.foodEx2Facets, ["59 % fat (A075C)"]);
+            assert.equal(tahini.foodForm, "EXACT_SESAME_PASTE_TAHINI");
+            assert.deepEqual(tahini.per100g, {
+              energyKcal: 626,
+              proteinG: 18.5,
+              carbohydrateG: 0.8,
+              fatG: 58.9,
+              fibreG: 9
+            });
+            assert.equal(tahini.fieldEvidence.proteinG.sourceCode, "450a");
+            assert.equal(tahini.fieldEvidence.carbohydrateG.sourceCode, "MI0181");
+            assert.equal(tahini.fieldEvidence.fatG.sourceCode, "450a");
+            assert.equal(tahini.fieldEvidence.fibreG.sourceCode, "460e");
+          });
+
+          test("B16 exact identity does not bleed into neighboring sesame identities or prepared tahini sauces", () => {
+            for (const unsupported of ["sesame", "sesame_seeds", "sesame_butter", "tahini_sauce", "tahini_dressing"]) {
+              assert.equal(matvaretabellenCompositionB16ForIngredient(unsupported), null, unsupported);
+              const selection = selectEuropeanPrimaryNutrient(unsupported, "carbohydrateG");
+              assert.notEqual(selection?.sourceId, MATVARETABELLEN_COMPOSITION_SOURCE_B16.id, unsupported);
+            }
+          });
+
+          test("European-primary policy selects exact B16 tahini provenance for every tracked nutrient", () => {
+            for (const nutrient of ["energyKcal", "proteinG", "carbohydrateG", "fatG", "fibreG"]) {
+              const selection = selectEuropeanPrimaryNutrient("tahini", nutrient);
+              assert.equal(selection.source, "matvaretabellen", nutrient);
+              assert.equal(selection.sourceId, MATVARETABELLEN_COMPOSITION_SOURCE_B16.id, nutrient);
+              assert.equal(selection.sourceIdentifier, "06.702", nutrient);
+              assert.equal(selection.evidenceTranche, "B16", nutrient);
+              assert.equal(selection.selectionReason, "ONLY_REVIEWED_SOURCE_AVAILABLE", nutrient);
+            }
+            assert.equal(selectEuropeanPrimaryNutrient("tahini", "carbohydrateG").semantic, "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO");
+            const coverage = europeanPrimaryPolicyCoverage(["tahini"]);
+            assert.equal(coverage.matvaretabellenB16SelectedCount, 5);
+            assert.equal(coverage.matvaretabellenSelectedCount, 5);
+          });
+
+          test("B16 composition evidence does not invent tahini household-unit conversions", () => {
+            const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
+            const tahiniBlockers = audit.recipeDetails.flatMap(detail => detail.blockers
+              .filter(blocker => blocker.ingredientId === "tahini")
+              .map(blocker => ({ recipeId: detail.recipeId, reason: blocker.reason })));
+            assert.equal(tahiniBlockers.length, 3);
+            assert.deepEqual([...new Set(tahiniBlockers.map(item => item.reason))], ["unsupported_quantity_unit"]);
+            assert.equal(audit.authoritativeRecipeCount, 12);
+          });
+
+          test("B16 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {
+            const recipe = {
+              ingredients: [
+                { canonicalIngredientId: "tahini", quantity: 100, unit: "g" },
+                { canonicalIngredientId: "synthetic_usda", quantity: 100, unit: "g" }
+              ],
+              serving: { servings: 1 }
+            };
+            const densityMap = {
+              tahini: EUROPEAN_PRIMARY_DENSITIES_V1.tahini,
+              synthetic_usda: {
+                per100g: { energyKcal: 1, proteinG: 1, carbohydrateG: 1, fatG: 1, fibreG: 1 },
+                provenanceByNutrient: {
+                  carbohydrateG: { semantic: "CARBOHYDRATE_BY_DIFFERENCE_USDA_1005" }
+                }
+              }
+            };
+            const result = calculatePerServingFromDensities(recipe, densityMap);
+            assert.equal(result.nutrientCoverage.carbohydrateG.semanticCompatibility, false);
+            assert.equal(result.nutrientCoverage.carbohydrateG.semanticIssue, "mixed_incompatible_carbohydrate_semantics");
+            assert.equal(result.perServing.carbohydrateG, null);
+            assert.equal(result.complete, false);
+          });
+          EOF
+
+          rm .github/workflows/nutrition-b16-diagnostic.yml
+          rm .github/workflows/nutrition-b16-finalize.yml
+
+      - name: Run focused B16 and coverage tests
+        run: node --test tests/matvaretabellen-composition-b16.test.js tests/nutrition-coverage-audit.test.js
+      - name: Run static checks
+        run: npm run check
+      - name: Commit bounded B16 implementation
+        run: |
+          git config user.name "Raul M."
+          git config user.email "67912886+DataRaul@users.noreply.github.com"
+          git add src/data/matvaretabellen-composition-b16.js src/domain/nutrition-source-policy.js tests/matvaretabellen-composition-b16.test.js tests/nutrition-coverage-audit.test.js scripts/nutrition-unlock-reviewed-decisions-v1.json THIRD_PARTY_NOTICES.md .github/workflows
+          git commit -m "Complete exact B16 tahini composition evidence"
+          git push origin HEAD:agent/nutrition-b16-tahini-matvaretabellen-unlock
