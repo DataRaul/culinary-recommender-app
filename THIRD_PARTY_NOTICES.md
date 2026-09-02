@@ -26,4 +26,4 @@ Bounded nutrition evidence may include static values derived from the Norwegian 
 - Attribution: Norwegian Food Composition Table 2026. The Norwegian Food Safety Authority. www.matvaretabellen.no
 - Reuse boundary: only explicitly reviewed source rows and fields identified by project provenance are bundled. The application does not fetch Matvaretabellen at runtime and does not infer unreviewed food identities from nearby records.
 
-The B6 household-portion evidence and bounded B9/B10/B11/B12 composition evidence are separate source roles. B10 and B12 are further restricted to exact tracked-field completion where existing reviewed composition has no value. Admission of one role does not silently authorize another.
+The B6 household-portion evidence and bounded B9/B10/B11/B12/B13 composition evidence are separate source roles. B10, B12 and B13 are further restricted to exact tracked-field completion where existing reviewed composition has no value. Admission of one role does not silently authorize another.

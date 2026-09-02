@@ -18,6 +18,10 @@ import {
   MATVARETABELLEN_COMPOSITION_SOURCE_B12
 } from "../data/matvaretabellen-composition-b12.js";
 import {
+  MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13,
+  MATVARETABELLEN_COMPOSITION_SOURCE_B13
+} from "../data/matvaretabellen-composition-b13.js";
+import {
   USDA_FOUNDATION_DENSITIES,
   USDA_FOUNDATION_SOURCE,
   nutritionEvidenceForIngredient
@@ -126,6 +130,19 @@ if (invalidB12CompletionIds.length) {
   throw new Error(`Matvaretabellen B12 must remain a Ciqual-only exact field-completion lane with no earlier Matvaretabellen overlap: ${invalidB12CompletionIds.sort().join(", ")}`);
 }
 
+const matvaretabellenB13CompletionIds = Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13);
+const invalidB13CompletionIds = matvaretabellenB13CompletionIds.filter(ingredientId =>
+  !Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) ||
+  Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B9, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B11, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12, ingredientId)
+);
+if (invalidB13CompletionIds.length) {
+  throw new Error(`Matvaretabellen B13 must remain a Ciqual-only exact field-completion lane with no earlier Matvaretabellen overlap: ${invalidB13CompletionIds.sort().join(", ")}`);
+}
+
 const formRank = confidence => ({ high: 3, medium: 2, low: 1 }[confidence] || 0);
 const ciqualFieldGoodEnoughToDisplace = confidence => ["A", "B", "C"].includes(confidence);
 
@@ -220,6 +237,10 @@ const sourceCandidate = (ingredientId, nutrientKey, source) => {
     return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12, MATVARETABELLEN_COMPOSITION_SOURCE_B12);
   }
 
+  if (source === "matvaretabellen-b13") {
+    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13, MATVARETABELLEN_COMPOSITION_SOURCE_B13);
+  }
+
   const record = USDA_FOUNDATION_DENSITIES[ingredientId];
   if (!record) return null;
   const spec = USDA_FIELDS[nutrientKey];
@@ -254,7 +275,8 @@ export const selectEuropeanPrimaryNutrient = (ingredientId, nutrientKey) => {
   if (!usda && !ciqual) {
     const completion =
       sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b10") ||
-      sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b12");
+      sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b12") ||
+      sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b13");
     return completion ? { ...completion, selectionReason: "EUROPEAN_EXACT_FIELD_COMPLETION" } : null;
   }
   if (!usda) return { ...ciqual, selectionReason: "ONLY_REVIEWED_SOURCE_AVAILABLE" };
@@ -309,7 +331,8 @@ export const EUROPEAN_PRIMARY_DENSITIES_V1 = Object.fromEntries(
     ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B9),
     ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10),
     ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B11),
-    ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12)
+    ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12),
+    ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13)
   ])]
     .map(ingredientId => [ingredientId, europeanPrimaryDensityForIngredient(ingredientId)])
     .filter(([, record]) => record)
@@ -335,6 +358,7 @@ export const europeanPrimaryPolicyCoverage = ingredientIds => {
     matvaretabellenB10SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B10").length,
     matvaretabellenB11SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B11").length,
     matvaretabellenB12SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B12").length,
+    matvaretabellenB13SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B13").length,
     selections
   };
 };

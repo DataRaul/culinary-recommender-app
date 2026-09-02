@@ -91,6 +91,32 @@
       "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
       "boundary": "B12 may fill only olive_oil carbohydrate because that tracked field is absent from all existing reviewed USDA/Ciqual candidates. Populated Ciqual B5 energy, protein, fat and fibre remain selected. The exact extra-virgin record is supported by the canonical EVOO alias and does not authorize other oil families.",
       "runtimeChange": true
+    },
+    "tomato": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B13_FIELD_COMPLETION",
+      "candidateClass": "COMPOSITION_FIELD_COMPLETION",
+      "sourceId": "matvaretabellen-2026-composition-b13",
+      "foodId": "06.754",
+      "foodName": "Tomato, unspecified, raw",
+      "scientificName": "Lycopersicon esculentum Mill.",
+      "formMatch": "EXACT_GENERIC_RAW_TOMATO",
+      "completedTrackedFields": ["fatG"],
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B13 may fill only tomato fat because that tracked field is absent from all existing reviewed USDA/Ciqual candidates. Populated Ciqual B5 energy, protein, carbohydrate and fibre remain selected. The exact unspecified raw record does not authorize cultivar-specific, cooked, canned or processed tomato forms.",
+      "runtimeChange": true
+    },
+    "cherry_tomato": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B13_FIELD_COMPLETION",
+      "candidateClass": "COMPOSITION_FIELD_COMPLETION",
+      "sourceId": "matvaretabellen-2026-composition-b13",
+      "foodId": "06.752",
+      "foodName": "Tomato, small, cherry, imported, raw",
+      "scientificName": "Solanum lycopersicum var. cerasiforme (Alef.) Fosberg",
+      "formMatch": "EXACT_RAW_CHERRY_TOMATO",
+      "completedTrackedFields": ["fatG"],
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B13 may fill only cherry_tomato fat because that tracked field is absent from all existing reviewed USDA/Ciqual candidates. Populated Ciqual B5 fields remain selected. Imported origin does not broaden this row to generic tomato, cooked tomato or non-cherry varieties.",
+      "runtimeChange": true
     }
   }
 }
