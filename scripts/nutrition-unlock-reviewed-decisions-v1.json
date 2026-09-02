@@ -130,5 +130,46 @@
       "boundary": "B14 maps only canonical courgette, whose ontology explicitly includes zucchini as an alias. It does not authorize generic squash, pumpkin, cooked courgette or cultivar-specific inference.",
       "runtimeChange": true
     }
+  },
+  "portionEvidenceDecisions": {
+    "courgette": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B15_PORTION",
+      "candidateClass": "PORTION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-portions-b15",
+      "foodId": "06.085",
+      "foodName": "Squash, zucchini, raw",
+      "publishedPortion": "pcs",
+      "acceptedCanonicalUnits": ["piece", "pieces"],
+      "gramsPerUnit": 285,
+      "boundary": "B15 uses the published 285 g pcs row only for canonical courgette. The same source row's 15 g slice is not generalized to piece quantities, and B15 does not authorize separate zucchini, generic squash, pumpkin, cooked courgette or inferred portion arithmetic.",
+      "roleSeparation": "B15 is portion evidence only. B14 independently supplies exact composition evidence for canonical courgette.",
+      "runtimeChange": true
+    },
+    "cumin": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B15_PORTION",
+      "candidateClass": "PORTION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-portions-b15",
+      "foodId": "06.266",
+      "foodName": "Cumin seeds, ground",
+      "publishedPortion": "teaspoon",
+      "acceptedCanonicalUnits": ["tsp"],
+      "gramsPerUnit": 3,
+      "boundary": "B15 uses the published 3 g teaspoon row only for canonical ground cumin. It does not authorize tablespoon arithmetic, whole cumin seed, or generic spice-family portion inference.",
+      "roleSeparation": "B15 is portion evidence only. B11 independently supplies exact composition evidence for canonical ground cumin.",
+      "runtimeChange": true
+    },
+    "turmeric": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B15_PORTION",
+      "candidateClass": "PORTION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-portions-b15",
+      "foodId": "06.153",
+      "foodName": "Turmeric, ground",
+      "publishedPortion": "teaspoon",
+      "acceptedCanonicalUnits": ["tsp"],
+      "gramsPerUnit": 3,
+      "boundary": "B15 uses the published 3 g teaspoon row only for canonical ground turmeric. It does not authorize tablespoon arithmetic, whole turmeric root, or generic spice-family portion inference.",
+      "roleSeparation": "B15 is portion evidence only. B11 independently supplies exact composition evidence for canonical ground turmeric.",
+      "runtimeChange": true
+    }
   }
 }
