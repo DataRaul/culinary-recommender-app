@@ -39,7 +39,10 @@
       "foodName": "Lemon, raw",
       "scientificName": "Citrus limon (L.) Burm.f.",
       "formMatch": "EXACT_RAW_EDIBLE_LEMON",
-      "completedTrackedFields": ["fatG", "fibreG"],
+      "completedTrackedFields": [
+        "fatG",
+        "fibreG"
+      ],
       "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
       "boundary": "B10 may fill only tracked lemon fields absent from all existing reviewed USDA/Ciqual candidates. Existing populated Ciqual lemon fields remain selected; B10 does not replace them or broaden lemon to juice/peel forms.",
       "runtimeChange": true
@@ -87,7 +90,9 @@
       "foodName": "Oil, olive, Extra Virgin",
       "scientificName": "Olea europea L.",
       "formMatch": "EXACT_EXTRA_VIRGIN_OLIVE_OIL",
-      "completedTrackedFields": ["carbohydrateG"],
+      "completedTrackedFields": [
+        "carbohydrateG"
+      ],
       "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
       "boundary": "B12 may fill only olive_oil carbohydrate because that tracked field is absent from all existing reviewed USDA/Ciqual candidates. Populated Ciqual B5 energy, protein, fat and fibre remain selected. The exact extra-virgin record is supported by the canonical EVOO alias and does not authorize other oil families.",
       "runtimeChange": true
@@ -100,7 +105,9 @@
       "foodName": "Tomato, unspecified, raw",
       "scientificName": "Lycopersicon esculentum Mill.",
       "formMatch": "EXACT_GENERIC_RAW_TOMATO",
-      "completedTrackedFields": ["fatG"],
+      "completedTrackedFields": [
+        "fatG"
+      ],
       "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
       "boundary": "B13 may fill only tomato fat because that tracked field is absent from all existing reviewed USDA/Ciqual candidates. Populated Ciqual B5 energy, protein, carbohydrate and fibre remain selected. The exact unspecified raw record does not authorize cultivar-specific, cooked, canned or processed tomato forms.",
       "runtimeChange": true
@@ -113,7 +120,9 @@
       "foodName": "Tomato, small, cherry, imported, raw",
       "scientificName": "Solanum lycopersicum var. cerasiforme (Alef.) Fosberg",
       "formMatch": "EXACT_RAW_CHERRY_TOMATO",
-      "completedTrackedFields": ["fatG"],
+      "completedTrackedFields": [
+        "fatG"
+      ],
       "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
       "boundary": "B13 may fill only cherry_tomato fat because that tracked field is absent from all existing reviewed USDA/Ciqual candidates. Populated Ciqual B5 fields remain selected. Imported origin does not broaden this row to generic tomato, cooked tomato or non-cherry varieties.",
       "runtimeChange": true
@@ -129,6 +138,18 @@
       "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
       "boundary": "B14 maps only canonical courgette, whose ontology explicitly includes zucchini as an alias. It does not authorize generic squash, pumpkin, cooked courgette or cultivar-specific inference.",
       "runtimeChange": true
+    },
+    "tahini": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B16",
+      "candidateClass": "COMPOSITION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-composition-b16",
+      "foodId": "06.702",
+      "foodName": "Sesame paste, tahini",
+      "formMatch": "EXACT_SESAME_PASTE_TAHINI",
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B16 maps only canonical tahini from the exact source identity Sesame paste, tahini. It resolves the earlier B8 generic sesame-butter identity deferral but does not authorize generic sesame butter, sesame seed, tahini sauce/dressing, sweetened sesame products, or any household-unit conversion.",
+      "quantityState": "SEPARATE_PORTION_EVIDENCE_STILL_REQUIRED_FOR_AUTHORED_HOUSEHOLD_UNITS",
+      "runtimeChange": true
     }
   },
   "portionEvidenceDecisions": {
@@ -139,7 +160,10 @@
       "foodId": "06.085",
       "foodName": "Squash, zucchini, raw",
       "publishedPortion": "pcs",
-      "acceptedCanonicalUnits": ["piece", "pieces"],
+      "acceptedCanonicalUnits": [
+        "piece",
+        "pieces"
+      ],
       "gramsPerUnit": 285,
       "boundary": "B15 uses the published 285 g pcs row only for canonical courgette. The same source row's 15 g slice is not generalized to piece quantities, and B15 does not authorize separate zucchini, generic squash, pumpkin, cooked courgette or inferred portion arithmetic.",
       "roleSeparation": "B15 is portion evidence only. B14 independently supplies exact composition evidence for canonical courgette.",
@@ -152,7 +176,9 @@
       "foodId": "06.266",
       "foodName": "Cumin seeds, ground",
       "publishedPortion": "teaspoon",
-      "acceptedCanonicalUnits": ["tsp"],
+      "acceptedCanonicalUnits": [
+        "tsp"
+      ],
       "gramsPerUnit": 3,
       "boundary": "B15 uses the published 3 g teaspoon row only for canonical ground cumin. It does not authorize tablespoon arithmetic, whole cumin seed, or generic spice-family portion inference.",
       "roleSeparation": "B15 is portion evidence only. B11 independently supplies exact composition evidence for canonical ground cumin.",
@@ -165,7 +191,9 @@
       "foodId": "06.153",
       "foodName": "Turmeric, ground",
       "publishedPortion": "teaspoon",
-      "acceptedCanonicalUnits": ["tsp"],
+      "acceptedCanonicalUnits": [
+        "tsp"
+      ],
       "gramsPerUnit": 3,
       "boundary": "B15 uses the published 3 g teaspoon row only for canonical ground turmeric. It does not authorize tablespoon arithmetic, whole turmeric root, or generic spice-family portion inference.",
       "roleSeparation": "B15 is portion evidence only. B11 independently supplies exact composition evidence for canonical ground turmeric.",

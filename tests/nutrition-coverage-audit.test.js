@@ -31,7 +31,7 @@ test("audit preserves every fail-closed shortfall class rather than treating par
   assert.ok(Object.keys(audit.missingNutrientFieldCounts).length > 0, "expected current corpus to expose tracked nutrient field gaps");
 });
 
-test("B15 separate exact portion evidence resolves only source-backed quantities and unlocks six recipes without manufactured conversions", () => {
+test("B16 exact tahini composition resolves identity while remaining fail-closed on unsupported tahini quantities", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
   assert.equal(audit.authoritativeRecipeCount, 12);
@@ -52,8 +52,8 @@ test("B15 separate exact portion evidence resolves only source-backed quantities
   ]);
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
-    missing_density: 102,
-    unsupported_quantity_unit: 7
+    missing_density: 99,
+    unsupported_quantity_unit: 10
   });
   assert.deepEqual(audit.missingNutrientFieldCounts, {
     carbohydrateG: 9,
