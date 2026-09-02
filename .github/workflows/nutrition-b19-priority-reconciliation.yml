@@ -1,0 +1,65 @@
+name: Nutrition B19 priority and candidate reconciliation
+
+on:
+  push:
+    branches:
+      - agent/nutrition-b19-priority-reconciliation
+
+permissions:
+  contents: read
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - name: Regenerate merged B18 priorities
+        run: |
+          echo '===B19_PRIORITY_REPORT_BEGIN==='
+          node scripts/report-nutrition-unlock-priorities.mjs
+          echo '===B19_PRIORITY_REPORT_END==='
+      - name: Inspect authored candidate usage
+        run: |
+          node --input-type=module <<'NODE'
+          import { AUTHORED_RECIPES } from './src/data/corpus-v1.js';
+          const targets = new Set(['smoked_paprika','lentils','turkey_mince','garam_masala','bulgur','red_onion','passata','chicken_thigh','salt','tortilla','mint']);
+          for (const target of targets) {
+            const rows = [];
+            for (const recipe of AUTHORED_RECIPES) {
+              for (const ingredient of recipe.ingredients || []) {
+                if (ingredient.canonicalIngredientId === target) rows.push({recipeId: recipe.id, quantity: ingredient.quantity, unit: ingredient.unit, ingredient});
+              }
+            }
+            console.log(`===B19_USAGE_${target.toUpperCase()}===`);
+            console.log(JSON.stringify(rows, null, 2));
+          }
+          NODE
+      - name: Query bounded official Matvaretabellen candidate rows
+        run: |
+          curl --fail --silent --show-error --retry 3 https://www.matvaretabellen.no/api/en/foods.json -o /tmp/matvaretabellen-foods.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const payload = JSON.parse(fs.readFileSync('/tmp/matvaretabellen-foods.json', 'utf8'));
+          const foods = payload.foods || payload;
+          const groups = {
+            passata: ['passata','sieved tomato','tomato puree','tomato purée'],
+            red_onion: ['red onion','onion, red'],
+            bulgur: ['bulgur'],
+            salt: ['salt'],
+            tortilla: ['tortilla'],
+            mint: ['mint'],
+            chicken_thigh: ['chicken thigh']
+          };
+          for (const [target, terms] of Object.entries(groups)) {
+            const matches = foods.filter(food => {
+              const hay = `${food.foodName || ''} ${food.foodEx2 || ''}`.toLowerCase();
+              return terms.some(term => hay.includes(term));
+            }).slice(0, 60);
+            console.log(`===B19_CANDIDATE_${target.toUpperCase()}===`);
+            console.log(JSON.stringify(matches.map(food => ({foodId: food.foodId || food.id, foodName: food.foodName, foodEx2: food.foodEx2, foodEx2Facets: food.foodEx2Facets, portions: food.portions})), null, 2));
+          }
+          NODE
