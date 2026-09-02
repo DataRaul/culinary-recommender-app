@@ -1,0 +1,24 @@
+name: Nutrition B16 priority reconciliation
+
+on:
+  push:
+    branches:
+      - agent/nutrition-b16-priority-reconcile
+
+permissions:
+  contents: read
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - name: Generate merged B15 nutrition unlock priorities
+        run: |
+          echo '===NUTRITION_UNLOCK_PRIORITIES_BEGIN==='
+          node scripts/report-nutrition-unlock-priorities.mjs
+          echo '===NUTRITION_UNLOCK_PRIORITIES_END==='
