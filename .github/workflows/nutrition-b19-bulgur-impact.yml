@@ -1,0 +1,139 @@
+name: Nutrition B19 bulgur impact diagnostic
+
+on:
+  push:
+    branches:
+      - agent/nutrition-b19-bulgur-exact-composition
+
+permissions:
+  contents: read
+
+jobs:
+  impact:
+    if: github.event.head_commit.message == 'Add temporary B19 bulgur impact diagnostic'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - name: Inject prospective bounded B19 composition locally
+        run: |
+          cat > src/data/matvaretabellen-composition-b19.js <<'EOF'
+          // Bounded static composition evidence from the official Norwegian Food Composition Table 2026.
+          // B19 is composition-only: the source row's household portions are deliberately not admitted.
+          // Repository-authored bulgur gram quantities are weighed before the instructions hydrate/cook the bulgur.
+
+          export const MATVARETABELLEN_COMPOSITION_SOURCE_B19 = Object.freeze({
+            id: "matvaretabellen-2026-composition-b19",
+            authority: "Norwegian Food Safety Authority (Mattilsynet)",
+            dataset: "Norwegian Food Composition Table 2026",
+            releaseDate: "2026-01",
+            apiUrl: "https://www.matvaretabellen.no/api/en/foods.json",
+            website: "https://www.matvaretabellen.no/en/bulgur-uncooked/",
+            license: "NLOD 2.0 / Norsk lisens for offentlige data",
+            requiredAttribution: "Norwegian Food Composition Table 2026. The Norwegian Food Safety Authority. www.matvaretabellen.no",
+            country: "Norway",
+            region: "Europe",
+            state: "BOUNDED_STATIC_REVIEWED_COMPOSITION_EVIDENCE",
+            runtimePolicy: "ELIGIBLE_VIA_EUROPEAN_PRIMARY_POLICY_V1",
+            evidenceTranche: "B19",
+            runtimeFetch: false,
+            compositionScope: "EXACT_REVIEWED_FOOD_RECORDS_ONLY",
+            carbohydrateSemantic: "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO"
+          });
+
+          const bulgur = Object.freeze({
+            canonicalIngredientId: "bulgur",
+            foodId: "05.233",
+            foodName: "Bulgur, uncooked",
+            scientificName: "Triticum aestivum L.",
+            foodEx2: "Bulgur (A004G)",
+            foodForm: "EXACT_UNCOOKED_BULGUR",
+            matchConfidence: "high",
+            matchNotes: "Exact source identity is uncooked bulgur. All three authored bulgur quantities are grams and each recipe hydrates/cooks the declared bulgur afterward, establishing pre-cooking input form. This does not authorize cooked bulgur or neighboring wheat/grain identities.",
+            per100g: Object.freeze({
+              energyKcal: 288,
+              proteinG: 11.8,
+              carbohydrateG: 50.9,
+              fatG: 1.9,
+              fibreG: 10.0
+            }),
+            fieldEvidence: Object.freeze({
+              energyKcal: Object.freeze({ sourceCode: "MI0115", valueType: "published", method: "Published energy in 100 g: 1215 kJ / 288 kcal" }),
+              proteinG: Object.freeze({ sourceCode: "420f", valueType: "Weighted", method: "Food composition table; analytical results; method not known" }),
+              carbohydrateG: Object.freeze({ sourceCode: "MI0181", valueType: "Best estimate", method: "Carbohydrate, available calculated from sugar and starch (CHO = SUGAR + STARCH)" }),
+              fatG: Object.freeze({ sourceCode: "611a", valueType: "Weighted", method: "Independent laboratory; analytical results; analytical method" }),
+              fibreG: Object.freeze({ sourceCode: "611a", valueType: "Weighted", method: "Independent laboratory; analytical results; analytical method" })
+            }),
+            evidenceState: "MATVARETABELLEN_2026_EXACT_COMPOSITION_MATCH",
+            sourceId: MATVARETABELLEN_COMPOSITION_SOURCE_B19.id,
+            evidenceTranche: "B19"
+          });
+
+          export const MATVARETABELLEN_COMPOSITION_DENSITIES_B19 = Object.freeze({ bulgur });
+          export const matvaretabellenCompositionB19ForIngredient = ingredientId => MATVARETABELLEN_COMPOSITION_DENSITIES_B19[ingredientId] || null;
+          EOF
+
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('src/domain/nutrition-source-policy.js')
+          s = p.read_text()
+
+          old = '''import {\n  MATVARETABELLEN_COMPOSITION_DENSITIES_B18,\n  MATVARETABELLEN_COMPOSITION_SOURCE_B18\n} from "../data/matvaretabellen-composition-b18.js";'''
+          new = old + '''\nimport {\n  MATVARETABELLEN_COMPOSITION_DENSITIES_B19,\n  MATVARETABELLEN_COMPOSITION_SOURCE_B19\n} from "../data/matvaretabellen-composition-b19.js";'''
+          if old not in s: raise SystemExit('B19 import anchor missing')
+          s = s.replace(old, new, 1)
+
+          old = '''if (overlappingMatvaretabellenB18Ids.length) {\n  throw new Error(`Matvaretabellen B18 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB18Ids.sort().join(", ")}`);\n}\n'''
+          new = old + '''\nconst matvaretabellenB19Ids = Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B19);\nconst overlappingMatvaretabellenB19Ids = matvaretabellenB19Ids.filter(ingredientId =>\n  Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) ||\n  Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B9, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B11, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B14, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B16, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B18, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13, ingredientId)\n);\nif (overlappingMatvaretabellenB19Ids.length) {\n  throw new Error(`Matvaretabellen B19 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB19Ids.sort().join(", ")}`);\n}\n'''
+          if old not in s: raise SystemExit('B19 overlap anchor missing')
+          s = s.replace(old, new, 1)
+
+          old = '''  if (source === "matvaretabellen-b18") {\n    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B18, MATVARETABELLEN_COMPOSITION_SOURCE_B18);\n  }\n'''
+          new = old + '''\n  if (source === "matvaretabellen-b19") {\n    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B19, MATVARETABELLEN_COMPOSITION_SOURCE_B19);\n  }\n'''
+          if old not in s: raise SystemExit('B19 source anchor missing')
+          s = s.replace(old, new, 1)
+
+          old = '''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b16") ||\n    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b18");'''
+          new = '''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b16") ||\n    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b18") ||\n    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b19");'''
+          if old not in s: raise SystemExit('B19 standalone anchor missing')
+          s = s.replace(old, new, 1)
+
+          old = '''    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B16),\n    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B18)'''
+          new = '''    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B16),\n    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B18),\n    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B19)'''
+          if old not in s: raise SystemExit('B19 density anchor missing')
+          s = s.replace(old, new, 1)
+
+          old = '''    matvaretabellenB18SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B18").length,'''
+          new = old + '''\n    matvaretabellenB19SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B19").length,'''
+          if old not in s: raise SystemExit('B19 coverage anchor missing')
+          s = s.replace(old, new, 1)
+          p.write_text(s)
+          PY
+      - name: Measure prospective B19 nutrition impact
+        run: |
+          node --input-type=module <<'NODE'
+          import { AUTHORED_RECIPES } from './src/data/corpus-v1.js';
+          import { publicNutritionSource } from './src/domain/nutrition.js';
+          import { buildNutritionCoverageAudit } from './src/domain/nutrition-coverage-audit.js';
+          import { europeanPrimaryPolicyCoverage } from './src/domain/nutrition-source-policy.js';
+          const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
+          console.log('===B19_AUDIT_BEGIN===');
+          console.log(JSON.stringify({
+            recipeCount: audit.recipeCount,
+            authoritativeRecipeCount: audit.authoritativeRecipeCount,
+            estimateRecipeCount: audit.estimateRecipeCount,
+            authoritativeRecipeIds: audit.authoritativeRecipeIds,
+            blockerCounts: audit.blockerCounts,
+            missingNutrientFieldCounts: audit.missingNutrientFieldCounts,
+            semanticIssueCounts: audit.semanticIssueCounts,
+            bulgurRecipes: audit.recipeDetails.filter(x => x.recipeId.includes('bulgur')).map(x => ({recipeId:x.recipeId, authoritative:x.authoritative, blockers:x.blockers, nutrientFieldGaps:x.nutrientFieldGaps, semanticIssues:x.semanticIssues}))
+          }, null, 2));
+          console.log('===B19_POLICY_COVERAGE===');
+          console.log(JSON.stringify(europeanPrimaryPolicyCoverage(['bulgur']), null, 2));
+          console.log('===B19_AUDIT_END===');
+          NODE
+      - name: Run deterministic tests with prospective B19 source selection
+        run: npm test
