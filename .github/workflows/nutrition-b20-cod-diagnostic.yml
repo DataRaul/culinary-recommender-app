@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   finalize:
-    if: github.event.head_commit.message == 'Finalize B20 cod policy integration'
+    if: github.event.head_commit.message == 'Repair B20 cod policy integration'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,95 +33,45 @@ jobs:
           policy_path = Path('src/domain/nutrition-source-policy.js')
           policy = policy_path.read_text()
 
-          old = '''import {
-            MATVARETABELLEN_COMPOSITION_DENSITIES_B19,
-            MATVARETABELLEN_COMPOSITION_SOURCE_B19
-          } from "../data/matvaretabellen-composition-b19.js";
-          import {
-            USDA_FOUNDATION_DENSITIES,'''.replace('          ', '')
-          new = '''import {
-            MATVARETABELLEN_COMPOSITION_DENSITIES_B19,
-            MATVARETABELLEN_COMPOSITION_SOURCE_B19
-          } from "../data/matvaretabellen-composition-b19.js";
-          import {
-            MATVARETABELLEN_COMPOSITION_DENSITIES_B20,
-            MATVARETABELLEN_COMPOSITION_SOURCE_B20
-          } from "../data/matvaretabellen-composition-b20.js";
-          import {
-            USDA_FOUNDATION_DENSITIES,'''.replace('          ', '')
-          policy = replace_once(policy, old, new, 'B20 import')
+          import_anchor = '} from "../data/matvaretabellen-composition-b19.js";\nimport {\n  USDA_FOUNDATION_DENSITIES,'
+          import_replacement = '} from "../data/matvaretabellen-composition-b19.js";\nimport {\n  MATVARETABELLEN_COMPOSITION_DENSITIES_B20,\n  MATVARETABELLEN_COMPOSITION_SOURCE_B20\n} from "../data/matvaretabellen-composition-b20.js";\nimport {\n  USDA_FOUNDATION_DENSITIES,'
+          policy = replace_once(policy, import_anchor, import_replacement, 'B20 import')
 
-          marker = '''if (overlappingMatvaretabellenB19Ids.length) {
-            throw new Error(`Matvaretabellen B19 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB19Ids.sort().join(", ")}`);
-          }
+          guard = '''const matvaretabellenB20Ids = Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B20);
+const overlappingMatvaretabellenB20Ids = matvaretabellenB20Ids.filter(ingredientId =>
+  Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) ||
+  Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B9, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B11, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B14, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B16, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B18, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B19, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13, ingredientId)
+);
+if (overlappingMatvaretabellenB20Ids.length) {
+  throw new Error(`Matvaretabellen B20 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB20Ids.sort().join(", ")}`);
+}
+'''
+          policy = replace_once(policy, '\nconst formRank =', '\n' + guard + '\nconst formRank =', 'B20 overlap guard')
 
-          const formRank'''.replace('          ', '')
-          insertion = '''if (overlappingMatvaretabellenB19Ids.length) {
-            throw new Error(`Matvaretabellen B19 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB19Ids.sort().join(", ")}`);
-          }
+          b19_switch = '  if (source === "matvaretabellen-b19") {\n    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B19, MATVARETABELLEN_COMPOSITION_SOURCE_B19);\n  }'
+          b20_switch = b19_switch + '\n\n  if (source === "matvaretabellen-b20") {\n    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B20, MATVARETABELLEN_COMPOSITION_SOURCE_B20);\n  }'
+          policy = replace_once(policy, b19_switch, b20_switch, 'B20 candidate switch')
 
-          const matvaretabellenB20Ids = Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B20);
-          const overlappingMatvaretabellenB20Ids = matvaretabellenB20Ids.filter(ingredientId =>
-            Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) ||
-            Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId) ||
-            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B9, ingredientId) ||
-            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B11, ingredientId) ||
-            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B14, ingredientId) ||
-            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B16, ingredientId) ||
-            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B18, ingredientId) ||
-            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B19, ingredientId) ||
-            Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, ingredientId) ||
-            Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12, ingredientId) ||
-            Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13, ingredientId)
-          );
-          if (overlappingMatvaretabellenB20Ids.length) {
-            throw new Error(`Matvaretabellen B20 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB20Ids.sort().join(", ")}`);
-          }
+          b19_selection = '    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b19");'
+          b20_selection = '    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b19") ||\n    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b20");'
+          policy = replace_once(policy, b19_selection, b20_selection, 'B20 standalone selection')
 
-          const formRank'''.replace('          ', '')
-          policy = replace_once(policy, marker, insertion, 'B20 overlap guard')
+          b19_union = '    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B19)\n  ])]'
+          b20_union = '    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B19),\n    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B20)\n  ])]'
+          policy = replace_once(policy, b19_union, b20_union, 'B20 density union')
 
-          old = '''  if (source === "matvaretabellen-b19") {
-            return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B19, MATVARETABELLEN_COMPOSITION_SOURCE_B19);
-          }
-
-          const record = USDA_FOUNDATION_DENSITIES[ingredientId];'''.replace('          ', '')
-          new = '''  if (source === "matvaretabellen-b19") {
-            return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B19, MATVARETABELLEN_COMPOSITION_SOURCE_B19);
-          }
-
-          if (source === "matvaretabellen-b20") {
-            return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B20, MATVARETABELLEN_COMPOSITION_SOURCE_B20);
-          }
-
-          const record = USDA_FOUNDATION_DENSITIES[ingredientId];'''.replace('          ', '')
-          policy = replace_once(policy, old, new, 'B20 candidate switch')
-
-          old = '''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b18") ||
-            sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b19");'''.replace('          ', '')
-          new = '''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b18") ||
-            sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b19") ||
-            sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b20");'''.replace('          ', '')
-          policy = replace_once(policy, old, new, 'B20 standalone selection')
-
-          old = '''    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B18),
-            ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B19)
-          ])]'''.replace('          ', '')
-          new = '''    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B18),
-            ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B19),
-            ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B20)
-          ])]'''.replace('          ', '')
-          policy = replace_once(policy, old, new, 'B20 density union')
-
-          old = '''    matvaretabellenB18SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B18").length,
-            matvaretabellenB19SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B19").length,
-            selections'''.replace('          ', '')
-          new = '''    matvaretabellenB18SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B18").length,
-            matvaretabellenB19SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B19").length,
-            matvaretabellenB20SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B20").length,
-            selections'''.replace('          ', '')
-          policy = replace_once(policy, old, new, 'B20 coverage counter')
-
+          b19_counter = '    matvaretabellenB19SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B19").length,\n    selections'
+          b20_counter = '    matvaretabellenB19SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B19").length,\n    matvaretabellenB20SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B20").length,\n    selections'
+          policy = replace_once(policy, b19_counter, b20_counter, 'B20 coverage counter')
           policy_path.write_text(policy)
 
           audit_path = Path('tests/nutrition-coverage-audit.test.js')
