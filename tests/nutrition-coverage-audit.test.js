@@ -31,7 +31,7 @@ test("audit preserves every fail-closed shortfall class rather than treating par
   assert.ok(Object.keys(audit.missingNutrientFieldCounts).length > 0, "expected current corpus to expose tracked nutrient field gaps");
 });
 
-test("B22 exact raw-mint composition preserves cumulative unlock truth without weakening fail-closed controls", () => {
+test("B23 exact raw-pumpkin composition preserves cumulative unlock truth without weakening fail-closed controls", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
   assert.equal(audit.authoritativeRecipeCount, 16);
@@ -56,7 +56,7 @@ test("B22 exact raw-mint composition preserves cumulative unlock truth without w
   ]);
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
-    missing_density: 91,
+    missing_density: 89,
     unsupported_quantity_unit: 7
   });
   assert.deepEqual(audit.missingNutrientFieldCounts, {

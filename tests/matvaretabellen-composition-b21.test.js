@@ -104,7 +104,7 @@ test("B21 removes eight salmon field-gap events while preserving all independent
   assert.equal(audit.estimateRecipeCount, 60);
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
-    missing_density: 91,
+    missing_density: 89,
     unsupported_quantity_unit: 7
   });
   assert.deepEqual(audit.missingNutrientFieldCounts, {

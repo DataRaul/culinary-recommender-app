@@ -108,7 +108,7 @@ test("B19 bulgur evidence remains active while later reviewed tranches preserve 
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.authoritativeRecipeCount, 16);
   assert.equal(audit.estimateRecipeCount, 60);
-  assert.equal(audit.blockerCounts.missing_density, 91);
+  assert.equal(audit.blockerCounts.missing_density, 89);
   const expected = {
     middle_eastern_lentil_bulgur_herb_bowl: [["lentils", "missing_density"]],
     middle_eastern_turkey_bulgur_pepper_bowl: [["turkey_mince", "missing_density"]]
