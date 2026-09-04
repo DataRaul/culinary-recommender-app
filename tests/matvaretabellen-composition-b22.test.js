@@ -118,7 +118,7 @@ test("B22 removes exactly two mint density blockers and unlocks only the bulgur-
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.authoritativeRecipeCount, 16);
   assert.equal(audit.estimateRecipeCount, 60);
-  assert.equal(audit.blockerCounts.missing_density, 91);
+  assert.equal(audit.blockerCounts.missing_density, 89);
 
   const salad = audit.recipeDetails.find(row => row.recipeId === "middle_eastern_bulgur_chickpea_salad");
   assert.equal(salad.authoritative, true);

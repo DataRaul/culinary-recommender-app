@@ -119,7 +119,7 @@ test("B20 removes exactly one cod density blocker while preserving the recipe's 
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.authoritativeRecipeCount, 16);
   assert.equal(audit.estimateRecipeCount, 60);
-  assert.equal(audit.blockerCounts.missing_density, 91);
+  assert.equal(audit.blockerCounts.missing_density, 89);
   const detail = audit.recipeDetails.find(row => row.recipeId === "med_cod_chickpea_tomato_stew");
   assert.equal(detail.authoritative, false);
   assert.deepEqual(detail.blockers.map(blocker => [blocker.ingredientId, blocker.reason]), [

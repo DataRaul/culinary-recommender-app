@@ -222,6 +222,20 @@
       "boundary": "B22 maps only canonical generic mint to the exact source identity Mint, raw at genus-level Mentha L. / FoodEx2 Mints. It does not authorize peppermint or spearmint species/cultivars, dried mint, mint tea, extract, oil, sauce, confectionery, the source edible-part yield, or any household-unit conversion.",
       "quantityState": "COMPOSITION_ONLY_NO_PORTION_OR_EDIBLE_YIELD_AUTHORIZATION",
       "runtimeChange": true
+    },
+    "pumpkin": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B23",
+      "candidateClass": "COMPOSITION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-composition-b23",
+      "foodId": "06.033",
+      "foodName": "Pumpkin, raw",
+      "scientificName": "Cucurbita pepo L.",
+      "foodEx2": "Pumpkins (A00KH)",
+      "formMatch": "EXACT_GENERIC_RAW_PUMPKIN_EDIBLE_FLESH",
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B23 maps only canonical generic pumpkin to the reviewed source identity Pumpkin, raw under FoodEx2 Pumpkins. It does not authorize butternut, Hokkaido or another cultivar/species-specific pumpkin identity, cooked/roasted/canned/puree forms, the source edible-part yield, or any household-unit conversion.",
+      "quantityState": "DIRECT_GRAM_AUTHORED_USES_ONLY_NO_PORTION_OR_EDIBLE_YIELD_AUTHORIZATION",
+      "runtimeChange": true
     }
   },
   "portionEvidenceDecisions": {
