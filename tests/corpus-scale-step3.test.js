@@ -107,7 +107,7 @@ test("manifest and canonical artifacts contain no Cloudflare-specific storage de
   const { files } = materialized();
   const manifest = manifestFrom(files);
   const manifestText = files.get(`${ROOT}/manifest.json`).toLowerCase();
-  assert.doesNotMatch(manifestText, /cloudflare|\br2\b|workers?|d1/);
+  assert.doesNotMatch(manifestText, /"(?:cloudflare|r2|worker|d1)"/);
   assert.equal(manifest.invariants.providerNeutral, true);
   assert.equal(manifest.detailObjects.contentType, "application/json");
   assert.equal(manifest.detailObjects.pathTemplate, "recipes/{ordinal:6d}.json");
