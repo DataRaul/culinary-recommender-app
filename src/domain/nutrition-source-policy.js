@@ -46,6 +46,10 @@ import {
   MATVARETABELLEN_COMPOSITION_SOURCE_B21
 } from "../data/matvaretabellen-composition-b21.js";
 import {
+  MATVARETABELLEN_COMPOSITION_DENSITIES_B22,
+  MATVARETABELLEN_COMPOSITION_SOURCE_B22
+} from "../data/matvaretabellen-composition-b22.js";
+import {
   USDA_FOUNDATION_DENSITIES,
   USDA_FOUNDATION_SOURCE,
   nutritionEvidenceForIngredient
@@ -266,6 +270,26 @@ if (invalidB21CompletionIds.length) {
   throw new Error(`Matvaretabellen B21 must remain a Ciqual-only exact field-completion lane with no earlier Matvaretabellen overlap: ${invalidB21CompletionIds.sort().join(", ")}`);
 }
 
+const matvaretabellenB22Ids = Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B22);
+const overlappingMatvaretabellenB22Ids = matvaretabellenB22Ids.filter(ingredientId =>
+  Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) ||
+  Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B9, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B11, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B14, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B16, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B18, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B19, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B20, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21, ingredientId)
+);
+if (overlappingMatvaretabellenB22Ids.length) {
+  throw new Error(`Matvaretabellen B22 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB22Ids.sort().join(", ")}`);
+}
+
 const formRank = confidence => ({ high: 3, medium: 2, low: 1 }[confidence] || 0);
 const ciqualFieldGoodEnoughToDisplace = confidence => ["A", "B", "C"].includes(confidence);
 
@@ -388,6 +412,10 @@ const sourceCandidate = (ingredientId, nutrientKey, source) => {
     return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21, MATVARETABELLEN_COMPOSITION_SOURCE_B21);
   }
 
+  if (source === "matvaretabellen-b22") {
+    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B22, MATVARETABELLEN_COMPOSITION_SOURCE_B22);
+  }
+
   const record = USDA_FOUNDATION_DENSITIES[ingredientId];
   if (!record) return null;
   const spec = USDA_FIELDS[nutrientKey];
@@ -419,7 +447,8 @@ export const selectEuropeanPrimaryNutrient = (ingredientId, nutrientKey) => {
     sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b16") ||
     sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b18") ||
     sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b19") ||
-    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b20");
+    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b20") ||
+    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b22");
   if (standaloneMatvaretabellen) return { ...standaloneMatvaretabellen, selectionReason: "ONLY_REVIEWED_SOURCE_AVAILABLE" };
 
   const usda = sourceCandidate(ingredientId, nutrientKey, "usda");
@@ -491,7 +520,8 @@ export const EUROPEAN_PRIMARY_DENSITIES_V1 = Object.fromEntries(
     ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B18),
     ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B19),
     ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B20),
-    ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21)
+    ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21),
+    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B22)
   ])]
     .map(ingredientId => [ingredientId, europeanPrimaryDensityForIngredient(ingredientId)])
     .filter(([, record]) => record)
@@ -524,6 +554,7 @@ export const europeanPrimaryPolicyCoverage = ingredientIds => {
     matvaretabellenB19SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B19").length,
     matvaretabellenB20SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B20").length,
     matvaretabellenB21SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B21").length,
+    matvaretabellenB22SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B22").length,
     selections
   };
 };

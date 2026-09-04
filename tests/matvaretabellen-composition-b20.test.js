@@ -117,9 +117,9 @@ test("B20 composition evidence does not authorize the source portion or edible-p
 
 test("B20 removes exactly one cod density blocker while preserving the recipe's smoked-paprika blocker", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  assert.equal(audit.authoritativeRecipeCount, 15);
-  assert.equal(audit.estimateRecipeCount, 61);
-  assert.equal(audit.blockerCounts.missing_density, 93);
+  assert.equal(audit.authoritativeRecipeCount, 16);
+  assert.equal(audit.estimateRecipeCount, 60);
+  assert.equal(audit.blockerCounts.missing_density, 91);
   const detail = audit.recipeDetails.find(row => row.recipeId === "med_cod_chickpea_tomato_stew");
   assert.equal(detail.authoritative, false);
   assert.deepEqual(detail.blockers.map(blocker => [blocker.ingredientId, blocker.reason]), [

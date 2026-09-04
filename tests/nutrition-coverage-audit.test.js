@@ -31,11 +31,11 @@ test("audit preserves every fail-closed shortfall class rather than treating par
   assert.ok(Object.keys(audit.missingNutrientFieldCounts).length > 0, "expected current corpus to expose tracked nutrient field gaps");
 });
 
-test("B21 exact salmon field completion preserves cumulative unlock truth without weakening fail-closed controls", () => {
+test("B22 exact raw-mint composition preserves cumulative unlock truth without weakening fail-closed controls", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
-  assert.equal(audit.authoritativeRecipeCount, 15);
-  assert.equal(audit.estimateRecipeCount, 61);
+  assert.equal(audit.authoritativeRecipeCount, 16);
+  assert.equal(audit.estimateRecipeCount, 60);
   assert.deepEqual(audit.authoritativeRecipeIds, [
     "indian_chicken_spinach_curry",
     "indian_chickpea_cauliflower_curry",
@@ -48,6 +48,7 @@ test("B21 exact salmon field completion preserves cumulative unlock truth withou
     "med_prawn_tomato_couscous",
     "med_quinoa_chickpea_bowl",
     "med_quinoa_egg_spinach_bowl",
+    "middle_eastern_bulgur_chickpea_salad",
     "middle_eastern_chicken_tahini_bowl",
     "middle_eastern_chickpea_tahini_plate",
     "middle_eastern_red_lentil_carrot_soup",
@@ -55,7 +56,7 @@ test("B21 exact salmon field completion preserves cumulative unlock truth withou
   ]);
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
-    missing_density: 93,
+    missing_density: 91,
     unsupported_quantity_unit: 7
   });
   assert.deepEqual(audit.missingNutrientFieldCounts, {

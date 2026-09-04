@@ -78,7 +78,7 @@ test("B18 composition evidence does not authorize household portions", () => {
 
 test("B18 exact cottage cheese unlocks only the recipe whose other evidence is complete", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  assert.equal(audit.authoritativeRecipeCount, 15);
+  assert.equal(audit.authoritativeRecipeCount, 16);
   const frittata = audit.recipeDetails.find(detail => detail.recipeId === "spanish_pepper_cottage_frittata");
   assert.equal(frittata.authoritative, true);
   assert.deepEqual(frittata.blockers, []);
