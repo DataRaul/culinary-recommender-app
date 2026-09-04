@@ -208,6 +208,20 @@
       "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
       "boundary": "B21 fills only the two tracked fields absent from Ciqual B4 salmon 26036. Existing B4 energy, protein and fat remain primary. No wild/ocean, cooked, smoked, salted, sliced or other salmon identity, source portion, or edible-part conversion is authorized.",
       "runtimeChange": true
+    },
+    "mint": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B22",
+      "candidateClass": "COMPOSITION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-composition-b22",
+      "foodId": "06.259",
+      "foodName": "Mint, raw",
+      "scientificName": "Mentha L.",
+      "foodEx2": "Mints (A00XZ)",
+      "formMatch": "EXACT_GENERIC_RAW_MINT_AROMATIC_LEAVES",
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B22 maps only canonical generic mint to the exact source identity Mint, raw at genus-level Mentha L. / FoodEx2 Mints. It does not authorize peppermint or spearmint species/cultivars, dried mint, mint tea, extract, oil, sauce, confectionery, the source edible-part yield, or any household-unit conversion.",
+      "quantityState": "COMPOSITION_ONLY_NO_PORTION_OR_EDIBLE_YIELD_AUTHORIZATION",
+      "runtimeChange": true
     }
   },
   "portionEvidenceDecisions": {

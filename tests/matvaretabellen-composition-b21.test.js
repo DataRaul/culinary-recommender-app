@@ -100,11 +100,11 @@ test("B21 exact farmed-raw completion does not authorize neighboring salmon form
 
 test("B21 removes eight salmon field-gap events while preserving all independent blockers and semantic gates", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  assert.equal(audit.authoritativeRecipeCount, 15);
-  assert.equal(audit.estimateRecipeCount, 61);
+  assert.equal(audit.authoritativeRecipeCount, 16);
+  assert.equal(audit.estimateRecipeCount, 60);
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
-    missing_density: 93,
+    missing_density: 91,
     unsupported_quantity_unit: 7
   });
   assert.deepEqual(audit.missingNutrientFieldCounts, {
