@@ -104,11 +104,11 @@ test("B19 composition evidence does not authorize source household portions", ()
   assert.equal(bulgur.sourcePortionId, undefined);
 });
 
-test("B19 removes exactly three bulgur density blockers while preserving all residual blockers", () => {
+test("B19 bulgur evidence remains active while later reviewed tranches preserve its residual blockers", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.authoritativeRecipeCount, 15);
   assert.equal(audit.estimateRecipeCount, 61);
-  assert.equal(audit.blockerCounts.missing_density, 94);
+  assert.equal(audit.blockerCounts.missing_density, 93);
   const expected = {
     middle_eastern_bulgur_chickpea_salad: [["mint", "missing_density"]],
     middle_eastern_lentil_bulgur_herb_bowl: [["lentils", "missing_density"], ["mint", "missing_density"]],
