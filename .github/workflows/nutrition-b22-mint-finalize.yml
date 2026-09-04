@@ -1,0 +1,231 @@
+name: Nutrition B22 mint finalization
+
+on:
+  push:
+    branches:
+      - agent/nutrition-b22-priority-reconciliation
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - name: Integrate B22 policy, governance and cumulative invariants
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          policy_path = Path('src/domain/nutrition-source-policy.js')
+          s = policy_path.read_text()
+
+          old = '''import {
+            MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21,
+            MATVARETABELLEN_COMPOSITION_SOURCE_B21
+          } from "../data/matvaretabellen-composition-b21.js";
+          import {
+            USDA_FOUNDATION_DENSITIES,'''
+          new = '''import {
+            MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21,
+            MATVARETABELLEN_COMPOSITION_SOURCE_B21
+          } from "../data/matvaretabellen-composition-b21.js";
+          import {
+            MATVARETABELLEN_COMPOSITION_DENSITIES_B22,
+            MATVARETABELLEN_COMPOSITION_SOURCE_B22
+          } from "../data/matvaretabellen-composition-b22.js";
+          import {
+            USDA_FOUNDATION_DENSITIES,'''
+          assert old in s, 'B22 import insertion anchor missing'
+          s = s.replace(old, new, 1)
+
+          guard_anchor = '''if (invalidB21CompletionIds.length) {
+            throw new Error(`Matvaretabellen B21 must remain a Ciqual-only exact field-completion lane with no earlier Matvaretabellen overlap: ${invalidB21CompletionIds.sort().join(", ")}`);
+          }
+
+          const formRank'''
+          guard_insert = '''if (invalidB21CompletionIds.length) {
+            throw new Error(`Matvaretabellen B21 must remain a Ciqual-only exact field-completion lane with no earlier Matvaretabellen overlap: ${invalidB21CompletionIds.sort().join(", ")}`);
+          }
+
+          const matvaretabellenB22Ids = Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B22);
+          const overlappingMatvaretabellenB22Ids = matvaretabellenB22Ids.filter(ingredientId =>
+            Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) ||
+            Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B9, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B11, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B14, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B16, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B18, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B19, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B20, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21, ingredientId)
+          );
+          if (overlappingMatvaretabellenB22Ids.length) {
+            throw new Error(`Matvaretabellen B22 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB22Ids.sort().join(", ")}`);
+          }
+
+          const formRank'''
+          assert guard_anchor in s, 'B22 no-overlap guard anchor missing'
+          s = s.replace(guard_anchor, guard_insert, 1)
+
+          candidate_anchor = '''  if (source === "matvaretabellen-b21") {
+            return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21, MATVARETABELLEN_COMPOSITION_SOURCE_B21);
+          }
+
+          const record = USDA_FOUNDATION_DENSITIES[ingredientId];'''
+          candidate_insert = '''  if (source === "matvaretabellen-b21") {
+            return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21, MATVARETABELLEN_COMPOSITION_SOURCE_B21);
+          }
+
+          if (source === "matvaretabellen-b22") {
+            return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B22, MATVARETABELLEN_COMPOSITION_SOURCE_B22);
+          }
+
+          const record = USDA_FOUNDATION_DENSITIES[ingredientId];'''
+          assert candidate_anchor in s, 'B22 source candidate anchor missing'
+          s = s.replace(candidate_anchor, candidate_insert, 1)
+
+          standalone_anchor = '''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b19") ||
+              sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b20");'''
+          standalone_insert = '''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b19") ||
+              sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b20") ||
+              sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b22");'''
+          assert standalone_anchor in s, 'B22 standalone selection anchor missing'
+          s = s.replace(standalone_anchor, standalone_insert, 1)
+
+          union_anchor = '''    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B20),
+              ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21)'''
+          union_insert = '''    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B20),
+              ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21),
+              ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B22)'''
+          assert union_anchor in s, 'B22 density union anchor missing'
+          s = s.replace(union_anchor, union_insert, 1)
+
+          coverage_anchor = '''    matvaretabellenB20SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B20").length,
+              matvaretabellenB21SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B21").length,
+              selections'''
+          coverage_insert = '''    matvaretabellenB20SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B20").length,
+              matvaretabellenB21SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B21").length,
+              matvaretabellenB22SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B22").length,
+              selections'''
+          assert coverage_anchor in s, 'B22 coverage anchor missing'
+          s = s.replace(coverage_anchor, coverage_insert, 1)
+          policy_path.write_text(s)
+
+          decisions_path = Path('scripts/nutrition-unlock-reviewed-decisions-v1.json')
+          data = json.loads(decisions_path.read_text())
+          assert 'mint' not in data['decisions'], 'mint decision already exists unexpectedly'
+          data['decisions']['mint'] = {
+            'decision': 'ADMIT_EXACT_MATVARETABELLEN_2026_B22',
+            'candidateClass': 'COMPOSITION_EVIDENCE',
+            'sourceId': 'matvaretabellen-2026-composition-b22',
+            'foodId': '06.259',
+            'foodName': 'Mint, raw',
+            'scientificName': 'Mentha L.',
+            'foodEx2': 'Mints (A00XZ)',
+            'formMatch': 'EXACT_GENERIC_RAW_MINT_AROMATIC_LEAVES',
+            'carbohydrateSemantic': 'AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO',
+            'boundary': 'B22 maps only canonical generic mint to the exact source identity Mint, raw at genus-level Mentha L. / FoodEx2 Mints. It does not authorize peppermint or spearmint species/cultivars, dried mint, mint tea, extract, oil, sauce, confectionery, the source edible-part yield, or any household-unit conversion.',
+            'quantityState': 'COMPOSITION_ONLY_NO_PORTION_OR_EDIBLE_YIELD_AUTHORIZATION',
+            'runtimeChange': True
+          }
+          decisions_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + '\n')
+
+          notices = Path('THIRD_PARTY_NOTICES.md')
+          n = notices.read_text()
+          old_notice = 'B9, B11, B14, B16, B18, B19 and B20 are standalone exact composition roles.'
+          new_notice = 'B9, B11, B14, B16, B18, B19, B20 and B22 are standalone exact composition roles.'
+          assert old_notice in n, 'third-party role anchor missing'
+          notices.write_text(n.replace(old_notice, new_notice, 1))
+
+          # Current-state audit assertions intentionally advance with later admitted tranches.
+          for path in Path('tests').glob('*.test.js'):
+            t = path.read_text()
+            t = t.replace('assert.equal(audit.authoritativeRecipeCount, 15);', 'assert.equal(audit.authoritativeRecipeCount, 16);')
+            t = t.replace('assert.equal(audit.estimateRecipeCount, 61);', 'assert.equal(audit.estimateRecipeCount, 60);')
+            t = t.replace('assert.equal(audit.blockerCounts.missing_density, 93);', 'assert.equal(audit.blockerCounts.missing_density, 91);')
+            t = t.replace('missing_density: 93,', 'missing_density: 91,')
+            path.write_text(t)
+
+          coverage_test = Path('tests/nutrition-coverage-audit.test.js')
+          t = coverage_test.read_text()
+          t = t.replace('test("B21 exact salmon field completion preserves cumulative unlock truth without weakening fail-closed controls",', 'test("B22 exact raw-mint composition preserves cumulative unlock truth without weakening fail-closed controls",', 1)
+          anchor = '''    "med_quinoa_egg_spinach_bowl",
+              "middle_eastern_chicken_tahini_bowl",'''
+          replacement = '''    "med_quinoa_egg_spinach_bowl",
+              "middle_eastern_bulgur_chickpea_salad",
+              "middle_eastern_chicken_tahini_bowl",'''
+          assert anchor in t, 'authoritative recipe list anchor missing'
+          coverage_test.write_text(t.replace(anchor, replacement, 1))
+
+          b19 = Path('tests/matvaretabellen-composition-b19.test.js')
+          t = b19.read_text()
+          old_block = '''  const expected = {
+              middle_eastern_bulgur_chickpea_salad: [["mint", "missing_density"]],
+              middle_eastern_lentil_bulgur_herb_bowl: [["lentils", "missing_density"], ["mint", "missing_density"]],
+              middle_eastern_turkey_bulgur_pepper_bowl: [["turkey_mince", "missing_density"]]
+            };
+            for (const [recipeId, blockers] of Object.entries(expected)) {
+              const detail = audit.recipeDetails.find(row => row.recipeId === recipeId);
+              assert.equal(detail.authoritative, false, recipeId);
+              assert.deepEqual(detail.blockers.map(blocker => [blocker.ingredientId, blocker.reason]), blockers, recipeId);
+              assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "bulgur"), false, recipeId);
+            }'''
+          new_block = '''  const salad = audit.recipeDetails.find(row => row.recipeId === "middle_eastern_bulgur_chickpea_salad");
+            assert.equal(salad.authoritative, true);
+            assert.equal(salad.blockers.some(blocker => blocker.ingredientId === "bulgur"), false);
+
+            const expected = {
+              middle_eastern_lentil_bulgur_herb_bowl: [["lentils", "missing_density"]],
+              middle_eastern_turkey_bulgur_pepper_bowl: [["turkey_mince", "missing_density"]]
+            };
+            for (const [recipeId, blockers] of Object.entries(expected)) {
+              const detail = audit.recipeDetails.find(row => row.recipeId === recipeId);
+              assert.equal(detail.authoritative, false, recipeId);
+              assert.deepEqual(detail.blockers.map(blocker => [blocker.ingredientId, blocker.reason]), blockers, recipeId);
+              assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "bulgur"), false, recipeId);
+            }'''
+          assert old_block in t, 'B19 residual blocker block anchor missing'
+          b19.write_text(t.replace(old_block, new_block, 1))
+          PY
+      - name: Focused B22 validation
+        run: node --test tests/matvaretabellen-composition-b22.test.js tests/european-primary-policy.test.js tests/nutrition-coverage-audit.test.js
+      - name: Confirm measured B22 audit truth
+        run: |
+          node scripts/report-nutrition-unlock-priorities.mjs | tee /tmp/b22-priorities.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const r = JSON.parse(fs.readFileSync('/tmp/b22-priorities.json', 'utf8'));
+          if (r.authoritativeRecipeCount !== 16) throw new Error(`authoritative ${r.authoritativeRecipeCount}`);
+          if (r.blockerCounts.ambiguous_portion_unit !== 20 || r.blockerCounts.missing_density !== 91 || r.blockerCounts.unsupported_quantity_unit !== 7) throw new Error(`blockers ${JSON.stringify(r.blockerCounts)}`);
+          const m = r.missingNutrientFieldCounts;
+          if (m.carbohydrateG !== 5 || m.energyKcal !== 5 || m.fatG !== 18 || m.fibreG !== 7) throw new Error(`missing fields ${JSON.stringify(m)}`);
+          if (r.semanticIssueCounts.mixed_incompatible_carbohydrate_semantics !== 16) throw new Error(`semantic ${JSON.stringify(r.semanticIssueCounts)}`);
+          NODE
+      - name: Full deterministic validation
+        run: npm test
+      - name: Repository validation
+        run: npm run validate
+      - name: Remove temporary workflows and commit permanent B22 implementation
+        run: |
+          rm -f .github/workflows/nutrition-b22-priority-reconciliation.yml
+          rm -f .github/workflows/nutrition-b22-mint-finalize.yml
+          git config user.name "Raul M."
+          git config user.email "67912886+DataRaul@users.noreply.github.com"
+          git add -A
+          git status --short
+          git commit -m "Finalize B22 exact raw mint composition evidence"
+          git push origin HEAD:agent/nutrition-b22-priority-reconciliation
