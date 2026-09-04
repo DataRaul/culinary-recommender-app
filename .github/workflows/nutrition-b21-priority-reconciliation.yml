@@ -1,0 +1,92 @@
+name: Nutrition B21 priority reconciliation
+
+on:
+  push:
+    branches:
+      - agent/nutrition-b21-priority-reconciliation
+
+permissions:
+  contents: read
+
+jobs:
+  reconcile:
+    if: github.event.head_commit.message == 'Add temporary B21 priority reconciliation'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - name: Regenerate merged B20 priorities and inspect candidate context
+        run: |
+          node scripts/report-nutrition-unlock-priorities.mjs > /tmp/priorities.json
+          curl --fail --silent --show-error --retry 3 https://www.matvaretabellen.no/api/en/foods.json -o /tmp/matvaretabellen-foods.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { AUTHORED_RECIPES } from './src/data/corpus-v1.js';
+          import { INGREDIENTS } from './src/data/ingredients.js';
+
+          const priorities = JSON.parse(fs.readFileSync('/tmp/priorities.json', 'utf8'));
+          const payload = JSON.parse(fs.readFileSync('/tmp/matvaretabellen-foods.json', 'utf8'));
+          const foods = Array.isArray(payload) ? payload : (payload.foods || []);
+          const top = priorities.ingredientPriorities.slice(0, 25).map(row => row.ingredientId);
+          const usage = {};
+          for (const target of top) {
+            usage[target] = AUTHORED_RECIPES
+              .filter(recipe => recipe.ingredients.some(i => i.canonicalIngredientId === target))
+              .map(recipe => ({
+                recipeId: recipe.id,
+                title: recipe.title,
+                ingredient: recipe.ingredients.find(i => i.canonicalIngredientId === target),
+                instructions: recipe.instructions.map(step => step.text)
+              }));
+          }
+
+          const searchTerms = {
+            smoked_paprika: ['smoked paprika','paprika, smoked'],
+            lentils: ['lentil'],
+            turkey_mince: ['turkey mince','ground turkey','turkey, minced'],
+            garam_masala: ['garam masala'],
+            passata: ['passata','sieved tomato','tomato puree','tomato purée','tomato sauce'],
+            red_onion: ['red onion','onion, red'],
+            mint: ['mint'],
+            salt: ['salt'],
+            tortilla: ['tortilla'],
+            chicken_thigh: ['chicken thigh','chicken, thigh'],
+            barley: ['barley'],
+            feta: ['feta'],
+            sardines: ['sardine'],
+            pumpkin: ['pumpkin'],
+            bread: ['bread'],
+            cod: ['cod']
+          };
+          const candidates = {};
+          for (const [target, terms] of Object.entries(searchTerms)) {
+            candidates[target] = foods.filter(food => {
+              const hay = `${food.foodName || ''} ${food.foodEx2 || ''}`.toLowerCase();
+              return terms.some(term => hay.includes(term));
+            }).slice(0, 80);
+          }
+
+          const ontology = {};
+          for (const target of top) {
+            ontology[target] = INGREDIENTS[target] || null;
+          }
+
+          const out = {
+            generatedAt: new Date().toISOString(),
+            mainBaseSha: '681a033f203ea5f1cb92b4ea357b3fc8221c81f2',
+            priorities,
+            usage,
+            ontology,
+            matvaretabellenCandidates: candidates
+          };
+          fs.writeFileSync('/tmp/b21-priority-reconciliation.json', JSON.stringify(out, null, 2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: b21-priority-reconciliation
+          path: /tmp/b21-priority-reconciliation.json
+          if-no-files-found: error
+          retention-days: 7
