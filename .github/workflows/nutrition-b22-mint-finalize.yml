@@ -144,7 +144,7 @@ jobs:
           import fs from 'node:fs';
           const r = JSON.parse(fs.readFileSync('/tmp/b22-priorities.json', 'utf8'));
           if (r.authoritativeRecipeCount !== 16) throw new Error(`authoritative ${r.authoritativeRecipeCount}`);
-          if (r.estimateRecipeCount !== 60) throw new Error(`estimate ${r.estimateRecipeCount}`);
+          if ((r.authoredRecipeCount - r.authoritativeRecipeCount) !== 60) throw new Error(`estimate ${r.authoredRecipeCount - r.authoritativeRecipeCount}`);
           if (r.blockerCounts.ambiguous_portion_unit !== 20 || r.blockerCounts.missing_density !== 91 || r.blockerCounts.unsupported_quantity_unit !== 7) throw new Error(`blockers ${JSON.stringify(r.blockerCounts)}`);
           const m = r.missingNutrientFieldCounts;
           if (m.carbohydrateG !== 5 || m.energyKcal !== 5 || m.fatG !== 18 || m.fibreG !== 7) throw new Error(`missing fields ${JSON.stringify(m)}`);
