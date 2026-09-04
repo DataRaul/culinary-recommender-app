@@ -1,0 +1,70 @@
+{
+  "handover": "CULINARY_RECOMMENDER_APP_CORPUS_SCALE_CLOUDFLARE_STEP1_CONTINUATION_V1",
+  "handover_date": "2026-09-04",
+  "timezone": "Atlantic/Canary",
+  "status": "CLOUDFLARE_TARGET_ARCHITECTURE_USER_ACCEPTED__ROADMAP_RECONCILED__PR45_MERGED__STEP1_SYNTHETIC_SCALE_CONTRACT_READY",
+  "human_needed": false,
+  "repositories": {
+    "primary": "DataRaul/culinary-recommender-app",
+    "read_only_reconciliation": "DataRaul/knowledge-core",
+    "source_of_truth": "GitHub",
+    "handover_written_against_main_sha": "968ede81350f0894b50db8ff9ce82ae3983e14b5"
+  },
+  "lane": {
+    "name": "Culinary App / Culinary Lab — Corpus Scale / 100k Readiness",
+    "rule": "Do not perform ordinary Culinary Brain / Knowledge Core implementation from this lane.",
+    "knowledge_core_boundary": "Use Knowledge Core as the canonical reasoning/verification authority and read-only reconciliation source. The public browser must never dynamically depend on private Knowledge Core.",
+    "nutrition_boundary": "Preserve nutrition work as an independent resumable lane. Corpus scale work must not weaken or replace RecipeSource/NutritionSource separation or authoritative nutrition evidence rules."
+  },
+  "accepted_architecture": {
+    "status": "USER_ACCEPTED_TARGET__IMPLEMENTATION_BENCHMARK_PENDING",
+    "flow": [
+      "GitHub repository",
+      "Cloudflare Pages",
+      "Cloudflare Access exact-email allowlist + email OTP",
+      "Cloudflare Worker",
+      "Cloudflare R2",
+      "RecipeSource V2",
+      "existing deterministic hard filters + RecipeEvaluator + scorer + planner"
+    ],
+    "d1": "OPTIONAL_ONLY_IF_BENCHMARK_EARNED",
+    "firebase": "FALLBACK_COMPARATOR_ONLY",
+    "cost_target": "EUR_0_RECURRING_FOR_OWNER_PLUS_SMALL_INVITED_FRIEND_COHORT"
+  },
+  "hard_access_constraint": {
+    "mode": "INVITATION_ONLY",
+    "rule": "Only exact email addresses explicitly added by the owner may authenticate.",
+    "auth": "Cloudflare Access email OTP/passwordless initially.",
+    "forbidden": [
+      "public registration",
+      "any-email sign-in",
+      "Everyone Access policies",
+      "wildcard public-email-domain membership"
+    ]
+  },
+  "source_admission_order": {
+    "A": "PASS_ALREADY_ESTABLISHED — existing curated corpus + Wikibooks",
+    "B": "PASS_CANDIDATE_PREFERRED_FIRST_STEP7_PILOT — Open Recipe Archive Spanish collection (~928)",
+    "C": "PASS_CANDIDATE_PRIMARY_LARGE_CORPUS_BASE — Open Recipe Archive complete (54,843)",
+    "D": "PASS_CANDIDATE_CLEAN_OPEN_SUPPLEMENTS — ForkRecipe + UniTools",
+    "E": "CONDITIONAL_SOURCE_COHORT_SALVAGE_GATE — RecipeDB 118,171; retain only rights-verified cohorts/records"
+  },
+  "next_action": {
+    "name": "STEP_1_CORPUS_SCALE_CONTRACT_AND_SYNTHETIC_BENCHMARK_HARNESS",
+    "status": "READY",
+    "instructions": [
+      "Fresh-reconcile main, open PRs and active/concurrent branches before implementation.",
+      "Use the current reviewed recipe corpus as the golden behavioral oracle.",
+      "Create deterministic synthetic catalogues at approximately 1k, 10k, 50k and 100k records.",
+      "Model provider-neutral R2-style immutable recipe objects plus pre-built retrieval indexes.",
+      "Measure record size, index size, candidate-set cardinality, transferred bytes, memory, retrieval latency, filter/ranking latency, build time and validation cost.",
+      "Define explicit acceptance thresholds before advancing.",
+      "Do not provision production Cloudflare resources in Step 1.",
+      "Do not ingest new real external corpora in Step 1.",
+      "Do not add D1 in Step 1.",
+      "Do not change public recommendation behavior.",
+      "Do not authorize paid infrastructure."
+    ]
+  },
+  "terminal_instruction_for_new_chat": "Pick up the next action that is ready from the roadmap. Fresh-reconcile GitHub, then begin Step 1 autonomously under this contract."
+}
