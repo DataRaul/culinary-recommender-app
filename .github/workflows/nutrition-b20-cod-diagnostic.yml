@@ -1,4 +1,4 @@
-name: Nutrition B20 cod evidence diagnostic
+name: Nutrition B20 cod finalization
 
 on:
   push:
@@ -6,11 +6,11 @@ on:
       - agent/nutrition-b20-cod-exact-composition
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  diagnose:
-    if: github.event.head_commit.message == 'Capture B20 cod diagnostic artifact'
+  finalize:
+    if: github.event.head_commit.message == 'Finalize B20 cod policy integration'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,63 +18,166 @@ jobs:
         with:
           node-version: 22
       - run: npm install --ignore-scripts
-      - name: Freeze repository-native authored cod form and official source candidate
+      - name: Integrate B20 source into bounded policy and governance
         run: |
-          curl --fail --silent --show-error --retry 3 https://www.matvaretabellen.no/api/en/foods.json -o /tmp/matvaretabellen-foods.json
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          import assert from 'node:assert/strict';
-          import { AUTHORED_RECIPES } from './src/data/corpus-v1.js';
-          import { publicNutritionSource } from './src/domain/nutrition.js';
-          import { buildNutritionCoverageAudit } from './src/domain/nutrition-coverage-audit.js';
+          python <<'PY'
+          from pathlib import Path
+          import json
 
-          const authored = AUTHORED_RECIPES
-            .filter(recipe => recipe.ingredients.some(i => i.canonicalIngredientId === 'cod'))
-            .map(recipe => ({
-              recipeId: recipe.id,
-              title: recipe.title,
-              ingredient: recipe.ingredients.find(i => i.canonicalIngredientId === 'cod'),
-              instructions: recipe.instructions.map(step => step.text)
-            }));
-          assert.equal(authored.length, 1);
-          assert.equal(authored[0].recipeId, 'med_cod_chickpea_tomato_stew');
-          assert.deepEqual(
-            [authored[0].ingredient.quantity, authored[0].ingredient.unit, authored[0].ingredient.preparation],
-            [300, 'g', 'large pieces']
+          def replace_once(text, old, new, label):
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f"{label}: expected exactly one match, found {count}")
+              return text.replace(old, new, 1)
+
+          policy_path = Path('src/domain/nutrition-source-policy.js')
+          policy = policy_path.read_text()
+
+          old = '''import {
+            MATVARETABELLEN_COMPOSITION_DENSITIES_B19,
+            MATVARETABELLEN_COMPOSITION_SOURCE_B19
+          } from "../data/matvaretabellen-composition-b19.js";
+          import {
+            USDA_FOUNDATION_DENSITIES,'''.replace('          ', '')
+          new = '''import {
+            MATVARETABELLEN_COMPOSITION_DENSITIES_B19,
+            MATVARETABELLEN_COMPOSITION_SOURCE_B19
+          } from "../data/matvaretabellen-composition-b19.js";
+          import {
+            MATVARETABELLEN_COMPOSITION_DENSITIES_B20,
+            MATVARETABELLEN_COMPOSITION_SOURCE_B20
+          } from "../data/matvaretabellen-composition-b20.js";
+          import {
+            USDA_FOUNDATION_DENSITIES,'''.replace('          ', '')
+          policy = replace_once(policy, old, new, 'B20 import')
+
+          marker = '''if (overlappingMatvaretabellenB19Ids.length) {
+            throw new Error(`Matvaretabellen B19 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB19Ids.sort().join(", ")}`);
+          }
+
+          const formRank'''.replace('          ', '')
+          insertion = '''if (overlappingMatvaretabellenB19Ids.length) {
+            throw new Error(`Matvaretabellen B19 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB19Ids.sort().join(", ")}`);
+          }
+
+          const matvaretabellenB20Ids = Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B20);
+          const overlappingMatvaretabellenB20Ids = matvaretabellenB20Ids.filter(ingredientId =>
+            Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) ||
+            Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B9, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B11, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B14, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B16, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B18, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B19, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12, ingredientId) ||
+            Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13, ingredientId)
           );
-          assert.match(authored[0].instructions.join(' '), /Nestle in cod, cook gently until just flaky/i);
+          if (overlappingMatvaretabellenB20Ids.length) {
+            throw new Error(`Matvaretabellen B20 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB20Ids.sort().join(", ")}`);
+          }
 
-          const payload = JSON.parse(fs.readFileSync('/tmp/matvaretabellen-foods.json', 'utf8'));
-          const foods = Array.isArray(payload) ? payload : (payload.foods || []);
-          assert.ok(foods.length > 1000, 'unexpected Matvaretabellen payload shape');
-          const sourceRow = foods.find(row => String(row.foodId || row.id) === '04.327');
-          assert.ok(sourceRow, 'Matvaretabellen food 04.327 missing');
-          assert.equal(sourceRow.foodName, 'Cod, unspecified, raw');
+          const formRank'''.replace('          ', '')
+          policy = replace_once(policy, marker, insertion, 'B20 overlap guard')
 
-          const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-          const currentRecipe = audit.recipeDetails.find(row => row.recipeId === 'med_cod_chickpea_tomato_stew');
-          assert.ok(currentRecipe, 'cod recipe missing from audit');
+          old = '''  if (source === "matvaretabellen-b19") {
+            return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B19, MATVARETABELLEN_COMPOSITION_SOURCE_B19);
+          }
 
-          const report = {
-            generatedAt: new Date().toISOString(),
-            mainBaseSha: '98cccf1a030214944ec991f2e3f04b8a4533746e',
-            authored,
-            currentRecipe,
-            currentTotals: {
-              authoritativeRecipeCount: audit.authoritativeRecipeCount,
-              estimateRecipeCount: audit.estimateRecipeCount,
-              blockerCounts: audit.blockerCounts,
-              missingNutrientFieldCounts: audit.missingNutrientFieldCounts,
-              semanticIssueCounts: audit.semanticIssueCounts
-            },
-            sourceRow,
-            codLikeSourceRows: foods.filter(row => JSON.stringify(row).toLowerCase().includes('cod'))
-          };
-          fs.writeFileSync('/tmp/b20-cod-diagnostic.json', JSON.stringify(report, null, 2));
-          NODE
-      - uses: actions/upload-artifact@v4
-        with:
-          name: b20-cod-diagnostic
-          path: /tmp/b20-cod-diagnostic.json
-          if-no-files-found: error
-          retention-days: 7
+          const record = USDA_FOUNDATION_DENSITIES[ingredientId];'''.replace('          ', '')
+          new = '''  if (source === "matvaretabellen-b19") {
+            return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B19, MATVARETABELLEN_COMPOSITION_SOURCE_B19);
+          }
+
+          if (source === "matvaretabellen-b20") {
+            return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B20, MATVARETABELLEN_COMPOSITION_SOURCE_B20);
+          }
+
+          const record = USDA_FOUNDATION_DENSITIES[ingredientId];'''.replace('          ', '')
+          policy = replace_once(policy, old, new, 'B20 candidate switch')
+
+          old = '''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b18") ||
+            sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b19");'''.replace('          ', '')
+          new = '''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b18") ||
+            sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b19") ||
+            sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b20");'''.replace('          ', '')
+          policy = replace_once(policy, old, new, 'B20 standalone selection')
+
+          old = '''    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B18),
+            ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B19)
+          ])]'''.replace('          ', '')
+          new = '''    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B18),
+            ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B19),
+            ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B20)
+          ])]'''.replace('          ', '')
+          policy = replace_once(policy, old, new, 'B20 density union')
+
+          old = '''    matvaretabellenB18SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B18").length,
+            matvaretabellenB19SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B19").length,
+            selections'''.replace('          ', '')
+          new = '''    matvaretabellenB18SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B18").length,
+            matvaretabellenB19SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B19").length,
+            matvaretabellenB20SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B20").length,
+            selections'''.replace('          ', '')
+          policy = replace_once(policy, old, new, 'B20 coverage counter')
+
+          policy_path.write_text(policy)
+
+          audit_path = Path('tests/nutrition-coverage-audit.test.js')
+          audit = audit_path.read_text()
+          audit = replace_once(
+              audit,
+              'test("B19 exact uncooked-bulgur composition removes three density blockers without weakening fail-closed controls", () => {',
+              'test("B20 exact raw-cod composition preserves cumulative unlock truth without weakening fail-closed controls", () => {',
+              'latest audit title'
+          )
+          audit = replace_once(audit, '    missing_density: 94,', '    missing_density: 93,', 'latest missing-density truth')
+          audit_path.write_text(audit)
+
+          decisions_path = Path('scripts/nutrition-unlock-reviewed-decisions-v1.json')
+          decisions = json.loads(decisions_path.read_text())
+          if 'cod' in decisions['decisions']:
+              raise SystemExit('cod decision already exists')
+          decisions['reviewDate'] = '2026-09-04'
+          decisions['decisions']['cod'] = {
+              'decision': 'ADMIT_EXACT_MATVARETABELLEN_2026_B20',
+              'candidateClass': 'COMPOSITION_EVIDENCE',
+              'sourceId': 'matvaretabellen-2026-composition-b20',
+              'foodId': '04.327',
+              'foodName': 'Cod, unspecified, raw',
+              'scientificName': 'Gadus morhua Linnaeus, 1758',
+              'foodEx2': 'Cod (A02BV)',
+              'formMatch': 'EXACT_GENERIC_RAW_COD_EDIBLE_MEAT',
+              'carbohydrateSemantic': 'AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO',
+              'boundary': 'B20 maps only canonical cod to the exact generic raw source identity Cod, unspecified, raw. Source classification identifies cod skeletal meat without bone or skin and no heat treatment; canonical cod explicitly includes cod fillet, and the sole authored 300 g cod input is cooked only after declaration. B20 does not authorize wild/farmed qualifiers, slices, cooked, salted, dried, breaded or other processed cod identities, nor the source portion or edible-part yield as quantity evidence.',
+              'quantityState': 'COMPOSITION_ONLY_NO_PORTION_OR_EDIBLE_YIELD_AUTHORIZATION',
+              'runtimeChange': True
+          }
+          decisions_path.write_text(json.dumps(decisions, indent=2, ensure_ascii=False) + '\n')
+
+          notices_path = Path('THIRD_PARTY_NOTICES.md')
+          notices = notices_path.read_text()
+          notices = replace_once(
+              notices,
+              'B9, B11, B14, B16, B18 and B19 are standalone exact composition roles.',
+              'B9, B11, B14, B16, B18, B19 and B20 are standalone exact composition roles.',
+              'third-party role accounting'
+          )
+          notices_path.write_text(notices)
+          PY
+      - name: Run focused B20 and cumulative audit tests
+        run: node --test tests/matvaretabellen-composition-b20.test.js tests/nutrition-coverage-audit.test.js
+      - name: Run complete deterministic suite
+        run: npm test
+      - name: Run repository validation
+        run: npm run validate
+      - name: Remove temporary B20 workflow and commit finalized tranche
+        run: |
+          rm .github/workflows/nutrition-b20-cod-diagnostic.yml
+          git config user.name "Raul M."
+          git config user.email "67912886+DataRaul@users.noreply.github.com"
+          git add src/data/matvaretabellen-composition-b20.js src/domain/nutrition-source-policy.js tests/matvaretabellen-composition-b20.test.js tests/nutrition-coverage-audit.test.js scripts/nutrition-unlock-reviewed-decisions-v1.json THIRD_PARTY_NOTICES.md .github/workflows/nutrition-b20-cod-diagnostic.yml
+          git diff --cached --check
+          git commit -m "Finalize B20 exact raw cod composition evidence"
+          git push origin HEAD:agent/nutrition-b20-cod-exact-composition
