@@ -13,6 +13,7 @@
     "report:recipe-universe": "node scripts/report-recipe-universe-coverage.mjs",
     "report:recipe-corpus-f2": "node scripts/report-wikibooks-gate-f2-coverage.mjs",
     "benchmark:corpus-scale-step1": "node --expose-gc scripts/run-corpus-scale-step1.mjs",
+    "build:corpus-scale-step3": "node scripts/build-corpus-scale-step3.mjs",
     "build:recipe-corpus-f2": "node scripts/build-wikibooks-gate-f2-index.mjs",
     "discover:recipe-corpus-f2": "node scripts/discover-wikibooks-gate-f2.mjs",
     "queue:recipe-corpus-f2": "node scripts/build-wikibooks-gate-f2-review-queue.mjs",
