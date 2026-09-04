@@ -398,3 +398,23 @@ A replacement corpus may pass only if the research can evidence, at minimum:
 10. **Stable provenance and updateability.** Record/source version or retrieval provenance must be reproducible enough to audit what was admitted. Later source updates must create reviewable changes rather than silently rewriting previously admitted truth.
 
 The eventual research output should rank candidates by rights confidence, field completeness, useful unique-record scale after obvious duplication, world/constraint coverage, ingestion difficulty, Firebase/free-tier fit, provenance quality and operational stability, and end with a clear `PASS / CONDITIONAL / FAIL` recommendation for the production-shaped Step 7 pilot.
+
+### Reuse map and source-admission order — canonical detailed companion
+
+The implementation references and researched source order are frozen in `docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md`. That companion is part of this roadmap contract and must be reconciled whenever the eight-step program or source-rights evidence changes.
+
+The current execution order is:
+
+- **A — existing curated corpus + Wikibooks:** `PASS / ALREADY ESTABLISHED`;
+- **B — Open Recipe Archive Spanish collection (~928):** `PASS-CANDIDATE / PREFERRED FIRST STEP-7 PILOT`, subject to source-book/public-domain verification;
+- **C — Open Recipe Archive complete corpus (54,843):** `PASS-CANDIDATE / PRIMARY LARGE-CORPUS BASE`, admitted collection/source-book/record incrementally rather than in one bulk action;
+- **D — ForkRecipe (916) + UniTools (501/127 countries):** `PASS-CANDIDATE / CLEAN OPEN SUPPLEMENTS`, with exact CC BY-SA 4.0 attribution/ShareAlike snapshots pinned at ingest;
+- **E — RecipeDB (118,171):** `CONDITIONAL / SOURCE-COHORT SALVAGE GATE`, never all-or-nothing.
+
+For **E**, the database-level CC BY-NC-SA 3.0 statement does not by itself clear underlying recipe prose. The RecipeDB paper states that the corpus was aggregated primarily from GeniusKitchen/Food.com and AllRecipes. Therefore the required order is: extract available provenance → partition by original source/domain → inspect original content-level rights/terms → classify each source cohort or record as `ADMIT_RIGHTS_VERIFIED`, `HOLD_RIGHTS_AMBIGUOUS`, `REJECT_RIGHTS_INCOMPATIBLE`, or `REJECT_PROVENANCE_MISSING` → ingest only verified records. Contacting RecipeDB/original rights holders is a last-resort clarification step after documentary evidence is exhausted, not the first step.
+
+There is **no minimum E retention target**. If 40k of 118k clear the gate, use 40k; if 5k clear it, use 5k; if none clear it, use none. Rights, provenance, quality and coverage dominate raw count.
+
+Large research-only/reuse-unclear corpora remain excluded from production: Recipe Box ~125k (`FAILED_CURRENT_ADMISSION`), RecipeNLG 2.23M (`FAIL_PRODUCTION / research-educational terms`), and Recipe1M+ >1M (`FAIL_PRODUCTION / research-institution access`).
+
+Reuse-before-reinvent references recorded in the companion include the official `firebase/quickstart-js` for current Auth/Firestore Web patterns, `smeet666/mcp-wikibooks-cookbook` for MIT-licensed Wikimedia parsing/pacing patterns, `AdamBouhmad/open-recipe-archive` for provenance-first collection/JSONL/index layout, `nerkyzas157/gamito` as design-only retrieve-first/deterministic-planning reference while its code licence remains absent, `giladl82/recipes-fs-pwa` as a legacy Firestore recipe-PWA comparator, and `mealie-recipes/mealie` as an AGPL mature-feature comparator rather than baseline dependency.
