@@ -1,0 +1,20 @@
+name: Nutrition B23 priority diagnostic
+on:
+  push:
+    branches: [agent/nutrition-b23-priority-reconciliation]
+    paths:
+      - .github/workflows/nutrition-b23-priority.yml
+permissions:
+  contents: read
+jobs:
+  priority:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - name: Nutrition unlock priorities
+        run: node scripts/report-nutrition-unlock-priorities.mjs
