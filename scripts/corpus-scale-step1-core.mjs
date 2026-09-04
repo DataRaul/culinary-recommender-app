@@ -37,11 +37,13 @@ function cloneRecipe(recipe) {
 }
 
 export function fingerprintGoldenCorpus(goldenRecipes = []) {
-  const ids = goldenRecipes.map(recipe => recipe.id).sort();
-  const source = ids.map(id => `${id}\n`).join("");
+  const ordered = [...goldenRecipes].sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  const idsSource = ordered.map(recipe => `${recipe.id}\n`).join("");
+  const recordsSource = ordered.map(recipe => `${JSON.stringify(recipe)}\n`).join("");
   return {
     recipeCount: goldenRecipes.length,
-    idsSha256: createHash("sha256").update(source).digest("hex")
+    idsSha256: createHash("sha256").update(idsSource).digest("hex"),
+    recordsSha256: createHash("sha256").update(recordsSource).digest("hex")
   };
 }
 
@@ -122,6 +124,7 @@ export function buildSyntheticCatalogue(goldenRecipes, targetSize, options = {})
   const indexes = new Map();
   const peakMemory = memorySnapshot();
   let totalRecipeBytes = 0;
+  let maxRecipeBytes = 0;
 
   for (let ordinal = 0; ordinal < targetSize; ordinal += 1) {
     const synthetic = syntheticRecipeFromGolden(goldenRecipes[ordinal % goldenRecipes.length], ordinal);
@@ -131,6 +134,7 @@ export function buildSyntheticCatalogue(goldenRecipes, targetSize, options = {})
     ids[ordinal] = synthetic.id;
     recordBytes[ordinal] = bodyBytes;
     totalRecipeBytes += bodyBytes;
+    maxRecipeBytes = Math.max(maxRecipeBytes, bodyBytes);
 
     for (const key of indexKeysForRecipe(synthetic)) {
       const postings = indexes.get(key) || [];
@@ -156,7 +160,7 @@ export function buildSyntheticCatalogue(goldenRecipes, targetSize, options = {})
       totalRecipeBytes,
       averageRecipeBytes: Math.round(totalRecipeBytes / targetSize),
       p95RecipeBytes: percentile(recordBytes, 0.95),
-      maxRecipeBytes: Math.max(...recordBytes),
+      maxRecipeBytes,
       indexRawBytes: indexBytes.rawBytes,
       indexGzipBytes: indexBytes.gzipBytes,
       indexGzipBytesPerRecord: rounded(indexBytes.gzipBytes / targetSize),
@@ -277,6 +281,7 @@ export function benchmarkCatalogueQueries(catalogue, rankCandidateRecipes, optio
       const ranked = rankCandidateRecipes(recipes, scenario);
       const rankMs = performance.now() - rankStartedAt;
       rankedCount = Array.isArray(ranked) ? ranked.length : Number(ranked?.eligible?.length || 0) + Number(ranked?.rejected?.length || 0);
+      updatePeak(catalogue.metrics.peakMemory, memorySnapshot());
 
       if (repetition > 0) {
         retrievalSamples.push(retrievalMs);
@@ -312,7 +317,8 @@ function includesSorted(postings, ordinal) {
   return false;
 }
 
-export function validateSyntheticCatalogue(catalogue) {
+export function validateSyntheticCatalogue(catalogue, options = {}) {
+  const sampleEvery = Math.max(1, Number(options.memorySampleEvery) || 1_000);
   const startedAt = performance.now();
   if (catalogue.objectBodies.length !== catalogue.targetSize) throw new Error("object body count mismatch");
   if (catalogue.ids.length !== catalogue.targetSize) throw new Error("id count mismatch");
@@ -332,6 +338,7 @@ export function validateSyntheticCatalogue(catalogue) {
     }
     digest.update(recipe.id);
     digest.update("\n");
+    if ((ordinal + 1) % sampleEvery === 0) updatePeak(catalogue.metrics.peakMemory, memorySnapshot());
   }
 
   for (const [key, postings] of catalogue.indexes) {
@@ -346,6 +353,7 @@ export function validateSyntheticCatalogue(catalogue) {
     digest.update(postings.join(","));
     digest.update("\n");
   }
+  updatePeak(catalogue.metrics.peakMemory, memorySnapshot());
 
   return {
     validationMs: rounded(performance.now() - startedAt),
@@ -395,7 +403,7 @@ export function runStep1Benchmark(goldenRecipes, rankCandidateRecipes, options =
     if (typeof global.gc === "function") global.gc();
     const catalogue = buildSyntheticCatalogue(goldenRecipes, targetSize, options);
     const queries = benchmarkCatalogueQueries(catalogue, rankCandidateRecipes, options);
-    const validation = validateSyntheticCatalogue(catalogue);
+    const validation = validateSyntheticCatalogue(catalogue, options);
     const sizeReport = { targetSize, goldenFingerprint: catalogue.goldenFingerprint, metrics: catalogue.metrics, queries, validation };
     sizeReport.acceptance = evaluateScaleAcceptance(sizeReport, options.thresholds || CORPUS_SCALE_ACCEPTANCE);
     reports.push(sizeReport);
