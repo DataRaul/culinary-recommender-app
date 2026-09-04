@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   finalize:
-    if: github.event.head_commit.message == 'Repair B20 cod policy integration v2'
+    if: github.event.head_commit.message == 'Repair B20 cod cumulative validation'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -103,7 +103,7 @@ jobs:
           notices_path.write_text(notices)
           PY
       - name: Run focused B20 and cumulative audit tests
-        run: node --test tests/matvaretabellen-composition-b20.test.js tests/nutrition-coverage-audit.test.js
+        run: node --test tests/matvaretabellen-composition-b19.test.js tests/matvaretabellen-composition-b20.test.js tests/nutrition-coverage-audit.test.js
       - name: Run complete deterministic suite
         run: npm test
       - name: Run repository validation
@@ -113,7 +113,7 @@ jobs:
           rm .github/workflows/nutrition-b20-cod-diagnostic.yml
           git config user.name "Raul M."
           git config user.email "67912886+DataRaul@users.noreply.github.com"
-          git add src/data/matvaretabellen-composition-b20.js src/domain/nutrition-source-policy.js tests/matvaretabellen-composition-b20.test.js tests/nutrition-coverage-audit.test.js scripts/nutrition-unlock-reviewed-decisions-v1.json THIRD_PARTY_NOTICES.md .github/workflows/nutrition-b20-cod-diagnostic.yml
+          git add src/data/matvaretabellen-composition-b20.js src/domain/nutrition-source-policy.js tests/matvaretabellen-composition-b19.test.js tests/matvaretabellen-composition-b20.test.js tests/nutrition-coverage-audit.test.js scripts/nutrition-unlock-reviewed-decisions-v1.json THIRD_PARTY_NOTICES.md .github/workflows/nutrition-b20-cod-diagnostic.yml
           git diff --cached --check
           git commit -m "Finalize B20 exact raw cod composition evidence"
           git push origin HEAD:agent/nutrition-b20-cod-exact-composition
