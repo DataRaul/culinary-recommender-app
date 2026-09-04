@@ -1,6 +1,6 @@
 {
   "schemaVersion": "nutrition-unlock-reviewed-decisions-v1",
-  "reviewDate": "2026-09-02",
+  "reviewDate": "2026-09-04",
   "purpose": "Preserve post-B8 evidence decisions without rewriting historical tranche ledgers or weakening canonical identity boundaries.",
   "decisions": {
     "smoked_paprika": {
@@ -175,6 +175,20 @@
       "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
       "boundary": "B19 maps only canonical bulgur to exact source identity Bulgur, uncooked. All three authored bulgur gram inputs are hydrated or cooked by subsequent recipe instructions, establishing pre-cooking form. It does not authorize cooked bulgur, generic wheat or grains, or any household portion from the same source row.",
       "quantityState": "COMPOSITION_ONLY_NO_HOUSEHOLD_PORTION_AUTHORIZATION",
+      "runtimeChange": true
+    },
+    "cod": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B20",
+      "candidateClass": "COMPOSITION_EVIDENCE",
+      "sourceId": "matvaretabellen-2026-composition-b20",
+      "foodId": "04.327",
+      "foodName": "Cod, unspecified, raw",
+      "scientificName": "Gadus morhua Linnaeus, 1758",
+      "foodEx2": "Cod (A02BV)",
+      "formMatch": "EXACT_GENERIC_RAW_COD_EDIBLE_MEAT",
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B20 maps only canonical cod to the exact generic raw source identity Cod, unspecified, raw. Source classification identifies cod skeletal meat without bone or skin and no heat treatment; canonical cod explicitly includes cod fillet, and the sole authored 300 g cod input is cooked only after declaration. B20 does not authorize wild/farmed qualifiers, slices, cooked, salted, dried, breaded or other processed cod identities, nor the source portion or edible-part yield as quantity evidence.",
+      "quantityState": "COMPOSITION_ONLY_NO_PORTION_OR_EDIBLE_YIELD_AUTHORIZATION",
       "runtimeChange": true
     }
   },
