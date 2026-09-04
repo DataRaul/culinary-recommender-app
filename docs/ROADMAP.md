@@ -312,3 +312,89 @@ Future nutrition breadth must come from reviewed source/form identity plus expli
 Cost remains relative, deterministic and explainable. Culinary quality remains normalized from project-authored structured metadata and instructions. Fridge Search, planner, allergens, dietary restrictions and permanent exclusions continue to use the same hard safety truth.
 
 The Culinary & Nutrition Brain is authorized and its broader Atlas development is active on an unmerged Knowledge Core branch, while Gate F2 remains a branch-local public-app control plane with no automatic admission or runtime activation. The public app must never call private Knowledge Core at runtime. Downstream behavior changes remain separately evidence- and test-gated.
+
+## V1.x Corpus Scale / 100k Readiness — PLANNED / NOT YET ACTIVATED
+
+This program defines the scale architecture required before any very large real recipe corpus is admitted. It does **not** authorize mass ingestion, replace the current nutrition/evidence lane, or make raw recipe count a success criterion. The intended transition point is after the current bounded nutrition run/handover is complete and its next-priority state is frozen so nutrition can resume independently later.
+
+### Eight-step scale program
+
+1. **Scale contract + synthetic benchmark.** Freeze the current 84-recipe corpus as the golden behavioral baseline. Define record-size, latency, memory, query/read, build-time and CI budgets, then generate deterministic synthetic catalogues at roughly 1k → 10k → 50k → 100k records. No real large-corpus ingestion is allowed in this step.
+2. **`RecipeSource` V2 compatibility layer.** Build a second implementation behind the stable `RecipeSource` contract. Against the golden corpus, V1 and V2 must preserve hard constraints, eligibility, explanations, deterministic ranking/planner results and recipe identity semantics before V2 can become the default.
+3. **Remote metadata/detail separation.** Replace the small-corpus assumption that every complete recipe is bundled into one in-memory JavaScript array. Define versioned lightweight catalogue/index records separately from full recipe detail records, provenance and source-state records. The browser must never need to download the entire large corpus to start or to make an ordinary recommendation.
+4. **Indexed candidate retrieval + progressive scale proof.** Build deterministic retrieval/index structures for fridge ingredients, exclusions/allergens, dietary constraints, cuisine/geography, meal role, time, difficulty/skill, equipment, recipe-universe role and recommendation eligibility. The large universe is reduced to a bounded candidate set before full records are fetched and the existing deterministic evaluator/scorer runs. Re-run the 1k/10k/50k/100k synthetic scale ladder and measure actual query/read, latency and memory behavior.
+5. **Generalized ingestion/control plane.** Only after the scale shape is proven, generalize Gate F2 from a Wikibooks-specific lane into source adapters feeding one canonical pipeline: source registry → rights/reuse state → immutable provenance → parse/normalize → duplicate/family candidate detection → ingredient/quantity mapping → hard metadata → nutrition state kept separate → admit/hold/reject → runtime artefact/index. The pipeline must be idempotent, resumable and batchable.
+6. **Incremental large-corpus validation.** Replace any assumption that CI must evaluate every profile against every one of 100k recipes on every change. Validate schemas/shards and changed records deterministically; retain property tests, golden-corpus parity, bounded sampled regression sets, source/provenance invariants and separately runnable full scale benchmarks. A large corpus must remain auditable without turning normal CI into billions of evaluations.
+7. **Production-shaped real-source pilot.** This step is blocked until a separate comprehensive source search identifies at least one corpus that passes the source-selection contract below. Start with a bounded representative real tranche, approximately 500–1,000 records, then a larger measured tranche such as 10k only if the first pilot passes. Use the intended authentication, remote-store, retrieval and provenance architecture; do not silently fall back to bundling the corpus into JavaScript.
+8. **Measured large-corpus readiness/population gate.** Scale toward the useful corpus size, potentially 100k+ records, only after rights, quality, coverage, performance, free-tier/cost, retrieval quality, recommendation behavior and incremental validation all pass. The target is broad useful coverage, not achievement of an arbitrary row count. Any paid infrastructure, weakening of rights/provenance, automatic recommendation admission or private-Knowledge-Core runtime dependency requires a separate explicit gate.
+
+Steps 1–6 are infrastructure work and may use only synthetic data plus the existing reviewed corpus. Step 7 is the first point at which a new large real source is allowed into the production-shaped pipeline. Source research may occur earlier, but no candidate is admitted merely because it is large or technically convenient.
+
+### Target production architecture
+
+The target baseline is deliberately lightweight and serverless for the expected personal/small-friends usage:
+
+```text
+USER
+  ↓
+GitHub Pages static Culinary app
+  ↓
+Firebase Authentication
+  - verified email identity
+  - no app-managed passwords
+  - preferred baseline: Google sign-in + explicit email allowlist
+  - passwordless email-link may be used only if current free-tier limits remain suitable
+  ↓
+Remote corpus layer: Cloud Firestore
+  ├─ lightweight recipe catalogue / retrieval-index records
+  ├─ full normalized recipe-detail records fetched only for candidate IDs
+  ├─ source registry / licence / attribution / transformation provenance
+  └─ admission / family / eligibility state
+  ↓
+RecipeSource V2 retrieves a bounded candidate set
+  ↓
+existing deterministic local hard filters + evaluator + scorer + planner
+  ↓
+recommendations / fridge-first discovery / recipe search
+```
+
+Baseline architecture rules:
+
+- the front end remains a lightweight static GitHub Pages application;
+- Firebase Authentication supplies identity/access control; the application does not maintain its own password database;
+- Cloud Firestore is the preferred production-shaped remote recipe store/index for the zero-cost target, subject to quota/storage benchmarking and revalidation at implementation time;
+- no conventional always-on application server is required in the baseline and no Cloud Functions/runtime LLM/private Knowledge Core dependency is required merely to recommend recipes;
+- ingestion/index generation may run offline or as bounded build tooling and writes normalized/indexed records to the remote corpus;
+- ordinary browser interactions fetch only indexes/candidate IDs and then the comparatively small set of full recipe records needed for the request; they do not fetch the complete corpus;
+- the deterministic recommendation engine remains app-owned and local after retrieval, preserving existing hard dietary/allergen/permanent-exclusion behavior and explainability;
+- personal profile, pantry, programme/history-like state may remain browser-local by default; any future cloud-sync of personal state is a separate product/privacy gate and is not required for corpus scale;
+- the public browser must still never dynamically depend on private `DataRaul/knowledge-core`; Knowledge Core remains the reasoning/verification authority and may only influence public runtime through the existing reviewed public-safe export boundary.
+
+### Cost target and human gates
+
+The design target for the current usage model — the owner plus a small number of invited friends — is **€0 recurring infrastructure cost** using GitHub Pages plus applicable Firebase free tiers. Exact Firebase quotas, authentication limits, Firestore storage/index overhead and egress/read behavior must be revalidated at implementation time and proven by the scale benchmarks rather than assumed.
+
+A paid Firebase plan, paid search service, paid API, conventional hosted backend or other recurring infrastructure charge is **not pre-authorized**. If the measured free architecture is insufficient, stop at a human cost/architecture gate with alternatives and measured reasons.
+
+Expected human actions are intentionally small: create/authorize the Firebase project when the production-shaped pilot is reached; authorize the small set of allowed user emails/authentication configuration; and approve any genuinely ambiguous source-rights or paid-infrastructure decision. Routine implementation, synthetic scaling, adapters, indexes and validation should not require repeated human intervention.
+
+### Large recipe-source selection contract
+
+The production large-corpus source is currently **TBD / RESEARCH REQUIRED**. The next source-research task must search broadly rather than assuming the first large scraped dataset is usable.
+
+The previously discussed large scraped candidate, commonly presented as the **Recipe Box** dataset at roughly **125k recipes** and remembered in conversation as approximately 128k, is **FAILED_CURRENT_ADMISSION / DO_NOT_USE AS THE PRODUCTION CORPUS**. The available description states that the records were scraped from recipe websites; an MIT licence on scraper/software code does not by itself establish dataset-wide rights to rehost, redistribute, transform and publicly display the underlying third-party recipe text. This is a rights/provenance failure for the current production contract, not a claim that the dataset is technically unusable for private research.
+
+A replacement corpus may pass only if the research can evidence, at minimum:
+
+1. **Content-level reuse rights.** Explicit rights for the recipe data/content itself, not merely the crawler or repository code, compatible with storing, normalizing, indexing, caching/rehosting, transforming and displaying the fields we actually use.
+2. **Attribution/ShareAlike/usage compatibility.** Attribution, notices, ShareAlike, non-commercial or other conditions must be implementable in the intended app. Images/media are excluded unless independently licensed for the exact reuse path.
+3. **Lawful acquisition.** Prefer an official bulk export, open dataset, documented API or other reproducible lawful snapshot. No login/paywall circumvention, anti-bot bypass, prohibited scraping or dependence on unstable scraping tricks.
+4. **Useful structured recipe content.** At minimum a stable recipe ID/title, ingredient lines with quantities/units where available, and preparation instructions. Provenance/source locator must survive normalization. Yield/servings, time, cuisine/geography, meal role and tags are valuable but may be absent if truthfully unknown.
+5. **Scale and coverage.** Tens of thousands to 100k+ records are attractive, but count is secondary to useful coverage across the recipe-universe jobs and cross-cutting dimensions already defined by the Brain/Atlas contract. Systematic regional/cuisine gaps must remain measurable rather than hidden by raw volume.
+6. **Quality and deduplication feasibility.** Records must be parseable enough to normalize; exact duplicates, near-duplicates and meaningful variants must be distinguishable without destructive family collapse. Source frequency is not authenticity evidence.
+7. **Architecture compatibility.** The corpus must be representable in the remote metadata/index/detail model and support bounded retrieval rather than forcing the entire dataset into the JavaScript bundle. The normalized representation plus necessary indexes must either fit the verified Firebase free-tier target or have an equally lawful zero-cost remote-source strategy.
+8. **Zero-cost operating fit.** No mandatory paid API, paid licence, per-request fee or recurring hosting dependency for the intended owner + small-friends use case. Any otherwise superior paid source is reported separately and requires explicit approval.
+9. **Independent nutrition boundary.** Source recipe nutrition values, when present, do not become authoritative `NutritionSource` evidence merely because the recipe corpus is admitted. Ingredient/form/quantity/nutrient evidence remains governed by the existing nutrition contract.
+10. **Stable provenance and updateability.** Record/source version or retrieval provenance must be reproducible enough to audit what was admitted. Later source updates must create reviewable changes rather than silently rewriting previously admitted truth.
+
+The eventual research output should rank candidates by rights confidence, field completeness, useful unique-record scale after obvious duplication, world/constraint coverage, ingestion difficulty, Firebase/free-tier fit, provenance quality and operational stability, and end with a clear `PASS / CONDITIONAL / FAIL` recommendation for the production-shaped Step 7 pilot.
