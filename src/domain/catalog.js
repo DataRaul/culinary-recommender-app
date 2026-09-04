@@ -17,30 +17,34 @@ export class StaticRecipeSourceV1 extends RecipeSource {
 }
 
 export class PortableJsonRecipeSourceV2 extends RecipeSource {
+  #ids;
+  #bodyById;
+
   constructor(recipes = []) {
     super();
     if (!Array.isArray(recipes)) throw new TypeError("RecipeSource V2 requires an array of recipes");
 
-    this.ids = [];
-    this.bodyById = new Map();
+    const ids = [];
+    const bodyById = new Map();
     for (const recipe of recipes) {
       const id = recipe?.id;
       if (typeof id !== "string" || !id.trim()) throw new Error("RecipeSource V2 requires every recipe to have a non-empty string id");
-      if (this.bodyById.has(id)) throw new Error(`RecipeSource V2 duplicate recipe id: ${id}`);
+      if (bodyById.has(id)) throw new Error(`RecipeSource V2 duplicate recipe id: ${id}`);
       const body = JSON.stringify(recipe);
       if (typeof body !== "string") throw new Error(`RecipeSource V2 recipe is not JSON-serializable: ${id}`);
-      this.ids.push(id);
-      this.bodyById.set(id, body);
+      ids.push(id);
+      bodyById.set(id, body);
     }
-    Object.freeze(this.ids);
+    this.#ids = Object.freeze(ids);
+    this.#bodyById = bodyById;
   }
 
   list() {
-    return this.ids.map(id => JSON.parse(this.bodyById.get(id)));
+    return this.#ids.map(id => JSON.parse(this.#bodyById.get(id)));
   }
 
   getById(id) {
-    const body = this.bodyById.get(id);
+    const body = this.#bodyById.get(id);
     return body == null ? null : JSON.parse(body);
   }
 }
