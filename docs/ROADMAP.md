@@ -37,6 +37,7 @@
 | V1.x / Recipe-unlock evidence | CONTINUOUS | target residual composition/form, nutrient-field and exact quantity blockers by recipe-level unlock value; independent of external RecipeSource breadth |
 | V1.x / Authoritative nutrition coverage | CONTINUOUS | expand reviewed evidence under the approved source policy without guessing |
 | V1.x / Corpus breadth | F2 CONTROL PLANE ACTIVE / RUNTIME GATED | broaden through revision-aware review and measured coverage gaps rather than raw recipe-count growth; no automatic admission |
+| V1.x / Corpus Scale / 100k Readiness | USER-ACCEPTED TARGET / STEP 1 READY | Cloudflare Pages + exact-email Access/OTP + Worker + R2/pre-built indexes; D1 benchmark-gated; portable provider-neutral corpus; no mass ingestion yet |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
 
@@ -313,78 +314,129 @@ Cost remains relative, deterministic and explainable. Culinary quality remains n
 
 The Culinary & Nutrition Brain is authorized and its broader Atlas development is active on an unmerged Knowledge Core branch, while Gate F2 remains a branch-local public-app control plane with no automatic admission or runtime activation. The public app must never call private Knowledge Core at runtime. Downstream behavior changes remain separately evidence- and test-gated.
 
-## V1.x Corpus Scale / 100k Readiness — PLANNED / NOT YET ACTIVATED
+## V1.x Corpus Scale / 100k Readiness — USER-ACCEPTED TARGET / STEP 1 READY / NO MASS INGESTION
 
-This program defines the scale architecture required before any very large real recipe corpus is admitted. It does **not** authorize mass ingestion, replace the current nutrition/evidence lane, or make raw recipe count a success criterion. The intended transition point is after the current bounded nutrition run/handover is complete and its next-priority state is frozen so nutrition can resume independently later.
+This program defines the scale architecture required before any very large real recipe corpus is admitted. It does **not** authorize mass ingestion, replace the current nutrition/evidence lane, or make raw recipe count a success criterion.
+
+The source/licensing research and reuse map remain canonical in `docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md`.
+
+The **accepted runtime/storage/access reconciliation** is canonical in `docs/CORPUS_SCALE_CLOUDFLARE_ACCEPTED_ARCHITECTURE.md`. That document supersedes the earlier Firebase-first runtime sketch. Firebase remains a fallback/comparator only unless a later measured gate changes the decision.
+
+The user explicitly accepted this Cloudflare target architecture and invitation-only access policy on 2026-09-04. This is an **architecture-selection acceptance**, not a claim that the implementation has already passed scale benchmarks. Step 1 is therefore ready; production provisioning is not.
 
 ### Eight-step scale program
 
-1. **Scale contract + synthetic benchmark.** Freeze the current 84-recipe corpus as the golden behavioral baseline. Define record-size, latency, memory, query/read, build-time and CI budgets, then generate deterministic synthetic catalogues at roughly 1k → 10k → 50k → 100k records. No real large-corpus ingestion is allowed in this step.
+1. **Scale contract + synthetic benchmark — NEXT / READY.** Freeze the current reviewed corpus as the golden behavioral baseline. Define record-size, latency, memory, candidate-cardinality, transferred-byte, query/read, build-time and validation budgets, then generate deterministic synthetic catalogues at roughly 1k → 10k → 50k → 100k records. Model the accepted R2-style immutable-object + pre-built-index architecture locally/provider-neutrally first. No real large-corpus ingestion and no Cloudflare account provisioning are required in this step.
 2. **`RecipeSource` V2 compatibility layer.** Build a second implementation behind the stable `RecipeSource` contract. Against the golden corpus, V1 and V2 must preserve hard constraints, eligibility, explanations, deterministic ranking/planner results and recipe identity semantics before V2 can become the default.
-3. **Remote metadata/detail separation.** Replace the small-corpus assumption that every complete recipe is bundled into one in-memory JavaScript array. Define versioned lightweight catalogue/index records separately from full recipe detail records, provenance and source-state records. The browser must never need to download the entire large corpus to start or to make an ordinary recommendation.
-4. **Indexed candidate retrieval + progressive scale proof.** Build deterministic retrieval/index structures for fridge ingredients, exclusions/allergens, dietary constraints, cuisine/geography, meal role, time, difficulty/skill, equipment, recipe-universe role and recommendation eligibility. The large universe is reduced to a bounded candidate set before full records are fetched and the existing deterministic evaluator/scorer runs. Re-run the 1k/10k/50k/100k synthetic scale ladder and measure actual query/read, latency and memory behavior.
-5. **Generalized ingestion/control plane.** Only after the scale shape is proven, generalize Gate F2 from a Wikibooks-specific lane into source adapters feeding one canonical pipeline: source registry → rights/reuse state → immutable provenance → parse/normalize → duplicate/family candidate detection → ingredient/quantity mapping → hard metadata → nutrition state kept separate → admit/hold/reject → runtime artefact/index. The pipeline must be idempotent, resumable and batchable.
+3. **Portable remote metadata/detail separation.** Replace the small-corpus assumption that every complete recipe is bundled into one in-memory JavaScript array. Define versioned provider-neutral catalogue/index artefacts separately from full recipe detail records, provenance and source-state records. The shape must map naturally to R2 but remain reproducible outside Cloudflare. The browser must never need to download the entire large corpus to start or to make an ordinary recommendation.
+4. **Pre-built indexed candidate retrieval + progressive scale proof.** Build deterministic retrieval/index structures for fridge ingredients, exclusions/allergens, dietary constraints, cuisine/geography, meal role, time, difficulty/skill, equipment, recipe-universe role and recommendation eligibility. The large universe is reduced to a bounded candidate set before full records are fetched and the existing deterministic evaluator/scorer runs. Re-run the 1k/10k/50k/100k synthetic ladder and measure actual candidate-set cardinality, bytes, latency and memory. **D1 is absent by default and may be prototyped only if these measurements show that R2 + pre-built indexes cannot meet required query/retrieval gates without unreasonable complexity or cost.**
+5. **Generalized ingestion/control plane.** Only after the scale shape is proven, generalize Gate F2 from a Wikibooks-specific lane into source adapters feeding one canonical pipeline: source registry → rights/reuse state → immutable provenance → parse/normalize → duplicate/family candidate detection → ingredient/quantity mapping → hard metadata → nutrition state kept separate → admit/hold/reject → portable runtime artefact/index. The pipeline must be idempotent, resumable and batchable.
 6. **Incremental large-corpus validation.** Replace any assumption that CI must evaluate every profile against every one of 100k recipes on every change. Validate schemas/shards and changed records deterministically; retain property tests, golden-corpus parity, bounded sampled regression sets, source/provenance invariants and separately runnable full scale benchmarks. A large corpus must remain auditable without turning normal CI into billions of evaluations.
-7. **Production-shaped real-source pilot.** This step is blocked until a separate comprehensive source search identifies at least one corpus that passes the source-selection contract below. Start with a bounded representative real tranche, approximately 500–1,000 records, then a larger measured tranche such as 10k only if the first pilot passes. Use the intended authentication, remote-store, retrieval and provenance architecture; do not silently fall back to bundling the corpus into JavaScript.
-8. **Measured large-corpus readiness/population gate.** Scale toward the useful corpus size, potentially 100k+ records, only after rights, quality, coverage, performance, free-tier/cost, retrieval quality, recommendation behavior and incremental validation all pass. The target is broad useful coverage, not achievement of an arbitrary row count. Any paid infrastructure, weakening of rights/provenance, automatic recommendation admission or private-Knowledge-Core runtime dependency requires a separate explicit gate.
+7. **Production-shaped real-source pilot.** Provision the accepted Cloudflare stack only after Steps 1–6 earn it: GitHub source → Cloudflare Pages private production entry point → Cloudflare Access exact-email allowlist + email OTP → protected Worker → R2 corpus/index objects → `RecipeSource` V2 → existing deterministic evaluator. Start with source B, approximately 928 Open Recipe Archive Spanish records, only after its source-book/public-domain audit passes. D1 remains optional/benchmark-gated. At private-production activation, the legacy public GitHub Pages surface must not expose protected corpus functionality.
+8. **Measured large-corpus readiness/population gate.** Scale B → C → D → verified E cohorts only after rights, quality, coverage, performance, free-tier/cost, retrieval quality, recommendation behavior and incremental validation all pass. The target is broad useful coverage, not achievement of an arbitrary row count. Any paid infrastructure, weakening of rights/provenance, automatic recommendation admission or private-Knowledge-Core runtime dependency requires a separate explicit gate.
 
-Steps 1–6 are infrastructure work and may use only synthetic data plus the existing reviewed corpus. Step 7 is the first point at which a new large real source is allowed into the production-shaped pipeline. Source research may occur earlier, but no candidate is admitted merely because it is large or technically convenient.
+Steps 1–6 are infrastructure work and may use only synthetic data plus the existing reviewed corpus. Step 7 is the first point at which a new large real source is allowed into the production-shaped runtime pipeline. Source-rights audits may occur earlier, but no candidate is admitted merely because it is large or technically convenient.
 
-### Target production architecture
-
-The target baseline is deliberately lightweight and serverless for the expected personal/small-friends usage:
+### User-accepted production architecture
 
 ```text
-USER
-  ↓
-GitHub Pages static Culinary app
-  ↓
-Firebase Authentication
-  - verified email identity
-  - no app-managed passwords
-  - preferred baseline: Google sign-in + explicit email allowlist
-  - passwordless email-link may be used only if current free-tier limits remain suitable
-  ↓
-Remote corpus layer: Cloud Firestore
-  ├─ lightweight recipe catalogue / retrieval-index records
-  ├─ full normalized recipe-detail records fetched only for candidate IDs
-  ├─ source registry / licence / attribution / transformation provenance
-  └─ admission / family / eligibility state
-  ↓
-RecipeSource V2 retrieves a bounded candidate set
-  ↓
+GitHub repository
+  - code / review / version history
+  - project source of truth
+        ↓ deploy
+Cloudflare Pages
+  - lightweight static Culinary app
+  - private production entry point
+        ↓
+Cloudflare Access
+  - EXACT EMAIL ALLOWLIST ONLY
+  - one-time email code / OTP
+  - no public registration
+  - no "any email may sign in"
+        ↓
+Cloudflare Worker
+  - small authenticated retrieval gateway
+  - validates protected identity/request boundary
+        ↓
+Cloudflare R2
+  ├─ versioned recipe-detail objects
+  ├─ source / licence / attribution / transformation provenance
+  ├─ pre-built deterministic retrieval-index shards
+  └─ manifests / corpus versions / admission state
+        ↓
+RecipeSource V2 retrieves bounded candidate IDs/details
+        ↓
 existing deterministic local hard filters + evaluator + scorer + planner
-  ↓
+        ↓
 recommendations / fridge-first discovery / recipe search
+
+OPTIONAL, ONLY IF BENCHMARK EARNED:
+Cloudflare D1 = compact relational/query index, not default recipe warehouse
 ```
 
-Baseline architecture rules:
+### Hard invitation-only access constraint
 
-- the front end remains a lightweight static GitHub Pages application;
-- Firebase Authentication supplies identity/access control; the application does not maintain its own password database;
-- Cloud Firestore is the preferred production-shaped remote recipe store/index for the zero-cost target, subject to quota/storage benchmarking and revalidation at implementation time;
-- no conventional always-on application server is required in the baseline and no Cloud Functions/runtime LLM/private Knowledge Core dependency is required merely to recommend recipes;
-- ingestion/index generation may run offline or as bounded build tooling and writes normalized/indexed records to the remote corpus;
-- ordinary browser interactions fetch only indexes/candidate IDs and then the comparatively small set of full recipe records needed for the request; they do not fetch the complete corpus;
-- the deterministic recommendation engine remains app-owned and local after retrieval, preserving existing hard dietary/allergen/permanent-exclusion behavior and explainability;
-- personal profile, pantry, programme/history-like state may remain browser-local by default; any future cloud-sync of personal state is a separate product/privacy gate and is not required for corpus scale;
-- the public browser must still never dynamically depend on private `DataRaul/knowledge-core`; Knowledge Core remains the reasoning/verification authority and may only influence public runtime through the existing reviewed public-safe export boundary.
+The production application is **not open signup**.
+
+- only exact email addresses explicitly placed on the owner's allowlist may authenticate;
+- an otherwise valid email address is insufficient when it is not allowlisted;
+- do not use `Everyone`, wildcard public-email-domain rules or any equivalent policy that turns identity proof into membership;
+- email OTP/passwordless Access is the preferred initial login; the app does not maintain app passwords;
+- any later Google/GitHub/passkey identity provider must still intersect the exact owner-controlled allowlist;
+- protected Worker/API routes must validate/trust the Cloudflare Access boundary rather than relying on hidden UI;
+- removing an email from the allowlist must revoke future access cleanly;
+- the GitHub repository being public does **not** grant production application access;
+- when the private Cloudflare production surface is activated, legacy public GitHub Pages must be disabled/retired or limited to a non-sensitive shell/landing surface so protected corpus functionality is not publicly reachable.
+
+This hard access rule may not be weakened merely to simplify deployment.
+
+### R2-first / D1-optional rule
+
+The corpus is fundamentally read-mostly. The preferred model is controlled offline ingestion/versioning followed by many reads, not continual per-recipe database writes.
+
+R2 is therefore the default recipe/provenance/index object store. Pre-built deterministic index shards should be tried first for ingredient, cuisine, dietary, time, meal-role and other hard retrieval dimensions.
+
+Cloudflare D1 is simply an **optional SQL librarian/catalogue**. Do not add it initially. It is permitted only when measured Step-4 evidence shows that deterministic R2 index intersections cannot satisfy required query shapes, latency or transfer budgets cleanly. If introduced, keep full recipe bodies/provenance in R2 unless a later benchmark demonstrates a better portable split.
+
+### Provider-portability rule
+
+No infrastructure provider is the canonical recipe source of truth.
+
+Canonical corpus artefacts must remain reproducible as versioned portable data such as JSONL/JSON, manifests, source/rights ledgers and deterministic index-build inputs/outputs. Cloudflare is a delivery/storage adapter behind app-owned interfaces.
+
+If pricing, limits, terms or product availability change, the architecture must allow migration of R2 to another object store, Access to another invitation-only provider, Worker to another small API/serverless layer, and D1 (if ever used) to SQLite/Postgres/another SQL store without rewriting culinary identity, provenance or recommendation logic.
+
+### Reuse-before-reinvent architecture references
+
+Use `docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md` for the full source/reuse map. The Cloudflare reconciliation adds these preferred implementation references:
+
+- `cloudflare/workers-sdk` — official Workers/Wrangler/local binding patterns for Pages, R2 and D1 development;
+- `cloudflare/templates` — official small Worker/Pages project patterns; use selectively without unnecessary framework migration;
+- `cloudflare/cloudflare-docs` — canonical Access policy, exact-email authorization, OTP, Worker protection and service-limit semantics; revalidate current syntax/quotas at provisioning time;
+- `cloudflare/pages-plugins` and official Cloudflare Access examples — reference patterns for the `Cf-Access-Jwt-Assertion` authorization boundary; prefer current supported docs/patterns over historical code where they differ;
+- `AdamBouhmad/open-recipe-archive` — provenance-first collection/JSONL/index layout;
+- `smeet666/mcp-wikibooks-cookbook` — Wikimedia parser/pacing patterns;
+- `nerkyzas157/gamito` — design-only retrieve-first/hard-filter/deterministic-planner pattern while code licence remains absent;
+- `mealie-recipes/mealie` — mature feature/data-model comparator, not a baseline dependency;
+- earlier Firebase quickstarts/recipe-PWA references — retained as fallback/comparison evidence, not the accepted first implementation path.
 
 ### Cost target and human gates
 
-The design target for the current usage model — the owner plus a small number of invited friends — is **€0 recurring infrastructure cost** using GitHub Pages plus applicable Firebase free tiers. Exact Firebase quotas, authentication limits, Firestore storage/index overhead and egress/read behavior must be revalidated at implementation time and proven by the scale benchmarks rather than assumed.
+The design target for the current usage model — the owner plus a small number of explicitly invited friends — is **€0 recurring infrastructure cost** using applicable Cloudflare free tiers.
 
-A paid Firebase plan, paid search service, paid API, conventional hosted backend or other recurring infrastructure charge is **not pre-authorized**. If the measured free architecture is insufficient, stop at a human cost/architecture gate with alternatives and measured reasons.
+Exact Pages, Access, Workers, R2 and D1 quotas/limits must be revalidated at implementation/provisioning time and proven by measurements rather than assumed permanent.
 
-Expected human actions are intentionally small: create/authorize the Firebase project when the production-shaped pilot is reached; authorize the small set of allowed user emails/authentication configuration; and approve any genuinely ambiguous source-rights or paid-infrastructure decision. Routine implementation, synthetic scaling, adapters, indexes and validation should not require repeated human intervention.
+A paid Cloudflare plan, paid search service, paid API, conventional hosted backend or other recurring infrastructure charge is **not pre-authorized**. If the measured free architecture is insufficient, stop at a human cost/architecture gate with alternatives and measured reasons.
+
+Expected later human/setup actions are intentionally small: create/authorize the Cloudflare project/domain configuration when the production-shaped Step-7 pilot is reached; configure the owner's exact allowed-email list; and approve any genuinely ambiguous source-rights or paid-infrastructure decision. **No further architecture-choice confirmation is required before Step 1.**
 
 ### Large recipe-source selection contract
 
-The production large-corpus source is currently **TBD / RESEARCH REQUIRED**. The next source-research task must search broadly rather than assuming the first large scraped dataset is usable.
+The likely production corpus is now a **rights-gated source portfolio**, not one mandatory giant database. Candidate admission remains governed by `docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md`.
 
-The previously discussed large scraped candidate, commonly presented as the **Recipe Box** dataset at roughly **125k recipes** and remembered in conversation as approximately 128k, is **FAILED_CURRENT_ADMISSION / DO_NOT_USE AS THE PRODUCTION CORPUS**. The available description states that the records were scraped from recipe websites; an MIT licence on scraper/software code does not by itself establish dataset-wide rights to rehost, redistribute, transform and publicly display the underlying third-party recipe text. This is a rights/provenance failure for the current production contract, not a claim that the dataset is technically unusable for private research.
+The previously discussed large scraped candidate, commonly presented as the **Recipe Box** dataset at roughly **125k recipes** and remembered in conversation as approximately 128k, is **FAILED_CURRENT_ADMISSION / DO NOT USE AS THE PRODUCTION CORPUS**. The available description states that the records were scraped from recipe websites; an MIT licence on scraper/software code does not by itself establish dataset-wide rights to rehost, redistribute, transform and publicly display the underlying third-party recipe text. This is a rights/provenance failure for the current production contract, not a claim that the dataset is technically unusable for private research.
 
-A replacement corpus may pass only if the research can evidence, at minimum:
+A replacement corpus/source cohort may pass only if the research can evidence, at minimum:
 
 1. **Content-level reuse rights.** Explicit rights for the recipe data/content itself, not merely the crawler or repository code, compatible with storing, normalizing, indexing, caching/rehosting, transforming and displaying the fields we actually use.
 2. **Attribution/ShareAlike/usage compatibility.** Attribution, notices, ShareAlike, non-commercial or other conditions must be implementable in the intended app. Images/media are excluded unless independently licensed for the exact reuse path.
@@ -392,18 +444,16 @@ A replacement corpus may pass only if the research can evidence, at minimum:
 4. **Useful structured recipe content.** At minimum a stable recipe ID/title, ingredient lines with quantities/units where available, and preparation instructions. Provenance/source locator must survive normalization. Yield/servings, time, cuisine/geography, meal role and tags are valuable but may be absent if truthfully unknown.
 5. **Scale and coverage.** Tens of thousands to 100k+ records are attractive, but count is secondary to useful coverage across the recipe-universe jobs and cross-cutting dimensions already defined by the Brain/Atlas contract. Systematic regional/cuisine gaps must remain measurable rather than hidden by raw volume.
 6. **Quality and deduplication feasibility.** Records must be parseable enough to normalize; exact duplicates, near-duplicates and meaningful variants must be distinguishable without destructive family collapse. Source frequency is not authenticity evidence.
-7. **Architecture compatibility.** The corpus must be representable in the remote metadata/index/detail model and support bounded retrieval rather than forcing the entire dataset into the JavaScript bundle. The normalized representation plus necessary indexes must either fit the verified Firebase free-tier target or have an equally lawful zero-cost remote-source strategy.
-8. **Zero-cost operating fit.** No mandatory paid API, paid licence, per-request fee or recurring hosting dependency for the intended owner + small-friends use case. Any otherwise superior paid source is reported separately and requires explicit approval.
+7. **Architecture compatibility.** The corpus must be representable in the portable metadata/index/detail model and support bounded retrieval rather than forcing the entire dataset into the JavaScript bundle. The normalized representation plus necessary indexes must fit the verified R2/Cloudflare zero-cost target or have an equally lawful portable zero-cost strategy.
+8. **Zero-cost operating fit.** No mandatory paid API, paid licence, per-request fee or recurring hosting dependency for the intended owner + invited-friends use case. Any otherwise superior paid source is reported separately and requires explicit approval.
 9. **Independent nutrition boundary.** Source recipe nutrition values, when present, do not become authoritative `NutritionSource` evidence merely because the recipe corpus is admitted. Ingredient/form/quantity/nutrient evidence remains governed by the existing nutrition contract.
 10. **Stable provenance and updateability.** Record/source version or retrieval provenance must be reproducible enough to audit what was admitted. Later source updates must create reviewable changes rather than silently rewriting previously admitted truth.
 
-The eventual research output should rank candidates by rights confidence, field completeness, useful unique-record scale after obvious duplication, world/constraint coverage, ingestion difficulty, Firebase/free-tier fit, provenance quality and operational stability, and end with a clear `PASS / CONDITIONAL / FAIL` recommendation for the production-shaped Step 7 pilot.
+Ongoing source audits should rank/admit cohorts by rights confidence, field completeness, useful unique-record scale after duplication, world/constraint coverage, ingestion difficulty, R2/Cloudflare fit, provenance quality and operational stability, with explicit `PASS / CONDITIONAL / FAIL` states.
 
-### Reuse map and source-admission order — canonical detailed companion
+### Source-admission order — A through E
 
-The implementation references and researched source order are frozen in `docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md`. That companion is part of this roadmap contract and must be reconciled whenever the eight-step program or source-rights evidence changes.
-
-The current execution order is:
+The implementation references and researched source order remain frozen in `docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md`. Architecture reconciliation does not weaken them.
 
 - **A — existing curated corpus + Wikibooks:** `PASS / ALREADY ESTABLISHED`;
 - **B — Open Recipe Archive Spanish collection (~928):** `PASS-CANDIDATE / PREFERRED FIRST STEP-7 PILOT`, subject to source-book/public-domain verification;
@@ -411,10 +461,28 @@ The current execution order is:
 - **D — ForkRecipe (916) + UniTools (501/127 countries):** `PASS-CANDIDATE / CLEAN OPEN SUPPLEMENTS`, with exact CC BY-SA 4.0 attribution/ShareAlike snapshots pinned at ingest;
 - **E — RecipeDB (118,171):** `CONDITIONAL / SOURCE-COHORT SALVAGE GATE`, never all-or-nothing.
 
-For **E**, the database-level CC BY-NC-SA 3.0 statement does not by itself clear underlying recipe prose. The RecipeDB paper states that the corpus was aggregated primarily from GeniusKitchen/Food.com and AllRecipes. Therefore the required order is: extract available provenance → partition by original source/domain → inspect original content-level rights/terms → classify each source cohort or record as `ADMIT_RIGHTS_VERIFIED`, `HOLD_RIGHTS_AMBIGUOUS`, `REJECT_RIGHTS_INCOMPATIBLE`, or `REJECT_PROVENANCE_MISSING` → ingest only verified records. Contacting RecipeDB/original rights holders is a last-resort clarification step after documentary evidence is exhausted, not the first step.
+For **E**, the database-level CC BY-NC-SA 3.0 statement does not by itself clear underlying recipe prose. The required order remains: extract available provenance → partition by original source/domain → inspect original content-level rights/terms → classify each source cohort or record as `ADMIT_RIGHTS_VERIFIED`, `HOLD_RIGHTS_AMBIGUOUS`, `REJECT_RIGHTS_INCOMPATIBLE`, or `REJECT_PROVENANCE_MISSING` → ingest only verified records. Contacting RecipeDB/original rights holders is a last-resort clarification step after documentary evidence is exhausted, not the first step.
 
 There is **no minimum E retention target**. If 40k of 118k clear the gate, use 40k; if 5k clear it, use 5k; if none clear it, use none. Rights, provenance, quality and coverage dominate raw count.
 
 Large research-only/reuse-unclear corpora remain excluded from production: Recipe Box ~125k (`FAILED_CURRENT_ADMISSION`), RecipeNLG 2.23M (`FAIL_PRODUCTION / research-educational terms`), and Recipe1M+ >1M (`FAIL_PRODUCTION / research-institution access`).
 
-Reuse-before-reinvent references recorded in the companion include the official `firebase/quickstart-js` for current Auth/Firestore Web patterns, `smeet666/mcp-wikibooks-cookbook` for MIT-licensed Wikimedia parsing/pacing patterns, `AdamBouhmad/open-recipe-archive` for provenance-first collection/JSONL/index layout, `nerkyzas157/gamito` as design-only retrieve-first/deterministic-planning reference while its code licence remains absent, `giladl82/recipes-fs-pwa` as a legacy Firestore recipe-PWA comparator, and `mealie-recipes/mealie` as an AGPL mature-feature comparator rather than baseline dependency.
+### Next executable action / handover boundary
+
+**NEXT ACTION: STEP 1 — CORPUS SCALE CONTRACT + SYNTHETIC BENCHMARK HARNESS.**
+
+The next implementation chat should start here without reopening the already accepted architecture choice:
+
+1. fresh-reconcile app `main`, open PRs, active branches and concurrent work;
+2. read this section plus `docs/CORPUS_SCALE_CLOUDFLARE_ACCEPTED_ARCHITECTURE.md` and `docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md` as the governing scale contract;
+3. preserve the reviewed current recipe corpus as the golden behavioral oracle;
+4. implement only Step-1 synthetic benchmark/scale-contract infrastructure first;
+5. generate deterministic synthetic 1k/10k/50k/100k catalogues without real external recipe ingestion;
+6. model provider-neutral R2-style immutable recipe objects + pre-built retrieval indexes and measure record/index sizes, candidate cardinalities, bytes, memory, local retrieval/filter/ranking latency, build time and validation cost;
+7. define explicit acceptance thresholds before choosing Step-2/3 implementation details;
+8. do not add D1 unless later Step-4 benchmark evidence earns it;
+9. make no production Cloudflare provisioning, no mass real-source ingestion, no paid infrastructure, no public ranking behavior change and no private Knowledge Core runtime dependency in Step 1;
+10. preserve nutrition B24 as an independent resumable lane; at the 2026-09-04 reconciliation, `agent/nutrition-b24-priority-reconciliation` contained one workflow-only commit and had diverged behind current `main`, while `agent/nutrition-b24-feta-composition` had no unique commits relative to the then-current main lineage;
+11. before every meaningful write or merge, fresh-reconcile GitHub again because branch state may have changed since this snapshot.
+
+The user has accepted the Cloudflare target architecture and the exact-email invitation-only policy. The next chat may proceed autonomously with Step 1 after fresh reconciliation.
