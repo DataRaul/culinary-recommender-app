@@ -18,3 +18,16 @@ jobs:
       - run: npm install --ignore-scripts
       - name: Nutrition unlock priorities
         run: node scripts/report-nutrition-unlock-priorities.mjs
+      - name: B23 candidate authored uses
+        run: |
+          node --input-type=module <<'NODE'
+          import { AUTHORED_RECIPES } from './src/data/corpus-v1.js';
+          const ids = new Set(['chicken_thigh','salt','tortilla','pumpkin','bread','feta','sardines']);
+          for (const recipe of AUTHORED_RECIPES) {
+            for (const ingredient of recipe.ingredients || []) {
+              if (ids.has(ingredient.canonicalIngredientId)) {
+                console.log(JSON.stringify({recipeId: recipe.id, ingredientId: ingredient.canonicalIngredientId, quantity: ingredient.quantity, unit: ingredient.unit, preparation: ingredient.preparation ?? null}));
+              }
+            }
+          }
+          NODE
