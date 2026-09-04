@@ -29,31 +29,13 @@ jobs:
           policy_path = Path('src/domain/nutrition-source-policy.js')
           s = policy_path.read_text()
 
-          old = '''import {
-            MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21,
-            MATVARETABELLEN_COMPOSITION_SOURCE_B21
-          } from "../data/matvaretabellen-composition-b21.js";
-          import {
-            USDA_FOUNDATION_DENSITIES,'''
-          new = '''import {
-            MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21,
-            MATVARETABELLEN_COMPOSITION_SOURCE_B21
-          } from "../data/matvaretabellen-composition-b21.js";
-          import {
-            MATVARETABELLEN_COMPOSITION_DENSITIES_B22,
-            MATVARETABELLEN_COMPOSITION_SOURCE_B22
-          } from "../data/matvaretabellen-composition-b22.js";
-          import {
-            USDA_FOUNDATION_DENSITIES,'''
-          assert old in s, 'B22 import insertion anchor missing'
-          s = s.replace(old, new, 1)
+          anchor = '} from "../data/matvaretabellen-composition-b21.js";\nimport {\n  USDA_FOUNDATION_DENSITIES,'
+          insertion = '} from "../data/matvaretabellen-composition-b21.js";\nimport {\n  MATVARETABELLEN_COMPOSITION_DENSITIES_B22,\n  MATVARETABELLEN_COMPOSITION_SOURCE_B22\n} from "../data/matvaretabellen-composition-b22.js";\nimport {\n  USDA_FOUNDATION_DENSITIES,'
+          assert anchor in s, 'B22 import insertion anchor missing'
+          s = s.replace(anchor, insertion, 1)
 
-          guard_anchor = '''if (invalidB21CompletionIds.length) {
-            throw new Error(`Matvaretabellen B21 must remain a Ciqual-only exact field-completion lane with no earlier Matvaretabellen overlap: ${invalidB21CompletionIds.sort().join(", ")}`);
-          }
-
-          const formRank'''
-          guard_insert = '''if (invalidB21CompletionIds.length) {
+          anchor = 'if (invalidB21CompletionIds.length) {\n  throw new Error(`Matvaretabellen B21 must remain a Ciqual-only exact field-completion lane with no earlier Matvaretabellen overlap: ${invalidB21CompletionIds.sort().join(", ")}`);\n}\n\nconst formRank'
+          insertion = '''if (invalidB21CompletionIds.length) {
             throw new Error(`Matvaretabellen B21 must remain a Ciqual-only exact field-completion lane with no earlier Matvaretabellen overlap: ${invalidB21CompletionIds.sort().join(", ")}`);
           }
 
@@ -78,51 +60,28 @@ jobs:
           }
 
           const formRank'''
-          assert guard_anchor in s, 'B22 no-overlap guard anchor missing'
-          s = s.replace(guard_anchor, guard_insert, 1)
+          assert anchor in s, 'B22 no-overlap guard anchor missing'
+          s = s.replace(anchor, insertion, 1)
 
-          candidate_anchor = '''  if (source === "matvaretabellen-b21") {
-            return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21, MATVARETABELLEN_COMPOSITION_SOURCE_B21);
-          }
+          anchor = '  if (source === "matvaretabellen-b21") {\n    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21, MATVARETABELLEN_COMPOSITION_SOURCE_B21);\n  }\n'
+          insertion = anchor + '\n  if (source === "matvaretabellen-b22") {\n    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B22, MATVARETABELLEN_COMPOSITION_SOURCE_B22);\n  }\n'
+          assert anchor in s, 'B22 source candidate anchor missing'
+          s = s.replace(anchor, insertion, 1)
 
-          const record = USDA_FOUNDATION_DENSITIES[ingredientId];'''
-          candidate_insert = '''  if (source === "matvaretabellen-b21") {
-            return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21, MATVARETABELLEN_COMPOSITION_SOURCE_B21);
-          }
+          anchor = '    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b20");'
+          insertion = '    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b20") ||\n    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b22");'
+          assert anchor in s, 'B22 standalone selection anchor missing'
+          s = s.replace(anchor, insertion, 1)
 
-          if (source === "matvaretabellen-b22") {
-            return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B22, MATVARETABELLEN_COMPOSITION_SOURCE_B22);
-          }
+          anchor = '    ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21)'
+          insertion = anchor + ',\n    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B22)'
+          assert anchor in s, 'B22 density union anchor missing'
+          s = s.replace(anchor, insertion, 1)
 
-          const record = USDA_FOUNDATION_DENSITIES[ingredientId];'''
-          assert candidate_anchor in s, 'B22 source candidate anchor missing'
-          s = s.replace(candidate_anchor, candidate_insert, 1)
-
-          standalone_anchor = '''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b19") ||
-              sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b20");'''
-          standalone_insert = '''    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b19") ||
-              sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b20") ||
-              sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b22");'''
-          assert standalone_anchor in s, 'B22 standalone selection anchor missing'
-          s = s.replace(standalone_anchor, standalone_insert, 1)
-
-          union_anchor = '''    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B20),
-              ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21)'''
-          union_insert = '''    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B20),
-              ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21),
-              ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B22)'''
-          assert union_anchor in s, 'B22 density union anchor missing'
-          s = s.replace(union_anchor, union_insert, 1)
-
-          coverage_anchor = '''    matvaretabellenB20SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B20").length,
-              matvaretabellenB21SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B21").length,
-              selections'''
-          coverage_insert = '''    matvaretabellenB20SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B20").length,
-              matvaretabellenB21SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B21").length,
-              matvaretabellenB22SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B22").length,
-              selections'''
-          assert coverage_anchor in s, 'B22 coverage anchor missing'
-          s = s.replace(coverage_anchor, coverage_insert, 1)
+          anchor = '    matvaretabellenB21SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B21").length,'
+          insertion = anchor + '\n    matvaretabellenB22SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B22").length,'
+          assert anchor in s, 'B22 coverage anchor missing'
+          s = s.replace(anchor, insertion, 1)
           policy_path.write_text(s)
 
           decisions_path = Path('scripts/nutrition-unlock-reviewed-decisions-v1.json')
@@ -151,7 +110,7 @@ jobs:
           assert old_notice in n, 'third-party role anchor missing'
           notices.write_text(n.replace(old_notice, new_notice, 1))
 
-          # Current-state audit assertions intentionally advance with later admitted tranches.
+          # These assertions describe the current full publicNutritionSource state, not frozen historical snapshots.
           for path in Path('tests').glob('*.test.js'):
             t = path.read_text()
             t = t.replace('assert.equal(audit.authoritativeRecipeCount, 15);', 'assert.equal(audit.authoritativeRecipeCount, 16);')
@@ -163,43 +122,18 @@ jobs:
           coverage_test = Path('tests/nutrition-coverage-audit.test.js')
           t = coverage_test.read_text()
           t = t.replace('test("B21 exact salmon field completion preserves cumulative unlock truth without weakening fail-closed controls",', 'test("B22 exact raw-mint composition preserves cumulative unlock truth without weakening fail-closed controls",', 1)
-          anchor = '''    "med_quinoa_egg_spinach_bowl",
-              "middle_eastern_chicken_tahini_bowl",'''
-          replacement = '''    "med_quinoa_egg_spinach_bowl",
-              "middle_eastern_bulgur_chickpea_salad",
-              "middle_eastern_chicken_tahini_bowl",'''
+          anchor = '    "med_quinoa_egg_spinach_bowl",\n    "middle_eastern_chicken_tahini_bowl",'
+          replacement = '    "med_quinoa_egg_spinach_bowl",\n    "middle_eastern_bulgur_chickpea_salad",\n    "middle_eastern_chicken_tahini_bowl",'
           assert anchor in t, 'authoritative recipe list anchor missing'
           coverage_test.write_text(t.replace(anchor, replacement, 1))
 
           b19 = Path('tests/matvaretabellen-composition-b19.test.js')
           t = b19.read_text()
-          old_block = '''  const expected = {
-              middle_eastern_bulgur_chickpea_salad: [["mint", "missing_density"]],
-              middle_eastern_lentil_bulgur_herb_bowl: [["lentils", "missing_density"], ["mint", "missing_density"]],
-              middle_eastern_turkey_bulgur_pepper_bowl: [["turkey_mince", "missing_density"]]
-            };
-            for (const [recipeId, blockers] of Object.entries(expected)) {
-              const detail = audit.recipeDetails.find(row => row.recipeId === recipeId);
-              assert.equal(detail.authoritative, false, recipeId);
-              assert.deepEqual(detail.blockers.map(blocker => [blocker.ingredientId, blocker.reason]), blockers, recipeId);
-              assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "bulgur"), false, recipeId);
-            }'''
-          new_block = '''  const salad = audit.recipeDetails.find(row => row.recipeId === "middle_eastern_bulgur_chickpea_salad");
-            assert.equal(salad.authoritative, true);
-            assert.equal(salad.blockers.some(blocker => blocker.ingredientId === "bulgur"), false);
-
-            const expected = {
-              middle_eastern_lentil_bulgur_herb_bowl: [["lentils", "missing_density"]],
-              middle_eastern_turkey_bulgur_pepper_bowl: [["turkey_mince", "missing_density"]]
-            };
-            for (const [recipeId, blockers] of Object.entries(expected)) {
-              const detail = audit.recipeDetails.find(row => row.recipeId === recipeId);
-              assert.equal(detail.authoritative, false, recipeId);
-              assert.deepEqual(detail.blockers.map(blocker => [blocker.ingredientId, blocker.reason]), blockers, recipeId);
-              assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "bulgur"), false, recipeId);
-            }'''
-          assert old_block in t, 'B19 residual blocker block anchor missing'
-          b19.write_text(t.replace(old_block, new_block, 1))
+          salad_line = '    middle_eastern_bulgur_chickpea_salad: [["mint", "missing_density"]],\n'
+          lentil_old = '    middle_eastern_lentil_bulgur_herb_bowl: [["lentils", "missing_density"], ["mint", "missing_density"]],'
+          lentil_new = '    middle_eastern_lentil_bulgur_herb_bowl: [["lentils", "missing_density"]],'
+          assert salad_line in t and lentil_old in t, 'B19 residual mint blocker anchors missing'
+          b19.write_text(t.replace(salad_line, '', 1).replace(lentil_old, lentil_new, 1))
           PY
       - name: Focused B22 validation
         run: node --test tests/matvaretabellen-composition-b22.test.js tests/european-primary-policy.test.js tests/nutrition-coverage-audit.test.js
@@ -210,6 +144,7 @@ jobs:
           import fs from 'node:fs';
           const r = JSON.parse(fs.readFileSync('/tmp/b22-priorities.json', 'utf8'));
           if (r.authoritativeRecipeCount !== 16) throw new Error(`authoritative ${r.authoritativeRecipeCount}`);
+          if (r.estimateRecipeCount !== 60) throw new Error(`estimate ${r.estimateRecipeCount}`);
           if (r.blockerCounts.ambiguous_portion_unit !== 20 || r.blockerCounts.missing_density !== 91 || r.blockerCounts.unsupported_quantity_unit !== 7) throw new Error(`blockers ${JSON.stringify(r.blockerCounts)}`);
           const m = r.missingNutrientFieldCounts;
           if (m.carbohydrateG !== 5 || m.energyKcal !== 5 || m.fatG !== 18 || m.fibreG !== 7) throw new Error(`missing fields ${JSON.stringify(m)}`);
