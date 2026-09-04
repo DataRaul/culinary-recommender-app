@@ -99,8 +99,10 @@ test("Ciqual-only reviewed foods become usable European primary evidence without
   const salmon = EUROPEAN_PRIMARY_DENSITIES_V1.salmon;
   assert.equal(salmon.provenanceByNutrient.proteinG.source, "ciqual");
   assert.equal(salmon.provenanceByNutrient.fatG.source, "ciqual");
-  assert.equal(salmon.per100g.carbohydrateG, null);
-  assert.equal(salmon.per100g.fibreG, null);
+  assert.equal(salmon.per100g.carbohydrateG, 0);
+  assert.equal(salmon.per100g.fibreG, 0);
+  assert.equal(salmon.provenanceByNutrient.carbohydrateG.evidenceTranche, "B21");
+  assert.equal(salmon.provenanceByNutrient.fibreG.evidenceTranche, "B21");
 
   const milkRecipe = {
     ingredients: [{ canonicalIngredientId: "milk", quantity: 100, unit: "g" }],

@@ -190,6 +190,24 @@
       "boundary": "B20 maps only canonical cod to the exact generic raw source identity Cod, unspecified, raw. Source classification identifies cod skeletal meat without bone or skin and no heat treatment; canonical cod explicitly includes cod fillet, and the sole authored 300 g cod input is cooked only after declaration. B20 does not authorize wild/farmed qualifiers, slices, cooked, salted, dried, breaded or other processed cod identities, nor the source portion or edible-part yield as quantity evidence.",
       "quantityState": "COMPOSITION_ONLY_NO_PORTION_OR_EDIBLE_YIELD_AUTHORIZATION",
       "runtimeChange": true
+    },
+    "salmon_field_completion": {
+      "decision": "ADMIT_EXACT_MATVARETABELLEN_2026_B21_FIELD_COMPLETION",
+      "candidateClass": "TRACKED_FIELD_COMPLETION_EVIDENCE",
+      "canonicalIngredientId": "salmon",
+      "sourceId": "matvaretabellen-2026-composition-b21",
+      "foodId": "04.220",
+      "foodName": "Salmon, farmed, raw",
+      "scientificName": "Salmo salar Linnaeus, 1758",
+      "foodEx2": "Atlantic salmon (A028P); farmed / cultivated / aquaculture (A07RV)",
+      "formMatch": "EXACT_MATCH_TO_ALREADY_REVIEWED_CIQUAL_B4_FARMED_RAW_SALMON",
+      "fieldsAdmitted": [
+        "carbohydrateG",
+        "fibreG"
+      ],
+      "carbohydrateSemantic": "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+      "boundary": "B21 fills only the two tracked fields absent from Ciqual B4 salmon 26036. Existing B4 energy, protein and fat remain primary. No wild/ocean, cooked, smoked, salted, sliced or other salmon identity, source portion, or edible-part conversion is authorized.",
+      "runtimeChange": true
     }
   },
   "portionEvidenceDecisions": {
