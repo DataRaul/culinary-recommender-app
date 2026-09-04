@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   diagnose:
-    if: github.event.head_commit.message == 'Inspect B20 current Matvaretabellen cod records'
+    if: github.event.head_commit.message == 'Capture B20 cod diagnostic artifact'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,33 +18,63 @@ jobs:
         with:
           node-version: 22
       - run: npm install --ignore-scripts
-      - name: Reconcile authored cod form from repository-native evidence
-        run: |
-          node --input-type=module <<'NODE'
-          import assert from 'node:assert/strict';
-          import { AUTHORED_RECIPES } from './src/data/corpus-v1.js';
-          const rows = AUTHORED_RECIPES
-            .filter(recipe => recipe.ingredients.some(i => i.canonicalIngredientId === 'cod'))
-            .map(recipe => ({ recipeId: recipe.id, ingredient: recipe.ingredients.find(i => i.canonicalIngredientId === 'cod'), instructions: recipe.instructions.map(step => step.text) }));
-          assert.equal(rows.length, 1);
-          assert.equal(rows[0].recipeId, 'med_cod_chickpea_tomato_stew');
-          assert.deepEqual([rows[0].ingredient.quantity, rows[0].ingredient.unit, rows[0].ingredient.preparation], [300, 'g', 'large pieces']);
-          assert.match(rows[0].instructions.join(' '), /Nestle in cod, cook gently until just flaky/i);
-          console.log(JSON.stringify(rows, null, 2));
-          NODE
-      - name: Inspect current official Matvaretabellen API shape and cod-like records
+      - name: Freeze repository-native authored cod form and official source candidate
         run: |
           curl --fail --silent --show-error --retry 3 https://www.matvaretabellen.no/api/en/foods.json -o /tmp/matvaretabellen-foods.json
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           import assert from 'node:assert/strict';
+          import { AUTHORED_RECIPES } from './src/data/corpus-v1.js';
+          import { publicNutritionSource } from './src/domain/nutrition.js';
+          import { buildNutritionCoverageAudit } from './src/domain/nutrition-coverage-audit.js';
+
+          const authored = AUTHORED_RECIPES
+            .filter(recipe => recipe.ingredients.some(i => i.canonicalIngredientId === 'cod'))
+            .map(recipe => ({
+              recipeId: recipe.id,
+              title: recipe.title,
+              ingredient: recipe.ingredients.find(i => i.canonicalIngredientId === 'cod'),
+              instructions: recipe.instructions.map(step => step.text)
+            }));
+          assert.equal(authored.length, 1);
+          assert.equal(authored[0].recipeId, 'med_cod_chickpea_tomato_stew');
+          assert.deepEqual(
+            [authored[0].ingredient.quantity, authored[0].ingredient.unit, authored[0].ingredient.preparation],
+            [300, 'g', 'large pieces']
+          );
+          assert.match(authored[0].instructions.join(' '), /Nestle in cod, cook gently until just flaky/i);
+
           const payload = JSON.parse(fs.readFileSync('/tmp/matvaretabellen-foods.json', 'utf8'));
           const foods = Array.isArray(payload) ? payload : (payload.foods || []);
           assert.ok(foods.length > 1000, 'unexpected Matvaretabellen payload shape');
-          console.log('===B20_API_TOP_LEVEL_KEYS===');
-          console.log(JSON.stringify({payloadType: Array.isArray(payload) ? 'array' : typeof payload, payloadKeys: Array.isArray(payload) ? [] : Object.keys(payload), firstFoodKeys: Object.keys(foods[0] || {}), firstFood: foods[0]}, null, 2));
-          const codLike = foods.filter(row => JSON.stringify(row).toLowerCase().includes('cod'));
-          console.log('===B20_COD_LIKE_RECORDS_BEGIN===');
-          console.log(JSON.stringify(codLike, null, 2));
-          console.log('===B20_COD_LIKE_RECORDS_END===');
+          const sourceRow = foods.find(row => String(row.foodId || row.id) === '04.327');
+          assert.ok(sourceRow, 'Matvaretabellen food 04.327 missing');
+          assert.equal(sourceRow.foodName, 'Cod, unspecified, raw');
+
+          const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
+          const currentRecipe = audit.recipeDetails.find(row => row.recipeId === 'med_cod_chickpea_tomato_stew');
+          assert.ok(currentRecipe, 'cod recipe missing from audit');
+
+          const report = {
+            generatedAt: new Date().toISOString(),
+            mainBaseSha: '98cccf1a030214944ec991f2e3f04b8a4533746e',
+            authored,
+            currentRecipe,
+            currentTotals: {
+              authoritativeRecipeCount: audit.authoritativeRecipeCount,
+              estimateRecipeCount: audit.estimateRecipeCount,
+              blockerCounts: audit.blockerCounts,
+              missingNutrientFieldCounts: audit.missingNutrientFieldCounts,
+              semanticIssueCounts: audit.semanticIssueCounts
+            },
+            sourceRow,
+            codLikeSourceRows: foods.filter(row => JSON.stringify(row).toLowerCase().includes('cod'))
+          };
+          fs.writeFileSync('/tmp/b20-cod-diagnostic.json', JSON.stringify(report, null, 2));
           NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: b20-cod-diagnostic
+          path: /tmp/b20-cod-diagnostic.json
+          if-no-files-found: error
+          retention-days: 7
