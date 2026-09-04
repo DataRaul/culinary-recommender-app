@@ -1,0 +1,113 @@
+name: Nutrition B21 salmon field-completion finalization
+
+on:
+  push:
+    branches:
+      - agent/nutrition-b21-salmon-field-completion
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.event.head_commit.message == 'Finalize B21 salmon field completion'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - name: Integrate B21 bounded completion policy and governance
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import json
+
+          def replace_once(text, old, new, label):
+              n = text.count(old)
+              if n != 1:
+                  raise SystemExit(f'{label}: expected 1 match, got {n}')
+              return text.replace(old, new, 1)
+
+          p = Path('src/domain/nutrition-source-policy.js')
+          t = p.read_text()
+          t = replace_once(t,
+            '} from "../data/matvaretabellen-composition-b20.js";\nimport {\n  USDA_FOUNDATION_DENSITIES,',
+            '} from "../data/matvaretabellen-composition-b20.js";\nimport {\n  MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21,\n  MATVARETABELLEN_COMPOSITION_SOURCE_B21\n} from "../data/matvaretabellen-composition-b21.js";\nimport {\n  USDA_FOUNDATION_DENSITIES,', 'B21 import')
+          guard = '''\nconst matvaretabellenB21CompletionIds = Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21);\nconst invalidB21CompletionIds = matvaretabellenB21CompletionIds.filter(ingredientId =>\n  !Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) ||\n  Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B9, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B11, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B14, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B16, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B18, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B19, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B20, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12, ingredientId) ||\n  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13, ingredientId)\n);\nif (invalidB21CompletionIds.length) {\n  throw new Error(`Matvaretabellen B21 must remain a Ciqual-only exact field-completion lane with no earlier Matvaretabellen overlap: ${invalidB21CompletionIds.sort().join(", ")}`);\n}\n'''
+          t = replace_once(t, '\nconst formRank =', guard + '\nconst formRank =', 'B21 guard')
+          b20 = '  if (source === "matvaretabellen-b20") {\n    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B20, MATVARETABELLEN_COMPOSITION_SOURCE_B20);\n  }'
+          t = replace_once(t, b20, b20 + '\n\n  if (source === "matvaretabellen-b21") {\n    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21, MATVARETABELLEN_COMPOSITION_SOURCE_B21);\n  }', 'B21 candidate')
+          t = replace_once(t,
+            '      sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b13");',
+            '      sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b13") ||\n      sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b21");', 'B21 completion chain')
+          t = replace_once(t,
+            '    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B20)\n  ])]',
+            '    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B20),\n    ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21)\n  ])]', 'B21 density union')
+          t = replace_once(t,
+            '    matvaretabellenB20SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B20").length,\n    selections',
+            '    matvaretabellenB20SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B20").length,\n    matvaretabellenB21SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B21").length,\n    selections', 'B21 coverage counter')
+          p.write_text(t)
+
+          p = Path('tests/european-primary-policy.test.js')
+          t = p.read_text()
+          t = replace_once(t,
+            '  assert.equal(salmon.per100g.carbohydrateG, null);\n  assert.equal(salmon.per100g.fibreG, null);',
+            '  assert.equal(salmon.per100g.carbohydrateG, 0);\n  assert.equal(salmon.per100g.fibreG, 0);\n  assert.equal(salmon.provenanceByNutrient.carbohydrateG.evidenceTranche, "B21");\n  assert.equal(salmon.provenanceByNutrient.fibreG.evidenceTranche, "B21");', 'salmon policy expectation')
+          p.write_text(t)
+
+          p = Path('tests/nutrition-coverage-audit.test.js')
+          t = p.read_text()
+          t = replace_once(t,
+            'test("B20 exact raw-cod composition preserves cumulative unlock truth without weakening fail-closed controls", () => {',
+            'test("B21 exact salmon field completion preserves cumulative unlock truth without weakening fail-closed controls", () => {', 'audit title')
+          t = replace_once(t, '    carbohydrateG: 9,', '    carbohydrateG: 5,', 'carbohydrate gap total')
+          t = replace_once(t, '    fibreG: 11', '    fibreG: 7', 'fibre gap total')
+          p.write_text(t)
+
+          p = Path('THIRD_PARTY_NOTICES.md')
+          t = p.read_text()
+          t = replace_once(t,
+            'B10, B12 and B13 are exact tracked-field completion roles where existing reviewed composition has no value.',
+            'B10, B12, B13 and B21 are exact tracked-field completion roles where existing reviewed composition has no value.', 'third-party role accounting')
+          p.write_text(t)
+
+          p = Path('scripts/nutrition-unlock-reviewed-decisions-v1.json')
+          data = json.loads(p.read_text())
+          key = 'salmon_field_completion'
+          if key in data['decisions']:
+              raise SystemExit(f'{key} already exists')
+          data['reviewDate'] = '2026-09-04'
+          data['decisions'][key] = {
+            'decision': 'ADMIT_EXACT_MATVARETABELLEN_2026_B21_FIELD_COMPLETION',
+            'candidateClass': 'TRACKED_FIELD_COMPLETION_EVIDENCE',
+            'canonicalIngredientId': 'salmon',
+            'sourceId': 'matvaretabellen-2026-composition-b21',
+            'foodId': '04.220',
+            'foodName': 'Salmon, farmed, raw',
+            'scientificName': 'Salmo salar Linnaeus, 1758',
+            'foodEx2': 'Atlantic salmon (A028P); farmed / cultivated / aquaculture (A07RV)',
+            'formMatch': 'EXACT_MATCH_TO_ALREADY_REVIEWED_CIQUAL_B4_FARMED_RAW_SALMON',
+            'fieldsAdmitted': ['carbohydrateG', 'fibreG'],
+            'carbohydrateSemantic': 'AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO',
+            'boundary': 'B21 fills only the two tracked fields absent from Ciqual B4 salmon 26036. Existing B4 energy, protein and fat remain primary. No wild/ocean, cooked, smoked, salted, sliced or other salmon identity, source portion, or edible-part conversion is authorized.',
+            'runtimeChange': True
+          }
+          p.write_text(json.dumps(data, indent=2, ensure_ascii=False) + '\n')
+          PY
+      - name: Focused B21 validation
+        run: node --test tests/matvaretabellen-composition-b21.test.js tests/european-primary-policy.test.js tests/nutrition-coverage-audit.test.js
+      - name: Complete deterministic suite
+        run: npm test
+      - name: Repository validation
+        run: npm run validate
+      - name: Remove temporary workflow and commit finalized B21
+        run: |
+          rm .github/workflows/nutrition-b21-salmon-diagnostic.yml
+          git config user.name "Raul M."
+          git config user.email "67912886+DataRaul@users.noreply.github.com"
+          git add src/data/matvaretabellen-composition-b21.js src/domain/nutrition-source-policy.js tests/matvaretabellen-composition-b21.test.js tests/european-primary-policy.test.js tests/nutrition-coverage-audit.test.js scripts/nutrition-unlock-reviewed-decisions-v1.json THIRD_PARTY_NOTICES.md .github/workflows/nutrition-b21-salmon-diagnostic.yml
+          git diff --cached --check
+          git commit -m "Finalize B21 exact salmon field completion"
+          git push origin HEAD:agent/nutrition-b21-salmon-field-completion
