@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { INGREDIENTS } from "../src/data/ingredients.js";
+import { AUTHORED_RECIPES } from "../src/data/corpus-v1.js";
 import { CIQUAL_2025_SOURCE, CIQUAL_DENSITIES_B4 } from "../src/data/ciqual-nutrients-b4.js";
 import { CIQUAL_DENSITIES_B5 } from "../src/data/ciqual-nutrients-b5.js";
 import { CIQUAL_DENSITIES_B7 } from "../src/data/ciqual-nutrients-b7.js";
@@ -131,7 +132,7 @@ test("coverage audit separates multi-source, single-source and Ciqual tranches d
   assert.deepEqual(coverage, nutritionEvidenceComparisonCoverage(input));
 });
 
-test("partial Ciqual-only evidence remains fail-closed after European-primary authorization", () => {
+test("B21 exact salmon completion yields a coherent European-primary calculation", () => {
   const syntheticRecipe = {
     ingredients: [{ canonicalIngredientId: "salmon", quantity: 100, unit: "g" }],
     serving: { servings: 1 },
@@ -143,13 +144,35 @@ test("partial Ciqual-only evidence remains fail-closed after European-primary au
     }
   };
   const estimate = publicNutritionSource.estimate(syntheticRecipe);
-  assert.deepEqual(estimate.perServing, syntheticRecipe.nutrition.perServing);
-  assert.equal(estimate.method, "INFERRED_ESTIMATE");
-  assert.equal(estimate.confidence, "low");
-  assert.equal(estimate.evidence.sourcePolicy.id, "european-primary-v1");
+  assert.deepEqual(estimate.perServing, {
+    energyKcal: 193,
+    proteinG: 20.5,
+    carbohydrateG: 0,
+    fatG: 12.4,
+    fibreG: 0
+  });
+  assert.equal(estimate.method, "EUROPEAN_PRIMARY_STATIC_CALCULATION_V1");
+  assert.equal(estimate.confidence, "medium");
   assert.equal(estimate.evidence.sources[1].runtimePolicy, "ELIGIBLE_VIA_EUROPEAN_PRIMARY_POLICY_V1");
   assert.equal(estimate.evidence.sources[1].evidenceIntroductionPolicy, "CORROBORATION_ONLY_NOT_PRIMARY");
   assert.deepEqual(estimate.evidence.sources[1].evidenceTranches, ["B4", "B5", "B7"]);
+  assert.equal(estimate.evidence.staticCalculation.complete, true);
+  assert.equal(estimate.evidence.sourceSelectionState, "EUROPEAN_PRIMARY_COMPLETE");
+  assert.equal(estimate.evidence.europeanPrimaryCoverage.matvaretabellenB21SelectedCount, 2);
+});
+
+test("genuinely partial European evidence remains fail-closed after B21 completion", () => {
+  const projectEstimate = AUTHORED_RECIPES[0].nutrition;
+  const syntheticRecipe = {
+    ingredients: [{ canonicalIngredientId: "lime", quantity: 100, unit: "g" }],
+    serving: { servings: 1 },
+    nutrition: projectEstimate
+  };
+  const estimate = publicNutritionSource.estimate(syntheticRecipe);
+  assert.deepEqual(estimate.perServing, projectEstimate.perServing);
+  assert.equal(estimate.method, projectEstimate.estimationState || "INFERRED_ESTIMATE");
+  assert.equal(estimate.confidence, projectEstimate.confidence || "low");
   assert.equal(estimate.evidence.staticCalculation.complete, false);
-  assert.equal(estimate.evidence.coverage.mappedIngredientIds.includes("salmon"), false);
+  assert.equal(estimate.evidence.sourceSelectionState, "NO_COMPLETE_AUTHORITATIVE_RECIPE_CALCULATION");
+  assert.deepEqual(estimate.evidence.staticCalculation.used[0].missingNutrients, ["fatG"]);
 });
