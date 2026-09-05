@@ -1,14 +1,14 @@
 {
-  "handover": "CULINARY_RECOMMENDER_APP_CORPUS_SCALE_STEP7_CLOUDFLARE_SETUP_GATE_V3",
+  "handover": "CULINARY_RECOMMENDER_APP_CORPUS_SCALE_STEP7_PLUS_YOUTUBE_DISCOVERY_ROADMAP_V4",
   "handover_date": "2026-09-05",
   "timezone": "Atlantic/Canary",
-  "status": "STEPS_1_6_MERGED_GREEN__STEP7_PREFLIGHT_MERGED__CLOUDFLARE_OWNER_SECURITY_SETUP_REQUIRED",
+  "status": "STEPS_1_6_MERGED_GREEN__STEP7_CLOUDFLARE_SETUP_REQUIRED__YOUTUBE_CULINARY_YT_CUL_0_READY_ZERO_QUOTA",
   "human_needed": true,
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
     "source_of_truth": "GitHub",
-    "handover_written_against_main_sha": "ab12e811c322690ceff021d98dbc58fd7755c7ca"
+    "handover_written_against_main_sha": "b9eb47f1ac3d7c6c219644f4d536a0d5df5fbd71"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -19,14 +19,14 @@
     "new_chat_start": "Read CURRENT first, then fresh-reconcile live GitHub main, open PRs, branches and CI before acting. Live GitHub outranks this snapshot."
   },
   "lane": {
-    "name": "Culinary App / Culinary Lab — Corpus Scale / 100k Readiness",
+    "name": "Culinary App / Culinary Lab — Corpus Scale / 100k Readiness with additive YouTube Culinary Discovery child programme",
     "rule": "Do not perform ordinary Culinary Brain / Knowledge Core implementation from this lane.",
     "knowledge_core_boundary": "Knowledge Core remains read-only/reconciliation from this lane and must never become a private browser/runtime dependency.",
-    "nutrition_boundary": "Nutrition remains an independent resumable lane and must not be overwritten or weakened by corpus-scale work."
+    "nutrition_boundary": "Nutrition remains an independent resumable lane and must not be overwritten or weakened by corpus-scale or YouTube-discovery work."
   },
   "operating_contract": {
     "autonomy": "Proceed autonomously through technically resolvable repository work after fresh reconciliation and after any explicit human-only dependency is satisfied.",
-    "user_facing_rule": "No routine narration. Speak only for a genuine human/security/cost gate, unrecoverable error, terminal material result, or continuation boundary.",
+    "user_facing_rule": "No routine narration. Speak only for a genuine human/security/cost/policy gate, unrecoverable error, terminal material result, or continuation boundary.",
     "fresh_reconciliation": "Before every meaningful write or merge, fresh-reconcile main, open PRs, relevant branches, changed files, CI and concurrent work.",
     "actions_authority": "Normal repository CI, browser acceptance, roadmap-required benchmark workflows, path-scoped validation and technically necessary ordinary reruns are standing-preauthorized by AGENTS.md. Do not reintroduce per-run approval gates.",
     "cost_boundary": "No paid Cloudflare plan, paid API, paid corpus licence or other new recurring infrastructure cost is authorized. A materially abnormal CI loop or runaway Actions consumption is a cost gate; ordinary expected CI is not.",
@@ -76,11 +76,13 @@
   },
   "canonical_docs": {
     "roadmap": "docs/ROADMAP.md",
+    "roadmap_handover": "docs/ROADMAP_HANDOVER.md",
+    "youtube_culinary_discovery_roadmap": "docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md",
     "accepted_architecture": "docs/CORPUS_SCALE_CLOUDFLARE_ACCEPTED_ARCHITECTURE.md",
     "source_and_reuse_reference": "docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md",
     "step7_preflight": "docs/CORPUS_SCALE_STEP7_PREFLIGHT.md",
     "handover_protocol": "docs/HANDOVER_PROTOCOL.md",
-    "current_status_precedence_note": "Some older roadmap/architecture prose still describes Step 1 as next because it is historical planning text. For current execution state, live GitHub plus this CURRENT object and the merged Step 7 preflight establish that Steps 1–6 are complete and Step 7 is blocked only on the owner/security setup gate."
+    "current_status_precedence_note": "Some older roadmap/architecture prose still describes Step 1 as next because it is historical planning text. For current execution state, live GitHub plus this CURRENT object establish that Corpus Scale Steps 1–6 are complete, Step 7 is blocked on owner/security setup, and the additive YouTube Culinary Discovery YT-CUL-0 zero-quota architecture lane is separately READY."
   },
   "source_admission_state": {
     "A": {
@@ -121,9 +123,26 @@
       "rule": "Never all-or-nothing; only rights-verified records/cohorts may enter."
     }
   },
+  "parallel_programs": {
+    "youtube_culinary_discovery": {
+      "roadmap": "docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md",
+      "status": "YT_CUL_0_READY_ZERO_LIVE_QUOTA__YT_CUL_1_OWNER_GOOGLE_PROJECT_SETUP_REQUIRED_BEFORE_LIVE_ACQUISITION",
+      "purpose": "Use a distinct YouTube Data API client as a transient high-throughput culinary discovery/navigation layer feeding independently reviewed World Recipe Atlas and app corpus candidates; never treat raw YouTube results as permanent recipes.",
+      "separation": "Distinct API client/use case from youtube-blue-lagoon-lab; no credential, quota, planner-state or evidence sharing.",
+      "expected_current_search_quota": "100 search.list calls/day only after the Cloud Console confirms the assigned Search Queries limit; preserve >=5-call reserve and target <=95 planned calls/day by default.",
+      "google_project_recommendation": "culinary-youtube-discovery",
+      "secret_name": "CULINARY_YOUTUBE_API_KEY",
+      "secret_rule": "Never commit or paste the key into repository files or handovers.",
+      "oauth": "NOT_REQUIRED_FOR_V0_PUBLIC_DATA_SEARCH_READS",
+      "storage_rule": "Raw YouTube API metadata is transient only and must not enter immutable Git history; default <=7-day cache and never exceed the current policy refresh/delete horizon.",
+      "policy_rule": "Do not assume durable derived culinary classifications/metrics from YouTube API Data are permitted. Recheck current YouTube Developer Policies and derived-metrics rules before live scale or automated long-lived classification; use audit/permission path when required.",
+      "next_executable_action": "Implement YT-CUL-0 schemas, quota ledger, planner, synthetic fixtures, transient-cache/TTL contract and daily funnel report with zero live API calls.",
+      "live_resume_when": "Owner has created the distinct Google Cloud project, enabled YouTube Data API v3, verified assigned quota and stored a restricted API key as repository/runner secret CULINARY_YOUTUBE_API_KEY; current policy review remains green."
+    }
+  },
   "human_gate": {
     "type": "SECURITY_AND_EXTERNAL_ACCOUNT_SETUP",
-    "status": "REQUIRED_BEFORE_STEP7_RUNTIME_IMPLEMENTATION_CAN_CONTINUE",
+    "status": "REQUIRED_BEFORE_CORPUS_SCALE_STEP7_RUNTIME_IMPLEMENTATION_CAN_CONTINUE",
     "reason": "The accepted Step 7 production pilot requires real Cloudflare account resources and owner-controlled Access membership configuration. No connected Cloudflare management capability is available in this session, and credentials/secrets must not be committed to GitHub.",
     "owner_actions": [
       "Create or connect a Cloudflare Pages project to DataRaul/culinary-recommender-app.",
@@ -142,23 +161,39 @@
       "Non-secret project/hostname/bucket names may be provided if useful; never paste API tokens or secrets into the repository."
     ]
   },
-  "next_action": {
-    "name": "STEP_7_PRODUCTION_SHAPED_REAL_SOURCE_PILOT",
-    "status": "BLOCKED_ON_HUMAN_SECURITY_SETUP",
-    "resume_when": "Cloudflare Pages, R2 and Access resources exist under the exact-email invitation-only contract.",
-    "instructions_after_gate": [
-      "Fresh-reconcile live GitHub before implementation.",
-      "Add the minimal Cloudflare deployment/runtime adapter using current official Workers/Wrangler patterns without unnecessary framework migration.",
-      "Protect every corpus API route behind the Cloudflare Access identity boundary and validate exact-email allow/deny behavior.",
-      "Audit and adapt the first rights-clean 500–1,000-record real-source cohort; ForkRecipe is currently the leading candidate unless Source B rights provenance is repaired first.",
-      "Run all source records through the generalized Step 5 admit/hold/reject control plane; raw upstream inclusion never equals runtime admission.",
-      "Keep external source nutrition non-authoritative and media excluded unless separately cleared.",
-      "Upload only admitted versioned portable recipe/provenance/index objects to R2.",
-      "Measure V1/V2 golden parity, hard-filter behavior, provenance invariants, incremental validation, Worker CPU, request/object-read counts, latency, transferred bytes and R2 storage.",
-      "Keep D1 absent unless measured R2 + pre-built index retrieval fails the established contract and a separate gate earns a prototype.",
-      "Stop before any paid infrastructure/API/corpus decision.",
-      "Advance to Step 8 only after the production-shaped pilot passes rights, security, behavior, performance and cost gates."
+  "additional_human_setup_youtube": {
+    "type": "GOOGLE_CLOUD_API_PROJECT_AND_SECRET",
+    "status": "REQUIRED_ONLY_BEFORE_YT_CUL_2_LIVE_CONNECTIVITY_CANARY__NOT_REQUIRED_FOR_YT_CUL_0_ZERO_QUOTA_BUILD",
+    "owner_actions": [
+      "Using the existing Google account is sufficient; no second YouTube account is needed for the V0 public-data client.",
+      "Create a distinct Google Cloud project for the Culinary API client, recommended display name culinary-youtube-discovery.",
+      "Enable YouTube Data API v3 for that project.",
+      "Create an API key for public read-only discovery; OAuth is not required for V0 public Search/list reads.",
+      "Restrict the key at least to YouTube Data API v3 and keep it in the repository/runner secret store as CULINARY_YOUTUBE_API_KEY.",
+      "Verify the project's actual Search Queries daily limit in APIs & Services -> YouTube Data API v3 -> Quotas & System Limits; do not assume an unverified limit.",
+      "Do not create additional Culinary projects for the same client/use case merely to multiply quota.",
+      "Do not paste the API key into chat, issues, commits or handovers."
     ]
   },
-  "terminal_instruction_for_new_chat": "Open docs/handovers/CURRENT.json and docs/CORPUS_SCALE_STEP7_PREFLIGHT.md, fresh-reconcile live GitHub, and do not restart Steps 1–6. If the Cloudflare owner setup is now complete, resume Step 7 autonomously from the post-gate instructions; otherwise remain stopped at the recorded human/security gate."
+  "next_action": {
+    "corpus_scale": {
+      "name": "STEP_7_PRODUCTION_SHAPED_REAL_SOURCE_PILOT",
+      "status": "BLOCKED_ON_HUMAN_SECURITY_SETUP",
+      "resume_when": "Cloudflare Pages, R2 and Access resources exist under the exact-email invitation-only contract."
+    },
+    "youtube_culinary_discovery": {
+      "name": "YT_CUL_0_ARCHITECTURE_POLICY_SYNTHETIC_IMPLEMENTATION",
+      "status": "READY_NOW_ZERO_LIVE_QUOTA",
+      "instructions": [
+        "Fresh-reconcile live GitHub before implementation.",
+        "Implement only isolated additive acquisition/control-plane code and synthetic fixtures; do not change public runtime behavior.",
+        "Implement a hard quota ledger with project/client identity, current-limit configuration, >=5-call reserve and no cross-use with Blue Lagoon.",
+        "Implement transient raw-data TTL/cleanup semantics; raw YouTube API metadata must never be committed to Git history.",
+        "Implement the daily conversion-funnel report: calls -> transient candidates -> independently reviewed sources -> Atlas promotions -> app handoffs -> actual public admissions.",
+        "Do not create creator/channel quality scores or infer authenticity/popularity from YouTube engagement metrics.",
+        "Stop before live API calls until CULINARY_YOUTUBE_API_KEY exists and current policy/project quota is revalidated."
+      ]
+    }
+  },
+  "terminal_instruction_for_new_chat": "Open docs/handovers/CURRENT.json first and fresh-reconcile live GitHub. Preserve Corpus Scale Steps 1–6 and the Step 7 Cloudflare gate. The additive YouTube Culinary Discovery programme is separately READY at YT-CUL-0 with zero live quota; continue that architecture/synthetic lane if desired, but do not make live YouTube calls until the distinct Culinary Google Cloud project, verified quota and CULINARY_YOUTUBE_API_KEY secret exist and current policy review passes."
 }
