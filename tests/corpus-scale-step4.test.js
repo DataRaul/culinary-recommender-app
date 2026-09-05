@@ -44,7 +44,7 @@ test("Step 4 direct model reads exactly the Step 3 canonical 84-record detail an
   });
 
   assert.equal(model.targetSize, 84);
-  assert.equal(model.detailStrategy, "CANONICAL_GOLDEN_DETAIL_ON_READ");
+  assert.equal(model.detailStrategy, "CANONICAL_GOLDEN_DETAIL_PAYLOAD_WARMED_PER_SCENARIO");
 
   for (let ordinal = 0; ordinal < ALL_RECIPES.length; ordinal += 1) {
     const path = portableDetailPathForOrdinal(ordinal, ALL_RECIPES.length);
@@ -140,13 +140,17 @@ test("retrieval gate failure is fail-closed and earns review only, never automat
   assert.equal(acceptance.d1Decision, "REVIEW_ONLY_AFTER_RETRIEVAL_GATE_FAILURE__DO_NOT_AUTO_ADD_D1");
 });
 
-test("scale model does not retain a second full serialized recipe corpus", () => {
+test("scale model retains only a bounded per-scenario detail payload cache, never a second full corpus", () => {
   const model = buildStep4RetrievalModel(ALL_RECIPES, 10_000);
   assert.equal(Object.hasOwn(model, "objectBodies"), false);
   assert.equal(Object.hasOwn(model, "detailObjects"), false);
-  assert.equal(model.detailStrategy, "DETERMINISTIC_SYNTHETIC_DETAIL_ON_READ");
+  assert.equal(model.detailStrategy, "DETERMINISTIC_SYNTHETIC_DETAIL_PAYLOAD_WARMED_PER_SCENARIO");
+  assert.equal(model.benchmarkDetailPayloadCache.size, 0);
   assert.equal(model.indexObjects.size, model.indexes.size);
   assert.ok(model.metrics.indexRawBytes > 0);
+
+  benchmarkStep4Queries(model, recipes => recipes, { repetitions: 1 });
+  assert.ok(model.benchmarkDetailPayloadCache.size <= CORPUS_SCALE_QUERY_CAP);
 });
 
 test("Step 4 validates portable paths and model inputs fail closed", () => {
