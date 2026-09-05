@@ -2,7 +2,11 @@
 
 Date: 2026-09-05
 
-State: `IMPLEMENTED / VALIDATION_PENDING`
+State: `MERGED_GREEN / FEEDBACK_AWARE_DAILY_CONTROL_ACTIVE`
+
+Merge: `42a6951dda2e9c2ccad2969341bccf3188670a48`.
+
+Validation: full repository validate + browser acceptance PASS on PR #79.
 
 ## Why this repair exists
 
