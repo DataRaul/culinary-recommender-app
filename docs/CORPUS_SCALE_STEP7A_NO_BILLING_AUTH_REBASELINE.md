@@ -1,10 +1,12 @@
 # Corpus Scale Step 7A — No-Billing-Authorization 170k Rebaseline
 
-Status: **IMPLEMENTATION BUILT / FULL 1K→250K MEASUREMENT AND REPOSITORY VALIDATION PENDING**
+Status: **PASS / MERGED GREEN / STEP 7B HUMAN FREE-RESOURCE CHECK EARNED**
 
 Canonical architecture: `docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md`.
 
-## Decision this gate must answer
+Terminal implementation: PR #66, merged at `8cc1a672d7f7dc33d12b17169908c69685a733c4`.
+
+## Decision this gate answered
 
 Can the Culinary runtime preserve all of the following simultaneously without provisioning an external paid/usage-authorized resource?
 
@@ -18,7 +20,9 @@ Can the Culinary runtime preserve all of the following simultaneously without pr
 - no full-corpus runtime scans;
 - no automatic billing/overage authority.
 
-This is a **local/provider-neutral proof**. It does not create D1, activate Workers Paid, configure Google identity, activate Cloudflare Zero Trust, activate R2 or admit a real external corpus.
+**Answer: PASS for the local/provider-neutral architecture proof.**
+
+This result does not create D1, activate Workers Paid, configure Google identity, activate Cloudflare Zero Trust, activate R2 or admit a real external corpus.
 
 ## Existing evidence preserved
 
@@ -35,7 +39,7 @@ The reviewed 84-record runtime corpus remains the behavioral golden oracle.
 
 ## Scale ladder
 
-Required full run:
+Full run passed:
 
 `1,000 -> 10,000 -> 50,000 -> 100,000 -> 170,000 -> 250,000 stress`
 
@@ -77,6 +81,45 @@ At 170k required capacity:
 
 At the 250k stress point, compact index artifact rows must still remain <=1 MiB so even a posting containing every ordinal remains comfortably below the currently documented 2 MiB D1 row/BLOB ceiling.
 
+## Measured terminal evidence
+
+Dedicated Step 7A workflow: `33986959491` — **PASS**.  
+Public validation: `33986959477` — **PASS**.  
+Step-1 regression workflow: `33986959483` — **PASS**.  
+Focused contract tests: **10/10 PASS**.
+
+Golden oracle:
+
+- recipe count: **84**;
+- IDs SHA-256: `062105fae761ce06357fdd2b068ed41c89590b9b89d984fbbe3ebb76d1b1407a`;
+- record SHA-256: `4b876f65ca0aa2ab6db3c2e4f1ca6c0af9e91f03e3923dfd3bfd9da2bcfe2f41`.
+
+### 170k required point
+
+- raw serialized recipe bytes: **663,576,660**;
+- estimated recipe-store bytes: **892,941,516**;
+- control/auth/index DB estimate: **29,514,044 bytes**;
+- total estimated footprint: **922,455,560 bytes** versus **3,758,096,384-byte** project budget;
+- max recipe-body shard: **111,938,240 bytes** versus **367,001,600-byte** per-DB project budget;
+- max index artifact row: **680,512 bytes** versus **1,048,576-byte** project budget;
+- database slots: **9 used + 1 reserved**;
+- candidate hydration: **<=256**;
+- modeled D1 subqueries: **10–12/request** versus project cap **16**;
+- full-corpus scans: **0**.
+
+### 250k stress point
+
+- raw serialized recipe bytes: **975,908,151**;
+- estimated recipe-store bytes: **1,313,226,540**;
+- control/auth/index DB estimate: **35,472,108 bytes**;
+- total estimated footprint: **1,348,698,648 bytes**;
+- max recipe-body shard: **164,884,232 bytes**;
+- max index artifact row: **1,000,512 bytes**, still below the 1 MiB project cap;
+- database slots: **9 used + 1 reserved**;
+- candidate hydration: **<=256**;
+- modeled D1 subqueries: **10–12/request**;
+- full-corpus scans: **0**.
+
 ## Protected query model
 
 For each deterministic benchmark scenario:
@@ -93,15 +136,17 @@ Modeled D1 subqueries therefore equal:
 
 `1 auth/account + N index rows + N touched recipe shards`
 
-The project budget is <=16 even though the current provider limit is higher.
+The measured range is 10–12, below the project cap of 16.
 
-## Worker CPU proxy
+## Worker CPU proxy boundary
 
 The harness measures local wall-clock time for only the deterministic Worker-shaped routing work: posting intersection, candidate bounding and shard grouping.
 
 The architecture budget records **8 ms p95 as an advisory warning**, not a terminal CI failure, because GitHub-runner wall-clock time is not equivalent to Cloudflare Workers CPU accounting.
 
-Actual Workers Free CPU usage is a mandatory later Step 7D canary gate.
+At 170k, local p95 proxy measurements ranged approximately **8.71–11.88 ms** across the benchmark scenarios. At 250k stress, the highest observed local p95 proxy was **21.56 ms**.
+
+These values do **not** prove a Workers Free CPU failure. They confirm that actual Workers CPU measurement remains necessary. **Actual Workers Free CPU usage is therefore a mandatory Step 7D protected-canary gate before corpus expansion.**
 
 ## Authentication / authorization contract
 
@@ -122,35 +167,28 @@ Initial identity candidate is Google GIS/OIDC. The pure contract tests require s
 
 Because Cloudflare Access is no longer part of the architecture, the Pages shell itself may be publicly reachable. Therefore **new protected large-corpus recipe bodies and protected retrieval-index artifacts must never be emitted as ordinary public Pages assets**.
 
-Step 7A tests a future deployment-separation contract. It does not retroactively change the current public 84-record app in this repository-only gate; protected cutover of the reviewed oracle occurs only in the later Step 7D security/runtime canary.
+Step 7A passed the future deployment-separation contract. It does not retroactively change the current public 84-record app in this repository-only gate; protected cutover of the reviewed oracle occurs only in the later Step 7D security/runtime canary.
 
-## Terminal outcomes
+## Terminal result
 
-- `NO_BILLING_AUTH_170K_ARCHITECTURE_PASS`
-- `REBASELINE_REQUIRED_NO_PROVISIONING`
+`NO_BILLING_AUTH_170K_ARCHITECTURE_PASS`
 
-PASS earns only the next human **Free developer-resource provisioning check**. It does not authorize payment, a `$0` subscription with overage authorization, D1 population, Workers Paid, Zero Trust, R2, production Google identity or real-source ingestion.
+This PASS earns only the next human **Step 7B Free developer-resource provisioning check**. It does not authorize payment, a `$0` subscription with overage authorization, D1 population, Workers Paid, Zero Trust, R2, production Google identity or real-source ingestion.
 
-If a later account-side D1/Workers step displays checkout, subscription activation, payment authorization, overage authorization or ambiguous billing language, that resource is rejected regardless of this local PASS.
+If the account-side D1/Workers step displays checkout, subscription activation, payment authorization, overage authorization or ambiguous billing language, stop and reject or inspect the resource regardless of this local PASS.
 
-## Runner
+## Next action
 
-Full gate:
+**Step 7B — human Free developer-resource provisioning check.**
 
-```bash
-npm run benchmark:corpus-scale-step7a
-```
+First action only:
 
-Bounded diagnostic example:
+`Cloudflare Dashboard -> Storage & databases -> D1 SQLite Database`
 
-```bash
-node scripts/run-corpus-scale-step7a.mjs --sizes=1000,10000 --repetitions=2
-```
+Inspect the next screen before accepting anything.
 
-Optional JSON report:
+Allowed terminal classifications:
 
-```bash
-node scripts/run-corpus-scale-step7a.mjs --output=/tmp/corpus-scale-step7a.json
-```
-
-A partial diagnostic size list intentionally does not satisfy the full terminal gate because all six required scale points must be present for PASS.
+- `FREE_NO_BILLING_AUTHORIZATION_CONFIRMED`
+- `BILLING_OR_OVERAGE_AUTHORIZATION_PRESENT`
+- `AMBIGUOUS`
