@@ -6,6 +6,10 @@ import {
 import {
   createControlPlaneSnapshot
 } from "./corpus-source-control-plane.mjs";
+import {
+  createIngestionPipelineSnapshot,
+  createPipelineRecord
+} from "./corpus-ingestion-pipeline.mjs";
 
 export const WIKIBOOKS_GATE_F2_CONTROL_ADAPTER_ID = "wikibooks-gate-f2-control-adapter-v1";
 
@@ -98,4 +102,62 @@ export function adaptGateF2LedgerToControlPlane(ledger) {
   return createControlPlaneSnapshot(source, records, {
     sourceUniverseState: "GATE_F2_REVIEW_LEDGER_SNAPSHOT"
   });
+}
+
+export function gateF2PipelineStages(record) {
+  if (record.reviewState === "ADMITTED") {
+    return {
+      provenance: "VERIFIED",
+      parse: "PASS",
+      normalize: "PASS",
+      deduplicate: record.dishFamilyId ? "PASS" : "PARTIAL",
+      ingredientQuantityMapping: record.ingredientMappingState === "NORMALIZED_GATE_F_V1" ? "PASS" : "PARTIAL",
+      hardMetadata: record.hardMetadataState === "SEARCH_GATE_COMPLETE" ? "PASS" : "PARTIAL",
+      nutrition: "FIREWALLED",
+      decision: "PASS",
+      portableArtifact: record.runtimeArtifact ? "READY" : "PENDING"
+    };
+  }
+
+  if (record.reviewState === "REJECTED") {
+    return {
+      provenance: "VERIFIED",
+      parse: "PARTIAL",
+      normalize: "NOT_APPLICABLE",
+      deduplicate: "NOT_APPLICABLE",
+      ingredientQuantityMapping: "NOT_APPLICABLE",
+      hardMetadata: "REJECT",
+      nutrition: "NOT_APPLICABLE",
+      decision: "REJECT",
+      portableArtifact: "NOT_APPLICABLE"
+    };
+  }
+
+  return {
+    provenance: record.revid ? "VERIFIED" : "NOT_STARTED",
+    parse: "NOT_STARTED",
+    normalize: "NOT_STARTED",
+    deduplicate: "NOT_STARTED",
+    ingredientQuantityMapping: "NOT_STARTED",
+    hardMetadata: "NOT_STARTED",
+    nutrition: "NOT_STARTED",
+    decision: "PENDING",
+    portableArtifact: "NOT_STARTED"
+  };
+}
+
+export function adaptGateF2LedgerToIngestionPipeline(ledger) {
+  const controlPlane = adaptGateF2LedgerToControlPlane(ledger);
+  const sourceRecordsById = new Map(ledger.records.map(record => [
+    `${ledger.source.id}:${record.pageid}:${record.revid}`,
+    record
+  ]));
+  const pipelineRecords = controlPlane.records.map(controlRecord => {
+    const sourceRecord = sourceRecordsById.get(controlRecord.controlId);
+    return createPipelineRecord(controlRecord, gateF2PipelineStages(sourceRecord));
+  });
+  return {
+    controlPlane,
+    pipeline: createIngestionPipelineSnapshot(controlPlane, pipelineRecords)
+  };
 }
