@@ -12,9 +12,13 @@ Always use:
 - previous continuation: `docs/handovers/PREVIOUS.json`
 - rotation/startup rules: `docs/HANDOVER_PROTOCOL.md`
 - canonical programme: `docs/ROADMAP.md`
+- current Corpus Scale runtime/storage/cost/scale architecture: `docs/CORPUS_SCALE_ZERO_BILL_170K_ARCHITECTURE.md`
+- historical superseded R2-first architecture: `docs/CORPUS_SCALE_CLOUDFLARE_ACCEPTED_ARCHITECTURE.md`
 - YouTube Culinary Discovery Atlas child roadmap: `docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md`
 - YT-CUL-0 implementation contract: `docs/YT_CUL_0_IMPLEMENTATION_CONTRACT.md`
 - YT-CUL-2 connectivity canary contract: `docs/YT_CUL_2_CONNECTIVITY_CANARY_CONTRACT.md`
+
+For runtime storage, cost model, scale target and Step-7 provisioning order, `docs/CORPUS_SCALE_ZERO_BILL_170K_ARCHITECTURE.md` supersedes the older R2-first architecture and any historical 100k/R2 summary line in `docs/ROADMAP.md` until that large historical roadmap body is next consolidated. Existing source-rights, nutrition, safety, RecipeSource V2 portability and invitation-only access gates remain controlling.
 
 At a continuation boundary, rotate `CURRENT -> PREVIOUS`, write the latest complete state to `CURRENT`, and update canonical roadmap status only when programme state, gate state or next-ready action itself changed.
 
@@ -22,13 +26,39 @@ A new chat should begin by reading `docs/handovers/CURRENT.json`, then fresh-rec
 
 ## Current programme routing
 
-### Corpus Scale / 100k
+### Corpus Scale / 170k zero-bill
 
-Current next action: `STEP_7_PRODUCTION_SHAPED_REAL_SOURCE_PILOT`.
+Required capacity: **170,000 admitted recipes**.
 
-State: `BLOCKED_ON_CLOUDFLARE_OWNER_SECURITY_SETUP`.
+Stress/headroom target: **250,000 synthetic records**.
 
-Steps 1–6 are complete; Step 7 preflight is merged. Do not restart historical Step 1 planning text.
+Canonical architecture: **Cloudflare Pages + exact-email Access/OTP + fail-closed Workers Free + compact pre-built static indexes + deliberately sharded D1 Free recipe bodies + RecipeSource V2**.
+
+R2 state: `REJECTED_FOR_CURRENT_ZERO_BILL_CONSTRAINT / DO_NOT_ACTIVATE`.
+
+Steps 1–6 remain merged green evidence. Their 100k/R2 physical assumptions must now be extended/reconciled rather than discarded.
+
+Current repository next action: `STEP_7A_ZERO_BILL_170K_ARCHITECTURE_REBASELINE`.
+
+State: `READY`.
+
+Required Step-7A proof:
+
+- extend scale ladder through 170k required + 250k stress;
+- add provider-neutral D1 shard/storage/read/write/subrequest simulation;
+- enforce <=3.5 GB total D1 footprint at 170k, <=350 MB per DB, one DB slot reserved, <=256 hydrated candidates, no full scans and <=50 D1 subqueries per Worker invocation;
+- preserve V1/V2 parity, hard filters, source rights, nutrition separation and incremental validation;
+- only a green terminal `ZERO_BILL_170K_D1_ARCHITECTURE_PASS` may unlock D1 account-side provisioning.
+
+Current human/account-side action: `STEP_7B_ACCESS_EXACT_EMAIL_OTP_SETUP`.
+
+State: `PENDING`.
+
+The Cloudflare Pages project `culinary-recommender-app.pages.dev` has been created and connected to `DataRaul/culinary-recommender-app`. R2 was not activated. The remaining immediate human security action is to protect the Pages hostname with Cloudflare Zero Trust / Access using exact-email membership + One-time PIN/email OTP. Do not use Everyone, wildcard/domain-wide membership, or an OTP-only broad Include rule.
+
+D1 account-side provisioning is `BLOCKED_UNTIL_STEP_7A_PASS`; do not create D1 merely because the Free plan exists. No paid Workers, Access, D1, R2 or other recurring infrastructure is authorized.
+
+After Step 7A PASS + Access configured + measured Free D1 resources exist, proceed to the production-shaped 500–1000 rights-clean real-source pilot. ForkRecipe remains the current leading source candidate unless later rights/data-quality evidence changes precedence.
 
 ### YouTube Culinary Discovery Atlas
 
@@ -36,20 +66,12 @@ YT-CUL-0 state: `MERGED_GREEN / ZERO_LIVE_QUOTA_COMPLETE`.
 
 YT-CUL-1 state: `COMPLETE`.
 
-The distinct Culinary Google Cloud project is active, YouTube Data API v3 is enabled, the restricted API key is available only through `CULINARY_YOUTUBE_API_KEY`, and the owner-verified Search Queries daily limit is `100/day` as of 2026-09-05. Never reveal the key and do not create quota shards.
-
 YT-CUL-2 state: `PASS / MERGED_GREEN`.
 
-Canonical implementation: PR #58, main SHA `56104c104e63342772e0db4dbf21d8ebf8b471ca`.
+YT-CUL-3 state: `YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND / MERGED_GREEN`.
 
-Live canary run `33984625070` passed with exactly one `search.list` call, HTTP 200, one result slot, a five-call protected reserve and 94 calls remaining before the reserve boundary. Raw API data stayed transient and was deleted before job exit; no raw YouTube metadata entered durable output; no Blue Lagoon credential or state participated.
+PR #60 merged into `main` at `2b099f4b9c61ce8d43a4a8d0420fdb8ba9d3e83f`. The 24-call bounded Search pilot preserved the five-call reserve and transient-data/separation controls. It independently confirmed 6 recipe-structured pages across 6 domains, below the high-information-gain threshold but above the useful/review-bound threshold.
 
-Validation: all 11 focused YT-CUL-0/YT-CUL-2 safety tests passed; PR validation passed; post-merge main validation run `33984711330` passed; Pages build/deploy run `33984710650` passed.
-
-Current next YouTube phase: `YT-CUL-3_ONE_DAY_BOUNDED_DISCOVERY_PILOT`.
-
-State: `READY / NOT_YET_EXECUTED`.
-
-Before YT-CUL-3 execution, fresh-reconcile GitHub and current YouTube policy/project quota, preserve the >=5 Search-call reserve, transient-data firewall, Blue Lagoon separation and independent-evidence promotion boundary. Measure the conversion funnel from Search calls to independently reviewable culinary/source evidence; never count gross YouTube results as recipes acquired.
+Current YouTube next phase: `YT_CUL_4_CONDITIONAL_EFFICIENCY_LANE` — earned by YT-CUL-3 but not executed by this corpus-scale architecture update. Fresh-reconcile the YouTube child roadmap before starting that lane.
 
 The YouTube child roadmap must remain reflected in `CURRENT.json` so future chats can discover and continue it without reconstructing this conversation.
