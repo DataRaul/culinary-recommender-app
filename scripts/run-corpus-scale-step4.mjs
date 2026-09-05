@@ -21,8 +21,9 @@ function argumentValue(name) {
 function parseSizes() {
   const raw = argumentValue("sizes");
   if (!raw) return CORPUS_SCALE_TARGETS;
-  const sizes = raw.split(",").map(value => Number(value.trim())).filter(Boolean);
-  if (!sizes.length || sizes.some(value => !Number.isInteger(value) || value <= 0)) {
+  const tokens = raw.split(",").map(value => value.trim());
+  const sizes = tokens.map(value => Number(value));
+  if (!tokens.length || tokens.some(value => !value) || sizes.some(value => !Number.isInteger(value) || value <= 0)) {
     throw new Error("--sizes must be a comma-separated list of positive integers");
   }
   return sizes;
