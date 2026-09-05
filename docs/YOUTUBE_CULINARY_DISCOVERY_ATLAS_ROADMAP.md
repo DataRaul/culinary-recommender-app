@@ -1,6 +1,6 @@
 # YouTube Culinary Discovery Atlas — Roadmap V0
 
-Status: **YT-CUL-0 MERGED GREEN / YT-CUL-1 HUMAN SETUP REQUIRED / LIVE API ACQUISITION BLOCKED UNTIL OWNER PROJECT+SECRET SETUP AND FRESH POLICY+QUOTA CHECK**
+Status: **YT-CUL-0 MERGED GREEN / YT-CUL-1 COMPLETE / YT-CUL-2 PASS + MERGED GREEN / YT-CUL-3 NEXT PHASE**
 
 Date: 2026-09-05
 
@@ -34,23 +34,25 @@ The existing programme has strong verification and runtime gates but discovery c
 
 ## Google / YouTube API client boundary
 
-Create one distinct Google Cloud API Project for the distinct Culinary internal discovery client. This is not a second Blue Lagoon quota shard and must not be reused to increase quota for the Blue Lagoon music use case.
+Use one distinct Google Cloud API Project for the distinct Culinary internal discovery client. This is not a second Blue Lagoon quota shard and must not be reused to increase quota for the Blue Lagoon music use case.
 
-Recommended project/client identity:
+Current project/client identity:
 
-- Google Cloud project display name: `culinary-youtube-discovery`
+- Google Cloud project display identity: `culinary-youtube-discovery`
 - API: `YouTube Data API v3`
 - credential for V0 public-data discovery: API key only
 - repository secret: `CULINARY_YOUTUBE_API_KEY`
 - OAuth: not required for V0 public search/read operations
 - service accounts: not used
+- owner-verified Search Queries daily limit on 2026-09-05: `100/day`
 
 Never commit the key, paste it into repository files, or place it in handovers.
 
 Current official quota semantics to verify in the Cloud Console before each activation vintage:
 
 - `search.list` uses the Search Queries bucket;
-- current default Search Queries limit is 100 calls/day per API project/client;
+- current documented default Search Queries limit is 100 calls/day per API project/client;
+- the actual assigned project limit is authoritative;
 - one call can request up to 50 results;
 - additional pages consume additional Search calls;
 - other Data API methods use their applicable quota buckets;
@@ -95,18 +97,20 @@ Store only:
 Store raw YouTube API responses only in a deletable/refreshable transient surface. Preferred order:
 
 1. Cloudflare R2 transient prefix with lifecycle/cleanup once the already accepted R2 setup exists;
-2. otherwise short-retention CI/job artifact or runner-local temporary storage for bounded pilots;
+2. otherwise runner-local temporary storage for bounded pilots;
 3. never Git commit history.
 
 The transient layer must record `retrieved_at`, source endpoint, query identity, project/client vintage and expiry/refresh deadline.
+
+YT-CUL-2 proved the runner-local path: raw API data was stored only in temporary runner storage with seven-day TTL metadata and deleted before job exit. No raw YouTube API data was persisted as a Git object or workflow artifact.
 
 ## Search planning and quota control
 
 Each live day is a bounded quota day, not an unstructured scrape.
 
-Initial V0 default after activation:
+Current V0 limits after activation:
 
-- hard daily Search limit: read from current project quota; expected default 100/day;
+- hard daily Search limit: owner-verified project limit `100/day` as of 2026-09-05;
 - reserve: >= 5 Search calls;
 - planned acquisition target: <= 95 Search calls/day;
 - no automatic quota extension request;
@@ -174,35 +178,52 @@ Delivered:
 
 Validation passed on the pull request and again on post-merge `main`; Pages build/deploy also passed. Live YouTube API calls consumed by YT-CUL-0: `0`.
 
-Policy was rechecked against official YouTube documentation on 2026-09-05. The live activation vintage must recheck it again.
-
 ### YT-CUL-1 — owner Google Cloud setup
 
-State: `HUMAN_SETUP_REQUIRED / CURRENT_NEXT_ACTION`
+State: `COMPLETE`
 
-Owner creates the distinct Google Cloud project, enables YouTube Data API v3, creates/restricts an API key, verifies assigned Search quota, and stores the key only as `CULINARY_YOUTUBE_API_KEY` in the repository/runner secret store.
+The distinct Culinary Google Cloud project exists, YouTube Data API v3 is enabled, the restricted API key is available to GitHub Actions as `CULINARY_YOUTUBE_API_KEY`, and the owner verified the actual assigned Search Queries daily limit as `100/day` on 2026-09-05. The key remains secret and is not reproduced in durable project state.
 
-No second YouTube account is required for public-data V0.
-
-The safe completion signal is non-secret only: confirm the project/API/secret setup exists and report the assigned Search Queries daily limit. Never paste the API key into chat, issues, commits or handovers.
+No second YouTube account is required for public-data V0 and no quota-sharding project was created for this client/use case.
 
 ### YT-CUL-2 — zero/low-quota connectivity canary
 
-State: `BLOCKED_ON_YT-CUL-1`
+State: `PASS / MERGED_GREEN`
 
-- fresh-recheck current YouTube policy and actual assigned project quota before the first call;
-- execute a tiny canary;
-- prove key/project separation from Blue Lagoon;
-- prove quota ledger/reserve behavior;
-- prove raw metadata never enters Git history;
-- prove expiry/cleanup behavior;
-- stop on any policy/configuration mismatch.
+Completed in PR #58, merged to `main` at `56104c104e63342772e0db4dbf21d8ebf8b471ca`.
+
+Canonical artifacts:
+
+- `scripts/run-youtube-culinary-connectivity-canary.mjs`
+- `tests/youtube-culinary-connectivity-canary.test.js`
+- `.github/workflows/yt-cul-2-canary.yml`
+- `docs/YT_CUL_2_CONNECTIVITY_CANARY_CONTRACT.md`
+
+Activation evidence:
+
+- fresh policy/quota recheck completed on 2026-09-05;
+- actual assigned Search Queries daily limit verified as `100`;
+- dedicated canary workflow run `33984625070` passed;
+- exactly `1` live `search.list` call executed;
+- HTTP `200` and `1` result slot observed;
+- five-call protected reserve remained intact; `94` calls remained before the reserve boundary after the canary;
+- all `11` focused YT-CUL-0/YT-CUL-2 safety tests passed;
+- raw API payload remained transient and was deleted before job exit;
+- no raw YouTube API metadata was embedded in durable output;
+- no Blue Lagoon credential, quota ledger, planner state or evidence participated;
+- normal PR validation passed;
+- post-merge main validation run `33984711330` passed;
+- Pages build/deploy run `33984710650` passed.
+
+The earlier fail-closed preflight consumed `0` Search calls. Total successful YT-CUL live Search calls through YT-CUL-2: `1`.
 
 ### YT-CUL-3 — one-day bounded discovery pilot
 
-State: `BLOCKED_ON_YT-CUL-2 PASS`
+State: `READY / CURRENT_NEXT_YOUTUBE_PHASE`
 
 Run one governed quota day. Primary objective: estimate the conversion funnel from Search calls to useful independent culinary/source evidence. Do not scale from gross result count.
+
+Before execution, fresh-reconcile live GitHub and recheck current policy/project quota. Preserve the five-call reserve and all YT-CUL-0/YT-CUL-2 storage, separation and evidence boundaries.
 
 Terminal outputs include:
 
@@ -210,6 +231,8 @@ Terminal outputs include:
 - `YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND`
 - `YOUTUBE_CULINARY_DISCOVERY_LOW_MARGINAL_VALUE`
 - `POLICY_OR_STORAGE_REDESIGN_REQUIRED`
+
+YT-CUL-3 has not been executed by the YT-CUL-2 closeout.
 
 ### YT-CUL-4 — channel/playlist efficiency lane
 
@@ -248,9 +271,10 @@ This lane is intentionally parallel and non-blocking:
 - Corpus Scale Step 7 remains blocked on the existing Cloudflare owner/security setup gate.
 - Nutrition recipe-unlock work remains independent.
 - Culinary Brain / World Recipe Atlas verification may continue independently.
-- YT-CUL-0 is complete and merged green with zero live quota consumed.
-- YT-CUL-1 is the current separate owner/API-credential gate.
-- YT-CUL-2 and later live phases remain blocked until YT-CUL-1 completes and current policy/quota are rechecked.
+- YT-CUL-0 is complete and merged green.
+- YT-CUL-1 owner/API setup is complete.
+- YT-CUL-2 is PASS and merged green.
+- YT-CUL-3 is the current next YouTube phase and remains bounded by fresh policy/quota recheck plus the existing quota/storage/evidence controls.
 - No YouTube work may modify Blue Lagoon quota, credentials, planner state or evidence.
 
 ## Handover / auto-continuation integration
