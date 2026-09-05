@@ -1,4 +1,4 @@
-name: YT-CUL-5D daily discovery
+name: YT-CUL-5E adaptive daily discovery
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: 'Run all preflight/state logic without YouTube Search spend'
+        description: 'Run all preflight/state/allocation logic without YouTube Search spend'
         required: true
         default: true
         type: boolean
@@ -15,13 +15,13 @@ permissions:
   contents: write
 
 concurrency:
-  group: yt-cul-5d-daily-discovery
+  group: yt-cul-5e-adaptive-daily-discovery
   cancel-in-progress: false
 
 jobs:
-  daily-discovery:
+  adaptive-daily-discovery:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     env:
       CULINARY_YOUTUBE_API_KEY: ${{ secrets.CULINARY_YOUTUBE_API_KEY }}
       CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT: '100'
@@ -40,12 +40,12 @@ jobs:
         with:
           node-version: 22
 
-      - name: Fail-closed YT-CUL-5D preflight
+      - name: Fail-closed YT-CUL-5E preflight
         shell: bash
         run: |
           set -euo pipefail
           if [[ "${CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT}" != "100" ]]; then
-            echo "::error::YT-CUL-5D is currently armed only for the owner-verified 100/day Search Queries limit."
+            echo "::error::YT-CUL-5E is armed only for the owner-verified 100/day Search Queries limit."
             exit 2
           fi
           if [[ -z "${CULINARY_YOUTUBE_PROJECT_IDENTITY:-}" ]]; then
@@ -68,7 +68,7 @@ jobs:
             echo "::add-mask::$CULINARY_YOUTUBE_API_KEY"
           fi
 
-      - name: Validate YT-CUL safety and daily control contracts before any live spend
+      - name: Validate YouTube safety, relevance and adaptive allocation before live spend
         run: >-
           node --test
           tests/youtube-culinary-discovery-control-plane.test.js
@@ -79,16 +79,17 @@ jobs:
           tests/youtube-culinary-atlas-relevance-gate.test.js
           tests/youtube-culinary-relevance-source-diversity-repair.test.js
           tests/youtube-culinary-daily-discovery.test.js
+          tests/youtube-culinary-adaptive-portfolio.test.js
 
-      - name: Execute one quota-date-aware daily cycle
+      - name: Execute one quota-date-aware adaptive portfolio cycle
         id: daily
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/run-youtube-culinary-daily-discovery.mjs | tee "$RUNNER_TEMP/yt-cul-5d-safe-summary.json"
+          node scripts/run-youtube-culinary-adaptive-discovery.mjs | tee "$RUNNER_TEMP/yt-cul-5e-safe-summary.json"
 
-      - name: Persist only cumulative policy-safe programme state
-        if: success() && env.YT_CUL_DRY_RUN == 'false'
+      - name: Persist cumulative policy-safe programme state, including interrupted quota progress
+        if: always() && env.YT_CUL_DRY_RUN == 'false'
         shell: bash
         run: |
           set -euo pipefail
@@ -99,7 +100,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/generated/youtube-culinary-daily-discovery-state.json
-          git commit -m "YT-CUL-5D daily safe state [skip ci]"
+          git commit -m "YT-CUL-5E adaptive daily safe state [skip ci]"
           for attempt in 1 2 3; do
             git fetch origin main
             if git rebase origin/main && git push origin HEAD:main; then
@@ -111,52 +112,49 @@ jobs:
           echo "::error::Could not persist cumulative safe state after three bounded retries."
           exit 3
 
-      - name: Record compact policy-safe daily summary
+      - name: Record compact policy-safe adaptive summary
         if: always()
         shell: bash
         run: |
           set -euo pipefail
-          echo "# YT-CUL-5D daily discovery" >> "$GITHUB_STEP_SUMMARY"
+          echo "# YT-CUL-5E adaptive daily discovery" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          if [[ ! -s "$RUNNER_TEMP/yt-cul-5d-safe-summary.json" ]]; then
-            echo "- Result: **NO_SAFE_SUMMARY_PRODUCED**" >> "$GITHUB_STEP_SUMMARY"
-            exit 0
-          fi
           node --input-type=module <<'NODE'
           import { readFile, appendFile } from 'node:fs/promises';
-          const summary = JSON.parse(await readFile(`${process.env.RUNNER_TEMP}/yt-cul-5d-safe-summary.json`, 'utf8'));
+          let summary = null;
           let state = null;
-          try {
-            state = JSON.parse(await readFile(process.env.YT_CUL_DAILY_STATE_PATH, 'utf8'));
-          } catch {}
-          const outcomes = Array.isArray(state?.canonicalOutcomes) ? state.canonicalOutcomes.slice(-24) : [];
-          const accepted = outcomes.filter(item => item.reviewDecision === 'ACCEPTED').length;
-          const rejected = outcomes.filter(item => item.reviewDecision === 'REJECTED').length;
-          const held = outcomes.filter(item => item.reviewDecision === 'HELD').length;
-          const resolved = accepted + rejected;
-          const acceptanceRate = resolved ? accepted / resolved : null;
-          const feedbackAwareTargeting = outcomes.some(item => item.feedbackContext?.atlasGap);
-          const canonicalFeedbackMatureForScaling = resolved >= 4;
-          const lines = [
+          try { summary = JSON.parse(await readFile(`${process.env.RUNNER_TEMP}/yt-cul-5e-safe-summary.json`, 'utf8')); } catch {}
+          try { state = JSON.parse(await readFile(process.env.YT_CUL_DAILY_STATE_PATH, 'utf8')); } catch {}
+          const progress = state?.quotaDayProgress ?? null;
+          const canonical = summary?.canonicalLearning ?? {};
+          const kpis = summary?.researchKpis ?? {};
+          const lines = summary ? [
             `- Result: **${summary.result}**`,
             `- YouTube quota date: ${summary.quotaDate}`,
             `- Dry run: ${summary.dryRun ?? false}`,
-            `- Search calls: ${summary.searchCallsExecuted ?? 0} / adaptive budget ${summary.searchBudget ?? 0}`,
-            `- Independent pages reviewed: ${summary.independentPagesReviewed ?? 0}`,
-            `- Recipe-structured pages confirmed: ${summary.recipeStructuredPagesConfirmed ?? 0}`,
-            `- New Atlas relevance review-ready packets: ${summary.reviewReadyPacketsCreated ?? 0}`,
-            `- Duplicate source/target pairs suppressed: ${summary.duplicatePairsSuppressed ?? 0}`,
-            `- Useful independent source domains: ${summary.uniqueUsefulSourceDomains ?? 0}`,
+            `- Search calls: ${summary.searchCallsExecuted ?? 0} / usable capacity ${summary.searchCapacity ?? 0}`,
+            `- Tranches / reallocations: ${summary.tranchesRun ?? 0} / ${summary.reallocations ?? 0}`,
+            `- Search utilization: ${Math.round((kpis.searchUtilization ?? 0) * 100)}%`,
+            `- Independent pages per Search: ${(kpis.independentPagesPerSearch ?? 0).toFixed(3)}`,
+            `- Recipe-structured pages per Search: ${(kpis.recipeStructuredPagesPerSearch ?? 0).toFixed(3)}`,
+            `- Review-ready packets per Search: ${(kpis.reviewReadyPacketsPerSearch ?? 0).toFixed(3)}`,
+            `- Useful source domains per Search: ${(kpis.usefulSourceDomainsPerSearch ?? 0).toFixed(3)}`,
+            `- Canonical Brain outcomes: ${canonical.accepted ?? 0} accepted / ${canonical.rejected ?? 0} rejected / ${canonical.held ?? 0} held`,
+            `- Canonical resolved acceptance rate: ${canonical.acceptanceRate == null ? 'n/a' : `${Math.round(canonical.acceptanceRate * 100)}%`}`,
+            `- Canonical accepted per cumulative Search: ${(kpis.canonicalAcceptedPerCumulativeSearch ?? 0).toFixed(4)}`,
+            `- Explicit lifecycle advancements per cumulative Search: ${(kpis.explicitLifecycleAdvancementsPerCumulativeSearch ?? 0).toFixed(4)}`,
+            `- App-authoring-eligible outcomes per cumulative Search: ${(kpis.appAuthoringEligiblePerCumulativeSearch ?? 0).toFixed(4)}`,
             `- Unresolved review backlog: ${summary.unresolvedReviewBacklog ?? 0}`,
-            `- Canonical Brain outcomes (recent): ${accepted} accepted / ${rejected} rejected / ${held} held`,
-            `- Canonical resolved acceptance rate: ${acceptanceRate === null ? 'n/a' : `${Math.round(acceptanceRate * 100)}%`}`,
-            `- Feedback-aware next-query targeting active: ${feedbackAwareTargeting}`,
-            `- Canonical feedback mature enough to unlock Search scaling: ${canonicalFeedbackMatureForScaling}`,
             `- YT-CUL-6 readiness earned: ${summary.ytCul6ReadinessEarned ?? false}`,
             `- Raw YouTube API Data durable: ${summary.controls?.rawYoutubeApiDataEmbedded ?? false}`,
             `- Automatic Atlas promotion: ${summary.controls?.automaticAtlasPromotionAuthorized ?? false}`,
             `- Automatic app admission: ${summary.controls?.automaticAppAdmissionAuthorized ?? false}`,
             ''
-          ].join('\n');
-          await appendFile(process.env.GITHUB_STEP_SUMMARY, lines, 'utf8');
+          ] : [
+            '- Result: **NO_SAFE_SUMMARY_PRODUCED**',
+            `- Persisted interrupted quota progress: ${progress ? `${progress.searchCallsUsed ?? 0}/${progress.searchCapacity ?? 0} Search attempts` : 'none'}`,
+            '- The workflow remains fail-closed; rerun uses persisted quota-day progress rather than assuming zero spend.',
+            ''
+          ];
+          await appendFile(process.env.GITHUB_STEP_SUMMARY, lines.join('\n'), 'utf8');
           NODE
