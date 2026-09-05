@@ -1,6 +1,6 @@
 # YouTube Culinary Discovery Atlas — Roadmap V0
 
-Status: **YT-CUL-0 MERGED GREEN / YT-CUL-1 COMPLETE / YT-CUL-2 PASS + MERGED GREEN / YT-CUL-3 NEXT PHASE**
+Status: **YT-CUL-0 MERGED GREEN / YT-CUL-1 COMPLETE / YT-CUL-2 PASS + MERGED GREEN / YT-CUL-3 USEFUL_BUT_REVIEW_BOUND + MERGED GREEN / YT-CUL-4 EARNED + READY**
 
 Date: 2026-09-05
 
@@ -96,13 +96,13 @@ Store only:
 
 Store raw YouTube API responses only in a deletable/refreshable transient surface. Preferred order:
 
-1. Cloudflare R2 transient prefix with lifecycle/cleanup once the already accepted R2 setup exists;
+1. an approved transient object-store prefix with lifecycle/cleanup only if the current canonical corpus architecture permits it;
 2. otherwise runner-local temporary storage for bounded pilots;
 3. never Git commit history.
 
 The transient layer must record `retrieved_at`, source endpoint, query identity, project/client vintage and expiry/refresh deadline.
 
-YT-CUL-2 proved the runner-local path: raw API data was stored only in temporary runner storage with seven-day TTL metadata and deleted before job exit. No raw YouTube API data was persisted as a Git object or workflow artifact.
+YT-CUL-2 and YT-CUL-3 proved the runner-local path: raw API data was stored only in temporary runner storage with seven-day TTL metadata and deleted before job exit. No raw YouTube API data was persisted as a Git object or workflow artifact.
 
 ## Search planning and quota control
 
@@ -219,32 +219,56 @@ The earlier fail-closed preflight consumed `0` Search calls. Total successful YT
 
 ### YT-CUL-3 — one-day bounded discovery pilot
 
-State: `READY / CURRENT_NEXT_YOUTUBE_PHASE`
+State: `PASS / MERGED_GREEN / YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND`
 
-Run one governed quota day. Primary objective: estimate the conversion funnel from Search calls to useful independent culinary/source evidence. Do not scale from gross result count.
+Completed in PR #60, merged to `main` at `2b099f4b9c61ce8d43a4a8d0420fdb8ba9d3e83f`.
 
-Before execution, fresh-reconcile live GitHub and recheck current policy/project quota. Preserve the five-call reserve and all YT-CUL-0/YT-CUL-2 storage, separation and evidence boundaries.
+Canonical artifacts:
 
-Terminal outputs include:
+- `scripts/run-youtube-culinary-discovery-pilot.mjs`
+- `tests/youtube-culinary-discovery-pilot.test.js`
+- `.github/workflows/yt-cul-3-one-day-pilot.yml`
+- `docs/YT_CUL_3_ONE_DAY_DISCOVERY_PILOT_CONTRACT.md`
+- `docs/YT_CUL_3_TERMINAL_RESULT.md`
 
-- `YOUTUBE_CULINARY_DISCOVERY_HIGH_INFORMATION_GAIN`
-- `YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND`
-- `YOUTUBE_CULINARY_DISCOVERY_LOW_MARGINAL_VALUE`
-- `POLICY_OR_STORAGE_REDESIGN_REQUIRED`
+Live evidence from workflow run `33985467639`:
 
-YT-CUL-3 has not been executed by the YT-CUL-2 closeout.
+- all `20/20` focused YT-CUL safety tests passed before live spend;
+- Search Queries calls planned/executed: `24/24` after the prior one-call YT-CUL-2 canary;
+- total known successful Search Queries calls on the quota day through YT-CUL-3: `25`;
+- five-call protected reserve remained intact, leaving `70` calls before the reserve boundary;
+- batched `videos.list` general Queries calls: `12`;
+- result slots observed: `600`;
+- transient unique candidate pointers: `573`;
+- transient unique candidate channels: `444`;
+- non-social independent-source pointers observed transiently: `648`;
+- bounded independent-source review attempts: `40`;
+- independently reachable/reviewed external pages: `14`;
+- independently confirmed Recipe-structured pages: `6` across `6` unique confirmed source domains;
+- raw YouTube API Data and external URLs remained non-durable and transient payloads were deleted before job exit;
+- creator/authenticity/engagement scores created: `0`;
+- automatic Atlas promotions: `0`;
+- automatic app handoffs/admissions: `0`;
+- public recipes admitted automatically: `0`;
+- no Blue Lagoon credential, quota, planner state or evidence participated.
+
+The preregistered `YOUTUBE_CULINARY_DISCOVERY_HIGH_INFORMATION_GAIN` threshold was not earned because independently confirmed Recipe pages were `6`, below the required `10`. The preregistered `YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND` threshold was clearly earned. The pilot therefore establishes that bounded YouTube Search + batched reads can expose a large discovery surface and meaningful independent recipe-source pathways while **independent downstream review remains the binding constraint**.
+
+PR #60 validation run `33985600607` passed. Post-merge main validation run `33985681225` passed and Pages build/deploy run `33985680803` passed.
 
 ### YT-CUL-4 — channel/playlist efficiency lane
 
-State: `CONDITIONAL`
+State: `READY / EARNED_BY_YT-CUL-3_USEFUL_BUT_REVIEW_BOUND / NOT_YET_EXECUTED`
 
-If YT-CUL-3 shows useful yield, use Search preferentially to discover high-value channels/playlists/source sites, then use lower-cost read methods where policy-compliant rather than spending Search on every individual dish.
+YT-CUL-3 earned continuation. Prefer Search for discovering high-value channels/playlists/source pathways, then use lower-cost policy-compliant read methods where possible rather than spending Search on every individual dish. Preserve all YT-CUL-0 through YT-CUL-3 quota, storage, evidence, network-safety and Blue Lagoon-separation controls.
+
+Before any YT-CUL-4 live execution on the same quota day, fresh-recheck current policy/project quota and account for the `25` already-consumed Search Queries calls; preserve the five-call reserve.
 
 ### YT-CUL-5 — Atlas expansion cadence
 
 State: `CONDITIONAL`
 
-Only after the pilot earns continuation. Prioritize macro-region, family, meal-role, technique and variant gaps. Preserve identity/structure/variant distinctions and multilingual alias handling.
+Only after the efficiency lane earns continuation. Prioritize macro-region, family, meal-role, technique and variant gaps. Preserve identity/structure/variant distinctions and multilingual alias handling.
 
 ### YT-CUL-6 — app translation
 
@@ -267,14 +291,14 @@ Atlas/source candidate
 
 This lane is intentionally parallel and non-blocking:
 
-- Corpus Scale Steps 1–6 remain complete.
-- Corpus Scale Step 7 remains blocked on the existing Cloudflare owner/security setup gate.
+- Corpus Scale continues independently according to the current canonical `docs/ROADMAP_HANDOVER.md` and `docs/handovers/CURRENT.json`; this YouTube child roadmap must not overwrite that lane's current architecture or human gates.
 - Nutrition recipe-unlock work remains independent.
 - Culinary Brain / World Recipe Atlas verification may continue independently.
 - YT-CUL-0 is complete and merged green.
 - YT-CUL-1 owner/API setup is complete.
 - YT-CUL-2 is PASS and merged green.
-- YT-CUL-3 is the current next YouTube phase and remains bounded by fresh policy/quota recheck plus the existing quota/storage/evidence controls.
+- YT-CUL-3 is `USEFUL_BUT_REVIEW_BOUND`, PASS and merged green.
+- YT-CUL-4 is earned and ready but not executed.
 - No YouTube work may modify Blue Lagoon quota, credentials, planner state or evidence.
 
 ## Handover / auto-continuation integration
