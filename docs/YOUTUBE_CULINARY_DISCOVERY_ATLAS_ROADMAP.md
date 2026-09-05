@@ -1,6 +1,6 @@
 # YouTube Culinary Discovery Atlas — Roadmap V0
 
-Status: **YT-CUL-0 MERGED GREEN / YT-CUL-1 COMPLETE / YT-CUL-2 PASS + MERGED GREEN / YT-CUL-3 USEFUL_BUT_REVIEW_BOUND + MERGED GREEN / YT-CUL-4 EARNED + READY**
+Status: **YT-CUL-0 MERGED GREEN / YT-CUL-1 COMPLETE / YT-CUL-2 PASS + MERGED GREEN / YT-CUL-3 USEFUL_BUT_REVIEW_BOUND + MERGED GREEN / YT-CUL-4 EFFICIENCY_GAIN + MERGED GREEN / YT-CUL-5 EARNED + READY**
 
 Date: 2026-09-05
 
@@ -102,7 +102,7 @@ Store raw YouTube API responses only in a deletable/refreshable transient surfac
 
 The transient layer must record `retrieved_at`, source endpoint, query identity, project/client vintage and expiry/refresh deadline.
 
-YT-CUL-2 and YT-CUL-3 proved the runner-local path: raw API data was stored only in temporary runner storage with seven-day TTL metadata and deleted before job exit. No raw YouTube API data was persisted as a Git object or workflow artifact.
+YT-CUL-2 through YT-CUL-4 proved the runner-local path: raw API data was stored only in temporary runner storage with seven-day TTL metadata and deleted before job exit. No raw YouTube API data was persisted as a Git object or workflow artifact.
 
 ## Search planning and quota control
 
@@ -258,17 +258,53 @@ PR #60 validation run `33985600607` passed. Post-merge main validation run `3398
 
 ### YT-CUL-4 — channel/playlist efficiency lane
 
-State: `READY / EARNED_BY_YT-CUL-3_USEFUL_BUT_REVIEW_BOUND / NOT_YET_EXECUTED`
+State: `PASS / MERGED_GREEN / YT_CUL_4_CHANNEL_PLAYLIST_EFFICIENCY_GAIN`
 
-YT-CUL-3 earned continuation. Prefer Search for discovering high-value channels/playlists/source pathways, then use lower-cost policy-compliant read methods where possible rather than spending Search on every individual dish. Preserve all YT-CUL-0 through YT-CUL-3 quota, storage, evidence, network-safety and Blue Lagoon-separation controls.
+Completed in PR #63, merged to `main` at `f30ffc78a336b1a5bfc88c14dd335f3a4acf5853`.
 
-Before any YT-CUL-4 live execution on the same quota day, fresh-recheck current policy/project quota and account for the `25` already-consumed Search Queries calls; preserve the five-call reserve.
+Canonical artifacts:
+
+- `scripts/run-youtube-culinary-channel-playlist-efficiency.mjs`
+- `tests/youtube-culinary-channel-playlist-efficiency.test.js`
+- `.github/workflows/yt-cul-4-channel-playlist-efficiency.yml`
+- `docs/YT_CUL_4_CHANNEL_PLAYLIST_EFFICIENCY_CONTRACT.md`
+- `docs/YT_CUL_4_TERMINAL_RESULT.md`
+
+Live evidence from workflow run `33986444162`:
+
+- all `28/28` focused YT-CUL-0/2/3/4 safety tests passed before live spend;
+- Search Queries calls planned/executed: `8/8` after the `25` successful calls already consumed through YT-CUL-3;
+- total known successful Search Queries calls on the quota day through YT-CUL-4: `33`;
+- five-call protected reserve remained intact, leaving `62` calls before the reserve boundary;
+- general read calls: `33` total (`channels.list` `1`, `playlistItems.list` `24`, `videos.list` `8`);
+- channel Search result slots: `40`;
+- playlist Search result slots: `40`;
+- transient unique channel candidates: `40`;
+- transient unique playlist candidates: `40`;
+- selected channels/playlists: `12 / 12`;
+- playlist surfaces inspected: `24`;
+- transient unique video pointers reached by lower-cost reads: `398`;
+- non-social independent-source pointers observed transiently: `265`;
+- bounded independent-source review attempts: `40`;
+- independently reachable/reviewed external pages: `12`;
+- independently confirmed Recipe-structured pages: `5` across `4` unique confirmed source domains;
+- confirmed Recipe pages per Search call: `0.625`, versus the YT-CUL-3 baseline `0.25`, for a `2.5x` Search-efficiency ratio;
+- raw YouTube API Data and external URLs remained non-durable and transient payloads were deleted before job exit;
+- YouTube statistics, creator/authenticity/engagement scores, Search pagination, playlist pagination and audiovisual downloads: `0` / `false`;
+- automatic Atlas promotions, app admissions and public-runtime activations: `0` / `false`;
+- no Blue Lagoon credential, quota, planner state or evidence participated.
+
+The preregistered efficiency-gain threshold required at least `4` confirmed Recipe pages, `4` unique confirmed domains, `8` independently reachable pages and `0.50` confirmed Recipe pages per Search call. Actual results were `5`, `4`, `12` and `0.625`, so `YT_CUL_4_CHANNEL_PLAYLIST_EFFICIENCY_GAIN` was earned. Channel/playlist-first Search followed by lower-cost reads is therefore the preferred acquisition pattern for subsequent bounded Atlas-discovery work. Independent external review remains the downstream bottleneck.
+
+PR #63 validation run `33986556874` passed. Post-merge main validation run `33986699615` passed and Pages build/deploy run `33986699400` passed.
 
 ### YT-CUL-5 — Atlas expansion cadence
 
-State: `CONDITIONAL`
+State: `READY / EARNED_BY_YT_CUL_4_EFFICIENCY_GAIN / NOT_YET_EXECUTED`
 
-Only after the efficiency lane earns continuation. Prioritize macro-region, family, meal-role, technique and variant gaps. Preserve identity/structure/variant distinctions and multilingual alias handling.
+YT-CUL-4 earned continuation. Prioritize macro-region, family, meal-role, technique and variant gaps. Preserve identity/structure/variant distinctions and multilingual alias handling. Prefer the channel/playlist-first + lower-cost-read acquisition pattern proven by YT-CUL-4, while preserving independent-source review and all downstream Atlas/app evidence gates.
+
+Before any YT-CUL-5 live execution, fresh-reconcile GitHub and current YouTube policy/project quota, account for all Search calls already consumed in the applicable quota day, and preserve the five-call reserve. YT-CUL-5 must define its own bounded promotion/review contract before any Atlas state is changed.
 
 ### YT-CUL-6 — app translation
 
@@ -298,7 +334,8 @@ This lane is intentionally parallel and non-blocking:
 - YT-CUL-1 owner/API setup is complete.
 - YT-CUL-2 is PASS and merged green.
 - YT-CUL-3 is `USEFUL_BUT_REVIEW_BOUND`, PASS and merged green.
-- YT-CUL-4 is earned and ready but not executed.
+- YT-CUL-4 is `CHANNEL_PLAYLIST_EFFICIENCY_GAIN`, PASS and merged green.
+- YT-CUL-5 is earned and ready but not executed.
 - No YouTube work may modify Blue Lagoon quota, credentials, planner state or evidence.
 
 ## Handover / auto-continuation integration
