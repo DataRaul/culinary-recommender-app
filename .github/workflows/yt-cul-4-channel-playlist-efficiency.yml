@@ -1,0 +1,110 @@
+name: YT-CUL-4 channel playlist efficiency lane
+
+on:
+  push:
+    branches:
+      - agent/yt-cul-4-channel-playlist-efficiency
+    paths:
+      - .github/workflows/yt-cul-4-channel-playlist-efficiency.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yt-cul-4-channel-playlist-efficiency
+  cancel-in-progress: false
+
+jobs:
+  efficiency:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CULINARY_YOUTUBE_API_KEY: ${{ secrets.CULINARY_YOUTUBE_API_KEY }}
+      CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT: "100"
+      CULINARY_YOUTUBE_SEARCH_CALLS_ALREADY_USED: "25"
+      CULINARY_YOUTUBE_PROJECT_IDENTITY: ${{ vars.CULINARY_YOUTUBE_PROJECT_IDENTITY }}
+      YT_CUL_POLICY_RECHECKED_AT: "2026-09-05"
+      YT_CUL_QUOTA_DATE: "2026-09-05"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fail-closed YT-CUL-4 preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${CULINARY_YOUTUBE_API_KEY:-}" ]]; then
+            echo "::error::CULINARY_YOUTUBE_API_KEY is not available to this workflow."
+            exit 2
+          fi
+          echo "::add-mask::$CULINARY_YOUTUBE_API_KEY"
+          if [[ "${CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT}" != "100" ]]; then
+            echo "::error::YT-CUL-4 is preregistered against the owner-verified 100/day Search Queries limit."
+            exit 2
+          fi
+          if [[ "${CULINARY_YOUTUBE_SEARCH_CALLS_ALREADY_USED}" != "25" ]]; then
+            echo "::error::Known current quota-day Search usage must remain 25 calls through merged YT-CUL-3 before this lane."
+            exit 2
+          fi
+
+      - name: Validate YT-CUL safety contracts before live spend
+        run: node --test tests/youtube-culinary-discovery-control-plane.test.js tests/youtube-culinary-connectivity-canary.test.js tests/youtube-culinary-discovery-pilot.test.js tests/youtube-culinary-channel-playlist-efficiency.test.js
+
+      - name: Execute bounded channel playlist efficiency lane
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/run-youtube-culinary-channel-playlist-efficiency.mjs | tee "$RUNNER_TEMP/yt-cul-4-safe-summary.json"
+
+      - name: Record policy-safe terminal summary
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! -s "$RUNNER_TEMP/yt-cul-4-safe-summary.json" ]]; then
+            echo "# YT-CUL-4 channel/playlist efficiency" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "- Result: **NO_SAFE_SUMMARY_PRODUCED**" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          node --input-type=module <<'NODE'
+          import { readFile, appendFile } from 'node:fs/promises';
+          const summary = JSON.parse(await readFile(`${process.env.RUNNER_TEMP}/yt-cul-4-safe-summary.json`, 'utf8'));
+          const search = summary.quota?.searchQueries ?? {};
+          const general = summary.quota?.generalQueries ?? {};
+          const acquisition = summary.acquisition ?? {};
+          const efficiency = summary.efficiency ?? {};
+          const controls = summary.controls ?? {};
+          const lines = [
+            '# YT-CUL-4 channel/playlist efficiency',
+            '',
+            `- Result: **${summary.result}**`,
+            `- Terminal classification: **${summary.terminalClassification}**`,
+            `- Search Queries calls: ${search.callsExecuted ?? 'n/a'} executed / ${search.callsPlanned ?? 'n/a'} planned`,
+            `- Search Queries used before lane: ${search.callsAlreadyUsedBeforeLane ?? 'n/a'}`,
+            `- Protected reserve: ${search.protectedReserve ?? 'n/a'}`,
+            `- Remaining before protected reserve: ${search.remainingBeforeProtectedReserve ?? 'n/a'}`,
+            `- General read calls: ${general.totalExecuted ?? 'n/a'}`,
+            `- Channel result slots: ${acquisition.channelResultSlots ?? 'n/a'}`,
+            `- Playlist result slots: ${acquisition.playlistResultSlots ?? 'n/a'}`,
+            `- Transient unique video pointers: ${acquisition.transientUniqueVideoPointers ?? 'n/a'}`,
+            `- External independent-source pointers: ${acquisition.externalSourcePointersObserved ?? 'n/a'}`,
+            `- Independently reviewed external pages: ${acquisition.independentlyReviewedCandidates ?? 'n/a'}`,
+            `- Independently confirmed Recipe pages: ${acquisition.independentlyConfirmedRecipePages ?? 'n/a'}`,
+            `- Unique confirmed source domains: ${acquisition.uniqueConfirmedSourceDomains ?? 'n/a'}`,
+            `- Confirmed Recipe pages per Search call: ${efficiency.confirmedRecipePagesPerSearchCall ?? 'n/a'}`,
+            `- Search efficiency ratio vs YT-CUL-3: ${efficiency.searchEfficiencyRatioVsYtCul3 ?? 'n/a'}`,
+            `- YT-CUL-5 earned: ${efficiency.ytCul5Earned ?? false}`,
+            `- Raw YouTube API Data embedded: ${controls.rawYoutubeApiDataEmbedded ?? false}`,
+            `- External URLs embedded: ${controls.externalUrlsEmbedded ?? false}`,
+            `- Transient raw payload deleted before exit: ${controls.transientRawPayloadDeletedBeforeJobExit ?? 'n/a'}`,
+            `- Blue Lagoon credential mapped: ${controls.blueLagoonCredentialMapped ?? false}`,
+            `- Gross YouTube results counted as recipes acquired: ${controls.grossYoutubeResultsAreRecipesAcquired ?? false}`,
+            ''
+          ].join('\n');
+          await appendFile(process.env.GITHUB_STEP_SUMMARY, lines, 'utf8');
+          NODE
