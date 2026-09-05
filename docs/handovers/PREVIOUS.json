@@ -1,15 +1,15 @@
 {
-  "handover": "CULINARY_RECOMMENDER_APP_YT_CUL_2_PASS_YT_CUL_3_READY_V6",
+  "handover": "CULINARY_RECOMMENDER_APP_ZERO_BILL_170K_REBASELINE_ACCESS_GATE_V7",
   "handover_date": "2026-09-05",
   "timezone": "Atlantic/Canary",
-  "status": "STEPS_1_6_MERGED_GREEN__STEP7_CLOUDFLARE_SETUP_REQUIRED__YT_CUL_0_MERGED_GREEN__YT_CUL_1_COMPLETE__YT_CUL_2_PASS_MERGED_GREEN__YT_CUL_3_READY_NOT_EXECUTED",
+  "status": "STEPS_1_6_MERGED_GREEN__ZERO_BILL_170K_ARCHITECTURE_ACCEPTED__STEP_7A_READY__PAGES_CREATED__ACCESS_SETUP_PENDING__R2_REJECTED__D1_DEFERRED_UNTIL_REBASELINE_PASS__YT_CUL_3_MERGED_USEFUL_REVIEW_BOUND__YT_CUL_4_EARNED_NOT_EXECUTED",
   "human_needed": true,
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
     "source_of_truth": "GitHub",
-    "yt_cul_2_implementation_main_sha": "56104c104e63342772e0db4dbf21d8ebf8b471ca",
-    "handover_written_from_main_sha": "56104c104e63342772e0db4dbf21d8ebf8b471ca"
+    "handover_written_against_main_sha": "2b099f4b9c61ce8d43a4a8d0420fdb8ba9d3e83f",
+    "yt_cul_3_merge_sha": "2b099f4b9c61ce8d43a4a8d0420fdb8ba9d3e83f"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -20,7 +20,7 @@
     "new_chat_start": "Read CURRENT first, then fresh-reconcile live GitHub main, open PRs, relevant branches and CI before acting. Live GitHub outranks this snapshot."
   },
   "lane": {
-    "name": "Culinary App / Culinary Lab — Corpus Scale / 100k Readiness with additive YouTube Culinary Discovery child programme",
+    "name": "Culinary App / Culinary Lab — Corpus Scale / 170k Zero-Bill Readiness with additive YouTube Culinary Discovery child programme",
     "rule": "Do not perform ordinary Culinary Brain / Knowledge Core implementation from this lane.",
     "knowledge_core_boundary": "Knowledge Core remains read-only/reconciliation from this lane and must never become a private browser/runtime dependency.",
     "nutrition_boundary": "Nutrition remains an independent resumable lane and must not be overwritten or weakened by corpus-scale or YouTube-discovery work."
@@ -30,92 +30,67 @@
     "user_facing_rule": "No routine narration. Speak only for a genuine human/security/cost/policy gate, unrecoverable error, terminal material result, or continuation boundary.",
     "fresh_reconciliation": "Before every meaningful write or merge, fresh-reconcile main, open PRs, relevant branches, changed files, CI and concurrent work.",
     "actions_authority": "Normal repository CI, browser acceptance, roadmap-required benchmark workflows, path-scoped validation and technically necessary ordinary reruns are standing-preauthorized by AGENTS.md. Do not reintroduce per-run approval gates.",
-    "cost_boundary": "No paid Cloudflare plan, paid API, paid corpus licence or other new recurring infrastructure cost is authorized. A materially abnormal CI loop or runaway Actions consumption is a cost gate; ordinary expected CI is not.",
+    "cost_boundary": "Hard zero-bill constraint: do not activate any infrastructure product whose normal or abnormal usage can automatically create an overage charge. No paid Cloudflare plan, paid API, paid corpus licence or other new recurring infrastructure cost is authorized.",
     "continuation_rule": "At a continuation boundary rotate PREVIOUS/CURRENT in GitHub and keep CURRENT sufficient for a new chat to resume without copy-paste."
   },
   "accepted_architecture": {
-    "status": "USER_ACCEPTED__CORPUS_STEPS_1_6_IMPLEMENTED__STEP7_PRODUCTION_SETUP_PENDING",
+    "status": "USER_ACCEPTED_ZERO_BILL_170K_TARGET__IMPLEMENTATION_REBASELINE_REQUIRED",
+    "canonical_document": "docs/CORPUS_SCALE_ZERO_BILL_170K_ARCHITECTURE.md",
+    "supersedes_for_runtime_storage_cost_scale": "docs/CORPUS_SCALE_CLOUDFLARE_ACCEPTED_ARCHITECTURE.md",
+    "required_capacity": 170000,
+    "stress_capacity": 250000,
     "flow": [
-      "GitHub repository — code/review/version history",
-      "Cloudflare Pages — private production surface",
-      "Cloudflare Access — exact-email allowlist + email OTP",
-      "Cloudflare Worker — authenticated bounded corpus gateway",
-      "Cloudflare R2 — versioned recipe bodies, provenance and pre-built indexes",
+      "GitHub repository — code/review/version history, schemas, provenance/rights ledgers and deterministic builders",
+      "Cloudflare Pages — application shell plus compact immutable retrieval/index shards",
+      "Cloudflare Access — exact-email allowlist + email OTP/One-time PIN",
+      "Workers Free / Pages Function — authenticated bounded fail-closed gateway",
+      "D1 Free deliberately sharded — bounded recipe-body store only after Step 7A PASS",
       "RecipeSource V2 — bounded retrieval",
       "existing deterministic hard filters + evaluator + scorer + planner"
     ],
-    "d1": "ABSENT_UNLESS_MEASURED_R2_INDEX_RETRIEVAL_FAILS_AND_A_SEPARATE_GATE_EARNS_IT",
-    "provider_portability": "Portable corpus artefacts, provenance, rights ledgers and deterministic index-build inputs/outputs remain reproducible outside Cloudflare.",
-    "cost_target": "EUR_0_RECURRING_FOR_OWNER_PLUS_SMALL_INVITED_FRIEND_COHORT"
+    "r2": "REJECTED_FOR_CURRENT_ZERO_BILL_CONSTRAINT__DO_NOT_ACTIVATE",
+    "d1": {
+      "status": "DEFERRED_UNTIL_STEP_7A_PASS",
+      "free_plan_model": "Free-plan query/storage exhaustion must fail rather than create automatic paid overage; no paid upgrade authorized.",
+      "internal_budgets": {
+        "max_total_gb_at_170k": 3.5,
+        "max_per_database_mb": 350,
+        "reserve_database_slots": 1,
+        "max_hydrated_candidates_per_query": 256,
+        "max_d1_subqueries_per_worker_invocation": 50
+      }
+    },
+    "provider_portability": "Portable corpus artefacts, provenance, rights ledgers and deterministic index-build inputs/outputs remain reproducible outside Cloudflare; no provider becomes culinary truth."
   },
   "completed_progress": {
-    "step_1": "MERGED_GREEN — scale contract and deterministic synthetic 1k/10k/50k/100k benchmark harness",
+    "step_1": "MERGED_GREEN — deterministic 1k/10k/50k/100k synthetic scale contract; must now be extended, not discarded, for 170k/250k zero-bill rebaseline",
     "step_2": "MERGED_GREEN — RecipeSource V2 compatibility/parity layer",
     "step_3": "MERGED_GREEN — portable provider-neutral metadata/detail object layout",
-    "step_4": "MERGED_GREEN — indexed bounded retrieval scale proof",
+    "step_4": "MERGED_GREEN — indexed bounded retrieval scale proof with <=256 candidate hydration",
     "step_5": "MERGED_GREEN — generalized source registry and ingestion/control plane",
     "step_6": "MERGED_GREEN — incremental validation architecture, reviewed 84-recipe golden retention and bounded regression sampling",
     "step_6_merge_sha": "8495b451beb26a3f7ca5f196bcca41144964ffc9",
-    "step_7_preflight": "MERGED_GREEN — Cloudflare implementation-time constraints revalidated, candidate source rights audited, human setup dependency identified",
+    "step_7_preflight": "MERGED_GREEN — source-rights and Cloudflare preflight completed under former R2-first architecture; R2 portion is now superseded by zero-bill rebaseline",
     "step_7_preflight_merge_sha": "ab12e811c322690ceff021d98dbc58fd7755c7ca",
-    "yt_cul_0": "MERGED_GREEN — zero-live YouTube Culinary discovery control plane, policy contract, quota ledger, deterministic planner, transient-cache TTL/cleanup contract, durable-data firewall, independent-source promotion handoff, policy-safe funnel report and synthetic tests",
-    "yt_cul_0_pr": 56,
-    "yt_cul_0_merge_sha": "fcbbc5df8ca6ac10cb61b25b142506f51b8a6253",
-    "yt_cul_2": "PASS / MERGED_GREEN — one-call live connectivity canary proved credential separation, quota reserve behavior, transient raw-data deletion and durable metadata firewall",
-    "yt_cul_2_pr": 58,
+    "cloudflare_pages": "HUMAN_SETUP_COMPLETE — Pages project culinary-recommender-app created from DataRaul/culinary-recommender-app and deployed at culinary-recommender-app.pages.dev",
+    "r2_subscription": "NOT_ACTIVATED — user explicitly rejected any usage-based charge risk",
+    "yt_cul_0": "MERGED_GREEN",
+    "yt_cul_1": "COMPLETE",
+    "yt_cul_2": "PASS / MERGED_GREEN",
     "yt_cul_2_merge_sha": "56104c104e63342772e0db4dbf21d8ebf8b471ca",
-    "yt_cul_2_canary_run": 33984625070,
-    "yt_cul_2_pr_validation_run": 33984628286,
-    "yt_cul_2_main_validation_run": 33984711330,
-    "yt_cul_2_pages_run": 33984710650
+    "yt_cul_3": "MERGED_GREEN — terminal classification YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND; PR #60 merged at 2b099f4b9c61ce8d43a4a8d0420fdb8ba9d3e83f",
+    "yt_cul_4": "EARNED_CONDITIONAL_EFFICIENCY_LANE__NOT_EXECUTED"
   },
   "canonical_docs": {
     "roadmap": "docs/ROADMAP.md",
     "roadmap_handover": "docs/ROADMAP_HANDOVER.md",
-    "youtube_culinary_discovery_roadmap": "docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md",
-    "yt_cul_0_implementation_contract": "docs/YT_CUL_0_IMPLEMENTATION_CONTRACT.md",
-    "yt_cul_2_connectivity_canary_contract": "docs/YT_CUL_2_CONNECTIVITY_CANARY_CONTRACT.md",
-    "accepted_architecture": "docs/CORPUS_SCALE_CLOUDFLARE_ACCEPTED_ARCHITECTURE.md",
+    "zero_bill_170k_architecture": "docs/CORPUS_SCALE_ZERO_BILL_170K_ARCHITECTURE.md",
+    "historical_r2_architecture": "docs/CORPUS_SCALE_CLOUDFLARE_ACCEPTED_ARCHITECTURE.md",
     "source_and_reuse_reference": "docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md",
     "step7_preflight": "docs/CORPUS_SCALE_STEP7_PREFLIGHT.md",
-    "handover_protocol": "docs/HANDOVER_PROTOCOL.md"
-  },
-  "youtube_culinary_discovery": {
-    "status": "YT_CUL_0_MERGED_GREEN__YT_CUL_1_COMPLETE__YT_CUL_2_PASS_MERGED_GREEN__YT_CUL_3_READY_NOT_EXECUTED",
-    "purpose": "Use a distinct YouTube Data API client as a transient high-throughput culinary discovery/navigation layer feeding independently reviewed World Recipe Atlas and app corpus candidates; never treat raw YouTube results as permanent recipes.",
-    "separation": "Distinct API client/use case from youtube-blue-lagoon-lab; no credential, quota, planner-state or evidence sharing.",
-    "client_id": "CULINARY_YOUTUBE_DISCOVERY_V0",
-    "google_project_identity": "culinary-youtube-discovery",
-    "secret_name": "CULINARY_YOUTUBE_API_KEY",
-    "secret_rule": "Never commit or paste the key into chat, issues, commits, repository files or handovers.",
-    "oauth": "NOT_REQUIRED_FOR_V0_PUBLIC_DATA_SEARCH_READS",
-    "policy_recheck_date": "2026-09-05",
-    "quota": {
-      "bucket": "Search Queries",
-      "owner_verified_daily_limit": 100,
-      "reserve_calls": 5,
-      "default_max_planned_acquisition_calls": 95,
-      "last_completed_quota_day": "2026-09-05",
-      "yt_cul_2_successful_live_calls": 1,
-      "remaining_before_reserve_after_canary": 94
-    },
-    "yt_cul_2_terminal_result": {
-      "result": "PASS",
-      "http_status": 200,
-      "result_slots_observed": 1,
-      "focused_safety_tests": "11/11 PASS",
-      "transient_ttl_days": 7,
-      "transient_hard_max_days": 30,
-      "raw_payload_deleted_before_job_exit": true,
-      "raw_youtube_api_data_embedded_in_durable_output": false,
-      "durable_youtube_derived_metrics_created": false,
-      "blue_lagoon_credential_mapped": false,
-      "automatic_atlas_promotion_authorized": false,
-      "automatic_app_admission_authorized": false
-    },
-    "storage_rule": "Raw YouTube API metadata is transient only and must not enter immutable Git history; architectural default TTL 7 days, hard maximum 30 days under the policy rechecked on 2026-09-05.",
-    "derived_metrics_rule": "Do not create durable YouTube-derived creator/channel quality, authenticity, engagement or culinary scores; independent non-YouTube evidence is required for durable promotion handoffs unless a future audited permission path explicitly changes policy authority.",
-    "public_runtime_rule": "YT-CUL discovery creates no public-runtime authority and does not change the browser app automatically."
+    "youtube_culinary_discovery_roadmap": "docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md",
+    "handover_protocol": "docs/HANDOVER_PROTOCOL.md",
+    "precedence_note": "For runtime storage, cost model, scale target and Step-7 provisioning order, the zero-bill 170k architecture and ROADMAP_HANDOVER current routing supersede historical R2/100k summary text."
   },
   "source_admission_state": {
     "A": "Existing curated corpus + Wikibooks — PASS_ALREADY_ESTABLISHED",
@@ -126,52 +101,66 @@
     "E": "RecipeDB — CONDITIONAL_SOURCE_COHORT_SALVAGE_GATE"
   },
   "human_gates": {
-    "corpus_scale_step7": {
-      "type": "CLOUDFLARE_SECURITY_AND_EXTERNAL_ACCOUNT_SETUP",
-      "status": "REQUIRED_BEFORE_CORPUS_SCALE_STEP7_RUNTIME_IMPLEMENTATION_CAN_CONTINUE",
+    "step_7b_access": {
+      "type": "CLOUDFLARE_SECURITY_SETUP",
+      "status": "PENDING_NOW",
       "owner_actions": [
-        "Create or connect a Cloudflare Pages project to DataRaul/culinary-recommender-app.",
-        "Create one Cloudflare R2 Standard bucket for the pilot corpus.",
-        "Enable Cloudflare Zero Trust / Access on the protected production hostname.",
-        "Enable One-time PIN and an exact-email allow policy only.",
-        "Do not add Everyone, wildcard/broad email-domain or OTP-only Include rules.",
-        "Do not enable a paid Workers, Access or R2 plan and do not create D1.",
-        "Do not commit credentials, tokens, account IDs or invited email addresses to the repository."
+        "Open Cloudflare Zero Trust / Access for culinary-recommender-app.pages.dev.",
+        "Protect the production Pages hostname with Access.",
+        "Enable One-time PIN/email OTP authentication.",
+        "Create an Allow policy for the owner's exact email address only initially.",
+        "Do not use Everyone, wildcard/public email-domain membership or OTP-only broad Include rules.",
+        "Do not paste invited email addresses, tokens or account credentials into GitHub or chat."
       ]
     },
+    "step_7c_d1": {
+      "type": "CLOUDFLARE_FREE_D1_ACCOUNT_SETUP",
+      "status": "NOT_YET_REQUIRED__BLOCKED_UNTIL_STEP_7A_ZERO_BILL_170K_D1_ARCHITECTURE_PASS",
+      "owner_actions_after_pass_only": [
+        "Create only the measured number of D1 Free databases specified by Step 7A.",
+        "Do not upgrade Workers or D1 to a paid plan.",
+        "Do not create or activate R2."
+      ]
+    },
+    "r2": {
+      "status": "CLOSED_REJECTED",
+      "rule": "Do not activate the R2 subscription under the current zero-bill requirement."
+    },
     "youtube": {
-      "status": "NO_CURRENT_HUMAN_GATE_FOR_YT_CUL_3_PREPARATION__YT_CUL_1_OWNER_SETUP_COMPLETE",
-      "note": "Any future paid quota/infrastructure request, policy/audit requirement or security/access change remains a genuine gate."
+      "status": "NO_CURRENT_HUMAN_GATE",
+      "note": "YT-CUL-3 is merged green and YT-CUL-4 is earned but remains a separate not-yet-executed lane."
     }
   },
   "next_action": {
-    "corpus_scale": {
-      "name": "STEP_7_PRODUCTION_SHAPED_REAL_SOURCE_PILOT",
-      "status": "BLOCKED_ON_HUMAN_SECURITY_SETUP",
-      "resume_when": "Cloudflare Pages, R2 and Access resources exist under the exact-email invitation-only contract."
+    "corpus_scale_repository": {
+      "name": "STEP_7A_ZERO_BILL_170K_ARCHITECTURE_REBASELINE",
+      "status": "READY",
+      "instructions": [
+        "Fresh-reconcile live GitHub before implementation.",
+        "Extend existing synthetic benchmark ladder to 170k required and 250k stress without weakening the 84-recipe golden oracle.",
+        "Add provider-neutral D1 shard/storage/read/write/subrequest simulation before creating any D1 resource.",
+        "Enforce <=3.5 GB total at 170k, <=350 MB per database, one database slot reserved, <=256 hydrated candidates and <=50 D1 subqueries per Worker invocation.",
+        "Preserve RecipeSource V2 portability, hard filters, source-rights gates, nutrition separation and incremental validation.",
+        "Terminal PASS: ZERO_BILL_170K_D1_ARCHITECTURE_PASS. Failure must stop before D1 provisioning and trigger architecture reconciliation."
+      ]
+    },
+    "corpus_scale_human": {
+      "name": "STEP_7B_ACCESS_EXACT_EMAIL_OTP_SETUP",
+      "status": "PENDING_NOW",
+      "can_run_parallel_with_step_7a": true
+    },
+    "d1_provisioning": {
+      "name": "STEP_7C_FREE_D1_PROVISIONING",
+      "status": "BLOCKED_UNTIL_STEP_7A_PASS"
+    },
+    "real_source_pilot": {
+      "name": "STEP_7D_PRODUCTION_SHAPED_500_1000_RECORD_PILOT",
+      "status": "BLOCKED_UNTIL_STEP_7A_PASS__ACCESS_CONFIGURED__FREE_D1_RESOURCES_EXIST"
     },
     "youtube_culinary_discovery": {
-      "name": "YT_CUL_3_ONE_DAY_BOUNDED_DISCOVERY_PILOT",
-      "status": "READY_NOT_EXECUTED",
-      "instructions": [
-        "Fresh-reconcile live GitHub before execution.",
-        "Fresh-recheck current YouTube policy and actual project quota before the governed quota day.",
-        "Preserve the verified 100/day Search Queries limit unless Cloud Console shows a changed assigned limit.",
-        "Preserve at least five Search calls as reserve; do not plan more than 95 acquisition calls under the current 100/day limit.",
-        "Measure calls -> transient candidates -> independently reviewed sources -> Atlas promotions -> app handoffs -> actual public admissions.",
-        "Never count gross YouTube results as recipes acquired.",
-        "Keep raw YouTube API metadata transient only and preserve the seven-day default / thirty-day hard maximum cache policy.",
-        "Do not create YouTube-derived creator/authenticity/engagement quality scores.",
-        "Keep Blue Lagoon credentials, quota, planner state and evidence isolated.",
-        "Terminate the pilot into one of the four preregistered YT-CUL-3 terminal classifications before any scale decision."
-      ],
-      "terminal_outputs": [
-        "YOUTUBE_CULINARY_DISCOVERY_HIGH_INFORMATION_GAIN",
-        "YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND",
-        "YOUTUBE_CULINARY_DISCOVERY_LOW_MARGINAL_VALUE",
-        "POLICY_OR_STORAGE_REDESIGN_REQUIRED"
-      ]
+      "name": "YT_CUL_4_CONDITIONAL_EFFICIENCY_LANE",
+      "status": "EARNED_NOT_EXECUTED"
     }
   },
-  "terminal_instruction_for_new_chat": "Open docs/handovers/CURRENT.json and fresh-reconcile live GitHub. YT-CUL-2 is PASS and merged green at implementation main SHA 56104c104e63342772e0db4dbf21d8ebf8b471ca with one successful Search call against the owner-verified 100/day Search Queries limit; do not rerun the canary merely to prove connectivity again. The next YouTube phase is YT-CUL-3 one-day bounded discovery pilot, not yet executed. Preserve the >=5-call reserve, transient raw-data firewall, independent-evidence promotion boundary and Blue Lagoon separation. Corpus Scale Step 7 remains independently blocked on the Cloudflare owner/security setup gate."
+  "terminal_instruction_for_new_chat": "Open docs/handovers/CURRENT.json and fresh-reconcile live GitHub. Corpus Scale is now a zero-bill 170k required / 250k stress programme. R2 is rejected and must not be activated. The Pages project exists. Repository work may proceed autonomously with Step 7A to extend the existing scale proof and simulate sharded D1 Free fit; D1 must not be provisioned until Step 7A returns ZERO_BILL_170K_D1_ARCHITECTURE_PASS. In parallel, the remaining immediate human action is Step 7B: protect culinary-recommender-app.pages.dev with Cloudflare Access using exact-email membership plus One-time PIN/email OTP. Preserve all source-rights, nutrition, hard-filter, RecipeSource V2 portability and Knowledge Core boundaries. YT-CUL-3 is merged green with YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND and YT-CUL-4 is earned but not executed."
 }
