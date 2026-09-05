@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "youtube-culinary-daily-discovery-state-v1",
+  "phase": "YT-CUL-5D",
+  "programmeStatus": "ACTIVE",
+  "queryVintage": "yt-cul-5d-query-v1-2026-09-05",
+  "policyRecheckedAt": "2026-09-05",
+  "assignedDailySearchLimit": 100,
+  "protectedReserveCalls": 5,
+  "lastCompletedQuotaDate": null,
+  "completedQuotaDays": [],
+  "cumulative": {
+    "searchCalls": 0,
+    "independentPagesReviewed": 0,
+    "recipeStructuredPagesConfirmed": 0,
+    "reviewReadyPacketsCreated": 0,
+    "duplicatePairsSuppressed": 0
+  },
+  "unresolvedPackets": [],
+  "resolvedPairKeys": [],
+  "canonicalOutcomes": [],
+  "hardHold": null,
+  "ytCul6Readiness": {
+    "earned": false,
+    "packetId": null,
+    "knowledgeCoreCommit": null
+  }
+}
