@@ -14,6 +14,7 @@ Always use:
 - canonical programme: `docs/ROADMAP.md`
 - YouTube Culinary Discovery Atlas child roadmap: `docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md`
 - YT-CUL-0 implementation contract: `docs/YT_CUL_0_IMPLEMENTATION_CONTRACT.md`
+- YT-CUL-2 connectivity canary contract: `docs/YT_CUL_2_CONNECTIVITY_CANARY_CONTRACT.md`
 
 At a continuation boundary, rotate `CURRENT -> PREVIOUS`, write the latest complete state to `CURRENT`, and update canonical roadmap status only when programme state, gate state or next-ready action itself changed.
 
@@ -33,16 +34,22 @@ Steps 1–6 are complete; Step 7 preflight is merged. Do not restart historical 
 
 YT-CUL-0 state: `MERGED_GREEN / ZERO_LIVE_QUOTA_COMPLETE`.
 
-Canonical merge: PR #56, main SHA `fcbbc5df8ca6ac10cb61b25b142506f51b8a6253`.
+YT-CUL-1 state: `COMPLETE`.
 
-Validation: pull-request CI passed; post-merge main validation, Pages build and deploy passed. Live YouTube API calls consumed: `0`.
+The distinct Culinary Google Cloud project is active, YouTube Data API v3 is enabled, the restricted API key is available only through `CULINARY_YOUTUBE_API_KEY`, and the owner-verified Search Queries daily limit is `100/day` as of 2026-09-05. Never reveal the key and do not create quota shards.
 
-Current next action: `YT-CUL-1_OWNER_GOOGLE_CLOUD_SETUP`.
+YT-CUL-2 state: `PASS / MERGED_GREEN`.
 
-State: `HUMAN_SETUP_REQUIRED`.
+Canonical implementation: PR #58, main SHA `56104c104e63342772e0db4dbf21d8ebf8b471ca`.
 
-The owner must create one distinct Culinary Google Cloud project, enable YouTube Data API v3, create/restrict an API key, store it only as repository/runner secret `CULINARY_YOUTUBE_API_KEY`, and report the actual non-secret Search Queries daily limit. Do not reveal the key and do not create quota shards.
+Live canary run `33984625070` passed with exactly one `search.list` call, HTTP 200, one result slot, a five-call protected reserve and 94 calls remaining before the reserve boundary. Raw API data stayed transient and was deleted before job exit; no raw YouTube metadata entered durable output; no Blue Lagoon credential or state participated.
 
-YT-CUL-2 remains blocked until that setup exists and current policy/quota are rechecked. No YouTube work may consume Blue Lagoon credentials/quota or alter Blue Lagoon planner/evidence state.
+Validation: all 11 focused YT-CUL-0/YT-CUL-2 safety tests passed; PR validation passed; post-merge main validation run `33984711330` passed; Pages build/deploy run `33984710650` passed.
+
+Current next YouTube phase: `YT-CUL-3_ONE_DAY_BOUNDED_DISCOVERY_PILOT`.
+
+State: `READY / NOT_YET_EXECUTED`.
+
+Before YT-CUL-3 execution, fresh-reconcile GitHub and current YouTube policy/project quota, preserve the >=5 Search-call reserve, transient-data firewall, Blue Lagoon separation and independent-evidence promotion boundary. Measure the conversion funnel from Search calls to independently reviewable culinary/source evidence; never count gross YouTube results as recipes acquired.
 
 The YouTube child roadmap must remain reflected in `CURRENT.json` so future chats can discover and continue it without reconstructing this conversation.
