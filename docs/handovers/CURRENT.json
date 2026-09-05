@@ -1,18 +1,17 @@
 {
-  "handover": "CULINARY_RECOMMENDER_APP_STEP7B_GATE_YT_CUL_5_COMPLETE_V11",
+  "handover": "CULINARY_RECOMMENDER_APP_STEP7B_GATE_YT_CUL_DAILY_DISCOVERY_ROADMAP_V12",
   "handover_date": "2026-09-05",
   "timezone": "Atlantic/Canary",
-  "status": "STEPS_1_6_MERGED_GREEN__STEP_7A_PASS_MERGED_GREEN__STEP_7B_HUMAN_FREE_RESOURCE_CHECK_REQUIRED__NO_BILLING_AUTH_CONSTRAINT_ACTIVE__YT_CUL_5_USEFUL_BUT_REVIEW_BOUND_MERGED_GREEN__ATLAS_EXPANSION_CADENCE_NOT_EARNED__YT_CUL_6_NOT_EARNED",
+  "status": "STEPS_1_6_MERGED_GREEN__STEP_7A_PASS_MERGED_GREEN__STEP_7B_HUMAN_FREE_RESOURCE_CHECK_REQUIRED__NO_BILLING_AUTH_CONSTRAINT_ACTIVE__YT_CUL_5_USEFUL_BUT_REVIEW_BOUND_MERGED_GREEN__YT_CUL_5R_DAILY_DISCOVERY_ROADMAP_AUTHORIZED__YT_CUL_6_NOT_EARNED",
   "human_needed": true,
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
     "source_of_truth": "GitHub",
-    "handover_written_after_yt_cul_5_merge_sha": "ff255755e39a4802f3dc2c0d110ca35b702781be",
     "step_7a_merge_sha": "8cc1a672d7f7dc33d12b17169908c69685a733c4",
     "step_7b_routing_sha": "078e990bb5eae31851f3b55aa93d9be53b66e13c",
-    "yt_cul_4_merge_sha": "f30ffc78a336b1a5bfc88c14dd335f3a4acf5853",
-    "yt_cul_5_merge_sha": "ff255755e39a4802f3dc2c0d110ca35b702781be"
+    "yt_cul_5_merge_sha": "ff255755e39a4802f3dc2c0d110ca35b702781be",
+    "yt_cul_daily_roadmap_commit_sha": "72a09265bb99a0e5f358e87b007a77518b35428d"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -95,10 +94,6 @@
       "status": "PASS_MERGED_GREEN__YT_CUL_5_USEFUL_BUT_REVIEW_BOUND",
       "merge_sha": "ff255755e39a4802f3dc2c0d110ca35b702781be",
       "live_workflow_run": 33987345201,
-      "pr": 68,
-      "pr_validation_run": 33987581200,
-      "post_merge_validation_run": 33987662238,
-      "post_merge_pages_run": 33987661623,
       "focused_safety_tests_before_live_spend": "38/38 PASS",
       "search_calls": 10,
       "search_calls_total_through_phase": 43,
@@ -122,6 +117,23 @@
       "canonical_rule": "INDEPENDENT_RECIPE_STRUCTURED_PAGE != ATLAS_FAMILY_RELEVANCE",
       "workflow_replay": "CLOSED__NO_API_SECRET_MAPPED__STALE_33_CALL_ASSUMPTION_CANNOT_BE_REPLAYED"
     },
+    "daily_discovery_roadmap": {
+      "document": "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md",
+      "status": "AUTHORIZED_ROADMAP_EXTENSION",
+      "yt_cul_5r": "READY_REPOSITORY_ONLY_ZERO_LIVE_SEARCH",
+      "yt_cul_5d": "BLOCKED_UNTIL_YT_CUL_5R_PASS",
+      "objective": "After the relevance/source-diversity architecture passes, run one quota-aware bounded discovery cycle per YouTube quota day, accumulate policy-safe review evidence, apply queue backpressure and marginal-value stopping rules, and evaluate YT-CUL-6 readiness from canonical Knowledge Core outcomes rather than raw YouTube activity.",
+      "default_daily_search_budget_after_activation": 16,
+      "minimum_active_daily_search_budget": 8,
+      "ordinary_adaptive_ceiling": 32,
+      "absolute_ceiling_rule": "assigned Search daily limit minus five-call reserve",
+      "unresolved_review_queue_cap": 40,
+      "low_value_hold_rule": "three consecutive active quota days with zero new ATLAS_RELEVANCE_REVIEW_READY packets after deduplication",
+      "yt_cul_6_readiness_rule": "At least one programme-origin discovery must reach canonical Knowledge Core APP_AUTHORING_ELIGIBLE or then-current equivalent, using independent non-YouTube evidence with no unresolved rights/provenance/safety blocker, after YT-CUL-5R PASS and fresh app-side reconciliation.",
+      "automatic_atlas_promotion": false,
+      "automatic_app_admission": false,
+      "automatic_publication": false
+    },
     "controls": {
       "raw_youtube_api_data_durable": false,
       "transient_payload_deleted_before_job_exit": true,
@@ -137,8 +149,8 @@
     },
     "next_phase": {
       "yt_cul_6": "NOT_EARNED",
-      "status": "REVIEW_RELEVANCE_AND_SOURCE_DIVERSITY_ARCHITECTURE_REQUIRED_BEFORE_MORE_SEARCH_OR_APP_TRANSLATION",
-      "rule": "Do not spend more Search merely to chase thresholds. First define how independently reviewed recipe-source pointers are mapped to genuinely Atlas-relevant, source-diverse nominations through the canonical Knowledge Core review boundary. App translation remains separately gated."
+      "status": "YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_ARCHITECTURE_READY__THEN_YT_CUL_5D_DAILY_DISCOVERY",
+      "rule": "Do not resume live Search until YT-CUL-5R passes. After PASS, recurring daily bounded Search is the intended programme path toward YT-CUL-6, with adaptive quota allocation, cumulative evidence, Knowledge Core review authority, review-backlog holds and low-marginal-value stopping rules."
     }
   },
   "canonical_docs": {
@@ -146,12 +158,13 @@
     "roadmap_handover": "docs/ROADMAP_HANDOVER.md",
     "no_billing_auth_170k_architecture": "docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md",
     "step_7a_contract": "docs/CORPUS_SCALE_STEP7A_NO_BILLING_AUTH_REBASELINE.md",
-    "youtube_culinary_discovery_roadmap": "docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md",
+    "youtube_culinary_discovery_base_roadmap": "docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md",
+    "youtube_culinary_daily_discovery_roadmap": "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md",
     "yt_cul_5_contract": "docs/YT_CUL_5_ATLAS_EXPANSION_CADENCE_CONTRACT.md",
     "yt_cul_5_terminal_result": "docs/YT_CUL_5_TERMINAL_RESULT.md",
     "yt_cul_5_relevance_gate": "scripts/youtube-culinary-atlas-relevance-gate.mjs",
     "handover_protocol": "docs/HANDOVER_PROTOCOL.md",
-    "youtube_precedence_note": "For YT-CUL-5 terminal state, docs/YT_CUL_5_TERMINAL_RESULT.md and this CURRENT handover supersede older roadmap text that says YT-CUL-5 is merely ready/not executed."
+    "youtube_precedence_note": "Read the base YouTube roadmap first, then the daily-discovery roadmap extension. The extension supersedes stale YT-CUL-5/6 transition text but does not rewrite historical YT-CUL-0..5 evidence."
   },
   "source_admission_state": {
     "A": "Existing curated corpus + Wikibooks — PASS_ALREADY_ESTABLISHED",
@@ -171,9 +184,10 @@
       "status": "BLOCKED_ON_HUMAN_GATE"
     },
     "youtube_culinary_discovery": {
-      "name": "YT_CUL_5_POST_RUN_RELEVANCE_SOURCE_DIVERSITY_REDESIGN",
-      "status": "REPOSITORY_ARCHITECTURE_ONLY_IF_CONTINUED__NO_MORE_LIVE_SEARCH_AUTHORIZED_BY_YT_CUL_5_RESULT"
+      "name": "YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_ARCHITECTURE",
+      "status": "READY_REPOSITORY_ONLY_ZERO_LIVE_SEARCH",
+      "after_pass": "BUILD_AND_ACTIVATE_YT_CUL_5D_RECURRING_DAILY_DISCOVERY"
     }
   },
-  "terminal_instruction_for_new_chat": "Open docs/handovers/CURRENT.json and fresh-reconcile live GitHub. Corpus Step 7A is PASS/merged green and Step 7B remains the current human no-billing Free-resource check: do not accept checkout/subscription/payment/overage authorization, and do not activate Zero Trust, R2 or Workers Paid. Separately, YT-CUL-5 is PASS/merged green with YT_CUL_5_USEFUL_BUT_REVIEW_BOUND. It spent 10 Search calls after 33 prior calls, bringing known Search use to 43/100 and leaving 52 before the protected five-call reserve. The run reached 14 independent pages and 3 Recipe-structured pages, all from one domain; canonical Atlas-family nominations remain 0 because independent Recipe structured data does not itself establish Atlas relevance. YT-CUL-6 is not earned. Do not spend more YouTube Search until a source-diverse Atlas relevance mapping architecture is defined through the canonical Knowledge Core review boundary. Preserve all source-rights, nutrition, hard-filter, RecipeSource V2 portability, YouTube transient-data/evidence, Blue Lagoon separation and Knowledge Core boundaries."
+  "terminal_instruction_for_new_chat": "Open docs/handovers/CURRENT.json and fresh-reconcile live GitHub. Corpus Step 7A is PASS/merged green and Step 7B remains the current human no-billing Free-resource check: do not accept checkout/subscription/payment/overage authorization and do not activate Zero Trust, R2 or Workers Paid. Separately, YT-CUL-5 is PASS/merged green with YT_CUL_5_USEFUL_BUT_REVIEW_BOUND. The YouTube programme is now explicitly roadmapped to continue through YT-CUL-5R relevance/source-diversity repair (zero live Search), then YT-CUL-5D recurring daily quota-aware discovery. The daily programme uses adaptive bounded Search, cumulative evidence, duplicate suppression, review-queue backpressure and low-value stopping rules. Only canonical Knowledge Core review may promote Atlas state. YT-CUL-6 readiness is not based on raw Search/video/link counts; it requires at least one programme-origin candidate to reach APP_AUTHORING_ELIGIBLE or the then-current canonical equivalent with independent non-YouTube evidence and no unresolved rights/provenance/safety blocker. Preserve all source-rights, nutrition, hard-filter, RecipeSource V2 portability, YouTube transient-data/evidence, Blue Lagoon separation and Knowledge Core boundaries."
 }
