@@ -1,24 +1,27 @@
 {
-  "handover": "CULINARY_RECOMMENDER_APP_STEP7B_GATE_YT_CUL_DAILY_DISCOVERY_ROADMAP_V12",
+  "handover": "CULINARY_RECOMMENDER_APP_STEP7B_PASS_STEP7C_PAGES_AUTH_RUNTIME_GATE_V13",
   "handover_date": "2026-09-05",
   "timezone": "Atlantic/Canary",
-  "status": "STEPS_1_6_MERGED_GREEN__STEP_7A_PASS_MERGED_GREEN__STEP_7B_HUMAN_FREE_RESOURCE_CHECK_REQUIRED__NO_BILLING_AUTH_CONSTRAINT_ACTIVE__YT_CUL_5_USEFUL_BUT_REVIEW_BOUND_MERGED_GREEN__YT_CUL_5R_DAILY_DISCOVERY_ROADMAP_AUTHORIZED__YT_CUL_6_NOT_EARNED",
+  "status": "STEPS_1_6_MERGED_GREEN__STEP_7A_PASS_MERGED_GREEN__STEP_7B_FREE_NO_BILLING_AUTH_CONFIRMED__STEP_7C_ACCOUNT_PREREQS_COMPLETE__STEP_7C_PAGES_FUNCTIONS_AUTH_CODE_MERGED_GREEN__PAGES_RUNTIME_BINDINGS_MIGRATION_OWNER_CANARY_HUMAN_REQUIRED__NO_BILLING_AUTH_CONSTRAINT_ACTIVE__YT_CUL_5R_PASS_MERGED_GREEN__YT_CUL_5D_SCHEDULED_ACTIVE__YT_CUL_6_NOT_EARNED",
   "human_needed": true,
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
     "source_of_truth": "GitHub",
+    "handover_written_against_main_sha": "d02eed5558fb620d47bc7424e5b2a63c39caf3ad",
     "step_7a_merge_sha": "8cc1a672d7f7dc33d12b17169908c69685a733c4",
-    "step_7b_routing_sha": "078e990bb5eae31851f3b55aa93d9be53b66e13c",
+    "step_7b_7c_auth_canary_pr": 72,
+    "step_7b_7c_auth_canary_merge_sha": "d02eed5558fb620d47bc7424e5b2a63c39caf3ad",
     "yt_cul_5_merge_sha": "ff255755e39a4802f3dc2c0d110ca35b702781be",
-    "yt_cul_daily_roadmap_commit_sha": "72a09265bb99a0e5f358e87b007a77518b35428d"
+    "yt_cul_5r_merge_sha": "4bd9678d97dd5369daeb3c08f4e0c49996dbcfda",
+    "yt_cul_5d_merge_sha": "bfe56563c443549623b56038b4b1a65b2af821e2"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
     "previous": "docs/handovers/PREVIOUS.json",
     "protocol": "docs/HANDOVER_PROTOCOL.md",
     "rotation": "CURRENT -> PREVIOUS; new state -> CURRENT",
-    "new_chat_start": "Read CURRENT first, then fresh-reconcile live GitHub main, open PRs, relevant branches and CI before acting. Live GitHub outranks this snapshot."
+    "new_chat_start": "Read CURRENT first, then fresh-reconcile live GitHub main, open PRs, relevant branches, CI and any scheduled YT-CUL state commit before acting. Live GitHub outranks this snapshot."
   },
   "lane": {
     "name": "Culinary App / Culinary Lab — Corpus Scale / 170k No-Billing-Authorization Readiness with additive YouTube Culinary Discovery child programme",
@@ -28,21 +31,22 @@
   },
   "operating_contract": {
     "autonomy": "Proceed autonomously through technically resolvable repository work after fresh reconciliation. Stop only for genuine human/security/cost gates, unrecoverable errors, terminal material results or continuation boundaries.",
-    "user_facing_rule": "No routine narration outside those gates/results.",
-    "fresh_reconciliation": "Before every meaningful write or merge, fresh-reconcile main, open PRs, relevant branches, changed files, CI and concurrent work.",
+    "user_facing_rule": "No routine narration outside those gates/results. For external account setup, guide one screen/action at a time and trust the owner-visible current UI rather than stale vendor UI assumptions.",
+    "fresh_reconciliation": "Before every meaningful write or merge, fresh-reconcile main, open PRs, relevant branches, changed files, CI and concurrent scheduled workflow state.",
     "actions_authority": "Normal repository CI, browser acceptance, roadmap-required benchmark workflows, path-scoped validation and technically necessary ordinary reruns are standing-preauthorized by AGENTS.md.",
     "cost_boundary": "Hard no-billing-authorization constraint: do not activate or accept any product/subscription whose setup authorizes a payment method to be charged for usage beyond free limits. No paid Cloudflare plan, paid API, paid corpus licence or recurring infrastructure cost is authorized.",
     "external_setup_gate_rule": "Every future human provisioning step must terminate as FREE_NO_BILLING_AUTHORIZATION_CONFIRMED, BILLING_OR_OVERAGE_AUTHORIZATION_PRESENT, or AMBIGUOUS. Only FREE_NO_BILLING_AUTHORIZATION_CONFIRMED may proceed."
   },
   "corpus_scale": {
     "architecture": "docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md",
+    "step_7b_7c_canary_document": "docs/CORPUS_SCALE_STEP7B_7C_PAGES_FUNCTIONS_AUTH_CANARY.md",
     "required_capacity": 170000,
     "stress_capacity": 250000,
+    "golden_recipe_count": 84,
     "step_7a": {
       "terminal": "NO_BILLING_AUTH_170K_ARCHITECTURE_PASS",
       "status": "MERGED_GREEN",
       "merge_sha": "8cc1a672d7f7dc33d12b17169908c69685a733c4",
-      "golden_recipe_count": 84,
       "at_170k_estimated_total_bytes": 922455560,
       "at_250k_estimated_total_bytes": 1348698648,
       "database_slots_used": 9,
@@ -50,31 +54,85 @@
       "bounded_candidates": 256,
       "d1_subqueries_range": "10-12",
       "full_corpus_scans": 0,
-      "worker_cpu_boundary": "Actual Workers Free CPU remains a mandatory later protected canary gate; GitHub wall-clock proxy is advisory only."
+      "worker_cpu_boundary": "Actual Workers Free CPU remains a mandatory Step 7D protected 84-record canary measurement; local GitHub wall-clock proxy is advisory only."
+    },
+    "step_7b": {
+      "terminal": "FREE_NO_BILLING_AUTHORIZATION_CONFIRMED",
+      "status": "COMPLETE_OWNER_VISIBLE_PASS",
+      "evidence": [
+        "D1 Free database culinary-control created with EU jurisdiction without checkout/payment/subscription/overage authorization",
+        "Workers Free canary culinary-gateway-canary deployed without paid-plan activation",
+        "D1 binding CULINARY_CONTROL_DB attached to Worker canary",
+        "Worker -> D1 SELECT 1 connectivity returned {\"ok\":1}",
+        "Workers Paid, R2 and Zero Trust/Access remain unactivated"
+      ]
+    },
+    "step_7c": {
+      "account_prerequisites": "COMPLETE",
+      "code_status": "MERGED_GREEN_PENDING_PAGES_RUNTIME_CONFIGURATION_AND_LIVE_OWNER_CANARY",
+      "pr": 72,
+      "merge_sha": "d02eed5558fb620d47bc7424e5b2a63c39caf3ad",
+      "pr_validation_run": 33990435065,
+      "post_merge_validation_run": 33990522336,
+      "post_merge_github_pages_run": 33990521780,
+      "focused_auth_tests": "6/6 PASS",
+      "identity_provider": {
+        "provider": "Google GIS/OIDC",
+        "user_type": "External",
+        "publishing_status": "Testing",
+        "test_users": 1,
+        "web_oauth_client_created": true,
+        "authorized_javascript_origin": "https://culinary-recommender-app.pages.dev",
+        "custom_domain_required": false,
+        "production_oauth_publishing_required_for_canary": false,
+        "client_secret_required": false
+      },
+      "runtime_shape": "Existing Cloudflare Pages Free project + same-origin /api/* Pages Functions + culinary-control D1 Free. The standalone workers.dev canary is diagnostic only, not the intended production auth surface.",
+      "security": {
+        "public_signup": false,
+        "exact_private_allowlist": true,
+        "server_side_google_signature_audience_issuer_expiry_checks": true,
+        "stable_binding": "provider issuer + subject",
+        "session_cookie": "__Host- prefix + Secure + HttpOnly + SameSite=Lax + Path=/",
+        "session_integrity": "HMAC-SHA256",
+        "protected_request_current_account_recheck": true,
+        "revocation_fail_closed": true,
+        "reusable_google_credential_stored": false,
+        "owner_email_or_runtime_secrets_in_github": false
+      }
     },
     "provider_state": {
-      "pages": "EXISTING_FREE_PROJECT_KEEP",
+      "cloudflare_pages": "EXISTING_FREE_PROJECT_KEEP",
+      "pages_functions": "AUTH_CANARY_CODE_MERGED__PRODUCTION_RUNTIME_BINDINGS_NOT_YET_CONFIGURED",
+      "d1_control": "culinary-control CREATED_FREE_NO_BILLING_AUTH__EU_JURISDICTION",
+      "d1_recipe_body_shards": "0_OF_8_CREATED__DO_NOT_CREATE_YET",
+      "d1_reserved_slot": "1_SLOT_MUST_REMAIN_UNCREATED",
+      "standalone_worker_canary": "culinary-gateway-canary FREE_DIAGNOSTIC_PASS__NOT_PRODUCTION_AUTH_SURFACE",
+      "google_auth": "EXTERNAL_TESTING__ONE_OWNER_TEST_USER__WEB_CLIENT_CREATED",
       "zero_trust_access": "REJECTED_DO_NOT_ACTIVATE",
       "r2": "REJECTED_DO_NOT_ACTIVATE",
-      "workers_paid": "REJECTED_DO_NOT_ACTIVATE",
-      "d1": "NOT_PROVISIONED_PENDING_STEP_7B_FREE_CHECK"
+      "workers_paid": "REJECTED_DO_NOT_ACTIVATE"
     }
   },
   "human_gates": {
     "current": {
-      "name": "STEP_7B_FREE_DEVELOPER_RESOURCE_PROVISIONING_CHECK",
-      "status": "REQUIRED_NOW",
-      "purpose": "Determine whether D1 Free can be created/used while remaining on Workers Free without accepting any checkout, subscription, payment authorization or overage authorization.",
-      "first_action_only": "Open Cloudflare Dashboard -> Storage & databases -> D1 SQLite Database. Do not create anything yet if the next screen contains billing/subscription/payment/overage language; paste the screen back for inspection.",
-      "terminal_values": [
-        "FREE_NO_BILLING_AUTHORIZATION_CONFIRMED",
-        "BILLING_OR_OVERAGE_AUTHORIZATION_PRESENT",
-        "AMBIGUOUS"
+      "name": "STEP_7C_PAGES_RUNTIME_BINDINGS_MIGRATION_AND_OWNER_LOGIN_CANARY",
+      "status": "HUMAN_REQUIRED_NOW",
+      "purpose": "Configure the already-merged same-origin Pages Functions auth canary on the existing Cloudflare Pages Free project, migrate only the control D1 auth table, and prove owner login plus fail-closed revocation without enabling paid infrastructure or corpus data.",
+      "first_action_only": "Open Cloudflare Dashboard -> Workers & Pages -> culinary-recommender-app -> Settings, then report/paste the bindings/runtime variables section before changing anything.",
+      "later_sequence_after_screen_by_screen_review": [
+        "Bind Pages project CULINARY_CONTROL_DB to existing culinary-control",
+        "Add public runtime variable GOOGLE_CLIENT_ID using the already-created Google Web client ID",
+        "Add fresh SESSION_SECRET as a Cloudflare secret; never paste it into chat or GitHub",
+        "Add temporary OWNER_BOOTSTRAP_EMAIL as a Cloudflare secret; never paste the email into chat or GitHub",
+        "Run migrations/0001_auth_canary.sql once against culinary-control",
+        "Redeploy Pages project and test /auth-canary.html as the sole Google test user",
+        "After first successful bootstrap remove OWNER_BOOTSTRAP_EMAIL and redeploy",
+        "Prove protected route works while enabled, then prove session_version increment or account disable fails closed"
       ],
-      "hard_stop": "Do not accept any checkout or subscription, even one showing $0, if it authorizes charges beyond included limits. Do not activate Zero Trust, R2 or Workers Paid."
+      "hard_stop": "If any screen introduces checkout, subscription, payment authorization, overage authorization, Workers Paid, R2 or Zero Trust/Access activation, stop and classify it before accepting anything."
     },
-    "step_7c_identity_provider": "BLOCKED_UNTIL_STEP_7B_FREE_NO_BILLING_AUTHORIZATION_CONFIRMED",
-    "step_7d_protected_canary": "BLOCKED_UNTIL_STEP_7B_AND_STEP_7C",
+    "step_7d_protected_84_record_canary": "BLOCKED_UNTIL_STEP_7C_LIVE_OWNER_LOGIN_AND_REVOCATION_CANARY_PASS",
     "step_7e_real_source_pilot": "BLOCKED_UNTIL_STEP_7D_PASS",
     "youtube": "NO_CURRENT_HUMAN_GATE"
   },
@@ -90,81 +148,42 @@
     "yt_cul_2": "PASS_MERGED_GREEN",
     "yt_cul_3": "PASS_MERGED_GREEN__YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND",
     "yt_cul_4": "PASS_MERGED_GREEN__YT_CUL_4_CHANNEL_PLAYLIST_EFFICIENCY_GAIN",
-    "yt_cul_5": {
-      "status": "PASS_MERGED_GREEN__YT_CUL_5_USEFUL_BUT_REVIEW_BOUND",
-      "merge_sha": "ff255755e39a4802f3dc2c0d110ca35b702781be",
-      "live_workflow_run": 33987345201,
-      "focused_safety_tests_before_live_spend": "38/38 PASS",
-      "search_calls": 10,
-      "search_calls_total_through_phase": 43,
-      "general_read_calls": 39,
-      "transient_unique_video_pointers": 568,
-      "external_source_pointers_observed_transiently": 812,
-      "independent_review_attempts": 60,
-      "independently_reviewed_pages": 14,
-      "independently_confirmed_recipe_pages": 3,
-      "unique_confirmed_source_domains": 1,
-      "confirmed_recipe_pages_per_search_call": 0.3,
-      "yt_cul_4_baseline_confirmed_recipe_pages_per_search_call": 0.625,
-      "efficiency_ratio_vs_yt_cul_4": 0.48,
-      "independent_recipe_source_review_pointers": 3,
-      "verified_knowledge_core_atlas_relevance_mappings": 0,
-      "canonical_atlas_family_candidates_nominated": 0,
-      "atlas_promotions": 0,
-      "app_handoffs_or_admissions": 0,
-      "public_recipes_admitted": 0,
-      "binding_constraint": "Independent Recipe-structured page reachability does not establish World Recipe Atlas family relevance; source diversity was also weak because all three confirmed pages came from one domain.",
-      "canonical_rule": "INDEPENDENT_RECIPE_STRUCTURED_PAGE != ATLAS_FAMILY_RELEVANCE",
-      "workflow_replay": "CLOSED__NO_API_SECRET_MAPPED__STALE_33_CALL_ASSUMPTION_CANNOT_BE_REPLAYED"
+    "yt_cul_5": "PASS_MERGED_GREEN__YT_CUL_5_USEFUL_BUT_REVIEW_BOUND",
+    "yt_cul_5r": {
+      "status": "MERGED_GREEN__YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_ARCHITECTURE_PASS__ZERO_LIVE_SEARCH",
+      "merge_sha": "4bd9678d97dd5369daeb3c08f4e0c49996dbcfda"
     },
-    "daily_discovery_roadmap": {
-      "document": "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md",
-      "status": "AUTHORIZED_ROADMAP_EXTENSION",
-      "yt_cul_5r": "READY_REPOSITORY_ONLY_ZERO_LIVE_SEARCH",
-      "yt_cul_5d": "BLOCKED_UNTIL_YT_CUL_5R_PASS",
-      "objective": "After the relevance/source-diversity architecture passes, run one quota-aware bounded discovery cycle per YouTube quota day, accumulate policy-safe review evidence, apply queue backpressure and marginal-value stopping rules, and evaluate YT-CUL-6 readiness from canonical Knowledge Core outcomes rather than raw YouTube activity.",
-      "default_daily_search_budget_after_activation": 16,
-      "minimum_active_daily_search_budget": 8,
-      "ordinary_adaptive_ceiling": 32,
-      "absolute_ceiling_rule": "assigned Search daily limit minus five-call reserve",
+    "yt_cul_5d": {
+      "status": "MERGED_GREEN__SCHEDULED_ACTIVE",
+      "merge_sha": "bfe56563c443549623b56038b4b1a65b2af821e2",
+      "schedule": "09:20 UTC once per authoritative America/Los_Angeles quota day",
+      "first_active_search_budget": 16,
+      "minimum_active_search_budget": 8,
+      "ordinary_search_ceiling": 32,
       "unresolved_review_queue_cap": 40,
-      "low_value_hold_rule": "three consecutive active quota days with zero new ATLAS_RELEVANCE_REVIEW_READY packets after deduplication",
-      "yt_cul_6_readiness_rule": "At least one programme-origin discovery must reach canonical Knowledge Core APP_AUTHORING_ELIGIBLE or then-current equivalent, using independent non-YouTube evidence with no unresolved rights/provenance/safety blocker, after YT-CUL-5R PASS and fresh app-side reconciliation.",
-      "automatic_atlas_promotion": false,
-      "automatic_app_admission": false,
-      "automatic_publication": false
+      "current_state": {
+        "programmeStatus": "ACTIVE",
+        "lastCompletedQuotaDate": null,
+        "completedQuotaDays": [],
+        "cumulativeSearchCalls": 0,
+        "reviewReadyPacketsCreated": 0,
+        "hardHold": null,
+        "ytCul6ReadinessEarned": false
+      },
+      "authority": "Only canonical Knowledge Core Atlas review can accept/hold/reject packets; no automatic Atlas promotion, app admission or publication."
     },
+    "yt_cul_6": "NOT_EARNED",
     "controls": {
       "raw_youtube_api_data_durable": false,
       "transient_payload_deleted_before_job_exit": true,
-      "unreviewed_external_urls_durable": false,
       "youtube_statistics_read": false,
-      "youtube_derived_creator_authenticity_engagement_scores": false,
+      "creator_authenticity_or_engagement_scoring": false,
       "audiovisual_downloaded": false,
       "blue_lagoon_cross_use": false,
       "automatic_atlas_promotion": false,
       "automatic_app_admission": false,
-      "public_runtime_activation": false,
-      "gross_youtube_results_are_recipes_acquired": false
-    },
-    "next_phase": {
-      "yt_cul_6": "NOT_EARNED",
-      "status": "YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_ARCHITECTURE_READY__THEN_YT_CUL_5D_DAILY_DISCOVERY",
-      "rule": "Do not resume live Search until YT-CUL-5R passes. After PASS, recurring daily bounded Search is the intended programme path toward YT-CUL-6, with adaptive quota allocation, cumulative evidence, Knowledge Core review authority, review-backlog holds and low-marginal-value stopping rules."
+      "automatic_publication": false
     }
-  },
-  "canonical_docs": {
-    "roadmap": "docs/ROADMAP.md",
-    "roadmap_handover": "docs/ROADMAP_HANDOVER.md",
-    "no_billing_auth_170k_architecture": "docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md",
-    "step_7a_contract": "docs/CORPUS_SCALE_STEP7A_NO_BILLING_AUTH_REBASELINE.md",
-    "youtube_culinary_discovery_base_roadmap": "docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md",
-    "youtube_culinary_daily_discovery_roadmap": "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md",
-    "yt_cul_5_contract": "docs/YT_CUL_5_ATLAS_EXPANSION_CADENCE_CONTRACT.md",
-    "yt_cul_5_terminal_result": "docs/YT_CUL_5_TERMINAL_RESULT.md",
-    "yt_cul_5_relevance_gate": "scripts/youtube-culinary-atlas-relevance-gate.mjs",
-    "handover_protocol": "docs/HANDOVER_PROTOCOL.md",
-    "youtube_precedence_note": "Read the base YouTube roadmap first, then the daily-discovery roadmap extension. The extension supersedes stale YT-CUL-5/6 transition text but does not rewrite historical YT-CUL-0..5 evidence."
   },
   "source_admission_state": {
     "A": "Existing curated corpus + Wikibooks — PASS_ALREADY_ESTABLISHED",
@@ -174,20 +193,32 @@
     "D_unitools": "UniTools — PASS_CANDIDATE_NOT_YET_AUDITED",
     "E": "RecipeDB — CONDITIONAL_SOURCE_COHORT_SALVAGE_GATE"
   },
+  "canonical_docs": {
+    "roadmap": "docs/ROADMAP.md",
+    "roadmap_handover": "docs/ROADMAP_HANDOVER.md",
+    "no_billing_auth_170k_architecture": "docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md",
+    "step_7a_contract": "docs/CORPUS_SCALE_STEP7A_NO_BILLING_AUTH_REBASELINE.md",
+    "step_7b_7c_auth_canary": "docs/CORPUS_SCALE_STEP7B_7C_PAGES_FUNCTIONS_AUTH_CANARY.md",
+    "youtube_base_roadmap": "docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md",
+    "youtube_daily_roadmap": "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md",
+    "yt_cul_5r_contract": "docs/YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_CONTRACT.md",
+    "yt_cul_5d_contract": "docs/YT_CUL_5D_DAILY_DISCOVERY_CONTRACT.md",
+    "handover_protocol": "docs/HANDOVER_PROTOCOL.md"
+  },
   "next_action": {
     "corpus_scale_human": {
-      "name": "STEP_7B_FREE_DEVELOPER_RESOURCE_PROVISIONING_CHECK",
-      "status": "HUMAN_REQUIRED_NOW"
+      "name": "STEP_7C_PAGES_RUNTIME_BINDINGS_MIGRATION_AND_OWNER_LOGIN_CANARY",
+      "status": "HUMAN_REQUIRED_NOW",
+      "first_action": "Open Cloudflare Dashboard -> Workers & Pages -> culinary-recommender-app -> Settings and report/paste the bindings/runtime variables section. Do not change anything until the current screen is reviewed."
     },
     "corpus_scale_repository": {
-      "name": "WAIT_FOR_STEP_7B_TERMINAL_VALUE",
-      "status": "BLOCKED_ON_HUMAN_GATE"
+      "name": "WAIT_FOR_STEP_7C_LIVE_PAGES_CANARY",
+      "status": "BLOCKED_ON_HUMAN_RUNTIME_CONFIGURATION"
     },
     "youtube_culinary_discovery": {
-      "name": "YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_ARCHITECTURE",
-      "status": "READY_REPOSITORY_ONLY_ZERO_LIVE_SEARCH",
-      "after_pass": "BUILD_AND_ACTIVATE_YT_CUL_5D_RECURRING_DAILY_DISCOVERY"
+      "name": "YT_CUL_5D_AUTOMATIC_DAILY_DISCOVERY",
+      "status": "SCHEDULED_ACTIVE__NO_HUMAN_GATE__YT_CUL_6_NOT_EARNED"
     }
   },
-  "terminal_instruction_for_new_chat": "Open docs/handovers/CURRENT.json and fresh-reconcile live GitHub. Corpus Step 7A is PASS/merged green and Step 7B remains the current human no-billing Free-resource check: do not accept checkout/subscription/payment/overage authorization and do not activate Zero Trust, R2 or Workers Paid. Separately, YT-CUL-5 is PASS/merged green with YT_CUL_5_USEFUL_BUT_REVIEW_BOUND. The YouTube programme is now explicitly roadmapped to continue through YT-CUL-5R relevance/source-diversity repair (zero live Search), then YT-CUL-5D recurring daily quota-aware discovery. The daily programme uses adaptive bounded Search, cumulative evidence, duplicate suppression, review-queue backpressure and low-value stopping rules. Only canonical Knowledge Core review may promote Atlas state. YT-CUL-6 readiness is not based on raw Search/video/link counts; it requires at least one programme-origin candidate to reach APP_AUTHORING_ELIGIBLE or the then-current canonical equivalent with independent non-YouTube evidence and no unresolved rights/provenance/safety blocker. Preserve all source-rights, nutrition, hard-filter, RecipeSource V2 portability, YouTube transient-data/evidence, Blue Lagoon separation and Knowledge Core boundaries."
+  "terminal_instruction_for_new_chat": "Open docs/handovers/CURRENT.json and fresh-reconcile live GitHub before acting. Corpus Step 7B is complete with FREE_NO_BILLING_AUTHORIZATION_CONFIRMED: culinary-control D1 Free and the standalone Workers Free D1 connectivity canary succeeded without billing authorization. PR #72 merged the real lightweight same-origin Pages Functions auth canary at d02eed5558fb620d47bc7424e5b2a63c39caf3ad and validation is green. Google Auth remains External/Testing with one owner test user and no custom domain or production publication requirement for the canary. The current human gate is Pages project runtime configuration, starting only by opening culinary-recommender-app -> Settings and reporting the bindings/runtime variables screen. Do not create the eight recipe shards, populate recipe data, activate R2/Zero Trust/Workers Paid, or accept any billing/overage authorization. YT-CUL-5R is merged-green PASS and YT-CUL-5D is merged-green scheduled active with zero completed quota days at this snapshot; YT-CUL-6 is not earned. Preserve all source-rights, nutrition, hard-filter, RecipeSource V2, YouTube evidence, Blue Lagoon separation and Knowledge Core boundaries."
 }
