@@ -57,7 +57,7 @@ test("Step 7A keeps 170k required capacity and 250k stress in the canonical scal
 
 test("D1 recipe sharding is deterministic and bounded to eight recipe databases", () => {
   const ids = ["recipe-a", "recipe-b", "recipe-c", "recipe-a"];
-  const shards = ids.map(recipeDatabaseShardForId);
+  const shards = ids.map(id => recipeDatabaseShardForId(id));
   assert.equal(shards[0], shards[3]);
   assert.ok(shards.every(shard => Number.isInteger(shard) && shard >= 0 && shard < 8));
 });
