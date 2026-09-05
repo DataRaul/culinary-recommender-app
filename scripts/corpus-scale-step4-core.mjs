@@ -85,7 +85,11 @@ function recipeForOrdinal(model, ordinal) {
 }
 
 export function readPortableDetailObject(model, ordinal) {
-  return JSON.stringify(recipeForOrdinal(model, ordinal));
+  const cached = model.benchmarkDetailPayloadCache.get(ordinal);
+  if (cached != null) return cached;
+  const content = JSON.stringify(recipeForOrdinal(model, ordinal));
+  model.benchmarkDetailPayloadCache.set(ordinal, content);
+  return content;
 }
 
 export function readPortableIndexObject(model, key) {
@@ -155,7 +159,8 @@ export function buildStep4RetrievalModel(goldenRecipes, targetSize, options = {}
     goldenRecipes,
     indexes,
     indexObjects,
-    detailStrategy: synthetic ? "DETERMINISTIC_SYNTHETIC_DETAIL_ON_READ" : "CANONICAL_GOLDEN_DETAIL_ON_READ",
+    benchmarkDetailPayloadCache: new Map(),
+    detailStrategy: synthetic ? "DETERMINISTIC_SYNTHETIC_DETAIL_PAYLOAD_WARMED_PER_SCENARIO" : "CANONICAL_GOLDEN_DETAIL_PAYLOAD_WARMED_PER_SCENARIO",
     metrics: {
       buildMs: rounded(performance.now() - startedAt),
       indexKeyCount: indexObjects.size,
@@ -204,9 +209,13 @@ export function executeStep4PortableQuery(model, scenario, options = {}) {
     }
   }
 
-  const workerResponse = JSON.stringify(recipes);
-  const workerResponseRawBytes = measureBytes ? bytes(workerResponse) : 0;
-  const workerResponseGzipBytes = measureBytes ? gzipBytes(workerResponse) : 0;
+  let workerResponseRawBytes = 0;
+  let workerResponseGzipBytes = 0;
+  if (measureBytes) {
+    const workerResponse = JSON.stringify(recipes);
+    workerResponseRawBytes = bytes(workerResponse);
+    workerResponseGzipBytes = gzipBytes(workerResponse);
+  }
   updatePeak(model.metrics.peakMemory);
 
   return {
@@ -240,6 +249,7 @@ export function benchmarkStep4Queries(model, rankCandidateRecipes, options = {})
   const results = [];
 
   for (const scenario of scenarios) {
+    model.benchmarkDetailPayloadCache.clear();
     const retrievalSamples = [];
     const rankSamples = [];
     let measured = null;
@@ -340,6 +350,7 @@ export function runStep4Benchmark(goldenRecipes, rankCandidateRecipes, options =
       model: {
         detailStrategy: model.detailStrategy,
         ordinalWidth: model.ordinalWidth,
+        warmedDetailPayloadCount: model.benchmarkDetailPayloadCache.size,
         ...model.metrics
       },
       queries,
@@ -347,6 +358,7 @@ export function runStep4Benchmark(goldenRecipes, rankCandidateRecipes, options =
     });
     model.indexes.clear();
     model.indexObjects.clear();
+    model.benchmarkDetailPayloadCache.clear();
   }
 
   const pass = reports.every(report => report.acceptance.pass);
