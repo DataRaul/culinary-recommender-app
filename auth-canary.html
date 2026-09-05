@@ -13,10 +13,14 @@
 <body>
   <main>
     <h1>Culinary Recommender auth canary</h1>
-    <p>This page tests Google identity, the private allowlist, a hardened session cookie, protected D1 access, and fail-closed session revocation. It does not expose recipe data.</p>
+    <p>This page tests Google identity, the private allowlist, hardened sessions, protected D1 access, fail-closed revocation, and the Step 7D protected 84-record oracle. The sample action returns one protected recipe only after authorization.</p>
     <div id="google-button"></div>
     <button id="session-check" type="button">Check session</button>
     <button id="protected-check" type="button">Check protected route</button>
+    <button id="step7d-bootstrap" type="button">Initialize Step 7D oracle</button>
+    <button id="step7d-audit" type="button">Audit Step 7D oracle</button>
+    <button id="step7d-sample" type="button">Read protected sample recipe</button>
+    <button id="step7d-limit" type="button">Simulate Free-limit failure</button>
     <button id="revoke-session" type="button">Revoke current session</button>
     <button id="logout" type="button">Log out</button>
     <pre id="status" aria-live="polite">Loading…</pre>
@@ -39,6 +43,34 @@
 
     async function checkProtected() {
       show(await readJson(await fetch('/api/protected-canary', {
+        cache: 'no-store',
+        credentials: 'same-origin'
+      })));
+    }
+
+    async function bootstrapStep7d() {
+      show(await readJson(await fetch('/api/step7d/bootstrap', {
+        method: 'POST',
+        credentials: 'same-origin'
+      })));
+    }
+
+    async function auditStep7d() {
+      show(await readJson(await fetch('/api/step7d/oracle', {
+        cache: 'no-store',
+        credentials: 'same-origin'
+      })));
+    }
+
+    async function sampleStep7d() {
+      show(await readJson(await fetch('/api/step7d/oracle?sample=1', {
+        cache: 'no-store',
+        credentials: 'same-origin'
+      })));
+    }
+
+    async function simulateStep7dLimit() {
+      show(await readJson(await fetch('/api/step7d/oracle?simulate=free-limit', {
         cache: 'no-store',
         credentials: 'same-origin'
       })));
@@ -93,6 +125,10 @@
 
     document.getElementById('session-check').addEventListener('click', checkSession);
     document.getElementById('protected-check').addEventListener('click', checkProtected);
+    document.getElementById('step7d-bootstrap').addEventListener('click', bootstrapStep7d);
+    document.getElementById('step7d-audit').addEventListener('click', auditStep7d);
+    document.getElementById('step7d-sample').addEventListener('click', sampleStep7d);
+    document.getElementById('step7d-limit').addEventListener('click', simulateStep7dLimit);
     document.getElementById('revoke-session').addEventListener('click', revokeSession);
     document.getElementById('logout').addEventListener('click', logout);
     window.initializeGoogle = initializeGoogle;
