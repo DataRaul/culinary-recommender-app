@@ -2,7 +2,7 @@
 
 Date: 2026-09-06
 
-Status: `IMPLEMENTED / VALIDATION_PENDING`
+Status: `IMPLEMENTED / VALIDATION_PENDING__KC_REVIEW_PROCESSOR_MERGED__PRIVATE_BRIDGE_SYNC_DISABLED_PENDING_OWNER_ACCESS`
 
 ## Objective
 
@@ -32,7 +32,7 @@ Low yield in one search arm is a reallocation signal, not a programme-level stop
 5. **Controlled adaptive query generation** — promising same-day candidate labels, canonical accepted outcomes and canonical held/retryable evidence questions may generate bounded follow-up searches. Rejected non-retryable candidates are not blindly repeated.
 6. **Known-ID depth preserved** — Search discovers territory; `channels.list`, `playlistItems.list` and `videos.list` traverse discovered territory without wasting Search calls on repeated known surfaces.
 7. **Canonical feedback allocation** — accepted / rejected / held Knowledge Core outcomes change future focus priority. Same-day provisional yield changes the next tranche without pretending to be canonical evidence.
-8. **Canonical review boundary preserved** — the App does not manufacture Knowledge Core decisions. The separate KC review/export processor is the remaining cross-repository authority layer.
+8. **Canonical review bridge implemented** — Knowledge Core PR #408 merged the fail-closed canonical review intake, decision registry, scheduled processor and reviewed static bridge. The App contains a repository-time read-only sync client. That sync is disabled until the owner explicitly supplies a minimally scoped private-KC read credential and enables the repo variable; the browser never receives or uses the credential.
 9. **Information-gain KPIs** — daily reporting includes independent pages/Search, Recipe-structured pages/Search, review-ready packets/Search, useful source domains/Search, canonical accepted outcomes/cumulative Search, explicit lifecycle advancements/cumulative Search and app-authoring-eligible outcomes/cumulative Search.
 
 ## Allocation law
@@ -75,11 +75,29 @@ A newly admitted review-ready packet may generate a provisional query around its
 
 Canonical accepted outcomes receive a stronger follow-up bonus. Non-retryable canonical rejections are suppressed.
 
+## Canonical review and transport
+
+Knowledge Core main contains the canonical processor and export contract under:
+
+- `scripts/process_culinary_youtube_review_queue.py`;
+- `domains/culinary_nutrition/world_recipe_atlas/youtube_canonical_review_decisions_v1.json`;
+- `exports/culinary/youtube-culinary-canonical-review-bridge.json`;
+- `.github/workflows/culinary-youtube-canonical-review.yml`.
+
+Valid packets without a committed canonical decision are exported as `HELD`, never fabricated `ACCEPTED` or `REJECTED`.
+
+The App-side repository-time transport is `scripts/sync-youtube-culinary-kc-review-bridge.mjs`. It is intentionally disabled by default. Enabling it requires:
+
+- repository variable `CULINARY_KC_REVIEW_SYNC_ENABLED=true`;
+- secret `CULINARY_KC_REVIEW_READ_TOKEN` carrying only the minimum private-repository read access needed to fetch the reviewed static KC bridge.
+
+A broad/write credential is unnecessary. The bridge is written only into the GitHub Action workspace and is not added to the public repo by the scheduled state-persistence step.
+
 ## Review backlog
 
 The review queue cap remains 40. This is intentionally different from low search yield: once 40 unresolved canonical-review packets exist, the binding constraint is review throughput rather than discovery. Search stops rather than create evidence debt that cannot be retained/reviewed safely.
 
-The intended next architecture is a governed Knowledge Core review processor and static outcome bridge so canonical review throughput can keep pace with the discovery portfolio.
+The KC scheduled processor now automatically validates, routes and HOLDs unresolved packets and exports committed canonical decisions. Actual ACCEPTED/REJECTED culinary claims remain evidence-backed Knowledge Core decisions rather than heuristic App output.
 
 ## Crash-safe quota accounting
 
