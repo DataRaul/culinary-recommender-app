@@ -1,10 +1,12 @@
 # YT-CUL-0 — Architecture / Policy / Synthetic Implementation Contract
 
-Status: **IMPLEMENTATION BUILT / LIVE API CALLS STILL FORBIDDEN / MERGE REQUIRES NORMAL VALIDATION**
+Status: **MERGED GREEN / ZERO LIVE QUOTA COMPLETE / LIVE API CALLS STILL FORBIDDEN PENDING YT-CUL-1**
 
 Date: 2026-09-05
 
-This contract implements the zero-live-quota phase of `docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md`. It is additive, does not alter public runtime behavior, and does not consume YouTube quota.
+This contract implements the zero-live-quota phase of `docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md`. It is additive, does not alter public runtime behavior, and consumed zero live YouTube quota.
+
+Canonical completion: PR #56 merged to `main` at `fcbbc5df8ca6ac10cb61b25b142506f51b8a6253`. Pull-request validation passed; post-merge main validation, Pages build and deploy also passed.
 
 ## Frozen client boundary
 
@@ -150,10 +152,10 @@ Gross YouTube result count is explicitly not recipe acquisition.
 - policy-safe durable reporting and independent-source handoffs;
 - absence of live `fetch`/`https.request` networking and absence of API-secret reads in the YT-CUL-0 module.
 
-Normal repository `npm run validate` remains the merge gate.
+Normal repository validation passed on PR #56 and on post-merge `main`.
 
 ## Terminal boundary of YT-CUL-0
 
-YT-CUL-0 is complete only after this implementation passes normal repository validation and merges.
+YT-CUL-0 is **complete and merged green**. It consumed zero live YouTube API calls and introduced no public-runtime dependency.
 
-The next phase is **YT-CUL-1 — owner Google Cloud setup**. No live API call is authorized merely because YT-CUL-0 code exists.
+The current next phase is **YT-CUL-1 — owner Google Cloud setup**. No live API call is authorized until that human setup exists and the YT-CUL-2 activation vintage fresh-rechecks current YouTube policy and the actual assigned Search Queries limit.
