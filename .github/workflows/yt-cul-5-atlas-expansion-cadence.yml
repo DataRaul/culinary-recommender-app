@@ -1,0 +1,20 @@
+name: YT-CUL-5 Atlas expansion cadence — closed
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  closed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Historical lane is closed
+        shell: bash
+        run: |
+          echo "YT-CUL-5 live execution completed in run 33987345201."
+          echo "No YouTube API credential is mapped by this closed workflow."
+          echo "Do not replay the historical 33-call prior-usage assumption."
+          echo "Any future live continuation requires a new preregistered quota vintage after fresh policy/quota reconciliation."
