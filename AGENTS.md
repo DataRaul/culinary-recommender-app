@@ -34,6 +34,25 @@ For every substantive user request at a normal user-facing response boundary, ap
 - **No-narration precedence:** when the active Culinary lane carries a standing instruction such as `no narration unless error, human needed, material cost/access gate, terminal result, or continuation boundary`, routine Coach/Consulting output must not interrupt autonomous repository execution. Internal evaluation remains allowed, but ordinary coaching/advisory material may surface only at an already-allowed response boundary unless the finding itself creates a genuine gate or terminal decision.
 - **Authority:** Coach/Consulting routing grants no authority to weaken nutrition/source semantics, quantity evidence, corpus gates, public-safe export review, browser acceptance, or any other Culinary evidence/behavior gate. It also grants no authority to introduce private Knowledge Core browser/runtime dependency.
 
+## Standing autonomous execution authority
+
+The user has explicitly authorized autonomous continuation of technically resolvable Culinary App / Culinary Lab repository work without repeated approvals.
+
+- Do not ask for repeated approval to open ordinary implementation PRs, run normal repository CI, browser acceptance, path-scoped validation, benchmark workflows already required by the active roadmap gate, or technically necessary CI reruns/repairs that stay within the established repository workflow and ordinary GitHub Actions usage.
+- Ordinary GitHub Actions validation spend for this lane is standing-preapproved. The earlier per-run approval requirement is superseded by this repository instruction.
+- Continue autonomously through implementation, validation, PR repair and safe merge when gates pass.
+- Interrupt the user only for a genuine unrecoverable error, a material new cost decision outside ordinary repository Actions usage, a paid service/API/infrastructure/corpus-license decision, a security/access decision, another genuine human-only gate, a terminal material result that should be surfaced, or a continuation boundary.
+- A materially abnormal CI loop, runaway Actions consumption, or a new recurring/paid cost is a cost gate; ordinary expected CI is not.
+- Preserve the standing target of zero recurring infrastructure cost for the accepted small invited-user deployment unless the user explicitly changes it.
+
+## Continuation-before-context-loss authority
+
+Before conversation context becomes unreliable, the active agent must stop ordinary implementation at a safe boundary, warn the user that continuation is being prepared, fresh-reconcile GitHub, and save a complete resumable state through `docs/HANDOVER_PROTOCOL.md` and `docs/handovers/CURRENT.json`.
+
+- Rotate `CURRENT -> PREVIOUS` and write a new complete CURRENT before context loss, not after.
+- The saved CURRENT must include the exact live main SHA/baseline, open PR/branch/CI state, standing autonomy and CI authority, the next executable action, and any active human/error/cost gate.
+- A new chat must be able to continue from the repository handover without requiring the user to reconstruct or copy-paste prior chat state.
+
 ## Conversation-time versus browser-runtime rule
 
 These two paths are intentionally different:
