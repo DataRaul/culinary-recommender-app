@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Culinary Recommender auth canary</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 42rem; margin: 3rem auto; padding: 0 1rem; line-height: 1.5; }
+    button { padding: .65rem 1rem; margin: .5rem .5rem .5rem 0; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #f4f4f4; padding: 1rem; border-radius: .5rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Culinary Recommender auth canary</h1>
+    <p>This page tests Google identity, the private allowlist, a hardened session cookie, and the protected D1 route. It does not expose recipe data.</p>
+    <div id="google-button"></div>
+    <button id="session-check" type="button">Check session</button>
+    <button id="protected-check" type="button">Check protected route</button>
+    <button id="logout" type="button">Log out</button>
+    <pre id="status" aria-live="polite">Loading…</pre>
+  </main>
+  <script>
+    const statusNode = document.getElementById('status');
+    const show = value => { statusNode.textContent = typeof value === 'string' ? value : JSON.stringify(value, null, 2); };
+
+    async function readJson(response) {
+      const body = await response.json().catch(() => ({ error: 'NON_JSON_RESPONSE' }));
+      return { status: response.status, ...body };
+    }
+
+    async function checkSession() {
+      show(await readJson(await fetch('/api/auth/session', { cache: 'no-store' })));
+    }
+
+    async function checkProtected() {
+      show(await readJson(await fetch('/api/protected-canary', { cache: 'no-store' })));
+    }
+
+    async function logout() {
+      show(await readJson(await fetch('/api/auth/logout', { method: 'POST' })));
+    }
+
+    async function handleGoogleCredential(response) {
+      show('Verifying Google identity…');
+      const result = await readJson(await fetch('/api/auth/google', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ credential: response.credential })
+      }));
+      show(result);
+      if (result.ok) await checkProtected();
+    }
+
+    async function initializeGoogle() {
+      const config = await readJson(await fetch('/api/auth/config', { cache: 'no-store' }));
+      if (!config.ok) { show(config); return; }
+      google.accounts.id.initialize({
+        client_id: config.clientId,
+        callback: handleGoogleCredential,
+        auto_select: false,
+        cancel_on_tap_outside: true
+      });
+      google.accounts.id.renderButton(document.getElementById('google-button'), {
+        type: 'standard',
+        theme: 'outline',
+        size: 'large',
+        text: 'signin_with'
+      });
+      await checkSession();
+    }
+
+    document.getElementById('session-check').addEventListener('click', checkSession);
+    document.getElementById('protected-check').addEventListener('click', checkProtected);
+    document.getElementById('logout').addEventListener('click', logout);
+    window.initializeGoogle = initializeGoogle;
+  </script>
+  <script src="https://accounts.google.com/gsi/client" async defer onload="initializeGoogle()"></script>
+</body>
+</html>
