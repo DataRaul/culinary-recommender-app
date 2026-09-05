@@ -8,6 +8,8 @@ export const YT_CUL_5D_DEFAULT_BUDGET = 16;
 export const YT_CUL_5D_MIN_BUDGET = 8;
 export const YT_CUL_5D_MAX_BUDGET = 32;
 export const YT_CUL_5D_POLICY_MAX_AGE_DAYS = 30;
+export const YT_CUL_5D_EXPLORATION_FRACTION = 0.25;
+export const YT_CUL_5D_MIN_CANONICAL_FEEDBACK_FOR_SCALE = 4;
 
 const DAY_MS = 86400000;
 const isObject = value => Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -103,6 +105,55 @@ function activeRecentDays(state, n = 3) {
   return state.completedQuotaDays.filter(day => Number.isInteger(day.searchCalls) && day.searchCalls > 0).slice(-n);
 }
 
+function feedbackGapKey(gap) {
+  if (!isObject(gap)) return null;
+  return [gap.macroRegion ?? "", gap.familyGap ?? "", gap.mealRoleGap ?? "", gap.techniqueGap ?? ""].join("|");
+}
+
+function canonicalFeedbackByGap(state) {
+  const map = new Map();
+  for (const outcome of state.canonicalOutcomes.slice(-24)) {
+    const key = feedbackGapKey(outcome?.feedbackContext?.atlasGap);
+    if (!key) continue;
+    const row = map.get(key) ?? { accepted: 0, rejected: 0, held: 0, observations: 0, score: 0 };
+    if (outcome.reviewDecision === "ACCEPTED") row.accepted += 1;
+    else if (outcome.reviewDecision === "REJECTED") row.rejected += 1;
+    else if (outcome.reviewDecision === "HELD") row.held += 1;
+    else continue;
+    row.observations += 1;
+    row.score = row.accepted * 3 - row.rejected * 2 - row.held;
+    map.set(key, row);
+  }
+  return map;
+}
+
+export function getCanonicalLearningSnapshot(state) {
+  validateDailyState(state);
+  const recent = state.canonicalOutcomes.slice(-24);
+  const accepted = recent.filter(outcome => outcome.reviewDecision === "ACCEPTED").length;
+  const rejected = recent.filter(outcome => outcome.reviewDecision === "REJECTED").length;
+  const held = recent.filter(outcome => outcome.reviewDecision === "HELD").length;
+  const resolved = accepted + rejected;
+  const acceptanceRate = resolved === 0 ? null : accepted / resolved;
+  const byGap = canonicalFeedbackByGap(state);
+  const focusFeedback = [...new Map(YT_CUL_5D_QUERY_LIBRARY.map(query => [query.focus, query])).values()]
+    .map(query => {
+      const row = byGap.get(feedbackGapKey(query.atlasGap)) ?? { accepted: 0, rejected: 0, held: 0, observations: 0, score: 0 };
+      return { focus: query.focus, ...row };
+    })
+    .sort((a, b) => b.score - a.score || b.accepted - a.accepted || a.rejected - b.rejected || a.focus.localeCompare(b.focus));
+  return {
+    schemaVersion: "youtube-culinary-canonical-learning-snapshot-v1",
+    accepted,
+    rejected,
+    held,
+    resolved,
+    acceptanceRate,
+    feedbackMatureForScaling: resolved >= YT_CUL_5D_MIN_CANONICAL_FEEDBACK_FOR_SCALE,
+    focusFeedback
+  };
+}
+
 export function evaluatePreSearchGate(state, { now = new Date(), quotaDate = getYoutubeQuotaDate(now) } = {}) {
   validateDailyState(state);
   if (state.ytCul6Readiness?.earned) return { searchAllowed: false, terminalState: "YT_CUL_6_READINESS_EARNED", budget: 0 };
@@ -122,10 +173,15 @@ export function chooseAdaptiveSearchBudget(state) {
   const latest = recent.at(-1);
   let budget = Number.isInteger(latest.searchBudget) ? latest.searchBudget : YT_CUL_5D_DEFAULT_BUDGET;
   const duplicateRate = latest.reviewCandidatesConsidered > 0 ? latest.duplicatePairsSuppressed / latest.reviewCandidatesConsidered : 0;
-  const degrading = latest.reviewReadyPacketsCreated === 0 || duplicateRate >= 0.5 || latest.largestSourceDomainShare >= 0.75 || state.unresolvedPackets.length >= 30;
-  const expanding = latest.reviewReadyPacketsCreated > 0 && latest.uniqueUsefulSourceDomains > 1 && duplicateRate < 0.5 && state.unresolvedPackets.length < 20;
+  const learning = getCanonicalLearningSnapshot(state);
+  const weakCanonicalYield = learning.feedbackMatureForScaling && learning.acceptanceRate < 0.25;
+  const strongCanonicalYield = learning.feedbackMatureForScaling && learning.acceptanceRate >= 0.5;
+  const degrading = latest.reviewReadyPacketsCreated === 0 || duplicateRate >= 0.5 || latest.largestSourceDomainShare >= 0.75 || state.unresolvedPackets.length >= 30 || weakCanonicalYield;
+  const packetYieldSupportsExpansion = latest.reviewReadyPacketsCreated > 0 && latest.uniqueUsefulSourceDomains > 1 && duplicateRate < 0.5 && state.unresolvedPackets.length < 20;
+  const expanding = packetYieldSupportsExpansion && strongCanonicalYield;
   if (degrading) budget -= 8;
   else if (expanding) budget += 8;
+  else if (!learning.feedbackMatureForScaling && budget > YT_CUL_5D_DEFAULT_BUDGET) budget = YT_CUL_5D_DEFAULT_BUDGET;
   else if (budget > YT_CUL_5D_DEFAULT_BUDGET) budget -= 8;
   else if (budget < YT_CUL_5D_DEFAULT_BUDGET) budget += 8;
   const absolute = state.assignedDailySearchLimit - state.protectedReserveCalls;
@@ -135,11 +191,31 @@ export function chooseAdaptiveSearchBudget(state) {
 export function selectDailyQueries({ state, budget }) {
   validateDailyState(state);
   if (!Number.isInteger(budget) || budget < 0 || budget > YT_CUL_5D_MAX_BUDGET) throw new Error("budget must be 0..32");
+  if (budget === 0) return [];
   const priorFocusCounts = new Map();
   for (const day of state.completedQuotaDays) for (const focus of day.focuses ?? []) priorFocusCounts.set(focus, (priorFocusCounts.get(focus) ?? 0) + 1);
-  return [...YT_CUL_5D_QUERY_LIBRARY]
-    .sort((a, b) => (priorFocusCounts.get(a.focus) ?? 0) - (priorFocusCounts.get(b.focus) ?? 0) || a.priority - b.priority || hash(a.queryId).localeCompare(hash(b.queryId)))
-    .slice(0, budget);
+  const baseSort = (a, b) => (priorFocusCounts.get(a.focus) ?? 0) - (priorFocusCounts.get(b.focus) ?? 0) || a.priority - b.priority || hash(a.queryId).localeCompare(hash(b.queryId));
+  const learning = getCanonicalLearningSnapshot(state);
+  if (learning.accepted + learning.rejected + learning.held === 0) {
+    return [...YT_CUL_5D_QUERY_LIBRARY].sort(baseSort).slice(0, budget);
+  }
+  const byGap = canonicalFeedbackByGap(state);
+  const metrics = query => byGap.get(feedbackGapKey(query.atlasGap)) ?? { accepted: 0, rejected: 0, held: 0, observations: 0, score: 0 };
+  const explorationSlots = Math.min(budget, Math.max(2, Math.ceil(budget * YT_CUL_5D_EXPLORATION_FRACTION)));
+  const exploitationSlots = Math.max(0, budget - explorationSlots);
+  const exploitation = [...YT_CUL_5D_QUERY_LIBRARY]
+    .sort((a, b) => {
+      const ma = metrics(a);
+      const mb = metrics(b);
+      return mb.score - ma.score || mb.accepted - ma.accepted || ma.rejected - mb.rejected || baseSort(a, b);
+    })
+    .slice(0, exploitationSlots);
+  const chosen = new Set(exploitation.map(query => query.queryId));
+  const exploration = [...YT_CUL_5D_QUERY_LIBRARY]
+    .filter(query => !chosen.has(query.queryId))
+    .sort((a, b) => metrics(a).observations - metrics(b).observations || baseSort(a, b))
+    .slice(0, budget - exploitation.length);
+  return [...exploitation, ...exploration];
 }
 
 export function applyCanonicalReviewBridge(state, bridge) {
@@ -153,8 +229,14 @@ export function applyCanonicalReviewBridge(state, bridge) {
     if (!["ACCEPTED", "REJECTED", "HELD"].includes(outcome.reviewDecision)) throw new Error("invalid canonical review decision");
     if (outcome.reviewAuthority !== "KNOWLEDGE_CORE_ATLAS_REVIEW") throw new Error("canonical outcome must come from Knowledge Core Atlas review");
     const packet = byPacketId.get(outcome.packetId);
+    const feedbackContext = {
+      candidateLabel: packet.candidateLabel,
+      claimScope: packet.claimScope,
+      atlasGap: structuredClone(packet.atlasGap),
+      sourceDomain: packet.independentSourceProvenance.sourceDomain
+    };
     next.canonicalOutcomes = next.canonicalOutcomes.filter(existing => existing.packetId !== outcome.packetId);
-    next.canonicalOutcomes.push(structuredClone(outcome));
+    next.canonicalOutcomes.push({ ...structuredClone(outcome), feedbackContext });
     if (outcome.reviewDecision !== "HELD") {
       next.resolvedPairKeys.push(packet.reviewPairKey);
       next.unresolvedPackets = next.unresolvedPackets.filter(existing => existing.packetId !== outcome.packetId);

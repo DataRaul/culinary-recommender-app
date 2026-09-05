@@ -6,6 +6,8 @@ import {
   YT_CUL_5D_MIN_BUDGET,
   YT_CUL_5D_MAX_BUDGET,
   YT_CUL_5D_QUERY_LIBRARY,
+  YT_CUL_5D_EXPLORATION_FRACTION,
+  YT_CUL_5D_MIN_CANONICAL_FEEDBACK_FOR_SCALE,
   createInitialDailyState,
   getYoutubeQuotaDate,
   chooseAdaptiveSearchBudget,
@@ -13,22 +15,43 @@ import {
   selectDailyQueries,
   appendCompletedDay,
   applyCanonicalReviewBridge,
+  getCanonicalLearningSnapshot,
   policyVintageIsFresh
 } from "../scripts/youtube-culinary-daily-control-plane.mjs";
 import { createAtlasRelevanceReviewReadyPacket } from "../scripts/youtube-culinary-atlas-relevance-gate.mjs";
 import { buildDailySearchRequest, relevanceMatches } from "../scripts/run-youtube-culinary-daily-discovery.mjs";
 
-function packet(index = 0) {
+const AFRICA_GAP = { macroRegion: "CENTRAL_SOUTHERN_AFRICA", familyGap: "BREAKFAST_STAPLES", mealRoleGap: null, techniqueGap: null };
+const PACIFIC_GAP = { macroRegion: "OCEANIA_PACIFIC", familyGap: "EARTH_OVEN_LEAF_WRAPPED", mealRoleGap: null, techniqueGap: null };
+
+function packet(index = 0, gap = AFRICA_GAP) {
+  const slug = gap.macroRegion === "OCEANIA_PACIFIC" ? "taro-leaf" : "millet-porridge";
   return createAtlasRelevanceReviewReadyPacket({
-    candidateLabel: `Millet Porridge ${index}`,
+    candidateLabel: `${gap.familyGap} ${index}`,
     claimScope: "IDENTITY",
-    atlasGap: { macroRegion: "CENTRAL_SOUTHERN_AFRICA", familyGap: "BREAKFAST_STAPLES", mealRoleGap: null, techniqueGap: null },
+    atlasGap: gap,
     sourceDomain: `source${index}.example`,
-    sourceUrl: `https://source${index}.example/millet-porridge`,
+    sourceUrl: `https://source${index}.example/${slug}`,
     sourceRetrievedAt: "2026-09-06T09:20:00Z",
-    machineEvidence: { recipeStructuredPage: true, candidateLabelsObserved: [`Millet Porridge ${index}`], ingredientTermsObserved: ["millet"], independentPageFingerprint: `0123456789abcde${index % 10}` },
-    relevanceReason: "Independent Recipe page matches the bounded millet breakfast gap.",
+    machineEvidence: { recipeStructuredPage: true, candidateLabelsObserved: [`${gap.familyGap} ${index}`], ingredientTermsObserved: [gap.macroRegion === "OCEANIA_PACIFIC" ? "taro" : "millet"], independentPageFingerprint: `0123456789abcde${index % 10}` },
+    relevanceReason: "Independent Recipe page matches the bounded Atlas gap.",
     unresolvedAmbiguity: ["Canonical identity remains Knowledge Core review-bound."]
+  });
+}
+
+function applyDecisions(state, packets, reviewDecision = "ACCEPTED") {
+  state.unresolvedPackets = packets;
+  return applyCanonicalReviewBridge(state, {
+    schemaVersion: "youtube-culinary-canonical-review-bridge-v1",
+    outcomes: packets.map(p => ({
+      packetId: p.packetId,
+      reviewDecision,
+      reviewAuthority: "KNOWLEDGE_CORE_ATLAS_REVIEW",
+      appAuthoringEligible: false,
+      independentNonYoutubeEvidence: true,
+      rightsProvenanceSafetyClear: true,
+      knowledgeCoreCommit: "abc123"
+    }))
   });
 }
 
@@ -51,8 +74,22 @@ test("first active quota day starts at 16 calls and preserves the five-call rese
   assert.ok(16 <= 100 - 5);
 });
 
-test("adaptive budget rises toward 32 only after useful multi-domain yield", () => {
+test("packet yield alone cannot scale Search above baseline before canonical feedback exists", () => {
   let state = createInitialDailyState();
+  state = appendCompletedDay(state, {
+    quotaDate: "2026-09-06", searchBudget: 16, searchCalls: 16, reviewCandidatesConsidered: 4,
+    reviewReadyPacketsCreated: 3, duplicatePairsSuppressed: 0, uniqueUsefulSourceDomains: 3,
+    largestSourceDomainShare: 1 / 3, independentPagesReviewed: 4, recipeStructuredPagesConfirmed: 3,
+    terminalState: "DAILY_DISCOVERY_CONTINUE", focuses: ["A"]
+  });
+  assert.equal(chooseAdaptiveSearchBudget(state), YT_CUL_5D_DEFAULT_BUDGET);
+});
+
+test("adaptive budget rises toward 32 only after useful packet yield and mature positive canonical feedback", () => {
+  let state = createInitialDailyState();
+  const reviewed = Array.from({ length: YT_CUL_5D_MIN_CANONICAL_FEEDBACK_FOR_SCALE }, (_, i) => packet(i));
+  state = applyDecisions(state, reviewed, "ACCEPTED");
+  assert.equal(getCanonicalLearningSnapshot(state).feedbackMatureForScaling, true);
   state = appendCompletedDay(state, {
     quotaDate: "2026-09-06", searchBudget: 16, searchCalls: 16, reviewCandidatesConsidered: 4,
     reviewReadyPacketsCreated: 3, duplicatePairsSuppressed: 0, uniqueUsefulSourceDomains: 3,
@@ -69,6 +106,19 @@ test("adaptive budget rises toward 32 only after useful multi-domain yield", () 
   assert.equal(chooseAdaptiveSearchBudget(state), YT_CUL_5D_MAX_BUDGET);
 });
 
+test("weak canonical acceptance signal reduces Search even when packet volume looks healthy", () => {
+  let state = createInitialDailyState();
+  const reviewed = Array.from({ length: YT_CUL_5D_MIN_CANONICAL_FEEDBACK_FOR_SCALE }, (_, i) => packet(i));
+  state = applyDecisions(state, reviewed, "REJECTED");
+  state = appendCompletedDay(state, {
+    quotaDate: "2026-09-06", searchBudget: 16, searchCalls: 16, reviewCandidatesConsidered: 5,
+    reviewReadyPacketsCreated: 4, duplicatePairsSuppressed: 0, uniqueUsefulSourceDomains: 4,
+    largestSourceDomainShare: 0.25, independentPagesReviewed: 5, recipeStructuredPagesConfirmed: 4,
+    terminalState: "DAILY_DISCOVERY_CONTINUE", focuses: ["A"]
+  });
+  assert.equal(chooseAdaptiveSearchBudget(state), YT_CUL_5D_MIN_BUDGET);
+});
+
 test("adaptive budget falls toward 8 when yield or diversity deteriorates", () => {
   let state = createInitialDailyState();
   state = appendCompletedDay(state, {
@@ -78,6 +128,32 @@ test("adaptive budget falls toward 8 when yield or diversity deteriorates", () =
     terminalState: "DAILY_DISCOVERY_CONTINUE_REDUCED_BUDGET", focuses: ["A"]
   });
   assert.equal(chooseAdaptiveSearchBudget(state), YT_CUL_5D_MIN_BUDGET);
+});
+
+test("canonical outcomes carry policy-safe feedback context and change next-query priority", () => {
+  let state = createInitialDailyState();
+  state = applyDecisions(state, [packet(0, PACIFIC_GAP), packet(1, PACIFIC_GAP)], "ACCEPTED");
+  const learning = getCanonicalLearningSnapshot(state);
+  assert.equal(learning.accepted, 2);
+  assert.equal(state.canonicalOutcomes[0].feedbackContext.atlasGap.macroRegion, "OCEANIA_PACIFIC");
+  const selected = selectDailyQueries({ state, budget: 8 });
+  assert.equal(selected[0].focus, "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED");
+  assert.ok(selected.some(query => query.focus !== "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED"));
+  assert.equal(YT_CUL_5D_EXPLORATION_FRACTION, 0.25);
+});
+
+test("accepted focus outranks repeatedly rejected focus while preserving exploration", () => {
+  let state = createInitialDailyState();
+  const pacific = [packet(0, PACIFIC_GAP), packet(1, PACIFIC_GAP)];
+  state = applyDecisions(state, pacific, "ACCEPTED");
+  const africa = [packet(2, AFRICA_GAP), packet(3, AFRICA_GAP)];
+  state = applyDecisions(state, africa, "REJECTED");
+  const selected = selectDailyQueries({ state, budget: 8 });
+  const pacificFirst = selected.findIndex(query => query.focus === "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED");
+  const africaFirst = selected.findIndex(query => query.focus === "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES");
+  assert.ok(pacificFirst >= 0);
+  assert.ok(africaFirst === -1 || pacificFirst < africaFirst);
+  assert.ok(new Set(selected.map(query => query.focus)).size > 1);
 });
 
 test("three consecutive zero-packet active days trigger low-marginal-value hold before Search", () => {
