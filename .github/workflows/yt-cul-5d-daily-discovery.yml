@@ -1,0 +1,146 @@
+name: YT-CUL-5D daily discovery
+
+on:
+  schedule:
+    - cron: '20 9 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run all preflight/state logic without YouTube Search spend'
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: yt-cul-5d-daily-discovery
+  cancel-in-progress: false
+
+jobs:
+  daily-discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      CULINARY_YOUTUBE_API_KEY: ${{ secrets.CULINARY_YOUTUBE_API_KEY }}
+      CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT: '100'
+      CULINARY_YOUTUBE_PROJECT_IDENTITY: ${{ vars.CULINARY_YOUTUBE_PROJECT_IDENTITY }}
+      YT_CUL_POLICY_RECHECKED_AT: '2026-09-05'
+      YT_CUL_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+      YT_CUL_DAILY_STATE_PATH: data/generated/youtube-culinary-daily-discovery-state.json
+      YT_CUL_CANONICAL_REVIEW_BRIDGE_PATH: data/generated/youtube-culinary-canonical-review-bridge.json
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fail-closed YT-CUL-5D preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT}" != "100" ]]; then
+            echo "::error::YT-CUL-5D is currently armed only for the owner-verified 100/day Search Queries limit."
+            exit 2
+          fi
+          if [[ -z "${CULINARY_YOUTUBE_PROJECT_IDENTITY:-}" ]]; then
+            echo "::error::CULINARY_YOUTUBE_PROJECT_IDENTITY is missing."
+            exit 2
+          fi
+          if [[ "${CULINARY_YOUTUBE_PROJECT_IDENTITY}" =~ [Bb][Ll][Uu][Ee].*[Ll][Aa][Gg][Oo][Oo][Nn] ]] || [[ "${CULINARY_YOUTUBE_PROJECT_IDENTITY}" =~ [Mm][Uu][Ss][Ii][Cc] ]]; then
+            echo "::error::Blue Lagoon/music identity is forbidden in the Culinary API client."
+            exit 2
+          fi
+          if [[ "${YT_CUL_DRY_RUN}" != "true" && "${YT_CUL_DRY_RUN}" != "false" ]]; then
+            echo "::error::YT_CUL_DRY_RUN must resolve to true or false."
+            exit 2
+          fi
+          if [[ "${YT_CUL_DRY_RUN}" == "false" ]]; then
+            if [[ -z "${CULINARY_YOUTUBE_API_KEY:-}" ]]; then
+              echo "::error::CULINARY_YOUTUBE_API_KEY is not available to the scheduled live workflow."
+              exit 2
+            fi
+            echo "::add-mask::$CULINARY_YOUTUBE_API_KEY"
+          fi
+
+      - name: Validate YT-CUL safety and daily control contracts before any live spend
+        run: >-
+          node --test
+          tests/youtube-culinary-discovery-control-plane.test.js
+          tests/youtube-culinary-connectivity-canary.test.js
+          tests/youtube-culinary-discovery-pilot.test.js
+          tests/youtube-culinary-channel-playlist-efficiency.test.js
+          tests/youtube-culinary-atlas-expansion-cadence.test.js
+          tests/youtube-culinary-atlas-relevance-gate.test.js
+          tests/youtube-culinary-relevance-source-diversity-repair.test.js
+          tests/youtube-culinary-daily-discovery.test.js
+
+      - name: Execute one quota-date-aware daily cycle
+        id: daily
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/run-youtube-culinary-daily-discovery.mjs | tee "$RUNNER_TEMP/yt-cul-5d-safe-summary.json"
+
+      - name: Persist only cumulative policy-safe programme state
+        if: success() && env.YT_CUL_DRY_RUN == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- data/generated/youtube-culinary-daily-discovery-state.json; then
+            echo "No cumulative state change to persist."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/generated/youtube-culinary-daily-discovery-state.json
+          git commit -m "YT-CUL-5D daily safe state [skip ci]"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            sleep $((attempt * 2))
+          done
+          echo "::error::Could not persist cumulative safe state after three bounded retries."
+          exit 3
+
+      - name: Record compact policy-safe daily summary
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "# YT-CUL-5D daily discovery" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          if [[ ! -s "$RUNNER_TEMP/yt-cul-5d-safe-summary.json" ]]; then
+            echo "- Result: **NO_SAFE_SUMMARY_PRODUCED**" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          node --input-type=module <<'NODE'
+          import { readFile, appendFile } from 'node:fs/promises';
+          const summary = JSON.parse(await readFile(`${process.env.RUNNER_TEMP}/yt-cul-5d-safe-summary.json`, 'utf8'));
+          const lines = [
+            `- Result: **${summary.result}**`,
+            `- YouTube quota date: ${summary.quotaDate}`,
+            `- Dry run: ${summary.dryRun ?? false}`,
+            `- Search calls: ${summary.searchCallsExecuted ?? 0} / adaptive budget ${summary.searchBudget ?? 0}`,
+            `- Independent pages reviewed: ${summary.independentPagesReviewed ?? 0}`,
+            `- Recipe-structured pages confirmed: ${summary.recipeStructuredPagesConfirmed ?? 0}`,
+            `- New Atlas relevance review-ready packets: ${summary.reviewReadyPacketsCreated ?? 0}`,
+            `- Duplicate source/target pairs suppressed: ${summary.duplicatePairsSuppressed ?? 0}`,
+            `- Useful independent source domains: ${summary.uniqueUsefulSourceDomains ?? 0}`,
+            `- Unresolved review backlog: ${summary.unresolvedReviewBacklog ?? 0}`,
+            `- YT-CUL-6 readiness earned: ${summary.ytCul6ReadinessEarned ?? false}`,
+            `- Raw YouTube API Data durable: ${summary.controls?.rawYoutubeApiDataEmbedded ?? false}`,
+            `- Automatic Atlas promotion: ${summary.controls?.automaticAtlasPromotionAuthorized ?? false}`,
+            `- Automatic app admission: ${summary.controls?.automaticAppAdmissionAuthorized ?? false}`,
+            ''
+          ].join('\n');
+          await appendFile(process.env.GITHUB_STEP_SUMMARY, lines, 'utf8');
+          NODE
