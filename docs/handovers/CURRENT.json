@@ -1,18 +1,17 @@
 {
-  "handover": "CULINARY_RECOMMENDER_APP_STEP7B_PASS_STEP7C_PAGES_AUTH_RUNTIME_GATE_V13",
+  "handover": "CULINARY_RECOMMENDER_APP_STEP7C_PASS_STEP7D_PROTECTED_84_LIVE_GATE_V14",
   "handover_date": "2026-09-05",
   "timezone": "Atlantic/Canary",
-  "status": "STEPS_1_6_MERGED_GREEN__STEP_7A_PASS_MERGED_GREEN__STEP_7B_FREE_NO_BILLING_AUTH_CONFIRMED__STEP_7C_ACCOUNT_PREREQS_COMPLETE__STEP_7C_PAGES_FUNCTIONS_AUTH_CODE_MERGED_GREEN__PAGES_RUNTIME_BINDINGS_MIGRATION_OWNER_CANARY_HUMAN_REQUIRED__NO_BILLING_AUTH_CONSTRAINT_ACTIVE__YT_CUL_5R_PASS_MERGED_GREEN__YT_CUL_5D_SCHEDULED_ACTIVE__YT_CUL_6_NOT_EARNED",
+  "status": "STEPS_1_6_MERGED_GREEN__STEP_7A_NO_BILLING_170K_PASS__STEP_7B_FREE_NO_BILLING_AUTH_CONFIRMED__STEP_7C_LIVE_AUTH_REVOCATION_CANARY_PASS__STEP_7D_CODE_MERGED_GREEN_AND_PRODUCTION_DEPLOYED__STEP_7D_LIVE_OWNER_RUNTIME_CANARY_HUMAN_REQUIRED__STEP_7E_BLOCKED__NO_BILLING_AUTH_CONSTRAINT_ACTIVE__YT_CUL_5D_SCHEDULED_ACTIVE__YT_CUL_6_NOT_EARNED",
   "human_needed": true,
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
     "source_of_truth": "GitHub",
-    "handover_written_against_main_sha": "d02eed5558fb620d47bc7424e5b2a63c39caf3ad",
+    "handover_written_against_main_sha": "110a34c89e912b4bf4d75fb808cc4b9a564d8059",
     "step_7a_merge_sha": "8cc1a672d7f7dc33d12b17169908c69685a733c4",
-    "step_7b_7c_auth_canary_pr": 72,
-    "step_7b_7c_auth_canary_merge_sha": "d02eed5558fb620d47bc7424e5b2a63c39caf3ad",
-    "yt_cul_5_merge_sha": "ff255755e39a4802f3dc2c0d110ca35b702781be",
+    "step_7c_revocation_merge_sha": "e99ffa7ac6c9d1976500fc2ff0fd7739baef7ae8",
+    "step_7d_merge_sha": "110a34c89e912b4bf4d75fb808cc4b9a564d8059",
     "yt_cul_5r_merge_sha": "4bd9678d97dd5369daeb3c08f4e0c49996dbcfda",
     "yt_cul_5d_merge_sha": "bfe56563c443549623b56038b4b1a65b2af821e2"
   },
@@ -20,7 +19,7 @@
     "current": "docs/handovers/CURRENT.json",
     "previous": "docs/handovers/PREVIOUS.json",
     "protocol": "docs/HANDOVER_PROTOCOL.md",
-    "rotation": "CURRENT -> PREVIOUS; new state -> CURRENT",
+    "rotation": "CURRENT -> PREVIOUS; new state -> CURRENT only at a continuation boundary",
     "new_chat_start": "Read CURRENT first, then fresh-reconcile live GitHub main, open PRs, relevant branches, CI and any scheduled YT-CUL state commit before acting. Live GitHub outranks this snapshot."
   },
   "lane": {
@@ -31,22 +30,22 @@
   },
   "operating_contract": {
     "autonomy": "Proceed autonomously through technically resolvable repository work after fresh reconciliation. Stop only for genuine human/security/cost gates, unrecoverable errors, terminal material results or continuation boundaries.",
-    "user_facing_rule": "No routine narration outside those gates/results. For external account setup, guide one screen/action at a time and trust the owner-visible current UI rather than stale vendor UI assumptions.",
+    "user_facing_rule": "No routine narration outside those gates/results. For external account/runtime setup or live browser canaries, guide one action at a time.",
     "fresh_reconciliation": "Before every meaningful write or merge, fresh-reconcile main, open PRs, relevant branches, changed files, CI and concurrent scheduled workflow state.",
     "actions_authority": "Normal repository CI, browser acceptance, roadmap-required benchmark workflows, path-scoped validation and technically necessary ordinary reruns are standing-preauthorized by AGENTS.md.",
-    "cost_boundary": "Hard no-billing-authorization constraint: do not activate or accept any product/subscription whose setup authorizes a payment method to be charged for usage beyond free limits. No paid Cloudflare plan, paid API, paid corpus licence or recurring infrastructure cost is authorized.",
-    "external_setup_gate_rule": "Every future human provisioning step must terminate as FREE_NO_BILLING_AUTHORIZATION_CONFIRMED, BILLING_OR_OVERAGE_AUTHORIZATION_PRESENT, or AMBIGUOUS. Only FREE_NO_BILLING_AUTHORIZATION_CONFIRMED may proceed."
+    "cost_boundary": "Hard no-billing-authorization constraint: do not activate or accept any product/subscription whose setup authorizes a payment method to be charged for usage beyond free limits. No Workers Paid, R2, Zero Trust/Access, paid API, paid corpus licence or recurring infrastructure cost is authorized.",
+    "secrets_boundary": "Never ask for, expose or commit SESSION_SECRET, OWNER_BOOTSTRAP_EMAIL, Google ID tokens, session cookies, API keys, OAuth secrets or the owner's private email."
   },
   "corpus_scale": {
     "architecture": "docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md",
-    "step_7b_7c_canary_document": "docs/CORPUS_SCALE_STEP7B_7C_PAGES_FUNCTIONS_AUTH_CANARY.md",
+    "step_7b_7c_evidence": "docs/CORPUS_SCALE_STEP7B_7C_PAGES_FUNCTIONS_AUTH_CANARY.md",
+    "step_7d_contract": "docs/CORPUS_SCALE_STEP7D_PROTECTED_84_CANARY.md",
     "required_capacity": 170000,
     "stress_capacity": 250000,
     "golden_recipe_count": 84,
     "step_7a": {
       "terminal": "NO_BILLING_AUTH_170K_ARCHITECTURE_PASS",
       "status": "MERGED_GREEN",
-      "merge_sha": "8cc1a672d7f7dc33d12b17169908c69685a733c4",
       "at_170k_estimated_total_bytes": 922455560,
       "at_250k_estimated_total_bytes": 1348698648,
       "database_slots_used": 9,
@@ -54,60 +53,82 @@
       "bounded_candidates": 256,
       "d1_subqueries_range": "10-12",
       "full_corpus_scans": 0,
-      "worker_cpu_boundary": "Actual Workers Free CPU remains a mandatory Step 7D protected 84-record canary measurement; local GitHub wall-clock proxy is advisory only."
+      "worker_cpu_boundary": "Actual Workers Free CPU remains a mandatory Step 7D live measurement; local wall-clock proxy is advisory only."
     },
     "step_7b": {
       "terminal": "FREE_NO_BILLING_AUTHORIZATION_CONFIRMED",
       "status": "COMPLETE_OWNER_VISIBLE_PASS",
       "evidence": [
-        "D1 Free database culinary-control created with EU jurisdiction without checkout/payment/subscription/overage authorization",
-        "Workers Free canary culinary-gateway-canary deployed without paid-plan activation",
-        "D1 binding CULINARY_CONTROL_DB attached to Worker canary",
-        "Worker -> D1 SELECT 1 connectivity returned {\"ok\":1}",
+        "Existing D1 Free database culinary-control created with EU jurisdiction without checkout/payment/subscription/overage authorization",
+        "Workers Free diagnostic canary reached culinary-control D1 and SELECT 1 returned ok",
         "Workers Paid, R2 and Zero Trust/Access remain unactivated"
       ]
     },
     "step_7c": {
-      "account_prerequisites": "COMPLETE",
-      "code_status": "MERGED_GREEN_PENDING_PAGES_RUNTIME_CONFIGURATION_AND_LIVE_OWNER_CANARY",
-      "pr": 72,
-      "merge_sha": "d02eed5558fb620d47bc7424e5b2a63c39caf3ad",
-      "pr_validation_run": 33990435065,
-      "post_merge_validation_run": 33990522336,
-      "post_merge_github_pages_run": 33990521780,
-      "focused_auth_tests": "6/6 PASS",
-      "identity_provider": {
-        "provider": "Google GIS/OIDC",
-        "user_type": "External",
-        "publishing_status": "Testing",
-        "test_users": 1,
-        "web_oauth_client_created": true,
-        "authorized_javascript_origin": "https://culinary-recommender-app.pages.dev",
-        "custom_domain_required": false,
-        "production_oauth_publishing_required_for_canary": false,
-        "client_secret_required": false
+      "terminal": "STEP_7C_LIVE_AUTH_REVOCATION_CANARY_PASS",
+      "status": "COMPLETE_LIVE_PASS_MERGED_GREEN",
+      "implementation_lineage": [
+        {"pr":72,"merge_sha":"d02eed5558fb620d47bc7424e5b2a63c39caf3ad","purpose":"same-origin Pages Functions auth canary"},
+        {"pr":74,"merge_sha":"05531bacbab028beb9e57a6f9490e2a2e7a12fd3","purpose":"reload diagnostics, explicit same-origin credentials and stale-cookie clearing"},
+        {"pr":75,"merge_sha":"d3f6e1a233240fff6a7075761d5a5d132ca99265","purpose":"temporary bounded runtime probe used to classify NO_SESSION"},
+        {"pr":76,"merge_sha":"e99ffa7ac6c9d1976500fc2ff0fd7739baef7ae8","purpose":"authenticated session_version revocation canary"}
+      ],
+      "live_evidence": [
+        "Initial 401 classified by temporary probe as configured runtime with cookiePresent false and NO_SESSION, not signature/binding failure",
+        "Fresh Google login returned HTTP 200 authenticated true",
+        "Later session check returned HTTP 200 authenticated true, proving Culinary session persistence in the tested browser context",
+        "Protected D1 canary returned HTTP 200 authenticated true",
+        "Authenticated revoke returned HTTP 200 revoked true with nextExpectedReason SESSION_REVOKED",
+        "Next protected request returned HTTP 401 reason SESSION_REVOKED"
+      ],
+      "privacy": "No account ID, owner email, cookie/token, Google credential or secret is retained in repository evidence.",
+      "temporary_runtime_probe": "REMOVED_IN_STEP_7D"
+    },
+    "step_7d": {
+      "status": "CODE_MERGED_GREEN_PRODUCTION_DEPLOYED__LIVE_CANARY_REQUIRED",
+      "pr": 77,
+      "merge_sha": "110a34c89e912b4bf4d75fb808cc4b9a564d8059",
+      "pr_validation_run": 33997006965,
+      "pr_validation": "PASS",
+      "post_merge_validation_run": 33997084457,
+      "post_merge_validation": "PASS",
+      "cloudflare_production_check_run": 101389419604,
+      "cloudflare_deployment_id": "3d803d6e-2df3-47cd-a41b-9e8e36996588",
+      "cloudflare_production_deployment": "PASS",
+      "runtime_shape": "Existing Cloudflare Pages Free + same-origin /api/* Pages Functions on Workers Free + existing culinary-control D1 Free only.",
+      "oracle": {
+        "table": "step7d_recipe_oracle",
+        "database": "culinary-control",
+        "expected_records": 84,
+        "integrity": "SHA-256 fingerprinted and exact-count checked",
+        "bootstrap": "Authenticated same-origin idempotent route creates table in existing D1 and inserts only if empty; partial/mismatched state fails closed",
+        "audit": "Authenticated route reads all 84 rows and returns count/fingerprint/body bytes plus D1 metadata without recipe bodies",
+        "protected_sample": "Authenticated route can return one recipe body",
+        "free_limit_simulation": "Authenticates first, then returns HTTP 503 FREE_LIMIT_FAIL_CLOSED before oracle query; protectedDataReturned false; oracleQueries 0",
+        "actual_worker_cpu": "OWNER_VISIBLE_LIVE_MEASUREMENT_STILL_REQUIRED"
       },
-      "runtime_shape": "Existing Cloudflare Pages Free project + same-origin /api/* Pages Functions + culinary-control D1 Free. The standalone workers.dev canary is diagnostic only, not the intended production auth surface.",
-      "security": {
-        "public_signup": false,
-        "exact_private_allowlist": true,
-        "server_side_google_signature_audience_issuer_expiry_checks": true,
-        "stable_binding": "provider issuer + subject",
-        "session_cookie": "__Host- prefix + Secure + HttpOnly + SameSite=Lax + Path=/",
-        "session_integrity": "HMAC-SHA256",
-        "protected_request_current_account_recheck": true,
-        "revocation_fail_closed": true,
-        "reusable_google_credential_stored": false,
-        "owner_email_or_runtime_secrets_in_github": false
-      }
+      "resource_boundaries": {
+        "new_d1_database_created": false,
+        "recipe_body_shards_created": 0,
+        "recipe_body_shards_planned": 8,
+        "reserved_database_slot_untouched": true,
+        "paid_plan_activation": false
+      },
+      "terminal_not_yet_earned": "STEP_7D_PROTECTED_84_CANARY_PASS"
+    },
+    "step_7e": {
+      "status": "BLOCKED_UNTIL_STEP_7D_PROTECTED_84_CANARY_PASS",
+      "scope_if_unlocked": "500-1000 rights-clean real-source production-shaped pilot",
+      "current_leading_source_candidate": "ForkRecipe"
     },
     "provider_state": {
       "cloudflare_pages": "EXISTING_FREE_PROJECT_KEEP",
-      "pages_functions": "AUTH_CANARY_CODE_MERGED__PRODUCTION_RUNTIME_BINDINGS_NOT_YET_CONFIGURED",
-      "d1_control": "culinary-control CREATED_FREE_NO_BILLING_AUTH__EU_JURISDICTION",
+      "pages_functions": "PRODUCTION_AUTH_AND_STEP7D_CODE_DEPLOYED",
+      "d1_control": "culinary-control EXISTING_FREE_NO_BILLING_AUTH__EU_JURISDICTION",
+      "d1_step7d_oracle": "SCHEMA_CODE_DEPLOYED__LIVE_BOOTSTRAP_NOT_YET_RUN",
       "d1_recipe_body_shards": "0_OF_8_CREATED__DO_NOT_CREATE_YET",
       "d1_reserved_slot": "1_SLOT_MUST_REMAIN_UNCREATED",
-      "standalone_worker_canary": "culinary-gateway-canary FREE_DIAGNOSTIC_PASS__NOT_PRODUCTION_AUTH_SURFACE",
+      "standalone_worker_canary": "FREE_DIAGNOSTIC_EVIDENCE_ONLY__NOT_PRODUCTION_AUTH_SURFACE",
       "google_auth": "EXTERNAL_TESTING__ONE_OWNER_TEST_USER__WEB_CLIENT_CREATED",
       "zero_trust_access": "REJECTED_DO_NOT_ACTIVATE",
       "r2": "REJECTED_DO_NOT_ACTIVATE",
@@ -116,23 +137,20 @@
   },
   "human_gates": {
     "current": {
-      "name": "STEP_7C_PAGES_RUNTIME_BINDINGS_MIGRATION_AND_OWNER_LOGIN_CANARY",
+      "name": "STEP_7D_PROTECTED_84_LIVE_CANARY",
       "status": "HUMAN_REQUIRED_NOW",
-      "purpose": "Configure the already-merged same-origin Pages Functions auth canary on the existing Cloudflare Pages Free project, migrate only the control D1 auth table, and prove owner login plus fail-closed revocation without enabling paid infrastructure or corpus data.",
-      "first_action_only": "Open Cloudflare Dashboard -> Workers & Pages -> culinary-recommender-app -> Settings, then report/paste the bindings/runtime variables section before changing anything.",
-      "later_sequence_after_screen_by_screen_review": [
-        "Bind Pages project CULINARY_CONTROL_DB to existing culinary-control",
-        "Add public runtime variable GOOGLE_CLIENT_ID using the already-created Google Web client ID",
-        "Add fresh SESSION_SECRET as a Cloudflare secret; never paste it into chat or GitHub",
-        "Add temporary OWNER_BOOTSTRAP_EMAIL as a Cloudflare secret; never paste the email into chat or GitHub",
-        "Run migrations/0001_auth_canary.sql once against culinary-control",
-        "Redeploy Pages project and test /auth-canary.html as the sole Google test user",
-        "After first successful bootstrap remove OWNER_BOOTSTRAP_EMAIL and redeploy",
-        "Prove protected route works while enabled, then prove session_version increment or account disable fails closed"
+      "purpose": "Run the production Step 7D protected 84-record security/runtime canary and collect actual Workers Free runtime evidence before any real corpus expansion.",
+      "first_action_only": "Open https://culinary-recommender-app.pages.dev/auth-canary.html and sign in with Google once to restore the Culinary session intentionally revoked during Step 7C. Paste only the status box result; do not paste cookies, tokens, secrets or email.",
+      "later_sequence_after_each_result": [
+        "Initialize Step 7D oracle; require HTTP 200, recipeCount 84 and a stable 64-character SHA-256 fingerprint",
+        "Audit Step 7D oracle; require HTTP 200, same count/fingerprint and bounded D1 read metadata",
+        "Read one protected sample recipe; require HTTP 200 and protectedDataReturned true",
+        "Simulate Free-limit failure; require HTTP 503 FREE_LIMIT_FAIL_CLOSED, protectedDataReturned false and oracleQueries 0",
+        "Prove unauthenticated Step 7D oracle request returns HTTP 401 before protected data access",
+        "Inspect owner-visible current Cloudflare Pages/Workers runtime analytics and record actual CPU plus relevant request/D1 evidence without activating paid products"
       ],
       "hard_stop": "If any screen introduces checkout, subscription, payment authorization, overage authorization, Workers Paid, R2 or Zero Trust/Access activation, stop and classify it before accepting anything."
     },
-    "step_7d_protected_84_record_canary": "BLOCKED_UNTIL_STEP_7C_LIVE_OWNER_LOGIN_AND_REVOCATION_CANARY_PASS",
     "step_7e_real_source_pilot": "BLOCKED_UNTIL_STEP_7D_PASS",
     "youtube": "NO_CURRENT_HUMAN_GATE"
   },
@@ -142,13 +160,6 @@
     "search_queries_daily_limit_verified_on_2026_09_05": 100,
     "quota_reserve_calls": 5,
     "known_successful_search_calls_through_yt_cul_5_on_2026_09_05": 43,
-    "remaining_before_reserve_after_yt_cul_5": 52,
-    "yt_cul_0": "MERGED_GREEN",
-    "yt_cul_1": "COMPLETE",
-    "yt_cul_2": "PASS_MERGED_GREEN",
-    "yt_cul_3": "PASS_MERGED_GREEN__YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND",
-    "yt_cul_4": "PASS_MERGED_GREEN__YT_CUL_4_CHANNEL_PLAYLIST_EFFICIENCY_GAIN",
-    "yt_cul_5": "PASS_MERGED_GREEN__YT_CUL_5_USEFUL_BUT_REVIEW_BOUND",
     "yt_cul_5r": {
       "status": "MERGED_GREEN__YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_ARCHITECTURE_PASS__ZERO_LIVE_SEARCH",
       "merge_sha": "4bd9678d97dd5369daeb3c08f4e0c49996dbcfda"
@@ -166,7 +177,11 @@
         "lastCompletedQuotaDate": null,
         "completedQuotaDays": [],
         "cumulativeSearchCalls": 0,
+        "independentPagesReviewed": 0,
+        "recipeStructuredPagesConfirmed": 0,
         "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "unresolvedPackets": 0,
         "hardHold": null,
         "ytCul6ReadinessEarned": false
       },
@@ -198,7 +213,8 @@
     "roadmap_handover": "docs/ROADMAP_HANDOVER.md",
     "no_billing_auth_170k_architecture": "docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md",
     "step_7a_contract": "docs/CORPUS_SCALE_STEP7A_NO_BILLING_AUTH_REBASELINE.md",
-    "step_7b_7c_auth_canary": "docs/CORPUS_SCALE_STEP7B_7C_PAGES_FUNCTIONS_AUTH_CANARY.md",
+    "step_7b_7c_evidence": "docs/CORPUS_SCALE_STEP7B_7C_PAGES_FUNCTIONS_AUTH_CANARY.md",
+    "step_7d_contract": "docs/CORPUS_SCALE_STEP7D_PROTECTED_84_CANARY.md",
     "youtube_base_roadmap": "docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md",
     "youtube_daily_roadmap": "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md",
     "yt_cul_5r_contract": "docs/YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_CONTRACT.md",
@@ -207,18 +223,18 @@
   },
   "next_action": {
     "corpus_scale_human": {
-      "name": "STEP_7C_PAGES_RUNTIME_BINDINGS_MIGRATION_AND_OWNER_LOGIN_CANARY",
+      "name": "RESTORE_SESSION_THEN_STEP7D_LIVE_CANARY",
       "status": "HUMAN_REQUIRED_NOW",
-      "first_action": "Open Cloudflare Dashboard -> Workers & Pages -> culinary-recommender-app -> Settings and report/paste the bindings/runtime variables section. Do not change anything until the current screen is reviewed."
+      "first_action": "Open https://culinary-recommender-app.pages.dev/auth-canary.html and sign in with Google once. Paste the status result only."
     },
     "corpus_scale_repository": {
-      "name": "WAIT_FOR_STEP_7C_LIVE_PAGES_CANARY",
-      "status": "BLOCKED_ON_HUMAN_RUNTIME_CONFIGURATION"
+      "name": "WAIT_FOR_STEP7D_LIVE_RUNTIME_EVIDENCE",
+      "status": "CODE_MERGED_GREEN__BLOCKED_ONLY_ON_LIVE_HUMAN_CANARY"
     },
     "youtube_culinary_discovery": {
       "name": "YT_CUL_5D_AUTOMATIC_DAILY_DISCOVERY",
       "status": "SCHEDULED_ACTIVE__NO_HUMAN_GATE__YT_CUL_6_NOT_EARNED"
     }
   },
-  "terminal_instruction_for_new_chat": "Open docs/handovers/CURRENT.json and fresh-reconcile live GitHub before acting. Corpus Step 7B is complete with FREE_NO_BILLING_AUTHORIZATION_CONFIRMED: culinary-control D1 Free and the standalone Workers Free D1 connectivity canary succeeded without billing authorization. PR #72 merged the real lightweight same-origin Pages Functions auth canary at d02eed5558fb620d47bc7424e5b2a63c39caf3ad and validation is green. Google Auth remains External/Testing with one owner test user and no custom domain or production publication requirement for the canary. The current human gate is Pages project runtime configuration, starting only by opening culinary-recommender-app -> Settings and reporting the bindings/runtime variables screen. Do not create the eight recipe shards, populate recipe data, activate R2/Zero Trust/Workers Paid, or accept any billing/overage authorization. YT-CUL-5R is merged-green PASS and YT-CUL-5D is merged-green scheduled active with zero completed quota days at this snapshot; YT-CUL-6 is not earned. Preserve all source-rights, nutrition, hard-filter, RecipeSource V2, YouTube evidence, Blue Lagoon separation and Knowledge Core boundaries."
+  "terminal_instruction_for_new_chat": "Read docs/handovers/CURRENT.json and fresh-reconcile live GitHub before acting. Step 7C is a completed live PASS: login/session persistence/protected D1 access worked and a deliberately revoked session failed closed with HTTP 401 SESSION_REVOKED. Step 7D code is merged and deployed on main 110a34c89e912b4bf4d75fb808cc4b9a564d8059 with PR and post-merge validation green. The next human action is only to restore the intentionally revoked Culinary session by signing in once on the production auth canary, then continue the Step 7D protected 84-record live sequence one action at a time. Do not create the eight future recipe-body D1 shards, do not activate Workers Paid/R2/Zero Trust, do not admit a new recipe source, and preserve the concurrent YT-CUL-5D scheduled lane."
 }
