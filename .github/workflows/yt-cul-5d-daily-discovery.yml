@@ -30,6 +30,8 @@ jobs:
       YT_CUL_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
       YT_CUL_DAILY_STATE_PATH: data/generated/youtube-culinary-daily-discovery-state.json
       YT_CUL_CANONICAL_REVIEW_BRIDGE_PATH: data/generated/youtube-culinary-canonical-review-bridge.json
+      CULINARY_KC_REVIEW_SYNC_ENABLED: ${{ vars.CULINARY_KC_REVIEW_SYNC_ENABLED || 'false' }}
+      CULINARY_KC_REVIEW_READ_TOKEN: ${{ secrets.CULINARY_KC_REVIEW_READ_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -67,6 +69,10 @@ jobs:
             fi
             echo "::add-mask::$CULINARY_YOUTUBE_API_KEY"
           fi
+          if [[ "${CULINARY_KC_REVIEW_SYNC_ENABLED}" == "true" && -z "${CULINARY_KC_REVIEW_READ_TOKEN:-}" ]]; then
+            echo "::error::CULINARY_KC_REVIEW_READ_TOKEN is required when canonical review sync is enabled."
+            exit 2
+          fi
 
       - name: Validate YouTube safety, relevance and adaptive allocation before live spend
         run: >-
@@ -80,6 +86,14 @@ jobs:
           tests/youtube-culinary-relevance-source-diversity-repair.test.js
           tests/youtube-culinary-daily-discovery.test.js
           tests/youtube-culinary-adaptive-portfolio.test.js
+          tests/youtube-culinary-kc-review-bridge-sync.test.js
+
+      - name: Sync canonical Knowledge Core review bridge at repository time
+        id: kc_review_sync
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/sync-youtube-culinary-kc-review-bridge.mjs | tee "$RUNNER_TEMP/yt-cul-kc-review-sync.json"
 
       - name: Execute one quota-date-aware adaptive portfolio cycle
         id: daily
@@ -123,8 +137,10 @@ jobs:
           import { readFile, appendFile } from 'node:fs/promises';
           let summary = null;
           let state = null;
+          let kcSync = null;
           try { summary = JSON.parse(await readFile(`${process.env.RUNNER_TEMP}/yt-cul-5e-safe-summary.json`, 'utf8')); } catch {}
           try { state = JSON.parse(await readFile(process.env.YT_CUL_DAILY_STATE_PATH, 'utf8')); } catch {}
+          try { kcSync = JSON.parse(await readFile(`${process.env.RUNNER_TEMP}/yt-cul-kc-review-sync.json`, 'utf8')); } catch {}
           const progress = state?.quotaDayProgress ?? null;
           const canonical = summary?.canonicalLearning ?? {};
           const kpis = summary?.researchKpis ?? {};
@@ -132,6 +148,8 @@ jobs:
             `- Result: **${summary.result}**`,
             `- YouTube quota date: ${summary.quotaDate}`,
             `- Dry run: ${summary.dryRun ?? false}`,
+            `- KC canonical bridge sync: ${kcSync?.status ?? 'NO_SYNC_RESULT'}`,
+            `- KC bridge outcomes available: ${kcSync?.outcomes ?? 0}`,
             `- Search calls: ${summary.searchCallsExecuted ?? 0} / usable capacity ${summary.searchCapacity ?? 0}`,
             `- Tranches / reallocations: ${summary.tranchesRun ?? 0} / ${summary.reallocations ?? 0}`,
             `- Search utilization: ${Math.round((kpis.searchUtilization ?? 0) * 100)}%`,
@@ -152,6 +170,7 @@ jobs:
             ''
           ] : [
             '- Result: **NO_SAFE_SUMMARY_PRODUCED**',
+            `- KC canonical bridge sync: ${kcSync?.status ?? 'NO_SYNC_RESULT'}`,
             `- Persisted interrupted quota progress: ${progress ? `${progress.searchCallsUsed ?? 0}/${progress.searchCapacity ?? 0} Search attempts` : 'none'}`,
             '- The workflow remains fail-closed; rerun uses persisted quota-day progress rather than assuming zero spend.',
             ''
