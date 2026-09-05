@@ -241,7 +241,7 @@ export function validateCanonicalRecipeShape(recipe) {
   if (!isObject(recipe.time)) errors.push(`${label}: time object is required`);
   if (!Array.isArray(recipe.dietaryTags)) errors.push(`${label}: dietaryTags must be an array`);
   if (!isObject(recipe.nutrition)) errors.push(`${label}: nutrition object is required`);
-  if (!isObject(recipe.governance)) errors.push(`${label}: governance object is required`);
+  if (recipe.governance != null && !isObject(recipe.governance)) errors.push(`${label}: governance must be an object when present`);
   return errors;
 }
 
