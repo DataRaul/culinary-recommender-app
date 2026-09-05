@@ -13,6 +13,7 @@ Always use:
 - rotation/startup rules: `docs/HANDOVER_PROTOCOL.md`
 - canonical programme: `docs/ROADMAP.md`
 - YouTube Culinary Discovery Atlas child roadmap: `docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md`
+- YT-CUL-0 implementation contract: `docs/YT_CUL_0_IMPLEMENTATION_CONTRACT.md`
 
 At a continuation boundary, rotate `CURRENT -> PREVIOUS`, write the latest complete state to `CURRENT`, and update canonical roadmap status only when programme state, gate state or next-ready action itself changed.
 
@@ -30,10 +31,18 @@ Steps 1–6 are complete; Step 7 preflight is merged. Do not restart historical 
 
 ### YouTube Culinary Discovery Atlas
 
-Current next action: `YT-CUL-0_ARCHITECTURE_POLICY_SYNTHETIC_IMPLEMENTATION`.
+YT-CUL-0 state: `MERGED_GREEN / ZERO_LIVE_QUOTA_COMPLETE`.
 
-State: `READY_NOW / ZERO_LIVE_QUOTA`.
+Canonical merge: PR #56, main SHA `fcbbc5df8ca6ac10cb61b25b142506f51b8a6253`.
 
-This lane may proceed in parallel because it is additive, uses synthetic fixtures initially, does not touch the public runtime, and does not consume Blue Lagoon credentials/quota. Live YouTube acquisition remains blocked until the separate Culinary Google Cloud API Project and secret are owner-configured and current policy is rechecked.
+Validation: pull-request CI passed; post-merge main validation, Pages build and deploy passed. Live YouTube API calls consumed: `0`.
+
+Current next action: `YT-CUL-1_OWNER_GOOGLE_CLOUD_SETUP`.
+
+State: `HUMAN_SETUP_REQUIRED`.
+
+The owner must create one distinct Culinary Google Cloud project, enable YouTube Data API v3, create/restrict an API key, store it only as repository/runner secret `CULINARY_YOUTUBE_API_KEY`, and report the actual non-secret Search Queries daily limit. Do not reveal the key and do not create quota shards.
+
+YT-CUL-2 remains blocked until that setup exists and current policy/quota are rechecked. No YouTube work may consume Blue Lagoon credentials/quota or alter Blue Lagoon planner/evidence state.
 
 The YouTube child roadmap must remain reflected in `CURRENT.json` so future chats can discover and continue it without reconstructing this conversation.
