@@ -2,56 +2,70 @@
 
 Date: 2026-09-05
 
-Status: `IMPLEMENTED_PENDING_LIVE_CANARY_RESULT`
+Status: `PASS / MERGED_GREEN`
+
+Canonical implementation: PR #58, merged to `main` at `56104c104e63342772e0db4dbf21d8ebf8b471ca`.
+
+Live canary evidence: workflow run `33984625070`, job `101355772558`.
 
 ## Activation boundary
 
-YT-CUL-2 is allowed only after YT-CUL-1 has been completed outside Git history:
+YT-CUL-2 was allowed only after YT-CUL-1 completed outside Git history:
 
 - one distinct Culinary Google Cloud project exists;
 - YouTube Data API v3 is enabled for that project;
 - the restricted API key is stored only as GitHub secret `CULINARY_YOUTUBE_API_KEY`;
-- the project's actual assigned **Search Queries** daily limit has been verified in Google Cloud Console.
+- the project's actual assigned **Search Queries** daily limit was verified in Google Cloud Console as `100/day` on 2026-09-05.
 
-The canary runner receives that non-secret verified limit through repository variable `CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT`. This is a transport for the already-required YT-CUL-1 fact, not a new quota assumption. Optional non-secret variable `CULINARY_YOUTUBE_PROJECT_IDENTITY` may record the Culinary project display identity; otherwise the canonical recommendation `culinary-youtube-discovery` is used.
+The key itself is not stored or reproduced here.
 
-## Live spend
+## Live spend and result
 
-The canary performs exactly one `search.list` request with `maxResults=1`. Current official YouTube documentation was rechecked on 2026-09-05 and states that `search.list` uses the granular Search Queries quota bucket at one call per request, with a documented default limit of 100/day. The verified project-specific limit remains authoritative.
+Current official YouTube documentation was rechecked immediately before activation on 2026-09-05. The canary then performed exactly one `search.list` request with `maxResults=1`.
 
-The runner refuses to execute unless:
+Terminal result:
 
-- `CULINARY_YOUTUBE_API_KEY` is present;
-- `CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT` is a positive integer greater than the protected five-call reserve;
-- the project identity does not identify Blue Lagoon/music use;
-- the policy recheck vintage is explicit.
+- result: `PASS`;
+- HTTP status: `200`;
+- Search Queries daily limit: `100`;
+- Search calls planned: `1`;
+- Search calls executed: `1`;
+- protected reserve: `5`;
+- remaining acquisition capacity before the protected reserve after the canary: `94`;
+- result slots observed: `1`.
 
-No pagination is requested and no second API call is made.
+The earlier fail-closed preflight attempt stopped before the live step because the non-secret quota value had not yet been supplied and therefore consumed `0` YouTube Search calls.
 
 ## Credential and quota separation
 
-Only `CULINARY_YOUTUBE_API_KEY` is mapped into the canary job. No Blue Lagoon credential is referenced or mapped. The durable summary records the Culinary client identity, verified assigned daily limit, five-call reserve, one planned/executed call and remaining pre-reserve capacity.
+Only `CULINARY_YOUTUBE_API_KEY` was mapped into the canary job. No Blue Lagoon credential, quota ledger, planner state or evidence participated.
 
-The key is sent through the `X-Goog-Api-Key` request header rather than embedded in the request URL, and neither the key nor its length/hash is emitted.
+The API key was sent through the `X-Goog-Api-Key` request header rather than embedded in the request URL, and neither the key nor its length/hash was emitted.
 
 ## Raw API Data boundary
 
-The live response may contain YouTube API Data such as IDs, titles, descriptions and channel names. Those fields are never written to Git, workflow summaries or durable reports.
+The live response may contain YouTube API Data such as IDs, titles, descriptions and channel names. Those fields were not written to Git, workflow summaries or durable reports.
 
-For the connectivity test only, the response is written to a runner-local temporary file with the existing seven-day transient TTL metadata, then deleted before the job exits. The durable canary result contains counts and control-plane facts only.
+For the connectivity test only, the response was written to a runner-local temporary file with seven-day transient TTL metadata, then deleted before the job exited. The durable canary result contained counts and control-plane facts only.
 
-No artifact upload step exists for the transient payload.
+No artifact upload step existed for the transient payload.
 
-## PASS
+## Validation
 
-`PASS` requires all of the following:
+The dedicated canary safety suite passed `11/11` focused YT-CUL-0/YT-CUL-2 tests.
 
-1. preflight secret/quota/project checks pass;
-2. one `search.list` request returns HTTP 200 and an expected `items` array;
-3. exactly one Search Queries call is recorded;
-4. the protected five-call reserve remains untouched;
-5. transient raw API Data is deleted before job exit;
-6. the durable summary contains no raw YouTube API metadata;
-7. no Blue Lagoon credential or planner state participates.
+Normal pull-request validation passed, including `npm run validate` and browser acceptance. Post-merge main validation run `33984711330` also passed. GitHub Pages build/deploy run `33984710650` passed.
 
-Any preflight, policy/configuration, API, response-shape or cleanup failure is terminal for this canary attempt and must not escalate to YT-CUL-3.
+## PASS criteria resolution
+
+All YT-CUL-2 PASS criteria are satisfied:
+
+1. preflight secret/quota/project checks passed;
+2. one `search.list` request returned HTTP 200 with the expected `items` array;
+3. exactly one Search Queries call was recorded;
+4. the protected five-call reserve remained untouched;
+5. transient raw API Data was deleted before job exit;
+6. the durable summary contained no raw YouTube API metadata;
+7. no Blue Lagoon credential or planner state participated.
+
+YT-CUL-2 is therefore complete. The next roadmap phase is `YT-CUL-3 — one-day bounded discovery pilot`; it is not part of this canary and has not been executed by this closeout.
