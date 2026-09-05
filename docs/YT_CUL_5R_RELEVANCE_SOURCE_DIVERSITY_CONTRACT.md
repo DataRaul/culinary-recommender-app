@@ -2,7 +2,9 @@
 
 Date: 2026-09-05
 
-State: `IMPLEMENTED_PENDING_CI / REPOSITORY_ONLY / ZERO_LIVE_SEARCH`
+State: `MERGED_GREEN / YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_ARCHITECTURE_PASS / ZERO_LIVE_SEARCH`
+
+Merge: `4bd9678d97dd5369daeb3c08f4e0c49996dbcfda`.
 
 ## Objective
 
@@ -26,10 +28,10 @@ Repair the YT-CUL-5 conversion bottleneck before any recurring live Search is ac
 
 The implementation test battery covers packet validation, source independence, policy-safe evidence fields, deterministic diversity, deduplication, queue backpressure, and the canonical Atlas authority boundary.
 
-If all repository validation passes, the terminal result is:
+Terminal result:
 
 `YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_ARCHITECTURE_PASS`
 
-Only after that result may YT-CUL-5D be built and armed.
+YT-CUL-5D is now built and scheduled on canonical `main`.
 
 Live YouTube Search calls consumed by YT-CUL-5R: `0`.
