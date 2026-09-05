@@ -1,0 +1,35 @@
+name: Corpus scale Step 7A no-billing-auth proof
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/corpus-scale-step7a.yml"
+      - "docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md"
+      - "docs/CORPUS_SCALE_STEP7A_NO_BILLING_AUTH_REBASELINE.md"
+      - "package.json"
+      - "scripts/corpus-scale-step1-core.mjs"
+      - "scripts/corpus-scale-step7a-core.mjs"
+      - "scripts/run-corpus-scale-step7a.mjs"
+      - "tests/corpus-scale-step7a.test.js"
+
+concurrency:
+  group: corpus-scale-step7a-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate Step 7A contract tests
+        run: node --test tests/corpus-scale-step7a.test.js
+      - name: Run deterministic 1k to 170k plus 250k stress proof
+        run: npm run benchmark:corpus-scale-step7a
