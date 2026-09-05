@@ -1,115 +1,164 @@
 {
-  "handover": "CULINARY_RECOMMENDER_APP_CORPUS_SCALE_HANDOVER_PROTOCOL_ACTIVATED_V2",
-  "handover_date": "2026-09-04",
+  "handover": "CULINARY_RECOMMENDER_APP_CORPUS_SCALE_STEP7_CLOUDFLARE_SETUP_GATE_V3",
+  "handover_date": "2026-09-05",
   "timezone": "Atlantic/Canary",
-  "status": "CLOUDFLARE_ARCHITECTURE_ACCEPTED__HANDOVER_SLOTS_PROTOCOL_INITIALIZED__STEP1_READY",
-  "human_needed": false,
+  "status": "STEPS_1_6_MERGED_GREEN__STEP7_PREFLIGHT_MERGED__CLOUDFLARE_OWNER_SECURITY_SETUP_REQUIRED",
+  "human_needed": true,
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
     "source_of_truth": "GitHub",
-    "handover_written_against_main_sha": "968ede81350f0894b50db8ff9ce82ae3983e14b5"
+    "handover_written_against_main_sha": "ab12e811c322690ceff021d98dbc58fd7755c7ca"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
     "previous": "docs/handovers/PREVIOUS.json",
     "protocol": "docs/HANDOVER_PROTOCOL.md",
-    "rule": "At every continuation boundary, copy the prior CURRENT object unchanged into PREVIOUS, then replace CURRENT with the new complete handover object. Do not append an ever-growing handover history to ROADMAP.md.",
-    "new_chat_start": "Read CURRENT first, then fresh-reconcile GitHub main/open PRs/branches/CI before acting. CURRENT is a continuation snapshot, not a substitute for live GitHub truth.",
     "rotation": "CURRENT -> PREVIOUS; new state -> CURRENT",
-    "copy_paste_required": false
+    "copy_paste_required": false,
+    "new_chat_start": "Read CURRENT first, then fresh-reconcile live GitHub main, open PRs, branches and CI before acting. Live GitHub outranks this snapshot."
   },
   "lane": {
     "name": "Culinary App / Culinary Lab — Corpus Scale / 100k Readiness",
     "rule": "Do not perform ordinary Culinary Brain / Knowledge Core implementation from this lane.",
-    "knowledge_core_boundary": "Knowledge Core is read-only/reconciliation from this lane and must never become a private runtime dependency of the browser.",
-    "nutrition_boundary": "Nutrition remains an independent resumable lane and must not be overwritten by corpus-scale work."
+    "knowledge_core_boundary": "Knowledge Core remains read-only/reconciliation from this lane and must never become a private browser/runtime dependency.",
+    "nutrition_boundary": "Nutrition remains an independent resumable lane and must not be overwritten or weakened by corpus-scale work."
   },
   "operating_contract": {
-    "autonomy": "Proceed autonomously through technically resolvable roadmap work after fresh reconciliation.",
-    "user_facing_rule": "No routine narration. Speak only for a genuine human gate, unrecoverable error, terminal material result, or continuation boundary.",
+    "autonomy": "Proceed autonomously through technically resolvable repository work after fresh reconciliation and after any explicit human-only dependency is satisfied.",
+    "user_facing_rule": "No routine narration. Speak only for a genuine human/security/cost gate, unrecoverable error, terminal material result, or continuation boundary.",
     "fresh_reconciliation": "Before every meaningful write or merge, fresh-reconcile main, open PRs, relevant branches, changed files, CI and concurrent work.",
-    "actions_cost": "Do not spend GitHub Actions unless explicitly authorized by the user or current repository authority clearly permits the exact run.",
-    "continuation_rule": "Before chat context becomes unreliable or when the user closes/transfers the lane, rotate PREVIOUS/CURRENT in GitHub and make CURRENT sufficient for a new chat to resume without copy-paste."
+    "actions_authority": "Normal repository CI, browser acceptance, roadmap-required benchmark workflows, path-scoped validation and technically necessary ordinary reruns are standing-preauthorized by AGENTS.md. Do not reintroduce per-run approval gates.",
+    "cost_boundary": "No paid Cloudflare plan, paid API, paid corpus licence or other new recurring infrastructure cost is authorized. A materially abnormal CI loop or runaway Actions consumption is a cost gate; ordinary expected CI is not.",
+    "continuation_rule": "At a continuation boundary rotate PREVIOUS/CURRENT in GitHub and keep CURRENT sufficient for a new chat to resume without copy-paste."
   },
   "accepted_architecture": {
-    "status": "USER_ACCEPTED_TARGET__IMPLEMENTATION_BENCHMARK_PENDING",
+    "status": "USER_ACCEPTED__STEPS_1_6_IMPLEMENTED__STEP7_PRODUCTION_SETUP_PENDING",
     "flow": [
       "GitHub repository — code/review/version history",
-      "Cloudflare Pages — lightweight private production surface",
+      "Cloudflare Pages — private production surface",
       "Cloudflare Access — exact-email allowlist + email OTP",
-      "Cloudflare Worker — small authenticated retrieval gateway",
+      "Cloudflare Worker — authenticated bounded corpus gateway",
       "Cloudflare R2 — versioned recipe bodies, provenance and pre-built indexes",
       "RecipeSource V2 — bounded retrieval",
       "existing deterministic hard filters + evaluator + scorer + planner"
     ],
-    "d1": "OPTIONAL_ONLY_IF_BENCHMARK_EARNED",
+    "d1": "ABSENT_UNLESS_MEASURED_R2_INDEX_RETRIEVAL_FAILS_AND_A_SEPARATE_GATE_EARNS_IT",
     "firebase": "FALLBACK_COMPARATOR_ONLY",
-    "provider_portability": "No infrastructure provider is the canonical recipe source of truth; portable JSONL/JSON/manifests/rights ledgers/index-build artefacts must remain reproducible.",
+    "provider_portability": "Portable corpus artefacts, provenance, rights ledgers and deterministic index-build inputs/outputs remain reproducible outside Cloudflare.",
     "cost_target": "EUR_0_RECURRING_FOR_OWNER_PLUS_SMALL_INVITED_FRIEND_COHORT"
+  },
+  "completed_progress": {
+    "step_1": "MERGED_GREEN — scale contract and deterministic synthetic 1k/10k/50k/100k benchmark harness",
+    "step_2": "MERGED_GREEN — RecipeSource V2 compatibility/parity layer",
+    "step_3": "MERGED_GREEN — portable provider-neutral metadata/detail object layout",
+    "step_4": "MERGED_GREEN — indexed bounded retrieval scale proof",
+    "step_5": "MERGED_GREEN — generalized source registry and ingestion/control plane",
+    "step_6": "MERGED_GREEN — incremental validation architecture, reviewed 84-recipe golden retention and bounded regression sampling",
+    "step_6_merge_sha": "8495b451beb26a3f7ca5f196bcca41144964ffc9",
+    "step_7_preflight": "MERGED_GREEN — Cloudflare implementation-time constraints revalidated, candidate source rights audited, human setup dependency identified",
+    "step_7_preflight_merge_sha": "ab12e811c322690ceff021d98dbc58fd7755c7ca",
+    "step_7_preflight_doc": "docs/CORPUS_SCALE_STEP7_PREFLIGHT.md"
   },
   "hard_access_constraint": {
     "mode": "INVITATION_ONLY",
     "rule": "Only exact email addresses explicitly placed on the owner's allowlist may authenticate.",
-    "auth": "Cloudflare Access email OTP/passwordless initially.",
+    "auth": "Cloudflare Access One-time PIN/email OTP initially.",
     "forbidden": [
       "public registration",
       "any-email sign-in",
       "Everyone Access policies",
       "wildcard public-email-domain membership",
+      "OTP-only Include policy that admits any valid email",
       "treating identity verification as automatic membership"
     ],
-    "public_github_rule": "A public GitHub repository does not grant production app membership."
+    "public_github_rule": "Public source-code visibility does not grant production app membership."
   },
   "canonical_docs": {
     "roadmap": "docs/ROADMAP.md",
     "accepted_architecture": "docs/CORPUS_SCALE_CLOUDFLARE_ACCEPTED_ARCHITECTURE.md",
     "source_and_reuse_reference": "docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md",
-    "handover_protocol": "docs/HANDOVER_PROTOCOL.md"
+    "step7_preflight": "docs/CORPUS_SCALE_STEP7_PREFLIGHT.md",
+    "handover_protocol": "docs/HANDOVER_PROTOCOL.md",
+    "current_status_precedence_note": "Some older roadmap/architecture prose still describes Step 1 as next because it is historical planning text. For current execution state, live GitHub plus this CURRENT object and the merged Step 7 preflight establish that Steps 1–6 are complete and Step 7 is blocked only on the owner/security setup gate."
   },
-  "source_admission_order": {
+  "source_admission_state": {
     "A": {
       "source": "Existing curated corpus + Wikibooks",
       "status": "PASS_ALREADY_ESTABLISHED"
     },
     "B": {
       "source": "Open Recipe Archive Spanish collection",
-      "approx_records": 928,
-      "status": "PASS_CANDIDATE_PREFERRED_FIRST_STEP7_PILOT"
+      "upstream_repository": "AdamBouhmad/open-recipe-archive",
+      "pinned_commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "records": 928,
+      "status": "HOLD_RIGHTS_AMBIGUOUS_PACKAGED_TRANSLATION_TRANSFORMATION_LAYER",
+      "admitted_records": 0,
+      "rule": "The nineteenth-century source works remain strong public-domain candidates, but the packaged modern English translation/normalization layer lacks sufficiently explicit transformation/content-rights provenance under the Culinary fail-closed contract. Do not upload these packaged bodies to R2 unless that chain is repaired or independently derive a bounded pilot from verified public-domain source representations with our own provenance."
     },
     "C": {
       "source": "Open Recipe Archive complete corpus",
       "records": 54843,
-      "status": "PASS_CANDIDATE_PRIMARY_LARGE_CORPUS_BASE"
+      "status": "PASS_CANDIDATE_BUT_NOT_READY_WHILE_SOURCE_B_TRANSFORMATION_RIGHTS_REMAIN_UNRESOLVED"
     },
-    "D": {
-      "sources": ["ForkRecipe", "UniTools"],
-      "status": "PASS_CANDIDATE_CLEAN_OPEN_SUPPLEMENTS"
+    "D_forkrecipe": {
+      "source": "ForkRecipe",
+      "upstream_repository": "futurechef/forkrecipe-recipes",
+      "pinned_commit": "c32255266af39bd77444d39452f3df8088ac8fd9",
+      "records": 916,
+      "status": "PASS_CANDIDATE_RIGHTS_DECLARATION__DATA_QUALITY_AND_ADAPTER_AUDIT_REQUIRED",
+      "rights": "Pinned README states the repository is the recipe-content/data layer and all recipes are CC BY-SA 4.0; pinned repository includes the full CC BY-SA 4.0 licence.",
+      "pilot_preference": "CURRENT_LEADING_STEP7_REAL_SOURCE_CANDIDATE_UNLESS_SOURCE_B_RIGHTS_CHAIN_IS_REPAIRED_FIRST"
+    },
+    "D_unitools": {
+      "source": "UniTools",
+      "status": "PASS_CANDIDATE_NOT_YET_AUDITED_IN_THIS_STEP7_PREFLIGHT"
     },
     "E": {
       "source": "RecipeDB",
       "records": 118171,
       "status": "CONDITIONAL_SOURCE_COHORT_SALVAGE_GATE",
-      "rule": "Never all-or-nothing; admit only records/cohorts with verified content-level rights and provenance."
+      "rule": "Never all-or-nothing; only rights-verified records/cohorts may enter."
     }
   },
-  "next_action": {
-    "name": "STEP_1_CORPUS_SCALE_CONTRACT_AND_SYNTHETIC_BENCHMARK_HARNESS",
-    "status": "READY",
-    "instructions": [
-      "Fresh-reconcile main, open PRs and concurrent branches before implementation.",
-      "Use the current reviewed recipe corpus as the golden behavioral oracle.",
-      "Create deterministic synthetic catalogues at approximately 1k, 10k, 50k and 100k records.",
-      "Model provider-neutral R2-style immutable recipe objects plus pre-built deterministic retrieval indexes.",
-      "Measure record size, index size, candidate-set cardinality, transferred bytes, memory, retrieval latency, filter/ranking latency, build time and validation cost.",
-      "Define explicit acceptance thresholds before advancing.",
-      "Do not provision production Cloudflare resources in Step 1.",
-      "Do not ingest the new real external corpora in Step 1.",
-      "Do not add D1 in Step 1.",
-      "Do not change public recommendation behavior.",
-      "Do not introduce private Knowledge Core runtime dependencies.",
-      "Do not authorize paid infrastructure."
+  "human_gate": {
+    "type": "SECURITY_AND_EXTERNAL_ACCOUNT_SETUP",
+    "status": "REQUIRED_BEFORE_STEP7_RUNTIME_IMPLEMENTATION_CAN_CONTINUE",
+    "reason": "The accepted Step 7 production pilot requires real Cloudflare account resources and owner-controlled Access membership configuration. No connected Cloudflare management capability is available in this session, and credentials/secrets must not be committed to GitHub.",
+    "owner_actions": [
+      "Create or connect a Cloudflare Pages project to DataRaul/culinary-recommender-app.",
+      "Create one Cloudflare R2 Standard bucket for the pilot corpus.",
+      "Enable Cloudflare Zero Trust / Access on the protected production hostname.",
+      "Enable One-time PIN as the login method.",
+      "Create an Access allow policy containing only exact invited email addresses; the owner address alone is sufficient for initial validation.",
+      "Do not add Everyone, wildcard/broad email-domain, or OTP-only Include rules.",
+      "Do not enable a paid Workers, Access or R2 plan and do not create D1.",
+      "Do not commit email addresses, account IDs, API tokens, secrets or credentials to the repository."
+    ],
+    "safe_information_to_return_after_setup": [
+      "Confirm that the Pages project exists.",
+      "Confirm that the R2 bucket exists.",
+      "Confirm that Access protects the intended hostname and uses exact-email allowlisting plus OTP.",
+      "Non-secret project/hostname/bucket names may be provided if useful; never paste API tokens or secrets into the repository."
     ]
   },
-  "terminal_instruction_for_new_chat": "Open docs/handovers/CURRENT.json, fresh-reconcile GitHub against its written-against baseline, then pick up the next READY action from docs/ROADMAP.md and proceed autonomously. No handover copy-paste is required."
+  "next_action": {
+    "name": "STEP_7_PRODUCTION_SHAPED_REAL_SOURCE_PILOT",
+    "status": "BLOCKED_ON_HUMAN_SECURITY_SETUP",
+    "resume_when": "Cloudflare Pages, R2 and Access resources exist under the exact-email invitation-only contract.",
+    "instructions_after_gate": [
+      "Fresh-reconcile live GitHub before implementation.",
+      "Add the minimal Cloudflare deployment/runtime adapter using current official Workers/Wrangler patterns without unnecessary framework migration.",
+      "Protect every corpus API route behind the Cloudflare Access identity boundary and validate exact-email allow/deny behavior.",
+      "Audit and adapt the first rights-clean 500–1,000-record real-source cohort; ForkRecipe is currently the leading candidate unless Source B rights provenance is repaired first.",
+      "Run all source records through the generalized Step 5 admit/hold/reject control plane; raw upstream inclusion never equals runtime admission.",
+      "Keep external source nutrition non-authoritative and media excluded unless separately cleared.",
+      "Upload only admitted versioned portable recipe/provenance/index objects to R2.",
+      "Measure V1/V2 golden parity, hard-filter behavior, provenance invariants, incremental validation, Worker CPU, request/object-read counts, latency, transferred bytes and R2 storage.",
+      "Keep D1 absent unless measured R2 + pre-built index retrieval fails the established contract and a separate gate earns a prototype.",
+      "Stop before any paid infrastructure/API/corpus decision.",
+      "Advance to Step 8 only after the production-shaped pilot passes rights, security, behavior, performance and cost gates."
+    ]
+  },
+  "terminal_instruction_for_new_chat": "Open docs/handovers/CURRENT.json and docs/CORPUS_SCALE_STEP7_PREFLIGHT.md, fresh-reconcile live GitHub, and do not restart Steps 1–6. If the Cloudflare owner setup is now complete, resume Step 7 autonomously from the post-gate instructions; otherwise remain stopped at the recorded human/security gate."
 }
