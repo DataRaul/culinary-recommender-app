@@ -116,6 +116,7 @@ test("invalid persisted session is diagnosed and cleared fail-closed", async () 
 test("auth canary explicitly keeps browser credentials on every same-origin auth fetch", () => {
   const html = readFileSync(new URL("../auth-canary.html", import.meta.url), "utf8");
   const credentialMentions = html.match(/credentials:\s*'same-origin'/g) || [];
-  assert.equal(credentialMentions.length, 5);
+  assert.equal(credentialMentions.length, 6);
+  assert.match(html, /\/api\/auth\/revoke-session/);
   assert.match(sessionCookie("test-token", 60), /Max-Age=60/);
 });
