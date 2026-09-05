@@ -24,7 +24,8 @@ jobs:
     timeout-minutes: 5
     env:
       CULINARY_YOUTUBE_API_KEY: ${{ secrets.CULINARY_YOUTUBE_API_KEY }}
-      CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT: ${{ vars.CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT }}
+      # Owner-verified in the Culinary Google Cloud project on 2026-09-05.
+      CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT: "100"
       CULINARY_YOUTUBE_PROJECT_IDENTITY: ${{ vars.CULINARY_YOUTUBE_PROJECT_IDENTITY }}
       YT_CUL_POLICY_RECHECKED_AT: "2026-09-05"
     steps:
@@ -44,7 +45,7 @@ jobs:
           fi
           echo "::add-mask::$CULINARY_YOUTUBE_API_KEY"
           if [[ -z "${CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT:-}" ]]; then
-            echo "::error::CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT is missing. Record the already-verified non-secret Search Queries daily limit as a repository Actions variable."
+            echo "::error::Verified Culinary Search Queries daily limit is missing."
             exit 2
           fi
 
