@@ -125,6 +125,18 @@ jobs:
           node --input-type=module <<'NODE'
           import { readFile, appendFile } from 'node:fs/promises';
           const summary = JSON.parse(await readFile(`${process.env.RUNNER_TEMP}/yt-cul-5d-safe-summary.json`, 'utf8'));
+          let state = null;
+          try {
+            state = JSON.parse(await readFile(process.env.YT_CUL_DAILY_STATE_PATH, 'utf8'));
+          } catch {}
+          const outcomes = Array.isArray(state?.canonicalOutcomes) ? state.canonicalOutcomes.slice(-24) : [];
+          const accepted = outcomes.filter(item => item.reviewDecision === 'ACCEPTED').length;
+          const rejected = outcomes.filter(item => item.reviewDecision === 'REJECTED').length;
+          const held = outcomes.filter(item => item.reviewDecision === 'HELD').length;
+          const resolved = accepted + rejected;
+          const acceptanceRate = resolved ? accepted / resolved : null;
+          const feedbackAwareTargeting = outcomes.some(item => item.feedbackContext?.atlasGap);
+          const canonicalFeedbackMatureForScaling = resolved >= 4;
           const lines = [
             `- Result: **${summary.result}**`,
             `- YouTube quota date: ${summary.quotaDate}`,
@@ -136,6 +148,10 @@ jobs:
             `- Duplicate source/target pairs suppressed: ${summary.duplicatePairsSuppressed ?? 0}`,
             `- Useful independent source domains: ${summary.uniqueUsefulSourceDomains ?? 0}`,
             `- Unresolved review backlog: ${summary.unresolvedReviewBacklog ?? 0}`,
+            `- Canonical Brain outcomes (recent): ${accepted} accepted / ${rejected} rejected / ${held} held`,
+            `- Canonical resolved acceptance rate: ${acceptanceRate === null ? 'n/a' : `${Math.round(acceptanceRate * 100)}%`}`,
+            `- Feedback-aware next-query targeting active: ${feedbackAwareTargeting}`,
+            `- Canonical feedback mature enough to unlock Search scaling: ${canonicalFeedbackMatureForScaling}`,
             `- YT-CUL-6 readiness earned: ${summary.ytCul6ReadinessEarned ?? false}`,
             `- Raw YouTube API Data durable: ${summary.controls?.rawYoutubeApiDataEmbedded ?? false}`,
             `- Automatic Atlas promotion: ${summary.controls?.automaticAtlasPromotionAuthorized ?? false}`,
