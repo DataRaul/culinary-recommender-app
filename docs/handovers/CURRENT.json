@@ -1,16 +1,16 @@
 {
-  "handover": "CULINARY_RECOMMENDER_APP_NO_BILLING_AUTH_170K_REBASELINE_V8",
+  "handover": "CULINARY_RECOMMENDER_APP_NO_BILLING_AUTH_170K_YT_CUL_4_COMPLETE_V9",
   "handover_date": "2026-09-05",
   "timezone": "Atlantic/Canary",
-  "status": "STEPS_1_6_MERGED_GREEN__NO_BILLING_AUTH_170K_ARCHITECTURE_RECONCILED__STEP_7A_READY__PAGES_CREATED__ZERO_TRUST_REJECTED__R2_REJECTED__D1_CANDIDATE_NOT_PROVISIONED__NO_CURRENT_HUMAN_ACTION__YT_CUL_3_MERGED__YT_CUL_4_EARNED_NOT_EXECUTED",
+  "status": "STEPS_1_6_MERGED_GREEN__NO_BILLING_AUTH_170K_ARCHITECTURE_RECONCILED__STEP_7A_READY__PAGES_CREATED__ZERO_TRUST_REJECTED__R2_REJECTED__D1_CANDIDATE_NOT_PROVISIONED__NO_CURRENT_HUMAN_ACTION__YT_CUL_4_EFFICIENCY_GAIN_MERGED_GREEN__YT_CUL_5_EARNED_NOT_EXECUTED",
   "human_needed": false,
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
     "source_of_truth": "GitHub",
-    "handover_written_against_main_sha": "89f78902869f4ef8d02cde5b0842345c3dd5e439",
+    "handover_written_against_main_sha": "f30ffc78a336b1a5bfc88c14dd335f3a4acf5853",
     "yt_cul_3_merge_sha": "2b099f4b9c61ce8d43a4a8d0420fdb8ba9d3e83f",
-    "yt_cul_3_handover_merge_sha": "89f78902869f4ef8d02cde5b0842345c3dd5e439"
+    "yt_cul_4_merge_sha": "f30ffc78a336b1a5bfc88c14dd335f3a4acf5853"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -27,7 +27,7 @@
     "nutrition_boundary": "Nutrition remains an independent resumable lane and must not be overwritten or weakened by corpus-scale, auth or YouTube-discovery work."
   },
   "operating_contract": {
-    "autonomy": "Proceed autonomously through technically resolvable repository work after fresh reconciliation. Do not send the owner back into external account setup until the repository gate explicitly earns that human step.",
+    "autonomy": "Proceed autonomously through technically resolvable repository work after fresh reconciliation. Do not send the owner into external account setup until the repository gate explicitly earns that human step.",
     "user_facing_rule": "No routine narration. Speak only for a genuine human/security/cost/policy gate, unrecoverable error, terminal material result, or continuation boundary.",
     "fresh_reconciliation": "Before every meaningful write or merge, fresh-reconcile main, open PRs, relevant branches, changed files, CI and concurrent work.",
     "actions_authority": "Normal repository CI, browser acceptance, roadmap-required benchmark workflows, path-scoped validation and technically necessary ordinary reruns are standing-preauthorized by AGENTS.md.",
@@ -35,31 +35,12 @@
     "external_setup_gate_rule": "Every future human provisioning step must terminate as FREE_NO_BILLING_AUTHORIZATION_CONFIRMED, BILLING_OR_OVERAGE_AUTHORIZATION_PRESENT, or AMBIGUOUS. Only the first may proceed.",
     "continuation_rule": "At a continuation boundary rotate PREVIOUS/CURRENT in GitHub and keep CURRENT sufficient for a new chat to resume without copy-paste."
   },
-  "consultant_coach_review": {
-    "status": "RECONCILED",
-    "consultant_binding_constraint": "Private invitation-only 170k runtime must not require any checkout/subscription authorization that can automatically charge overages; low expected usage cannot compensate for this blocker.",
-    "project_coach_correction": "Do repository proof before owner account clicks. External resources are not accepted merely because public docs call them Free.",
-    "decision": "Remove Cloudflare Zero Trust/Access; retain Pages Free; move authentication/authorization into the Worker; keep D1 Free only as a hard-capped candidate subject to local proof plus owner-visible no-billing provisioning confirmation."
-  },
   "accepted_architecture": {
     "status": "CONSULTANT_COACH_RECONCILED_CANDIDATE__STEP_7A_PROOF_REQUIRED",
     "canonical_document": "docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md",
-    "supersedes": [
-      "docs/CORPUS_SCALE_ZERO_BILL_170K_ARCHITECTURE.md",
-      "docs/CORPUS_SCALE_CLOUDFLARE_ACCEPTED_ARCHITECTURE.md"
-    ],
     "required_capacity": 170000,
     "stress_capacity": 250000,
-    "flow": [
-      "GitHub repository — code/review/version history, schemas, provenance/rights ledgers and deterministic builders; no invited-email list or runtime secrets",
-      "Cloudflare Pages Free — public login/application shell only; no protected recipe bodies or protected index files",
-      "Workers Free / Pages Function candidate — server-side authentication, exact-allowlist authorization and bounded protected API; fail closed",
-      "External identity proof behind app-owned IdentityVerifier — initial candidate Google Sign in with Google/OIDC",
-      "D1 Free candidate deliberately sharded — one control/auth/index DB plus approximately eight recipe-body DBs and one reserved DB slot; only after Step 7A PASS and no-billing account check",
-      "RecipeSource V2 — bounded retrieval",
-      "existing deterministic hard filters + evaluator + scorer + planner"
-    ],
-    "cloudflare_pages": "KEEP_EXISTING_FREE_PROJECT",
+    "cloudflare_pages": "KEEP_EXISTING_FREE_PROJECT__PUBLIC_LOGIN_APPLICATION_SHELL_ONLY",
     "cloudflare_zero_trust_access": "REJECTED_FOR_NO_BILLING_AUTHORIZATION_CONSTRAINT__DO_NOT_ACTIVATE",
     "r2": "REJECTED_FOR_NO_BILLING_AUTHORIZATION_CONSTRAINT__DO_NOT_ACTIVATE",
     "workers": {
@@ -74,7 +55,6 @@
     },
     "d1": {
       "status": "CANDIDATE_ONLY__NOT_PROVISIONED",
-      "free_plan_model": "Current Cloudflare documentation states Free daily row limits/storage exhaust by errors rather than paid overage; account-side provisioning still must separately confirm no charge authorization.",
       "current_documented_limits": {
         "databases": 10,
         "max_database_mb": 500,
@@ -99,14 +79,13 @@
       "initial_provider_candidate": "Google Identity Services / OIDC",
       "rules": [
         "Verify provider token server-side including signature, audience, issuer and expiry.",
-        "Use provider subject as stable identity; use current email only for exact invite matching/binding.",
-        "Initial Google proof is sufficient only where Google is authoritative for the email identity; do not weaken this for third-party-email Google accounts.",
+        "Use provider subject as stable identity and current email only for exact invite matching/binding.",
         "Allowlist and account bindings remain private runtime data, never public GitHub.",
         "Protected APIs check current allow/revocation state server-side.",
         "Session/signing secrets remain runtime secrets, never GitHub or chat."
       ]
     },
-    "provider_portability": "RecipeSource V2, portable corpus artifacts, provenance, rights ledgers, deterministic index-build inputs/outputs and IdentityVerifier boundaries prevent Cloudflare or Google from becoming culinary truth."
+    "provider_portability": "RecipeSource V2, portable corpus artifacts, provenance, rights ledgers, deterministic index-build inputs/outputs and IdentityVerifier boundaries prevent Cloudflare, Google or YouTube from becoming culinary truth."
   },
   "completed_progress": {
     "step_1": "MERGED_GREEN — deterministic 1k/10k/50k/100k synthetic scale contract; extend rather than discard for 170k/250k",
@@ -117,7 +96,6 @@
     "step_6": "MERGED_GREEN — incremental validation architecture, reviewed 84-recipe golden retention and bounded regression sampling",
     "step_6_merge_sha": "8495b451beb26a3f7ca5f196bcca41144964ffc9",
     "step_7_preflight": "MERGED_GREEN historical preflight; R2/Access assumptions superseded by later owner-visible billing gates",
-    "step_7_preflight_merge_sha": "ab12e811c322690ceff021d98dbc58fd7755c7ca",
     "cloudflare_pages": "HUMAN_SETUP_COMPLETE — Pages project culinary-recommender-app created and deployed at culinary-recommender-app.pages.dev",
     "r2_subscription": "NOT_ACTIVATED",
     "zero_trust_subscription": "NOT_ACTIVATED — owner stopped at checkout because terms authorized charges beyond free allowance",
@@ -125,20 +103,57 @@
     "yt_cul_1": "COMPLETE",
     "yt_cul_2": "PASS / MERGED_GREEN",
     "yt_cul_2_merge_sha": "56104c104e63342772e0db4dbf21d8ebf8b471ca",
-    "yt_cul_3": "MERGED_GREEN — terminal classification YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND; PR #60 merged at 2b099f4b9c61ce8d43a4a8d0420fdb8ba9d3e83f",
-    "yt_cul_4": "EARNED_CONDITIONAL_EFFICIENCY_LANE__NOT_EXECUTED"
+    "yt_cul_3": "PASS / MERGED_GREEN — YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND — PR #60",
+    "yt_cul_4": "PASS / MERGED_GREEN — YT_CUL_4_CHANNEL_PLAYLIST_EFFICIENCY_GAIN — PR #63",
+    "yt_cul_4_live_run": "33986444162",
+    "yt_cul_4_pr_validation_run": "33986556874",
+    "yt_cul_4_post_merge_validation_run": "33986699615",
+    "yt_cul_4_post_merge_pages_run": "33986699400"
+  },
+  "youtube_culinary_discovery": {
+    "project_identity": "culinary-youtube-discovery",
+    "secret_name": "CULINARY_YOUTUBE_API_KEY",
+    "search_queries_daily_limit_verified_on_2026_09_05": 100,
+    "quota_reserve_calls": 5,
+    "known_successful_search_calls_through_yt_cul_4_on_2026_09_05": 33,
+    "remaining_before_reserve_after_yt_cul_4": 62,
+    "yt_cul_4": {
+      "terminal_classification": "YT_CUL_4_CHANNEL_PLAYLIST_EFFICIENCY_GAIN",
+      "search_calls": 8,
+      "general_read_calls": 33,
+      "channel_result_slots": 40,
+      "playlist_result_slots": 40,
+      "transient_unique_video_pointers": 398,
+      "external_source_pointers_observed": 265,
+      "independent_review_attempts": 40,
+      "independently_reviewed_pages": 12,
+      "independently_confirmed_recipe_pages": 5,
+      "unique_confirmed_source_domains": 4,
+      "confirmed_recipe_pages_per_search_call": 0.625,
+      "yt_cul_3_baseline_confirmed_recipe_pages_per_search_call": 0.25,
+      "search_efficiency_ratio_vs_yt_cul_3": 2.5,
+      "raw_youtube_api_data_durable": false,
+      "external_urls_durable": false,
+      "transient_payload_deleted_before_job_exit": true,
+      "youtube_statistics_read": false,
+      "youtube_derived_creator_authenticity_engagement_scores": false,
+      "blue_lagoon_cross_use": false,
+      "automatic_atlas_promotion": false,
+      "automatic_app_admission": false,
+      "public_runtime_activation": false
+    },
+    "preferred_acquisition_pattern": "BOUNDED_CHANNEL_PLAYLIST_SEARCH__LOWER_COST_READ_FANOUT__TRANSIENT_SOURCE_DISCOVERY__INDEPENDENT_EXTERNAL_REVIEW",
+    "next_phase": "YT_CUL_5_ATLAS_EXPANSION_CADENCE",
+    "next_phase_status": "EARNED_READY_NOT_EXECUTED"
   },
   "canonical_docs": {
     "roadmap": "docs/ROADMAP.md",
     "roadmap_handover": "docs/ROADMAP_HANDOVER.md",
     "no_billing_auth_170k_architecture": "docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md",
-    "superseded_zero_bill_170k_architecture": "docs/CORPUS_SCALE_ZERO_BILL_170K_ARCHITECTURE.md",
-    "historical_r2_architecture": "docs/CORPUS_SCALE_CLOUDFLARE_ACCEPTED_ARCHITECTURE.md",
-    "source_and_reuse_reference": "docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md",
-    "step7_preflight": "docs/CORPUS_SCALE_STEP7_PREFLIGHT.md",
     "youtube_culinary_discovery_roadmap": "docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md",
-    "handover_protocol": "docs/HANDOVER_PROTOCOL.md",
-    "precedence_note": "For auth, protected-data placement, runtime storage/cost model, 170k scale target and Step-7 provisioning order, the no-billing-auth 170k architecture plus ROADMAP_HANDOVER current routing supersede prior Access/R2/100k summaries."
+    "yt_cul_4_contract": "docs/YT_CUL_4_CHANNEL_PLAYLIST_EFFICIENCY_CONTRACT.md",
+    "yt_cul_4_terminal_result": "docs/YT_CUL_4_TERMINAL_RESULT.md",
+    "handover_protocol": "docs/HANDOVER_PROTOCOL.md"
   },
   "source_admission_state": {
     "A": "Existing curated corpus + Wikibooks — PASS_ALREADY_ESTABLISHED",
@@ -153,29 +168,13 @@
       "status": "NONE_NOW",
       "rule": "Owner should make no more Cloudflare/account changes until Step 7A PASS explicitly earns a provisioning check."
     },
-    "zero_trust": {
-      "status": "CLOSED_REJECTED",
-      "rule": "Do not activate Zero Trust Free while its activation terms authorize charges beyond included allowance."
-    },
-    "r2": {
-      "status": "CLOSED_REJECTED",
-      "rule": "Do not activate R2."
-    },
-    "step_7b_free_resource_check": {
-      "status": "DEFERRED_UNTIL_STEP_7A_PASS",
-      "future_owner_action": "Attempt only the exact measured D1 Free provisioning/Workers Free check. Stop on checkout, subscription activation, payment authorization, overage authorization or ambiguity."
-    },
-    "step_7c_identity_provider": {
-      "status": "DEFERRED_UNTIL_APP_AUTH_CONTRACT_READY",
-      "future_owner_action": "Configure the selected identity client for the production Pages origin. Stop if any billing/payment authorization is requested."
-    },
-    "optional_cloudflare_card_housekeeping": {
-      "status": "OPTIONAL_NOT_REQUIRED_FOR_PROJECT_PROGRESS",
-      "note": "Cloudflare documentation allows deleting a payment method when no active paid subscriptions/pending usage charges/other blockers exist. Review Billing -> Subscriptions before attempting removal; do not disrupt unrelated account services."
-    },
+    "zero_trust": "CLOSED_REJECTED",
+    "r2": "CLOSED_REJECTED",
+    "step_7b_free_resource_check": "DEFERRED_UNTIL_STEP_7A_PASS",
+    "step_7c_identity_provider": "DEFERRED_UNTIL_APP_AUTH_CONTRACT_READY",
     "youtube": {
       "status": "NO_CURRENT_HUMAN_GATE",
-      "note": "YT-CUL-4 is earned but remains a separate not-yet-executed lane."
+      "note": "YT-CUL-5 is earned and ready but not executed."
     }
   },
   "next_action": {
@@ -190,7 +189,6 @@
         "Add an app-owned IdentityVerifier/exact-allowlist/session/revocation contract; initial provider candidate Google GIS/OIDC.",
         "Prove protected recipe/index data is never emitted as ordinary public Pages static assets.",
         "Add Worker Free CPU/request-budget proxy and reserve actual production CPU/security behavior for the later canary.",
-        "Preserve RecipeSource V2 portability, hard filters, source-rights gates, nutrition separation and incremental validation.",
         "Terminal PASS: NO_BILLING_AUTH_170K_ARCHITECTURE_PASS. Failure must stop before any D1 or auth-provider provisioning."
       ]
     },
@@ -198,26 +196,18 @@
       "name": "NO_ACTION_REQUIRED_UNTIL_STEP_7A_PASS",
       "status": "WAIT_FOR_EARNED_GATE"
     },
-    "future_d1_provisioning": {
-      "name": "STEP_7B_FREE_DEVELOPER_RESOURCE_PROVISIONING_CHECK",
-      "status": "BLOCKED_UNTIL_STEP_7A_PASS"
-    },
-    "future_identity_setup": {
-      "name": "STEP_7C_IDENTITY_PROVIDER_SETUP",
-      "status": "BLOCKED_UNTIL_APP_AUTH_CONTRACT_READY"
-    },
-    "protected_canary": {
-      "name": "STEP_7D_PROTECTED_84_RECORD_CANARY",
-      "status": "BLOCKED"
-    },
-    "real_source_pilot": {
-      "name": "STEP_7E_PRODUCTION_SHAPED_500_1000_RECORD_PILOT",
-      "status": "BLOCKED_UNTIL_7A_PASS__7B_FREE_CONFIRMED__7C_AUTH_READY__7D_CANARY_PASS"
-    },
     "youtube_culinary_discovery": {
-      "name": "YT_CUL_4_CONDITIONAL_EFFICIENCY_LANE",
-      "status": "EARNED_NOT_EXECUTED"
+      "name": "YT_CUL_5_ATLAS_EXPANSION_CADENCE",
+      "status": "EARNED_READY_NOT_EXECUTED",
+      "instructions": [
+        "Do not execute automatically from the YT-CUL-4 closeout.",
+        "Fresh-reconcile GitHub and current YouTube policy/project quota before any live execution.",
+        "Use the YT-CUL-4 channel/playlist-first plus lower-cost-read pattern as the preferred acquisition architecture.",
+        "Prioritize macro-region, family, meal-role, technique and variant gaps while preserving identity/structure/variant distinctions and multilingual alias handling.",
+        "Define a bounded independent-evidence promotion contract before any Atlas state change.",
+        "YouTube discovery alone grants no Atlas, app, nutrition, rights, safety or public-runtime authority."
+      ]
     }
   },
-  "terminal_instruction_for_new_chat": "Open docs/handovers/CURRENT.json and fresh-reconcile live GitHub. Corpus Scale is a 170k required / 250k stress programme under a hard no-billing-authorization constraint. Do not activate Zero Trust/Access or R2. The Pages project exists and remains. The owner has no current account-side action. Proceed autonomously with STEP_7A_NO_BILLING_AUTH_170K_REBASELINE: extend scale proof, simulate the protected D1 layout, add app-owned identity/allowlist/session contracts and prove no protected corpus/index asset is public. D1 remains candidate-only and may not be provisioned until Step 7A PASS; any future billing/overage authorization screen rejects the resource. Preserve all source-rights, nutrition, hard-filter, RecipeSource V2 portability and Knowledge Core boundaries. YT-CUL-3 is merged green with YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND and YT-CUL-4 is earned but not executed."
+  "terminal_instruction_for_new_chat": "Open docs/handovers/CURRENT.json and fresh-reconcile live GitHub. Corpus Scale remains a 170k required / 250k stress programme under the hard no-billing-authorization constraint; do not activate Zero Trust/Access or R2, and do not provision D1 until STEP_7A_NO_BILLING_AUTH_170K_REBASELINE passes. The owner has no current account-side action. Separately, YT-CUL-4 is PASS/MERGED_GREEN with YT_CUL_4_CHANNEL_PLAYLIST_EFFICIENCY_GAIN: 8 Search calls produced 5 independently confirmed Recipe-structured pages across 4 domains, 0.625 confirmations per Search call versus the YT-CUL-3 baseline 0.25, a 2.5x Search-efficiency ratio. Total known successful Search calls on 2026-09-05 through YT-CUL-4 are 33, leaving 62 before the protected five-call reserve. YT-CUL-5 is earned and ready but not executed. Preserve all source-rights, nutrition, hard-filter, RecipeSource V2 portability, YouTube transient-data/evidence boundaries, Blue Lagoon separation and Knowledge Core boundaries."
 }
