@@ -1,6 +1,6 @@
 # YouTube Culinary Discovery Atlas — Roadmap V0
 
-Status: **AUTHORIZED FOR ROADMAP / IMPLEMENTATION PREP; LIVE API ACQUISITION BLOCKED UNTIL OWNER PROJECT+SECRET SETUP AND POLICY CHECK**
+Status: **YT-CUL-0 MERGED GREEN / YT-CUL-1 HUMAN SETUP REQUIRED / LIVE API ACQUISITION BLOCKED UNTIL OWNER PROJECT+SECRET SETUP AND FRESH POLICY+QUOTA CHECK**
 
 Date: 2026-09-05
 
@@ -150,26 +150,47 @@ Never report gross YouTube results as recipes acquired.
 
 ### YT-CUL-0 — architecture + policy gate
 
-State: `READY_NOW / ZERO_LIVE_QUOTA`
+State: `MERGED_GREEN / ZERO_LIVE_QUOTA_COMPLETE`
 
-- freeze the API-client purpose, data classes, TTL and forbidden-storage rules;
-- implement schemas/validators with synthetic fixtures only;
-- add quota ledger and deterministic planner;
-- define daily report and promotion handoff contracts;
-- reconcile with current YouTube policy immediately before activation.
+Completed in PR #56, merged to `main` at `fcbbc5df8ca6ac10cb61b25b142506f51b8a6253`.
+
+Implemented canonical artifacts:
+
+- `scripts/youtube-culinary-discovery-control-plane.mjs`
+- `tests/youtube-culinary-discovery-control-plane.test.js`
+- `docs/YT_CUL_0_IMPLEMENTATION_CONTRACT.md`
+
+Delivered:
+
+- frozen separate Culinary API-client purpose and Blue Lagoon isolation;
+- policy/storage data classes, 7-day default transient TTL and 30-day hard maximum;
+- configurable quota ledger with >=5-call reserve and deterministic planner;
+- approved search-purpose taxonomy and fail-closed rejection of YouTube-derived creator/engagement/authenticity scoring;
+- transient-cache expiry/cleanup semantics;
+- durable raw-YouTube-metadata firewall;
+- independent-source promotion handoff with no automatic Atlas/app authority;
+- daily conversion-funnel and marginal-yield report contract;
+- synthetic tests proving zero live networking and zero API-secret reads.
+
+Validation passed on the pull request and again on post-merge `main`; Pages build/deploy also passed. Live YouTube API calls consumed by YT-CUL-0: `0`.
+
+Policy was rechecked against official YouTube documentation on 2026-09-05. The live activation vintage must recheck it again.
 
 ### YT-CUL-1 — owner Google Cloud setup
 
-State: `HUMAN_SETUP_REQUIRED`
+State: `HUMAN_SETUP_REQUIRED / CURRENT_NEXT_ACTION`
 
 Owner creates the distinct Google Cloud project, enables YouTube Data API v3, creates/restricts an API key, verifies assigned Search quota, and stores the key only as `CULINARY_YOUTUBE_API_KEY` in the repository/runner secret store.
 
 No second YouTube account is required for public-data V0.
 
+The safe completion signal is non-secret only: confirm the project/API/secret setup exists and report the assigned Search Queries daily limit. Never paste the API key into chat, issues, commits or handovers.
+
 ### YT-CUL-2 — zero/low-quota connectivity canary
 
 State: `BLOCKED_ON_YT-CUL-1`
 
+- fresh-recheck current YouTube policy and actual assigned project quota before the first call;
 - execute a tiny canary;
 - prove key/project separation from Blue Lagoon;
 - prove quota ledger/reserve behavior;
@@ -227,8 +248,9 @@ This lane is intentionally parallel and non-blocking:
 - Corpus Scale Step 7 remains blocked on the existing Cloudflare owner/security setup gate.
 - Nutrition recipe-unlock work remains independent.
 - Culinary Brain / World Recipe Atlas verification may continue independently.
-- YT-CUL-0 implementation can proceed now because it uses synthetic fixtures and no live quota.
-- YT-CUL-1 is a separate owner/API-credential gate.
+- YT-CUL-0 is complete and merged green with zero live quota consumed.
+- YT-CUL-1 is the current separate owner/API-credential gate.
+- YT-CUL-2 and later live phases remain blocked until YT-CUL-1 completes and current policy/quota are rechecked.
 - No YouTube work may modify Blue Lagoon quota, credentials, planner state or evidence.
 
 ## Handover / auto-continuation integration
