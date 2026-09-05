@@ -30,21 +30,31 @@
     }
 
     async function checkSession() {
-      show(await readJson(await fetch('/api/auth/session', { cache: 'no-store' })));
+      show(await readJson(await fetch('/api/auth/session', {
+        cache: 'no-store',
+        credentials: 'same-origin'
+      })));
     }
 
     async function checkProtected() {
-      show(await readJson(await fetch('/api/protected-canary', { cache: 'no-store' })));
+      show(await readJson(await fetch('/api/protected-canary', {
+        cache: 'no-store',
+        credentials: 'same-origin'
+      })));
     }
 
     async function logout() {
-      show(await readJson(await fetch('/api/auth/logout', { method: 'POST' })));
+      show(await readJson(await fetch('/api/auth/logout', {
+        method: 'POST',
+        credentials: 'same-origin'
+      })));
     }
 
     async function handleGoogleCredential(response) {
       show('Verifying Google identity…');
       const result = await readJson(await fetch('/api/auth/google', {
         method: 'POST',
+        credentials: 'same-origin',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ credential: response.credential })
       }));
@@ -53,7 +63,10 @@
     }
 
     async function initializeGoogle() {
-      const config = await readJson(await fetch('/api/auth/config', { cache: 'no-store' }));
+      const config = await readJson(await fetch('/api/auth/config', {
+        cache: 'no-store',
+        credentials: 'same-origin'
+      }));
       if (!config.ok) { show(config); return; }
       google.accounts.id.initialize({
         client_id: config.clientId,
