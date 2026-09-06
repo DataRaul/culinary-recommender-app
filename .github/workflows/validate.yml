@@ -24,3 +24,35 @@ jobs:
       - name: Start static server
         run: python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/culinary-http.log 2>&1 &
       - run: npm run test:browser
+      - name: Smoke production public runtime
+        if: github.ref == 'refs/heads/main'
+        env:
+          BASE_URL: https://culinary-recommender-app.pages.dev
+        run: |
+          set -euo pipefail
+
+          fetch_with_retry() {
+            local url="$1"
+            local output="$2"
+            local attempt
+            for attempt in 1 2 3 4 5; do
+              if curl --fail --silent --show-error --location --max-time 10 "$url" -o "$output"; then
+                return 0
+              fi
+              sleep 3
+            done
+            return 1
+          }
+
+          fetch_with_retry "$BASE_URL/" /tmp/culinary-root.html
+          grep -q "Culinary Recommender" /tmp/culinary-root.html
+
+          fetch_with_retry "$BASE_URL/api/auth/config" /tmp/culinary-auth-config.json
+          node -e 'const fs=require("fs"); const body=JSON.parse(fs.readFileSync("/tmp/culinary-auth-config.json","utf8")); if(body.ok!==true || typeof body.clientId!=="string" || body.clientId.length===0) process.exit(1); console.log("production auth config: reachable");'
+
+          fetch_with_retry "$BASE_URL/api/step7e-final-page" /tmp/culinary-step7e-final.html
+          grep -q "Step 7E final verification" /tmp/culinary-step7e-final.html
+
+          status="$(curl --silent --show-error --location --max-time 10 -o /tmp/culinary-step7e-unauth.json -w '%{http_code}' "$BASE_URL/api/step7e-pilot")"
+          test "$status" = "401"
+          node -e 'const fs=require("fs"); const body=JSON.parse(fs.readFileSync("/tmp/culinary-step7e-unauth.json","utf8")); if(body.ok!==false || body.error!=="UNAUTHORIZED") process.exit(1); console.log("production Step 7E unauthenticated denial: reachable and fail-closed");'
