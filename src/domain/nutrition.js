@@ -34,7 +34,7 @@ import {
   EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
   europeanPrimaryPolicyCoverage
-} from "./nutrition-source-policy.js";
+} from "./nutrition-source-policy-runtime.js";
 
 const quantityToGrams = ingredient => {
   const quantity = ingredient?.quantity;
