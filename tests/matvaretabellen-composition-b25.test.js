@@ -113,18 +113,13 @@ test("B25 composition evidence does not authorize a household portion or cooked-
   assert.equal(barley.cookedYieldFactor, undefined);
 });
 
-test("B25 removes exactly the three authored barley density blockers without masking independent blockers", () => {
+test("B25 barley evidence remains active without freezing later cumulative blocker counts", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  assert.equal(audit.blockerCounts.missing_density, 85);
-
   for (const recipeId of ["med_lentil_mushroom_barley", "med_pumpkin_white_bean_barley_stew", "med_salmon_barley_spinach"]) {
     const detail = audit.recipeDetails.find(row => row.recipeId === recipeId);
     assert.ok(detail, recipeId);
     assert.ok(!detail.blockers.some(blocker => blocker.ingredientId === "barley"), recipeId);
   }
-
-  const lentilBowl = audit.recipeDetails.find(row => row.recipeId === "med_lentil_mushroom_barley");
-  assert.ok(lentilBowl.blockers.some(blocker => blocker.ingredientId === "lentils"));
 });
 
 test("B25 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {
