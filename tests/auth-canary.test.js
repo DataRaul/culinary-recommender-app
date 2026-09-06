@@ -230,7 +230,7 @@ test("Pages auth canary routes APIs plus generated Step 7E payload path through 
   assert.deepEqual(routes.exclude, []);
   const html = readFileSync(new URL("../auth-canary.html", import.meta.url), "utf8");
   assert.match(html, /\/api\/auth\/config/);
-  assert.match(html, /\/api\/step7e\/pilot/);
+  assert.match(html, /\/api\/step7e-pilot/);
   assert.doesNotMatch(html, /apps\.googleusercontent\.com/);
   assert.doesNotMatch(html, /@gmail\.com/i);
 });
