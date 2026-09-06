@@ -108,13 +108,15 @@ test("session commit probe reports rejected token reason without clearing eviden
   assert.equal(response.headers.get("set-cookie"), null);
 });
 
-test("session commit probe page performs one same-origin sanitized check and forwards only after AUTHORIZED evidence", () => {
+test("session commit probe page performs one same-origin sanitized check and forwards bounded intent only after AUTHORIZED evidence", () => {
   const html = readFileSync(new URL("../auth-session-commit-probe.html", import.meta.url), "utf8");
   assert.match(html, /\/api\/auth\/session-commit-probe/);
   assert.match(html, /credentials:\s*'same-origin'/);
   assert.match(html, /sessionValidation\s*===\s*'AUTHORIZED'/);
-  assert.match(html, /sessionStorage\.setItem/);
-  assert.match(html, /location\.replace\('\/auth-canary\.html\?sessionCommit=1'\)/);
+  assert.match(html, /params\.get\('intent'\)\s*===\s*'step7e'/);
+  assert.match(html, /\/auth-canary\.html\?sessionCommit=1&intent=step7e/);
+  assert.match(html, /window\.location\.replace\(nextLocation\)/);
+  assert.doesNotMatch(html, /sessionStorage/);
   assert.doesNotMatch(html, /google\.accounts|accountId|email|session token/i);
   assert.doesNotMatch(html, /name=['"]credential['"]|response\.credential|Google identity/i);
 });
