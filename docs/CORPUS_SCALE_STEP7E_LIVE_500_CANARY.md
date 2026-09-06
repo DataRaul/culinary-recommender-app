@@ -1,6 +1,6 @@
 # Corpus Scale Step 7E — protected 500-record live canary
 
-Status: **IMPLEMENTATION IN PR / LIVE CANARY PENDING DEPLOYMENT**
+Status: **LIVE CANARY PENDING; final human-batch flow in implementation**
 
 Date: **2026-09-06**
 
@@ -54,7 +54,7 @@ Canonical current references:
 
 A single 500-row request would be structurally wrong for the Free per-invocation limits. Step 7E therefore uses 50 authenticated requests of 10 records each. Each new chunk uses 11 D1 batch statements for its 10 source rows plus one chunk-metadata row, with schema/state/verification queries still leaving substantial headroom below 50 queries/subrequests per invocation.
 
-The one-click browser canary orchestrates those bounded requests sequentially and stops on the first failure. No paid-plan fallback exists.
+The browser canary orchestrates those bounded requests sequentially and stops on the first failure. No paid-plan fallback exists.
 
 ## 3. D1 storage boundary
 
@@ -115,21 +115,34 @@ It requires:
 
 The default audit returns no recipe body. A separate authenticated sample mode reads only ordinal 0 and returns one protected source packet.
 
-## 7. One human/browser action
+## 7. Final human-verification batch
 
-After PR merge, green CI and Pages deployment, the operator action is exactly one click in `auth-canary.html`:
+The live operator path is intentionally minimized. After implementation, CI and production deployment are green, use the dedicated Step 7E intent URL:
 
-`Run Step 7E 500-record canary`
+`auth-canary.html?intent=step7e`
 
-That button performs, in order:
+The flow is continuous in one browser/WebView context:
 
-1. unauthenticated credential-omitted read → must return 401;
-2. authenticated pilot-state audit;
+1. the canary checks whether an existing authenticated session is already usable;
+2. if authenticated, it starts Step 7E automatically;
+3. otherwise the operator performs one Google sign-in;
+4. successful Google verification issues the hardened session and redirects to the real session-commit probe while carrying only the bounded non-sensitive `step7e` intent;
+5. the probe must observe `sessionCookiePresent: true`, `commitMarkerPresent: true`, and `sessionValidation: AUTHORIZED`;
+6. only then does the app automatically navigate back to the canary in the same context and start Step 7E;
+7. no intermediate result needs to be copied, no second ChatGPT link needs to be opened, and no separate Step 7E button click is required for this final path.
+
+The protected Step 7E canary then performs, in order:
+
+1. authenticated protected-session preflight;
+2. protected pilot-state audit;
 3. if incomplete, sequential bootstrap of all missing/idempotent 10-record chunks;
 4. final 500/50 fingerprint audit;
 5. one authenticated protected sample read;
 6. simulated Free-limit failure → must return 503 with zero Step 7E pilot queries;
-7. display a compact evidence object with chunk timings, rows written, final D1 size and terminal candidate.
+7. unauthenticated credential-omitted read **last** → must return 401;
+8. display the complete sanitized evidence object with chunk timings, rows written, final D1 size and terminal candidate.
+
+The explicit manual `Run Step 7E 500-record canary` button remains available for bounded diagnostics, but it is not the preferred final human-gate path.
 
 The canary deliberately does not revoke the operator session again; revocation was already proven in the live Step 7C/7D sequence and remains covered by the unchanged auth architecture/tests.
 
@@ -139,7 +152,7 @@ The live canary may record:
 
 `STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS`
 
-only if the deployed one-click evidence proves all checks above without hitting Free limits.
+only if the deployed evidence proves all checks above without hitting Free limits.
 
 Any Worker CPU/subrequest/D1 Free-limit error, storage anomaly, fingerprint mismatch, auth regression, or source-boundary regression is a HOLD. There is no automatic paid-plan escalation.
 
