@@ -76,15 +76,13 @@ test("B18 composition evidence does not authorize household portions", () => {
   assert.equal(cottage.sourcePortionId, undefined);
 });
 
-test("B18 exact cottage cheese unlocks only the recipe whose other evidence is complete", () => {
+test("B18 cottage-cheese composition remains active without freezing later cumulative audit counts", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  assert.equal(audit.authoritativeRecipeCount, 16);
   const frittata = audit.recipeDetails.find(detail => detail.recipeId === "spanish_pepper_cottage_frittata");
   assert.equal(frittata.authoritative, true);
   assert.deepEqual(frittata.blockers, []);
   const pasta = audit.recipeDetails.find(detail => detail.recipeId === "med_cottage_tomato_pasta");
-  assert.equal(pasta.authoritative, false);
-  assert.deepEqual(pasta.blockers.map(blocker => [blocker.ingredientId, blocker.reason]), [["passata", "missing_density"]]);
+  assert.equal(pasta.blockers.some(blocker => blocker.ingredientId === "cottage_cheese"), false);
 });
 
 test("B18 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {
