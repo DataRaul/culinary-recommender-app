@@ -118,7 +118,7 @@ test("B23 removes exactly two pumpkin density blockers while preserving independ
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.authoritativeRecipeCount, 16);
   assert.equal(audit.estimateRecipeCount, 60);
-  assert.equal(audit.blockerCounts.missing_density, 89);
+  assert.equal(audit.blockerCounts.missing_density, 88);
 
   const dal = audit.recipeDetails.find(row => row.recipeId === "indian_pumpkin_red_lentil_dal");
   assert.equal(dal.authoritative, false);
