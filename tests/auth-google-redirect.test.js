@@ -17,7 +17,12 @@ function formRequest({ origin = ORIGIN, credential = "header.payload.signature" 
   });
 }
 
-test("top-level auth redirect delegates canonical Google verification then commits Set-Cookie on 303", async () => {
+function setCookieValues(headers) {
+  if (typeof headers.getSetCookie === "function") return headers.getSetCookie();
+  return [headers.get("set-cookie") || ""];
+}
+
+test("top-level auth redirect delegates canonical Google verification then commits session and bounded marker cookies on 303", async () => {
   let delegated = null;
   const sessionCookie = "__Host-culinary_session=opaque; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=28800";
 
@@ -37,8 +42,11 @@ test("top-level auth redirect delegates canonical Google verification then commi
   });
 
   assert.equal(response.status, 303);
-  assert.equal(response.headers.get("location"), "/auth-canary.html?auth=complete");
-  assert.equal(response.headers.get("set-cookie"), sessionCookie);
+  assert.equal(response.headers.get("location"), "/auth-session-commit-probe.html");
+  const cookies = setCookieValues(response.headers);
+  assert.ok(cookies.some(value => value.includes(sessionCookie)));
+  assert.ok(cookies.some(value => value.includes("__Host-culinary_auth_commit_probe=1")));
+  assert.ok(cookies.some(value => value.includes("Max-Age=120")));
   assert.equal(response.headers.get("cache-control"), "no-store");
   assert.equal(response.headers.get("referrer-policy"), "no-referrer");
   assert.equal(response.headers.get("x-content-type-options"), "nosniff");
