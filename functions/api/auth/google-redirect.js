@@ -1,6 +1,6 @@
 import { onRequestPost as issueGoogleSession } from "./google.js";
 
-const SUCCESS_LOCATION = "/auth-canary.html?sessionCommit=1";
+const SUCCESS_LOCATION = "/auth-session-commit-probe.html";
 const COMMIT_PROBE_COOKIE = "__Host-culinary_auth_commit_probe=1; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=120";
 
 export async function handleGoogleRedirect({ request, env, issueSession = issueGoogleSession }) {

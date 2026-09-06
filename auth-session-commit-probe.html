@@ -17,6 +17,7 @@
   </main>
   <script>
     const statusNode = document.getElementById('status');
+    const STORAGE_KEY = 'culinarySessionCommitEvidenceV1';
 
     async function run() {
       const response = await fetch('/api/auth/session-commit-probe', {
@@ -24,7 +25,19 @@
         credentials: 'same-origin'
       });
       const body = await response.json().catch(() => ({ error: 'NON_JSON_RESPONSE' }));
-      statusNode.textContent = JSON.stringify({ status: response.status, ...body }, null, 2);
+      const result = { status: response.status, ...body };
+      statusNode.textContent = JSON.stringify(result, null, 2);
+
+      if (
+        response.status === 200 &&
+        body?.ok === true &&
+        body?.sessionCookiePresent === true &&
+        body?.commitMarkerPresent === true &&
+        body?.sessionValidation === 'AUTHORIZED'
+      ) {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(result));
+        window.location.replace('/auth-canary.html?sessionCommit=1');
+      }
     }
 
     run().catch(() => {
