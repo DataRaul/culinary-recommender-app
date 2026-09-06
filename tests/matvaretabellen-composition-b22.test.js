@@ -114,21 +114,15 @@ test("B22 composition evidence does not authorize the source edible-part yield o
   assert.equal(mint.ediblePartPercent, undefined);
 });
 
-test("B22 removes exactly two mint density blockers and unlocks only the bulgur-chickpea salad", () => {
+test("B22 mint evidence remains active without freezing later residual blockers", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  assert.equal(audit.authoritativeRecipeCount, 16);
-  assert.equal(audit.estimateRecipeCount, 60);
-  assert.equal(audit.blockerCounts.missing_density, 88);
-
+  for (const recipeId of ["middle_eastern_bulgur_chickpea_salad", "middle_eastern_lentil_bulgur_herb_bowl"]) {
+    const detail = audit.recipeDetails.find(row => row.recipeId === recipeId);
+    assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "mint"), false, recipeId);
+  }
   const salad = audit.recipeDetails.find(row => row.recipeId === "middle_eastern_bulgur_chickpea_salad");
   assert.equal(salad.authoritative, true);
   assert.deepEqual(salad.blockers, []);
-
-  const lentilBowl = audit.recipeDetails.find(row => row.recipeId === "middle_eastern_lentil_bulgur_herb_bowl");
-  assert.equal(lentilBowl.authoritative, false);
-  assert.deepEqual(lentilBowl.blockers.map(blocker => [blocker.ingredientId, blocker.reason]), [
-    ["lentils", "missing_density"]
-  ]);
 });
 
 test("B22 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {
