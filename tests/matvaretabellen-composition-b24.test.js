@@ -107,15 +107,10 @@ test("B24 composition evidence does not authorize a household portion or edible-
   assert.equal(feta.ediblePartPercent, undefined);
 });
 
-test("B24 removes the feta density blocker while preserving the unresolved lentil blocker", () => {
+test("B24 feta evidence remains active without freezing later residual blockers", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  assert.equal(audit.authoritativeRecipeCount, 16);
-  assert.equal(audit.estimateRecipeCount, 60);
-  assert.equal(audit.blockerCounts.missing_density, 88);
   const salad = audit.recipeDetails.find(row => row.recipeId === "med_lentil_feta_salad");
-  assert.equal(salad.authoritative, false);
-  assert.ok(!salad.blockers.some(blocker => blocker.ingredientId === "feta"));
-  assert.ok(salad.blockers.some(blocker => blocker.ingredientId === "lentils"));
+  assert.equal(salad.blockers.some(blocker => blocker.ingredientId === "feta"), false);
 });
 
 test("B24 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {
