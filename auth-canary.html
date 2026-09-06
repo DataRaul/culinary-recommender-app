@@ -29,6 +29,10 @@
   <script>
     const statusNode = document.getElementById('status');
     const show = value => { statusNode.textContent = typeof value === 'string' ? value : JSON.stringify(value, null, 2); };
+    const pageParams = new URLSearchParams(window.location.search);
+    const step7eIntent = pageParams.get('intent') === 'step7e';
+    const sessionCommitVerified = pageParams.get('sessionCommit') === '1';
+    let terminalFlowStarted = false;
 
     async function readJson(response) {
       const body = await response.json().catch(() => ({ error: 'NON_JSON_RESPONSE' }));
@@ -50,7 +54,9 @@
         cache: 'no-store',
         credentials: 'same-origin'
       }));
-      show(sanitizedAuthStatus(result));
+      const sanitized = sanitizedAuthStatus(result);
+      show(sanitized);
+      return sanitized;
     }
 
     async function checkProtected() {
@@ -246,6 +252,29 @@
       })));
     }
 
+    async function initializeIntentFlow() {
+      if (sessionCommitVerified) {
+        terminalFlowStarted = true;
+        history.replaceState(null, '', window.location.pathname);
+        if (step7eIntent) {
+          show('Step 7E: authenticated session commit verified; starting protected 500-record canary…');
+          await runStep7eCanary();
+          return;
+        }
+        show({ status: 200, ok: true, authenticated: true, sessionCommitVerified: true });
+        return;
+      }
+
+      if (!step7eIntent) return;
+      const session = await checkSession();
+      if (session.status === 200 && session.authenticated === true) {
+        terminalFlowStarted = true;
+        history.replaceState(null, '', window.location.pathname);
+        show('Step 7E: existing authenticated session verified; starting protected 500-record canary…');
+        await runStep7eCanary();
+      }
+    }
+
     function handleGoogleCredential(response) {
       const credential = typeof response?.credential === 'string' ? response.credential : '';
       if (!credential) {
@@ -265,11 +294,21 @@
       input.name = 'credential';
       input.value = credential;
       form.appendChild(input);
+
+      if (step7eIntent) {
+        const intentInput = document.createElement('input');
+        intentInput.type = 'hidden';
+        intentInput.name = 'intent';
+        intentInput.value = 'step7e';
+        form.appendChild(intentInput);
+      }
+
       document.body.appendChild(form);
       form.submit();
     }
 
     async function initializeGoogle() {
+      if (terminalFlowStarted) return;
       const config = await readJson(await fetch('/api/auth/config', {
         cache: 'no-store',
         credentials: 'same-origin'
@@ -287,7 +326,7 @@
         size: 'large',
         text: 'signin_with'
       });
-      await checkSession();
+      if (!step7eIntent) await checkSession();
     }
 
     document.getElementById('session-check').addEventListener('click', checkSession);
@@ -299,6 +338,9 @@
     document.getElementById('step7e-run').addEventListener('click', runStep7eCanary);
     document.getElementById('revoke-session').addEventListener('click', revokeSession);
     document.getElementById('logout').addEventListener('click', logout);
+    initializeIntentFlow().catch(() => {
+      show({ status: 0, ok: false, error: 'INTENT_FLOW_FAILED' });
+    });
     window.initializeGoogle = initializeGoogle;
   </script>
   <script src="https://accounts.google.com/gsi/client" async defer onload="initializeGoogle()"></script>

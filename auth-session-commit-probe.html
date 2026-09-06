@@ -17,7 +17,8 @@
   </main>
   <script>
     const statusNode = document.getElementById('status');
-    const STORAGE_KEY = 'culinarySessionCommitEvidenceV1';
+    const params = new URLSearchParams(window.location.search);
+    const step7eIntent = params.get('intent') === 'step7e';
 
     async function run() {
       const response = await fetch('/api/auth/session-commit-probe', {
@@ -35,8 +36,10 @@
         body?.commitMarkerPresent === true &&
         body?.sessionValidation === 'AUTHORIZED'
       ) {
-        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(result));
-        window.location.replace('/auth-canary.html?sessionCommit=1');
+        const nextLocation = step7eIntent
+          ? '/auth-canary.html?sessionCommit=1&intent=step7e'
+          : '/auth-canary.html?sessionCommit=1';
+        window.location.replace(nextLocation);
       }
     }
 

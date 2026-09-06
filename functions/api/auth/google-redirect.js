@@ -2,6 +2,7 @@ import { onRequestPost as issueGoogleSession } from "./google.js";
 
 const SUCCESS_LOCATION = "/auth-session-commit-probe.html";
 const COMMIT_PROBE_COOKIE = "__Host-culinary_auth_commit_probe=1; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=120";
+const ALLOWED_INTENTS = new Set(["", "step7e"]);
 
 export async function handleGoogleRedirect({ request, env, issueSession = issueGoogleSession }) {
   const requestOrigin = request.headers.get("origin");
@@ -40,6 +41,17 @@ export async function handleGoogleRedirect({ request, env, issueSession = issueG
     });
   }
 
+  const intent = typeof form.get("intent") === "string" ? form.get("intent") : "";
+  if (!ALLOWED_INTENTS.has(intent)) {
+    return new Response(JSON.stringify({ ok: false, error: "INVALID_INTENT" }), {
+      status: 400,
+      headers: {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "no-store"
+      }
+    });
+  }
+
   const delegatedRequest = new Request(request.url, {
     method: "POST",
     headers: {
@@ -63,8 +75,9 @@ export async function handleGoogleRedirect({ request, env, issueSession = issueG
     });
   }
 
+  const location = intent === "step7e" ? `${SUCCESS_LOCATION}?intent=step7e` : SUCCESS_LOCATION;
   const headers = new Headers({
-    location: SUCCESS_LOCATION,
+    location,
     "cache-control": "no-store",
     "referrer-policy": "no-referrer",
     "x-content-type-options": "nosniff"
