@@ -1,6 +1,6 @@
 # Corpus Scale Step 7E — ForkRecipe production-shaped pilot
 
-Status: **SOURCE AUDIT IMPLEMENTED / LIVE PILOT NOT YET AUTHORIZED BY AUDIT RESULT**
+Status: **SOURCE AUDIT IMPLEMENTED / VERIFIED PINNED TREE = 915 RECORDS / GREEN RERUN PENDING / LIVE PILOT NOT YET AUTHORIZED**
 
 Date: **2026-09-06**
 
@@ -16,7 +16,8 @@ Current candidate:
 
 - repository: `futurechef/forkrecipe-recipes`;
 - pinned commit: `c32255266af39bd77444d39452f3df8088ac8fd9`;
-- upstream README declaration: 916 recipes;
+- verified pinned tree / upstream validator count: **915 recipes**;
+- upstream README count text: **916 recipes** — retained as non-blocking source-documentation drift, not silently normalized;
 - source-level content licence declaration: CC BY-SA 4.0;
 - media: excluded;
 - external nutrition: never imported as NutritionSource authority.
@@ -34,13 +35,27 @@ The pinned audit requires all of the following independently:
 5. `CONTRIBUTING.md` states accepted content uses the same licence;
 6. contributor guidance rejects copying copyrighted commercial recipe prose.
 
-Every admitted pilot packet retains pinned-file provenance and attribution. A failure in source-level rights evidence holds the cohort fail-closed.
+The first live CI audit of the pinned source passed all six rights checks. Every admitted pilot packet retains pinned-file provenance and attribution. A future failure in source-level rights evidence holds the cohort fail-closed.
 
 ## 3. Data-quality and adapter gate
 
 The workflow checks out the exact upstream commit and runs the upstream zero-dependency validator before the Culinary adapter audit.
 
-The Culinary audit then requires:
+Fresh pinned-source evidence on 2026-09-06:
+
+- upstream validator: **PASS, 915 recipe(s) valid, no errors**;
+- Culinary parse/data-quality decisions: **915 structurally valid protected-source-pilot candidates, 0 held, 0 rejected** before the stale 916 expected-count assertion was corrected;
+- ratio systems: 630 `parts`, 236 `weight`, 49 `bakers_percentage`;
+- source fork records: 10;
+- exact normalized source-title duplicate pairs: 11;
+- exact normalized title collisions with the existing public 84-record corpus: 3 (`baba-ganoush`, `huevos-rancheros`, `tzatziki`);
+- source nutrition top-level fields observed: 0;
+- source media top-level fields observed: 0;
+- allowlisted source-packet payload: about 9.3 MB uncompressed across the 915 records.
+
+The only failure in the first Step 7E audit run was our stale preflight assumption that the pinned tree contained 916 records. Fresh inspection proved the pinned tree and upstream validator contain 915, while the README says 916 and `CONTRIBUTING.md`'s validator example says 915. The Step 7E expected count is therefore pinned to the observed/validated tree count of **915**, while the README discrepancy is retained as provenance drift.
+
+The Culinary audit requires:
 
 - exact deterministic recipe-file count and unique slugs/files;
 - expected per-record `CC-BY-SA` declaration;
@@ -52,7 +67,7 @@ The Culinary audit then requires:
 - generalized control-plane and ingestion-pipeline validation;
 - duplicate/title-collision observations without automatic merging.
 
-A stale documentation example count is recorded as provenance/data-quality drift but is not by itself a blocking source-body defect when the pinned tree and upstream validator agree.
+Documentation-count drift is recorded but is not by itself a blocking source-body defect when the pinned tree and upstream validator agree.
 
 ## 4. Quantity, nutrition, dietary and allergen firewall
 
