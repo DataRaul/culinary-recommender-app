@@ -1,8 +1,12 @@
 # Corpus Scale Step 7E — protected 500-record live canary
 
-Status: **LIVE CANARY PENDING; final human-batch flow in implementation**
+Status: **LIVE PASS / TERMINAL RECORDED**
 
 Date: **2026-09-06**
+
+Terminal state:
+
+`STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS`
 
 Entry authority:
 
@@ -52,9 +56,9 @@ Canonical current references:
 - https://developers.cloudflare.com/d1/platform/limits/
 - https://developers.cloudflare.com/d1/platform/pricing/
 
-A single 500-row request would be structurally wrong for the Free per-invocation limits. Step 7E therefore uses 50 authenticated requests of 10 records each. Each new chunk uses 11 D1 batch statements for its 10 source rows plus one chunk-metadata row, with schema/state/verification queries still leaving substantial headroom below 50 queries/subrequests per invocation.
+A single 500-row request would be structurally wrong for the Free per-invocation limits. Step 7E therefore uses 50 authenticated requests of 10 records each when initialization is actually required. Each new chunk uses 11 D1 batch statements for its 10 source rows plus one chunk-metadata row, with schema/state/verification queries still leaving substantial headroom below 50 queries/subrequests per invocation.
 
-The browser canary orchestrates those bounded requests sequentially and stops on the first failure. No paid-plan fallback exists.
+The final verification route never falls back to the 50-chunk bootstrap loop on an ambiguous audit-read failure. It only verifies the already-materialized pilot and fails compactly on bounded errors.
 
 ## 3. D1 storage boundary
 
@@ -67,7 +71,7 @@ It creates two Step 7E tables inside that existing database:
 
 No future recipe-body D1 shard is created. The eight future shard databases remain architectural placeholders only and are explicitly not earned by Step 7E.
 
-The 500-record source body is roughly 5.1 MB before SQLite overhead, far below the 500 MB Free per-database cap. The live canary measures actual D1 `size_after`, rows read/written and query timing metadata instead of treating this estimate as proof.
+The final live audit observed D1 `size_after` of **5,931,008 bytes**.
 
 ## 4. Authentication and fail-closed order
 
@@ -97,6 +101,8 @@ The D1 write is a batch containing the 10 source rows and one chunk-metadata row
 
 If a chunk metadata row already exists, the route does not rewrite it. It verifies metadata and stored body fingerprint and returns an idempotent success only on an exact match. Mismatches fail closed with conflict status.
 
+The final live run did not require re-materialization: the pilot was already complete and `bootstrapRequired` was false.
+
 ## 6. Final audit
 
 The final protected audit independently reads:
@@ -105,63 +111,75 @@ The final protected audit independently reads:
 - exact recipe-row count;
 - exact sum of stored `body_bytes`.
 
-Each read is allowed one automatic read-only retry inside the same Worker invocation. A transient D1 read therefore does not require another human browser cycle. If both attempts fail, the response identifies only the bounded failing stage (`STEP7E_AUDIT_CHUNK_METADATA_READ_FAILED`, `STEP7E_AUDIT_RECIPE_COUNT_READ_FAILED`, or `STEP7E_AUDIT_BODY_BYTES_READ_FAILED`) and does not expose raw database error text.
+Each read is allowed one automatic read-only retry inside the same Worker invocation. If both attempts fail, the response identifies only the bounded failing stage and does not expose raw database error text.
 
-It still requires:
+The live PASS proved:
 
-- exactly 50 expected chunks;
-- exactly 500 recipe rows;
-- exact total source-body bytes;
-- exact source commit on every chunk;
-- exact per-chunk hashes;
-- exact overall fingerprint `2aa8106f7521f9cf3f6c2f9ece13d328272f8400f90f4ae79b8cdc4750b5d8b6`.
+- audit status 200 / `ok: true` / `ready: true`;
+- recipe count **500 / 500**;
+- chunk count **50 / 50**;
+- total body bytes **5,115,695 / 5,115,695**;
+- exact overall fingerprint `2aa8106f7521f9cf3f6c2f9ece13d328272f8400f90f4ae79b8cdc4750b5d8b6`;
+- metadata validation PASS over all 500 recipes and exact body bytes;
+- audit elapsed time **304 ms**;
+- four bounded pilot queries in the audit;
+- every audit read completed on its first attempt;
+- chunk-metadata read returned 50 rows, zero writes/changes, and D1 size-after 5,931,008 bytes.
 
-The bounded retry does not weaken any acceptance criterion and does not retry writes. The default audit returns no recipe body. A separate authenticated sample mode reads only ordinal 0 and returns one protected source packet.
+## 7. Protected sample and fail-closed evidence
 
-## 7. Final human-verification batch
+The authenticated protected sample returned:
 
-The live operator path is intentionally minimized. After implementation, CI and production deployment are green, use the dedicated Step 7E intent URL:
+- status 200;
+- `protectedDataReturned: true`;
+- source item `ackee-saltfish`;
+- body bytes 8,672;
+- packet SHA-256 `2d20fb4993f5d50b738b4bba01aaf4d16592f4416b40b9a89bde4af133ce91ea`;
+- recommendation eligibility false;
+- public runtime activation authorization false;
+- source nutrition authority false;
+- dietary/allergen derivation false;
+- automatic admission false;
+- source-ratio-to-absolute-quantity promotion false.
 
-`auth-canary.html?intent=step7e`
+The simulated Free-limit path returned the required:
 
-The flow is continuous in one browser/WebView context:
+- status 503;
+- `STEP7E_FREE_LIMIT_FAIL_CLOSED`;
+- `protectedDataReturned: false`;
+- `pilotQueries: 0`.
 
-1. the canary checks whether an existing authenticated session is already usable;
-2. if authenticated, it starts Step 7E automatically;
-3. otherwise the operator performs one Google sign-in;
-4. successful Google verification issues the hardened session and redirects to the real session-commit probe while carrying only the bounded non-sensitive `step7e` intent;
-5. the probe must observe `sessionCookiePresent: true`, `commitMarkerPresent: true`, and `sessionValidation: AUTHORIZED`;
-6. only then does the app automatically navigate back to the canary in the same context and start Step 7E;
-7. no intermediate result needs to be copied, no second ChatGPT link needs to be opened, and no separate Step 7E button click is required for this final path.
+The credential-omitted request returned the required:
 
-The protected Step 7E canary then performs, in order:
+- status 401;
+- `UNAUTHORIZED` / `NO_SESSION`;
+- no protected data.
 
-1. authenticated protected-session preflight;
-2. protected pilot-state audit;
-3. if incomplete, sequential bootstrap of all missing/idempotent 10-record chunks;
-4. final 500/50 fingerprint audit;
-5. one authenticated protected sample read;
-6. simulated Free-limit failure → must return 503 with zero Step 7E pilot queries;
-7. unauthenticated credential-omitted read **last** → must return 401;
-8. display a compact sanitized terminal evidence object rather than all 50 per-chunk records.
+Session preflight immediately before the terminal verification was status 200 / `ok: true` / `authenticated: true`.
 
-The terminal view summarizes request count, idempotent/new chunk counts, newly written rows, chunk timing, final observed D1 size, exact audit counts/fingerprint, protected-sample boundaries, Free-limit evidence, unauthenticated denial and terminal state. A `Copy result` control copies that compact object for mobile/WebView handoff. Detailed per-chunk evidence remains an in-memory execution detail rather than something the operator must manually copy.
+## 8. Live-verification defects found and repaired
 
-The explicit manual `Run Step 7E 500-record canary` button remains available for bounded diagnostics, but it is not the preferred final human-gate path.
+Several live-path defects were fixed without weakening the security boundary:
 
-The canary deliberately does not revoke the operator session again; revocation was already proven in the live Step 7C/7D sequence and remains covered by the unchanged auth architecture/tests.
+- ambiguous audit-read failures no longer trigger a 50-request bootstrap loop;
+- final audit reads have one bounded read-only retry and exact failing-stage classification;
+- the final verifier is served through the proven `/api/*` Pages Functions surface and has bounded client request timeouts;
+- the PWA service worker no longer caches `/api/*`, auth/canary/diagnostic routes, or protected generated Step 7E data; old cache versions are purged and the replacement worker activates/claims immediately;
+- the main validation workflow now performs a small production smoke against the live root, `/api/auth/config`, `/api/step7e-final-page`, and unauthenticated `/api/step7e-pilot` fail-closed behavior.
 
-## 8. Terminal decision
+The production smoke passed from GitHub. Separately, the owner's Wi-Fi path could not reach fresh `pages.dev` resources while mobile data could; the final owner verification therefore used mobile data. That network-path issue is not treated as a Step 7E application/runtime failure.
 
-The live canary may record:
+## 9. Terminal decision
+
+The complete live evidence satisfies the frozen terminal gate:
 
 `STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS`
 
-only if the deployed evidence proves all checks above without hitting Free limits.
+Step 7E is **COMPLETE / LIVE PASS**.
 
-Any Worker CPU/subrequest/D1 Free-limit error, storage anomaly, fingerprint mismatch, auth regression, or source-boundary regression is a HOLD. There is no automatic paid-plan escalation.
+The governing no-billing architecture defines no Step 7F. This PASS therefore closes the currently defined Corpus Scale Step-7 sequence but does not create new authority by implication. Any post-Step-7E corpus-scale action requires an explicit later roadmap/gate decision.
 
-## 9. Hard boundaries unchanged
+## 10. Hard boundaries unchanged
 
 Step 7E does not authorize:
 
