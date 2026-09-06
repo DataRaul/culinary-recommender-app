@@ -5,8 +5,9 @@ import { handleGoogleRedirect } from "../functions/api/auth/google-redirect.js";
 
 const ORIGIN = "https://culinary-recommender-app.pages.dev";
 
-function formRequest({ origin = ORIGIN, credential = "header.payload.signature" } = {}) {
+function formRequest({ origin = ORIGIN, credential = "header.payload.signature", intent = "" } = {}) {
   const body = new URLSearchParams({ credential });
+  if (intent) body.set("intent", intent);
   return new Request(`${ORIGIN}/api/auth/google-redirect`, {
     method: "POST",
     headers: {
@@ -22,6 +23,16 @@ function setCookieValues(headers) {
   return [headers.get("set-cookie") || ""];
 }
 
+function successfulSessionResponse() {
+  return new Response(JSON.stringify({ ok: true, authenticated: true }), {
+    status: 200,
+    headers: {
+      "content-type": "application/json",
+      "set-cookie": "__Host-culinary_session=opaque; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=28800"
+    }
+  });
+}
+
 test("top-level auth redirect delegates canonical Google verification then commits session and bounded marker cookies on 303", async () => {
   let delegated = null;
   const sessionCookie = "__Host-culinary_session=opaque; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=28800";
@@ -31,13 +42,7 @@ test("top-level auth redirect delegates canonical Google verification then commi
     env: { marker: "env" },
     issueSession: async context => {
       delegated = context;
-      return new Response(JSON.stringify({ ok: true, authenticated: true }), {
-        status: 200,
-        headers: {
-          "content-type": "application/json",
-          "set-cookie": sessionCookie
-        }
-      });
+      return successfulSessionResponse();
     }
   });
 
@@ -58,6 +63,39 @@ test("top-level auth redirect delegates canonical Google verification then commi
   assert.equal(delegated.request.headers.get("origin"), ORIGIN);
   assert.match(delegated.request.headers.get("content-type") || "", /^application\/json/);
   assert.deepEqual(await delegated.request.json(), { credential: "header.payload.signature" });
+});
+
+test("bounded Step 7E intent is forwarded only to the post-commit probe", async () => {
+  let delegatedBody = null;
+  const response = await handleGoogleRedirect({
+    request: formRequest({ intent: "step7e" }),
+    env: {},
+    issueSession: async context => {
+      delegatedBody = await context.request.json();
+      return successfulSessionResponse();
+    }
+  });
+
+  assert.equal(response.status, 303);
+  assert.equal(response.headers.get("location"), "/auth-session-commit-probe.html?intent=step7e");
+  assert.deepEqual(delegatedBody, { credential: "header.payload.signature" });
+});
+
+test("unknown auth intent fails closed before canonical session issuance", async () => {
+  let called = false;
+  const response = await handleGoogleRedirect({
+    request: formRequest({ intent: "unexpected" }),
+    env: {},
+    issueSession: async () => {
+      called = true;
+      return successfulSessionResponse();
+    }
+  });
+
+  assert.equal(response.status, 400);
+  assert.deepEqual(await response.json(), { ok: false, error: "INVALID_INTENT" });
+  assert.equal(called, false);
+  assert.equal(response.headers.get("set-cookie"), null);
 });
 
 test("top-level auth redirect rejects a foreign origin before credential verification", async () => {
