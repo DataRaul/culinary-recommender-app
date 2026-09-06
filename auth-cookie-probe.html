@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Culinary cookie acceptance probe</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 42rem; margin: 3rem auto; padding: 0 1rem; line-height: 1.5; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #f4f4f4; padding: 1rem; border-radius: .5rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Culinary cookie acceptance probe</h1>
+    <p>This diagnostic checks only whether this browser accepts short-lived secure first-party server cookies. It does not use account data, Google credentials, session tokens, or recipe data.</p>
+    <pre id="status" aria-live="polite">Checking…</pre>
+  </main>
+  <script>
+    async function run() {
+      const status = document.getElementById('status');
+      try {
+        const response = await fetch('/api/auth/cookie-probe?stage=check', {
+          cache: 'no-store',
+          credentials: 'same-origin'
+        });
+        const body = await response.json();
+        status.textContent = JSON.stringify({ status: response.status, ...body }, null, 2);
+      } catch {
+        status.textContent = JSON.stringify({ status: 0, ok: false, error: 'COOKIE_PROBE_REQUEST_FAILED' }, null, 2);
+      }
+    }
+    run();
+  </script>
+</body>
+</html>
