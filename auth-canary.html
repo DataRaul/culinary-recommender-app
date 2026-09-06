@@ -94,18 +94,6 @@
         chunkResults: []
       };
       try {
-        show('Step 7E: verifying unauthenticated fail-closed behavior…');
-        const unauthenticated = await readJson(await fetch('/api/step7e/pilot', {
-          cache: 'no-store',
-          credentials: 'omit'
-        }));
-        assertStep7e(unauthenticated.status === 401 && unauthenticated.ok === false, 'STEP7E_UNAUTHENTICATED_ROUTE_DID_NOT_FAIL_CLOSED', unauthenticated);
-        evidence.unauthenticated = {
-          status: unauthenticated.status,
-          error: unauthenticated.error,
-          reason: unauthenticated.reason
-        };
-
         show('Step 7E: checking current protected-pilot state…');
         let audit = await readJson(await fetch('/api/step7e/pilot', {
           cache: 'no-store',
@@ -192,6 +180,19 @@
           meanChunkElapsedMs: elapsed.length ? Number((elapsed.reduce((a, b) => a + b, 0) / elapsed.length).toFixed(3)) : null,
           finalD1SizeAfterBytes: evidence.chunkResults.at(-1)?.sizeAfterBytes ?? null
         };
+
+        show('Step 7E: verifying unauthenticated fail-closed behavior…');
+        const unauthenticated = await readJson(await fetch('/api/step7e/pilot', {
+          cache: 'no-store',
+          credentials: 'omit'
+        }));
+        assertStep7e(unauthenticated.status === 401 && unauthenticated.ok === false, 'STEP7E_UNAUTHENTICATED_ROUTE_DID_NOT_FAIL_CLOSED', unauthenticated);
+        evidence.unauthenticated = {
+          status: unauthenticated.status,
+          error: unauthenticated.error,
+          reason: unauthenticated.reason
+        };
+
         evidence.canaryPass = true;
         evidence.terminalState = 'STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS';
         show(evidence);
