@@ -42,7 +42,7 @@ test("top-level auth redirect delegates canonical Google verification then commi
   });
 
   assert.equal(response.status, 303);
-  assert.equal(response.headers.get("location"), "/auth-session-commit-probe.html");
+  assert.equal(response.headers.get("location"), "/auth-canary.html?sessionCommit=1");
   const cookies = setCookieValues(response.headers);
   assert.ok(cookies.some(value => value.includes(sessionCookie)));
   assert.ok(cookies.some(value => value.includes("__Host-culinary_auth_commit_probe=1")));
