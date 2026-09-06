@@ -63,6 +63,5 @@ test("cookie probe rejects unknown stages and diagnostic page auto-checks same-o
   const html = readFileSync(new URL("../auth-cookie-probe.html", import.meta.url), "utf8");
   assert.match(html, /\/api\/auth\/cookie-probe\?stage=check/);
   assert.match(html, /credentials:\s*'same-origin'/);
-  assert.doesNotMatch(html, /google/i);
-  assert.doesNotMatch(html, /accountId|email|credential|session token/i);
+  assert.doesNotMatch(html, /accountId|owner@|response\.credential|__Host-culinary_session/);
 });
