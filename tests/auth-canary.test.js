@@ -221,12 +221,16 @@ test("protected session rechecks current account state and revocation version", 
   assert.equal((await currentSessionAccount({ request, env, nowEpochSeconds: 1050 })).reason, "ACCOUNT_DISABLED");
 });
 
-test("Pages auth canary keeps static traffic free and runtime identity private", () => {
+test("Pages auth canary routes APIs plus generated Step 7E payload path through Functions", () => {
   const routes = JSON.parse(readFileSync(new URL("../_routes.json", import.meta.url), "utf8"));
-  assert.deepEqual(routes.include, ["/api/*"]);
+  assert.deepEqual(routes.include, [
+    "/api/*",
+    "/src/data/external/generated/forkrecipe-step7e-live/*"
+  ]);
   assert.deepEqual(routes.exclude, []);
   const html = readFileSync(new URL("../auth-canary.html", import.meta.url), "utf8");
   assert.match(html, /\/api\/auth\/config/);
+  assert.match(html, /\/api\/step7e\/pilot/);
   assert.doesNotMatch(html, /apps\.googleusercontent\.com/);
   assert.doesNotMatch(html, /@gmail\.com/i);
 });

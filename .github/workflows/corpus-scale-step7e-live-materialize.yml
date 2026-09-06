@@ -1,0 +1,42 @@
+name: Corpus Scale Step 7E live materialize
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: corpus-step7e-live-materialize-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify-reproducible-materialization:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+      - name: Checkout pinned ForkRecipe source
+        uses: actions/checkout@v4
+        with:
+          repository: futurechef/forkrecipe-recipes
+          ref: c32255266af39bd77444d39452f3df8088ac8fd9
+          path: forkrecipe
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify exact upstream source
+        run: |
+          test "$(git -C forkrecipe rev-parse HEAD)" = "c32255266af39bd77444d39452f3df8088ac8fd9"
+          (cd forkrecipe && npm run validate)
+      - name: Re-run Step 7E source audit
+        run: node scripts/run-forkrecipe-step7e-audit.mjs --source=./forkrecipe --out=.tmp/step7e-source-audit
+      - name: Re-materialize deterministic 500-record live pilot
+        run: node scripts/materialize-forkrecipe-step7e-live-pilot.mjs --source=./forkrecipe --out=.tmp/step7e-live-generated
+      - name: Verify tracked generated modules are reproducible
+        run: |
+          diff -qr .tmp/step7e-live-generated src/data/external/generated/forkrecipe-step7e-live
+      - name: Upload verification materialization
+        uses: actions/upload-artifact@v4
+        with:
+          name: step7e-live-generated-verification
+          path: .tmp/step7e-live-generated/
+          if-no-files-found: error
+          retention-days: 7

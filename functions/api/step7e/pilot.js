@@ -1,0 +1,174 @@
+import {
+  clearSessionCookie,
+  currentSessionAccount,
+  jsonResponse
+} from "../../../src/server/auth-core.mjs";
+import {
+  roundedElapsedMs,
+  summarizeD1Meta
+} from "../../../src/server/step7d-oracle.mjs";
+import {
+  STEP7E_CHUNK_TABLE,
+  STEP7E_EXPECTED_CHUNK_COUNT,
+  STEP7E_EXPECTED_FINGERPRINT,
+  STEP7E_EXPECTED_RECIPE_COUNT,
+  STEP7E_PILOT_TABLE,
+  publicStep7eManifest,
+  step7ePilotFingerprintSha256,
+  validateStoredStep7eChunkMetadata
+} from "../../../src/server/step7e-pilot.mjs";
+
+function rejectedSession(current) {
+  const headers = current.reason === "NO_SESSION"
+    ? {}
+    : { "set-cookie": clearSessionCookie() };
+  return jsonResponse({
+    ok: false,
+    error: "UNAUTHORIZED",
+    reason: current.reason || "SESSION_REJECTED"
+  }, 401, headers);
+}
+
+async function readPilotAudit(db) {
+  const chunksResult = await db.prepare(
+    `SELECT chunk_index, first_ordinal, recipe_count, chunk_sha256, total_body_bytes, source_commit
+     FROM ${STEP7E_CHUNK_TABLE}
+     ORDER BY chunk_index ASC`
+  ).all();
+  const totalsResult = await db.prepare(
+    `SELECT COUNT(*) AS recipe_count, COALESCE(SUM(body_bytes), 0) AS total_body_bytes
+     FROM ${STEP7E_PILOT_TABLE}`
+  ).first();
+  const chunkRows = chunksResult?.results || [];
+  return {
+    chunkRows,
+    chunkMeta: chunksResult?.meta || {},
+    totals: {
+      recipeCount: Number(totalsResult?.recipe_count || 0),
+      totalBodyBytes: Number(totalsResult?.total_body_bytes || 0)
+    }
+  };
+}
+
+export async function onRequestGet({ request, env }) {
+  const startedAt = performance.now();
+  if (!env?.SESSION_SECRET || !env?.CULINARY_CONTROL_DB) {
+    return jsonResponse({ ok: false, error: "AUTH_NOT_CONFIGURED" }, 503);
+  }
+
+  const current = await currentSessionAccount({ request, env });
+  if (!current.pass) return rejectedSession(current);
+
+  const url = new URL(request.url);
+  if (url.searchParams.get("simulate") === "free-limit") {
+    return jsonResponse({
+      ok: false,
+      step: "7E",
+      error: "STEP7E_FREE_LIMIT_FAIL_CLOSED",
+      simulated: true,
+      protectedDataReturned: false,
+      metrics: {
+        elapsedMs: roundedElapsedMs(startedAt),
+        pilotQueries: 0,
+        pilotRowsRead: 0,
+        pilotRowsWritten: 0
+      }
+    }, 503);
+  }
+
+  const db = env.CULINARY_CONTROL_DB;
+  let audit;
+  try {
+    audit = await readPilotAudit(db);
+  } catch {
+    return jsonResponse({
+      ok: false,
+      step: "7E",
+      error: "STEP7E_PILOT_NOT_INITIALIZED",
+      ready: false,
+      protectedDataReturned: false,
+      manifest: publicStep7eManifest()
+    }, 503);
+  }
+
+  const metadataValidation = validateStoredStep7eChunkMetadata(audit.chunkRows);
+  const storedFingerprint = metadataValidation.pass
+    ? await step7ePilotFingerprintSha256(audit.chunkRows)
+    : null;
+  const totalsMatch = audit.totals.recipeCount === STEP7E_EXPECTED_RECIPE_COUNT
+    && audit.totals.totalBodyBytes === publicStep7eManifest().totalBodyBytes;
+  const fingerprintMatch = storedFingerprint === STEP7E_EXPECTED_FINGERPRINT;
+  const ready = metadataValidation.pass && totalsMatch && fingerprintMatch;
+
+  const base = {
+    ok: ready,
+    step: "7E",
+    ready,
+    terminalCandidate: ready ? "STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS" : null,
+    recipeCount: audit.totals.recipeCount,
+    expectedRecipeCount: STEP7E_EXPECTED_RECIPE_COUNT,
+    chunkCount: audit.chunkRows.length,
+    expectedChunkCount: STEP7E_EXPECTED_CHUNK_COUNT,
+    totalBodyBytes: audit.totals.totalBodyBytes,
+    expectedTotalBodyBytes: publicStep7eManifest().totalBodyBytes,
+    fingerprint: storedFingerprint,
+    expectedFingerprint: STEP7E_EXPECTED_FINGERPRINT,
+    metadataValidation,
+    boundaries: publicStep7eManifest().boundaries,
+    metrics: {
+      elapsedMs: roundedElapsedMs(startedAt),
+      pilotQueries: 2,
+      chunkMetadataRead: summarizeD1Meta(audit.chunkMeta)
+    }
+  };
+
+  if (!ready) {
+    return jsonResponse({
+      ...base,
+      error: "STEP7E_PILOT_INCOMPLETE_OR_MISMATCH",
+      protectedDataReturned: false
+    }, 409);
+  }
+
+  if (url.searchParams.get("sample") !== "1") {
+    return jsonResponse({ ...base, protectedDataReturned: false });
+  }
+
+  let sample;
+  try {
+    sample = await db.prepare(
+      `SELECT ordinal, source_item_id, body_json, body_bytes, packet_sha256
+       FROM ${STEP7E_PILOT_TABLE}
+       WHERE ordinal = 0
+       LIMIT 1`
+    ).first();
+  } catch {
+    return jsonResponse({ ok: false, step: "7E", error: "STEP7E_SAMPLE_READ_FAILED", protectedDataReturned: false }, 503);
+  }
+  if (!sample?.body_json) {
+    return jsonResponse({ ok: false, step: "7E", error: "STEP7E_SAMPLE_MISSING", protectedDataReturned: false }, 409);
+  }
+
+  let packet;
+  try {
+    packet = JSON.parse(sample.body_json);
+  } catch {
+    return jsonResponse({ ok: false, step: "7E", error: "STEP7E_SAMPLE_JSON_INVALID", protectedDataReturned: false }, 500);
+  }
+
+  return jsonResponse({
+    ...base,
+    protectedDataReturned: true,
+    sample: {
+      ordinal: Number(sample.ordinal),
+      sourceItemId: String(sample.source_item_id),
+      bodyBytes: Number(sample.body_bytes),
+      packetSha256: String(sample.packet_sha256),
+      packet
+    },
+    metrics: {
+      ...base.metrics,
+      pilotQueries: 3
+    }
+  });
+}

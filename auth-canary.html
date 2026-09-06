@@ -13,7 +13,7 @@
 <body>
   <main>
     <h1>Culinary Recommender auth canary</h1>
-    <p>This page tests Google identity, the private allowlist, hardened sessions, protected D1 access, fail-closed revocation, and the Step 7D protected 84-record oracle. The sample action returns one protected recipe only after authorization.</p>
+    <p>This page tests Google identity, the private allowlist, hardened sessions, protected D1 access, fail-closed revocation, the Step 7D protected 84-record oracle, and the Step 7E protected 500-record source pilot.</p>
     <div id="google-button"></div>
     <button id="session-check" type="button">Check session</button>
     <button id="protected-check" type="button">Check protected route</button>
@@ -21,6 +21,7 @@
     <button id="step7d-audit" type="button">Audit Step 7D oracle</button>
     <button id="step7d-sample" type="button">Read protected sample recipe</button>
     <button id="step7d-limit" type="button">Simulate Free-limit failure</button>
+    <button id="step7e-run" type="button">Run Step 7E 500-record canary</button>
     <button id="revoke-session" type="button">Revoke current session</button>
     <button id="logout" type="button">Log out</button>
     <pre id="status" aria-live="polite">Loading…</pre>
@@ -76,6 +77,134 @@
       })));
     }
 
+    function assertStep7e(condition, code, detail = null) {
+      if (!condition) {
+        const error = new Error(code);
+        error.detail = detail;
+        throw error;
+      }
+    }
+
+    async function runStep7eCanary() {
+      const button = document.getElementById('step7e-run');
+      button.disabled = true;
+      const evidence = {
+        step: '7E',
+        target: 'PROTECTED_500_FORKRECIPE_SOURCE_PILOT',
+        chunkResults: []
+      };
+      try {
+        show('Step 7E: verifying unauthenticated fail-closed behavior…');
+        const unauthenticated = await readJson(await fetch('/api/step7e/pilot', {
+          cache: 'no-store',
+          credentials: 'omit'
+        }));
+        assertStep7e(unauthenticated.status === 401 && unauthenticated.ok === false, 'STEP7E_UNAUTHENTICATED_ROUTE_DID_NOT_FAIL_CLOSED', unauthenticated);
+        evidence.unauthenticated = {
+          status: unauthenticated.status,
+          error: unauthenticated.error,
+          reason: unauthenticated.reason
+        };
+
+        show('Step 7E: checking current protected-pilot state…');
+        let audit = await readJson(await fetch('/api/step7e/pilot', {
+          cache: 'no-store',
+          credentials: 'same-origin'
+        }));
+        if (audit.status === 401) throw Object.assign(new Error('STEP7E_AUTHENTICATED_SESSION_REQUIRED'), { detail: audit });
+
+        if (!(audit.status === 200 && audit.ready === true)) {
+          for (let chunkIndex = 0; chunkIndex < 50; chunkIndex += 1) {
+            show(`Step 7E: loading protected chunk ${chunkIndex + 1}/50…`);
+            const result = await readJson(await fetch(`/api/step7e/bootstrap?chunk=${chunkIndex}`, {
+              method: 'POST',
+              credentials: 'same-origin'
+            }));
+            assertStep7e(result.status === 200 && result.ok === true && result.chunkIndex === chunkIndex, 'STEP7E_CHUNK_BOOTSTRAP_FAILED', result);
+            evidence.chunkResults.push({
+              chunkIndex,
+              idempotent: result.idempotent,
+              recipeCount: result.recipeCount,
+              chunkFingerprint: result.chunkFingerprint,
+              elapsedMs: result.metrics?.elapsedMs ?? null,
+              writeStatements: result.metrics?.writeBatch?.statements ?? 0,
+              rowsWritten: result.metrics?.writeBatch?.rowsWritten ?? 0,
+              rowsRead: result.metrics?.verificationRead?.rowsRead ?? null,
+              sizeAfterBytes: result.metrics?.writeBatch?.sizeAfterBytes ?? result.metrics?.verificationRead?.sizeAfterBytes ?? null
+            });
+          }
+          show('Step 7E: auditing completed protected pilot…');
+          audit = await readJson(await fetch('/api/step7e/pilot', {
+            cache: 'no-store',
+            credentials: 'same-origin'
+          }));
+        }
+
+        assertStep7e(
+          audit.status === 200 && audit.ok === true && audit.ready === true &&
+          audit.recipeCount === 500 && audit.chunkCount === 50 &&
+          audit.terminalCandidate === 'STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS',
+          'STEP7E_FINAL_AUDIT_FAILED',
+          audit
+        );
+        evidence.audit = audit;
+
+        show('Step 7E: reading one authenticated protected source packet…');
+        const sample = await readJson(await fetch('/api/step7e/pilot?sample=1', {
+          cache: 'no-store',
+          credentials: 'same-origin'
+        }));
+        assertStep7e(sample.status === 200 && sample.ok === true && sample.protectedDataReturned === true, 'STEP7E_PROTECTED_SAMPLE_FAILED', sample);
+        assertStep7e(sample.sample?.packet?.boundaries?.recommendationEligible === false, 'STEP7E_RECOMMENDATION_BOUNDARY_WEAKENED', sample);
+        assertStep7e(sample.sample?.packet?.boundaries?.publicRuntimeActivationAuthorized === false, 'STEP7E_PUBLIC_RUNTIME_BOUNDARY_WEAKENED', sample);
+        assertStep7e(sample.sample?.packet?.boundaries?.sourceNutritionImportedAsAuthority === false, 'STEP7E_NUTRITION_BOUNDARY_WEAKENED', sample);
+        evidence.sample = {
+          status: sample.status,
+          protectedDataReturned: sample.protectedDataReturned,
+          sourceItemId: sample.sample?.sourceItemId,
+          bodyBytes: sample.sample?.bodyBytes,
+          packetSha256: sample.sample?.packetSha256,
+          boundaries: sample.sample?.packet?.boundaries,
+          metrics: sample.metrics
+        };
+
+        show('Step 7E: simulating Free-limit fail-closed behavior…');
+        const limited = await readJson(await fetch('/api/step7e/pilot?simulate=free-limit', {
+          cache: 'no-store',
+          credentials: 'same-origin'
+        }));
+        assertStep7e(
+          limited.status === 503 && limited.ok === false &&
+          limited.error === 'STEP7E_FREE_LIMIT_FAIL_CLOSED' &&
+          limited.protectedDataReturned === false &&
+          limited.metrics?.pilotQueries === 0,
+          'STEP7E_FREE_LIMIT_DID_NOT_FAIL_CLOSED',
+          limited
+        );
+        evidence.freeLimit = limited;
+
+        const elapsed = evidence.chunkResults.map(row => row.elapsedMs).filter(Number.isFinite);
+        const writes = evidence.chunkResults.reduce((sum, row) => sum + Number(row.rowsWritten || 0), 0);
+        evidence.liveMetrics = {
+          chunkRequestsExecutedThisRun: evidence.chunkResults.length,
+          newlyWrittenRowsThisRun: writes,
+          maxChunkElapsedMs: elapsed.length ? Math.max(...elapsed) : null,
+          meanChunkElapsedMs: elapsed.length ? Number((elapsed.reduce((a, b) => a + b, 0) / elapsed.length).toFixed(3)) : null,
+          finalD1SizeAfterBytes: evidence.chunkResults.at(-1)?.sizeAfterBytes ?? null
+        };
+        evidence.canaryPass = true;
+        evidence.terminalState = 'STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS';
+        show(evidence);
+      } catch (error) {
+        evidence.canaryPass = false;
+        evidence.error = error?.message || 'STEP7E_CANARY_FAILED';
+        evidence.detail = error?.detail || null;
+        show(evidence);
+      } finally {
+        button.disabled = false;
+      }
+    }
+
     async function revokeSession() {
       show(await readJson(await fetch('/api/auth/revoke-session', {
         method: 'POST',
@@ -129,6 +258,7 @@
     document.getElementById('step7d-audit').addEventListener('click', auditStep7d);
     document.getElementById('step7d-sample').addEventListener('click', sampleStep7d);
     document.getElementById('step7d-limit').addEventListener('click', simulateStep7dLimit);
+    document.getElementById('step7e-run').addEventListener('click', runStep7eCanary);
     document.getElementById('revoke-session').addEventListener('click', revokeSession);
     document.getElementById('logout').addEventListener('click', logout);
     window.initializeGoogle = initializeGoogle;
