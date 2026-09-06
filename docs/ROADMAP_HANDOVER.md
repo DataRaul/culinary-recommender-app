@@ -15,7 +15,9 @@ Always use:
 - Step 7A measured rebaseline: `docs/CORPUS_SCALE_STEP7A_NO_BILLING_AUTH_REBASELINE.md`
 - Step 7B/7C Free-resource + same-origin auth evidence: `docs/CORPUS_SCALE_STEP7B_7C_PAGES_FUNCTIONS_AUTH_CANARY.md`
 - Step 7D protected 84-record runtime canary: `docs/CORPUS_SCALE_STEP7D_PROTECTED_84_CANARY.md`
-- Step 7E ForkRecipe production-shaped pilot: `docs/CORPUS_SCALE_STEP7E_FORKRECIPE_PILOT.md`
+- Step 7E ForkRecipe production-shaped pilot/source contract: `docs/CORPUS_SCALE_STEP7E_FORKRECIPE_PILOT.md`
+- Step 7E protected 500-record live terminal evidence: `docs/CORPUS_SCALE_STEP7E_LIVE_500_CANARY.md`
+- Step 7E auth/session diagnostic resolution: `docs/CORPUS_SCALE_STEP7E_AUTH_SESSION_COMMIT_DIAGNOSTIC.md`
 - YouTube Culinary Discovery Atlas base roadmap: `docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md`
 - YouTube daily discovery extension: `docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md`
 - YT-CUL-5R contract: `docs/YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_CONTRACT.md`
@@ -101,27 +103,31 @@ The live canary proved:
 - owner-visible Workers Free runtime measurement;
 - no new D1 database, recipe-body shard, paid plan or billing authorization.
 
-Step 7E is therefore earned.
+Step 7E was therefore earned.
 
-#### Step 7E — ACTIVE / PROTECTED 500-RECORD FORKRECIPE PILOT / FINAL LIVE VERIFICATION
+#### Step 7E — COMPLETE / LIVE PASS / PROTECTED 500-RECORD FORKRECIPE PILOT
 
-Heavyweight work already completed inside the earned gate includes:
-
-- PR #82: pinned ForkRecipe rights/data-quality/adapter audit — **915 valid source recipes**, rights checks PASS, protected-source-pilot only, no public activation;
-- PR #83: deterministic **500-record** protected pilot materialization with 50 bounded chunks, exact byte/fingerprint checks, protected sample path and Free-limit fail-closed path;
-- later repairs through PR #95: keep the final verifier bounded, avoid ambiguous full-bootstrap retries, compact evidence, preserve one continuous authenticated session path, and route the verifier through the proven Pages Functions `/api/*` surface rather than the brittle static asset path.
-
-Current Step 7E terminal target:
+Terminal:
 
 `STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS`
 
-Current execution rule:
+The completed gate proved:
 
-- finish every remaining machine-executable Step 7E prerequisite before asking for human-only evidence;
-- require only the smallest final owner verification needed to prove the protected 500-record pilot through the already-proven authorization boundary;
-- once that terminal verification passes, do **not** continue broad sign-in/browser polish unless a reproducible defect weakens security, blocks the required protected operation, or affects an actual supported user path;
-- do not create the eight future recipe-body D1 shards unless a later gate explicitly earns them;
-- do not activate ForkRecipe publicly, import source nutrition as authority, infer dietary/allergen truth from source prose, or promote source ratios to absolute quantities.
+- pinned ForkRecipe source rights/data-quality/adapter audit PASS at source commit `c32255266af39bd77444d39452f3df8088ac8fd9` and verified source universe 915;
+- deterministic protected live cohort of exactly **500 recipes / 50 chunks / 5,115,695 source-body bytes**;
+- exact live fingerprint `2aa8106f7521f9cf3f6c2f9ece13d328272f8400f90f4ae79b8cdc4750b5d8b6`;
+- final audit status 200, `ready: true`, metadata validation PASS and no bootstrap required;
+- authenticated protected sample retrieval while recommendation, public-runtime, automatic-admission, nutrition-authority, dietary/allergen and ratio-promotion boundaries remained false;
+- simulated Free-limit HTTP 503 `STEP7E_FREE_LIMIT_FAIL_CLOSED` with zero pilot queries and no protected data;
+- credential-omitted HTTP 401 denial;
+- existing `culinary-control` D1 only, observed final size-after **5,931,008 bytes**;
+- no future recipe-body D1 shard, no Workers Paid/R2/Zero Trust, no billing authorization and no public ForkRecipe activation.
+
+Live-path defects found during the gate were repaired without weakening security: ambiguous audit errors can no longer trigger the full bootstrap loop, final reads have bounded retry/classification, sensitive API/auth paths are network-only in the service worker, and main validation now includes a tiny production runtime smoke.
+
+The owner's Wi-Fi path could not reach fresh `pages.dev` resources while mobile data could; the final successful owner verification used mobile data. Production runtime reachability was independently proven by the main-branch smoke.
+
+**Post-Step-7E boundary:** the governing no-billing architecture defines no Step 7F. Step 7E PASS therefore closes the currently defined Corpus Scale Step-7 sequence but does **not** authorize any additional corpus-scale infrastructure or public activation by implication. A later explicit roadmap/gate decision is required before creating the eight future recipe-body shards, publicly activating ForkRecipe, changing source nutrition/dietary/allergen/quantity authority, or crossing any paid/billing boundary.
 
 ### YouTube Culinary Discovery Atlas
 
@@ -139,6 +145,6 @@ YT-CUL-5: `YT_CUL_5_USEFUL_BUT_REVIEW_BOUND / PASS / MERGED_GREEN`.
 
 YT-CUL-5R: `YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_ARCHITECTURE_PASS / MERGED_GREEN / ZERO_LIVE_SEARCH`, merge `4bd9678d97dd5369daeb3c08f4e0c49996dbcfda`.
 
-YT-CUL-5D: `MERGED_GREEN / SCHEDULED_ACTIVE`, with the later adaptive portfolio/feedback extensions remaining governed by the same Knowledge Core authority boundary.
+YT-CUL-5D: `MERGED_GREEN / SCHEDULED_ACTIVE`; current generated state remains `ACTIVE` with zero completed quota days/search calls as last reconciled on 2026-09-06. The adaptive portfolio/feedback extensions remain governed by the same Knowledge Core authority boundary.
 
 YT-CUL-6: `NOT_EARNED`. Only canonical Knowledge Core Atlas review can create the qualifying accepted outcome; YouTube discovery never auto-promotes Atlas state, auto-admits an app recipe or auto-publishes.
