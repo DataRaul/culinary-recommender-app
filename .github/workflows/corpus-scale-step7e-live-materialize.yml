@@ -1,0 +1,86 @@
+name: Corpus Scale Step 7E live materialize
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step7e-live-materialize.yml'
+      - 'scripts/forkrecipe-step7e-core.mjs'
+      - 'scripts/materialize-forkrecipe-step7e-live-pilot.mjs'
+      - 'scripts/run-forkrecipe-step7e-audit.mjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: corpus-step7e-live-materialize-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+      - name: Checkout pinned ForkRecipe source
+        uses: actions/checkout@v4
+        with:
+          repository: futurechef/forkrecipe-recipes
+          ref: c32255266af39bd77444d39452f3df8088ac8fd9
+          path: forkrecipe
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify exact upstream source
+        run: |
+          test "$(git -C forkrecipe rev-parse HEAD)" = "c32255266af39bd77444d39452f3df8088ac8fd9"
+          (cd forkrecipe && npm run validate)
+      - name: Re-run Step 7E source audit
+        run: node scripts/run-forkrecipe-step7e-audit.mjs --source=./forkrecipe --out=.tmp/step7e-source-audit
+      - name: Materialize deterministic 500-record live pilot
+        run: node scripts/materialize-forkrecipe-step7e-live-pilot.mjs --source=./forkrecipe --out=.tmp/step7e-live-generated
+      - name: Upload generated live-pilot modules
+        uses: actions/upload-artifact@v4
+        with:
+          name: step7e-live-generated
+          path: .tmp/step7e-live-generated/
+          if-no-files-found: error
+          retention-days: 7
+
+  write-generated:
+    needs: generate
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.actor == 'DataRaul' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'agent/corpus-step7e-live-500'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout exact same-repository PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/corpus-step7e-live-500
+      - name: Download generated artifact only
+        uses: actions/download-artifact@v4
+        with:
+          name: step7e-live-generated
+          path: .tmp/step7e-live-generated
+      - name: Copy generated modules without executing them
+        run: |
+          target=src/data/external/generated/forkrecipe-step7e-live
+          rm -rf "$target"
+          mkdir -p "$target"
+          cp .tmp/step7e-live-generated/*.mjs "$target"/
+          cp .tmp/step7e-live-generated/manifest.json "$target"/
+      - name: Commit deterministic generated materialization if changed
+        run: |
+          if git diff --quiet -- src/data/external/generated/forkrecipe-step7e-live; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/external/generated/forkrecipe-step7e-live
+          git commit -m "Materialize Step 7E protected 500-record pilot data"
+          git push origin HEAD:agent/corpus-step7e-live-500
