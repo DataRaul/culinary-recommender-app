@@ -1,0 +1,47 @@
+name: Corpus Scale Step 7E ForkRecipe audit
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step7e.yml'
+      - 'scripts/forkrecipe-step7e-core.mjs'
+      - 'scripts/run-forkrecipe-step7e-audit.mjs'
+      - 'tests/forkrecipe-step7e-core.test.js'
+      - 'docs/CORPUS_SCALE_STEP7E_FORKRECIPE_PILOT.md'
+      - 'THIRD_PARTY_NOTICES.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: corpus-step7e-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  audit-pinned-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+      - name: Checkout pinned ForkRecipe source
+        uses: actions/checkout@v4
+        with:
+          repository: futurechef/forkrecipe-recipes
+          ref: c32255266af39bd77444d39452f3df8088ac8fd9
+          path: forkrecipe
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify exact pinned upstream commit
+        run: test "$(git -C forkrecipe rev-parse HEAD)" = "c32255266af39bd77444d39452f3df8088ac8fd9"
+      - name: Run upstream zero-dependency validator
+        working-directory: forkrecipe
+        run: npm run validate
+      - name: Run Culinary rights, data-quality and adapter audit
+        run: node scripts/run-forkrecipe-step7e-audit.mjs --source=./forkrecipe --out=.tmp/step7e-forkrecipe-audit
+      - name: Upload governed audit evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step7e-forkrecipe-audit
+          path: .tmp/step7e-forkrecipe-audit/
+          if-no-files-found: error
+          retention-days: 30
