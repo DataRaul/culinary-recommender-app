@@ -90,7 +90,8 @@ test("ForkRecipe record validation fails closed on source-license or ratio-schem
   assert.ok(errors.some(error => error.includes("unsupported ratioSystem")));
 });
 
-test("exact 916-record pinned cohort can pass only as protected source-pilot admission", () => {
+test("exact 915-record pinned cohort can pass only as protected source-pilot admission", () => {
+  assert.equal(FORKRECIPE_STEP7E_EXPECTED_RECIPE_COUNT, 915);
   const pilot = buildForkRecipeStep7ePilot(expectedEntries(), {
     commit: FORKRECIPE_STEP7E_EXPECTED_COMMIT,
     sourceRightsVerified: true,
