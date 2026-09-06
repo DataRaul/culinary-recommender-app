@@ -114,7 +114,7 @@ test("session commit probe page performs one same-origin sanitized check and for
   assert.match(html, /credentials:\s*'same-origin'/);
   assert.match(html, /sessionValidation\s*===\s*'AUTHORIZED'/);
   assert.match(html, /params\.get\('intent'\)\s*===\s*'step7e'/);
-  assert.match(html, /\/step7e-final\.html\?sessionCommit=1/);
+  assert.match(html, /\/api\/step7e-final-page\?sessionCommit=1/);
   assert.match(html, /window\.location\.replace\(nextLocation\)/);
   assert.doesNotMatch(html, /sessionStorage/);
   assert.doesNotMatch(html, /google\.accounts|accountId|email|session token/i);
