@@ -45,6 +45,48 @@ The user has explicitly authorized autonomous continuation of technically resolv
 - A materially abnormal CI loop, runaway Actions consumption, or a new recurring/paid cost is a cost gate; ordinary expected CI is not.
 - Preserve the standing target of zero recurring infrastructure cost for the accepted small invited-user deployment unless the user explicitly changes it.
 
+## Human-gate batching and live-verification efficiency
+
+Apply the canonical Knowledge Core `Work / Project Coach`, `Consulting & Advisory`, Project Execution, and `AI-Human Execution Boundary` mechanisms through the thin adapter above. The local operating objective is **minimum human interruption for maximum diagnostic/verification value**.
+
+### Machine work first; human-only evidence last
+
+- Front-load every authorized machine-executable prerequisite before asking the user to act: repository reconciliation, implementation, deterministic tests, CI, deployment, rollback/recovery path, diagnostics, sanitized evidence capture, exact acceptance criteria, and the next-action decision tree.
+- If a human-only action is needed only to obtain terminal production evidence, defer and batch it until all non-dependent work inside the **currently earned roadmap gate** is complete.
+- Do not use this rule to cross an unearned gate, pre-authorize paid infrastructure, create deferred recipe-body shards, activate public source behavior, or otherwise exceed current roadmap authority.
+- If a human-only action genuinely blocks further authorized machine work (for example identity/credential verification, physical action, external approval, or an irreversible/security-sensitive decision), ask only at the first point where it becomes the actual constraint. After it is satisfied, resume autonomous `AUTO` / `AUTO + VERIFY` work without returning ordinary sequencing to the user.
+
+### One high-information verification path
+
+- Before any live browser canary where environment can affect state, classify the execution surface explicitly: ChatGPT in-app browser/WebView versus external browser, tab/navigation continuity, origin, cookie/storage context, and whether opening a new link may create a new browser context. Do not interpret an auth/session failure until this context is known.
+- Prefer one diagnostic capable of separating several plausible hypotheses over a series of low-information human probes.
+- Prepare a single continuous human verification session whenever possible. Keep stateful flows in the same browser/WebView/navigation chain and avoid requiring the user to reopen links from ChatGPT between dependent steps.
+- Within a genuinely branching human session, use one action at a time only when the result determines the next action. If the remaining sequence can be safely automated or navigated by the application, automate it instead of asking the user to reproduce it manually.
+
+### No blind or duplicate retries
+
+- **Never ask the user to repeat the same live action merely because the previous result was undesirable.** A retry is justified only when at least one material variable has changed: code/deployment candidate, server state, browser/context state, diagnostic instrumentation, or the explicit hypothesis being tested.
+- After any failed human live check, classify the failure and state what new information was learned before another user action is requested.
+- If the previous action was ambiguous because it may have occurred in a different browser/WebView/context, resolve that environmental ambiguity before changing application logic or requesting another equivalent retry.
+- Repeated identical clicks/logins/checks with no changed hypothesis are an execution anti-pattern and should trigger autonomous reconciliation rather than another human request.
+
+### Terminal human-verification batch
+
+For a gate that requires human live evidence, the preferred pattern is:
+
+```text
+all authorized machine implementation
+→ deterministic/local validation
+→ CI + deployment verification
+→ production-safe diagnostic instrumentation if needed
+→ exact pass/fail criteria frozen
+→ ONE continuous human verification window
+→ capture sanitized evidence
+→ autonomous evidence recording / handover / merge / terminal-state verification
+```
+
+A terminal human verification window should be as short as the evidence contract allows. After the user supplies the final required live evidence, the agent should complete the remaining authorized documentation, reconciliation, merge and closeout steps autonomously.
+
 ## Continuation-before-context-loss authority
 
 Before conversation context becomes unreliable, the active agent must stop ordinary implementation at a safe boundary, warn the user that continuation is being prepared, fresh-reconcile GitHub, and save a complete resumable state through `docs/HANDOVER_PROTOCOL.md` and `docs/handovers/CURRENT.json`.
