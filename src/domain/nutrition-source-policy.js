@@ -58,6 +58,10 @@ import {
   MATVARETABELLEN_COMPOSITION_SOURCE_B24
 } from "../data/matvaretabellen-composition-b24.js";
 import {
+  MATVARETABELLEN_COMPOSITION_DENSITIES_B25,
+  MATVARETABELLEN_COMPOSITION_SOURCE_B25
+} from "../data/matvaretabellen-composition-b25.js";
+import {
   USDA_FOUNDATION_DENSITIES,
   USDA_FOUNDATION_SOURCE,
   nutritionEvidenceForIngredient
@@ -341,6 +345,29 @@ if (overlappingMatvaretabellenB24Ids.length) {
   throw new Error(`Matvaretabellen B24 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB24Ids.sort().join(", ")}`);
 }
 
+const matvaretabellenB25Ids = Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B25);
+const overlappingMatvaretabellenB25Ids = matvaretabellenB25Ids.filter(ingredientId =>
+  Object.hasOwn(CIQUAL_CANONICAL_DENSITIES, ingredientId) ||
+  Object.hasOwn(USDA_FOUNDATION_DENSITIES, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B9, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B11, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B14, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B16, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B18, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B19, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B20, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B22, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B23, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_DENSITIES_B24, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B10, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B12, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B13, ingredientId) ||
+  Object.hasOwn(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21, ingredientId)
+);
+if (overlappingMatvaretabellenB25Ids.length) {
+  throw new Error(`Matvaretabellen B25 must remain a bounded no-overlap composition extension: ${overlappingMatvaretabellenB25Ids.sort().join(", ")}`);
+}
+
 const formRank = confidence => ({ high: 3, medium: 2, low: 1 }[confidence] || 0);
 const ciqualFieldGoodEnoughToDisplace = confidence => ["A", "B", "C"].includes(confidence);
 
@@ -475,6 +502,10 @@ const sourceCandidate = (ingredientId, nutrientKey, source) => {
     return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B24, MATVARETABELLEN_COMPOSITION_SOURCE_B24);
   }
 
+  if (source === "matvaretabellen-b25") {
+    return matvaretabellenCandidate(ingredientId, nutrientKey, MATVARETABELLEN_COMPOSITION_DENSITIES_B25, MATVARETABELLEN_COMPOSITION_SOURCE_B25);
+  }
+
   const record = USDA_FOUNDATION_DENSITIES[ingredientId];
   if (!record) return null;
   const spec = USDA_FIELDS[nutrientKey];
@@ -509,7 +540,8 @@ export const selectEuropeanPrimaryNutrient = (ingredientId, nutrientKey) => {
     sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b20") ||
     sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b22") ||
     sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b23") ||
-    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b24");
+    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b24") ||
+    sourceCandidate(ingredientId, nutrientKey, "matvaretabellen-b25");
   if (standaloneMatvaretabellen) return { ...standaloneMatvaretabellen, selectionReason: "ONLY_REVIEWED_SOURCE_AVAILABLE" };
 
   const usda = sourceCandidate(ingredientId, nutrientKey, "usda");
@@ -584,7 +616,8 @@ export const EUROPEAN_PRIMARY_DENSITIES_V1 = Object.fromEntries(
     ...Object.keys(MATVARETABELLEN_COMPOSITION_COMPLETIONS_B21),
     ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B22),
     ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B23),
-    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B24)
+    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B24),
+    ...Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B25)
   ])]
     .map(ingredientId => [ingredientId, europeanPrimaryDensityForIngredient(ingredientId)])
     .filter(([, record]) => record)
@@ -620,6 +653,7 @@ export const europeanPrimaryPolicyCoverage = ingredientIds => {
     matvaretabellenB22SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B22").length,
     matvaretabellenB23SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B23").length,
     matvaretabellenB24SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B24").length,
+    matvaretabellenB25SelectedCount: selections.filter(item => item.source === "matvaretabellen" && item.evidenceTranche === "B25").length,
     selections
   };
 };

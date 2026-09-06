@@ -31,11 +31,11 @@ test("audit preserves every fail-closed shortfall class rather than treating par
   assert.ok(Object.keys(audit.missingNutrientFieldCounts).length > 0, "expected current corpus to expose tracked nutrient field gaps");
 });
 
-test("B24 reviewed feta composition preserves cumulative unlock truth without weakening fail-closed controls", () => {
+test("B25 reviewed barley composition preserves cumulative unlock truth without weakening fail-closed controls", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
-  assert.equal(audit.authoritativeRecipeCount, 16);
-  assert.equal(audit.estimateRecipeCount, 60);
+  assert.equal(audit.authoritativeRecipeCount, 17);
+  assert.equal(audit.estimateRecipeCount, 59);
   assert.deepEqual(audit.authoritativeRecipeIds, [
     "indian_chicken_spinach_curry",
     "indian_chickpea_cauliflower_curry",
@@ -48,6 +48,7 @@ test("B24 reviewed feta composition preserves cumulative unlock truth without we
     "med_prawn_tomato_couscous",
     "med_quinoa_chickpea_bowl",
     "med_quinoa_egg_spinach_bowl",
+    "med_salmon_barley_spinach",
     "middle_eastern_bulgur_chickpea_salad",
     "middle_eastern_chicken_tahini_bowl",
     "middle_eastern_chickpea_tahini_plate",
@@ -56,7 +57,7 @@ test("B24 reviewed feta composition preserves cumulative unlock truth without we
   ]);
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
-    missing_density: 88,
+    missing_density: 85,
     unsupported_quantity_unit: 7
   });
   assert.deepEqual(audit.missingNutrientFieldCounts, {

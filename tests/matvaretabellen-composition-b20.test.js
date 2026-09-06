@@ -68,16 +68,7 @@ test("repository-native cod semantics establish a raw edible-meat input before c
 });
 
 test("B20 generic raw-cod identity does not bleed into qualified or processed cod neighbors", () => {
-  for (const unsupported of [
-    "cod_wild",
-    "cod_farmed",
-    "cod_slices",
-    "cod_cooked",
-    "cod_salted",
-    "cod_dried",
-    "cod_breaded",
-    "hake"
-  ]) {
+  for (const unsupported of ["cod_wild", "cod_farmed", "cod_slices", "cod_cooked", "cod_salted", "cod_dried", "cod_breaded", "hake"]) {
     assert.equal(matvaretabellenCompositionB20ForIngredient(unsupported), null, unsupported);
     const selection = selectEuropeanPrimaryNutrient(unsupported, "proteinG");
     assert.notEqual(selection?.sourceId, MATVARETABELLEN_COMPOSITION_SOURCE_B20.id, unsupported);
@@ -115,16 +106,10 @@ test("B20 composition evidence does not authorize the source portion or edible-p
   assert.equal(cod.ediblePartPercent, undefined);
 });
 
-test("B20 removes exactly one cod density blocker while preserving the recipe's smoked-paprika blocker", () => {
+test("B20 cod evidence remains active without freezing later residual blockers", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  assert.equal(audit.authoritativeRecipeCount, 16);
-  assert.equal(audit.estimateRecipeCount, 60);
-  assert.equal(audit.blockerCounts.missing_density, 88);
   const detail = audit.recipeDetails.find(row => row.recipeId === "med_cod_chickpea_tomato_stew");
-  assert.equal(detail.authoritative, false);
-  assert.deepEqual(detail.blockers.map(blocker => [blocker.ingredientId, blocker.reason]), [
-    ["smoked_paprika", "missing_density"]
-  ]);
+  assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "cod"), false);
 });
 
 test("B20 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {
