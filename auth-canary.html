@@ -246,19 +246,27 @@
       })));
     }
 
-    async function handleGoogleCredential(response) {
-      show('Verifying Google identity…');
-      const result = await readJson(await fetch('/api/auth/google', {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ credential: response.credential })
-      }));
-      if (!result.ok) {
-        show(sanitizedAuthStatus(result));
+    function handleGoogleCredential(response) {
+      const credential = typeof response?.credential === 'string' ? response.credential : '';
+      if (!credential) {
+        show({ status: 400, authenticated: false, error: 'INVALID_CREDENTIAL' });
         return;
       }
-      await checkProtected();
+
+      show('Verifying Google identity and committing the session…');
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = '/api/auth/google-redirect';
+      form.enctype = 'application/x-www-form-urlencoded';
+      form.style.display = 'none';
+
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'credential';
+      input.value = credential;
+      form.appendChild(input);
+      document.body.appendChild(form);
+      form.submit();
     }
 
     async function initializeGoogle() {
