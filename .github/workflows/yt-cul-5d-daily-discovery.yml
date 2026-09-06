@@ -25,7 +25,7 @@ jobs:
     env:
       CULINARY_YOUTUBE_API_KEY: ${{ secrets.CULINARY_YOUTUBE_API_KEY }}
       CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT: '100'
-      CULINARY_YOUTUBE_PROJECT_IDENTITY: ${{ vars.CULINARY_YOUTUBE_PROJECT_IDENTITY }}
+      CULINARY_YOUTUBE_PROJECT_IDENTITY: ${{ vars.CULINARY_YOUTUBE_PROJECT_IDENTITY || 'culinary-youtube-discovery' }}
       YT_CUL_POLICY_RECHECKED_AT: '2026-09-05'
       YT_CUL_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
       YT_CUL_DAILY_STATE_PATH: data/generated/youtube-culinary-daily-discovery-state.json
