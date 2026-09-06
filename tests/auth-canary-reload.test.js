@@ -124,6 +124,12 @@ test("auth canary keeps credentials on protected fetches and commits Google logi
   assert.match(html, /\/api\/step7e-pilot/);
   assert.match(html, /form\.action = '\/api\/auth\/google-redirect'/);
   assert.match(html, /form\.method = 'POST'/);
+  assert.match(html, /pageParams\.get\('intent'\)\s*===\s*'step7e'/);
+  assert.match(html, /pageParams\.get\('sessionCommit'\)\s*===\s*'1'/);
+  assert.match(html, /intentInput\.name = 'intent'/);
+  assert.match(html, /intentInput\.value = 'step7e'/);
+  assert.match(html, /initializeIntentFlow/);
+  assert.match(html, /authenticated session commit verified; starting protected 500-record canary/);
   assert.doesNotMatch(html, /fetch\('\/api\/auth\/google'/);
   assert.match(html, /simulate=free-limit/);
   assert.match(sessionCookie("test-token", 60), /Max-Age=60/);
