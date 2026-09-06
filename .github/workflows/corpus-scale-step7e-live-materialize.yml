@@ -75,7 +75,7 @@ jobs:
           cp .tmp/step7e-live-generated/manifest.json "$target"/
       - name: Commit deterministic generated materialization if changed
         run: |
-          if git diff --quiet -- src/data/external/generated/forkrecipe-step7e-live; then
+          if [ -z "$(git status --porcelain -- src/data/external/generated/forkrecipe-step7e-live)" ]; then
             echo "No generated changes."
             exit 0
           fi
