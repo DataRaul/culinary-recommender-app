@@ -114,20 +114,12 @@ test("B23 composition evidence does not authorize the source edible-part yield o
   assert.equal(pumpkin.ediblePartPercent, undefined);
 });
 
-test("B23 removes exactly two pumpkin density blockers while preserving independent blockers", () => {
+test("B23 pumpkin evidence remains active without freezing later residual blockers", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  assert.equal(audit.authoritativeRecipeCount, 16);
-  assert.equal(audit.estimateRecipeCount, 60);
-  assert.equal(audit.blockerCounts.missing_density, 88);
-
-  const dal = audit.recipeDetails.find(row => row.recipeId === "indian_pumpkin_red_lentil_dal");
-  assert.equal(dal.authoritative, false);
-  assert.ok(!dal.blockers.some(blocker => blocker.ingredientId === "pumpkin"));
-  assert.ok(dal.blockers.some(blocker => blocker.ingredientId === "garam_masala"));
-
-  const stew = audit.recipeDetails.find(row => row.recipeId === "med_pumpkin_white_bean_barley_stew");
-  assert.equal(stew.authoritative, false);
-  assert.ok(!stew.blockers.some(blocker => blocker.ingredientId === "pumpkin"));
+  for (const recipeId of ["indian_pumpkin_red_lentil_dal", "med_pumpkin_white_bean_barley_stew"]) {
+    const detail = audit.recipeDetails.find(row => row.recipeId === recipeId);
+    assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "pumpkin"), false, recipeId);
+  }
 });
 
 test("B23 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {
