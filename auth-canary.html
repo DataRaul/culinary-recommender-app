@@ -22,6 +22,7 @@
     <button id="step7d-sample" type="button">Read protected sample recipe</button>
     <button id="step7d-limit" type="button">Simulate Free-limit failure</button>
     <button id="step7e-run" type="button">Run Step 7E 500-record canary</button>
+    <button id="copy-status" type="button">Copy result</button>
     <button id="revoke-session" type="button">Revoke current session</button>
     <button id="logout" type="button">Log out</button>
     <pre id="status" aria-live="polite">Loading…</pre>
@@ -47,6 +48,74 @@
         ...(result.error ? { error: result.error } : {}),
         ...(result.reason ? { reason: result.reason } : {})
       };
+    }
+
+    function compactStep7eEvidence(evidence) {
+      const rows = Array.isArray(evidence.chunkResults) ? evidence.chunkResults : [];
+      const elapsed = rows.map(row => row.elapsedMs).filter(Number.isFinite);
+      const chunkSummary = rows.length ? {
+        requests: rows.length,
+        idempotentChunks: rows.filter(row => row.idempotent === true).length,
+        newlyWrittenChunks: rows.filter(row => row.idempotent === false).length,
+        newlyWrittenRows: rows.reduce((sum, row) => sum + Number(row.rowsWritten || 0), 0),
+        maxElapsedMs: elapsed.length ? Math.max(...elapsed) : null,
+        meanElapsedMs: elapsed.length ? Number((elapsed.reduce((a, b) => a + b, 0) / elapsed.length).toFixed(3)) : null,
+        finalD1SizeAfterBytes: rows.at(-1)?.sizeAfterBytes ?? null
+      } : null;
+
+      const compactAudit = evidence.audit ? {
+        status: evidence.audit.status,
+        ok: evidence.audit.ok,
+        ready: evidence.audit.ready,
+        recipeCount: evidence.audit.recipeCount,
+        expectedRecipeCount: evidence.audit.expectedRecipeCount,
+        chunkCount: evidence.audit.chunkCount,
+        expectedChunkCount: evidence.audit.expectedChunkCount,
+        totalBodyBytes: evidence.audit.totalBodyBytes,
+        expectedTotalBodyBytes: evidence.audit.expectedTotalBodyBytes,
+        fingerprint: evidence.audit.fingerprint,
+        expectedFingerprint: evidence.audit.expectedFingerprint,
+        metadataValidation: evidence.audit.metadataValidation,
+        boundaries: evidence.audit.boundaries,
+        metrics: evidence.audit.metrics
+      } : null;
+
+      return {
+        step: evidence.step,
+        target: evidence.target,
+        sessionPreflight: evidence.sessionPreflight,
+        ...(chunkSummary ? { chunkSummary } : {}),
+        ...(compactAudit ? { audit: compactAudit } : {}),
+        ...(evidence.sample ? { sample: evidence.sample } : {}),
+        ...(evidence.freeLimit ? { freeLimit: evidence.freeLimit } : {}),
+        ...(evidence.unauthenticated ? { unauthenticated: evidence.unauthenticated } : {}),
+        canaryPass: evidence.canaryPass === true,
+        ...(evidence.terminalState ? { terminalState: evidence.terminalState } : {}),
+        ...(evidence.error ? { error: evidence.error } : {}),
+        ...(evidence.detail ? { detail: evidence.detail } : {})
+      };
+    }
+
+    async function copyStatus() {
+      const text = statusNode.textContent || '';
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        textarea.remove();
+      }
+      const button = document.getElementById('copy-status');
+      const previous = button.textContent;
+      button.textContent = 'Copied';
+      setTimeout(() => { button.textContent = previous; }, 1200);
     }
 
     async function checkSession() {
@@ -227,12 +296,12 @@
 
         evidence.canaryPass = true;
         evidence.terminalState = 'STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS';
-        show(evidence);
+        show(compactStep7eEvidence(evidence));
       } catch (error) {
         evidence.canaryPass = false;
         evidence.error = error?.message || 'STEP7E_CANARY_FAILED';
         evidence.detail = error?.detail || null;
-        show(evidence);
+        show(compactStep7eEvidence(evidence));
       } finally {
         button.disabled = false;
       }
@@ -336,6 +405,7 @@
     document.getElementById('step7d-sample').addEventListener('click', sampleStep7d);
     document.getElementById('step7d-limit').addEventListener('click', simulateStep7dLimit);
     document.getElementById('step7e-run').addEventListener('click', runStep7eCanary);
+    document.getElementById('copy-status').addEventListener('click', copyStatus);
     document.getElementById('revoke-session').addEventListener('click', revokeSession);
     document.getElementById('logout').addEventListener('click', logout);
     initializeIntentFlow().catch(() => {
