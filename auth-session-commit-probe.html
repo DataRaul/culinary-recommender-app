@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Culinary session commit probe</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 42rem; margin: 3rem auto; padding: 0 1rem; line-height: 1.5; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #f4f4f4; padding: 1rem; border-radius: .5rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Culinary session commit probe</h1>
+    <p>This page reports only whether the real Culinary session cookie and a short-lived commit marker reached the browser, plus the sanitized session validation result.</p>
+    <pre id="status" aria-live="polite">Checking…</pre>
+  </main>
+  <script>
+    const statusNode = document.getElementById('status');
+
+    async function run() {
+      const response = await fetch('/api/auth/session-commit-probe', {
+        cache: 'no-store',
+        credentials: 'same-origin'
+      });
+      const body = await response.json().catch(() => ({ error: 'NON_JSON_RESPONSE' }));
+      statusNode.textContent = JSON.stringify({ status: response.status, ...body }, null, 2);
+    }
+
+    run().catch(() => {
+      statusNode.textContent = JSON.stringify({ status: 0, ok: false, error: 'PROBE_REQUEST_FAILED' }, null, 2);
+    });
+  </script>
+</body>
+</html>
