@@ -1,8 +1,8 @@
 # Corpus Scale Step 7D — Protected 84-Record Runtime Canary
 
-Date: 2026-09-05
+Date: 2026-09-06
 
-Status: **IMPLEMENTED_PENDING_CI_MERGE_AND_LIVE_CANARY**
+Status: **STEP_7D_PROTECTED_84_CANARY_PASS**
 
 ## Purpose
 
@@ -55,11 +55,11 @@ The eight future recipe-body D1 shard databases remain **uncreated**. The reserv
 - returns no protected recipe data;
 - proves the application-level Free-exhaustion/error path does not bypass authorization or degrade open.
 
-The simulated failure is not a claim that a real Cloudflare Free quota has been exhausted. Real Workers CPU evidence remains owner-visible runtime evidence.
+The simulated failure is not a claim that a real Cloudflare Free quota has been exhausted.
 
-## Security gate
+## Repository security gate
 
-Repository tests must prove:
+Repository tests proved:
 
 1. the golden oracle is exactly 84 unique records;
 2. bootstrap is authenticated, same-origin, deterministic, fingerprinted and idempotent;
@@ -71,36 +71,101 @@ Repository tests must prove:
 8. cross-origin bootstrap mutation is rejected before auth or D1 writes;
 9. ordinary static Pages routing remains unchanged (`/api/*` only for Functions).
 
-The Step 7C live revocation proof is inherited evidence and does not need to be weakened or repeated as a different mechanism.
+The Step 7C live revocation proof is inherited evidence and remains valid.
 
-## Live canary sequence after merged production deployment
+## Production live canary evidence
 
-The owner performs one action at a time:
+The owner completed the production canary on the canonical Pages host.
 
-1. restore a normal owner session after the intentional Step 7C revocation;
-2. click `Initialize Step 7D oracle`; require HTTP 200, `recipeCount:84`, and a 64-character fingerprint;
-3. click `Audit Step 7D oracle`; require HTTP 200, the same count/fingerprint, and bounded D1 read metrics;
-4. click `Read protected sample recipe`; require HTTP 200 and `protectedDataReturned:true`;
-5. click `Simulate Free-limit failure`; require HTTP 503, `FREE_LIMIT_FAIL_CLOSED`, `protectedDataReturned:false`, and `oracleQueries:0`;
-6. perform an unauthenticated request to the Step 7D oracle and require HTTP 401 before protected data access;
-7. inspect current Cloudflare Pages/Workers runtime metrics for these canary requests and record actual CPU evidence plus D1/subrequest evidence without enabling any paid plan.
+### Session restoration
 
-## Terminal outcomes
+- Google sign-in / restored Culinary session: HTTP 200.
+- `authenticated:true`.
+- No owner email, account ID, cookie, token or secret is retained here.
 
-PASS requires all repository and live security checks plus acceptable Workers Free runtime evidence:
+### Oracle initialization and integrity
+
+- bootstrap: HTTP 200, `ok:true`, `initialized:true`;
+- exact `recipeCount:84`;
+- stable SHA-256 fingerprint: `c13a6be98c8308e59496968e4293def9547e79ed99778a1dd39e878d90373317`;
+- repeat bootstrap returned `idempotent:true`;
+- repeat verification read: 84 rows, 0 rows written;
+- D1 database size after verification: 393,216 bytes.
+
+### Full protected audit
+
+- HTTP 200, `authenticated:true`, `oracleReady:true`;
+- `protectedDataReturned:false`;
+- exact `recipeCount:84`;
+- fingerprint matched bootstrap exactly;
+- stored recipe body bytes: 312,538;
+- one oracle query;
+- D1 rows read: 84;
+- D1 rows written: 0;
+- D1 size after query: 393,216 bytes.
+
+### Protected sample retrieval
+
+- HTTP 200, `authenticated:true`;
+- `protectedDataReturned:true`;
+- one protected recipe returned;
+- one oracle query;
+- D1 rows read: 1;
+- D1 rows written: 0;
+- D1 size after query: 393,216 bytes.
+
+### Free-limit fail-closed simulation
+
+- HTTP 503;
+- `error:FREE_LIMIT_FAIL_CLOSED`;
+- `authenticated:true`;
+- `protectedDataReturned:false`;
+- `oracleQueries:0`.
+
+This is an application fail-closed-path proof, not a claim of real quota exhaustion.
+
+### Unauthenticated denial
+
+After logout, a Step 7D oracle audit returned:
+
+- HTTP 401;
+- `ok:false`;
+- `error:UNAUTHORIZED`;
+- `reason:NO_SESSION`.
+
+No protected oracle data was returned.
+
+### Cloudflare Workers Free runtime evidence
+
+Owner-visible Cloudflare Pages Functions Metrics for the current project window showed:
+
+- requests: 90 successful, 0 errors;
+- subrequests: 21;
+- internal errors: 0;
+- script-threw exceptions: 0;
+- exceeded CPU time limits: 0;
+- exceeded memory: 0;
+- client disconnected: 0;
+- CPU p50: 3,002 microseconds (3.002 ms);
+- CPU p75: 5,803 microseconds (5.803 ms);
+- CPU p99: 14,845 microseconds (14.845 ms);
+- CPU p99.9: 14,845 microseconds (14.845 ms);
+- request-duration p50: 0.006 s;
+- request-duration p75: 0.033 s;
+- request-duration p99: 0.092 s;
+- request-duration p99.9: 0.092 s.
+
+Cloudflare Workers Free currently documents a 10 ms CPU limit per HTTP invocation. Cloudflare also documents that higher CPU quantiles can appear above the nominal limit without invocation errors because the Workers runtime allows limited rollover/flexibility for requests below the configured limit. The live window recorded **0 exceeded-CPU-time-limit errors**. This evidence is acceptable for the bounded 84-record Step 7D canary, while the p99 tail above 10 ms remains a headroom signal to monitor in later scale gates; it is not treated as proof that the final 170k architecture can skip later production-shaped validation.
+
+## Terminal outcome
+
+All repository and required live security/runtime checks passed with acceptable Workers Free evidence.
 
 `STEP_7D_PROTECTED_84_CANARY_PASS`
 
-Fail-closed alternatives include:
+Step 7E is therefore **unblocked**.
 
-- `STEP_7D_AUTHORIZATION_FAILURE`
-- `STEP_7D_ORACLE_INTEGRITY_FAILURE`
-- `STEP_7D_FREE_RUNTIME_BUDGET_FAILURE`
-- `STEP_7D_RUNTIME_EVIDENCE_INSUFFICIENT`
-
-Only PASS may unlock Step 7E.
-
-## Boundaries
+## Boundaries preserved
 
 - no billing/payment/overage authorization;
 - no Workers Paid;
@@ -108,7 +173,7 @@ Only PASS may unlock Step 7E.
 - no Zero Trust / Access;
 - no new D1 database;
 - no eight-shard creation yet;
-- no new external recipe admission;
+- no new external recipe admission in Step 7D;
 - no nutrition-policy change;
 - no weakening of allergen/dietary/permanent-exclusion behavior;
 - no Knowledge Core browser/runtime dependency;
