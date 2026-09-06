@@ -1,6 +1,9 @@
 name: YT-CUL-5E adaptive daily discovery
 
 on:
+  push:
+    branches:
+      - agent/yt-cul-5e-approved-live-recovery-20260906
   schedule:
     - cron: '20 9 * * *'
   workflow_dispatch:
