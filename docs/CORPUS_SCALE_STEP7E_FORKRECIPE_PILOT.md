@@ -1,18 +1,22 @@
 # Corpus Scale Step 7E — ForkRecipe production-shaped pilot
 
-Status: **SOURCE AUDIT IMPLEMENTED / VERIFIED PINNED TREE = 915 RECORDS / GREEN RERUN PENDING / LIVE PILOT NOT YET AUTHORIZED**
+Status: **SOURCE AUDIT PASS / PROTECTED 500-RECORD LIVE PILOT PASS / NO PUBLIC ACTIVATION AUTHORITY**
 
 Date: **2026-09-06**
 
 Entry authority: `STEP_7D_PROTECTED_84_CANARY_PASS` on app main `08bce89b340c88bf175cc5bac57f62f7e29af731`.
 
+Terminal live result:
+
+`STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS`
+
 This gate is governed by `docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md`, the generalized source control plane, and all existing nutrition, allergen/dietary, source-rights, public-runtime and Knowledge Core boundaries.
 
 ## 1. Scope
 
-Step 7E may evaluate one **500–1000-record rights-clean real-source cohort** using the already-proven authenticated/fail-closed architecture. It does not authorize public recommendation expansion, automatic corpus admission, paid infrastructure, a paid corpus/API, or the eight future recipe-body D1 shard databases.
+Step 7E evaluated one **500-record rights-clean real-source cohort** using the already-proven authenticated/fail-closed architecture. It did not authorize public recommendation expansion, automatic corpus admission, paid infrastructure, a paid corpus/API, or the eight future recipe-body D1 shard databases.
 
-Current candidate:
+Source:
 
 - repository: `futurechef/forkrecipe-recipes`;
 - pinned commit: `c32255266af39bd77444d39452f3df8088ac8fd9`;
@@ -35,16 +39,16 @@ The pinned audit requires all of the following independently:
 5. `CONTRIBUTING.md` states accepted content uses the same licence;
 6. contributor guidance rejects copying copyrighted commercial recipe prose.
 
-The first live CI audit of the pinned source passed all six rights checks. Every admitted pilot packet retains pinned-file provenance and attribution. A future failure in source-level rights evidence holds the cohort fail-closed.
+The pinned source audit passed all six rights checks. Every protected pilot packet retains pinned-file provenance and attribution. A future failure in source-level rights evidence holds the cohort fail-closed.
 
 ## 3. Data-quality and adapter gate
 
-The workflow checks out the exact upstream commit and runs the upstream zero-dependency validator before the Culinary adapter audit.
+The workflow checked out the exact upstream commit and ran the upstream zero-dependency validator before the Culinary adapter audit.
 
-Fresh pinned-source evidence on 2026-09-06:
+Pinned-source evidence:
 
 - upstream validator: **PASS, 915 recipe(s) valid, no errors**;
-- Culinary parse/data-quality decisions: **915 structurally valid protected-source-pilot candidates, 0 held, 0 rejected** before the stale 916 expected-count assertion was corrected;
+- Culinary parse/data-quality decisions: **915 structurally valid protected-source-pilot candidates, 0 held, 0 rejected**;
 - ratio systems: 630 `parts`, 236 `weight`, 49 `bakers_percentage`;
 - source fork records: 10;
 - exact normalized source-title duplicate pairs: 11;
@@ -53,7 +57,7 @@ Fresh pinned-source evidence on 2026-09-06:
 - source media top-level fields observed: 0;
 - allowlisted source-packet payload: about 9.3 MB uncompressed across the 915 records.
 
-The only failure in the first Step 7E audit run was our stale preflight assumption that the pinned tree contained 916 records. Fresh inspection proved the pinned tree and upstream validator contain 915, while the README says 916 and `CONTRIBUTING.md`'s validator example says 915. The Step 7E expected count is therefore pinned to the observed/validated tree count of **915**, while the README discrepancy is retained as provenance drift.
+The initial stale assumption of 916 records was corrected after fresh inspection proved the pinned tree and upstream validator contain 915 while the README says 916. The Step 7E expected count is pinned to the observed/validated tree count of **915**, with the README discrepancy retained as provenance drift.
 
 The Culinary audit requires:
 
@@ -96,7 +100,7 @@ This means only:
 - parse passed;
 - normalization, deduplication, ingredient quantity mapping and hard metadata remain explicitly partial;
 - nutrition is firewalled;
-- the portable source packet is ready for a later protected live canary.
+- the portable source packet is available only for the protected live pilot.
 
 It does **not** mean:
 
@@ -135,20 +139,36 @@ Unknown top-level source fields are not silently promoted into the packet. Media
 
 The workflow uses no external secrets and does not write to Cloudflare or provision infrastructure.
 
-## 8. Current terminal states
+## 8. Live protected pilot result
 
-Repository/source audit:
+The deterministic live cohort selected exactly **500** recipes from the 915-record audited source universe, stored as **50 chunks of 10** in the existing `culinary-control` D1 only.
 
-- `STEP_7E_FORKRECIPE_PINNED_SOURCE_AUDIT_PASS_LIVE_PILOT_PENDING`, or
-- `STEP_7E_FORKRECIPE_SOURCE_AUDIT_HOLD`.
+The final live verification proved:
 
-Only the PASS state may unlock a live protected D1/Worker pilot design.
+- recipe count 500 / 500;
+- chunk count 50 / 50;
+- exact body bytes 5,115,695;
+- exact live fingerprint `2aa8106f7521f9cf3f6c2f9ece13d328272f8400f90f4ae79b8cdc4750b5d8b6`;
+- metadata validation PASS;
+- authenticated protected sample returned with recommendation/public-runtime/nutrition/dietary/allergen/ratio-promotion boundaries all false;
+- simulated Free-limit failure returned HTTP 503 `STEP7E_FREE_LIMIT_FAIL_CLOSED`, zero pilot queries and no protected data;
+- credential-omitted request returned HTTP 401 before protected data;
+- no future D1 shard was created;
+- no paid plan or billing authorization was activated.
 
-A later live Step 7E canary must still prove authenticated access, revocation, Free-limit fail-closed behavior and measured D1/Worker consumption. It must use the existing `culinary-control` D1 only unless a later roadmap gate explicitly earns the future recipe-body shard layout.
+Canonical live evidence is recorded in `docs/CORPUS_SCALE_STEP7E_LIVE_500_CANARY.md`.
 
-## 9. Hard boundaries
+## 9. Terminal state and authority boundary
 
-Not authorized by this file:
+Step 7E terminal:
+
+`STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS`
+
+This closes the currently defined Step 7E protected-pilot gate. The governing architecture defines no Step 7F, so no new infrastructure, corpus promotion or public-runtime authority may be inferred from this PASS.
+
+## 10. Hard boundaries
+
+Not authorized by this file or the Step 7E PASS:
 
 - creating any of the eight future recipe-body D1 shard databases;
 - Workers Paid or any charge/overage authorization;
@@ -158,4 +178,8 @@ Not authorized by this file:
 - replacing the current authenticated same-origin session architecture;
 - public V1→V2 cut-over;
 - automatic source admission outside this bounded pilot;
+- source nutrition as NutritionSource authority;
+- source-prose dietary/allergen inference;
+- source-ratio promotion to absolute quantities;
+- source media activation;
 - Knowledge Core writes or private Knowledge Core browser/runtime dependency.
