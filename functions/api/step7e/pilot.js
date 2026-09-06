@@ -51,6 +51,22 @@ async function boundedAuditRead(code, operation) {
 }
 
 async function readPilotAudit(db) {
+  const schemaRead = await boundedAuditRead(
+    "STEP7E_AUDIT_SCHEMA_READ_FAILED",
+    () => db.prepare(
+      "SELECT name FROM sqlite_schema WHERE type = 'table' AND name IN (?, ?)"
+    ).bind(STEP7E_PILOT_TABLE, STEP7E_CHUNK_TABLE).all()
+  );
+  const schemaNames = new Set((schemaRead.value?.results || []).map(row => String(row.name || "")));
+  const missingTables = [STEP7E_PILOT_TABLE, STEP7E_CHUNK_TABLE].filter(name => !schemaNames.has(name));
+  if (missingTables.length) {
+    return {
+      initialized: false,
+      missingTables,
+      attempts: { schema: schemaRead.attempts }
+    };
+  }
+
   const chunksRead = await boundedAuditRead(
     "STEP7E_AUDIT_CHUNK_METADATA_READ_FAILED",
     () => db.prepare(
@@ -78,6 +94,7 @@ async function readPilotAudit(db) {
   );
 
   return {
+    initialized: true,
     chunkRows,
     chunkMeta: chunksRead.value?.meta || {},
     totals: {
@@ -85,6 +102,7 @@ async function readPilotAudit(db) {
       totalBodyBytes: Number(bodyBytesRead.value?.total_body_bytes || 0)
     },
     attempts: {
+      schema: schemaRead.attempts,
       chunkMetadata: chunksRead.attempts,
       recipeCount: recipeCountRead.attempts,
       bodyBytes: bodyBytesRead.attempts
@@ -131,10 +149,30 @@ export async function onRequestGet({ request, env }) {
       step: "7E",
       error: code,
       ready: false,
+      bootstrapRequired: false,
       protectedDataReturned: false,
       auditReadAttempts: error instanceof Step7eAuditReadError ? error.attempts : null,
       manifest: publicStep7eManifest()
     }, 503);
+  }
+
+  if (!audit.initialized) {
+    return jsonResponse({
+      ok: false,
+      step: "7E",
+      error: "STEP7E_PILOT_NOT_INITIALIZED",
+      ready: false,
+      bootstrapRequired: true,
+      missingTables: audit.missingTables,
+      missingChunkIndices: Array.from({ length: STEP7E_EXPECTED_CHUNK_COUNT }, (_, index) => index),
+      protectedDataReturned: false,
+      metrics: {
+        elapsedMs: roundedElapsedMs(startedAt),
+        pilotQueries: 1,
+        auditReadAttempts: audit.attempts
+      },
+      manifest: publicStep7eManifest()
+    }, 409);
   }
 
   const metadataValidation = validateStoredStep7eChunkMetadata(audit.chunkRows);
@@ -145,6 +183,18 @@ export async function onRequestGet({ request, env }) {
     && audit.totals.totalBodyBytes === publicStep7eManifest().totalBodyBytes;
   const fingerprintMatch = storedFingerprint === STEP7E_EXPECTED_FINGERPRINT;
   const ready = metadataValidation.pass && totalsMatch && fingerprintMatch;
+  const presentChunkIndices = new Set(
+    audit.chunkRows
+      .map(row => Number(row.chunk_index))
+      .filter(index => Number.isInteger(index) && index >= 0 && index < STEP7E_EXPECTED_CHUNK_COUNT)
+  );
+  const missingChunkIndices = Array.from(
+    { length: STEP7E_EXPECTED_CHUNK_COUNT },
+    (_, index) => index
+  ).filter(index => !presentChunkIndices.has(index));
+  const bootstrapRequired = !ready
+    && metadataValidation.reason === "CHUNK_COUNT_MISMATCH"
+    && missingChunkIndices.length > 0;
 
   const base = {
     ok: ready,
@@ -163,7 +213,7 @@ export async function onRequestGet({ request, env }) {
     boundaries: publicStep7eManifest().boundaries,
     metrics: {
       elapsedMs: roundedElapsedMs(startedAt),
-      pilotQueries: 3,
+      pilotQueries: 4,
       auditReadAttempts: audit.attempts,
       chunkMetadataRead: summarizeD1Meta(audit.chunkMeta)
     }
@@ -173,12 +223,14 @@ export async function onRequestGet({ request, env }) {
     return jsonResponse({
       ...base,
       error: "STEP7E_PILOT_INCOMPLETE_OR_MISMATCH",
+      bootstrapRequired,
+      missingChunkIndices: bootstrapRequired ? missingChunkIndices : [],
       protectedDataReturned: false
     }, 409);
   }
 
   if (url.searchParams.get("sample") !== "1") {
-    return jsonResponse({ ...base, protectedDataReturned: false });
+    return jsonResponse({ ...base, bootstrapRequired: false, protectedDataReturned: false });
   }
 
   let sample;
@@ -205,6 +257,7 @@ export async function onRequestGet({ request, env }) {
 
   return jsonResponse({
     ...base,
+    bootstrapRequired: false,
     protectedDataReturned: true,
     sample: {
       ordinal: Number(sample.ordinal),
@@ -215,7 +268,7 @@ export async function onRequestGet({ request, env }) {
     },
     metrics: {
       ...base.metrics,
-      pilotQueries: 4
+      pilotQueries: 5
     }
   });
 }
