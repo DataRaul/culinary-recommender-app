@@ -37,7 +37,7 @@
         body?.sessionValidation === 'AUTHORIZED'
       ) {
         const nextLocation = step7eIntent
-          ? '/step7e-final.html?sessionCommit=1'
+          ? '/api/step7e-final-page?sessionCommit=1'
           : '/auth-canary.html?sessionCommit=1';
         window.location.replace(nextLocation);
       }
