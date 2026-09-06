@@ -112,5 +112,6 @@ test("session commit probe page performs one same-origin sanitized check", () =>
   const html = readFileSync(new URL("../auth-session-commit-probe.html", import.meta.url), "utf8");
   assert.match(html, /\/api\/auth\/session-commit-probe/);
   assert.match(html, /credentials:\s*'same-origin'/);
-  assert.doesNotMatch(html, /google\.accounts|credential|accountId|email|session token/i);
+  assert.doesNotMatch(html, /google\.accounts|accountId|email|session token/i);
+  assert.doesNotMatch(html, /name=['"]credential['"]|response\.credential|Google identity/i);
 });
