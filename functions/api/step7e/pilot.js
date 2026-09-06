@@ -18,6 +18,8 @@ import {
   validateStoredStep7eChunkMetadata
 } from "../../../src/server/step7e-pilot.mjs";
 
+const AUDIT_READ_ATTEMPTS = 2;
+
 function rejectedSession(current) {
   const headers = current.reason === "NO_SESSION"
     ? {}
@@ -29,23 +31,63 @@ function rejectedSession(current) {
   }, 401, headers);
 }
 
+class Step7eAuditReadError extends Error {
+  constructor(code, attempts) {
+    super(code);
+    this.code = code;
+    this.attempts = attempts;
+  }
+}
+
+async function boundedAuditRead(code, operation) {
+  for (let attempt = 1; attempt <= AUDIT_READ_ATTEMPTS; attempt += 1) {
+    try {
+      return { value: await operation(), attempts: attempt };
+    } catch {
+      if (attempt === AUDIT_READ_ATTEMPTS) throw new Step7eAuditReadError(code, attempt);
+    }
+  }
+  throw new Step7eAuditReadError(code, AUDIT_READ_ATTEMPTS);
+}
+
 async function readPilotAudit(db) {
-  const chunksResult = await db.prepare(
-    `SELECT chunk_index, first_ordinal, recipe_count, chunk_sha256, total_body_bytes, source_commit
-     FROM ${STEP7E_CHUNK_TABLE}
-     ORDER BY chunk_index ASC`
-  ).all();
-  const totalsResult = await db.prepare(
-    `SELECT COUNT(*) AS recipe_count, COALESCE(SUM(body_bytes), 0) AS total_body_bytes
-     FROM ${STEP7E_PILOT_TABLE}`
-  ).first();
-  const chunkRows = chunksResult?.results || [];
+  const chunksRead = await boundedAuditRead(
+    "STEP7E_AUDIT_CHUNK_METADATA_READ_FAILED",
+    () => db.prepare(
+      `SELECT chunk_index, first_ordinal, recipe_count, chunk_sha256, total_body_bytes, source_commit
+       FROM ${STEP7E_CHUNK_TABLE}
+       ORDER BY chunk_index ASC`
+    ).all()
+  );
+  const chunkRows = chunksRead.value?.results || [];
+
+  const recipeCountRead = await boundedAuditRead(
+    "STEP7E_AUDIT_RECIPE_COUNT_READ_FAILED",
+    () => db.prepare(
+      `SELECT COUNT(*) AS recipe_count
+       FROM ${STEP7E_PILOT_TABLE}`
+    ).first()
+  );
+
+  const bodyBytesRead = await boundedAuditRead(
+    "STEP7E_AUDIT_BODY_BYTES_READ_FAILED",
+    () => db.prepare(
+      `SELECT COALESCE(SUM(body_bytes), 0) AS total_body_bytes
+       FROM ${STEP7E_PILOT_TABLE}`
+    ).first()
+  );
+
   return {
     chunkRows,
-    chunkMeta: chunksResult?.meta || {},
+    chunkMeta: chunksRead.value?.meta || {},
     totals: {
-      recipeCount: Number(totalsResult?.recipe_count || 0),
-      totalBodyBytes: Number(totalsResult?.total_body_bytes || 0)
+      recipeCount: Number(recipeCountRead.value?.recipe_count || 0),
+      totalBodyBytes: Number(bodyBytesRead.value?.total_body_bytes || 0)
+    },
+    attempts: {
+      chunkMetadata: chunksRead.attempts,
+      recipeCount: recipeCountRead.attempts,
+      bodyBytes: bodyBytesRead.attempts
     }
   };
 }
@@ -80,13 +122,17 @@ export async function onRequestGet({ request, env }) {
   let audit;
   try {
     audit = await readPilotAudit(db);
-  } catch {
+  } catch (error) {
+    const code = error instanceof Step7eAuditReadError
+      ? error.code
+      : "STEP7E_AUDIT_READ_FAILED";
     return jsonResponse({
       ok: false,
       step: "7E",
-      error: "STEP7E_PILOT_NOT_INITIALIZED",
+      error: code,
       ready: false,
       protectedDataReturned: false,
+      auditReadAttempts: error instanceof Step7eAuditReadError ? error.attempts : null,
       manifest: publicStep7eManifest()
     }, 503);
   }
@@ -117,7 +163,8 @@ export async function onRequestGet({ request, env }) {
     boundaries: publicStep7eManifest().boundaries,
     metrics: {
       elapsedMs: roundedElapsedMs(startedAt),
-      pilotQueries: 2,
+      pilotQueries: 3,
+      auditReadAttempts: audit.attempts,
       chunkMetadataRead: summarizeD1Meta(audit.chunkMeta)
     }
   };
@@ -168,7 +215,7 @@ export async function onRequestGet({ request, env }) {
     },
     metrics: {
       ...base.metrics,
-      pilotQueries: 3
+      pilotQueries: 4
     }
   });
 }

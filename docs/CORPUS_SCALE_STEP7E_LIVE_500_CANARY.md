@@ -99,12 +99,15 @@ If a chunk metadata row already exists, the route does not rewrite it. It verifi
 
 ## 6. Final audit
 
-The final protected audit reads:
+The final protected audit independently reads:
 
 - the 50 small chunk-metadata rows;
-- one aggregate count/sum over the 500 body rows.
+- exact recipe-row count;
+- exact sum of stored `body_bytes`.
 
-It requires:
+Each read is allowed one automatic read-only retry inside the same Worker invocation. A transient D1 read therefore does not require another human browser cycle. If both attempts fail, the response identifies only the bounded failing stage (`STEP7E_AUDIT_CHUNK_METADATA_READ_FAILED`, `STEP7E_AUDIT_RECIPE_COUNT_READ_FAILED`, or `STEP7E_AUDIT_BODY_BYTES_READ_FAILED`) and does not expose raw database error text.
+
+It still requires:
 
 - exactly 50 expected chunks;
 - exactly 500 recipe rows;
@@ -113,7 +116,7 @@ It requires:
 - exact per-chunk hashes;
 - exact overall fingerprint `2aa8106f7521f9cf3f6c2f9ece13d328272f8400f90f4ae79b8cdc4750b5d8b6`.
 
-The default audit returns no recipe body. A separate authenticated sample mode reads only ordinal 0 and returns one protected source packet.
+The bounded retry does not weaken any acceptance criterion and does not retry writes. The default audit returns no recipe body. A separate authenticated sample mode reads only ordinal 0 and returns one protected source packet.
 
 ## 7. Final human-verification batch
 
@@ -140,7 +143,9 @@ The protected Step 7E canary then performs, in order:
 5. one authenticated protected sample read;
 6. simulated Free-limit failure → must return 503 with zero Step 7E pilot queries;
 7. unauthenticated credential-omitted read **last** → must return 401;
-8. display the complete sanitized evidence object with chunk timings, rows written, final D1 size and terminal candidate.
+8. display a compact sanitized terminal evidence object rather than all 50 per-chunk records.
+
+The terminal view summarizes request count, idempotent/new chunk counts, newly written rows, chunk timing, final observed D1 size, exact audit counts/fingerprint, protected-sample boundaries, Free-limit evidence, unauthenticated denial and terminal state. A `Copy result` control copies that compact object for mobile/WebView handoff. Detailed per-chunk evidence remains an in-memory execution detail rather than something the operator must manually copy.
 
 The explicit manual `Run Step 7E 500-record canary` button remains available for bounded diagnostics, but it is not the preferred final human-gate path.
 
