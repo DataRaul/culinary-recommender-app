@@ -1,6 +1,7 @@
 import { onRequestPost as issueGoogleSession } from "./google.js";
 
-const SUCCESS_LOCATION = "/auth-canary.html?auth=complete";
+const SUCCESS_LOCATION = "/auth-session-commit-probe.html";
+const COMMIT_PROBE_COOKIE = "__Host-culinary_auth_commit_probe=1; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=120";
 
 export async function handleGoogleRedirect({ request, env, issueSession = issueGoogleSession }) {
   const requestOrigin = request.headers.get("origin");
@@ -62,15 +63,18 @@ export async function handleGoogleRedirect({ request, env, issueSession = issueG
     });
   }
 
+  const headers = new Headers({
+    location: SUCCESS_LOCATION,
+    "cache-control": "no-store",
+    "referrer-policy": "no-referrer",
+    "x-content-type-options": "nosniff"
+  });
+  headers.append("set-cookie", setCookie);
+  headers.append("set-cookie", COMMIT_PROBE_COOKIE);
+
   return new Response(null, {
     status: 303,
-    headers: {
-      location: SUCCESS_LOCATION,
-      "set-cookie": setCookie,
-      "cache-control": "no-store",
-      "referrer-policy": "no-referrer",
-      "x-content-type-options": "nosniff"
-    }
+    headers
   });
 }
 
