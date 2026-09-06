@@ -40,11 +40,21 @@ function chunkMetadataRows() {
 }
 
 class AuditFakeD1 {
-  constructor({ failChunkReads = 0, failRecipeCountReads = 0, failBodyBytesReads = 0 } = {}) {
+  constructor({
+    failSchemaReads = 0,
+    failChunkReads = 0,
+    failRecipeCountReads = 0,
+    failBodyBytesReads = 0,
+    tablesPresent = true,
+    chunkRows = chunkMetadataRows()
+  } = {}) {
     this.account = account();
+    this.failSchemaReads = failSchemaReads;
     this.failChunkReads = failChunkReads;
     this.failRecipeCountReads = failRecipeCountReads;
     this.failBodyBytesReads = failBodyBytesReads;
+    this.tablesPresent = tablesPresent;
+    this.chunkRows = chunkRows;
   }
 
   prepare(sql) {
@@ -56,14 +66,26 @@ class AuditFakeD1 {
         return this;
       },
       async all() {
+        if (sql.includes("FROM sqlite_schema")) {
+          if (db.failSchemaReads > 0) {
+            db.failSchemaReads -= 1;
+            throw new Error("transient schema read");
+          }
+          return {
+            results: db.tablesPresent
+              ? [{ name: "step7e_source_pilot" }, { name: "step7e_source_pilot_chunks" }]
+              : [],
+            meta: { rows_read: db.tablesPresent ? 2 : 0, rows_written: 0 }
+          };
+        }
         if (sql.includes("FROM step7e_source_pilot_chunks")) {
           if (db.failChunkReads > 0) {
             db.failChunkReads -= 1;
             throw new Error("transient chunk metadata read");
           }
           return {
-            results: chunkMetadataRows(),
-            meta: { rows_read: STEP7E_EXPECTED_CHUNK_COUNT, rows_written: 0, size_after: 5_931_008 }
+            results: db.chunkRows,
+            meta: { rows_read: db.chunkRows.length, rows_written: 0, size_after: 5_931_008 }
           };
         }
         throw new Error(`Unhandled all SQL: ${sql}`);
@@ -119,15 +141,17 @@ test("Step 7E final audit retries one transient read and still proves the exact 
   assert.equal(body.recipeCount, 500);
   assert.equal(body.chunkCount, 50);
   assert.equal(body.fingerprint, STEP7E_EXPECTED_FINGERPRINT);
+  assert.equal(body.bootstrapRequired, false);
   assert.equal(body.terminalCandidate, "STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS");
   assert.deepEqual(body.metrics.auditReadAttempts, {
+    schema: 1,
     chunkMetadata: 1,
     recipeCount: 2,
     bodyBytes: 1
   });
 });
 
-test("Step 7E final audit classifies a persistent body-byte read failure without exposing raw errors", async () => {
+test("Step 7E final audit classifies a persistent body-byte read failure and never bootstraps ambiguously", async () => {
   const db = new AuditFakeD1({ failBodyBytesReads: 2 });
   const response = await getStep7ePilot({
     request: await authenticatedRequest(db),
@@ -140,6 +164,37 @@ test("Step 7E final audit classifies a persistent body-byte read failure without
   assert.equal(body.ready, false);
   assert.equal(body.error, "STEP7E_AUDIT_BODY_BYTES_READ_FAILED");
   assert.equal(body.auditReadAttempts, 2);
+  assert.equal(body.bootstrapRequired, false);
   assert.equal(body.protectedDataReturned, false);
   assert.equal(JSON.stringify(body).includes("transient body bytes read"), false);
+});
+
+test("Step 7E positively classifies absent pilot tables as bootstrap-required", async () => {
+  const db = new AuditFakeD1({ tablesPresent: false });
+  const response = await getStep7ePilot({
+    request: await authenticatedRequest(db),
+    env: { SESSION_SECRET: SECRET, CULINARY_CONTROL_DB: db }
+  });
+
+  assert.equal(response.status, 409);
+  const body = await response.json();
+  assert.equal(body.error, "STEP7E_PILOT_NOT_INITIALIZED");
+  assert.equal(body.bootstrapRequired, true);
+  assert.equal(body.missingChunkIndices.length, 50);
+  assert.deepEqual(body.missingTables.sort(), ["step7e_source_pilot", "step7e_source_pilot_chunks"]);
+});
+
+test("Step 7E identifies only genuinely missing chunk indices for bounded bootstrap", async () => {
+  const rows = chunkMetadataRows().slice(0, 49);
+  const db = new AuditFakeD1({ chunkRows: rows });
+  const response = await getStep7ePilot({
+    request: await authenticatedRequest(db),
+    env: { SESSION_SECRET: SECRET, CULINARY_CONTROL_DB: db }
+  });
+
+  assert.equal(response.status, 409);
+  const body = await response.json();
+  assert.equal(body.error, "STEP7E_PILOT_INCOMPLETE_OR_MISMATCH");
+  assert.equal(body.bootstrapRequired, true);
+  assert.deepEqual(body.missingChunkIndices, [49]);
 });
