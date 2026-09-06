@@ -82,9 +82,15 @@ const pilot = buildForkRecipeStep7ePilot(entries, {
   publicTitles
 });
 
-const contributing = await readFile(resolve(sourceRoot, "CONTRIBUTING.md"), "utf8");
+const [readme, contributing] = await Promise.all([
+  readFile(resolve(sourceRoot, "README.md"), "utf8"),
+  readFile(resolve(sourceRoot, "CONTRIBUTING.md"), "utf8")
+]);
+const readmeDeclaredCount = Number(readme.match(/(?:^|\n)\s*(\d+)\s+recipes as schema-valid JS modules/i)?.[1] || 0) || null;
 const contributingDeclaredCount = Number(contributing.match(/✓\s+(\d+)\s+recipe\(s\) valid/i)?.[1] || 0) || null;
-const documentationCountDrift = contributingDeclaredCount !== null && contributingDeclaredCount !== entries.length;
+const documentationCountDrift = [readmeDeclaredCount, contributingDeclaredCount]
+  .filter(value => value !== null)
+  .some(value => value !== entries.length);
 
 const summary = {
   ...pilot.audit,
@@ -94,11 +100,12 @@ const summary = {
     expectedRecipeCount: FORKRECIPE_STEP7E_EXPECTED_RECIPE_COUNT,
     loadedRecipeCount: entries.length,
     uniqueFileCount: new Set(entries.map(entry => basename(entry.fileName))).size,
+    readmeDeclaredCount,
     contributingDeclaredCount,
     documentationCountDrift,
     documentationCountDriftBlocking: false,
     note: documentationCountDrift
-      ? "CONTRIBUTING.md validator example is stale relative to the pinned tree; the source tree, README declaration, and actual upstream validator result control the audit."
+      ? "Pinned source documentation is internally inconsistent about recipe count. The checked-out tree and passing upstream validator are authoritative for this bounded audit; the discrepancy is retained as provenance drift rather than silently corrected."
       : null
   },
   pilotSha256: pilot.pilotSha256
