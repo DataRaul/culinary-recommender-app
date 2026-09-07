@@ -118,9 +118,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- \
+          if ! git status --porcelain -- \
             data/generated/youtube-culinary-daily-discovery-state.json \
-            data/generated/youtube-culinary-work-unit-state.json; then
+            data/generated/youtube-culinary-work-unit-state.json | grep -q .; then
             echo "No cumulative or work-unit state change to persist."
             exit 0
           fi
