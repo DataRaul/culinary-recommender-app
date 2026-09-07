@@ -6,7 +6,7 @@
   "policyRecheckedAt": "2026-09-05",
   "assignedDailySearchLimit": 100,
   "protectedReserveCalls": 5,
-  "lastCompletedQuotaDate": "2026-09-06",
+  "lastCompletedQuotaDate": "2026-09-07",
   "completedQuotaDays": [
     {
       "quotaDate": "2026-09-06",
@@ -290,47 +290,373 @@
         "appAuthoringEligiblePerCumulativeSearch": 0,
         "explicitLifecycleAdvancementsPerCumulativeSearch": 0
       }
+    },
+    {
+      "quotaDate": "2026-09-07",
+      "completedAt": "2026-09-07T15:07:57.994Z",
+      "searchCapacity": 95,
+      "searchCalls": 95,
+      "searchUtilization": 1,
+      "tranches": [
+        {
+          "trancheNumber": 1,
+          "searchCalls": 16,
+          "exploitationSlots": 12,
+          "explorationSlots": 4,
+          "focuses": [
+            "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED",
+            "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS",
+            "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 0,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 0,
+          "externalReviewErrorCount": 0
+        },
+        {
+          "trancheNumber": 2,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "IRAN_CENTRAL_ASIA_AFGHANISTAN__BREADS_SOUPS",
+            "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 7,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 262,
+          "externalReviewErrorCount": 5
+        },
+        {
+          "trancheNumber": 3,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT",
+            "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES",
+            "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 5,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 188,
+          "externalReviewErrorCount": 7
+        },
+        {
+          "trancheNumber": 4,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "WEST_AFRICA__STEW_GRAIN_LEGUME",
+            "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 6,
+          "recipeStructuredPagesConfirmed": 1,
+          "reviewCandidatesConsidered": 1,
+          "reviewReadyPacketsCreated": 1,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 1,
+          "transientVideoPointersObserved": 402,
+          "externalReviewErrorCount": 6
+        },
+        {
+          "trancheNumber": 5,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD",
+            "SOUTHEAST_ASIA__FERMENTED_STEAMED_RICE",
+            "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO",
+            "PROVISIONAL_PACKET_FOLLOWUP"
+          ],
+          "independentPagesReviewed": 0,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 10,
+          "externalReviewErrorCount": 0
+        },
+        {
+          "trancheNumber": 6,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD",
+            "SOUTHEAST_ASIA__FERMENTED_STEAMED_RICE",
+            "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 0,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 0,
+          "externalReviewErrorCount": 0
+        },
+        {
+          "trancheNumber": 7,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD",
+            "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT",
+            "IRAN_CENTRAL_ASIA_AFGHANISTAN__BREADS_SOUPS"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 7,
+          "recipeStructuredPagesConfirmed": 1,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 273,
+          "externalReviewErrorCount": 5
+        },
+        {
+          "trancheNumber": 8,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD",
+            "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT",
+            "WEST_AFRICA__STEW_GRAIN_LEGUME"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 3,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 198,
+          "externalReviewErrorCount": 9
+        },
+        {
+          "trancheNumber": 9,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD",
+            "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT",
+            "WEST_AFRICA__STEW_GRAIN_LEGUME",
+            "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 2,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 167,
+          "externalReviewErrorCount": 6
+        },
+        {
+          "trancheNumber": 10,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT",
+            "WEST_AFRICA__STEW_GRAIN_LEGUME",
+            "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 7,
+          "recipeStructuredPagesConfirmed": 1,
+          "reviewCandidatesConsidered": 1,
+          "reviewReadyPacketsCreated": 1,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 1,
+          "transientVideoPointersObserved": 421,
+          "externalReviewErrorCount": 5
+        },
+        {
+          "trancheNumber": 11,
+          "searchCalls": 7,
+          "exploitationSlots": 5,
+          "explorationSlots": 2,
+          "focuses": [
+            "WEST_AFRICA__STEW_GRAIN_LEGUME",
+            "IRAN_CENTRAL_ASIA_AFGHANISTAN__BREADS_SOUPS"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO",
+            "PROVISIONAL_PACKET_FOLLOWUP"
+          ],
+          "independentPagesReviewed": 5,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 267,
+          "externalReviewErrorCount": 7
+        }
+      ],
+      "focuses": [
+        "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED",
+        "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS",
+        "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES",
+        "IRAN_CENTRAL_ASIA_AFGHANISTAN__BREADS_SOUPS",
+        "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT",
+        "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD",
+        "WEST_AFRICA__STEW_GRAIN_LEGUME",
+        "SOUTHEAST_ASIA__FERMENTED_STEAMED_RICE"
+      ],
+      "independentPagesReviewed": 42,
+      "recipeStructuredPagesConfirmed": 3,
+      "reviewCandidatesConsidered": 2,
+      "reviewReadyPacketsCreated": 2,
+      "duplicatePairsSuppressed": 0,
+      "uniqueUsefulSourceDomains": 2,
+      "unresolvedReviewBacklogAfterRun": 2,
+      "terminalState": "DAILY_DISCOVERY_QUOTA_PORTFOLIO_COMPLETE",
+      "researchKpis": {
+        "searchUtilization": 1,
+        "independentPagesPerSearch": 0.4421052631578947,
+        "recipeStructuredPagesPerSearch": 0.031578947368421054,
+        "reviewReadyPacketsPerSearch": 0.021052631578947368,
+        "usefulSourceDomainsPerSearch": 0.021052631578947368,
+        "canonicalAcceptedPerCumulativeSearch": 0,
+        "appAuthoringEligiblePerCumulativeSearch": 0,
+        "explicitLifecycleAdvancementsPerCumulativeSearch": 0
+      }
     }
   ],
   "cumulative": {
-    "searchCalls": 95,
-    "independentPagesReviewed": 44,
-    "recipeStructuredPagesConfirmed": 1,
-    "reviewReadyPacketsCreated": 1,
+    "searchCalls": 190,
+    "independentPagesReviewed": 86,
+    "recipeStructuredPagesConfirmed": 4,
+    "reviewReadyPacketsCreated": 3,
     "duplicatePairsSuppressed": 0
   },
   "unresolvedPackets": [
     {
       "schemaVersion": "youtube-culinary-atlas-relevance-review-ready-v1",
       "packetStatus": "ATLAS_RELEVANCE_REVIEW_READY",
-      "packetId": "yt-cul-review-ffa94f1f84a41c008962e358",
-      "reviewPairKey": "yt-cul-pair-e55cb1a7513af3201d2b04b4",
-      "candidateLabel": "Kolkata style Veg Dum Biryani | पनीर &#038; आलू की मज़ेदार वेज बिरयानी | Paneer Biryani",
+      "packetId": "yt-cul-review-6a629224ad48208b27e202d6",
+      "reviewPairKey": "yt-cul-pair-ae4e07453d5c468a76c9a02a",
+      "candidateLabel": "Sajiyeh (Jordanian Beef Skillet)",
       "atlasCandidateId": null,
       "claimScope": "IDENTITY",
       "atlasGap": {
-        "macroRegion": "SOUTHEAST_ASIA",
-        "familyGap": "FERMENTED_STEAMED_RICE",
+        "macroRegion": "LEVANT_EASTERN_MEDITERRANEAN",
+        "familyGap": "PULSES_FLATBREAD",
         "mealRoleGap": null,
         "techniqueGap": null
       },
       "independentSourceProvenance": {
-        "sourceDomain": "ranveerbrar.com",
-        "independentSourceUrl": "https://ranveerbrar.com/recipes/kolkata-style-veg-dum-biryani/",
-        "sourceRetrievedAt": "2026-09-06T22:43:37.323Z",
+        "sourceDomain": "welcome2jordan.com",
+        "independentSourceUrl": "https://welcome2jordan.com/sajiyeh-jordanian-beef-skillet/",
+        "sourceRetrievedAt": "2026-09-07T15:06:21.974Z",
         "evidenceOrigin": "INDEPENDENT_NON_YOUTUBE_SOURCE"
       },
       "machineEvidence": {
         "recipeStructuredPage": true,
         "candidateLabelsObserved": [
-          "Kolkata style Veg Dum Biryani | पनीर &#038; आलू की मज़ेदार वेज बिरयानी | Paneer Biryani"
+          "Sajiyeh (Jordanian Beef Skillet)"
         ],
         "ingredientTermsObserved": [
+          "lentil",
+          "flatbread",
+          "bread"
+        ],
+        "independentPageFingerprint": "ec23668179ebfd8ddd7b62b3b5feb4b8"
+      },
+      "relevanceReason": "Independent Recipe-structured page matched bounded LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD relevance terms: lentil, flatbread, bread.",
+      "unresolvedAmbiguity": [
+        "Discovery relevance only; canonical identity and claim scope remain Knowledge Core Atlas review-bound."
+      ],
+      "reviewAuthorityRequired": "KNOWLEDGE_CORE_ATLAS_REVIEW",
+      "atlasFamilyCandidateNominated": false,
+      "automaticAtlasPromotionAuthorized": false,
+      "automaticAppAdmissionAuthorized": false,
+      "knowledgeCoreStateChanged": false,
+      "appStateChanged": false
+    },
+    {
+      "schemaVersion": "youtube-culinary-atlas-relevance-review-ready-v1",
+      "packetStatus": "ATLAS_RELEVANCE_REVIEW_READY",
+      "packetId": "yt-cul-review-d9e09a85ae85d9936a468280",
+      "reviewPairKey": "yt-cul-pair-d2988de501f75a90d7e3bd80",
+      "candidateLabel": "Red Red, Ghanaian Bean Stew with Fried Plantains (Vegan, Vegetarian, Gluten Free)",
+      "atlasCandidateId": null,
+      "claimScope": "IDENTITY",
+      "atlasGap": {
+        "macroRegion": "WEST_AFRICA",
+        "familyGap": "STEW_GRAIN_LEGUME",
+        "mealRoleGap": null,
+        "techniqueGap": null
+      },
+      "independentSourceProvenance": {
+        "sourceDomain": "www.myburntorange.com",
+        "independentSourceUrl": "https://www.myburntorange.com/red-red-ghanaian-bean-stew-vegan-vegetarian-gluten-free/",
+        "sourceRetrievedAt": "2026-09-07T15:06:21.980Z",
+        "evidenceOrigin": "INDEPENDENT_NON_YOUTUBE_SOURCE"
+      },
+      "machineEvidence": {
+        "recipeStructuredPage": true,
+        "candidateLabelsObserved": [
+          "Red Red, Ghanaian Bean Stew with Fried Plantains (Vegan, Vegetarian, Gluten Free)"
+        ],
+        "ingredientTermsObserved": [
+          "stew",
+          "groundnut",
+          "peanut",
+          "bean",
           "rice"
         ],
-        "independentPageFingerprint": "6de6733da994073f1849c31009500afb"
+        "independentPageFingerprint": "556a101c6bab3f5914a54dc9f45ea24b"
       },
-      "relevanceReason": "Independent Recipe-structured page matched bounded SOUTHEAST_ASIA__FERMENTED_STEAMED_RICE relevance terms: rice.",
+      "relevanceReason": "Independent Recipe-structured page matched bounded WEST_AFRICA__STEW_GRAIN_LEGUME relevance terms: stew, groundnut, peanut, bean, rice.",
       "unresolvedAmbiguity": [
         "Discovery relevance only; canonical identity and claim scope remain Knowledge Core Atlas review-bound."
       ],
@@ -342,8 +668,38 @@
       "appStateChanged": false
     }
   ],
-  "resolvedPairKeys": [],
-  "canonicalOutcomes": [],
+  "resolvedPairKeys": [
+    "yt-cul-pair-e55cb1a7513af3201d2b04b4"
+  ],
+  "canonicalOutcomes": [
+    {
+      "packetId": "yt-cul-review-ffa94f1f84a41c008962e358",
+      "reviewPairKey": "yt-cul-pair-e55cb1a7513af3201d2b04b4",
+      "reviewDecision": "REJECTED",
+      "reviewAuthority": "KNOWLEDGE_CORE_ATLAS_REVIEW",
+      "decisionReason": "ATLAS_GAP_FALSE_POSITIVE__KOLKATA_BIRYANI_IS_OUTSIDE_SOUTHEAST_ASIA_FERMENTED_STEAMED_RICE_SCOPE. The packet was admitted because the independent recipe page matched the generic term 'rice', but canonical Knowledge Core already bounds reviewed biryani structure to Indian regional examples within the wider South Asian family. Kolkata is the capital of West Bengal, India, so this candidate does not support the SOUTHEAST_ASIA__FERMENTED_STEAMED_RICE discovery gap. This rejection is scope-specific and does not reject biryani as a valid culinary family.",
+      "reviewRoute": "ATLAS_IDENTITY_REVIEW",
+      "requiredEvidenceTerms": [],
+      "independentNonYoutubeEvidence": true,
+      "rightsProvenanceSafetyClear": false,
+      "appAuthoringEligible": false,
+      "lifecycleAdvanced": false,
+      "lifecycleStateAfter": null,
+      "retryable": false,
+      "knowledgeCoreCommit": "4f576f636dd560cea5ef22ded6525ac547bd3944",
+      "feedbackContext": {
+        "candidateLabel": "Kolkata style Veg Dum Biryani | पनीर &#038; आलू की मज़ेदार वेज बिरयानी | Paneer Biryani",
+        "claimScope": "IDENTITY",
+        "atlasGap": {
+          "macroRegion": "SOUTHEAST_ASIA",
+          "familyGap": "FERMENTED_STEAMED_RICE",
+          "mealRoleGap": null,
+          "techniqueGap": null
+        },
+        "sourceDomain": "ranveerbrar.com"
+      }
+    }
+  ],
   "hardHold": null,
   "ytCul6Readiness": {
     "earned": false,
