@@ -29,6 +29,7 @@ jobs:
       YT_CUL_POLICY_RECHECKED_AT: '2026-09-05'
       YT_CUL_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
       YT_CUL_DAILY_STATE_PATH: data/generated/youtube-culinary-daily-discovery-state.json
+      YT_CUL_WORK_UNIT_STATE_PATH: data/generated/youtube-culinary-work-unit-state.json
       YT_CUL_CANONICAL_REVIEW_BRIDGE_PATH: data/generated/youtube-culinary-canonical-review-bridge.json
       CULINARY_KC_REVIEW_SYNC_ENABLED: ${{ vars.CULINARY_KC_REVIEW_SYNC_ENABLED || 'false' }}
       CULINARY_KC_REVIEW_READ_TOKEN: ${{ secrets.CULINARY_KC_REVIEW_READ_TOKEN }}
@@ -74,7 +75,7 @@ jobs:
             exit 2
           fi
 
-      - name: Validate YouTube safety, relevance and adaptive allocation before live spend
+      - name: Validate YouTube safety, relevance, lifecycle and adaptive allocation before live spend
         run: >-
           node --test
           tests/youtube-culinary-discovery-control-plane.test.js
@@ -87,6 +88,7 @@ jobs:
           tests/youtube-culinary-daily-discovery.test.js
           tests/youtube-culinary-adaptive-portfolio.test.js
           tests/youtube-culinary-kc-review-bridge-sync.test.js
+          tests/youtube-culinary-work-unit-lifecycle.test.js
 
       - name: Sync canonical Knowledge Core review bridge at repository time
         id: kc_review_sync
@@ -102,18 +104,31 @@ jobs:
           set -euo pipefail
           node scripts/run-youtube-culinary-adaptive-discovery.mjs | tee "$RUNNER_TEMP/yt-cul-5e-safe-summary.json"
 
+      - name: Reconcile scheduled work-unit closure state
+        if: always()
+        env:
+          YT_CUL_PRIMARY_OUTCOME: ${{ steps.daily.outcome || 'failure' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/reconcile-youtube-culinary-work-unit.mjs | tee "$RUNNER_TEMP/yt-cul-work-unit-state.json"
+
       - name: Persist cumulative policy-safe programme state, including interrupted quota progress
         if: always() && env.YT_CUL_DRY_RUN == 'false'
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- data/generated/youtube-culinary-daily-discovery-state.json; then
-            echo "No cumulative state change to persist."
+          if ! git status --porcelain -- \
+            data/generated/youtube-culinary-daily-discovery-state.json \
+            data/generated/youtube-culinary-work-unit-state.json | grep -q .; then
+            echo "No cumulative or work-unit state change to persist."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/generated/youtube-culinary-daily-discovery-state.json
+          git add \
+            data/generated/youtube-culinary-daily-discovery-state.json \
+            data/generated/youtube-culinary-work-unit-state.json
           git commit -m "YT-CUL-5E adaptive daily safe state [skip ci]"
           for attempt in 1 2 3; do
             git fetch origin main
@@ -137,13 +152,23 @@ jobs:
           import { readFile, appendFile } from 'node:fs/promises';
           let summary = null;
           let state = null;
+          let lifecycle = null;
           let kcSync = null;
           try { summary = JSON.parse(await readFile(`${process.env.RUNNER_TEMP}/yt-cul-5e-safe-summary.json`, 'utf8')); } catch {}
           try { state = JSON.parse(await readFile(process.env.YT_CUL_DAILY_STATE_PATH, 'utf8')); } catch {}
+          try { lifecycle = JSON.parse(await readFile(process.env.YT_CUL_WORK_UNIT_STATE_PATH, 'utf8')); } catch {}
           try { kcSync = JSON.parse(await readFile(`${process.env.RUNNER_TEMP}/yt-cul-kc-review-sync.json`, 'utf8')); } catch {}
           const progress = state?.quotaDayProgress ?? null;
           const canonical = summary?.canonicalLearning ?? {};
           const kpis = summary?.researchKpis ?? {};
+          const lifecycleLines = [
+            `- Work-unit closure: **${lifecycle?.closureStatus ?? 'NO_CLOSURE_STATE'}**`,
+            `- Material transition: ${lifecycle?.materialTransition ?? 'unknown'}`,
+            `- Successor action: ${lifecycle?.successorAction ?? 'unknown'}`,
+            `- Next trigger: ${lifecycle?.nextTriggerDisposition ?? 'unknown'}`,
+            `- Scheduler disposition: ${lifecycle?.schedulerDisposition ?? 'unknown'}`,
+            `- Roadmap/handover reconciliation: ${lifecycle?.roadmapHandoverReconciliation ?? 'unknown'}`
+          ];
           const lines = summary ? [
             `- Result: **${summary.result}**`,
             `- YouTube quota date: ${summary.quotaDate}`,
@@ -167,12 +192,14 @@ jobs:
             `- Raw YouTube API Data durable: ${summary.controls?.rawYoutubeApiDataEmbedded ?? false}`,
             `- Automatic Atlas promotion: ${summary.controls?.automaticAtlasPromotionAuthorized ?? false}`,
             `- Automatic app admission: ${summary.controls?.automaticAppAdmissionAuthorized ?? false}`,
+            ...lifecycleLines,
             ''
           ] : [
             '- Result: **NO_SAFE_SUMMARY_PRODUCED**',
             `- KC canonical bridge sync: ${kcSync?.status ?? 'NO_SYNC_RESULT'}`,
             `- Persisted interrupted quota progress: ${progress ? `${progress.searchCallsUsed ?? 0}/${progress.searchCapacity ?? 0} Search attempts` : 'none'}`,
             '- The workflow remains fail-closed; rerun uses persisted quota-day progress rather than assuming zero spend.',
+            ...lifecycleLines,
             ''
           ];
           await appendFile(process.env.GITHUB_STEP_SUMMARY, lines.join('\n'), 'utf8');

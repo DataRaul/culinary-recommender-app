@@ -95,6 +95,20 @@ Before conversation context becomes unreliable, the active agent must stop ordin
 - The saved CURRENT must include the exact live main SHA/baseline, open PR/branch/CI state, standing autonomy and CI authority, the next executable action, and any active human/error/cost gate.
 - A new chat must be able to continue from the repository handover without requiring the user to reconstruct or copy-paste prior chat state.
 
+## Repository work-unit lifecycle
+
+For every scheduled or otherwise state-changing Culinary work unit, apply `CULINARY_REPOSITORY_WORK_UNIT_LIFECYCLE_V1` from `docs/REPOSITORY_WORK_UNIT_LIFECYCLE.md` and `config/work_unit_lifecycle.json`.
+
+- A schedule or external wake-up is a trigger only; it never creates cost, quota, public-export, Knowledge Core write, publication, or scope authority.
+- Reconcile current GitHub and the current generated programme state before meaningful work.
+- Execute only the bounded action already authorized by the active roadmap/gate.
+- Persist successful results or recoverable partial state before equivalent live work is retried.
+- Every scheduled run must derive and persist an explicit work-unit closure state containing successor, next-trigger, scheduler-disposition and material-reconciliation fields.
+- Routine child-programme progress remains in generated state; static roadmap/full handover surfaces are reconciled when the closure state records a material transition or continuation boundary.
+- A hard hold remains fail-closed. YT-CUL-6 readiness hands off to a separately bounded readiness reconciliation and never auto-authorizes Atlas promotion, app admission or publication.
+- Correctness must not depend on a permanent external watcher discovering stale state later.
+- Any future workflow containing `schedule:` must be registered in `config/work_unit_lifecycle.json`, and repository tests must fail closed when a scheduled workflow lacks closure/successor/retirement semantics.
+
 ## Conversation-time versus browser-runtime rule
 
 These two paths are intentionally different:
