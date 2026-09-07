@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "policy_id": "CULINARY_REPOSITORY_WORK_UNIT_LIFECYCLE_V1",
+  "source_of_truth": "GitHub repository state plus current generated Culinary programme state",
+  "scheduled_wakeup_never_grants_execution_authority": true,
+  "completion_requires_closure": true,
+  "continuous_monitoring_required_for_correctness": false,
+  "default_sequence": [
+    "RECONCILE_CURRENT_TRUTH",
+    "CHECK_ELIGIBILITY_AUTHORITY_COST_AND_EXTERNAL_LIMITS",
+    "EXECUTE_BOUNDED_WORK",
+    "PERSIST_RESULT_OR_RECOVERABLE_PARTIAL_STATE",
+    "VALIDATE_DOMAIN_AND_SAFETY_INVARIANTS",
+    "DERIVE_AND_PERSIST_WORK_UNIT_CLOSURE_STATE",
+    "RECONCILE_MATERIAL_ROADMAP_AND_HANDOVER_TRANSITIONS",
+    "EVALUATE_SUCCESSOR_HOLD_OR_RETIREMENT",
+    "MATERIALIZE_NEXT_TRIGGER_IF_NEEDED",
+    "STOP_AT_HUMAN_COST_ACCESS_SECURITY_OR_SCOPE_GATE"
+  ],
+  "scheduled_work_units": [
+    {
+      "id": "YT_CUL_5E_ADAPTIVE_DAILY_DISCOVERY",
+      "workflow": ".github/workflows/yt-cul-5d-daily-discovery.yml",
+      "kind": "STATEFUL_DAILY_QUOTA_PROGRAMME",
+      "durable_state": [
+        "data/generated/youtube-culinary-daily-discovery-state.json",
+        "data/generated/youtube-culinary-canonical-review-bridge.json",
+        "data/generated/youtube-culinary-work-unit-state.json"
+      ],
+      "preflight_contract": [
+        "verify owner-confirmed assigned Search limit and protected reserve",
+        "verify Culinary-only project identity and credentials",
+        "validate policy/relevance/adaptive allocation before live spend",
+        "sync canonical Knowledge Core review bridge when authorized",
+        "read cumulative state and hard holds before new Search"
+      ],
+      "closure_surfaces": [
+        "data/generated/youtube-culinary-daily-discovery-state.json",
+        "data/generated/youtube-culinary-work-unit-state.json",
+        "GitHub Actions compact policy-safe summary",
+        "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md on material transition",
+        "docs/handovers/CURRENT.json on material continuation boundary"
+      ],
+      "successor_rule": "Routine closed days continue to the next quota-day wake-up. A durable hard hold stops live Search until its explicit resolution contract is satisfied. YT_CUL_6_READINESS_EARNED hands off to a separately bounded YT-CUL-6 readiness reconciliation and never auto-authorizes Atlas promotion, app admission or publication.",
+      "retirement_rule": "When a hard hold or YT-CUL-6 readiness makes recurring live discovery ineligible, the persisted work-unit state must mark the scheduler HOLD_OR_RETIRE. The cron may remain only as a fail-closed no-live-spend wake-up until a bounded repository change removes, replaces or re-authorizes it.",
+      "material_transition_states": [
+        "DAILY_SEARCH_HOLD_REVIEW_BACKLOG",
+        "DAILY_SEARCH_HOLD_LOW_MARGINAL_VALUE",
+        "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+        "YT_CUL_6_READINESS_EARNED",
+        "PRIMARY_RUN_FAILED"
+      ]
+    }
+  ]
+}
