@@ -22,8 +22,9 @@ Then it must:
 1. read `docs/handovers/CURRENT.json`;
 2. read the relevant current sections of `docs/ROADMAP.md` and any canonical documents referenced by CURRENT;
 3. fresh-reconcile GitHub `main`, open PRs, active/concurrent branches, changed files and CI/status before any meaningful action;
-4. treat live GitHub as source of truth when it differs from the saved handover baseline;
-5. continue the next `READY` action autonomously under the saved operating contract.
+4. read any current generated work-unit state for scheduled child programmes that may have advanced after CURRENT was written;
+5. treat live GitHub and newer generated child-programme state as source of truth when they differ from the saved handover baseline;
+6. continue the next `READY` action autonomously under the saved operating contract.
 
 The handover object's `handover_written_against_main_sha` is the baseline that existed before the handover rotation was committed. It is intentionally not required to equal the eventual commit SHA containing the handover files, avoiding a self-referential SHA loop.
 
@@ -61,6 +62,34 @@ new latest state -> CURRENT
 
 Only two canonical handover slots are required. Git history already preserves older handover versions, so a third ever-growing in-repo archive is unnecessary unless a future explicit audit requirement earns one.
 
+## Scheduled child-programme state between handover rotations
+
+A full handover object is intentionally not rewritten after every routine scheduled run. Scheduled/state-changing child programmes use `CULINARY_REPOSITORY_WORK_UNIT_LIFECYCLE_V1` and persist a compact current closure state instead.
+
+For the current YouTube Culinary daily programme, read:
+
+`data/generated/youtube-culinary-work-unit-state.json`
+
+This generated object may be newer than CURRENT and is authoritative for the scheduled child programme's latest closure/successor/scheduler disposition after fresh GitHub reconciliation.
+
+Routine successful daily progress does not require rotating CURRENT. A material work-unit transition does. Examples include:
+
+- a durable hard hold;
+- `YT_CUL_6_READINESS_EARNED`;
+- a primary-run failure that changes safe continuation;
+- a new cost/policy/access/security gate;
+- a new successor programme or human gate.
+
+When `roadmapHandoverReconciliation` in generated work-unit state says reconciliation is required, do not cross the successor boundary from a stale CURRENT snapshot. Fresh-reconcile, update the applicable roadmap/current-state surface, rotate CURRENT/PREVIOUS when a continuation snapshot materially changed, and only then proceed under the resulting authority.
+
+This preserves both goals:
+
+```text
+routine automation does not create giant handover churn
+AND
+material scheduled transitions cannot disappear between chats
+```
+
 ## Completeness contract for CURRENT
 
 `CURRENT.json` should be sufficient for a new chat to resume without asking the user to paste the prior chat. At minimum it should contain:
@@ -86,11 +115,12 @@ CURRENT should point to canonical roadmap/reference documents instead of duplica
 Priority is:
 
 1. live GitHub state and repository instructions;
-2. canonical roadmap/contracts on current `main`;
-3. `CURRENT.json` continuation snapshot;
-4. `PREVIOUS.json` only for rollback/context when CURRENT appears corrupt or incomplete.
+2. current generated scheduled work-unit state for the child programme it represents;
+3. canonical roadmap/contracts on current `main`;
+4. `CURRENT.json` continuation snapshot;
+5. `PREVIOUS.json` only for rollback/context when CURRENT appears corrupt or incomplete.
 
-A saved handover never overrides a newer merged change. If another chat advanced the repo after CURRENT was written, reconcile and update the handover rather than reverting newer work.
+A saved handover never overrides a newer merged change. If another chat or scheduled programme advanced the repo after CURRENT was written, reconcile and update the handover rather than reverting newer work.
 
 ## Current lane convention
 
