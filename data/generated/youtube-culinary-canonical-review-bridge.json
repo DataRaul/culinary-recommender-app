@@ -1,6 +1,23 @@
 {
   "schemaVersion": "youtube-culinary-canonical-review-bridge-v1",
-  "knowledgeCoreCommit": "77849eb20c3050eb3fd51f0bd28560ddcfc60631",
-  "generatedAt": "2026-09-05T20:10:00Z",
-  "outcomes": []
+  "knowledgeCoreCommit": "4f576f636dd560cea5ef22ded6525ac547bd3944",
+  "generatedAt": "2026-09-07T12:34:43Z",
+  "outcomes": [
+    {
+      "packetId": "yt-cul-review-ffa94f1f84a41c008962e358",
+      "reviewPairKey": "yt-cul-pair-e55cb1a7513af3201d2b04b4",
+      "reviewDecision": "REJECTED",
+      "reviewAuthority": "KNOWLEDGE_CORE_ATLAS_REVIEW",
+      "decisionReason": "ATLAS_GAP_FALSE_POSITIVE__KOLKATA_BIRYANI_IS_OUTSIDE_SOUTHEAST_ASIA_FERMENTED_STEAMED_RICE_SCOPE. The packet was admitted because the independent recipe page matched the generic term 'rice', but canonical Knowledge Core already bounds reviewed biryani structure to Indian regional examples within the wider South Asian family. Kolkata is the capital of West Bengal, India, so this candidate does not support the SOUTHEAST_ASIA__FERMENTED_STEAMED_RICE discovery gap. This rejection is scope-specific and does not reject biryani as a valid culinary family.",
+      "reviewRoute": "ATLAS_IDENTITY_REVIEW",
+      "requiredEvidenceTerms": [],
+      "independentNonYoutubeEvidence": true,
+      "rightsProvenanceSafetyClear": false,
+      "appAuthoringEligible": false,
+      "lifecycleAdvanced": false,
+      "lifecycleStateAfter": null,
+      "retryable": false,
+      "knowledgeCoreCommit": "4f576f636dd560cea5ef22ded6525ac547bd3944"
+    }
+  ]
 }
