@@ -105,4 +105,6 @@ test("scheduled workflow reconciles closure before persisting programme state", 
   assert.match(workflow, /YT_CUL_WORK_UNIT_STATE_PATH/);
   assert.match(workflow, /youtube-culinary-work-unit-state\.json/);
   assert.match(workflow, /reconcile-youtube-culinary-work-unit\.mjs/);
+  assert.match(workflow, /git status --porcelain/);
+  assert.match(workflow, /git add \\\n            data\/generated\/youtube-culinary-daily-discovery-state\.json \\\n            data\/generated\/youtube-culinary-work-unit-state\.json/);
 });
