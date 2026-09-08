@@ -1,14 +1,14 @@
 {
   "schemaVersion": "youtube-culinary-canonical-review-bridge-v1",
-  "knowledgeCoreCommit": "4f576f636dd560cea5ef22ded6525ac547bd3944",
-  "generatedAt": "2026-09-07T12:34:43Z",
+  "knowledgeCoreCommit": "e6dd1a9492072369098869f4f144b7b7d96aebb1",
+  "generatedAt": "2026-09-08T11:37:32Z",
   "outcomes": [
     {
-      "packetId": "yt-cul-review-ffa94f1f84a41c008962e358",
-      "reviewPairKey": "yt-cul-pair-e55cb1a7513af3201d2b04b4",
+      "packetId": "yt-cul-review-6a629224ad48208b27e202d6",
+      "reviewPairKey": "yt-cul-pair-ae4e07453d5c468a76c9a02a",
       "reviewDecision": "REJECTED",
       "reviewAuthority": "KNOWLEDGE_CORE_ATLAS_REVIEW",
-      "decisionReason": "ATLAS_GAP_FALSE_POSITIVE__KOLKATA_BIRYANI_IS_OUTSIDE_SOUTHEAST_ASIA_FERMENTED_STEAMED_RICE_SCOPE. The packet was admitted because the independent recipe page matched the generic term 'rice', but canonical Knowledge Core already bounds reviewed biryani structure to Indian regional examples within the wider South Asian family. Kolkata is the capital of West Bengal, India, so this candidate does not support the SOUTHEAST_ASIA__FERMENTED_STEAMED_RICE discovery gap. This rejection is scope-specific and does not reject biryani as a valid culinary family.",
+      "decisionReason": "ATLAS_GAP_FALSE_POSITIVE__SAJIYEH_DOES_NOT_SUPPORT_THE_LEVANT_PULSES_FLATBREAD_GAP. The discovery packet targets LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD, but its independently fetched recipe describes Sajiyeh as a Jordanian beef skillet; flatbread is a serving accompaniment rather than the identity-defining family and the packet's generic lentil/flatbread/bread matches do not establish a pulses-or-flatbread dish identity. This rejection is scope-specific and does not reject Sajiyeh as a Jordanian/Levantine dish family.",
       "reviewRoute": "ATLAS_IDENTITY_REVIEW",
       "requiredEvidenceTerms": [],
       "independentNonYoutubeEvidence": true,
@@ -17,7 +17,23 @@
       "lifecycleAdvanced": false,
       "lifecycleStateAfter": null,
       "retryable": false,
-      "knowledgeCoreCommit": "4f576f636dd560cea5ef22ded6525ac547bd3944"
+      "knowledgeCoreCommit": "e6dd1a9492072369098869f4f144b7b7d96aebb1"
+    },
+    {
+      "packetId": "yt-cul-review-d9e09a85ae85d9936a468280",
+      "reviewPairKey": "yt-cul-pair-d2988de501f75a90d7e3bd80",
+      "reviewDecision": "ACCEPTED",
+      "reviewAuthority": "KNOWLEDGE_CORE_ATLAS_REVIEW",
+      "decisionReason": "IDENTITY_VERIFIED__RED_RED_IS_SOURCE_BACKED_AS_A_GHANAIAN_BEAN_STEW_WITH_FRIED_PLANTAIN_WITHIN_THE_WEST_AFRICA_STEW_GRAIN_LEGUME_GAP. Ghana Tourism Authority/Visit Ghana explicitly lists red-red (beans stew) with fried plantain among traditional/local dishes, and Ghana's National Commission on Culture independently names red red among Ghanaian dishes relying on palm oil. The accepted scope is identity/geography only: it does not establish one definitive recipe, exclusive origin, structure invariants, nutrition authority, app-authoring eligibility or public-export eligibility.",
+      "reviewRoute": "ATLAS_IDENTITY_REVIEW",
+      "requiredEvidenceTerms": [],
+      "independentNonYoutubeEvidence": true,
+      "rightsProvenanceSafetyClear": false,
+      "appAuthoringEligible": false,
+      "lifecycleAdvanced": true,
+      "lifecycleStateAfter": "IDENTITY_VERIFIED",
+      "retryable": false,
+      "knowledgeCoreCommit": "e6dd1a9492072369098869f4f144b7b7d96aebb1"
     }
   ]
 }
