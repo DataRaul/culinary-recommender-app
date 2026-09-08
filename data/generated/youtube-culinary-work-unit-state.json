@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "culinary-repository-work-unit-state-v1",
+  "policyId": "CULINARY_REPOSITORY_WORK_UNIT_LIFECYCLE_V1",
+  "workUnitId": "YT_CUL_5E_ADAPTIVE_DAILY_DISCOVERY",
+  "workflow": ".github/workflows/yt-cul-5d-daily-discovery.yml",
+  "generatedAt": "2026-09-08T13:43:26.950Z",
+  "sourceDailyStateFingerprint": "44f1ef5aed382e9bc573fc1f6099560bd6d918cce3c783d0b9ebed9c5b8d69a0",
+  "primaryOutcome": "success",
+  "latestQuotaDate": "2026-09-08",
+  "latestDailyTerminalState": "DAILY_DISCOVERY_QUOTA_PORTFOLIO_COMPLETE",
+  "closureStatus": "CLOSED_CONTINUE",
+  "materialTransition": false,
+  "roadmapHandoverReconciliation": "RUNTIME_STATE_CURRENT_NO_STATIC_RECONCILIATION_REQUIRED",
+  "successorAction": "WAIT_FOR_NEXT_YOUTUBE_QUOTA_DAY",
+  "nextTriggerDisposition": "NEXT_QUOTA_DAY_SCHEDULED_WAKEUP",
+  "schedulerDisposition": "CONTINUE_BOUNDED_WAKEUP",
+  "authority": {
+    "automaticKnowledgeCorePromotionAuthorized": false,
+    "automaticAppAdmissionAuthorized": false,
+    "automaticPublicationAuthorized": false,
+    "paidInfrastructureAuthorized": false
+  }
+}

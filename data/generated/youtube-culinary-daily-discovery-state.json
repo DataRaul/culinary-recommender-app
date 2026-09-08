@@ -6,7 +6,7 @@
   "policyRecheckedAt": "2026-09-05",
   "assignedDailySearchLimit": 100,
   "protectedReserveCalls": 5,
-  "lastCompletedQuotaDate": "2026-09-07",
+  "lastCompletedQuotaDate": "2026-09-08",
   "completedQuotaDays": [
     {
       "quotaDate": "2026-09-06",
@@ -569,107 +569,293 @@
         "appAuthoringEligiblePerCumulativeSearch": 0,
         "explicitLifecycleAdvancementsPerCumulativeSearch": 0
       }
+    },
+    {
+      "quotaDate": "2026-09-08",
+      "completedAt": "2026-09-08T13:43:26.888Z",
+      "searchCapacity": 95,
+      "searchCalls": 95,
+      "searchUtilization": 1,
+      "tranches": [
+        {
+          "trancheNumber": 1,
+          "searchCalls": 16,
+          "exploitationSlots": 12,
+          "explorationSlots": 4,
+          "focuses": [
+            "WEST_AFRICA__STEW_GRAIN_LEGUME",
+            "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO",
+            "CANONICAL_ACCEPTED_FOLLOWUP"
+          ],
+          "independentPagesReviewed": 7,
+          "recipeStructuredPagesConfirmed": 1,
+          "reviewCandidatesConsidered": 1,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 1,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 308,
+          "externalReviewErrorCount": 5
+        },
+        {
+          "trancheNumber": 2,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS",
+            "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES",
+            "IRAN_CENTRAL_ASIA_AFGHANISTAN__BREADS_SOUPS"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 0,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 0,
+          "externalReviewErrorCount": 0
+        },
+        {
+          "trancheNumber": 3,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES",
+            "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 5,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 410,
+          "externalReviewErrorCount": 7
+        },
+        {
+          "trancheNumber": 4,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "IRAN_CENTRAL_ASIA_AFGHANISTAN__BREADS_SOUPS",
+            "SOUTHEAST_ASIA__FERMENTED_STEAMED_RICE"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 0,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 0,
+          "externalReviewErrorCount": 0
+        },
+        {
+          "trancheNumber": 5,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD",
+            "SOUTHEAST_ASIA__FERMENTED_STEAMED_RICE",
+            "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 0,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 10,
+          "externalReviewErrorCount": 0
+        },
+        {
+          "trancheNumber": 6,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD",
+            "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT",
+            "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 6,
+          "recipeStructuredPagesConfirmed": 1,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 98,
+          "externalReviewErrorCount": 6
+        },
+        {
+          "trancheNumber": 7,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT",
+            "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 4,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 347,
+          "externalReviewErrorCount": 8
+        },
+        {
+          "trancheNumber": 8,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT",
+            "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 8,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 193,
+          "externalReviewErrorCount": 4
+        },
+        {
+          "trancheNumber": 9,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT",
+            "IRAN_CENTRAL_ASIA_AFGHANISTAN__BREADS_SOUPS",
+            "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 8,
+          "recipeStructuredPagesConfirmed": 1,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 182,
+          "externalReviewErrorCount": 4
+        },
+        {
+          "trancheNumber": 10,
+          "searchCalls": 8,
+          "exploitationSlots": 6,
+          "explorationSlots": 2,
+          "focuses": [
+            "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED",
+            "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 0,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 0,
+          "externalReviewErrorCount": 0
+        },
+        {
+          "trancheNumber": 11,
+          "searchCalls": 7,
+          "exploitationSlots": 5,
+          "explorationSlots": 2,
+          "focuses": [
+            "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS",
+            "IRAN_CENTRAL_ASIA_AFGHANISTAN__BREADS_SOUPS"
+          ],
+          "queryOrigins": [
+            "ATLAS_GAP_PORTFOLIO"
+          ],
+          "independentPagesReviewed": 0,
+          "recipeStructuredPagesConfirmed": 0,
+          "reviewCandidatesConsidered": 0,
+          "reviewReadyPacketsCreated": 0,
+          "duplicatePairsSuppressed": 0,
+          "uniqueUsefulSourceDomains": 0,
+          "transientVideoPointersObserved": 0,
+          "externalReviewErrorCount": 0
+        }
+      ],
+      "focuses": [
+        "WEST_AFRICA__STEW_GRAIN_LEGUME",
+        "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED",
+        "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS",
+        "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES",
+        "IRAN_CENTRAL_ASIA_AFGHANISTAN__BREADS_SOUPS",
+        "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT",
+        "SOUTHEAST_ASIA__FERMENTED_STEAMED_RICE",
+        "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD"
+      ],
+      "independentPagesReviewed": 38,
+      "recipeStructuredPagesConfirmed": 3,
+      "reviewCandidatesConsidered": 1,
+      "reviewReadyPacketsCreated": 0,
+      "duplicatePairsSuppressed": 1,
+      "uniqueUsefulSourceDomains": 0,
+      "unresolvedReviewBacklogAfterRun": 0,
+      "terminalState": "DAILY_DISCOVERY_QUOTA_PORTFOLIO_COMPLETE",
+      "researchKpis": {
+        "searchUtilization": 1,
+        "independentPagesPerSearch": 0.4,
+        "recipeStructuredPagesPerSearch": 0.031578947368421054,
+        "reviewReadyPacketsPerSearch": 0,
+        "usefulSourceDomainsPerSearch": 0,
+        "canonicalAcceptedPerCumulativeSearch": 0.0035087719298245615,
+        "appAuthoringEligiblePerCumulativeSearch": 0,
+        "explicitLifecycleAdvancementsPerCumulativeSearch": 0.0035087719298245615
+      }
     }
   ],
   "cumulative": {
-    "searchCalls": 190,
-    "independentPagesReviewed": 86,
-    "recipeStructuredPagesConfirmed": 4,
+    "searchCalls": 285,
+    "independentPagesReviewed": 124,
+    "recipeStructuredPagesConfirmed": 7,
     "reviewReadyPacketsCreated": 3,
-    "duplicatePairsSuppressed": 0
+    "duplicatePairsSuppressed": 1
   },
-  "unresolvedPackets": [
-    {
-      "schemaVersion": "youtube-culinary-atlas-relevance-review-ready-v1",
-      "packetStatus": "ATLAS_RELEVANCE_REVIEW_READY",
-      "packetId": "yt-cul-review-6a629224ad48208b27e202d6",
-      "reviewPairKey": "yt-cul-pair-ae4e07453d5c468a76c9a02a",
-      "candidateLabel": "Sajiyeh (Jordanian Beef Skillet)",
-      "atlasCandidateId": null,
-      "claimScope": "IDENTITY",
-      "atlasGap": {
-        "macroRegion": "LEVANT_EASTERN_MEDITERRANEAN",
-        "familyGap": "PULSES_FLATBREAD",
-        "mealRoleGap": null,
-        "techniqueGap": null
-      },
-      "independentSourceProvenance": {
-        "sourceDomain": "welcome2jordan.com",
-        "independentSourceUrl": "https://welcome2jordan.com/sajiyeh-jordanian-beef-skillet/",
-        "sourceRetrievedAt": "2026-09-07T15:06:21.974Z",
-        "evidenceOrigin": "INDEPENDENT_NON_YOUTUBE_SOURCE"
-      },
-      "machineEvidence": {
-        "recipeStructuredPage": true,
-        "candidateLabelsObserved": [
-          "Sajiyeh (Jordanian Beef Skillet)"
-        ],
-        "ingredientTermsObserved": [
-          "lentil",
-          "flatbread",
-          "bread"
-        ],
-        "independentPageFingerprint": "ec23668179ebfd8ddd7b62b3b5feb4b8"
-      },
-      "relevanceReason": "Independent Recipe-structured page matched bounded LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD relevance terms: lentil, flatbread, bread.",
-      "unresolvedAmbiguity": [
-        "Discovery relevance only; canonical identity and claim scope remain Knowledge Core Atlas review-bound."
-      ],
-      "reviewAuthorityRequired": "KNOWLEDGE_CORE_ATLAS_REVIEW",
-      "atlasFamilyCandidateNominated": false,
-      "automaticAtlasPromotionAuthorized": false,
-      "automaticAppAdmissionAuthorized": false,
-      "knowledgeCoreStateChanged": false,
-      "appStateChanged": false
-    },
-    {
-      "schemaVersion": "youtube-culinary-atlas-relevance-review-ready-v1",
-      "packetStatus": "ATLAS_RELEVANCE_REVIEW_READY",
-      "packetId": "yt-cul-review-d9e09a85ae85d9936a468280",
-      "reviewPairKey": "yt-cul-pair-d2988de501f75a90d7e3bd80",
-      "candidateLabel": "Red Red, Ghanaian Bean Stew with Fried Plantains (Vegan, Vegetarian, Gluten Free)",
-      "atlasCandidateId": null,
-      "claimScope": "IDENTITY",
-      "atlasGap": {
-        "macroRegion": "WEST_AFRICA",
-        "familyGap": "STEW_GRAIN_LEGUME",
-        "mealRoleGap": null,
-        "techniqueGap": null
-      },
-      "independentSourceProvenance": {
-        "sourceDomain": "www.myburntorange.com",
-        "independentSourceUrl": "https://www.myburntorange.com/red-red-ghanaian-bean-stew-vegan-vegetarian-gluten-free/",
-        "sourceRetrievedAt": "2026-09-07T15:06:21.980Z",
-        "evidenceOrigin": "INDEPENDENT_NON_YOUTUBE_SOURCE"
-      },
-      "machineEvidence": {
-        "recipeStructuredPage": true,
-        "candidateLabelsObserved": [
-          "Red Red, Ghanaian Bean Stew with Fried Plantains (Vegan, Vegetarian, Gluten Free)"
-        ],
-        "ingredientTermsObserved": [
-          "stew",
-          "groundnut",
-          "peanut",
-          "bean",
-          "rice"
-        ],
-        "independentPageFingerprint": "556a101c6bab3f5914a54dc9f45ea24b"
-      },
-      "relevanceReason": "Independent Recipe-structured page matched bounded WEST_AFRICA__STEW_GRAIN_LEGUME relevance terms: stew, groundnut, peanut, bean, rice.",
-      "unresolvedAmbiguity": [
-        "Discovery relevance only; canonical identity and claim scope remain Knowledge Core Atlas review-bound."
-      ],
-      "reviewAuthorityRequired": "KNOWLEDGE_CORE_ATLAS_REVIEW",
-      "atlasFamilyCandidateNominated": false,
-      "automaticAtlasPromotionAuthorized": false,
-      "automaticAppAdmissionAuthorized": false,
-      "knowledgeCoreStateChanged": false,
-      "appStateChanged": false
-    }
-  ],
+  "unresolvedPackets": [],
   "resolvedPairKeys": [
-    "yt-cul-pair-e55cb1a7513af3201d2b04b4"
+    "yt-cul-pair-e55cb1a7513af3201d2b04b4",
+    "yt-cul-pair-ae4e07453d5c468a76c9a02a",
+    "yt-cul-pair-d2988de501f75a90d7e3bd80"
   ],
   "canonicalOutcomes": [
     {
@@ -697,6 +883,60 @@
           "techniqueGap": null
         },
         "sourceDomain": "ranveerbrar.com"
+      }
+    },
+    {
+      "packetId": "yt-cul-review-6a629224ad48208b27e202d6",
+      "reviewPairKey": "yt-cul-pair-ae4e07453d5c468a76c9a02a",
+      "reviewDecision": "REJECTED",
+      "reviewAuthority": "KNOWLEDGE_CORE_ATLAS_REVIEW",
+      "decisionReason": "ATLAS_GAP_FALSE_POSITIVE__SAJIYEH_DOES_NOT_SUPPORT_THE_LEVANT_PULSES_FLATBREAD_GAP. The discovery packet targets LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD, but its independently fetched recipe describes Sajiyeh as a Jordanian beef skillet; flatbread is a serving accompaniment rather than the identity-defining family and the packet's generic lentil/flatbread/bread matches do not establish a pulses-or-flatbread dish identity. This rejection is scope-specific and does not reject Sajiyeh as a Jordanian/Levantine dish family.",
+      "reviewRoute": "ATLAS_IDENTITY_REVIEW",
+      "requiredEvidenceTerms": [],
+      "independentNonYoutubeEvidence": true,
+      "rightsProvenanceSafetyClear": false,
+      "appAuthoringEligible": false,
+      "lifecycleAdvanced": false,
+      "lifecycleStateAfter": null,
+      "retryable": false,
+      "knowledgeCoreCommit": "e6dd1a9492072369098869f4f144b7b7d96aebb1",
+      "feedbackContext": {
+        "candidateLabel": "Sajiyeh (Jordanian Beef Skillet)",
+        "claimScope": "IDENTITY",
+        "atlasGap": {
+          "macroRegion": "LEVANT_EASTERN_MEDITERRANEAN",
+          "familyGap": "PULSES_FLATBREAD",
+          "mealRoleGap": null,
+          "techniqueGap": null
+        },
+        "sourceDomain": "welcome2jordan.com"
+      }
+    },
+    {
+      "packetId": "yt-cul-review-d9e09a85ae85d9936a468280",
+      "reviewPairKey": "yt-cul-pair-d2988de501f75a90d7e3bd80",
+      "reviewDecision": "ACCEPTED",
+      "reviewAuthority": "KNOWLEDGE_CORE_ATLAS_REVIEW",
+      "decisionReason": "IDENTITY_VERIFIED__RED_RED_IS_SOURCE_BACKED_AS_A_GHANAIAN_BEAN_STEW_WITH_FRIED_PLANTAIN_WITHIN_THE_WEST_AFRICA_STEW_GRAIN_LEGUME_GAP. Ghana Tourism Authority/Visit Ghana explicitly lists red-red (beans stew) with fried plantain among traditional/local dishes, and Ghana's National Commission on Culture independently names red red among Ghanaian dishes relying on palm oil. The accepted scope is identity/geography only: it does not establish one definitive recipe, exclusive origin, structure invariants, nutrition authority, app-authoring eligibility or public-export eligibility.",
+      "reviewRoute": "ATLAS_IDENTITY_REVIEW",
+      "requiredEvidenceTerms": [],
+      "independentNonYoutubeEvidence": true,
+      "rightsProvenanceSafetyClear": false,
+      "appAuthoringEligible": false,
+      "lifecycleAdvanced": true,
+      "lifecycleStateAfter": "IDENTITY_VERIFIED",
+      "retryable": false,
+      "knowledgeCoreCommit": "e6dd1a9492072369098869f4f144b7b7d96aebb1",
+      "feedbackContext": {
+        "candidateLabel": "Red Red, Ghanaian Bean Stew with Fried Plantains (Vegan, Vegetarian, Gluten Free)",
+        "claimScope": "IDENTITY",
+        "atlasGap": {
+          "macroRegion": "WEST_AFRICA",
+          "familyGap": "STEW_GRAIN_LEGUME",
+          "mealRoleGap": null,
+          "techniqueGap": null
+        },
+        "sourceDomain": "www.myburntorange.com"
       }
     }
   ],
