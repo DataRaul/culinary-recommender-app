@@ -29,22 +29,24 @@ The source explicitly publishes the zero macronutrient composition. Fat and fibr
 
 Carbohydrate remains Matvaretabellen available carbohydrate and stays semantically distinct from USDA carbohydrate-by-difference. The existing fail-closed mixed-carbohydrate firewall is unchanged.
 
-## Authored impact contract
+## Measured authored impact
 
-The current authored corpus has one recipe whose last unresolved ingredient-density key is `salt`:
+The current authored corpus has one recipe whose unresolved `salt` state is exposed by this tranche:
 
-- `spanish_potato_onion_tortilla`
+- `spanish_potato_onion_tortilla` — 0.5 tsp salt
 
-Its salt quantity is already handled by the existing quantity-evidence runtime; B28 adds composition only and grants no new teaspoon conversion. The measured post-B28 audit is expected to move the authored recipe from estimate-preserved to authoritative while reducing `missing_density` by one.
+Before B28 the calculator reports that ingredient as `missing_density`, because composition is checked before quantity support. B28 supplies the reviewed composition, after which the same use truthfully becomes `unsupported_quantity_unit`: the tranche does not invent a teaspoon weight. The recipe therefore remains estimate-preserved pending separate reviewed portion evidence.
 
-Expected cumulative authored audit after B28:
+Measured cumulative authored audit after B28:
 
-- authoritative recipes: **18 / 76**
-- estimate-preserved recipes: **58 / 76**
+- authoritative recipes: **17 / 76**
+- estimate-preserved recipes: **59 / 76**
 - missing-density blockers: **79 → 78**
-- unsupported quantity blockers: **7**
+- unsupported quantity blockers: **7 → 8**
 - ambiguous portion blockers: **20**
 - mixed incompatible carbohydrate-semantic events: **16**
+
+This is a blocker-class refinement rather than a recipe unlock. It narrows the remaining evidence requirement to exact salt teaspoon quantity evidence without weakening any fail-closed control.
 
 ## Source and licence
 
