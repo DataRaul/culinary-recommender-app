@@ -14,7 +14,7 @@ B27 adds one bounded static composition record for canonical `jasmine_rice` from
 - LanguaL/source form: rice; seed with skin and germ removed; not heat-treated; water removed; dehydrated/dried.
 - Match confidence: **high**.
 
-The authored `jasmine_rice` use is a 140 g direct-mass input and the recipe cooks the rice only after declaration. The cooked jasmine-rice source is not used and no dry-to-cooked conversion is inferred.
+All three authored `jasmine_rice` uses are 140 g direct-mass inputs and each recipe cooks the rice only after declaration. The cooked jasmine-rice source is not used and no dry-to-cooked conversion is inferred.
 
 ## Bundled per-100 g values
 
@@ -32,17 +32,19 @@ Carbohydrate remains Matvaretabellen available carbohydrate and stays semantical
 
 ## Authored impact contract
 
-The current authored corpus contains one direct-mass jasmine-rice use:
+The current authored corpus contains three direct-mass jasmine-rice uses:
 
+- `se_asian_tofu_mango_rice_bowl` — 140 g
+- `east_asian_miso_salmon_rice` — 140 g
 - `se_asian_pineapple_tofu_jasmine_rice` — 140 g
 
-B27 removes only the corresponding `jasmine_rice` density blocker. The recipe remains estimate-preserved because independent blockers, including `tofu_firm`, remain unresolved.
+B27 removes only the corresponding three `jasmine_rice` density blockers. The affected recipes remain estimate-preserved where independent blockers remain unresolved; for example, `se_asian_pineapple_tofu_jasmine_rice` still has `tofu_firm` unresolved.
 
 Expected cumulative authored audit after B27:
 
 - authoritative recipes: **17 / 76**
 - estimate-preserved recipes: **59 / 76**
-- missing-density blockers: **82 → 81**
+- missing-density blockers: **82 → 79**
 - unsupported quantity blockers: **7**
 - ambiguous portion blockers: **20**
 - mixed incompatible carbohydrate-semantic events: **16**
