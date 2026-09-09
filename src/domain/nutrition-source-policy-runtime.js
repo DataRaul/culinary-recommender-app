@@ -3,6 +3,10 @@ import {
   MATVARETABELLEN_COMPOSITION_SOURCE_B26
 } from "../data/matvaretabellen-composition-b26.js";
 import {
+  MATVARETABELLEN_COMPOSITION_DENSITIES_B27,
+  MATVARETABELLEN_COMPOSITION_SOURCE_B27
+} from "../data/matvaretabellen-composition-b27.js";
+import {
   CIQUAL_RUNTIME_SOURCE_V1,
   EUROPEAN_PRIMARY_DENSITIES_V1 as BASE_EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
@@ -12,13 +16,31 @@ import {
 
 // Keep post-B25 evidence additions in a small additive runtime registry. The frozen
 // historical policy module remains the baseline; every post-B25 standalone tranche
-// must be disjoint from it and must preserve the same per-nutrient semantics.
-const b26Ids = Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B26);
-const overlappingB26Ids = b26Ids.filter(ingredientId =>
-  Object.hasOwn(BASE_EUROPEAN_PRIMARY_DENSITIES_V1, ingredientId)
-);
-if (overlappingB26Ids.length) {
-  throw new Error(`Matvaretabellen B26 must remain a bounded no-overlap composition extension: ${overlappingB26Ids.sort().join(", ")}`);
+// must be disjoint from it and from other runtime tranches while preserving the same
+// per-nutrient semantics.
+const POST_B25_TRANCHES = Object.freeze([
+  Object.freeze({
+    key: "B26",
+    countKey: "matvaretabellenB26SelectedCount",
+    densities: MATVARETABELLEN_COMPOSITION_DENSITIES_B26,
+    source: MATVARETABELLEN_COMPOSITION_SOURCE_B26
+  }),
+  Object.freeze({
+    key: "B27",
+    countKey: "matvaretabellenB27SelectedCount",
+    densities: MATVARETABELLEN_COMPOSITION_DENSITIES_B27,
+    source: MATVARETABELLEN_COMPOSITION_SOURCE_B27
+  })
+]);
+
+const seenIngredientIds = new Set(Object.keys(BASE_EUROPEAN_PRIMARY_DENSITIES_V1));
+for (const tranche of POST_B25_TRANCHES) {
+  const trancheIds = Object.keys(tranche.densities);
+  const overlaps = trancheIds.filter(ingredientId => seenIngredientIds.has(ingredientId));
+  if (overlaps.length) {
+    throw new Error(`Matvaretabellen ${tranche.key} must remain a bounded no-overlap composition extension: ${overlaps.sort().join(", ")}`);
+  }
+  for (const ingredientId of trancheIds) seenIngredientIds.add(ingredientId);
 }
 
 const MATVARETABELLEN_FIELDS = {
@@ -32,8 +54,8 @@ const MATVARETABELLEN_FIELDS = {
 const nutrientKeys = Object.keys(MATVARETABELLEN_FIELDS);
 const finiteOrNull = value => typeof value === "number" && Number.isFinite(value) ? value : null;
 
-const b26Candidate = (ingredientId, nutrientKey) => {
-  const record = MATVARETABELLEN_COMPOSITION_DENSITIES_B26[ingredientId];
+const candidateFromTranche = (tranche, ingredientId, nutrientKey) => {
+  const record = tranche.densities[ingredientId];
   const spec = MATVARETABELLEN_FIELDS[nutrientKey];
   if (!record || !spec) return null;
   const value = finiteOrNull(record.per100g?.[spec.field]);
@@ -41,7 +63,7 @@ const b26Candidate = (ingredientId, nutrientKey) => {
   const evidence = record.fieldEvidence?.[nutrientKey] || null;
   return {
     source: "matvaretabellen",
-    sourceId: MATVARETABELLEN_COMPOSITION_SOURCE_B26.id,
+    sourceId: tranche.source.id,
     sourceIdentifier: record.foodId,
     evidenceTranche: record.evidenceTranche,
     value,
@@ -57,11 +79,19 @@ const b26Candidate = (ingredientId, nutrientKey) => {
   };
 };
 
-export const selectEuropeanPrimaryNutrient = (ingredientId, nutrientKey) =>
-  selectBaseEuropeanPrimaryNutrient(ingredientId, nutrientKey) || b26Candidate(ingredientId, nutrientKey);
+const postBaselineCandidate = (ingredientId, nutrientKey) => {
+  for (const tranche of POST_B25_TRANCHES) {
+    const candidate = candidateFromTranche(tranche, ingredientId, nutrientKey);
+    if (candidate) return candidate;
+  }
+  return null;
+};
 
-const b26DensityForIngredient = ingredientId => {
-  const selections = Object.fromEntries(nutrientKeys.map(key => [key, b26Candidate(ingredientId, key)]));
+export const selectEuropeanPrimaryNutrient = (ingredientId, nutrientKey) =>
+  selectBaseEuropeanPrimaryNutrient(ingredientId, nutrientKey) || postBaselineCandidate(ingredientId, nutrientKey);
+
+const postBaselineDensityForIngredient = ingredientId => {
+  const selections = Object.fromEntries(nutrientKeys.map(key => [key, postBaselineCandidate(ingredientId, key)]));
   if (!nutrientKeys.some(key => selections[key])) return null;
   return {
     per100g: Object.fromEntries(nutrientKeys.map(key => [key, selections[key]?.value ?? null])),
@@ -83,32 +113,41 @@ const b26DensityForIngredient = ingredientId => {
   };
 };
 
-const B26_EUROPEAN_PRIMARY_DENSITIES = Object.fromEntries(
-  b26Ids
-    .map(ingredientId => [ingredientId, b26DensityForIngredient(ingredientId)])
+const postBaselineIngredientIds = POST_B25_TRANCHES.flatMap(tranche => Object.keys(tranche.densities));
+const POST_B25_EUROPEAN_PRIMARY_DENSITIES = Object.fromEntries(
+  postBaselineIngredientIds
+    .map(ingredientId => [ingredientId, postBaselineDensityForIngredient(ingredientId)])
     .filter(([, record]) => record)
 );
 
 export const EUROPEAN_PRIMARY_DENSITIES_V1 = Object.freeze({
   ...BASE_EUROPEAN_PRIMARY_DENSITIES_V1,
-  ...B26_EUROPEAN_PRIMARY_DENSITIES
+  ...POST_B25_EUROPEAN_PRIMARY_DENSITIES
 });
+
+export const RUNTIME_MATVARETABELLEN_COMPOSITION_SOURCES = Object.freeze(
+  POST_B25_TRANCHES.map(tranche => tranche.source)
+);
 
 export const europeanPrimaryPolicyCoverage = ingredientIds => {
   const unique = [...new Set((ingredientIds || []).filter(Boolean))];
   const base = baseEuropeanPrimaryPolicyCoverage(unique);
-  const b26Selections = unique.flatMap(ingredientId => nutrientKeys
-    .map(nutrient => ({ ingredientId, nutrient, selection: b26Candidate(ingredientId, nutrient) }))
+  const postSelections = unique.flatMap(ingredientId => nutrientKeys
+    .map(nutrient => ({ ingredientId, nutrient, selection: postBaselineCandidate(ingredientId, nutrient) }))
     .filter(item => item.selection)
     .map(({ ingredientId: id, nutrient, selection }) => ({ ingredientId: id, nutrient, ...selection }))
   );
-  const b26EvidenceIngredientCount = unique.filter(ingredientId => Object.hasOwn(B26_EUROPEAN_PRIMARY_DENSITIES, ingredientId)).length;
+  const postEvidenceIngredientCount = unique.filter(ingredientId => Object.hasOwn(POST_B25_EUROPEAN_PRIMARY_DENSITIES, ingredientId)).length;
+  const trancheCounts = Object.fromEntries(POST_B25_TRANCHES.map(tranche => [
+    tranche.countKey,
+    postSelections.filter(selection => selection.evidenceTranche === tranche.key).length
+  ]));
   return {
     ...base,
-    evidenceIngredientCount: base.evidenceIngredientCount + b26EvidenceIngredientCount,
-    matvaretabellenSelectedCount: base.matvaretabellenSelectedCount + b26Selections.length,
-    matvaretabellenB26SelectedCount: b26Selections.length,
-    selections: [...base.selections, ...b26Selections]
+    evidenceIngredientCount: base.evidenceIngredientCount + postEvidenceIngredientCount,
+    matvaretabellenSelectedCount: base.matvaretabellenSelectedCount + postSelections.length,
+    ...trancheCounts,
+    selections: [...base.selections, ...postSelections]
   };
 };
 
