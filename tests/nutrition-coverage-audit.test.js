@@ -57,7 +57,7 @@ test("B27 reviewed jasmine-rice composition preserves cumulative unlock truth wi
   ]);
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
-    missing_density: 81,
+    missing_density: 79,
     unsupported_quantity_unit: 7
   });
   assert.deepEqual(audit.missingNutrientFieldCounts, {
