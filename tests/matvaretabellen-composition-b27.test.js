@@ -49,7 +49,7 @@ test("B27 admits exactly official food 05.306 uncooked jasmine rice with complet
   assert.equal(rice.fieldEvidence.fibreG.sourceCode, "60a");
 });
 
-test("repository-native jasmine-rice use is direct dry mass before the authored cooking step", () => {
+test("repository-native jasmine-rice uses are direct dry mass before authored cooking steps", () => {
   assert.equal(INGREDIENTS.jasmine_rice.name, "jasmine rice");
   assert.ok(INGREDIENTS.jasmine_rice.aliases.includes("arroz jazmín"));
   const rows = AUTHORED_RECIPES
@@ -59,11 +59,15 @@ test("repository-native jasmine-rice use is direct dry mass before the authored 
       ingredient: recipe.ingredients.find(ingredient => ingredient.canonicalIngredientId === "jasmine_rice"),
       steps: recipe.instructions.map(step => step.text).join(" ")
     }));
-  assert.deepEqual(rows.map(row => row.recipeId), ["se_asian_pineapple_tofu_jasmine_rice"]);
-  assert.equal(rows[0].ingredient.quantity, 140);
-  assert.equal(rows[0].ingredient.unit, "g");
-  assert.equal(rows[0].ingredient.preparation, null);
-  assert.match(rows[0].steps, /cook jasmine rice/i);
+  assert.deepEqual(rows.map(row => row.recipeId), [
+    "se_asian_tofu_mango_rice_bowl",
+    "east_asian_miso_salmon_rice",
+    "se_asian_pineapple_tofu_jasmine_rice"
+  ]);
+  assert.deepEqual(rows.map(row => row.ingredient.quantity), [140, 140, 140]);
+  assert.ok(rows.every(row => row.ingredient.unit === "g"));
+  assert.ok(rows.every(row => row.ingredient.preparation === null));
+  assert.ok(rows.every(row => /cook jasmine rice/i.test(row.steps)));
 });
 
 test("B27 jasmine-rice identity does not bleed into generic, basmati, brown or cooked rice", () => {
@@ -109,13 +113,16 @@ test("B27 composition evidence does not authorize a household portion or cooked-
   assert.equal(rice.cookedYieldFactor, undefined);
 });
 
-test("B27 removes the authored jasmine-rice density blocker while preserving independent blockers", () => {
+test("B27 removes all three authored jasmine-rice density blockers while preserving independent blockers", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  assert.equal(audit.blockerCounts.missing_density, 81);
-  const detail = audit.recipeDetails.find(row => row.recipeId === "se_asian_pineapple_tofu_jasmine_rice");
-  assert.ok(detail);
-  assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "jasmine_rice"), false);
-  assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "tofu_firm"), true);
+  assert.equal(audit.blockerCounts.missing_density, 79);
+  for (const recipeId of ["se_asian_tofu_mango_rice_bowl", "east_asian_miso_salmon_rice", "se_asian_pineapple_tofu_jasmine_rice"]) {
+    const detail = audit.recipeDetails.find(row => row.recipeId === recipeId);
+    assert.ok(detail, recipeId);
+    assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "jasmine_rice"), false, recipeId);
+  }
+  const pineappleTofu = audit.recipeDetails.find(row => row.recipeId === "se_asian_pineapple_tofu_jasmine_rice");
+  assert.equal(pineappleTofu.blockers.some(blocker => blocker.ingredientId === "tofu_firm"), true);
 });
 
 test("B27 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {
