@@ -98,12 +98,13 @@ test("B28 composition evidence does not authorize a household portion or density
   assert.equal(salt.cookedYieldFactor, undefined);
 });
 
-test("B28 removes the salt density blocker and unlocks the authored Spanish tortilla", () => {
+test("B28 resolves salt composition but leaves its teaspoon quantity fail-closed", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   const detail = audit.recipeDetails.find(row => row.recipeId === "spanish_potato_onion_tortilla");
   assert.ok(detail);
-  assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "salt"), false);
-  assert.equal(detail.authoritative, true);
+  const saltBlockers = detail.blockers.filter(blocker => blocker.ingredientId === "salt");
+  assert.deepEqual(saltBlockers, [{ ingredientId: "salt", reason: "unsupported_quantity_unit" }]);
+  assert.equal(detail.authoritative, false);
 });
 
 test("B28 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {
