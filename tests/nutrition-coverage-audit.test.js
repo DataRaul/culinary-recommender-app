@@ -31,7 +31,7 @@ test("audit preserves every fail-closed shortfall class rather than treating par
   assert.ok(Object.keys(audit.missingNutrientFieldCounts).length > 0, "expected current corpus to expose tracked nutrient field gaps");
 });
 
-test("B29 reviewed wheat-tortilla composition preserves cumulative fail-closed truth", () => {
+test("B30 soy-sauce fat completion preserves cumulative fail-closed truth", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
   assert.equal(audit.authoritativeRecipeCount, 17);
@@ -63,7 +63,7 @@ test("B29 reviewed wheat-tortilla composition preserves cumulative fail-closed t
   assert.deepEqual(audit.missingNutrientFieldCounts, {
     carbohydrateG: 5,
     energyKcal: 5,
-    fatG: 18,
+    fatG: 7,
     fibreG: 7
   });
   assert.deepEqual(audit.semanticIssueCounts, {

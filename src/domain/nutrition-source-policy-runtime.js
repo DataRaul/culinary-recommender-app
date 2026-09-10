@@ -15,6 +15,10 @@ import {
   MATVARETABELLEN_COMPOSITION_SOURCE_B29
 } from "../data/matvaretabellen-composition-b29.js";
 import {
+  MATVARETABELLEN_COMPOSITION_COMPLETIONS_B30,
+  MATVARETABELLEN_COMPOSITION_SOURCE_B30
+} from "../data/matvaretabellen-composition-b30.js";
+import {
   CIQUAL_RUNTIME_SOURCE_V1,
   EUROPEAN_PRIMARY_DENSITIES_V1 as BASE_EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
@@ -23,9 +27,9 @@ import {
 } from "./nutrition-source-policy.js";
 
 // Keep post-B25 evidence additions in a small additive runtime registry. The frozen
-// historical policy module remains the baseline; every post-B25 standalone tranche
-// must be disjoint from it and from other runtime tranches while preserving the same
-// per-nutrient semantics.
+// historical policy module remains the baseline. Standalone composition tranches
+// must be disjoint from the baseline and from each other; exact field-completion
+// tranches may overlap a baseline ingredient only for explicitly missing fields.
 const POST_B25_TRANCHES = Object.freeze([
   Object.freeze({
     key: "B26",
@@ -53,6 +57,15 @@ const POST_B25_TRANCHES = Object.freeze([
   })
 ]);
 
+const POST_B25_COMPLETION_TRANCHES = Object.freeze([
+  Object.freeze({
+    key: "B30",
+    countKey: "matvaretabellenB30SelectedCount",
+    completions: MATVARETABELLEN_COMPOSITION_COMPLETIONS_B30,
+    source: MATVARETABELLEN_COMPOSITION_SOURCE_B30
+  })
+]);
+
 const seenIngredientIds = new Set(Object.keys(BASE_EUROPEAN_PRIMARY_DENSITIES_V1));
 for (const tranche of POST_B25_TRANCHES) {
   const trancheIds = Object.keys(tranche.densities);
@@ -73,6 +86,26 @@ const MATVARETABELLEN_FIELDS = {
 
 const nutrientKeys = Object.keys(MATVARETABELLEN_FIELDS);
 const finiteOrNull = value => typeof value === "number" && Number.isFinite(value) ? value : null;
+
+for (const tranche of POST_B25_COMPLETION_TRANCHES) {
+  for (const [ingredientId, record] of Object.entries(tranche.completions)) {
+    if (!Object.hasOwn(BASE_EUROPEAN_PRIMARY_DENSITIES_V1, ingredientId)) {
+      throw new Error(`Matvaretabellen ${tranche.key} field completion requires an existing baseline ingredient: ${ingredientId}`);
+    }
+    const eligible = [...(record.eligibleCompletionFields || [])];
+    if (!eligible.length || eligible.some(field => !nutrientKeys.includes(field))) {
+      throw new Error(`Matvaretabellen ${tranche.key} field completion must declare valid eligibleCompletionFields: ${ingredientId}`);
+    }
+    for (const field of eligible) {
+      if (selectBaseEuropeanPrimaryNutrient(ingredientId, field)) {
+        throw new Error(`Matvaretabellen ${tranche.key} cannot displace an existing reviewed baseline field: ${ingredientId}.${field}`);
+      }
+      if (finiteOrNull(record.per100g?.[field]) === null) {
+        throw new Error(`Matvaretabellen ${tranche.key} eligible completion field must contain a finite value: ${ingredientId}.${field}`);
+      }
+    }
+  }
+}
 
 const candidateFromTranche = (tranche, ingredientId, nutrientKey) => {
   const record = tranche.densities[ingredientId];
@@ -99,6 +132,32 @@ const candidateFromTranche = (tranche, ingredientId, nutrientKey) => {
   };
 };
 
+const candidateFromCompletionTranche = (tranche, ingredientId, nutrientKey) => {
+  const record = tranche.completions[ingredientId];
+  const spec = MATVARETABELLEN_FIELDS[nutrientKey];
+  if (!record || !spec || !(record.eligibleCompletionFields || []).includes(nutrientKey)) return null;
+  if (selectBaseEuropeanPrimaryNutrient(ingredientId, nutrientKey)) return null;
+  const value = finiteOrNull(record.per100g?.[spec.field]);
+  if (value === null) return null;
+  const evidence = record.fieldEvidence?.[nutrientKey] || null;
+  return {
+    source: "matvaretabellen",
+    sourceId: tranche.source.id,
+    sourceIdentifier: record.foodId,
+    evidenceTranche: record.evidenceTranche,
+    value,
+    semantic: spec.semantic,
+    method: evidence?.method || "MATVARETABELLEN_PUBLISHED_VALUE",
+    formConfidence: record.matchConfidence,
+    fieldConfidence: null,
+    description: record.foodName,
+    matchNotes: record.matchNotes,
+    scientificName: record.scientificName || null,
+    sourceCodes: evidence?.sourceCode ? [evidence.sourceCode] : [],
+    selectionReason: "EUROPEAN_EXACT_FIELD_COMPLETION"
+  };
+};
+
 const postBaselineCandidate = (ingredientId, nutrientKey) => {
   for (const tranche of POST_B25_TRANCHES) {
     const candidate = candidateFromTranche(tranche, ingredientId, nutrientKey);
@@ -107,11 +166,21 @@ const postBaselineCandidate = (ingredientId, nutrientKey) => {
   return null;
 };
 
-export const selectEuropeanPrimaryNutrient = (ingredientId, nutrientKey) =>
-  selectBaseEuropeanPrimaryNutrient(ingredientId, nutrientKey) || postBaselineCandidate(ingredientId, nutrientKey);
+const postBaselineCompletionCandidate = (ingredientId, nutrientKey) => {
+  for (const tranche of POST_B25_COMPLETION_TRANCHES) {
+    const candidate = candidateFromCompletionTranche(tranche, ingredientId, nutrientKey);
+    if (candidate) return candidate;
+  }
+  return null;
+};
 
-const postBaselineDensityForIngredient = ingredientId => {
-  const selections = Object.fromEntries(nutrientKeys.map(key => [key, postBaselineCandidate(ingredientId, key)]));
+export const selectEuropeanPrimaryNutrient = (ingredientId, nutrientKey) =>
+  selectBaseEuropeanPrimaryNutrient(ingredientId, nutrientKey) ||
+  postBaselineCandidate(ingredientId, nutrientKey) ||
+  postBaselineCompletionCandidate(ingredientId, nutrientKey);
+
+const densityFromSelections = ingredientId => {
+  const selections = Object.fromEntries(nutrientKeys.map(key => [key, selectEuropeanPrimaryNutrient(ingredientId, key)]));
   if (!nutrientKeys.some(key => selections[key])) return null;
   return {
     per100g: Object.fromEntries(nutrientKeys.map(key => [key, selections[key]?.value ?? null])),
@@ -133,10 +202,13 @@ const postBaselineDensityForIngredient = ingredientId => {
   };
 };
 
-const postBaselineIngredientIds = POST_B25_TRANCHES.flatMap(tranche => Object.keys(tranche.densities));
+const runtimeOverrideIngredientIds = [...new Set([
+  ...POST_B25_TRANCHES.flatMap(tranche => Object.keys(tranche.densities)),
+  ...POST_B25_COMPLETION_TRANCHES.flatMap(tranche => Object.keys(tranche.completions))
+])];
 const POST_B25_EUROPEAN_PRIMARY_DENSITIES = Object.fromEntries(
-  postBaselineIngredientIds
-    .map(ingredientId => [ingredientId, postBaselineDensityForIngredient(ingredientId)])
+  runtimeOverrideIngredientIds
+    .map(ingredientId => [ingredientId, densityFromSelections(ingredientId)])
     .filter(([, record]) => record)
 );
 
@@ -145,20 +217,27 @@ export const EUROPEAN_PRIMARY_DENSITIES_V1 = Object.freeze({
   ...POST_B25_EUROPEAN_PRIMARY_DENSITIES
 });
 
-export const RUNTIME_MATVARETABELLEN_COMPOSITION_SOURCES = Object.freeze(
-  POST_B25_TRANCHES.map(tranche => tranche.source)
-);
+export const RUNTIME_MATVARETABELLEN_COMPOSITION_SOURCES = Object.freeze([
+  ...POST_B25_TRANCHES.map(tranche => tranche.source),
+  ...POST_B25_COMPLETION_TRANCHES.map(tranche => tranche.source)
+]);
 
 export const europeanPrimaryPolicyCoverage = ingredientIds => {
   const unique = [...new Set((ingredientIds || []).filter(Boolean))];
   const base = baseEuropeanPrimaryPolicyCoverage(unique);
   const postSelections = unique.flatMap(ingredientId => nutrientKeys
-    .map(nutrient => ({ ingredientId, nutrient, selection: postBaselineCandidate(ingredientId, nutrient) }))
+    .map(nutrient => ({
+      ingredientId,
+      nutrient,
+      selection: postBaselineCandidate(ingredientId, nutrient) || postBaselineCompletionCandidate(ingredientId, nutrient)
+    }))
     .filter(item => item.selection)
     .map(({ ingredientId: id, nutrient, selection }) => ({ ingredientId: id, nutrient, ...selection }))
   );
-  const postEvidenceIngredientCount = unique.filter(ingredientId => Object.hasOwn(POST_B25_EUROPEAN_PRIMARY_DENSITIES, ingredientId)).length;
-  const trancheCounts = Object.fromEntries(POST_B25_TRANCHES.map(tranche => [
+  const standaloneIngredientIds = new Set(POST_B25_TRANCHES.flatMap(tranche => Object.keys(tranche.densities)));
+  const postEvidenceIngredientCount = unique.filter(ingredientId => standaloneIngredientIds.has(ingredientId)).length;
+  const allRuntimeTranches = [...POST_B25_TRANCHES, ...POST_B25_COMPLETION_TRANCHES];
+  const trancheCounts = Object.fromEntries(allRuntimeTranches.map(tranche => [
     tranche.countKey,
     postSelections.filter(selection => selection.evidenceTranche === tranche.key).length
   ]));
