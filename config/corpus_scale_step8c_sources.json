@@ -1,0 +1,75 @@
+{
+  "contractVersion": "CORPUS_SCALE_STEP8C_SOURCE_QUALIFICATION_V1",
+  "evidenceDate": "2026-09-10",
+  "sources": [
+    {
+      "id": "unitools-world-recipes-v1_1_0",
+      "name": "UniTools World Recipes Dataset",
+      "snapshot": {
+        "repository": "farcrak/unitools-recipes",
+        "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+        "dataPath": "unitools-recipes-v1.json",
+        "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+        "datasetVersion": "1.1.0",
+        "recordCount": 501,
+        "countryCount": 127,
+        "mutableLatestUrlUsedAsIdentity": false
+      },
+      "rights": {
+        "licenseId": "CC-BY-SA-4.0",
+        "contentLevelLicenseExplicit": true,
+        "reproductionAllowed": true,
+        "transformationAllowed": true,
+        "storageAndRehostingAllowed": true,
+        "commercialUseAllowed": true,
+        "attributionRequired": true,
+        "shareAlikeRequired": true,
+        "nonCommercialOnly": false,
+        "attributionRequirementsRecorded": true,
+        "shareAlikeRequirementsRecorded": true,
+        "attributionText": "UniTools — theunitools.com"
+      },
+      "provenance": {
+        "publisherDatasetIdentityExplicit": true,
+        "repositoryDescribedAsDataRatherThanSoftware": true,
+        "fullDatasetCommittedAtPinnedSnapshot": true,
+        "fullLegalCodeCommittedAtPinnedSnapshot": true,
+        "knownUnderlyingThirdPartyRecipeProse": false,
+        "recordLevelRightsResolutionRequired": false,
+        "materialModernTransformationObserved": false,
+        "transformationLayerRightsExplicit": true,
+        "currentWebsiteVersionDifferentFromPinnedSnapshot": true,
+        "currentWebsiteVersionObserved": "2.0",
+        "currentWebsiteVersionDate": "2026-09-02",
+        "note": "The mutable website dataset is supplemental evidence only. Step 8C identity is the immutable GitHub 1.1.0 commit/blob; a later website version cannot silently rewrite this decision."
+      },
+      "boundaries": {
+        "mediaExcluded": true,
+        "sourceNutritionAuthoritative": false,
+        "sourceDietaryAllergenClaimsAuthoritative": false,
+        "sourceScalingRulesPromotedToCanonicalQuantity": false,
+        "automaticAppAdmissionAuthorized": false,
+        "publicRuntimeActivationAuthorized": false,
+        "knowledgeCoreWriteAuthorized": false
+      },
+      "evidenceRefs": [
+        "https://github.com/farcrak/unitools-recipes/blob/1d09e9548d957dd0375301146a86dddf5e269c1b/README.md",
+        "https://github.com/farcrak/unitools-recipes/blob/1d09e9548d957dd0375301146a86dddf5e269c1b/LICENSE",
+        "https://github.com/farcrak/unitools-recipes/blob/1d09e9548d957dd0375301146a86dddf5e269c1b/unitools-recipes-v1.json",
+        "https://theunitools.com/en/data"
+      ]
+    }
+  ],
+  "retainedHolds": {
+    "openRecipeArchiveSpanish": {
+      "status": "HOLD_RIGHTS_AMBIGUOUS",
+      "reason": "Packaged English translation/normalization layer at the pinned Step 7 snapshot lacks sufficiently explicit transformation provenance/content-rights chain.",
+      "evidence": "docs/CORPUS_SCALE_STEP7_PREFLIGHT.md"
+    },
+    "recipeDbWholeSource": {
+      "status": "SOURCE_COHORT_SALVAGE_ONLY",
+      "reason": "RecipeDB licence does not by itself resolve underlying Food.com/AllRecipes detailed recipe prose; only separately rights-verified source cohorts/records may advance.",
+      "evidence": "docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md"
+    }
+  }
+}
