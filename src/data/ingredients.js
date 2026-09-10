@@ -15,7 +15,7 @@ export const INGREDIENTS = {
   butter: item("butter", "dairy", "butter", ["mantequilla"], ["milk"], true),
 
   salt: item("salt", "seasoning", "salt", ["sal"], [], true),
-  black_pepper: item("black_pepper", "seasoning", "black pepper", ["pepper", "pimienta negra", "peppercorns", "white pepper"], [], true),
+  black_pepper: item("black_pepper", "seasoning", "black pepper", ["pepper", "pimienta negra", "peppercorns"], [], true),
   garlic: item("garlic", "allium", "garlic", ["ajo", "garlic clove", "garlic cloves"], [], true),
   onion: item("onion", "allium", "onion", ["onions", "cebolla", "yellow onion", "spanish onion", "white onion"], [], true),
   red_onion: item("red_onion", "allium", "red onion", ["cebolla roja", "cebolla morada"], [], false),
