@@ -6,8 +6,6 @@ import {
   MATVARETABELLEN_COMPOSITION_SOURCE_B34,
   matvaretabellenCompositionB34CompletionForIngredient
 } from "../src/data/matvaretabellen-composition-b34.js";
-import { publicNutritionSource } from "../src/domain/nutrition.js";
-import { buildNutritionCoverageAudit } from "../src/domain/nutrition-coverage-audit.js";
 import {
   EUROPEAN_PRIMARY_DENSITIES_V1,
   europeanPrimaryPolicyCoverage,
@@ -118,15 +116,18 @@ test("B34 completion evidence grants no new quantity, edible-yield or neighborin
   }
 });
 
-test("B34 removes all currently used energy/carbohydrate/fat field gaps while preserving independent blockers", () => {
+test("B34 target completion remains tranche-local as later cumulative evidence evolves", () => {
   const springUses = AUTHORED_RECIPES.filter(recipe => recipe.ingredients.some(item => item.canonicalIngredientId === "spring_onion"));
   const mangoUses = AUTHORED_RECIPES.filter(recipe => recipe.ingredients.some(item => item.canonicalIngredientId === "mango"));
   assert.equal(springUses.length, 5);
   assert.equal(mangoUses.length, 2);
 
-  const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  assert.deepEqual(audit.missingNutrientFieldCounts, { fibreG: 7 });
-  assert.equal(audit.authoritativeRecipeCount, 17);
-  assert.equal(audit.blockerCounts.missing_density, 74);
-  assert.equal(audit.blockerCounts.unsupported_quantity_unit, 11);
+  for (const [ingredientId, nutrient] of [
+    ["spring_onion", "energyKcal"],
+    ["spring_onion", "carbohydrateG"],
+    ["spring_onion", "fatG"],
+    ["mango", "fatG"]
+  ]) {
+    assert.equal(selectEuropeanPrimaryNutrient(ingredientId, nutrient)?.evidenceTranche, "B34", `${ingredientId}.${nutrient}`);
+  }
 });
