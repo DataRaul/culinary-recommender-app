@@ -18,12 +18,14 @@ Always use:
 - Step 7E ForkRecipe production-shaped pilot/source contract: `docs/CORPUS_SCALE_STEP7E_FORKRECIPE_PILOT.md`
 - Step 7E protected 500-record live terminal evidence: `docs/CORPUS_SCALE_STEP7E_LIVE_500_CANARY.md`
 - Step 7E auth/session diagnostic resolution: `docs/CORPUS_SCALE_STEP7E_AUTH_SESSION_COMMIT_DIAGNOSTIC.md`
+- Step 8 measured population/activation roadmap: `docs/CORPUS_SCALE_STEP8_MEASURED_POPULATION_ROADMAP.md`
+- Step 8 machine-readable gate contract: `config/corpus_scale_step8_roadmap.json`
 - YouTube Culinary Discovery Atlas base roadmap: `docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md`
 - YouTube daily discovery extension: `docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md`
 - YT-CUL-5R contract: `docs/YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_CONTRACT.md`
 - YT-CUL-5D contract: `docs/YT_CUL_5D_DAILY_DISCOVERY_CONTRACT.md`
 
-For authentication, protected-data placement, runtime storage/cost model, scale target and Step-7 ordering, the no-billing-auth architecture plus the latest Step-7 gate evidence supersede earlier Access/R2/100k summaries. Existing source-rights, nutrition, safety, RecipeSource V2 portability, Brain/Lab separation and invitation-only membership gates remain controlling.
+For authentication, protected-data placement, runtime storage/cost model, scale target and Step-7 ordering, the no-billing-auth architecture plus the latest Step-7 gate evidence supersede earlier Access/R2/100k summaries. For post-Step-7E sequencing, the Step 8 measured population/activation roadmap supersedes the older generic Step-8 wording while preserving its original measured-population intent. Existing source-rights, nutrition, safety, RecipeSource V2 portability, Brain/Lab separation and invitation-only membership gates remain controlling.
 
 The 2026-09-06 execution-priority amendment is binding for sequencing inside an already-earned gate: **heavyweight machine work first -> minimum necessary live architectural proof -> convenience/compatibility polish later**. It does not authorize crossing an unearned security, rights, cost, public-runtime or human-approval gate.
 
@@ -127,7 +129,31 @@ Live-path defects found during the gate were repaired without weakening security
 
 The owner's Wi-Fi path could not reach fresh `pages.dev` resources while mobile data could; the final successful owner verification used mobile data. Production runtime reachability was independently proven by the main-branch smoke.
 
-**Post-Step-7E boundary:** the governing no-billing architecture defines no Step 7F. Step 7E PASS therefore closes the currently defined Corpus Scale Step-7 sequence but does **not** authorize any additional corpus-scale infrastructure or public activation by implication. A later explicit roadmap/gate decision is required before creating the eight future recipe-body shards, publicly activating ForkRecipe, changing source nutrition/dietary/allergen/quantity authority, or crossing any paid/billing boundary.
+**Post-Step-7E boundary:** the governing no-billing architecture defines no Step 7F. Step 7E PASS closes the Step-7 sequence. Post-Step-7E continuation is now defined as Step 8; Step 7E itself still grants no shard/public/source-authority by implication.
+
+#### Step 8 — DEFINED / 8A AUTHORIZED / NO LIVE SCALE GATE CROSSED
+
+Canonical design: `docs/CORPUS_SCALE_STEP8_MEASURED_POPULATION_ROADMAP.md`.
+
+Machine-readable contract: `config/corpus_scale_step8_roadmap.json`.
+
+Sequence:
+
+`8A Population Contract & Shard Design -> {8B Minimum Multi-Shard Protected Canary || 8C Scalable Source Qualification} -> 8D Protected Population Ladder -> 8E Recommendation Eligibility -> 8F explicit Public Runtime Activation Decision`
+
+After 8D PASS, `8G Continued Protected Scale Expansion` may run independently of 8F; public activation is deliberately not a prerequisite for protected scale learning.
+
+Current authority:
+
+- **8A repository-only work: authorized**;
+- 8B machine preparation: only after 8A PASS; human/account action required before any recipe-body D1 shard creation;
+- 8C documentary source/rights evidence: only after 8A PASS; no ingestion/public activation;
+- 8D: blocked until both 8B and 8C earn inputs;
+- 8E: blocked until an 8D populated cohort exists;
+- 8F: explicit human public-runtime gate;
+- 8G: blocked until 8D PASS and remains protected-only.
+
+No Step 8 gate authorizes Workers Paid, R2, Zero Trust/Access, billing/overage authorization, automatic nutrition/dietary/allergen/quantity authority, Knowledge Core writes, YT-CUL state changes, or interference with the Nutrition B-lane.
 
 ### YouTube Culinary Discovery Atlas
 
