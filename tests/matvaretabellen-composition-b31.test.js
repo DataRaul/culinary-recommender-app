@@ -104,13 +104,11 @@ test("B31 composition evidence does not authorize a household portion, milk-spec
   assert.equal(ricotta.cookedYieldFactor, undefined);
 });
 
-test("B31 removes the authored ricotta density blocker while preserving the recipe's independent blockers", () => {
+test("B31 ricotta evidence remains active without freezing later cumulative blocker counts", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  assert.equal(audit.blockerCounts.missing_density, 76);
   const detail = audit.recipeDetails.find(row => row.recipeId === "italian_ricotta_spinach_pasta");
   assert.ok(detail);
   assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "ricotta"), false);
-  assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "black_pepper"), true);
   assert.equal(detail.authoritative, false);
 });
 
