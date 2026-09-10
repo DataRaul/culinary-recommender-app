@@ -1,204 +1,130 @@
 {
-  "handover": "CULINARY_RECOMMENDER_APP_STEP7E_PROTECTED_500_LIVE_PASS_POST_GATE_V15",
-  "handover_date": "2026-09-06",
+  "handover": "CULINARY_RECOMMENDER_APP_CORPUS_SCALE_STEP8A_PASS_V16",
+  "handover_date": "2026-09-10",
   "timezone": "Atlantic/Canary",
-  "status": "STEPS_1_7E_DEFINED_CORPUS_SCALE_SEQUENCE_COMPLETE__STEP_7A_NO_BILLING_170K_PASS__STEP_7B_FREE_NO_BILLING_AUTH_CONFIRMED__STEP_7C_AUTH_REVOCATION_PASS__STEP_7D_PROTECTED_84_PASS__STEP_7E_PROTECTED_500_FORKRECIPE_LIVE_PASS__POST_STEP7E_GATE_UNDEFINED__NO_BILLING_AUTH_CONSTRAINT_ACTIVE__YT_CUL_5D_SCHEDULED_ACTIVE__YT_CUL_6_NOT_EARNED",
-  "human_needed": true,
+  "status": "STEP8_ROADMAP_DEFINED__STEP8A_POPULATION_CONTRACT_PASS_MERGED_GREEN__8B_MACHINE_PREP_EARNED_HUMAN_GATE_BEFORE_SHARD_CREATION__8C_SOURCE_QUALIFICATION_EVIDENCE_EARNED__8D_BLOCKED_PENDING_8B_8C__NO_BILLING_AUTH_CONSTRAINT_ACTIVE",
+  "human_needed": false,
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
     "source_of_truth": "GitHub",
-    "handover_written_against_main_sha": "b98e7530a0b428e3b663c0670c655f283bda1d2d",
-    "knowledge_core_last_reconciled_main_sha": "2bd4a118aff5f74317b02c1b484e96f929119493"
+    "step8a_merge_sha": "68e5f159000a8b7c1677155f49ef9cde7a0801b9",
+    "knowledge_core_last_reconciled_main_sha": "8f73e22aea81742d8721a80d03f4d605976ec7d6"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
     "previous": "docs/handovers/PREVIOUS.json",
     "protocol": "docs/HANDOVER_PROTOCOL.md",
     "rotation": "old CURRENT -> PREVIOUS; new latest state -> CURRENT",
-    "new_chat_start": "Read CURRENT first, then fresh-reconcile live GitHub main, open PRs, relevant branches, CI/deployments and the generated YT-CUL state before acting. Live GitHub outranks this snapshot."
+    "new_chat_start": "Read CURRENT first, then fresh-reconcile live GitHub main, open PRs, relevant branches, CI/deployments, Knowledge Core and generated YT-CUL state before acting. Live GitHub outranks this snapshot."
   },
   "lane": {
-    "name": "Culinary App / Culinary Lab — Corpus Scale / 170k No-Billing-Authorization with additive YouTube Culinary Discovery child programme",
-    "rule": "Do not perform ordinary Culinary Brain / Knowledge Core implementation from this lane.",
+    "name": "Culinary App / Culinary Lab — Corpus Scale Step 8 / 170k No-Billing-Authorization",
     "knowledge_core_boundary": "Knowledge Core is read-only/reconciliation from this lane and must never become a private browser/runtime dependency.",
-    "nutrition_boundary": "Nutrition is a separate resumable lane and must not be overwritten or weakened by corpus-scale/auth/YouTube work."
+    "nutrition_boundary": "Nutrition B is a separate concurrent lane and must not be modified, duplicated or weakened by Corpus Scale work.",
+    "youtube_boundary": "YT-CUL-5D / YT-CUL-6 state is read-only from Corpus Scale work and must not be modified."
   },
   "operating_contract": {
-    "autonomy": "Proceed autonomously through technically resolvable work after fresh reconciliation. Stop only for genuine human/security/cost gates, unrecoverable errors, terminal material results or continuation boundaries.",
-    "live_verification_process": "Machine work first, human-only evidence last; use one high-information path; no blind duplicate retries; classify failures before another human action.",
-    "actions_authority": "Normal repository CI, browser acceptance, roadmap-required path-scoped workflows/benchmarks and technically necessary ordinary reruns are standing-preauthorized by AGENTS.md.",
-    "cost_boundary": "Hard no-billing-authorization constraint remains active. Do not activate Workers Paid, R2, Zero Trust/Access, paid API/backend/corpus licence, recurring paid infrastructure or any setup authorizing overage/payment charges.",
-    "secrets_boundary": "Never expose or commit SESSION_SECRET, OWNER_BOOTSTRAP_EMAIL, Google credentials/tokens, session cookies, API keys, OAuth secrets or private account identity."
+    "autonomy": "Proceed autonomously through technically resolvable work inside an earned gate. Stop only for genuine human/security/cost/rights/public-runtime gates, unrecoverable errors, terminal material results or continuation boundaries.",
+    "machine_first": "Repository contracts/tests and evidence work precede human account actions. Do not ask for a human action while a machine prerequisite remains unresolved.",
+    "cost_boundary": "Never activate or accept Workers Paid, R2, Zero Trust/Access, paid API/backend/corpus licence, recurring paid infrastructure, or any setup authorizing overage/payment charges. Free exhaustion must fail closed.",
+    "secrets_boundary": "Never expose or commit session secrets, owner identity, Google credentials/tokens, cookies, API keys or OAuth secrets."
   },
   "corpus_scale": {
     "architecture": "docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md",
+    "step8_roadmap": "docs/CORPUS_SCALE_STEP8_MEASURED_POPULATION_ROADMAP.md",
+    "step8_contract": "config/corpus_scale_step8_roadmap.json",
     "required_capacity": 170000,
     "stress_capacity": 250000,
-    "step_7a": {
+    "step7_terminal": "STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS",
+    "step7f_defined": false,
+    "step8a": {
       "status": "COMPLETE_PASS_MERGED_GREEN",
-      "terminal": "NO_BILLING_AUTH_170K_ARCHITECTURE_PASS",
-      "merge_sha": "8cc1a672d7f7dc33d12b17169908c69685a733c4"
-    },
-    "step_7b": {
-      "status": "COMPLETE_OWNER_VISIBLE_PASS",
-      "terminal": "FREE_NO_BILLING_AUTHORIZATION_CONFIRMED"
-    },
-    "step_7c": {
-      "status": "COMPLETE_LIVE_PASS_MERGED_GREEN",
-      "terminal": "STEP_7C_LIVE_AUTH_REVOCATION_CANARY_PASS",
-      "revocation_merge_sha": "e99ffa7ac6c9d1976500fc2ff0fd7739baef7ae8"
-    },
-    "step_7d": {
-      "status": "COMPLETE_LIVE_PASS_MERGED_GREEN",
-      "terminal": "STEP_7D_PROTECTED_84_CANARY_PASS",
-      "evidence_merge_sha": "08bce89b340c88bf175cc5bac57f62f7e29af731"
-    },
-    "step_7e": {
-      "status": "COMPLETE_LIVE_PASS__PROTECTED_SOURCE_PILOT_ONLY",
-      "terminal": "STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS",
-      "source": "ForkRecipe",
-      "source_repository": "futurechef/forkrecipe-recipes",
-      "source_commit": "c32255266af39bd77444d39452f3df8088ac8fd9",
-      "verified_source_universe": 915,
-      "live_recipe_count": 500,
-      "chunk_count": 50,
-      "total_body_bytes": 5115695,
-      "fingerprint": "2aa8106f7521f9cf3f6c2f9ece13d328272f8400f90f4ae79b8cdc4750b5d8b6",
-      "final_d1_size_after_bytes": 5931008,
-      "final_audit": {
-        "status": 200,
-        "ok": true,
-        "ready": true,
-        "bootstrapRequired": false,
-        "metadataValidationPass": true,
-        "auditElapsedMs": 304,
-        "auditPilotQueries": 4,
-        "allAuditReadsFirstAttempt": true
+      "terminal": "STEP_8A_POPULATION_CONTRACT_PASS",
+      "pr": 113,
+      "merge_sha": "68e5f159000a8b7c1677155f49ef9cde7a0801b9",
+      "contract": "docs/CORPUS_SCALE_STEP8A_POPULATION_CONTRACT.md",
+      "validation": "docs/CORPUS_SCALE_STEP8A_VALIDATION.md",
+      "machine_core": "scripts/corpus-scale-step8a-core.mjs",
+      "tests": "tests/corpus-scale-step8a.test.js",
+      "validation_runs": [34499533385, 34499738756, 34499905915],
+      "pages_deployment_run": 34499905387,
+      "terminal_evidence": {
+        "repositoryOnly": true,
+        "createdRecipeBodyShards": 0,
+        "publicRuntimeChanged": false,
+        "billingAuthorizationObserved": false,
+        "paidPlanActivated": false,
+        "r2Activated": false,
+        "zeroTrustAccessActivated": false,
+        "youtubeStateModified": false,
+        "nutritionBLaneModified": false,
+        "knowledgeCoreWritePerformed": false
       },
-      "protected_sample": {
-        "status": 200,
-        "protectedDataReturned": true,
-        "sourceItemId": "ackee-saltfish",
-        "bodyBytes": 8672,
-        "packetSha256": "2d20fb4993f5d50b738b4bba01aaf4d16592f4416b40b9a89bde4af133ce91ea"
+      "proven_contract": {
+        "initialMultiShardCanaryShards": 2,
+        "maxRecipeBodyShards": 8,
+        "reservedDatabaseSlots": 1,
+        "pre8bMaxRowsPerWriteBatch": 10,
+        "pre8bMaxPlannedStatementsPerBatch": 11,
+        "deterministicRouterReusedFromStep7A": true,
+        "resumableExactReceipts": true,
+        "conflictsFailClosed": true,
+        "rollbackIsImmutableParentVersionPointerSwitch": true
       },
-      "free_limit": {
-        "status": 503,
-        "error": "STEP7E_FREE_LIMIT_FAIL_CLOSED",
-        "protectedDataReturned": false,
-        "pilotQueries": 0
-      },
-      "unauthenticated": {
-        "status": 401,
-        "error": "UNAUTHORIZED",
-        "reason": "NO_SESSION"
-      },
-      "boundaries": {
-        "recommendationEligible": false,
-        "publicRuntimeActivationAuthorized": false,
-        "automaticAdmissionAuthorized": false,
-        "sourceNutritionImportedAsAuthority": false,
-        "dietaryOrAllergenClaimsDerived": false,
-        "ratioValuesPromotedToAbsoluteQuantities": false,
-        "sourceMediaActivated": false,
-        "runtimeFetchFromForkRecipe": false,
-        "futureRecipeBodyD1ShardsCreated": false,
-        "existingCulinaryControlD1Only": true,
-        "paidPlanActivated": false
-      }
-    },
-    "live_path_repairs": {
-      "audit": "Ambiguous audit-read failures no longer trigger the 50-chunk bootstrap loop; final reads have one bounded read-only retry and exact failing-stage classification.",
-      "verifier": "Final verifier is served through /api/* Pages Functions with bounded client timeouts and compact copyable evidence.",
-      "service_worker": "Sensitive /api/*, auth/canary/diagnostic and protected generated Step 7E paths are network-only and never cached; old cache versions purge on activation.",
-      "production_smoke": "Main validation now checks live root, /api/auth/config, /api/step7e-final-page and unauthenticated /api/step7e-pilot fail-closed behavior. The production smoke passed on main b98e7530a0b428e3b663c0670c655f283bda1d2d.",
-      "owner_network": "Owner Wi-Fi could not reach fresh pages.dev resources while mobile data could. Final Step 7E verification succeeded on mobile data; do not reopen app auth/runtime architecture for this network-path issue without new evidence."
-    },
-    "post_step_7e": {
-      "status": "DEFINED_SEQUENCE_TERMINAL_BOUNDARY_REACHED",
-      "step_7f_defined": false,
-      "rule": "Do not invent a Step 7F or infer authority from Step 7E PASS. Any further corpus-scale infrastructure/public activation requires an explicit later roadmap/gate decision.",
-      "not_earned": [
-        "creation of the eight future recipe-body D1 shards",
-        "public ForkRecipe recommendation/runtime activation",
-        "source nutrition authority",
-        "source-prose dietary/allergen inference",
-        "source ratio to absolute quantity promotion",
-        "source media activation",
-        "Workers Paid/R2/Zero Trust or any billing authorization",
-        "Knowledge Core writes from the App lane"
+      "earned": [
+        "8B_MACHINE_PREREQUISITE_PREPARATION",
+        "8C_SOURCE_QUALIFICATION_EVIDENCE"
       ]
-    }
+    },
+    "step8b": {
+      "status": "MACHINE_PREPARATION_EARNED__HUMAN_ACCOUNT_GATE_BEFORE_SHARD_CREATION",
+      "live_target": "minimum two recipe-body D1 shard protected canary",
+      "hard_boundary": "Do not create either recipe-body D1 shard until all repository prerequisites are complete and the human/account gate is explicitly reached."
+    },
+    "step8c": {
+      "status": "SOURCE_QUALIFICATION_EVIDENCE_EARNED",
+      "mode": "documentary rights/source qualification only until a cohort earns protected population input",
+      "human_gate": "Only unresolved material rights/legal ambiguity after documentary evidence is exhausted."
+    },
+    "step8d": "BLOCKED_PENDING_8B_AND_8C_PASS_INPUTS",
+    "step8e": "BLOCKED_PENDING_8D_ELIGIBLE_COHORT",
+    "step8f": "BLOCKED_PENDING_8E_AND_EXPLICIT_HUMAN_PUBLIC_RUNTIME_GATE",
+    "step8g": "BLOCKED_PENDING_8D_PASS__DOES_NOT_DEPEND_ON_8F"
   },
   "source_admission_state": {
     "A": "Existing curated corpus + Wikibooks — PASS_ALREADY_ESTABLISHED",
-    "B": "Open Recipe Archive Spanish collection — HOLD_RIGHTS_AMBIGUOUS — 0 admitted",
-    "C": "Open Recipe Archive complete corpus — PASS_CANDIDATE_BUT_NOT_READY while source-B rights issue remains",
-    "D_forkrecipe": "ForkRecipe — STEP7E_PROTECTED_SOURCE_PILOT_PASS_ONLY__500_LIVE_VERIFIED__0_PUBLIC_RECOMMENDATION_ADMISSION",
+    "B": "Open Recipe Archive Spanish — HOLD_RIGHTS_AMBIGUOUS — 0 admitted",
+    "C": "Open Recipe Archive complete corpus — PASS_CANDIDATE_NOT_READY while transformation/content-rights provenance remains unresolved",
+    "D_forkrecipe": "ForkRecipe — STEP7E_PROTECTED_SOURCE_PILOT_PASS_ONLY — 500 live verified — 0 public recommendation admission",
     "D_unitools": "UniTools — PASS_CANDIDATE_NOT_YET_AUDITED",
     "E": "RecipeDB — CONDITIONAL_SOURCE_COHORT_SALVAGE_GATE"
   },
   "youtube_culinary_discovery": {
-    "status": "YT_CUL_5D_SCHEDULED_ACTIVE__READ_ONLY_FROM_APP_CLOSEOUT",
+    "status": "YT_CUL_5D_ACTIVE__READ_ONLY_FROM_CORPUS_SCALE",
     "generated_state_path": "data/generated/youtube-culinary-daily-discovery-state.json",
-    "last_reconciled_state": {
-      "phase": "YT-CUL-5D",
-      "programmeStatus": "ACTIVE",
-      "assignedDailySearchLimit": 100,
-      "protectedReserveCalls": 5,
-      "lastCompletedQuotaDate": null,
-      "completedQuotaDays": [],
-      "cumulativeSearchCalls": 0,
-      "independentPagesReviewed": 0,
-      "recipeStructuredPagesConfirmed": 0,
-      "reviewReadyPacketsCreated": 0,
-      "duplicatePairsSuppressed": 0,
-      "unresolvedPackets": 0,
-      "hardHold": null,
-      "ytCul6ReadinessEarned": false
-    },
-    "authority": "Only canonical Knowledge Core Atlas review can accept/hold/reject packets; no automatic Atlas promotion, app admission or publication.",
-    "yt_cul_6": "NOT_EARNED"
-  },
-  "canonical_docs": {
-    "roadmap": "docs/ROADMAP.md",
-    "roadmap_handover": "docs/ROADMAP_HANDOVER.md",
-    "execution_priority": "docs/ROADMAP_EXECUTION_PRIORITY_AMENDMENT_2026-09-06.md",
-    "no_billing_auth_170k_architecture": "docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md",
-    "step_7d_evidence": "docs/CORPUS_SCALE_STEP7D_PROTECTED_84_CANARY.md",
-    "step_7e_source_pilot": "docs/CORPUS_SCALE_STEP7E_FORKRECIPE_PILOT.md",
-    "step_7e_live_evidence": "docs/CORPUS_SCALE_STEP7E_LIVE_500_CANARY.md",
-    "step_7e_auth_diagnostic_resolution": "docs/CORPUS_SCALE_STEP7E_AUTH_SESSION_COMMIT_DIAGNOSTIC.md",
-    "service_worker_root_cause": "docs/STEP7E_SERVICE_WORKER_CACHE_ROOT_CAUSE.md",
-    "youtube_daily_roadmap": "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md",
-    "yt_cul_5d_contract": "docs/YT_CUL_5D_DAILY_DISCOVERY_CONTRACT.md",
-    "handover_protocol": "docs/HANDOVER_PROTOCOL.md"
+    "last_reconciled_completed_quota_date": "2026-09-10",
+    "yt_cul_6": "NOT_ASSUMED_EARNED_FROM_CORPUS_SCALE",
+    "rule": "Do not modify this lane from Step 8 work; fresh-reconcile its generated state when needed."
   },
   "concurrency": {
-    "open_prs_at_reconciliation": 0,
-    "knowledge_core_main": "2bd4a118aff5f74317b02c1b484e96f929119493",
-    "youtube_state_must_not_be_modified_from_step7e_closeout": true,
-    "diagnostic_branch_note": "agent/root-pwa-recovery was created during diagnosis from main and has no intended product authority; ignore unless separately reconciled."
+    "open_prs_at_closeout_reconciliation": 0,
+    "nutrition_lane_must_remain_disjoint": true,
+    "youtube_state_must_remain_unmodified": true,
+    "knowledge_core_write_forbidden_from_app_lane": true
   },
   "human_gates": {
-    "step_7e": "NONE__TERMINAL_PASS_COMPLETE",
-    "corpus_scale_post_step_7e": {
-      "status": "ROADMAP_AUTHORITY_REQUIRED_BEFORE_FURTHER_SCALE_ACTION",
-      "reason": "The governing architecture defines no Step 7F. A future explicit roadmap/gate decision must define what, if anything, Step 7E PASS earns next."
-    },
-    "youtube": "NO_CURRENT_HUMAN_GATE"
+    "current": "NONE_FOR_MACHINE_PREPARATION_OR_8C_DOCUMENTARY_EVIDENCE",
+    "step8b_live": "HUMAN_ACCOUNT_ACTION_REQUIRED_BEFORE_CREATING_RECIPE_BODY_D1_SHARDS",
+    "step8c_rights": "HUMAN_ONLY_IF_MATERIAL_RIGHTS_AMBIGUITY_REMAINS_AFTER_DOCUMENTARY_REVIEW",
+    "step8f_public_runtime": "EXPLICIT_HUMAN_APPROVAL_REQUIRED"
   },
   "next_action": {
-    "corpus_scale": {
-      "name": "POST_STEP7E_ROADMAP_GATE_DEFINITION",
-      "status": "HUMAN_OR_EXPLICIT_ROADMAP_AUTHORITY_REQUIRED__NO_MACHINE_ACTION_CROSSES_THIS_BOUNDARY",
-      "machine_work_before_gate": "None required for Step 7E; terminal evidence and diagnostics are closed out."
-    },
-    "youtube_culinary_discovery": {
-      "name": "YT_CUL_5D_AUTOMATIC_DAILY_DISCOVERY",
-      "status": "SCHEDULED_ACTIVE__NO_HUMAN_GATE__YT_CUL_6_NOT_EARNED"
-    }
+    "parallel": [
+      "STEP_8B_MACHINE_PREREQUISITE_PREPARATION_ONLY",
+      "STEP_8C_SCALABLE_SOURCE_QUALIFICATION_EVIDENCE"
+    ],
+    "blocked": "STEP_8D until both 8B and 8C earn their required inputs"
   },
-  "terminal_instruction_for_new_chat": "Read docs/handovers/CURRENT.json and fresh-reconcile live GitHub before acting. The defined Corpus Scale Step-7 sequence is complete through terminal STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS. Do not rerun Step 7E, recreate the 500 records, reopen auth/session architecture based only on the owner's Wi-Fi pages.dev reachability issue, create the eight future recipe-body D1 shards, activate ForkRecipe publicly, promote source nutrition/dietary/allergen/quantity/media authority, or activate paid/billing infrastructure. No Step 7F exists in the governing architecture; further Corpus Scale work needs an explicit later roadmap/gate decision. Preserve the concurrent YT-CUL-5D scheduled lane and Knowledge Core read-only boundary."
+  "terminal_instruction_for_new_chat": "Fresh-reconcile live GitHub. Step 8A is complete at 68e5f159000a8b7c1677155f49ef9cde7a0801b9. Proceed with 8B machine prerequisites and 8C documentary source qualification in parallel. Do not create recipe-body D1 shards until the explicit 8B human/account gate, do not populate 8D, do not activate public recommendations, do not modify Nutrition B or YT-CUL state, do not write Knowledge Core, and do not authorize paid/overage infrastructure."
 }

@@ -1,29 +1,25 @@
-# Corpus Scale Step 8A — Pre-Merge Validation Evidence
+# Corpus Scale Step 8A — Validation Evidence
 
-Status: **PASS CANDIDATE / SECOND VALIDATION REQUIRED AFTER EVIDENCE RECORD**
+Status: **TERMINAL PASS / MERGED GREEN**
 
 Date: **2026-09-10**
 
+Terminal: `STEP_8A_POPULATION_CONTRACT_PASS`
+
 Pull request: **#113**
 
-Candidate head before this evidence commit: `98c1448d786cb640fe18d77853fc8d156d99e594`
+Merge SHA: `68e5f159000a8b7c1677155f49ef9cde7a0801b9`
 
-First full PR validation run: **34499533385**
+Validation sequence:
 
-Observed result:
+1. PR candidate validation `34499533385`: `npm run validate` PASS; Step 8A tests PASS; full browser acceptance PASS.
+2. Evidence-record rerun `34499738756`: `npm run validate` PASS; full browser acceptance PASS.
+3. Post-merge main validation `34499905915`: repository/static/deterministic PASS; browser acceptance PASS; production runtime smoke PASS.
+4. Pages build/deployment `34499905387`: PASS.
 
-- `npm run validate`: **PASS**;
-- Step 8A deterministic population/recovery tests: included in repository test glob and **PASS**;
-- Playwright/Chromium installation: **PASS**;
-- full `npm run test:browser`: **PASS**;
-- production public-runtime smoke: correctly **SKIPPED** on the PR because Step 8A changes no production runtime;
-- overall PR validation job: **PASS**.
+No production feature/runtime code was introduced by Step 8A; the production smoke verifies that the existing public/auth/Step-7E runtime remained reachable and fail-closed after the merge.
 
-The candidate therefore satisfied the Step 8A machine contract against the repository state on which PR #113 is based.
-
-## Step 8A terminal evidence envelope
-
-This implementation performed repository work only:
+## Terminal evidence envelope
 
 ```json
 {
@@ -40,10 +36,8 @@ This implementation performed repository work only:
 }
 ```
 
-`validateStep8AEvidenceEnvelope()` requires this exact authority boundary to remain clean.
+The Step 8A contract tests explicitly reject leakage across these boundaries.
 
-## Merge rule
+## Decision
 
-This evidence record changes the candidate branch, so PR #113 must pass normal repository/browser validation again before merge. Only a green rerun plus a clean merge establishes the terminal Step 8A state on `main`.
-
-Until merge, the terminal state remains **PASS CANDIDATE**, not `STEP_8A_POPULATION_CONTRACT_PASS` on `main`.
+The evidence satisfies the frozen Step 8A PASS condition. The only authority earned is Step 8B machine preparation and Step 8C source-qualification evidence work. No D1 recipe-body shard creation, protected corpus population, public recommendation activation, paid/billing action, YT-CUL mutation, Nutrition B work or Knowledge Core write is earned by this terminal.

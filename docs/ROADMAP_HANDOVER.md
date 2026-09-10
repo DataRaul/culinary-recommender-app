@@ -2,175 +2,101 @@
 
 Status: ACTIVE
 
-This file is the continuation pointer for `docs/ROADMAP.md`.
+This file is the continuation pointer for `docs/ROADMAP.md`. Live GitHub and `docs/handovers/CURRENT.json` outrank historical summaries.
+
+## Canonical routing
 
 Always use:
 
 - current continuation: `docs/handovers/CURRENT.json`
 - previous continuation: `docs/handovers/PREVIOUS.json`
-- rotation/startup rules: `docs/HANDOVER_PROTOCOL.md`
+- handover protocol: `docs/HANDOVER_PROTOCOL.md`
 - canonical programme: `docs/ROADMAP.md`
 - execution-priority amendment: `docs/ROADMAP_EXECUTION_PRIORITY_AMENDMENT_2026-09-06.md`
-- current Corpus Scale auth/runtime/storage/cost/scale architecture: `docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md`
+- 170k no-billing architecture: `docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md`
 - Step 7A measured rebaseline: `docs/CORPUS_SCALE_STEP7A_NO_BILLING_AUTH_REBASELINE.md`
-- Step 7B/7C Free-resource + same-origin auth evidence: `docs/CORPUS_SCALE_STEP7B_7C_PAGES_FUNCTIONS_AUTH_CANARY.md`
-- Step 7D protected 84-record runtime canary: `docs/CORPUS_SCALE_STEP7D_PROTECTED_84_CANARY.md`
-- Step 7E ForkRecipe production-shaped pilot/source contract: `docs/CORPUS_SCALE_STEP7E_FORKRECIPE_PILOT.md`
-- Step 7E protected 500-record live terminal evidence: `docs/CORPUS_SCALE_STEP7E_LIVE_500_CANARY.md`
-- Step 7E auth/session diagnostic resolution: `docs/CORPUS_SCALE_STEP7E_AUTH_SESSION_COMMIT_DIAGNOSTIC.md`
-- Step 8 measured population/activation roadmap: `docs/CORPUS_SCALE_STEP8_MEASURED_POPULATION_ROADMAP.md`
-- Step 8 machine-readable gate contract: `config/corpus_scale_step8_roadmap.json`
-- YouTube Culinary Discovery Atlas base roadmap: `docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md`
-- YouTube daily discovery extension: `docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md`
-- YT-CUL-5R contract: `docs/YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_CONTRACT.md`
-- YT-CUL-5D contract: `docs/YT_CUL_5D_DAILY_DISCOVERY_CONTRACT.md`
+- Step 7D protected runtime evidence: `docs/CORPUS_SCALE_STEP7D_PROTECTED_84_CANARY.md`
+- Step 7E source pilot: `docs/CORPUS_SCALE_STEP7E_FORKRECIPE_PILOT.md`
+- Step 7E live 500 evidence: `docs/CORPUS_SCALE_STEP7E_LIVE_500_CANARY.md`
+- Step 8 roadmap: `docs/CORPUS_SCALE_STEP8_MEASURED_POPULATION_ROADMAP.md`
+- Step 8 machine gate contract: `config/corpus_scale_step8_roadmap.json`
+- Step 8A population contract: `docs/CORPUS_SCALE_STEP8A_POPULATION_CONTRACT.md`
+- Step 8A validation evidence: `docs/CORPUS_SCALE_STEP8A_VALIDATION.md`
+- YouTube generated state: `data/generated/youtube-culinary-daily-discovery-state.json`
+- YouTube daily roadmap: `docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md`
 
-For authentication, protected-data placement, runtime storage/cost model, scale target and Step-7 ordering, the no-billing-auth architecture plus the latest Step-7 gate evidence supersede earlier Access/R2/100k summaries. For post-Step-7E sequencing, the Step 8 measured population/activation roadmap supersedes the older generic Step-8 wording while preserving its original measured-population intent. Existing source-rights, nutrition, safety, RecipeSource V2 portability, Brain/Lab separation and invitation-only membership gates remain controlling.
+Older Access/R2/100k summaries are historical only for runtime/storage/cost sequencing. The 170k no-billing architecture and Step 8 documents control current Corpus Scale work.
 
-The 2026-09-06 execution-priority amendment is binding for sequencing inside an already-earned gate: **heavyweight machine work first -> minimum necessary live architectural proof -> convenience/compatibility polish later**. It does not authorize crossing an unearned security, rights, cost, public-runtime or human-approval gate.
+## Corpus Scale status
 
-At a continuation boundary, rotate `CURRENT -> PREVIOUS`, write the latest complete state to `CURRENT`, and update this routing when programme/gate state changes. A new chat begins by reading CURRENT, then fresh-reconciling live GitHub.
+Required capacity: **170,000** admitted recipes. Synthetic stress/headroom target: **250,000**.
 
-## Current programme routing
+Hard cost rule: **never accept a product/subscription setup that authorizes automatic overage/payment charges.** Workers Paid, R2 and Zero Trust/Access remain rejected. Free exhaustion must fail closed.
 
-### Corpus Scale / 170k no-billing-authorization
-
-Required capacity: **170,000 admitted recipes**. Stress/headroom target: **250,000 synthetic records**.
-
-Binding cost rule: **never accept a product/subscription setup that authorizes a payment method to be charged for usage beyond free limits.** Free exhaustion must fail closed.
-
-Current production-shaped candidate:
-
-**existing Cloudflare Pages Free shell + same-origin `/api/*` Pages Functions on Workers Free + app-owned exact private allowlist + provider-neutral `IdentityVerifier` using Google GIS/OIDC in Testing + deliberately sharded D1 Free + RecipeSource V2.**
-
-The standalone `culinary-gateway-canary.workers.dev` Worker is diagnostic evidence only; it is not the intended production authentication surface. No custom domain is required for the current lightweight canary.
-
-Cloudflare Zero Trust / Access: `REJECTED / DO NOT ACTIVATE`.
-
-R2: `REJECTED / DO NOT ACTIVATE`.
-
-Workers Paid: `REJECTED / DO NOT ACTIVATE`.
-
-#### Step 7A — COMPLETE / PASS / MERGED GREEN
-
-PR #66 merged at `8cc1a672d7f7dc33d12b17169908c69685a733c4`.
-
-Terminal: `NO_BILLING_AUTH_170K_ARCHITECTURE_PASS`.
-
-Required 170k model: estimated total **922,455,560 bytes**, max recipe shard **111,938,240 bytes**, max compact index row **680,512 bytes**, 9 modeled database slots + 1 reserved, <=256 hydrated candidates, 10–12 D1 subqueries/request and zero full-corpus scans.
-
-250k stress: estimated total **1,348,698,648 bytes**, max recipe shard **164,884,232 bytes**, max compact index row **1,000,512 bytes**, with the same candidate/subquery/no-scan gates passing.
-
-#### Step 7B — COMPLETE / PASS
-
-Terminal: `FREE_NO_BILLING_AUTHORIZATION_CONFIRMED`.
-
-Owner-visible evidence:
-
-- D1 Free `culinary-control` created with EU jurisdiction without billing/payment/overage authorization;
-- Workers Free `culinary-gateway-canary` deployed without paid-plan activation;
-- D1 binding `CULINARY_CONTROL_DB` connected to `culinary-control`;
-- Worker -> D1 `SELECT 1` returned `{"ok":1}`;
-- R2, Zero Trust/Access and Workers Paid remain unactivated.
-
-Do **not** create the eight recipe-body D1 shards yet. One D1 slot remains reserved by architecture.
-
-#### Step 7C — COMPLETE / LIVE PASS / MERGED GREEN
-
-Terminal: `STEP_7C_LIVE_AUTH_REVOCATION_CANARY_PASS`.
-
-The production auth boundary has already proved:
-
-- Google identity verification and exact invited-owner authorization;
-- persisted Culinary session on the supported production path;
-- protected D1 access for the current invited owner;
-- revocation through `session_version`;
-- stale-session rejection with HTTP 401 `SESSION_REVOKED`.
-
-This is sufficient to treat authentication as a proven architecture component for roadmap sequencing. Later browser/WebView/session work is defect repair only, not a standing programme of its own.
-
-#### Step 7D — COMPLETE / LIVE PASS / MERGED GREEN
-
-PR #81 recorded the production terminal evidence and merged at `08bce89b340c88bf175cc5bac57f62f7e29af731`.
-
-Terminal: `STEP_7D_PROTECTED_84_CANARY_PASS`.
-
-The live canary proved:
-
-- exact 84-record protected oracle integrity;
-- authenticated protected sample retrieval;
-- unauthenticated denial before protected data access;
-- Free-limit fail-closed behavior;
-- D1 read/write/runtime evidence;
-- owner-visible Workers Free runtime measurement;
-- no new D1 database, recipe-body shard, paid plan or billing authorization.
-
-Step 7E was therefore earned.
-
-#### Step 7E — COMPLETE / LIVE PASS / PROTECTED 500-RECORD FORKRECIPE PILOT
-
-Terminal:
+Steps 7A–7E are complete. Step 7E terminal is:
 
 `STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS`
 
-The completed gate proved:
+There is **no Step 7F**. Post-Step-7E continuation is Step 8.
 
-- pinned ForkRecipe source rights/data-quality/adapter audit PASS at source commit `c32255266af39bd77444d39452f3df8088ac8fd9` and verified source universe 915;
-- deterministic protected live cohort of exactly **500 recipes / 50 chunks / 5,115,695 source-body bytes**;
-- exact live fingerprint `2aa8106f7521f9cf3f6c2f9ece13d328272f8400f90f4ae79b8cdc4750b5d8b6`;
-- final audit status 200, `ready: true`, metadata validation PASS and no bootstrap required;
-- authenticated protected sample retrieval while recommendation, public-runtime, automatic-admission, nutrition-authority, dietary/allergen and ratio-promotion boundaries remained false;
-- simulated Free-limit HTTP 503 `STEP7E_FREE_LIMIT_FAIL_CLOSED` with zero pilot queries and no protected data;
-- credential-omitted HTTP 401 denial;
-- existing `culinary-control` D1 only, observed final size-after **5,931,008 bytes**;
-- no future recipe-body D1 shard, no Workers Paid/R2/Zero Trust, no billing authorization and no public ForkRecipe activation.
+### Step 8A — COMPLETE / PASS / MERGED GREEN
 
-Live-path defects found during the gate were repaired without weakening security: ambiguous audit errors can no longer trigger the full bootstrap loop, final reads have bounded retry/classification, sensitive API/auth paths are network-only in the service worker, and main validation now includes a tiny production runtime smoke.
+Terminal:
 
-The owner's Wi-Fi path could not reach fresh `pages.dev` resources while mobile data could; the final successful owner verification used mobile data. Production runtime reachability was independently proven by the main-branch smoke.
+`STEP_8A_POPULATION_CONTRACT_PASS`
 
-**Post-Step-7E boundary:** the governing no-billing architecture defines no Step 7F. Step 7E PASS closes the Step-7 sequence. Post-Step-7E continuation is now defined as Step 8; Step 7E itself still grants no shard/public/source-authority by implication.
+PR #113 merged at `68e5f159000a8b7c1677155f49ef9cde7a0801b9`.
 
-#### Step 8 — DEFINED / 8A AUTHORIZED / NO LIVE SCALE GATE CROSSED
+Evidence:
 
-Canonical design: `docs/CORPUS_SCALE_STEP8_MEASURED_POPULATION_ROADMAP.md`.
+- PR validation `34499533385`: PASS;
+- evidence rerun `34499738756`: PASS;
+- post-merge validation `34499905915`: PASS, including production smoke;
+- Pages deployment `34499905387`: PASS.
 
-Machine-readable contract: `config/corpus_scale_step8_roadmap.json`.
+Step 8A proved only the repository population contract. It created **zero** recipe-body D1 shards and performed **zero** protected corpus population.
 
-Sequence:
+Frozen implementation properties:
 
-`8A Population Contract & Shard Design -> {8B Minimum Multi-Shard Protected Canary || 8C Scalable Source Qualification} -> 8D Protected Population Ladder -> 8E Recommendation Eligibility -> 8F explicit Public Runtime Activation Decision`
+- deterministic shard routing reuses the Step 7A router;
+- first live canary topology: exactly **2 recipe-body shards**;
+- maximum planned recipe-body shards remains **8**, with one database slot reserved;
+- pre-8B write plan remains <=10 recipe rows + one receipt/metadata statement;
+- exact receipts support idempotent/resumable population;
+- conflicts fail closed;
+- rollback is an integrity-checked immutable-parent version pointer switch, not destructive deletion;
+- public runtime, automatic admission, source nutrition/dietary/allergen/ratio authority and billing authority remain false.
 
-After 8D PASS, `8G Continued Protected Scale Expansion` may run independently of 8F; public activation is deliberately not a prerequisite for protected scale learning.
+### Current earned work
 
-Current authority:
+Two lanes may now proceed in parallel:
 
-- **8A repository-only work: authorized**;
-- 8B machine preparation: only after 8A PASS; human/account action required before any recipe-body D1 shard creation;
-- 8C documentary source/rights evidence: only after 8A PASS; no ingestion/public activation;
-- 8D: blocked until both 8B and 8C earn inputs;
-- 8E: blocked until an 8D populated cohort exists;
-- 8F: explicit human public-runtime gate;
-- 8G: blocked until 8D PASS and remains protected-only.
+1. **8B machine prerequisite preparation** — repository work only until the live gate. A human/account action is mandatory before creating even the first of the two recipe-body D1 canary shards.
+2. **8C scalable source qualification** — documentary source/rights evidence may proceed autonomously. Human/legal escalation occurs only if a materially valuable ambiguity remains after documentary evidence is exhausted.
 
-No Step 8 gate authorizes Workers Paid, R2, Zero Trust/Access, billing/overage authorization, automatic nutrition/dietary/allergen/quantity authority, Knowledge Core writes, YT-CUL state changes, or interference with the Nutrition B-lane.
+Step 8D remains blocked until both 8B and 8C produce their required PASS inputs.
 
-### YouTube Culinary Discovery Atlas
+Step 8E remains blocked behind 8D. Step 8F remains an explicit human public-runtime gate. Step 8G remains blocked behind 8D and does **not** depend on 8F.
 
-YT-CUL-0: `MERGED_GREEN`.
+## Source state entering 8C
 
-YT-CUL-1: `COMPLETE`.
+- existing curated corpus + Wikibooks: established;
+- Open Recipe Archive Spanish: `HOLD_RIGHTS_AMBIGUOUS`, zero admitted;
+- Open Recipe Archive complete corpus: candidate but not ready while transformation/content-rights provenance remains unresolved;
+- ForkRecipe: Step 7E protected-pilot PASS only, zero public recommendation admission;
+- UniTools: candidate not yet audited;
+- RecipeDB: conditional source-cohort salvage gate.
 
-YT-CUL-2: `PASS / MERGED_GREEN`.
+Raw recipe count is never an admission criterion.
 
-YT-CUL-3: `YOUTUBE_CULINARY_DISCOVERY_USEFUL_BUT_REVIEW_BOUND / MERGED_GREEN`.
+## Concurrency boundaries
 
-YT-CUL-4: `YT_CUL_4_CHANNEL_PLAYLIST_EFFICIENCY_GAIN / PASS / MERGED_GREEN`.
+The Nutrition B lane is independent and must not be modified or duplicated by Corpus Scale work.
 
-YT-CUL-5: `YT_CUL_5_USEFUL_BUT_REVIEW_BOUND / PASS / MERGED_GREEN`.
+YT-CUL-5D / YT-CUL-6 state is independent and read-only from Corpus Scale. Fresh reconciliation on 2026-09-10 found the generated daily state active with `lastCompletedQuotaDate: 2026-09-10`; do not overwrite or infer its current readiness from this pointer—read the generated state directly.
 
-YT-CUL-5R: `YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_ARCHITECTURE_PASS / MERGED_GREEN / ZERO_LIVE_SEARCH`, merge `4bd9678d97dd5369daeb3c08f4e0c49996dbcfda`.
+Knowledge Core is read-only/reconciliation from the App lane. Conversation-time Brain/consultant/coach use must not create a private Knowledge Core browser/runtime dependency or bypass normal public-safe behavior gates.
 
-YT-CUL-5D: `MERGED_GREEN / SCHEDULED_ACTIVE`; current generated state remains `ACTIVE` with zero completed quota days/search calls as last reconciled on 2026-09-06. The adaptive portfolio/feedback extensions remain governed by the same Knowledge Core authority boundary.
+## Next execution rule
 
-YT-CUL-6: `NOT_EARNED`. Only canonical Knowledge Core Atlas review can create the qualifying accepted outcome; YouTube discovery never auto-promotes Atlas state, auto-admits an app recipe or auto-publishes.
+Proceed with **8B machine prerequisites + 8C source qualification in parallel**. Do not create D1 recipe-body shards, populate Step 8D, activate new public recommendations, change Nutrition B or YT-CUL state, write Knowledge Core, or authorize paid/overage infrastructure until the relevant later gate is explicitly earned.
