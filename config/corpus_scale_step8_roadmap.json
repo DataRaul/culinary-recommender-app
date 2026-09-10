@@ -1,0 +1,196 @@
+{
+  "id": "CORPUS_SCALE_STEP8_MEASURED_POPULATION_ROADMAP_V1",
+  "status": "ROADMAP_DEFINED__STEP8A_AUTHORIZED__NO_LIVE_SCALE_GATE_CROSSED",
+  "decisionDate": "2026-09-10",
+  "sourceOfTruth": "DataRaul/culinary-recommender-app",
+  "entryTerminal": "STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS",
+  "step7fDefined": false,
+  "programme": {
+    "requiredCapacity": 170000,
+    "stressCapacity": 250000,
+    "controlDatabases": 1,
+    "recipeBodyShardMax": 8,
+    "reservedDatabaseSlots": 1,
+    "createAllRecipeBodyShardsUpFront": false,
+    "initialMultiShardCanaryShards": 2
+  },
+  "inheritedBudgets": {
+    "maxTotalBytesAt170k": 3758096384,
+    "maxDatabaseBytesAt170k": 367001600,
+    "maxIndexArtifactRowBytes": 1048576,
+    "maxHydratedCandidates": 256,
+    "maxD1SubqueriesPerProtectedRequest": 16,
+    "maxDatabaseSlots": 10,
+    "reservedDatabaseSlots": 1,
+    "maxProviderRowOrBlobBytes": 2097152,
+    "workerCpuProxyAdvisoryMs": 8
+  },
+  "evidenceBasis": [
+    "docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md",
+    "docs/CORPUS_SCALE_STEP7A_NO_BILLING_AUTH_REBASELINE.md",
+    "docs/CORPUS_SCALE_STEP7D_PROTECTED_84_CANARY.md",
+    "docs/CORPUS_SCALE_STEP7E_FORKRECIPE_PILOT.md",
+    "docs/CORPUS_SCALE_STEP7E_LIVE_500_CANARY.md",
+    "docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md"
+  ],
+  "boundaries": {
+    "noBillingAuthorization": true,
+    "workersPaidAllowed": false,
+    "r2Allowed": false,
+    "zeroTrustAccessAllowed": false,
+    "nutritionBLaneIndependent": true,
+    "youtubeCulinaryStateMutableFromStep8": false,
+    "knowledgeCoreWriteAllowedFromAppLane": false,
+    "privateKnowledgeCoreRuntimeDependencyAllowed": false,
+    "sourceNutritionAuthorityImplicit": false,
+    "sourceDietaryAllergenInferenceImplicit": false,
+    "sourceRatioPromotionImplicit": false,
+    "automaticPublicRecommendationAdmission": false
+  },
+  "gates": [
+    {
+      "id": "8A",
+      "name": "Population Contract and Shard Design",
+      "status": "AUTHORIZED_NOW",
+      "mode": "REPOSITORY_ONLY",
+      "dependsOn": ["STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS"],
+      "humanRequired": false,
+      "infrastructureWriteAllowed": false,
+      "publicRuntimeChangeAllowed": false,
+      "purpose": "Freeze versioned corpus manifest, deterministic shard-routing, resumable population, rollback, quota budgets, acceptance evidence and gate authority before any new D1 database is created.",
+      "terminalOutcomes": [
+        "STEP_8A_POPULATION_CONTRACT_PASS",
+        "STEP_8A_REDESIGN_REQUIRED"
+      ],
+      "earnsOnPass": [
+        "8B_MACHINE_PREREQUISITE_PREPARATION",
+        "8C_SOURCE_QUALIFICATION_EVIDENCE"
+      ]
+    },
+    {
+      "id": "8B",
+      "name": "Minimum Multi-Shard Protected Canary",
+      "status": "BLOCKED_PENDING_8A_PASS_AND_HUMAN_ACCOUNT_ACTION",
+      "mode": "LIVE_INFRASTRUCTURE_CANARY",
+      "dependsOn": ["8A"],
+      "humanRequired": true,
+      "infrastructureWriteAllowed": true,
+      "publicRuntimeChangeAllowed": false,
+      "initialRecipeBodyShardCount": 2,
+      "purpose": "Use the minimum topology capable of proving real cross-shard routing, bounded retrieval, idempotent writes, partial-failure recovery, rollback, auth and Free-limit fail-closed behavior without creating all future shards.",
+      "terminalOutcomes": [
+        "STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS",
+        "STEP_8B_RUNTIME_OR_COST_REDESIGN_REQUIRED"
+      ],
+      "earnsOnPass": [
+        "8D_PROTECTED_POPULATION_ON_EARNED_SHARD_TOPOLOGY"
+      ]
+    },
+    {
+      "id": "8C",
+      "name": "Scalable Source Qualification",
+      "status": "BLOCKED_PENDING_8A_PASS",
+      "mode": "RIGHTS_AND_SOURCE_EVIDENCE",
+      "dependsOn": ["8A"],
+      "humanRequired": false,
+      "infrastructureWriteAllowed": false,
+      "publicRuntimeChangeAllowed": false,
+      "parallelWith": ["8B"],
+      "purpose": "Qualify useful rights-clean source cohorts without raw-count pressure. Preserve Open Recipe Archive transformation-rights hold, independently audit other candidates, and use human/legal escalation only where documentary evidence cannot resolve a material ambiguity.",
+      "terminalOutcomes": [
+        "STEP_8C_RIGHTS_CLEAN_SOURCE_COHORT_AVAILABLE",
+        "STEP_8C_NO_SCALABLE_RIGHTS_CLEAN_COHORT_YET",
+        "STEP_8C_HUMAN_RIGHTS_DECISION_REQUIRED"
+      ],
+      "earnsOnPass": [
+        "8D_RIGHTS_CLEAN_POPULATION_INPUT"
+      ]
+    },
+    {
+      "id": "8D",
+      "name": "Protected Corpus Population Ladder",
+      "status": "BLOCKED_PENDING_8B_AND_8C",
+      "mode": "PROTECTED_POPULATION_AND_MEASUREMENT",
+      "dependsOn": ["8B", "8C"],
+      "humanRequired": false,
+      "infrastructureWriteAllowed": true,
+      "publicRuntimeChangeAllowed": false,
+      "purpose": "Populate only admitted rights-clean cohorts on the earned shard topology and measure storage, D1 reads/writes, Worker CPU/errors, bounded retrieval, rebuild, rollback and incremental-validation behavior at each material size transition.",
+      "terminalOutcomes": [
+        "STEP_8D_PROTECTED_POPULATION_PASS",
+        "STEP_8D_SCALE_OR_COST_REDESIGN_REQUIRED",
+        "STEP_8D_SOURCE_INPUT_EXHAUSTED"
+      ],
+      "earnsOnPass": [
+        "8E_RECOMMENDATION_ELIGIBILITY_REVIEW",
+        "8G_CONTINUED_PROTECTED_SCALE_LOOP"
+      ]
+    },
+    {
+      "id": "8E",
+      "name": "Recommendation Eligibility Gate",
+      "status": "BLOCKED_PENDING_8D_ELIGIBLE_COHORT",
+      "mode": "APP_ADMISSION_REVIEW",
+      "dependsOn": ["8D"],
+      "humanRequired": false,
+      "infrastructureWriteAllowed": false,
+      "publicRuntimeChangeAllowed": false,
+      "purpose": "Convert a bounded subset of stored source records through canonical ingredient and quantity normalization, duplicate/family/variant handling and hard dietary/allergen metadata without inheriting source nutrition authority or bypassing the independent Nutrition lane.",
+      "terminalOutcomes": [
+        "STEP_8E_RECOMMENDATION_ELIGIBLE_SUBSET_PASS",
+        "STEP_8E_STORED_ONLY_NO_ELIGIBLE_SUBSET"
+      ],
+      "earnsOnPass": [
+        "8F_PUBLIC_RUNTIME_DECISION_INPUT"
+      ]
+    },
+    {
+      "id": "8F",
+      "name": "Public Runtime Activation Decision",
+      "status": "BLOCKED_PENDING_8E_AND_EXPLICIT_HUMAN_GATE",
+      "mode": "PUBLIC_BEHAVIOR_GATE",
+      "dependsOn": ["8E"],
+      "humanRequired": true,
+      "infrastructureWriteAllowed": false,
+      "publicRuntimeChangeAllowed": true,
+      "purpose": "Run deterministic V1/V2 parity, hard-filter, ranking/planner and browser acceptance on an earned eligible subset, then require explicit human authorization before any normal recommendation/public-runtime activation.",
+      "terminalOutcomes": [
+        "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED",
+        "STEP_8F_PUBLIC_RUNTIME_HOLD",
+        "STEP_8F_BEHAVIOR_REGRESSION_REDESIGN_REQUIRED"
+      ],
+      "earnsOnPass": [
+        "PUBLIC_RUNTIME_ACTIVATION_FOR_EXACT_APPROVED_SUBSET_ONLY"
+      ]
+    },
+    {
+      "id": "8G",
+      "name": "Continued Protected Scale Expansion Loop",
+      "status": "BLOCKED_PENDING_8D_PASS",
+      "mode": "ITERATIVE_PROTECTED_SCALE",
+      "dependsOn": ["8D"],
+      "doesNotDependOn": ["8F"],
+      "humanRequired": false,
+      "infrastructureWriteAllowed": true,
+      "publicRuntimeChangeAllowed": false,
+      "purpose": "Continue rights-clean cohort-by-cohort protected expansion only while marginal coverage and quality justify ingestion and review cost. Public activation is not a prerequisite for protected scale learning.",
+      "terminalOutcomes": [
+        "STEP_8G_CONTINUE_WITH_NEXT_EARNED_COHORT",
+        "STEP_8G_STOP_MARGINAL_VALUE_LOW",
+        "STEP_8G_CAPACITY_OR_COST_GATE_REACHED",
+        "STEP_8G_170K_REQUIRED_CAPACITY_POPULATION_REACHED"
+      ],
+      "earnsOnPass": [
+        "NEXT_BOUNDED_PROTECTED_SCALE_ITERATION_ONLY"
+      ]
+    }
+  ],
+  "sourceStateAtDefinition": {
+    "existingCuratedAndWikibooks": "PASS_ALREADY_ESTABLISHED",
+    "openRecipeArchiveSpanish": "HOLD_RIGHTS_AMBIGUOUS__ZERO_ADMITTED",
+    "openRecipeArchiveComplete": "PASS_CANDIDATE_NOT_READY_WHILE_TRANSFORMATION_RIGHTS_UNRESOLVED",
+    "forkRecipe": "STEP7E_PROTECTED_SOURCE_PILOT_PASS_ONLY__ZERO_PUBLIC_RECOMMENDATION_ADMISSION",
+    "uniTools": "PASS_CANDIDATE_NOT_YET_AUDITED",
+    "recipeDb": "CONDITIONAL_SOURCE_COHORT_SALVAGE_GATE"
+  }
+}
