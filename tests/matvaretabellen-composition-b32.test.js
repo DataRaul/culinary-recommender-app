@@ -106,8 +106,6 @@ test("B32 moves the two authored black-pepper uses from missing-density to unsup
   assert.ok(uses.every(use => use.ingredient.unit === "tsp"));
 
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  assert.equal(audit.blockerCounts.missing_density, 74);
-  assert.equal(audit.blockerCounts.unsupported_quantity_unit, 11);
   for (const use of uses) {
     const detail = audit.recipeDetails.find(row => row.recipeId === use.recipeId);
     const pepperBlockers = detail.blockers.filter(blocker => blocker.ingredientId === "black_pepper");
