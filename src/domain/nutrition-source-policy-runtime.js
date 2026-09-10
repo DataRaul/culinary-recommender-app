@@ -19,6 +19,10 @@ import {
   MATVARETABELLEN_COMPOSITION_SOURCE_B30
 } from "../data/matvaretabellen-composition-b30.js";
 import {
+  MATVARETABELLEN_COMPOSITION_DENSITIES_B31,
+  MATVARETABELLEN_COMPOSITION_SOURCE_B31
+} from "../data/matvaretabellen-composition-b31.js";
+import {
   CIQUAL_RUNTIME_SOURCE_V1,
   EUROPEAN_PRIMARY_DENSITIES_V1 as BASE_EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
@@ -54,6 +58,12 @@ const POST_B25_TRANCHES = Object.freeze([
     countKey: "matvaretabellenB29SelectedCount",
     densities: MATVARETABELLEN_COMPOSITION_DENSITIES_B29,
     source: MATVARETABELLEN_COMPOSITION_SOURCE_B29
+  }),
+  Object.freeze({
+    key: "B31",
+    countKey: "matvaretabellenB31SelectedCount",
+    densities: MATVARETABELLEN_COMPOSITION_DENSITIES_B31,
+    source: MATVARETABELLEN_COMPOSITION_SOURCE_B31
   })
 ]);
 
