@@ -76,11 +76,12 @@ test("B45 composition does not authorize cooking yield or household portion", ()
   assert.equal(record.cookedYield, undefined);
 });
 
-test("B45 clears the risotto-rice density blocker while independent blockers remain", () => {
+test("B45 clears its risotto-rice blocker without freezing later independent evidence", () => {
+  assert.deepEqual(Object.keys(MATVARETABELLEN_COMPOSITION_DENSITIES_B45), ["risotto_rice"]);
+  assert.equal(matvaretabellenCompositionB45ForIngredient("butter"), null);
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   const detail = audit.recipeDetails.find(row => row.recipeId === "italian_mushroom_risotto");
   assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "risotto_rice"), false);
-  assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "butter"), true);
   assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "black_pepper"), true);
   assert.equal(detail.authoritative, false);
 });
