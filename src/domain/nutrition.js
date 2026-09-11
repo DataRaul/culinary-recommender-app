@@ -42,6 +42,10 @@ import {
   usdaSr28SaltPortionConversionB40
 } from "../data/usda-sr28-salt-portions-b40.js";
 import {
+  USDA_SR28_SESAME_OIL_PORTION_SOURCE_B41,
+  usdaSr28SesameOilPortionConversionB41
+} from "../data/usda-sr28-sesame-oil-portions-b41.js";
+import {
   CIQUAL_RUNTIME_SOURCE_V1,
   EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
@@ -138,6 +142,27 @@ const quantityToGrams = ingredient => {
         sourceFoodDescription: sr28SaltPortion.sourceFoodDescription,
         ndbNumber: sr28SaltPortion.ndbNumber,
         matchConfidence: sr28SaltPortion.matchConfidence
+      }
+    };
+  }
+
+  const sr28SesameOilPortion = usdaSr28SesameOilPortionConversionB41(ingredientId, unit);
+  if (sr28SesameOilPortion) {
+    return {
+      grams: quantity * sr28SesameOilPortion.gramsPerUnit,
+      reason: null,
+      quantityEvidence: {
+        state: sr28SesameOilPortion.evidenceState,
+        sourceId: USDA_SR28_SESAME_OIL_PORTION_SOURCE_B41.id,
+        evidenceTranche: sr28SesameOilPortion.evidenceTranche,
+        inputUnit: unit,
+        gramsPerUnit: sr28SesameOilPortion.gramsPerUnit,
+        sourceMeasureAmount: sr28SesameOilPortion.sourceMeasureAmount,
+        sourceMeasureUnit: sr28SesameOilPortion.sourceMeasureUnit,
+        sourceMeasureGramWeight: sr28SesameOilPortion.sourceMeasureGramWeight,
+        sourceFoodDescription: sr28SesameOilPortion.sourceFoodDescription,
+        ndbNumber: sr28SesameOilPortion.ndbNumber,
+        matchConfidence: sr28SesameOilPortion.matchConfidence
       }
     };
   }
@@ -385,7 +410,7 @@ export const publicNutritionSource = {
         compositionSource: USDA_FOUNDATION_COMPOSITION_SOURCE,
         compositionSources: [USDA_FOUNDATION_COMPOSITION_SOURCE, CIQUAL_RUNTIME_SOURCE_V1, MATVARETABELLEN_COMPOSITION_SOURCE_B9, MATVARETABELLEN_COMPOSITION_SOURCE_B10],
         portionSource: USDA_FOUNDATION_PORTION_SOURCE,
-        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, MATVARETABELLEN_PORTION_SOURCE_B15, MATVARETABELLEN_PORTION_SOURCE_B17, USDA_SR_LEGACY_PORTION_SOURCE_B8, USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37, USDA_NFCS_MISO_PORTION_SOURCE_B38, USDA_SR28_SALT_PORTION_SOURCE_B40],
+        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, MATVARETABELLEN_PORTION_SOURCE_B15, MATVARETABELLEN_PORTION_SOURCE_B17, USDA_SR_LEGACY_PORTION_SOURCE_B8, USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37, USDA_NFCS_MISO_PORTION_SOURCE_B38, USDA_SR28_SALT_PORTION_SOURCE_B40, USDA_SR28_SESAME_OIL_PORTION_SOURCE_B41],
         coverage,
         europeanPrimaryCoverage,
         identities,
