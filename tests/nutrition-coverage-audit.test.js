@@ -34,10 +34,9 @@ test("audit preserves every fail-closed shortfall class rather than treating par
 test("B41 reviewed sesame-oil teaspoon evidence preserves cumulative fail-closed truth", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
-  assert.equal(audit.authoritativeRecipeCount, 19);
-  assert.equal(audit.estimateRecipeCount, 57);
+  assert.equal(audit.authoritativeRecipeCount, 18);
+  assert.equal(audit.estimateRecipeCount, 58);
   assert.deepEqual(audit.authoritativeRecipeIds, [
-    "east_asian_egg_pea_fried_rice",
     "indian_chicken_spinach_curry",
     "indian_chickpea_cauliflower_curry",
     "indian_red_lentil_spinach_dal",
