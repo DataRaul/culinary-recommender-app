@@ -14,10 +14,11 @@ export const USDA_FOUNDATION_RED_ONION_PORTION_SOURCE_B42 = Object.freeze({
   sourceUrl: "https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_foundation_food_csv_2026-04-30.zip",
   licence: "CC0-1.0 / U.S. public domain",
   state: "BOUNDED_STATIC_REVIEWED_PORTION_EVIDENCE",
-  role: "PORTION_EVIDENCE_ONLY",
+  role: "PORTION_POLICY_REVIEW_OF_EXISTING_FOUNDATION_SOURCE",
   evidenceTranche: "B42",
   runtimeFetch: false,
-  compositionUse: "PROHIBITED_IN_THIS_TRANCHE"
+  compositionUse: "PROHIBITED_IN_THIS_TRANCHE",
+  underlyingPortionSourceId: "usda-fdc-foundation-2026-04-portions-v1"
 });
 
 export const USDA_FOUNDATION_RED_ONION_PORTION_EVIDENCE_B42 = Object.freeze({
@@ -36,7 +37,8 @@ export const USDA_FOUNDATION_RED_ONION_PORTION_EVIDENCE_B42 = Object.freeze({
     minYearAcquired: 2019,
     matchConfidence: "medium",
     evidenceState: "USDA_FOUNDATION_RED_ONION_PIECE_DIRECT_B42",
-    sourceId: USDA_FOUNDATION_RED_ONION_PORTION_SOURCE_B42.id,
+    sourceId: "usda-fdc-foundation-2026-04-portions-v1",
+    policyReviewId: USDA_FOUNDATION_RED_ONION_PORTION_SOURCE_B42.id,
     evidenceTranche: "B42",
     reviewNotes: "The pinned Foundation row is exact red onion, raw, and directly publishes one edible Onion = 197 g. Canonical red_onion is also exact red onion and authored 'piece' is unqualified by size; the source measure is likewise unqualified by size, so B42 does not choose among competing size labels. Medium confidence preserves natural piece-weight variability. This promotion follows the later B6 policy precedent that a direct unqualified source piece can serve an unqualified authored piece while explicit size labels remain separate."
   })
@@ -47,6 +49,8 @@ export function usdaFoundationRedOnionPortionConversionB42(ingredientId, unit) {
   if (!record || !record.acceptedUnits.includes(String(unit || "").toLowerCase())) return null;
   return {
     gramsPerUnit: record.gramsPerUnit,
+    sourceUnit: record.sourceMeasureUnit,
+    modifier: record.sourceModifier,
     sourceMeasureAmount: record.sourceMeasureAmount,
     sourceMeasureUnit: record.sourceMeasureUnit,
     sourceModifier: record.sourceModifier,
@@ -58,6 +62,7 @@ export function usdaFoundationRedOnionPortionConversionB42(ingredientId, unit) {
     minYearAcquired: record.minYearAcquired,
     matchConfidence: record.matchConfidence,
     evidenceState: record.evidenceState,
-    evidenceTranche: record.evidenceTranche
+    evidenceTranche: record.evidenceTranche,
+    policyReviewId: record.policyReviewId
   };
 }
