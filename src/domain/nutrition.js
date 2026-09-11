@@ -38,6 +38,10 @@ import {
   usdaNfcsMisoPortionConversionB38
 } from "../data/usda-nfcs-miso-portions-b38.js";
 import {
+  USDA_SR28_SALT_PORTION_SOURCE_B40,
+  usdaSr28SaltPortionConversionB40
+} from "../data/usda-sr28-salt-portions-b40.js";
+import {
   CIQUAL_RUNTIME_SOURCE_V1,
   EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
@@ -113,6 +117,27 @@ const quantityToGrams = ingredient => {
         sourceFoodCode: nfcsMisoPortion.sourceFoodCode,
         ediblePortionBasis: nfcsMisoPortion.ediblePortionBasis,
         matchConfidence: nfcsMisoPortion.matchConfidence
+      }
+    };
+  }
+
+  const sr28SaltPortion = usdaSr28SaltPortionConversionB40(ingredientId, unit);
+  if (sr28SaltPortion) {
+    return {
+      grams: quantity * sr28SaltPortion.gramsPerUnit,
+      reason: null,
+      quantityEvidence: {
+        state: sr28SaltPortion.evidenceState,
+        sourceId: USDA_SR28_SALT_PORTION_SOURCE_B40.id,
+        evidenceTranche: sr28SaltPortion.evidenceTranche,
+        inputUnit: unit,
+        gramsPerUnit: sr28SaltPortion.gramsPerUnit,
+        sourceMeasureAmount: sr28SaltPortion.sourceMeasureAmount,
+        sourceMeasureUnit: sr28SaltPortion.sourceMeasureUnit,
+        sourceMeasureGramWeight: sr28SaltPortion.sourceMeasureGramWeight,
+        sourceFoodDescription: sr28SaltPortion.sourceFoodDescription,
+        ndbNumber: sr28SaltPortion.ndbNumber,
+        matchConfidence: sr28SaltPortion.matchConfidence
       }
     };
   }
@@ -360,7 +385,7 @@ export const publicNutritionSource = {
         compositionSource: USDA_FOUNDATION_COMPOSITION_SOURCE,
         compositionSources: [USDA_FOUNDATION_COMPOSITION_SOURCE, CIQUAL_RUNTIME_SOURCE_V1, MATVARETABELLEN_COMPOSITION_SOURCE_B9, MATVARETABELLEN_COMPOSITION_SOURCE_B10],
         portionSource: USDA_FOUNDATION_PORTION_SOURCE,
-        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, MATVARETABELLEN_PORTION_SOURCE_B15, MATVARETABELLEN_PORTION_SOURCE_B17, USDA_SR_LEGACY_PORTION_SOURCE_B8, USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37, USDA_NFCS_MISO_PORTION_SOURCE_B38],
+        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, MATVARETABELLEN_PORTION_SOURCE_B15, MATVARETABELLEN_PORTION_SOURCE_B17, USDA_SR_LEGACY_PORTION_SOURCE_B8, USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37, USDA_NFCS_MISO_PORTION_SOURCE_B38, USDA_SR28_SALT_PORTION_SOURCE_B40],
         coverage,
         europeanPrimaryCoverage,
         identities,
