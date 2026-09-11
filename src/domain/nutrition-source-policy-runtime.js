@@ -43,6 +43,10 @@ import {
   MATVARETABELLEN_COMPOSITION_SOURCE_B43
 } from "../data/matvaretabellen-composition-b43.js";
 import {
+  MATVARETABELLEN_COMPOSITION_DENSITIES_B44,
+  MATVARETABELLEN_COMPOSITION_SOURCE_B44
+} from "../data/matvaretabellen-composition-b44.js";
+import {
   MEXT_COMPOSITION_DENSITIES_B39,
   MEXT_COMPOSITION_SOURCE_B39
 } from "../data/mext-composition-b39.js";
@@ -112,6 +116,12 @@ const POST_B25_TRANCHES = Object.freeze([
     countKey: "matvaretabellenB43SelectedCount",
     densities: MATVARETABELLEN_COMPOSITION_DENSITIES_B43,
     source: MATVARETABELLEN_COMPOSITION_SOURCE_B43
+  }),
+  Object.freeze({
+    key: "B44",
+    countKey: "matvaretabellenB44SelectedCount",
+    densities: MATVARETABELLEN_COMPOSITION_DENSITIES_B44,
+    source: MATVARETABELLEN_COMPOSITION_SOURCE_B44
   })
 ]);
 
