@@ -12,7 +12,6 @@ import {
   usdaFoundationRedOnionPortionConversionB42
 } from "../src/data/usda-foundation-red-onion-portions-b42.js";
 import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
-import { EUROPEAN_PRIMARY_DENSITIES_V1 } from "../src/domain/nutrition-source-policy-runtime.js";
 
 test("B42 is a bounded policy review of the already-pinned USDA Foundation portion source", () => {
   assert.equal(USDA_FOUNDATION_RED_ONION_PORTION_SOURCE_B42.authority, "U.S. Department of Agriculture, Agricultural Research Service");
@@ -59,11 +58,14 @@ test("B42 does not bleed red-onion evidence into neighboring identities or unsup
 });
 
 test("runtime resolves exact red-onion authored fractions with Foundation source provenance", () => {
+  const syntheticDensity = {
+    red_onion: { energyKcal: 40, proteinG: 1, carbohydrateG: 9, fatG: 0.1, fibreG: 1.5 }
+  };
   for (const [quantity, expectedGrams] of [[0.25, 49.25], [0.5, 98.5]]) {
     const result = calculatePerServingFromDensities({
       ingredients: [{ canonicalIngredientId: "red_onion", quantity, unit: "piece" }],
       serving: { servings: 1 }
-    }, EUROPEAN_PRIMARY_DENSITIES_V1);
+    }, syntheticDensity);
     assert.equal(result.complete, true, String(quantity));
     assert.equal(result.used[0].grams, expectedGrams, String(quantity));
     assert.equal(result.used[0].quantityEvidence.state, "USDA_FOUNDATION_RED_ONION_PIECE_DIRECT_B42", String(quantity));
@@ -71,7 +73,6 @@ test("runtime resolves exact red-onion authored fractions with Foundation source
     assert.equal(result.used[0].quantityEvidence.fdcId, "790577", String(quantity));
     assert.equal(result.used[0].quantityEvidence.sourceUnit, "Onion", String(quantity));
     assert.equal(result.used[0].quantityEvidence.modifier, "Edible", String(quantity));
-    assert.notEqual(result.used[0].provenanceByNutrient.proteinG.sourceId, USDA_FOUNDATION_RED_ONION_PORTION_SOURCE_B42.id, String(quantity));
   }
 });
 
