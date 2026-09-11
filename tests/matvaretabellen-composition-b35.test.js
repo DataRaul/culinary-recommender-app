@@ -7,8 +7,6 @@ import {
 } from "../src/data/matvaretabellen-composition-b35.js";
 import { AUTHORED_RECIPES } from "../src/data/corpus-v1.js";
 import { INGREDIENTS, normalizeIngredient } from "../src/data/ingredients.js";
-import { publicNutritionSource } from "../src/domain/nutrition.js";
-import { buildNutritionCoverageAudit } from "../src/domain/nutrition-coverage-audit.js";
 import {
   europeanPrimaryPolicyCoverage,
   selectEuropeanPrimaryNutrient
@@ -91,22 +89,17 @@ test("B35 composition evidence does not authorize tablespoon mass or another qua
   assert.equal(miso.cookedYieldFactor, undefined);
 });
 
-test("B35 moves exactly the three authored miso uses to unsupported tablespoon quantity while remaining fail-closed", () => {
+test("B35 historical tranche stays composition-only after later portion evidence is added", () => {
   const uses = AUTHORED_RECIPES
     .filter(recipe => recipe.ingredients.some(ingredient => ingredient.canonicalIngredientId === "miso"))
-    .map(recipe => ({
-      recipeId: recipe.id,
-      ingredient: recipe.ingredients.find(ingredient => ingredient.canonicalIngredientId === "miso")
-    }));
-  assert.equal(uses.length, 3);
-  assert.ok(uses.every(use => use.ingredient.unit === "tbsp"));
-  assert.ok(uses.every(use => use.ingredient.quantity === 1.5));
+    .map(recipe => recipe.ingredients.find(ingredient => ingredient.canonicalIngredientId === "miso"));
 
-  const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  for (const use of uses) {
-    const detail = audit.recipeDetails.find(row => row.recipeId === use.recipeId);
-    const blockers = detail.blockers.filter(blocker => blocker.ingredientId === "miso");
-    assert.deepEqual(blockers, [{ ingredientId: "miso", reason: "unsupported_quantity_unit" }], use.recipeId);
-    assert.equal(detail.authoritative, false, use.recipeId);
-  }
+  assert.equal(uses.length, 3);
+  assert.ok(uses.every(ingredient => ingredient.unit === "tbsp"));
+  assert.ok(uses.every(ingredient => ingredient.quantity === 1.5));
+
+  const miso = matvaretabellenCompositionB35ForIngredient("miso");
+  assert.equal(miso.sourceId, MATVARETABELLEN_COMPOSITION_SOURCE_B35.id);
+  assert.equal(miso.gramsPerUnit, undefined);
+  assert.equal(miso.sourcePortionId, undefined);
 });
