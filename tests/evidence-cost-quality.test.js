@@ -10,6 +10,7 @@ import {
 import { USDA_FOUNDATION_COMPOSITION_SOURCE, USDA_FOUNDATION_DENSITIES_V1 } from "../src/data/usda-foundation-nutrients-v1.js";
 import { USDA_FOUNDATION_DENSITIES_B3 } from "../src/data/usda-foundation-nutrients-b3.js";
 import {
+  USDA_FOUNDATION_PORTION_CONVERSIONS_V1,
   USDA_FOUNDATION_PORTION_EVIDENCE_V1,
   USDA_FOUNDATION_PORTION_SOURCE,
   usdaFoundationPortionConversion
@@ -59,7 +60,7 @@ test("B3 expands reviewed Foundation composition without pretending incomplete f
   assert.equal(NUTRITION_IDENTITY_EVIDENCE.broccoli.compositionState, "STATIC_COMPOSITION_IMPORTED_COMPLETE_FOR_TRACKED_FIELDS");
 });
 
-test("USDA B3 household weights remain evidence-only when their own canonical semantics are insufficient", () => {
+test("B3 household rows remain historical evidence-only unless a later tranche separately promotes them", () => {
   assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.broccoli[0].gramWeight, 76);
   assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.broccoli[0].modifier, "chopped");
   assert.equal(USDA_FOUNDATION_PORTION_EVIDENCE_V1.eggs[0].gramWeight, 50.3);
@@ -69,7 +70,7 @@ test("USDA B3 household weights remain evidence-only when their own canonical se
   assert.equal(usdaFoundationPortionConversion("broccoli", "cup"), null);
   assert.equal(usdaFoundationPortionConversion("eggs", "pieces"), null);
   assert.equal(usdaFoundationPortionConversion("onion", "piece"), null);
-  assert.equal(usdaFoundationPortionConversion("red_onion", "piece"), null);
+  assert.equal(USDA_FOUNDATION_PORTION_CONVERSIONS_V1.red_onion, undefined);
 });
 
 test("B3 complete mass records can participate in deterministic static calculations", () => {
