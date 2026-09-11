@@ -68,3 +68,17 @@ B38 bundles one bounded historical household-portion row from the U.S. Departmen
 - Reuse boundary: B38 records only this exact historical portion row. It does not import historical nutrient composition and does not infer another unit or food identity.
 
 B38 is a separate portion-only role with medium confidence because the source is historical. The same USDA table separately identifies `414-2010` **Miso sauce** at a different tablespoon mass, so B38 deliberately does not generalize the generic miso row to miso sauce, named miso subtypes, teaspoons, cups or neighboring fermented-soy foods. The independent B35 Matvaretabellen composition evidence remains governed by its own source and carbohydrate-semantic contract.
+
+## Japan Standard Tables of Food Composition data
+
+B39 bundles one exact composition row from Japan's Ministry of Education, Culture, Sports, Science and Technology (MEXT), **Standard Tables of Food Composition in Japan (Eighth Revised Edition), Supplement 2023**.
+
+- Source authority: Ministry of Education, Culture, Sports, Science and Technology (MEXT), Japan
+- Dataset: Standard Tables of Food Composition in Japan (Eighth Revised Edition), Supplement 2023
+- Reviewed food number: `17016`, **Rice vinegar**
+- Source page: https://fooddb.mext.go.jp/details/details.pl?ITEM_NO=17_17016_7
+- Reuse guidance: https://www.mext.go.jp/a_menu/syokuhinseibun/index.htm
+- Attribution: Source: Standard Tables of Food Composition in Japan (Eighth Revised Edition), Supplement 2023, MEXT.
+- Reuse boundary: MEXT states that food-composition data may be freely used and asks secondary users, including applications, to identify the source. B39 stores only the reviewed food-17016 tracked fields and no source prose beyond bounded identity/provenance metadata.
+
+B39 is a standalone composition-only provider extension. It preserves MEXT's `CHOAVLDF-` available-carbohydrate-by-difference field as a distinct semantic, never treats it as USDA total carbohydrate-by-difference, and does not authorize a tablespoon mass, generic vinegar, seasoned rice vinegar, black rice vinegar, grain/wine vinegar or another household/yield conversion.
