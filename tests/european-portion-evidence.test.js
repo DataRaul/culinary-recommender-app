@@ -12,6 +12,7 @@ import { MATVARETABELLEN_PORTION_SOURCE_B15 } from "../src/data/matvaretabellen-
 import { MATVARETABELLEN_PORTION_SOURCE_B17 } from "../src/data/matvaretabellen-portions-b17.js";
 import { USDA_SR_LEGACY_PORTION_SOURCE_B8 } from "../src/data/usda-sr-legacy-portions-b8.js";
 import { USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37 } from "../src/data/usda-sr28-peanut-butter-portions-b37.js";
+import { USDA_NFCS_MISO_PORTION_SOURCE_B38 } from "../src/data/usda-nfcs-miso-portions-b38.js";
 import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
 import { USDA_FOUNDATION_DENSITIES } from "../src/data/nutrition-evidence.js";
 import { USDA_FOUNDATION_DENSITIES_V1 } from "../src/data/usda-foundation-nutrients-v1.js";
@@ -125,17 +126,20 @@ test("public nutrition evidence exposes all bounded portion sources without maki
     serving: { servings: 1 },
     nutrition: { perServing: { energyKcal: 1 }, estimationState: "INFERRED_ESTIMATE", confidence: "low" }
   });
-  assert.equal(estimate.evidence.portionSources.length, 6);
+  assert.equal(estimate.evidence.portionSources.length, 7);
   assert.equal(estimate.evidence.portionSources[1].id, MATVARETABELLEN_PORTION_SOURCE_B6.id);
   assert.equal(estimate.evidence.portionSources[2].id, MATVARETABELLEN_PORTION_SOURCE_B15.id);
   assert.equal(estimate.evidence.portionSources[3].id, MATVARETABELLEN_PORTION_SOURCE_B17.id);
   assert.equal(estimate.evidence.portionSources[4].id, USDA_SR_LEGACY_PORTION_SOURCE_B8.id);
   assert.equal(estimate.evidence.portionSources[5].id, USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37.id);
+  assert.equal(estimate.evidence.portionSources[6].id, USDA_NFCS_MISO_PORTION_SOURCE_B38.id);
   assert.equal(USDA_SR_LEGACY_PORTION_SOURCE_B8.compositionUse, "PROHIBITED_IN_THIS_TRANCHE");
   assert.equal(MATVARETABELLEN_PORTION_SOURCE_B17.compositionUse, "PROHIBITED_IN_THIS_TRANCHE");
   assert.equal(USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37.compositionUse, "PROHIBITED_IN_THIS_TRANCHE");
+  assert.equal(USDA_NFCS_MISO_PORTION_SOURCE_B38.compositionUse, "PROHIBITED_IN_THIS_TRANCHE");
   assert.equal(estimate.evidence.sources.some(source => source.id === MATVARETABELLEN_PORTION_SOURCE_B15.id), false);
   assert.equal(estimate.evidence.sources.some(source => source.id === MATVARETABELLEN_PORTION_SOURCE_B17.id), false);
   assert.equal(estimate.evidence.sources.some(source => source.id === USDA_SR_LEGACY_PORTION_SOURCE_B8.id), false);
   assert.equal(estimate.evidence.sources.some(source => source.id === USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37.id), false);
+  assert.equal(estimate.evidence.sources.some(source => source.id === USDA_NFCS_MISO_PORTION_SOURCE_B38.id), false);
 });

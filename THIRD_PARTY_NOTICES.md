@@ -55,3 +55,16 @@ B37 bundles a bounded household-portion consensus derived from the official USDA
 - Reuse boundary: B37 records only the reviewed peanut-butter household measure needed by the authored corpus. It does not import SR28 nutrient composition.
 
 B37 is a separate portion-only role. Four reviewed SR28 peanut-butter variants—chunk/smooth crossed with with/without salt—each publish 32 g for 2 tbsp, so B37 admits exactly 16 g per canonical `peanut_butter` tablespoon. It does not authorize teaspoon or cup conversion, neighboring nut or seed butters, peanuts, peanut sauce, or any SR28 composition value. The independent B36 Matvaretabellen composition evidence remains governed by its own source and carbohydrate-semantic contract.
+
+## USDA Nationwide Food Consumption Survey historical portion data
+
+B38 bundles one bounded historical household-portion row from the U.S. Department of Agriculture's **Coding Manual to Handle Data from Nationwide Survey of Individuals, Spring 1977-78**, CFE Admin. Report No. 352.
+
+- Source authority: U.S. Department of Agriculture
+- Dataset: Nationwide Food Consumption Survey 1977-78
+- Source report: https://www.ars.usda.gov/ARSUserFiles/80400530/pdf/7778/cfe_admin_rep_352.pdf
+- Reviewed food code: `414-2011`, **Soybean product: Miso**
+- Reviewed measure: **1 tablespoon = 17 g edible portion**
+- Reuse boundary: B38 records only this exact historical portion row. It does not import historical nutrient composition and does not infer another unit or food identity.
+
+B38 is a separate portion-only role with medium confidence because the source is historical. The same USDA table separately identifies `414-2010` **Miso sauce** at a different tablespoon mass, so B38 deliberately does not generalize the generic miso row to miso sauce, named miso subtypes, teaspoons, cups or neighboring fermented-soy foods. The independent B35 Matvaretabellen composition evidence remains governed by its own source and carbohydrate-semantic contract.

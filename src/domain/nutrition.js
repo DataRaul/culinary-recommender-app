@@ -34,6 +34,10 @@ import {
   usdaSr28PeanutButterPortionConversionB37
 } from "../data/usda-sr28-peanut-butter-portions-b37.js";
 import {
+  USDA_NFCS_MISO_PORTION_SOURCE_B38,
+  usdaNfcsMisoPortionConversionB38
+} from "../data/usda-nfcs-miso-portions-b38.js";
+import {
   CIQUAL_RUNTIME_SOURCE_V1,
   EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
@@ -87,6 +91,28 @@ const quantityToGrams = ingredient => {
         reviewedNdbNumbers: [...sr28PeanutButterPortion.reviewedNdbNumbers],
         reviewedVariantCount: sr28PeanutButterPortion.reviewedVariantCount,
         matchConfidence: sr28PeanutButterPortion.matchConfidence
+      }
+    };
+  }
+
+  const nfcsMisoPortion = usdaNfcsMisoPortionConversionB38(ingredientId, unit);
+  if (nfcsMisoPortion) {
+    return {
+      grams: quantity * nfcsMisoPortion.gramsPerUnit,
+      reason: null,
+      quantityEvidence: {
+        state: nfcsMisoPortion.evidenceState,
+        sourceId: USDA_NFCS_MISO_PORTION_SOURCE_B38.id,
+        evidenceTranche: nfcsMisoPortion.evidenceTranche,
+        inputUnit: unit,
+        gramsPerUnit: nfcsMisoPortion.gramsPerUnit,
+        sourceMeasureAmount: nfcsMisoPortion.sourceMeasureAmount,
+        sourceMeasureUnit: nfcsMisoPortion.sourceMeasureUnit,
+        sourceMeasureGramWeight: nfcsMisoPortion.sourceMeasureGramWeight,
+        sourceFoodDescription: nfcsMisoPortion.sourceFoodDescription,
+        sourceFoodCode: nfcsMisoPortion.sourceFoodCode,
+        ediblePortionBasis: nfcsMisoPortion.ediblePortionBasis,
+        matchConfidence: nfcsMisoPortion.matchConfidence
       }
     };
   }
@@ -322,9 +348,9 @@ export const publicNutritionSource = {
       method,
       confidence: authoritativeRecipeCalculation ? "medium" : recipe.nutrition?.confidence || "low",
       provenance: usesEuropeanPrimary
-        ? "Calculated deterministically under the Canary/Spain/Europe source-selection policy from reviewed USDA Foundation, ANSES-Ciqual and bounded Matvaretabellen composition or exact field-completion evidence, with exact per-nutrient provenance and source-backed USDA, Matvaretabellen and/or SR Legacy quantity weights; incompatible carbohydrate semantics are never mixed and cooking/yield uncertainty remains."
+        ? "Calculated deterministically under the Canary/Spain/Europe source-selection policy from reviewed USDA Foundation, ANSES-Ciqual and bounded Matvaretabellen composition or exact field-completion evidence, with exact per-nutrient provenance and source-backed USDA and Matvaretabellen quantity weights; incompatible carbohydrate semantics are never mixed and cooking/yield uncertainty remains."
         : usesCoherentUsdaFallback
-          ? "European-primary selection was incomplete or semantically incompatible for a full recipe total, so the deterministic fully coherent reviewed USDA Foundation calculation was retained; source-backed USDA, Matvaretabellen and/or SR Legacy quantity weights may be used and cooking/yield uncertainty remains."
+          ? "European-primary selection was incomplete or semantically incompatible for a full recipe total, so the deterministic fully coherent reviewed USDA Foundation calculation was retained; source-backed USDA and Matvaretabellen quantity weights may be used and cooking/yield uncertainty remains."
           : recipe.nutrition?.provenance || "Project-authored estimate.",
       evidence: {
         source: USDA_FOUNDATION_SOURCE,
@@ -333,7 +359,7 @@ export const publicNutritionSource = {
         compositionSource: USDA_FOUNDATION_COMPOSITION_SOURCE,
         compositionSources: [USDA_FOUNDATION_COMPOSITION_SOURCE, CIQUAL_RUNTIME_SOURCE_V1, MATVARETABELLEN_COMPOSITION_SOURCE_B9, MATVARETABELLEN_COMPOSITION_SOURCE_B10],
         portionSource: USDA_FOUNDATION_PORTION_SOURCE,
-        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, MATVARETABELLEN_PORTION_SOURCE_B15, MATVARETABELLEN_PORTION_SOURCE_B17, USDA_SR_LEGACY_PORTION_SOURCE_B8, USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37],
+        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, MATVARETABELLEN_PORTION_SOURCE_B15, MATVARETABELLEN_PORTION_SOURCE_B17, USDA_SR_LEGACY_PORTION_SOURCE_B8, USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37, USDA_NFCS_MISO_PORTION_SOURCE_B38],
         coverage,
         europeanPrimaryCoverage,
         identities,
