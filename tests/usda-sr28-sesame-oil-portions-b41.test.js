@@ -57,10 +57,12 @@ test("runtime resolves sesame-oil teaspoon with B41 provenance while composition
   assert.notEqual(result.used[0].provenanceByNutrient.proteinG.sourceId, USDA_SR28_SESAME_OIL_PORTION_SOURCE_B41.id);
 });
 
-test("B41 clears exactly the three authored sesame-oil teaspoon blockers", () => {
+test("B41 clears exactly the five authored sesame-oil teaspoon blockers", () => {
   const recipes = AUTHORED_RECIPES.filter(recipe => recipe.ingredients.some(item => item.canonicalIngredientId === "sesame_oil"));
-  assert.equal(recipes.length, 3);
+  assert.equal(recipes.length, 5);
   assert.deepEqual(recipes.map(recipe => recipe.id), [
+    "east_asian_tofu_edamame_rice",
+    "east_asian_salmon_cabbage_rice",
     "east_asian_miso_salmon_rice",
     "east_asian_egg_pea_fried_rice",
     "east_asian_chicken_broccoli_noodles"
@@ -75,6 +77,16 @@ test("B41 clears exactly the three authored sesame-oil teaspoon blockers", () =>
     assert.equal(used.grams, 4.5, recipe.id);
     assert.equal(used.quantityEvidence.evidenceTranche, "B41", recipe.id);
   }
+});
+
+test("B41 unlocks egg-pea fried rice only through coherent USDA fallback, never by mixing carbohydrate semantics", () => {
+  const recipe = AUTHORED_RECIPES.find(item => item.id === "east_asian_egg_pea_fried_rice");
+  const estimate = publicNutritionSource.estimate(recipe);
+  assert.equal(estimate.evidence.europeanStaticCalculation.complete, false);
+  assert.equal(estimate.evidence.usdaFallbackCalculation.complete, true);
+  assert.equal(estimate.evidence.sourceSelectionState, "USDA_COHERENT_FALLBACK_COMPLETE");
+  assert.equal(estimate.method, "USDA_FDC_FOUNDATION_STATIC_CALCULATION");
+  assert.equal(estimate.evidence.state, "AUTHORITATIVE_STATIC_RECIPE_CALCULATION_AVAILABLE");
 });
 
 test("B41 does not silently authorize tablespoon or cup despite SR28 publishing those measures", () => {
