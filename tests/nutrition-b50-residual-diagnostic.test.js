@@ -24,9 +24,9 @@ test("B50 temporary diagnostic ranks current missing-density blockers with autho
   }
   const ranked = [...byIngredient.values()]
     .sort((a, b) => b.count - a.count || a.ingredientId.localeCompare(b.ingredientId));
-  console.log("B50_RESIDUAL_DIAGNOSTIC=" + JSON.stringify({
+  const payload = {
     missingDensityCount: audit.blockerCounts.missing_density,
     ranked
-  }));
-  assert.equal(ranked.reduce((sum, row) => sum + row.count, 0), audit.blockerCounts.missing_density);
+  };
+  assert.fail("B50_RESIDUAL_DIAGNOSTIC=" + JSON.stringify(payload));
 });
