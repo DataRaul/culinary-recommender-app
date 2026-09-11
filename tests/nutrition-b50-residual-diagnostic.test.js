@@ -4,29 +4,16 @@ import { AUTHORED_RECIPES } from "../src/data/corpus-v1.js";
 import { publicNutritionSource } from "../src/domain/nutrition.js";
 import { buildNutritionCoverageAudit } from "../src/domain/nutrition-coverage-audit.js";
 
-test("B50 temporary diagnostic ranks current missing-density blockers with authored context", () => {
+test("B50 temporary diagnostic ranks current missing-density blockers", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  const byIngredient = new Map();
+  const counts = new Map();
   for (const detail of audit.recipeDetails) {
-    const recipe = AUTHORED_RECIPES.find(item => item.id === detail.recipeId);
     for (const blocker of detail.blockers.filter(item => item.reason === "missing_density")) {
-      const ingredient = recipe?.ingredients?.find(item => item.canonicalIngredientId === blocker.ingredientId);
-      const row = byIngredient.get(blocker.ingredientId) || { ingredientId: blocker.ingredientId, count: 0, uses: [] };
-      row.count += 1;
-      row.uses.push({
-        recipeId: detail.recipeId,
-        quantity: ingredient?.quantity ?? null,
-        unit: ingredient?.unit ?? null,
-        preparation: ingredient?.preparation ?? null
-      });
-      byIngredient.set(blocker.ingredientId, row);
+      counts.set(blocker.ingredientId, (counts.get(blocker.ingredientId) || 0) + 1);
     }
   }
-  const ranked = [...byIngredient.values()]
-    .sort((a, b) => b.count - a.count || a.ingredientId.localeCompare(b.ingredientId));
-  const payload = {
-    missingDensityCount: audit.blockerCounts.missing_density,
-    ranked
-  };
-  assert.fail("B50_RESIDUAL_DIAGNOSTIC=" + JSON.stringify(payload));
+  const ranked = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const total = ranked.reduce((sum, [, count]) => sum + count, 0);
+  assert.equal(total, audit.blockerCounts.missing_density);
+  assert.fail(`B50=${ranked.map(([id, count]) => `${id}:${count}`).join(",")}`);
 });
