@@ -1,0 +1,13 @@
+name: Nutrition B51 residual diagnostic
+on:
+  push:
+    branches: [agent/nutrition-b51-residual-diagnostic]
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - run: node scripts/b51-residual-diagnostic.mjs
