@@ -34,9 +34,10 @@ test("audit preserves every fail-closed shortfall class rather than treating par
 test("B41 reviewed sesame-oil teaspoon evidence preserves cumulative fail-closed truth", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
-  assert.equal(audit.authoritativeRecipeCount, 18);
-  assert.equal(audit.estimateRecipeCount, 58);
+  assert.equal(audit.authoritativeRecipeCount, 19);
+  assert.equal(audit.estimateRecipeCount, 57);
   assert.deepEqual(audit.authoritativeRecipeIds, [
+    "east_asian_egg_pea_fried_rice",
     "indian_chicken_spinach_curry",
     "indian_chickpea_cauliflower_curry",
     "indian_red_lentil_spinach_dal",
@@ -59,13 +60,13 @@ test("B41 reviewed sesame-oil teaspoon evidence preserves cumulative fail-closed
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
     missing_density: 66,
-    unsupported_quantity_unit: 10
+    unsupported_quantity_unit: 8
   });
   assert.deepEqual(audit.missingNutrientFieldCounts, {
     fibreG: 7
   });
   assert.deepEqual(audit.semanticIssueCounts, {
-    mixed_incompatible_carbohydrate_semantics: 16
+    mixed_incompatible_carbohydrate_semantics: 15
   });
 });
 
