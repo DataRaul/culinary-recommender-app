@@ -7,7 +7,7 @@ import {
 } from "../src/data/mext-composition-b39.js";
 import { AUTHORED_RECIPES } from "../src/data/corpus-v1.js";
 import { INGREDIENTS, normalizeIngredient } from "../src/data/ingredients.js";
-import { publicNutritionSource } from "../src/domain/nutrition.js";
+import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
 import {
   EUROPEAN_PRIMARY_DENSITIES_V1,
   europeanPrimaryPolicyCoverage,
@@ -127,7 +127,6 @@ test("MEXT available-carbohydrate-by-difference remains incompatible with USDA t
       }
     }
   };
-  const { calculatePerServingFromDensities } = await import("../src/domain/nutrition.js");
   const result = calculatePerServingFromDensities(recipe, densities);
   assert.equal(result.complete, false);
   assert.equal(result.nutrientCoverage.carbohydrateG.semanticCompatibility, false);
