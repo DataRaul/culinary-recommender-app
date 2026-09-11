@@ -1,6 +1,23 @@
 {
   "schemaVersion": "youtube-culinary-canonical-review-bridge-v1",
-  "knowledgeCoreCommit": "b76c879427601304f8eaea918db20ad8a50950a7",
-  "generatedAt": "2026-09-08T15:12:05Z",
-  "outcomes": []
+  "knowledgeCoreCommit": "bff2faaa284c09dc27e59ee098a3514e27b88a8f",
+  "generatedAt": "2026-09-11T11:55:43Z",
+  "outcomes": [
+    {
+      "packetId": "yt-cul-review-381cf44349f2dbf46bccdb03",
+      "reviewPairKey": "yt-cul-pair-136372bba52194b9b47c6288",
+      "reviewDecision": "REJECTED",
+      "reviewAuthority": "KNOWLEDGE_CORE_ATLAS_REVIEW",
+      "decisionReason": "ATLAS_GAP_FALSE_POSITIVE__RESTAURANT_STYLE_MEXICAN_SALSA_DOES_NOT_SUPPORT_THE_CARIBBEAN_BREAKFAST_ROOT_CROP_ONE_POT_GAP. The discovery packet targets CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT, but the independently fetched source explicitly identifies the recipe as restaurant-style Mexican salsa. The machine admission was triggered by incidental page-text matches for 'cassava' and 'plantain', not by identity-defining evidence. Mexican government culinary sources independently document salsa as part of Mexican culinary tradition, including salsa/mole terminology and Mexican salsa examples. This rejection is scope-specific: it does not reject salsa as a valid culinary family and does not make a universal exclusivity claim about salsa geography.",
+      "reviewRoute": "ATLAS_IDENTITY_REVIEW",
+      "requiredEvidenceTerms": [],
+      "independentNonYoutubeEvidence": true,
+      "rightsProvenanceSafetyClear": false,
+      "appAuthoringEligible": false,
+      "lifecycleAdvanced": false,
+      "lifecycleStateAfter": null,
+      "retryable": false,
+      "knowledgeCoreCommit": "bff2faaa284c09dc27e59ee098a3514e27b88a8f"
+    }
+  ]
 }
