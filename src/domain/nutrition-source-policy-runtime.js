@@ -63,6 +63,10 @@ import {
   MEXT_COMPOSITION_SOURCE_B39
 } from "../data/mext-composition-b39.js";
 import {
+  MEXT_COMPOSITION_DENSITIES_B48,
+  MEXT_COMPOSITION_SOURCE_B48
+} from "../data/mext-composition-b48.js";
+import {
   CIQUAL_RUNTIME_SOURCE_V1,
   EUROPEAN_PRIMARY_DENSITIES_V1 as BASE_EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
@@ -187,6 +191,15 @@ const POST_B25_PROVIDER_TRANCHES = Object.freeze([
     fields: MEXT_FIELDS,
     densities: MEXT_COMPOSITION_DENSITIES_B39,
     source: MEXT_COMPOSITION_SOURCE_B39
+  }),
+  Object.freeze({
+    key: "B48",
+    countKey: "mextB48SelectedCount",
+    sourceName: "mext",
+    defaultMethod: "MEXT_PUBLISHED_VALUE",
+    fields: MEXT_FIELDS,
+    densities: MEXT_COMPOSITION_DENSITIES_B48,
+    source: MEXT_COMPOSITION_SOURCE_B48
   })
 ]);
 
