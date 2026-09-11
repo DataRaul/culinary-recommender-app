@@ -66,7 +66,7 @@ test("B41 reviewed sesame-oil teaspoon evidence preserves cumulative fail-closed
     fibreG: 7
   });
   assert.deepEqual(audit.semanticIssueCounts, {
-    mixed_incompatible_carbohydrate_semantics: 15
+    mixed_incompatible_carbohydrate_semantics: 16
   });
 });
 
