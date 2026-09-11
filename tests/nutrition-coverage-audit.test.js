@@ -31,11 +31,11 @@ test("audit preserves every fail-closed shortfall class rather than treating par
   assert.ok(Object.keys(audit.missingNutrientFieldCounts).length > 0, "expected current corpus to expose tracked nutrient field gaps");
 });
 
-test("B39 exact MEXT rice-vinegar composition preserves cumulative fail-closed truth", () => {
+test("B40 reviewed salt teaspoon evidence preserves cumulative fail-closed truth and earns the tortilla unlock", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   assert.equal(audit.recipeCount, 76);
-  assert.equal(audit.authoritativeRecipeCount, 17);
-  assert.equal(audit.estimateRecipeCount, 59);
+  assert.equal(audit.authoritativeRecipeCount, 18);
+  assert.equal(audit.estimateRecipeCount, 58);
   assert.deepEqual(audit.authoritativeRecipeIds, [
     "indian_chicken_spinach_curry",
     "indian_chickpea_cauliflower_curry",
@@ -53,12 +53,13 @@ test("B39 exact MEXT rice-vinegar composition preserves cumulative fail-closed t
     "middle_eastern_chicken_tahini_bowl",
     "middle_eastern_chickpea_tahini_plate",
     "middle_eastern_red_lentil_carrot_soup",
-    "spanish_pepper_cottage_frittata"
+    "spanish_pepper_cottage_frittata",
+    "spanish_potato_onion_tortilla"
   ]);
   assert.deepEqual(audit.blockerCounts, {
     ambiguous_portion_unit: 20,
     missing_density: 66,
-    unsupported_quantity_unit: 14
+    unsupported_quantity_unit: 13
   });
   assert.deepEqual(audit.missingNutrientFieldCounts, {
     fibreG: 7

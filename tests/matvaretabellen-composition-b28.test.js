@@ -7,8 +7,7 @@ import {
 } from "../src/data/matvaretabellen-composition-b28.js";
 import { AUTHORED_RECIPES } from "../src/data/corpus-v1.js";
 import { INGREDIENTS } from "../src/data/ingredients.js";
-import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
-import { buildNutritionCoverageAudit } from "../src/domain/nutrition-coverage-audit.js";
+import { calculatePerServingFromDensities } from "../src/domain/nutrition.js";
 import {
   EUROPEAN_PRIMARY_DENSITIES_V1,
   europeanPrimaryPolicyCoverage,
@@ -89,22 +88,13 @@ test("runtime European-primary policy selects B28 salt provenance for every trac
   assert.equal(coverage.matvaretabellenSelectedCount, 5);
 });
 
-test("B28 composition evidence does not authorize a household portion or density conversion", () => {
+test("B28 composition evidence grants no household portion even when a later tranche may resolve quantity", () => {
   const salt = matvaretabellenCompositionB28ForIngredient("salt");
   assert.equal(salt.gramsPerUnit, undefined);
   assert.equal(salt.units, undefined);
   assert.equal(salt.sourcePortionId, undefined);
   assert.equal(salt.ediblePartPercent, undefined);
   assert.equal(salt.cookedYieldFactor, undefined);
-});
-
-test("B28 resolves salt composition but leaves its teaspoon quantity fail-closed", () => {
-  const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  const detail = audit.recipeDetails.find(row => row.recipeId === "spanish_potato_onion_tortilla");
-  assert.ok(detail);
-  const saltBlockers = detail.blockers.filter(blocker => blocker.ingredientId === "salt");
-  assert.deepEqual(saltBlockers, [{ ingredientId: "salt", reason: "unsupported_quantity_unit" }]);
-  assert.equal(detail.authoritative, false);
 });
 
 test("B28 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {
