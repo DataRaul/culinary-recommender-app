@@ -79,14 +79,14 @@ test("B41 clears exactly the five authored sesame-oil teaspoon blockers", () => 
   }
 });
 
-test("B41 unlocks egg-pea fried rice only through coherent USDA fallback, never by mixing carbohydrate semantics", () => {
+test("B41 unlocks egg-pea fried rice through a complete European-primary calculation without changing carbohydrate semantics", () => {
   const recipe = AUTHORED_RECIPES.find(item => item.id === "east_asian_egg_pea_fried_rice");
   const estimate = publicNutritionSource.estimate(recipe);
-  assert.equal(estimate.evidence.europeanStaticCalculation.complete, false);
-  assert.equal(estimate.evidence.usdaFallbackCalculation.complete, true);
-  assert.equal(estimate.evidence.sourceSelectionState, "USDA_COHERENT_FALLBACK_COMPLETE");
-  assert.equal(estimate.method, "USDA_FDC_FOUNDATION_STATIC_CALCULATION");
+  assert.equal(estimate.evidence.europeanStaticCalculation.complete, true);
+  assert.equal(estimate.evidence.sourceSelectionState, "EUROPEAN_PRIMARY_COMPLETE");
+  assert.equal(estimate.method, "EUROPEAN_PRIMARY_STATIC_CALCULATION_V1");
   assert.equal(estimate.evidence.state, "AUTHORITATIVE_STATIC_RECIPE_CALCULATION_AVAILABLE");
+  assert.equal(estimate.evidence.europeanStaticCalculation.nutrientCoverage.carbohydrateG.semanticCompatibility, true);
 });
 
 test("B41 does not silently authorize tablespoon or cup despite SR28 publishing those measures", () => {
