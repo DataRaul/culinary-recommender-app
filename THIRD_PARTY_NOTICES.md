@@ -46,7 +46,7 @@ B6, B15 and B17 are separate bounded portion-evidence roles. B9, B11, B14, B16, 
 
 ## USDA Standard Reference data
 
-B37 and B40 bundle separate bounded household-portion records derived from the official USDA National Nutrient Database for Standard Reference, Release 28 reports.
+B37, B40 and B41 bundle separate bounded household-portion records derived from the official USDA National Nutrient Database for Standard Reference, Release 28 reports.
 
 - Source authority: U.S. Department of Agriculture, Agricultural Research Service
 - Dataset: USDA National Nutrient Database for Standard Reference, Release 28
@@ -57,6 +57,8 @@ B37 and B40 bundle separate bounded household-portion records derived from the o
 B37 uses Food Group 16 report https://www.ars.usda.gov/ARSUserFiles/80400535/Data/SR/SR28/reports/sr28fg16.pdf . Four reviewed peanut-butter variants—chunk/smooth crossed with with/without salt—each publish 32 g for 2 tbsp, so B37 admits exactly 16 g per canonical `peanut_butter` tablespoon. It does not authorize teaspoon or cup conversion, neighboring nut or seed butters, peanuts, peanut sauce, or any SR28 composition value. The independent B36 Matvaretabellen composition evidence remains governed by its own source and carbohydrate-semantic contract.
 
 B40 uses Food Group 02 report https://www.ars.usda.gov/ARSUserFiles/80400535/Data/SR/SR28/reports/sr28fg02.pdf . NDB `02047`, **Salt, table**, directly publishes Measure 1 = **6.0 g: 1 tsp**. B40 admits only canonical `salt|tsp` at 6 g/tsp and preserves medium confidence because the repository identity is broader than the source's table-salt form. It does not authorize sea/mineral/herbal/smoked salt, tablespoon or cup conversion, generic spoon arithmetic, or any SR28 composition value. The independent B28 Matvaretabellen table-salt composition evidence remains governed by its own source and semantic contract.
+
+B41 uses Food Group 04 report https://www.ars.usda.gov/SP2UserFiles/Place/80400525/Data/SR/SR28/reports/sr28fg04.pdf . NDB `04058`, **Oil, sesame, salad or cooking**, directly publishes Measure 3 = **4.5 g: 1 tsp**. B41 admits only canonical `sesame_oil|tsp` at 4.5 g/tsp and preserves medium confidence because the source retains a salad-or-cooking qualifier while the repository identity is generic. Although the source also publishes tablespoon and cup values, B41 does not admit them. It does not authorize toasted-sesame-oil-specific identity, another oil, sesame seeds, tahini, generic spoon arithmetic, or any SR28 composition value. Existing Ciqual sesame-oil composition remains independently governed.
 
 ## USDA Nationwide Food Consumption Survey historical portion data
 
