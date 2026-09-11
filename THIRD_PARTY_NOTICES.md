@@ -46,15 +46,17 @@ B6, B15 and B17 are separate bounded portion-evidence roles. B9, B11, B14, B16, 
 
 ## USDA Standard Reference data
 
-B37 bundles a bounded household-portion consensus derived from the official USDA National Nutrient Database for Standard Reference, Release 28 Food Group 16 report.
+B37 and B40 bundle separate bounded household-portion records derived from the official USDA National Nutrient Database for Standard Reference, Release 28 reports.
 
 - Source authority: U.S. Department of Agriculture, Agricultural Research Service
 - Dataset: USDA National Nutrient Database for Standard Reference, Release 28
-- Source report: https://www.ars.usda.gov/ARSUserFiles/80400535/Data/SR/SR28/reports/sr28fg16.pdf
+- Official archive/version page: https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/methods-and-application-of-food-composition-laboratory/mafcl-site-pages/sr11-sr28/
 - Current USDA successor/licensing statement: FoodData Central data are public-domain data published under CC0 1.0 Universal; attribution to USDA is requested.
-- Reuse boundary: B37 records only the reviewed peanut-butter household measure needed by the authored corpus. It does not import SR28 nutrient composition.
+- Reuse boundary: only explicitly reviewed household measures are bundled; SR28 composition is not imported by these tranches.
 
-B37 is a separate portion-only role. Four reviewed SR28 peanut-butter variants—chunk/smooth crossed with with/without salt—each publish 32 g for 2 tbsp, so B37 admits exactly 16 g per canonical `peanut_butter` tablespoon. It does not authorize teaspoon or cup conversion, neighboring nut or seed butters, peanuts, peanut sauce, or any SR28 composition value. The independent B36 Matvaretabellen composition evidence remains governed by its own source and carbohydrate-semantic contract.
+B37 uses Food Group 16 report https://www.ars.usda.gov/ARSUserFiles/80400535/Data/SR/SR28/reports/sr28fg16.pdf . Four reviewed peanut-butter variants—chunk/smooth crossed with with/without salt—each publish 32 g for 2 tbsp, so B37 admits exactly 16 g per canonical `peanut_butter` tablespoon. It does not authorize teaspoon or cup conversion, neighboring nut or seed butters, peanuts, peanut sauce, or any SR28 composition value. The independent B36 Matvaretabellen composition evidence remains governed by its own source and carbohydrate-semantic contract.
+
+B40 uses Food Group 02 report https://www.ars.usda.gov/ARSUserFiles/80400535/Data/SR/SR28/reports/sr28fg02.pdf . NDB `02047`, **Salt, table**, directly publishes Measure 1 = **6.0 g: 1 tsp**. B40 admits only canonical `salt|tsp` at 6 g/tsp and preserves medium confidence because the repository identity is broader than the source's table-salt form. It does not authorize sea/mineral/herbal/smoked salt, tablespoon or cup conversion, generic spoon arithmetic, or any SR28 composition value. The independent B28 Matvaretabellen table-salt composition evidence remains governed by its own source and semantic contract.
 
 ## USDA Nationwide Food Consumption Survey historical portion data
 
