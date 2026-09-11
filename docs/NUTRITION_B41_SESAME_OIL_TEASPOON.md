@@ -42,12 +42,16 @@ B41 is quantity-only. Existing reviewed Ciqual sesame-oil composition remains in
 
 ## Authored scope
 
-The authored corpus contains exactly three canonical `sesame_oil` uses, each `1 tsp`:
+Fresh reconciliation of the full authored corpus found exactly five canonical `sesame_oil` uses, each `1 tsp`:
 
+- `east_asian_tofu_edamame_rice`
+- `east_asian_salmon_cabbage_rice`
 - `east_asian_miso_salmon_rice`
 - `east_asian_egg_pea_fried_rice`
 - `east_asian_chicken_broccoli_noodles`
 
-B41 resolves each to **4.5 g**. Independent blockers remain independent; in particular, resolving sesame oil does not imply rice-vinegar quantity evidence or repair unrelated missing-density/form states.
+B41 resolves each to **4.5 g**. Independent blockers remain independent; resolving sesame oil does not imply rice-vinegar quantity evidence or repair unrelated missing-density/form states.
 
-The first validation pass confirmed that quantity resolution alone does **not** make `east_asian_egg_pea_fried_rice` authoritative: its existing mixed available-carbohydrate versus USDA carbohydrate-by-difference semantics remain fail-closed. The corrected cumulative expectation is therefore 18 authoritative recipes, 58 estimate-preserved recipes, 66 missing-density blockers, 10 unsupported-quantity blockers, 20 ambiguous-portion blockers, seven fibre gaps and 16 mixed-carbohydrate-semantic events. The cumulative audit test remains the authority for the integrated state.
+The integrated runtime also shows an important source-selection boundary: `east_asian_egg_pea_fried_rice` still has incompatible European carbohydrate semantics, so the European-primary calculation remains incomplete. Once the sesame-oil quantity blocker is removed, however, its independently coherent USDA Foundation fallback becomes complete. The recipe therefore becomes authoritative through `USDA_COHERENT_FALLBACK_COMPLETE`, not by mixing incompatible carbohydrate semantics.
+
+The corrected cumulative expectation is 19 authoritative recipes, 57 estimate-preserved recipes, 66 missing-density blockers, 8 unsupported-quantity blockers, 20 ambiguous-portion blockers, seven fibre gaps and 15 mixed-carbohydrate-semantic events. The cumulative audit test remains the authority for the integrated state.
