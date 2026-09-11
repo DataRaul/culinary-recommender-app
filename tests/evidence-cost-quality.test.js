@@ -110,7 +110,7 @@ test("static nutrient calculator never treats an unsupported unit as a complete 
   const syntheticRecipe = {
     ingredients: [
       { canonicalIngredientId: "chickpeas", quantity: 200, unit: "g" },
-      { canonicalIngredientId: "sesame_oil", quantity: 1, unit: "tsp" }
+      { canonicalIngredientId: "sesame_oil", quantity: 1, unit: "cup" }
     ],
     serving: { servings: 2 }
   };
