@@ -1,3 +1,5 @@
+import { usdaFoundationRedOnionPortionConversionB42 } from "./usda-foundation-red-onion-portions-b42.js";
+
 // Generated from USDA FoodData Central Foundation Foods Version 15.0 / 2026-04-30.
 // Only portion rows for reviewed bounded Foundation identities are retained.
 // Absence of a row means USDA did not publish a portion weight for that selected food;
@@ -114,8 +116,9 @@ export const USDA_FOUNDATION_PORTION_EVIDENCE_V1 = {
 
 // Automatic conversions are deliberately narrower than the raw portion evidence.
 // `piece` for canonical banana is accepted because the USDA measure is one peeled
-// Banana. Other B3 household rows are retained as evidence only: canonical recipe
-// semantics do not yet encode egg size/grade, onion variety/size, or chopped-cup form.
+// Banana. Other B3 household rows remain historical evidence-only unless a later
+// reviewed tranche explicitly promotes the exact canonical/unit pair. B42 is such
+// a later review for exact raw red onion; B3 itself remains unchanged.
 // Ordinary tuna `can` is intentionally NOT accepted: USDA publishes both
 // drained-solids and total-contents weights, so a bare `can` is ambiguous.
 export const USDA_FOUNDATION_PORTION_CONVERSIONS_V1 = {
@@ -151,6 +154,7 @@ export const USDA_FOUNDATION_AMBIGUOUS_PORTIONS_V1 = {
 };
 
 export const usdaFoundationPortionConversion = (ingredientId, unit) =>
+  usdaFoundationRedOnionPortionConversionB42(ingredientId, unit) ||
   USDA_FOUNDATION_PORTION_CONVERSIONS_V1[ingredientId]?.[String(unit || "").toLowerCase()] || null;
 
 export const usdaFoundationAmbiguousPortion = (ingredientId, unit) =>
