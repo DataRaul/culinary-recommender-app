@@ -231,7 +231,8 @@ const roundToTenths = value => Math.round((value + Number.EPSILON * Math.max(1, 
 const roundNutrient = (key, value) => key === "energyKcal" ? Math.round(value) : roundToTenths(value);
 const AVAILABLE_CARBOHYDRATE_SEMANTICS = new Set([
   "AVAILABLE_CARBOHYDRATE_CIQUAL_CHOAVL",
-  "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO"
+  "AVAILABLE_CARBOHYDRATE_MATVARETABELLEN_CHO",
+  "AVAILABLE_CARBOHYDRATE_MEXT_CHOAVLDF"
 ]);
 
 const semanticCompatibility = (key, semantics) => {
@@ -348,9 +349,9 @@ export const publicNutritionSource = {
       method,
       confidence: authoritativeRecipeCalculation ? "medium" : recipe.nutrition?.confidence || "low",
       provenance: usesEuropeanPrimary
-        ? "Calculated deterministically under the Canary/Spain/Europe source-selection policy from reviewed USDA Foundation, ANSES-Ciqual and bounded Matvaretabellen composition or exact field-completion evidence, with exact per-nutrient provenance and source-backed USDA and Matvaretabellen quantity weights; incompatible carbohydrate semantics are never mixed and cooking/yield uncertainty remains."
+        ? "Calculated deterministically under the Canary/Spain/Europe source-selection policy from reviewed USDA Foundation, ANSES-Ciqual and bounded reviewed composition or exact field-completion evidence, with exact per-nutrient provenance and source-backed household quantity weights; incompatible carbohydrate semantics are never mixed and cooking/yield uncertainty remains."
         : usesCoherentUsdaFallback
-          ? "European-primary selection was incomplete or semantically incompatible for a full recipe total, so the deterministic fully coherent reviewed USDA Foundation calculation was retained; source-backed USDA and Matvaretabellen quantity weights may be used and cooking/yield uncertainty remains."
+          ? "European-primary selection was incomplete or semantically incompatible for a full recipe total, so the deterministic fully coherent reviewed USDA Foundation calculation was retained; source-backed household quantity weights may be used and cooking/yield uncertainty remains."
           : recipe.nutrition?.provenance || "Project-authored estimate.",
       evidence: {
         source: USDA_FOUNDATION_SOURCE,
