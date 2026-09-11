@@ -14,6 +14,7 @@ import { USDA_SR_LEGACY_PORTION_SOURCE_B8 } from "../src/data/usda-sr-legacy-por
 import { USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37 } from "../src/data/usda-sr28-peanut-butter-portions-b37.js";
 import { USDA_NFCS_MISO_PORTION_SOURCE_B38 } from "../src/data/usda-nfcs-miso-portions-b38.js";
 import { USDA_SR28_SALT_PORTION_SOURCE_B40 } from "../src/data/usda-sr28-salt-portions-b40.js";
+import { USDA_SR28_SESAME_OIL_PORTION_SOURCE_B41 } from "../src/data/usda-sr28-sesame-oil-portions-b41.js";
 import { calculatePerServingFromDensities, publicNutritionSource } from "../src/domain/nutrition.js";
 import { USDA_FOUNDATION_DENSITIES } from "../src/data/nutrition-evidence.js";
 import { USDA_FOUNDATION_DENSITIES_V1 } from "../src/data/usda-foundation-nutrients-v1.js";
@@ -87,20 +88,13 @@ test("lime and avocado remain ambiguous instead of choosing convenient piece wei
   assert.deepEqual(result.skipped[0].quantityEvidence.candidateGramWeights, [17, 65]);
 });
 
-test("B6 deferred targets remain unsupported by B6 and no generic spoon arithmetic is introduced", () => {
+test("B6 deferred targets remain unsupported by B6 itself and no generic spoon arithmetic is introduced", () => {
   assert.ok(MATVARETABELLEN_DEFERRED_PORTION_TARGETS_B6["onion|small"]);
   assert.ok(MATVARETABELLEN_DEFERRED_PORTION_TARGETS_B6["sesame_oil|tsp"]);
   assert.ok(MATVARETABELLEN_DEFERRED_PORTION_TARGETS_B6["red_onion|piece"]);
   assert.equal(matvaretabellenPortionConversion("onion", "small"), null);
   assert.equal(matvaretabellenPortionConversion("sesame_oil", "tsp"), null);
   assert.equal(matvaretabellenPortionConversion("red_onion", "piece"), null);
-
-  const result = calculatePerServingFromDensities({
-    ingredients: [{ canonicalIngredientId: "sesame_oil", quantity: 1, unit: "tsp" }],
-    serving: { servings: 1 }
-  }, { sesame_oil: { energyKcal: 900, proteinG: 0, carbohydrateG: 0, fatG: 100, fibreG: 0 } });
-  assert.equal(result.complete, false);
-  assert.equal(result.skipped[0].reason, "unsupported_quantity_unit");
 });
 
 test("runtime integrates B6 quantity provenance without replacing existing USDA banana conversion", () => {
@@ -135,7 +129,8 @@ test("public nutrition evidence exposes each bounded portion source without free
     USDA_SR_LEGACY_PORTION_SOURCE_B8,
     USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37,
     USDA_NFCS_MISO_PORTION_SOURCE_B38,
-    USDA_SR28_SALT_PORTION_SOURCE_B40
+    USDA_SR28_SALT_PORTION_SOURCE_B40,
+    USDA_SR28_SESAME_OIL_PORTION_SOURCE_B41
   ]) {
     assert.ok(portionSourceIds.has(source.id), source.id);
   }
@@ -144,7 +139,8 @@ test("public nutrition evidence exposes each bounded portion source without free
     MATVARETABELLEN_PORTION_SOURCE_B17,
     USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37,
     USDA_NFCS_MISO_PORTION_SOURCE_B38,
-    USDA_SR28_SALT_PORTION_SOURCE_B40
+    USDA_SR28_SALT_PORTION_SOURCE_B40,
+    USDA_SR28_SESAME_OIL_PORTION_SOURCE_B41
   ]) {
     assert.equal(source.compositionUse, "PROHIBITED_IN_THIS_TRANCHE", source.id);
     assert.equal(estimate.evidence.sources.some(item => item.id === source.id), false, source.id);
