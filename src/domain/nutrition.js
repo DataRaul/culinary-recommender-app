@@ -30,6 +30,10 @@ import {
   usdaSrLegacyPortionConversion
 } from "../data/usda-sr-legacy-portions-b8.js";
 import {
+  USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37,
+  usdaSr28PeanutButterPortionConversionB37
+} from "../data/usda-sr28-peanut-butter-portions-b37.js";
+import {
   CIQUAL_RUNTIME_SOURCE_V1,
   EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
@@ -62,6 +66,27 @@ const quantityToGrams = ingredient => {
         fdcId: srLegacyPortion.fdcId,
         ndbNumber: srLegacyPortion.ndbNumber,
         portionRowId: srLegacyPortion.portionRowId
+      }
+    };
+  }
+
+  const sr28PeanutButterPortion = usdaSr28PeanutButterPortionConversionB37(ingredientId, unit);
+  if (sr28PeanutButterPortion) {
+    return {
+      grams: quantity * sr28PeanutButterPortion.gramsPerUnit,
+      reason: null,
+      quantityEvidence: {
+        state: sr28PeanutButterPortion.evidenceState,
+        sourceId: USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37.id,
+        evidenceTranche: sr28PeanutButterPortion.evidenceTranche,
+        inputUnit: unit,
+        gramsPerUnit: sr28PeanutButterPortion.gramsPerUnit,
+        sourceUnit: sr28PeanutButterPortion.sourceUnit,
+        sourceMeasureAmount: sr28PeanutButterPortion.sourceMeasureAmount,
+        sourceMeasureGramWeight: sr28PeanutButterPortion.sourceMeasureGramWeight,
+        reviewedNdbNumbers: [...sr28PeanutButterPortion.reviewedNdbNumbers],
+        reviewedVariantCount: sr28PeanutButterPortion.reviewedVariantCount,
+        matchConfidence: sr28PeanutButterPortion.matchConfidence
       }
     };
   }
@@ -308,7 +333,7 @@ export const publicNutritionSource = {
         compositionSource: USDA_FOUNDATION_COMPOSITION_SOURCE,
         compositionSources: [USDA_FOUNDATION_COMPOSITION_SOURCE, CIQUAL_RUNTIME_SOURCE_V1, MATVARETABELLEN_COMPOSITION_SOURCE_B9, MATVARETABELLEN_COMPOSITION_SOURCE_B10],
         portionSource: USDA_FOUNDATION_PORTION_SOURCE,
-        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, MATVARETABELLEN_PORTION_SOURCE_B15, MATVARETABELLEN_PORTION_SOURCE_B17, USDA_SR_LEGACY_PORTION_SOURCE_B8],
+        portionSources: [USDA_FOUNDATION_PORTION_SOURCE, MATVARETABELLEN_PORTION_SOURCE_B6, MATVARETABELLEN_PORTION_SOURCE_B15, MATVARETABELLEN_PORTION_SOURCE_B17, USDA_SR_LEGACY_PORTION_SOURCE_B8, USDA_SR28_PEANUT_BUTTER_PORTION_SOURCE_B37],
         coverage,
         europeanPrimaryCoverage,
         identities,

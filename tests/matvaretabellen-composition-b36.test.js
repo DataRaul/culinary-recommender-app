@@ -7,8 +7,6 @@ import {
 } from "../src/data/matvaretabellen-composition-b36.js";
 import { AUTHORED_RECIPES } from "../src/data/corpus-v1.js";
 import { INGREDIENTS, normalizeIngredient } from "../src/data/ingredients.js";
-import { publicNutritionSource } from "../src/domain/nutrition.js";
-import { buildNutritionCoverageAudit } from "../src/domain/nutrition-coverage-audit.js";
 import {
   europeanPrimaryPolicyCoverage,
   selectEuropeanPrimaryNutrient
@@ -94,22 +92,17 @@ test("B36 composition evidence grants no tablespoon mass or other quantity autho
   assert.equal(peanutButter.cookedYieldFactor, undefined);
 });
 
-test("B36 moves exactly two authored peanut-butter uses to unsupported tablespoon quantity and remains fail-closed", () => {
+test("B36 historical tranche stays composition-only after later portion evidence is added", () => {
   const uses = AUTHORED_RECIPES
     .filter(recipe => recipe.ingredients.some(ingredient => ingredient.canonicalIngredientId === "peanut_butter"))
-    .map(recipe => ({
-      recipeId: recipe.id,
-      ingredient: recipe.ingredients.find(ingredient => ingredient.canonicalIngredientId === "peanut_butter")
-    }));
-  assert.equal(uses.length, 2);
-  assert.ok(uses.every(use => use.ingredient.unit === "tbsp"));
-  assert.ok(uses.every(use => use.ingredient.quantity === 2));
+    .map(recipe => recipe.ingredients.find(ingredient => ingredient.canonicalIngredientId === "peanut_butter"));
 
-  const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
-  for (const use of uses) {
-    const detail = audit.recipeDetails.find(row => row.recipeId === use.recipeId);
-    const blockers = detail.blockers.filter(blocker => blocker.ingredientId === "peanut_butter");
-    assert.deepEqual(blockers, [{ ingredientId: "peanut_butter", reason: "unsupported_quantity_unit" }], use.recipeId);
-    assert.equal(detail.authoritative, false, use.recipeId);
-  }
+  assert.equal(uses.length, 2);
+  assert.ok(uses.every(ingredient => ingredient.unit === "tbsp"));
+  assert.ok(uses.every(ingredient => ingredient.quantity === 2));
+
+  const peanutButter = matvaretabellenCompositionB36ForIngredient("peanut_butter");
+  assert.equal(peanutButter.sourceId, MATVARETABELLEN_COMPOSITION_SOURCE_B36.id);
+  assert.equal(peanutButter.gramsPerUnit, undefined);
+  assert.equal(peanutButter.sourcePortionId, undefined);
 });
