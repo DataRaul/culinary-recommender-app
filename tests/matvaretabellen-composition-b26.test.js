@@ -112,7 +112,7 @@ test("B26 composition evidence does not authorize a household portion or cooked-
   assert.equal(noodles.cookedYieldFactor, undefined);
 });
 
-test("B26 removes rice-noodle density blockers while preserving independent fail-closed blockers", () => {
+test("B26 rice-noodle evidence remains active without freezing later independent evidence", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   for (const recipeId of [
     "se_asian_lime_chicken_rice_noodles",
@@ -123,8 +123,6 @@ test("B26 removes rice-noodle density blockers while preserving independent fail
     assert.ok(detail, recipeId);
     assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "rice_noodles"), false, recipeId);
   }
-  const tofuSalad = audit.recipeDetails.find(row => row.recipeId === "se_asian_mango_tofu_rice_noodle_salad");
-  assert.equal(tofuSalad.blockers.some(blocker => blocker.ingredientId === "tofu_firm"), true);
 });
 
 test("B26 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {

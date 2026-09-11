@@ -92,3 +92,23 @@ B39 and B48 each bundle one exact composition row from Japan's Ministry of Educa
 B39 is a standalone composition-only provider extension for rice vinegar. It preserves MEXT's `CHOAVLDF-` available-carbohydrate-by-difference field as a distinct semantic, never treats it as USDA total carbohydrate-by-difference, and does not authorize a tablespoon mass, generic vinegar, seasoned rice vinegar, black rice vinegar, grain/wine vinegar or another household/yield conversion.
 
 B48 is a standalone composition-only provider extension for canonical fish sauce using exact food `17107`, **Nam pla (fish sauce)**. It preserves the same explicit MEXT carbohydrate semantic and does not authorize a household-unit mass, density arithmetic, oyster sauce, soy sauce, fish stock, fermented fish paste, another fish seasoning or any cooking/yield conversion. The separately reviewed B49 USDA SR28 record supplies only the authored tablespoon mass and does not import composition.
+
+## Australian Food Composition Database data
+
+B50 bundles one exact composition record derived from the **Australian Food Composition Database (AFCD), Release 3**, published by Food Standards Australia New Zealand (FSANZ).
+
+- Source authority: Food Standards Australia New Zealand (FSANZ)
+- Dataset: Australian Food Composition Database, Release 3
+- Reviewed Public Food Key: `F009176`, **Tofu (soy bean curd), firm, as purchased**
+- Official food-group listing: https://www.foodstandards.gov.au/science-data/food-nutrient-databases/afcd/search/food-groups/15/67
+- Official nutrient definitions: https://www.foodstandards.gov.au/science-data/food-nutrient-databases/afcd/search/nutrients
+- Licence: FSANZ Data User Licence Agreement based on Creative Commons Attribution-ShareAlike 3.0 Australia
+- Licence URI: https://www.foodstandards.gov.au/science-data/monitoringnutrients/afcd/datauserlicenceagreement
+- Attribution: Australian Food Composition Database, Release 3. Food Standards Australia New Zealand (FSANZ).
+- Limitation of data: AFCD data are reference food-composition data and are provided by FSANZ as-is under the Data User Licence Agreement; users should consider the stated dataset limitations and suitability for their purpose.
+- Country limitation statement required by the licence: **This work is based on Australian data and Australian data may not be appropriate for use in other countries.**
+- Reuse boundary: only the explicitly reviewed B50 firm-tofu composition record and its project-schema representation are bundled. No AFCD runtime fetch, household-unit conversion, edible-yield conversion or cooked-yield conversion is authorized.
+
+B50 records AFCD's published protein, total fat, dietary fibre and available carbohydrate without sugar alcohols directly. AFCD publishes energy with dietary fibre as **543 kJ/100 g** and states that one kilocalorie is approximately **4.2 kJ**; B50 converts that unit deterministically to **129.3 kcal/100 g** (`543 / 4.2`) and identifies the conversion in per-field provenance. This is a unit transformation only, not a food-state or recipe-yield inference.
+
+The B50 AFCD-derived record and the derived kcal representation are distributed under the same FSANZ Data User Licence Agreement. The repository is a collection: consistent with the licence's collection provisions, inclusion of this bounded AFCD work does not require unrelated project-authored code or content to be licensed under the AFCD licence. B50 does not imply FSANZ sponsorship or endorsement and does not use the FSANZ logo or Commonwealth coat of arms.

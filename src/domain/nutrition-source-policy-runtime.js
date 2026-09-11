@@ -67,6 +67,10 @@ import {
   MEXT_COMPOSITION_SOURCE_B48
 } from "../data/mext-composition-b48.js";
 import {
+  AFCD_COMPOSITION_DENSITIES_B50,
+  AFCD_COMPOSITION_SOURCE_B50
+} from "../data/afcd-composition-b50.js";
+import {
   CIQUAL_RUNTIME_SOURCE_V1,
   EUROPEAN_PRIMARY_DENSITIES_V1 as BASE_EUROPEAN_PRIMARY_DENSITIES_V1,
   EUROPEAN_PRIMARY_POLICY_V1,
@@ -182,6 +186,14 @@ const MEXT_FIELDS = Object.freeze({
   fibreG: Object.freeze({ field: "fibreG", semantic: "DIETARY_FIBRE_MEXT" })
 });
 
+const AFCD_FIELDS = Object.freeze({
+  energyKcal: Object.freeze({ field: "energyKcal", semantic: "ENERGY_AFCD_KJ_CONVERTED" }),
+  proteinG: Object.freeze({ field: "proteinG", semantic: "PROTEIN_AFCD" }),
+  carbohydrateG: Object.freeze({ field: "carbohydrateG", semantic: "AVAILABLE_CARBOHYDRATE_AFCD_WITHOUT_SUGAR_ALCOHOLS" }),
+  fatG: Object.freeze({ field: "fatG", semantic: "TOTAL_FAT" }),
+  fibreG: Object.freeze({ field: "fibreG", semantic: "DIETARY_FIBRE_AFCD" })
+});
+
 const POST_B25_PROVIDER_TRANCHES = Object.freeze([
   Object.freeze({
     key: "B39",
@@ -200,6 +212,15 @@ const POST_B25_PROVIDER_TRANCHES = Object.freeze([
     fields: MEXT_FIELDS,
     densities: MEXT_COMPOSITION_DENSITIES_B48,
     source: MEXT_COMPOSITION_SOURCE_B48
+  }),
+  Object.freeze({
+    key: "B50",
+    countKey: "afcdB50SelectedCount",
+    sourceName: "afcd",
+    defaultMethod: "AFCD_PUBLISHED_VALUE",
+    fields: AFCD_FIELDS,
+    densities: AFCD_COMPOSITION_DENSITIES_B50,
+    source: AFCD_COMPOSITION_SOURCE_B50
   })
 ]);
 
@@ -435,6 +456,7 @@ export const europeanPrimaryPolicyCoverage = ingredientIds => {
     evidenceIngredientCount: base.evidenceIngredientCount + postEvidenceIngredientCount,
     matvaretabellenSelectedCount: base.matvaretabellenSelectedCount + matvarePostSelections.length,
     mextSelectedCount: providerPostSelections.filter(selection => selection.source === "mext").length,
+    afcdSelectedCount: providerPostSelections.filter(selection => selection.source === "afcd").length,
     ...trancheCounts,
     selections: [...base.selections, ...postSelections]
   };

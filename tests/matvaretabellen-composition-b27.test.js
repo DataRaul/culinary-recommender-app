@@ -113,15 +113,13 @@ test("B27 composition evidence does not authorize a household portion or cooked-
   assert.equal(rice.cookedYieldFactor, undefined);
 });
 
-test("B27 keeps all three authored jasmine-rice density blockers resolved while preserving independent blockers", () => {
+test("B27 jasmine-rice evidence remains active without freezing later independent evidence", () => {
   const audit = buildNutritionCoverageAudit(AUTHORED_RECIPES, publicNutritionSource);
   for (const recipeId of ["se_asian_tofu_mango_rice_bowl", "east_asian_miso_salmon_rice", "se_asian_pineapple_tofu_jasmine_rice"]) {
     const detail = audit.recipeDetails.find(row => row.recipeId === recipeId);
     assert.ok(detail, recipeId);
     assert.equal(detail.blockers.some(blocker => blocker.ingredientId === "jasmine_rice"), false, recipeId);
   }
-  const pineappleTofu = audit.recipeDetails.find(row => row.recipeId === "se_asian_pineapple_tofu_jasmine_rice");
-  assert.equal(pineappleTofu.blockers.some(blocker => blocker.ingredientId === "tofu_firm"), true);
 });
 
 test("B27 available carbohydrate remains incompatible with USDA carbohydrate-by-difference", () => {
