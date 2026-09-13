@@ -1,147 +1,125 @@
 {
-  "handover": "CULINARY_RECOMMENDER_APP_CORPUS_SCALE_STEP8B_BINDING_GATE_V19",
-  "handover_date": "2026-09-13",
+  "handover": "CULINARY_APP_CORPUS_SCALE_STEP8B_TERMINAL_STEP8D_READY_V21",
+  "handover_date": "2026-09-14",
   "timezone": "Atlantic/Canary",
-  "status": "STEP8A_PASS__STEP8B_TWO_D1_SHARDS_CREATED_NO_BILLING__LIVE_CANARY_RUNTIME_MERGED_DEPLOYED_GREEN__PAGES_TWO_D1_BINDINGS_HUMAN_GATE_REQUIRED__STEP8C_PASS__STEP8D_BLOCKED_PENDING_STEP8B_LIVE_PASS",
-  "human_needed": true,
+  "status": "STEP8A_PASS__STEP8B_TERMINAL_PASS__STEP8C_PASS__STEP8D_READY_PROTECTED_POPULATION__STEP8F_PUBLIC_GATE_UNCHANGED",
+  "human_needed": false,
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
     "source_of_truth": "GitHub",
-    "main_at_runtime_closeout": "3db8084b0571e192094c384ece20417202b1fdc2",
-    "step8b_machine_merge_sha": "280d261979908b42a7522f3f036d958cc619bb41",
-    "step8b_live_runtime_merge_sha": "3db8084b0571e192094c384ece20417202b1fdc2",
-    "step8c_merge_sha": "34afa1d73af6f99f20b31739e8bebacabff81b2a",
-    "knowledge_core_last_reconciled_main_sha": "86bd81d04d2fd0b7c19217091ee3e1358a263467"
+    "step8a_merge": "68e5f159000a8b7c1677155f49ef9cde7a0801b9",
+    "step8b_machine_merge": "280d261979908b42a7522f3f036d958cc619bb41",
+    "step8b_runtime_merge": "3db8084b0571e192094c384ece20417202b1fdc2",
+    "step8b_binding_attestation_merge": "ece0444b8b2e3f99de503c5c43630b362edc0386",
+    "step8b_zero_query_ui_fix_merge": "1b97f55b5cd9e7d6a43300eb9ef4ea8148f18cdf",
+    "step8c_merge": "34afa1d73af6f99f20b31739e8bebacabff81b2a"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
     "previous": "docs/handovers/PREVIOUS.json",
     "protocol": "docs/HANDOVER_PROTOCOL.md",
     "rotation": "old CURRENT -> PREVIOUS; new latest state -> CURRENT",
-    "new_chat_start": "Read CURRENT first, then fresh-reconcile live GitHub main, open PRs, relevant branches, CI/deployments, generated YT-CUL state and Knowledge Core main before acting. Live GitHub outranks this snapshot."
+    "new_chat_start": "Read CURRENT, then fresh-reconcile main/open PRs/CI/deployments before acting. GitHub live state outranks this snapshot."
   },
   "lane": {
     "name": "Culinary App / Culinary Lab — Corpus Scale Step 8 / 170k No-Billing-Authorization",
-    "knowledge_core_boundary": "Knowledge Core is read-only/reconciliation from this lane and must never become a private browser/runtime dependency.",
-    "nutrition_boundary": "Nutrition is a separate concurrent lane and must not be modified, duplicated or weakened by Corpus Scale work.",
-    "youtube_boundary": "YT-CUL state is read-only from Corpus Scale work and must not be modified."
+    "knowledge_core": "READ_ONLY",
+    "nutrition_lane": "SEPARATE_CONCURRENT_LANE_DO_NOT_MUTATE",
+    "yt_cul_lane": "INDEPENDENT_READ_ONLY_FROM_CORPUS_SCALE"
   },
   "operating_contract": {
-    "autonomy": "Proceed autonomously through technically resolvable work inside an earned gate. Stop for genuine human/security/cost/rights/public-runtime gates, unrecoverable errors or continuation boundaries.",
-    "machine_first": "Both D1 databases and the protected live-canary runtime are ready. The next blocker is only the exact two Pages D1 bindings in the Cloudflare account.",
-    "cost_boundary": "Never activate or accept Workers Paid, R2, Zero Trust/Access, paid API/backend/corpus licence, recurring paid infrastructure, checkout/payment method, or any setup authorizing overage/usage charges. Free exhaustion must fail closed.",
-    "secrets_boundary": "Never expose or commit session secrets, owner identity, Google credentials/tokens, cookies, API keys or OAuth secrets."
+    "autonomy": "Proceed autonomously through technically resolvable work inside an earned gate. Stop only for genuine human/security/cost/rights/public-runtime gates, unrecoverable errors, terminal results or near-context-limit handover.",
+    "billing_firewall": "Never activate or accept Workers Paid, R2, Zero Trust/Access, recurring paid infrastructure, payment method, checkout, automatic overage or paid billing authorization. Free exhaustion must fail closed.",
+    "public_activation": "No public recommendation activation until explicit Step 8F human gate.",
+    "source_authority": "Source nutrition, diet/allergen claims and scaling rules do not automatically become canonical authority.",
+    "secrets": "Never expose credentials, cookies, session tokens, account identifiers or reusable Google credentials."
   },
   "corpus_scale": {
     "required_capacity": 170000,
     "stress_capacity": 250000,
-    "step7_terminal": "STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS",
-    "step7f_defined": false,
     "step8a": {
-      "status": "COMPLETE_PASS_MERGED_GREEN",
-      "terminal": "STEP_8A_POPULATION_CONTRACT_PASS",
-      "merge_sha": "68e5f159000a8b7c1677155f49ef9cde7a0801b9"
+      "status": "COMPLETE_PASS",
+      "terminal": "STEP_8A_POPULATION_CONTRACT_PASS"
     },
     "step8b": {
-      "status": "TWO_D1_SHARDS_HUMAN_ATTESTED_CREATED__LIVE_CANARY_RUNTIME_MERGED_GREEN__PAGES_BINDING_GATE_REQUIRED",
-      "live_terminal": "NOT_EARNED",
-      "exact_live_topology": [
+      "status": "COMPLETE_PASS_LIVE_PRODUCTION",
+      "terminal": "STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS",
+      "exact_topology": [
         {"database": "culinary-recipes-00", "binding": "CULINARY_RECIPE_SHARD_00_DB"},
         {"database": "culinary-recipes-01", "binding": "CULINARY_RECIPE_SHARD_01_DB"}
       ],
-      "account_evidence": {
-        "class": "HUMAN_ATTESTED_ACCOUNT_GATE",
-        "human_attested_shards_created": 2,
-        "first_shard": "FREE_NO_BILLING_AUTHORIZATION_CONFIRMED",
-        "second_shard": "FREE_NO_BILLING_AUTHORIZATION_CONFIRMED",
-        "machine_verified_shards_created": 0
+      "third_shard_authorized": false,
+      "authenticated_live_evidence": {
+        "pass": true,
+        "boundShardBindings": 2,
+        "freeLimitFailClosedBeforeShardRead": true,
+        "partialFailureRecoveryPass": true,
+        "idempotentWritePass": true,
+        "authenticatedCrossShardReadPass": true,
+        "rollbackPass": true,
+        "fullCorpusScans": 0,
+        "maxObservedD1Subqueries": 10,
+        "normalPublicRecommendationRuntimeChanged": false
       },
-      "live_canary_runtime": {
-        "pr": 136,
-        "merge_sha": "3db8084b0571e192094c384ece20417202b1fdc2",
-        "pr_validation_run": 34778087774,
-        "post_merge_validation_run": 34778233576,
-        "pages_deployment_run": 34778233094,
-        "repository_validation": "PASS",
-        "browser_validation": "PASS",
-        "production_smoke": "PASS",
-        "pages_deployment": "PASS",
-        "route": "/api/step8b/canary",
-        "page": "/step8b-canary.html",
-        "bindings_configured": false,
-        "live_terminal_earned": false
+      "external_unauthenticated_probe": {
+        "httpStatus": 401,
+        "error": "UNAUTHORIZED",
+        "reason": "NO_SESSION",
+        "protectedDataReturned": false,
+        "shardQueries": 0
       },
-      "remaining_live_acceptance": [
-        "exact two Pages D1 bindings configured",
-        "external unauthenticated denial verified before shard access",
-        "authenticated same-origin canary PASS",
-        "Free-limit fail-closed before shard access",
-        "partial-failure recovery PASS",
-        "idempotent replay PASS",
-        "authenticated cross-shard read PASS",
-        "pointer-only rollback PASS",
-        "zero full-corpus scans",
-        "observed D1 subqueries <= 16"
-      ]
+      "closeout_doc": "docs/CORPUS_SCALE_STEP8B_LIVE_CANARY_PASS.md"
     },
     "step8c": {
-      "status": "COMPLETE_PASS_MERGED_GREEN",
+      "status": "COMPLETE_PASS",
       "terminal": "STEP_8C_RIGHTS_CLEAN_SOURCE_COHORT_AVAILABLE",
       "qualified_input": {
         "source_id": "unitools-world-recipes-v1_1_0",
-        "record_count": 501,
-        "country_count": 127,
-        "source_version": "1.1.0",
+        "source_name": "UniTools World Recipes Dataset",
+        "repository": "farcrak/unitools-recipes",
         "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
         "data_blob_sha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+        "version": "1.1.0",
+        "record_count": 501,
+        "country_count": 127,
         "license": "CC-BY-SA-4.0",
-        "scope": "PROTECTED_POPULATION_INPUT_ONLY"
+        "authority": "PROTECTED_POPULATION_INPUT_ONLY"
       }
     },
     "step8d": {
-      "status": "BLOCKED_PENDING_STEP8B_LIVE_PASS__STEP8C_INPUT_READY",
-      "rule": "Do not populate the qualified 501-record source until STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS is actually earned."
+      "status": "READY_PROTECTED_POPULATION__STEP8B_AND_STEP8C_PASS",
+      "human_required": false,
+      "scope": "Protected population and measurement of the exact pinned 501-record UniTools cohort on the earned two-shard topology.",
+      "must_measure": [
+        "deterministic per-shard distribution",
+        "storage bytes",
+        "D1 reads/writes/subqueries",
+        "bounded retrieval and zero full-corpus scans",
+        "resume and idempotent replay",
+        "rollback/rebuild behavior",
+        "incremental validation cost",
+        "duplicate/family/variant observations"
+      ],
+      "prohibitions": [
+        "no normal public recommendation activation",
+        "no Nutrition mutation",
+        "no YT-CUL mutation",
+        "no Knowledge Core write",
+        "no paid infrastructure",
+        "no third recipe-body shard unless separately earned",
+        "no unsupported nutrition/diet/allergen/scaling authority promotion"
+      ]
     },
     "step8e": "BLOCKED_PENDING_8D_ELIGIBLE_COHORT",
-    "step8f": "BLOCKED_PENDING_8E_AND_EXPLICIT_HUMAN_PUBLIC_RUNTIME_GATE",
+    "step8f": "EXPLICIT_HUMAN_PUBLIC_RUNTIME_GATE",
     "step8g": "BLOCKED_PENDING_8D_PASS__DOES_NOT_DEPEND_ON_8F"
   },
-  "source_admission_state": {
-    "existing_curated_and_wikibooks": "PASS_ALREADY_ESTABLISHED",
-    "open_recipe_archive_spanish": "HOLD_RIGHTS_AMBIGUOUS__ZERO_ADMITTED",
-    "forkrecipe": "STEP7E_PROTECTED_SOURCE_PILOT_PASS_ONLY__ZERO_PUBLIC_RECOMMENDATION_ADMISSION",
-    "unitools": "STEP8C_RIGHTS_CLEAN_PROTECTED_POPULATION_INPUT__501_PINNED_RECORDS",
-    "recipedb": "SOURCE_COHORT_SALVAGE_ONLY"
-  },
-  "youtube_culinary_discovery": {
-    "status": "ACTIVE__READ_ONLY_FROM_CORPUS_SCALE",
-    "generated_state_path": "data/generated/youtube-culinary-daily-discovery-state.json",
-    "last_reconciled_completed_quota_date": "2026-09-13",
-    "rule": "Do not modify this lane from Corpus Scale work."
-  },
-  "human_gates": {
-    "completed": [
-      {"id": "STEP8B_FIRST_D1_SHARD_NO_BILLING_ACCOUNT_GATE", "database": "culinary-recipes-00", "result": "FREE_NO_BILLING_AUTHORIZATION_CONFIRMED"},
-      {"id": "STEP8B_SECOND_D1_SHARD_NO_BILLING_ACCOUNT_GATE", "database": "culinary-recipes-01", "result": "FREE_NO_BILLING_AUTHORIZATION_CONFIRMED"}
-    ],
-    "current": {
-      "id": "STEP8B_PAGES_TWO_D1_BINDINGS_GATE",
-      "status": "HUMAN_REQUIRED_NOW",
-      "project": "culinary-recommender-app",
-      "bindings": [
-        {"binding": "CULINARY_RECIPE_SHARD_00_DB", "database": "culinary-recipes-00"},
-        {"binding": "CULINARY_RECIPE_SHARD_01_DB", "database": "culinary-recipes-01"}
-      ],
-      "instruction": "Add only these two D1 bindings to the existing production Pages project. Do not authorize or enable checkout, a payment method, Workers Paid, overage/usage charges, R2 or Zero Trust/Access.",
-      "hard_stop": "If the UI requests billing/payment/paid/overage/R2/Zero Trust, is ambiguous, or requires any binding other than the exact two listed, stop and report the screen/result."
-    },
-    "step8f_public_runtime": "EXPLICIT_HUMAN_APPROVAL_REQUIRED_LATER"
-  },
+  "current_human_gate": "NONE_IN_STEP8D",
+  "next_reserved_human_gate": "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION",
   "next_action": {
-    "name": "STEP8B_PAGES_TWO_D1_BINDINGS_GATE",
-    "machine_work_before_gate": "COMPLETE_MERGED_DEPLOYED_GREEN",
-    "after_human_result": "First externally verify unauthenticated denial, then run the authenticated same-origin Step 8B canary and validate the final live evidence envelope before changing Step 8D state."
+    "name": "STEP8D_PROTECTED_UNITOOLS_501_POPULATION",
+    "instruction": "Implement repository-first Step 8D transformation/manifest/population/evidence contracts against the exact pinned UniTools source, validate them, then use only the already-earned two D1 bindings for protected live population. Do not change public recommendation behavior."
   },
-  "terminal_instruction_for_new_chat": "Fresh-reconcile live GitHub. Both recipe-body D1 databases were human-attested created under the Free/no-billing gate. PR #136 merged the protected Step 8B live-canary runtime at 3db8084b0571e192094c384ece20417202b1fdc2 and PR/post-merge/browser/production/deployment checks are green. Step 8B terminal is NOT yet earned. The current human gate is to add exactly CULINARY_RECIPE_SHARD_00_DB -> culinary-recipes-00 and CULINARY_RECIPE_SHARD_01_DB -> culinary-recipes-01 to the existing production Pages project, with no billing/paid/R2/Zero Trust authorization. Step 8D remains blocked until the deployed live canary passes."
+  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub. Step 8B is terminal PASS: the fresh authenticated production canary completed all stages with two bindings, zero full scans and maxObservedD1Subqueries=10; a separate no-session production probe returned HTTP 401, protectedDataReturned=false and shardQueries=0. Step 8C already qualified the pinned UniTools 501-record source. Step 8D is now autonomous protected population on the existing two-shard topology. Do not touch billing, add a third shard, activate public recommendations, mutate Nutrition/YT-CUL, or write Knowledge Core."
 }
