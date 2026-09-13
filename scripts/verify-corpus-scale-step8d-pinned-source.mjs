@@ -12,6 +12,8 @@ const contract = JSON.parse(readFileSync(new URL("../config/corpus_scale_step8d_
 const source = contract.source;
 const outputDir = resolve(process.env.STEP8D_ARTIFACT_DIR || "artifacts/step8d-prewrite");
 const frozenEvidencePath = resolve("data/generated/corpus-scale-step8d-prewrite-evidence.json");
+const frozenManifestPath = resolve("data/generated/step8d/manifest.json");
+const frozenPlanPath = resolve("data/generated/step8d/population-plan-descriptors.json");
 
 function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
@@ -54,6 +56,14 @@ function scalingValues(dataset) {
     }
   }
   return [...values].sort();
+}
+
+function assertFrozenJsonMatches(path, expected, label) {
+  if (!existsSync(path)) return;
+  const frozen = JSON.parse(readFileSync(path, "utf8"));
+  if (JSON.stringify(frozen) !== JSON.stringify(expected)) {
+    throw new Error(`Frozen Step 8D ${label} does not match recomputed pinned-source output`);
+  }
 }
 
 const rawUrl = `https://raw.githubusercontent.com/${source.repository}/${source.commit}/${source.dataPath}`;
@@ -146,16 +156,14 @@ const evidence = {
   }
 };
 
-if (existsSync(frozenEvidencePath)) {
-  const frozenEvidence = JSON.parse(readFileSync(frozenEvidencePath, "utf8"));
-  if (JSON.stringify(frozenEvidence) !== JSON.stringify(evidence)) {
-    throw new Error("Frozen Step 8D prewrite evidence does not match recomputed pinned-source evidence");
-  }
-}
+const planDescriptors = compactPlan(first.populationPlan);
+assertFrozenJsonMatches(frozenEvidencePath, evidence, "prewrite evidence");
+assertFrozenJsonMatches(frozenManifestPath, first.manifest, "manifest");
+assertFrozenJsonMatches(frozenPlanPath, planDescriptors, "population plan descriptors");
 
 mkdirSync(outputDir, { recursive: true });
 writeFileSync(resolve(outputDir, "manifest.json"), `${JSON.stringify(first.manifest, null, 2)}\n`);
-writeFileSync(resolve(outputDir, "population-plan-descriptors.json"), `${JSON.stringify(compactPlan(first.populationPlan), null, 2)}\n`);
+writeFileSync(resolve(outputDir, "population-plan-descriptors.json"), `${JSON.stringify(planDescriptors, null, 2)}\n`);
 writeFileSync(resolve(outputDir, "prewrite-evidence.json"), `${JSON.stringify(evidence, null, 2)}\n`);
 
 console.log(JSON.stringify(evidence, null, 2));
