@@ -78,7 +78,7 @@
 
         status.textContent = "Checking Free-limit fail-closed path…";
         const freeLimit = await fetchJson("/api/step8b/canary?simulate=free-limit");
-        if (freeLimit.response.status !== 503 || freeLimit.body?.error !== "STEP8B_FREE_LIMIT_FAIL_CLOSED" || Number(freeLimit.body?.metrics?.shardQueries || -1) !== 0) {
+        if (freeLimit.response.status !== 503 || freeLimit.body?.error !== "STEP8B_FREE_LIMIT_FAIL_CLOSED" || Number(freeLimit.body?.metrics?.shardQueries ?? -1) !== 0) {
           throw Object.assign(new Error("Free-limit fail-closed evidence did not match the contract."), { result: freeLimit });
         }
         completed.push("free-limit");
