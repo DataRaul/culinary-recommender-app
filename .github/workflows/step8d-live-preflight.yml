@@ -1,0 +1,52 @@
+name: Step 8D live population preflight
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/step8d-live-preflight.yml"
+      - "config/corpus_scale_step8d_contract.json"
+      - "data/generated/step8d/**"
+      - "src/shared/step8d-packet.mjs"
+      - "src/server/step8d-live.mjs"
+      - "functions/api/step8d/**"
+      - "step8d-populate.html"
+      - "scripts/verify-step8d-live-payloads.mjs"
+      - "tests/step8d-live.test.js"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/step8d-live-preflight.yml"
+      - "config/corpus_scale_step8d_contract.json"
+      - "data/generated/step8d/**"
+      - "src/shared/step8d-packet.mjs"
+      - "src/server/step8d-live.mjs"
+      - "functions/api/step8d/**"
+      - "step8d-populate.html"
+      - "scripts/verify-step8d-live-payloads.mjs"
+      - "tests/step8d-live.test.js"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-live-payloads:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify actual pinned source against all 51 live payloads
+        env:
+          STEP8D_LIVE_PREFLIGHT_ARTIFACT_DIR: artifacts/step8d-live-preflight
+        run: node scripts/verify-step8d-live-payloads.mjs
+      - name: Upload Step 8D live preflight evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8d-live-preflight-evidence
+          path: artifacts/step8d-live-preflight/
+          if-no-files-found: error
+          retention-days: 14
