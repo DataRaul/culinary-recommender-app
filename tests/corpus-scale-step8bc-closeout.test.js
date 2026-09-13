@@ -8,15 +8,22 @@ const roadmap = JSON.parse(readFileSync(resolve(ROOT, "config/corpus_scale_step8
 const gates = new Map(roadmap.gates.map(gate => [gate.id, gate]));
 const gate = id => gates.get(id);
 
-test("Step 8B machine preparation is complete but live terminal is not fabricated", () => {
+test("Step 8B machine preparation remains frozen while first live account gate is recorded", () => {
   const b = gate("8B");
-  assert.equal(b.status, "MACHINE_PREPARATION_COMPLETE_MERGED_GREEN__HUMAN_ACCOUNT_GATE_REQUIRED");
+  assert.equal(b.status, "FIRST_D1_SHARD_ACCOUNT_GATE_PASS__SECOND_D1_SHARD_ACCOUNT_GATE_REQUIRED");
   assert.equal(b.machinePreparation.mergeSha, "280d261979908b42a7522f3f036d958cc619bb41");
   assert.deepEqual(b.machinePreparation.validationRuns, [34512554325, 34513562037]);
   assert.equal(b.machinePreparation.recipeBodyShardsCreated, 0);
   assert.equal(b.machinePreparation.liveTerminalEarned, false);
   assert.equal(b.initialRecipeBodyShardCount, 2);
   assert.equal(b.humanRequired, true);
+  assert.equal(b.liveAccountProgress.evidenceClass, "HUMAN_ATTESTED_ACCOUNT_GATE");
+  assert.equal(b.liveAccountProgress.firstShard.database, "culinary-recipes-00");
+  assert.equal(b.liveAccountProgress.firstShard.status, "CREATED");
+  assert.equal(b.liveAccountProgress.firstShard.billingClassification, "FREE_NO_BILLING_AUTHORIZATION_CONFIRMED");
+  assert.equal(b.liveAccountProgress.humanAttestedShardsCreated, 1);
+  assert.equal(b.liveAccountProgress.machineVerifiedShardsCreated, 0);
+  assert.equal(b.liveAccountProgress.liveTerminalEarned, false);
 });
 
 test("Step 8C terminal is exact and bounded to the pinned UniTools cohort", () => {
@@ -38,14 +45,16 @@ test("Step 8D remains blocked solely on the unearned live 8B input", () => {
   const d = gate("8D");
   assert.deepEqual(d.dependsOn, ["8B", "8C"]);
   assert.equal(d.status, "BLOCKED_PENDING_8B_LIVE_PASS__8C_INPUT_READY");
-  assert.equal(gate("8B").machinePreparation.liveTerminalEarned, false);
+  assert.equal(gate("8B").liveAccountProgress.liveTerminalEarned, false);
   assert.equal(gate("8C").terminal, "STEP_8C_RIGHTS_CLEAN_SOURCE_COHORT_AVAILABLE");
 });
 
-test("the first human action is one exact D1 Free/no-billing classification gate", () => {
+test("the second human action is one exact D1 Free/no-billing classification gate", () => {
   const human = roadmap.currentHumanGate;
-  assert.equal(human.id, "STEP8B_FIRST_D1_SHARD_NO_BILLING_ACCOUNT_GATE");
+  assert.equal(human.id, "STEP8B_SECOND_D1_SHARD_NO_BILLING_ACCOUNT_GATE");
   assert.equal(human.firstDatabaseName, "culinary-recipes-00");
+  assert.equal(human.firstDatabaseResult, "FREE_NO_BILLING_AUTHORIZATION_CONFIRMED");
+  assert.equal(human.secondDatabaseName, "culinary-recipes-01");
   assert.equal(human.allowedOnlyIf, "FREE_NO_BILLING_AUTHORIZATION_CONFIRMED");
   assert.ok(human.stopIf.includes("CHECKOUT_OR_PAYMENT_METHOD_REQUIRED"));
   assert.ok(human.stopIf.includes("OVERAGE_OR_USAGE_CHARGE_AUTHORIZATION"));
@@ -61,7 +70,7 @@ test("source-state closeout keeps unresolved sources held instead of relaxing th
   assert.match(roadmap.sourceStateCurrent.uniTools, /^STEP8C_RIGHTS_CLEAN_PROTECTED_POPULATION_INPUT/);
 });
 
-test("public, cost and adjacent-lane firewalls remain unchanged at the human gate", () => {
+test("public, cost and adjacent-lane firewalls remain unchanged at the second account gate", () => {
   assert.equal(roadmap.boundaries.noBillingAuthorization, true);
   assert.equal(roadmap.boundaries.workersPaidAllowed, false);
   assert.equal(roadmap.boundaries.r2Allowed, false);
