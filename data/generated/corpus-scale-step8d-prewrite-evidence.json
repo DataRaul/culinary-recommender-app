@@ -1,0 +1,69 @@
+{
+  "contractVersion": "CORPUS_SCALE_STEP8D_CONTRACT_V1",
+  "evidenceType": "STEP8D_PINNED_SOURCE_PREWRITE_VERIFICATION",
+  "pass": true,
+  "terminalCandidate": "STEP8D_PREWRITE_ACCEPTANCE_PASS",
+  "liveWritesAllowedByPrewriteContract": true,
+  "liveWritesPerformed": false,
+  "source": {
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "expectedGitBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "observedGitBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "sourceBytes": 2768163,
+    "datasetVersion": "1.1.0",
+    "recipeCount": 501,
+    "metadataRecipeCount": 501
+  },
+  "transformation": {
+    "packetSchemaVersion": "CORPUS_SCALE_STEP8D_PROTECTED_PACKET_V1",
+    "packetCount": 501,
+    "packetSetSha256": "6b6e12011e9a12ffdc362acae32bc43304d66705c75325a898da1b84b3ed4c48",
+    "manifestSchemaVersion": "CORPUS_SCALE_STEP8D_MANIFEST_V1",
+    "manifestSha256": "0cb09afd9dd87ead733c3798c4832fdd96c8022867fb857a8730f74243562743",
+    "populationPlanSha256": "18ea4d1bfaf424709de22a7badd680fb82c887fb70e54af5e190c33371dbad12",
+    "scalingValuesObservedVerbatim": [
+      "damped",
+      "fixed",
+      "linear"
+    ],
+    "mediaExcluded": true,
+    "sourceAuthorityFirewallPass": true
+  },
+  "routing": {
+    "shardCount": 2,
+    "shardRows": [
+      {
+        "shardNumber": 0,
+        "rowCount": 257,
+        "totalBodyBytes": 1346706,
+        "entriesSha256": "c33e59aa3bf7e507b33cf52d0971f520e4bccd70123a650c0c6e6539c53e1e87"
+      },
+      {
+        "shardNumber": 1,
+        "rowCount": 244,
+        "totalBodyBytes": 1271589,
+        "entriesSha256": "d3854c25e761ea92e6a98156adf496c62da641916bc0e33cebbc262179e927e0"
+      }
+    ],
+    "batchCount": 51,
+    "maxRowsPerBatch": 10,
+    "maxAllowedRowsPerBatch": 10
+  },
+  "acceptance": {
+    "pass": true,
+    "terminalCandidate": "STEP8D_PREWRITE_ACCEPTANCE_PASS",
+    "liveWritesAllowed": true,
+    "errors": []
+  },
+  "boundaries": {
+    "publicRuntimeChanged": false,
+    "d1WritesPerformed": 0,
+    "thirdShardUsed": false,
+    "billingExpansion": false,
+    "knowledgeCoreWritePerformed": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false
+  }
+}
