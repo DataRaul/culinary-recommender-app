@@ -1,0 +1,37 @@
+name: Step 8D prewrite source verification
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/step8d-prewrite.yml"
+      - "config/corpus_scale_step8d_contract.json"
+      - "scripts/corpus-scale-step8a-core.mjs"
+      - "scripts/corpus-scale-step8d-core.mjs"
+      - "scripts/verify-corpus-scale-step8d-pinned-source.mjs"
+      - "tests/corpus-scale-step8d.test.js"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-pinned-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify immutable UniTools source and materialize descriptor evidence
+        env:
+          STEP8D_ARTIFACT_DIR: artifacts/step8d-prewrite
+        run: node scripts/verify-corpus-scale-step8d-pinned-source.mjs
+      - name: Upload Step 8D prewrite evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8d-prewrite-evidence
+          path: artifacts/step8d-prewrite/
+          if-no-files-found: error
+          retention-days: 14
