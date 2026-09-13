@@ -1,6 +1,29 @@
 {
   "schemaVersion": "youtube-culinary-canonical-review-bridge-v1",
-  "knowledgeCoreCommit": "af4f7f57ace5255321425eec454347a2f272f388",
-  "generatedAt": "2026-09-11T15:07:10Z",
-  "outcomes": []
+  "knowledgeCoreCommit": "0a3ac95dbeeff426a204cef92fc456744bef430d",
+  "generatedAt": "2026-09-13T12:14:53Z",
+  "outcomes": [
+    {
+      "packetId": "yt-cul-review-e149634d5785d6e7bd4e185e",
+      "reviewPairKey": "yt-cul-pair-765dba9c9b92eef15a5cec42",
+      "reviewDecision": "HELD",
+      "reviewAuthority": "KNOWLEDGE_CORE_ATLAS_REVIEW",
+      "decisionReason": "CANONICAL_EVIDENCE_REVIEW_REQUIRED__EGGPLANT_FATTEH_IS_PLAUSIBLE_FOR_THE_LEVANT_FLATBREAD_SCOPE_BUT_EXACT_VARIANT_IDENTITY_IS_NOT_YET_STRONGLY_CORROBORATED. The discovery source presents a vegetarian eggplant fatteh and Jordan's official intangible-cultural-heritage registry independently documents fatteh forms as bread-based traditional foods, including lentil fatteh made by pouring lentil soup over torn shrak/white bread. That establishes the broader fatteh/bread mechanism within the Jordanian/Levant context, but the current authoritative evidence located in this review does not itself name or bound the exact 'Eggplant Fatteh' variant. Do not infer exact variant identity from one recipe page plus family-level fatteh evidence.",
+      "reviewRoute": "ATLAS_IDENTITY_REVIEW",
+      "requiredEvidenceTerms": [
+        "eggplant fatteh",
+        "aubergine fatteh",
+        "\u0641\u062a\u0629 \u0627\u0644\u0628\u0627\u0630\u0646\u062c\u0627\u0646",
+        "Jordan",
+        "Levant"
+      ],
+      "independentNonYoutubeEvidence": true,
+      "rightsProvenanceSafetyClear": false,
+      "appAuthoringEligible": false,
+      "lifecycleAdvanced": false,
+      "lifecycleStateAfter": null,
+      "retryable": true,
+      "knowledgeCoreCommit": "0a3ac95dbeeff426a204cef92fc456744bef430d"
+    }
+  ]
 }
