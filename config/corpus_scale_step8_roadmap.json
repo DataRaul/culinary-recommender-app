@@ -1,6 +1,6 @@
 {
   "id": "CORPUS_SCALE_STEP8_MEASURED_POPULATION_ROADMAP_V1",
-  "status": "STEP8A_COMPLETE__8B_TWO_SHARDS_CREATED_CANARY_RUNTIME_MERGED_GREEN_BINDING_GATE_REQUIRED__8C_PASS__8D_BLOCKED_PENDING_8B_LIVE_PASS",
+  "status": "STEP8A_COMPLETE__8B_PASS__8C_PASS__8D_READY_PROTECTED_POPULATION",
   "decisionDate": "2026-09-10",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "entryTerminal": "STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS",
@@ -40,6 +40,9 @@
     "docs/CORPUS_SCALE_STEP8BC_HUMAN_GATE_CLOSEOUT.md",
     "docs/CORPUS_SCALE_STEP8B_FIRST_SHARD_ACCOUNT_GATE.md",
     "docs/CORPUS_SCALE_STEP8B_SECOND_SHARD_ACCOUNT_GATE.md",
+    "docs/CORPUS_SCALE_STEP8B_BINDING_GATE_CLOSEOUT.md",
+    "docs/CORPUS_SCALE_STEP8B_BINDING_GATE_PASS.md",
+    "docs/CORPUS_SCALE_STEP8B_LIVE_CANARY_PASS.md",
     "src/server/step8b-live.mjs",
     "functions/api/step8b/canary.js",
     "tests/step8b-live-canary.test.js"
@@ -79,33 +82,34 @@
     {
       "id": "8B",
       "name": "Minimum Multi-Shard Protected Canary",
-      "status": "TWO_D1_SHARDS_HUMAN_ATTESTED_CREATED__LIVE_CANARY_RUNTIME_MERGED_GREEN__PAGES_BINDING_GATE_REQUIRED",
+      "status": "COMPLETE_PASS_LIVE_PRODUCTION",
+      "terminal": "STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS",
       "machinePreparation": {
         "pr": 116,
         "mergeSha": "280d261979908b42a7522f3f036d958cc619bb41",
         "validationRuns": [34512554325, 34513562037],
         "pagesDeploymentRun": 34513559405,
-        "liveTerminalEarned": false
+        "liveTerminalEarned": true
       },
       "liveAccountProgress": {
-        "evidenceClass": "HUMAN_ATTESTED_ACCOUNT_GATE",
+        "evidenceClass": "HUMAN_ATTESTED_ACCOUNT_GATE_PLUS_LIVE_RUNTIME_VERIFICATION",
         "firstShard": {
           "database": "culinary-recipes-00",
           "binding": "CULINARY_RECIPE_SHARD_00_DB",
-          "status": "CREATED",
+          "status": "CREATED_AND_BOUND_RUNTIME_VERIFIED",
           "billingClassification": "FREE_NO_BILLING_AUTHORIZATION_CONFIRMED",
           "attestedDate": "2026-09-13"
         },
         "secondShard": {
           "database": "culinary-recipes-01",
           "binding": "CULINARY_RECIPE_SHARD_01_DB",
-          "status": "CREATED",
+          "status": "CREATED_AND_BOUND_RUNTIME_VERIFIED",
           "billingClassification": "FREE_NO_BILLING_AUTHORIZATION_CONFIRMED",
           "attestedDate": "2026-09-13"
         },
         "humanAttestedShardsCreated": 2,
-        "machineVerifiedShardsCreated": 0,
-        "liveTerminalEarned": false
+        "machineVerifiedBoundShards": 2,
+        "liveTerminalEarned": true
       },
       "liveCanaryRuntime": {
         "pr": 136,
@@ -119,12 +123,42 @@
         "pagesDeployment": "PASS",
         "route": "/api/step8b/canary",
         "sameOriginCanaryPage": "/step8b-canary.html",
-        "bindingsConfigured": false,
-        "liveTerminalEarned": false
+        "bindingsConfigured": true,
+        "liveTerminalEarned": true,
+        "uiZeroQueryFix": {
+          "pr": 139,
+          "mergeSha": "1b97f55b5cd9e7d6a43300eb9ef4ea8148f18cdf",
+          "prValidationRun": 34785775793,
+          "postMergeValidationRun": 34785864955,
+          "cloudflarePagesDeployment": "PASS"
+        },
+        "authenticatedLiveEvidence": {
+          "evidenceClass": "HUMAN_OBSERVED_PRODUCTION_CANARY",
+          "date": "2026-09-14",
+          "pass": true,
+          "boundShardBindings": 2,
+          "freeLimitFailClosedBeforeShardRead": true,
+          "partialFailureRecoveryPass": true,
+          "idempotentWritePass": true,
+          "authenticatedCrossShardReadPass": true,
+          "rollbackPass": true,
+          "fullCorpusScans": 0,
+          "maxObservedD1Subqueries": 10,
+          "normalPublicRecommendationRuntimeChanged": false
+        },
+        "externalUnauthenticatedProbe": {
+          "evidenceClass": "HUMAN_OBSERVED_EXTERNAL_PRODUCTION_PROBE_PLUS_DETERMINISTIC_ROUTE_TEST",
+          "date": "2026-09-14",
+          "httpStatus": 401,
+          "error": "UNAUTHORIZED",
+          "reason": "NO_SESSION",
+          "protectedDataReturned": false,
+          "shardQueries": 0
+        }
       },
       "mode": "LIVE_INFRASTRUCTURE_CANARY",
       "dependsOn": ["8A"],
-      "humanRequired": true,
+      "humanRequired": false,
       "infrastructureWriteAllowed": true,
       "publicRuntimeChangeAllowed": false,
       "initialRecipeBodyShardCount": 2,
@@ -164,7 +198,7 @@
     {
       "id": "8D",
       "name": "Protected Corpus Population Ladder",
-      "status": "BLOCKED_PENDING_8B_LIVE_PASS__8C_INPUT_READY",
+      "status": "READY_PROTECTED_POPULATION__STEP8B_AND_STEP8C_PASS",
       "mode": "PROTECTED_POPULATION_AND_MEASUREMENT",
       "dependsOn": ["8B", "8C"],
       "humanRequired": false,
@@ -231,21 +265,9 @@
     "recipeDb": "SOURCE_COHORT_SALVAGE_ONLY"
   },
   "currentHumanGate": {
-    "id": "STEP8B_PAGES_TWO_D1_BINDINGS_GATE",
-    "project": "culinary-recommender-app",
-    "bindings": [
-      {"binding": "CULINARY_RECIPE_SHARD_00_DB", "database": "culinary-recipes-00"},
-      {"binding": "CULINARY_RECIPE_SHARD_01_DB", "database": "culinary-recipes-01"}
-    ],
-    "allowedOnlyIf": "EXACT_EXISTING_D1_BINDINGS_ONLY__NO_BILLING_AUTHORIZATION",
-    "stopIf": [
-      "CHECKOUT_OR_PAYMENT_METHOD_REQUIRED",
-      "WORKERS_PAID_ACTIVATION",
-      "OVERAGE_OR_USAGE_CHARGE_AUTHORIZATION",
-      "R2_ACTIVATION",
-      "ZERO_TRUST_ACCESS_ACTIVATION",
-      "AMBIGUOUS_BILLING_STATE",
-      "ANY_BINDING_OTHER_THAN_THE_EXACT_TWO_LISTED"
-    ]
+    "id": "NONE",
+    "status": "NO_HUMAN_GATE_IN_STEP8D",
+    "reason": "Step 8B and Step 8C prerequisites are earned; Step 8D protected population is autonomous inside the frozen topology and no-billing boundaries.",
+    "nextReservedHumanGate": "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION"
   }
 }
