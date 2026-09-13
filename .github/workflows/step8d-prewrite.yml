@@ -7,6 +7,7 @@ on:
       - ".github/workflows/step8d-prewrite.yml"
       - "config/corpus_scale_step8d_contract.json"
       - "data/generated/corpus-scale-step8d-prewrite-evidence.json"
+      - "data/generated/step8d/**"
       - "scripts/corpus-scale-step8a-core.mjs"
       - "scripts/corpus-scale-step8d-core.mjs"
       - "scripts/verify-corpus-scale-step8d-pinned-source.mjs"
@@ -14,7 +15,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   verify-pinned-source:
@@ -22,6 +23,9 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -36,3 +40,19 @@ jobs:
           path: artifacts/step8d-prewrite/
           if-no-files-found: error
           retention-days: 14
+      - name: Freeze verified descriptor artifacts on the Step 8D branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.actor == 'DataRaul'
+        run: |
+          set -euo pipefail
+          mkdir -p data/generated/step8d
+          cp artifacts/step8d-prewrite/manifest.json data/generated/step8d/manifest.json
+          cp artifacts/step8d-prewrite/population-plan-descriptors.json data/generated/step8d/population-plan-descriptors.json
+          git add data/generated/step8d/manifest.json data/generated/step8d/population-plan-descriptors.json
+          if git diff --cached --quiet; then
+            echo "Step 8D descriptor artifacts already frozen."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Step 8D: freeze verified 501-record descriptor artifacts"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
