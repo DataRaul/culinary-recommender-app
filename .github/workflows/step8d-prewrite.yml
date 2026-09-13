@@ -6,6 +6,7 @@ on:
     paths:
       - ".github/workflows/step8d-prewrite.yml"
       - "config/corpus_scale_step8d_contract.json"
+      - "data/generated/corpus-scale-step8d-prewrite-evidence.json"
       - "scripts/corpus-scale-step8a-core.mjs"
       - "scripts/corpus-scale-step8d-core.mjs"
       - "scripts/verify-corpus-scale-step8d-pinned-source.mjs"
