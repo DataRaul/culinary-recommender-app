@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import {
@@ -11,6 +11,7 @@ import {
 const contract = JSON.parse(readFileSync(new URL("../config/corpus_scale_step8d_contract.json", import.meta.url), "utf8"));
 const source = contract.source;
 const outputDir = resolve(process.env.STEP8D_ARTIFACT_DIR || "artifacts/step8d-prewrite");
+const frozenEvidencePath = resolve("data/generated/corpus-scale-step8d-prewrite-evidence.json");
 
 function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
@@ -144,6 +145,13 @@ const evidence = {
     youtubeCulinaryStateModified: false
   }
 };
+
+if (existsSync(frozenEvidencePath)) {
+  const frozenEvidence = JSON.parse(readFileSync(frozenEvidencePath, "utf8"));
+  if (JSON.stringify(frozenEvidence) !== JSON.stringify(evidence)) {
+    throw new Error("Frozen Step 8D prewrite evidence does not match recomputed pinned-source evidence");
+  }
+}
 
 mkdirSync(outputDir, { recursive: true });
 writeFileSync(resolve(outputDir, "manifest.json"), `${JSON.stringify(first.manifest, null, 2)}\n`);
