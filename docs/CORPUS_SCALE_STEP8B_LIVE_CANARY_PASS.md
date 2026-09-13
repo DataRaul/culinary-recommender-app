@@ -38,12 +38,16 @@ A fresh production run of `/step8b-canary.html` completed the entire bounded seq
 - pointer-only rollback: PASS
 - final evidence envelope: PASS
 
-Observed summary:
+The authenticated run originally emitted the intermediate candidate `STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS_PENDING_EXTERNAL_UNAUTH_PROBE`. That pending condition is now **resolved** by the separate external unauthenticated production probe below. The canonical Step 8B status is therefore the terminal `STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS`, not a pending candidate.
+
+Normalized closeout summary:
 
 ```json
 {
   "pass": true,
-  "terminalCandidate": "STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS_PENDING_EXTERNAL_UNAUTH_PROBE",
+  "terminal": "STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS",
+  "authenticatedComponentPass": true,
+  "externalUnauthenticatedProbeStatus": "PASS_FROZEN_IN_STEP8B_CLOSEOUT",
   "boundShardBindings": 2,
   "freeLimitFailClosedBeforeShardRead": true,
   "partialFailureRecoveryPass": true,
@@ -52,27 +56,13 @@ Observed summary:
   "rollbackPass": true,
   "fullCorpusScans": 0,
   "maxObservedD1Subqueries": 10,
-  "normalPublicRecommendationRuntimeChanged": false,
-  "completed": [
-    "session",
-    "status",
-    "bindings",
-    "free-limit",
-    "initialize",
-    "partial",
-    "resume",
-    "replay",
-    "read",
-    "activate",
-    "rollback",
-    "evidence"
-  ]
+  "normalPublicRecommendationRuntimeChanged": false
 }
 ```
 
 The observed D1 subquery maximum of **10** is within the frozen protected-request budget of **16**. No full-corpus scan occurred and normal public recommendation behavior remained unchanged.
 
-## External unauthenticated production probe
+## External unauthenticated production probe — RESOLVED PASS
 
 A separate browser context with no session requested:
 
@@ -92,6 +82,8 @@ Observed production response:
 ```
 
 This proves the live production route denies unauthenticated access before either recipe-body shard is queried. The deterministic route test in `tests/step8b-live-canary.test.js` independently freezes the same zero-shard-access invariant.
+
+The probe is no longer an open Step 8B condition. Any later authenticated canary rerun is a regression check against an already-earned terminal and must not report the external probe as pending.
 
 ## Free-limit evidence
 
