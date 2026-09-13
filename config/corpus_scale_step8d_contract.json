@@ -1,0 +1,102 @@
+{
+  "contractVersion": "CORPUS_SCALE_STEP8D_CONTRACT_V1",
+  "status": "PREWRITE_CONTRACT_FROZEN",
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "datasetVersion": "1.1.0",
+    "recordCount": 501,
+    "licenseId": "CC-BY-SA-4.0",
+    "attributionText": "UniTools — theunitools.com"
+  },
+  "topology": {
+    "recipeShardCount": 2,
+    "allowedBindings": [
+      "CULINARY_RECIPE_SHARD_00_DB",
+      "CULINARY_RECIPE_SHARD_01_DB"
+    ],
+    "maxRowsPerWriteBatch": 10,
+    "maxD1SubqueriesPerProtectedRequest": 16,
+    "thirdShardAuthorized": false,
+    "fullCorpusScanAuthorized": false
+  },
+  "packetSchema": {
+    "version": "CORPUS_SCALE_STEP8D_PROTECTED_PACKET_V1",
+    "requiredTopLevelKeys": [
+      "packetSchemaVersion",
+      "identity",
+      "provenance",
+      "recipe",
+      "sourceMetadata",
+      "authority"
+    ],
+    "stableRecipeId": "unitools:<exact pinned source slug>",
+    "mediaFieldsExcluded": ["photo", "image", "images", "media", "thumbnail"],
+    "sourceMetadataOnly": [
+      "diets",
+      "nutritionPerServing",
+      "ingredientScaling"
+    ],
+    "authority": {
+      "storageState": "PROTECTED_STORED_ONLY",
+      "publicRecommendationEligible": false,
+      "automaticAppAdmissionAuthorized": false,
+      "nutritionAuthority": "SOURCE_METADATA_ONLY_UNTRUSTED",
+      "dietaryAllergenAuthority": "SOURCE_METADATA_ONLY_UNTRUSTED",
+      "scalingAuthority": "SOURCE_METADATA_ONLY_UNTRUSTED",
+      "knowledgeCoreWriteAuthorized": false
+    }
+  },
+  "manifestSchema": {
+    "version": "CORPUS_SCALE_STEP8D_MANIFEST_V1",
+    "corpusVersion": "v8001",
+    "descriptorOnly": true,
+    "fullRecipeBodiesInManifest": false,
+    "requiredEntryFields": [
+      "ordinal",
+      "recipeId",
+      "bodySha256",
+      "bodyBytes",
+      "sourceCohortId",
+      "shardNumber"
+    ],
+    "routing": "recipeDatabaseShardForId/FNV1A32_MOD_SHARD_COUNT",
+    "receiptIdempotency": "batchId_plus_expectedSha256",
+    "rollback": "ACTIVE_VERSION_POINTER_SWITCH_ONLY"
+  },
+  "acceptanceCriteria": {
+    "preWrite": [
+      "STEP8D_SOURCE_IDENTITY_EXACT_PIN_PASS",
+      "STEP8D_EXACT_501_RECORD_COUNT_PASS",
+      "STEP8D_PACKET_SCHEMA_ALL_RECORDS_PASS",
+      "STEP8D_STABLE_UNIQUE_IDS_PASS",
+      "STEP8D_DETERMINISTIC_TRANSFORMATION_PASS",
+      "STEP8D_DETERMINISTIC_MANIFEST_PASS",
+      "STEP8D_EXACT_TWO_SHARD_ROUTING_PASS",
+      "STEP8D_BOTH_SHARDS_NONEMPTY_PASS",
+      "STEP8D_MAX_10_ROWS_PER_BATCH_PASS",
+      "STEP8D_MEDIA_EXCLUSION_PASS",
+      "STEP8D_SOURCE_AUTHORITY_FIREWALL_PASS",
+      "STEP8D_PUBLIC_RUNTIME_UNCHANGED_STATIC_PASS",
+      "STEP8D_REPOSITORY_TESTS_GREEN"
+    ],
+    "livePopulation": [
+      "STEP8D_RECEIPT_IDEMPOTENCY_PASS",
+      "STEP8D_RESUMABLE_INTERRUPTION_PASS",
+      "STEP8D_EXACT_POST_WRITE_501_PASS",
+      "STEP8D_CROSS_SHARD_PROTECTED_READ_PASS",
+      "STEP8D_PROTECTED_READ_D1_SUBQUERIES_LE_16_PASS",
+      "STEP8D_ZERO_FULL_CORPUS_SCANS_PASS",
+      "STEP8D_UNAUTH_FAIL_CLOSED_ZERO_SHARD_QUERY_PASS",
+      "STEP8D_POINTER_ONLY_ROLLBACK_PASS",
+      "STEP8D_NORMAL_PUBLIC_RECOMMENDATION_RUNTIME_UNCHANGED_PASS",
+      "STEP8D_NO_THIRD_SHARD_PASS",
+      "STEP8D_NO_BILLING_EXPANSION_PASS"
+    ],
+    "terminal": "STEP_8D_PROTECTED_POPULATION_PASS",
+    "terminalRule": "Terminal PASS is forbidden until every preWrite and livePopulation criterion is evidenced PASS."
+  }
+}

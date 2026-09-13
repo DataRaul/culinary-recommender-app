@@ -14,7 +14,7 @@
 </head>
 <body>
   <h1>Step 8B protected two-shard canary</h1>
-  <p>This page runs only the bounded Step 8B verification sequence. It does not activate normal public recommendations or Step 8D population.</p>
+  <p>This page reruns only the bounded authenticated Step 8B verification sequence. Step 8B terminal PASS is already earned and separately includes the frozen external unauthenticated zero-shard-query probe. This page does not activate normal public recommendations or Step 8D population.</p>
   <p><a class="button" href="/auth-canary.html">Open sign-in canary</a><button id="run" type="button">Run Step 8B canary</button></p>
   <p id="status">Ready.</p>
   <pre id="output">No run yet.</pre>
@@ -133,7 +133,9 @@
 
         const summary = {
           pass: true,
-          terminalCandidate: "STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS_PENDING_EXTERNAL_UNAUTH_PROBE",
+          terminal: "STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS",
+          authenticatedComponentPass: true,
+          externalUnauthenticatedProbeStatus: "PASS_FROZEN_IN_STEP8B_CLOSEOUT",
           boundShardBindings: 2,
           freeLimitFailClosedBeforeShardRead: true,
           partialFailureRecoveryPass: true,
@@ -145,7 +147,7 @@
           normalPublicRecommendationRuntimeChanged: false,
           completed
         };
-        status.textContent = "PASS — Step 8B authenticated live canary complete.";
+        status.textContent = "PASS — Step 8B terminal remains earned; authenticated live canary rerun complete.";
         status.className = "pass";
         output.textContent = JSON.stringify(summary, null, 2);
       } catch (error) {
