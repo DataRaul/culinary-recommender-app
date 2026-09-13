@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Culinary Recommender — Step 8B Canary</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 760px; margin: 0 auto; padding: 24px; line-height: 1.45; }
+    button, a.button { display: inline-block; padding: 12px 16px; margin: 8px 8px 8px 0; font: inherit; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #f4f4f4; padding: 16px; border-radius: 8px; }
+    .pass { font-weight: 700; }
+    .fail { font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>Step 8B protected two-shard canary</h1>
+  <p>This page runs only the bounded Step 8B verification sequence. It does not activate normal public recommendations or Step 8D population.</p>
+  <p><a class="button" href="/auth-canary.html">Open sign-in canary</a><button id="run" type="button">Run Step 8B canary</button></p>
+  <p id="status">Ready.</p>
+  <pre id="output">No run yet.</pre>
+
+  <script type="module">
+    const runButton = document.getElementById("run");
+    const status = document.getElementById("status");
+    const output = document.getElementById("output");
+
+    async function fetchJson(url, options = {}) {
+      const response = await fetch(url, { credentials: "same-origin", ...options });
+      let body = null;
+      try { body = await response.json(); } catch { body = { error: "NON_JSON_RESPONSE" }; }
+      return { response, body };
+    }
+
+    async function requireOk(label, url, options = {}) {
+      status.textContent = label;
+      const result = await fetchJson(url, options);
+      if (!result.response.ok || result.body?.ok !== true) {
+        const error = new Error(`${label} failed with HTTP ${result.response.status}`);
+        error.result = result;
+        throw error;
+      }
+      return result.body;
+    }
+
+    function post(action) {
+      return requireOk(
+        `Running ${action}…`,
+        "/api/step8b/canary",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ action })
+        }
+      );
+    }
+
+    runButton.addEventListener("click", async () => {
+      runButton.disabled = true;
+      output.textContent = "Starting…";
+      const completed = [];
+      let maxObservedD1Subqueries = 0;
+
+      try {
+        const session = await fetchJson("/api/auth/session");
+        if (!session.response.ok || session.body?.authenticated !== true) {
+          throw Object.assign(new Error("A current Culinary session is required. Open the sign-in canary in this same browser, sign in, then return here."), { result: session });
+        }
+        completed.push("session");
+
+        const statusBody = await requireOk("Checking bindings…", "/api/step8b/canary?action=status");
+        completed.push("status");
+        maxObservedD1Subqueries = Math.max(maxObservedD1Subqueries, Number(statusBody.metrics?.d1Subqueries || 0));
+
+        const bindings = await requireOk("Verifying both D1 bindings…", "/api/step8b/canary?action=bindings");
+        if (bindings.boundShardBindings !== 2) throw new Error("Both recipe-body bindings were not verified.");
+        completed.push("bindings");
+        maxObservedD1Subqueries = Math.max(maxObservedD1Subqueries, Number(bindings.metrics?.d1Subqueries || 0));
+
+        status.textContent = "Checking Free-limit fail-closed path…";
+        const freeLimit = await fetchJson("/api/step8b/canary?simulate=free-limit");
+        if (freeLimit.response.status !== 503 || freeLimit.body?.error !== "STEP8B_FREE_LIMIT_FAIL_CLOSED" || Number(freeLimit.body?.metrics?.shardQueries || -1) !== 0) {
+          throw Object.assign(new Error("Free-limit fail-closed evidence did not match the contract."), { result: freeLimit });
+        }
+        completed.push("free-limit");
+        maxObservedD1Subqueries = Math.max(maxObservedD1Subqueries, Number(freeLimit.body.metrics?.d1Subqueries || 0));
+
+        const initialize = await post("initialize");
+        completed.push("initialize");
+        maxObservedD1Subqueries = Math.max(maxObservedD1Subqueries, Number(initialize.metrics?.d1Subqueries || 0));
+
+        const partial = await post("partial");
+        if (partial.secondShardTouched !== false) throw new Error("Partial-failure simulation unexpectedly touched shard 1.");
+        completed.push("partial");
+        maxObservedD1Subqueries = Math.max(maxObservedD1Subqueries, Number(partial.metrics?.d1Subqueries || 0));
+
+        const resume = await post("resume");
+        if (resume.partialFailureRecoveryPass !== true) throw new Error("Partial-failure recovery did not pass.");
+        completed.push("resume");
+        maxObservedD1Subqueries = Math.max(maxObservedD1Subqueries, Number(resume.metrics?.d1Subqueries || 0));
+
+        const replay = await post("replay");
+        if (replay.idempotentWritePass !== true) throw new Error("Idempotent replay did not pass.");
+        completed.push("replay");
+        maxObservedD1Subqueries = Math.max(maxObservedD1Subqueries, Number(replay.metrics?.d1Subqueries || 0));
+
+        const read = await requireOk("Checking authenticated cross-shard read…", "/api/step8b/canary?action=read");
+        if (read.authenticatedCrossShardReadPass !== true || read.touchedShards !== 2 || read.fullCorpusScans !== 0) {
+          throw new Error("Cross-shard read evidence did not match the contract.");
+        }
+        completed.push("read");
+        maxObservedD1Subqueries = Math.max(maxObservedD1Subqueries, Number(read.metrics?.d1Subqueries || 0));
+
+        const activate = await post("activate");
+        if (activate.normalPublicRecommendationRuntimeChanged !== false) throw new Error("Canary activation boundary was violated.");
+        completed.push("activate");
+        maxObservedD1Subqueries = Math.max(maxObservedD1Subqueries, Number(activate.metrics?.d1Subqueries || 0));
+
+        const rollback = await post("rollback");
+        if (rollback.rollbackPass !== true || rollback.destructiveDeletePerformed !== false || rollback.canaryRowsRetained !== true) {
+          throw new Error("Rollback evidence did not match the contract.");
+        }
+        completed.push("rollback");
+        maxObservedD1Subqueries = Math.max(maxObservedD1Subqueries, Number(rollback.metrics?.d1Subqueries || 0));
+
+        const evidence = await requireOk("Collecting final bounded evidence…", "/api/step8b/canary?action=evidence");
+        completed.push("evidence");
+        maxObservedD1Subqueries = Math.max(maxObservedD1Subqueries, Number(evidence.metrics?.d1Subqueries || 0));
+
+        if (maxObservedD1Subqueries > 16) throw new Error(`Observed D1 subquery count ${maxObservedD1Subqueries} exceeds the Step 8B budget.`);
+        if (evidence.rollbackPass !== true || evidence.authenticatedCrossShardReadPass !== true || evidence.boundShardBindings !== 2 || evidence.fullCorpusScans !== 0) {
+          throw new Error("Final Step 8B evidence envelope is incomplete.");
+        }
+
+        const summary = {
+          pass: true,
+          terminalCandidate: "STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS_PENDING_EXTERNAL_UNAUTH_PROBE",
+          boundShardBindings: 2,
+          freeLimitFailClosedBeforeShardRead: true,
+          partialFailureRecoveryPass: true,
+          idempotentWritePass: true,
+          authenticatedCrossShardReadPass: true,
+          rollbackPass: true,
+          fullCorpusScans: 0,
+          maxObservedD1Subqueries,
+          normalPublicRecommendationRuntimeChanged: false,
+          completed
+        };
+        status.textContent = "PASS — Step 8B authenticated live canary complete.";
+        status.className = "pass";
+        output.textContent = JSON.stringify(summary, null, 2);
+      } catch (error) {
+        status.textContent = `STOP — ${error.message}`;
+        status.className = "fail";
+        output.textContent = JSON.stringify({
+          pass: false,
+          message: error.message,
+          completed,
+          httpStatus: error.result?.response?.status || null,
+          result: error.result?.body || null
+        }, null, 2);
+      } finally {
+        runButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
