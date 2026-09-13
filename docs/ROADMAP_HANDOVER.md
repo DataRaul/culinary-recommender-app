@@ -21,6 +21,8 @@ Always use:
 - Step 8B binding-gate closeout: `docs/CORPUS_SCALE_STEP8B_BINDING_GATE_CLOSEOUT.md`
 - Step 8B live terminal closeout: `docs/CORPUS_SCALE_STEP8B_LIVE_CANARY_PASS.md`
 - Step 8C source qualification: `docs/CORPUS_SCALE_STEP8C_SOURCE_QUALIFICATION.md`
+- Step 8D acceptance/packet contract: `docs/CORPUS_SCALE_STEP8D_ACCEPTANCE_AND_PACKET_CONTRACT.md`
+- Step 8D machine contract: `config/corpus_scale_step8d_contract.json`
 - YouTube generated state: `data/generated/youtube-culinary-daily-discovery-state.json`
 
 Older Access/R2/100k summaries are historical for current runtime/storage/cost sequencing. The 170k no-billing architecture and Step 8 documents control Corpus Scale work.
@@ -46,7 +48,7 @@ The exact earned topology is still only:
 
 Fresh authenticated production evidence passed the complete sequence: bindings, Free-limit fail-closed, initialize, bounded partial interruption, resume, idempotent replay, cross-shard read, activation boundary, rollback and final evidence. Observed maximum D1 subqueries were **10**, below the protected-request limit of **16**; full-corpus scans were **0**; normal public recommendation behavior remained unchanged.
 
-A separate no-session production probe returned HTTP **401** with `UNAUTHORIZED`, `protectedDataReturned: false` and `shardQueries: 0`. The deterministic route test independently freezes the same pre-shard denial invariant.
+A separate no-session production probe returned HTTP **401** with `UNAUTHORIZED`, `protectedDataReturned: false` and `shardQueries: 0`. That probe is resolved PASS and is part of the earned Step 8B terminal. The Step 8B canary must not report it as pending on later authenticated regression runs.
 
 No third recipe-body shard or additional binding is authorized by Step 8B.
 
@@ -60,14 +62,22 @@ Qualified protected-population input is the pinned UniTools World Recipes Datase
 
 Source nutrition, dietary/allergen inference, scaling-rule promotion, media admission, automatic app admission and public runtime activation remain false. Open Recipe Archive Spanish remains `HOLD_RIGHTS_AMBIGUOUS`; RecipeDB whole-source remains `SOURCE_COHORT_SALVAGE_ONLY`.
 
-### Step 8D — READY / PROTECTED POPULATION NEXT
+### Step 8D — ACTIVE IMPLEMENTATION / PRE-WRITE CONTRACT FROZEN
 
-Both entry requirements are now earned:
+Both entry requirements are earned:
 
 - Step 8B live two-shard terminal PASS;
 - Step 8C rights-clean pinned source cohort PASS.
 
-Step 8D may proceed autonomously with protected population and measurement of the exact pinned 501-record UniTools cohort on the already-earned two-shard topology. This does not grant recommendation eligibility or public-runtime authority.
+Step 8D is implementing the exact pinned 501-record UniTools transformation, protected packet schema and deterministic manifest on the already-earned two-shard topology. This does not grant recommendation eligibility or public-runtime authority.
+
+The frozen protected packet schema is `CORPUS_SCALE_STEP8D_PROTECTED_PACKET_V1`. Stable IDs are `unitools:<exact pinned source slug>`. Media is excluded. Source diet, nutrition and scaling values are retained only as `SOURCE_METADATA_ONLY_UNTRUSTED`; unexpected pinned metadata such as `scaling: "damped"` is preserved verbatim rather than normalized into application authority.
+
+The frozen manifest schema is `CORPUS_SCALE_STEP8D_MANIFEST_V1`, corpus version `v8001`. It is descriptor-only, contains no full recipe bodies, routes through exactly two shards using the Step 8A deterministic router, uses at most 10 rows per write batch, exact receipts for idempotency and pointer-only rollback.
+
+No live Step 8D D1 population write is authorized until all pre-write acceptance criteria in `config/corpus_scale_step8d_contract.json` and `docs/CORPUS_SCALE_STEP8D_ACCEPTANCE_AND_PACKET_CONTRACT.md` pass. Pre-write PASS permits controlled population only; it is not the Step 8D terminal.
+
+Step 8D terminal `STEP_8D_PROTECTED_POPULATION_PASS` additionally requires exact post-write 501 verification, resumability/idempotency, bounded cross-shard protected reads within <=16 D1 subqueries, zero full-corpus scans, unauthenticated zero-shard-query denial, pointer-only rollback, unchanged normal public recommendations, no third shard and no billing expansion.
 
 Steps 8E, 8F and 8G remain gated as defined by the Step 8 roadmap. Step 8F remains the explicit human public-runtime gate. Step 8G does not depend on 8F but still requires Step 8D PASS.
 
@@ -87,4 +97,4 @@ Knowledge Core remains read-only/reconciliation from the App lane.
 
 ## Next execution rule
 
-Proceed machine-first with Step 8D: define and test the exact UniTools transformation, deterministic two-shard population manifest, bounded batches, resume/idempotency, protected retrieval and evidence envelope before live population. Then use only the existing two bound D1 shards for protected population. Stop on any new paid/billing/account/security/rights gate. Do not activate public recommendations, add a third shard, mutate Nutrition/YT-CUL, or write Knowledge Core.
+Complete repository validation of the frozen Step 8D transformation/manifest/packet contract. Only if the complete pre-write acceptance set is green may controlled population begin on the existing two D1 bindings. Then collect exact receipts/checkpoints, verify post-write state, protected read budget, unauthenticated fail-closed behavior and pointer-only rollback. Stop on any new paid/billing/account/security/rights gate. Do not activate public recommendations, add a third shard, mutate Nutrition/YT-CUL, or write Knowledge Core.
