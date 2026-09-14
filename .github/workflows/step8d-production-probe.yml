@@ -5,6 +5,10 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/step8d-production-probe.yml"
+      - "functions/api/step8d/**"
+      - "src/server/step8d-live-runtime.mjs"
+      - "data/generated/step8d/runtime-descriptor.mjs"
+      - "step8d-populate.html"
   workflow_dispatch:
 
 permissions:
