@@ -1,3 +1,5 @@
+> **Terminal status (2026-09-14):** `STEP_8D_PROTECTED_POPULATION_PASS` is earned. See `docs/CORPUS_SCALE_STEP8D_LIVE_POPULATION_PASS.md`. This runbook is retained for recovery/rebuild reference; do not rerun population blindly.
+
 # Corpus Scale Step 8D — Live Protected Population Runbook
 
 Status: **IMPLEMENTED / MACHINE PREFLIGHT PASS / PRODUCTION EVIDENCE PENDING**
