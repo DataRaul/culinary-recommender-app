@@ -29,21 +29,26 @@ test("Step 8D frozen live evidence satisfies terminal contract", () => {
   assert.equal(r.billingExpansion, false);
 });
 
-test("Step 8D PASS unlocks 8E and 8G without authorizing 8F", () => {
+test("Step 8D PASS remains the prerequisite for completed 8E and independent 8G", () => {
   assert.equal(gates.get("8D").status, "COMPLETE_PASS_LIVE_PRODUCTION");
   assert.equal(gates.get("8D").terminal, "STEP_8D_PROTECTED_POPULATION_PASS");
-  assert.equal(gates.get("8E").status, "READY_RECOMMENDATION_ELIGIBILITY_REVIEW");
+  assert.equal(gates.get("8E").status, "COMPLETE_PASS_RECOMMENDATION_ELIGIBILITY");
+  assert.equal(gates.get("8E").terminal, "STEP_8E_RECOMMENDATION_ELIGIBLE_SUBSET_PASS");
   assert.equal(gates.get("8G").status, "READY_CONTINUED_PROTECTED_SCALE_LOOP");
+  assert.equal(gates.get("8G").doesNotDependOn.includes("8F"), true);
   assert.equal(gates.get("8F").humanRequired, true);
+  assert.equal(gates.get("8F").decisionInput.runtimeActivationAuthorized, false);
   assert.equal(roadmap.boundaries.automaticPublicRecommendationAdmission, false);
-  assert.equal(roadmap.currentHumanGate.id, "NONE");
 });
 
-test("canonical handover reflects terminal Step 8D and preserves public gate", () => {
+test("canonical handover preserves Step 8D while parking 8F and activating 8G", () => {
   assert.equal(current.human_needed, false);
   assert.equal(current.corpus_scale.step8d.terminal, "STEP_8D_PROTECTED_POPULATION_PASS");
   assert.equal(current.corpus_scale.step8d.max_observed_d1_subqueries, 15);
-  assert.equal(current.corpus_scale.step8e, "READY_RECOMMENDATION_ELIGIBILITY_REVIEW");
-  assert.match(current.corpus_scale.step8g, /^READY_CONTINUED_PROTECTED_SCALE_LOOP/);
-  assert.equal(current.corpus_scale.step8f, "EXPLICIT_HUMAN_PUBLIC_RUNTIME_GATE_NOT_AUTHORIZED");
+  assert.equal(current.corpus_scale.step8e.status, "COMPLETE_PASS_RECOMMENDATION_ELIGIBILITY");
+  assert.equal(current.corpus_scale.step8e.terminal, "STEP_8E_RECOMMENDATION_ELIGIBLE_SUBSET_PASS");
+  assert.equal(current.corpus_scale.step8f.status, "PARKED_EXPLICIT_HUMAN_PUBLIC_RUNTIME_GATE");
+  assert.equal(current.corpus_scale.step8f.runtime_activation_authorized, false);
+  assert.equal(current.corpus_scale.step8g.status, "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP");
+  assert.equal(current.corpus_scale.step8g.depends_on_step8f, false);
 });
