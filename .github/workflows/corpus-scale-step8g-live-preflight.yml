@@ -1,0 +1,49 @@
+name: Corpus Scale Step 8G live protected preflight
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-live-preflight.yml'
+      - 'data/generated/step8g/runtime-descriptor.mjs'
+      - 'src/server/step8g-live-runtime.mjs'
+      - 'src/server/step8g-hydration-runtime.mjs'
+      - 'functions/api/step8g/populate.js'
+      - 'scripts/verify-step8g-live-payloads.mjs'
+      - 'tests/step8g-live.test.js'
+      - 'step8g-populate.html'
+      - 'docs/CORPUS_SCALE_STEP8G_FORKRECIPE_LIVE_IMPLEMENTATION.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: corpus-step8g-live-preflight-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+      - name: Checkout pinned ForkRecipe source
+        uses: actions/checkout@v4
+        with:
+          repository: futurechef/forkrecipe-recipes
+          ref: c32255266af39bd77444d39452f3df8088ac8fd9
+          path: forkrecipe
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install app dependencies
+        run: npm ci
+      - name: Run Step 8G live runtime tests
+        run: node --test tests/step8g-live.test.js
+      - name: Verify exact live payloads against frozen prewrite
+        run: node scripts/verify-step8g-live-payloads.mjs --forkrecipe=./forkrecipe
+      - name: Upload no-write Step 8G live preflight evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-live-preflight
+          path: artifacts/step8g-live-preflight/
+          if-no-files-found: error
+          retention-days: 30
