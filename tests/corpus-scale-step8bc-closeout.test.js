@@ -105,7 +105,7 @@ test("Step 8F remains parked and unauthorized while Step 8G is active", () => {
   assert.equal(f.humanRequired, true);
   assert.equal(f.decisionInput.runtimeActivationAuthorized, false);
   assert.equal(f.decisionInput.publicRuntimeChanged, false);
-  assert.equal(g.status, "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP");
+  assert.equal(g.status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(g.doesNotDependOn.includes("8F"), true);
   assert.equal(g.humanRequired, false);
   assert.equal(g.publicRuntimeChangeAllowed, false);
@@ -122,7 +122,10 @@ test("source-state closeout keeps unresolved sources held instead of relaxing th
   assert.match(roadmap.sourceStateCurrent.openRecipeArchiveSpanish, /^HOLD_RIGHTS_AMBIGUOUS/);
   assert.equal(roadmap.sourceStateCurrent.recipeDb, "SOURCE_COHORT_SALVAGE_ONLY");
   assert.match(roadmap.sourceStateCurrent.uniTools, /^STEP8D_PROTECTED_POPULATED_501/);
-  assert.match(roadmap.sourceStateCurrent.forkRecipe, /^STEP8G_MEASUREMENT_AND_LAYERED_PREWRITE_PASS/);
+  assert.equal(
+    roadmap.sourceStateCurrent.forkRecipe,
+    "STEP8G_LIVE_PROTECTED_POPULATED_V8002__915_CHILD__1416_COMPOSED__ZERO_PUBLIC_RECOMMENDATION_ADMISSION"
+  );
 });
 
 test("public, cost and adjacent-lane firewalls remain unchanged after Step 8B terminal", () => {
