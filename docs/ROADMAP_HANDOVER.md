@@ -25,6 +25,7 @@ Always use:
 - Step 8D machine contract: `config/corpus_scale_step8d_contract.json`
 - Step 8D live runbook: `docs/CORPUS_SCALE_STEP8D_LIVE_POPULATION_RUNBOOK.md`
 - Step 8D frozen pre-write evidence: `data/generated/corpus-scale-step8d-prewrite-evidence.json`
+- Step 8D production-readiness evidence: `data/generated/corpus-scale-step8d-production-readiness.json`
 - Step 8D frozen manifest: `data/generated/step8d/manifest.json`
 - Step 8D frozen plan: `data/generated/step8d/population-plan-descriptors.json`
 - YouTube generated state: `data/generated/youtube-culinary-daily-discovery-state.json`
@@ -66,14 +67,9 @@ Qualified protected-population input is the pinned UniTools World Recipes Datase
 
 Source nutrition, dietary/allergen inference, scaling-rule promotion, media admission, automatic app admission and public runtime activation remain false. Open Recipe Archive Spanish remains `HOLD_RIGHTS_AMBIGUOUS`; RecipeDB whole-source remains `SOURCE_COHORT_SALVAGE_ONLY`.
 
-### Step 8D — PRE-WRITE PASS EARNED / LIVE POPULATION IMPLEMENTED / PRODUCTION EVIDENCE PENDING
+### Step 8D — MACHINE READY / PRODUCTION GREEN / AUTHENTICATED POPULATION GATE
 
-Both entry requirements are earned:
-
-- Step 8B live two-shard terminal PASS;
-- Step 8C rights-clean pinned source cohort PASS.
-
-The deterministic pre-write gate is now earned and merged. PR #141 froze the packet/manifest/acceptance contract; PR #142 merged the exact pinned-source materialization and permanent read-only drift verifier at main `7036c01dcfa38e9803834ee0bc2c14e5d8658ad0`.
+Both entry requirements and the deterministic pre-write gate are earned. PR #141 froze the packet/manifest/acceptance contract and PR #142 merged the exact pinned-source materialization and permanent read-only drift verifier.
 
 Frozen source/manifest facts:
 
@@ -81,43 +77,38 @@ Frozen source/manifest facts:
 - corpus version: `v8001`;
 - packet schema: `CORPUS_SCALE_STEP8D_PROTECTED_PACKET_V1`;
 - manifest schema: `CORPUS_SCALE_STEP8D_MANIFEST_V1`;
-- population plan SHA-256: `18ea4d1bfaf424709de22a7badd680fb82c887fb70e54af5e190c33371dbad12`;
+- packet-set SHA-256: `6b6e12011e9a12ffdc362acae32bc43304d66705c75325a898da1b84b3ed4c48`;
+- manifest SHA-256: `0cb09afd9dd87ead733c3798c4832fdd96c8022867fb857a8730f74243562743`;
+- population-plan SHA-256: `18ea4d1bfaf424709de22a7badd680fb82c887fb70e54af5e190c33371dbad12`;
 - shard 0 rows: **257**;
 - shard 1 rows: **244**;
 - batches: **51**;
 - max rows per batch: **10**;
 - source scaling values observed verbatim: `damped`, `fixed`, `linear`;
 - media excluded;
-- diet/nutrition/scaling remain `SOURCE_METADATA_ONLY_UNTRUSTED`;
-- live D1 writes performed by the pre-write phase: **0**.
+- diet/nutrition/scaling remain `SOURCE_METADATA_ONLY_UNTRUSTED`.
 
-The live population implementation is in PR #143 on `agent/corpus-scale-step8d-live-population`. It reuses the existing `corpus_recipe_bodies` and `corpus_population_receipts` tables and exactly the two earned D1 bindings. It adds no third shard and no public recommendation runtime path.
+PR #143 merged the bounded resumable live population runner and protected route. It reuses the existing `corpus_recipe_bodies` and `corpus_population_receipts` tables and exactly the two earned D1 bindings. It adds no third shard and no normal public recommendation path.
 
-The live receipt state machine writes each new receipt as `verified=0`, verifies the exact batch rows after the bounded D1 batch, then promotes the receipt to `verified=1`. Unknown commit state is resumable: a matching `verified=0` receipt causes exact row verification and safe promotion rather than a blind rewrite. A ten-row fresh write remains within the frozen `<=16` D1 subquery request budget including auth.
+A Cloudflare Pages packaging incompatibility in the first live runtime deployment was isolated to direct JSON-module imports in the Pages Function dependency graph. PR #146 replaced only that deployment boundary with a JavaScript runtime descriptor parity-checked against the canonical frozen JSON. Standard tests, the real-source 51-payload preflight, Cloudflare preview deployment and production deployment all pass after the repair.
 
-Progress/closure reads only receipt metadata. It does not scan recipe bodies. Final cross-shard evidence reads one frozen recipe ID from each shard.
+PR #147 froze the production-readiness evidence and resolved the runner's stale `...PENDING_EXTERNAL_UNAUTH_PROBE` label. Production `main` at `1bd61fcc0ac70b15f5f529f17998fcb9b44890eb` is deployed green. Post-merge validation run `34836427610` passed repository validation, browser validation and production smoke. Live-payload preflight run `34836427579` passed. The production unauthenticated probe run `34836427544` passed HTTP **401**, `UNAUTHORIZED`, `NO_SESSION`, `protectedDataReturned: false`, `shardQueries: 0`.
 
-The one-session same-origin runner is `/step8d-populate.html`; the protected route is `/api/step8d/populate`. The machine preflight fetches the exact immutable source and has already proven:
+The authenticated runner now returns terminal candidate `STEP_8D_PROTECTED_POPULATION_PASS` because the separate external no-session requirement is already earned. No Step 8D production D1 population writes have occurred yet.
 
-- browser CORS wildcard PASS;
-- all 501 shared/live packet hashes equal the frozen descriptors;
-- all 51 live batch fingerprints accepted;
-- largest write request **65,383 bytes** vs **262,144-byte** cap;
-- machine-preflight D1 writes **0**.
+The remaining terminal evidence is exactly one authenticated same-origin `/step8d-populate.html` run. It must produce exact 501 / 51-batch closure, persisted partial checkpoint + successful resume, idempotent replay, bounded cross-shard protected reads within <=16 D1 subqueries, zero full-corpus scans, pointer-only rollback, unchanged normal public recommendations, no third shard and no billing expansion.
 
-No production population is performed merely by merging the implementation. Terminal production evidence still requires one continuous authenticated runner session plus a separate external no-session zero-shard-query probe. The authenticated runner must first earn `STEP_8D_PROTECTED_POPULATION_PASS_PENDING_EXTERNAL_UNAUTH_PROBE`; only after the external probe passes may the canonical terminal become `STEP_8D_PROTECTED_POPULATION_PASS`.
-
-Step 8D terminal additionally requires exact 501 / 51-batch closure, persisted partial checkpoint + successful resume, idempotent replay, bounded cross-shard protected reads within <=16 D1 subqueries, zero full-corpus scans, pointer-only rollback, unchanged normal public recommendations, no third shard and no billing expansion.
-
-Steps 8E, 8F and 8G remain gated as defined by the Step 8 roadmap. Step 8F remains the explicit human public-runtime gate. Step 8G does not depend on 8F but still requires Step 8D PASS.
+Steps 8E and 8G remain blocked only until this Step 8D terminal PASS. Step 8F remains a separate explicit human public-runtime gate and is **not authorized** by Step 8D.
 
 ## Current human gate
 
-**Deferred until all Step 8D machine work, CI, merge, deployment and unauthenticated production probing are complete.**
+**STEP8D_AUTHENTICATED_PROTECTED_POPULATION — HUMAN REQUIRED NOW.**
 
-The remaining Step 8D human-only evidence is the authenticated same-origin `/step8d-populate.html` run in one continuous browser/session context. Do not ask for this before the live implementation is merged/deployed and the external no-session route has been machine-probed.
+Use the production page `https://culinary-recommender-app.pages.dev/step8d-populate.html` in one continuous browser/session context. If the Culinary session is absent, use the page's **Open sign-in canary** link, sign in, return in the same browser context, then press **Run / resume Step 8D** once. Paste only the final JSON result; never paste cookies or session tokens.
 
-The next reserved human gate after Step 8D is Step 8F public-runtime activation.
+A successful result must report `pass: true`, terminal candidate `STEP_8D_PROTECTED_POPULATION_PASS`, 501 recipes, 51 verified batches, two shards, resume/idempotency/cross-shard/rollback PASS, zero full-corpus scans, max observed D1 subqueries <=16, unchanged normal public recommendation runtime, no third shard and no billing expansion.
+
+After that PASS JSON, the App lane must autonomously freeze the live closeout evidence, update roadmap/handover, merge the closeout and reconcile the terminal before entering Step 8E or Step 8G. Do not enter Step 8F without explicit human authorization.
 
 ## Concurrency boundaries
 
@@ -129,4 +120,4 @@ Knowledge Core remains read-only/reconciliation from the App lane.
 
 ## Next execution rule
 
-Finish PR #143 validation, repair any CI issue within scope, merge when green, verify post-merge deployment, and externally probe unauthenticated `/api/step8d/populate` before any human request. Once those machine gates are green, run one authenticated same-origin Step 8D population session, capture the returned terminal-candidate JSON, then autonomously freeze the live evidence, update roadmap/handover, merge closeout and reconcile the terminal. Do not activate public recommendations, add a third shard, mutate Nutrition/YT-CUL, write Knowledge Core, or authorize billing expansion.
+Stop at the authenticated Step 8D production population gate. After the human returns the final runner JSON, validate it against the frozen terminal contract. If it passes, autonomously complete Step 8D closeout and unlock Step 8E/Step 8G. If it fails, resume only from receipt-backed state and repair the demonstrated issue; do not blind-retry writes. Never activate public recommendations, add a third shard, mutate Nutrition/YT-CUL, write Knowledge Core, or authorize billing expansion.
