@@ -20,16 +20,30 @@ const countBy = values => Object.entries(values.reduce((acc, value) => {
 }, {})).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([value, count]) => ({ value, count }));
 
 export function resolveStep8EIngredient(sourceIngredient) {
-  const candidates = [
-    sourceIngredient?.name?.en,
-    sourceIngredient?.id == null ? null : String(sourceIngredient.id).replace(/[_-]+/g, " ")
-  ].filter(Boolean);
-  const mapped = [...new Set(candidates.map(value => normalizeIngredient(value)).filter(Boolean))];
+  const sourceName = sourceIngredient?.name?.en || null;
+  const sourceIdText = sourceIngredient?.id == null ? null : String(sourceIngredient.id).replace(/[_-]+/g, " ");
+  const nameMapping = sourceName ? normalizeIngredient(sourceName) : null;
+  const sourceIdDiagnosticMapping = sourceIdText ? normalizeIngredient(sourceIdText) : null;
+  const mappings = [...new Set([nameMapping, sourceIdDiagnosticMapping].filter(Boolean))];
+
+  let status = "UNRESOLVED";
+  let canonicalIngredientId = null;
+  if (nameMapping && sourceIdDiagnosticMapping && nameMapping !== sourceIdDiagnosticMapping) {
+    status = "CONFLICT";
+  } else if (nameMapping) {
+    status = "RESOLVED";
+    canonicalIngredientId = nameMapping;
+  }
+
   return {
-    candidates,
-    status: mapped.length === 0 ? "UNRESOLVED" : mapped.length === 1 ? "RESOLVED" : "CONFLICT",
-    canonicalIngredientId: mapped.length === 1 ? mapped[0] : null,
-    mappings: mapped
+    candidates: [sourceName, sourceIdText].filter(Boolean),
+    status,
+    canonicalIngredientId,
+    mappings,
+    nameMapping,
+    sourceIdDiagnosticMapping,
+    identityAuthority: "SOURCE_ENGLISH_NAME_THROUGH_EXISTING_CANONICAL_ALIAS_INDEX",
+    sourceIdUsedAsAuthority: false
   };
 }
 
@@ -167,7 +181,8 @@ export function scanStep8EReadiness(dataset, contract) {
       conflictingIngredientOccurrences,
       recipesAllIngredientsMapped: recipeRows.filter(row => row.allIngredientsMapped).length,
       unresolvedTop: unresolved.slice(0, 100),
-      resolvedCanonicalIds: resolvedIds
+      resolvedCanonicalIds: resolvedIds,
+      sourceIdUsedAsIdentityAuthority: false
     },
     quantities: {
       numericQuantityOccurrences,
