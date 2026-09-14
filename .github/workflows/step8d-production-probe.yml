@@ -1,0 +1,54 @@
+name: Step 8D production unauthenticated probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/step8d-production-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  production-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Wait for Step 8D production deployment
+        env:
+          BASE_URL: https://culinary-recommender-app.pages.dev
+        run: |
+          set -euo pipefail
+          ready=0
+          for attempt in $(seq 1 30); do
+            page_status="$(curl --silent --show-error --location --max-time 10 -o /tmp/step8d-page.html -w '%{http_code}' "$BASE_URL/step8d-populate.html" || true)"
+            api_status="$(curl --silent --show-error --location --max-time 10 -o /tmp/step8d-unauth.json -w '%{http_code}' "$BASE_URL/api/step8d/populate?action=status" || true)"
+            if [ "$page_status" = "200" ] && grep -q "Step 8D protected 501-record population" /tmp/step8d-page.html && [ "$api_status" = "401" ]; then
+              if node -e 'const fs=require("fs"); const body=JSON.parse(fs.readFileSync("/tmp/step8d-unauth.json","utf8")); if(body.ok!==false || body.step!=="8D" || body.error!=="UNAUTHORIZED" || body.reason!=="NO_SESSION" || body.protectedDataReturned!==false || Number(body.shardQueries)!==0) process.exit(1);'; then
+                ready=1
+                break
+              fi
+            fi
+            echo "Step 8D production deployment not ready yet (attempt $attempt/30; page=$page_status api=$api_status)."
+            sleep 5
+          done
+          test "$ready" = "1"
+
+      - name: Record sanitized external probe evidence
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const body = JSON.parse(fs.readFileSync('/tmp/step8d-unauth.json', 'utf8'));
+          console.log(JSON.stringify({
+            pass: true,
+            step: '8D',
+            evidenceClass: 'EXTERNAL_GITHUB_ACTIONS_PRODUCTION_PROBE',
+            httpStatus: 401,
+            error: body.error,
+            reason: body.reason,
+            protectedDataReturned: body.protectedDataReturned,
+            shardQueries: body.shardQueries,
+            populationPageReachable: true
+          }, null, 2));
+          NODE
