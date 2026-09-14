@@ -11,7 +11,7 @@ Step 8G exists to determine whether the protected recipe corpus can scale useful
 The sequence is deliberate:
 
 1. identify a rights-clean candidate cohort;
-2. measure marginal culinary coverage, ingredient coverage, duplication/family overlap and provenance quality before ingestion;
+2. measure marginal culinary coverage, ingredient-ontology resolvability/coverage, duplicate/family overlap and provenance quality before ingestion;
 3. admit only cohorts that separately earn protected-population authority;
 4. exercise bounded two-shard storage/retrieval, resumability, idempotency, rollback, zero-full-scan behavior and Free-plan headroom;
 5. repeat while marginal value remains high and the earned capacity/topology boundaries remain safe;
@@ -31,7 +31,8 @@ Step 8F should also not be postponed until an arbitrary maximum row count such a
 
 The correct Step 8F reopening condition is therefore **evidence-based, not count-only**. Reconsider Step 8F when Step 8G has demonstrated a representative multi-cohort corpus with:
 
-- meaningful marginal culinary and ingredient coverage;
+- meaningful marginal culinary coverage;
+- measured ingredient-ontology resolvability and review cost;
 - acceptable duplicate/family overlap;
 - stable provenance and source-rights handling;
 - bounded D1 queries and zero full-corpus scans;
@@ -58,7 +59,12 @@ Iteration 1 re-runs the pinned rights/quality audit and measures the full 915-re
 - 84 public recipes;
 - 501 protected UniTools recipes.
 
-Measured dimensions include normalized title novelty, ingredient-name novelty, source-internal title duplication, cuisine/culture/category/tag breadth, ratio-system breadth and fork lineage.
+Measured dimensions include normalized title novelty, source-internal title duplication, cuisine/culture/category/tag breadth, ratio-system breadth and fork lineage. Ingredient evidence is split deliberately into two layers:
+
+- **lexical phrase diversity** — useful for measuring source variety, but never treated as ontology authority;
+- **canonical ontology resolution** — the same existing `normalizeIngredient` name/alias index used by Step 8E, reporting resolved/unresolved occurrence rates, represented canonical IDs and canonical IDs not already exercised by the current baseline.
+
+This separation prevents rich source phrases such as `yellow onion thinly sliced` or source-specific IDs such as `ing-01` from being misreported as new canonical ingredients.
 
 A passing measurement earns only:
 
