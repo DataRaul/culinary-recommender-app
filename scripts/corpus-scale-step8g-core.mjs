@@ -1,4 +1,5 @@
 import { INGREDIENTS, normalizeIngredient } from "../src/data/ingredients.js";
+import { buildDishFamilyIndex } from "../src/data/dish-families-v1.js";
 
 export const STEP8G_MEASUREMENT_SCHEMA = "CORPUS_SCALE_STEP8G_MARGINAL_VALUE_V2";
 export const STEP8G_FORKRECIPE_CANDIDATE_TERMINAL = "STEP_8G_FORKRECIPE_MEASUREMENT_EARNED_COHORT_CANDIDATE";
@@ -147,6 +148,7 @@ export function measureStep8GForkRecipeMarginalValue({
   const forkCanonicalIds = new Set(forkOntology.distinctResolvedCanonicalIngredientIds);
   const canonicalIdsNewToBaseline = setDifference(forkCanonicalIds, baselineCanonicalIds);
 
+  const baselineFamilyIndex = buildDishFamilyIndex(publicRecipes);
   const cuisineValues = distinctFieldValues(forkRecipes, recipe => recipe?.cuisine);
   const cultureValues = distinctFieldValues(forkRecipes, recipe => recipe?.culture);
   const categoryValues = distinctFieldValues(forkRecipes, recipe => recipe?.category);
@@ -179,7 +181,8 @@ export function measureStep8GForkRecipeMarginalValue({
       distinctNormalizedTitles: baselineTitles.size,
       distinctNormalizedIngredientPhrases: baselinePhrases.size,
       distinctResolvedCanonicalIngredientIds: baselineCanonicalIds.size,
-      canonicalOntologySize: Object.keys(INGREDIENTS).length
+      canonicalOntologySize: Object.keys(INGREDIENTS).length,
+      publicDishFamilyCount: baselineFamilyIndex.size
     },
     candidate: {
       sourceRecipeCount: forkRecipes.length,
@@ -206,6 +209,12 @@ export function measureStep8GForkRecipeMarginalValue({
         unresolvedIngredientPhraseSamples: forkOntology.distinctUnresolvedPhrases.slice(0, 50),
         sourceSpecificIngredientIdsUsedAsOntologyAuthority: false
       },
+      familyOverlap: {
+        exactTitleOverlapReviewCandidateCount: forkTitleOverlap.length,
+        sourceLineageFamilySignalCount: forkLineageCount,
+        automaticDishFamilyAssignmentsPerformed: false,
+        note: "ForkRecipe has no canonical app dishFamilyId authority. Exact-title overlaps and explicit source lineage are review signals only; family identity is not inferred automatically."
+      },
       cuisineValueCount: cuisineValues.size,
       cultureValueCount: cultureValues.size,
       categoryValueCount: categoryValues.size,
@@ -226,7 +235,7 @@ export function measureStep8GForkRecipeMarginalValue({
         : forkOntology.resolvedOccurrenceRatio >= 0.4
           ? "MODERATE"
           : "HIGH",
-      note: "Lexical ingredient phrase diversity is not treated as ontology authority. Existing canonical alias resolution is measured separately so protected-storage value cannot be confused with recommendation readiness."
+      note: "Lexical ingredient phrase diversity is not treated as ontology authority. Existing canonical alias resolution and family-review signals are measured separately so protected-storage value cannot be confused with recommendation readiness."
     },
     boundaries: {
       liveD1WritesAuthorized: false,
