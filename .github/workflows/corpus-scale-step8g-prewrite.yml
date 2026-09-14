@@ -1,0 +1,50 @@
+name: Corpus Scale Step 8G ForkRecipe prewrite
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-prewrite.yml'
+      - 'scripts/corpus-scale-step8g-population-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-forkrecipe-prewrite.mjs'
+      - 'scripts/build-corpus-scale-step8g-roadmap-state.mjs'
+      - 'tests/corpus-scale-step8g-population-core.test.js'
+      - 'docs/CORPUS_SCALE_STEP8G_FORKRECIPE_PREWRITE.md'
+      - 'config/corpus_scale_step8_roadmap.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: corpus-step8g-prewrite-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  prewrite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+      - name: Checkout pinned ForkRecipe source
+        uses: actions/checkout@v4
+        with:
+          repository: futurechef/forkrecipe-recipes
+          ref: c32255266af39bd77444d39452f3df8088ac8fd9
+          path: forkrecipe
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run Step 8G layered population unit tests
+        run: node --test tests/corpus-scale-step8g-population-core.test.js
+      - name: Verify pinned ForkRecipe source
+        working-directory: forkrecipe
+        run: npm run validate
+      - name: Build exact no-write Step 8G prewrite evidence
+        run: node scripts/run-corpus-scale-step8g-forkrecipe-prewrite.mjs --forkrecipe=./forkrecipe --out=.tmp/step8g-forkrecipe-prewrite
+      - name: Build reconciled machine roadmap state
+        run: node scripts/build-corpus-scale-step8g-roadmap-state.mjs --out=.tmp/step8g-forkrecipe-prewrite/corpus_scale_step8_roadmap.next.json
+      - name: Upload Step 8G prewrite evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-forkrecipe-prewrite
+          path: .tmp/step8g-forkrecipe-prewrite/
+          if-no-files-found: error
+          retention-days: 30

@@ -96,14 +96,16 @@ test("Step 8D terminal PASS remains bound to the exact Step 8B and Step 8C prere
   assert.equal(d.publicRuntimeChangeAllowed, false);
 });
 
-test("Step 8F decision input remains unauthorized and does not block Step 8G", () => {
+test("Step 8F remains parked and unauthorized while Step 8G is active", () => {
   const f = gate("8F");
   const g = gate("8G");
-  assert.equal(f.status, "READY_EXPLICIT_HUMAN_PUBLIC_RUNTIME_DECISION");
+  assert.equal(f.status, "PARKED_EXPLICIT_HUMAN_PUBLIC_RUNTIME_DECISION");
+  assert.equal(f.parked, true);
+  assert.equal(f.blockingActiveLane, false);
   assert.equal(f.humanRequired, true);
   assert.equal(f.decisionInput.runtimeActivationAuthorized, false);
   assert.equal(f.decisionInput.publicRuntimeChanged, false);
-  assert.equal(g.status, "READY_CONTINUED_PROTECTED_SCALE_LOOP");
+  assert.equal(g.status, "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(g.doesNotDependOn.includes("8F"), true);
   assert.equal(g.humanRequired, false);
   assert.equal(g.publicRuntimeChangeAllowed, false);
@@ -120,6 +122,7 @@ test("source-state closeout keeps unresolved sources held instead of relaxing th
   assert.match(roadmap.sourceStateCurrent.openRecipeArchiveSpanish, /^HOLD_RIGHTS_AMBIGUOUS/);
   assert.equal(roadmap.sourceStateCurrent.recipeDb, "SOURCE_COHORT_SALVAGE_ONLY");
   assert.match(roadmap.sourceStateCurrent.uniTools, /^STEP8D_PROTECTED_POPULATED_501/);
+  assert.match(roadmap.sourceStateCurrent.forkRecipe, /^STEP8G_MEASUREMENT_AND_LAYERED_PREWRITE_PASS/);
 });
 
 test("public, cost and adjacent-lane firewalls remain unchanged after Step 8B terminal", () => {

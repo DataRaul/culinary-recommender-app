@@ -29,13 +29,14 @@ test("Step 8D frozen live evidence satisfies terminal contract", () => {
   assert.equal(r.billingExpansion, false);
 });
 
-test("Step 8D PASS remains the prerequisite for completed 8E and independent 8G", () => {
+test("Step 8D PASS remains the prerequisite for completed 8E and independent active 8G", () => {
   assert.equal(gates.get("8D").status, "COMPLETE_PASS_LIVE_PRODUCTION");
   assert.equal(gates.get("8D").terminal, "STEP_8D_PROTECTED_POPULATION_PASS");
   assert.equal(gates.get("8E").status, "COMPLETE_PASS_RECOMMENDATION_ELIGIBILITY");
   assert.equal(gates.get("8E").terminal, "STEP_8E_RECOMMENDATION_ELIGIBLE_SUBSET_PASS");
-  assert.equal(gates.get("8G").status, "READY_CONTINUED_PROTECTED_SCALE_LOOP");
+  assert.equal(gates.get("8G").status, "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(gates.get("8G").doesNotDependOn.includes("8F"), true);
+  assert.equal(gates.get("8F").status, "PARKED_EXPLICIT_HUMAN_PUBLIC_RUNTIME_DECISION");
   assert.equal(gates.get("8F").humanRequired, true);
   assert.equal(gates.get("8F").decisionInput.runtimeActivationAuthorized, false);
   assert.equal(roadmap.boundaries.automaticPublicRecommendationAdmission, false);
