@@ -34,7 +34,7 @@ test("Step 8D PASS remains the prerequisite for completed 8E and independent act
   assert.equal(gates.get("8D").terminal, "STEP_8D_PROTECTED_POPULATION_PASS");
   assert.equal(gates.get("8E").status, "COMPLETE_PASS_RECOMMENDATION_ELIGIBILITY");
   assert.equal(gates.get("8E").terminal, "STEP_8E_RECOMMENDATION_ELIGIBLE_SUBSET_PASS");
-  assert.equal(gates.get("8G").status, "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP");
+  assert.equal(gates.get("8G").status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(gates.get("8G").doesNotDependOn.includes("8F"), true);
   assert.equal(gates.get("8F").status, "PARKED_EXPLICIT_HUMAN_PUBLIC_RUNTIME_DECISION");
   assert.equal(gates.get("8F").humanRequired, true);
