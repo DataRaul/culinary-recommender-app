@@ -13,6 +13,10 @@ function gitBlobSha(bytes) {
   return createHash("sha1").update(header).update(bytes).digest("hex");
 }
 
+function assertJsonEqual(actual, expected, label) {
+  if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error(`${label} differs from deterministic pinned-source regeneration`);
+}
+
 const rawUrl = `https://raw.githubusercontent.com/${source.repository}/${source.commit}/${source.dataPath}`;
 const response = await fetch(rawUrl, { headers: { "user-agent": "culinary-recommender-step8e-admission" } });
 if (!response.ok) throw new Error(`Pinned UniTools fetch failed with HTTP ${response.status}`);
@@ -23,9 +27,7 @@ if (observedBlobSha !== source.dataBlobSha) throw new Error(`Pinned UniTools Git
 const dataset = JSON.parse(sourceBytes.toString("utf8"));
 const result = buildStep8EAdmission(dataset, contract);
 if (result.eligibleSubsetCount !== 1 || result.storedOnlyCount !== 500) throw new Error("Step 8E subset cardinality changed");
-if (result.boundaries.publicRuntimeChanged !== false || result.boundaries.runtimeActivationAuthorized !== false) {
-  throw new Error("Step 8E cannot activate public runtime");
-}
+if (result.boundaries.publicRuntimeChanged !== false || result.boundaries.runtimeActivationAuthorized !== false) throw new Error("Step 8E cannot activate public runtime");
 
 const evidence = {
   admissionVersion: result.admissionVersion,
@@ -53,8 +55,19 @@ const evidence = {
   admissionManifestCounts: result.admissionManifest.counts,
   boundaries: result.boundaries
 };
+const eligibleSubset = {
+  schemaVersion: "CORPUS_SCALE_STEP8E_ELIGIBLE_SUBSET_V1",
+  runtimeActivationAuthorized: false,
+  publicRuntimeChanged: false,
+  recipes: result.runtimeCandidates
+};
+
+const frozenEvidence = JSON.parse(readFileSync(new URL("../data/generated/step8e/admission-evidence.json", import.meta.url), "utf8"));
+const frozenSubset = JSON.parse(readFileSync(new URL("../data/generated/step8e/eligible-subset.json", import.meta.url), "utf8"));
+assertJsonEqual(frozenEvidence, evidence, "Frozen Step 8E admission evidence");
+assertJsonEqual(frozenSubset, eligibleSubset, "Frozen Step 8E eligible subset");
 
 mkdirSync(outputDir, { recursive: true });
 writeFileSync(resolve(outputDir, "step8e-admission-evidence.json"), `${JSON.stringify(evidence, null, 2)}\n`);
-writeFileSync(resolve(outputDir, "step8e-eligible-subset.json"), `${JSON.stringify(result, null, 2)}\n`);
+writeFileSync(resolve(outputDir, "step8e-eligible-subset.json"), `${JSON.stringify(eligibleSubset, null, 2)}\n`);
 console.log(JSON.stringify(evidence, null, 2));
