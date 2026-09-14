@@ -17,7 +17,7 @@ import {
   rollbackStep8DPointer,
   validateStep8DIncomingBatch,
   writeStep8DBatch
-} from "../../../src/server/step8d-live.mjs";
+} from "../../../src/server/step8d-live-runtime.mjs";
 
 const MAX_REQUEST_BYTES = 256 * 1024;
 
