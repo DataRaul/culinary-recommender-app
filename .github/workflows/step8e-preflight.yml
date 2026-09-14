@@ -10,6 +10,8 @@ on:
       - "scripts/verify-corpus-scale-step8e-admission.mjs"
       - "tests/corpus-scale-step8e-preflight.test.js"
       - "tests/corpus-scale-step8e-admission.test.js"
+      - "data/generated/step8e/admission-evidence.json"
+      - "data/generated/step8e/eligible-subset.json"
       - "config/corpus_scale_step8d_contract.json"
       - "src/data/ingredients.js"
       - "src/data/corpus-v1.js"
