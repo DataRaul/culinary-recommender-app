@@ -1,0 +1,52 @@
+{
+  "evidenceType": "STEP8D_PRODUCTION_PRE_AUTHENTICATED_POPULATION_READINESS",
+  "date": "2026-09-14",
+  "pass": true,
+  "mainSha": "2a19a51bb457d961713bff14fbf0148779467db6",
+  "runtimePopulationPr": 143,
+  "runtimePopulationMerge": "e04f944954e48b4e4051f4443a54abc3badf280f",
+  "productionProbePr": 144,
+  "productionProbeMerge": "a82feaf4146621442d996755a1f0f38b17f6acd1",
+  "cloudflareRuntimeRepairPr": 146,
+  "cloudflareRuntimeRepairMerge": "2a19a51bb457d961713bff14fbf0148779467db6",
+  "cloudflareProductionDeployment": {
+    "checkRunId": 103944654520,
+    "status": "SUCCESS"
+  },
+  "postMergeVerification": {
+    "prewriteSourceVerificationRun": 34834330409,
+    "livePayloadPreflightRun": 34834330373,
+    "standardValidationAndProductionSmokeRun": 34834330421,
+    "productionUnauthenticatedProbeRun": 34834330389,
+    "allPass": true
+  },
+  "externalUnauthenticatedProbe": {
+    "pass": true,
+    "evidenceClass": "EXTERNAL_GITHUB_ACTIONS_PRODUCTION_PROBE",
+    "httpStatus": 401,
+    "error": "UNAUTHORIZED",
+    "reason": "NO_SESSION",
+    "protectedDataReturned": false,
+    "shardQueries": 0,
+    "populationPageReachable": true
+  },
+  "frozenPopulationContract": {
+    "recipeCount": 501,
+    "batchCount": 51,
+    "shardCount": 2,
+    "maxRowsPerBatch": 10,
+    "maxProtectedD1Subqueries": 16,
+    "populationPlanSha256": "18ea4d1bfaf424709de22a7badd680fb82c887fb70e54af5e190c33371dbad12"
+  },
+  "boundaries": {
+    "productionD1WritesPerformedByMachineReadinessChecks": 0,
+    "normalPublicRecommendationRuntimeActivated": false,
+    "thirdRecipeBodyShardUsed": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false
+  },
+  "remainingGate": "ONE_AUTHENTICATED_STEP8D_POPULATION_SESSION",
+  "terminalOnAuthenticatedPass": "STEP_8D_PROTECTED_POPULATION_PASS"
+}
