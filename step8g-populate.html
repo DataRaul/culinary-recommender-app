@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Culinary Recommender — Step 8G Protected Scale</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 880px; margin: 0 auto; padding: 24px; line-height: 1.45; }
+    button, a.button { display: inline-block; padding: 12px 16px; margin: 8px 8px 8px 0; font: inherit; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #f4f4f4; padding: 16px; border-radius: 8px; }
+    .pass { font-weight: 700; }
+    .fail { font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>Step 8G protected ForkRecipe scale run</h1>
+  <p>This owner-only runner populates the earned immutable <code>v8002</code> ForkRecipe layer, builds the exact protected route index over <code>v8001 + v8002</code>, proves mixed-layer hydration and rollback, then reactivates <code>v8002</code> for continued protected scaling. It does not open Step 8F or change public recommendations.</p>
+  <p><a class="button" href="/auth-canary.html">Open sign-in canary</a><button id="run" type="button">Run / resume Step 8G</button></p>
+  <p id="status">Ready. A current same-browser Culinary session is required.</p>
+  <pre id="output">No run yet.</pre>
+
+  <script type="module">
+    const API = "/api/step8g/populate";
+    const FORKRECIPE_REPO = "futurechef/forkrecipe-recipes";
+    const FORKRECIPE_COMMIT = "c32255266af39bd77444d39452f3df8088ac8fd9";
+    const EXPECTED_CHILD_ROWS = 915;
+    const EXPECTED_PARENT_ROWS = 501;
+    const EXPECTED_COMPOSED_ROWS = 1416;
+    const EXPECTED_BODY_BATCHES = 93;
+    const EXPECTED_ROUTE_BATCHES = 144;
+
+    const runButton = document.getElementById("run");
+    const status = document.getElementById("status");
+    const output = document.getElementById("output");
+
+    function shardForRecipeId(recipeId) {
+      let hash = 0x811c9dc5;
+      for (let index = 0; index < recipeId.length; index += 1) {
+        hash ^= recipeId.charCodeAt(index);
+        hash = Math.imul(hash, 0x01000193) >>> 0;
+      }
+      return hash % 2;
+    }
+
+    function canonicalIdFromFileName(fileName) {
+      const slug = String(fileName).replace(/\.js$/i, "");
+      return `forkrecipe_${slug.replace(/-/g, "_")}`;
+    }
+
+    function chunk(values, size) {
+      const output = [];
+      for (let offset = 0; offset < values.length; offset += size) output.push(values.slice(offset, offset + size));
+      return output;
+    }
+
+    async function fetchJson(url, options = {}) {
+      const response = await fetch(url, { credentials: "same-origin", ...options });
+      let body = null;
+      try { body = await response.json(); } catch { body = { error: "NON_JSON_RESPONSE" }; }
+      return { response, body };
+    }
+
+    async function requireOk(label, url, options = {}) {
+      status.textContent = label;
+      const result = await fetchJson(url, options);
+      if (!result.response.ok || result.body?.ok !== true) {
+        const error = new Error(`${label} failed with HTTP ${result.response.status}`);
+        error.result = result;
+        throw error;
+      }
+      return result.body;
+    }
+
+    async function post(action, extra = {}) {
+      return requireOk(action, API, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ action, ...extra })
+      });
+    }
+
+    async function postWithUnknownCommitRetry(action, payload, label, allowRetry = true) {
+      status.textContent = label;
+      const first = await fetchJson(API, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ action, ...payload })
+      });
+      if (first.response.ok && first.body?.ok === true) return first.body;
+      if (allowRetry && first.response.status === 503 && first.body?.result?.status === "WRITE_ERROR_UNKNOWN_COMMIT_STATE") {
+        status.textContent = `${label} — verifying unknown commit state…`;
+        return postWithUnknownCommitRetry(action, payload, label, false);
+      }
+      const error = new Error(`${label} failed with HTTP ${first.response.status}`);
+      error.result = first;
+      throw error;
+    }
+
+    async function loadForkRecipePlan(apiStatus) {
+      status.textContent = "Loading pinned ForkRecipe file index…";
+      const listingResponse = await fetch(`https://api.github.com/repos/${FORKRECIPE_REPO}/contents/recipes?ref=${FORKRECIPE_COMMIT}`, {
+        cache: "no-store",
+        headers: { accept: "application/vnd.github+json" }
+      });
+      if (!listingResponse.ok) throw new Error(`Pinned ForkRecipe directory listing failed with HTTP ${listingResponse.status}.`);
+      const listing = await listingResponse.json();
+      const files = listing
+        .filter(item => item?.type === "file" && item.name?.endsWith(".js") && item.name !== "index.js" && item.name !== "_template.js")
+        .map(item => item.name)
+        .sort((a, b) => a.localeCompare(b));
+      if (files.length !== EXPECTED_CHILD_ROWS) throw new Error(`Pinned ForkRecipe file count is ${files.length}; expected ${EXPECTED_CHILD_ROWS}.`);
+
+      const byShard = [[], []];
+      for (let ordinal = 0; ordinal < files.length; ordinal += 1) {
+        const fileName = files[ordinal];
+        const recipeId = canonicalIdFromFileName(fileName);
+        byShard[shardForRecipeId(recipeId)].push({ ordinal, fileName, recipeId });
+      }
+
+      const batches = [];
+      for (const shardNumber of [0, 1]) {
+        for (const [batchNumber, rows] of chunk(byShard[shardNumber], 10).entries()) {
+          batches.push({
+            batchId: `s${String(shardNumber).padStart(2, "0")}-b${String(batchNumber).padStart(6, "0")}`,
+            shardNumber,
+            rows
+          });
+        }
+      }
+      if (batches.length !== EXPECTED_BODY_BATCHES) throw new Error(`Built ${batches.length} body batches; expected ${EXPECTED_BODY_BATCHES}.`);
+      if (JSON.stringify(batches.map(batch => batch.batchId)) !== JSON.stringify(apiStatus.bodyBatchIds)) {
+        throw new Error("Browser body-batch layout differs from the authenticated frozen runtime.");
+      }
+      return batches;
+    }
+
+    async function importSourceRows(batch) {
+      const sourceEntries = [];
+      for (const row of batch.rows) {
+        status.textContent = `Loading pinned ForkRecipe source ${row.ordinal + 1}/${EXPECTED_CHILD_ROWS}…`;
+        const moduleUrl = `https://cdn.jsdelivr.net/gh/${FORKRECIPE_REPO}@${FORKRECIPE_COMMIT}/recipes/${encodeURIComponent(row.fileName)}`;
+        const mod = await import(moduleUrl);
+        if (!mod?.default || mod.default.slug !== row.fileName.replace(/\.js$/i, "")) {
+          throw new Error(`Pinned module identity mismatch for ${row.fileName}.`);
+        }
+        sourceEntries.push({ ordinal: row.ordinal, fileName: row.fileName, recipe: mod.default });
+      }
+      return sourceEntries;
+    }
+
+    async function populateChildBodies(bodyBatches, observedD1) {
+      const childRoutes = [];
+      for (let index = 0; index < bodyBatches.length; index += 1) {
+        const batch = bodyBatches[index];
+        const sourceEntries = await importSourceRows(batch);
+        const written = await postWithUnknownCommitRetry(
+          "write-body",
+          { batch: { batchId: batch.batchId, sourceEntries } },
+          `Writing/verifying ForkRecipe body batch ${index + 1}/${bodyBatches.length} (${batch.batchId})…`
+        );
+        observedD1.push(written.metrics.d1Subqueries);
+        if (!Array.isArray(written.routeEntries) || written.routeEntries.length !== sourceEntries.length) {
+          throw new Error(`Body batch ${batch.batchId} did not return exact route metadata.`);
+        }
+        childRoutes.push(...written.routeEntries);
+      }
+      if (childRoutes.length !== EXPECTED_CHILD_ROWS) throw new Error(`Collected ${childRoutes.length} child routes; expected ${EXPECTED_CHILD_ROWS}.`);
+      if (new Set(childRoutes.map(route => route.recipeId)).size !== EXPECTED_CHILD_ROWS) throw new Error("Child route metadata contains duplicate recipe IDs.");
+      return childRoutes;
+    }
+
+    async function loadParentRoutes() {
+      status.textContent = "Loading immutable v8001 parent descriptors…";
+      const response = await fetch("/data/generated/step8d/manifest.json", { cache: "no-store" });
+      if (!response.ok) throw new Error(`v8001 parent manifest failed with HTTP ${response.status}.`);
+      const manifest = await response.json();
+      if (manifest.corpusVersion !== "v8001" || manifest.recipeCount !== EXPECTED_PARENT_ROWS || !Array.isArray(manifest.entries) || manifest.entries.length !== EXPECTED_PARENT_ROWS) {
+        throw new Error("v8001 parent manifest does not match the frozen 501-row parent.");
+      }
+      return manifest.entries.map(entry => ({
+        recipeId: String(entry.recipeId),
+        corpusVersion: "v8001",
+        shardNumber: Number(entry.shardNumber),
+        sourceCohortId: String(entry.sourceCohortId),
+        bodySha256: String(entry.bodySha256),
+        bodyBytes: Number(entry.bodyBytes)
+      }));
+    }
+
+    function buildRouteBatches(parentRoutes, childRoutes, apiStatus) {
+      const routes = [...parentRoutes, ...childRoutes];
+      if (routes.length !== EXPECTED_COMPOSED_ROWS || new Set(routes.map(route => route.recipeId)).size !== EXPECTED_COMPOSED_ROWS) {
+        throw new Error("Composed route universe is not exactly 1,416 unique recipe IDs.");
+      }
+      const batches = [];
+      for (const corpusVersion of ["v8001", "v8002"]) {
+        for (const shardNumber of [0, 1]) {
+          const rows = routes
+            .filter(route => route.corpusVersion === corpusVersion && route.shardNumber === shardNumber)
+            .sort((a, b) => a.recipeId.localeCompare(b.recipeId));
+          for (const [batchNumber, entries] of chunk(rows, 10).entries()) {
+            batches.push({
+              batchId: `route-${corpusVersion}-s${String(shardNumber).padStart(2, "0")}-b${String(batchNumber).padStart(6, "0")}`,
+              entries
+            });
+          }
+        }
+      }
+      if (batches.length !== EXPECTED_ROUTE_BATCHES) throw new Error(`Built ${batches.length} route batches; expected ${EXPECTED_ROUTE_BATCHES}.`);
+      if (JSON.stringify(batches.map(batch => batch.batchId)) !== JSON.stringify(apiStatus.routeBatchIds)) {
+        throw new Error("Browser route-batch layout differs from the authenticated frozen runtime.");
+      }
+      return batches;
+    }
+
+    async function populateRoutes(routeBatches, observedD1) {
+      for (let index = 0; index < routeBatches.length; index += 1) {
+        const batch = routeBatches[index];
+        const written = await postWithUnknownCommitRetry(
+          "write-route",
+          { batchId: batch.batchId, entries: batch.entries },
+          `Writing/verifying protected route batch ${index + 1}/${routeBatches.length} (${batch.batchId})…`
+        );
+        observedD1.push(written.metrics.d1Subqueries);
+      }
+    }
+
+    function pickMixedShardCanary(parentRoutes, childRoutes) {
+      for (const parent of parentRoutes) {
+        const child = childRoutes.find(candidate => candidate.shardNumber !== parent.shardNumber);
+        if (child) return [parent.recipeId, child.recipeId];
+      }
+      throw new Error("Could not construct a mixed-layer, cross-shard hydration canary.");
+    }
+
+    runButton.addEventListener("click", async () => {
+      runButton.disabled = true;
+      output.textContent = "Starting protected Step 8G run…";
+      const completed = [];
+      const observedD1 = [];
+      try {
+        const session = await fetchJson("/api/auth/session");
+        if (!session.response.ok || session.body?.authenticated !== true) {
+          throw new Error("A current Culinary session is required. Open the sign-in canary in this same browser, sign in, then return here without changing browser context.");
+        }
+        completed.push("session");
+
+        const apiStatus = await requireOk("Checking Step 8G live contract…", `${API}?action=status`);
+        observedD1.push(apiStatus.metrics.d1Subqueries);
+        if (apiStatus.plan?.recipeCount !== EXPECTED_CHILD_ROWS
+          || apiStatus.plan?.cumulativeRecipeCount !== EXPECTED_COMPOSED_ROWS
+          || apiStatus.plan?.shardCount !== 2
+          || apiStatus.plan?.publicRuntimeActivationAuthorized !== false
+          || apiStatus.plan?.recommendationAdmissionAuthorized !== false
+          || apiStatus.bodyBatchIds?.length !== EXPECTED_BODY_BATCHES
+          || apiStatus.routeBatchIds?.length !== EXPECTED_ROUTE_BATCHES) {
+          throw new Error("Authenticated Step 8G contract does not match the frozen protected-only plan.");
+        }
+        completed.push("status");
+
+        const bindings = await requireOk("Verifying the two earned recipe-body D1 bindings…", `${API}?action=bindings`);
+        observedD1.push(bindings.metrics.d1Subqueries);
+        if (bindings.boundShardBindings !== 2) throw new Error("Both existing recipe-body shards are required; no third shard is authorized.");
+        completed.push("bindings");
+
+        const freeLimit = await fetchJson(`${API}?simulate=free-limit`);
+        if (freeLimit.response.status !== 503 || freeLimit.body?.error !== "STEP8G_FREE_LIMIT_FAIL_CLOSED") {
+          throw new Error("Step 8G Free-limit fail-closed simulation did not match the contract.");
+        }
+        observedD1.push(freeLimit.body.metrics.d1Subqueries);
+        completed.push("free-limit");
+
+        const initialized = await post("initialize");
+        observedD1.push(initialized.metrics.d1Subqueries);
+        completed.push("initialize");
+
+        const bodyBatches = await loadForkRecipePlan(apiStatus);
+        const childRoutes = await populateChildBodies(bodyBatches, observedD1);
+        completed.push("915-child-bodies");
+
+        let progress = await requireOk("Verifying exact v8002 body receipt closure…", `${API}?action=progress`);
+        observedD1.push(progress.metrics.d1Subqueries);
+        if (progress.body?.completeVerified !== true || progress.body?.verifiedRowCount !== EXPECTED_CHILD_ROWS || progress.body?.verifiedBatchCount !== EXPECTED_BODY_BATCHES) {
+          throw new Error("v8002 body population did not close exactly at 915 rows / 93 batches.");
+        }
+        completed.push("body-progress");
+
+        const parentRoutes = await loadParentRoutes();
+        const routeBatches = buildRouteBatches(parentRoutes, childRoutes, apiStatus);
+        await populateRoutes(routeBatches, observedD1);
+        completed.push("1416-routes");
+
+        progress = await requireOk("Verifying exact 1,416-route composition closure…", `${API}?action=progress`);
+        observedD1.push(progress.metrics.d1Subqueries);
+        if (progress.routes?.completeVerified !== true || progress.routes?.verifiedRowCount !== EXPECTED_COMPOSED_ROWS || progress.routes?.verifiedBatchCount !== EXPECTED_ROUTE_BATCHES) {
+          throw new Error("Protected route index did not close exactly at 1,416 rows / 144 batches.");
+        }
+        completed.push("route-progress");
+
+        const bodyReplay = await postWithUnknownCommitRetry(
+          "write-body",
+          { batch: { batchId: bodyBatches[0].batchId, sourceEntries: await importSourceRows(bodyBatches[0]) } },
+          "Proving idempotent body replay…",
+          false
+        );
+        observedD1.push(bodyReplay.metrics.d1Subqueries);
+        if (bodyReplay.result?.status !== "VERIFIED_IDEMPOTENT_SKIP" || bodyReplay.result?.skipped !== true) throw new Error("Body replay was not an idempotent skip.");
+
+        const routeReplay = await postWithUnknownCommitRetry(
+          "write-route",
+          { batchId: routeBatches[0].batchId, entries: routeBatches[0].entries },
+          "Proving idempotent route replay…",
+          false
+        );
+        observedD1.push(routeReplay.metrics.d1Subqueries);
+        if (routeReplay.result?.status !== "VERIFIED_IDEMPOTENT_SKIP" || routeReplay.result?.skipped !== true) throw new Error("Route replay was not an idempotent skip.");
+        completed.push("idempotent-replays");
+
+        const activated = await post("activate");
+        observedD1.push(activated.metrics.d1Subqueries);
+        if (activated.result?.pass !== true || activated.publicRuntimeChanged !== false || activated.recommendationAdmissionChanged !== false) {
+          throw new Error("Protected v8002 activation boundary failed.");
+        }
+        completed.push("activate-v8002");
+
+        const canaryIds = pickMixedShardCanary(parentRoutes, childRoutes);
+        const hydrated = await post("hydrate", { recipeIds: canaryIds });
+        observedD1.push(hydrated.metrics.d1Subqueries);
+        if (hydrated.packets?.length !== 2 || hydrated.fullCorpusScans !== 0 || hydrated.metrics.d1Subqueries > 16) {
+          throw new Error("Mixed-layer cross-shard protected hydration proof failed.");
+        }
+        completed.push("mixed-layer-hydration");
+
+        const rolledBack = await post("rollback");
+        observedD1.push(rolledBack.metrics.d1Subqueries);
+        if (rolledBack.result?.pass !== true || rolledBack.destructiveDeletePerformed !== false) throw new Error("Pointer-only v8001 rollback failed.");
+        completed.push("rollback-v8001");
+
+        status.textContent = "Proving rollback makes Step 8G hydration fail closed…";
+        const blockedHydration = await fetchJson(API, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ action: "hydrate", recipeIds: canaryIds })
+        });
+        if (blockedHydration.response.status !== 409
+          || blockedHydration.body?.error !== "STEP8G_HYDRATION_REJECTED"
+          || blockedHydration.body?.protectedDataReturned !== false) {
+          throw new Error("Rollback hydration fail-closed proof failed.");
+        }
+        observedD1.push(blockedHydration.body.metrics.d1Subqueries);
+        completed.push("rollback-fail-closed");
+
+        const reactivated = await post("activate");
+        observedD1.push(reactivated.metrics.d1Subqueries);
+        if (reactivated.result?.pass !== true) throw new Error("Final protected v8002 reactivation failed.");
+        completed.push("reactivate-v8002");
+
+        const evidence = await requireOk("Collecting final Step 8G protected evidence…", `${API}?action=evidence`);
+        observedD1.push(evidence.metrics.d1Subqueries);
+        if (evidence.exactLayerPass !== true
+          || evidence.exactCompositionRoutesPass !== true
+          || evidence.parent501IntegrityPass !== true
+          || evidence.composedRecipeCount !== EXPECTED_COMPOSED_ROWS
+          || evidence.pointerStatePass !== true
+          || evidence.fullCorpusScans !== 0
+          || evidence.publicRuntimeChanged !== false
+          || evidence.recommendationAdmissionChanged !== false
+          || evidence.thirdShardUsed !== false
+          || evidence.billingExpansion !== false) {
+          throw new Error("Final Step 8G evidence envelope is incomplete.");
+        }
+        completed.push("evidence");
+
+        const maxObservedD1Subqueries = Math.max(...observedD1);
+        if (maxObservedD1Subqueries > 16) throw new Error(`Observed D1 subquery count ${maxObservedD1Subqueries} exceeds the protected budget.`);
+
+        const summary = {
+          pass: true,
+          terminalCandidate: "STEP_8G_FORKRECIPE_V8002_PROTECTED_POPULATION_PASS",
+          childRecipeCount: EXPECTED_CHILD_ROWS,
+          parentRecipeCount: EXPECTED_PARENT_ROWS,
+          composedRecipeCount: EXPECTED_COMPOSED_ROWS,
+          bodyBatchCount: EXPECTED_BODY_BATCHES,
+          routeBatchCount: EXPECTED_ROUTE_BATCHES,
+          shardCount: 2,
+          idempotentBodyReplayPass: true,
+          idempotentRouteReplayPass: true,
+          mixedLayerHydrationPass: true,
+          rollbackPass: true,
+          rollbackHydrationFailClosedPass: true,
+          finalProtectedActiveVersion: "v8002",
+          fullCorpusScans: 0,
+          maxObservedD1Subqueries,
+          publicRuntimeChanged: false,
+          recommendationAdmissionChanged: false,
+          thirdShardUsed: false,
+          billingExpansion: false,
+          completed
+        };
+        status.textContent = "PASS — 1,416 protected recipes composed on the existing two shards; v8002 left active only for protected Step 8G work. Step 8F remains parked.";
+        status.className = "pass";
+        output.textContent = JSON.stringify(summary, null, 2);
+      } catch (error) {
+        status.textContent = `STOP — ${error.message}`;
+        status.className = "fail";
+        output.textContent = JSON.stringify({
+          pass: false,
+          message: error.message,
+          completed,
+          httpStatus: error.result?.response?.status || null,
+          result: error.result?.body || null
+        }, null, 2);
+      } finally {
+        runButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

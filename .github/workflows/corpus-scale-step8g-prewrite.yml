@@ -7,8 +7,17 @@ on:
       - 'scripts/corpus-scale-step8g-population-core.mjs'
       - 'scripts/run-corpus-scale-step8g-forkrecipe-prewrite.mjs'
       - 'scripts/build-corpus-scale-step8g-roadmap-state.mjs'
+      - 'scripts/verify-step8g-live-payloads.mjs'
       - 'tests/corpus-scale-step8g-population-core.test.js'
+      - 'tests/step8g-live.test.js'
+      - 'data/generated/step8g/runtime-descriptor.mjs'
+      - 'src/server/step8g-live-runtime.mjs'
+      - 'src/server/step8g-hydration-runtime.mjs'
+      - 'functions/api/step8g/populate.js'
+      - 'step8g-populate.html'
+      - 'docs/CORPUS_SCALE_STEP8G_PROTECTED_SCALE_LOOP.md'
       - 'docs/CORPUS_SCALE_STEP8G_FORKRECIPE_PREWRITE.md'
+      - 'docs/CORPUS_SCALE_STEP8G_FORKRECIPE_LIVE_IMPLEMENTATION.md'
       - 'config/corpus_scale_step8_roadmap.json'
   workflow_dispatch:
 permissions:
@@ -34,11 +43,17 @@ jobs:
           node-version: 22
       - name: Run Step 8G layered population unit tests
         run: node --test tests/corpus-scale-step8g-population-core.test.js
+      - name: Run Step 8G live runtime tests
+        run: node --test tests/step8g-live.test.js
       - name: Verify pinned ForkRecipe source
         working-directory: forkrecipe
         run: npm run validate
       - name: Build exact no-write Step 8G prewrite evidence
         run: node scripts/run-corpus-scale-step8g-forkrecipe-prewrite.mjs --forkrecipe=./forkrecipe --out=.tmp/step8g-forkrecipe-prewrite
+      - name: Verify exact live payloads against frozen prewrite
+        env:
+          STEP8G_LIVE_PREFLIGHT_ARTIFACT_DIR: artifacts/step8g-live-preflight
+        run: node scripts/verify-step8g-live-payloads.mjs --forkrecipe=./forkrecipe
       - name: Build reconciled machine roadmap state
         run: node scripts/build-corpus-scale-step8g-roadmap-state.mjs --out=.tmp/step8g-forkrecipe-prewrite/corpus_scale_step8_roadmap.next.json
       - name: Upload Step 8G prewrite evidence
@@ -46,5 +61,12 @@ jobs:
         with:
           name: step8g-forkrecipe-prewrite
           path: .tmp/step8g-forkrecipe-prewrite/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload no-write Step 8G live preflight evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-live-preflight
+          path: artifacts/step8g-live-preflight/
           if-no-files-found: error
           retention-days: 30
