@@ -19,7 +19,8 @@ export function reconcileStep8GRoadmapState(roadmap) {
 
   for (const ref of [
     "docs/CORPUS_SCALE_STEP8G_PROTECTED_SCALE_LOOP.md",
-    "docs/CORPUS_SCALE_STEP8G_FORKRECIPE_PREWRITE.md"
+    "docs/CORPUS_SCALE_STEP8G_FORKRECIPE_PREWRITE.md",
+    "data/generated/step8g/forkrecipe-prewrite-evidence.json"
   ]) {
     if (!next.evidenceBasis.includes(ref)) next.evidenceBasis.push(ref);
   }
@@ -43,19 +44,25 @@ export function reconcileStep8GRoadmapState(roadmap) {
     measurementTerminal: "STEP_8G_FORKRECIPE_MEASUREMENT_EARNED_COHORT_CANDIDATE",
     measurementRun: 34868640577,
     measurementDoc: "docs/CORPUS_SCALE_STEP8G_PROTECTED_SCALE_LOOP.md",
-    prewriteStatus: "ACTIVE_REPOSITORY_PREFLIGHT_ZERO_LIVE_WRITES",
+    prewriteStatus: "PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+    prewriteTerminal: "STEP_8G_FORKRECIPE_LAYER_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_PENDING",
+    prewriteRun: 34869529773,
+    prewriteEvidence: "data/generated/step8g/forkrecipe-prewrite-evidence.json",
     prewriteDoc: "docs/CORPUS_SCALE_STEP8G_FORKRECIPE_PREWRITE.md",
     plannedLayerVersion: "v8002",
     parentCorpusVersion: "v8001",
     cumulativeRecipeCountIfLivePass: 1416,
+    plannedWriteBatchCount: 93,
+    maxPlannedWriteD1Subqueries: 15,
+    maxPlannedHydrationD1Subqueries: 4,
     publicRuntimeChangeAuthorized: false
   };
 
-  next.sourceStateCurrent.forkRecipe = "STEP8G_MEASUREMENT_EARNED_COHORT_CANDIDATE__LAYERED_PREWRITE_ACTIVE__ZERO_PUBLIC_RECOMMENDATION_ADMISSION";
+  next.sourceStateCurrent.forkRecipe = "STEP8G_MEASUREMENT_AND_LAYERED_PREWRITE_PASS__LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED__ZERO_PUBLIC_RECOMMENDATION_ADMISSION";
   next.currentHumanGate = {
     id: "NONE",
     status: "NO_HUMAN_GATE_CURRENTLY_REQUIRED",
-    reason: "Step 8F is intentionally parked and non-blocking while Step 8G protected scale work remains available. Public runtime activation remains unauthorized.",
+    reason: "Step 8F is intentionally parked and non-blocking while Step 8G protected scale work remains available. ForkRecipe layered prewrite PASS earns live protected-population implementation but does not authorize public runtime activation.",
     nextReservedHumanGate: "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION",
     parkedGateStatus: "PARKED_NOT_AUTHORIZED",
     resumeOnlyOnExplicitOwnerRequest: true
@@ -73,5 +80,6 @@ process.stdout.write(`${JSON.stringify({
   gate8f: output.gates.find(gate => gate.id === "8F").status,
   gate8g: output.gates.find(gate => gate.id === "8G").status,
   currentHumanGate: output.currentHumanGate.id,
-  forkRecipe: output.sourceStateCurrent.forkRecipe
+  forkRecipe: output.sourceStateCurrent.forkRecipe,
+  prewrite: output.gates.find(gate => gate.id === "8G").latestIteration.prewriteStatus
 }, null, 2)}\n`);
