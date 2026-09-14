@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Culinary Recommender — Step 8D Population</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 820px; margin: 0 auto; padding: 24px; line-height: 1.45; }
+    button, a.button { display: inline-block; padding: 12px 16px; margin: 8px 8px 8px 0; font: inherit; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #f4f4f4; padding: 16px; border-radius: 8px; }
+    .pass { font-weight: 700; }
+    .fail { font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>Step 8D protected 501-record population</h1>
+  <p>This runner is authenticated and protected. It verifies the immutable UniTools source, resumes from exact receipts, writes only the frozen 51 batches across the two earned D1 shards, verifies idempotency, exercises the protected pointer and rolls it back. It does not activate normal public recommendations.</p>
+  <p><a class="button" href="/auth-canary.html">Open sign-in canary</a><button id="run" type="button">Run / resume Step 8D</button></p>
+  <p id="status">Ready.</p>
+  <pre id="output">No run yet.</pre>
+
+  <script type="module">
+    import { buildStep8DProtectedPacket } from "./src/shared/step8d-packet.mjs";
+
+    const runButton = document.getElementById("run");
+    const status = document.getElementById("status");
+    const output = document.getElementById("output");
+    const encoder = new TextEncoder();
+
+    function hex(bytes) {
+      return [...new Uint8Array(bytes)].map(value => value.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function sha256(value) {
+      return hex(await crypto.subtle.digest("SHA-256", encoder.encode(String(value))));
+    }
+
+    async function gitBlobSha(bytes) {
+      const header = encoder.encode(`blob ${bytes.byteLength}\0`);
+      const combined = new Uint8Array(header.byteLength + bytes.byteLength);
+      combined.set(header, 0);
+      combined.set(bytes, header.byteLength);
+      return hex(await crypto.subtle.digest("SHA-1", combined));
+    }
+
+    async function fetchJson(url, options = {}) {
+      const response = await fetch(url, { credentials: "same-origin", ...options });
+      let body = null;
+      try { body = await response.json(); } catch { body = { error: "NON_JSON_RESPONSE" }; }
+      return { response, body };
+    }
+
+    async function requireOk(label, url, options = {}) {
+      status.textContent = label;
+      const result = await fetchJson(url, options);
+      if (!result.response.ok || result.body?.ok !== true) {
+        const error = new Error(`${label} failed with HTTP ${result.response.status}`);
+        error.result = result;
+        throw error;
+      }
+      return result.body;
+    }
+
+    function post(action, extra = {}) {
+      return requireOk(
+        `${action}…`,
+        "/api/step8d/populate",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ action, ...extra })
+        }
+      );
+    }
+
+    async function loadPinnedPackets(apiPlan) {
+      status.textContent = "Loading frozen Step 8D contract and plan…";
+      const [contractResponse, planResponse] = await Promise.all([
+        fetch("/config/corpus_scale_step8d_contract.json", { cache: "no-store" }),
+        fetch("/data/generated/step8d/population-plan-descriptors.json", { cache: "no-store" })
+      ]);
+      if (!contractResponse.ok || !planResponse.ok) throw new Error("Frozen Step 8D contract/plan could not be loaded.");
+      const contract = await contractResponse.json();
+      const plan = await planResponse.json();
+      if (plan.populationPlanSha256 !== apiPlan.populationPlanSha256) throw new Error("Population-plan fingerprint differs from the authenticated API.");
+      if (plan.batches.length !== 51) throw new Error("Frozen plan must contain exactly 51 batches.");
+
+      const source = contract.source;
+      const rawUrl = `https://raw.githubusercontent.com/${source.repository}/${source.commit}/${source.dataPath}`;
+      status.textContent = "Fetching and verifying immutable UniTools source…";
+      const sourceResponse = await fetch(rawUrl, { cache: "no-store" });
+      if (!sourceResponse.ok) throw new Error(`Pinned UniTools fetch failed with HTTP ${sourceResponse.status}.`);
+      const sourceBytes = new Uint8Array(await sourceResponse.arrayBuffer());
+      const observedBlobSha = await gitBlobSha(sourceBytes);
+      if (observedBlobSha !== source.dataBlobSha) throw new Error("Pinned UniTools Git blob SHA mismatch.");
+      const dataset = JSON.parse(new TextDecoder().decode(sourceBytes));
+      if (dataset.version !== source.datasetVersion || dataset.recipes?.length !== 501 || Number(dataset.counts?.recipes) !== 501) {
+        throw new Error("Pinned UniTools version/count mismatch.");
+      }
+
+      status.textContent = "Building and verifying 501 protected packets…";
+      const packetById = new Map();
+      for (let ordinal = 0; ordinal < dataset.recipes.length; ordinal += 1) {
+        const packet = buildStep8DProtectedPacket(dataset.recipes[ordinal], { source, ordinal });
+        const bodyJson = JSON.stringify(packet);
+        const descriptor = {
+          ordinal,
+          recipeId: packet.identity.recipeId,
+          bodySha256: await sha256(bodyJson),
+          bodyBytes: encoder.encode(bodyJson).byteLength,
+          sourceCohortId: source.sourceCohortId,
+          bodyJson
+        };
+        if (packetById.has(descriptor.recipeId)) throw new Error(`Duplicate protected recipe ID ${descriptor.recipeId}.`);
+        packetById.set(descriptor.recipeId, descriptor);
+      }
+
+      const batches = plan.batches.map(batch => ({
+        batchId: batch.batchId,
+        entries: batch.entries.map(expected => {
+          const actual = packetById.get(expected.recipeId);
+          if (!actual
+            || actual.ordinal !== expected.ordinal
+            || actual.bodySha256 !== expected.bodySha256
+            || actual.bodyBytes !== expected.bodyBytes
+            || actual.sourceCohortId !== expected.sourceCohortId) {
+            throw new Error(`Frozen descriptor mismatch for ${expected.recipeId}.`);
+          }
+          return actual;
+        })
+      }));
+      return { batches, observedBlobSha, populationPlanSha256: plan.populationPlanSha256 };
+    }
+
+    async function writeBatch(batch, allowUnknownCommitRetry = true) {
+      status.textContent = `Writing/verifying ${batch.batchId}…`;
+      const first = await fetchJson("/api/step8d/populate", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ action: "write", batch })
+      });
+      if (first.response.ok && first.body?.ok === true) return first.body;
+      if (allowUnknownCommitRetry && first.response.status === 503 && first.body?.result?.status === "WRITE_ERROR_UNKNOWN_COMMIT_STATE") {
+        status.textContent = `Recovering unknown commit state for ${batch.batchId}…`;
+        return writeBatch(batch, false);
+      }
+      const error = new Error(`Batch ${batch.batchId} failed with HTTP ${first.response.status}.`);
+      error.result = first;
+      throw error;
+    }
+
+    runButton.addEventListener("click", async () => {
+      runButton.disabled = true;
+      output.textContent = "Starting…";
+      const completed = [];
+      const observedD1 = [];
+      let partialCheckpointPass = false;
+      let resumePass = false;
+      let idempotentWritePass = false;
+
+      try {
+        const session = await fetchJson("/api/auth/session");
+        if (!session.response.ok || session.body?.authenticated !== true) {
+          throw new Error("A current Culinary session is required. Open the sign-in canary in this same browser, sign in, then return here without changing browser context.");
+        }
+        completed.push("session");
+
+        const apiStatus = await requireOk("Checking Step 8D live contract…", "/api/step8d/populate?action=status");
+        completed.push("status");
+        observedD1.push(apiStatus.metrics.d1Subqueries);
+        if (apiStatus.plan.recipeCount !== 501 || apiStatus.plan.batchCount !== 51 || apiStatus.plan.shardCount !== 2) {
+          throw new Error("Authenticated Step 8D plan summary is not the frozen 501 / 51-batch / 2-shard plan.");
+        }
+
+        const bindings = await requireOk("Verifying both earned D1 bindings…", "/api/step8d/populate?action=bindings");
+        if (bindings.boundShardBindings !== 2) throw new Error("Both earned recipe-body shard bindings were not verified.");
+        completed.push("bindings");
+        observedD1.push(bindings.metrics.d1Subqueries);
+
+        status.textContent = "Checking Free-limit fail-closed path…";
+        const freeLimit = await fetchJson("/api/step8d/populate?simulate=free-limit");
+        if (freeLimit.response.status !== 503 || freeLimit.body?.error !== "STEP8D_FREE_LIMIT_FAIL_CLOSED" || Number(freeLimit.body?.metrics?.shardQueries ?? -1) !== 0) {
+          throw new Error("Step 8D Free-limit fail-closed evidence did not match the contract.");
+        }
+        completed.push("free-limit");
+        observedD1.push(freeLimit.body.metrics.d1Subqueries);
+
+        const prepared = await loadPinnedPackets(apiStatus.plan);
+        completed.push("source-and-packets");
+
+        const initialized = await post("initialize");
+        completed.push("initialize");
+        observedD1.push(initialized.metrics.d1Subqueries);
+
+        let progress = await requireOk("Reading receipt checkpoint…", "/api/step8d/populate?action=progress");
+        completed.push("progress-before");
+        observedD1.push(progress.metrics.d1Subqueries);
+        if (progress.conflicts?.length) throw new Error("Step 8D receipt checkpoint is conflict-fail-closed.");
+
+        const completedBefore = new Set(progress.completedBatchIds || []);
+        if (!progress.completeVerified && completedBefore.size === 0 && (progress.pendingVerificationBatchIds || []).length === 0) {
+          const firstWrite = await writeBatch(prepared.batches[0]);
+          observedD1.push(firstWrite.metrics.d1Subqueries);
+          progress = await requireOk("Proving persisted partial checkpoint…", "/api/step8d/populate?action=progress");
+          observedD1.push(progress.metrics.d1Subqueries);
+          partialCheckpointPass = progress.completedBatchIds?.includes(prepared.batches[0].batchId)
+            && progress.missingBatchIds?.length > 0;
+          if (!partialCheckpointPass) throw new Error("Persisted partial checkpoint proof failed.");
+          completed.push("partial-checkpoint");
+        } else if (!progress.completeVerified && (completedBefore.size > 0 || (progress.pendingVerificationBatchIds || []).length > 0)) {
+          partialCheckpointPass = true;
+          completed.push("existing-resumable-checkpoint");
+        }
+
+        const completedSet = new Set(progress.completedBatchIds || []);
+        for (const batch of prepared.batches) {
+          if (completedSet.has(batch.batchId)) continue;
+          const written = await writeBatch(batch);
+          observedD1.push(written.metrics.d1Subqueries);
+          if (!written.ok) throw new Error(`Batch ${batch.batchId} did not verify.`);
+        }
+        completed.push("resume-all-batches");
+
+        progress = await requireOk("Verifying exact 501-row receipt closure…", "/api/step8d/populate?action=progress");
+        observedD1.push(progress.metrics.d1Subqueries);
+        resumePass = partialCheckpointPass && progress.completeVerified === true && progress.verifiedBatchCount === 51 && progress.verifiedRowCount === 501;
+        if (!resumePass) throw new Error("Step 8D exact resumable population closure failed.");
+        completed.push("exact-progress");
+
+        const replay = await writeBatch(prepared.batches[0], false);
+        observedD1.push(replay.metrics.d1Subqueries);
+        idempotentWritePass = replay.result?.status === "VERIFIED_IDEMPOTENT_SKIP" && replay.result?.skipped === true;
+        if (!idempotentWritePass) throw new Error("Step 8D idempotent replay proof failed.");
+        completed.push("idempotent-replay");
+
+        const activated = await post("activate");
+        observedD1.push(activated.metrics.d1Subqueries);
+        if (activated.protectedPointerActivated !== true || activated.normalPublicRecommendationRuntimeChanged !== false) {
+          throw new Error("Step 8D protected pointer activation boundary failed.");
+        }
+        completed.push("activate-protected-pointer");
+
+        const rollback = await post("rollback");
+        observedD1.push(rollback.metrics.d1Subqueries);
+        if (rollback.rollbackPass !== true || rollback.destructiveDeletePerformed !== false || rollback.populatedRowsRetained !== true) {
+          throw new Error("Step 8D pointer-only rollback proof failed.");
+        }
+        completed.push("rollback");
+
+        const evidence = await requireOk("Collecting final Step 8D evidence…", "/api/step8d/populate?action=evidence");
+        observedD1.push(evidence.metrics.d1Subqueries);
+        if (evidence.exactPostWrite501Pass !== true || evidence.authenticatedCrossShardReadPass !== true || evidence.rollbackPass !== true || evidence.fullCorpusScans !== 0) {
+          throw new Error("Final Step 8D evidence envelope is incomplete.");
+        }
+        completed.push("evidence");
+
+        const maxObservedD1Subqueries = Math.max(...observedD1);
+        if (maxObservedD1Subqueries > 16) throw new Error(`Observed D1 subquery count ${maxObservedD1Subqueries} exceeds the Step 8D budget.`);
+
+        const summary = {
+          pass: true,
+          terminalCandidate: "STEP_8D_PROTECTED_POPULATION_PASS_PENDING_EXTERNAL_UNAUTH_PROBE",
+          pinnedSourceBlobShaPass: prepared.observedBlobSha === "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+          populationPlanSha256: prepared.populationPlanSha256,
+          recipeCount: 501,
+          verifiedBatchCount: 51,
+          shardCount: 2,
+          resumableInterruptionPass: resumePass,
+          idempotentWritePass,
+          exactPostWrite501Pass: evidence.exactPostWrite501Pass,
+          authenticatedCrossShardReadPass: evidence.authenticatedCrossShardReadPass,
+          rollbackPass: evidence.rollbackPass,
+          fullCorpusScans: 0,
+          maxObservedD1Subqueries,
+          normalPublicRecommendationRuntimeChanged: false,
+          thirdShardUsed: false,
+          billingExpansion: false,
+          completed
+        };
+        status.textContent = "PASS — protected population complete; external unauthenticated zero-shard probe remains for terminal closeout.";
+        status.className = "pass";
+        output.textContent = JSON.stringify(summary, null, 2);
+      } catch (error) {
+        status.textContent = `STOP — ${error.message}`;
+        status.className = "fail";
+        output.textContent = JSON.stringify({
+          pass: false,
+          message: error.message,
+          completed,
+          httpStatus: error.result?.response?.status || null,
+          result: error.result?.body || null
+        }, null, 2);
+      } finally {
+        runButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
