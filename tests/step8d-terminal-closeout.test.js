@@ -1,0 +1,49 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+
+const ROOT = resolve(import.meta.dirname, "..");
+const evidence = JSON.parse(readFileSync(resolve(ROOT, "data/generated/corpus-scale-step8d-live-pass.json"), "utf8"));
+const roadmap = JSON.parse(readFileSync(resolve(ROOT, "config/corpus_scale_step8_roadmap.json"), "utf8"));
+const current = JSON.parse(readFileSync(resolve(ROOT, "docs/handovers/CURRENT.json"), "utf8"));
+const gates = new Map(roadmap.gates.map(gate => [gate.id, gate]));
+
+test("Step 8D frozen live evidence satisfies terminal contract", () => {
+  const r = evidence.authenticatedProductionRunner;
+  assert.equal(evidence.terminal, "STEP_8D_PROTECTED_POPULATION_PASS");
+  assert.equal(r.pass, true);
+  assert.equal(r.terminalCandidate, "STEP_8D_PROTECTED_POPULATION_PASS");
+  assert.equal(r.recipeCount, 501);
+  assert.equal(r.verifiedBatchCount, 51);
+  assert.equal(r.shardCount, 2);
+  assert.equal(r.resumableInterruptionPass, true);
+  assert.equal(r.idempotentWritePass, true);
+  assert.equal(r.exactPostWrite501Pass, true);
+  assert.equal(r.authenticatedCrossShardReadPass, true);
+  assert.equal(r.rollbackPass, true);
+  assert.equal(r.fullCorpusScans, 0);
+  assert.ok(r.maxObservedD1Subqueries <= 16);
+  assert.equal(r.normalPublicRecommendationRuntimeChanged, false);
+  assert.equal(r.thirdShardUsed, false);
+  assert.equal(r.billingExpansion, false);
+});
+
+test("Step 8D PASS unlocks 8E and 8G without authorizing 8F", () => {
+  assert.equal(gates.get("8D").status, "COMPLETE_PASS_LIVE_PRODUCTION");
+  assert.equal(gates.get("8D").terminal, "STEP_8D_PROTECTED_POPULATION_PASS");
+  assert.equal(gates.get("8E").status, "READY_RECOMMENDATION_ELIGIBILITY_REVIEW");
+  assert.equal(gates.get("8G").status, "READY_CONTINUED_PROTECTED_SCALE_LOOP");
+  assert.equal(gates.get("8F").humanRequired, true);
+  assert.equal(roadmap.boundaries.automaticPublicRecommendationAdmission, false);
+  assert.equal(roadmap.currentHumanGate.id, "NONE");
+});
+
+test("canonical handover reflects terminal Step 8D and preserves public gate", () => {
+  assert.equal(current.human_needed, false);
+  assert.equal(current.corpus_scale.step8d.terminal, "STEP_8D_PROTECTED_POPULATION_PASS");
+  assert.equal(current.corpus_scale.step8d.max_observed_d1_subqueries, 15);
+  assert.equal(current.corpus_scale.step8e, "READY_RECOMMENDATION_ELIGIBILITY_REVIEW");
+  assert.match(current.corpus_scale.step8g, /^READY_CONTINUED_PROTECTED_SCALE_LOOP/);
+  assert.equal(current.corpus_scale.step8f, "EXPLICIT_HUMAN_PUBLIC_RUNTIME_GATE_NOT_AUTHORIZED");
+});

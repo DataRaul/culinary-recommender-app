@@ -1,0 +1,93 @@
+{
+  "schema": "CORPUS_SCALE_STEP8D_LIVE_POPULATION_PASS_V1",
+  "date": "2026-09-14",
+  "evidenceClass": "HUMAN_OBSERVED_AUTHENTICATED_PRODUCTION_RUN_PLUS_MACHINE_EXTERNAL_PROBE",
+  "terminal": "STEP_8D_PROTECTED_POPULATION_PASS",
+  "authenticatedProductionRunner": {
+    "pass": true,
+    "terminalCandidate": "STEP_8D_PROTECTED_POPULATION_PASS",
+    "externalUnauthenticatedProbePass": true,
+    "externalUnauthenticatedProbeRun": 34834330389,
+    "pinnedSourceBlobShaPass": true,
+    "populationPlanSha256": "18ea4d1bfaf424709de22a7badd680fb82c887fb70e54af5e190c33371dbad12",
+    "recipeCount": 501,
+    "verifiedBatchCount": 51,
+    "shardCount": 2,
+    "resumableInterruptionPass": true,
+    "idempotentWritePass": true,
+    "exactPostWrite501Pass": true,
+    "authenticatedCrossShardReadPass": true,
+    "rollbackPass": true,
+    "fullCorpusScans": 0,
+    "maxObservedD1Subqueries": 15,
+    "normalPublicRecommendationRuntimeChanged": false,
+    "thirdShardUsed": false,
+    "billingExpansion": false,
+    "completed": [
+      "session",
+      "status",
+      "bindings",
+      "free-limit",
+      "source-and-packets",
+      "initialize",
+      "progress-before",
+      "partial-checkpoint",
+      "resume-all-batches",
+      "exact-progress",
+      "idempotent-replay",
+      "activate-protected-pointer",
+      "rollback",
+      "evidence"
+    ]
+  },
+  "frozenContract": {
+    "sourceRepository": "farcrak/unitools-recipes",
+    "sourceCommit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "sourceBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "corpusVersion": "v8001",
+    "packetSchema": "CORPUS_SCALE_STEP8D_PROTECTED_PACKET_V1",
+    "recipeCount": 501,
+    "verifiedBatchCount": 51,
+    "shardCount": 2,
+    "shardRows": {
+      "0": 257,
+      "1": 244
+    },
+    "maxRowsPerBatch": 10,
+    "maxProtectedD1Subqueries": 16,
+    "populationPlanSha256": "18ea4d1bfaf424709de22a7badd680fb82c887fb70e54af5e190c33371dbad12",
+    "manifestSha256": "0cb09afd9dd87ead733c3798c4832fdd96c8022867fb857a8730f74243562743",
+    "packetSetSha256": "6b6e12011e9a12ffdc362acae32bc43304d66705c75325a898da1b84b3ed4c48"
+  },
+  "machineEvidence": {
+    "terminalReadinessMerge": "1bd61fcc0ac70b15f5f529f17998fcb9b44890eb",
+    "postMergeValidationRun": 34836427610,
+    "postMergeLivePayloadPreflightRun": 34836427579,
+    "postMergeUnauthenticatedProbeRun": 34836427544,
+    "runnerEmbeddedExternalProbeRun": 34834330389,
+    "cloudflareProductionDeployment": "PASS"
+  },
+  "acceptance": {
+    "exact501Closure": true,
+    "all51BatchesVerified": true,
+    "resumableInterruption": true,
+    "idempotentReplay": true,
+    "authenticatedCrossShardRead": true,
+    "pointerOnlyRollback": true,
+    "zeroFullCorpusScans": true,
+    "observedD1SubqueriesWithinBudget": true,
+    "normalPublicRecommendationRuntimeChanged": false,
+    "thirdShardUsed": false,
+    "billingExpansion": false,
+    "nutritionMutation": false,
+    "ytCulMutation": false,
+    "knowledgeCoreWrite": false
+  },
+  "authority": {
+    "protectedPopulationEarned": true,
+    "recommendationEligibilityReviewUnlocked": true,
+    "continuedProtectedScaleLoopUnlocked": true,
+    "publicRuntimeActivationAuthorized": false,
+    "step8fExplicitHumanGatePreserved": true
+  }
+}

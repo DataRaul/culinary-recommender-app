@@ -1,19 +1,19 @@
 {
-  "handover": "CULINARY_APP_CORPUS_SCALE_STEP8B_TERMINAL_STEP8D_READY_V21",
+  "handover": "CULINARY_APP_STEP8D_PRODUCTION_READY_AUTHENTICATED_POPULATION_GATE_V22",
   "handover_date": "2026-09-14",
   "timezone": "Atlantic/Canary",
-  "status": "STEP8A_PASS__STEP8B_TERMINAL_PASS__STEP8C_PASS__STEP8D_READY_PROTECTED_POPULATION__STEP8F_PUBLIC_GATE_UNCHANGED",
-  "human_needed": false,
+  "status": "STEP8A_PASS__STEP8B_TERMINAL_PASS__STEP8C_PASS__STEP8D_PREWRITE_PASS__STEP8D_LIVE_RUNTIME_MERGED_DEPLOYED_GREEN__EXTERNAL_UNAUTH_PASS__AUTHENTICATED_PROTECTED_POPULATION_HUMAN_GATE_REQUIRED__STEP8F_PUBLIC_GATE_UNCHANGED",
+  "human_needed": true,
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
     "source_of_truth": "GitHub",
-    "step8a_merge": "68e5f159000a8b7c1677155f49ef9cde7a0801b9",
-    "step8b_machine_merge": "280d261979908b42a7522f3f036d958cc619bb41",
-    "step8b_runtime_merge": "3db8084b0571e192094c384ece20417202b1fdc2",
-    "step8b_binding_attestation_merge": "ece0444b8b2e3f99de503c5c43630b362edc0386",
-    "step8b_zero_query_ui_fix_merge": "1b97f55b5cd9e7d6a43300eb9ef4ea8148f18cdf",
-    "step8c_merge": "34afa1d73af6f99f20b31739e8bebacabff81b2a"
+    "main_at_handover": "1bd61fcc0ac70b15f5f529f17998fcb9b44890eb",
+    "step8d_contract_merge": "9265997c053e834a768712142b1276e576fb53e5",
+    "step8d_prewrite_merge": "7036c01dcfa38e9803834ee0bc2c14e5d8658ad0",
+    "step8d_live_runtime_merge": "e04f944954e48b4e4051f4443a54abc3badf280f",
+    "step8d_cloudflare_runtime_fix_merge": "2a19a51bb457d961713bff14fbf0148779467db6",
+    "step8d_terminal_readiness_merge": "1bd61fcc0ac70b15f5f529f17998fcb9b44890eb"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -46,28 +46,13 @@
         {"database": "culinary-recipes-00", "binding": "CULINARY_RECIPE_SHARD_00_DB"},
         {"database": "culinary-recipes-01", "binding": "CULINARY_RECIPE_SHARD_01_DB"}
       ],
-      "third_shard_authorized": false,
-      "authenticated_live_evidence": {
-        "pass": true,
-        "boundShardBindings": 2,
-        "freeLimitFailClosedBeforeShardRead": true,
-        "partialFailureRecoveryPass": true,
-        "idempotentWritePass": true,
-        "authenticatedCrossShardReadPass": true,
-        "rollbackPass": true,
-        "fullCorpusScans": 0,
-        "maxObservedD1Subqueries": 10,
-        "normalPublicRecommendationRuntimeChanged": false
-      },
-      "external_unauthenticated_probe": {"httpStatus": 401, "error": "UNAUTHORIZED", "reason": "NO_SESSION", "protectedDataReturned": false, "shardQueries": 0},
-      "closeout_doc": "docs/CORPUS_SCALE_STEP8B_LIVE_CANARY_PASS.md"
+      "third_shard_authorized": false
     },
     "step8c": {
       "status": "COMPLETE_PASS",
       "terminal": "STEP_8C_RIGHTS_CLEAN_SOURCE_COHORT_AVAILABLE",
       "qualified_input": {
         "source_id": "unitools-world-recipes-v1_1_0",
-        "source_name": "UniTools World Recipes Dataset",
         "repository": "farcrak/unitools-recipes",
         "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
         "data_blob_sha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
@@ -79,18 +64,67 @@
       }
     },
     "step8d": {
-      "status": "READY_PROTECTED_POPULATION__STEP8B_AND_STEP8C_PASS",
-      "human_required": false,
-      "scope": "Protected population and measurement of the exact pinned 501-record UniTools cohort on the earned two-shard topology.",
-      "must_measure": ["deterministic per-shard distribution", "storage bytes", "D1 reads/writes/subqueries", "bounded retrieval and zero full-corpus scans", "resume and idempotent replay", "rollback/rebuild behavior", "incremental validation cost", "duplicate/family/variant observations"],
-      "prohibitions": ["no normal public recommendation activation", "no Nutrition mutation", "no YT-CUL mutation", "no Knowledge Core write", "no paid infrastructure", "no third recipe-body shard unless separately earned", "no unsupported nutrition/diet/allergen/scaling authority promotion"]
+      "status": "MACHINE_READY_PRODUCTION_GREEN__AUTHENTICATED_POPULATION_REQUIRED",
+      "prewrite_terminal": "STEP8D_PREWRITE_ACCEPTANCE_PASS",
+      "production_terminal": "NOT_YET_EARNED",
+      "expected_terminal_after_human_run": "STEP_8D_PROTECTED_POPULATION_PASS",
+      "live_d1_writes_performed_so_far": 0,
+      "corpus_version": "v8001",
+      "recipe_count": 501,
+      "shard_rows": {"0": 257, "1": 244},
+      "batch_count": 51,
+      "max_rows_per_batch": 10,
+      "max_protected_d1_subqueries": 16,
+      "population_plan_sha256": "18ea4d1bfaf424709de22a7badd680fb82c887fb70e54af5e190c33371dbad12",
+      "manifest_sha256": "0cb09afd9dd87ead733c3798c4832fdd96c8022867fb857a8730f74243562743",
+      "packet_set_sha256": "6b6e12011e9a12ffdc362acae32bc43304d66705c75325a898da1b84b3ed4c48",
+      "machine_evidence": {
+        "cloudflare_production_deployment": "PASS",
+        "standard_post_merge_validation": {"run": 34836427610, "status": "PASS", "production_smoke": "PASS"},
+        "live_payload_preflight": {"run": 34836427579, "status": "PASS", "recipes": 501, "batches": 51},
+        "external_unauthenticated_probe": {"run": 34836427544, "status": "PASS", "httpStatus": 401, "error": "UNAUTHORIZED", "reason": "NO_SESSION", "protectedDataReturned": false, "shardQueries": 0},
+        "normal_public_recommendation_runtime_changed": false,
+        "third_shard_used": false,
+        "billing_expansion": false
+      },
+      "human_gate": {
+        "id": "STEP8D_AUTHENTICATED_PROTECTED_POPULATION",
+        "status": "HUMAN_REQUIRED_NOW",
+        "page": "https://culinary-recommender-app.pages.dev/step8d-populate.html",
+        "instruction": "Use one continuous same-origin browser session. If not authenticated, open the sign-in canary from the Step 8D page, sign in, return in the same browser context, then press Run / resume Step 8D exactly once and paste only the final JSON result. Never paste cookies or tokens.",
+        "expected_success_fields": {
+          "pass": true,
+          "terminalCandidate": "STEP_8D_PROTECTED_POPULATION_PASS",
+          "recipeCount": 501,
+          "verifiedBatchCount": 51,
+          "shardCount": 2,
+          "resumableInterruptionPass": true,
+          "idempotentWritePass": true,
+          "exactPostWrite501Pass": true,
+          "authenticatedCrossShardReadPass": true,
+          "rollbackPass": true,
+          "fullCorpusScans": 0,
+          "normalPublicRecommendationRuntimeChanged": false,
+          "thirdShardUsed": false,
+          "billingExpansion": false
+        }
+      },
+      "prohibitions": [
+        "no normal public recommendation activation",
+        "no Nutrition mutation",
+        "no YT-CUL mutation",
+        "no Knowledge Core write",
+        "no paid infrastructure",
+        "no third recipe-body shard unless separately earned",
+        "no unsupported nutrition/diet/allergen/scaling authority promotion"
+      ]
     },
-    "step8e": "BLOCKED_PENDING_8D_ELIGIBLE_COHORT",
-    "step8f": "EXPLICIT_HUMAN_PUBLIC_RUNTIME_GATE",
-    "step8g": "BLOCKED_PENDING_8D_PASS__DOES_NOT_DEPEND_ON_8F"
+    "step8e": "BLOCKED_PENDING_8D_TERMINAL_PASS",
+    "step8f": "EXPLICIT_HUMAN_PUBLIC_RUNTIME_GATE_NOT_AUTHORIZED",
+    "step8g": "BLOCKED_PENDING_8D_TERMINAL_PASS__DOES_NOT_DEPEND_ON_8F"
   },
-  "current_human_gate": "NONE_IN_STEP8D",
+  "current_human_gate": "STEP8D_AUTHENTICATED_PROTECTED_POPULATION",
   "next_reserved_human_gate": "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION",
-  "next_action": {"name": "STEP8D_PROTECTED_UNITOOLS_501_POPULATION", "instruction": "Implement repository-first Step 8D transformation/manifest/population/evidence contracts against the exact pinned UniTools source, validate them, then use only the already-earned two D1 bindings for protected live population. Do not change public recommendation behavior."},
-  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub. Step 8B is terminal PASS: the fresh authenticated production canary completed all stages with two bindings, zero full scans and maxObservedD1Subqueries=10; a separate no-session production probe returned HTTP 401, protectedDataReturned=false and shardQueries=0. Step 8C already qualified the pinned UniTools 501-record source. Step 8D is now autonomous protected population on the existing two-shard topology. Do not touch billing, add a third shard, activate public recommendations, mutate Nutrition/YT-CUL, or write Knowledge Core."
+  "after_human_result": "Validate the returned JSON against the frozen terminal criteria. If PASS, autonomously freeze the Step 8D live closeout evidence, update roadmap/handover, merge closeout, reconcile main, and unlock Step 8E and Step 8G. Do not enter Step 8F without explicit authorization.",
+  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub. Step 8D machine preparation is complete and production-green. PRs #141/#142 froze and verified the exact pinned 501-record contract; #143 added the live population runtime; #146 repaired Cloudflare runtime packaging; #147 froze the resolved terminal-ready state. The external no-session production probe is PASS with HTTP 401 and zero shard queries. No Step 8D production D1 population write has occurred yet. The only current gate is the authenticated same-origin production runner at /step8d-populate.html. After its PASS JSON, close Step 8D autonomously. Do not activate public recommendations, add a third shard, mutate Nutrition/YT-CUL, write Knowledge Core, or authorize billing expansion."
 }
