@@ -42,8 +42,12 @@
       return hash % 2;
     }
 
+    function sourceSlugFromFileName(fileName) {
+      return String(fileName).replace(/\.js$/i, "");
+    }
+
     function canonicalIdFromFileName(fileName) {
-      const slug = String(fileName).replace(/\.js$/i, "");
+      const slug = sourceSlugFromFileName(fileName);
       return `forkrecipe_${slug.replace(/-/g, "_")}`;
     }
 
@@ -107,7 +111,10 @@
       const files = listing
         .filter(item => item?.type === "file" && item.name?.endsWith(".js") && item.name !== "index.js" && item.name !== "_template.js")
         .map(item => item.name)
-        .sort((a, b) => a.localeCompare(b));
+        // The frozen prewrite assigns ordinals by source slug, not by filename including ".js".
+        // Sorting filenames directly moves prefix recipes (for example agua-fresca) behind their children
+        // and makes the immutable body-batch fingerprint impossible to reproduce in the browser.
+        .sort((a, b) => sourceSlugFromFileName(a).localeCompare(sourceSlugFromFileName(b)));
       if (files.length !== EXPECTED_CHILD_ROWS) throw new Error(`Pinned ForkRecipe file count is ${files.length}; expected ${EXPECTED_CHILD_ROWS}.`);
 
       const byShard = [[], []];
@@ -140,7 +147,7 @@
         status.textContent = `Loading pinned ForkRecipe source ${row.ordinal + 1}/${EXPECTED_CHILD_ROWS}…`;
         const moduleUrl = `https://cdn.jsdelivr.net/gh/${FORKRECIPE_REPO}@${FORKRECIPE_COMMIT}/recipes/${encodeURIComponent(row.fileName)}`;
         const mod = await import(moduleUrl);
-        if (!mod?.default || mod.default.slug !== row.fileName.replace(/\.js$/i, "")) {
+        if (!mod?.default || mod.default.slug !== sourceSlugFromFileName(row.fileName)) {
           throw new Error(`Pinned module identity mismatch for ${row.fileName}.`);
         }
         sourceEntries.push({ ordinal: row.ordinal, fileName: row.fileName, recipe: mod.default });
