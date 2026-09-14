@@ -1,0 +1,54 @@
+name: Corpus Scale Step 8G protected-scale measurement
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g.yml'
+      - 'scripts/corpus-scale-step8g-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-forkrecipe.mjs'
+      - 'tests/corpus-scale-step8g-core.test.js'
+      - 'docs/CORPUS_SCALE_STEP8G_PROTECTED_SCALE_LOOP.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: corpus-step8g-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  measure-forkrecipe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+      - name: Checkout pinned ForkRecipe source
+        uses: actions/checkout@v4
+        with:
+          repository: futurechef/forkrecipe-recipes
+          ref: c32255266af39bd77444d39452f3df8088ac8fd9
+          path: forkrecipe
+      - name: Checkout pinned UniTools baseline source
+        uses: actions/checkout@v4
+        with:
+          repository: farcrak/unitools-recipes
+          ref: 1d09e9548d957dd0375301146a86dddf5e269c1b
+          path: unitools
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify pinned ForkRecipe source
+        working-directory: forkrecipe
+        run: npm run validate
+      - name: Re-run governed ForkRecipe rights and quality audit
+        run: node scripts/run-forkrecipe-step7e-audit.mjs --source=./forkrecipe --out=.tmp/step8g-forkrecipe-audit
+      - name: Measure marginal value against public plus protected baseline
+        run: node scripts/run-corpus-scale-step8g-forkrecipe.mjs --forkrecipe=./forkrecipe --unitools=./unitools --audit-summary=.tmp/step8g-forkrecipe-audit/summary.json --out=.tmp/step8g-forkrecipe-measurement
+      - name: Upload Step 8G evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-forkrecipe-measurement
+          path: |
+            .tmp/step8g-forkrecipe-audit/summary.json
+            .tmp/step8g-forkrecipe-measurement/measurement.json
+          if-no-files-found: error
+          retention-days: 30
