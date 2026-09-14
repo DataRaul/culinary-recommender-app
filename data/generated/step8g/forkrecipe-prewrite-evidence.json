@@ -1,0 +1,143 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_FORKRECIPE_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_FORKRECIPE_LAYER_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_PENDING",
+  "date": "2026-09-14",
+  "validationRun": 34869529773,
+  "source": {
+    "repository": "futurechef/forkrecipe-recipes",
+    "commit": "c32255266af39bd77444d39452f3df8088ac8fd9",
+    "recordCount": 915,
+    "licenseId": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "rightsAuditPass": true
+  },
+  "parent": {
+    "corpusVersion": "v8001",
+    "recipeCount": 501,
+    "manifestSha256": "0cb09afd9dd87ead733c3798c4832fdd96c8022867fb857a8730f74243562743"
+  },
+  "layer": {
+    "corpusVersion": "v8002",
+    "parentCorpusVersion": "v8001",
+    "recipeCount": 915,
+    "manifestSha256": "6fb8e635add76734abfd11fe28bf082f311763a09764e3fb0ba13088f016dd0f",
+    "populationPlanSha256": "8668b6733f006ad1f1bcb8606b04b37495c085ccaf7f9c91ce9be79aa72157ca",
+    "batchCount": 93,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 16644,
+    "maxBatchBodyBytes": 128488,
+    "shardDescriptors": [
+      {
+        "shardNumber": 0,
+        "rowCount": 461,
+        "totalBodyBytes": 4723748,
+        "firstOrdinal": 0,
+        "lastOrdinal": 914,
+        "entriesSha256": "dcb87c8ea39d08803dd37cec13128d59650785bd4662b4fdae94c0bbff7835e1"
+      },
+      {
+        "shardNumber": 1,
+        "rowCount": 454,
+        "totalBodyBytes": 4676249,
+        "firstOrdinal": 3,
+        "lastOrdinal": 911,
+        "entriesSha256": "ce4964c9ac3e86fc527dbc9c17aff88fb375a705ab350de772665eea748e730d"
+      }
+    ],
+    "maxWriteRequestBytes": 138104,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "maxWriteD1Subqueries": 15,
+    "maxAllowedD1Subqueries": 16,
+    "writeQueryBudgetPass": true
+  },
+  "composition": {
+    "schema": "CORPUS_SCALE_STEP8G_LAYER_COMPOSITION_V1",
+    "activeCorpusVersion": "v8002",
+    "parentCorpusVersion": "v8001",
+    "layers": [
+      {
+        "corpusVersion": "v8001",
+        "parentCorpusVersion": null,
+        "recipeCount": 501,
+        "manifestSha256": "0cb09afd9dd87ead733c3798c4832fdd96c8022867fb857a8730f74243562743",
+        "sourceCohortId": "unitools-world-recipes-v1_1_0"
+      },
+      {
+        "corpusVersion": "v8002",
+        "parentCorpusVersion": "v8001",
+        "recipeCount": 915,
+        "manifestSha256": "6fb8e635add76734abfd11fe28bf082f311763a09764e3fb0ba13088f016dd0f",
+        "sourceCohortId": "FORKRECIPE_PINNED_STEP7E"
+      }
+    ],
+    "cumulativeRecipeCount": 1416,
+    "routeIndexSha256": "d2638d443c62815426f28ab87b4c3e5c52cab36a6f608533ea75178167b5a30c",
+    "routing": {
+      "shardCount": 2,
+      "mode": "CONTROL_INDEX_EXACT_ROUTE_THEN_BATCH_HYDRATE_BY_SHARD",
+      "fullCorpusScans": 0,
+      "maxHydratedCandidates": 256,
+      "maxProtectedD1Subqueries": 16
+    },
+    "capacity": {
+      "parentBodyBytes": 2618295,
+      "newLayerBodyBytes": 9399997,
+      "layeredPhysicalBodyBytes": 12018292,
+      "naiveImmutableSnapshotBodyBytes": 14636587,
+      "avoidedDuplicateParentRows": 501,
+      "avoidedDuplicateParentBodyBytes": 2618295,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {
+          "shardNumber": 0,
+          "rowCount": 718,
+          "totalBodyBytes": 6070454,
+          "withinProjectDatabaseBudget": true
+        },
+        {
+          "shardNumber": 1,
+          "rowCount": 698,
+          "totalBodyBytes": 5947838,
+          "withinProjectDatabaseBudget": true
+        }
+      ]
+    },
+    "invariants": {
+      "immutableParentRowsRewritten": false,
+      "newLayerWritesOnly": true,
+      "thirdShardUsed": false,
+      "publicRuntimeChanged": false,
+      "publicRuntimeActivationAuthorized": false,
+      "recommendationAdmissionAuthorized": false,
+      "billingExpansionAuthorized": false,
+      "sourceNutritionImportedAsAuthority": false,
+      "sourceDietaryAllergenInferenceAuthorized": false,
+      "sourceRatioPromotionAuthorized": false,
+      "knowledgeCoreWriteAuthorized": false
+    },
+    "compositionSha256": "90e14bda95e205c9d1c727b792969fc2833fc9e7f5a321f9f102cbc0aa37057d"
+  },
+  "hydrationProbe": {
+    "pass": true,
+    "requestedRecipeCount": 4,
+    "authSubqueries": 1,
+    "routeIndexSubqueries": 1,
+    "recipeShardSubqueries": 2,
+    "d1Subqueries": 4,
+    "maxAllowedD1Subqueries": 16,
+    "fullCorpusScans": 0
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false
+  },
+  "decision": "EARN_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_TOPOLOGY"
+}
