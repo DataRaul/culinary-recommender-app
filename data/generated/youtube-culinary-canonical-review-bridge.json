@@ -1,7 +1,7 @@
 {
   "schemaVersion": "youtube-culinary-canonical-review-bridge-v1",
-  "knowledgeCoreCommit": "0a3ac95dbeeff426a204cef92fc456744bef430d",
-  "generatedAt": "2026-09-13T12:14:53Z",
+  "knowledgeCoreCommit": "b44084d3d3bb3e3b395796572d082abc0bba8202",
+  "generatedAt": "2026-09-13T14:57:30Z",
   "outcomes": [
     {
       "packetId": "yt-cul-review-e149634d5785d6e7bd4e185e",
@@ -13,7 +13,7 @@
       "requiredEvidenceTerms": [
         "eggplant fatteh",
         "aubergine fatteh",
-        "\u0641\u062a\u0629 \u0627\u0644\u0628\u0627\u0630\u0646\u062c\u0627\u0646",
+        "فتة الباذنجان",
         "Jordan",
         "Levant"
       ],
@@ -23,7 +23,7 @@
       "lifecycleAdvanced": false,
       "lifecycleStateAfter": null,
       "retryable": true,
-      "knowledgeCoreCommit": "0a3ac95dbeeff426a204cef92fc456744bef430d"
+      "knowledgeCoreCommit": "b44084d3d3bb3e3b395796572d082abc0bba8202"
     }
   ]
 }
