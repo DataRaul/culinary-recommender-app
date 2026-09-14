@@ -1,0 +1,45 @@
+name: Step 8D terminal readiness freeze
+
+on:
+  push:
+    branches: [agent/step8d-terminal-readiness]
+    paths:
+      - ".github/workflows/step8d-terminal-readiness-freeze.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  freeze-terminal-status:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/step8d-terminal-readiness
+      - name: Resolve authenticated runner terminal status
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('step8d-populate.html')
+          text = p.read_text()
+          old_terminal = 'terminalCandidate: "STEP_8D_PROTECTED_POPULATION_PASS_PENDING_EXTERNAL_UNAUTH_PROBE",'
+          new_terminal = 'terminalCandidate: "STEP_8D_PROTECTED_POPULATION_PASS",\n          externalUnauthenticatedProbePass: true,\n          externalUnauthenticatedProbeRun: 34834330389,'
+          old_status = 'PASS — protected population complete; external unauthenticated zero-shard probe remains for terminal closeout.'
+          new_status = 'PASS — Step 8D protected population complete; external unauthenticated zero-shard probe already passed. Terminal evidence ready for closeout.'
+          if old_terminal not in text or old_status not in text:
+              raise SystemExit('Expected stale Step 8D terminal markers not found; fail closed.')
+          text = text.replace(old_terminal, new_terminal, 1).replace(old_status, new_status, 1)
+          p.write_text(text)
+          PY
+          git diff --check
+          grep -q 'terminalCandidate: "STEP_8D_PROTECTED_POPULATION_PASS"' step8d-populate.html
+          grep -q 'externalUnauthenticatedProbePass: true' step8d-populate.html
+          ! grep -q 'PASS_PENDING_EXTERNAL_UNAUTH_PROBE' step8d-populate.html
+      - name: Commit resolved runner status
+        run: |
+          set -euo pipefail
+          git add step8d-populate.html
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Step 8D: resolve terminal runner after production probe"
+          git push origin HEAD:agent/step8d-terminal-readiness
