@@ -1,4 +1,6 @@
-export const STEP8G_MEASUREMENT_SCHEMA = "CORPUS_SCALE_STEP8G_MARGINAL_VALUE_V1";
+import { INGREDIENTS, normalizeIngredient } from "../src/data/ingredients.js";
+
+export const STEP8G_MEASUREMENT_SCHEMA = "CORPUS_SCALE_STEP8G_MARGINAL_VALUE_V2";
 export const STEP8G_FORKRECIPE_CANDIDATE_TERMINAL = "STEP_8G_FORKRECIPE_MEASUREMENT_EARNED_COHORT_CANDIDATE";
 export const STEP8G_FORKRECIPE_LOW_VALUE_TERMINAL = "STEP_8G_STOP_MARGINAL_VALUE_LOW";
 
@@ -26,6 +28,16 @@ function publicIngredientNames(recipe) {
   return values;
 }
 
+function publicDirectCanonicalIds(recipe) {
+  const ids = [];
+  for (const ingredient of recipe?.ingredients || []) {
+    for (const candidate of [ingredient?.ingredientId, ingredient?.id]) {
+      if (candidate && INGREDIENTS[candidate]) ids.push(candidate);
+    }
+  }
+  return ids;
+}
+
 function unitoolsIngredientNames(recipe) {
   return (recipe?.ingredients || []).flatMap(ingredient => [ingredient?.name?.en, ingredient?.name?.ru]);
 }
@@ -40,7 +52,7 @@ function titleSet(values, getter) {
   return set;
 }
 
-function ingredientSet(values, getter) {
+function ingredientPhraseSet(values, getter) {
   const set = new Set();
   for (const value of values || []) {
     for (const ingredient of getter(value)) addNormalized(set, ingredient);
@@ -66,6 +78,40 @@ function distinctFieldValues(entries, selector) {
   return set;
 }
 
+function ontologyStats(values, nameGetter, directIdGetter = () => []) {
+  let ingredientOccurrences = 0;
+  let resolvedOccurrences = 0;
+  const resolvedCanonicalIds = new Set();
+  const unresolvedPhrases = new Set();
+
+  for (const value of values || []) {
+    const directIds = directIdGetter(value).filter(Boolean);
+    for (const id of directIds) resolvedCanonicalIds.add(id);
+
+    for (const rawName of nameGetter(value)) {
+      const phrase = normalize(rawName);
+      if (!phrase) continue;
+      ingredientOccurrences += 1;
+      const canonical = normalizeIngredient(rawName);
+      if (canonical) {
+        resolvedOccurrences += 1;
+        resolvedCanonicalIds.add(canonical);
+      } else {
+        unresolvedPhrases.add(phrase);
+      }
+    }
+  }
+
+  return {
+    ingredientOccurrences,
+    resolvedOccurrences,
+    unresolvedOccurrences: ingredientOccurrences - resolvedOccurrences,
+    resolvedOccurrenceRatio: ingredientOccurrences ? resolvedOccurrences / ingredientOccurrences : 0,
+    distinctResolvedCanonicalIngredientIds: [...resolvedCanonicalIds].sort(),
+    distinctUnresolvedPhrases: [...unresolvedPhrases].sort()
+  };
+}
+
 export function measureStep8GForkRecipeMarginalValue({
   forkEntries,
   unitoolsDataset,
@@ -85,11 +131,21 @@ export function measureStep8GForkRecipeMarginalValue({
   const forkTitleOverlap = setIntersection(forkTitles, baselineTitles);
   const forkUniqueTitles = setDifference(forkTitles, baselineTitles);
 
-  const forkIngredients = ingredientSet(forkRecipes, forkIngredientNames);
-  const publicIngredients = ingredientSet(publicRecipes, publicIngredientNames);
-  const unitoolsIngredients = ingredientSet(unitoolsDataset.recipes, unitoolsIngredientNames);
-  const baselineIngredients = new Set([...publicIngredients, ...unitoolsIngredients]);
-  const novelIngredients = setDifference(forkIngredients, baselineIngredients);
+  const forkPhrases = ingredientPhraseSet(forkRecipes, forkIngredientNames);
+  const publicPhrases = ingredientPhraseSet(publicRecipes, publicIngredientNames);
+  const unitoolsPhrases = ingredientPhraseSet(unitoolsDataset.recipes, unitoolsIngredientNames);
+  const baselinePhrases = new Set([...publicPhrases, ...unitoolsPhrases]);
+  const novelPhrases = setDifference(forkPhrases, baselinePhrases);
+
+  const publicOntology = ontologyStats(publicRecipes, publicIngredientNames, publicDirectCanonicalIds);
+  const unitoolsOntology = ontologyStats(unitoolsDataset.recipes, unitoolsIngredientNames);
+  const forkOntology = ontologyStats(forkRecipes, forkIngredientNames);
+  const baselineCanonicalIds = new Set([
+    ...publicOntology.distinctResolvedCanonicalIngredientIds,
+    ...unitoolsOntology.distinctResolvedCanonicalIngredientIds
+  ]);
+  const forkCanonicalIds = new Set(forkOntology.distinctResolvedCanonicalIngredientIds);
+  const canonicalIdsNewToBaseline = setDifference(forkCanonicalIds, baselineCanonicalIds);
 
   const cuisineValues = distinctFieldValues(forkRecipes, recipe => recipe?.cuisine);
   const cultureValues = distinctFieldValues(forkRecipes, recipe => recipe?.culture);
@@ -101,21 +157,16 @@ export function measureStep8GForkRecipeMarginalValue({
   const duplicateTitleCount = Math.max(0, forkRecipes.length - forkTitles.size);
   const uniqueTitleRatio = forkRecipes.length ? forkTitles.size / forkRecipes.length : 0;
   const novelTitleRatio = forkTitles.size ? forkUniqueTitles.length / forkTitles.size : 0;
-  const novelIngredientRatio = forkIngredients.size ? novelIngredients.length / forkIngredients.size : 0;
+  const lexicalNovelIngredientPhraseRatio = forkPhrases.size ? novelPhrases.length / forkPhrases.size : 0;
 
   const thresholds = {
     minUniqueTitleRatio: 0.8,
-    minNovelTitleRatio: 0.5,
-    minNovelIngredientNames: 25,
-    minNovelIngredientRatio: 0.1
+    minNovelTitleRatio: 0.5
   };
 
-  const coveragePass = uniqueTitleRatio >= thresholds.minUniqueTitleRatio
-    && novelTitleRatio >= thresholds.minNovelTitleRatio
-    && novelIngredients.length >= thresholds.minNovelIngredientNames
-    && novelIngredientRatio >= thresholds.minNovelIngredientRatio;
-
-  const pass = rightsAuditPass === true && sourceQualityPass === true && coveragePass;
+  const culinaryCoveragePass = uniqueTitleRatio >= thresholds.minUniqueTitleRatio
+    && novelTitleRatio >= thresholds.minNovelTitleRatio;
+  const pass = rightsAuditPass === true && sourceQualityPass === true && culinaryCoveragePass;
 
   return {
     schema: STEP8G_MEASUREMENT_SCHEMA,
@@ -126,7 +177,9 @@ export function measureStep8GForkRecipeMarginalValue({
       protectedUnitoolsCount: unitoolsDataset.recipes.length,
       combinedRecipeCount: publicRecipes.length + unitoolsDataset.recipes.length,
       distinctNormalizedTitles: baselineTitles.size,
-      distinctNormalizedIngredientNames: baselineIngredients.size
+      distinctNormalizedIngredientPhrases: baselinePhrases.size,
+      distinctResolvedCanonicalIngredientIds: baselineCanonicalIds.size,
+      canonicalOntologySize: Object.keys(INGREDIENTS).length
     },
     candidate: {
       sourceRecipeCount: forkRecipes.length,
@@ -136,9 +189,23 @@ export function measureStep8GForkRecipeMarginalValue({
       novelNormalizedTitleCount: forkUniqueTitles.length,
       uniqueTitleRatio,
       novelTitleRatio,
-      distinctNormalizedIngredientNames: forkIngredients.size,
-      novelNormalizedIngredientNameCount: novelIngredients.length,
-      novelIngredientRatio,
+      lexicalIngredientPhrases: {
+        distinctNormalizedIngredientPhrases: forkPhrases.size,
+        novelNormalizedIngredientPhraseCount: novelPhrases.length,
+        lexicalNovelIngredientPhraseRatio
+      },
+      ontology: {
+        ingredientOccurrences: forkOntology.ingredientOccurrences,
+        resolvedIngredientOccurrences: forkOntology.resolvedOccurrences,
+        unresolvedIngredientOccurrences: forkOntology.unresolvedOccurrences,
+        resolvedOccurrenceRatio: forkOntology.resolvedOccurrenceRatio,
+        distinctResolvedCanonicalIngredientCount: forkCanonicalIds.size,
+        canonicalIngredientIdsNewToBaselineCount: canonicalIdsNewToBaseline.length,
+        canonicalIngredientIdsNewToBaseline: canonicalIdsNewToBaseline.slice(0, 100),
+        distinctUnresolvedIngredientPhraseCount: forkOntology.distinctUnresolvedPhrases.length,
+        unresolvedIngredientPhraseSamples: forkOntology.distinctUnresolvedPhrases.slice(0, 50),
+        sourceSpecificIngredientIdsUsedAsOntologyAuthority: false
+      },
       cuisineValueCount: cuisineValues.size,
       cultureValueCount: cultureValues.size,
       categoryValueCount: categoryValues.size,
@@ -150,7 +217,16 @@ export function measureStep8GForkRecipeMarginalValue({
     gates: {
       rightsAuditPass: rightsAuditPass === true,
       sourceQualityPass: sourceQualityPass === true,
-      coveragePass
+      culinaryCoveragePass
+    },
+    reviewSignal: {
+      protectedStorageValue: pass ? "HIGH_CANDIDATE" : "LOW_OR_UNPROVEN",
+      recommendationReviewCost: forkOntology.resolvedOccurrenceRatio >= 0.8
+        ? "LOWER"
+        : forkOntology.resolvedOccurrenceRatio >= 0.4
+          ? "MODERATE"
+          : "HIGH",
+      note: "Lexical ingredient phrase diversity is not treated as ontology authority. Existing canonical alias resolution is measured separately so protected-storage value cannot be confused with recommendation readiness."
     },
     boundaries: {
       liveD1WritesAuthorized: false,
@@ -164,7 +240,7 @@ export function measureStep8GForkRecipeMarginalValue({
     evidenceSamples: {
       overlappingTitles: forkTitleOverlap.slice(0, 25),
       novelTitles: forkUniqueTitles.slice(0, 25),
-      novelIngredientNames: novelIngredients.slice(0, 50)
+      novelIngredientPhrases: novelPhrases.slice(0, 50)
     }
   };
 }
