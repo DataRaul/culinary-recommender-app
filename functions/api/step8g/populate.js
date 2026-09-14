@@ -14,7 +14,6 @@ import {
   ensureStep8GShardSchema,
   expectedStep8GBodyBatchIds,
   expectedStep8GRouteBatchIds,
-  hydrateStep8GProtectedRecipes,
   initializeStep8GControlSchema,
   materializeStep8GIncomingBodyBatch,
   publicStep8GBodyBatch,
@@ -27,6 +26,7 @@ import {
   writeStep8GBodyBatch,
   writeStep8GRouteBatch
 } from "../../../src/server/step8g-live-runtime.mjs";
+import { hydrateStep8GProtectedRecipesBounded } from "../../../src/server/step8g-hydration-runtime.mjs";
 
 const MAX_REQUEST_BYTES = 256 * 1024;
 
@@ -392,7 +392,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   if (action === "hydrate") {
-    const hydrated = await hydrateStep8GProtectedRecipes(env.CULINARY_CONTROL_DB, shardDbs, payload.recipeIds);
+    const hydrated = await hydrateStep8GProtectedRecipesBounded(env.CULINARY_CONTROL_DB, shardDbs, payload.recipeIds);
     const total = auth + hydrated.d1Subqueries;
     const pass = hydrated.pass && total <= STEP8G_MAX_PROTECTED_D1_SUBQUERIES;
     if (!pass) {
