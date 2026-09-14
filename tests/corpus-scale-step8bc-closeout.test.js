@@ -96,11 +96,17 @@ test("Step 8D terminal PASS remains bound to the exact Step 8B and Step 8C prere
   assert.equal(d.publicRuntimeChangeAllowed, false);
 });
 
-test("there is no current human gate after Step 8D and the next reserved human gate remains Step 8F", () => {
-  const human = roadmap.currentHumanGate;
-  assert.equal(human.id, "NONE");
-  assert.equal(human.status, "NO_HUMAN_GATE_CURRENTLY_REQUIRED");
-  assert.equal(human.nextReservedHumanGate, "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION");
+test("Step 8F decision input remains unauthorized and does not block Step 8G", () => {
+  const f = gate("8F");
+  const g = gate("8G");
+  assert.equal(f.status, "READY_EXPLICIT_HUMAN_PUBLIC_RUNTIME_DECISION");
+  assert.equal(f.humanRequired, true);
+  assert.equal(f.decisionInput.runtimeActivationAuthorized, false);
+  assert.equal(f.decisionInput.publicRuntimeChanged, false);
+  assert.equal(g.status, "READY_CONTINUED_PROTECTED_SCALE_LOOP");
+  assert.equal(g.doesNotDependOn.includes("8F"), true);
+  assert.equal(g.humanRequired, false);
+  assert.equal(g.publicRuntimeChangeAllowed, false);
 });
 
 test("Step 8B closeout evidence exists and does not authorize a third shard", () => {
@@ -113,7 +119,7 @@ test("Step 8B closeout evidence exists and does not authorize a third shard", ()
 test("source-state closeout keeps unresolved sources held instead of relaxing them", () => {
   assert.match(roadmap.sourceStateCurrent.openRecipeArchiveSpanish, /^HOLD_RIGHTS_AMBIGUOUS/);
   assert.equal(roadmap.sourceStateCurrent.recipeDb, "SOURCE_COHORT_SALVAGE_ONLY");
-  assert.match(roadmap.sourceStateCurrent.uniTools, /^STEP8C_RIGHTS_CLEAN_PROTECTED_POPULATION_INPUT/);
+  assert.match(roadmap.sourceStateCurrent.uniTools, /^STEP8D_PROTECTED_POPULATED_501/);
 });
 
 test("public, cost and adjacent-lane firewalls remain unchanged after Step 8B terminal", () => {

@@ -1,6 +1,6 @@
 # Corpus Scale Step 8 — Measured Population and Activation Roadmap
 
-Status: **STEP 8A PASS / STEP 8B PASS / STEP 8C PASS / STEP 8D READY**
+Status: **STEP 8A PASS / STEP 8B PASS / STEP 8C PASS / STEP 8D PASS / STEP 8E PASS / STEP 8F HUMAN DECISION READY / STEP 8G READY**
 
 Decision date: **2026-09-10**  
 Current-state reconciliation: **2026-09-14**
@@ -16,10 +16,10 @@ This document defines the post-Step-7E continuation of the existing large-corpus
 - **8A — COMPLETE PASS:** population contract and deterministic shard design frozen.
 - **8B — COMPLETE PASS:** `STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS` earned on the exact two-shard protected topology.
 - **8C — COMPLETE PASS:** pinned UniTools 501-record cohort qualified as rights-clean protected-population input only.
-- **8D — READY:** protected population may proceed autonomously on the earned two-shard topology.
-- **8E — BLOCKED:** requires an 8D population result and remains recommendation-eligibility review only.
-- **8F — BLOCKED:** explicit human public-runtime decision remains mandatory.
-- **8G — BLOCKED:** requires an 8D PASS and does not depend on 8F.
+- **8D — COMPLETE PASS:** 501 pinned UniTools recipes populated across the exact two-shard protected topology.
+- **8E — COMPLETE PASS:** exact one-record recommendation-eligible subset earned; 500 UniTools records remain stored-only.
+- **8F — READY / HUMAN GATE:** all non-activating machine decision-input checks pass; explicit public-runtime authorization is now required.
+- **8G — READY:** protected scale continuation is independently unlocked by 8D PASS and does not depend on 8F.
 
 The Step 8B production closeout is frozen in `docs/CORPUS_SCALE_STEP8B_LIVE_CANARY_PASS.md`.
 
@@ -128,7 +128,11 @@ Open Recipe Archive remains held where rights are ambiguous. RecipeDB remains a 
 
 ## 7. Step 8D — Protected Corpus Population Ladder
 
-Status: **READY / AUTONOMOUS INSIDE EARNED BOUNDARIES**
+Status: **COMPLETE PASS / LIVE PRODUCTION**
+
+Terminal: `STEP_8D_PROTECTED_POPULATION_PASS`
+
+The pinned UniTools cohort completed as 501 recipes / 51 verified batches / two shards, with zero full scans and maximum observed D1 subqueries 15 <= 16.
 
 Purpose: populate rights-clean cohorts only on the topology actually earned by 8B.
 
@@ -159,9 +163,11 @@ PASS may feed 8E and 8G.
 
 ## 8. Step 8E — Recommendation Eligibility Gate
 
-Status: **BLOCKED PENDING AN 8D ELIGIBLE COHORT**
+Status: **COMPLETE PASS / EXACT ONE-RECORD ELIGIBLE SUBSET**
 
 Storage is not recommendation admission.
+
+Terminal: `STEP_8E_RECOMMENDATION_ELIGIBLE_SUBSET_PASS`. The 501-record readiness census earned exactly one candidate, `unitools_tortilla_espanola` (`tortilla-espanola`), in dish family `spanish_potato_omelet`; the other 500 records remain stored-only. Frozen evidence is `data/generated/step8e/admission-evidence.json` and the exact subset is `data/generated/step8e/eligible-subset.json`.
 
 A bounded subset may move through existing app semantics only when it satisfies the required canonical ingredient identity, defensible quantity semantics, duplicate/family/variant treatment, hard dietary/allergen/permanent-exclusion metadata, provenance/attribution obligations and deterministic ranking/planner compatibility.
 
@@ -174,7 +180,9 @@ Terminal outcomes:
 
 ## 9. Step 8F — Public Runtime Activation Decision
 
-Status: **BLOCKED PENDING 8E + EXPLICIT HUMAN PUBLIC-RUNTIME GATE**
+Status: **READY / EXPLICIT HUMAN PUBLIC-RUNTIME GATE**
+
+All non-activating machine checks are complete for the exact one-record Step 8E subset. Current public runtime remains 84 recipes and unchanged. `runtimeActivationAuthorized` is false.
 
 Before any newly earned external subset affects normal recommendations:
 
@@ -196,7 +204,7 @@ An approval applies only to the exact reviewed subset/version.
 
 ## 10. Step 8G — Continued Protected Scale Expansion Loop
 
-Status: **BLOCKED PENDING 8D PASS**
+Status: **READY AFTER STEP 8D PASS**
 
 8G does **not** depend on 8F. Protected large-corpus learning should not be blocked merely because the owner has not activated new public recommendation behavior.
 
@@ -224,13 +232,13 @@ STEP 7E PASS
  \         /
   \       /
    v     v
-    8D READY -----> 8G protected scale loop
+    8D PASS ------> 8G protected scale loop
       |
       v
-     8E
+     8E PASS
       |
       v
-     8F explicit public-runtime decision
+     8F explicit human public-runtime decision
 ```
 
 ## 12. Authority matrix

@@ -1,6 +1,6 @@
 {
   "id": "CORPUS_SCALE_STEP8_MEASURED_POPULATION_ROADMAP_V1",
-  "status": "STEP8A_COMPLETE__8B_PASS__8C_PASS__8D_PASS__8E_READY__8G_READY__8F_EXPLICIT_HUMAN_GATE",
+  "status": "STEP8A_COMPLETE__8B_PASS__8C_PASS__8D_PASS__8E_PASS__8F_EXPLICIT_HUMAN_GATE__8G_READY",
   "decisionDate": "2026-09-10",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "entryTerminal": "STEP_7E_PROTECTED_500_SOURCE_PILOT_CANARY_PASS",
@@ -47,7 +47,12 @@
     "functions/api/step8b/canary.js",
     "tests/step8b-live-canary.test.js",
     "docs/CORPUS_SCALE_STEP8D_LIVE_POPULATION_PASS.md",
-    "data/generated/corpus-scale-step8d-live-pass.json"
+    "data/generated/corpus-scale-step8d-live-pass.json",
+    "docs/CORPUS_SCALE_STEP8E_RECOMMENDATION_ELIGIBILITY_PASS.md",
+    "data/generated/step8e/admission-evidence.json",
+    "data/generated/step8e/eligible-subset.json",
+    "tests/corpus-scale-step8f-decision-input.test.js",
+    "scripts/browser-step8f-decision-input.mjs"
   ],
   "boundaries": {
     "noBillingAuthorization": true,
@@ -277,7 +282,7 @@
     {
       "id": "8E",
       "name": "Recommendation Eligibility Gate",
-      "status": "READY_RECOMMENDATION_ELIGIBILITY_REVIEW",
+      "status": "COMPLETE_PASS_RECOMMENDATION_ELIGIBILITY",
       "mode": "APP_ADMISSION_REVIEW",
       "dependsOn": [
         "8D"
@@ -292,12 +297,35 @@
       ],
       "earnsOnPass": [
         "8F_PUBLIC_RUNTIME_DECISION_INPUT"
-      ]
+      ],
+      "terminal": "STEP_8E_RECOMMENDATION_ELIGIBLE_SUBSET_PASS",
+      "terminalEvidence": {
+        "date": "2026-09-14",
+        "preflightRun": 34862136962,
+        "validationAndBrowserRun": 34862136927,
+        "reviewedStoredPopulation": 501,
+        "eligibleSubsetCount": 1,
+        "storedOnlyCount": 500,
+        "exactEligibleSubsetPath": "data/generated/step8e/eligible-subset.json",
+        "evidencePath": "data/generated/step8e/admission-evidence.json",
+        "closeoutDoc": "docs/CORPUS_SCALE_STEP8E_RECOMMENDATION_ELIGIBILITY_PASS.md",
+        "sourceSlug": "tortilla-espanola",
+        "canonicalRecipeId": "unitools_tortilla_espanola",
+        "dishFamilyId": "spanish_potato_omelet",
+        "controlPlaneSha256": "055747a8d4209908a35b7f2391be480d2b27c530a013a661986c49f6887f7609",
+        "pipelineSha256": "c85be509e10d15b55a4a05e30eaf122a90154b25dd63888ca14823ace857f395",
+        "admissionManifestSha256": "a382db79f9dac4845bdae721b6e4231e6f10c7922183013b508a9d0c28662569",
+        "sourceNutritionImportedAsAuthority": false,
+        "sourceDietaryMetadataImportedAsAuthority": false,
+        "sourceScalingMetadataImportedAsAuthority": false,
+        "publicRuntimeChanged": false,
+        "runtimeActivationAuthorized": false
+      }
     },
     {
       "id": "8F",
       "name": "Public Runtime Activation Decision",
-      "status": "BLOCKED_PENDING_8E_AND_EXPLICIT_HUMAN_GATE",
+      "status": "READY_EXPLICIT_HUMAN_PUBLIC_RUNTIME_DECISION",
       "mode": "PUBLIC_BEHAVIOR_GATE",
       "dependsOn": [
         "8E"
@@ -313,7 +341,28 @@
       ],
       "earnsOnPass": [
         "PUBLIC_RUNTIME_ACTIVATION_FOR_EXACT_APPROVED_SUBSET_ONLY"
-      ]
+      ],
+      "decisionInput": {
+        "prepared": true,
+        "exactSubsetPath": "data/generated/step8e/eligible-subset.json",
+        "candidateCount": 1,
+        "canonicalRecipeIds": [
+          "unitools_tortilla_espanola"
+        ],
+        "machineChecks": {
+          "repositoryValidation": "PASS",
+          "browserPreactivationAcceptance": "PASS",
+          "hardFilterRegression": "PASS",
+          "rankingPlannerSearchRegression": "PASS",
+          "recipeSourceV1V2Parity": "PASS",
+          "attributionLicenseFirewall": "PASS",
+          "validationRun": 34862136927
+        },
+        "publicCorpusRecipeCountBeforeDecision": 84,
+        "candidatePresentInPublicCorpus": false,
+        "runtimeActivationAuthorized": false,
+        "publicRuntimeChanged": false
+      }
     },
     {
       "id": "8G",
@@ -353,13 +402,18 @@
     "existingCuratedAndWikibooks": "PASS_ALREADY_ESTABLISHED",
     "openRecipeArchiveSpanish": "HOLD_RIGHTS_AMBIGUOUS__ZERO_ADMITTED",
     "forkRecipe": "STEP7E_PROTECTED_SOURCE_PILOT_PASS_ONLY__ZERO_PUBLIC_RECOMMENDATION_ADMISSION",
-    "uniTools": "STEP8C_RIGHTS_CLEAN_PROTECTED_POPULATION_INPUT__501_PINNED_RECORDS",
+    "uniTools": "STEP8D_PROTECTED_POPULATED_501__STEP8E_ONE_RECOMMENDATION_ELIGIBLE__500_STORED_ONLY",
     "recipeDb": "SOURCE_COHORT_SALVAGE_ONLY"
   },
   "currentHumanGate": {
-    "id": "NONE",
-    "status": "NO_HUMAN_GATE_CURRENTLY_REQUIRED",
-    "reason": "Step 8D terminal PASS is earned. Step 8E and Step 8G are autonomous inside their existing boundaries.",
-    "nextReservedHumanGate": "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION"
+    "id": "8F",
+    "status": "EXPLICIT_HUMAN_PUBLIC_RUNTIME_ACTIVATION_DECISION_REQUIRED",
+    "reason": "Step 8E terminal PASS earned an exact one-record recommendation-eligible subset and all non-activating Step 8F machine decision-input checks pass. Public/runtime activation still requires explicit human authorization.",
+    "exactDecisionInput": "data/generated/step8e/eligible-subset.json",
+    "candidateCount": 1,
+    "canonicalRecipeIds": [
+      "unitools_tortilla_espanola"
+    ],
+    "activationAuthorized": false
   }
 }

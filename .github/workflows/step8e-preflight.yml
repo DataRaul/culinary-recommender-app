@@ -1,0 +1,50 @@
+name: Step 8E recommendation eligibility preflight
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "scripts/corpus-scale-step8e-core.mjs"
+      - "scripts/corpus-scale-step8e-admission.mjs"
+      - "scripts/verify-corpus-scale-step8e-preflight.mjs"
+      - "scripts/verify-corpus-scale-step8e-admission.mjs"
+      - "tests/corpus-scale-step8e-preflight.test.js"
+      - "tests/corpus-scale-step8e-admission.test.js"
+      - "data/generated/step8e/admission-evidence.json"
+      - "data/generated/step8e/eligible-subset.json"
+      - "config/corpus_scale_step8d_contract.json"
+      - "src/data/ingredients.js"
+      - "src/data/corpus-v1.js"
+      - ".github/workflows/step8e-preflight.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --ignore-scripts
+      - name: Run pinned-source Step 8E readiness census
+        run: node scripts/verify-corpus-scale-step8e-preflight.mjs
+      - name: Verify exact bounded Step 8E eligible subset
+        run: node scripts/verify-corpus-scale-step8e-admission.mjs
+      - name: Upload detailed readiness evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8e-preflight
+          path: artifacts/step8e-preflight/step8e-preflight.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload bounded admission evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8e-admission
+          path: artifacts/step8e-admission
+          if-no-files-found: error
+          retention-days: 14
