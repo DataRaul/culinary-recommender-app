@@ -21,12 +21,15 @@ test("Step 8E terminal closeout is exact and bounded", () => {
 });
 
 test("Step 8F remains unauthorized while the continuation state parks it and activates Step 8G", () => {
-  assert.equal(gate("8F").status, "READY_EXPLICIT_HUMAN_PUBLIC_RUNTIME_DECISION");
+  assert.equal(gate("8F").status, "PARKED_EXPLICIT_HUMAN_PUBLIC_RUNTIME_DECISION");
+  assert.equal(gate("8F").parked, true);
+  assert.equal(gate("8F").blockingActiveLane, false);
   assert.equal(gate("8F").humanRequired, true);
   assert.equal(gate("8F").decisionInput.runtimeActivationAuthorized, false);
   assert.equal(gate("8F").decisionInput.publicRuntimeChanged, false);
   assert.equal(gate("8F").decisionInput.publicCorpusRecipeCountBeforeDecision, 84);
   assert.equal(gate("8F").decisionInput.candidatePresentInPublicCorpus, false);
+  assert.equal(gate("8G").status, "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(gate("8G").doesNotDependOn.includes("8F"), true);
   assert.equal(handover.human_needed, false);
   assert.equal(handover.parked_human_gate.id, "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION");
