@@ -1,0 +1,12 @@
+{
+  "terminal": "STEP_8D_PROTECTED_POPULATION_PASS",
+  "date": "2026-09-14",
+  "recipeCount": 501,
+  "verifiedBatchCount": 51,
+  "shardCount": 2,
+  "maxObservedD1Subqueries": 15,
+  "fullCorpusScans": 0,
+  "step8eUnlocked": true,
+  "step8gUnlocked": true,
+  "step8fAuthorized": false
+}
