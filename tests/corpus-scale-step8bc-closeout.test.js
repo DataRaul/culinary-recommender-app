@@ -79,21 +79,27 @@ test("Step 8C terminal remains exact and bounded to the pinned UniTools cohort",
   assert.equal(c.qualifiedInput.protectedPopulationInputOnly, true);
 });
 
-test("Step 8D is unblocked only because both exact prerequisites are terminal PASS", () => {
+test("Step 8D terminal PASS remains bound to the exact Step 8B and Step 8C prerequisites", () => {
   const d = gate("8D");
   assert.deepEqual(d.dependsOn, ["8B", "8C"]);
-  assert.equal(d.status, "READY_PROTECTED_POPULATION__STEP8B_AND_STEP8C_PASS");
+  assert.equal(d.status, "COMPLETE_PASS_LIVE_PRODUCTION");
+  assert.equal(d.terminal, "STEP_8D_PROTECTED_POPULATION_PASS");
   assert.equal(gate("8B").terminal, "STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS");
   assert.equal(gate("8B").liveCanaryRuntime.liveTerminalEarned, true);
   assert.equal(gate("8C").terminal, "STEP_8C_RIGHTS_CLEAN_SOURCE_COHORT_AVAILABLE");
+  assert.equal(d.livePopulationEvidence.recipeCount, 501);
+  assert.equal(d.livePopulationEvidence.verifiedBatchCount, 51);
+  assert.equal(d.livePopulationEvidence.shardCount, 2);
+  assert.equal(d.livePopulationEvidence.fullCorpusScans, 0);
+  assert.ok(d.livePopulationEvidence.maxObservedD1Subqueries <= roadmap.inheritedBudgets.maxD1SubqueriesPerProtectedRequest);
   assert.equal(d.humanRequired, false);
   assert.equal(d.publicRuntimeChangeAllowed, false);
 });
 
-test("there is no current human gate in Step 8D and the next reserved human gate remains Step 8F", () => {
+test("there is no current human gate after Step 8D and the next reserved human gate remains Step 8F", () => {
   const human = roadmap.currentHumanGate;
   assert.equal(human.id, "NONE");
-  assert.equal(human.status, "NO_HUMAN_GATE_IN_STEP8D");
+  assert.equal(human.status, "NO_HUMAN_GATE_CURRENTLY_REQUIRED");
   assert.equal(human.nextReservedHumanGate, "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION");
 });
 
