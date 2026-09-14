@@ -1,89 +1,70 @@
 {
-  "handover": "CULINARY_APP_STEP8D_TERMINAL_PASS_STEP8E_STEP8G_UNLOCKED_V23",
+  "handover": "CULINARY_APP_STEP8E_TERMINAL_PASS_STEP8F_HUMAN_GATE_V24",
   "handover_date": "2026-09-14",
   "timezone": "Europe/Madrid",
-  "status": "STEP8A_PASS__STEP8B_PASS__STEP8C_PASS__STEP8D_TERMINAL_PASS__STEP8E_READY__STEP8G_READY__STEP8F_EXPLICIT_HUMAN_GATE_NOT_AUTHORIZED",
-  "human_needed": false,
+  "status": "STEP8A_PASS__STEP8B_PASS__STEP8C_PASS__STEP8D_PASS__STEP8E_TERMINAL_PASS__STEP8F_EXPLICIT_HUMAN_GATE_READY_NOT_AUTHORIZED__STEP8G_READY",
+  "human_needed": true,
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
     "source_of_truth": "GitHub",
-    "main_before_closeout": "9ba4147d616fd0365976e8d3bd023014697ad50e",
-    "step8d_live_runtime_merge": "e04f944954e48b4e4051f4443a54abc3badf280f",
-    "step8d_cloudflare_runtime_fix_merge": "2a19a51bb457d961713bff14fbf0148779467db6",
-    "step8d_terminal_readiness_merge": "1bd61fcc0ac70b15f5f529f17998fcb9b44890eb"
-  },
-  "handover_protocol": {
-    "current": "docs/handovers/CURRENT.json",
-    "previous": "docs/handovers/PREVIOUS.json",
-    "protocol": "docs/HANDOVER_PROTOCOL.md",
-    "rotation": "old CURRENT -> PREVIOUS; new latest state -> CURRENT",
-    "new_chat_start": "Read CURRENT, then fresh-reconcile main/open PRs/CI/deployments before acting. GitHub live state outranks this snapshot."
+    "step8d_terminal_merge": "bf7aefa5df1634aad2ee24ff94e609fd74d168de",
+    "step8e_integration_pr": 150
   },
   "lane": {
-    "name": "Culinary App / Culinary Lab \u2014 Corpus Scale Step 8 / 170k No-Billing-Authorization",
+    "name": "Culinary App / Culinary Lab \u2014 Corpus Scale Step 8",
     "knowledge_core": "READ_ONLY",
     "nutrition_lane": "SEPARATE_CONCURRENT_LANE_DO_NOT_MUTATE",
     "yt_cul_lane": "INDEPENDENT_READ_ONLY_FROM_CORPUS_SCALE"
   },
   "operating_contract": {
-    "autonomy": "Proceed autonomously through technically resolvable work inside an earned gate.",
-    "billing_firewall": "Never authorize paid infrastructure or automatic overage. Free exhaustion must fail closed.",
-    "public_activation": "Step 8F remains an explicit human gate and is not authorized.",
-    "source_authority": "Source nutrition, diet/allergen claims and scaling rules remain untrusted metadata unless separately admitted.",
-    "secrets": "Never expose credentials, cookies, session tokens or reusable credentials."
+    "autonomy": "Machine preparation may proceed autonomously only up to the explicit Step 8F public-runtime decision.",
+    "billing_firewall": "Never authorize paid infrastructure or automatic overage.",
+    "public_activation": "Step 8F is now the active human gate. Activation remains unauthorized until explicit owner approval.",
+    "source_authority": "Source nutrition, diet/allergen claims and scaling rules remain non-authoritative unless separately admitted."
   },
   "corpus_scale": {
-    "required_capacity": 170000,
-    "stress_capacity": 250000,
-    "step8a": {
-      "status": "COMPLETE_PASS",
-      "terminal": "STEP_8A_POPULATION_CONTRACT_PASS"
-    },
-    "step8b": {
-      "status": "COMPLETE_PASS_LIVE_PRODUCTION",
-      "terminal": "STEP_8B_MINIMUM_MULTI_SHARD_CANARY_PASS"
-    },
-    "step8c": {
-      "status": "COMPLETE_PASS",
-      "terminal": "STEP_8C_RIGHTS_CLEAN_SOURCE_COHORT_AVAILABLE"
-    },
     "step8d": {
       "status": "COMPLETE_PASS_LIVE_PRODUCTION",
       "terminal": "STEP_8D_PROTECTED_POPULATION_PASS",
-      "evidence": "data/generated/corpus-scale-step8d-live-pass.json",
-      "closeout_doc": "docs/CORPUS_SCALE_STEP8D_LIVE_POPULATION_PASS.md",
       "recipe_count": 501,
       "verified_batch_count": 51,
       "shard_count": 2,
-      "shard_rows": {
-        "0": 257,
-        "1": 244
-      },
       "max_observed_d1_subqueries": 15,
-      "max_allowed_d1_subqueries": 16,
-      "full_corpus_scans": 0,
-      "resumable_interruption_pass": true,
-      "idempotent_write_pass": true,
-      "exact_post_write_501_pass": true,
-      "authenticated_cross_shard_read_pass": true,
-      "rollback_pass": true,
-      "normal_public_recommendation_runtime_changed": false,
-      "third_shard_used": false,
-      "billing_expansion": false
+      "full_corpus_scans": 0
     },
-    "step8e": "READY_RECOMMENDATION_ELIGIBILITY_REVIEW",
-    "step8f": "EXPLICIT_HUMAN_PUBLIC_RUNTIME_GATE_NOT_AUTHORIZED",
+    "step8e": {
+      "status": "COMPLETE_PASS_RECOMMENDATION_ELIGIBILITY",
+      "terminal": "STEP_8E_RECOMMENDATION_ELIGIBLE_SUBSET_PASS",
+      "reviewed_stored_population": 501,
+      "eligible_subset_count": 1,
+      "stored_only_count": 500,
+      "eligible_subset": "data/generated/step8e/eligible-subset.json",
+      "evidence": "data/generated/step8e/admission-evidence.json",
+      "canonical_recipe_id": "unitools_tortilla_espanola",
+      "dish_family_id": "spanish_potato_omelet"
+    },
+    "step8f": {
+      "status": "EXPLICIT_HUMAN_PUBLIC_RUNTIME_ACTIVATION_DECISION_REQUIRED",
+      "machine_decision_input": "PASS",
+      "public_runtime_recipe_count": 84,
+      "candidate_present_in_public_runtime": false,
+      "runtime_activation_authorized": false,
+      "public_runtime_changed": false
+    },
     "step8g": "READY_CONTINUED_PROTECTED_SCALE_LOOP__DOES_NOT_DEPEND_ON_8F"
   },
-  "current_human_gate": "NONE",
-  "next_reserved_human_gate": "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION",
-  "next_action": {
-    "parallel_eligible": [
-      "STEP8E_RECOMMENDATION_ELIGIBILITY_REVIEW",
-      "STEP8G_CONTINUED_PROTECTED_SCALE_LOOP"
-    ],
-    "instruction": "Fresh-reconcile current main, then continue autonomous Step 8E and/or Step 8G work within existing boundaries. Do not enter Step 8F without explicit authorization."
+  "validation": {
+    "step8e_source_and_admission_run": 34862136962,
+    "repository_and_browser_run": 34862136927,
+    "repository_validation": "PASS",
+    "browser_preactivation_acceptance": "PASS"
   },
-  "terminal_instruction_for_new_chat": "Step 8D is terminal PASS from the authenticated production run: 501 recipes, 51 verified batches, two shards, resume/idempotency/cross-shard/rollback PASS, zero full scans and maxObservedD1Subqueries=15. Step 8E and Step 8G are unlocked. Step 8F public activation is not authorized. Preserve no-billing, no-third-shard-unless-earned, Nutrition/YT-CUL separation and Knowledge Core read-only boundaries."
+  "current_human_gate": "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION",
+  "human_decision_options": [
+    "APPROVE_ACTIVATION_OF_EXACT_ONE_RECORD_SUBSET_ONLY",
+    "HOLD_PUBLIC_ACTIVATION"
+  ],
+  "next_action": "STOP. Ask the owner for the explicit Step 8F decision. Do not activate or broaden public runtime before approval.",
+  "terminal_instruction_for_new_chat": "Step 8E is terminal PASS. Exact Step 8F decision input is one CC-BY-SA UniTools Spanish tortilla variant, unitools_tortilla_espanola, family spanish_potato_omelet; 500 other UniTools records remain stored-only. All non-activating machine checks pass and current public runtime remains 84 recipes. Stop for explicit Step 8F authorization."
 }
