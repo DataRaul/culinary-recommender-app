@@ -4,6 +4,7 @@ export const STEP8G_FORKRECIPE_LOW_VALUE_TERMINAL = "STEP_8G_STOP_MARGINAL_VALUE
 
 const normalize = value => String(value ?? "")
   .normalize("NFKD")
+  .replace(/\p{M}+/gu, "")
   .toLowerCase()
   .replace(/[^a-z0-9]+/g, " ")
   .trim();
@@ -20,17 +21,17 @@ function publicTitle(recipe) {
 function publicIngredientNames(recipe) {
   const values = [];
   for (const ingredient of recipe?.ingredients || []) {
-    values.push(ingredient?.name?.en, ingredient?.name, ingredient?.label, ingredient?.ingredientId, ingredient?.id);
+    values.push(ingredient?.name?.en, typeof ingredient?.name === "string" ? ingredient.name : null, ingredient?.label);
   }
   return values;
 }
 
 function unitoolsIngredientNames(recipe) {
-  return (recipe?.ingredients || []).flatMap(ingredient => [ingredient?.name?.en, ingredient?.name?.ru, ingredient?.id]);
+  return (recipe?.ingredients || []).flatMap(ingredient => [ingredient?.name?.en, ingredient?.name?.ru]);
 }
 
 function forkIngredientNames(recipe) {
-  return (recipe?.ingredients || []).flatMap(ingredient => [ingredient?.name, ingredient?.ingId]);
+  return (recipe?.ingredients || []).map(ingredient => ingredient?.name);
 }
 
 function titleSet(values, getter) {
