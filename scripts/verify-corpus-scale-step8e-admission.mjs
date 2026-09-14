@@ -35,7 +35,7 @@ const evidence = {
     sourceCohortId: result.sourceCohortId,
     commit: source.commit,
     dataBlobSha: source.dataBlobSha,
-    observedGitBlobSha,
+    observedGitBlobSha: observedBlobSha,
     datasetVersion: dataset.version,
     sourceBytes: sourceBytes.length
   },
