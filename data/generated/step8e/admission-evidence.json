@@ -1,0 +1,45 @@
+{
+  "admissionVersion": "CORPUS_SCALE_STEP8E_ADMISSION_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8E_RECOMMENDATION_ELIGIBLE_SUBSET_PASS",
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "observedGitBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "datasetVersion": "1.1.0",
+    "sourceBytes": 2768163
+  },
+  "reviewedStoredPopulation": 501,
+  "eligibleSubsetCount": 1,
+  "storedOnlyCount": 500,
+  "eligibleSourceSlugs": ["tortilla-espanola"],
+  "canonicalRecipeIds": ["unitools_tortilla_espanola"],
+  "dishFamilyIds": ["spanish_potato_omelet"],
+  "declaredAllergens": [["egg"]],
+  "dietaryTags": [["vegetarian"]],
+  "controlPlaneSha256": "055747a8d4209908a35b7f2391be480d2b27c530a013a661986c49f6887f7609",
+  "pipelineSha256": "c85be509e10d15b55a4a05e30eaf122a90154b25dd63888ca14823ace857f395",
+  "admissionManifestSha256": "a382db79f9dac4845bdae721b6e4231e6f10c7922183013b508a9d0c28662569",
+  "admissionManifestCounts": {
+    "tracked": 1,
+    "admitted": 1,
+    "held": 0,
+    "rejected": 0,
+    "pending": 0
+  },
+  "boundaries": {
+    "publicRuntimeChanged": false,
+    "runtimeActivationAuthorized": false,
+    "automaticAdmissionAuthorized": false,
+    "sourceNutritionImportedAsAuthority": false,
+    "sourceDietaryMetadataImportedAsAuthority": false,
+    "sourceScalingMetadataImportedAsAuthority": false,
+    "d1WritesPerformed": 0,
+    "thirdShardUsed": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false
+  }
+}
