@@ -12,7 +12,7 @@ const publicRecipes = [
 ];
 const unitoolsDataset = {
   recipes: [
-    { slug: "paella", name: { en: "Paella" }, ingredients: [{ id: "rice", name: { en: "Rice" } }] }
+    { slug: "paella", name: { en: "Paella" }, ingredients: [{ id: "rice-id", name: { en: "Rice" } }] }
   ]
 };
 
@@ -68,7 +68,7 @@ test("Step 8G measurement fails closed when rights are not currently verified", 
 test("Step 8G measurement rejects a large but redundant cohort", () => {
   const entries = forkEntries(60, { overlap: true, ingredientPrefix: "rice" });
   entries.forEach(entry => {
-    entry.recipe.ingredients = [{ ingId: "rice", name: "Rice" }];
+    entry.recipe.ingredients = [{ ingId: `source-only-${entry.recipe.slug}`, name: "Rice" }];
   });
   const result = measureStep8GForkRecipeMarginalValue({
     forkEntries: entries,
@@ -79,5 +79,22 @@ test("Step 8G measurement rejects a large but redundant cohort", () => {
   });
   assert.equal(result.pass, false);
   assert.equal(result.gates.coveragePass, false);
+  assert.equal(result.candidate.novelNormalizedIngredientNameCount, 0);
   assert.equal(result.terminal, STEP8G_FORKRECIPE_LOW_VALUE_TERMINAL);
+});
+
+test("Step 8G normalization folds accents instead of splitting words", () => {
+  const entries = forkEntries(60);
+  entries[0].recipe.title = "Crème Brûlée";
+  const baseline = {
+    recipes: [{ slug: "creme-brulee", name: { en: "Creme Brulee" }, ingredients: [{ name: { en: "Sugar" } }] }]
+  };
+  const result = measureStep8GForkRecipeMarginalValue({
+    forkEntries: entries,
+    unitoolsDataset: baseline,
+    publicRecipes,
+    rightsAuditPass: true,
+    sourceQualityPass: true
+  });
+  assert.ok(result.evidenceSamples.overlappingTitles.includes("creme brulee"));
 });
