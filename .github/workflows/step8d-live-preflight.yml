@@ -9,10 +9,12 @@ on:
       - "data/generated/step8d/**"
       - "src/shared/step8d-packet.mjs"
       - "src/server/step8d-live.mjs"
+      - "src/server/step8d-live-runtime.mjs"
       - "functions/api/step8d/**"
       - "step8d-populate.html"
       - "scripts/verify-step8d-live-payloads.mjs"
       - "tests/step8d-live.test.js"
+      - "tests/step8d-runtime-descriptor.test.js"
   push:
     branches: [main]
     paths:
@@ -21,10 +23,12 @@ on:
       - "data/generated/step8d/**"
       - "src/shared/step8d-packet.mjs"
       - "src/server/step8d-live.mjs"
+      - "src/server/step8d-live-runtime.mjs"
       - "functions/api/step8d/**"
       - "step8d-populate.html"
       - "scripts/verify-step8d-live-payloads.mjs"
       - "tests/step8d-live.test.js"
+      - "tests/step8d-runtime-descriptor.test.js"
   workflow_dispatch:
 
 permissions:
