@@ -6,6 +6,7 @@ on:
       - '.github/workflows/corpus-scale-step8g-prewrite.yml'
       - 'scripts/corpus-scale-step8g-population-core.mjs'
       - 'scripts/run-corpus-scale-step8g-forkrecipe-prewrite.mjs'
+      - 'scripts/build-corpus-scale-step8g-roadmap-state.mjs'
       - 'tests/corpus-scale-step8g-population-core.test.js'
       - 'docs/CORPUS_SCALE_STEP8G_FORKRECIPE_PREWRITE.md'
       - 'config/corpus_scale_step8_roadmap.json'
@@ -38,6 +39,8 @@ jobs:
         run: npm run validate
       - name: Build exact no-write Step 8G prewrite evidence
         run: node scripts/run-corpus-scale-step8g-forkrecipe-prewrite.mjs --forkrecipe=./forkrecipe --out=.tmp/step8g-forkrecipe-prewrite
+      - name: Build reconciled machine roadmap state
+        run: node scripts/build-corpus-scale-step8g-roadmap-state.mjs --out=.tmp/step8g-forkrecipe-prewrite/corpus_scale_step8_roadmap.next.json
       - name: Upload Step 8G prewrite evidence
         uses: actions/upload-artifact@v4
         with:
