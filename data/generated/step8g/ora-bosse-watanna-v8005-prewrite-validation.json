@@ -1,0 +1,27 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ORA_BOSSE_WATANNA_V8005_PREWRITE_VALIDATION_V1",
+  "pass": true,
+  "maxBodyWriteRequestBytes": 17182,
+  "maxRouteWriteRequestBytes": 2755,
+  "maxAnyWriteRequestBytes": 17182,
+  "maxAllowedWriteRequestBytes": 262144,
+  "requestEnvelopePass": true,
+  "operationBudget": {
+    "authD1Subqueries": 1,
+    "maxRowsPerBatch": 10,
+    "operations": {"status":1,"bindings":3,"freeLimitSimulation":1,"initialize":8,"bodyWriteFresh":15,"bodyWriteReplay":3,"progress":7,"copyParentRoutesFresh":6,"routeWriteFresh":16,"routeWriteReplay":4,"activate":8,"rollback":3,"fiveLayerHydrationCanary":4,"boundedHydrationWorstCase":10,"evidence":7},
+    "maxPlannedD1Subqueries": 16,
+    "maxAllowedD1Subqueries": 16,
+    "limitingOperations": ["routeWriteFresh"],
+    "pass": true,
+    "headroomAssumed": false
+  },
+  "routeWriteCeilingExact": true,
+  "overBudgetOperations": [],
+  "d1EnvelopePass": true,
+  "boundaryPass": true,
+  "routeBatchCount": 12,
+  "routeMaxRowsPerBatch": 10,
+  "fullCorpusScans": 0,
+  "liveD1WritesPerformed": 0
+}

@@ -1,0 +1,118 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ORA_BOSSE_WATANNA_V8005_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_ORA_BOSSE_WATANNA_V8005_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-15",
+  "source": {
+    "cohortId": "ORA_BOSSE_WATANNA_1914_JAPANESE_SHELF_AE3BD2C",
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "collection": "japanese-kitchen",
+    "sourceWork": "Chinese-Japanese Cook Book",
+    "sourceAuthor": "Sara Bosse & Onoto Watanna",
+    "sourceYear": "1914",
+    "sourceUrl": "https://archive.org/details/chinesejapanesec00boss_0",
+    "recordCount": 109,
+    "licenseId": "public-domain",
+    "measurementTerminal": "STEP_8G_ORA_BOSSE_WATANNA_1914_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+    "ontologyResolvedOccurrenceRatio": 0.13314840499306518,
+    "culturalAuthenticityAuthorityImported": false
+  },
+  "parent": {
+    "activeCorpusVersion": "v8004",
+    "composedRecipeCount": 2355,
+    "fingerprintSha256": "2d253a5e17a887c3adc480b675b019ff890aeea66d989346fe2d639c20accd70",
+    "fingerprintMaterial": {
+      "activeCorpusVersion": "v8004",
+      "composedRecipeCount": 2355,
+      "liveTerminal": "STEP_8G_ORA_ABBOTT_V8004_PROTECTED_POPULATION_PASS",
+      "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "layerManifestSha256": "ecf98cb4d4cd1f2a1006d491204560ebd2d119f8eeed83edf2e635bad25eae6b",
+      "populationPlanSha256": "7b0867e72cc874a6421ddbb9d9eba68f2991eff4ad12229f210d04ab16d7469f",
+      "bodyShardRows": [352,361],
+      "parentCompositionRouteCount": 1642,
+      "composedRouteCount": 2355
+    }
+  },
+  "layer": {
+    "corpusVersion": "v8005",
+    "parentCorpusVersion": "v8004",
+    "recipeCount": 109,
+    "manifestSha256": "c283c4dc608848a5838331030760544a1b94b6c3d98155fbce8e4829deededba",
+    "populationPlanSha256": "6ad9d7aaa7ee219df2f5fdf2d2ebf48a572f1a1376f99bf8d4899128149e66ae",
+    "batchCount": 12,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 4989,
+    "maxBatchBodyBytes": 36891,
+    "maxWriteRequestBytes": 17182,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "operationBudget": {
+      "authD1Subqueries": 1,
+      "maxRowsPerBatch": 10,
+      "operations": {
+        "status": 1,
+        "bindings": 3,
+        "freeLimitSimulation": 1,
+        "initialize": 8,
+        "bodyWriteFresh": 15,
+        "bodyWriteReplay": 3,
+        "progress": 7,
+        "copyParentRoutesFresh": 6,
+        "routeWriteFresh": 16,
+        "routeWriteReplay": 4,
+        "activate": 8,
+        "rollback": 3,
+        "fiveLayerHydrationCanary": 4,
+        "boundedHydrationWorstCase": 10,
+        "evidence": 7
+      },
+      "maxPlannedD1Subqueries": 16,
+      "maxAllowedD1Subqueries": 16,
+      "limitingOperations": ["routeWriteFresh"],
+      "pass": true,
+      "headroomAssumed": false
+    },
+    "shardDescriptors": [
+      {"shardNumber":0,"rowCount":61,"totalBodyBytes":194096,"firstOrdinal":1,"lastOrdinal":107,"entriesSha256":"2ede2b4f3df626bb3960bfd858f661553c19e2eb5aa4a8a6dc94d14798a4bdca"},
+      {"shardNumber":1,"rowCount":48,"totalBodyBytes":157832,"firstOrdinal":0,"lastOrdinal":108,"entriesSha256":"b68a2447b16e5ed42984da5dd9a880d6c31c6574166159b13bc2d0e5a9b87fa0"}
+    ]
+  },
+  "composition": {
+    "activeCorpusVersion": "v8005",
+    "parentCorpusVersion": "v8004",
+    "cumulativeRecipeCount": 2464,
+    "capacity": {
+      "parentLayeredPhysicalBodyBytes": 14562931,
+      "addedLayerBodyBytes": 351928,
+      "layeredPhysicalBodyBytes": 14914859,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {"shardNumber":0,"parentRowCount":1180,"addedRowCount":61,"rowCount":1241,"parentBodyBytes":7337531,"addedBodyBytes":194096,"totalBodyBytes":7531627,"withinProjectDatabaseBudget":true},
+        {"shardNumber":1,"parentRowCount":1175,"addedRowCount":48,"rowCount":1223,"parentBodyBytes":7225400,"addedBodyBytes":157832,"totalBodyBytes":7383232,"withinProjectDatabaseBudget":true}
+      ]
+    },
+    "routing": {
+      "shardCount": 2,
+      "mode": "CONTROL_INDEX_EXACT_ROUTE_THEN_BATCH_HYDRATE_BY_SHARD",
+      "fullCorpusScans": 0,
+      "maxProtectedD1Subqueries": 16,
+      "d1BudgetHeadroomAssumed": false
+    }
+  },
+  "gates": {"requestSizePass":true,"operationBudgetPass":true,"capacityPass":true,"topologyPass":true,"countPass":true,"batchSizePass":true},
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "d1BudgetExpansion": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "step8fReopened": false
+  },
+  "decision": "EARN_V8005_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE"
+}

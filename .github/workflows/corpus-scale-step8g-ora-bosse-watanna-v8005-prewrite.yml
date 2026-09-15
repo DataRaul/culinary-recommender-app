@@ -9,10 +9,17 @@ on:
       - 'scripts/run-corpus-scale-step8g-ora-bosse-watanna-prewrite.mjs'
       - 'scripts/verify-step8g-ora-bosse-watanna-v8005-prewrite.mjs'
       - 'tests/corpus-scale-step8g-ora-bosse-watanna-v8005-prewrite.test.js'
+      - 'tests/corpus-scale-step8g-v8005-prewrite-closeout.test.js'
       - 'data/generated/step8g/ora-bosse-watanna-1914-measurement.json'
+      - 'data/generated/step8g/ora-bosse-watanna-v8005-prewrite-evidence.json'
+      - 'data/generated/step8g/ora-bosse-watanna-v8005-prewrite-validation.json'
       - 'data/generated/step8g/ora-abbott-v8004-prewrite-evidence.json'
       - 'data/generated/step8g/ora-abbott-v8004-live-pass.json'
       - 'data/generated/step8g/v8004-runtime-descriptor.mjs'
+      - 'docs/CORPUS_SCALE_STEP8G_ORA_BOSSE_WATANNA_V8005_PREWRITE.md'
+      - 'config/corpus_scale_step8_roadmap.json'
+      - 'docs/handovers/CURRENT.json'
+      - 'docs/handovers/PREVIOUS.json'
   workflow_dispatch:
 
 permissions:
@@ -59,6 +66,12 @@ jobs:
           --evidence=.tmp/step8g-ora-bosse-watanna-v8005-prewrite/evidence.json
           --plan=.tmp/step8g-ora-bosse-watanna-v8005-prewrite/population-plan-descriptors.json
           --out=.tmp/step8g-ora-bosse-watanna-v8005-prewrite/prewrite-validation.json
+
+      - name: Verify canonical freeze matches regenerated evidence
+        run: |
+          cmp -s .tmp/step8g-ora-bosse-watanna-v8005-prewrite/evidence.json data/generated/step8g/ora-bosse-watanna-v8005-prewrite-evidence.json
+          cmp -s .tmp/step8g-ora-bosse-watanna-v8005-prewrite/prewrite-validation.json data/generated/step8g/ora-bosse-watanna-v8005-prewrite-validation.json
+          node --test tests/corpus-scale-step8g-v8005-prewrite-closeout.test.js
 
       - name: Upload v8005 prewrite evidence
         uses: actions/upload-artifact@v4
