@@ -8,8 +8,7 @@ import {
   STEP8G_V8004_EXPECTED_RECIPE_COUNT,
   expectedStep8GV8004BodyBatchIds,
   expectedStep8GV8004RouteBatchIds,
-  materializeStep8GV8004IncomingBodyBatch,
-  publicStep8GV8004RouteBatch
+  materializeStep8GV8004IncomingBodyBatch
 } from "../src/server/step8g-v8004-live-runtime.mjs";
 import { sha256Hex } from "../src/server/step8b-live.mjs";
 
@@ -37,7 +36,7 @@ if(JSON.stringify(bodyBatches.map(batch=>batch.batchId))!==JSON.stringify(expect
 const routes=[];
 for(const batch of bodyBatches){const result=await materializeStep8GV8004IncomingBodyBatch({batchId:batch.batchId,sourceEntries:batch.rows.map(({ordinal,fileName,rawMarkdown})=>({ordinal,fileName,rawMarkdown}))});if(!result.pass)throw new Error(`${batch.batchId}:${result.reason}`);routes.push(...result.batch.entries.map(entry=>({recipeId:entry.recipeId,corpusVersion:"v8004",shardNumber:batch.shardNumber,sourceCohortId:entry.sourceCohortId,bodySha256:entry.bodySha256,bodyBytes:entry.bodyBytes})));}
 if(routes.length!==STEP8G_V8004_EXPECTED_RECIPE_COUNT||new Set(routes.map(route=>route.recipeId)).size!==STEP8G_V8004_EXPECTED_RECIPE_COUNT)throw new Error("ROUTE_UNIVERSE_MISMATCH");
-const routeBatchIds=[];
-for(const shardNumber of [0,1]){const shardRoutes=routes.filter(route=>route.shardNumber===shardNumber).sort((a,b)=>a.recipeId.localeCompare(b.recipeId));for(const [batchNumber,entries] of chunk(shardRoutes,10).entries()){const batchId=`route-v8004-s${String(shardNumber).padStart(2,"0")}-b${String(batchNumber).padStart(6,"0")}`;const expected=publicStep8GV8004RouteBatch(batchId);if(!expected)throw new Error(`UNKNOWN_EXPECTED_ROUTE_BATCH_${batchId}`);const observed=await sha256Hex(JSON.stringify({compositionVersion:"v8004",corpusVersion:"v8004",shardNumber,entries}));if(observed!==expected.expectedSha256)throw new Error(`ROUTE_BATCH_FINGERPRINT_MISMATCH_${batchId}`);routeBatchIds.push(batchId);}}
+const frozenRouteHashes=STEP8G_V8004_RUNTIME_DESCRIPTOR.routeHashHexByShard.map(value=>value.match(/.{64}/g)||[]),routeBatchIds=[];
+for(const shardNumber of [0,1]){const shardRoutes=routes.filter(route=>route.shardNumber===shardNumber).sort((a,b)=>a.recipeId.localeCompare(b.recipeId));for(const [batchNumber,entries] of chunk(shardRoutes,10).entries()){const batchId=`route-v8004-s${String(shardNumber).padStart(2,"0")}-b${String(batchNumber).padStart(6,"0")}`,expected=frozenRouteHashes[shardNumber]?.[batchNumber];if(!expected)throw new Error(`UNKNOWN_FROZEN_ROUTE_BATCH_${batchId}`);const observed=await sha256Hex(JSON.stringify({compositionVersion:"v8004",corpusVersion:"v8004",shardNumber,entries}));if(observed!==expected)throw new Error(`ROUTE_BATCH_FINGERPRINT_MISMATCH_${batchId}`);routeBatchIds.push(batchId);}}
 if(JSON.stringify(routeBatchIds)!==JSON.stringify(expectedStep8GV8004RouteBatchIds()))throw new Error("ROUTE_BATCH_LAYOUT_MISMATCH");
-process.stdout.write(`${JSON.stringify({pass:true,sourceCommit:STEP8G_V8004_RUNTIME_DESCRIPTOR.sourceCommit,recipeCount:rows.length,bodyBatchCount:bodyBatches.length,routeBatchCount:routeBatchIds.length,shardRows:byShard.map(items=>items.length),terminal:"STEP_8G_ORA_ABBOTT_V8004_LIVE_PAYLOAD_PARITY_PASS"},null,2)}\n`);
+process.stdout.write(`${JSON.stringify({pass:true,sourceCommit:STEP8G_V8004_RUNTIME_DESCRIPTOR.sourceCommit,recipeCount:rows.length,bodyBatchCount:bodyBatches.length,routeBatchCount:routeBatchIds.length,shardRows:byShard.map(items=>items.length),routeFingerprintsFrozen:true,terminal:"STEP_8G_ORA_ABBOTT_V8004_LIVE_PAYLOAD_PARITY_PASS"},null,2)}\n`);
