@@ -5,7 +5,6 @@ import { ALL_RECIPES, ACTIVATED_EXTERNAL_RECIPES, PUBLIC_RUNTIME_RECIPES } from 
 
 const roadmap = JSON.parse(readFileSync(new URL("../config/corpus_scale_step8_roadmap.json", import.meta.url), "utf8"));
 const evidence = JSON.parse(readFileSync(new URL("../data/generated/step8g/ora-abbott-v8004-live-pass.json", import.meta.url), "utf8"));
-const handover = JSON.parse(readFileSync(new URL("../docs/handovers/CURRENT.json", import.meta.url), "utf8"));
 const gate = id => roadmap.gates.find(row => row.id === id);
 
 test("Step 8G Abbott v8004 live closeout freezes the exact protected terminal", () => {
@@ -44,21 +43,13 @@ test("v8004 closeout preserves public, recommendation, topology and cost firewal
   assert.equal(evidence.boundaries.knowledgeCoreWritePerformed, false);
 });
 
-test("roadmap and handover advance protected state to v8004 without changing the public corpus", () => {
+test("v8004 remains canonical historical evidence after later Step 8G iterations", () => {
   const g = gate("8G");
   assert.equal(g.status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
-  assert.equal(g.latestIteration.layerVersion, "v8004");
-  assert.equal(g.latestIteration.liveTerminal, "STEP_8G_ORA_ABBOTT_V8004_PROTECTED_POPULATION_PASS");
-  assert.equal(g.latestIteration.composedRecipeCount, 2355);
-  assert.equal(g.latestIteration.finalProtectedActiveVersion, "v8004");
-  assert.equal(g.latestIteration.publicRuntimeChanged, false);
-  assert.equal(g.latestIteration.recommendationAdmissionChanged, false);
   assert.equal(g.doesNotDependOn.includes("8F"), true);
-
-  assert.equal(handover.corpus_scale.step8g.latest_live_terminal, "STEP_8G_ORA_ABBOTT_V8004_PROTECTED_POPULATION_PASS");
-  assert.equal(handover.corpus_scale.step8g.composed_recipe_count, 2355);
-  assert.equal(handover.corpus_scale.step8g.final_protected_active_version, "v8004");
-  assert.equal(handover.corpus_scale.step8f.automatic_broader_admission_authorized, false);
+  assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-abbott-v8004-live-pass.json"), true);
+  assert.equal(roadmap.evidenceBasis.includes("docs/CORPUS_SCALE_STEP8G_ORA_ABBOTT_V8004_LIVE_POPULATION_PASS.md"), true);
+  assert.match(roadmap.sourceStateCurrent.openRecipeArchiveAbbott1864, /STEP8G_LIVE_PROTECTED_POPULATED_V8004/);
 
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
