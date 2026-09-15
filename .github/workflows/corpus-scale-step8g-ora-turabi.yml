@@ -8,7 +8,11 @@ on:
       - 'scripts/corpus-scale-step8g-ora-turabi-core.mjs'
       - 'scripts/run-corpus-scale-step8g-ora-turabi.mjs'
       - 'tests/corpus-scale-step8g-ora-turabi.test.js'
+      - 'tests/corpus-scale-step8g-ora-turabi-closeout.test.js'
       - 'docs/CORPUS_SCALE_STEP8G_ORA_TURABI_1864_RIGHTS_AND_MEASUREMENT.md'
+      - 'docs/CORPUS_SCALE_STEP8G_ORA_TURABI_1864_MEASUREMENT_PASS.md'
+      - 'data/generated/step8g/ora-turabi-1864-measurement.json'
+      - 'config/corpus_scale_step8_roadmap.json'
   workflow_dispatch:
 
 permissions:
@@ -59,7 +63,7 @@ jobs:
           node-version: 22
 
       - name: Run deterministic Turabi measurement gate unit tests
-        run: node --test tests/corpus-scale-step8g-ora-turabi.test.js
+        run: node --test tests/corpus-scale-step8g-ora-turabi.test.js tests/corpus-scale-step8g-ora-turabi-closeout.test.js
 
       - name: Measure exact 442-row cohort against active v8005
         run: >-
