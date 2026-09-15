@@ -1,14 +1,16 @@
 {
-  "handover": "CULINARY_APP_STEP8F_PUBLIC_ACTIVATION_PASS_STEP8G_V8003_ACTIVE_V27",
+  "handover": "CULINARY_APP_STEP8G_ORA_ABBOTT_V8004_LIVE_IMPLEMENTATION_PR_V29",
   "handover_date": "2026-09-15",
   "timezone": "Europe/Madrid",
-  "status": "STEP8A_PASS__STEP8B_PASS__STEP8C_PASS__STEP8D_PASS__STEP8E_PASS__STEP8F_PUBLIC_ACTIVATION_PASS__STEP8G_V8003_LIVE_PASS_ACTIVE",
+  "status": "STEP8A_PASS__STEP8B_PASS__STEP8C_PASS__STEP8D_PASS__STEP8E_PASS__STEP8F_PUBLIC_ACTIVATION_PASS__STEP8G_V8003_LIVE_PASS__V8004_PREWRITE_PASS__V8004_IMPLEMENTATION_PR_OPEN",
   "human_needed": false,
-  "handover_written_against_main_sha": "0848d51d8a0c58cccee84c8a9ffe6108232e9639",
+  "handover_written_against_main_sha": "91bf657ba16f8cf4e3aac23d93c24b0895b70a49",
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
     "source_of_truth": "GitHub",
+    "active_branch": "agent/step8g-ora-abbott-v8004-live",
+    "open_pr": 165,
     "step8f_activation_pr": 160,
     "step8f_activation_merge": "0848d51d8a0c58cccee84c8a9ffe6108232e9639",
     "step8g_v8003_implementation_pr": 158,
@@ -18,7 +20,7 @@
     "current": "docs/handovers/CURRENT.json",
     "previous": "docs/handovers/PREVIOUS.json",
     "protocol": "docs/HANDOVER_PROTOCOL.md",
-    "rule": "GitHub live state outranks this snapshot. Fresh-reconcile main, open PRs, CI and deployments before acting."
+    "rule": "GitHub live state outranks this snapshot. Fresh-reconcile main, the active branch, open PRs, CI and deployments before acting."
   },
   "lane": {
     "name": "Culinary App / Culinary Lab — Corpus Scale Step 8",
@@ -29,12 +31,13 @@
     "yt_cul_lane": "INDEPENDENT_READ_ONLY_FROM_CORPUS_SCALE"
   },
   "operating_contract": {
-    "autonomy": "Continue Step 8G autonomously through technically resolvable protected-scale work. Step 8F is complete for exactly one public recipe; future public admissions require separately earned eligibility and explicit gate authority.",
+    "autonomy": "Continue Step 8G autonomously through technically resolvable protected-scale work. Ordinary implementation PRs, expected CI, browser acceptance and technically necessary ordinary reruns are pre-authorized under AGENTS.md.",
     "billing_firewall": "Never authorize paid infrastructure or automatic overage. Free exhaustion must fail closed.",
-    "public_activation": "Only unitools_tortilla_espanola is activated by Step 8F. Do not infer authority to expose any other protected recipe or to enable automatic public admission.",
-    "source_authority": "Source nutrition, dietary/allergen claims and scaling rules remain non-authoritative unless separately admitted.",
-    "topology": "Preserve the earned two-shard protected topology unless a later Step 8G gate explicitly earns a change.",
-    "standing_ci_authority": "Ordinary repository CI, browser acceptance and technically necessary ordinary reruns remain pre-authorized under AGENTS.md."
+    "public_activation": "Only unitools_tortilla_espanola is activated by Step 8F. V8004 is protected-only and carries no public recommendation or admission authority.",
+    "source_authority": "Abbott source ingredient strings, nutrition, dietary/allergen claims and scaling rules remain non-authoritative.",
+    "topology": "Preserve the earned two-shard protected topology. V8004 prewrite proves no third shard or billing expansion is needed.",
+    "concurrency": "Do not mutate Nutrition, YT-CUL or Knowledge Core from this lane. Preserve unrelated main changes when integrating the branch.",
+    "secrets": "Never expose credentials, cookies, session tokens or reusable credentials."
   },
   "canonical_documents": {
     "step8_roadmap": "config/corpus_scale_step8_roadmap.json",
@@ -42,7 +45,10 @@
     "step8f_activation_closeout": "docs/CORPUS_SCALE_STEP8F_PUBLIC_RUNTIME_ACTIVATION_PASS.md",
     "step8e_eligible_subset": "data/generated/step8e/eligible-subset.json",
     "v8003_live_evidence": "data/generated/step8g/cc0-v8003-live-pass.json",
-    "v8003_live_closeout": "docs/CORPUS_SCALE_STEP8G_CC0_V8003_LIVE_POPULATION_PASS.md"
+    "v8003_live_closeout": "docs/CORPUS_SCALE_STEP8G_CC0_V8003_LIVE_POPULATION_PASS.md",
+    "v8004_measurement": "data/generated/step8g/ora-abbott-1864-measurement.json",
+    "v8004_prewrite": "data/generated/step8g/ora-abbott-v8004-prewrite-evidence.json",
+    "v8004_prewrite_closeout": "docs/CORPUS_SCALE_STEP8G_ORA_ABBOTT_V8004_PREWRITE.md"
   },
   "corpus_scale": {
     "required_capacity": 170000,
@@ -81,7 +87,12 @@
       "public_runtime_changed": true,
       "automatic_broader_admission_authorized": false,
       "implementation_pr": 160,
-      "merge_sha": "0848d51d8a0c58cccee84c8a9ffe6108232e9639"
+      "merge_sha": "0848d51d8a0c58cccee84c8a9ffe6108232e9639",
+      "prerequisite_run": 34958188244,
+      "pr_validation_run": 34958188189,
+      "post_merge_validation_run": 34958332756,
+      "cloudflare_deployment": "PASS",
+      "production_smoke": "PASS"
     },
     "step8g": {
       "status": "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP",
@@ -101,8 +112,66 @@
       "full_corpus_scans": 0,
       "max_observed_d1_subqueries": 16,
       "third_shard_used": false,
-      "billing_expansion": false
+      "billing_expansion": false,
+      "next_iteration": {
+        "corpus_version": "v8004",
+        "status": "IMPLEMENTATION_PR_OPEN_NOT_LIVE",
+        "pr": 165,
+        "source_cohort_id": "ORA_ABBOTT_1864_AE3BD2C",
+        "source_repository": "AdamBouhmad/open-recipe-archive",
+        "source_commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+        "parent_corpus_version": "v8003",
+        "parent_recipe_count": 1642,
+        "child_recipe_count": 713,
+        "planned_composed_recipe_count": 2355,
+        "body_batch_count": 73,
+        "route_batch_count": 73,
+        "shard_count": 2,
+        "max_planned_d1_subqueries": 15,
+        "full_corpus_scans": 0,
+        "third_shard_needed": false,
+        "billing_expansion": false,
+        "production_writes_performed": 0,
+        "public_runtime_changed": false,
+        "recommendation_admission_changed": false
+      }
     }
+  },
+  "v8004_prewrite": {
+    "status": "PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+    "terminal_candidate": "STEP_8G_ORA_ABBOTT_V8004_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+    "source_work": "The English and Australian Cookery Book",
+    "source_author": "Edward Abbott",
+    "source_year": 1864,
+    "license": "public-domain",
+    "prewrite_workflow_run": 34962056580,
+    "prewrite_artifact_id": 10393616763,
+    "prewrite_artifact_digest": "sha256:152a48b870f71dc380f896e2dc2b82262eeb58bff9564818a1deee18dbc8d433",
+    "layer_manifest_sha256": "ecf98cb4d4cd1f2a1006d491204560ebd2d119f8eeed83edf2e635bad25eae6b",
+    "population_plan_sha256": "7b0867e72cc874a6421ddbb9d9eba68f2991eff4ad12229f210d04ab16d7469f"
+  },
+  "v8004_implementation": {
+    "status": "PR_OPEN_GENERIC_VALIDATION_FIX_IN_PROGRESS",
+    "pr": 165,
+    "dedicated_abbott_integrity_ci": "PASS",
+    "exact_source_parity_recipe_count": 713,
+    "body_batch_count": 73,
+    "route_batch_count": 73,
+    "completed_files": [
+      "data/generated/step8g/v8004-runtime-descriptor.mjs",
+      "src/server/step8g-v8004-live-runtime.mjs",
+      "src/server/step8g-v8004-hydration-runtime.mjs",
+      "functions/api/step8g/v8004.js",
+      "tests/step8g-v8004-live.test.js",
+      "scripts/verify-step8g-v8004-live-payloads.mjs",
+      "step8g-v8004-populate.html",
+      ".github/workflows/corpus-scale-step8g-ora-abbott-live.yml"
+    ],
+    "production_writes_performed": 0,
+    "public_runtime_changed": false,
+    "recommendation_admission_changed": false,
+    "third_shard_used": false,
+    "billing_expansion": false
   },
   "completed_human_gate": {
     "id": "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION",
@@ -111,20 +180,20 @@
     "exact_scope": ["unitools_tortilla_espanola"]
   },
   "active_human_gate": "NONE",
+  "expected_later_human_step": "After v8004 implementation is merged and deployed, production protected population requires the owner's current Culinary session in the same browser to run or resume the deployed v8004 runner. This is an authenticated protected write, not public-admission authority.",
   "next_actions": [
-    "Fresh-reconcile main, CI and deployments before new work.",
-    "Continue Step 8G bounded protected-scale expansion only when the next rights-clean cohort earns marginal value.",
-    "Any additional public recipe must independently earn recommendation eligibility; Step 8F authorizes no automatic or bulk admission beyond unitools_tortilla_espanola.",
-    "Preserve the 84-record historical golden benchmark/oracle while the live public runtime remains 85 unless a later explicit baseline-revision gate is earned.",
-    "Do not create a third shard, authorize billing, mutate Nutrition/YT-CUL, or write to Knowledge Core from this lane without separately earned authority."
+    "Finish PR #165 repository-wide validation without changing frozen Abbott payload hashes or public-admission scope.",
+    "Merge and verify deployment only after both dedicated Abbott integrity CI and generic repository validation are green.",
+    "At the authenticated live-production boundary, run the deployed v8004 protected-population runner in the owner's current Culinary session.",
+    "Do not create a third shard, authorize billing, mutate Nutrition or YT-CUL, or write to Knowledge Core from this lane."
   ],
   "stop_conditions_for_active_work": [
     "A new cost or billing authorization would be required.",
     "A security/account/secrets action requires the owner.",
     "Source rights/provenance are materially unresolved and cannot be settled from documentary evidence.",
     "The earned two-shard topology or quota/capacity boundary is insufficient and expansion would require a new human/cost gate.",
-    "A genuine unrecoverable error occurs.",
-    "170k required protected capacity is reached or marginal value becomes too low under the Step 8G contract."
+    "A materially abnormal CI loop or runaway Actions usage occurs.",
+    "A genuine unrecoverable error occurs."
   ],
-  "terminal_instruction_for_new_chat": "Continue from docs/handovers/CURRENT.json and fresh-reconcile live GitHub. Step 8F is terminal PASS: exactly unitools_tortilla_espanola is active in the 85-recipe public runtime while the historical 84-recipe golden corpus remains frozen. Step 8G v8003 remains active at 1,642 protected recipes on two shards. Do not infer broader public-admission authority from the Step 8F canary."
+  "terminal_instruction_for_new_chat": "Continue from docs/handovers/CURRENT.json and fresh-reconcile live GitHub. Step 8F is terminal PASS for exactly unitools_tortilla_espanola. Step 8G v8003 remains the live protected baseline at 1,642 recipes on two shards. PR #165 implements protected-only v8004 Abbott expansion for 713 additional recipes, targeting 2,355 composed recipes. Dedicated Abbott parity CI is green; complete generic validation, merge/deploy if green, then stop only at the authenticated owner live-population boundary. Do not change public admission, billing, Nutrition, YT-CUL or Knowledge Core."
 }
