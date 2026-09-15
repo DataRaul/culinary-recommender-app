@@ -12,6 +12,10 @@
     "active_prewrite_pr": 168,
     "active_prewrite_branch": "agent/step8g-bosse-watanna-v8005-prewrite",
     "prewrite_branch_head_before_canonical_freeze": "02694d96e0d11b5e88b3c217402e70f185379051",
+    "step8f_activation_pr": 160,
+    "step8f_activation_merge": "0848d51d8a0c58cccee84c8a9ffe6108232e9639",
+    "step8g_v8003_implementation_pr": 158,
+    "step8g_v8003_implementation_merge": "254b8694081d8edcddcc8a6164642b5b731c2602",
     "step8g_v8004_implementation_pr": 165,
     "step8g_v8004_implementation_merge": "c2171ed3a9e54f3006644324bb9107a17febd4d6",
     "bosse_watanna_measurement_pr": 167,
@@ -34,6 +38,7 @@
   },
   "operating_contract": {
     "autonomy": "Proceed autonomously through technically resolvable Step 8G work. Normal repository CI and ordinary Actions validation are standing-preapproved. Stop only for a genuine human/security/cost/source-rights/topology/unrecoverable blocker or the later authenticated production-write boundary.",
+    "billing_firewall": "Never authorize paid infrastructure or automatic overage. Free exhaustion must fail closed.",
     "public_activation": "Step 8F authority remains exactly unitools_tortilla_espanola. No broader automatic public or recommendation admission is authorized.",
     "topology": "Preserve the existing two-shard protected topology. No third shard is authorized.",
     "d1_budget": "The v8005 fresh route-write path is exactly 16/16 D1 subqueries at 10 rows. No headroom is assumed; 11 rows must fail closed and any added query requires redesign.",
@@ -44,6 +49,10 @@
   "canonical_documents": {
     "step8_roadmap": "config/corpus_scale_step8_roadmap.json",
     "step8f_activation_evidence": "data/generated/step8f/public-runtime-activation-pass.json",
+    "step8f_activation_closeout": "docs/CORPUS_SCALE_STEP8F_PUBLIC_RUNTIME_ACTIVATION_PASS.md",
+    "step8e_eligible_subset": "data/generated/step8e/eligible-subset.json",
+    "v8003_live_evidence": "data/generated/step8g/cc0-v8003-live-pass.json",
+    "v8003_live_closeout": "docs/CORPUS_SCALE_STEP8G_CC0_V8003_LIVE_POPULATION_PASS.md",
     "v8004_live_evidence": "data/generated/step8g/ora-abbott-v8004-live-pass.json",
     "v8004_live_closeout": "docs/CORPUS_SCALE_STEP8G_ORA_ABBOTT_V8004_LIVE_POPULATION_PASS.md",
     "bosse_watanna_measurement": "data/generated/step8g/ora-bosse-watanna-1914-measurement.json",
@@ -55,27 +64,96 @@
   "corpus_scale": {
     "required_capacity": 170000,
     "stress_capacity": 250000,
+    "step8d": {
+      "status": "COMPLETE_PASS_LIVE_PRODUCTION",
+      "terminal": "STEP_8D_PROTECTED_POPULATION_PASS",
+      "recipe_count": 501,
+      "verified_batch_count": 51,
+      "shard_count": 2,
+      "max_observed_d1_subqueries": 15,
+      "full_corpus_scans": 0,
+      "normal_public_recommendation_runtime_changed": false,
+      "third_shard_used": false,
+      "billing_expansion": false
+    },
+    "step8e": {
+      "status": "COMPLETE_PASS_RECOMMENDATION_ELIGIBILITY",
+      "terminal": "STEP_8E_RECOMMENDATION_ELIGIBLE_SUBSET_PASS",
+      "reviewed_stored_population": 501,
+      "eligible_subset_count": 1,
+      "stored_only_count": 500,
+      "canonical_recipe_id": "unitools_tortilla_espanola",
+      "dish_family_id": "spanish_potato_omelet"
+    },
     "step8f": {
       "status": "COMPLETE_PASS_PUBLIC_RUNTIME_ACTIVATED",
       "terminal": "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED",
-      "activated_canonical_recipe_ids": ["unitools_tortilla_espanola"],
-      "public_runtime_recipe_count": 85,
+      "human_authorization_satisfied": true,
+      "activated_canonical_recipe_ids": [
+        "unitools_tortilla_espanola"
+      ],
+      "exact_activation_scope_count": 1,
+      "public_runtime_recipe_count_before": 84,
+      "public_runtime_recipe_count_after": 85,
       "historical_golden_corpus_recipe_count": 84,
-      "automatic_broader_admission_authorized": false
+      "runtime_activation_authorized": true,
+      "public_runtime_changed": true,
+      "automatic_broader_admission_authorized": false,
+      "implementation_pr": 160,
+      "merge_sha": "0848d51d8a0c58cccee84c8a9ffe6108232e9639",
+      "prerequisite_run": 34958188244,
+      "pr_validation_run": 34958188189,
+      "post_merge_validation_run": 34958332756,
+      "cloudflare_deployment": "PASS",
+      "production_smoke": "PASS"
     },
     "step8g": {
       "status": "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP",
+      "depends_on_step8f": false,
+      "public_runtime_change_allowed": false,
       "latest_live_terminal": "STEP_8G_ORA_ABBOTT_V8004_PROTECTED_POPULATION_PASS",
+      "source_cohort_id": "ORA_ABBOTT_1864_AE3BD2C",
+      "source_repository": "AdamBouhmad/open-recipe-archive",
+      "source_commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "license": "public-domain",
+      "parent_corpus_version": "v8003",
       "final_protected_active_version": "v8004",
+      "child_recipe_count": 713,
+      "parent_recipe_count": 1642,
       "composed_recipe_count": 2355,
+      "body_batch_count": 73,
+      "route_batch_count": 73,
       "shard_count": 2,
-      "max_observed_d1_subqueries": 16,
+      "four_layer_hydration_pass": true,
+      "idempotent_body_replay_pass": true,
+      "idempotent_route_replay_pass": true,
+      "rollback_pass": true,
+      "rollback_hydration_fail_closed_pass": true,
       "full_corpus_scans": 0,
+      "max_observed_d1_subqueries": 16,
+      "d1_budget_headroom_assumed": false,
       "public_runtime_changed": false,
       "recommendation_admission_changed": false,
       "third_shard_used": false,
       "billing_expansion": false
     }
+  },
+  "v8004_live": {
+    "status": "PASS_PROTECTED_POPULATION_COMPLETE_ACTIVE",
+    "terminal": "STEP_8G_ORA_ABBOTT_V8004_PROTECTED_POPULATION_PASS",
+    "evidence_class": "HUMAN_OBSERVED_AUTHENTICATED_PRODUCTION_RUNNER_PLUS_MERGED_RUNTIME_VALIDATION",
+    "implementation_pr": 165,
+    "implementation_merge_sha": "c2171ed3a9e54f3006644324bb9107a17febd4d6",
+    "pr_dedicated_abbott_integrity_run": 35015839187,
+    "pr_repository_browser_validation_run": 35015839171,
+    "post_merge_validation_run": 35016016846,
+    "pages_deployment_run": 35016015375,
+    "active_corpus_version": "v8004",
+    "composed_recipe_count": 2355,
+    "public_runtime_changed": false,
+    "recommendation_admission_changed": false,
+    "third_shard_used": false,
+    "billing_expansion": false
   },
   "v8005_prewrite": {
     "status": "CANONICAL_PASS_IMPLEMENTATION_EARNED_NOT_LIVE",
@@ -107,6 +185,14 @@
     "source_workflow_run": 35025261910,
     "source_artifact_id": 10418613728,
     "source_artifact_digest": "sha256:85de968c9b01f69f1d38d6e07719e42aec191df505ecfae57ec2b4f292a4024d"
+  },
+  "completed_human_gate": {
+    "id": "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION",
+    "terminal": "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED",
+    "completed_date": "2026-09-15",
+    "exact_scope": [
+      "unitools_tortilla_espanola"
+    ]
   },
   "active_human_gate": "NONE",
   "next_human_gate": {
