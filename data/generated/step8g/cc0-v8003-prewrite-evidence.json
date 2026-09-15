@@ -1,0 +1,73 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_CC0_V8003_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_CC0_V8003_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-15",
+  "source": {
+    "repository": "sylGauthier/recipes",
+    "commit": "b12e481d1c220a13e0847a34e148d5872a16928e",
+    "recordCount": 226,
+    "licenseId": "CC0-1.0",
+    "measurementTerminal": "STEP_8G_CC0_MARKDOWN_MEASUREMENT_EARNED_COHORT_CANDIDATE"
+  },
+  "parent": {
+    "activeCorpusVersion": "v8002",
+    "composedRecipeCount": 1416,
+    "routeIndexSha256": "d2638d443c62815426f28ab87b4c3e5c52cab36a6f608533ea75178167b5a30c",
+    "compositionSha256": "90e14bda95e205c9d1c727b792969fc2833fc9e7f5a321f9f102cbc0aa37057d"
+  },
+  "layer": {
+    "corpusVersion": "v8003",
+    "parentCorpusVersion": "v8002",
+    "recipeCount": 226,
+    "manifestSha256": "58bf7715dbea795cc801eba538975f290f5a1031534562d3840d7803afaa7ac9",
+    "populationPlanSha256": "6f541f8bdc7156e480d9263b9b638ce99d9c0455219926ddd83c7180148a63c9",
+    "batchCount": 23,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 7288,
+    "maxBatchBodyBytes": 37173,
+    "shardDescriptors": [
+      {"shardNumber":0,"rowCount":110,"totalBodyBytes":317571,"firstOrdinal":2,"lastOrdinal":225,"entriesSha256":"6a066ff61564482104fa34f8d0e2aae210314d06e9939f72be3aac812a145751"},
+      {"shardNumber":1,"rowCount":116,"totalBodyBytes":329232,"firstOrdinal":0,"lastOrdinal":223,"entriesSha256":"97554184270f49157c958d2f714f665451fdc6320e610cf961af7b42d5a09ec9"}
+    ],
+    "maxWriteRequestBytes": 41116,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "maxWriteD1Subqueries": 15,
+    "maxAllowedD1Subqueries": 16,
+    "writeQueryBudgetPass": true
+  },
+  "composition": {
+    "schema": "CORPUS_SCALE_STEP8G_LAYER_COMPOSITION_V2",
+    "activeCorpusVersion": "v8003",
+    "parentCorpusVersion": "v8002",
+    "layers": [
+      {"corpusVersion":"v8001","parentCorpusVersion":null,"recipeCount":501,"manifestSha256":"0cb09afd9dd87ead733c3798c4832fdd96c8022867fb857a8730f74243562743","sourceCohortId":"unitools-world-recipes-v1_1_0"},
+      {"corpusVersion":"v8002","parentCorpusVersion":"v8001","recipeCount":915,"manifestSha256":"6fb8e635add76734abfd11fe28bf082f311763a09764e3fb0ba13088f016dd0f","sourceCohortId":"FORKRECIPE_PINNED_STEP7E"},
+      {"corpusVersion":"v8003","parentCorpusVersion":"v8002","recipeCount":226,"manifestSha256":"58bf7715dbea795cc801eba538975f290f5a1031534562d3840d7803afaa7ac9","sourceCohortId":"SGAUTHIER_RECIPES_CC0_B12E481D"}
+    ],
+    "cumulativeRecipeCount": 1642,
+    "routeIndexSha256": "792e20e1bbc140c88a72beb04076942588dde759170cf38d7f7389455a783d6a",
+    "routing": {"shardCount":2,"mode":"CONTROL_INDEX_EXACT_ROUTE_THEN_BATCH_HYDRATE_BY_SHARD","fullCorpusScans":0,"maxHydratedCandidates":256,"maxProtectedD1Subqueries":16},
+    "capacity": {
+      "priorProtectedBodyBytes": 12018292,
+      "newLayerBodyBytes": 646803,
+      "layeredPhysicalBodyBytes": 12665095,
+      "avoidedDuplicatePriorRows": 1416,
+      "avoidedDuplicatePriorBodyBytes": 12018292,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {"shardNumber":0,"rowCount":828,"totalBodyBytes":6388025,"withinProjectDatabaseBudget":true},
+        {"shardNumber":1,"rowCount":814,"totalBodyBytes":6277070,"withinProjectDatabaseBudget":true}
+      ]
+    },
+    "invariants": {"immutablePriorRowsRewritten":false,"newLayerWritesOnly":true,"thirdShardUsed":false,"publicRuntimeChanged":false,"publicRuntimeActivationAuthorized":false,"recommendationAdmissionAuthorized":false,"billingExpansionAuthorized":false,"sourceNutritionImportedAsAuthority":false,"sourceDietaryAllergenInferenceAuthorized":false,"sourceRatioPromotionAuthorized":false,"knowledgeCoreWriteAuthorized":false},
+    "compositionSha256": "d78596da1e04bdcbdea780495def018424ee6e4d026d8781fbdc8d1119540b15"
+  },
+  "hydrationProbe": {"pass":true,"requestedRecipeCount":4,"authSubqueries":1,"routeIndexSubqueries":1,"recipeShardSubqueries":2,"d1Subqueries":4,"maxAllowedD1Subqueries":16,"fullCorpusScans":0},
+  "boundaries": {"liveD1WritesPerformed":0,"publicRuntimeChanged":false,"recommendationAdmissionPerformed":false,"thirdShardUsed":false,"billingExpansion":false,"nutritionLaneModified":false,"youtubeCulinaryStateModified":false,"knowledgeCoreWritePerformed":false,"step8fRemainsParked":true},
+  "decision": "EARN_V8003_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_TOPOLOGY",
+  "validationRun": 34949821164,
+  "artifactId": 10388647045,
+  "artifactDigest": "sha256:3bb4d960994e3f85d16a3cc54cc072b0b704754019db2d4a897f1b3bfae1fcdf"
+}
