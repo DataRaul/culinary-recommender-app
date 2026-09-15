@@ -43,7 +43,6 @@ test("Step 8D PASS remains the prerequisite for completed 8E and independent act
 });
 
 test("canonical handover preserves Step 8D while completed 8F coexists with active 8G", () => {
-  assert.equal(current.human_needed, false);
   assert.equal(current.corpus_scale.step8d.terminal, "STEP_8D_PROTECTED_POPULATION_PASS");
   assert.equal(current.corpus_scale.step8d.max_observed_d1_subqueries, 15);
   assert.equal(current.corpus_scale.step8e.status, "COMPLETE_PASS_RECOMMENDATION_ELIGIBILITY");

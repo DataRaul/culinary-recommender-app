@@ -4,7 +4,6 @@ import { readFileSync } from "node:fs";
 
 const roadmap = JSON.parse(readFileSync(new URL("../config/corpus_scale_step8_roadmap.json", import.meta.url), "utf8"));
 const evidence = JSON.parse(readFileSync(new URL("../data/generated/step8g/cc0-v8003-live-pass.json", import.meta.url), "utf8"));
-const handover = JSON.parse(readFileSync(new URL("../docs/handovers/CURRENT.json", import.meta.url), "utf8"));
 const gate = id => roadmap.gates.find(row => row.id === id);
 
 test("Step 8G v8003 historical closeout remains frozen exactly", () => {
@@ -39,23 +38,11 @@ test("v8003 historical closeout preserves the public, cost and topology firewall
   assert.equal(evidence.boundaries.billingExpansionAuthorized, false);
 });
 
-test("current roadmap advances to v8004 while v8003 evidence remains immutable historical proof", () => {
+test("v8003 remains immutable historical proof after later Step 8G iterations", () => {
   const g = gate("8G");
   assert.equal(g.status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
-  assert.equal(g.latestIteration.layerVersion, "v8004");
-  assert.equal(g.latestIteration.liveTerminal, "STEP_8G_ORA_ABBOTT_V8004_PROTECTED_POPULATION_PASS");
-  assert.equal(g.latestIteration.composedRecipeCount, 2355);
-  assert.equal(g.latestIteration.finalProtectedActiveVersion, "v8004");
-  assert.equal(g.latestIteration.publicRuntimeChanged, false);
-  assert.equal(g.latestIteration.recommendationAdmissionChanged, false);
   assert.equal(g.doesNotDependOn.includes("8F"), true);
-
-  assert.equal(handover.corpus_scale.step8g.status, "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP");
-  assert.equal(handover.corpus_scale.step8g.latest_live_terminal, "STEP_8G_ORA_ABBOTT_V8004_PROTECTED_POPULATION_PASS");
-  assert.equal(handover.corpus_scale.step8g.composed_recipe_count, 2355);
-  assert.equal(handover.corpus_scale.step8g.final_protected_active_version, "v8004");
-  assert.equal(handover.corpus_scale.step8f.runtime_activation_authorized, true);
-  assert.equal(handover.corpus_scale.step8f.public_runtime_changed, true);
-  assert.equal(handover.corpus_scale.step8f.public_runtime_recipe_count_after, 85);
-  assert.deepEqual(handover.corpus_scale.step8f.activated_canonical_recipe_ids, ["unitools_tortilla_espanola"]);
+  assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/cc0-v8003-live-pass.json"), true);
+  assert.equal(roadmap.evidenceBasis.includes("docs/CORPUS_SCALE_STEP8G_CC0_V8003_LIVE_POPULATION_PASS.md"), true);
+  assert.match(roadmap.sourceStateCurrent.sylGauthierRecipes, /STEP8G_LIVE_PROTECTED_POPULATED_V8003/);
 });

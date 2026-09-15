@@ -19,7 +19,7 @@ test("Step 8F terminal evidence freezes the exact one-record public activation",
   assert.equal(evidence.implementation.productionSmoke, "PASS");
 });
 
-test("machine roadmap and handover mark 8F complete without broad automatic admission", () => {
+test("machine roadmap and handover preserve 8F complete without broad automatic admission", () => {
   const f = gate("8F");
   assert.equal(f.status, "COMPLETE_PASS_PUBLIC_RUNTIME_ACTIVATED");
   assert.equal(f.terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
@@ -28,16 +28,18 @@ test("machine roadmap and handover mark 8F complete without broad automatic admi
   assert.equal(f.decisionInput.publicCorpusRecipeCountAfterDecision, 85);
   assert.equal(roadmap.boundaries.automaticPublicRecommendationAdmission, false);
   assert.equal(current.corpus_scale.step8f.status, "COMPLETE_PASS_PUBLIC_RUNTIME_ACTIVATED");
+  assert.equal(current.corpus_scale.step8f.terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
   assert.equal(current.corpus_scale.step8f.automatic_broader_admission_authorized, false);
-  assert.equal(current.active_human_gate, "NONE");
 });
 
-test("public runtime remains 85 and historical golden corpus 84 while protected Step 8G advances to v8004", () => {
+test("public runtime remains 85 and historical golden corpus 84 as protected Step 8G advances independently", () => {
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
-  assert.equal(gate("8G").latestIteration.finalProtectedActiveVersion, "v8004");
-  assert.equal(gate("8G").latestIteration.composedRecipeCount, 2355);
-  assert.equal(current.corpus_scale.step8g.final_protected_active_version, "v8004");
-  assert.equal(current.corpus_scale.step8g.composed_recipe_count, 2355);
+  assert.equal(gate("8G").status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
+  assert.equal(gate("8G").doesNotDependOn.includes("8F"), true);
+  assert.equal(gate("8G").latestIteration.publicRuntimeChanged, false);
+  assert.equal(gate("8G").latestIteration.recommendationAdmissionChanged, false);
+  assert.equal(current.corpus_scale.step8g.public_runtime_changed, false);
+  assert.equal(current.corpus_scale.step8g.recommendation_admission_changed, false);
 });

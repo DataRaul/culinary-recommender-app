@@ -29,22 +29,20 @@ test("Step 8G Bosse Watanna v8005 prewrite freezes the exact earned protected pl
   assert.equal(validation.routeMaxRowsPerBatch, 10);
 });
 
-test("v8005 prewrite preserves live v8004 and every protected/public/cost boundary", () => {
+test("v8005 prewrite remains immutable proof after the later live v8005 PASS", () => {
   assert.equal(evidence.boundaries.liveD1WritesPerformed, 0);
   for (const key of ["publicRuntimeChanged","recommendationAdmissionPerformed","thirdShardUsed","d1BudgetExpansion","billingExpansion","nutritionLaneModified","youtubeCulinaryStateModified","knowledgeCoreWritePerformed","culturalAuthenticityAuthorityImported","step8fReopened"]) {
     assert.equal(evidence.boundaries[key], false, key);
   }
   const g = gate("8G");
-  assert.equal(g.latestIteration.finalProtectedActiveVersion, "v8004");
-  assert.equal(g.latestIteration.composedRecipeCount, 2355);
-  assert.equal(g.nextIteration.layerVersion, "v8005");
-  assert.equal(g.nextIteration.prewriteStatus, "PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED");
-  assert.equal(g.nextIteration.plannedComposedRecipeCount, 2464);
-  assert.equal(g.nextIteration.livePopulationPerformed, false);
-  assert.equal(handover.corpus_scale.step8g.final_protected_active_version, "v8004");
-  assert.equal(handover.corpus_scale.step8g.composed_recipe_count, 2355);
-  assert.equal(handover.v8005_prewrite.implementation_earned, true);
-  assert.equal(handover.v8005_prewrite.live_population_performed, false);
+  assert.equal(g.latestIteration.layerVersion, "v8005");
+  assert.equal(g.latestIteration.parentCorpusVersion, "v8004");
+  assert.equal(g.latestIteration.composedRecipeCount, 2464);
+  assert.equal(g.latestIteration.liveTerminal, "STEP_8G_ORA_BOSSE_WATANNA_V8005_PROTECTED_POPULATION_PASS");
+  assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-bosse-watanna-v8005-prewrite-evidence.json"), true);
+  assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-bosse-watanna-v8005-prewrite-validation.json"), true);
+  assert.equal(handover.corpus_scale.step8g.final_protected_active_version, "v8005");
+  assert.equal(handover.corpus_scale.step8g.composed_recipe_count, 2464);
   assert.equal(handover.corpus_scale.step8f.automatic_broader_admission_authorized, false);
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
