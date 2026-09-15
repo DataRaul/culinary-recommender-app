@@ -7,7 +7,7 @@ const evidence = JSON.parse(readFileSync(new URL("../data/generated/step8g/cc0-v
 const handover = JSON.parse(readFileSync(new URL("../docs/handovers/CURRENT.json", import.meta.url), "utf8"));
 const gate = id => roadmap.gates.find(row => row.id === id);
 
-test("Step 8G v8003 live closeout freezes the exact protected corpus terminal", () => {
+test("Step 8G v8003 historical closeout remains frozen exactly", () => {
   assert.equal(evidence.pass, true);
   assert.equal(evidence.terminal, "STEP_8G_CC0_V8003_PROTECTED_POPULATION_PASS");
   assert.equal(evidence.parentCorpusVersion, "v8002");
@@ -28,7 +28,7 @@ test("Step 8G v8003 live closeout freezes the exact protected corpus terminal", 
   assert.ok(evidence.maxObservedD1Subqueries <= 16);
 });
 
-test("v8003 closeout preserves the public, cost and topology firewalls", () => {
+test("v8003 historical closeout preserves the public, cost and topology firewalls", () => {
   assert.equal(evidence.publicRuntimeChanged, false);
   assert.equal(evidence.recommendationAdmissionChanged, false);
   assert.equal(evidence.thirdShardUsed, false);
@@ -39,21 +39,21 @@ test("v8003 closeout preserves the public, cost and topology firewalls", () => {
   assert.equal(evidence.boundaries.billingExpansionAuthorized, false);
 });
 
-test("roadmap and current handover keep v8003 live while completed Step 8F stays exact and bounded", () => {
+test("current roadmap advances to v8004 while v8003 evidence remains immutable historical proof", () => {
   const g = gate("8G");
   assert.equal(g.status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
-  assert.equal(g.latestIteration.layerVersion, "v8003");
-  assert.equal(g.latestIteration.liveTerminal, "STEP_8G_CC0_V8003_PROTECTED_POPULATION_PASS");
-  assert.equal(g.latestIteration.composedRecipeCount, 1642);
-  assert.equal(g.latestIteration.finalProtectedActiveVersion, "v8003");
+  assert.equal(g.latestIteration.layerVersion, "v8004");
+  assert.equal(g.latestIteration.liveTerminal, "STEP_8G_ORA_ABBOTT_V8004_PROTECTED_POPULATION_PASS");
+  assert.equal(g.latestIteration.composedRecipeCount, 2355);
+  assert.equal(g.latestIteration.finalProtectedActiveVersion, "v8004");
   assert.equal(g.latestIteration.publicRuntimeChanged, false);
   assert.equal(g.latestIteration.recommendationAdmissionChanged, false);
   assert.equal(g.doesNotDependOn.includes("8F"), true);
 
   assert.equal(handover.corpus_scale.step8g.status, "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP");
-  assert.equal(handover.corpus_scale.step8g.latest_live_terminal, "STEP_8G_CC0_V8003_PROTECTED_POPULATION_PASS");
-  assert.equal(handover.corpus_scale.step8g.composed_recipe_count, 1642);
-  assert.equal(handover.corpus_scale.step8g.final_protected_active_version, "v8003");
+  assert.equal(handover.corpus_scale.step8g.latest_live_terminal, "STEP_8G_ORA_ABBOTT_V8004_PROTECTED_POPULATION_PASS");
+  assert.equal(handover.corpus_scale.step8g.composed_recipe_count, 2355);
+  assert.equal(handover.corpus_scale.step8g.final_protected_active_version, "v8004");
   assert.equal(handover.corpus_scale.step8f.runtime_activation_authorized, true);
   assert.equal(handover.corpus_scale.step8f.public_runtime_changed, true);
   assert.equal(handover.corpus_scale.step8f.public_runtime_recipe_count_after, 85);
