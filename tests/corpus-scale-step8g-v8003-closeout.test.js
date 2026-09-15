@@ -39,7 +39,7 @@ test("v8003 closeout preserves the public, cost and topology firewalls", () => {
   assert.equal(evidence.boundaries.billingExpansionAuthorized, false);
 });
 
-test("roadmap and current handover point at the v8003 live PASS without reopening Step 8F", () => {
+test("roadmap and current handover keep v8003 live while completed Step 8F stays exact and bounded", () => {
   const g = gate("8G");
   assert.equal(g.status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(g.latestIteration.layerVersion, "v8003");
@@ -54,6 +54,8 @@ test("roadmap and current handover point at the v8003 live PASS without reopenin
   assert.equal(handover.corpus_scale.step8g.latest_live_terminal, "STEP_8G_CC0_V8003_PROTECTED_POPULATION_PASS");
   assert.equal(handover.corpus_scale.step8g.composed_recipe_count, 1642);
   assert.equal(handover.corpus_scale.step8g.final_protected_active_version, "v8003");
-  assert.equal(handover.corpus_scale.step8f.runtime_activation_authorized, false);
-  assert.equal(handover.corpus_scale.step8f.public_runtime_changed, false);
+  assert.equal(handover.corpus_scale.step8f.runtime_activation_authorized, true);
+  assert.equal(handover.corpus_scale.step8f.public_runtime_changed, true);
+  assert.equal(handover.corpus_scale.step8f.public_runtime_recipe_count_after, 85);
+  assert.deepEqual(handover.corpus_scale.step8f.activated_canonical_recipe_ids, ["unitools_tortilla_espanola"]);
 });

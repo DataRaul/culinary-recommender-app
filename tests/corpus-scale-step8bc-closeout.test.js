@@ -96,15 +96,17 @@ test("Step 8D terminal PASS remains bound to the exact Step 8B and Step 8C prere
   assert.equal(d.publicRuntimeChangeAllowed, false);
 });
 
-test("Step 8F remains parked and unauthorized while Step 8G is active", () => {
+test("Step 8F exact public activation is complete while Step 8G remains active", () => {
   const f = gate("8F");
   const g = gate("8G");
-  assert.equal(f.status, "PARKED_EXPLICIT_HUMAN_PUBLIC_RUNTIME_DECISION");
-  assert.equal(f.parked, true);
+  assert.equal(f.status, "COMPLETE_PASS_PUBLIC_RUNTIME_ACTIVATED");
+  assert.equal(f.terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
+  assert.equal(f.parked, false);
   assert.equal(f.blockingActiveLane, false);
   assert.equal(f.humanRequired, true);
-  assert.equal(f.decisionInput.runtimeActivationAuthorized, false);
-  assert.equal(f.decisionInput.publicRuntimeChanged, false);
+  assert.equal(f.decisionInput.runtimeActivationAuthorized, true);
+  assert.equal(f.decisionInput.publicRuntimeChanged, true);
+  assert.equal(f.decisionInput.publicCorpusRecipeCountAfterDecision, 85);
   assert.equal(g.status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(g.doesNotDependOn.includes("8F"), true);
   assert.equal(g.humanRequired, false);
