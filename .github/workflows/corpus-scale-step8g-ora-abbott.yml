@@ -1,0 +1,75 @@
+name: Corpus Scale Step 8G ORA Abbott 1864 measurement
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-ora-abbott.yml'
+      - 'scripts/run-corpus-scale-step8g-ora-abbott.mjs'
+      - 'docs/CORPUS_SCALE_STEP8G_ORA_ABBOTT_RIGHTS_AND_MEASUREMENT.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-ora-abbott-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  measure-ora-abbott-1864:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive candidate
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - name: Checkout pinned ForkRecipe protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: futurechef/forkrecipe-recipes
+          ref: c32255266af39bd77444d39452f3df8088ac8fd9
+          path: forkrecipe
+
+      - name: Checkout pinned UniTools protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: farcrak/unitools-recipes
+          ref: 1d09e9548d957dd0375301146a86dddf5e269c1b
+          path: unitools
+
+      - name: Checkout pinned CC0 v8003 protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: sylGauthier/recipes
+          ref: b12e481d1c220a13e0847a34e148d5872a16928e
+          path: cc0-recipes
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Measure bounded Abbott 1864 cohort against v8003
+        run: >-
+          node scripts/run-corpus-scale-step8g-ora-abbott.mjs
+          --ora=./open-recipe-archive
+          --forkrecipe=./forkrecipe
+          --unitools=./unitools
+          --cc0=./cc0-recipes
+          --rights-doc=./docs/CORPUS_SCALE_STEP8G_ORA_ABBOTT_RIGHTS_AND_MEASUREMENT.md
+          --out=.tmp/step8g-ora-abbott-measurement
+
+      - name: Upload Step 8G Abbott measurement evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-ora-abbott-measurement
+          path: .tmp/step8g-ora-abbott-measurement/measurement.json
+          if-no-files-found: error
+          retention-days: 30
