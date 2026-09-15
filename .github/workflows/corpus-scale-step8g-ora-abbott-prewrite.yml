@@ -1,0 +1,54 @@
+name: Corpus Scale Step 8G ORA Abbott v8004 prewrite
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-ora-abbott-prewrite.yml'
+      - 'scripts/run-corpus-scale-step8g-ora-abbott-prewrite.mjs'
+      - 'data/generated/step8g/ora-abbott-1864-measurement.json'
+      - 'data/generated/step8g/cc0-v8003-prewrite-evidence.json'
+      - 'docs/CORPUS_SCALE_STEP8G_ORA_ABBOTT_V8004_PREWRITE.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-ora-abbott-v8004-prewrite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prewrite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive source-work cohort
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build exact no-write v8004 prewrite evidence
+        run: >-
+          node scripts/run-corpus-scale-step8g-ora-abbott-prewrite.mjs
+          --ora=./open-recipe-archive
+          --measurement=./data/generated/step8g/ora-abbott-1864-measurement.json
+          --parent-evidence=./data/generated/step8g/cc0-v8003-prewrite-evidence.json
+          --out=.tmp/step8g-ora-abbott-v8004-prewrite
+
+      - name: Upload v8004 prewrite evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-ora-abbott-v8004-prewrite
+          path: .tmp/step8g-ora-abbott-v8004-prewrite/
+          if-no-files-found: error
+          retention-days: 30
