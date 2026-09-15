@@ -29,7 +29,10 @@
       "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
       "layerManifestSha256": "ecf98cb4d4cd1f2a1006d491204560ebd2d119f8eeed83edf2e635bad25eae6b",
       "populationPlanSha256": "7b0867e72cc874a6421ddbb9d9eba68f2991eff4ad12229f210d04ab16d7469f",
-      "bodyShardRows": [352,361],
+      "bodyShardRows": [
+        352,
+        361
+      ],
       "parentCompositionRouteCount": 1642,
       "composedRouteCount": 2355
     }
@@ -69,13 +72,29 @@
       },
       "maxPlannedD1Subqueries": 16,
       "maxAllowedD1Subqueries": 16,
-      "limitingOperations": ["routeWriteFresh"],
+      "limitingOperations": [
+        "routeWriteFresh"
+      ],
       "pass": true,
       "headroomAssumed": false
     },
     "shardDescriptors": [
-      {"shardNumber":0,"rowCount":61,"totalBodyBytes":194096,"firstOrdinal":1,"lastOrdinal":107,"entriesSha256":"2ede2b4f3df626bb3960bfd858f661553c19e2eb5aa4a8a6dc94d14798a4bdca"},
-      {"shardNumber":1,"rowCount":48,"totalBodyBytes":157832,"firstOrdinal":0,"lastOrdinal":108,"entriesSha256":"b68a2447b16e5ed42984da5dd9a880d6c31c6574166159b13bc2d0e5a9b87fa0"}
+      {
+        "shardNumber": 0,
+        "rowCount": 61,
+        "totalBodyBytes": 194096,
+        "firstOrdinal": 1,
+        "lastOrdinal": 107,
+        "entriesSha256": "2ede2b4f3df626bb3960bfd858f661553c19e2eb5aa4a8a6dc94d14798a4bdca"
+      },
+      {
+        "shardNumber": 1,
+        "rowCount": 48,
+        "totalBodyBytes": 157832,
+        "firstOrdinal": 0,
+        "lastOrdinal": 108,
+        "entriesSha256": "b68a2447b16e5ed42984da5dd9a880d6c31c6574166159b13bc2d0e5a9b87fa0"
+      }
     ]
   },
   "composition": {
@@ -88,8 +107,26 @@
       "layeredPhysicalBodyBytes": 14914859,
       "cumulativeBodyBytesWithinProjectTotalBudget": true,
       "perShard": [
-        {"shardNumber":0,"parentRowCount":1180,"addedRowCount":61,"rowCount":1241,"parentBodyBytes":7337531,"addedBodyBytes":194096,"totalBodyBytes":7531627,"withinProjectDatabaseBudget":true},
-        {"shardNumber":1,"parentRowCount":1175,"addedRowCount":48,"rowCount":1223,"parentBodyBytes":7225400,"addedBodyBytes":157832,"totalBodyBytes":7383232,"withinProjectDatabaseBudget":true}
+        {
+          "shardNumber": 0,
+          "parentRowCount": 1180,
+          "addedRowCount": 61,
+          "rowCount": 1241,
+          "parentBodyBytes": 7337531,
+          "addedBodyBytes": 194096,
+          "totalBodyBytes": 7531627,
+          "withinProjectDatabaseBudget": true
+        },
+        {
+          "shardNumber": 1,
+          "parentRowCount": 1175,
+          "addedRowCount": 48,
+          "rowCount": 1223,
+          "parentBodyBytes": 7225400,
+          "addedBodyBytes": 157832,
+          "totalBodyBytes": 7383232,
+          "withinProjectDatabaseBudget": true
+        }
       ]
     },
     "routing": {
@@ -100,7 +137,14 @@
       "d1BudgetHeadroomAssumed": false
     }
   },
-  "gates": {"requestSizePass":true,"operationBudgetPass":true,"capacityPass":true,"topologyPass":true,"countPass":true,"batchSizePass":true},
+  "gates": {
+    "requestSizePass": true,
+    "operationBudgetPass": true,
+    "capacityPass": true,
+    "topologyPass": true,
+    "countPass": true,
+    "batchSizePass": true
+  },
   "boundaries": {
     "liveD1WritesPerformed": 0,
     "publicRuntimeChanged": false,
