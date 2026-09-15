@@ -1,0 +1,50 @@
+name: Corpus Scale Step 8G CC0 v8003 prewrite
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-cc0-prewrite.yml'
+      - 'scripts/corpus-scale-step8g-cc0-prewrite-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-cc0-prewrite.mjs'
+      - 'tests/corpus-scale-step8g-cc0-prewrite.test.js'
+      - 'data/generated/step8g/cc0-markdown-measurement.json'
+      - 'docs/CORPUS_SCALE_STEP8G_CC0_V8003_PREWRITE.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: corpus-step8g-cc0-prewrite-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  prewrite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+      - name: Checkout pinned CC0 candidate
+        uses: actions/checkout@v4
+        with:
+          repository: sylGauthier/recipes
+          ref: b12e481d1c220a13e0847a34e148d5872a16928e
+          path: cc0-recipes
+      - name: Checkout pinned ForkRecipe v8002 source
+        uses: actions/checkout@v4
+        with:
+          repository: futurechef/forkrecipe-recipes
+          ref: c32255266af39bd77444d39452f3df8088ac8fd9
+          path: forkrecipe
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run v8003 prewrite unit tests
+        run: node --test tests/corpus-scale-step8g-cc0-prewrite.test.js
+      - name: Build exact no-write v8003 prewrite evidence
+        run: node scripts/run-corpus-scale-step8g-cc0-prewrite.mjs --candidate=./cc0-recipes --forkrecipe=./forkrecipe --out=.tmp/step8g-cc0-v8003-prewrite
+      - name: Upload v8003 prewrite evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-cc0-v8003-prewrite
+          path: .tmp/step8g-cc0-v8003-prewrite/
+          if-no-files-found: error
+          retention-days: 30
