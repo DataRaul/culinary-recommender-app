@@ -1,17 +1,16 @@
 {
-  "handover": "CULINARY_APP_STEP8F_PARKED_STEP8G_ACTIVE_V25",
-  "handover_date": "2026-09-14",
+  "handover": "CULINARY_APP_STEP8G_V8003_LIVE_PASS_8F_RECOMMENDED_NEXT_V26",
+  "handover_date": "2026-09-15",
   "timezone": "Europe/Madrid",
-  "status": "STEP8A_PASS__STEP8B_PASS__STEP8C_PASS__STEP8D_PASS__STEP8E_TERMINAL_PASS__STEP8F_PARKED_NOT_AUTHORIZED__STEP8G_ACTIVE",
+  "status": "STEP8A_PASS__STEP8B_PASS__STEP8C_PASS__STEP8D_PASS__STEP8E_PASS__STEP8F_PARKED_NOT_AUTHORIZED__STEP8G_V8003_LIVE_PASS",
   "human_needed": false,
+  "handover_written_against_main_sha": "254b8694081d8edcddcc8a6164642b5b731c2602",
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
     "source_of_truth": "GitHub",
-    "step8d_terminal_merge": "bf7aefa5df1634aad2ee24ff94e609fd74d168de",
-    "step8e_integration_pr": 150,
-    "step8e_branch": "agent/step8e-recommendation-eligibility",
-    "step8e_branch_head_at_handover_creation": "ac1ada931a3f8fa2aafff05aeba79b8461a82ace"
+    "step8g_v8003_implementation_pr": 158,
+    "step8g_v8003_implementation_merge": "254b8694081d8edcddcc8a6164642b5b731c2602"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -28,12 +27,20 @@
     "yt_cul_lane": "INDEPENDENT_READ_ONLY_FROM_CORPUS_SCALE"
   },
   "operating_contract": {
-    "autonomy": "Proceed autonomously with Step 8G and other technically resolvable non-public-runtime work. The parked Step 8F gate must not globally block Step 8G.",
+    "autonomy": "Step 8G may continue autonomously through technically resolvable protected-scale work. Step 8F remains a separate owner-controlled public-behavior decision and does not block Step 8G.",
     "billing_firewall": "Never authorize paid infrastructure or automatic overage. Free exhaustion must fail closed.",
-    "public_activation": "Step 8F is parked. Do not activate, broaden or otherwise change normal public recommendation runtime until the owner explicitly reopens and approves Step 8F.",
+    "public_activation": "Do not activate, broaden or otherwise change normal public recommendation runtime until the owner explicitly reopens and approves Step 8F.",
     "source_authority": "Source nutrition, dietary/allergen claims and scaling rules remain non-authoritative unless separately admitted.",
     "topology": "Preserve the earned two-shard topology unless a later Step 8G gate explicitly earns a change. Do not create a third shard merely to continue work.",
-    "secrets": "Never expose credentials, cookies, session tokens or reusable credentials."
+    "secrets": "Never expose credentials, cookies, session tokens or reusable credentials.",
+    "standing_ci_authority": "Ordinary repository CI, browser acceptance and technically necessary ordinary reruns remain pre-authorized under AGENTS.md; stop only for abnormal cost/runaway usage or a genuine human/security/cost gate."
+  },
+  "canonical_documents": {
+    "step8_roadmap": "config/corpus_scale_step8_roadmap.json",
+    "v8003_prewrite": "data/generated/step8g/cc0-v8003-prewrite-evidence.json",
+    "v8003_live_evidence": "data/generated/step8g/cc0-v8003-live-pass.json",
+    "v8003_live_closeout": "docs/CORPUS_SCALE_STEP8G_CC0_V8003_LIVE_POPULATION_PASS.md",
+    "step8e_eligible_subset": "data/generated/step8e/eligible-subset.json"
   },
   "corpus_scale": {
     "required_capacity": 170000,
@@ -44,9 +51,7 @@
       "recipe_count": 501,
       "verified_batch_count": 51,
       "shard_count": 2,
-      "shard_rows": { "0": 257, "1": 244 },
       "max_observed_d1_subqueries": 15,
-      "max_allowed_d1_subqueries": 16,
       "full_corpus_scans": 0,
       "normal_public_recommendation_runtime_changed": false,
       "third_shard_used": false,
@@ -59,12 +64,8 @@
       "eligible_subset_count": 1,
       "stored_only_count": 500,
       "eligible_subset": "data/generated/step8e/eligible-subset.json",
-      "evidence": "data/generated/step8e/admission-evidence.json",
       "canonical_recipe_id": "unitools_tortilla_espanola",
-      "dish_family_id": "spanish_potato_omelet",
-      "source_nutrition_imported_as_authority": false,
-      "source_dietary_metadata_imported_as_authority": false,
-      "source_scaling_metadata_imported_as_authority": false
+      "dish_family_id": "spanish_potato_omelet"
     },
     "step8f": {
       "status": "PARKED_EXPLICIT_HUMAN_PUBLIC_RUNTIME_GATE",
@@ -75,42 +76,57 @@
       "candidate_present_in_public_runtime": false,
       "runtime_activation_authorized": false,
       "public_runtime_changed": false,
-      "park_rule": "Do not ask for an 8F decision merely because work continues. Resume 8F only when the owner explicitly asks to decide or activate public runtime."
+      "blocking_step8g": false,
+      "recommended_timing": "NOW_AFTER_V8003_CLOSEOUT",
+      "recommendation_reason": "The protected corpus now has a stable three-layer production baseline with rollback and bounded hydration proven, while Step 8F is still a one-record public canary with all non-activating checks already green."
     },
     "step8g": {
       "status": "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP",
       "depends_on_step8f": false,
       "public_runtime_change_allowed": false,
-      "objective": "Continue rights-clean protected corpus expansion and measurement cohort by cohort while marginal coverage/quality value justifies it and existing no-billing/capacity/topology boundaries remain safe.",
-      "iteration_terminal_outcomes": [
-        "STEP_8G_CONTINUE_WITH_NEXT_EARNED_COHORT",
-        "STEP_8G_STOP_MARGINAL_VALUE_LOW",
-        "STEP_8G_CAPACITY_OR_COST_GATE_REACHED",
-        "STEP_8G_170K_REQUIRED_CAPACITY_POPULATION_REACHED"
-      ]
+      "latest_live_terminal": "STEP_8G_CC0_V8003_PROTECTED_POPULATION_PASS",
+      "source_cohort_id": "SGAUTHIER_RECIPES_CC0_B12E481D",
+      "source_repository": "sylGauthier/recipes",
+      "source_commit": "b12e481d1c220a13e0847a34e148d5872a16928e",
+      "source_license": "CC0-1.0",
+      "parent_corpus_version": "v8002",
+      "final_protected_active_version": "v8003",
+      "child_recipe_count": 226,
+      "parent_recipe_count": 1416,
+      "composed_recipe_count": 1642,
+      "body_batch_count": 23,
+      "route_batch_count": 23,
+      "shard_count": 2,
+      "idempotent_body_replay_pass": true,
+      "idempotent_route_replay_pass": true,
+      "three_layer_hydration_pass": true,
+      "rollback_pass": true,
+      "rollback_hydration_fail_closed_pass": true,
+      "full_corpus_scans": 0,
+      "max_observed_d1_subqueries": 16,
+      "public_runtime_changed": false,
+      "recommendation_admission_changed": false,
+      "third_shard_used": false,
+      "billing_expansion": false,
+      "implementation_validation_run": 34953089031,
+      "pr_repository_browser_validation_run": 34953088967,
+      "post_merge_validation_run": 34953271492,
+      "cloudflare_deployment": "PASS"
     }
-  },
-  "validation": {
-    "step8e_source_and_admission_run": 34862136962,
-    "repository_and_browser_run": 34862136927,
-    "repository_validation": "PASS",
-    "browser_preactivation_acceptance": "PASS",
-    "note": "A later github-actions[bot] terminal-freeze commit caused automatically triggered PR workflows to show action_required. The underlying Step 8E and browser checks had already passed. Reconcile and retrigger under the regular actor before merging PR #150."
   },
   "parked_human_gate": {
     "id": "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION",
     "status": "PARKED_NOT_AUTHORIZED",
     "blocking_active_lane": false,
-    "resume_only_on_explicit_owner_request": true
+    "resume_only_on_explicit_owner_request": true,
+    "recommended_next": true
   },
   "active_human_gate": "NONE",
-  "resume_order": [
-    "Fresh-reconcile PR #150 and its latest CI state.",
-    "If needed, use the regular connector-authored handover/state commit to retrigger CI after the prior bot-authored action_required state; do not change earned Step 8E evidence merely to satisfy CI.",
-    "Merge PR #150 once repository and browser validation are green on the latest head.",
-    "Fresh-reconcile main after merge.",
-    "Continue Step 8G autonomously: identify the next rights-clean earned cohort or source opportunity, measure marginal coverage/quality value, ingest only within protected storage authority, and preserve bounded retrieval/no-full-scan/no-billing constraints.",
-    "Do not enter Step 8F or alter normal public recommendations unless the owner explicitly reopens Step 8F."
+  "next_actions": [
+    "Fresh-reconcile the v8003 closeout PR/merge and canonical roadmap before any new work.",
+    "If the owner explicitly authorizes Step 8F, activate only the exact already-approved one-record subset containing unitools_tortilla_espanola and re-run public runtime/browser acceptance before admitting anything else.",
+    "If Step 8F is not explicitly authorized, continue Step 8G with the next bounded rights-clean cohort measurement; do not treat public activation as a prerequisite.",
+    "Do not create a third shard, authorize billing, mutate Nutrition/YT-CUL, or write to Knowledge Core from this lane without a separately earned gate."
   ],
   "stop_conditions_for_active_work": [
     "A new cost or billing authorization would be required.",
@@ -120,5 +136,5 @@
     "A genuine unrecoverable error occurs.",
     "170k required protected capacity is reached or marginal value becomes too low under the Step 8G contract."
   ],
-  "terminal_instruction_for_new_chat": "Do not stop at Step 8F. Step 8F is intentionally parked and public activation remains unauthorized. First reconcile and finish/merge PR #150 if still open, then continue Step 8G protected-scale work autonomously. Step 8G does not depend on 8F. Preserve the two-shard/no-billing boundary, zero-full-scan/bounded-query contract, Nutrition and YT-CUL separation, and Knowledge Core read-only status. Only return to Step 8F when the owner explicitly asks for the public-runtime decision."
+  "terminal_instruction_for_new_chat": "Continue from docs/handovers/CURRENT.json and fresh-reconcile live GitHub. Step 8G v8003 is live PASS with 1,642 protected recipes active on two shards. Step 8F is still parked and unauthorized but is now the recommended next owner decision because its exact one-record public canary is already machine-green. If the owner does not explicitly authorize 8F, continue bounded Step 8G protected-scale work autonomously."
 }
