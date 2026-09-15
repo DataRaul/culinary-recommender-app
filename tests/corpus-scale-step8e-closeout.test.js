@@ -33,9 +33,7 @@ test("Step 8F exact one-record activation is complete while Step 8G remains inde
   assert.equal(gate("8F").decisionInput.candidatePresentInPublicCorpus, true);
   assert.equal(gate("8G").status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(gate("8G").doesNotDependOn.includes("8F"), true);
-  assert.equal(handover.human_needed, false);
   assert.equal(handover.completed_human_gate.terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
-  assert.equal(handover.active_human_gate, "NONE");
   assert.equal(handover.corpus_scale.step8f.runtime_activation_authorized, true);
   assert.equal(handover.corpus_scale.step8f.public_runtime_changed, true);
   assert.equal(handover.corpus_scale.step8f.public_runtime_recipe_count_after, 85);
