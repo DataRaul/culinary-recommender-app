@@ -1,0 +1,82 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ORA_ABBOTT_1864_MARGINAL_VALUE_V1",
+  "pass": true,
+  "terminal": "STEP_8G_ORA_ABBOTT_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+  "baseline": {
+    "publicRecipeCount": 84,
+    "protectedUnitoolsCount": 501,
+    "protectedForkRecipeCount": 915,
+    "protectedCc0Count": 226,
+    "protectedComposedRecipeCount": 1642,
+    "distinctNormalizedTitles": 1625
+  },
+  "candidate": {
+    "sourceWork": "The English and Australian Cookery Book",
+    "sourceAuthor": "Edward Abbott",
+    "sourceYear": "1864",
+    "sourceUrl": "https://archive.org/details/b21505524",
+    "recipeCount": 713,
+    "parseableRecipeCount": 713,
+    "parseableRecipeRatio": 1,
+    "distinctNormalizedTitles": 682,
+    "uniqueTitleRatio": 0.9565217391304348,
+    "exactBaselineTitleOverlapCount": 3,
+    "novelNormalizedTitleCount": 679,
+    "novelTitleRatio": 0.9956011730205279,
+    "distinctIngredientPhraseCount": 2405,
+    "novelIngredientPhraseCount": 2259,
+    "ontologyResolvedOccurrenceRatio": 0.16345945945945947,
+    "ontologyResolvedCanonicalIngredientCount": 34,
+    "ontologyUnresolvedPhraseCount": 2365
+  },
+  "thresholds": {
+    "minParseableRatio": 0.95,
+    "minUniqueTitleRatio": 0.8,
+    "minNovelTitleRatio": 0.5
+  },
+  "gates": {
+    "rightsDocumented": true,
+    "rightsMetadataPass": true,
+    "rightsAuditPass": true,
+    "structuralQualityPass": true,
+    "culinaryCoveragePass": true
+  },
+  "rightsViolations": [],
+  "boundaries": {
+    "liveD1WritesAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "billingExpansionAuthorized": false,
+    "nutritionAuthorityImported": false,
+    "knowledgeCoreWriteAuthorized": false
+  },
+  "date": "2026-09-15",
+  "sourcePins": {
+    "openRecipeArchive": {
+      "repository": "AdamBouhmad/open-recipe-archive",
+      "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8"
+    },
+    "forkrecipeBaseline": {
+      "repository": "futurechef/forkrecipe-recipes",
+      "commit": "c32255266af39bd77444d39452f3df8088ac8fd9",
+      "recipeCount": 915
+    },
+    "unitoolsBaseline": {
+      "repository": "farcrak/unitools-recipes",
+      "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+      "recipeCount": 501
+    },
+    "cc0Baseline": {
+      "repository": "sylGauthier/recipes",
+      "commit": "b12e481d1c220a13e0847a34e148d5872a16928e",
+      "recipeCount": 226
+    }
+  },
+  "workflowEvidence": {
+    "runId": 34961369109,
+    "artifactId": 10393271838,
+    "artifactDigest": "sha256:2dfbe37083bfbd982b11b13d1da1639c1ed1760335ac9d8538cd0bf6b28937e0"
+  },
+  "interpretation": "The bounded Edward Abbott 1864 source-work cohort clears the no-write Step 8G marginal-value measurement against the full v8003 protected baseline. A separate prewrite/population gate is still required before any D1 mutation."
+}
