@@ -29,7 +29,7 @@ test("machine roadmap and handover mark 8F complete without broad automatic admi
   assert.equal(roadmap.boundaries.automaticPublicRecommendationAdmission, false);
   assert.equal(current.corpus_scale.step8f.status, "COMPLETE_PASS_PUBLIC_RUNTIME_ACTIVATED");
   assert.equal(current.corpus_scale.step8f.automatic_broader_admission_authorized, false);
-  assert.equal(current.active_human_gate, "NONE");
+  assert.equal(current.completed_human_gate.terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
 });
 
 test("public runtime remains 85 and historical golden corpus 84 while protected Step 8G advances to v8004", () => {
