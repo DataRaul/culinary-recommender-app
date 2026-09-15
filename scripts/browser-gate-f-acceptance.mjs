@@ -10,7 +10,7 @@ await page.goto(baseUrl, { waitUntil: "networkidle" });
 await page.getByRole("heading", { name: "What should you cook?" }).waitFor();
 const statusPill = page.locator("#statusPill");
 await statusPill.waitFor({ state: "attached" });
-if ((await statusPill.textContent())?.trim() !== "84 recipes · 76 curated + 8 open external · deterministic") {
+if ((await statusPill.textContent())?.trim() !== "85 recipes · 76 curated + 9 open external · deterministic") {
   throw new Error(`Gate F runtime status is incorrect: ${(await statusPill.textContent())?.trim()}`);
 }
 
@@ -45,7 +45,7 @@ if (await revisionLink.getAttribute("href") !== "https://en.wikibooks.org/w/inde
   throw new Error("Gate F exact revision link is incorrect");
 }
 
-// External records are search-only at this gate. Weekly planning remains the authored-corpus path.
+// Wikibooks records remain search-only; Step 8F's separately admitted tortilla may participate normally.
 await page.getByRole("button", { name: "Ideas" }).click();
 await page.getByRole("heading", { name: "What should you cook?" }).waitFor();
 await page.locator('input[name="slot"]').evaluateAll(inputs => {
@@ -58,9 +58,9 @@ await page.getByRole("button", { name: /Build my plan/ }).click();
 await page.getByRole("heading", { name: /1 meal, built as a portfolio/ }).waitFor();
 const plannedTitles = await page.locator(".recipe-card h3").allTextContents();
 if (plannedTitles.includes("Baba Ganoush") || plannedTitles.includes("Bruschetta (base)")) {
-  throw new Error("Search-only external recipe leaked into weekly planner");
+  throw new Error("Search-only Wikibooks recipe leaked into weekly planner");
 }
 
 if (errors.length) throw new Error(`Gate F browser page errors: ${errors.join(" | ")}`);
 await browser.close();
-console.log("Gate F browser acceptance passed.");
+console.log("Gate F browser acceptance passed with Step 8F public admission active.");
