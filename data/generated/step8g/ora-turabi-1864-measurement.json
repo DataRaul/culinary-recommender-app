@@ -1,0 +1,83 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ORA_TURABI_EFENDI_1864_MARGINAL_VALUE_V1",
+  "pass": true,
+  "terminal": "STEP_8G_ORA_TURABI_EFENDI_1864_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+  "date": "2026-09-16",
+  "workflowRun": 35035941153,
+  "artifactId": 10423296747,
+  "artifactDigest": "sha256:aaa2744a3ac86acb1f67696a4459f2bb2f6773bdebe8d3d92a5acca98f706e60",
+  "artifactMetricEnvelope": "step8g-turabi-p1-pc442-dt367-ov0-nt367-ip946-nip778-or0.265271105010295-oi28-ou913-bdt2411-r1-s1-c1",
+  "baseline": {
+    "publicRecipeCount": 85,
+    "protectedUnitoolsCount": 501,
+    "protectedForkRecipeCount": 915,
+    "protectedCc0Count": 226,
+    "protectedAbbottCount": 713,
+    "protectedBosseWatannaCount": 109,
+    "protectedComposedRecipeCount": 2464,
+    "expectedActiveProtectedVersion": "v8005",
+    "distinctNormalizedTitles": 2411
+  },
+  "candidate": {
+    "cohortId": "ORA_TURABI_EFENDI_1864_OTTOMAN_SHELF_AE3BD2C",
+    "collection": "ottoman-turkish",
+    "sourceRepository": "AdamBouhmad/open-recipe-archive",
+    "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "sourceWork": "A Turkish Cookery Book",
+    "sourceAuthor": "Turabi Efendi",
+    "sourceYear": "1864",
+    "sourceUrl": "https://archive.org/details/b21527830",
+    "license": "public-domain",
+    "recipeCount": 442,
+    "parseableRecipeCount": 442,
+    "parseableRecipeRatio": 1,
+    "distinctNormalizedTitles": 367,
+    "uniqueTitleRatio": 0.830316742081448,
+    "exactBaselineTitleOverlapCount": 0,
+    "novelNormalizedTitleCount": 367,
+    "novelTitleRatio": 1,
+    "distinctIngredientPhraseCount": 946,
+    "novelIngredientPhraseCount": 778,
+    "ontologyResolvedOccurrenceRatio": 0.265271105010295,
+    "ontologyResolvedCanonicalIngredientCount": 28,
+    "ontologyUnresolvedPhraseCount": 913,
+    "culturalAuthorityImported": false,
+    "historicalSourceLabelOnly": true
+  },
+  "thresholds": {
+    "minParseableRatio": 0.95,
+    "minUniqueTitleRatio": 0.8,
+    "minNovelTitleRatio": 0.5
+  },
+  "gates": {
+    "rightsDocumented": true,
+    "exactCountPass": true,
+    "rightsMetadataPass": true,
+    "rightsAuditPass": true,
+    "structuralQualityPass": true,
+    "culinaryCoveragePass": true
+  },
+  "rightsViolations": [],
+  "interpretation": {
+    "measurement": "PASS",
+    "prewriteEarned": true,
+    "liveProtectedPopulationAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "ontologyReviewCostSignal": "HIGH__26_5_PERCENT_OCCURRENCE_RESOLUTION",
+    "reason": "The bounded 442-record shelf is structurally complete, clears the established title-uniqueness threshold, and contributes 367 normalized titles with zero exact overlap against the v8005 baseline. Ontology occurrence resolution remains low enough that this is valuable protected-scale learning but not recommendation-admission authority."
+  },
+  "boundaries": {
+    "liveD1WritesAuthorized": false,
+    "protectedPopulationAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "d1BudgetExpansionAuthorized": false,
+    "billingExpansionAuthorized": false,
+    "nutritionAuthorityImported": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWriteAuthorized": false
+  }
+}
