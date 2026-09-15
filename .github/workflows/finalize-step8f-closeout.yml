@@ -1,0 +1,41 @@
+name: Finalize Step 8F activation closeout
+
+on:
+  push:
+    branches:
+      - agent/step8f-activation-closeout
+    paths:
+      - scripts/finalize-step8f-closeout.mjs
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/step8f-activation-closeout
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Generate exact Step 8F closeout state
+        run: node scripts/finalize-step8f-closeout.mjs
+      - name: Validate generated closeout
+        run: |
+          node --test tests/corpus-scale-step8f-activation.test.js
+          node --test tests/corpus-scale-step8f-activation-closeout.test.js
+          node --test tests/corpus-scale-step8e-closeout.test.js
+          node --test tests/step8d-terminal-closeout.test.js
+          node --test tests/corpus-scale-step8bc-closeout.test.js
+          node --test tests/corpus-scale-step8g-v8003-closeout.test.js
+          node scripts/build-corpus-scale-step8g-roadmap-state.mjs --out=.tmp/step8f-closeout-reconcile.json
+      - name: Commit generated closeout state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add config/corpus_scale_step8_roadmap.json docs/handovers/CURRENT.json docs/handovers/PREVIOUS.json data/generated/step8f/public-runtime-activation-pass.json docs/CORPUS_SCALE_STEP8F_PUBLIC_RUNTIME_ACTIVATION_PASS.md scripts/build-corpus-scale-step8g-roadmap-state.mjs tests/corpus-scale-step8f-activation-closeout.test.js tests/corpus-scale-step8e-closeout.test.js tests/step8d-terminal-closeout.test.js tests/corpus-scale-step8bc-closeout.test.js tests/corpus-scale-step8g-v8003-closeout.test.js
+          git commit -m "Step 8F: freeze public activation terminal state"
+          git push origin HEAD:agent/step8f-activation-closeout
