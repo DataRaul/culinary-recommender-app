@@ -1,15 +1,15 @@
 import { RECIPES } from "./data/recipes.js";
-import { AUTHORED_RECIPES, EXTERNAL_RECIPES } from "./data/corpus-v1.js";
+import { AUTHORED_RECIPES, PUBLIC_EXTERNAL_RECIPES } from "./data/corpus-v1.js";
 
 const existingIds = new Set(RECIPES.map(recipe => recipe.id));
-for (const recipe of EXTERNAL_RECIPES) {
+for (const recipe of PUBLIC_EXTERNAL_RECIPES) {
   if (existingIds.has(recipe.id)) continue;
   RECIPES.push(recipe);
   existingIds.add(recipe.id);
 }
 
 export const RUNTIME_RECIPE_COUNT = RECIPES.length;
-export const RUNTIME_RECIPE_STATUS = `${RUNTIME_RECIPE_COUNT} recipes · ${AUTHORED_RECIPES.length} curated + ${EXTERNAL_RECIPES.length} open external · deterministic`;
+export const RUNTIME_RECIPE_STATUS = `${RUNTIME_RECIPE_COUNT} recipes · ${AUTHORED_RECIPES.length} curated + ${PUBLIC_EXTERNAL_RECIPES.length} open external · deterministic`;
 
 const statusPill = document.querySelector("#statusPill");
 const syncStatus = () => {

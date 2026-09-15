@@ -1,0 +1,102 @@
+export const UNITOOLS_STEP8F_SOURCE = Object.freeze({
+  id: "UNITOOLS_STEP8F_PUBLIC_V1",
+  name: "UniTools World Recipes Dataset",
+  sourceVersionId: "1.1.0@1d09e9548d957dd0375301146a86dddf5e269c1b:a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+  license: "CC-BY-SA-4.0",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+  runtimeFetch: false,
+  imagesBundled: false,
+  sourceNutritionImportedAsAuthority: false,
+  activationGate: "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED",
+  activatedRecipeIds: ["unitools_tortilla_espanola"]
+});
+
+export const UNITOOLS_STEP8F_RECIPES = Object.freeze([
+  Object.freeze({
+    id: "unitools_tortilla_espanola",
+    identity: { canonicalTitle: "Spanish tortilla" },
+    provenance: {
+      sourceType: "EXTERNAL_OPEN_RECIPE",
+      sourceName: "UniTools World Recipes Dataset",
+      sourceItemId: "tortilla-espanola",
+      sourceRevisionId: "1.1.0@1d09e954",
+      sourceVersionId: "1.1.0@1d09e9548d957dd0375301146a86dddf5e269c1b:a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+      sourceUrl: "https://theunitools.com/en/recipes/spain/tortilla-espanola",
+      sourceRevisionUrl: "https://github.com/farcrak/unitools-recipes/blob/1d09e9548d957dd0375301146a86dddf5e269c1b/unitools-recipes-v1.json#tortilla-espanola",
+      attribution: "UniTools — theunitools.com",
+      license: "CC-BY-SA-4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+      modifiedFromSource: true,
+      transformation: "Normalized into the Culinary Recommender schema under the explicit Step 8E reviewed subset contract.",
+      dishFamilyId: "spanish_potato_omelet",
+      sourceCategories: ["main"],
+      recipeRoles: ["canonical_classic", "regional_traditional", "staple_everyday"],
+      admissionState: "ADMIT_RECOMMENDATION_ELIGIBLE_REVIEWED_STEP8E"
+    },
+    corpusMetadata: {
+      corpus: "unitools_step8e_v1",
+      dishFamilyId: "spanish_potato_omelet",
+      recipeRoles: ["canonical_classic", "regional_traditional", "staple_everyday"],
+      sourceMetadataCompleteness: "STEP8E_EXACT_REVIEWED_CORE",
+      admissionState: "ADMIT_RECOMMENDATION_ELIGIBLE_REVIEWED_STEP8E"
+    },
+    governance: {
+      recommendationState: "ELIGIBLE",
+      runtimeActivationAuthorized: true,
+      activationGate: "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED",
+      unknownIsNotZero: true,
+      sourceNutritionIgnoredForAuthority: true,
+      sourceDietaryMetadataIgnoredForAuthority: true,
+      sourceScalingMetadataIgnoredForAuthority: true,
+      mediaExcluded: true
+    },
+    culinary: {
+      cuisine: "Spanish",
+      mealTypes: ["lunch", "dinner"],
+      difficulty: 3,
+      techniqueTags: [],
+      activeAttention: 3,
+      timingSensitivity: 3,
+      simultaneousTasks: 1,
+      finishingRisk: 3,
+      errorRecovery: 2,
+      equipmentDependence: 1
+    },
+    time: {
+      prepMinutes: 15,
+      activeMinutes: null,
+      passiveMinutes: null,
+      totalMinutes: 50,
+      sourceState: "SOURCE_EXPLICIT_PREP_PLUS_COOK"
+    },
+    ingredients: [
+      { canonicalIngredientId: "potato", quantity: 600, unit: "g", required: true, preparation: "sliced thin", sourceText: "Potatoes" },
+      { canonicalIngredientId: "onion", quantity: 1, unit: "piece", required: true, preparation: "thinly sliced", sourceText: "Onion" },
+      { canonicalIngredientId: "eggs", quantity: 6, unit: "piece", required: true, preparation: "", sourceText: "Eggs" },
+      { canonicalIngredientId: "olive_oil", quantity: 400, unit: "ml", required: true, preparation: "nearly all of it goes back in the bottle", sourceText: "Olive oil" },
+      { canonicalIngredientId: "salt", quantity: null, unit: "toTaste", required: true, preparation: "", sourceText: "Salt" }
+    ],
+    instructions: [
+      { text: "Heat the oil in a deep pan until it is warm rather than hot — a slice of potato dropped in should sigh, not crackle. Add the potato and onion and salt them." },
+      { text: "Poach for twenty minutes, turning gently now and then. It is ready when a slice breaks easily against the side of the pan. Drain through a colander, keeping the potato." },
+      { text: "Beat the eggs with a pinch of salt and fold the warm potato through them. Let it sit for ten minutes: the potato gives up starch and the tortilla holds together for it." },
+      { text: "In a 24 cm pan with a spoon of oil, pour the mixture in and cook over medium heat for four minutes, easing the edges towards the middle with a spatula." },
+      { text: "Cover with a plate, flip in one movement and slide it back raw side down. Three minutes more leaves the centre slightly loose, which is how it should be." }
+    ],
+    equipment: [],
+    serving: { servings: 4, sourceState: "SOURCE_EXPLICIT" },
+    nutrition: {
+      perServing: { energyKcal: null, proteinG: null, carbohydrateG: null, fatG: null, fibreG: null },
+      estimationState: "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED",
+      confidence: "unknown",
+      provenance: "UniTools nutrition metadata is not imported as NutritionSource authority."
+    },
+    dietaryTags: ["vegetarian"],
+    allergySafety: { declaredAllergens: ["egg"], basis: "CONSERVATIVE_FROM_NORMALIZED_INGREDIENT_ONTOLOGY_STEP8E_REVIEW" },
+    economics: { costTier: 1, basis: "PROJECT_HEURISTIC_NOT_SOURCE_METADATA", note: "Relative runtime heuristic only; not a UniTools price claim." },
+    convenience: { mealPrepSuitability: 2, batchSuitability: 2, leftoverSuitability: 2, portability: 2 },
+    discovery: { flavourProfile: [], novelty: 1, techniqueLearningValue: 4, provenance: "Project runtime metadata, separately identified from source facts." },
+    geography: { region: "Spain", country: "Spain", sourceState: "SOURCE_COUNTRY_CODE_REVIEWED" },
+    mainProtein: null
+  })
+]);
