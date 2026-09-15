@@ -1,0 +1,113 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ORA_ABBOTT_V8004_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_ORA_ABBOTT_V8004_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-15",
+  "source": {
+    "cohortId": "ORA_ABBOTT_1864_AE3BD2C",
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "sourceWork": "The English and Australian Cookery Book",
+    "sourceAuthor": "Edward Abbott",
+    "sourceYear": "1864",
+    "recordCount": 713,
+    "licenseId": "public-domain",
+    "measurementTerminal": "STEP_8G_ORA_ABBOTT_MEASUREMENT_EARNED_COHORT_CANDIDATE"
+  },
+  "parent": {
+    "activeCorpusVersion": "v8003",
+    "composedRecipeCount": 1642,
+    "compositionSha256": "d78596da1e04bdcbdea780495def018424ee6e4d026d8781fbdc8d1119540b15"
+  },
+  "layer": {
+    "corpusVersion": "v8004",
+    "parentCorpusVersion": "v8003",
+    "recipeCount": 713,
+    "manifestSha256": "ecf98cb4d4cd1f2a1006d491204560ebd2d119f8eeed83edf2e635bad25eae6b",
+    "populationPlanSha256": "7b0867e72cc874a6421ddbb9d9eba68f2991eff4ad12229f210d04ab16d7469f",
+    "batchCount": 73,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 5871,
+    "maxBatchBodyBytes": 30389,
+    "maxWriteRequestBytes": 34650,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "maxWriteD1Subqueries": 15,
+    "maxAllowedD1Subqueries": 16,
+    "writeQueryBudgetPass": true,
+    "shardDescriptors": [
+      {
+        "shardNumber": 0,
+        "rowCount": 352,
+        "totalBodyBytes": 949506,
+        "firstOrdinal": 2,
+        "lastOrdinal": 712,
+        "entriesSha256": "9a38e925cc03683a4d9e4e927979f17a0d65f48eef05dc5b2f9f4d7dfebba104"
+      },
+      {
+        "shardNumber": 1,
+        "rowCount": 361,
+        "totalBodyBytes": 948330,
+        "firstOrdinal": 0,
+        "lastOrdinal": 711,
+        "entriesSha256": "73dc5689e3f1fc4f5aa8cb69ef149e18df9fe49d6e082b51b5b9e3e9d20a91b2"
+      }
+    ]
+  },
+  "composition": {
+    "activeCorpusVersion": "v8004",
+    "parentCorpusVersion": "v8003",
+    "cumulativeRecipeCount": 2355,
+    "capacity": {
+      "parentLayeredPhysicalBodyBytes": 12665095,
+      "addedLayerBodyBytes": 1897836,
+      "layeredPhysicalBodyBytes": 14562931,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {
+          "shardNumber": 0,
+          "parentRowCount": 828,
+          "addedRowCount": 352,
+          "rowCount": 1180,
+          "parentBodyBytes": 6388025,
+          "addedBodyBytes": 949506,
+          "totalBodyBytes": 7337531,
+          "withinProjectDatabaseBudget": true
+        },
+        {
+          "shardNumber": 1,
+          "parentRowCount": 814,
+          "addedRowCount": 361,
+          "rowCount": 1175,
+          "parentBodyBytes": 6277070,
+          "addedBodyBytes": 948330,
+          "totalBodyBytes": 7225400,
+          "withinProjectDatabaseBudget": true
+        }
+      ]
+    },
+    "routing": {
+      "shardCount": 2,
+      "mode": "CONTROL_INDEX_EXACT_ROUTE_THEN_BATCH_HYDRATE_BY_SHARD",
+      "fullCorpusScans": 0,
+      "maxProtectedD1Subqueries": 16
+    }
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "step8fReopened": false
+  },
+  "decision": "EARN_V8004_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_TOPOLOGY",
+  "workflowEvidence": {
+    "runId": 34962056580,
+    "artifactId": 10393616763,
+    "artifactDigest": "sha256:152a48b870f71dc380f896e2dc2b82262eeb58bff9564818a1deee18dbc8d433"
+  }
+}
