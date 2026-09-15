@@ -54,4 +54,4 @@ The next action is a separate v8005 implementation lane following the proven v80
 - source artifact: `10418613728`
 - source artifact digest: `sha256:85de968c9b01f69f1d38d6e07719e42aec191df505ecfae57ec2b4f292a4024d`
 
-The dedicated workflow regenerates the evidence and validation and compares them byte-for-byte with these canonical files before declaring the frozen prewrite green.
+The dedicated workflow regenerates the evidence and validation and compares them byte-for-byte with these canonical files before declaring the frozen prewrite green. This canonical-regeneration check is required on the final PR head before merge.
