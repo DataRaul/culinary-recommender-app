@@ -1,0 +1,39 @@
+name: Corpus Scale Step 8G Abbott v8004 live implementation
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-ora-abbott-live.yml'
+      - 'data/generated/step8g/v8004-runtime-descriptor.mjs'
+      - 'src/server/step8g-v8004-live-runtime.mjs'
+      - 'src/server/step8g-v8004-hydration-runtime.mjs'
+      - 'functions/api/step8g/v8004.js'
+      - 'step8g-v8004-populate.html'
+      - 'scripts/verify-step8g-v8004-live-payloads.mjs'
+      - 'tests/step8g-v8004-live.test.js'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: corpus-step8g-v8004-live-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify-live-implementation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+      - name: Checkout pinned Abbott source
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run v8004 live runtime tests
+        run: node --test tests/step8g-v8004-live.test.js
+      - name: Verify exact real-source body and frozen route payload parity
+        run: node scripts/verify-step8g-v8004-live-payloads.mjs --candidate=./open-recipe-archive
