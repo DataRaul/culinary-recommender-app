@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
+import { STEP8G_V8004_RUNTIME_DESCRIPTOR } from "../data/generated/step8g/v8004-runtime-descriptor.mjs";
 import {
   STEP8G_V8004_EXPECTED_BODY_BATCH_COUNT,
   STEP8G_V8004_EXPECTED_RECIPE_COUNT,
@@ -22,8 +23,14 @@ test("v8004 freezes 713 Abbott rows and 2355 composed routes on two shards",()=>
   assert.equal(summary.bodyBatchCount,STEP8G_V8004_EXPECTED_BODY_BATCH_COUNT);
   assert.equal(summary.newRouteBatchCount,73);
   assert.equal(summary.shardCount,2);
+  assert.deepEqual(STEP8G_V8004_RUNTIME_DESCRIPTOR.bodyShardRows,[352,361]);
   assert.equal(expectedStep8GV8004BodyBatchIds().length,73);
   assert.equal(expectedStep8GV8004RouteBatchIds().length,73);
+  const bodyHashes=STEP8G_V8004_RUNTIME_DESCRIPTOR.bodyHashHexByShard.map(value=>value.match(/.{64}/g)||[]);
+  const routeHashes=STEP8G_V8004_RUNTIME_DESCRIPTOR.routeHashHexByShard.map(value=>value.match(/.{64}/g)||[]);
+  assert.deepEqual(bodyHashes.map(list=>list.length),[36,37]);
+  assert.deepEqual(routeHashes.map(list=>list.length),[36,37]);
+  assert.equal([...bodyHashes.flat(),...routeHashes.flat()].every(value=>/^[0-9a-f]{64}$/.test(value)),true);
   assert.equal(summary.publicRuntimeActivationAuthorized,false);
   assert.equal(summary.recommendationAdmissionAuthorized,false);
   assert.equal(summary.billingExpansionAuthorized,false);
