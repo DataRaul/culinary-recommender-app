@@ -32,12 +32,12 @@ test("machine roadmap and handover mark 8F complete without broad automatic admi
   assert.equal(current.active_human_gate, "NONE");
 });
 
-test("public runtime is 85 while the historical golden corpus remains 84 and Step 8G remains v8003", () => {
+test("public runtime remains 85 and historical golden corpus 84 while protected Step 8G advances to v8004", () => {
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
-  assert.equal(gate("8G").latestIteration.finalProtectedActiveVersion, "v8003");
-  assert.equal(gate("8G").latestIteration.composedRecipeCount, 1642);
-  assert.equal(current.corpus_scale.step8g.final_protected_active_version, "v8003");
-  assert.equal(current.corpus_scale.step8g.composed_recipe_count, 1642);
+  assert.equal(gate("8G").latestIteration.finalProtectedActiveVersion, "v8004");
+  assert.equal(gate("8G").latestIteration.composedRecipeCount, 2355);
+  assert.equal(current.corpus_scale.step8g.final_protected_active_version, "v8004");
+  assert.equal(current.corpus_scale.step8g.composed_recipe_count, 2355);
 });
