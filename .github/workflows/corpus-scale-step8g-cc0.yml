@@ -1,0 +1,55 @@
+name: Corpus Scale Step 8G CC0 markdown measurement
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-cc0.yml'
+      - 'scripts/corpus-scale-step8g-cc0-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-cc0.mjs'
+      - 'tests/corpus-scale-step8g-cc0-core.test.js'
+      - 'docs/CORPUS_SCALE_STEP8G_CC0_MARKDOWN_CANDIDATE.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: corpus-step8g-cc0-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  measure-cc0-markdown-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+      - name: Checkout pinned CC0 markdown candidate
+        uses: actions/checkout@v4
+        with:
+          repository: sylGauthier/recipes
+          ref: b12e481d1c220a13e0847a34e148d5872a16928e
+          path: cc0-recipes
+      - name: Checkout pinned ForkRecipe protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: futurechef/forkrecipe-recipes
+          ref: c32255266af39bd77444d39452f3df8088ac8fd9
+          path: forkrecipe
+      - name: Checkout pinned UniTools protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: farcrak/unitools-recipes
+          ref: 1d09e9548d957dd0375301146a86dddf5e269c1b
+          path: unitools
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run CC0 measurement unit tests
+        run: node --test tests/corpus-scale-step8g-cc0-core.test.js
+      - name: Measure pinned CC0 markdown cohort against current protected baseline
+        run: node scripts/run-corpus-scale-step8g-cc0.mjs --candidate=./cc0-recipes --forkrecipe=./forkrecipe --unitools=./unitools --out=.tmp/step8g-cc0-markdown-measurement
+      - name: Upload Step 8G CC0 candidate evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-cc0-markdown-measurement
+          path: .tmp/step8g-cc0-markdown-measurement/measurement.json
+          if-no-files-found: error
+          retention-days: 30
