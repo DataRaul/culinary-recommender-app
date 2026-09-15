@@ -78,10 +78,37 @@ jobs:
           if(p.boundaries.liveD1WritesAuthorized!==false||p.boundaries.protectedPopulationAuthorized!==false||p.boundaries.publicRuntimeChangeAuthorized!==false||p.boundaries.thirdShardAuthorized!==false||p.boundaries.d1BudgetExpansionAuthorized!==false||p.boundaries.billingExpansionAuthorized!==false)process.exit(1);
           console.log(p.terminal);'
 
+      - name: Expose non-sensitive measurement metrics in artifact name
+        id: metrics
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = JSON.parse(fs.readFileSync('.tmp/step8g-ora-turabi-measurement/measurement.json', 'utf8'));
+          const c = p.candidate;
+          const fields = {
+            pass: p.pass ? '1' : '0',
+            parseable: c.parseableRecipeCount,
+            titles: c.distinctNormalizedTitles,
+            overlap: c.exactBaselineTitleOverlapCount,
+            novel: c.novelNormalizedTitleCount,
+            phrases: c.distinctIngredientPhraseCount,
+            novelphrases: c.novelIngredientPhraseCount,
+            ontratio: Number(c.ontologyResolvedOccurrenceRatio).toFixed(15),
+            ontids: c.ontologyResolvedCanonicalIngredientCount,
+            unresolved: c.ontologyUnresolvedPhraseCount,
+            basetitles: p.baseline.distinctNormalizedTitles,
+            rights: p.gates.rightsAuditPass ? '1' : '0',
+            structural: p.gates.structuralQualityPass ? '1' : '0',
+            coverage: p.gates.culinaryCoveragePass ? '1' : '0'
+          };
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, Object.entries(fields).map(([k,v]) => `${k}=${v}\n`).join(''));
+          NODE
+
       - name: Upload Step 8G Turabi measurement evidence
         uses: actions/upload-artifact@v4
         with:
-          name: step8g-ora-turabi-1864-measurement
+          name: step8g-turabi-p${{ steps.metrics.outputs.pass }}-pc${{ steps.metrics.outputs.parseable }}-dt${{ steps.metrics.outputs.titles }}-ov${{ steps.metrics.outputs.overlap }}-nt${{ steps.metrics.outputs.novel }}-ip${{ steps.metrics.outputs.phrases }}-nip${{ steps.metrics.outputs.novelphrases }}-or${{ steps.metrics.outputs.ontratio }}-oi${{ steps.metrics.outputs.ontids }}-ou${{ steps.metrics.outputs.unresolved }}-bdt${{ steps.metrics.outputs.basetitles }}-r${{ steps.metrics.outputs.rights }}-s${{ steps.metrics.outputs.structural }}-c${{ steps.metrics.outputs.coverage }}
           path: .tmp/step8g-ora-turabi-measurement/measurement.json
           if-no-files-found: error
           retention-days: 30
