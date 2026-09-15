@@ -1,0 +1,78 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_CC0_MARKDOWN_MARGINAL_VALUE_V1",
+  "pass": true,
+  "terminal": "STEP_8G_CC0_MARKDOWN_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+  "date": "2026-09-15",
+  "workflowRun": 34949195687,
+  "artifactId": 10388586371,
+  "artifactDigest": "sha256:7b4f5c2114d58ac51aec394aa307bf269383cf1d3c203de9ae9a9df882287667",
+  "baseline": {
+    "publicRecipeCount": 84,
+    "protectedUnitoolsCount": 501,
+    "protectedForkRecipeCount": 915,
+    "combinedRecipeCount": 1500,
+    "distinctNormalizedTitles": 1419,
+    "distinctNormalizedIngredientPhrases": 5303,
+    "distinctResolvedCanonicalIngredientIds": 115,
+    "canonicalOntologySize": 136
+  },
+  "candidate": {
+    "sourceRecipeCount": 226,
+    "parseableRecipeCount": 223,
+    "parseableRecipeRatio": 0.9867256637168141,
+    "taggedRecipeCount": 225,
+    "distinctTagCount": 113,
+    "distinctNormalizedTitles": 225,
+    "duplicateNormalizedTitleCount": 1,
+    "exactBaselineTitleOverlapCount": 19,
+    "novelNormalizedTitleCount": 206,
+    "uniqueTitleRatio": 0.995575221238938,
+    "novelTitleRatio": 0.9155555555555556,
+    "lexicalNovelIngredientPhraseRatio": 0.8655788655788655,
+    "resolvedIngredientOccurrenceRatio": 0.21391604370327774,
+    "canonicalIngredientIdsNewToBaseline": ["beef_mince", "oats", "broccoli"]
+  },
+  "gates": {
+    "rightsAuditPass": true,
+    "sourceQualityPass": true,
+    "structuralQualityPass": true,
+    "culinaryCoveragePass": true
+  },
+  "reviewSignal": {
+    "protectedStorageValue": "HIGH_CANDIDATE",
+    "recommendationReviewCost": "HIGH"
+  },
+  "sourcePins": {
+    "candidate": {
+      "repository": "sylGauthier/recipes",
+      "commit": "b12e481d1c220a13e0847a34e148d5872a16928e",
+      "recipeFileCount": 226,
+      "license": "CC0-1.0"
+    },
+    "forkrecipeBaseline": {
+      "repository": "futurechef/forkrecipe-recipes",
+      "commit": "c32255266af39bd77444d39452f3df8088ac8fd9",
+      "recipeCount": 915
+    },
+    "unitoolsBaseline": {
+      "repository": "farcrak/unitools-recipes",
+      "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+      "recipeCount": 501
+    }
+  },
+  "rightsEvidence": {
+    "pass": true,
+    "cc0LegalCodePresent": true,
+    "repositoryContentPublicDomainStatementPresent": true,
+    "upstreamBasedCookingLineageDeclared": true
+  },
+  "boundaries": {
+    "liveD1WritesAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "billingExpansionAuthorized": false,
+    "nutritionAuthorityImported": false,
+    "knowledgeCoreWriteAuthorized": false
+  }
+}
