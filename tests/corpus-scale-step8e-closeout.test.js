@@ -20,24 +20,25 @@ test("Step 8E terminal closeout is exact and bounded", () => {
   assert.equal(subset.recipes[0].id, "unitools_tortilla_espanola");
 });
 
-test("Step 8F remains unauthorized while the continuation state parks it and activates Step 8G", () => {
-  assert.equal(gate("8F").status, "PARKED_EXPLICIT_HUMAN_PUBLIC_RUNTIME_DECISION");
-  assert.equal(gate("8F").parked, true);
+test("Step 8F exact one-record activation is complete while Step 8G remains independently active", () => {
+  assert.equal(gate("8F").status, "COMPLETE_PASS_PUBLIC_RUNTIME_ACTIVATED");
+  assert.equal(gate("8F").terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
+  assert.equal(gate("8F").parked, false);
   assert.equal(gate("8F").blockingActiveLane, false);
   assert.equal(gate("8F").humanRequired, true);
-  assert.equal(gate("8F").decisionInput.runtimeActivationAuthorized, false);
-  assert.equal(gate("8F").decisionInput.publicRuntimeChanged, false);
+  assert.equal(gate("8F").decisionInput.runtimeActivationAuthorized, true);
+  assert.equal(gate("8F").decisionInput.publicRuntimeChanged, true);
   assert.equal(gate("8F").decisionInput.publicCorpusRecipeCountBeforeDecision, 84);
-  assert.equal(gate("8F").decisionInput.candidatePresentInPublicCorpus, false);
+  assert.equal(gate("8F").decisionInput.publicCorpusRecipeCountAfterDecision, 85);
+  assert.equal(gate("8F").decisionInput.candidatePresentInPublicCorpus, true);
   assert.equal(gate("8G").status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(gate("8G").doesNotDependOn.includes("8F"), true);
   assert.equal(handover.human_needed, false);
-  assert.equal(handover.parked_human_gate.id, "STEP8F_PUBLIC_RUNTIME_ACTIVATION_DECISION");
-  assert.equal(handover.parked_human_gate.status, "PARKED_NOT_AUTHORIZED");
-  assert.equal(handover.parked_human_gate.blocking_active_lane, false);
+  assert.equal(handover.completed_human_gate.terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
   assert.equal(handover.active_human_gate, "NONE");
-  assert.equal(handover.corpus_scale.step8f.runtime_activation_authorized, false);
-  assert.equal(handover.corpus_scale.step8f.public_runtime_changed, false);
+  assert.equal(handover.corpus_scale.step8f.runtime_activation_authorized, true);
+  assert.equal(handover.corpus_scale.step8f.public_runtime_changed, true);
+  assert.equal(handover.corpus_scale.step8f.public_runtime_recipe_count_after, 85);
   assert.equal(handover.corpus_scale.step8g.status, "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(handover.corpus_scale.step8g.depends_on_step8f, false);
   assert.equal(handover.corpus_scale.step8g.public_runtime_change_allowed, false);

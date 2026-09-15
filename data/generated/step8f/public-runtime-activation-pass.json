@@ -1,0 +1,57 @@
+{
+  "schema": "CORPUS_SCALE_STEP8F_PUBLIC_RUNTIME_ACTIVATION_PASS_V1",
+  "evidenceClass": "OWNER_AUTHORIZATION_PLUS_MERGED_IMPLEMENTATION_PLUS_PRODUCTION_SMOKE",
+  "date": "2026-09-15",
+  "pass": true,
+  "terminal": "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED",
+  "ownerAuthorization": {
+    "authorized": true,
+    "scope": [
+      "unitools_tortilla_espanola"
+    ],
+    "scopeExact": true
+  },
+  "candidate": {
+    "canonicalRecipeId": "unitools_tortilla_espanola",
+    "dishFamilyId": "spanish_potato_omelet",
+    "licenseId": "CC-BY-SA-4.0"
+  },
+  "publicRuntime": {
+    "recipeCountBefore": 84,
+    "recipeCountAfter": 85,
+    "externalCountAfter": 9,
+    "historicalGoldenCorpusCountPreserved": 84,
+    "activatedCandidatePresent": true,
+    "ordinaryRankingPass": true,
+    "plannerPass": true,
+    "ingredientSearchPass": true,
+    "hardAllergenPass": true,
+    "hardDietaryPass": true,
+    "permanentExclusionPass": true,
+    "explicitV1DirectVsV2ParityPass": true,
+    "attributionLicenseFirewallPass": true,
+    "sourceNutritionAuthorityImported": false
+  },
+  "implementation": {
+    "pr": 160,
+    "mergeSha": "0848d51d8a0c58cccee84c8a9ffe6108232e9639",
+    "prerequisiteRun": 34958188244,
+    "prValidationRun": 34958188189,
+    "postMergeValidationRun": 34958332756,
+    "cloudflareDeployment": "PASS",
+    "cloudflareDeploymentId": "468b1c6b-2e75-4d26-9979-cebc53ca1369",
+    "productionSmoke": "PASS"
+  },
+  "boundaries": {
+    "automaticBroaderRecommendationAdmissionAuthorized": false,
+    "additionalProtectedRecipesActivated": 0,
+    "protectedCorpusActiveVersion": "v8003",
+    "protectedCorpusRecipeCount": 1642,
+    "protectedShardCount": 2,
+    "thirdShardUsed": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false
+  }
+}
