@@ -20,7 +20,7 @@ test("Step 8E terminal closeout is exact and bounded", () => {
   assert.equal(subset.recipes[0].id, "unitools_tortilla_espanola");
 });
 
-test("Step 8F exact one-record activation is complete while Step 8G remains independently active", () => {
+test("Step 8F exact one-record activation remains complete while Step 8G advances independently", () => {
   assert.equal(gate("8F").status, "COMPLETE_PASS_PUBLIC_RUNTIME_ACTIVATED");
   assert.equal(gate("8F").terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
   assert.equal(gate("8F").parked, false);
@@ -33,7 +33,7 @@ test("Step 8F exact one-record activation is complete while Step 8G remains inde
   assert.equal(gate("8F").decisionInput.candidatePresentInPublicCorpus, true);
   assert.equal(gate("8G").status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(gate("8G").doesNotDependOn.includes("8F"), true);
-  assert.equal(handover.completed_human_gate.terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
+  assert.equal(handover.corpus_scale.step8f.terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
   assert.equal(handover.corpus_scale.step8f.runtime_activation_authorized, true);
   assert.equal(handover.corpus_scale.step8f.public_runtime_changed, true);
   assert.equal(handover.corpus_scale.step8f.public_runtime_recipe_count_after, 85);
