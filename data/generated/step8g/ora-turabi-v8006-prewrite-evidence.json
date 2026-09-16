@@ -1,0 +1,162 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ORA_TURABI_EFENDI_V8006_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_ORA_TURABI_EFENDI_V8006_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-16",
+  "source": {
+    "cohortId": "ORA_TURABI_EFENDI_1864_OTTOMAN_SHELF_AE3BD2C",
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "collection": "ottoman-turkish",
+    "sourceWork": "A Turkish Cookery Book",
+    "sourceAuthor": "Turabi Efendi",
+    "sourceYear": "1864",
+    "sourceUrl": "https://archive.org/details/b21527830",
+    "recordCount": 442,
+    "licenseId": "public-domain",
+    "measurementTerminal": "STEP_8G_ORA_TURABI_EFENDI_1864_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+    "ontologyResolvedOccurrenceRatio": 0.265271105010295,
+    "culturalAuthenticityAuthorityImported": false
+  },
+  "parent": {
+    "activeCorpusVersion": "v8005",
+    "composedRecipeCount": 2464,
+    "fingerprintSha256": "6a5c0a427b25e8b0592f48f7b293a6cd6f39fa06b12d141ce60bf284d92a036c",
+    "fingerprintMaterial": {
+      "activeCorpusVersion": "v8005",
+      "composedRecipeCount": 2464,
+      "liveTerminal": "STEP_8G_ORA_BOSSE_WATANNA_V8005_PROTECTED_POPULATION_PASS",
+      "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "layerManifestSha256": "c283c4dc608848a5838331030760544a1b94b6c3d98155fbce8e4829deededba",
+      "populationPlanSha256": "6ad9d7aaa7ee219df2f5fdf2d2ebf48a572f1a1376f99bf8d4899128149e66ae",
+      "bodyShardRows": [
+        61,
+        48
+      ],
+      "parentCompositionRouteCount": 2355,
+      "composedRouteCount": 2464
+    }
+  },
+  "layer": {
+    "corpusVersion": "v8006",
+    "parentCorpusVersion": "v8005",
+    "recipeCount": 442,
+    "manifestSha256": "3ac76c7f8f107eaf811167e8245582e30204715d7b45a83eade26ae418f765db",
+    "populationPlanSha256": "b6dd9020fb6221a72c245feb2dd94d9b5ebe8bb758bd25ee508c9031fe5b59a0",
+    "batchCount": 45,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 5127,
+    "maxBatchBodyBytes": 37393,
+    "maxWriteRequestBytes": 16090,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "operationBudget": {
+      "authD1Subqueries": 1,
+      "maxRowsPerBatch": 10,
+      "operations": {
+        "status": 1,
+        "bindings": 3,
+        "freeLimitSimulation": 1,
+        "initialize": 8,
+        "bodyWriteFresh": 15,
+        "bodyWriteReplay": 3,
+        "progress": 7,
+        "copyParentRoutesFresh": 6,
+        "routeWriteFresh": 16,
+        "routeWriteReplay": 4,
+        "activate": 8,
+        "rollback": 3,
+        "sixLayerHydrationCanary": 4,
+        "boundedHydrationWorstCase": 10,
+        "evidence": 7
+      },
+      "maxPlannedD1Subqueries": 16,
+      "maxAllowedD1Subqueries": 16,
+      "limitingOperations": [
+        "routeWriteFresh"
+      ],
+      "pass": true,
+      "headroomAssumed": false
+    },
+    "shardDescriptors": [
+      {
+        "shardNumber": 0,
+        "rowCount": 218,
+        "totalBodyBytes": 713560,
+        "firstOrdinal": 0,
+        "lastOrdinal": 439,
+        "entriesSha256": "7cf1b5da1b7faeda92c9ed15938735b368b16ff53e79f8ad33cc93b7606793a1"
+      },
+      {
+        "shardNumber": 1,
+        "rowCount": 224,
+        "totalBodyBytes": 716766,
+        "firstOrdinal": 2,
+        "lastOrdinal": 441,
+        "entriesSha256": "0830efea514cd255fcd4fc53f32eef45683deb444395854eae11434b9256dcac"
+      }
+    ]
+  },
+  "composition": {
+    "activeCorpusVersion": "v8006",
+    "parentCorpusVersion": "v8005",
+    "cumulativeRecipeCount": 2906,
+    "capacity": {
+      "parentLayeredPhysicalBodyBytes": 14914859,
+      "addedLayerBodyBytes": 1430326,
+      "layeredPhysicalBodyBytes": 16345185,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {
+          "shardNumber": 0,
+          "parentRowCount": 1241,
+          "addedRowCount": 218,
+          "rowCount": 1459,
+          "parentBodyBytes": 7531627,
+          "addedBodyBytes": 713560,
+          "totalBodyBytes": 8245187,
+          "withinProjectDatabaseBudget": true
+        },
+        {
+          "shardNumber": 1,
+          "parentRowCount": 1223,
+          "addedRowCount": 224,
+          "rowCount": 1447,
+          "parentBodyBytes": 7383232,
+          "addedBodyBytes": 716766,
+          "totalBodyBytes": 8099998,
+          "withinProjectDatabaseBudget": true
+        }
+      ]
+    },
+    "routing": {
+      "shardCount": 2,
+      "mode": "CONTROL_INDEX_EXACT_ROUTE_THEN_BATCH_HYDRATE_BY_SHARD",
+      "fullCorpusScans": 0,
+      "maxProtectedD1Subqueries": 16,
+      "d1BudgetHeadroomAssumed": false
+    }
+  },
+  "gates": {
+    "requestSizePass": true,
+    "operationBudgetPass": true,
+    "capacityPass": true,
+    "topologyPass": true,
+    "countPass": true,
+    "batchSizePass": true
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "d1BudgetExpansion": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "step8fReopened": false
+  },
+  "decision": "EARN_V8006_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE"
+}

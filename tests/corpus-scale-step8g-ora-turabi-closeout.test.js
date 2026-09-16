@@ -33,25 +33,32 @@ test("Turabi 1864 measurement PASS is frozen with exact artifact-backed metrics"
   }
 });
 
-test("Turabi measurement advances only the next Step 8G iteration while v8005 stays live", () => {
+test("Turabi measurement remains frozen while the next Step 8G iteration advances through v8006 prewrite", () => {
   const g = gate("8G");
   assert.equal(g.status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(g.latestIteration.finalProtectedActiveVersion, "v8005");
   assert.equal(g.latestIteration.composedRecipeCount, 2464);
   assert.equal(g.latestIteration.liveTerminal, "STEP_8G_ORA_BOSSE_WATANNA_V8005_PROTECTED_POPULATION_PASS");
-  assert.equal(g.nextIteration.status, "MEASUREMENT_PASS_PREWRITE_EARNED");
+  assert.equal(g.nextIteration.status, "PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED");
   assert.equal(g.nextIteration.candidate, "ORA_TURABI_EFENDI_1864_OTTOMAN_SHELF_AE3BD2C");
   assert.equal(g.nextIteration.measurementTerminal, evidence.terminal);
   assert.equal(g.nextIteration.measurementRecipeCount, 442);
-  assert.equal(g.nextIteration.nextAction, "DESIGN_V8006_PREWRITE_CAPACITY_GATE");
+  assert.equal(g.nextIteration.prewriteStatus, "PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED");
+  assert.equal(g.nextIteration.implementationEarned, true);
+  assert.equal(g.nextIteration.livePopulationPerformed, false);
+  assert.equal(g.nextIteration.nextAction, "IMPLEMENT_V8006_PROTECTED_POPULATION");
+  assert.equal(g.nextIteration.layerVersion, "v8006");
   assert.equal(g.nextIteration.plannedParentVersion, "v8005");
   assert.equal(g.nextIteration.plannedParentRecipeCount, 2464);
   assert.equal(g.nextIteration.plannedChildRecipeCount, 442);
   assert.equal(g.nextIteration.plannedComposedRecipeCount, 2906);
+  assert.equal(g.nextIteration.maxRowsPerBatch, 10);
+  assert.equal(g.nextIteration.maxPlannedD1Subqueries, 16);
+  assert.equal(g.nextIteration.d1BudgetHeadroomAssumed, false);
   assert.equal(roadmap.currentHumanGate.id, "NONE");
 });
 
-test("Turabi measurement creates no live, public, topology, budget or adjacent-lane authority", () => {
+test("Turabi measurement and v8006 prewrite create no live, public, topology, budget or adjacent-lane authority", () => {
   for (const key of ["liveD1WritesAuthorized","protectedPopulationAuthorized","publicRuntimeChangeAuthorized","recommendationAdmissionAuthorized","thirdShardAuthorized","d1BudgetExpansionAuthorized","billingExpansionAuthorized","nutritionAuthorityImported","culturalAuthenticityAuthorityImported","knowledgeCoreWriteAuthorized"]) {
     assert.equal(evidence.boundaries[key], false, key);
   }
@@ -63,6 +70,7 @@ test("Turabi measurement creates no live, public, topology, budget or adjacent-l
   assert.equal(gate("8G").nextIteration.thirdShardAuthorized, false);
   assert.equal(gate("8G").nextIteration.d1BudgetExpansionAuthorized, false);
   assert.equal(gate("8G").nextIteration.billingExpansionAuthorized, false);
+  assert.equal(gate("8G").nextIteration.culturalAuthenticityAuthorityImported, false);
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
