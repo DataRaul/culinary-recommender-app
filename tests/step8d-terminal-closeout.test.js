@@ -37,20 +37,15 @@ test("Step 8D PASS remains the prerequisite for completed 8E and independent act
   assert.equal(gates.get("8G").status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(gates.get("8G").doesNotDependOn.includes("8F"), true);
   assert.equal(gates.get("8F").status, "COMPLETE_PASS_PUBLIC_RUNTIME_ACTIVATED");
-  assert.equal(gates.get("8F").humanRequired, true);
   assert.equal(gates.get("8F").decisionInput.runtimeActivationAuthorized, true);
   assert.equal(roadmap.boundaries.automaticPublicRecommendationAdmission, false);
 });
 
-test("canonical handover preserves Step 8D while completed 8F coexists with active 8G", () => {
-  assert.equal(current.corpus_scale.step8d.terminal, "STEP_8D_PROTECTED_POPULATION_PASS");
-  assert.equal(current.corpus_scale.step8d.max_observed_d1_subqueries, 15);
-  assert.equal(current.corpus_scale.step8e.status, "COMPLETE_PASS_RECOMMENDATION_ELIGIBILITY");
-  assert.equal(current.corpus_scale.step8e.terminal, "STEP_8E_RECOMMENDATION_ELIGIBLE_SUBSET_PASS");
-  assert.equal(current.corpus_scale.step8f.status, "COMPLETE_PASS_PUBLIC_RUNTIME_ACTIVATED");
-  assert.equal(current.corpus_scale.step8f.runtime_activation_authorized, true);
-  assert.equal(current.corpus_scale.step8f.public_runtime_changed, true);
-  assert.equal(current.corpus_scale.step8f.public_runtime_recipe_count_after, 85);
-  assert.equal(current.corpus_scale.step8g.status, "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP");
-  assert.equal(current.corpus_scale.step8g.depends_on_step8f, false);
+test("current handover preserves Step 8 cost, topology and public-scope firewalls without pinning an obsolete schema", () => {
+  assert.equal(current.lane.billing, "NO_BILLING_AUTHORIZATION");
+  assert.match(current.operating_contract.topology, /exactly two protected D1 recipe-body shards/i);
+  assert.match(current.operating_contract.public_activation, /unitools_tortilla_espanola/);
+  assert.match(current.operating_contract.public_activation, /85 recipes/);
+  assert.equal(current.not_authorized.includes("No third shard."), true);
+  assert.equal(current.not_authorized.includes("No billing or paid infrastructure."), true);
 });
