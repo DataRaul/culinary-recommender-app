@@ -1,0 +1,69 @@
+name: Corpus Scale Step 8G Turabi v8006 prewrite
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-ora-turabi-v8006-prewrite.yml'
+      - 'scripts/corpus-scale-step8g-ora-turabi-v8006-prewrite-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-ora-turabi-v8006-prewrite.mjs'
+      - 'scripts/verify-step8g-ora-turabi-v8006-prewrite.mjs'
+      - 'tests/corpus-scale-step8g-ora-turabi-v8006-prewrite.test.js'
+      - 'data/generated/step8g/ora-turabi-1864-measurement.json'
+      - 'data/generated/step8g/ora-bosse-watanna-v8005-prewrite-evidence.json'
+      - 'data/generated/step8g/ora-bosse-watanna-v8005-live-pass.json'
+      - 'data/generated/step8g/v8005-runtime-descriptor.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-turabi-v8006-prewrite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prewrite-v8006:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive source
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test v8006 prewrite contract
+        run: node --test tests/corpus-scale-step8g-ora-turabi-v8006-prewrite.test.js
+
+      - name: Build exact v8006 no-write prewrite
+        run: >-
+          node scripts/run-corpus-scale-step8g-ora-turabi-v8006-prewrite.mjs
+          --ora=./open-recipe-archive
+          --measurement=./data/generated/step8g/ora-turabi-1864-measurement.json
+          --parent-prewrite=./data/generated/step8g/ora-bosse-watanna-v8005-prewrite-evidence.json
+          --parent-live=./data/generated/step8g/ora-bosse-watanna-v8005-live-pass.json
+          --out=.tmp/step8g-ora-turabi-v8006-prewrite
+
+      - name: Verify request and complete D1-operation envelope
+        run: >-
+          node scripts/verify-step8g-ora-turabi-v8006-prewrite.mjs
+          --evidence=.tmp/step8g-ora-turabi-v8006-prewrite/evidence.json
+          --plan=.tmp/step8g-ora-turabi-v8006-prewrite/population-plan-descriptors.json
+          --out=.tmp/step8g-ora-turabi-v8006-prewrite/prewrite-validation.json
+
+      - name: Upload v8006 prewrite evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-ora-turabi-v8006-prewrite
+          path: .tmp/step8g-ora-turabi-v8006-prewrite
+          if-no-files-found: error
+          retention-days: 30
