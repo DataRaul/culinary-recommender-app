@@ -31,12 +31,43 @@ function replacePropertyRecursive(value, key, replacement) {
   for (const child of Object.values(value)) replacePropertyRecursive(child, key, replacement);
 }
 
+async function writeCanonicalSnapshot(out, roadmap, current, previous) {
+  await mkdir(resolve(out, "config"), { recursive: true });
+  await mkdir(resolve(out, "docs/handovers"), { recursive: true });
+  await Promise.all([
+    writeFile(resolve(out, "config/corpus_scale_step8_roadmap.json"), `${JSON.stringify(roadmap, null, 2)}\n`, "utf8"),
+    writeFile(resolve(out, "docs/handovers/CURRENT.json"), `${JSON.stringify(current, null, 2)}\n`, "utf8"),
+    writeFile(resolve(out, "docs/handovers/PREVIOUS.json"), `${JSON.stringify(previous, null, 2)}\n`, "utf8")
+  ]);
+}
+
 const args = parseArgs(process.argv.slice(2));
 const [roadmap, current, existingPrevious] = await Promise.all([
   readFile(resolve("config/corpus_scale_step8_roadmap.json"), "utf8").then(JSON.parse),
   readFile(resolve("docs/handovers/CURRENT.json"), "utf8").then(JSON.parse),
   readFile(resolve("docs/handovers/PREVIOUS.json"), "utf8").then(JSON.parse)
 ]);
+
+// This finalizer belongs to the historical no-write prewrite gate. Once the
+// repository has legitimately advanced to the merged/deployed v8006 runtime
+// (or beyond), rerunning this workflow must validate the frozen evidence
+// without rolling canonical roadmap/handover state backward to V35.
+const advancedV8006State =
+  current?.v8006?.implementation === "MERGED_DEPLOYED_VERIFIED" ||
+  current?.live_protected_state?.active_version === "v8006" ||
+  current?.active_human_gate?.id === "STEP8G_V8006_OWNER_AUTHENTICATED_PROTECTED_POPULATION";
+
+if (advancedV8006State) {
+  await writeCanonicalSnapshot(args.output, roadmap, current, existingPrevious);
+  process.stdout.write(JSON.stringify({
+    pass: true,
+    mode: "ADVANCED_V8006_STATE_PRESERVED",
+    handover: current.handover,
+    implementation: current?.v8006?.implementation || null,
+    liveActiveVersion: current?.live_protected_state?.active_version || null
+  }, null, 2) + "\n");
+  process.exit(0);
+}
 
 roadmap.status = "STEP8A_COMPLETE__8B_PASS__8C_PASS__8D_PASS__8E_PASS__8F_PASS__8G_V8005_LIVE__TURABI_V8006_PREWRITE_PASS_IMPLEMENTATION_EARNED";
 roadmap.evidenceBasis = addUnique(roadmap.evidenceBasis, [
@@ -183,17 +214,11 @@ current.next_actions = [
 ];
 current.terminal_instruction_for_new_chat = "Fresh-reconcile GitHub. Live protected state remains v8005 / 2,464 recipes. Turabi Efendi 1864 measurement passed and v8006 prewrite passed for exactly 442 children / 2,906 planned composed recipes on two shards, 45 batches, 10 rows maximum, max request 16,090 bytes and routeWriteFresh exactly 16/16 D1 subqueries with zero assumed headroom. PR #172 is the v8006 prewrite branch; finish/merge it if still open, then implement the exact frozen v8006 protected population. No live v8006 D1 write has occurred. Public runtime remains 85 and Step 8F authority remains exactly unitools_tortilla_espanola. Preserve no billing, no third shard, no Nutrition/YT-CUL/Knowledge Core mutation and no cultural-authenticity authority import. Stop at the later owner-authenticated live production-write gate.";
 
-const out = resolve(args.output);
-await mkdir(resolve(out, "config"), { recursive: true });
-await mkdir(resolve(out, "docs/handovers"), { recursive: true });
-await Promise.all([
-  writeFile(resolve(out, "config/corpus_scale_step8_roadmap.json"), `${JSON.stringify(roadmap, null, 2)}\n`, "utf8"),
-  writeFile(resolve(out, "docs/handovers/CURRENT.json"), `${JSON.stringify(current, null, 2)}\n`, "utf8"),
-  writeFile(resolve(out, "docs/handovers/PREVIOUS.json"), `${JSON.stringify(previous, null, 2)}\n`, "utf8")
-]);
+await writeCanonicalSnapshot(args.output, roadmap, current, previous);
 
 process.stdout.write(JSON.stringify({
   pass: true,
+  mode: "PREWRITE_V35_FINALIZED",
   roadmapStatus: roadmap.status,
   latestLiveVersion: gate8g.latestIteration.finalProtectedActiveVersion,
   latestLiveCount: gate8g.latestIteration.composedRecipeCount,
