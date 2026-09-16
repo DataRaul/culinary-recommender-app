@@ -19,7 +19,7 @@ test("Step 8F terminal evidence freezes the exact one-record public activation",
   assert.equal(evidence.implementation.productionSmoke, "PASS");
 });
 
-test("machine roadmap and handover preserve 8F complete without broad automatic admission", () => {
+test("machine roadmap and current handover preserve 8F without broad automatic admission", () => {
   const f = gate("8F");
   assert.equal(f.status, "COMPLETE_PASS_PUBLIC_RUNTIME_ACTIVATED");
   assert.equal(f.terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
@@ -27,19 +27,17 @@ test("machine roadmap and handover preserve 8F complete without broad automatic 
   assert.equal(f.decisionInput.publicRuntimeChanged, true);
   assert.equal(f.decisionInput.publicCorpusRecipeCountAfterDecision, 85);
   assert.equal(roadmap.boundaries.automaticPublicRecommendationAdmission, false);
-  assert.equal(current.corpus_scale.step8f.status, "COMPLETE_PASS_PUBLIC_RUNTIME_ACTIVATED");
-  assert.equal(current.corpus_scale.step8f.terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
-  assert.equal(current.corpus_scale.step8f.automatic_broader_admission_authorized, false);
+  assert.match(current.operating_contract.public_activation, /unitools_tortilla_espanola/);
+  assert.match(current.operating_contract.public_activation, /85 recipes/);
+  assert.equal(current.not_authorized.includes("No broader Step 8F/public recommendation admission."), true);
 });
 
 test("public runtime remains 85 and historical golden corpus 84 as protected Step 8G advances independently", () => {
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
-  assert.equal(gate("8G").status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(gate("8G").doesNotDependOn.includes("8F"), true);
-  assert.equal(gate("8G").latestIteration.publicRuntimeChanged, false);
-  assert.equal(gate("8G").latestIteration.recommendationAdmissionChanged, false);
-  assert.equal(current.corpus_scale.step8g.public_runtime_changed, false);
-  assert.equal(current.corpus_scale.step8g.recommendation_admission_changed, false);
+  assert.equal(current.v8006.live_population_performed, false);
+  assert.equal(current.live_protected_state.public_runtime_recipe_count, 85);
+  assert.equal(current.live_protected_state.public_runtime_changed_by_v8006, false);
 });
