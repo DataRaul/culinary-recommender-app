@@ -8,11 +8,19 @@ on:
       - 'scripts/corpus-scale-step8g-ora-turabi-v8006-prewrite-core.mjs'
       - 'scripts/run-corpus-scale-step8g-ora-turabi-v8006-prewrite.mjs'
       - 'scripts/verify-step8g-ora-turabi-v8006-prewrite.mjs'
+      - 'scripts/finalize-step8g-ora-turabi-v8006-prewrite.mjs'
       - 'tests/corpus-scale-step8g-ora-turabi-v8006-prewrite.test.js'
+      - 'tests/corpus-scale-step8g-v8006-prewrite-closeout.test.js'
       - 'data/generated/step8g/ora-turabi-1864-measurement.json'
+      - 'data/generated/step8g/ora-turabi-v8006-prewrite-evidence.json'
+      - 'data/generated/step8g/ora-turabi-v8006-prewrite-validation.json'
       - 'data/generated/step8g/ora-bosse-watanna-v8005-prewrite-evidence.json'
       - 'data/generated/step8g/ora-bosse-watanna-v8005-live-pass.json'
       - 'data/generated/step8g/v8005-runtime-descriptor.mjs'
+      - 'docs/CORPUS_SCALE_STEP8G_ORA_TURABI_V8006_PREWRITE.md'
+      - 'config/corpus_scale_step8_roadmap.json'
+      - 'docs/handovers/CURRENT.json'
+      - 'docs/handovers/PREVIOUS.json'
   workflow_dispatch:
 
 permissions:
@@ -60,10 +68,22 @@ jobs:
           --plan=.tmp/step8g-ora-turabi-v8006-prewrite/population-plan-descriptors.json
           --out=.tmp/step8g-ora-turabi-v8006-prewrite/prewrite-validation.json
 
-      - name: Upload v8006 prewrite evidence
+      - name: Verify frozen prewrite evidence matches regeneration
+        run: |
+          cmp -s .tmp/step8g-ora-turabi-v8006-prewrite/evidence.json data/generated/step8g/ora-turabi-v8006-prewrite-evidence.json
+          cmp -s .tmp/step8g-ora-turabi-v8006-prewrite/prewrite-validation.json data/generated/step8g/ora-turabi-v8006-prewrite-validation.json
+
+      - name: Generate canonical roadmap and handover update candidates
+        run: >-
+          node scripts/finalize-step8g-ora-turabi-v8006-prewrite.mjs
+          --out=.tmp/step8g-ora-turabi-v8006-finalized
+
+      - name: Upload v8006 prewrite evidence and canonical candidates
         uses: actions/upload-artifact@v4
         with:
           name: step8g-ora-turabi-v8006-prewrite
-          path: .tmp/step8g-ora-turabi-v8006-prewrite
+          path: |
+            .tmp/step8g-ora-turabi-v8006-prewrite
+            .tmp/step8g-ora-turabi-v8006-finalized
           if-no-files-found: error
           retention-days: 30
