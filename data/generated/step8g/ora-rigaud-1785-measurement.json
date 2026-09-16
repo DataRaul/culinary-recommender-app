@@ -1,0 +1,102 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ORA_RIGAUD_1785_MARGINAL_VALUE_V1",
+  "date": "2026-09-16",
+  "pass": true,
+  "terminal": "STEP_8G_ORA_RIGAUD_1785_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+  "workflowRun": 35094671354,
+  "artifactId": 10444908664,
+  "artifactDigest": "sha256:b10edc3cc4837915b7e22571c9a58848fdb6eebf6fe22202336d683f4e98c6f2",
+  "baseline": {
+    "activeProtectedVersion": "v8006",
+    "activeProtectedCount": 2906,
+    "baselineRecipeObjects": 2991,
+    "distinctNormalizedTitles": 2778,
+    "distinctIngredientPhrases": 9824
+  },
+  "candidate": {
+    "cohortId": "ORA_RIGAUD_1785_PORTUGUESE_SOURCE_AE3BD2C",
+    "collection": "cozinha-portuguesa",
+    "sourceWork": "Cozinheiro moderno, ou nova arte de cozinha",
+    "sourceAuthor": "Lucas Rigaud",
+    "sourceYear": "1785",
+    "sourceUrl": "https://archive.org/details/b28764626",
+    "recipeCount": 789,
+    "parseableRecipeCount": 789,
+    "parseableRecipeRatio": 1,
+    "distinctNormalizedTitles": 773,
+    "uniqueTitleRatio": 0.9797211660329531,
+    "exactBaselineTitleOverlapCount": 0,
+    "novelNormalizedTitleCount": 773,
+    "novelTitleRatio": 1,
+    "distinctIngredientPhraseCount": 2495,
+    "novelIngredientPhraseCount": 2197,
+    "ontologyResolvedOccurrenceRatio": 0.25971961266078913,
+    "ontologyResolvedCanonicalIngredientCount": 47,
+    "ontologyUnresolvedPhraseCount": 2434,
+    "culturalAuthorityImported": false,
+    "historicalSourceLabelOnly": true
+  },
+  "thresholds": {
+    "minSourceRecipeCount": 50,
+    "minParseableRatio": 0.95,
+    "minUniqueTitleRatio": 0.8,
+    "minNovelTitleRatio": 0.5
+  },
+  "gates": {
+    "rightsDocumented": true,
+    "exactCountPass": true,
+    "singleSourcePass": true,
+    "rightsMetadataPass": true,
+    "rightsAuditPass": true,
+    "structuralQualityPass": true,
+    "culinaryCoveragePass": true
+  },
+  "sourcePins": {
+    "openRecipeArchive": {
+      "repository": "AdamBouhmad/open-recipe-archive",
+      "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8"
+    },
+    "forkrecipeBaseline": {
+      "repository": "futurechef/forkrecipe-recipes",
+      "commit": "c32255266af39bd77444d39452f3df8088ac8fd9",
+      "recipeCount": 915
+    },
+    "unitoolsBaseline": {
+      "repository": "farcrak/unitools-recipes",
+      "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+      "recipeCount": 501
+    },
+    "cc0Baseline": {
+      "repository": "sylGauthier/recipes",
+      "commit": "b12e481d1c220a13e0847a34e148d5872a16928e",
+      "recipeCount": 226
+    },
+    "abbottBaseline": {
+      "recipeCount": 713
+    },
+    "bosseWatannaBaseline": {
+      "recipeCount": 109
+    },
+    "turabiBaseline": {
+      "recipeCount": 442
+    }
+  },
+  "discoveryEvidence": {
+    "workflowRun": 35094233571,
+    "artifactId": 10445970646,
+    "artifactDigest": "sha256:aa915c0905c8c28190dd0a093b1d8646e36a43ad28b17c77416acd512bf4a05d"
+  },
+  "interpretation": "The exact 789-record Lucas Rigaud 1785 source clears the bounded Step 8G rights and marginal-value measurement against active protected v8006. Only a separate v8007 prewrite/capacity gate is earned.",
+  "boundaries": {
+    "liveD1WritesAuthorized": false,
+    "protectedPopulationAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "d1BudgetExpansionAuthorized": false,
+    "billingExpansionAuthorized": false,
+    "nutritionAuthorityImported": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "knowledgeCoreWriteAuthorized": false
+  }
+}
