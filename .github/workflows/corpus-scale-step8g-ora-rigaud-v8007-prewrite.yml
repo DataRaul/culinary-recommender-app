@@ -1,0 +1,86 @@
+name: Corpus Scale Step 8G Rigaud v8007 prewrite
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-ora-rigaud-v8007-prewrite.yml'
+      - 'scripts/corpus-scale-step8g-ora-rigaud-v8007-prewrite-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-ora-rigaud-v8007-prewrite.mjs'
+      - 'tests/corpus-scale-step8g-ora-rigaud-v8007-prewrite.test.js'
+      - 'data/generated/step8g/ora-rigaud-1785-measurement.json'
+      - 'data/generated/step8g/ora-turabi-v8006-prewrite-evidence.json'
+      - 'data/generated/step8g/ora-turabi-v8006-live-pass.json'
+      - 'data/generated/step8g/v8006-runtime-descriptor.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-rigaud-v8007-prewrite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prewrite-v8007:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test Rigaud v8007 prewrite contract
+        run: node --test tests/corpus-scale-step8g-ora-rigaud-v8007-prewrite.test.js
+
+      - name: Build no-write v8007 prewrite evidence and population descriptors
+        run: >-
+          node scripts/run-corpus-scale-step8g-ora-rigaud-v8007-prewrite.mjs
+          --ora=./open-recipe-archive
+          --out=.tmp/step8g-ora-rigaud-v8007-prewrite
+
+      - name: Verify prewrite remains bounded and no-write
+        run: >-
+          node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-ora-rigaud-v8007-prewrite/evidence.json","utf8"));
+          if(!p.pass||p.parent.activeCorpusVersion!=="v8006"||p.parent.composedRecipeCount!==2906||p.layer.corpusVersion!=="v8007"||p.layer.recipeCount!==789||p.composition.cumulativeRecipeCount!==3695)process.exit(1);
+          if(p.layer.operationBudget.maxPlannedD1Subqueries!==16||p.layer.operationBudget.headroomAssumed!==false||p.composition.routing.shardCount!==2)process.exit(1);
+          if(p.boundaries.liveD1WritesPerformed!==0||p.boundaries.publicRuntimeChanged!==false||p.boundaries.recommendationAdmissionPerformed!==false||p.boundaries.thirdShardUsed!==false||p.boundaries.d1BudgetExpansion!==false||p.boundaries.billingExpansion!==false)process.exit(1);
+          console.log(p.terminalCandidate);'
+
+      - name: Expose compact prewrite metrics
+        id: metrics
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const p=JSON.parse(fs.readFileSync('.tmp/step8g-ora-rigaud-v8007-prewrite/evidence.json','utf8'));
+          const fields={
+            pass:p.pass?'1':'0',
+            child:p.layer.recipeCount,
+            total:p.composition.cumulativeRecipeCount,
+            batches:p.layer.batchCount,
+            req:p.layer.maxWriteRequestBytes,
+            d1:p.layer.operationBudget.maxPlannedD1Subqueries,
+            s0:p.layer.shardDescriptors[0].rowCount,
+            s1:p.layer.shardDescriptors[1].rowCount
+          };
+          fs.appendFileSync(process.env.GITHUB_OUTPUT,Object.entries(fields).map(([k,v])=>`${k}=${v}\n`).join(''));
+          NODE
+
+      - name: Upload v8007 prewrite evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-rigaud-v8007-p${{ steps.metrics.outputs.pass }}-c${{ steps.metrics.outputs.child }}-t${{ steps.metrics.outputs.total }}-b${{ steps.metrics.outputs.batches }}-r${{ steps.metrics.outputs.req }}-d1${{ steps.metrics.outputs.d1 }}-s${{ steps.metrics.outputs.s0 }}-${{ steps.metrics.outputs.s1 }}
+          path: .tmp/step8g-ora-rigaud-v8007-prewrite/
+          if-no-files-found: error
+          retention-days: 30
