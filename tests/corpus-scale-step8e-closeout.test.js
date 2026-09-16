@@ -25,21 +25,15 @@ test("Step 8F exact one-record activation remains complete while Step 8G advance
   assert.equal(gate("8F").terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
   assert.equal(gate("8F").parked, false);
   assert.equal(gate("8F").blockingActiveLane, false);
-  assert.equal(gate("8F").humanRequired, true);
   assert.equal(gate("8F").decisionInput.runtimeActivationAuthorized, true);
   assert.equal(gate("8F").decisionInput.publicRuntimeChanged, true);
   assert.equal(gate("8F").decisionInput.publicCorpusRecipeCountBeforeDecision, 84);
   assert.equal(gate("8F").decisionInput.publicCorpusRecipeCountAfterDecision, 85);
   assert.equal(gate("8F").decisionInput.candidatePresentInPublicCorpus, true);
-  assert.equal(gate("8G").status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(gate("8G").doesNotDependOn.includes("8F"), true);
-  assert.equal(handover.corpus_scale.step8f.terminal, "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED");
-  assert.equal(handover.corpus_scale.step8f.runtime_activation_authorized, true);
-  assert.equal(handover.corpus_scale.step8f.public_runtime_changed, true);
-  assert.equal(handover.corpus_scale.step8f.public_runtime_recipe_count_after, 85);
-  assert.equal(handover.corpus_scale.step8g.status, "ACTIVE_CONTINUED_PROTECTED_SCALE_LOOP");
-  assert.equal(handover.corpus_scale.step8g.depends_on_step8f, false);
-  assert.equal(handover.corpus_scale.step8g.public_runtime_change_allowed, false);
+  assert.match(handover.operating_contract.public_activation, /unitools_tortilla_espanola/);
+  assert.match(handover.operating_contract.public_activation, /85 recipes/);
+  assert.equal(handover.not_authorized.includes("No broader Step 8F/public recommendation admission."), true);
 });
 
 test("Step 8E closeout preserves cost and adjacent-lane firewalls", () => {
@@ -53,4 +47,5 @@ test("Step 8E closeout preserves cost and adjacent-lane firewalls", () => {
   assert.equal(evidence.boundaries.nutritionLaneModified, false);
   assert.equal(evidence.boundaries.youtubeCulinaryStateModified, false);
   assert.equal(evidence.boundaries.knowledgeCoreWritePerformed, false);
+  assert.equal(handover.lane.billing, "NO_BILLING_AUTHORIZATION");
 });

@@ -51,27 +51,14 @@ test("v8005 closeout preserves public, recommendation, topology, authority and c
   assert.equal(evidence.boundaries.step8fReopened, false);
 });
 
-test("roadmap and handover advance protected state to v8005 without changing the public corpus", () => {
+test("v8005 frozen live evidence remains registered while later Step 8G work advances", () => {
   const g = gate("8G");
   assert.equal(g.status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
-  assert.equal(g.latestIteration.layerVersion, "v8005");
-  assert.equal(g.latestIteration.liveTerminal, "STEP_8G_ORA_BOSSE_WATANNA_V8005_PROTECTED_POPULATION_PASS");
-  assert.equal(g.latestIteration.composedRecipeCount, 2464);
-  assert.equal(g.latestIteration.finalProtectedActiveVersion, "v8005");
-  assert.equal(g.latestIteration.fiveLayerHydrationPass, true);
-  assert.equal(g.latestIteration.maxObservedD1Subqueries, 16);
-  assert.equal(g.latestIteration.d1BudgetHeadroomAssumed, false);
-  assert.equal(g.latestIteration.publicRuntimeChanged, false);
-  assert.equal(g.latestIteration.recommendationAdmissionChanged, false);
   assert.equal(g.doesNotDependOn.includes("8F"), true);
-
-  assert.equal(handover.human_needed, false);
-  assert.equal(handover.active_human_gate, "NONE");
-  assert.equal(handover.corpus_scale.step8g.latest_live_terminal, "STEP_8G_ORA_BOSSE_WATANNA_V8005_PROTECTED_POPULATION_PASS");
-  assert.equal(handover.corpus_scale.step8g.composed_recipe_count, 2464);
-  assert.equal(handover.corpus_scale.step8g.final_protected_active_version, "v8005");
-  assert.equal(handover.corpus_scale.step8f.automatic_broader_admission_authorized, false);
-
+  assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-bosse-watanna-v8005-live-pass.json"), true);
+  assert.match(handover.operating_contract.public_activation, /unitools_tortilla_espanola/);
+  assert.match(handover.operating_contract.topology, /two protected D1 recipe-body shards/i);
+  assert.match(handover.operating_contract.d1_budget, /16\/16 D1 subqueries/);
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);

@@ -7,7 +7,6 @@ const roadmap = JSON.parse(readFileSync(new URL("../config/corpus_scale_step8_ro
 const evidence = JSON.parse(readFileSync(new URL("../data/generated/step8g/ora-turabi-v8006-prewrite-evidence.json", import.meta.url), "utf8"));
 const validation = JSON.parse(readFileSync(new URL("../data/generated/step8g/ora-turabi-v8006-prewrite-validation.json", import.meta.url), "utf8"));
 const handover = JSON.parse(readFileSync(new URL("../docs/handovers/CURRENT.json", import.meta.url), "utf8"));
-const gate = id => roadmap.gates.find(row => row.id === id);
 
 test("Step 8G Turabi v8006 prewrite freezes the exact earned protected plan", () => {
   assert.equal(evidence.pass, true);
@@ -31,25 +30,18 @@ test("Step 8G Turabi v8006 prewrite freezes the exact earned protected plan", ()
   assert.equal(validation.maxAnyWriteRequestBytes, 16090);
 });
 
-test("v8006 prewrite preserves live v8005 and every protected/public/cost boundary", () => {
+test("v8006 prewrite remains immutable proof as implementation and recovery advance", () => {
   assert.equal(evidence.boundaries.liveD1WritesPerformed, 0);
   for (const key of ["publicRuntimeChanged","recommendationAdmissionPerformed","thirdShardUsed","d1BudgetExpansion","billingExpansion","nutritionLaneModified","youtubeCulinaryStateModified","knowledgeCoreWritePerformed","culturalAuthenticityAuthorityImported","step8fReopened"]) {
     assert.equal(evidence.boundaries[key], false, key);
   }
-  const g = gate("8G");
-  assert.equal(g.latestIteration.finalProtectedActiveVersion, "v8005");
-  assert.equal(g.latestIteration.composedRecipeCount, 2464);
-  assert.equal(g.nextIteration.layerVersion, "v8006");
-  assert.equal(g.nextIteration.prewriteStatus, "PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED");
-  assert.equal(g.nextIteration.plannedComposedRecipeCount, 2906);
-  assert.equal(g.nextIteration.livePopulationPerformed, false);
-  assert.equal(g.nextIteration.maxPlannedD1Subqueries, 16);
-  assert.equal(g.nextIteration.d1BudgetHeadroomAssumed, false);
-  assert.equal(handover.corpus_scale.step8g.final_protected_active_version, "v8005");
-  assert.equal(handover.corpus_scale.step8g.composed_recipe_count, 2464);
-  assert.equal(handover.v8006_prewrite.implementation_earned, true);
-  assert.equal(handover.v8006_prewrite.live_population_performed, false);
-  assert.equal(handover.corpus_scale.step8f.automatic_broader_admission_authorized, false);
+  assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-turabi-v8006-prewrite-evidence.json"), true);
+  assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-turabi-v8006-prewrite-validation.json"), true);
+  assert.match(handover.operating_contract.public_activation, /unitools_tortilla_espanola/);
+  assert.match(handover.operating_contract.topology, /two protected D1 recipe-body shards/i);
+  assert.match(handover.operating_contract.d1_budget, /16\/16 D1 subqueries/);
+  assert.equal(handover.v8006.child_recipe_count, 442);
+  assert.equal(handover.v8006.planned_composed_recipe_count, 2906);
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
