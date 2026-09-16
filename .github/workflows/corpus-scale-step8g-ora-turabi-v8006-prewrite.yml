@@ -78,6 +78,15 @@ jobs:
           node scripts/finalize-step8g-ora-turabi-v8006-prewrite.mjs
           --out=.tmp/step8g-ora-turabi-v8006-finalized
 
+      - name: Verify canonical roadmap and handover freeze
+        run: |
+          cmp -s .tmp/step8g-ora-turabi-v8006-finalized/config/corpus_scale_step8_roadmap.json config/corpus_scale_step8_roadmap.json
+          cmp -s .tmp/step8g-ora-turabi-v8006-finalized/docs/handovers/CURRENT.json docs/handovers/CURRENT.json
+          cmp -s .tmp/step8g-ora-turabi-v8006-finalized/docs/handovers/PREVIOUS.json docs/handovers/PREVIOUS.json
+
+      - name: Test canonical v8006 prewrite closeout
+        run: node --test tests/corpus-scale-step8g-v8006-prewrite-closeout.test.js
+
       - name: Upload v8006 prewrite evidence and canonical candidates
         uses: actions/upload-artifact@v4
         with:
