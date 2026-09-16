@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const BASE_MAIN_SHA = "6bbbe1180b226772f1c1cae548e462e2f97ceaf4";
+const TARGET_HANDOVER = "CULINARY_APP_STEP8G_TURABI_V8006_PREWRITE_PASS_IMPLEMENTATION_EARNED_V35";
 const PREWRITE_RUN = 35066583080;
 const PREWRITE_ARTIFACT = 10434820998;
 const PREWRITE_DIGEST = "sha256:ead63fabbff3ed6d28be0b66488bbb0c4e6f077206faad4b56c6dd1ecf45b97c";
@@ -31,9 +32,10 @@ function replacePropertyRecursive(value, key, replacement) {
 }
 
 const args = parseArgs(process.argv.slice(2));
-const [roadmap, current] = await Promise.all([
+const [roadmap, current, existingPrevious] = await Promise.all([
   readFile(resolve("config/corpus_scale_step8_roadmap.json"), "utf8").then(JSON.parse),
-  readFile(resolve("docs/handovers/CURRENT.json"), "utf8").then(JSON.parse)
+  readFile(resolve("docs/handovers/CURRENT.json"), "utf8").then(JSON.parse),
+  readFile(resolve("docs/handovers/PREVIOUS.json"), "utf8").then(JSON.parse)
 ]);
 
 roadmap.status = "STEP8A_COMPLETE__8B_PASS__8C_PASS__8D_PASS__8E_PASS__8F_PASS__8G_V8005_LIVE__TURABI_V8006_PREWRITE_PASS_IMPLEMENTATION_EARNED";
@@ -103,8 +105,8 @@ if (roadmap.currentHumanGate) {
   roadmap.currentHumanGate.nextReservedHumanGate = null;
 }
 
-const previous = structuredClone(current);
-current.handover = "CULINARY_APP_STEP8G_TURABI_V8006_PREWRITE_PASS_IMPLEMENTATION_EARNED_V35";
+const previous = current.handover === TARGET_HANDOVER ? structuredClone(existingPrevious) : structuredClone(current);
+current.handover = TARGET_HANDOVER;
 current.handover_date = "2026-09-16";
 current.status = "STEP8A_PASS__STEP8B_PASS__STEP8C_PASS__STEP8D_PASS__STEP8E_PASS__STEP8F_PUBLIC_ACTIVATION_PASS__STEP8G_V8005_LIVE_PASS__TURABI_V8006_PREWRITE_PASS_IMPLEMENTATION_EARNED";
 current.human_needed = false;
