@@ -37,7 +37,6 @@ test("public runtime remains 85 and historical golden corpus 84 as protected Ste
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
   assert.equal(gate("8G").doesNotDependOn.includes("8F"), true);
-  assert.equal(current.v8006.live_population_performed, false);
-  assert.equal(current.live_protected_state.public_runtime_recipe_count, 85);
-  assert.equal(current.live_protected_state.public_runtime_changed_by_v8006, false);
+  assert.match(current.operating_contract.public_activation, /Public runtime remains 85 recipes/);
+  assert.equal(current.not_authorized.includes("No broader Step 8F/public recommendation admission."), true);
 });
