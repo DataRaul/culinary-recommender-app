@@ -1,10 +1,10 @@
 {
-  "handover": "CULINARY_APP_STEP8G_BOSSE_WATANNA_V8005_LIVE_PASS_CANONICAL_CLOSEOUT_V34",
+  "handover": "CULINARY_APP_STEP8G_TURABI_V8006_PREWRITE_PASS_IMPLEMENTATION_EARNED_V35",
   "handover_date": "2026-09-16",
   "timezone": "Europe/Madrid",
-  "status": "STEP8A_PASS__STEP8B_PASS__STEP8C_PASS__STEP8D_PASS__STEP8E_PASS__STEP8F_PUBLIC_ACTIVATION_PASS__STEP8G_V8005_LIVE_PASS__CANONICAL_CLOSEOUT_READY",
+  "status": "STEP8A_PASS__STEP8B_PASS__STEP8C_PASS__STEP8D_PASS__STEP8E_PASS__STEP8F_PUBLIC_ACTIVATION_PASS__STEP8G_V8005_LIVE_PASS__TURABI_V8006_PREWRITE_PASS_IMPLEMENTATION_EARNED",
   "human_needed": false,
-  "handover_written_against_main_sha": "a7e8edc3be0e8805e409a048ad112e29ffcfd556",
+  "handover_written_against_main_sha": "6bbbe1180b226772f1c1cae548e462e2f97ceaf4",
   "repositories": {
     "primary": "DataRaul/culinary-recommender-app",
     "read_only_reconciliation": "DataRaul/knowledge-core",
@@ -19,7 +19,11 @@
     "v8005_prewrite_merge": "3e8a39a7ceabfeb5e212966dcefd2f5ba23cfb97",
     "v8005_implementation_pr": 169,
     "v8005_implementation_merge": "a7e8edc3be0e8805e409a048ad112e29ffcfd556",
-    "closeout_branch": "agent/step8g-v8005-human-gate-handover"
+    "closeout_branch": "agent/step8g-v8005-human-gate-handover",
+    "turabi_measurement_pr": 171,
+    "turabi_measurement_merge": "6bbbe1180b226772f1c1cae548e462e2f97ceaf4",
+    "v8006_prewrite_pr": 172,
+    "v8006_prewrite_branch": "agent/step8g-turabi-v8006-prewrite"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -40,8 +44,8 @@
     "billing_firewall": "Never authorize paid infrastructure or automatic overage. Free exhaustion must fail closed.",
     "public_activation": "Step 8F authority remains exactly unitools_tortilla_espanola. No broader automatic public or recommendation admission is authorized.",
     "topology": "Preserve the existing two-shard protected topology. No third shard is authorized.",
-    "d1_budget": "The fresh route-write path reached exactly 16/16 D1 subqueries at 10 rows. Zero headroom is assumed; any later cohort must independently prove the budget and no extra D1 query may be added without redesign.",
-    "source_authority": "Bosse/Watanna is a historical public-domain source label only. No cultural-authenticity, ontology, dietary, allergen, nutrition or scaling authority was imported.",
+    "d1_budget": "Fresh route writes remain exactly 16/16 D1 subqueries at 10 rows. Zero headroom is assumed; 11-row batches fail closed and no extra D1 query may be added without redesign.",
+    "source_authority": "Bosse/Watanna and Turabi are historical public-domain source labels only. No cultural-authenticity, ontology, dietary, allergen, nutrition or scaling authority is imported.",
     "concurrency": "Do not mutate Nutrition, YT-CUL or Knowledge Core from this lane.",
     "secrets": "Never request or expose cookies, session tokens or reusable credentials."
   },
@@ -57,7 +61,13 @@
     "v8005_prewrite_closeout": "docs/CORPUS_SCALE_STEP8G_ORA_BOSSE_WATANNA_V8005_PREWRITE.md",
     "v8005_live_evidence": "data/generated/step8g/ora-bosse-watanna-v8005-live-pass.json",
     "v8005_live_closeout": "docs/CORPUS_SCALE_STEP8G_ORA_BOSSE_WATANNA_V8005_LIVE_POPULATION_PASS.md",
-    "v8005_closeout_test": "tests/corpus-scale-step8g-v8005-closeout.test.js"
+    "v8005_closeout_test": "tests/corpus-scale-step8g-v8005-closeout.test.js",
+    "turabi_measurement": "data/generated/step8g/ora-turabi-1864-measurement.json",
+    "turabi_measurement_closeout": "docs/CORPUS_SCALE_STEP8G_ORA_TURABI_1864_MEASUREMENT_PASS.md",
+    "v8006_prewrite_evidence": "data/generated/step8g/ora-turabi-v8006-prewrite-evidence.json",
+    "v8006_prewrite_validation": "data/generated/step8g/ora-turabi-v8006-prewrite-validation.json",
+    "v8006_prewrite_closeout": "docs/CORPUS_SCALE_STEP8G_ORA_TURABI_V8006_PREWRITE.md",
+    "v8006_prewrite_test": "tests/corpus-scale-step8g-v8006-prewrite-closeout.test.js"
   },
   "corpus_scale": {
     "required_capacity": 170000,
@@ -159,13 +169,13 @@
   "active_human_gate": "NONE",
   "next_human_gate": {
     "status": "NONE_CURRENTLY",
-    "reason": "The v8005 owner-authenticated protected production population gate passed. A future cohort may independently earn another live human-only production-write gate after measurement, prewrite and implementation are green."
+    "reason": "The v8006 prewrite PASS earns repository implementation only. After implementation is merged, deployed and verified, production population will become an owner-authenticated live-write boundary."
   },
   "next_actions": [
-    "Finish the v8005 canonical closeout branch through ordinary PR validation, safe merge and post-merge verification if it is not already merged.",
-    "Then identify and measure the next independently rights-clean protected cohort under the Step 8G marginal-value contract.",
-    "Run measurement -> prewrite -> implementation -> authenticated-live only as each phase is independently earned.",
-    "Do not reopen Step 8F or infer any broader public recommendation admission from protected-scale success."
+    "Finish PR #172 by freezing canonical v8006 prewrite evidence, roadmap and handover state, then safely merge after green CI.",
+    "Implement the exact Turabi v8006 protected-population path using the frozen 442-record plan and existing two-shard / 16-query envelope.",
+    "After implementation merge and deployment verification, stop at the owner-authenticated live v8006 production-write gate.",
+    "Do not reopen Step 8F or infer broader public recommendation admission from protected-scale success."
   ],
   "stop_conditions_for_active_work": [
     "A new cost, paid infrastructure or billing authorization would be required.",
@@ -177,5 +187,40 @@
     "170000 required protected capacity is reached.",
     "A genuine unrecoverable technical error occurs."
   ],
-  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub. The Bosse/Watanna v8005 authenticated production runner has passed and canonical closeout work exists on agent/step8g-v8005-human-gate-handover. The protected live state is v8005 / 2,464 recipes with 109 children over v8004 / 2,355, two shards, 12 body batches, 12 route batches, five-layer hydration PASS, body/route idempotence PASS, rollback/fail-closed PASS, zero full-corpus scans and maxObservedD1Subqueries exactly 16 with zero assumed headroom. Public runtime remains 85 and Step 8F authority remains exactly unitools_tortilla_espanola. Finish/verify/merge the closeout branch if needed, then continue ordinary Step 8G protected-scale measurement with the next independently rights-clean cohort. Preserve no-billing, no-third-shard, no Nutrition/YT-CUL/Knowledge Core mutation and no cultural-authenticity authority import."
+  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub. Live protected state remains v8005 / 2,464 recipes. Turabi Efendi 1864 measurement passed and v8006 prewrite passed for exactly 442 children / 2,906 planned composed recipes on two shards, 45 batches, 10 rows maximum, max request 16,090 bytes and routeWriteFresh exactly 16/16 D1 subqueries with zero assumed headroom. PR #172 is the v8006 prewrite branch; finish/merge it if still open, then implement the exact frozen v8006 protected population. No live v8006 D1 write has occurred. Public runtime remains 85 and Step 8F authority remains exactly unitools_tortilla_espanola. Preserve no billing, no third shard, no Nutrition/YT-CUL/Knowledge Core mutation and no cultural-authenticity authority import. Stop at the later owner-authenticated live production-write gate.",
+  "v8006_prewrite": {
+    "status": "PASS_IMPLEMENTATION_EARNED_NO_LIVE_WRITE_YET",
+    "terminal_candidate": "STEP_8G_ORA_TURABI_EFENDI_V8006_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+    "source_cohort_id": "ORA_TURABI_EFENDI_1864_OTTOMAN_SHELF_AE3BD2C",
+    "source_repository": "AdamBouhmad/open-recipe-archive",
+    "source_commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "source_work": "A Turkish Cookery Book",
+    "source_author": "Turabi Efendi",
+    "source_year": "1864",
+    "parent_version": "v8005",
+    "parent_recipe_count": 2464,
+    "layer_version": "v8006",
+    "child_recipe_count": 442,
+    "planned_composed_recipe_count": 2906,
+    "shard_count": 2,
+    "body_batch_count": 45,
+    "route_batch_count": 45,
+    "max_rows_per_batch": 10,
+    "max_write_request_bytes": 16090,
+    "max_observed_or_planned_d1_subqueries": 16,
+    "d1_budget_headroom_assumed": false,
+    "parent_fingerprint_sha256": "6a5c0a427b25e8b0592f48f7b293a6cd6f39fa06b12d141ce60bf284d92a036c",
+    "layer_manifest_sha256": "3ac76c7f8f107eaf811167e8245582e30204715d7b45a83eade26ae418f765db",
+    "population_plan_sha256": "b6dd9020fb6221a72c245feb2dd94d9b5ebe8bb758bd25ee508c9031fe5b59a0",
+    "workflow_run": 35066583080,
+    "artifact_id": 10434820998,
+    "artifact_digest": "sha256:ead63fabbff3ed6d28be0b66488bbb0c4e6f077206faad4b56c6dd1ecf45b97c",
+    "implementation_earned": true,
+    "live_population_performed": false,
+    "public_runtime_changed": false,
+    "recommendation_admission_changed": false,
+    "third_shard_used": false,
+    "billing_expansion": false,
+    "cultural_authenticity_authority_imported": false
+  }
 }
