@@ -1,0 +1,127 @@
+{
+  "contractVersion": "0.1.0",
+  "pilotId": "recipe-family-synthesis-p0",
+  "state": "CONTRACT_ONLY_NO_RUNTIME_AUTHORITY",
+  "objective": "Prove that a small bounded multi-source evidence set can produce legally clean, practically reliable recipe-family models and app-owned recipe projections without corpus-scale growth.",
+  "parallelWith": ["STEP_8G"],
+  "mustNotMutate": [
+    "protected_production_population",
+    "step8g_active_state",
+    "shard_topology",
+    "public_runtime_recipe_count",
+    "billing_state",
+    "nutrition_authority_policy"
+  ],
+  "pilotFamilies": [
+    "carbonara",
+    "pizza_margherita",
+    "cacio_e_pepe",
+    "pesto_genovese",
+    "hummus",
+    "guacamole",
+    "tortilla_espanola",
+    "pancakes",
+    "basic_tomato_pasta_sauce",
+    "ragu_bolognese_family"
+  ],
+  "sourceTarget": {
+    "strongReferenceWhereAvailable": 1,
+    "independentPracticalMinimum": 3,
+    "independentPracticalDefaultMaximum": 5,
+    "stopWhenMarginalInformationGainLow": true,
+    "deduplicateByIndependenceGroup": true
+  },
+  "sourceRoles": [
+    "REFERENCE_EVIDENCE",
+    "STRUCTURE_EVIDENCE",
+    "VARIANT_EVIDENCE",
+    "VALIDATION_ONLY",
+    "REUSABLE_CONTENT",
+    "DO_NOT_USE"
+  ],
+  "legalFields": {
+    "lawfulAccess": ["YES", "NO", "UNKNOWN"],
+    "tdmReservation": ["NONE_FOUND", "EXPRESSLY_RESERVED", "UNKNOWN", "NOT_APPLICABLE"],
+    "reuseBasis": ["OPEN_LICENCE", "PERMISSION", "PUBLIC_DOMAIN", "STANDARD_COPYRIGHT", "UNKNOWN"],
+    "databaseExtractionRisk": ["LOW", "MATERIAL", "UNKNOWN"]
+  },
+  "legalRules": [
+    "NO_LAWFUL_ACCESS_DO_NOT_USE",
+    "EXPRESS_TDM_RESERVATION_BLOCKS_AUTOMATED_EXTRACTION_UNDER_GENERAL_TDM_LANE",
+    "DO_NOT_RETAIN_OR_REPUBLISH_PROTECTED_SOURCE_EXPRESSION_WITHOUT_REUSE_RIGHTS",
+    "DO_NOT_RECONSTRUCT_THIRD_PARTY_DATABASE_BY_SUBSTANTIAL_OR_REPEATED_SYSTEMATIC_EXTRACTION",
+    "MATERIAL_UNCERTAINTY_FAILS_CLOSED_FOR_THE_SOURCE_NOT_THE_FAMILY"
+  ],
+  "supportBands": {
+    "CORE_SIGNAL_MIN": 0.70,
+    "COMMON_SIGNAL_MIN": 0.40,
+    "VARIANT_SIGNAL_MIN": 0.20
+  },
+  "variantPromotion": {
+    "candidateIndependentObservations": 1,
+    "observedIndependentObservations": 2,
+    "establishedIndependentObservations": 3,
+    "strongerAuthoritativeEvidenceMayOverrideCount": true
+  },
+  "rangeTypes": [
+    "referenceRange",
+    "observedRange",
+    "recommendedRange"
+  ],
+  "preferredNormalization": [
+    "grams_per_serving",
+    "grams_per_100g_principal_ingredient",
+    "bakers_percentage",
+    "ingredient_role_ratios"
+  ],
+  "identityStates": [
+    "SAME_FAMILY",
+    "VARIANT",
+    "ADAPTATION",
+    "TRANSFORMATION",
+    "ADJACENT_FAMILY",
+    "UNRESOLVED"
+  ],
+  "adaptationClasses": [
+    "DIETARY_ADAPTATION",
+    "PREFERENCE_ADAPTATION",
+    "PANTRY_ADAPTATION",
+    "EQUIPMENT_ADAPTATION",
+    "CONTEXT_ADAPTATION"
+  ],
+  "appAuthoringGate": [
+    "IDENTITY_COHERENT",
+    "REQUIRED_INGREDIENT_ROLES_HAVE_USABLE_RANGES",
+    "TECHNIQUE_SEQUENCE_COHERENT",
+    "MATERIAL_TIME_TEMPERATURE_EQUIPMENT_RESOLVED",
+    "ALLERGEN_DIETARY_FAIL_CLOSED",
+    "PERSONALIZATION_INSIDE_EXPLICIT_BOUNDARIES",
+    "MATERIAL_SYNTHESIZED_CLAIMS_HAVE_PROVENANCE",
+    "PROJECT_OWNED_INSTRUCTIONS_CAN_BE_AUTHORED_WITHOUT_COPYING_SOURCE_EXPRESSION"
+  ],
+  "prototypeBeforeExpansion": {
+    "families": ["carbonara", "hummus"],
+    "mode": "OFFLINE_DETERMINISTIC",
+    "requiredOutputs": [
+      "source_observations",
+      "reference_profile",
+      "observed_ranges",
+      "recommended_ranges",
+      "variant_classification",
+      "provenance",
+      "validation_report",
+      "candidate_app_owned_recipe_projection"
+    ],
+    "consultantCoachChallengeRequiredBeforeCohortExpansion": true
+  },
+  "nonGoals": [
+    "MASS_CRAWLING",
+    "RAW_RECIPE_COUNT_MAXIMIZATION",
+    "BULK_COMMERCIAL_DATABASE_ACQUISITION",
+    "NEW_PRODUCTION_SHARD",
+    "PUBLIC_RECOMMENDATION_ACTIVATION",
+    "STEP_8G_REPLACEMENT",
+    "NUTRITION_AUTHORITY_WIDENING",
+    "BILLING_AUTHORIZATION"
+  ]
+}
