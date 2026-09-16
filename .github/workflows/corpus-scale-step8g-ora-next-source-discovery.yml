@@ -1,0 +1,103 @@
+name: Corpus Scale Step 8G ORA next-source discovery
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-ora-next-source-discovery.yml'
+      - 'scripts/corpus-scale-step8g-ora-next-source-discovery-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs'
+      - 'tests/corpus-scale-step8g-ora-next-source-discovery.test.js'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-ora-next-source-discovery-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  discover-next-ora-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - name: Checkout pinned ForkRecipe protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: futurechef/forkrecipe-recipes
+          ref: c32255266af39bd77444d39452f3df8088ac8fd9
+          path: forkrecipe
+
+      - name: Checkout pinned UniTools protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: farcrak/unitools-recipes
+          ref: 1d09e9548d957dd0375301146a86dddf5e269c1b
+          path: unitools
+
+      - name: Checkout pinned CC0 protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: sylGauthier/recipes
+          ref: b12e481d1c220a13e0847a34e148d5872a16928e
+          path: cc0-recipes
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test source-discovery contract
+        run: node --test tests/corpus-scale-step8g-ora-next-source-discovery.test.js
+
+      - name: Scan source-level ORA cohorts against active v8006 baseline
+        run: >-
+          node scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs
+          --ora=./open-recipe-archive
+          --forkrecipe=./forkrecipe
+          --unitools=./unitools
+          --cc0=./cc0-recipes
+          --out=.tmp/step8g-ora-next-source-discovery
+
+      - name: Verify discovery remains no-write and cannot clear rights
+        run: >-
+          node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-ora-next-source-discovery/discovery.json","utf8"));
+          if(p.baseline.activeProtectedVersion!=="v8006"||p.baseline.activeProtectedCount!==2906)process.exit(1);
+          const b=p.boundaries;
+          if(b.liveD1WritesPerformed!==0||b.sourceRightsClearedByDiscovery!==false||b.measurementEarnedByDiscovery!==false||b.protectedPopulationAuthorized!==false||b.publicRuntimeChangeAuthorized!==false||b.recommendationAdmissionAuthorized!==false||b.thirdShardAuthorized!==false||b.d1BudgetExpansionAuthorized!==false||b.billingExpansionAuthorized!==false)process.exit(1);
+          if(p.exclusions.heldCollections.includes("cocina-espanola")!==true)process.exit(1);
+          console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextAuthority:p.nextAuthority}));'
+
+      - name: Expose compact discovery summary
+        id: metrics
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = JSON.parse(fs.readFileSync('.tmp/step8g-ora-next-source-discovery/discovery.json', 'utf8'));
+          const fields = {
+            groups: p.sourceGroupCount,
+            measured: p.measuredCandidateCount,
+            eligible: p.rightsReviewEligibleCount,
+            collections: p.collectionCount
+          };
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, Object.entries(fields).map(([k,v]) => `${k}=${v}\n`).join(''));
+          NODE
+
+      - name: Upload no-write discovery evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-ora-next-discovery-c${{ steps.metrics.outputs.collections }}-g${{ steps.metrics.outputs.groups }}-m${{ steps.metrics.outputs.measured }}-e${{ steps.metrics.outputs.eligible }}
+          path: .tmp/step8g-ora-next-source-discovery/discovery.json
+          if-no-files-found: error
+          retention-days: 30
