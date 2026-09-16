@@ -7,7 +7,6 @@ const roadmap = JSON.parse(readFileSync(new URL("../config/corpus_scale_step8_ro
 const evidence = JSON.parse(readFileSync(new URL("../data/generated/step8g/ora-bosse-watanna-v8005-prewrite-evidence.json", import.meta.url), "utf8"));
 const validation = JSON.parse(readFileSync(new URL("../data/generated/step8g/ora-bosse-watanna-v8005-prewrite-validation.json", import.meta.url), "utf8"));
 const handover = JSON.parse(readFileSync(new URL("../docs/handovers/CURRENT.json", import.meta.url), "utf8"));
-const gate = id => roadmap.gates.find(row => row.id === id);
 
 test("Step 8G Bosse Watanna v8005 prewrite freezes the exact earned protected plan", () => {
   assert.equal(evidence.pass, true);
@@ -29,21 +28,16 @@ test("Step 8G Bosse Watanna v8005 prewrite freezes the exact earned protected pl
   assert.equal(validation.routeMaxRowsPerBatch, 10);
 });
 
-test("v8005 prewrite remains immutable proof after the later live v8005 PASS", () => {
+test("v8005 prewrite remains immutable proof after later protected iterations", () => {
   assert.equal(evidence.boundaries.liveD1WritesPerformed, 0);
   for (const key of ["publicRuntimeChanged","recommendationAdmissionPerformed","thirdShardUsed","d1BudgetExpansion","billingExpansion","nutritionLaneModified","youtubeCulinaryStateModified","knowledgeCoreWritePerformed","culturalAuthenticityAuthorityImported","step8fReopened"]) {
     assert.equal(evidence.boundaries[key], false, key);
   }
-  const g = gate("8G");
-  assert.equal(g.latestIteration.layerVersion, "v8005");
-  assert.equal(g.latestIteration.parentCorpusVersion, "v8004");
-  assert.equal(g.latestIteration.composedRecipeCount, 2464);
-  assert.equal(g.latestIteration.liveTerminal, "STEP_8G_ORA_BOSSE_WATANNA_V8005_PROTECTED_POPULATION_PASS");
   assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-bosse-watanna-v8005-prewrite-evidence.json"), true);
   assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-bosse-watanna-v8005-prewrite-validation.json"), true);
-  assert.equal(handover.corpus_scale.step8g.final_protected_active_version, "v8005");
-  assert.equal(handover.corpus_scale.step8g.composed_recipe_count, 2464);
-  assert.equal(handover.corpus_scale.step8f.automatic_broader_admission_authorized, false);
+  assert.match(handover.operating_contract.public_activation, /unitools_tortilla_espanola/);
+  assert.match(handover.operating_contract.topology, /two protected D1 recipe-body shards/i);
+  assert.match(handover.operating_contract.d1_budget, /16\/16 D1 subqueries/);
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
