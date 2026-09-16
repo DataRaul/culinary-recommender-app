@@ -1,0 +1,112 @@
+name: Corpus Scale Step 8G ORA Rigaud 1785 measurement
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-ora-rigaud.yml'
+      - 'scripts/corpus-scale-step8g-ora-rigaud-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-ora-rigaud.mjs'
+      - 'scripts/corpus-scale-step8g-ora-next-source-discovery-core.mjs'
+      - 'tests/corpus-scale-step8g-ora-rigaud.test.js'
+      - 'docs/CORPUS_SCALE_STEP8G_ORA_RIGAUD_1785_RIGHTS_AND_MEASUREMENT.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-ora-rigaud-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  measure-ora-rigaud-1785:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive candidate and ORA baselines
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - name: Checkout pinned ForkRecipe protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: futurechef/forkrecipe-recipes
+          ref: c32255266af39bd77444d39452f3df8088ac8fd9
+          path: forkrecipe
+
+      - name: Checkout pinned UniTools protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: farcrak/unitools-recipes
+          ref: 1d09e9548d957dd0375301146a86dddf5e269c1b
+          path: unitools
+
+      - name: Checkout pinned CC0 protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: sylGauthier/recipes
+          ref: b12e481d1c220a13e0847a34e148d5872a16928e
+          path: cc0-recipes
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run deterministic Rigaud measurement gate unit tests
+        run: node --test tests/corpus-scale-step8g-ora-rigaud.test.js
+
+      - name: Measure exact 789-row source against active v8006
+        run: >-
+          node scripts/run-corpus-scale-step8g-ora-rigaud.mjs
+          --ora=./open-recipe-archive
+          --forkrecipe=./forkrecipe
+          --unitools=./unitools
+          --cc0=./cc0-recipes
+          --rights-doc=./docs/CORPUS_SCALE_STEP8G_ORA_RIGAUD_1785_RIGHTS_AND_MEASUREMENT.md
+          --out=.tmp/step8g-ora-rigaud-measurement
+
+      - name: Verify measurement remained no-write and v8006-based
+        run: >-
+          node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-ora-rigaud-measurement/measurement.json","utf8"));
+          if(p.baseline.activeProtectedVersion!=="v8006"||p.baseline.activeProtectedCount!==2906)process.exit(1);
+          const b=p.boundaries;
+          if(b.liveD1WritesAuthorized!==false||b.protectedPopulationAuthorized!==false||b.publicRuntimeChangeAuthorized!==false||b.recommendationAdmissionAuthorized!==false||b.thirdShardAuthorized!==false||b.d1BudgetExpansionAuthorized!==false||b.billingExpansionAuthorized!==false)process.exit(1);
+          console.log(JSON.stringify({pass:p.pass,terminal:p.terminal,recipeCount:p.candidate?.recipeCount,rights:p.gates.rightsAuditPass,structural:p.gates.structuralQualityPass,coverage:p.gates.culinaryCoveragePass}));'
+
+      - name: Expose non-sensitive measurement metrics
+        id: metrics
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = JSON.parse(fs.readFileSync('.tmp/step8g-ora-rigaud-measurement/measurement.json', 'utf8'));
+          const c = p.candidate;
+          const fields = {
+            pass: p.pass ? '1' : '0',
+            recipes: c.recipeCount,
+            titles: c.distinctNormalizedTitles,
+            novel: c.novelNormalizedTitleCount,
+            overlap: c.exactBaselineTitleOverlapCount,
+            phrases: c.distinctIngredientPhraseCount,
+            novelphrases: c.novelIngredientPhraseCount,
+            rights: p.gates.rightsAuditPass ? '1' : '0',
+            structural: p.gates.structuralQualityPass ? '1' : '0',
+            coverage: p.gates.culinaryCoveragePass ? '1' : '0'
+          };
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, Object.entries(fields).map(([k,v]) => `${k}=${v}\n`).join(''));
+          NODE
+
+      - name: Upload Step 8G Rigaud measurement evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-rigaud-p${{ steps.metrics.outputs.pass }}-r${{ steps.metrics.outputs.recipes }}-t${{ steps.metrics.outputs.titles }}-n${{ steps.metrics.outputs.novel }}-o${{ steps.metrics.outputs.overlap }}-ip${{ steps.metrics.outputs.phrases }}-nip${{ steps.metrics.outputs.novelphrases }}-rights${{ steps.metrics.outputs.rights }}-s${{ steps.metrics.outputs.structural }}-c${{ steps.metrics.outputs.coverage }}
+          path: .tmp/step8g-ora-rigaud-measurement/measurement.json
+          if-no-files-found: error
+          retention-days: 30
