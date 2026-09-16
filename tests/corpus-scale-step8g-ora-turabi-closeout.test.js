@@ -33,44 +33,48 @@ test("Turabi 1864 measurement PASS is frozen with exact artifact-backed metrics"
   }
 });
 
-test("Turabi measurement remains frozen while the next Step 8G iteration advances through v8006 prewrite", () => {
+test("Turabi measurement remains immutable after the measured cohort advances through v8006 live PASS", () => {
   const g = gate("8G");
   assert.equal(g.status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
-  assert.equal(g.latestIteration.finalProtectedActiveVersion, "v8005");
-  assert.equal(g.latestIteration.composedRecipeCount, 2464);
-  assert.equal(g.latestIteration.liveTerminal, "STEP_8G_ORA_BOSSE_WATANNA_V8005_PROTECTED_POPULATION_PASS");
-  assert.equal(g.nextIteration.status, "PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED");
-  assert.equal(g.nextIteration.candidate, "ORA_TURABI_EFENDI_1864_OTTOMAN_SHELF_AE3BD2C");
-  assert.equal(g.nextIteration.measurementTerminal, evidence.terminal);
-  assert.equal(g.nextIteration.measurementRecipeCount, 442);
-  assert.equal(g.nextIteration.prewriteStatus, "PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED");
-  assert.equal(g.nextIteration.implementationEarned, true);
-  assert.equal(g.nextIteration.livePopulationPerformed, false);
-  assert.equal(g.nextIteration.nextAction, "IMPLEMENT_V8006_PROTECTED_POPULATION");
-  assert.equal(g.nextIteration.layerVersion, "v8006");
-  assert.equal(g.nextIteration.plannedParentVersion, "v8005");
-  assert.equal(g.nextIteration.plannedParentRecipeCount, 2464);
-  assert.equal(g.nextIteration.plannedChildRecipeCount, 442);
-  assert.equal(g.nextIteration.plannedComposedRecipeCount, 2906);
-  assert.equal(g.nextIteration.maxRowsPerBatch, 10);
-  assert.equal(g.nextIteration.maxPlannedD1Subqueries, 16);
-  assert.equal(g.nextIteration.d1BudgetHeadroomAssumed, false);
+  assert.equal(g.latestIteration.finalProtectedActiveVersion, "v8006");
+  assert.equal(g.latestIteration.composedRecipeCount, 2906);
+  assert.equal(g.latestIteration.liveTerminal, "STEP_8G_ORA_TURABI_V8006_PROTECTED_POPULATION_PASS");
+  assert.equal(g.latestIteration.candidate, "ORA_TURABI_EFENDI_1864_OTTOMAN_SHELF_AE3BD2C");
+  assert.equal(g.latestIteration.measurementTerminal, evidence.terminal);
+  assert.equal(g.latestIteration.measurementRecipeCount, 442);
+  assert.equal(g.latestIteration.prewriteStatus, "PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED");
+  assert.equal(g.latestIteration.layerVersion, "v8006");
+  assert.equal(g.latestIteration.parentCorpusVersion, "v8005");
+  assert.equal(g.latestIteration.parentRecipeCount, 2464);
+  assert.equal(g.latestIteration.childRecipeCount, 442);
+  assert.equal(g.latestIteration.composedRecipeCount, 2906);
+  assert.equal(g.latestIteration.maxRowsPerBatch, 10);
+  assert.equal(g.latestIteration.maxAllowedD1Subqueries, 16);
+  assert.equal(g.latestIteration.d1BudgetHeadroomAssumed, false);
+  assert.equal(g.nextIteration.status, "NOT_YET_EARNED_SOURCE_DISCOVERY_AND_MEASUREMENT_REQUIRED");
+  assert.equal(g.nextIteration.parentVersion, "v8006");
+  assert.equal(g.nextIteration.parentRecipeCount, 2906);
+  assert.equal(g.nextIteration.candidate, null);
   assert.equal(roadmap.currentHumanGate.id, "NONE");
 });
 
-test("Turabi measurement and v8006 prewrite create no live, public, topology, budget or adjacent-lane authority", () => {
+test("Turabi historical measurement authority remains bounded after live v8006 activation", () => {
   for (const key of ["liveD1WritesAuthorized","protectedPopulationAuthorized","publicRuntimeChangeAuthorized","recommendationAdmissionAuthorized","thirdShardAuthorized","d1BudgetExpansionAuthorized","billingExpansionAuthorized","nutritionAuthorityImported","culturalAuthenticityAuthorityImported","knowledgeCoreWriteAuthorized"]) {
     assert.equal(evidence.boundaries[key], false, key);
   }
   assert.equal(evidence.interpretation.prewriteEarned, true);
   assert.equal(evidence.interpretation.liveProtectedPopulationAuthorized, false);
   assert.equal(evidence.interpretation.recommendationAdmissionAuthorized, false);
+  assert.equal(gate("8G").latestIteration.publicRuntimeChanged, false);
+  assert.equal(gate("8G").latestIteration.recommendationAdmissionChanged, false);
+  assert.equal(gate("8G").latestIteration.thirdShardUsed, false);
+  assert.equal(gate("8G").latestIteration.billingExpansion, false);
+  assert.equal(gate("8G").latestIteration.culturalAuthenticityAuthorityImported, false);
   assert.equal(gate("8G").nextIteration.publicRuntimeChangeAuthorized, false);
   assert.equal(gate("8G").nextIteration.recommendationAdmissionAuthorized, false);
   assert.equal(gate("8G").nextIteration.thirdShardAuthorized, false);
   assert.equal(gate("8G").nextIteration.d1BudgetExpansionAuthorized, false);
   assert.equal(gate("8G").nextIteration.billingExpansionAuthorized, false);
-  assert.equal(gate("8G").nextIteration.culturalAuthenticityAuthorityImported, false);
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);

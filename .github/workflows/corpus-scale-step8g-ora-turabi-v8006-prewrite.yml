@@ -80,9 +80,21 @@ jobs:
 
       - name: Verify canonical roadmap and handover freeze
         run: |
-          cmp -s .tmp/step8g-ora-turabi-v8006-finalized/config/corpus_scale_step8_roadmap.json config/corpus_scale_step8_roadmap.json
-          cmp -s .tmp/step8g-ora-turabi-v8006-finalized/docs/handovers/CURRENT.json docs/handovers/CURRENT.json
-          cmp -s .tmp/step8g-ora-turabi-v8006-finalized/docs/handovers/PREVIOUS.json docs/handovers/PREVIOUS.json
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          const pairs = [
+            ['.tmp/step8g-ora-turabi-v8006-finalized/config/corpus_scale_step8_roadmap.json', 'config/corpus_scale_step8_roadmap.json'],
+            ['.tmp/step8g-ora-turabi-v8006-finalized/docs/handovers/CURRENT.json', 'docs/handovers/CURRENT.json'],
+            ['.tmp/step8g-ora-turabi-v8006-finalized/docs/handovers/PREVIOUS.json', 'docs/handovers/PREVIOUS.json']
+          ];
+          for (const [candidate, canonical] of pairs) {
+            const left = JSON.parse(await readFile(candidate, 'utf8'));
+            const right = JSON.parse(await readFile(canonical, 'utf8'));
+            if (JSON.stringify(left) !== JSON.stringify(right)) {
+              throw new Error(`CANONICAL_JSON_MISMATCH:${canonical}`);
+            }
+          }
+          NODE
 
       - name: Test canonical v8006 prewrite closeout
         run: node --test tests/corpus-scale-step8g-v8006-prewrite-closeout.test.js
