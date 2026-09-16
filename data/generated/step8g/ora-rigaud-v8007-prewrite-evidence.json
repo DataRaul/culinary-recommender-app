@@ -1,0 +1,87 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ORA_RIGAUD_1785_V8007_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_ORA_RIGAUD_1785_V8007_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-16",
+  "workflowRun": 35107716388,
+  "artifactId": 10451336020,
+  "artifactDigest": "sha256:048a23d83ac5d5d55ec32a15d760e574315ed34bc2819d1e30c1438934f75852",
+  "source": {
+    "cohortId": "ORA_RIGAUD_1785_PORTUGUESE_SOURCE_AE3BD2C",
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "collection": "cozinha-portuguesa",
+    "sourceWork": "Cozinheiro moderno, ou nova arte de cozinha",
+    "sourceAuthor": "Lucas Rigaud",
+    "sourceYear": "1785",
+    "sourceUrl": "https://archive.org/details/b28764626",
+    "recordCount": 789,
+    "licenseId": "public-domain",
+    "measurementTerminal": "STEP_8G_ORA_RIGAUD_1785_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+    "ontologyResolvedOccurrenceRatio": 0.25971961266078913,
+    "culturalAuthenticityAuthorityImported": false
+  },
+  "parent": {
+    "activeCorpusVersion": "v8006",
+    "composedRecipeCount": 2906,
+    "fingerprintSha256": "345db0d7d8fd664807431de604596b6a685b48f382a0179c5c264a8758b4464b",
+    "fingerprintMaterial": {
+      "activeCorpusVersion": "v8006",
+      "composedRecipeCount": 2906,
+      "liveTerminal": "STEP_8G_ORA_TURABI_V8006_PROTECTED_POPULATION_PASS",
+      "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "layerManifestSha256": "3ac76c7f8f107eaf811167e8245582e30204715d7b45a83eade26ae418f765db",
+      "populationPlanSha256": "b6dd9020fb6221a72c245feb2dd94d9b5ebe8bb758bd25ee508c9031fe5b59a0",
+      "bodyShardRows": [218, 224],
+      "parentCompositionRouteCount": 2464,
+      "composedRouteCount": 2906
+    }
+  },
+  "layer": {
+    "corpusVersion": "v8007",
+    "parentCorpusVersion": "v8006",
+    "recipeCount": 789,
+    "manifestSha256": "1b840b2d0c0ccd5e64309206a4e3640c6e51e9d7f505ab9e976414361c526d02",
+    "populationPlanSha256": "e30f5ffb8c914e3138eae7375236daf3507210c2f4182e1c824b78fd3db1a7fd",
+    "batchCount": 79,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 6229,
+    "maxBatchBodyBytes": 39162,
+    "maxWriteRequestBytes": 16790,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "operationBudget": {
+      "authD1Subqueries": 1,
+      "maxRowsPerBatch": 10,
+      "operations": {"status":1,"bindings":3,"freeLimitSimulation":1,"initialize":8,"bodyWriteFresh":15,"bodyWriteReplay":3,"progress":7,"copyParentRoutesFresh":6,"routeWriteFresh":16,"routeWriteReplay":4,"activate":8,"rollback":3,"sevenLayerHydrationCanary":4,"boundedHydrationWorstCase":10,"evidence":7},
+      "maxPlannedD1Subqueries": 16,
+      "maxAllowedD1Subqueries": 16,
+      "limitingOperations": ["routeWriteFresh"],
+      "pass": true,
+      "headroomAssumed": false
+    },
+    "shardDescriptors": [
+      {"shardNumber":0,"rowCount":399,"totalBodyBytes":1279496,"firstOrdinal":0,"lastOrdinal":786,"entriesSha256":"55ae514bb96f008ffbb88235bfa4738a289fac0f7014ebbc828de710c622117d"},
+      {"shardNumber":1,"rowCount":390,"totalBodyBytes":1220356,"firstOrdinal":2,"lastOrdinal":788,"entriesSha256":"5df7ba7e739706f3477f321b01585ef39f9e164de5ec52473dfb5fee07716638"}
+    ]
+  },
+  "composition": {
+    "activeCorpusVersion": "v8007",
+    "parentCorpusVersion": "v8006",
+    "cumulativeRecipeCount": 3695,
+    "capacity": {
+      "parentLayeredPhysicalBodyBytes": 16345185,
+      "addedLayerBodyBytes": 2499852,
+      "layeredPhysicalBodyBytes": 18845037,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {"shardNumber":0,"parentRowCount":1459,"addedRowCount":399,"rowCount":1858,"parentBodyBytes":8245187,"addedBodyBytes":1279496,"totalBodyBytes":9524683,"withinProjectDatabaseBudget":true},
+        {"shardNumber":1,"parentRowCount":1447,"addedRowCount":390,"rowCount":1837,"parentBodyBytes":8099998,"addedBodyBytes":1220356,"totalBodyBytes":9320354,"withinProjectDatabaseBudget":true}
+      ]
+    },
+    "routing": {"shardCount":2,"mode":"CONTROL_INDEX_EXACT_ROUTE_THEN_BATCH_HYDRATE_BY_SHARD","fullCorpusScans":0,"maxProtectedD1Subqueries":16,"d1BudgetHeadroomAssumed":false}
+  },
+  "gates": {"requestSizePass":true,"operationBudgetPass":true,"capacityPass":true,"topologyPass":true,"countPass":true,"batchSizePass":true},
+  "boundaries": {"liveD1WritesPerformed":0,"publicRuntimeChanged":false,"recommendationAdmissionPerformed":false,"thirdShardUsed":false,"d1BudgetExpansion":false,"billingExpansion":false,"nutritionLaneModified":false,"youtubeCulinaryStateModified":false,"knowledgeCoreWritePerformed":false,"culturalAuthenticityAuthorityImported":false,"step8fReopened":false},
+  "decision": "EARN_V8007_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE"
+}
