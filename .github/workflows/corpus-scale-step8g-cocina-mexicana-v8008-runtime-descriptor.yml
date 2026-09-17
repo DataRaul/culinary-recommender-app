@@ -14,21 +14,19 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: corpus-step8g-cocina-mexicana-v8008-runtime-descriptor-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  freeze-runtime-descriptor:
+  verify-runtime-descriptor:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout Culinary app feature branch
+      - name: Checkout Culinary app
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Checkout pinned Open Recipe Archive
         uses: actions/checkout@v4
@@ -41,14 +39,15 @@ jobs:
         with:
           node-version: 22
 
-      - name: Generate public-safe v8008 runtime descriptor
+      - name: Regenerate public-safe v8008 descriptor to temporary path
         run: >-
           node scripts/generate-step8g-cocina-mexicana-v8008-runtime-descriptor.mjs
           --ora=./open-recipe-archive
-          --out=data/generated/step8g/v8008-runtime-descriptor.mjs
+          --out=.tmp/v8008-runtime-descriptor.mjs
 
-      - name: Verify descriptor matches earned v8008 prewrite
+      - name: Verify frozen descriptor is deterministic and matches earned prewrite
         run: |
+          cmp -s .tmp/v8008-runtime-descriptor.mjs data/generated/step8g/v8008-runtime-descriptor.mjs
           node --input-type=module <<'NODE'
           import { readFile } from 'node:fs/promises';
           import { STEP8G_V8008_RUNTIME_DESCRIPTOR as descriptor } from './data/generated/step8g/v8008-runtime-descriptor.mjs';
@@ -58,22 +57,10 @@ jobs:
           if (descriptor.layerManifestSha256 !== evidence.layer.manifestSha256) throw new Error('MANIFEST_FINGERPRINT_MISMATCH');
           if (descriptor.populationPlanSha256 !== evidence.layer.populationPlanSha256) throw new Error('POPULATION_PLAN_FINGERPRINT_MISMATCH');
           if (descriptor.parentCompositionRouteCount !== 3695 || descriptor.composedRouteCount !== 10171) throw new Error('ROUTE_COUNT_MISMATCH');
-          if (JSON.stringify(descriptor.bodyShardRows) !== JSON.stringify([3251, 3225])) throw new Error('SHARD_ROW_LAYOUT_MISMATCH');
-          const bodyBatchCount = descriptor.bodyHashHexByShard.reduce((sum, value) => sum + value.length / 64, 0);
-          const routeBatchCount = descriptor.routeHashHexByShard.reduce((sum, value) => sum + value.length / 64, 0);
+          if (JSON.stringify(descriptor.bodyShardRows) !== JSON.stringify([3251,3225])) throw new Error('SHARD_ROW_LAYOUT_MISMATCH');
+          const bodyBatchCount = descriptor.bodyHashHexByShard.reduce((sum,value)=>sum+value.length/64,0);
+          const routeBatchCount = descriptor.routeHashHexByShard.reduce((sum,value)=>sum+value.length/64,0);
           if (bodyBatchCount !== 649 || routeBatchCount !== 649) throw new Error('BATCH_COUNT_MISMATCH');
-          console.log(JSON.stringify({pass:true,bodyBatchCount,routeBatchCount,bodyShardRows:descriptor.bodyShardRows,containsRecipeBodies:false}));
+          if (JSON.stringify(descriptor).includes('rawJson')) throw new Error('PROTECTED_BODY_LEAK_IN_DESCRIPTOR');
+          console.log(JSON.stringify({pass:true,bodyBatchCount,routeBatchCount,bodyShardRows:descriptor.bodyShardRows,containsRecipeBodies:false,ciMutation:false}));
           NODE
-
-      - name: Commit deterministic descriptor when it changed
-        if: github.event_name == 'pull_request'
-        run: |
-          if [ -z "$(git status --porcelain -- data/generated/step8g/v8008-runtime-descriptor.mjs)" ]; then
-            echo 'Descriptor already frozen.'
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/generated/step8g/v8008-runtime-descriptor.mjs
-          git commit -m 'step8g: freeze v8008 runtime descriptor'
-          git push origin HEAD:${{ github.head_ref }}
