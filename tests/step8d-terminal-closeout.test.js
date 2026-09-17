@@ -43,9 +43,11 @@ test("Step 8D PASS remains the prerequisite for completed 8E and independent act
 
 test("current handover preserves Step 8 cost, topology and public-scope firewalls without pinning an obsolete schema", () => {
   assert.equal(current.lane.billing, "NO_BILLING_AUTHORIZATION");
-  assert.match(current.operating_contract.topology, /exactly two protected D1 recipe-body shards/i);
-  assert.match(current.operating_contract.public_activation, /unitools_tortilla_espanola/);
-  assert.match(current.operating_contract.public_activation, /85 recipes/);
-  assert.equal(current.not_authorized.includes("No third shard."), true);
-  assert.equal(current.not_authorized.includes("No billing or paid infrastructure."), true);
+  assert.equal(current.live_protected_state.shard_count, 2);
+  assert.equal(current.live_protected_state.third_shard_used, false);
+  assert.equal(current.live_protected_state.billing_expansion, false);
+  assert.equal(current.live_protected_state.public_runtime_recipe_count, 85);
+  assert.equal(current.live_protected_state.public_runtime_changed, false);
+  assert.equal(current.live_protected_state.max_allowed_d1_subqueries, 16);
+  assert.equal(current.live_protected_state.d1_budget_headroom_assumed, false);
 });
