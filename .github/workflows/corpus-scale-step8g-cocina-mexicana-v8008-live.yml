@@ -75,19 +75,17 @@ jobs:
           console.log(JSON.stringify({pass:true,authenticatedBrowserGate:true,productionWritesFromCi:false,protectedBodiesCommitted:false}));
           NODE
 
-      - name: Verify no production mutation command exists in CI
+      - name: Verify CI has no production mutation capability
         run: |
           node --input-type=module <<'NODE'
           import { readFile } from 'node:fs/promises';
           const source = await readFile('.github/workflows/corpus-scale-step8g-cocina-mexicana-v8008-live.yml', 'utf8');
+          if (!/permissions:\s*\n\s*contents:\s*read\b/.test(source)) throw new Error('CI_CONTENTS_PERMISSION_NOT_READ_ONLY');
           const forbidden = [
             ['wrangler', ' d1 execute', ' --remote'].join(''),
             ['curl ', '/api/step8g/v8008'].join(''),
-            ['SESSION', '_SECRET='].join(''),
-            ['CULINARY_CONTROL', '_DB='].join('')
+            ['secrets', '.'].join('')
           ];
-          for (const token of forbidden) {
-            if (source.includes(token)) throw new Error(`PRODUCTION_MUTATION_OR_SECRET_PATTERN:${token.split('=')[0]}`);
-          }
-          console.log('PASS: v8008 CI is validation-only.');
+          for (const token of forbidden) if (source.includes(token)) throw new Error('PRODUCTION_MUTATION_CAPABILITY_PRESENT');
+          console.log('PASS: v8008 CI has read-only repository permission, no secrets reference, and no production mutation command.');
           NODE
