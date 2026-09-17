@@ -1,5 +1,5 @@
 {
-  "contractVersion": "0.1.0",
+  "contractVersion": "0.2.0",
   "pilotId": "recipe-family-synthesis-p0",
   "state": "CONTRACT_ONLY_NO_RUNTIME_AUTHORITY",
   "objective": "Prove that a small bounded multi-source evidence set can produce legally clean, practically reliable recipe-family models and app-owned recipe projections without corpus-scale growth.",
@@ -39,19 +39,63 @@
     "REUSABLE_CONTENT",
     "DO_NOT_USE"
   ],
+  "acquisitionModes": [
+    "MANUAL_REVIEW",
+    "AUTOMATED_TDM",
+    "API_OPEN_DATA",
+    "LICENSED_REUSE"
+  ],
   "legalFields": {
     "lawfulAccess": ["YES", "NO", "UNKNOWN"],
+    "termsState": ["ALLOWS_INTENDED_USE", "NO_RELEVANT_RESTRICTION_FOUND", "PROHIBITS_AUTOMATION", "REQUIRES_PERMISSION", "UNKNOWN"],
     "tdmReservation": ["NONE_FOUND", "EXPRESSLY_RESERVED", "UNKNOWN", "NOT_APPLICABLE"],
     "reuseBasis": ["OPEN_LICENCE", "PERMISSION", "PUBLIC_DOMAIN", "STANDARD_COPYRIGHT", "UNKNOWN"],
-    "databaseExtractionRisk": ["LOW", "MATERIAL", "UNKNOWN"]
+    "databaseExtractionRisk": ["LOW", "MATERIAL", "UNKNOWN"],
+    "cumulativeExtractionRisk": ["LOW", "MATERIAL", "UNKNOWN"],
+    "rawExpressionRetention": ["NONE", "TEMPORARY_DELETE_AFTER_NORMALIZATION"]
   },
+  "requiredSourceMetadata": [
+    "publisher",
+    "url",
+    "accessedAt",
+    "independenceGroup",
+    "publisherLedgerKey",
+    "acquisitionMode",
+    "lawfulAccess",
+    "termsState",
+    "reuseBasis",
+    "databaseExtractionRisk",
+    "cumulativeExtractionRisk",
+    "role",
+    "sourceExpressionPersisted",
+    "rawExpressionRetention"
+  ],
+  "automatedTdmAdditionalMetadata": [
+    "termsCheckedAt",
+    "tdmReservation",
+    "tdmReservationCheckedAt",
+    "tdmReservationEvidence"
+  ],
   "legalRules": [
     "NO_LAWFUL_ACCESS_DO_NOT_USE",
-    "EXPRESS_TDM_RESERVATION_BLOCKS_AUTOMATED_EXTRACTION_UNDER_GENERAL_TDM_LANE",
+    "AUTOMATED_TDM_REQUIRES_TERMS_ALLOW_OR_NO_RELEVANT_RESTRICTION",
+    "EXPRESS_OR_UNKNOWN_TDM_RESERVATION_BLOCKS_GENERAL_AUTOMATED_TDM_LANE",
+    "AUTOMATED_TDM_REQUIRES_CURRENT_RESERVATION_EVIDENCE",
+    "REUSABLE_CONTENT_REQUIRES_OPEN_LICENCE_PERMISSION_OR_PUBLIC_DOMAIN",
     "DO_NOT_RETAIN_OR_REPUBLISH_PROTECTED_SOURCE_EXPRESSION_WITHOUT_REUSE_RIGHTS",
+    "TEMPORARY_FETCHED_EXPRESSION_DELETE_AFTER_NORMALIZATION",
     "DO_NOT_RECONSTRUCT_THIRD_PARTY_DATABASE_BY_SUBSTANTIAL_OR_REPEATED_SYSTEMATIC_EXTRACTION",
+    "TRACK_CUMULATIVE_EXTRACTION_BY_PUBLISHER_LEDGER_KEY",
+    "MATERIAL_OR_UNKNOWN_EXTRACTION_RISK_FAILS_CLOSED",
     "MATERIAL_UNCERTAINTY_FAILS_CLOSED_FOR_THE_SOURCE_NOT_THE_FAMILY"
   ],
+  "compliancePreflight": {
+    "mandatoryBeforeAutomatedSourceAcquisition": true,
+    "policy": "docs/RECIPE_FAMILY_SOURCE_COMPLIANCE_GATE.md",
+    "validator": "scripts/validate-recipe-family-source-compliance.mjs",
+    "sourceLevelFailureDoesNotBlockFamily": true,
+    "manualBoundedEvidencePathRemainsAvailable": true
+  },
   "supportBands": {
     "CORE_SIGNAL_MIN": 0.70,
     "COMMON_SIGNAL_MIN": 0.40,
@@ -102,8 +146,18 @@
   "prototypeBeforeExpansion": {
     "families": ["carbonara", "hummus"],
     "mode": "OFFLINE_DETERMINISTIC",
+    "requiredSequence": [
+      "source_eligibility_preflight",
+      "bounded_observation_acquisition",
+      "family_synthesis",
+      "expression_independence_validation",
+      "prototype_report",
+      "consultant_coach_review"
+    ],
     "requiredOutputs": [
       "source_observations",
+      "source_compliance_report",
+      "publisher_extraction_ledger",
       "reference_profile",
       "observed_ranges",
       "recommended_ranges",
@@ -112,8 +166,31 @@
       "validation_report",
       "candidate_app_owned_recipe_projection"
     ],
-    "consultantCoachChallengeRequiredBeforeCohortExpansion": true
+    "consultantCoachChallengeRequiredBeforeCohortExpansion": true,
+    "consultantChallenges": [
+      "LEGAL_GATES_NOT_UNNECESSARILY_BLOCKING_LOW_RISK_FACTUAL_SYNTHESIS",
+      "REFERENCE_CLAIMS_DO_NOT_EXCEED_EVIDENCE",
+      "VARIANTS_ARE_NOT_NOISE",
+      "ADDITIONAL_COLLECTION_HAS_POSITIVE_INFORMATION_GAIN",
+      "SYNTHESIS_IS_MORE_USEFUL_THAN_DUPLICATE_SOURCE_STORAGE"
+    ],
+    "projectCoachChallenges": [
+      "COMPLIANCE_PREFLIGHT_PRECEDES_AUTOMATED_GATHERING",
+      "TERMINAL_EVIDENCE_IS_EXPLICIT",
+      "CUMULATIVE_PUBLISHER_EXTRACTION_IS_BOUNDED",
+      "PROTECTED_EXPRESSION_IS_ABSENT_FROM_PERSISTENT_OBJECTS",
+      "PUBLIC_PRIVATE_RUNTIME_FIREWALL_IS_PRESERVED"
+    ]
   },
+  "legalReReviewTriggers": [
+    "MANUAL_TO_AUTOMATED_ACQUISITION_CHANGE",
+    "NEW_MATERIAL_COMMERCIAL_RECIPE_SOURCE",
+    "TERMS_LICENCE_OR_TDM_RESERVATION_CHANGE",
+    "MATERIAL_SOURCE_VOLUME_INCREASE_PER_PUBLISHER",
+    "RAW_SOURCE_TEXT_RETENTION_WIDENS",
+    "BROAD_PUBLIC_COMMERCIAL_OR_MULTI_USER_USE",
+    "SOURCE_DERIVED_PROSE_OR_MEDIA_EXPOSURE"
+  ],
   "nonGoals": [
     "MASS_CRAWLING",
     "RAW_RECIPE_COUNT_MAXIMIZATION",
