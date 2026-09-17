@@ -1,0 +1,60 @@
+{
+  "contractVersion": "1.0.0",
+  "decisionId": "LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_2026_09_17",
+  "state": "OWNER_APPROVED_ROADMAP_ORDER",
+  "canonicalDecision": "docs/LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_DECISION.md",
+  "sourceOfTruth": "DataRaul/culinary-recommender-app",
+  "sequencing": {
+    "primaryNextMilestone": "LEGAL_CORPUS_BASELINE_PASS",
+    "principalExecutionLane": "STEP8G_RIGHTS_CLEAN_PROTECTED_SCALE",
+    "recipeFamilyPrototypeState": "DEFERRED_PENDING_LEGAL_CORPUS_BASELINE",
+    "nutritionExpansionPriority": "DOWNSTREAM_AFTER_LEGAL_CORPUS_BASELINE",
+    "youtubeRefinementPriority": "DOWNSTREAM_AFTER_LEGAL_CORPUS_BASELINE",
+    "recommendationOptimizationPriority": "DOWNSTREAM_AFTER_LEGAL_CORPUS_BASELINE",
+    "postBaselineOrder": [
+      "corpus_normalization_and_categorization",
+      "nutrition_and_vitamin_applicability_audit",
+      "recommendation_readiness",
+      "recipe_family_and_adaptation",
+      "youtube_and_authoritative_evidence_refinement",
+      "further_product_features"
+    ]
+  },
+  "sourceAdmission": {
+    "rightsGated": true,
+    "publicAvailabilityAloneIsSufficient": false,
+    "unknownRightsOutcome": "HOLD_OR_REJECT_FAIL_CLOSED",
+    "attributionRequirementMustBeClassified": true,
+    "requiredAttributionMustBeRenderableForAnyLaterPublicReusablePath": true,
+    "provenanceAlwaysRequired": true,
+    "rawCountIsSuccessCriterion": false
+  },
+  "runtimeBoundary": {
+    "githubRepositoryVisibility": "PUBLIC",
+    "githubMayContainProtectedRecipeBodies": false,
+    "githubMayContainRuntimeSecrets": false,
+    "protectedCorpusStore": "CLOUDFLARE_D1_PRIVATE_RUNTIME_DATABASES",
+    "browserDirectDatabaseAccessAllowed": false,
+    "unauthenticatedProtectedAccessAllowed": false,
+    "authorizationEnforcedServerSideEveryProtectedRequest": true,
+    "authenticationModel": "APPLICATION_OWNED_IDENTITY_VERIFIER_EXACT_ALLOWLIST_SECURE_SESSION",
+    "customSharedPasswordStoreRequired": false,
+    "revocationRequired": true,
+    "freePlanExhaustionOutcome": "FAIL_CLOSED"
+  },
+  "securityLegalBoundary": {
+    "privateRuntimeReducesPublicDistributionExposure": true,
+    "privateRuntimeCreatesReusePermission": false,
+    "unauthorizedThirdPartyIntrusionIsAuthorizedDistribution": false,
+    "blanketNoResponsibilityAfterBreachAssumptionAllowed": false
+  },
+  "doesNotAuthorize": [
+    "PAID_INFRASTRUCTURE",
+    "BILLING_OR_OVERAGE_AUTHORIZATION",
+    "THIRD_D1_SHARD",
+    "PUBLIC_RECIPE_CORPUS_ACTIVATION",
+    "WEAKENED_SOURCE_RIGHTS_GATE",
+    "GENERIC_WEB_SCRAPING",
+    "CUSTOM_SHARED_PASSWORD_DOWNGRADE"
+  ]
+}
