@@ -1,0 +1,95 @@
+name: Corpus Scale Step 8G cocina-mexicana measurement
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-cocina-mexicana-measurement.yml'
+      - 'scripts/run-corpus-scale-step8g-cocina-mexicana-measurement.mjs'
+      - 'docs/CORPUS_SCALE_STEP8G_COCINA_MEXICANA_SOURCE_AUDIT.md'
+      - 'data/generated/step8g/cocina-mexicana-source-inventory.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-cocina-mexicana-measurement-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - name: Checkout pinned ForkRecipe protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: futurechef/forkrecipe-recipes
+          ref: c32255266af39bd77444d39452f3df8088ac8fd9
+          path: forkrecipe
+
+      - name: Checkout pinned UniTools protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: farcrak/unitools-recipes
+          ref: 1d09e9548d957dd0375301146a86dddf5e269c1b
+          path: unitools
+
+      - name: Checkout pinned CC0 protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: sylGauthier/recipes
+          ref: b12e481d1c220a13e0847a34e148d5872a16928e
+          path: cc0-recipes
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Measure source cohorts against active v8007 baseline
+        run: >-
+          node scripts/run-corpus-scale-step8g-cocina-mexicana-measurement.mjs
+          --ora=./open-recipe-archive
+          --forkrecipe=./forkrecipe
+          --unitools=./unitools
+          --cc0=./cc0-recipes
+          --rights-doc=docs/CORPUS_SCALE_STEP8G_COCINA_MEXICANA_SOURCE_AUDIT.md
+          --out=.tmp/step8g-cocina-mexicana-measurement
+
+      - name: Verify v8007 baseline and no-write boundaries
+        run: >-
+          node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-cocina-mexicana-measurement/measurement.json","utf8"));
+          if(p.baseline.activeProtectedVersion!=="v8007"||p.baseline.activeProtectedCount!==3695||p.collectionRecipeCount!==6476||p.measuredSourceCount!==2)process.exit(1);
+          const b=p.boundaries;
+          if(b.liveD1WritesPerformed!==0||b.protectedPopulationAuthorized!==false||b.publicRuntimeChangeAuthorized!==false||b.recommendationAdmissionAuthorized!==false||b.thirdShardAuthorized!==false||b.billingExpansionAuthorized!==false||b.nutritionLaneModified!==false||b.youtubeCulinaryStateModified!==false||b.knowledgeCoreWritePerformed!==false||b.culturalAuthenticityAuthorityImported!==false)process.exit(1);
+          for(const s of p.sourceMeasurements){if(s.boundaries.liveD1WritesAuthorized!==false||s.boundaries.protectedPopulationAuthorized!==false||s.boundaries.publicRuntimeChangeAuthorized!==false||s.boundaries.thirdShardAuthorized!==false||s.boundaries.billingExpansionAuthorized!==false)process.exit(1);}
+          console.log(JSON.stringify({terminal:p.terminal,earnedSourceCount:p.earnedSourceCount,earnedRecipeCount:p.earnedRecipeCount,nextAuthority:p.nextAuthority}));'
+
+      - name: Expose compact measurement summary
+        id: metrics
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = JSON.parse(fs.readFileSync('.tmp/step8g-cocina-mexicana-measurement/measurement.json', 'utf8'));
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `earned=${p.earnedSourceCount}\nrecipes=${p.earnedRecipeCount}\n`);
+          NODE
+
+      - name: Upload no-write measurement evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-cocina-mexicana-measurement-e${{ steps.metrics.outputs.earned }}-r${{ steps.metrics.outputs.recipes }}
+          path: .tmp/step8g-cocina-mexicana-measurement/measurement.json
+          if-no-files-found: error
+          retention-days: 30
