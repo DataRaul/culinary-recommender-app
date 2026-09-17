@@ -1,29 +1,23 @@
 {
   "schemaVersion": "youtube-culinary-canonical-review-bridge-v1",
-  "knowledgeCoreCommit": "b44084d3d3bb3e3b395796572d082abc0bba8202",
-  "generatedAt": "2026-09-13T14:57:30Z",
+  "knowledgeCoreCommit": "cf1d29f33f42dae5566ed910c17d09fc84f9993f",
+  "generatedAt": "2026-09-17T12:30:38Z",
   "outcomes": [
     {
       "packetId": "yt-cul-review-e149634d5785d6e7bd4e185e",
       "reviewPairKey": "yt-cul-pair-765dba9c9b92eef15a5cec42",
-      "reviewDecision": "HELD",
+      "reviewDecision": "ACCEPTED",
       "reviewAuthority": "KNOWLEDGE_CORE_ATLAS_REVIEW",
-      "decisionReason": "CANONICAL_EVIDENCE_REVIEW_REQUIRED__EGGPLANT_FATTEH_IS_PLAUSIBLE_FOR_THE_LEVANT_FLATBREAD_SCOPE_BUT_EXACT_VARIANT_IDENTITY_IS_NOT_YET_STRONGLY_CORROBORATED. The discovery source presents a vegetarian eggplant fatteh and Jordan's official intangible-cultural-heritage registry independently documents fatteh forms as bread-based traditional foods, including lentil fatteh made by pouring lentil soup over torn shrak/white bread. That establishes the broader fatteh/bread mechanism within the Jordanian/Levant context, but the current authoritative evidence located in this review does not itself name or bound the exact 'Eggplant Fatteh' variant. Do not infer exact variant identity from one recipe page plus family-level fatteh evidence.",
+      "decisionReason": "IDENTITY_VERIFIED__EGGPLANT_FATTEH_IS_INDEPENDENTLY_CORROBORATED_AS_A_LEVANTINE_LEBANESE FATTEH VARIANT WITH BREAD_AND_EGGPLANT. The discovery source presented a vegetarian eggplant fatteh. Independent corroboration now includes SBS Food, which identifies eggplant fatteh (fatteh bi batenjan) as a Lebanese form of fatteh and describes fatteh as widely eaten in Lebanon with bread as a defining base, and PBS Food, which independently documents fatteh al-betenjane as an eggplant version within Lebanese cuisine. This resolves the prior exact-variant identity hold. Accepted scope is identity/variant existence and Levantine-Lebanese placement only; it does not establish one definitive recipe, universal structure invariants, exclusive origin, nutrition authority, rights/provenance/safety clearance, app-authoring eligibility or public-export eligibility.",
       "reviewRoute": "ATLAS_IDENTITY_REVIEW",
-      "requiredEvidenceTerms": [
-        "eggplant fatteh",
-        "aubergine fatteh",
-        "فتة الباذنجان",
-        "Jordan",
-        "Levant"
-      ],
+      "requiredEvidenceTerms": [],
       "independentNonYoutubeEvidence": true,
       "rightsProvenanceSafetyClear": false,
       "appAuthoringEligible": false,
-      "lifecycleAdvanced": false,
-      "lifecycleStateAfter": null,
-      "retryable": true,
-      "knowledgeCoreCommit": "b44084d3d3bb3e3b395796572d082abc0bba8202"
+      "lifecycleAdvanced": true,
+      "lifecycleStateAfter": "IDENTITY_VERIFIED",
+      "retryable": false,
+      "knowledgeCoreCommit": "cf1d29f33f42dae5566ed910c17d09fc84f9993f"
     }
   ]
 }
