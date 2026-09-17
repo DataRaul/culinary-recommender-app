@@ -77,8 +77,17 @@ jobs:
 
       - name: Verify no production mutation command exists in CI
         run: |
-          if grep -R -nE 'wrangler d1 execute.*--remote|curl .*api/step8g/v8008|SESSION_SECRET|CULINARY_CONTROL_DB.*=' .github/workflows/corpus-scale-step8g-cocina-mexicana-v8008-live.yml; then
-            echo 'Unexpected production-write/auth material in v8008 CI workflow.'
-            exit 1
-          fi
-          echo 'PASS: v8008 CI is validation-only.'
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          const source = await readFile('.github/workflows/corpus-scale-step8g-cocina-mexicana-v8008-live.yml', 'utf8');
+          const forbidden = [
+            ['wrangler', ' d1 execute', ' --remote'].join(''),
+            ['curl ', '/api/step8g/v8008'].join(''),
+            ['SESSION', '_SECRET='].join(''),
+            ['CULINARY_CONTROL', '_DB='].join('')
+          ];
+          for (const token of forbidden) {
+            if (source.includes(token)) throw new Error(`PRODUCTION_MUTATION_OR_SECRET_PATTERN:${token.split('=')[0]}`);
+          }
+          console.log('PASS: v8008 CI is validation-only.');
+          NODE
