@@ -63,11 +63,12 @@ for (const [index, observation] of observations.entries()) {
   requiredString(source, 'accessedAt', label);
   requiredString(source, 'independenceGroup', label);
   requiredString(source, 'publisherLedgerKey', label);
+  requiredString(source, 'termsCheckedAt', label);
 
   if (!acquisitionModes.has(source.acquisitionMode)) errors.push(`${label}: invalid acquisitionMode`);
   if (!lawfulAccessStates.has(source.lawfulAccess)) errors.push(`${label}: invalid lawfulAccess`);
   if (!termsStates.has(source.termsState)) errors.push(`${label}: invalid termsState`);
-  if (!tdmStates.has(source.tdmReservation)) errors.push(`${label}: invalid tdmReservation`);
+  if (source.tdmReservation !== undefined && !tdmStates.has(source.tdmReservation)) errors.push(`${label}: invalid tdmReservation`);
   if (!reuseStates.has(source.reuseBasis)) errors.push(`${label}: invalid reuseBasis`);
   if (!extractionStates.has(source.databaseExtractionRisk)) errors.push(`${label}: invalid databaseExtractionRisk`);
   if (!extractionStates.has(source.cumulativeExtractionRisk)) errors.push(`${label}: invalid cumulativeExtractionRisk`);
@@ -78,9 +79,17 @@ for (const [index, observation] of observations.entries()) {
   if (source.lawfulAccess !== 'YES') {
     errors.push(`${label}: lawfulAccess must be YES for an eligible observation`);
   }
+  if (source.role === 'DO_NOT_USE') {
+    errors.push(`${label}: DO_NOT_USE source cannot enter an eligible observation packet`);
+  }
+  if (source.reuseBasis === 'UNKNOWN') {
+    errors.push(`${label}: reuseBasis=UNKNOWN must fail closed until classified`);
+  }
+  if (source.acquisitionMode === 'MANUAL_REVIEW' && source.termsState === 'REQUIRES_PERMISSION') {
+    errors.push(`${label}: manual review requires permission under the recorded termsState`);
+  }
 
   if (source.acquisitionMode === 'AUTOMATED_TDM') {
-    requiredString(source, 'termsCheckedAt', label);
     requiredString(source, 'tdmReservationCheckedAt', label);
     requiredString(source, 'tdmReservationEvidence', label);
 
@@ -99,7 +108,6 @@ for (const [index, observation] of observations.entries()) {
   }
 
   if (source.acquisitionMode === 'API_OPEN_DATA' || source.acquisitionMode === 'LICENSED_REUSE') {
-    requiredString(source, 'termsCheckedAt', label);
     if (!['OPEN_LICENCE', 'PERMISSION', 'PUBLIC_DOMAIN'].includes(source.reuseBasis)) {
       errors.push(`${label}: ${source.acquisitionMode} requires explicit reusable rights basis`);
     }
