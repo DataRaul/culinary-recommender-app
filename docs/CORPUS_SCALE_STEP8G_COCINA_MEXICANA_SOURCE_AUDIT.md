@@ -1,6 +1,6 @@
 # Step 8G — `cocina-mexicana` source rights and provenance audit
 
-Status: `PASS_SOURCE_RIGHTS_CLASSIFIED__MEASUREMENT_REQUIRED__NO_INGESTION_AUTHORITY`
+Status: `PASS_RIGHTS_AND_V8007_MARGINAL_VALUE__PREWRITE_CAPACITY_MEASUREMENT_ONLY__NO_INGESTION_AUTHORITY`
 
 Pinned source repository: `AdamBouhmad/open-recipe-archive`
 
@@ -15,6 +15,14 @@ Inventory workflow: `35268075750`
 Inventory artifact: `10517174541`
 
 Inventory artifact SHA-256: `4e1042e695043b06679e0a5e7cf5fbadbaab821d02b7072951386534da6da627`
+
+Measurement workflow: `35268436563`
+
+Measurement artifact: `10517771007`
+
+Measurement artifact ZIP SHA-256: `7d40c55e26f834090024f8045faceaf87541520722d564261dccec0858790b59`
+
+Frozen measurement evidence: `data/generated/step8g/cocina-mexicana-v8007-measurement.json`
 
 ## Exact pinned source groups
 
@@ -33,6 +41,8 @@ Independent bibliographic evidence identifies Galván Rivera as 1782–1876 and 
 
 Rights marker: `PASS_RIGHTS_VERIFIED_BOUNDED_GALVAN_RIVERA_1845_DICCIONARIO_COCINA`
 
+Measurement result: PASS against active protected `v8007` / 3,695. All rights, exact-count, metadata, repository-reuse, attribution, single-source, structural-quality and culinary-coverage gates passed. The 4,347 records yielded 4,228 distinct normalized titles, zero exact baseline title overlaps, and 10,308 distinct ingredient phrases.
+
 ### B — *La cocinera poblana*, 1890, author not identified
 
 - Cohort ID: `ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C`
@@ -47,6 +57,8 @@ Rights marker: `PASS_RIGHTS_VERIFIED_BOUNDED_GALVAN_RIVERA_1845_DICCIONARIO_COCI
 The blank author is not treated as missing evidence. Open Library independently catalogues the 1890 edition as `[author not identified]`, provides the matching Internet Archive lineage, and exposes download/read options. Real Academia de Gastronomía independently records the work's nineteenth-century editions and the corrected/enlarged 1890 fourth edition. Spain's consolidated Intellectual Property Act provides a publication-based term for anonymous works; the 1890 lawful publication is far beyond that term.
 
 Rights marker: `PASS_RIGHTS_VERIFIED_BOUNDED_COCINERA_POBLANA_1890_ANONYMOUS`
+
+Measurement result: PASS against active protected `v8007` / 3,695. All source-specific rights, exact-count, metadata, repository-reuse, attribution, single-source, structural-quality and culinary-coverage gates passed. The 2,129 records yielded 1,963 distinct normalized titles, zero exact baseline title overlaps, and 4,545 distinct ingredient phrases.
 
 ## Repository-layer permission
 
@@ -69,9 +81,11 @@ Attribution/disclosure state: `CLASSIFIED_READY_FOR_PRIVATE_CORPUS__UI_DISPLAY_S
 
 ## What this PASS earns
 
-This source-rights PASS earns only bounded structural/marginal-value measurement against active protected `v8007`. It does **not** authorize prewrite, D1 mutation, protected population, public activation, recommendation admission, third-shard creation, billing, Nutrition, YT-CUL, Knowledge Core writes, or cultural-authenticity claims.
+The two independently rights-cleared source cohorts also passed bounded marginal-value measurement against active protected `v8007`. Together, 6,476 recipes therefore earn **source-specific prewrite/capacity measurement only**.
 
-Each source cohort remains independently admissible: a later measurement/capacity failure for one does not contaminate the other.
+The next gate must prove deterministic IDs, body/route hashes and sizes, two-shard distribution, batch/request bounds, storage/cost headroom, rollback/composition feasibility, and the inherited 16-subquery request ceiling before any implementation or production-write authority can be earned.
+
+This PASS does **not** authorize D1 mutation, protected population, public activation, recommendation admission, third-shard creation, billing, Nutrition, YT-CUL, Knowledge Core writes, or cultural-authenticity claims. If one source cohort later fails capacity/prewrite, it must be held independently rather than weakening the gate for the other.
 
 ## Authority boundaries
 
