@@ -196,6 +196,6 @@ Recipe Family governance remains valid and can be maintained in parallel, but su
 
 The intended progression is now:
 
-`rights/source qualification -> rights-clean protected Step 8G scale -> LEGAL_CORPUS_BASELINE_PASS -> corpus normalization/categorization -> nutrition/vitamin applicability audit -> recommendation readiness -> 2-family one-time prototype -> measured compliance + recipe-quality review -> bounded 10-family expansion -> per-family app-authoring candidates -> UI legal-conformance PASS -> existing downstream/public gates`
+`rights/source qualification -> rights-clean protected Step 8G scale -> LEGAL_CORPUS_BASELINE_PASS -> corpus normalization/categorization -> nutrition/vitamin applicability audit -> recommendation readiness -> 2-family one-time prototype -> measured compliance + recipe-quality review -> bounded 10-family expansion -> per-family app-authoring candidates -> UI legal-conformance PASS on real candidate objects -> existing downstream/public gates`
 
 This sequence preserves completed work while making the real legal corpus the next blocking product milestone.
