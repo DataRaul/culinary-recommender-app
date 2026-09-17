@@ -1,5 +1,5 @@
 {
-  "contractVersion": "0.2.0",
+  "contractVersion": "0.2.1",
   "pilotId": "recipe-family-synthesis-p0",
   "state": "CONTRACT_ONLY_NO_RUNTIME_AUTHORITY",
   "objective": "Prove that a small bounded multi-source evidence set can produce legally clean, practically reliable recipe-family models and app-owned recipe projections without corpus-scale growth.",
@@ -63,6 +63,7 @@
     "acquisitionMode",
     "lawfulAccess",
     "termsState",
+    "termsCheckedAt",
     "reuseBasis",
     "databaseExtractionRisk",
     "cumulativeExtractionRisk",
@@ -71,13 +72,15 @@
     "rawExpressionRetention"
   ],
   "automatedTdmAdditionalMetadata": [
-    "termsCheckedAt",
     "tdmReservation",
     "tdmReservationCheckedAt",
     "tdmReservationEvidence"
   ],
   "legalRules": [
     "NO_LAWFUL_ACCESS_DO_NOT_USE",
+    "DO_NOT_USE_SOURCE_CANNOT_ENTER_ELIGIBLE_PACKET",
+    "UNKNOWN_REUSE_BASIS_FAILS_CLOSED_UNTIL_CLASSIFIED",
+    "MANUAL_REVIEW_REQUIRING_PERMISSION_FAILS_CLOSED",
     "AUTOMATED_TDM_REQUIRES_TERMS_ALLOW_OR_NO_RELEVANT_RESTRICTION",
     "EXPRESS_OR_UNKNOWN_TDM_RESERVATION_BLOCKS_GENERAL_AUTOMATED_TDM_LANE",
     "AUTOMATED_TDM_REQUIRES_CURRENT_RESERVATION_EVIDENCE",
