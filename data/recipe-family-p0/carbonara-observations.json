@@ -1,0 +1,165 @@
+{
+  "packetVersion": "0.3.0",
+  "family": "carbonara",
+  "collectionCadence": "ONE_TIME_BASELINE_PER_FAMILY",
+  "collectionDate": "2026-09-17",
+  "expressionPolicy": "NORMALIZED_FACTS_AND_PROJECT_LABELS_ONLY",
+  "observations": [
+    {
+      "observationId": "carbonara-ref-accademia-2009",
+      "familyCandidate": "carbonara",
+      "source": {
+        "publisher": "Accademia Italiana della Cucina",
+        "url": "https://www.accademiaitalianadellacucina.it/sites/default/files/notizie_files/2009_03_06_4_ricette.pdf",
+        "accessedAt": "2026-09-17",
+        "independenceGroup": "accademia-italiana-della-cucina",
+        "publisherLedgerKey": "accademia-italiana-della-cucina",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "UNKNOWN",
+        "termsCheckedAt": "2026-09-17",
+        "tdmReservation": "NOT_APPLICABLE",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "REFERENCE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "servings": 4,
+      "ingredients": [
+        { "ingredientId": "pasta", "role": "STARCH", "quantity": 400, "unit": "g" },
+        { "ingredientId": "cured_pork", "role": "PORK", "quantity": 100, "unit": "g" },
+        { "ingredientId": "egg_unit", "role": "EGG_SYSTEM", "quantity": 4, "unit": "count" },
+        { "ingredientId": "hard_cheese", "role": "CHEESE", "quantity": 70, "unit": "g" }
+      ],
+      "techniques": ["cook_pasta", "render_pork", "off_heat_emulsification"],
+      "times": {},
+      "equipment": [],
+      "structuredNotes": {
+        "eggComposition": { "wholeEggCount": 2, "yolkOnlyCount": 2 },
+        "cheeseComposition": "pecorino_romano_or_pecorino_parmigiano_mix",
+        "referenceUse": "bounded identity and structure evidence"
+      }
+    },
+    {
+      "observationId": "carbonara-practical-lacucinaitaliana-2016",
+      "familyCandidate": "carbonara",
+      "source": {
+        "publisher": "La Cucina Italiana",
+        "url": "https://www.lacucinaitaliana.it/ricetta/primi/carbonara-classica/",
+        "accessedAt": "2026-09-17",
+        "independenceGroup": "la-cucina-italiana",
+        "publisherLedgerKey": "la-cucina-italiana",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "UNKNOWN",
+        "termsCheckedAt": "2026-09-17",
+        "tdmReservation": "NOT_APPLICABLE",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "servings": 4,
+      "ingredients": [
+        { "ingredientId": "pasta", "role": "STARCH", "quantity": 350, "unit": "g" },
+        { "ingredientId": "cured_pork", "role": "PORK", "quantity": 100, "unit": "g" },
+        { "ingredientId": "egg_unit", "role": "EGG_SYSTEM", "quantity": 4, "unit": "count" },
+        { "ingredientId": "hard_cheese", "role": "CHEESE", "quantity": 60, "unit": "g" }
+      ],
+      "techniques": ["cook_pasta", "render_pork", "off_heat_emulsification"],
+      "times": { "totalMinutes": 40 },
+      "equipment": ["pot", "pan", "bowl"],
+      "variantKey": "yolk_only_mixed_hard_cheese",
+      "structuredNotes": {
+        "eggComposition": { "wholeEggCount": 0, "yolkOnlyCount": 4 },
+        "cheeseComposition": "pecorino_and_grana"
+      }
+    },
+    {
+      "observationId": "carbonara-practical-aia",
+      "familyCandidate": "carbonara",
+      "source": {
+        "publisher": "AIA Food",
+        "url": "https://www.aiafood.com/it/ricette/carbonara-la-ricetta-originale-romana",
+        "accessedAt": "2026-09-17",
+        "independenceGroup": "aia-food",
+        "publisherLedgerKey": "aia-food",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "UNKNOWN",
+        "termsCheckedAt": "2026-09-17",
+        "tdmReservation": "NOT_APPLICABLE",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "VARIANT_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "servings": 4,
+      "ingredients": [
+        { "ingredientId": "pasta", "role": "STARCH", "quantity": 400, "unit": "g" },
+        { "ingredientId": "cured_pork", "role": "PORK", "quantity": 300, "unit": "g" },
+        { "ingredientId": "egg_unit", "role": "EGG_SYSTEM", "quantity": 5, "unit": "count" },
+        { "ingredientId": "hard_cheese", "role": "CHEESE", "quantity": 200, "unit": "g" }
+      ],
+      "techniques": ["cook_pasta", "render_pork", "off_heat_emulsification"],
+      "times": { "totalMinutes": 20 },
+      "equipment": ["pot", "pan", "bowl"],
+      "variantKey": "high_pork_high_cheese",
+      "structuredNotes": {
+        "eggComposition": { "wholeEggCount": 1, "yolkOnlyCount": 4 },
+        "cheeseComposition": "pecorino_romano"
+      }
+    },
+    {
+      "observationId": "carbonara-practical-more-recipes-please",
+      "familyCandidate": "carbonara",
+      "source": {
+        "publisher": "More Recipes Please",
+        "url": "https://morerecipesplease.com/en/recipes/recipe/spaghetti-carbonara",
+        "accessedAt": "2026-09-17",
+        "independenceGroup": "more-recipes-please",
+        "publisherLedgerKey": "more-recipes-please",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "UNKNOWN",
+        "termsCheckedAt": "2026-09-17",
+        "tdmReservation": "NOT_APPLICABLE",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "servings": 2,
+      "ingredients": [
+        { "ingredientId": "pasta", "role": "STARCH", "quantity": 200, "unit": "g" },
+        { "ingredientId": "cured_pork", "role": "PORK", "quantity": 120, "unit": "g" },
+        { "ingredientId": "egg_unit", "role": "EGG_SYSTEM", "quantity": 4, "unit": "count" },
+        { "ingredientId": "hard_cheese", "role": "CHEESE", "quantity": 60, "unit": "g" }
+      ],
+      "techniques": ["cook_pasta", "render_pork", "off_heat_emulsification"],
+      "times": { "totalMinutes": 25 },
+      "equipment": ["pot", "pan", "bowl"],
+      "variantKey": "yolk_only",
+      "structuredNotes": {
+        "eggComposition": { "wholeEggCount": 0, "yolkOnlyCount": 4 },
+        "cheeseComposition": "pecorino_romano"
+      }
+    }
+  ]
+}
