@@ -1,0 +1,87 @@
+{
+  "contractVersion": "0.1.0",
+  "gateId": "recipe-family-ui-legal-conformance",
+  "state": "CONTRACT_ONLY_TRIGGERED_WHEN_REAL_CANDIDATE_OBJECTS_EXIST",
+  "purpose": "Revalidate that the UI and public/reusable admission path actually implement the source, licence, attribution and expression-retention obligations already encoded upstream.",
+  "notANewLegalOpinion": true,
+  "trigger": {
+    "event": "FIRST_REAL_APP_AUTHORING_CANDIDATE_WITH_CLASSIFIED_SOURCE_RIGHTS_AND_ATTRIBUTION",
+    "doNotRunBeforeUsefulObjectsExist": true,
+    "rerunForNewMaterialSourceOrLicenceClass": true
+  },
+  "blockingBefore": [
+    "PUBLIC_OR_REUSABLE_RECIPE_ADMISSION",
+    "PUBLIC_RECOMMENDATION_ACTIVATION_FOR_NEW_SOURCE_CLASS"
+  ],
+  "authoritativeInputs": [
+    "candidate_app_owned_recipe_projection",
+    "source_compliance_report",
+    "provenance",
+    "attribution_requirements",
+    "publicAttributionRequirement",
+    "publicAttributionState",
+    "reuseBasis"
+  ],
+  "fixturePolicy": {
+    "useRealCandidateObjectsWhereAvailable": true,
+    "syntheticNegativeFixturesRequired": true,
+    "negativeFixturesMustNotCreateNewRightsAssumptions": true
+  },
+  "requiredCases": [
+    {
+      "case": "ATTRIBUTION_NOT_REQUIRED",
+      "input": "publicAttributionRequirement=NOT_REQUIRED and publicAttributionState=NOT_APPLICABLE",
+      "expected": "PUBLIC_RENDER_MAY_PROCEED_WITH_INTERNAL_PROVENANCE_PRESERVED"
+    },
+    {
+      "case": "ATTRIBUTION_REQUIRED_READY",
+      "input": "publicAttributionRequirement=REQUIRED and publicAttributionState=READY",
+      "expected": "RENDER_ALL_REQUIRED_ATTRIBUTION_FIELDS_AND_ALLOW_GATE_TO_CONTINUE"
+    },
+    {
+      "case": "ATTRIBUTION_REQUIRED_UNSATISFIABLE",
+      "input": "publicAttributionRequirement=REQUIRED and publicAttributionState=UNSATISFIABLE",
+      "expected": "FAIL_CLOSED_NO_PUBLIC_OR_REUSABLE_RENDER"
+    },
+    {
+      "case": "ATTRIBUTION_UNKNOWN",
+      "input": "publicAttributionRequirement=UNKNOWN or publicAttributionState=UNKNOWN",
+      "expected": "FAIL_CLOSED_NO_PUBLIC_OR_REUSABLE_RENDER"
+    }
+  ],
+  "requiredRenderedFieldsWhenApplicable": [
+    "attributionLabel",
+    "sourceUrl_when_required_or_part_of_basis",
+    "attributionLicenseOrBasis",
+    "modification_or_transformation_notice_when_required"
+  ],
+  "requiredNegativeAssertions": [
+    "NO_PROTECTED_THIRD_PARTY_EXPRESSION_LEAKS_FROM_EVIDENCE_OBJECTS",
+    "NO_PUBLIC_RENDER_WHEN_REQUIRED_ATTRIBUTION_IS_UNSATISFIABLE",
+    "NO_PUBLIC_RENDER_WHEN_ATTRIBUTION_REQUIREMENT_IS_UNKNOWN",
+    "NO_SOURCE_CLASS_IS_ASSUMED_SUPPORTED_ONLY_BECAUSE_WIKIBOOKS_RENDERING_EXISTS"
+  ],
+  "testLayers": [
+    "OBJECT_SCHEMA_AND_GATE_VALIDATION",
+    "ATTRIBUTION_RENDERER_UNIT_TEST",
+    "BROWSER_ACCEPTANCE_WITH_REAL_CANDIDATE_OBJECTS",
+    "NEGATIVE_BROWSER_FIXTURES",
+    "PUBLIC_RUNTIME_FAIL_CLOSED_ASSERTION"
+  ],
+  "terminalStates": {
+    "pass": "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS",
+    "fail": "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_FAIL_CLOSED"
+  },
+  "reviewOwnership": {
+    "legalSourceRules": "ENCODED_UPSTREAM_SOURCE_COMPLIANCE_AND_RIGHTS_STATE",
+    "implementation": "CULINARY_APP",
+    "consultant": "CHALLENGE_PROPORTIONALITY_AND_SOURCE_CLASS_EXPANSION",
+    "projectCoach": "VERIFY_SEQUENCE_TEST_EVIDENCE_AND_FAIL_CLOSED_TERMINAL_STATE"
+  },
+  "legalReReviewTriggers": [
+    "SOURCE_TERMS_OR_LICENCE_CHANGED",
+    "NEW_ATTRIBUTION_OR_DISCLOSURE_OBLIGATION_CANNOT_BE_EXPRESSED_BY_CURRENT_OBJECT_MODEL",
+    "NEW_SOURCE_CLASS_REQUIRES_MATERIALLY_DIFFERENT_PUBLIC_DISPLAY_BEHAVIOR",
+    "PUBLIC_OR_COMMERCIAL_USE_SCOPE_MATERIALLY_WIDENS"
+  ]
+}
