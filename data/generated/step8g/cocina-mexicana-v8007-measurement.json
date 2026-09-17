@@ -1,0 +1,98 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_COCINA_MEXICANA_V8007_MARGINAL_VALUE_V1",
+  "date": "2026-09-17",
+  "pass": true,
+  "terminal": "STEP_8G_COCINA_MEXICANA_MEASUREMENT_EARNED_TWO_SOURCE_COHORTS",
+  "workflowRun": 35268436563,
+  "workflowJob": 105361374690,
+  "artifactId": 10517771007,
+  "artifactName": "step8g-cocina-mexicana-measurement-e2-r6476",
+  "artifactZipSha256": "7d40c55e26f834090024f8045faceaf87541520722d564261dccec0858790b59",
+  "sourceRepository": "AdamBouhmad/open-recipe-archive",
+  "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+  "collection": "cocina-mexicana",
+  "collectionRecipeCount": 6476,
+  "baseline": {
+    "activeProtectedVersion": "v8007",
+    "activeProtectedCount": 3695,
+    "baselineRecipeObjectsIncludingPublic": 3780,
+    "publicRuntimeRecipeCount": 85
+  },
+  "earnedSourceCount": 2,
+  "earnedRecipeCount": 6476,
+  "nextAuthority": "SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY",
+  "sourceMeasurements": [
+    {
+      "cohortId": "ORA_GALVAN_RIVERA_1845_DICCIONARIO_COCINA_AE3BD2C",
+      "recipeCount": 4347,
+      "pass": true,
+      "gates": {
+        "rightsDocumented": true,
+        "exactCountPass": true,
+        "rawMetadataPass": true,
+        "repositoryReusePass": true,
+        "attributionClassified": true,
+        "singleSourcePass": true,
+        "structuralQualityPass": true,
+        "culinaryCoveragePass": true,
+        "rightsAuditPass": true
+      },
+      "metrics": {
+        "parseableRecipeCount": 4347,
+        "parseableRecipeRatio": 1,
+        "distinctNormalizedTitles": 4228,
+        "uniqueTitleRatio": 0.9726247987117552,
+        "exactBaselineTitleOverlapCount": 0,
+        "novelNormalizedTitleCount": 4228,
+        "novelTitleRatio": 1,
+        "distinctIngredientPhraseCount": 10308,
+        "novelIngredientPhraseCount": 9424,
+        "ontologyResolvedOccurrenceRatio": 0.28739634668161834,
+        "ontologyResolvedCanonicalIngredientCount": 71,
+        "ontologyUnresolvedPhraseCount": 10194
+      }
+    },
+    {
+      "cohortId": "ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C",
+      "recipeCount": 2129,
+      "pass": true,
+      "gates": {
+        "rightsDocumented": true,
+        "exactCountPass": true,
+        "rawMetadataPass": true,
+        "repositoryReusePass": true,
+        "attributionClassified": true,
+        "singleSourcePass": true,
+        "structuralQualityPass": true,
+        "culinaryCoveragePass": true,
+        "rightsAuditPass": true
+      },
+      "metrics": {
+        "parseableRecipeCount": 2129,
+        "parseableRecipeRatio": 1,
+        "distinctNormalizedTitles": 1963,
+        "uniqueTitleRatio": 0.9220291216533584,
+        "exactBaselineTitleOverlapCount": 0,
+        "novelNormalizedTitleCount": 1963,
+        "novelTitleRatio": 1,
+        "distinctIngredientPhraseCount": 4545,
+        "novelIngredientPhraseCount": 3875,
+        "ontologyResolvedOccurrenceRatio": 0.3672579409511462,
+        "ontologyResolvedCanonicalIngredientCount": 68,
+        "ontologyUnresolvedPhraseCount": 4440
+      }
+    }
+  ],
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "protectedPopulationAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "billingExpansionAuthorized": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false
+  }
+}
