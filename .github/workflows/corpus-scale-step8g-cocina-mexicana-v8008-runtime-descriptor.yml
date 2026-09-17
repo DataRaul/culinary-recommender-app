@@ -8,6 +8,7 @@ on:
       - 'scripts/generate-step8g-cocina-mexicana-v8008-runtime-descriptor.mjs'
       - 'scripts/corpus-scale-step8g-cocina-mexicana-v8008-prewrite-core.mjs'
       - 'scripts/corpus-scale-step8a-core.mjs'
+      - 'src/server/step8g-v8008-live-runtime.mjs'
       - 'data/generated/step8g/cocina-mexicana-v8008-prewrite-evidence.json'
       - 'data/generated/step8g/v8008-runtime-descriptor.mjs'
   workflow_dispatch:
