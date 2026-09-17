@@ -1,0 +1,182 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_COCINA_MEXICANA_V8008_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_COCINA_MEXICANA_V8008_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-17",
+  "workflowRun": 35268881210,
+  "workflowJob": 105362867228,
+  "artifactId": 10517207835,
+  "artifactZipSha256": "c89d570403b7667208e5d0d9d0f74e049bee2bbb21a3b8f24368557fc3f48dca",
+  "source": {
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "collection": "cocina-mexicana",
+    "recordCount": 6476,
+    "measurementTerminal": "STEP_8G_COCINA_MEXICANA_MEASUREMENT_EARNED_TWO_SOURCE_COHORTS",
+    "sourceCohorts": [
+      {
+        "cohortId": "ORA_GALVAN_RIVERA_1845_DICCIONARIO_COCINA_AE3BD2C",
+        "sourceWork": "Diccionario de cocina, ó El nuevo cocinero mexicano",
+        "sourceAuthor": "Mariano Galván Rivera",
+        "sourceAuthorClassification": "IDENTIFIED_AUTHOR",
+        "sourceYear": "1845",
+        "sourceUrl": "https://archive.org/details/bub_gb_NdQqAAAAYAAJ",
+        "recordCount": 4347,
+        "licenseId": "public-domain",
+        "packetDescriptorSha256": "62429038be60e8a67ad951bd0391372bacbaf0e7d68677013195af799023a866"
+      },
+      {
+        "cohortId": "ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C",
+        "sourceWork": "La cocinera poblana",
+        "sourceAuthor": "author not identified",
+        "sourceAuthorClassification": "AUTHOR_NOT_IDENTIFIED_INDEPENDENTLY_DOCUMENTED",
+        "sourceYear": "1890",
+        "sourceUrl": "https://archive.org/details/lacocinerapobla00unkngoog",
+        "recordCount": 2129,
+        "licenseId": "public-domain",
+        "packetDescriptorSha256": "9f8d0e6e6bb884cb44feaeaa5c1d31ea47cb379ad032f874ebb231c7bd5d67cf"
+      }
+    ],
+    "repositoryLayerLicense": "Unlicense",
+    "culturalAuthenticityAuthorityImported": false
+  },
+  "parent": {
+    "activeCorpusVersion": "v8007",
+    "composedRecipeCount": 3695,
+    "fingerprintSha256": "0f2c41cef744badf98033a5016cfad15b3f28b9e57cccfdeb98c1957f82b526b",
+    "fingerprintMaterial": {
+      "activeCorpusVersion": "v8007",
+      "composedRecipeCount": 3695,
+      "liveTerminal": "STEP_8G_ORA_RIGAUD_V8007_PROTECTED_POPULATION_PASS",
+      "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "layerManifestSha256": "1b840b2d0c0ccd5e64309206a4e3640c6e51e9d7f505ab9e976414361c526d02",
+      "populationPlanSha256": "e30f5ffb8c914e3138eae7375236daf3507210c2f4182e1c824b78fd3db1a7fd",
+      "bodyShardRows": [399, 390],
+      "parentCompositionRouteCount": 2906,
+      "composedRouteCount": 3695
+    }
+  },
+  "layer": {
+    "corpusVersion": "v8008",
+    "parentCorpusVersion": "v8007",
+    "recipeCount": 6476,
+    "manifestSha256": "beaddc9251cef158732e3a737593629af83e93a1dd237eabbae1775678d34fcb",
+    "populationPlanSha256": "d0fa90fa966fec3c7c5c64f57baefa0bce15432328f86a3d439631fa2e5c7460",
+    "batchCount": 649,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 8884,
+    "maxBatchBodyBytes": 42779,
+    "maxWriteRequestBytes": 18032,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "operationBudget": {
+      "authD1Subqueries": 1,
+      "maxRowsPerBatch": 10,
+      "operations": {
+        "status": 1,
+        "bindings": 3,
+        "freeLimitSimulation": 1,
+        "initialize": 8,
+        "bodyWriteFresh": 15,
+        "bodyWriteReplay": 3,
+        "progress": 7,
+        "copyParentRoutesFresh": 6,
+        "routeWriteFresh": 16,
+        "routeWriteReplay": 4,
+        "activate": 8,
+        "rollback": 3,
+        "eightLayerHydrationCanary": 4,
+        "boundedHydrationWorstCase": 10,
+        "evidence": 7
+      },
+      "maxPlannedD1Subqueries": 16,
+      "maxAllowedD1Subqueries": 16,
+      "limitingOperations": ["routeWriteFresh"],
+      "pass": true,
+      "headroomAssumed": false
+    },
+    "shardDescriptors": [
+      {
+        "shardNumber": 0,
+        "rowCount": 3251,
+        "totalBodyBytes": 10185995,
+        "firstOrdinal": 0,
+        "lastOrdinal": 6474,
+        "entriesSha256": "32dd9de543ac5e5f1970c7787b42db8455b79e254b58b7e2628fe311065342bc"
+      },
+      {
+        "shardNumber": 1,
+        "rowCount": 3225,
+        "totalBodyBytes": 9990465,
+        "firstOrdinal": 1,
+        "lastOrdinal": 6475,
+        "entriesSha256": "b62cc3a38ca4ce191ee062a3a16c958c4ed4c70475629077601d41e2301c988a"
+      }
+    ],
+    "batchIdsSha256": "e0870ef9fb24c4eb964f1c53ae478d34c91412acce5732cb5744fc39483aafb2"
+  },
+  "composition": {
+    "activeCorpusVersion": "v8008",
+    "parentCorpusVersion": "v8007",
+    "cumulativeRecipeCount": 10171,
+    "capacity": {
+      "parentLayeredPhysicalBodyBytes": 18845037,
+      "addedLayerBodyBytes": 20176460,
+      "layeredPhysicalBodyBytes": 39021497,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {
+          "shardNumber": 0,
+          "parentRowCount": 1858,
+          "addedRowCount": 3251,
+          "rowCount": 5109,
+          "parentBodyBytes": 9524683,
+          "addedBodyBytes": 10185995,
+          "totalBodyBytes": 19710678,
+          "withinProjectDatabaseBudget": true
+        },
+        {
+          "shardNumber": 1,
+          "parentRowCount": 1837,
+          "addedRowCount": 3225,
+          "rowCount": 5062,
+          "parentBodyBytes": 9320354,
+          "addedBodyBytes": 9990465,
+          "totalBodyBytes": 19310819,
+          "withinProjectDatabaseBudget": true
+        }
+      ]
+    },
+    "routing": {
+      "shardCount": 2,
+      "mode": "CONTROL_INDEX_EXACT_ROUTE_THEN_BATCH_HYDRATE_BY_SHARD",
+      "fullCorpusScans": 0,
+      "maxProtectedD1Subqueries": 16,
+      "d1BudgetHeadroomAssumed": false
+    }
+  },
+  "gates": {
+    "requestSizePass": true,
+    "operationBudgetPass": true,
+    "capacityPass": true,
+    "topologyPass": true,
+    "countPass": true,
+    "batchSizePass": true,
+    "uniqueIdsPass": true,
+    "bodySizePass": true
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "d1BudgetExpansion": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "step8fReopened": false
+  },
+  "decision": "EARN_V8008_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE"
+}
