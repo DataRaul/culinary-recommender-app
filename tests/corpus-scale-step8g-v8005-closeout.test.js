@@ -56,9 +56,11 @@ test("v8005 frozen live evidence remains registered while later Step 8G work adv
   assert.equal(g.status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(g.doesNotDependOn.includes("8F"), true);
   assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-bosse-watanna-v8005-live-pass.json"), true);
-  assert.match(handover.operating_contract.public_activation, /unitools_tortilla_espanola/);
-  assert.match(handover.operating_contract.topology, /two protected D1 recipe-body shards/i);
-  assert.match(handover.operating_contract.d1_budget, /16\/16 D1 subqueries/);
+  assert.equal(handover.live_protected_state.public_runtime_recipe_count, 85);
+  assert.equal(handover.live_protected_state.public_runtime_changed, false);
+  assert.equal(handover.live_protected_state.shard_count, 2);
+  assert.equal(handover.live_protected_state.max_allowed_d1_subqueries, 16);
+  assert.equal(handover.live_protected_state.d1_budget_headroom_assumed, false);
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
