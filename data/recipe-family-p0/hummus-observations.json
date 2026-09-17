@@ -1,0 +1,157 @@
+{
+  "packetVersion": "0.3.0",
+  "family": "hummus",
+  "collectionCadence": "ONE_TIME_BASELINE_PER_FAMILY",
+  "collectionDate": "2026-09-17",
+  "expressionPolicy": "NORMALIZED_FACTS_AND_PROJECT_LABELS_ONLY",
+  "observations": [
+    {
+      "observationId": "hummus-ref-codex-cxs-257r-2007",
+      "familyCandidate": "hummus",
+      "source": {
+        "publisher": "Codex Alimentarius (FAO/WHO)",
+        "url": "https://www.fao.org/fao-who-codexalimentarius/committees/codex-regions/ccne/reg-stan/en/",
+        "accessedAt": "2026-09-17",
+        "independenceGroup": "codex-alimentarius",
+        "publisherLedgerKey": "fao-who-codex",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "UNKNOWN",
+        "termsCheckedAt": "2026-09-17",
+        "tdmReservation": "NOT_APPLICABLE",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "REFERENCE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "servings": null,
+      "ingredients": [
+        { "ingredientId": "chickpeas", "role": "LEGUME_BASE", "quantity": null, "unit": null },
+        { "ingredientId": "tahini", "role": "SESAME_PASTE", "quantity": null, "unit": null }
+      ],
+      "techniques": ["cook_chickpeas_until_soft", "blend_smooth"],
+      "times": {},
+      "equipment": [],
+      "structuredNotes": {
+        "referenceScope": "canned_hummus_with_tahina_near_east_standard_only",
+        "scopeLimit": "supports bounded structural facts; not complete authority for fresh hummus or cultural ownership",
+        "optionalIngredientClasses": ["salt", "lemon_juice", "seasonings_and_spices"]
+      }
+    },
+    {
+      "observationId": "hummus-practical-overcoming-ms",
+      "familyCandidate": "hummus",
+      "source": {
+        "publisher": "Overcoming MS",
+        "url": "https://overcomingms.org/live-well/recipes/hummus",
+        "accessedAt": "2026-09-17",
+        "independenceGroup": "overcoming-ms",
+        "publisherLedgerKey": "overcoming-ms",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "UNKNOWN",
+        "termsCheckedAt": "2026-09-17",
+        "tdmReservation": "NOT_APPLICABLE",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "servings": 4,
+      "ingredients": [
+        { "ingredientId": "chickpeas", "role": "LEGUME_BASE", "quantity": 500, "unit": "g" },
+        { "ingredientId": "tahini", "role": "SESAME_PASTE", "quantity": 180, "unit": "g" },
+        { "ingredientId": "lemon_juice", "role": "ACID", "quantity": 75, "unit": "g" },
+        { "ingredientId": "garlic", "role": "AROMATIC", "quantity": 1, "unit": "count" }
+      ],
+      "techniques": ["warm_chickpeas", "blend_smooth"],
+      "times": { "totalMinutes": 30 },
+      "equipment": ["food_processor"],
+      "structuredNotes": {
+        "lemonQuantityKeptInSourceUnit": true
+      }
+    },
+    {
+      "observationId": "hummus-practical-chefs-pencil",
+      "familyCandidate": "hummus",
+      "source": {
+        "publisher": "Chef's Pencil",
+        "url": "https://www.chefspencil.com/hummus/",
+        "accessedAt": "2026-09-17",
+        "independenceGroup": "chefs-pencil-thomas-wenger",
+        "publisherLedgerKey": "chefs-pencil",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "UNKNOWN",
+        "termsCheckedAt": "2026-09-17",
+        "tdmReservation": "NOT_APPLICABLE",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "servings": 4,
+      "ingredients": [
+        { "ingredientId": "chickpeas", "role": "LEGUME_BASE", "quantity": 300, "unit": "g" },
+        { "ingredientId": "tahini", "role": "SESAME_PASTE", "quantity": 170, "unit": "g" },
+        { "ingredientId": "lemon_juice", "role": "ACID", "quantity": 40, "unit": "ml" },
+        { "ingredientId": "olive_oil", "role": "FAT_GARNISH", "quantity": 120, "unit": "ml" }
+      ],
+      "techniques": ["cook_chickpeas_until_soft", "blend_smooth"],
+      "times": { "totalMinutes": 20 },
+      "equipment": ["food_processor"]
+    },
+    {
+      "observationId": "hummus-practical-williams-sonoma-everything",
+      "familyCandidate": "hummus",
+      "source": {
+        "publisher": "Williams Sonoma",
+        "url": "https://www.williams-sonoma.com/m/recipe/everything-hummus.amp.html",
+        "accessedAt": "2026-09-17",
+        "independenceGroup": "williams-sonoma-gaby-dalkin",
+        "publisherLedgerKey": "williams-sonoma",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "UNKNOWN",
+        "termsCheckedAt": "2026-09-17",
+        "tdmReservation": "NOT_APPLICABLE",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "VARIANT_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "servings": 4,
+      "ingredients": [
+        { "ingredientId": "chickpeas", "role": "LEGUME_BASE", "quantity": 470, "unit": "g" },
+        { "ingredientId": "tahini", "role": "SESAME_PASTE", "quantity": 155, "unit": "g" },
+        { "ingredientId": "lemon_juice", "role": "ACID", "quantity": 2.5, "unit": "tbsp" },
+        { "ingredientId": "garlic", "role": "AROMATIC", "quantity": 2.5, "unit": "count" }
+      ],
+      "techniques": ["blend_smooth"],
+      "times": { "totalMinutes": 35 },
+      "equipment": ["food_processor"],
+      "variantKey": "seasoning_forward",
+      "structuredNotes": {
+        "lemonSourceRangeTablespoons": { "min": 2, "max": 3 },
+        "garlicSourceRangeCount": { "min": 2, "max": 3 },
+        "midpointUsedForRangeBearingFields": true
+      }
+    }
+  ]
+}
