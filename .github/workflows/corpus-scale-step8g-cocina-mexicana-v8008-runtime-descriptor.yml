@@ -67,7 +67,7 @@ jobs:
       - name: Commit deterministic descriptor when it changed
         if: github.event_name == 'pull_request'
         run: |
-          if git diff --quiet -- data/generated/step8g/v8008-runtime-descriptor.mjs; then
+          if [ -z "$(git status --porcelain -- data/generated/step8g/v8008-runtime-descriptor.mjs)" ]; then
             echo 'Descriptor already frozen.'
             exit 0
           fi
