@@ -1,0 +1,193 @@
+{
+  "version": "0.3.0",
+  "families": [
+    {
+      "familyId": "carbonara",
+      "principalIngredientId": "pasta",
+      "independentPracticalMinimum": 3,
+      "requiredIngredientIds": ["pasta", "cured_pork", "hard_cheese", "egg_unit"],
+      "referenceProfile": {
+        "identityClaims": [
+          "Roman/Lazio pasta family built around pasta, rendered cured pork, egg and hard cheese, finished as a heat-managed emulsion rather than a cream sauce."
+        ],
+        "scopeLimits": [
+          "Reference identity does not turn every high-frequency modern ingredient into a defining ingredient.",
+          "Whole-egg versus yolk-forward balance and pecorino-only versus pecorino-plus-grana are modeled as preparation variation rather than separate families."
+        ],
+        "requiredIngredientRoles": ["STARCH", "PORK", "EGG_SYSTEM", "CHEESE"],
+        "requiredTechniques": ["cook_pasta", "render_pork", "off_heat_emulsification"]
+      },
+      "allowedAdaptations": [
+        "pasta_shape",
+        "egg_whole_yolk_balance",
+        "pecorino_grana_balance"
+      ],
+      "projection": {
+        "title": "Project Carbonara",
+        "ingredientOverrides": [
+          {
+            "replaceCanonicalIngredientId": "egg_unit",
+            "canonicalIngredientId": "egg_yolk",
+            "normalizedIngredient": "egg yolk",
+            "quantity": 1,
+            "unit": "count",
+            "required": true,
+            "preparation": "lightly mixed before combining",
+            "substitutionGroup": "egg_system",
+            "basis": "PROJECT_SELECTION_WITHIN_OBSERVED_YOLK_FORWARD_VARIATION"
+          }
+        ],
+        "additionalIngredients": [
+          {
+            "canonicalIngredientId": "black_pepper",
+            "normalizedIngredient": "black pepper",
+            "quantity": null,
+            "unit": null,
+            "required": true,
+            "preparation": "freshly ground",
+            "substitutionGroup": "seasoning",
+            "basis": "REFERENCE_AND_OBSERVED_CORE_SEASONING"
+          },
+          {
+            "canonicalIngredientId": "salt",
+            "normalizedIngredient": "salt",
+            "quantity": null,
+            "unit": null,
+            "required": false,
+            "preparation": "for pasta water as needed",
+            "substitutionGroup": "seasoning",
+            "basis": "PROJECT_EXECUTION_DETAIL"
+          }
+        ],
+        "culinary": {
+          "cuisine": "Italian",
+          "region": "Rome / Lazio",
+          "mealTypes": ["lunch", "dinner"],
+          "techniques": ["cook_pasta", "render_pork", "off_heat_emulsification"],
+          "difficulty": 2,
+          "techniqueComplexity": 2,
+          "failureRisk": "medium"
+        },
+        "time": { "prepMinutes": 10, "activeMinutes": 20, "passiveMinutes": 0, "totalMinutes": 30 },
+        "instructions": [
+          "Bring salted water to a boil and cook the pasta until firm, saving a small cup of the starchy water before draining.",
+          "Render the cured pork over moderate heat until the fat is released and the pieces are browned; remove the pan from direct heat.",
+          "Mix the egg component with the grated cheese and black pepper in a bowl until evenly combined.",
+          "Toss the hot pasta with the pork and its rendered fat, then work in the egg-cheese mixture away from direct heat, adding reserved pasta water a little at a time until the coating is glossy and fluid.",
+          "Adjust pepper and serve immediately."
+        ],
+        "equipment": ["hob", "pot", "pan", "mixing_bowl", "tongs_or_spoon"],
+        "nutrition": { "energyKcal": null, "proteinG": null, "carbohydrateG": null, "fatG": null, "fibreG": null },
+        "dietaryTags": ["unrestricted"],
+        "allergySafety": { "declaredAllergens": ["egg", "milk", "gluten"], "confidence": "ingredient-list-derived-prototype" },
+        "costTier": 2,
+        "convenience": { "mealPrepSuitability": 1, "batchSuitability": 1, "freezerSuitability": 1, "leftoverSuitability": 1, "portability": 1 },
+        "discovery": { "flavourProfile": ["savory", "peppery", "rich"], "spiceLevel": 1, "familiarity": 5, "novelty": 1, "techniqueLearningValue": 4 },
+        "mainProtein": "egg_pork"
+      }
+    },
+    {
+      "familyId": "hummus",
+      "principalIngredientId": "chickpeas",
+      "independentPracticalMinimum": 3,
+      "requiredIngredientIds": ["chickpeas", "tahini"],
+      "referenceProfile": {
+        "identityClaims": [
+          "Reviewed shared structural core is cooked chickpeas combined with tahini and processed into a smooth or pasty dip/spread."
+        ],
+        "scopeLimits": [
+          "The Codex reference is a regional standard for canned hummus with tahina; it supports bounded structural facts but is not complete authority for fresh hummus.",
+          "The family is treated as transregional; this prototype makes no exclusive national-ownership claim."
+        ],
+        "requiredIngredientRoles": ["LEGUME_BASE", "SESAME_PASTE"],
+        "requiredTechniques": ["blend_smooth"]
+      },
+      "allowedAdaptations": [
+        "lemon_level",
+        "garlic_level",
+        "texture_water",
+        "olive_oil_garnish",
+        "seasoning_level"
+      ],
+      "projection": {
+        "title": "Project Hummus",
+        "additionalIngredients": [
+          {
+            "canonicalIngredientId": "lemon_juice",
+            "normalizedIngredient": "lemon juice",
+            "quantity": 15,
+            "unit": "ml",
+            "required": true,
+            "preparation": null,
+            "substitutionGroup": "acid",
+            "basis": "PROJECT_SELECTION_WITHIN_OBSERVED_PRACTICE"
+          },
+          {
+            "canonicalIngredientId": "garlic",
+            "normalizedIngredient": "garlic",
+            "quantity": 0.5,
+            "unit": "clove",
+            "required": false,
+            "preparation": "crushed",
+            "substitutionGroup": "aromatic",
+            "basis": "PROJECT_SELECTION_WITHIN_OBSERVED_PRACTICE"
+          },
+          {
+            "canonicalIngredientId": "water",
+            "normalizedIngredient": "cold water",
+            "quantity": 15,
+            "unit": "ml",
+            "required": false,
+            "preparation": "add gradually for texture",
+            "substitutionGroup": "texture_adjustment",
+            "basis": "PROJECT_EXECUTION_DETAIL"
+          },
+          {
+            "canonicalIngredientId": "olive_oil",
+            "normalizedIngredient": "olive oil",
+            "quantity": 5,
+            "unit": "ml",
+            "required": false,
+            "preparation": "for finishing",
+            "substitutionGroup": "garnish_fat",
+            "basis": "PROJECT_OPTIONAL_FINISH"
+          },
+          {
+            "canonicalIngredientId": "salt",
+            "normalizedIngredient": "salt",
+            "quantity": null,
+            "unit": null,
+            "required": false,
+            "preparation": "to taste",
+            "substitutionGroup": "seasoning",
+            "basis": "PROJECT_EXECUTION_DETAIL"
+          }
+        ],
+        "culinary": {
+          "cuisine": "Levantine / Eastern Mediterranean family context",
+          "region": "Near East / Eastern Mediterranean",
+          "mealTypes": ["snack", "appetizer", "side"],
+          "techniques": ["cook_chickpeas_until_soft", "blend_smooth"],
+          "difficulty": 1,
+          "techniqueComplexity": 1,
+          "failureRisk": "low"
+        },
+        "time": { "prepMinutes": 10, "activeMinutes": 10, "passiveMinutes": 0, "totalMinutes": 20 },
+        "instructions": [
+          "Use very soft cooked chickpeas; warm or soften them further if their texture is still firm.",
+          "Blend the tahini with lemon juice, garlic and part of the water until the mixture is even.",
+          "Add the chickpeas and process until smooth, adding the remaining water gradually until the texture is creamy but still holds its shape.",
+          "Season to taste and finish with a small amount of olive oil if desired."
+        ],
+        "equipment": ["food_processor_or_blender", "spatula", "serving_bowl"],
+        "nutrition": { "energyKcal": null, "proteinG": null, "carbohydrateG": null, "fatG": null, "fibreG": null },
+        "dietaryTags": ["vegan", "vegetarian", "gluten-free-by-ingredient-list"],
+        "allergySafety": { "declaredAllergens": ["sesame"], "confidence": "ingredient-list-derived-prototype" },
+        "costTier": 1,
+        "convenience": { "mealPrepSuitability": 4, "batchSuitability": 4, "freezerSuitability": 2, "leftoverSuitability": 4, "portability": 3 },
+        "discovery": { "flavourProfile": ["nutty", "savory", "lemony"], "spiceLevel": 0, "familiarity": 5, "novelty": 1, "techniqueLearningValue": 2 },
+        "mainProtein": "chickpeas"
+      }
+    }
+  ]
+}
