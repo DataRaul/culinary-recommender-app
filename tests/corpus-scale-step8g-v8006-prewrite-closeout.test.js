@@ -31,22 +31,18 @@ test("Step 8G Turabi v8006 prewrite freezes the exact earned protected plan", ()
   assert.equal(validation.maxAnyWriteRequestBytes, 16090);
 });
 
-test("v8006 prewrite remains immutable proof after implementation, recovery and live PASS", () => {
+test("v8006 prewrite remains immutable proof after implementation, recovery and later protected versions", () => {
   assert.equal(evidence.boundaries.liveD1WritesPerformed, 0);
   for (const key of ["publicRuntimeChanged","recommendationAdmissionPerformed","thirdShardUsed","d1BudgetExpansion","billingExpansion","nutritionLaneModified","youtubeCulinaryStateModified","knowledgeCoreWritePerformed","culturalAuthenticityAuthorityImported","step8fReopened"]) {
     assert.equal(evidence.boundaries[key], false, key);
   }
   assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-turabi-v8006-prewrite-evidence.json"), true);
   assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-turabi-v8006-prewrite-validation.json"), true);
-  assert.match(handover.operating_contract.public_activation, /unitools_tortilla_espanola/);
-  assert.match(handover.operating_contract.topology, /two protected D1 recipe-body shards/i);
-  assert.match(handover.operating_contract.d1_budget, /16\/16 D1 subqueries/);
-  assert.equal(handover.live_protected_state.active_version, "v8006");
-  assert.equal(handover.live_protected_state.child_recipe_count, 442);
-  assert.equal(handover.live_protected_state.parent_recipe_count, 2464);
-  assert.equal(handover.live_protected_state.composed_recipe_count, 2906);
-  assert.equal(handover.v8006_live.status, "PASS_PROTECTED_POPULATION_COMPLETE_ACTIVE");
-  assert.equal(handover.v8006_live.source_cohort_id, evidence.source.cohortId);
+  assert.equal(handover.live_protected_state.public_runtime_recipe_count, 85);
+  assert.equal(handover.live_protected_state.public_runtime_changed, false);
+  assert.equal(handover.live_protected_state.shard_count, 2);
+  assert.equal(handover.live_protected_state.max_allowed_d1_subqueries, 16);
+  assert.equal(handover.live_protected_state.d1_budget_headroom_assumed, false);
   assert.equal(gate("8G").latestIteration.layerVersion, "v8006");
   assert.equal(gate("8G").latestIteration.finalProtectedActiveVersion, "v8006");
   assert.equal(gate("8G").nextIteration.status, "NOT_YET_EARNED_SOURCE_DISCOVERY_AND_MEASUREMENT_REQUIRED");
