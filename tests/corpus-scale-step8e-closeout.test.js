@@ -31,9 +31,10 @@ test("Step 8F exact one-record activation remains complete while Step 8G advance
   assert.equal(gate("8F").decisionInput.publicCorpusRecipeCountAfterDecision, 85);
   assert.equal(gate("8F").decisionInput.candidatePresentInPublicCorpus, true);
   assert.equal(gate("8G").doesNotDependOn.includes("8F"), true);
-  assert.match(handover.operating_contract.public_activation, /unitools_tortilla_espanola/);
+  assert.equal(handover.live_protected_state.public_runtime_recipe_count, 85);
+  assert.equal(handover.live_protected_state.public_runtime_changed, false);
   assert.match(handover.operating_contract.public_activation, /85 recipes/);
-  assert.equal(handover.not_authorized.includes("No broader Step 8F/public recommendation admission."), true);
+  assert.match(handover.operating_contract.public_activation, /not authorized/i);
 });
 
 test("Step 8E closeout preserves cost and adjacent-lane firewalls", () => {
