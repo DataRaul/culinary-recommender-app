@@ -1,0 +1,44 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_COCINA_MEXICANA_V8008_PREWRITE_VALIDATION_V1",
+  "date": "2026-09-17",
+  "pass": true,
+  "parentFingerprintSha256": "0f2c41cef744badf98033a5016cfad15b3f28b9e57cccfdeb98c1957f82b526b",
+  "childDescriptorUniverseSha256": "4fffaae4e19a377b5aff1cde46883eec3d6c79081ddd719ad33e5109eae21547",
+  "manifestSha256": "beaddc9251cef158732e3a737593629af83e93a1dd237eabbae1775678d34fcb",
+  "populationPlanSha256": "d0fa90fa966fec3c7c5c64f57baefa0bce15432328f86a3d439631fa2e5c7460",
+  "countContract": {
+    "parent": 3695,
+    "child": 6476,
+    "composed": 10171
+  },
+  "gates": {
+    "requestSizePass": true,
+    "operationBudgetPass": true,
+    "capacityPass": true,
+    "topologyPass": true,
+    "countPass": true,
+    "batchSizePass": true,
+    "uniqueIdsPass": true,
+    "bodySizePass": true
+  },
+  "sourcePacketSha256": {
+    "ORA_GALVAN_RIVERA_1845_DICCIONARIO_COCINA_AE3BD2C": "62429038be60e8a67ad951bd0391372bacbaf0e7d68677013195af799023a866",
+    "ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C": "9f8d0e6e6bb884cb44feaeaa5c1d31ea47cb379ad032f874ebb231c7bd5d67cf"
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "d1BudgetExpansion": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "step8fReopened": false
+  },
+  "workflowRun": 35268881210,
+  "artifactId": 10517207835,
+  "artifactZipSha256": "c89d570403b7667208e5d0d9d0f74e049bee2bbb21a3b8f24368557fc3f48dca"
+}

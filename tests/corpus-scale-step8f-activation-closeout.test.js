@@ -27,9 +27,10 @@ test("machine roadmap and current handover preserve 8F without broad automatic a
   assert.equal(f.decisionInput.publicRuntimeChanged, true);
   assert.equal(f.decisionInput.publicCorpusRecipeCountAfterDecision, 85);
   assert.equal(roadmap.boundaries.automaticPublicRecommendationAdmission, false);
-  assert.match(current.operating_contract.public_activation, /unitools_tortilla_espanola/);
+  assert.equal(current.live_protected_state.public_runtime_recipe_count, 85);
+  assert.equal(current.live_protected_state.public_runtime_changed, false);
   assert.match(current.operating_contract.public_activation, /85 recipes/);
-  assert.equal(current.not_authorized.includes("No broader Step 8F/public recommendation admission."), true);
+  assert.match(current.operating_contract.public_activation, /not authorized/i);
 });
 
 test("public runtime remains 85 and historical golden corpus 84 as protected Step 8G advances independently", () => {
@@ -37,6 +38,8 @@ test("public runtime remains 85 and historical golden corpus 84 as protected Ste
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
   assert.equal(gate("8G").doesNotDependOn.includes("8F"), true);
+  assert.equal(current.live_protected_state.public_runtime_recipe_count, 85);
+  assert.equal(current.live_protected_state.public_runtime_changed, false);
   assert.match(current.operating_contract.public_activation, /Public runtime remains 85 recipes/);
-  assert.equal(current.not_authorized.includes("No broader Step 8F/public recommendation admission."), true);
+  assert.match(current.operating_contract.public_activation, /not authorized/i);
 });

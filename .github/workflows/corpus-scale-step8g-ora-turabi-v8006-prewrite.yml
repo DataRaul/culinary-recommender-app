@@ -49,6 +49,19 @@ jobs:
         with:
           node-version: 22
 
+      - name: Detect whether canonical state is still at the v8005 baseline
+        id: canonical-baseline
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          import { appendFile } from 'node:fs/promises';
+          const roadmap = JSON.parse(await readFile('config/corpus_scale_step8_roadmap.json', 'utf8'));
+          const step8g = roadmap.gates.find(gate => gate.id === '8G');
+          const liveV8005 = step8g?.latestIteration?.layerVersion === 'v8005';
+          await appendFile(process.env.GITHUB_OUTPUT, `live_v8005=${liveV8005 ? 'true' : 'false'}\n`);
+          console.log(`canonical baseline requires v8005 finalization: ${liveV8005}`);
+          NODE
+
       - name: Test v8006 prewrite contract
         run: node --test tests/corpus-scale-step8g-ora-turabi-v8006-prewrite.test.js
 
@@ -74,11 +87,13 @@ jobs:
           cmp -s .tmp/step8g-ora-turabi-v8006-prewrite/prewrite-validation.json data/generated/step8g/ora-turabi-v8006-prewrite-validation.json
 
       - name: Generate canonical roadmap and handover update candidates
+        if: steps.canonical-baseline.outputs.live_v8005 == 'true'
         run: >-
           node scripts/finalize-step8g-ora-turabi-v8006-prewrite.mjs
           --out=.tmp/step8g-ora-turabi-v8006-finalized
 
       - name: Verify canonical roadmap and handover freeze
+        if: steps.canonical-baseline.outputs.live_v8005 == 'true'
         run: |
           node --input-type=module <<'NODE'
           import { readFile } from 'node:fs/promises';

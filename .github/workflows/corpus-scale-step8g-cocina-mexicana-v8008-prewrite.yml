@@ -1,0 +1,71 @@
+name: Corpus Scale Step 8G cocina-mexicana v8008 prewrite
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-cocina-mexicana-v8008-prewrite.yml'
+      - 'scripts/corpus-scale-step8g-cocina-mexicana-v8008-prewrite-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-cocina-mexicana-v8008-prewrite.mjs'
+      - 'tests/corpus-scale-step8g-cocina-mexicana-v8008-prewrite.test.js'
+      - 'data/generated/step8g/cocina-mexicana-v8007-measurement.json'
+      - 'docs/CORPUS_SCALE_STEP8G_COCINA_MEXICANA_SOURCE_AUDIT.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-cocina-mexicana-v8008-prewrite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prewrite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run focused prewrite contract tests
+        run: node --test tests/corpus-scale-step8g-cocina-mexicana-v8008-prewrite.test.js
+
+      - name: Run v8008 no-write prewrite and capacity gate
+        run: >-
+          node scripts/run-corpus-scale-step8g-cocina-mexicana-v8008-prewrite.mjs
+          --ora=./open-recipe-archive
+          --measurement=data/generated/step8g/cocina-mexicana-v8007-measurement.json
+          --parent-prewrite=data/generated/step8g/ora-rigaud-v8007-prewrite-evidence.json
+          --parent-live=data/generated/step8g/ora-rigaud-v8007-live-pass.json
+          --out=.tmp/step8g-cocina-mexicana-v8008-prewrite
+
+      - name: Verify exact prewrite pass and authority boundaries
+        run: >-
+          node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-cocina-mexicana-v8008-prewrite/prewrite-evidence.json","utf8"));
+          if(p.pass!==true||p.terminalCandidate!=="STEP_8G_COCINA_MEXICANA_V8008_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED")process.exit(1);
+          if(p.parent.activeCorpusVersion!=="v8007"||p.parent.composedRecipeCount!==3695||p.layer.corpusVersion!=="v8008"||p.layer.recipeCount!==6476||p.composition.cumulativeRecipeCount!==10171)process.exit(1);
+          if(p.composition.routing.shardCount!==2||p.layer.maxRowsPerBatch>10||p.layer.operationBudget.maxPlannedD1Subqueries>16||p.layer.operationBudget.headroomAssumed!==false)process.exit(1);
+          if(!Object.values(p.gates).every(Boolean))process.exit(1);
+          const b=p.boundaries;if(b.liveD1WritesPerformed!==0||b.publicRuntimeChanged!==false||b.recommendationAdmissionPerformed!==false||b.thirdShardUsed!==false||b.d1BudgetExpansion!==false||b.billingExpansion!==false||b.nutritionLaneModified!==false||b.youtubeCulinaryStateModified!==false||b.knowledgeCoreWritePerformed!==false||b.culturalAuthenticityAuthorityImported!==false)process.exit(1);
+          console.log(JSON.stringify({terminal:p.terminalCandidate,counts:{parent:p.parent.composedRecipeCount,child:p.layer.recipeCount,composed:p.composition.cumulativeRecipeCount},maxWriteRequestBytes:p.layer.maxWriteRequestBytes,capacity:p.composition.capacity,operationBudget:p.layer.operationBudget,gates:p.gates}));'
+
+      - name: Upload public-safe prewrite evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-cocina-mexicana-v8008-prewrite
+          path: |
+            .tmp/step8g-cocina-mexicana-v8008-prewrite/prewrite-evidence.json
+            .tmp/step8g-cocina-mexicana-v8008-prewrite/prewrite-validation.json
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,57 @@
+name: Corpus Scale Step 8G cocina-mexicana source inventory
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-cocina-mexicana-source-inventory.yml'
+      - 'scripts/run-corpus-scale-step8g-cocina-mexicana-source-inventory.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-cocina-mexicana-source-inventory-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Inventory exact pinned source groups
+        run: >-
+          node scripts/run-corpus-scale-step8g-cocina-mexicana-source-inventory.mjs
+          --ora=./open-recipe-archive
+          --out=.tmp/step8g-cocina-mexicana-source-inventory
+
+      - name: Verify inventory remains fail-closed and no-write
+        run: >-
+          node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-cocina-mexicana-source-inventory/source-inventory.json","utf8"));
+          if(p.collectionRecipeCount!==6476||p.sourceGroupCount<1)process.exit(1);
+          const b=p.boundaries;
+          if(b.sourceRightsCleared!==false||b.attributionClassificationComplete!==false||b.measurementEarned!==false||b.liveD1WritesPerformed!==0||b.protectedPopulationAuthorized!==false||b.publicRuntimeChangeAuthorized!==false||b.thirdShardAuthorized!==false||b.billingExpansionAuthorized!==false)process.exit(1);
+          console.log(JSON.stringify({terminal:p.terminal,sourceGroupCount:p.sourceGroupCount,collectionRecipeCount:p.collectionRecipeCount}));'
+
+      - name: Upload public-safe inventory evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-cocina-mexicana-source-inventory
+          path: .tmp/step8g-cocina-mexicana-source-inventory/source-inventory.json
+          if-no-files-found: error
+          retention-days: 30

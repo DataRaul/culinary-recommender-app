@@ -52,7 +52,7 @@ test("v8006 closeout preserves public, recommendation, topology, authority and c
   assert.equal(evidence.boundaries.step8fReopened, false);
 });
 
-test("roadmap and handover advance the protected pointer to v8006 without widening public scope", () => {
+test("v8006 frozen live evidence remains registered while later protected versions advance", () => {
   const g = gate("8G");
   assert.equal(g.status, "ACTIVE_LIVE_PASS_CONTINUED_PROTECTED_SCALE_LOOP");
   assert.equal(g.latestIteration.layerVersion, "v8006");
@@ -67,12 +67,11 @@ test("roadmap and handover advance the protected pointer to v8006 without wideni
   assert.equal(g.nextIteration.status, "NOT_YET_EARNED_SOURCE_DISCOVERY_AND_MEASUREMENT_REQUIRED");
   assert.equal(g.doesNotDependOn.includes("8F"), true);
   assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-turabi-v8006-live-pass.json"), true);
-  assert.equal(handover.live_protected_state.active_version, "v8006");
-  assert.equal(handover.live_protected_state.composed_recipe_count, 2906);
-  assert.equal(handover.active_human_gate, "NONE");
-  assert.match(handover.operating_contract.public_activation, /unitools_tortilla_espanola/);
-  assert.match(handover.operating_contract.topology, /two protected D1 recipe-body shards/i);
-  assert.match(handover.operating_contract.d1_budget, /16\/16 D1 subqueries/);
+  assert.equal(handover.live_protected_state.public_runtime_recipe_count, 85);
+  assert.equal(handover.live_protected_state.public_runtime_changed, false);
+  assert.equal(handover.live_protected_state.shard_count, 2);
+  assert.equal(handover.live_protected_state.max_allowed_d1_subqueries, 16);
+  assert.equal(handover.live_protected_state.d1_budget_headroom_assumed, false);
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);

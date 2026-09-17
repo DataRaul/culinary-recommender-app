@@ -1,0 +1,49 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_COCINA_MEXICANA_SOURCE_INVENTORY_V1",
+  "date": "2026-09-17",
+  "pass": true,
+  "terminal": "STEP_8G_COCINA_MEXICANA_SOURCE_INVENTORY_COMPLETE_NO_RIGHTS_CLEARANCE",
+  "sourceRepository": "AdamBouhmad/open-recipe-archive",
+  "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+  "collection": "cocina-mexicana",
+  "collectionRecipeCount": 6476,
+  "sourceGroupCount": 2,
+  "workflowRun": 35268075750,
+  "artifactId": 10517174541,
+  "artifactSha256": "4e1042e695043b06679e0a5e7cf5fbadbaab821d02b7072951386534da6da627",
+  "sourceGroups": [
+    {
+      "cohortId": "ORA_GALVAN_RIVERA_1845_DICCIONARIO_COCINA_AE3BD2C",
+      "sourceTitle": "Diccionario de cocina, ó El nuevo cocinero mexicano",
+      "sourceAuthor": "Mariano Galván Rivera",
+      "sourceYear": "1845",
+      "sourceUrl": "https://archive.org/details/bub_gb_NdQqAAAAYAAJ",
+      "recipeCount": 4347,
+      "parseableRecipeRatio": 1,
+      "publicDomainMetadataPass": true,
+      "completeIdentityPass": true
+    },
+    {
+      "cohortId": "ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C",
+      "sourceTitle": "La cocinera poblana",
+      "sourceAuthor": "",
+      "sourceAuthorClassification": "AUTHOR_NOT_IDENTIFIED_INDEPENDENTLY_DOCUMENTED",
+      "sourceYear": "1890",
+      "sourceUrl": "https://archive.org/details/lacocinerapobla00unkngoog",
+      "recipeCount": 2129,
+      "parseableRecipeRatio": 1,
+      "publicDomainMetadataPass": true,
+      "completeIdentityPass": false,
+      "completeIdentityInterpretation": "Expected blank author field; independently documented as author not identified. Source-specific rights gate, not generic discovery, decides admissibility."
+    }
+  ],
+  "boundaries": {
+    "sourceRightsClearedByInventory": false,
+    "measurementEarnedByInventory": false,
+    "liveD1WritesPerformed": 0,
+    "protectedPopulationAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "thirdShardAuthorized": false,
+    "billingExpansionAuthorized": false
+  }
+}
