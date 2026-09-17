@@ -1,6 +1,6 @@
-# Step 8G — `cocina-mexicana` source audit
+# Step 8G — `cocina-mexicana` source rights and provenance audit
 
-Status: SOURCE INVENTORY / RIGHTS REVIEW IN PROGRESS — NO INGESTION AUTHORITY
+Status: `PASS_SOURCE_RIGHTS_CLASSIFIED__MEASUREMENT_REQUIRED__NO_INGESTION_AUTHORITY`
 
 Pinned source repository: `AdamBouhmad/open-recipe-archive`
 
@@ -8,29 +8,70 @@ Pinned commit: `ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8`
 
 Collection: `cocina-mexicana`
 
-Pinned collection manifest count: 6,476 records.
+Pinned collection count: 6,476 records.
 
-## Independent bibliographic evidence gathered before measurement
+Inventory workflow: `35268075750`
 
-The source family contains nineteenth-century Mexican cookbooks. Independent catalog/search evidence confirms:
+Inventory artifact: `10517174541`
 
-- *Diccionario de cocina, ó El nuevo cocinero mexicano* — 1845. Google Books exposes an 1845 full-view copy and bibliographic records identify Mariano Galván Rivera (1782–1876). The pinned ORA records label this source `public-domain`.
-- *La cocinera poblana y el libro de las familias* — nineteenth-century editions including 1887 and 1890. Open Library catalogues the 1890 edition with author not identified and makes the scan downloadable; Real Academia de Gastronomía records the 1887 edition and the corrected/enlarged 1890 fourth edition. The pinned ORA collection labels its records `public-domain`.
+Inventory artifact SHA-256: `4e1042e695043b06679e0a5e7cf5fbadbaab821d02b7072951386534da6da627`
 
-The ORA repository itself is distributed under the Unlicense at the pinned repository revision. That repository-level permission is classified separately from the historical-work public-domain basis.
+## Exact pinned source groups
 
-## Current gate
+### A — Mariano Galván Rivera, 1845
 
-Do not infer the exact row split, source URL variants, attribution state, or admission count from collection-level metadata. The source-inventory workflow must first enumerate the exact pinned source groups and structural completeness.
+- Cohort ID: `ORA_GALVAN_RIVERA_1845_DICCIONARIO_COCINA_AE3BD2C`
+- Title: *Diccionario de cocina, ó El nuevo cocinero mexicano*
+- Author: Mariano Galván Rivera
+- Source year: 1845
+- Pinned source URL: `https://archive.org/details/bub_gb_NdQqAAAAYAAJ`
+- Exact pinned records: 4,347
+- Parseable ratio: 1.0
+- ORA metadata: `public-domain`
 
-This document therefore does **not** yet assert a rights PASS and does not authorize prewrite or protected ingestion. After deterministic inventory, each source group must independently receive:
+Independent bibliographic evidence identifies Galván Rivera as 1782–1876 and identifies the 1845 edition. Google Books exposes an 1845 full-view copy. Under Spain's current consolidated Intellectual Property Act, the transitional rule preserves the older term for authors who died before 7 December 1987; the 1879 Act provided life plus eighty years. On the independently recorded 1876 death date, that exploitation term expired decades ago.
 
-1. historical-work reuse/public-domain basis;
-2. repository-layer reuse basis;
-3. exact provenance identity and count;
-4. attribution/disclosure classification;
-5. structural/marginal-value measurement against active protected `v8007`;
-6. explicit admit / hold / reject disposition.
+Rights marker: `PASS_RIGHTS_VERIFIED_BOUNDED_GALVAN_RIVERA_1845_DICCIONARIO_COCINA`
+
+### B — *La cocinera poblana*, 1890, author not identified
+
+- Cohort ID: `ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C`
+- Title: *La cocinera poblana*
+- Author field in pinned ORA rows: empty
+- Source year: 1890
+- Pinned source URL: `https://archive.org/details/lacocinerapobla00unkngoog`
+- Exact pinned records: 2,129
+- Parseable ratio: 1.0
+- ORA metadata: `public-domain`
+
+The blank author is not treated as missing evidence. Open Library independently catalogues the 1890 edition as `[author not identified]`, provides the matching Internet Archive lineage, and exposes download/read options. Real Academia de Gastronomía independently records the work's nineteenth-century editions and the corrected/enlarged 1890 fourth edition. Spain's consolidated Intellectual Property Act provides a publication-based term for anonymous works; the 1890 lawful publication is far beyond that term.
+
+Rights marker: `PASS_RIGHTS_VERIFIED_BOUNDED_COCINERA_POBLANA_1890_ANONYMOUS`
+
+## Repository-layer permission
+
+The historical-work public-domain analysis above is separate from permission for the ORA repository's transformed/structured recipe text. The pinned ORA repository is distributed under the Unlicense, which grants unrestricted reuse of that repository layer. Private runtime does not create or substitute for either rights basis.
+
+## Attribution and disclosure classification
+
+Neither cohort should be treated as attribution-free product data merely because exploitation copyright is expired or the repository layer is Unlicensed. The Culinary legal-corpus policy requires provenance presentation, and the known-author cohort should preserve author/source identity conservatively. The anonymous cohort should display `author not identified` rather than invent an author.
+
+Required product provenance fields when these records eventually become user-visible:
+
+- historical source title;
+- historical author when identified, otherwise `author not identified`;
+- source year;
+- source URL or stable source reference;
+- ORA repository/source provenance and pinned revision or equivalent audit reference;
+- rights/reuse classification (`public-domain` historical work + Unlicense repository layer).
+
+Attribution/disclosure state: `CLASSIFIED_READY_FOR_PRIVATE_CORPUS__UI_DISPLAY_STILL_DOWNSTREAM_TEST_REQUIRED`.
+
+## What this PASS earns
+
+This source-rights PASS earns only bounded structural/marginal-value measurement against active protected `v8007`. It does **not** authorize prewrite, D1 mutation, protected population, public activation, recommendation admission, third-shard creation, billing, Nutrition, YT-CUL, Knowledge Core writes, or cultural-authenticity claims.
+
+Each source cohort remains independently admissible: a later measurement/capacity failure for one does not contaminate the other.
 
 ## Authority boundaries
 
