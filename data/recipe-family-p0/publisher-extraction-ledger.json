@@ -1,0 +1,84 @@
+{
+  "version": "0.3.0",
+  "asOf": "2026-09-17",
+  "scope": "Recipe Family Synthesis P0 one-time Carbonara/Hummus baseline",
+  "rules": {
+    "genericScrapingUsed": false,
+    "genericCrawlingUsed": false,
+    "rawSourceExpressionRetained": false,
+    "repeatedSystematicExtractionUsed": false,
+    "scheduledRefreshAuthorized": false
+  },
+  "publishers": [
+    {
+      "publisherLedgerKey": "accademia-italiana-della-cucina",
+      "family": "carbonara",
+      "boundedSourceItemsReviewed": 1,
+      "persistentSourceExpressionItems": 0,
+      "normalizedObservationItems": 1,
+      "cumulativeExtractionRisk": "LOW"
+    },
+    {
+      "publisherLedgerKey": "la-cucina-italiana",
+      "family": "carbonara",
+      "boundedSourceItemsReviewed": 1,
+      "persistentSourceExpressionItems": 0,
+      "normalizedObservationItems": 1,
+      "cumulativeExtractionRisk": "LOW"
+    },
+    {
+      "publisherLedgerKey": "aia-food",
+      "family": "carbonara",
+      "boundedSourceItemsReviewed": 1,
+      "persistentSourceExpressionItems": 0,
+      "normalizedObservationItems": 1,
+      "cumulativeExtractionRisk": "LOW"
+    },
+    {
+      "publisherLedgerKey": "more-recipes-please",
+      "family": "carbonara",
+      "boundedSourceItemsReviewed": 1,
+      "persistentSourceExpressionItems": 0,
+      "normalizedObservationItems": 1,
+      "cumulativeExtractionRisk": "LOW"
+    },
+    {
+      "publisherLedgerKey": "fao-who-codex",
+      "family": "hummus",
+      "boundedSourceItemsReviewed": 1,
+      "persistentSourceExpressionItems": 0,
+      "normalizedObservationItems": 1,
+      "cumulativeExtractionRisk": "LOW"
+    },
+    {
+      "publisherLedgerKey": "overcoming-ms",
+      "family": "hummus",
+      "boundedSourceItemsReviewed": 1,
+      "persistentSourceExpressionItems": 0,
+      "normalizedObservationItems": 1,
+      "cumulativeExtractionRisk": "LOW"
+    },
+    {
+      "publisherLedgerKey": "chefs-pencil",
+      "family": "hummus",
+      "boundedSourceItemsReviewed": 1,
+      "persistentSourceExpressionItems": 0,
+      "normalizedObservationItems": 1,
+      "cumulativeExtractionRisk": "LOW"
+    },
+    {
+      "publisherLedgerKey": "williams-sonoma",
+      "family": "hummus",
+      "boundedSourceItemsReviewed": 1,
+      "persistentSourceExpressionItems": 0,
+      "normalizedObservationItems": 1,
+      "cumulativeExtractionRisk": "LOW"
+    }
+  ],
+  "totals": {
+    "publishers": 8,
+    "boundedSourceItemsReviewed": 8,
+    "persistentSourceExpressionItems": 0,
+    "normalizedObservationItems": 8
+  }
+}
