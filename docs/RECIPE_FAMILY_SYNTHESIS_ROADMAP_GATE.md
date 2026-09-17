@@ -1,8 +1,13 @@
 # Recipe Family Synthesis P0 — Roadmap Gate
 
-Status: **ACTIVE / CONTRACT MERGED / COMPLIANCE HARDENING IMPLEMENTED / PROTOTYPE NEXT**
+Status: **ACTIVE / CONTRACT MERGED / PRE-DEVELOPMENT GOVERNANCE CLOSEOUT IMPLEMENTED / PROTOTYPE NEXT**
 
-This gate formalizes the unlock sequence for `docs/RECIPE_FAMILY_SYNTHESIS_P0.md`, `docs/RECIPE_FAMILY_SOURCE_COMPLIANCE_GATE.md` and `config/recipe_family_synthesis_p0.json`.
+This gate formalizes the unlock sequence for:
+
+- `docs/RECIPE_FAMILY_SYNTHESIS_P0.md`;
+- `docs/RECIPE_FAMILY_SOURCE_COMPLIANCE_GATE.md`;
+- `docs/RECIPE_FAMILY_PREDEVELOPMENT_GOVERNANCE_CLOSEOUT.md`;
+- `config/recipe_family_synthesis_p0.json`.
 
 ## Unlock sequence
 
@@ -11,50 +16,72 @@ This gate formalizes the unlock sequence for `docs/RECIPE_FAMILY_SYNTHESIS_P0.md
    - Culinary action contract and machine-readable config merged.
    - No production or public activation authority.
 
-2. **Source-compliance hardening** — IMPLEMENTED / REQUIRED BEFORE AUTOMATED GATHERING.
+2. **Source-compliance hardening** — COMPLETE / REQUIRED BEFORE SOURCE GATHERING.
    - Mandatory source gate distinguishes `MANUAL_REVIEW`, `AUTOMATED_TDM`, `API_OPEN_DATA` and `LICENSED_REUSE`.
-   - Automated gathering fails closed unless lawful access, applicable Terms state, current TDM-reservation evidence, individual database-extraction risk and cumulative publisher/database extraction risk pass.
+   - Generic web scraping/crawling is **not an authorized lane**.
+   - No access-control/technical-restriction bypass, Terms evasion or account rotation to defeat limits is authorized.
+   - Automated TDM fails closed unless lawful access, applicable Terms state, current TDM-reservation evidence, individual database-extraction risk and cumulative publisher/database extraction risk pass.
    - Persistent source expression is prohibited for standard-copyright evidence; transient fetched expression must be deleted after normalization.
    - `scripts/validate-recipe-family-source-compliance.mjs` provides the deterministic preflight.
    - A failed source blocks that source, not the dish family.
 
-3. **Two-family deterministic prototype** — NEXT.
-   - Families: `carbonara`, `hummus`.
-   - Required order: `source eligibility preflight -> bounded observation acquisition -> family synthesis -> expression-independence validation -> prototype report -> Consultant/Coach review`.
-   - Build factual observation normalization, family synthesis, reference/observed/recommended ranges, variant classification, provenance, validation report and one candidate app-owned recipe projection per eligible family.
-   - Measure legal/source blocks, operator effort, contradictions, unresolved facts, cumulative publisher extraction and whether additional source collection has positive information gain.
+3. **Pre-development governance closeout** — COMPLETE / BLOCKING CONTRACT FOR IMPLEMENTATION.
+   - Family evidence acquisition is a **one-time bounded baseline by default**, not a scheduled refresh product.
+   - Per family target remains one strong reference where available plus approximately 3–5 independent practical preparations/observations.
+   - Those observations should normally represent independent preparations/sources, not repeated runs against one publisher.
+   - Stop when identity, ranges, variants and execution confidence stabilize; another collection wave requires an explicit evidence/legal/owner trigger.
+   - Internal provenance is always required.
+   - When licence/permission/API/Terms requires public attribution, the public/reusable path must prove it can display the required attribution before admission.
+   - If required public attribution cannot be satisfied, reject that public/reusable use.
+   - The public GitHub repository is treated as public disclosure: protected third-party expression may not be committed merely because the runtime database/app is access-gated.
+   - The intent/disclaimer language is governance, not a claimed legal defence.
 
-4. **P0 prototype review gate** — BLOCKING.
+4. **Two-family deterministic prototype** — NEXT.
+   - Families: `carbonara`, `hummus`.
+   - Required order: `source eligibility preflight -> bounded one-time observation acquisition -> family synthesis -> expression-independence validation -> attribution-requirement validation -> prototype report -> Consultant/Coach review`.
+   - Build factual observation normalization, family synthesis, reference/observed/recommended ranges, variant classification, provenance, attribution requirements, validation report and one candidate app-owned recipe projection per eligible family.
+   - Measure legal/source blocks, operator effort, contradictions, unresolved facts, cumulative publisher extraction and whether additional source collection has positive information gain.
+   - No recurring Carbonara/Hummus refresh is scheduled or implied.
+
+5. **P0 prototype review gate** — BLOCKING.
    - Run existing Consultant + Project Coach challenge.
-   - Consultant must challenge whether source/legal controls are proportionate, reference claims exceed evidence, variants are noise, additional collection has positive information gain, and synthesis outperforms duplicate source storage.
-   - Project Coach must verify sequencing, explicit terminal evidence, cumulative extraction control, absence of protected expression from persistent objects, and preservation of the public/private runtime firewall.
+   - Consultant must challenge whether source/legal controls are proportionate, reference claims exceed evidence, variants are noise, additional collection has positive information gain, synthesis outperforms duplicate source storage, and 100k readiness is not being confused with rights-cleared source volume.
+   - Project Coach must verify sequencing, explicit terminal evidence, cumulative extraction control, absence of protected expression from persistent objects/public repo, attribution fail-closed behavior, no unearned refresh loop, and preservation of the public/private runtime firewall.
    - Neither role creates legal permission, production authority or public activation authority.
 
-5. **10-family bounded expansion** — UNLOCKED ONLY ON PROTOTYPE PASS.
+6. **10-family bounded expansion** — UNLOCKED ONLY ON PROTOTYPE PASS.
    - Expand only if the two-family prototype demonstrates useful stable ranges, practical recipe quality, manageable source/compliance effort and clean provenance.
    - Expansion remains bounded; there is no raw recipe-count target and no mass crawling authority.
+   - Each family receives its own one-time bounded baseline unless a later explicit research trigger earns more collection.
 
-6. **App-authoring candidate gate** — EARNED PER FAMILY, NOT GLOBALLY.
+7. **App-authoring candidate gate** — EARNED PER FAMILY, NOT GLOBALLY.
    - A family may earn `APP_AUTHORING_ELIGIBLE` only under the existing contract.
    - This permits a project-authored candidate recipe object to enter existing `RecipeSource` / evaluator / planner review gates.
+   - Evidence sources do not automatically become the displayed recipe source; display obligations follow the actual reuse/licence/permission/Terms basis.
 
-7. **Public recommendation activation** — SEPARATELY GATED.
+8. **Public recommendation activation** — SEPARATELY GATED.
    - P0 pass, 10-family expansion, or `APP_AUTHORING_ELIGIBLE` do **not** authorize public recommendation activation, production population changes, shard changes, billing, or nutrition-authority widening.
+   - Before a new attribution-bearing source class can become public, runtime/browser acceptance must verify a generic attribution path capable of rendering the required creator/source, source URL where applicable, licence/basis and modification notice.
+   - The existing Wikibooks-specific CC BY-SA provenance renderer does not by itself prove support for every future licence/source class.
 
 ## Prototype PASS criteria
 
 The two-family prototype passes only if both the system and compliance model are usable:
 
 - source legal/use state can be classified without disproportionate manual work;
+- no generic scraping/crawling path is used;
 - automated sources have passed the deterministic compliance preflight;
 - Terms/TDM evidence is current enough for the acquisition mode;
 - cumulative extraction from any publisher/database remains bounded and low-risk under the operational gate;
-- no protected third-party prose/media is required in persistent recipe objects;
+- no protected third-party prose/media is required in persistent recipe objects or public-repo artifacts;
 - bounded factual observations can be normalized with provenance;
+- public-attribution requirement is classified for every eligible source;
+- required-but-unsatisfiable public attribution fails closed;
 - reference, observed and recommended ranges remain distinct;
 - required ingredient roles and technique sequence are coherent;
 - variants/adaptations are distinguishable from the reference profile;
 - generated app-owned instructions are original project expression;
+- one-time family baseline is sufficient or the report identifies the exact trigger earning more evidence;
 - at least one family earns a credible `APP_AUTHORING_ELIGIBLE` candidate, or the report explains why the architecture is still worth continuing despite neither earning it;
 - Consultant/Coach review does not identify a material unresolved governance, source-rights, safety or execution failure.
 
@@ -63,19 +90,56 @@ The two-family prototype passes only if both the system and compliance model are
 Do not expand automatically if:
 
 - legal/source review effort is disproportionate to culinary value;
+- implementation introduces generic scraping/crawling or access-control circumvention;
 - automated acquisition would violate an applicable rights reservation, licence, Terms restriction or platform restriction;
 - publisher-level cumulative extraction becomes material or cannot be assessed;
 - the method drifts toward reconstructing a third-party database;
 - stable useful ranges cannot be obtained from bounded independent evidence;
 - recipe quality is not better than direct project authoring plus validation;
 - source expression would need to be copied to make the output useful;
+- required public attribution cannot be rendered for the intended public/reusable use;
 - identity/variant/adaptation boundaries remain materially unstable.
 
 A failed source blocks that source, not the dish family. A failed prototype blocks expansion until redesigned.
 
+## Relationship to large-corpus / 100k readiness
+
+The canonical source/licensing map remains `docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md`.
+
+Important interpretation:
+
+- `100k readiness` is a storage/retrieval/validation capacity target, not a promise of one 100k rights-cleared source;
+- Open Recipe Archive (~54,843 recorded recipes) remains the primary large-corpus candidate after collection/source-book audits;
+- RecipeDB (~118,171 records) remains a conditional salvage lane, not automatically reusable merely because the dataset is public/downloadable;
+- the final admitted count may be below or above 100k;
+- Recipe Family Synthesis is a **quality/adaptation layer** on top of a rights-clean base corpus, not the source of scale itself.
+
+Intended relationship:
+
+`rights-clean large corpus -> family/variant/technique evidence -> app-owned normalization/adaptation -> existing app gates`
+
+not:
+
+`third-party recipe sites -> scraping -> synthetic 100k corpus`.
+
+## YouTube / authoritative culinary-source relationship
+
+YouTube evidence may help refine technique, family boundaries, recurring variants, ranges or adaptations for recipes/families already represented in the rights-clean corpus.
+
+It remains evidence-only by default:
+
+- no automated scraping of the YouTube website;
+- no unofficial transcript scraping/downloading or media warehousing;
+- use manual review or explicitly permitted API/data paths under their applicable terms;
+- retain internal video/channel provenance and relevant timestamp/segment when practical;
+- do not retain creator expression unless separately licensed;
+- preserve independent non-YouTube corroboration and `rightsProvenanceSafetyClear=true` before app-authoring eligibility.
+
+YouTube authority can strengthen an evidence claim; it does not turn a creator's recipe into app-owned reusable content.
+
 ## Legal re-review triggers
 
-Re-run the legal/source review before widening the lane when any of these materially changes:
+Re-run the legal/source review before widening or reacquiring when any of these materially changes:
 
 - manual acquisition becomes automated;
 - a new commercial recipe platform/database becomes a material source;
@@ -83,7 +147,9 @@ Re-run the legal/source review before widening the lane when any of these materi
 - per-publisher extraction volume rises materially;
 - raw source-text retention widens beyond transient normalization;
 - the product becomes broadly public, commercial or materially multi-user;
-- source-derived prose/media begins to be exposed rather than project-owned expression.
+- source-derived prose/media begins to be exposed rather than project-owned expression;
+- a new public attribution/disclosure obligation appears;
+- a previously reviewed source is reacquired under materially changed conditions.
 
 ## Relationship to Step 8G
 
@@ -98,7 +164,7 @@ This lane is additive and parallel to Step 8G. It must not mutate:
 
 The intended progression is therefore:
 
-`contract -> source compliance preflight -> 2-family prototype -> measured compliance + recipe-quality review -> bounded 10-family expansion -> per-family app-authoring candidates -> existing downstream gates`
+`contract -> compliance + governance closeout -> 2-family one-time prototype -> measured compliance + recipe-quality review -> bounded 10-family expansion -> per-family app-authoring candidates -> existing downstream gates`
 
 not:
 

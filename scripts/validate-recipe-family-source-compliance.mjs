@@ -39,6 +39,8 @@ const roles = new Set([
   'DO_NOT_USE'
 ]);
 const retentionStates = new Set(['NONE', 'TEMPORARY_DELETE_AFTER_NORMALIZATION']);
+const attributionRequirements = new Set(['REQUIRED', 'NOT_REQUIRED', 'UNKNOWN']);
+const attributionStates = new Set(['READY', 'NOT_APPLICABLE', 'UNSATISFIABLE', 'UNKNOWN']);
 
 const errors = [];
 
@@ -74,6 +76,8 @@ for (const [index, observation] of observations.entries()) {
   if (!extractionStates.has(source.cumulativeExtractionRisk)) errors.push(`${label}: invalid cumulativeExtractionRisk`);
   if (!roles.has(source.role)) errors.push(`${label}: invalid source role`);
   if (!retentionStates.has(source.rawExpressionRetention)) errors.push(`${label}: invalid rawExpressionRetention`);
+  if (!attributionRequirements.has(source.publicAttributionRequirement)) errors.push(`${label}: invalid publicAttributionRequirement`);
+  if (!attributionStates.has(source.publicAttributionState)) errors.push(`${label}: invalid publicAttributionState`);
   if (typeof source.sourceExpressionPersisted !== 'boolean') errors.push(`${label}: sourceExpressionPersisted must be boolean`);
 
   if (source.lawfulAccess !== 'YES') {
@@ -84,6 +88,22 @@ for (const [index, observation] of observations.entries()) {
   }
   if (source.reuseBasis === 'UNKNOWN') {
     errors.push(`${label}: reuseBasis=UNKNOWN must fail closed until classified`);
+  }
+  if (source.publicAttributionRequirement === 'UNKNOWN') {
+    errors.push(`${label}: publicAttributionRequirement=UNKNOWN must fail closed until classified`);
+  }
+  if (source.publicAttributionRequirement === 'REQUIRED') {
+    if (source.publicAttributionState !== 'READY') {
+      errors.push(`${label}: required public attribution must be READY before eligible use`);
+    }
+    requiredString(source, 'attributionLabel', label);
+    requiredString(source, 'attributionLicenseOrBasis', label);
+  }
+  if (source.publicAttributionRequirement === 'NOT_REQUIRED' && source.publicAttributionState === 'UNKNOWN') {
+    errors.push(`${label}: publicAttributionState=UNKNOWN is not an eligible terminal state`);
+  }
+  if (source.publicAttributionState === 'UNSATISFIABLE') {
+    errors.push(`${label}: required/recorded public attribution is unsatisfiable; reject this use`);
   }
   if (source.acquisitionMode === 'MANUAL_REVIEW' && source.termsState === 'REQUIRES_PERMISSION') {
     errors.push(`${label}: manual review requires permission under the recorded termsState`);
@@ -139,5 +159,6 @@ console.log(JSON.stringify({
   pass: true,
   terminalCandidate: 'RECIPE_FAMILY_SOURCE_COMPLIANCE_PASS',
   eligibleObservations: observations.length,
-  protectedSourceExpressionPersisted: observations.some((o) => o?.source?.sourceExpressionPersisted === true)
+  protectedSourceExpressionPersisted: observations.some((o) => o?.source?.sourceExpressionPersisted === true),
+  attributionRequiredObservations: observations.filter((o) => o?.source?.publicAttributionRequirement === 'REQUIRED').length
 }, null, 2));
