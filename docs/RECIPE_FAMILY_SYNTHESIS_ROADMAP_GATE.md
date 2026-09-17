@@ -7,7 +7,9 @@ This gate formalizes the unlock sequence for:
 - `docs/RECIPE_FAMILY_SYNTHESIS_P0.md`;
 - `docs/RECIPE_FAMILY_SOURCE_COMPLIANCE_GATE.md`;
 - `docs/RECIPE_FAMILY_PREDEVELOPMENT_GOVERNANCE_CLOSEOUT.md`;
-- `config/recipe_family_synthesis_p0.json`.
+- `docs/RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_GATE.md`;
+- `config/recipe_family_synthesis_p0.json`;
+- `config/recipe_family_ui_legal_conformance_gate.json`.
 
 ## Unlock sequence
 
@@ -59,9 +61,21 @@ This gate formalizes the unlock sequence for:
    - This permits a project-authored candidate recipe object to enter existing `RecipeSource` / evaluator / planner review gates.
    - Evidence sources do not automatically become the displayed recipe source; display obligations follow the actual reuse/licence/permission/Terms basis.
 
-8. **Public recommendation activation** — SEPARATELY GATED.
-   - P0 pass, 10-family expansion, or `APP_AUTHORING_ELIGIBLE` do **not** authorize public recommendation activation, production population changes, shard changes, billing, or nutrition-authority widening.
-   - Before a new attribution-bearing source class can become public, runtime/browser acceptance must verify a generic attribution path capable of rendering the required creator/source, source URL where applicable, licence/basis and modification notice.
+8. **UI legal-conformance gate** — BLOCKING WHEN REAL CANDIDATE OBJECTS EXIST.
+   - Trigger when the first real `APP_AUTHORING_ELIGIBLE` candidate exists with classified source rights/provenance and public-attribution state; do not build speculative licence UI before useful objects exist.
+   - Use the real candidate recipe/source/provenance/attribution objects as browser and renderer fixtures, plus synthetic negative fixtures that exercise already-encoded `UNSATISFIABLE` and `UNKNOWN` states.
+   - This gate does **not** decide source legality again. It revalidates that the UI implements the already-encoded legal/source result correctly.
+   - Required cases include: attribution not required; attribution required and ready; attribution required but unsatisfiable; and attribution requirement/state unknown.
+   - When attribution is required and ready, render every field required by the encoded basis, including source/creator label, source link where applicable, licence/permission basis and transformation/modification notice where applicable.
+   - `UNSATISFIABLE` or `UNKNOWN` must fail closed: no public/reusable recipe rendering or admission.
+   - Tests must also prove that protected third-party expression cannot leak from evidence/provenance objects and that a new source class is not considered supported merely because the Wikibooks-specific renderer works.
+   - Required layers: object/schema validation -> renderer unit test -> browser acceptance with real candidate objects -> negative browser fixtures -> public-runtime fail-closed assertion.
+   - Required terminal state before public/reusable admission for the tested source class: `RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS`.
+   - Canonical contract: `docs/RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_GATE.md` + `config/recipe_family_ui_legal_conformance_gate.json`.
+
+9. **Public recommendation activation** — SEPARATELY GATED.
+   - P0 pass, 10-family expansion, `APP_AUTHORING_ELIGIBLE`, or UI legal-conformance PASS do **not** by themselves authorize public recommendation activation, production population changes, shard changes, billing, or nutrition-authority widening.
+   - Before a new attribution-bearing source class can become public, the UI legal-conformance gate must have passed for representative real objects from that class.
    - The existing Wikibooks-specific CC BY-SA provenance renderer does not by itself prove support for every future licence/source class.
 
 ## Prototype PASS criteria
@@ -149,7 +163,8 @@ Re-run the legal/source review before widening or reacquiring when any of these 
 - the product becomes broadly public, commercial or materially multi-user;
 - source-derived prose/media begins to be exposed rather than project-owned expression;
 - a new public attribution/disclosure obligation appears;
-- a previously reviewed source is reacquired under materially changed conditions.
+- a previously reviewed source is reacquired under materially changed conditions;
+- the UI gate discovers an obligation that the current object model cannot represent.
 
 ## Relationship to Step 8G
 
@@ -164,7 +179,7 @@ This lane is additive and parallel to Step 8G. It must not mutate:
 
 The intended progression is therefore:
 
-`contract -> compliance + governance closeout -> 2-family one-time prototype -> measured compliance + recipe-quality review -> bounded 10-family expansion -> per-family app-authoring candidates -> existing downstream gates`
+`contract -> compliance + governance closeout -> 2-family one-time prototype -> measured compliance + recipe-quality review -> bounded 10-family expansion -> per-family app-authoring candidates -> UI legal-conformance PASS on real candidate objects -> existing downstream/public gates`
 
 not:
 
