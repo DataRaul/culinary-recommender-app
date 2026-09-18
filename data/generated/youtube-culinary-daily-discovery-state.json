@@ -3474,5 +3474,373 @@
     "packetId": null,
     "knowledgeCoreCommit": null
   },
-  "quotaDayProgress": null
+  "quotaDayProgress": {
+    "schemaVersion": "youtube-culinary-adaptive-quota-day-progress-v1",
+    "quotaDate": "2026-09-18",
+    "searchCapacity": 95,
+    "searchCallsUsed": 83,
+    "usedQueryIds": [
+      "yt5e-kc-beaf5c80bf33a0a5b9",
+      "yt5e-kc-0db819b99a108ab1d2",
+      "yt5e-06e01fb88622792fd8",
+      "yt5e-841206822229feb294",
+      "yt5e-62312e99b6f7e79d6b",
+      "yt5e-358e5be7be8d49250b",
+      "yt5e-kc-90d2b74d867b0c1d45",
+      "yt5e-kc-7b9c770a0067788fed",
+      "yt5e-26cef204758d0ac99c",
+      "yt5e-df959cb9681390d1a1",
+      "yt5e-b1365329469dc5201d",
+      "yt5e-8c25ea2188f9609544",
+      "yt5e-6504945c8dbdf80b71",
+      "yt5e-371f321c652f2446bd",
+      "yt5e-7f43c0b7ca60637513",
+      "yt5e-9ba1696ddcde4f8957",
+      "yt5e-84edeef8ea32fdab53",
+      "yt5e-c9c4b00989d688c707",
+      "yt5e-b0a6674ec15fd5efd6",
+      "yt5e-a7d548d04f1bca84b5",
+      "yt5e-9d65bf6e91e1fc3dd1",
+      "yt5e-cda5b510e7b70ad69e",
+      "yt5e-386cd873789105cb7f",
+      "yt5e-b7ba938ffdfd88ea64",
+      "yt5e-70d915354aa724dab4",
+      "yt5e-cfca95767ef64eed79",
+      "yt5e-6058c3ccdf413d3b0c",
+      "yt5e-98f466b766a6abcfad",
+      "yt5e-3e7b7de986b1c72b95",
+      "yt5e-c749318b8f1d81240a",
+      "yt5e-5bb0e4c35175cd204f",
+      "yt5e-d54195c13aa2d3f38c",
+      "yt5e-4cba97f9821b6e7e88",
+      "yt5e-d00bee276f55f46570",
+      "yt5e-287bc631a311572086",
+      "yt5e-54c47839abb5d15c3c",
+      "yt5e-9990bd373a7d246e48",
+      "yt5e-7d12956fd1c2f46ac7",
+      "yt5e-4219a226b82904ea74",
+      "yt5e-53a5b21526f73e11c9",
+      "yt5e-603b698d03a1fb3028",
+      "yt5e-aedc412a9d4e7899de",
+      "yt5e-d1242b07d10b7ff14b",
+      "yt5e-6908b700be22b73810",
+      "yt5e-332c327afa3c62cd5f",
+      "yt5e-2382eefd00153a3b1c",
+      "yt5e-6ae86ccdcc86b6d0d1",
+      "yt5e-e9eba0e940667b2026",
+      "yt5e-42fdd7faed98fae7fe",
+      "yt5e-b417974350c1db8e53",
+      "yt5e-c9f9b2026ae0b0c1f5",
+      "yt5e-09d5a48cb516936029",
+      "yt5e-12156debb8fbaa10fa",
+      "yt5e-e169934e9bbacf333c",
+      "yt5e-8f7866be0797d10733",
+      "yt5e-0a028882bf17aa1167",
+      "yt5e-a1054d19696dd799e9",
+      "yt5e-ac300796262b508ae1",
+      "yt5e-69aa24a8925ec74883",
+      "yt5e-9d0ba526de643670dc",
+      "yt5e-09d9db2c118642c793",
+      "yt5e-8eb95e767746c8e144",
+      "yt5e-edfbfbacaecd11e5f8",
+      "yt5e-5f131b9d90b9f138e7",
+      "yt5e-9d6cc52251bd637c91",
+      "yt5e-17f7a376a653997ac9",
+      "yt5e-59543b2454c75755c8",
+      "yt5e-8a465d5f894dc580f2",
+      "yt5e-9ebb96acc2e2c64c25",
+      "yt5e-7c1453653f8731f704",
+      "yt5e-5610949a796439a4d1",
+      "yt5e-b6019445a0eda44f20",
+      "yt5e-cb9a575b76dacedf6a",
+      "yt5e-cc6d07bd3bc843aae0",
+      "yt5e-783d3354f081ccbbc7",
+      "yt5e-df8ac0e32dbae08192",
+      "yt5e-5325ecf9a786e3cfad",
+      "yt5e-3ef1fa43235827809f",
+      "yt5e-6c1a56b8ea581b5dbb",
+      "yt5e-73395e204b07b9bf7a",
+      "yt5e-0705a0f16ca838706f",
+      "yt5e-a22c750f91bf6634d4",
+      "yt5e-16b1eaed0665bcc9cb"
+    ],
+    "tranches": [
+      {
+        "trancheNumber": 1,
+        "searchCalls": 16,
+        "exploitationSlots": 12,
+        "explorationSlots": 4,
+        "focuses": [
+          "WEST_AFRICA__STEW_GRAIN_LEGUME",
+          "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD",
+          "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED"
+        ],
+        "queryOrigins": [
+          "ATLAS_GAP_PORTFOLIO",
+          "CANONICAL_ACCEPTED_FOLLOWUP"
+        ],
+        "independentPagesReviewed": 5,
+        "recipeStructuredPagesConfirmed": 1,
+        "reviewCandidatesConsidered": 1,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 1,
+        "uniqueUsefulSourceDomains": 0,
+        "transientVideoPointersObserved": 358,
+        "externalReviewErrorCount": 7
+      },
+      {
+        "trancheNumber": 2,
+        "searchCalls": 8,
+        "exploitationSlots": 6,
+        "explorationSlots": 2,
+        "focuses": [
+          "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS",
+          "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES"
+        ],
+        "queryOrigins": [
+          "ATLAS_GAP_PORTFOLIO"
+        ],
+        "independentPagesReviewed": 0,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "uniqueUsefulSourceDomains": 0,
+        "transientVideoPointersObserved": 0,
+        "externalReviewErrorCount": 0
+      },
+      {
+        "trancheNumber": 3,
+        "searchCalls": 8,
+        "exploitationSlots": 6,
+        "explorationSlots": 2,
+        "focuses": [
+          "IRAN_CENTRAL_ASIA_AFGHANISTAN__BREADS_SOUPS",
+          "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES"
+        ],
+        "queryOrigins": [
+          "ATLAS_GAP_PORTFOLIO"
+        ],
+        "independentPagesReviewed": 0,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "uniqueUsefulSourceDomains": 0,
+        "transientVideoPointersObserved": 10,
+        "externalReviewErrorCount": 0
+      },
+      {
+        "trancheNumber": 4,
+        "searchCalls": 8,
+        "exploitationSlots": 6,
+        "explorationSlots": 2,
+        "focuses": [
+          "SOUTHEAST_ASIA__FERMENTED_STEAMED_RICE",
+          "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT",
+          "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED"
+        ],
+        "queryOrigins": [
+          "ATLAS_GAP_PORTFOLIO"
+        ],
+        "independentPagesReviewed": 7,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "uniqueUsefulSourceDomains": 0,
+        "transientVideoPointersObserved": 261,
+        "externalReviewErrorCount": 5
+      },
+      {
+        "trancheNumber": 5,
+        "searchCalls": 8,
+        "exploitationSlots": 6,
+        "explorationSlots": 2,
+        "focuses": [
+          "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT",
+          "SOUTHEAST_ASIA__FERMENTED_STEAMED_RICE",
+          "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS"
+        ],
+        "queryOrigins": [
+          "ATLAS_GAP_PORTFOLIO"
+        ],
+        "independentPagesReviewed": 4,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "uniqueUsefulSourceDomains": 0,
+        "transientVideoPointersObserved": 183,
+        "externalReviewErrorCount": 8
+      },
+      {
+        "trancheNumber": 6,
+        "searchCalls": 8,
+        "exploitationSlots": 6,
+        "explorationSlots": 2,
+        "focuses": [
+          "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD",
+          "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED",
+          "IRAN_CENTRAL_ASIA_AFGHANISTAN__BREADS_SOUPS"
+        ],
+        "queryOrigins": [
+          "ATLAS_GAP_PORTFOLIO"
+        ],
+        "independentPagesReviewed": 0,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "uniqueUsefulSourceDomains": 0,
+        "transientVideoPointersObserved": 0,
+        "externalReviewErrorCount": 0
+      },
+      {
+        "trancheNumber": 7,
+        "searchCalls": 8,
+        "exploitationSlots": 6,
+        "explorationSlots": 2,
+        "focuses": [
+          "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD",
+          "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED",
+          "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES"
+        ],
+        "queryOrigins": [
+          "ATLAS_GAP_PORTFOLIO"
+        ],
+        "independentPagesReviewed": 0,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "uniqueUsefulSourceDomains": 0,
+        "transientVideoPointersObserved": 0,
+        "externalReviewErrorCount": 0
+      },
+      {
+        "trancheNumber": 8,
+        "searchCalls": 8,
+        "exploitationSlots": 6,
+        "explorationSlots": 2,
+        "focuses": [
+          "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD",
+          "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED",
+          "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS"
+        ],
+        "queryOrigins": [
+          "ATLAS_GAP_PORTFOLIO"
+        ],
+        "independentPagesReviewed": 0,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "uniqueUsefulSourceDomains": 0,
+        "transientVideoPointersObserved": 0,
+        "externalReviewErrorCount": 0
+      },
+      {
+        "trancheNumber": 9,
+        "searchCalls": 8,
+        "exploitationSlots": 6,
+        "explorationSlots": 2,
+        "focuses": [
+          "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD",
+          "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED",
+          "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS",
+          "IRAN_CENTRAL_ASIA_AFGHANISTAN__BREADS_SOUPS"
+        ],
+        "queryOrigins": [
+          "ATLAS_GAP_PORTFOLIO"
+        ],
+        "independentPagesReviewed": 0,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "uniqueUsefulSourceDomains": 0,
+        "transientVideoPointersObserved": 0,
+        "externalReviewErrorCount": 0
+      }
+    ],
+    "sameDayFocusMetrics": {
+      "WEST_AFRICA__STEW_GRAIN_LEGUME": {
+        "searchCalls": 6,
+        "independentPagesReviewed": 4,
+        "recipeStructuredPagesConfirmed": 1,
+        "reviewCandidatesConsidered": 1,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 1,
+        "usefulSourceDomains": []
+      },
+      "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD": {
+        "searchCalls": 18,
+        "independentPagesReviewed": 1,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "usefulSourceDomains": []
+      },
+      "OCEANIA_PACIFIC__EARTH_OVEN_LEAF_WRAPPED": {
+        "searchCalls": 16,
+        "independentPagesReviewed": 0,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "usefulSourceDomains": []
+      },
+      "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS": {
+        "searchCalls": 11,
+        "independentPagesReviewed": 0,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "usefulSourceDomains": []
+      },
+      "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES": {
+        "searchCalls": 8,
+        "independentPagesReviewed": 0,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "usefulSourceDomains": []
+      },
+      "IRAN_CENTRAL_ASIA_AFGHANISTAN__BREADS_SOUPS": {
+        "searchCalls": 9,
+        "independentPagesReviewed": 0,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "usefulSourceDomains": []
+      },
+      "SOUTHEAST_ASIA__FERMENTED_STEAMED_RICE": {
+        "searchCalls": 6,
+        "independentPagesReviewed": 0,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "usefulSourceDomains": []
+      },
+      "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT": {
+        "searchCalls": 6,
+        "independentPagesReviewed": 11,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "usefulSourceDomains": []
+      }
+    },
+    "newPacketIds": [],
+    "status": "INTERRUPTED_FAIL_CLOSED",
+    "lastErrorClass": "Error",
+    "lastErrorHash": "6eee0b5054175fca"
+  }
 }
