@@ -2,7 +2,7 @@
 
 Date: 2026-09-18
 
-Status: `PASS_RIGHTS__V8008_MEASUREMENT_GATE_ACTIVE__NO_PREWRITE_AUTHORITY_YET`
+Status: `PASS_RIGHTS__V8008_MEASUREMENT_PASS__V8009_PREWRITE_CAPACITY_ONLY`
 
 Pinned source repository: `AdamBouhmad/open-recipe-archive`
 
@@ -94,3 +94,36 @@ This document does **not** authorize:
 - cultural-authenticity, nutrition, allergen, dietary, scaling or medical authority.
 
 Only a green deterministic bounded measurement may earn the next authority: source-specific prewrite/capacity measurement.
+
+
+## Bounded measurement result
+
+Workflow run `35342302108` / job `105590763587` completed successfully.
+
+Terminal:
+
+`STEP_8G_ORA_MENON_1801_MEASUREMENT_EARNED_COHORT_CANDIDATE`
+
+Measured against active protected `v8008` / 10,171:
+
+- exact candidate rows: 752;
+- parseable rows: 752 / 752;
+- distinct normalized titles: 730;
+- unique-title ratio: 0.9707446808510638;
+- exact baseline-title overlaps: 0;
+- novel normalized titles: 730;
+- novel-title ratio: 1.0;
+- distinct ingredient phrases: 1,985;
+- novel ingredient phrases: 1,426;
+- ontology-resolved occurrence ratio: 0.27109400064164263.
+
+All source-specific rights, repository-reuse, attribution, exact-count, source-identity, structural-quality and culinary-coverage gates passed.
+
+The measurement earns only:
+
+`SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`
+
+It does not authorize protected population.
+
+Canonical public-safe measurement evidence:
+`data/generated/step8g/menon-1801-v8008-measurement.json`.
