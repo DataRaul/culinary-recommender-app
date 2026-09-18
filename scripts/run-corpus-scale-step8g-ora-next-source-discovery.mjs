@@ -7,6 +7,7 @@ import { PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
 import { parseCc0MarkdownRecipe } from "./corpus-scale-step8g-cc0-core.mjs";
 import { ORA_BW_SOURCE, parseOraJsonlRecipe } from "./corpus-scale-step8g-ora-bosse-watanna-core.mjs";
 import { ORA_TURABI_SOURCE } from "./corpus-scale-step8g-ora-turabi-core.mjs";
+import { ORA_RIGAUD_SOURCE } from "./corpus-scale-step8g-ora-rigaud-core.mjs";
 import { discoverOraNextSources, oraSourceKey } from "./corpus-scale-step8g-ora-next-source-discovery-core.mjs";
 
 const ORA_EXPECTED_COMMIT = "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8";
@@ -26,7 +27,28 @@ const ABBOTT_IDENTITY = Object.freeze({
   source_year: "1864",
   license: "public-domain"
 });
-const EXPECTED_PROTECTED_COUNT = 2906;
+const RIGAUD_EXPECTED_COUNT = 789;
+const COCINA_SOURCES = Object.freeze([
+  Object.freeze({
+    collection: "cocina-mexicana",
+    sourceUrl: "https://archive.org/details/bub_gb_NdQqAAAAYAAJ",
+    sourceTitle: "Diccionario de cocina, ó El nuevo cocinero mexicano",
+    sourceAuthor: "Mariano Galván Rivera",
+    sourceYear: "1845",
+    license: "public-domain",
+    expectedRecipeCount: 4347
+  }),
+  Object.freeze({
+    collection: "cocina-mexicana",
+    sourceUrl: "https://archive.org/details/lacocinerapobla00unkngoog",
+    sourceTitle: "La cocinera poblana",
+    sourceAuthor: "",
+    sourceYear: "1890",
+    license: "public-domain",
+    expectedRecipeCount: 2129
+  })
+]);
+const EXPECTED_PROTECTED_COUNT = 10171;
 
 function parseArgs(argv) {
   const options = { ora: null, forkrecipe: null, unitools: null, cc0: null, output: ".tmp/step8g-ora-next-source-discovery" };
@@ -114,11 +136,21 @@ for (const entry of index) {
 const abbottRows = allRows.filter(row => matchesIdentity(row, ABBOTT_IDENTITY));
 const bwIdentity = sourceIdentityRow(ORA_BW_SOURCE);
 const turabiIdentity = sourceIdentityRow(ORA_TURABI_SOURCE);
+const rigaudIdentity = sourceIdentityRow(ORA_RIGAUD_SOURCE);
+const cocinaIdentities = COCINA_SOURCES.map(sourceIdentityRow);
 const bwRows = allRows.filter(row => matchesIdentity(row, bwIdentity));
 const turabiRows = allRows.filter(row => matchesIdentity(row, turabiIdentity));
+const rigaudRows = allRows.filter(row => matchesIdentity(row, rigaudIdentity));
+const cocinaRows = cocinaIdentities.map(identity => allRows.filter(row => matchesIdentity(row, identity)));
 if (abbottRows.length !== ABBOTT_EXPECTED_COUNT) throw new Error(`ABBOTT_EXPECTED_${ABBOTT_EXPECTED_COUNT}_GOT_${abbottRows.length}`);
 if (bwRows.length !== ORA_BW_SOURCE.expectedRecipeCount) throw new Error(`BOSSE_WATANNA_EXPECTED_${ORA_BW_SOURCE.expectedRecipeCount}_GOT_${bwRows.length}`);
 if (turabiRows.length !== ORA_TURABI_SOURCE.expectedRecipeCount) throw new Error(`TURABI_EXPECTED_${ORA_TURABI_SOURCE.expectedRecipeCount}_GOT_${turabiRows.length}`);
+if (rigaudRows.length !== RIGAUD_EXPECTED_COUNT) throw new Error(`RIGAUD_EXPECTED_${RIGAUD_EXPECTED_COUNT}_GOT_${rigaudRows.length}`);
+for (let i = 0; i < COCINA_SOURCES.length; i++) {
+  if (cocinaRows[i].length !== COCINA_SOURCES[i].expectedRecipeCount) {
+    throw new Error(`COCINA_SOURCE_${i}_EXPECTED_${COCINA_SOURCES[i].expectedRecipeCount}_GOT_${cocinaRows[i].length}`);
+  }
+}
 
 const protectedBaseline = [
   ...unitoolsDataset.recipes,
@@ -126,14 +158,18 @@ const protectedBaseline = [
   ...cc0Recipes,
   ...abbottRows.map(parseOraJsonlRecipe),
   ...bwRows.map(parseOraJsonlRecipe),
-  ...turabiRows.map(parseOraJsonlRecipe)
+  ...turabiRows.map(parseOraJsonlRecipe),
+  ...rigaudRows.map(parseOraJsonlRecipe),
+  ...cocinaRows.flat().map(parseOraJsonlRecipe)
 ];
-if (protectedBaseline.length !== EXPECTED_PROTECTED_COUNT) throw new Error(`V8006_PROTECTED_BASELINE_COUNT_${protectedBaseline.length}`);
+if (protectedBaseline.length !== EXPECTED_PROTECTED_COUNT) throw new Error(`V8008_PROTECTED_BASELINE_COUNT_${protectedBaseline.length}`);
 
 const excludedSourceKeys = new Set([
   oraSourceKey(ABBOTT_IDENTITY),
   oraSourceKey(bwIdentity),
-  oraSourceKey(turabiIdentity)
+  oraSourceKey(turabiIdentity),
+  oraSourceKey(rigaudIdentity),
+  ...cocinaIdentities.map(oraSourceKey)
 ]);
 const heldCollections = new Set(["cocina-espanola"]);
 const result = discoverOraNextSources({
@@ -141,13 +177,13 @@ const result = discoverOraNextSources({
   baselineRecipes: [...PUBLIC_RUNTIME_RECIPES, ...protectedBaseline],
   excludedSourceKeys,
   heldCollections,
-  activeProtectedVersion: "v8006",
+  activeProtectedVersion: "v8008",
   activeProtectedCount: EXPECTED_PROTECTED_COUNT
 });
 
 const output = {
   ...result,
-  date: "2026-09-16",
+  date: "2026-09-18",
   sourceRepository: "AdamBouhmad/open-recipe-archive",
   sourceCommit: pins.ora,
   collectionCount: index.length,
@@ -158,9 +194,9 @@ const output = {
     cc0Baseline: pins.cc0
   },
   exclusions: {
-    alreadyProtectedSources: 3,
+    alreadyProtectedSources: 6,
     heldCollections: [...heldCollections],
-    reason: "Previously protected exact sources are excluded. cocina-espanola remains excluded under the existing rights hold."
+    reason: "All exact sources protected through v8008 are excluded. cocina-espanola remains excluded under the existing rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
