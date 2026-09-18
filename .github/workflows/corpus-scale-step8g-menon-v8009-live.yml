@@ -1,0 +1,91 @@
+name: Corpus Scale Step 8G Menon v8009 live runtime
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-menon-v8009-live.yml'
+      - 'data/generated/step8g/v8009-runtime-descriptor.mjs'
+      - 'data/generated/step8g/menon-v8009-prewrite-evidence.json'
+      - 'src/server/step8g-v8009-live-runtime.mjs'
+      - 'src/server/step8g-v8009-hydration-runtime.mjs'
+      - 'functions/api/step8g/v8009.js'
+      - 'scripts/verify-step8g-v8009-live-payloads.mjs'
+      - 'tests/step8g-v8009-live.test.js'
+      - 'step8g-v8009-populate.html'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-menon-v8009-live-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-v8009-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test frozen v8009 runtime contract
+        run: node --test tests/step8g-v8009-live.test.js
+
+      - name: Verify exact pinned Menon source payload and route fingerprints
+        run: node scripts/verify-step8g-v8009-live-payloads.mjs --candidate=./open-recipe-archive
+
+      - name: Syntax-check Pages Function endpoint
+        run: node --check functions/api/step8g/v8009.js
+
+      - name: Verify owner runner contract is production-gated and exact
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          const html = await readFile('step8g-v8009-populate.html', 'utf8');
+          const required = [
+            'EXPECTED_CHILD=752',
+            'EXPECTED_PARENT=10171',
+            'EXPECTED_COMPOSED=10923',
+            'EXPECTED_BATCHES=76',
+            'STEP8G_V8009_FREE_LIMIT_FAIL_CLOSED',
+            'nine-layer-hydration',
+            'rollback-v8008',
+            'rollback-fail-closed',
+            'IDENTIFIED_AUTHOR',
+            'STEP_8G_MENON_V8009_PROTECTED_POPULATION_PASS',
+            'maxAllowedD1Subqueries:16',
+            'd1BudgetHeadroomAssumed:false',
+            '/api/auth/session'
+          ];
+          for (const token of required) if (!html.includes(token)) throw new Error(`OWNER_RUNNER_CONTRACT_MISSING:${token}`);
+          if (html.includes('SESSION_SECRET=') || html.includes('password')) throw new Error('OWNER_RUNNER_MUST_NOT_EMBED_AUTH_SECRET');
+          console.log(JSON.stringify({pass:true,authenticatedBrowserGate:true,productionWritesFromCi:false,protectedBodiesCommitted:false}));
+          NODE
+
+      - name: Verify CI has no production mutation capability
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          const source = await readFile('.github/workflows/corpus-scale-step8g-menon-v8009-live.yml', 'utf8');
+          if (!/permissions:\s*\n\s*contents:\s*read\b/.test(source)) throw new Error('CI_CONTENTS_PERMISSION_NOT_READ_ONLY');
+          const forbidden = [
+            ['wrangler', ' d1 execute', ' --remote'].join(''),
+            ['curl ', '/api/step8g/v8009'].join(''),
+            ['secrets', '.'].join('')
+          ];
+          for (const token of forbidden) if (source.includes(token)) throw new Error('PRODUCTION_MUTATION_CAPABILITY_PRESENT');
+          console.log('PASS: v8009 CI has read-only repository permission, no secrets reference, and no production mutation command.');
+          NODE
