@@ -1,0 +1,118 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ORA_NEXT_SOURCE_DISCOVERY_V8008_SUMMARY_V1",
+  "date": "2026-09-18",
+  "workflowRun": 35341380297,
+  "workflowJob": 105587824804,
+  "pass": true,
+  "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_CANDIDATES_FOUND",
+  "baseline": {
+    "activeProtectedVersion": "v8008",
+    "activeProtectedCount": 10171
+  },
+  "collectionCount": 31,
+  "sourceGroupCount": 59,
+  "measuredCandidateCount": 31,
+  "rightsReviewEligibleCount": 29,
+  "nextAuthority": "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY",
+  "topRightsReviewCandidates": [
+    {
+      "collection": "magyar-konyha",
+      "sourceTitle": "Képes budapesti szakácskönyv",
+      "sourceAuthor": "Rézi néni",
+      "sourceYear": "1901",
+      "recipeCount": 1240,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9709677419354839,
+      "novelTitleRatio": 1,
+      "novelNormalizedTitleCount": 1204
+    },
+    {
+      "collection": "cuisine-francaise",
+      "sourceTitle": "La Cuisinière bourgeoise",
+      "sourceAuthor": "Menon",
+      "sourceYear": "1801",
+      "recipeCount": 752,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9707446808510638,
+      "novelTitleRatio": 1,
+      "novelNormalizedTitleCount": 730
+    },
+    {
+      "collection": "ceska-kuchyne",
+      "sourceTitle": "Česká kuchařka",
+      "sourceAuthor": "Marie Dumková",
+      "sourceYear": "1883",
+      "recipeCount": 1876,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9493603411513859,
+      "novelTitleRatio": 0.9994385176866929,
+      "novelNormalizedTitleCount": 1780
+    },
+    {
+      "collection": "cucina-italiana",
+      "sourceTitle": "La scienza in cucina e l'arte di mangiar bene",
+      "sourceAuthor": "Pellegrino Artusi",
+      "sourceYear": "1891",
+      "recipeCount": 829,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9722557297949337,
+      "novelTitleRatio": 0.9987593052109182,
+      "novelNormalizedTitleCount": 805
+    },
+    {
+      "collection": "cuisine-francaise",
+      "sourceTitle": "Le Cuisinier impérial",
+      "sourceAuthor": "A. Viard",
+      "sourceYear": "1806",
+      "recipeCount": 807,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9702602230483272,
+      "novelTitleRatio": 0.9987228607918263,
+      "novelNormalizedTitleCount": 782
+    },
+    {
+      "collection": "wiener-kueche",
+      "sourceTitle": "Wiener Kochbuch",
+      "sourceAuthor": "Louise Seleskowitz",
+      "sourceYear": "1883",
+      "recipeCount": 1722,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9912891986062717,
+      "novelTitleRatio": 0.9982425307557118,
+      "novelNormalizedTitleCount": 1704
+    },
+    {
+      "collection": "hollandse-keuken",
+      "sourceTitle": "Kookboek van de Amsterdamse Huishoudschool",
+      "sourceAuthor": "C.J. Wannée",
+      "sourceYear": "1910",
+      "recipeCount": 1067,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9578256794751641,
+      "novelTitleRatio": 0.9980430528375733,
+      "novelNormalizedTitleCount": 1020
+    },
+    {
+      "collection": "danske-kokken",
+      "sourceTitle": "Frøken Jensens kogebog",
+      "sourceAuthor": "Kristine Marie Jensen",
+      "sourceYear": "1921",
+      "recipeCount": 1372,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9482507288629738,
+      "novelTitleRatio": 0.9976940814757879,
+      "novelNormalizedTitleCount": 1298
+    }
+  ],
+  "boundaries": {
+    "sourceRightsClearedByDiscovery": false,
+    "measurementEarnedByDiscovery": false,
+    "liveD1WritesPerformed": 0,
+    "protectedPopulationAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "d1BudgetExpansionAuthorized": false,
+    "billingExpansionAuthorized": false
+  }
+}
