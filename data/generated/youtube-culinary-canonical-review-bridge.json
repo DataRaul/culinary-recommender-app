@@ -1,23 +1,6 @@
 {
   "schemaVersion": "youtube-culinary-canonical-review-bridge-v1",
-  "knowledgeCoreCommit": "cf1d29f33f42dae5566ed910c17d09fc84f9993f",
-  "generatedAt": "2026-09-17T12:30:38Z",
-  "outcomes": [
-    {
-      "packetId": "yt-cul-review-e149634d5785d6e7bd4e185e",
-      "reviewPairKey": "yt-cul-pair-765dba9c9b92eef15a5cec42",
-      "reviewDecision": "ACCEPTED",
-      "reviewAuthority": "KNOWLEDGE_CORE_ATLAS_REVIEW",
-      "decisionReason": "IDENTITY_VERIFIED__EGGPLANT_FATTEH_IS_INDEPENDENTLY_CORROBORATED_AS_A_LEVANTINE_LEBANESE FATTEH VARIANT WITH BREAD_AND_EGGPLANT. The discovery source presented a vegetarian eggplant fatteh. Independent corroboration now includes SBS Food, which identifies eggplant fatteh (fatteh bi batenjan) as a Lebanese form of fatteh and describes fatteh as widely eaten in Lebanon with bread as a defining base, and PBS Food, which independently documents fatteh al-betenjane as an eggplant version within Lebanese cuisine. This resolves the prior exact-variant identity hold. Accepted scope is identity/variant existence and Levantine-Lebanese placement only; it does not establish one definitive recipe, universal structure invariants, exclusive origin, nutrition authority, rights/provenance/safety clearance, app-authoring eligibility or public-export eligibility.",
-      "reviewRoute": "ATLAS_IDENTITY_REVIEW",
-      "requiredEvidenceTerms": [],
-      "independentNonYoutubeEvidence": true,
-      "rightsProvenanceSafetyClear": false,
-      "appAuthoringEligible": false,
-      "lifecycleAdvanced": true,
-      "lifecycleStateAfter": "IDENTITY_VERIFIED",
-      "retryable": false,
-      "knowledgeCoreCommit": "cf1d29f33f42dae5566ed910c17d09fc84f9993f"
-    }
-  ]
+  "knowledgeCoreCommit": "a4a8f18ccaf53b2b4d206fc94ed8254a742bc27f",
+  "generatedAt": "2026-09-17T15:35:17Z",
+  "outcomes": []
 }
