@@ -235,6 +235,7 @@ process.stdout.write(`${JSON.stringify({
   topCandidates: output.topRightsReviewCandidates.slice(0, 8).map(row => ({
     collection: row.collection,
     sourceTitle: row.sourceTitle,
+    sourceUrl: row.sourceUrl,
     sourceAuthor: row.sourceAuthor,
     sourceYear: row.sourceYear,
     recipeCount: row.recipeCount,
