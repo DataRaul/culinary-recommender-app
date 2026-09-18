@@ -1,0 +1,174 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_MENON_V8009_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_MENON_V8009_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-18",
+  "workflowRun": 35342833317,
+  "workflowJob": 105592459386,
+  "artifactId": 10545149989,
+  "artifactZipSha256": "6eb4b0f3fd5c8e08be82a02261faf12ae89ca11d4052c0ad584685c804ff0af4",
+  "source": {
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "collection": "cuisine-francaise",
+    "recordCount": 752,
+    "measurementTerminal": "STEP_8G_ORA_MENON_1801_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+    "sourceCohort": {
+      "cohortId": "ORA_MENON_1801_CUISINIERE_BOURGEOISE_B22019935",
+      "sourceWork": "La Cuisinière bourgeoise",
+      "sourceAuthor": "Menon",
+      "sourceAuthorClassification": "IDENTIFIED_AUTHOR",
+      "sourceYear": "1801",
+      "sourceUrl": "https://archive.org/details/b22019935",
+      "recordCount": 752,
+      "licenseId": "public-domain",
+      "packetDescriptorSha256": "4a88d076e512896bb19ca3b64e8277754838faabc4a5f8f67c0d152833296852"
+    },
+    "repositoryLayerLicense": "Unlicense",
+    "culturalAuthenticityAuthorityImported": false
+  },
+  "parent": {
+    "activeCorpusVersion": "v8008",
+    "composedRecipeCount": 10171,
+    "fingerprintSha256": "a85aa182db1d96d391c8ef9ac3e93162aeaccce6230ba01d5a7328d17adc4488",
+    "fingerprintMaterial": {
+      "activeCorpusVersion": "v8008",
+      "composedRecipeCount": 10171,
+      "liveTerminal": "STEP_8G_COCINA_MEXICANA_V8008_PROTECTED_POPULATION_PASS",
+      "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "layerManifestSha256": "beaddc9251cef158732e3a737593629af83e93a1dd237eabbae1775678d34fcb",
+      "populationPlanSha256": "d0fa90fa966fec3c7c5c64f57baefa0bce15432328f86a3d439631fa2e5c7460",
+      "bodyShardRows": [
+        3251,
+        3225
+      ],
+      "parentCompositionRouteCount": 3695,
+      "composedRouteCount": 10171
+    }
+  },
+  "layer": {
+    "corpusVersion": "v8009",
+    "parentCorpusVersion": "v8008",
+    "recipeCount": 752,
+    "manifestSha256": "b4419eae1a4403988f65fe10b70c319a99f0c48d34bd44721310f3c1da1ebc0e",
+    "populationPlanSha256": "f2a99f619a9088bcb4072517e5a2d1588240ca1880058d2c277ed5c6d1db78b7",
+    "batchCount": 76,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 6663,
+    "maxBatchBodyBytes": 41418,
+    "maxWriteRequestBytes": 17576,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "operationBudget": {
+      "authD1Subqueries": 1,
+      "maxRowsPerBatch": 10,
+      "operations": {
+        "status": 1,
+        "bindings": 3,
+        "freeLimitSimulation": 1,
+        "initialize": 8,
+        "bodyWriteFresh": 15,
+        "bodyWriteReplay": 3,
+        "progress": 7,
+        "copyParentRoutesFresh": 6,
+        "routeWriteFresh": 16,
+        "routeWriteReplay": 4,
+        "activate": 8,
+        "rollback": 3,
+        "nineLayerHydrationCanary": 4,
+        "boundedHydrationWorstCase": 10,
+        "evidence": 7
+      },
+      "maxPlannedD1Subqueries": 16,
+      "maxAllowedD1Subqueries": 16,
+      "limitingOperations": [
+        "routeWriteFresh"
+      ],
+      "pass": true,
+      "headroomAssumed": false
+    },
+    "shardDescriptors": [
+      {
+        "shardNumber": 0,
+        "rowCount": 380,
+        "totalBodyBytes": 1234584,
+        "firstOrdinal": 2,
+        "lastOrdinal": 751,
+        "entriesSha256": "e54c03291fda793c87f68ae2c6fdb5076a2535ef29ac46031be963ad8a4a4f51"
+      },
+      {
+        "shardNumber": 1,
+        "rowCount": 372,
+        "totalBodyBytes": 1212809,
+        "firstOrdinal": 0,
+        "lastOrdinal": 750,
+        "entriesSha256": "1bc6fa66a11492c412dd9518fefee0ada906cd3f7e46ea7289f190ac3a3d773d"
+      }
+    ],
+    "batchIdsSha256": "d922c6666e1f6fc2effd5d3142bfd95cfd79df73a86cc4cd991ba8a4c8cabb0f"
+  },
+  "composition": {
+    "activeCorpusVersion": "v8009",
+    "parentCorpusVersion": "v8008",
+    "cumulativeRecipeCount": 10923,
+    "capacity": {
+      "parentLayeredPhysicalBodyBytes": 39021497,
+      "addedLayerBodyBytes": 2447393,
+      "layeredPhysicalBodyBytes": 41468890,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {
+          "shardNumber": 0,
+          "parentRowCount": 5109,
+          "addedRowCount": 380,
+          "rowCount": 5489,
+          "parentBodyBytes": 19710678,
+          "addedBodyBytes": 1234584,
+          "totalBodyBytes": 20945262,
+          "withinProjectDatabaseBudget": true
+        },
+        {
+          "shardNumber": 1,
+          "parentRowCount": 5062,
+          "addedRowCount": 372,
+          "rowCount": 5434,
+          "parentBodyBytes": 19310819,
+          "addedBodyBytes": 1212809,
+          "totalBodyBytes": 20523628,
+          "withinProjectDatabaseBudget": true
+        }
+      ]
+    },
+    "routing": {
+      "shardCount": 2,
+      "mode": "CONTROL_INDEX_EXACT_ROUTE_THEN_BATCH_HYDRATE_BY_SHARD",
+      "fullCorpusScans": 0,
+      "maxProtectedD1Subqueries": 16,
+      "d1BudgetHeadroomAssumed": false
+    }
+  },
+  "gates": {
+    "requestSizePass": true,
+    "operationBudgetPass": true,
+    "capacityPass": true,
+    "topologyPass": true,
+    "countPass": true,
+    "batchSizePass": true,
+    "uniqueIdsPass": true,
+    "bodySizePass": true
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "d1BudgetExpansion": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "step8fReopened": false
+  },
+  "decision": "EARN_V8009_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE"
+}
