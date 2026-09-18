@@ -59,7 +59,7 @@ jobs:
           if(p.composition.routing.shardCount!==2||p.layer.maxRowsPerBatch>10||p.layer.operationBudget.maxPlannedD1Subqueries>16||p.layer.operationBudget.headroomAssumed!==false)process.exit(1);
           if(!Object.values(p.gates).every(Boolean))process.exit(1);
           const b=p.boundaries;if(b.liveD1WritesPerformed!==0||b.publicRuntimeChanged!==false||b.recommendationAdmissionPerformed!==false||b.thirdShardUsed!==false||b.d1BudgetExpansion!==false||b.billingExpansion!==false||b.nutritionLaneModified!==false||b.youtubeCulinaryStateModified!==false||b.knowledgeCoreWritePerformed!==false||b.culturalAuthenticityAuthorityImported!==false)process.exit(1);
-          console.log(JSON.stringify({terminal:p.terminalCandidate,counts:{parent:p.parent.composedRecipeCount,child:p.layer.recipeCount,composed:p.composition.cumulativeRecipeCount},maxWriteRequestBytes:p.layer.maxWriteRequestBytes,capacity:p.composition.capacity,operationBudget:p.layer.operationBudget,gates:p.gates}));'
+          console.log(JSON.stringify({terminal:p.terminalCandidate,counts:{parent:p.parent.composedRecipeCount,child:p.layer.recipeCount,composed:p.composition.cumulativeRecipeCount},fingerprints:{parent:p.parent.fingerprintSha256,manifest:p.layer.manifestSha256,populationPlan:p.layer.populationPlanSha256,batchIds:p.layer.batchIdsSha256,packet:p.source.sourceCohort.packetDescriptorSha256},maxWriteRequestBytes:p.layer.maxWriteRequestBytes,capacity:p.composition.capacity,operationBudget:p.layer.operationBudget,gates:p.gates}));'
 
       - name: Upload public-safe v8009 prewrite evidence
         uses: actions/upload-artifact@v4
