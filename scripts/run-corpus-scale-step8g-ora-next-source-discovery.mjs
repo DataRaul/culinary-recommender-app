@@ -28,6 +28,14 @@ const ABBOTT_IDENTITY = Object.freeze({
   license: "public-domain"
 });
 const RIGAUD_EXPECTED_COUNT = 789;
+const MAGYAR_KONYHA_PROVENANCE_HOLD = Object.freeze({
+  collection: "magyar-konyha",
+  source_url: "https://archive.org/details/b28112982",
+  source_title: "Képes budapesti szakácskönyv",
+  author: "Rézi néni",
+  source_year: "1901",
+  license: "public-domain"
+});
 const COCINA_SOURCES = Object.freeze([
   Object.freeze({
     collection: "cocina-mexicana",
@@ -171,11 +179,13 @@ const excludedSourceKeys = new Set([
   oraSourceKey(rigaudIdentity),
   ...cocinaIdentities.map(oraSourceKey)
 ]);
+const heldSourceKeys = new Set([oraSourceKey(MAGYAR_KONYHA_PROVENANCE_HOLD)]);
 const heldCollections = new Set(["cocina-espanola"]);
 const result = discoverOraNextSources({
   collectionRows: allRows,
   baselineRecipes: [...PUBLIC_RUNTIME_RECIPES, ...protectedBaseline],
   excludedSourceKeys,
+  heldSourceKeys,
   heldCollections,
   activeProtectedVersion: "v8008",
   activeProtectedCount: EXPECTED_PROTECTED_COUNT
@@ -195,8 +205,16 @@ const output = {
   },
   exclusions: {
     alreadyProtectedSources: 6,
+    heldSources: [{
+      collection: MAGYAR_KONYHA_PROVENANCE_HOLD.collection,
+      sourceUrl: MAGYAR_KONYHA_PROVENANCE_HOLD.source_url,
+      sourceTitle: MAGYAR_KONYHA_PROVENANCE_HOLD.source_title,
+      sourceAuthorAsInOra: MAGYAR_KONYHA_PROVENANCE_HOLD.author,
+      sourceYear: MAGYAR_KONYHA_PROVENANCE_HOLD.source_year,
+      reason: "ORA_AUTHOR_METADATA_CONFLICTS_WITH_EXACT_1901_SOURCE_BIBLIOGRAPHY"
+    }],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8008 are excluded. cocina-espanola remains excluded under the existing rights hold."
+    reason: "All exact sources protected through v8008 are excluded. The exact 1901 magyar-konyha source is held for provenance/author mismatch, and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
@@ -217,6 +235,7 @@ process.stdout.write(`${JSON.stringify({
   topCandidates: output.topRightsReviewCandidates.slice(0, 8).map(row => ({
     collection: row.collection,
     sourceTitle: row.sourceTitle,
+    sourceUrl: row.sourceUrl,
     sourceAuthor: row.sourceAuthor,
     sourceYear: row.sourceYear,
     recipeCount: row.recipeCount,

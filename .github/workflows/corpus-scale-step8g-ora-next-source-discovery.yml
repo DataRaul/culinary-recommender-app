@@ -76,7 +76,13 @@ jobs:
           const b=p.boundaries;
           if(b.liveD1WritesPerformed!==0||b.sourceRightsClearedByDiscovery!==false||b.measurementEarnedByDiscovery!==false||b.protectedPopulationAuthorized!==false||b.publicRuntimeChangeAuthorized!==false||b.recommendationAdmissionAuthorized!==false||b.thirdShardAuthorized!==false||b.d1BudgetExpansionAuthorized!==false||b.billingExpansionAuthorized!==false)process.exit(1);
           if(p.exclusions.heldCollections.includes("cocina-espanola")!==true)process.exit(1);
-          console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextAuthority:p.nextAuthority}));'
+          const held=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/b28112982");
+          if(!held||held.reason!=="ORA_AUTHOR_METADATA_CONFLICTS_WITH_EXACT_1901_SOURCE_BIBLIOGRAPHY")process.exit(1);
+          const excluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/b28112982");
+          if(!excluded||!excluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          if(p.rightsReviewEligibleCount!==28)process.exit(1);
+          if(p.topRightsReviewCandidates?.[0]?.sourceTitle!=="La Cuisinière bourgeoise")process.exit(1);
+          console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle,nextAuthority:p.nextAuthority}));'
 
       - name: Expose compact discovery summary
         id: metrics

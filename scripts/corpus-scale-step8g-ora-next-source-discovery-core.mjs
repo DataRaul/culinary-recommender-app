@@ -92,6 +92,7 @@ export function discoverOraNextSources({
   collectionRows,
   baselineRecipes,
   excludedSourceKeys = new Set(),
+  heldSourceKeys = new Set(),
   heldCollections = new Set(),
   activeProtectedVersion = "v8006",
   activeProtectedCount = 2906
@@ -114,6 +115,7 @@ export function discoverOraNextSources({
     const identity = sourceIdentity(rows[0]);
     const reasons = [];
     if (excludedSourceKeys.has(key)) reasons.push("ALREADY_PROTECTED_SOURCE");
+    if (heldSourceKeys.has(key)) reasons.push("SOURCE_RIGHTS_OR_PROVENANCE_HOLD");
     if (heldCollections.has(identity.collection)) reasons.push("COLLECTION_RIGHTS_HOLD");
     if (identity.licenseId !== "public-domain") reasons.push("NOT_PUBLIC_DOMAIN_METADATA");
     if (!identity.sourceUrl || !identity.sourceTitle || !identity.sourceAuthor || !identity.sourceYear) reasons.push("INCOMPLETE_SOURCE_IDENTITY");

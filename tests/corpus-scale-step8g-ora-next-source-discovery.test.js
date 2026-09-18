@@ -47,19 +47,22 @@ test("discovery identifies source-level marginal-value candidates but never clea
   assert.equal(result.boundaries.protectedPopulationAuthorized, false);
 });
 
-test("already protected source and held collection fail closed before candidate ranking", () => {
+test("already protected source, source-specific hold and held collection fail closed before candidate ranking", () => {
   const protectedRows = Array.from({ length: 60 }, (_, i) => row({ title: `Protected ${i}`, slug: `protected-${i}`, sourceTitle: "Already Protected" }));
+  const heldSourceRows = Array.from({ length: 60 }, (_, i) => row({ collection: "magyar-konyha", title: `Held Source ${i}`, slug: `held-source-${i}`, sourceTitle: "Metadata Mismatch Book", author: "Incorrect Author", url: "https://archive.org/details/held-source" }));
   const heldRows = Array.from({ length: 60 }, (_, i) => row({ collection: "cocina-espanola", title: `Held ${i}`, slug: `held-${i}`, sourceTitle: "Held Book", url: "https://archive.org/details/held-book" }));
   const result = discoverOraNextSources({
-    collectionRows: [...protectedRows, ...heldRows],
+    collectionRows: [...protectedRows, ...heldSourceRows, ...heldRows],
     baselineRecipes: baseline,
     excludedSourceKeys: new Set([oraSourceKey(protectedRows[0])]),
+    heldSourceKeys: new Set([oraSourceKey(heldSourceRows[0])]),
     heldCollections: new Set(["cocina-espanola"]),
     activeProtectedVersion: "v8006",
     activeProtectedCount: 2906
   });
   assert.equal(result.rightsReviewEligibleCount, 0);
   assert.equal(result.excludedSources.some(source => source.reasons.includes("ALREADY_PROTECTED_SOURCE")), true);
+  assert.equal(result.excludedSources.some(source => source.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD")), true);
   assert.equal(result.excludedSources.some(source => source.reasons.includes("COLLECTION_RIGHTS_HOLD")), true);
 });
 
