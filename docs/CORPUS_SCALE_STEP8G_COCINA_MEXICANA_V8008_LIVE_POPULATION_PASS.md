@@ -57,8 +57,12 @@ The observed maximum reached the existing design ceiling of 16 D1 subqueries. Th
 
 This PASS satisfies the v8008 owner-authenticated production-write gate.
 
-It does **not** by itself earn `LEGAL_CORPUS_BASELINE_PASS`. The prior ORA source-level discovery still contained multiple materially sized source cohorts that had not yet received source-specific documentary rights review. The canonical next-source discovery is therefore rebased on live v8008 / 10,171 so already-protected sources are excluded and marginal-value ranking is recalculated against the current corpus before selecting the next rights audit.
+It does **not** earn `LEGAL_CORPUS_BASELINE_PASS`. Fresh ORA source-level discovery was rebased on live `v8008` / 10,171 and completed successfully in workflow run `35341380297` / job `105587824804`. It found **29 rights-review-eligible source cohorts** after excluding all six already-protected ORA source cohorts and preserving the existing `cocina-espanola` rights hold.
 
-Until that discovery closes, continuation remains `STEP8G_RIGHTS_CLEAN_PROTECTED_SCALE`. Recipe Family, Nutrition expansion, YouTube refinement, broader recommendation optimization, public corpus widening, third-shard work and billing expansion remain downstream or unauthorized.
+The highest-ranked current candidate is `magyar-konyha`: Rézi néni, *Képes budapesti szakácskönyv* (1901), 1,240 recipes, 100% parseability, 1,204 novel normalized titles. Discovery does not clear rights or authorize ingestion; the next authority is source-specific documentary rights review only.
+
+Continuation therefore remains `STEP8G_RIGHTS_CLEAN_PROTECTED_SCALE`, beginning with the Hungarian source audit and bounded v8008 marginal-value measurement before any prewrite. Recipe Family, Nutrition expansion, YouTube refinement, broader recommendation optimization, public corpus widening, third-shard work and billing expansion remain downstream or unauthorized.
 
 Canonical machine-readable live evidence: `data/generated/step8g/cocina-mexicana-v8008-live-pass.json`.
+
+Fresh discovery summary: `data/generated/step8g/ora-next-source-discovery-v8008-summary.json`.
