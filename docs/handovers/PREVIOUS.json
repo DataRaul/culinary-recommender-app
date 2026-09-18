@@ -1,20 +1,21 @@
 {
-  "handover": "CULINARY_APP_LEGAL_CORPUS_FIRST_V8007_LIVE_NEXT_RIGHTS_AUDIT_V40",
-  "handover_date": "2026-09-17",
+  "handover": "CULINARY_APP_LEGAL_CORPUS_FIRST_V8008_LIVE_MAGYAR_RIGHTS_AUDIT_V41",
+  "handover_date": "2026-09-18",
   "timezone": "Europe/Madrid",
-  "status": "LEGAL_CORPUS_FIRST_ACTIVE__V8007_PROTECTED_POPULATION_PASS__LEGAL_CORPUS_BASELINE_NOT_YET_EARNED",
+  "status": "LEGAL_CORPUS_FIRST_ACTIVE__V8008_PROTECTED_POPULATION_PASS__29_ORA_RIGHTS_REVIEW_CANDIDATES__LEGAL_CORPUS_BASELINE_NOT_YET_EARNED",
   "human_needed": false,
-  "handover_written_against_main_sha": "43214efaef3c575733869edd0fdf94b29e840faa",
+  "handover_written_against_main_sha": "97011ad2be65d75ca40f58f89ef3c783486f774a",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
     "knowledge_core": "READ_ONLY_RECONCILIATION_ONLY",
     "legal_corpus_decision_pr": 188,
     "legal_corpus_decision_merge_sha": "58360f4b23a591f38a0ce518b880653677fd4564",
-    "v8007_implementation_pr": 180,
-    "v8007_runner_fix_pr": 189,
-    "v8007_runner_fix_merge_sha": "43214efaef3c575733869edd0fdf94b29e840faa",
-    "obsolete_owner_gate_pr_closed": 181
+    "v8008_implementation_pr": 191,
+    "v8008_implementation_merge_sha": "d31d8eb4cba2ef5cab8d69b702324875c33c8358",
+    "v8008_runner_resilience_pr": 192,
+    "v8008_runner_resilience_merge_sha": "97011ad2be65d75ca40f58f89ef3c783486f774a",
+    "v8008_closeout_and_discovery_pr": 193
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -37,9 +38,10 @@
     "legal_corpus_config": "config/legal_corpus_first_private_runtime.json",
     "legal_corpus_decision": "docs/LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_DECISION.md",
     "handover_protocol": "docs/HANDOVER_PROTOCOL.md",
-    "v8007_rights_measurement": "docs/CORPUS_SCALE_STEP8G_ORA_RIGAUD_1785_RIGHTS_AND_MEASUREMENT.md",
-    "v8007_live_evidence": "data/generated/step8g/ora-rigaud-v8007-live-pass.json",
-    "v8007_live_closeout": "docs/CORPUS_SCALE_STEP8G_ORA_RIGAUD_V8007_LIVE_POPULATION_PASS.md"
+    "v8008_rights_and_prewrite": "docs/CORPUS_SCALE_STEP8G_COCINA_MEXICANA_SOURCE_AUDIT.md",
+    "v8008_live_evidence": "data/generated/step8g/cocina-mexicana-v8008-live-pass.json",
+    "v8008_live_closeout": "docs/CORPUS_SCALE_STEP8G_COCINA_MEXICANA_V8008_LIVE_POPULATION_PASS.md",
+    "v8008_next_source_discovery": "data/generated/step8g/ora-next-source-discovery-v8008-summary.json"
   },
   "operating_contract": {
     "autonomy": "Proceed autonomously through technically resolvable rights/source qualification, provenance/attribution classification, bounded measurement, protected prewrite, implementation, ordinary CI/deployment and source-audit work. Stop only for a genuine human/security/cost/source-rights/topology/unrecoverable blocker, an owner-authenticated production-write gate, or continuation boundary.",
@@ -48,7 +50,7 @@
     "authentication": "Every protected request remains server-side authenticated and authorized through the application-owned identity verifier, exact allowlist and secure session. Do not weaken or emulate the owner authentication gate.",
     "billing_firewall": "No paid infrastructure, billing enablement or automatic overage authorization.",
     "topology": "Exactly two protected recipe-body D1 shards. No third shard is authorized.",
-    "d1_budget": "Fresh route-write design ceiling remains 16/16 D1 subqueries with zero assumed headroom. The v8007 observed maximum of 8 does not widen this contract.",
+    "d1_budget": "The authenticated v8008 run observed the existing maximum of 16/16 D1 subqueries. Zero headroom is assumed. Future layers must remain within the same ceiling or stop for a topology/cost decision.",
     "public_activation": "Public runtime remains 85 recipes and broader public corpus/recommendation activation is not authorized.",
     "source_authority": "Historical provenance is not authority for cultural authenticity, nutrition, allergens, dietary classification, scaling or medical claims."
   },
@@ -65,23 +67,30 @@
     "further product features"
   ],
   "live_protected_state": {
-    "active_version": "v8007",
-    "parent_version": "v8006",
-    "child_recipe_count": 789,
-    "parent_recipe_count": 2906,
-    "composed_recipe_count": 3695,
-    "latest_terminal": "STEP_8G_ORA_RIGAUD_V8007_PROTECTED_POPULATION_PASS",
-    "source_cohort_id": "ORA_RIGAUD_1785_PORTUGUESE_SOURCE_AE3BD2C",
+    "active_version": "v8008",
+    "parent_version": "v8007",
+    "child_recipe_count": 6476,
+    "parent_recipe_count": 3695,
+    "composed_recipe_count": 10171,
+    "latest_terminal": "STEP_8G_COCINA_MEXICANA_V8008_PROTECTED_POPULATION_PASS",
+    "source_cohort_ids": [
+      "ORA_GALVAN_RIVERA_1845_DICCIONARIO_COCINA_AE3BD2C",
+      "ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C"
+    ],
+    "source_author_handling": {
+      "galvan": "IDENTIFIED_AUTHOR",
+      "cocinera_poblana": "AUTHOR_NOT_IDENTIFIED_INDEPENDENTLY_DOCUMENTED"
+    },
     "shard_count": 2,
-    "body_batch_count": 79,
-    "route_batch_count": 79,
-    "seven_layer_hydration_pass": true,
+    "body_batch_count": 649,
+    "route_batch_count": 649,
+    "eight_layer_hydration_pass": true,
     "rollback_pass": true,
     "rollback_hydration_fail_closed_pass": true,
     "idempotent_body_replay_pass": true,
     "idempotent_route_replay_pass": true,
     "full_corpus_scans": 0,
-    "max_observed_d1_subqueries": 8,
+    "max_observed_d1_subqueries": 16,
     "max_allowed_d1_subqueries": 16,
     "d1_budget_headroom_assumed": false,
     "public_runtime_recipe_count": 85,
@@ -92,17 +101,29 @@
     "cultural_authenticity_authority_imported": false
   },
   "completed_human_gate": {
-    "id": "STEP8G_V8007_OWNER_AUTHENTICATED_PROTECTED_POPULATION",
-    "terminal": "STEP_8G_ORA_RIGAUD_V8007_PROTECTED_POPULATION_PASS",
-    "completed_date": "2026-09-17",
-    "exact_scope": ["ORA_RIGAUD_1785_PORTUGUESE_SOURCE_AE3BD2C"]
+    "id": "STEP8G_V8008_OWNER_AUTHENTICATED_PROTECTED_POPULATION",
+    "terminal": "STEP_8G_COCINA_MEXICANA_V8008_PROTECTED_POPULATION_PASS",
+    "completed_date": "2026-09-18",
+    "exact_scope": [
+      "ORA_GALVAN_RIVERA_1845_DICCIONARIO_COCINA_AE3BD2C",
+      "ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C"
+    ]
   },
   "active_human_gate": "NONE",
   "legal_corpus_baseline": {
     "status": "NOT_YET_EARNED",
-    "current_admitted_protected_recipe_count": 3695,
-    "current_corpus_version": "v8007",
-    "reason": "v8007 proves the current admitted protected corpus but the legal-corpus-first decision requires continued high-value rights/provenance qualification before declaring the baseline complete. Open Recipe Archive still contains materially larger independently auditable source cohorts.",
+    "current_admitted_protected_recipe_count": 10171,
+    "current_corpus_version": "v8008",
+    "fresh_ora_discovery": {
+      "workflow_run": 35341380297,
+      "workflow_job": 105587824804,
+      "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_CANDIDATES_FOUND",
+      "collection_count": 31,
+      "source_group_count": 59,
+      "measured_candidate_count": 31,
+      "rights_review_eligible_count": 29
+    },
+    "reason": "Fresh discovery against live v8008 still finds 29 materially valuable source-level ORA cohorts eligible for source-specific documentary rights review. The program has therefore not reached the marginal-value/source-inventory stopping condition.",
     "pass_must_record": [
       "admitted recipe count and corpus version",
       "source/cohort inventory",
@@ -116,15 +137,23 @@
   },
   "next_iteration": {
     "status": "RIGHTS_SOURCE_QUALIFICATION_ACTIVE",
-    "parent_version": "v8007",
-    "parent_recipe_count": 3695,
-    "candidate_collection": "cocina-mexicana",
+    "parent_version": "v8008",
+    "parent_recipe_count": 10171,
+    "candidate_collection": "magyar-konyha",
     "candidate_source_repository": "AdamBouhmad/open-recipe-archive",
     "candidate_source_commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
-    "candidate_collection_recipe_count": 6476,
-    "candidate_source_work_count": 2,
-    "next_action": "AUDIT_COCINA_MEXICANA_SOURCE_WORKS_AND_RUN_BOUNDED_MEASUREMENT_BEFORE_ANY_PREWRITE",
-    "rule": "Do not prewrite, implement or populate this collection until each admitted source cohort independently clears rights/provenance, attribution classification and bounded marginal-value/capacity measurement. Split, hold or reject records when source-level evidence differs."
+    "candidate_source_work": "Képes budapesti szakácskönyv",
+    "candidate_source_author": "Rézi néni",
+    "candidate_source_year": "1901",
+    "candidate_recipe_count": 1240,
+    "discovery_metrics": {
+      "parseable_recipe_ratio": 1,
+      "unique_title_ratio": 0.9709677419354839,
+      "novel_title_ratio": 1,
+      "novel_normalized_title_count": 1204
+    },
+    "next_action": "AUDIT_MAGYAR_KONYHA_REZI_NENI_1901_SOURCE_RIGHTS_AND_RUN_BOUNDED_V8008_MEASUREMENT_BEFORE_ANY_PREWRITE",
+    "rule": "Discovery is not rights clearance. Establish exact source identity, author identity/death/publication facts, applicable reuse basis, repository-layer reuse, provenance and attribution/disclosure classification. Hold or reject on unresolved rights. Only then run source-specific bounded measurement against v8008 before any prewrite."
   },
   "not_authorized": [
     "No paid infrastructure or billing/automatic overage authorization.",
@@ -150,5 +179,5 @@
     "A genuine unrecoverable technical error occurs.",
     "A continuation/chat-memory boundary is reached."
   ],
-  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub. v8007 is proven live by the owner-authenticated terminal STEP_8G_ORA_RIGAUD_V8007_PROTECTED_POPULATION_PASS: 3,695 protected recipes, two shards, seven-layer hydration PASS, rollback/fail-closed/reactivation PASS, zero full-corpus scans, max 8 observed D1 subqueries, public runtime unchanged at 85, no billing and no third shard. PR #189 fixed the historical canary-ID hydration proof and merged as 43214efaef3c575733869edd0fdf94b29e840faa; validation and Pages deployment passed. PR #181 was closed stale. LEGAL_CORPUS_BASELINE_PASS remains unearned. Continue STEP8G_RIGHTS_CLEAN_PROTECTED_SCALE with source-level rights/provenance and attribution classification, beginning with bounded audit/measurement of the pinned ORA cocina-mexicana collection; do not prewrite or populate until independently earned. Preserve all legal-corpus-first, no-billing, two-shard, private-D1, authentication and public-runtime firewalls."
+  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub. v8008 is proven live by owner-authenticated terminal STEP_8G_COCINA_MEXICANA_V8008_PROTECTED_POPULATION_PASS: 10,171 protected recipes on two shards, exact 649 body/649 route batches, eight-layer hydration PASS, idempotent replay PASS, rollback/fail-closed/reactivation PASS, zero full-corpus scans, max observed D1 subqueries 16/16 with zero assumed headroom, public runtime unchanged at 85, no billing and no third shard. Fresh ORA discovery against v8008 found 29 rights-review-eligible source cohorts, so LEGAL_CORPUS_BASELINE_PASS remains unearned. Continue STEP8G_RIGHTS_CLEAN_PROTECTED_SCALE with source-specific documentary rights/provenance and attribution review of magyar-konyha / Rézi néni / Képes budapesti szakácskönyv (1901), then bounded v8008 marginal-value measurement before any prewrite. Preserve legal-corpus-first, no-billing, two-shard, private-D1, authentication and public-runtime firewalls."
 }
