@@ -1,0 +1,53 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_MAGYAR_KONYHA_1901_PROVENANCE_HOLD_V1",
+  "date": "2026-09-18",
+  "pass": false,
+  "terminal": "STEP_8G_HOLD_MAGYAR_KONYHA_1901_PROVENANCE_AUTHOR_MISMATCH",
+  "sourceRepository": "AdamBouhmad/open-recipe-archive",
+  "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+  "collection": "magyar-konyha",
+  "recipeCount": 1240,
+  "oraIdentity": {
+    "sourceTitle": "Képes budapesti szakácskönyv",
+    "sourceUrl": "https://archive.org/details/b28112982",
+    "sourceAuthor": "Rézi néni",
+    "sourceYear": "1901",
+    "licenseId": "public-domain"
+  },
+  "independentEvidence": [
+    {
+      "source": "Open Library",
+      "url": "https://openlibrary.org/works/OL24893799W/K%C3%A9pes_budapesti_szak%C3%A1csk%C3%B6nyv",
+      "finding": "The 1901 edition mapped to Internet Archive item b28112982 is catalogued under Antónia Zemplényi Szabó and Josefa Sz. Hilaire, not Rézi néni."
+    },
+    {
+      "source": "Antikvarium.hu",
+      "url": "https://www.antikvarium.hu/aukcio/index.php?aid=13275&bid=912510&t=cd",
+      "finding": "The 1901 edition lists multiple named source contributors and editor Zemplényi Szabó Antónia; the listing identifies that editor name as the pseudonym used by Zempléni Szabó Antal."
+    },
+    {
+      "source": "Magyar Elektronikus Könyvtár",
+      "url": "https://mek.oszk.hu/14200/14263/fulszoveg.html",
+      "finding": "Rézi Néni is identified as Doleskó Teréz in connection with Szegedi szakácskönyv, a different work."
+    }
+  ],
+  "disposition": "HOLD_SOURCE_PROVENANCE_FAIL_CLOSED",
+  "reason": "The pinned ORA source author field conflicts with independent bibliography for the exact 1901 Internet Archive item. Current provenance is therefore not sufficiently exact to earn source-specific rights clearance.",
+  "reentryRequirements": [
+    "Correct the exact work/editor/contributor provenance for Internet Archive item b28112982.",
+    "Establish the applicable rights/reuse basis using the corrected provenance rather than the current ORA author field.",
+    "Classify attribution/disclosure requirements for the corrected source identity.",
+    "Only after those gates pass may bounded v8008 marginal-value measurement or prewrite be earned."
+  ],
+  "boundaries": {
+    "sourceRightsCleared": false,
+    "boundedMeasurementEarned": false,
+    "prewriteAuthorized": false,
+    "protectedPopulationAuthorized": false,
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "billingExpansionAuthorized": false
+  }
+}
