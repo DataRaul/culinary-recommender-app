@@ -1,0 +1,157 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ORA_NEXT_SOURCE_DISCOVERY_V8010_SUMMARY_V1",
+  "date": "2026-09-19",
+  "workflowRun": 35461568341,
+  "workflowJob": 105946255252,
+  "artifactId": 10589089144,
+  "pass": true,
+  "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_CANDIDATES_FOUND",
+  "baseline": {
+    "activeProtectedVersion": "v8010",
+    "activeProtectedCount": 11752
+  },
+  "collectionCount": 31,
+  "sourceGroupCount": 59,
+  "measuredCandidateCount": 27,
+  "rightsReviewEligibleCount": 25,
+  "nextAuthority": "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY",
+  "topRightsReviewCandidates": [
+    {
+      "collection": "hollandse-keuken",
+      "sourceTitle": "Kookboek van de Amsterdamse Huishoudschool",
+      "sourceAuthor": "C.J. Wannée",
+      "sourceYear": "1910",
+      "sourceUrl": "https://archive.org/details/bwb_Y0-BXP-037",
+      "recipeCount": 1067,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9578256794751641,
+      "novelTitleRatio": 0.9980430528375733,
+      "novelNormalizedTitleCount": 1020,
+      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
+    },
+    {
+      "collection": "german-kitchen",
+      "sourceTitle": "Neuestes Süddeutsches Kochbuch",
+      "sourceAuthor": "Viktorine Schiller",
+      "sourceYear": "1858",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/52879",
+      "recipeCount": 885,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9615819209039548,
+      "novelTitleRatio": 0.9976498237367802,
+      "novelNormalizedTitleCount": 849,
+      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
+    },
+    {
+      "collection": "danske-kokken",
+      "sourceTitle": "Frøken Jensens kogebog",
+      "sourceAuthor": "Kristine Marie Jensen",
+      "sourceYear": "1921",
+      "sourceUrl": "https://archive.org/details/frkenjensensko00jens",
+      "recipeCount": 1372,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9482507288629738,
+      "novelTitleRatio": 0.9969254419677172,
+      "novelNormalizedTitleCount": 1297,
+      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
+    },
+    {
+      "collection": "wiener-kueche",
+      "sourceTitle": "Wiener Kochbuch",
+      "sourceAuthor": "Louise Seleskowitz",
+      "sourceYear": "1883",
+      "sourceUrl": "https://archive.org/details/bub_gb_oP8yAQAAMAAJ",
+      "recipeCount": 1722,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9912891986062717,
+      "novelTitleRatio": 0.9964850615114236,
+      "novelNormalizedTitleCount": 1701,
+      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
+    },
+    {
+      "collection": "german-kitchen",
+      "sourceTitle": "Volks-Kochbuch",
+      "sourceAuthor": "Hedwig Heyl",
+      "sourceYear": "1905",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/13921",
+      "recipeCount": 249,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9718875502008032,
+      "novelTitleRatio": 0.9958677685950413,
+      "novelNormalizedTitleCount": 241,
+      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
+    },
+    {
+      "collection": "wiener-kueche",
+      "sourceTitle": "Allgemeines österreichisches oder neuestes Wiener Kochbuch",
+      "sourceAuthor": "Anna Dorn",
+      "sourceYear": "1825",
+      "sourceUrl": "https://archive.org/details/b21525936",
+      "recipeCount": 850,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9694117647058823,
+      "novelTitleRatio": 0.9951456310679612,
+      "novelNormalizedTitleCount": 820,
+      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
+    },
+    {
+      "collection": "indian-kitchen",
+      "sourceTitle": "Indian Cookery and Confectionery",
+      "sourceAuthor": "E.P. Veerasawmy",
+      "sourceYear": "1900",
+      "sourceUrl": "https://archive.org/details/cu31924059630735",
+      "recipeCount": 447,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9351230425055929,
+      "novelTitleRatio": 0.992822966507177,
+      "novelNormalizedTitleCount": 415,
+      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
+    },
+    {
+      "collection": "cuisine-francaise",
+      "sourceTitle": "Le Cuisinier impérial",
+      "sourceAuthor": "A. Viard",
+      "sourceYear": "1806",
+      "sourceUrl": "https://archive.org/details/lecuisinierimpe00viargoog",
+      "recipeCount": 807,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9702602230483272,
+      "novelTitleRatio": 0.9885057471264368,
+      "novelNormalizedTitleCount": 774,
+      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
+    }
+  ],
+  "exclusions": {
+    "alreadyProtectedSources": 8,
+    "heldSources": [
+      {
+        "collection": "magyar-konyha",
+        "sourceUrl": "https://archive.org/details/b28112982",
+        "reason": "ORA_AUTHOR_METADATA_CONFLICTS_WITH_EXACT_1901_SOURCE_BIBLIOGRAPHY"
+      },
+      {
+        "collection": "ceska-kuchyne",
+        "sourceUrl": "https://archive.org/details/ceska_kucharka-dumkova",
+        "reason": "ORA_AUTHOR_METADATA_CONFLICTS_WITH_CZECH_NATIONAL_LIBRARY_1883_MONOGRAPH"
+      }
+    ],
+    "heldCollections": [
+      "cocina-espanola"
+    ]
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "sourceRightsClearedByDiscovery": false,
+    "measurementEarnedByDiscovery": false,
+    "protectedPopulationAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "d1BudgetExpansionAuthorized": false,
+    "billingExpansionAuthorized": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false
+  }
+}
