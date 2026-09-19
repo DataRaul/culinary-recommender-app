@@ -3476,9 +3476,9 @@
   },
   "quotaDayProgress": {
     "schemaVersion": "youtube-culinary-adaptive-quota-day-progress-v1",
-    "quotaDate": "2026-09-18",
+    "quotaDate": "2026-09-19",
     "searchCapacity": 95,
-    "searchCallsUsed": 83,
+    "searchCallsUsed": 94,
     "usedQueryIds": [
       "yt5e-kc-beaf5c80bf33a0a5b9",
       "yt5e-kc-0db819b99a108ab1d2",
@@ -3562,7 +3562,18 @@
       "yt5e-73395e204b07b9bf7a",
       "yt5e-0705a0f16ca838706f",
       "yt5e-a22c750f91bf6634d4",
-      "yt5e-16b1eaed0665bcc9cb"
+      "yt5e-16b1eaed0665bcc9cb",
+      "yt5e-819823ffe420fd4561",
+      "yt5e-0f4a8ae65e1bdb3c44",
+      "yt5e-51426d31f0b7a07aca",
+      "yt5e-5b1b47ee3260d70da1",
+      "yt5e-30f2d680e5c18810f7",
+      "yt5e-2e4639e982109b792d",
+      "yt5e-423ec9213aae1c4685",
+      "yt5e-9b9573ae556dcbb307",
+      "yt5e-b297eff4b95f682cec",
+      "yt5e-1fc6ff475dd023d418",
+      "yt5e-f46f1d5bf392754b35"
     ],
     "tranches": [
       {
@@ -3643,14 +3654,14 @@
         "queryOrigins": [
           "ATLAS_GAP_PORTFOLIO"
         ],
-        "independentPagesReviewed": 7,
+        "independentPagesReviewed": 6,
         "recipeStructuredPagesConfirmed": 0,
         "reviewCandidatesConsidered": 0,
         "reviewReadyPacketsCreated": 0,
         "duplicatePairsSuppressed": 0,
         "uniqueUsefulSourceDomains": 0,
         "transientVideoPointersObserved": 261,
-        "externalReviewErrorCount": 5
+        "externalReviewErrorCount": 6
       },
       {
         "trancheNumber": 5,
@@ -3671,7 +3682,7 @@
         "reviewReadyPacketsCreated": 0,
         "duplicatePairsSuppressed": 0,
         "uniqueUsefulSourceDomains": 0,
-        "transientVideoPointersObserved": 183,
+        "transientVideoPointersObserved": 190,
         "externalReviewErrorCount": 8
       },
       {
@@ -3762,6 +3773,27 @@
         "uniqueUsefulSourceDomains": 0,
         "transientVideoPointersObserved": 0,
         "externalReviewErrorCount": 0
+      },
+      {
+        "trancheNumber": 10,
+        "searchCalls": 8,
+        "exploitationSlots": 6,
+        "explorationSlots": 2,
+        "focuses": [
+          "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES",
+          "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS"
+        ],
+        "queryOrigins": [
+          "ATLAS_GAP_PORTFOLIO"
+        ],
+        "independentPagesReviewed": 0,
+        "recipeStructuredPagesConfirmed": 0,
+        "reviewCandidatesConsidered": 0,
+        "reviewReadyPacketsCreated": 0,
+        "duplicatePairsSuppressed": 0,
+        "uniqueUsefulSourceDomains": 0,
+        "transientVideoPointersObserved": 0,
+        "externalReviewErrorCount": 0
       }
     ],
     "sameDayFocusMetrics": {
@@ -3793,7 +3825,7 @@
         "usefulSourceDomains": []
       },
       "ANDEAN_NORTHERN_SOUTH_AMERICA__GRAINS_SOUPS": {
-        "searchCalls": 11,
+        "searchCalls": 14,
         "independentPagesReviewed": 0,
         "recipeStructuredPagesConfirmed": 0,
         "reviewCandidatesConsidered": 0,
@@ -3802,7 +3834,7 @@
         "usefulSourceDomains": []
       },
       "CENTRAL_SOUTHERN_AFRICA__BREAKFAST_STAPLES": {
-        "searchCalls": 8,
+        "searchCalls": 13,
         "independentPagesReviewed": 0,
         "recipeStructuredPagesConfirmed": 0,
         "reviewCandidatesConsidered": 0,
@@ -3830,7 +3862,7 @@
       },
       "CARIBBEAN__BREAKFAST_ROOT_CROP_ONE_POT": {
         "searchCalls": 6,
-        "independentPagesReviewed": 11,
+        "independentPagesReviewed": 10,
         "recipeStructuredPagesConfirmed": 0,
         "reviewCandidatesConsidered": 0,
         "reviewReadyPacketsCreated": 0,
@@ -3842,5 +3874,10 @@
     "status": "INTERRUPTED_FAIL_CLOSED",
     "lastErrorClass": "Error",
     "lastErrorHash": "6eee0b5054175fca"
+  },
+  "previousIncompleteQuotaDay": {
+    "quotaDate": "2026-09-18",
+    "searchCallsUsed": 83,
+    "terminalState": "INCOMPLETE_QUOTA_DAY_CARRIED_FORWARD_NO_REUSE"
   }
 }
