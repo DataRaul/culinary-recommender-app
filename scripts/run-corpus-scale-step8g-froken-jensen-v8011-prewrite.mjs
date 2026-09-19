@@ -188,15 +188,15 @@ function buildPlan(packets) {
 }
 
 function computeCapacity(parentPrewrite, plan) {
-  if (parentPrewrite?.pass !== true || parentPrewrite?.composition?.activeCorpusVersion !== "v8009" || Number(parentPrewrite?.composition?.cumulativeRecipeCount) !== STEP8G_FROKEN_JENSEN_V8011_PARENT_COUNT) throw new Error("VALID_V8009_PARENT_PREWRITE_REQUIRED");
+  if (parentPrewrite?.pass !== true || parentPrewrite?.composition?.activeCorpusVersion !== "v8010" || Number(parentPrewrite?.composition?.cumulativeRecipeCount) !== STEP8G_FROKEN_JENSEN_V8011_PARENT_COUNT) throw new Error("VALID_V8010_PARENT_PREWRITE_REQUIRED");
   const parentCapacity = parentPrewrite?.composition?.capacity;
   const prior = parentCapacity?.perShard || [];
-  if (prior.length !== STEP8G_SHARD_COUNT) throw new Error("V8009_PARENT_SHARD_CAPACITY_MISSING");
+  if (prior.length !== STEP8G_SHARD_COUNT) throw new Error("V8010_PARENT_SHARD_CAPACITY_MISSING");
   const added = plan.manifest.recipeBodyShards.descriptors;
   const perShard = Array.from({ length: STEP8G_SHARD_COUNT }, (_, shardNumber) => {
     const before = prior.find(row => Number(row.shardNumber) === shardNumber);
     const delta = added.find(row => Number(row.shardNumber) === shardNumber);
-    if (!before) throw new Error(`V8009_PARENT_SHARD_${shardNumber}_MISSING`);
+    if (!before) throw new Error(`V8010_PARENT_SHARD_${shardNumber}_MISSING`);
     const rowCount = Number(before.rowCount) + Number(delta?.rowCount || 0);
     const totalBodyBytes = Number(before.totalBodyBytes) + Number(delta?.totalBodyBytes || 0);
     return {
