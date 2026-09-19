@@ -71,6 +71,14 @@ const MAGYAR_KONYHA_PROVENANCE_HOLD = Object.freeze({
   source_year: "1901",
   license: "public-domain"
 });
+const ANNA_DORN_1825_PROVENANCE_HOLD = Object.freeze({
+  collection: "wiener-kueche",
+  source_url: "https://archive.org/details/b21525936",
+  source_title: "Allgemeines österreichisches oder neuestes Wiener Kochbuch",
+  author: "Anna Dorn",
+  source_year: "1825",
+  license: "public-domain"
+});
 const WANNEE_PROVENANCE_RIGHTS_HOLD = Object.freeze({
   collection: "hollandse-keuken",
   source_url: "https://archive.org/details/bwb_Y0-BXP-037",
@@ -245,6 +253,7 @@ const excludedSourceKeys = new Set([
 const heldSourceKeys = new Set([
   oraSourceKey(MAGYAR_KONYHA_PROVENANCE_HOLD),
   oraSourceKey(CESKA_KUCHARKA_PROVENANCE_HOLD),
+  oraSourceKey(ANNA_DORN_1825_PROVENANCE_HOLD),
   oraSourceKey(WANNEE_PROVENANCE_RIGHTS_HOLD),
   oraSourceKey(SCHILLER_PROVENANCE_HOLD)
 ]);
@@ -291,6 +300,14 @@ const output = {
         reason: "ORA_AUTHOR_METADATA_CONFLICTS_WITH_CZECH_NATIONAL_LIBRARY_1883_MONOGRAPH"
       },
       {
+        collection: ANNA_DORN_1825_PROVENANCE_HOLD.collection,
+        sourceUrl: ANNA_DORN_1825_PROVENANCE_HOLD.source_url,
+        sourceTitle: ANNA_DORN_1825_PROVENANCE_HOLD.source_title,
+        sourceAuthorAsInOra: ANNA_DORN_1825_PROVENANCE_HOLD.author,
+        sourceYear: ANNA_DORN_1825_PROVENANCE_HOLD.source_year,
+        reason: "ORA_AUTHOR_METADATA_CONFLICTS_WITH_EXACT_1825_SOURCE_BIBLIOGRAPHY_ANNA_HOFBAUER"
+      },
+      {
         collection: WANNEE_PROVENANCE_RIGHTS_HOLD.collection,
         sourceUrl: WANNEE_PROVENANCE_RIGHTS_HOLD.source_url,
         sourceTitle: WANNEE_PROVENANCE_RIGHTS_HOLD.source_title,
@@ -308,7 +325,7 @@ const output = {
       }
     ],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8011 are excluded, including Menon 1801, Artusi 1891 and Frøken Jensen 1921. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; and cocina-espanola remains under its existing collection rights hold."
+    reason: "All exact sources protected through v8011 are excluded, including Menon 1801, Artusi 1891 and Frøken Jensen 1921. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
