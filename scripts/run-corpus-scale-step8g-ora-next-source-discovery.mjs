@@ -62,6 +62,14 @@ const MAGYAR_KONYHA_PROVENANCE_HOLD = Object.freeze({
   source_year: "1901",
   license: "public-domain"
 });
+const WANNEE_PROVENANCE_RIGHTS_HOLD = Object.freeze({
+  collection: "hollandse-keuken",
+  source_url: "https://archive.org/details/bwb_Y0-BXP-037",
+  source_title: "Kookboek van de Amsterdamse Huishoudschool",
+  author: "C.J. Wannée",
+  source_year: "1910",
+  license: "public-domain"
+});
 const COCINA_SOURCES = Object.freeze([
   Object.freeze({
     collection: "cocina-mexicana",
@@ -215,7 +223,8 @@ const excludedSourceKeys = new Set([
 ]);
 const heldSourceKeys = new Set([
   oraSourceKey(MAGYAR_KONYHA_PROVENANCE_HOLD),
-  oraSourceKey(CESKA_KUCHARKA_PROVENANCE_HOLD)
+  oraSourceKey(CESKA_KUCHARKA_PROVENANCE_HOLD),
+  oraSourceKey(WANNEE_PROVENANCE_RIGHTS_HOLD)
 ]);
 const heldCollections = new Set(["cocina-espanola"]);
 const result = discoverOraNextSources({
@@ -258,10 +267,18 @@ const output = {
         sourceAuthorAsInOra: CESKA_KUCHARKA_PROVENANCE_HOLD.author,
         sourceYear: CESKA_KUCHARKA_PROVENANCE_HOLD.source_year,
         reason: "ORA_AUTHOR_METADATA_CONFLICTS_WITH_CZECH_NATIONAL_LIBRARY_1883_MONOGRAPH"
+      },
+      {
+        collection: WANNEE_PROVENANCE_RIGHTS_HOLD.collection,
+        sourceUrl: WANNEE_PROVENANCE_RIGHTS_HOLD.source_url,
+        sourceTitle: WANNEE_PROVENANCE_RIGHTS_HOLD.source_title,
+        sourceAuthorAsInOra: WANNEE_PROVENANCE_RIGHTS_HOLD.author,
+        sourceYear: WANNEE_PROVENANCE_RIGHTS_HOLD.source_year,
+        reason: "ORA_1910_WORK_YEAR_POINTS_TO_1958_14TH_EDITION_WITH_LATER_EDITORIAL_RIGHTS_LAYER"
       }
     ],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8010 are excluded, including Menon 1801 and Artusi 1891. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys are held for provenance/author mismatch, and cocina-espanola remains under its existing collection rights hold."
+    reason: "All exact sources protected through v8010 are excluded, including Menon 1801 and Artusi 1891. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
