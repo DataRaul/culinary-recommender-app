@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - '.github/workflows/corpus-scale-step8g-ora-menon-1801.yml'
+      - '.github/workflows/corpus-scale-step8g-ora-artusi-1891.yml'
       - 'scripts/corpus-scale-step8g-ora-artusi-1891-core.mjs'
       - 'scripts/run-corpus-scale-step8g-ora-artusi-1891.mjs'
       - 'tests/corpus-scale-step8g-ora-artusi-1891.test.js'
