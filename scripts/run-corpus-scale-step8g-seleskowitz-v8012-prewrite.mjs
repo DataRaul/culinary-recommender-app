@@ -248,11 +248,11 @@ if (measurement?.pass !== true || measurement?.terminal !== "STEP_8G_ORA_SELESKO
 if (measurement?.nextAuthority !== "SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY") throw new Error("MEASUREMENT_PREWRITE_ONLY_AUTHORITY_REQUIRED");
 if (measurement?.boundaries?.liveD1WritesPerformed !== 0 || measurement?.boundaries?.protectedPopulationAuthorized !== false || measurement?.boundaries?.thirdShardAuthorized !== false || measurement?.boundaries?.billingExpansionAuthorized !== false) throw new Error("MEASUREMENT_BOUNDARY_MISMATCH");
 
-const parentFingerprint = buildV8010ParentFingerprint({ prewriteEvidence: parentPrewrite, liveEvidence: parentLive, runtimeDescriptor: STEP8G_V8011_RUNTIME_DESCRIPTOR });
+const parentFingerprint = buildV8011ParentFingerprint({ prewriteEvidence: parentPrewrite, liveEvidence: parentLive, runtimeDescriptor: STEP8G_V8011_RUNTIME_DESCRIPTOR });
 const packets = buildPackets(candidate);
 const plan = buildPlan(packets);
 const capacity = computeCapacity(parentPrewrite, plan);
-const operationBudget = plannedV8011OperationBudget({ maxRowsPerBatch: STEP8G_MAX_ROWS_PER_WRITE_BATCH });
+const operationBudget = plannedV8012OperationBudget({ maxRowsPerBatch: STEP8G_MAX_ROWS_PER_WRITE_BATCH });
 const candidateByOrdinal = new Map(candidate.map(row => [row.ordinal, row]));
 const requestBytes = batchRequestBytes(plan, candidateByOrdinal);
 const maxBodyBytes = Math.max(...packets.map(row => row.bodyBytes));
@@ -352,7 +352,7 @@ const evidence = {
   },
   decision: pass ? "EARN_V8012_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE" : "STOP_CAPACITY_OR_COST_GATE"
 };
-assertV8011PrewriteBoundaries(evidence);
+assertV8012PrewriteBoundaries(evidence);
 
 const validation = {
   schema: "CORPUS_SCALE_STEP8G_SELESKOWITZ_V8012_PREWRITE_VALIDATION_V1",
