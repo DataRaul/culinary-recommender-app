@@ -1,10 +1,10 @@
 {
-  "handover": "CULINARY_APP_LEGAL_CORPUS_FIRST_ARTUSI_V8010_DEPLOYED_OWNER_GATE_V45",
+  "handover": "CULINARY_APP_LEGAL_CORPUS_FIRST_ARTUSI_V8010_DEPLOYED_OWNER_GATE_YT_CUL_V2_REPAIRED_V45",
   "handover_date": "2026-09-19",
   "timezone": "Atlantic/Canary",
-  "status": "LEGAL_CORPUS_FIRST_ACTIVE__V8009_LIVE_10923__ARTUSI_V8010_IMPLEMENTED_MERGED_DEPLOYED__OWNER_AUTH_PRODUCTION_POPULATION_GATE__MAGYAR_AND_CESKA_PROVENANCE_HOLDS__YT_CUL_PR206_CONCURRENT__LEGAL_CORPUS_BASELINE_NOT_YET_EARNED",
+  "status": "LEGAL_CORPUS_FIRST_ACTIVE__V8009_LIVE_10923__ARTUSI_V8010_IMPLEMENTED_MERGED_DEPLOYED__OWNER_AUTH_PRODUCTION_POPULATION_GATE__MAGYAR_AND_CESKA_PROVENANCE_HOLDS__YT_CUL_ADAPTIVE_V2_CLOSED_CONTINUE__LEGAL_CORPUS_BASELINE_NOT_YET_EARNED",
   "human_needed": true,
-  "handover_written_against_main_sha": "d1f0fec9ac6ee142145c00881f02f08f9cf5dad0",
+  "handover_written_against_main_sha": "c13a8f6f0d599300cbf057eaee88c996b27a2afa",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
@@ -15,15 +15,9 @@
     "artusi_v8010_prewrite_pr": 203,
     "artusi_v8010_implementation_pr": 205,
     "artusi_v8010_implementation_merge_sha": "d1f0fec9ac6ee142145c00881f02f08f9cf5dad0",
-    "concurrent_open_prs": [
-      {
-        "number": 206,
-        "title": "Harden YT-CUL adaptive quota handling",
-        "head": "agent/yt-cul-5e-quota-resilience",
-        "head_sha": "602bbd82ab3886d7523199336e8a756810e880c8",
-        "scope": "INDEPENDENT_YT_CUL_CHILD_PROGRAMME__DO_NOT_MUTATE_FROM_CORPUS_LANE"
-      }
-    ]
+    "yt_cul_quota_resilience_pr": 206,
+    "yt_cul_quota_resilience_merge_sha": "c13a8f6f0d599300cbf057eaee88c996b27a2afa",
+    "open_pr_count_at_handover": 0
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -37,7 +31,7 @@
     "blocking_milestone": "LEGAL_CORPUS_BASELINE_PASS",
     "recipe_family": "DEFERRED_PENDING_LEGAL_CORPUS_BASELINE_PASS",
     "nutrition_lane": "DOWNSTREAM_DO_NOT_MUTATE",
-    "yt_cul_lane": "INDEPENDENT_CONCURRENT_PR206__DO_NOT_MUTATE_FROM_CORPUS_LANE",
+    "yt_cul_lane": "INDEPENDENT_SCHEDULED_CHILD_PROGRAMME__ADAPTIVE_V2_CLOSED_CONTINUE__DO_NOT_MUTATE_FROM_CORPUS_LANE",
     "recommendation_optimization": "DOWNSTREAM_DO_NOT_MUTATE",
     "knowledge_core": "READ_ONLY_RECONCILIATION_ONLY",
     "billing": "NO_BILLING_AUTHORIZATION"
@@ -61,7 +55,10 @@
     "artusi_v8010_api": "functions/api/step8g/v8010.js",
     "artusi_v8010_owner_runner": "step8g-v8010-populate.html",
     "artusi_v8010_live_workflow": ".github/workflows/corpus-scale-step8g-artusi-v8010-live.yml",
-    "artusi_v8010_descriptor_workflow": ".github/workflows/corpus-scale-step8g-artusi-v8010-runtime-descriptor.yml"
+    "artusi_v8010_descriptor_workflow": ".github/workflows/corpus-scale-step8g-artusi-v8010-runtime-descriptor.yml",
+    "youtube_culinary_roadmap": "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md",
+    "youtube_culinary_daily_state": "data/generated/youtube-culinary-daily-discovery-state.json",
+    "youtube_culinary_work_unit_state": "data/generated/youtube-culinary-work-unit-state.json"
   },
   "operating_contract": {
     "autonomy": "Proceed autonomously through technically resolvable rights/source qualification, provenance/attribution classification, bounded measurement, protected prewrite, implementation, ordinary CI/deployment and source-audit work. Stop at genuine human/security/cost/source-rights/topology/unrecoverable blockers, owner-authenticated production-write gates, or continuation boundaries.",
@@ -163,19 +160,36 @@
     "pr_validation_workflow_run": 35447843646,
     "main_build_workflow_run": 35447936255,
     "main_validation_workflow_run": 35447936742,
-    "cloudflare_deployment_id": "806d6754-b26f-4171-a84f-83629335cbdd"
+    "cloudflare_deployment_id": "806d6754-b26f-4171-a84f-83629335cbdd",
+    "yt_cul_quota_resilience_pr": 206,
+    "yt_cul_validation": "PASS",
+    "yt_cul_cloudflare_pages": "PASS"
   },
   "concurrent_child_programmes": {
     "youtube_culinary": {
       "state_file": "data/generated/youtube-culinary-work-unit-state.json",
-      "generated_at": "2026-09-19T13:14:19.598Z",
-      "primary_outcome": "failure",
-      "closure_status": "PRIMARY_RUN_FAILED",
-      "material_transition": true,
-      "successor_action": "RECONCILE_CURRENT_DURABLE_STATE_BEFORE_RETRY",
-      "concurrent_pr": 206,
-      "concurrent_pr_scope": "Quota-resilience repair. It is independent of the corpus lane and based on the Artusi merge commit.",
-      "authority_note": "Do not modify, merge around, replay, or retry YT-CUL from the corpus lane. Fresh-reconcile PR #206 and generated state before any future YT-CUL action."
+      "daily_state_file": "data/generated/youtube-culinary-daily-discovery-state.json",
+      "query_vintage": "yt-cul-5e-adaptive-portfolio-v2-2026-09-19",
+      "latest_quota_date": "2026-09-19",
+      "latest_daily_terminal_state": "DAILY_DISCOVERY_PROVIDER_QUOTA_EXHAUSTED_SAFE_CLOSE",
+      "closure_status": "CLOSED_CONTINUE",
+      "material_transition": false,
+      "successor_action": "WAIT_FOR_NEXT_YOUTUBE_QUOTA_DAY",
+      "next_trigger_disposition": "NEXT_QUOTA_DAY_SCHEDULED_WAKEUP",
+      "scheduler_disposition": "CONTINUE_BOUNDED_WAKEUP",
+      "owner_verified_daily_search_limit": 100,
+      "routine_search_capacity": 90,
+      "protected_reserve_minimum": 5,
+      "zero_yield_cool_after_same_day_calls": 8,
+      "september_19_reconciliation": {
+        "original_workflow_run": 35445115401,
+        "persisted_search_attempts": 94,
+        "original_provider_error": "429 RESOURCE_EXHAUSTED / rateLimitExceeded",
+        "reconciled_terminal": "DAILY_DISCOVERY_PROVIDER_QUOTA_EXHAUSTED_SAFE_CLOSE",
+        "replay_authorized": false
+      },
+      "early_provider_quota_rule": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+      "authority_note": "No automatic Knowledge Core promotion, app admission, publication or paid infrastructure is authorized. The scheduled programme may resume on the next valid YouTube quota day under adaptive-v2 controls."
     }
   },
   "active_human_gate": {
@@ -230,7 +244,7 @@
     "No browser-direct protected database access.",
     "No custom shared-password downgrade.",
     "No Nutrition or recommendation lane mutation before roadmap authority.",
-    "No YT-CUL mutation/retry from the corpus lane, including concurrent PR #206.",
+    "No YT-CUL mutation/retry from the corpus lane; the repaired adaptive-v2 programme owns its own scheduled next-quota-day continuation.",
     "No Knowledge Core mutation from the app lane unless separately authorized.",
     "No automatic inference of cultural authenticity, nutrition, allergen, dietary or scaling authority from historical source provenance.",
     "No automatic declaration of LEGAL_CORPUS_BASELINE_PASS from v8010 deployment or future v8010 live PASS alone."
@@ -246,5 +260,5 @@
     "A genuine unrecoverable technical error occurs.",
     "A continuation/chat-memory boundary is reached."
   ],
-  "terminal_instruction_for_new_chat": "Continue from docs/handovers/CURRENT.json and fresh-reconcile GitHub first. Artusi v8010 implementation PR #205 is merged at d1f0fec9ac6ee142145c00881f02f08f9cf5dad0 and post-merge validation/build/deploy/Cloudflare are green. No v8010 production D1 writes have occurred; protected production remains Menon v8009 / 10,923 with max D1 16/16. Human gate: in the same browser with a current Culinary owner session, open /step8g-v8010-populate.html on the production origin and Run / resume v8010. Expected PASS is STEP_8G_ARTUSI_V8010_PROTECTED_POPULATION_PASS with final active v8010 / 11,752, 83 body and 83 route batches, two shards, ten-layer hydration, rollback fail-closed proof, idempotent replay and max D1 <=16. On PASS, capture/commit live evidence and closeout, then rebase source discovery and reassess LEGAL_CORPUS_BASELINE_PASS. Preserve Magyar and Česká holds. Separately, PR #206 is an open concurrent YT-CUL quota-resilience repair based on this Artusi merge; do not mutate or retry YT-CUL from the corpus lane."
+  "terminal_instruction_for_new_chat": "Continue from docs/handovers/CURRENT.json and fresh-reconcile GitHub first. Artusi v8010 implementation PR #205 is merged at d1f0fec9ac6ee142145c00881f02f08f9cf5dad0 and post-merge validation/build/deploy/Cloudflare are green. No v8010 production D1 writes have occurred; protected production remains Menon v8009 / 10,923 with max D1 16/16. Human gate: in the same browser with a current Culinary owner session, open /step8g-v8010-populate.html on the production origin and Run / resume v8010. Expected PASS is STEP_8G_ARTUSI_V8010_PROTECTED_POPULATION_PASS with final active v8010 / 11,752, 83 body and 83 route batches, two shards, ten-layer hydration, rollback fail-closed proof, idempotent replay and max D1 <=16. On PASS, capture/commit live evidence and closeout, then rebase source discovery and reassess LEGAL_CORPUS_BASELINE_PASS. Preserve Magyar and Česká holds. Separately, YT-CUL-5E quota resilience PR #206 is merged at c13a8f6f0d599300cbf057eaee88c996b27a2afa: routine Search cap is 90/day under the owner-verified 100/day limit, zero-evidence focuses cool after 8 same-day calls, near-ceiling provider quota exhaustion safe-closes the day, and Sep 19's 94 calls were reconciled without replay. YT-CUL state is CLOSED_CONTINUE and should wake on the next valid quota day; do not run it from the corpus lane."
 }
