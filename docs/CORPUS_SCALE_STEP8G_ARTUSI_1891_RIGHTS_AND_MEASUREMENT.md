@@ -2,7 +2,7 @@
 
 Date: 2026-09-19
 
-Status: `PASS_RIGHTS__V8009_MEASUREMENT_PENDING__PREWRITE_NOT_YET_EARNED`
+Status: `PASS_RIGHTS__V8009_MEASUREMENT_PASS__V8010_PREWRITE_CAPACITY_ONLY`
 
 Pinned source repository: `AdamBouhmad/open-recipe-archive`
 
@@ -149,3 +149,36 @@ This document does **not** authorize:
 Only a green deterministic bounded measurement may earn:
 
 `SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`
+
+
+## Bounded measurement result
+
+Workflow run `35434362009` / job `105874413351` completed successfully.
+
+Terminal:
+
+`STEP_8G_ORA_ARTUSI_1891_MEASUREMENT_EARNED_COHORT_CANDIDATE`
+
+Measured against active protected `v8009` / 10,923:
+
+- exact candidate rows: 829;
+- parseable rows: 829 / 829;
+- distinct normalized titles: 806;
+- unique-title ratio: 0.9722557297949337;
+- exact baseline-title overlaps: 1 (`brioches`);
+- novel normalized titles: 805;
+- novel-title ratio: 0.9987593052109182;
+- distinct ingredient phrases: 2,877;
+- novel ingredient phrases: 2,504;
+- ontology-resolved occurrence ratio: 0.20348547717842325.
+
+All rights, repository-reuse, attribution, work-year/edition-semantics, 16/16 source-grounding sample, exact-count, source-identity, structural-quality and culinary-coverage gates passed.
+
+The measurement earns only:
+
+`SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`
+
+It does not authorize protected population.
+
+Canonical public-safe measurement evidence:
+`data/generated/step8g/artusi-1891-v8009-measurement.json`.
