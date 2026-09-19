@@ -148,7 +148,7 @@ function buildPlan(packets) {
       publicRuntimeActivationAuthorized: false,
       evidenceRefs: [
         "data/generated/step8g/seleskowitz-1883-v8011-measurement.json",
-        "docs/CORPUS_SCALE_STEP8G_SELESKOWITZ_1921_RIGHTS_AND_MEASUREMENT.md",
+        "docs/CORPUS_SCALE_STEP8G_SELESKOWITZ_1883_RIGHTS_AND_MEASUREMENT.md",
         SOURCE.sourceUrl,
         `https://github.com/${SOURCE_REPOSITORY}/tree/${SOURCE_COMMIT}/collections/${SOURCE.collection}`
       ]
