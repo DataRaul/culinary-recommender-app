@@ -64,8 +64,12 @@ This PASS satisfies the Menon v8009 owner-authenticated production-write gate.
 
 It does **not by itself** earn `LEGAL_CORPUS_BASELINE_PASS`. The controlling Legal Corpus First decision explicitly requires continued source-level rights/provenance review until the useful rights-clean corpus is bounded by diminishing marginal coverage/quality value, technical/cost constraints, or another explicit stop condition.
 
-The next autonomous action is therefore to rebase the no-write Open Recipe Archive source discovery against live `v8009` / 10,923, exclude Menon as already protected, preserve the Magyar 1901 provenance hold and the existing `cocina-espanola` collection hold, and identify the next source-specific documentary-rights review candidate.
+The no-write Open Recipe Archive source discovery was then rebased against live `v8009` / 10,923 in workflow run `35433855145` / job `105873090635`. It passed with **27 rights-review-eligible cohorts** after excluding all seven already-protected ORA sources, preserving the exact Magyar 1901 provenance hold, and preserving the existing `cocina-espanola` collection hold.
+
+The highest-ranked remaining candidate is `ceska-kuchyne`: Marie Dumková, *Česká kuchařka* (1883), 1,876 recipes, 100% parseability, 1,780 novel normalized titles, one exact baseline-title overlap, and 3,688 novel ingredient phrases. Discovery does not clear rights or authorize ingestion; the next authority is **source-specific documentary rights review only**.
 
 Recipe Family, Nutrition expansion, broad recommendation optimization, public corpus widening, third-shard work and billing expansion remain downstream or unauthorized under the current roadmap order.
 
 Canonical machine-readable live evidence: `data/generated/step8g/menon-v8009-live-pass.json`.
+
+Fresh v8009 discovery summary: `data/generated/step8g/ora-next-source-discovery-v8009-summary.json`.
