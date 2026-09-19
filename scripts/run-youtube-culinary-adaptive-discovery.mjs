@@ -89,9 +89,33 @@ async function fetchJson(fetchImpl, request, endpoint) {
   try { payload = await response.json(); } catch { throw new Error(`${endpoint} returned non-JSON HTTP ${response.status}`); }
   if (!response.ok) {
     const safe = { endpoint, httpStatus: response.status, apiStatus: payload?.error?.status ?? null, apiReason: payload?.error?.errors?.[0]?.reason ?? null };
-    throw new Error(`${endpoint} failed: ${JSON.stringify(safe)}`);
+    const error = new Error(`${endpoint} failed: ${JSON.stringify(safe)}`);
+    error.youtubeApiFailure = safe;
+    throw error;
   }
   return payload;
+}
+
+export function classifyYoutubeSearchQuotaFailure(error, { searchCallsUsed, searchCapacity } = {}) {
+  const failure = error?.youtubeApiFailure;
+  if (!failure || failure.endpoint !== "search.list") return null;
+  const quotaStatus = failure.apiStatus === "RESOURCE_EXHAUSTED";
+  const quotaReason = ["rateLimitExceeded", "quotaExceeded", "dailyLimitExceeded"].includes(failure.apiReason);
+  if (![403, 429].includes(failure.httpStatus) || (!quotaStatus && !quotaReason)) return null;
+  const capacity = Number.isInteger(searchCapacity) && searchCapacity > 0 ? searchCapacity : 0;
+  const used = Number.isInteger(searchCallsUsed) && searchCallsUsed >= 0 ? searchCallsUsed : 0;
+  const safeCloseThreshold = Math.max(1, capacity - 5);
+  const nearRoutineCeiling = capacity > 0 && used >= safeCloseThreshold;
+  return {
+    terminalState: nearRoutineCeiling ? "DAILY_DISCOVERY_PROVIDER_QUOTA_EXHAUSTED_SAFE_CLOSE" : "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+    progressStatus: nearRoutineCeiling ? "PROVIDER_QUOTA_EXHAUSTED_SAFE_CLOSE" : "PROVIDER_QUOTA_EXHAUSTED_EARLY_HOLD",
+    nearRoutineCeiling,
+    failedAttemptRecorded: true,
+    endpoint: failure.endpoint,
+    httpStatus: failure.httpStatus,
+    apiStatus: failure.apiStatus,
+    apiReason: failure.apiReason
+  };
 }
 
 async function writeTransient(cacheDir, filename, metadata, payload) {
@@ -367,8 +391,9 @@ function appendCompletedAdaptiveDay(state, day) {
   state.cumulative.reviewReadyPacketsCreated += day.reviewReadyPacketsCreated;
   state.cumulative.duplicatePairsSuppressed += day.duplicatePairsSuppressed;
   state.quotaDayProgress = null;
-  state.programmeStatus = day.terminalState === "DAILY_SEARCH_HOLD_REVIEW_BACKLOG" ? day.terminalState : "ACTIVE";
-  state.hardHold = day.terminalState === "DAILY_SEARCH_HOLD_REVIEW_BACKLOG" ? day.terminalState : null;
+  const hardHold = day.terminalState?.startsWith("DAILY_SEARCH_HOLD_") ? day.terminalState : null;
+  state.programmeStatus = hardHold ?? "ACTIVE";
+  state.hardHold = hardHold;
   return state;
 }
 
@@ -378,7 +403,7 @@ function buildSummary(state, day, result, dryRun = false) {
     searchCallsExecuted: day?.searchCalls ?? 0, searchCapacity: day?.searchCapacity ?? 0, tranchesRun: day?.tranches?.length ?? 0, reallocations: Math.max(0, (day?.tranches?.length ?? 0) - 1),
     independentPagesReviewed: day?.independentPagesReviewed ?? 0, recipeStructuredPagesConfirmed: day?.recipeStructuredPagesConfirmed ?? 0, reviewReadyPacketsCreated: day?.reviewReadyPacketsCreated ?? 0, duplicatePairsSuppressed: day?.duplicatePairsSuppressed ?? 0, uniqueUsefulSourceDomains: day?.uniqueUsefulSourceDomains ?? 0,
     unresolvedReviewBacklog: state.unresolvedPackets.length, researchKpis: day?.researchKpis ?? {}, canonicalLearning: summarizeCanonicalLearning(state), ytCul6ReadinessEarned: state.ytCul6Readiness.earned,
-    controls: { protectedSearchReserve: state.protectedReserveCalls, rawYoutubeApiDataEmbedded: false, rawYoutubePayloadDeletedBeforeExit: true, youtubeStatisticsRead: false, audiovisualDownloaded: false, automaticAtlasPromotionAuthorized: false, automaticAppAdmissionAuthorized: false, blueLagoonCrossUse: false }
+    controls: { protectedSearchReserve: state.protectedReserveCalls, routineSearchCapacity: YT_CUL_5E_DAILY_SEARCH_CAPACITY, rawYoutubeApiDataEmbedded: false, rawYoutubePayloadDeletedBeforeExit: true, youtubeStatisticsRead: false, audiovisualDownloaded: false, automaticAtlasPromotionAuthorized: false, automaticAppAdmissionAuthorized: false, blueLagoonCrossUse: false }
   };
   assertPolicySafeDurableObject(summary);
   return summary;
@@ -418,7 +443,26 @@ export async function runAdaptiveDailyDiscovery({ fetchImpl = fetch, now = new D
       const retrievedAt = new Date(now.getTime() + trancheNumber).toISOString();
       const beforeSearchCalls = progress.searchCallsUsed;
       const onSearchAttempt = async query => { progress.searchCallsUsed += 1; progress.usedQueryIds.push(query.queryId); progress.status = "IN_PROGRESS"; await saveState(state); };
-      const acquisition = await acquireYoutubeTranche(fetchImpl, apiKey, allocation.queries, actualCacheDir, retrievedAt, transient, onSearchAttempt);
+      let acquisition;
+      try {
+        acquisition = await acquireYoutubeTranche(fetchImpl, apiKey, allocation.queries, actualCacheDir, retrievedAt, transient, onSearchAttempt);
+      } catch (error) {
+        const quota = classifyYoutubeSearchQuotaFailure(error, { searchCallsUsed: progress.searchCallsUsed, searchCapacity: progress.searchCapacity });
+        if (!quota) throw error;
+        terminalState = quota.terminalState;
+        progress.status = quota.progressStatus;
+        progress.providerQuotaTerminal = {
+          terminalState: quota.terminalState,
+          nearRoutineCeiling: quota.nearRoutineCeiling,
+          failedAttemptRecorded: quota.failedAttemptRecorded,
+          endpoint: quota.endpoint,
+          httpStatus: quota.httpStatus,
+          apiStatus: quota.apiStatus,
+          apiReason: quota.apiReason
+        };
+        await saveState(state);
+        break;
+      }
       const reviewed = await reviewIndependentSources(fetchImpl, acquisition.externalCandidates, retrievedAt);
       const admission = admitReviewReadyPackets({ candidates: reviewed.reviewCandidates, reviewedPairKeys: state.resolvedPairKeys, unresolvedPackets: state.unresolvedPackets });
       state.unresolvedPackets.push(...admission.admittedPackets);
@@ -433,7 +477,7 @@ export async function runAdaptiveDailyDiscovery({ fetchImpl = fetch, now = new D
     for (const row of Object.values(progress.sameDayFocusMetrics)) for (const domain of row.usefulSourceDomains ?? []) allDomains.add(domain);
     const day = {
       quotaDate, completedAt: new Date().toISOString(), searchCapacity: progress.searchCapacity, searchCalls: progress.searchCallsUsed, searchUtilization: progress.searchCapacity ? progress.searchCallsUsed / progress.searchCapacity : 0,
-      tranches: progress.tranches, focuses: unique(progress.tranches.flatMap(tranche => tranche.focuses ?? [])), independentPagesReviewed: progress.tranches.reduce((sum, tranche) => sum + tranche.independentPagesReviewed, 0), recipeStructuredPagesConfirmed: progress.tranches.reduce((sum, tranche) => sum + tranche.recipeStructuredPagesConfirmed, 0), reviewCandidatesConsidered: progress.tranches.reduce((sum, tranche) => sum + tranche.reviewCandidatesConsidered, 0), reviewReadyPacketsCreated: progress.tranches.reduce((sum, tranche) => sum + tranche.reviewReadyPacketsCreated, 0), duplicatePairsSuppressed: progress.tranches.reduce((sum, tranche) => sum + tranche.duplicatePairsSuppressed, 0), uniqueUsefulSourceDomains: allDomains.size, unresolvedReviewBacklogAfterRun: state.unresolvedPackets.length, terminalState
+      tranches: progress.tranches, focuses: unique(progress.tranches.flatMap(tranche => tranche.focuses ?? [])), independentPagesReviewed: progress.tranches.reduce((sum, tranche) => sum + tranche.independentPagesReviewed, 0), recipeStructuredPagesConfirmed: progress.tranches.reduce((sum, tranche) => sum + tranche.recipeStructuredPagesConfirmed, 0), reviewCandidatesConsidered: progress.tranches.reduce((sum, tranche) => sum + tranche.reviewCandidatesConsidered, 0), reviewReadyPacketsCreated: progress.tranches.reduce((sum, tranche) => sum + tranche.reviewReadyPacketsCreated, 0), duplicatePairsSuppressed: progress.tranches.reduce((sum, tranche) => sum + tranche.duplicatePairsSuppressed, 0), uniqueUsefulSourceDomains: allDomains.size, unresolvedReviewBacklogAfterRun: state.unresolvedPackets.length, terminalState, providerQuotaTerminal: progress.providerQuotaTerminal ?? null
     };
     day.researchKpis = computeResearchKpis({ state, day });
     state = appendCompletedAdaptiveDay(state, day);

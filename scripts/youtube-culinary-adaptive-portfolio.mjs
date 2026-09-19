@@ -1,7 +1,8 @@
 import { createHash } from "node:crypto";
 
-export const YT_CUL_5E_QUERY_VINTAGE = "yt-cul-5e-adaptive-portfolio-v1-2026-09-06";
-export const YT_CUL_5E_DAILY_SEARCH_CAPACITY = 95;
+export const YT_CUL_5E_QUERY_VINTAGE = "yt-cul-5e-adaptive-portfolio-v2-2026-09-19";
+export const YT_CUL_5E_DAILY_SEARCH_CAPACITY = 90;
+export const YT_CUL_5E_ZERO_YIELD_COOL_AFTER_CALLS = 8;
 export const YT_CUL_5E_FIRST_TRANCHE_SIZE = 16;
 export const YT_CUL_5E_NEXT_TRANCHE_SIZE = 8;
 export const YT_CUL_5E_EXPLORATION_FRACTION = 0.25;
@@ -141,6 +142,15 @@ function getSameDayMetric(metrics, focus) {
   return metrics?.[focus] ?? { searchCalls: 0, independentPagesReviewed: 0, recipeStructuredPagesConfirmed: 0, reviewCandidatesConsidered: 0, reviewReadyPacketsCreated: 0, duplicatePairsSuppressed: 0, uniqueUsefulSourceDomains: 0 };
 }
 
+function sameDayFocusIsZeroYieldCooled(row) {
+  return (row.searchCalls ?? 0) >= YT_CUL_5E_ZERO_YIELD_COOL_AFTER_CALLS &&
+    (row.independentPagesReviewed ?? 0) === 0 &&
+    (row.recipeStructuredPagesConfirmed ?? 0) === 0 &&
+    (row.reviewCandidatesConsidered ?? 0) === 0 &&
+    (row.reviewReadyPacketsCreated ?? 0) === 0 &&
+    (row.uniqueUsefulSourceDomains ?? 0) === 0;
+}
+
 function sameDayYieldScore(row) {
   const calls = Math.max(1, row.searchCalls ?? 0);
   const packetRate = (row.reviewReadyPacketsCreated ?? 0) / calls;
@@ -148,7 +158,7 @@ function sameDayYieldScore(row) {
   const recipeRate = (row.recipeStructuredPagesConfirmed ?? 0) / calls;
   const domainRate = (row.uniqueUsefulSourceDomains ?? 0) / calls;
   const duplicateRate = (row.reviewCandidatesConsidered ?? 0) > 0 ? (row.duplicatePairsSuppressed ?? 0) / row.reviewCandidatesConsidered : 0;
-  const noYieldPenalty = (row.searchCalls ?? 0) >= 4 && (row.reviewReadyPacketsCreated ?? 0) === 0 ? 3 : 0;
+  const noYieldPenalty = sameDayFocusIsZeroYieldCooled(row) ? 12 : (row.searchCalls ?? 0) >= 4 && (row.reviewReadyPacketsCreated ?? 0) === 0 ? 3 : 0;
   return packetRate * 12 + domainRate * 5 + recipeRate * 2 + pageRate * 0.5 - duplicateRate * 4 - noYieldPenalty;
 }
 
@@ -157,7 +167,13 @@ function queryScore(query, { state, sameDayFocusMetrics }) {
   const gap = kc.byGap.get(gapKey(query.atlasGap)) ?? { score: 0, observations: 0 };
   const same = getSameDayMetric(sameDayFocusMetrics, query.focus);
   const exposure = historicalFocusExposure(state).get(query.focus) ?? 0;
-  return { score: gap.score * 2 + sameDayYieldScore(same) * 4 + (query.signalStrength ?? 0) - exposure * 0.15 - (same.searchCalls ?? 0) * 0.08, canonicalObservations: gap.observations, sameDayCalls: same.searchCalls ?? 0, historicalExposure: exposure };
+  return {
+    score: gap.score * 2 + sameDayYieldScore(same) * 4 + (query.signalStrength ?? 0) - exposure * 0.15 - (same.searchCalls ?? 0) * 0.08,
+    canonicalObservations: gap.observations,
+    sameDayCalls: same.searchCalls ?? 0,
+    historicalExposure: exposure,
+    sameDayZeroYieldCooled: sameDayFocusIsZeroYieldCooled(same)
+  };
 }
 
 function takeWithFocusCap(rows, limit, capPerFocus) {
@@ -191,11 +207,11 @@ export function selectNextAdaptiveTranche({ state = {}, portfolio, usedQueryIds 
   const scored = available.map(query => ({ query, ...queryScore(query, { state, sameDayFocusMetrics }) }));
   const explorationSlots = Math.min(trancheSize, Math.max(2, Math.ceil(trancheSize * YT_CUL_5E_EXPLORATION_FRACTION)));
   const exploitationSlots = Math.max(0, trancheSize - explorationSlots);
-  const exploitSorted = [...scored].sort((a, b) => b.score - a.score || hash(a.query.queryId).localeCompare(hash(b.query.queryId)));
+  const exploitSorted = [...scored].sort((a, b) => Number(a.sameDayZeroYieldCooled) - Number(b.sameDayZeroYieldCooled) || b.score - a.score || hash(a.query.queryId).localeCompare(hash(b.query.queryId)));
   const capPerFocus = Math.max(1, Math.ceil(exploitationSlots * YT_CUL_5E_MAX_EXPLOIT_SHARE_PER_FOCUS));
   const exploit = takeWithFocusCap(exploitSorted.map(row => row.query), exploitationSlots, capPerFocus);
   const chosen = new Set(exploit.map(query => query.queryId));
-  const exploreSorted = scored.filter(row => !chosen.has(row.query.queryId)).sort((a, b) => a.canonicalObservations - b.canonicalObservations || a.sameDayCalls - b.sameDayCalls || a.historicalExposure - b.historicalExposure || hash(a.query.queryId).localeCompare(hash(b.query.queryId)));
+  const exploreSorted = scored.filter(row => !chosen.has(row.query.queryId)).sort((a, b) => Number(a.sameDayZeroYieldCooled) - Number(b.sameDayZeroYieldCooled) || a.canonicalObservations - b.canonicalObservations || a.sameDayCalls - b.sameDayCalls || a.historicalExposure - b.historicalExposure || hash(a.query.queryId).localeCompare(hash(b.query.queryId)));
   const explore = exploreSorted.slice(0, Math.max(0, trancheSize - exploit.length)).map(row => row.query);
   const queries = [...exploit, ...explore].slice(0, trancheSize);
   return { queries, exploitationSlots: exploit.length, explorationSlots: queries.length - exploit.length, availableQueriesBeforeSelection: available.length };

@@ -1,8 +1,8 @@
 # YouTube Culinary Daily Discovery → YT-CUL-6 Roadmap
 
-Status: **AUTHORIZED ROADMAP EXTENSION / YT-CUL-5R RELEVANCE-SOURCE-DIVERSITY REPAIR READY / DAILY LIVE RUN BLOCKED UNTIL REPAIR PASS / YT-CUL-6 NOT YET EARNED**
+Status: **ACTIVE / YT-CUL-5E ADAPTIVE V2 / 90-CALL ROUTINE CEILING / PROVIDER-QUOTA SAFE-CLOSE / YT-CUL-6 NOT YET EARNED**
 
-Date: 2026-09-05
+Date: 2026-09-19
 
 ## Decision
 
@@ -25,6 +25,21 @@ YT-CUL-5 terminal result
 ```
 
 This document is an additive roadmap extension to `docs/YOUTUBE_CULINARY_DISCOVERY_ATLAS_ROADMAP.md` and supersedes only that document's stale YT-CUL-5/6 transition text. All YT-CUL-0 through YT-CUL-5 evidence, safety, quota, storage, rights, nutrition, Blue Lagoon-separation and Knowledge Core boundaries remain unchanged.
+
+## 2026-09-19 adaptive-v2 quota resilience amendment
+
+Live YT-CUL-5E evidence showed that the programme could reach the provider edge even while preserving the original five-call internal reserve: workflow run `35445115401` persisted 94 Search attempts and then received `429 RESOURCE_EXHAUSTED / rateLimitExceeded` from `search.list`.
+
+The repaired operating law is:
+
+- the owner-verified assigned Search limit remains **100/day**;
+- routine YT-CUL-5E Search spend is capped at **90/day**, leaving a 10-call provider cushion while still preserving the original minimum five-call protected reserve;
+- a provider Search-quota exhaustion response at or within five calls of the routine ceiling terminates the quota day as `DAILY_DISCOVERY_PROVIDER_QUOTA_EXHAUSTED_SAFE_CLOSE`, persists all attempted-call state, and does **not** become `PRIMARY_RUN_FAILED`;
+- the same provider exhaustion materially earlier than the routine ceiling becomes `DAILY_SEARCH_HOLD_POLICY_OR_QUOTA` and requires reconciliation rather than a blind retry;
+- a focus that consumes **8 same-day Search calls with zero independent pages, zero Recipe-structured pages, zero review candidates, zero review-ready packets and zero useful domains** is aggressively cooled out of subsequent exploitation/exploration while other eligible focuses remain;
+- September 19's 94 attempts are reconciled once as a safe-close historical day and are never replayed.
+
+This amendment changes quota resilience and allocation efficiency only. It does not alter raw-YouTube durability, Knowledge Core authority, app admission, publication, Blue Lagoon isolation, rights, nutrition or paid-infrastructure boundaries.
 
 ## Why the daily programme is required
 
@@ -105,6 +120,8 @@ For every quota day:
 
 - use the actual assigned Culinary project quota as authority;
 - preserve at least 5 Search calls as protected reserve;
+- cap routine adaptive-v2 Search spend at 90 calls/day even when the assigned project limit is 100;
+- keep provider-headroom failures fail-closed: near-ceiling exhaustion safe-closes the day, materially early exhaustion becomes a policy/quota hold;
 - no quota extension request;
 - no second Culinary project for quota multiplication;
 - no Blue Lagoon cross-use;
@@ -230,7 +247,8 @@ Each scheduled run ends in exactly one of:
 - `DAILY_DISCOVERY_CONTINUE_REDUCED_BUDGET` — useful but deteriorating/duplicate/concentrated yield.
 - `DAILY_SEARCH_HOLD_REVIEW_BACKLOG` — unresolved review queue at/above cap.
 - `DAILY_SEARCH_HOLD_LOW_MARGINAL_VALUE` — repeated low-value days require query/relevance redesign before more spend.
-- `DAILY_SEARCH_HOLD_POLICY_OR_QUOTA` — policy, assigned quota, credential, storage or separation assumption changed.
+- `DAILY_SEARCH_HOLD_POLICY_OR_QUOTA` — policy, assigned quota, credential, storage or separation assumption changed, including materially early provider quota exhaustion.
+- `DAILY_DISCOVERY_PROVIDER_QUOTA_EXHAUSTED_SAFE_CLOSE` — provider quota edge was encountered only near the bounded routine ceiling; persist the day, do not retry it, and resume at the next quota-day wake-up.
 - `YT_CUL_6_READINESS_EARNED` — canonical downstream eligibility gate satisfied.
 
 ## Low-marginal-value stopping rule
@@ -283,6 +301,6 @@ Project Coach conclusion:
 
 ## Immediate next action
 
-`YT_CUL_5R_RELEVANCE_SOURCE_DIVERSITY_ARCHITECTURE`
+`WAIT_FOR_NEXT_YOUTUBE_QUOTA_DAY__YT_CUL_5E_ADAPTIVE_V2`
 
-This is repository-only and consumes **0 live YouTube Search calls**. After it passes, implement and validate the scheduled `YT-CUL-5D` daily workflow. Only then activate recurring live discovery.
+YT-CUL-5R and the scheduled adaptive discovery architecture are already active. Resume only on the next valid YouTube quota day under the 90-call routine ceiling and new safe-close/cooling rules. YT-CUL-6 remains unearned until its canonical readiness contract is satisfied.
