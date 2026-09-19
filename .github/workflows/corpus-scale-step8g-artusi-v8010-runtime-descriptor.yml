@@ -1,0 +1,75 @@
+name: Corpus Scale Step 8G Artusi v8010 runtime descriptor candidate
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-artusi-v8010-runtime-descriptor.yml'
+      - 'scripts/generate-step8g-artusi-v8010-runtime-descriptor.mjs'
+      - 'scripts/corpus-scale-step8g-artusi-v8010-prewrite-core.mjs'
+      - 'scripts/corpus-scale-step8a-core.mjs'
+      - 'data/generated/step8g/artusi-v8010-prewrite-evidence.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-artusi-v8010-runtime-descriptor-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate-runtime-descriptor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run focused frozen prewrite tests
+        run: node --test tests/corpus-scale-step8g-artusi-v8010-prewrite.test.js
+
+      - name: Generate public-safe v8010 runtime descriptor candidate
+        run: >-
+          node scripts/generate-step8g-artusi-v8010-runtime-descriptor.mjs
+          --ora=./open-recipe-archive
+          --out=.tmp/v8010-runtime-descriptor.mjs
+
+      - name: Verify candidate matches earned prewrite and boundaries
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          const evidence = JSON.parse(await readFile('data/generated/step8g/artusi-v8010-prewrite-evidence.json', 'utf8'));
+          const { STEP8G_V8010_RUNTIME_DESCRIPTOR: descriptor } = await import('./.tmp/v8010-runtime-descriptor.mjs');
+          if (evidence.pass !== true || evidence.terminalCandidate !== 'STEP_8G_ARTUSI_V8010_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED') throw new Error('V8010_PREWRITE_PASS_REQUIRED');
+          if (descriptor.sourceCommit !== evidence.source.commit) throw new Error('SOURCE_COMMIT_MISMATCH');
+          if (descriptor.layerManifestSha256 !== evidence.layer.manifestSha256) throw new Error('MANIFEST_FINGERPRINT_MISMATCH');
+          if (descriptor.populationPlanSha256 !== evidence.layer.populationPlanSha256) throw new Error('POPULATION_PLAN_FINGERPRINT_MISMATCH');
+          if (descriptor.parentCompositionRouteCount !== 10923 || descriptor.composedRouteCount !== 11752) throw new Error('ROUTE_COUNT_MISMATCH');
+          if (JSON.stringify(descriptor.bodyShardRows) !== JSON.stringify([430,399])) throw new Error('SHARD_ROW_LAYOUT_MISMATCH');
+          const bodyBatchCount = descriptor.bodyHashHexByShard.reduce((sum,value)=>sum+value.length/64,0);
+          const routeBatchCount = descriptor.routeHashHexByShard.reduce((sum,value)=>sum+value.length/64,0);
+          if (bodyBatchCount !== 83 || routeBatchCount !== 83) throw new Error('BATCH_COUNT_MISMATCH');
+          if (JSON.stringify(descriptor).includes('rawJson')) throw new Error('PROTECTED_BODY_LEAK_IN_DESCRIPTOR');
+          if (evidence.layer.operationBudget.maxPlannedD1Subqueries !== 16 || evidence.layer.operationBudget.headroomAssumed !== false) throw new Error('D1_BUDGET_BOUNDARY_MISMATCH');
+          console.log(JSON.stringify({pass:true,bodyBatchCount,routeBatchCount,bodyShardRows:descriptor.bodyShardRows,containsRecipeBodies:false,ciMutation:false}));
+          NODE
+
+      - name: Upload descriptor candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: artusi-v8010-runtime-descriptor
+          path: .tmp/v8010-runtime-descriptor.mjs
+          if-no-files-found: error
+          retention-days: 1
