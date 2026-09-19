@@ -1,0 +1,169 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_FROKEN_JENSEN_V8011_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_FROKEN_JENSEN_V8011_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-19",
+  "source": {
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "collection": "danske-kokken",
+    "recordCount": 1372,
+    "measurementTerminal": "STEP_8G_ORA_FROKEN_JENSEN_1921_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+    "sourceCohort": {
+      "cohortId": "ORA_FROKEN_JENSEN_1921_KOGEBOG_23RD_FRKENJENSENSKO00JENS",
+      "sourceWork": "Frøken Jensens kogebog",
+      "sourceAuthor": "Kristine Marie Jensen",
+      "sourceAuthorClassification": "IDENTIFIED_AUTHOR",
+      "sourceYear": "1921",
+      "sourceYearSemantics": "EXACT_DIGITIZED_EDITION_YEAR",
+      "sourceUrl": "https://archive.org/details/frkenjensensko00jens",
+      "digitizedEditionYear": "1921",
+      "digitizedEditionLabel": "23rd printing",
+      "workFirstPublicationYear": "1901",
+      "recordCount": 1372,
+      "licenseId": "public-domain",
+      "packetDescriptorSha256": "d8b92de6483e5af0889d2515bc9cafd19bd977caa52efff4ebb371360fc58a02"
+    },
+    "repositoryLayerLicense": "Unlicense",
+    "culturalAuthenticityAuthorityImported": false
+  },
+  "parent": {
+    "activeCorpusVersion": "v8010",
+    "composedRecipeCount": 11752,
+    "fingerprintSha256": "f6112466900079348619b86d35b8cd7f153ce8ccd66ab1aaee32eb4f37d295e9",
+    "fingerprintMaterial": {
+      "activeCorpusVersion": "v8010",
+      "composedRecipeCount": 11752,
+      "liveTerminal": "STEP_8G_ARTUSI_V8010_PROTECTED_POPULATION_PASS",
+      "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "layerManifestSha256": "7a1cefb2928f133efd011afa47f763098581394fe596bd676fd37eca2654a4c8",
+      "populationPlanSha256": "d62629884fc1da42acf7748db51f1fc98166e26d2edf503bb5504ee31adb0d66",
+      "bodyShardRows": [430, 399],
+      "parentCompositionRouteCount": 10923,
+      "composedRouteCount": 11752
+    }
+  },
+  "layer": {
+    "corpusVersion": "v8011",
+    "parentCorpusVersion": "v8010",
+    "recipeCount": 1372,
+    "manifestSha256": "8994c412e4b19c20d184ddff92911caa306fe25304de1afafa33c58028c5aea1",
+    "populationPlanSha256": "bf32554cf66db07bd2cbdd10938d8429f5f6ad64a922fd00b358717a9253160d",
+    "batchCount": 139,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 6420,
+    "maxBatchBodyBytes": 37604,
+    "maxWriteRequestBytes": 14653,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "operationBudget": {
+      "authD1Subqueries": 1,
+      "maxRowsPerBatch": 10,
+      "operations": {
+        "status": 1,
+        "bindings": 3,
+        "freeLimitSimulation": 1,
+        "initialize": 8,
+        "bodyWriteFresh": 15,
+        "bodyWriteReplay": 3,
+        "progress": 7,
+        "copyParentRoutesFresh": 6,
+        "routeWriteFresh": 16,
+        "routeWriteReplay": 4,
+        "activate": 8,
+        "rollback": 3,
+        "elevenLayerHydrationCanary": 4,
+        "boundedHydrationWorstCase": 12,
+        "evidence": 7
+      },
+      "maxPlannedD1Subqueries": 16,
+      "maxAllowedD1Subqueries": 16,
+      "limitingOperations": ["routeWriteFresh"],
+      "pass": true,
+      "headroomAssumed": false
+    },
+    "shardDescriptors": [
+      {
+        "shardNumber": 0,
+        "rowCount": 651,
+        "totalBodyBytes": 2080560,
+        "firstOrdinal": 0,
+        "lastOrdinal": 1371,
+        "entriesSha256": "9c61b4d7dd7ada27fd8a360c5180b133632b949aa583b016c300d479cb7769f5"
+      },
+      {
+        "shardNumber": 1,
+        "rowCount": 721,
+        "totalBodyBytes": 2311801,
+        "firstOrdinal": 1,
+        "lastOrdinal": 1369,
+        "entriesSha256": "12bac9cd19aae9bf156e2ba42f4177d2e509d297c38f32f8403d62ff1cb2f193"
+      }
+    ],
+    "batchIdsSha256": "4637517e757b2dfcb913f189232b671ffe9fced42e4dc79f9dcafa7b62ed1de8"
+  },
+  "composition": {
+    "activeCorpusVersion": "v8011",
+    "parentCorpusVersion": "v8010",
+    "cumulativeRecipeCount": 13124,
+    "capacity": {
+      "parentLayeredPhysicalBodyBytes": 44512380,
+      "addedLayerBodyBytes": 4392361,
+      "layeredPhysicalBodyBytes": 48904741,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {
+          "shardNumber": 0,
+          "parentRowCount": 5919,
+          "addedRowCount": 651,
+          "rowCount": 6570,
+          "parentBodyBytes": 22526072,
+          "addedBodyBytes": 2080560,
+          "totalBodyBytes": 24606632,
+          "withinProjectDatabaseBudget": true
+        },
+        {
+          "shardNumber": 1,
+          "parentRowCount": 5833,
+          "addedRowCount": 721,
+          "rowCount": 6554,
+          "parentBodyBytes": 21986308,
+          "addedBodyBytes": 2311801,
+          "totalBodyBytes": 24298109,
+          "withinProjectDatabaseBudget": true
+        }
+      ]
+    },
+    "routing": {
+      "shardCount": 2,
+      "mode": "CONTROL_INDEX_EXACT_ROUTE_THEN_BATCH_HYDRATE_BY_SHARD",
+      "fullCorpusScans": 0,
+      "maxProtectedD1Subqueries": 16,
+      "d1BudgetHeadroomAssumed": false
+    }
+  },
+  "gates": {
+    "requestSizePass": true,
+    "operationBudgetPass": true,
+    "capacityPass": true,
+    "topologyPass": true,
+    "countPass": true,
+    "batchSizePass": true,
+    "uniqueIdsPass": true,
+    "bodySizePass": true
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "d1BudgetExpansion": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "step8fReopened": false
+  },
+  "decision": "EARN_V8011_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE"
+}
