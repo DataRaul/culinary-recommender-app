@@ -1,28 +1,29 @@
 {
-  "handover": "CULINARY_APP_LEGAL_CORPUS_FIRST_ARTUSI_V8010_PREWRITE_PASS_IMPLEMENTATION_READY_V44",
+  "handover": "CULINARY_APP_LEGAL_CORPUS_FIRST_ARTUSI_V8010_DEPLOYED_OWNER_GATE_V45",
   "handover_date": "2026-09-19",
   "timezone": "Atlantic/Canary",
-  "status": "LEGAL_CORPUS_FIRST_ACTIVE__V8009_LIVE_10923__CESKA_PROVENANCE_HOLD__ARTUSI_RIGHTS_MEASUREMENT_PASS__V8010_PREWRITE_PASS_IMPLEMENTATION_READY__YT_CUL_PRIMARY_RUN_FAILED_RECONCILE_BEFORE_RETRY__LEGAL_CORPUS_BASELINE_NOT_YET_EARNED",
-  "human_needed": false,
-  "handover_written_against_main_sha": "f570749e934ea7437a330690fa5139fce787901c",
+  "status": "LEGAL_CORPUS_FIRST_ACTIVE__V8009_LIVE_10923__ARTUSI_V8010_IMPLEMENTED_MERGED_DEPLOYED__OWNER_AUTH_PRODUCTION_POPULATION_GATE__MAGYAR_AND_CESKA_PROVENANCE_HOLDS__YT_CUL_PR206_CONCURRENT__LEGAL_CORPUS_BASELINE_NOT_YET_EARNED",
+  "human_needed": true,
+  "handover_written_against_main_sha": "d1f0fec9ac6ee142145c00881f02f08f9cf5dad0",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
     "knowledge_core": "READ_ONLY_RECONCILIATION_ONLY",
     "legal_corpus_decision_pr": 188,
-    "legal_corpus_decision_merge_sha": "58360f4b23a591f38a0ce518b880653677fd4564",
     "menon_v8009_implementation_pr": 198,
-    "menon_v8009_implementation_merge_sha": "56bf968ee10adf11fb55a059d11d48aa54af75f9",
-    "menon_v8009_closeout_discovery_pr": 200,
-    "menon_v8009_closeout_discovery_merge_sha": "027056eed65d43b86c5a0b84628ce4cd54307d7e",
-    "ceska_hold_pr": 201,
-    "ceska_hold_merge_sha": "e80fb1cad6baafbf4d6ea61961ca82e5c87adedf",
     "artusi_rights_measurement_pr": 202,
-    "artusi_rights_measurement_merge_sha": "8df738301ed0a7ef4e88cc648d6a52890886657d",
     "artusi_v8010_prewrite_pr": 203,
-    "artusi_v8010_prewrite_merge_sha": "02f57583267606d20eed4ed18b7db560d73bc885",
-    "latest_main_note": "main later advanced only by the independent YT-CUL-5E safe-state commit f570749e934ea7437a330690fa5139fce787901c. Preserve it; it does not change corpus-lane authority.",
-    "open_pr_count_at_handover": 0
+    "artusi_v8010_implementation_pr": 205,
+    "artusi_v8010_implementation_merge_sha": "d1f0fec9ac6ee142145c00881f02f08f9cf5dad0",
+    "concurrent_open_prs": [
+      {
+        "number": 206,
+        "title": "Harden YT-CUL adaptive quota handling",
+        "head": "agent/yt-cul-5e-quota-resilience",
+        "head_sha": "602bbd82ab3886d7523199336e8a756810e880c8",
+        "scope": "INDEPENDENT_YT_CUL_CHILD_PROGRAMME__DO_NOT_MUTATE_FROM_CORPUS_LANE"
+      }
+    ]
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -36,7 +37,7 @@
     "blocking_milestone": "LEGAL_CORPUS_BASELINE_PASS",
     "recipe_family": "DEFERRED_PENDING_LEGAL_CORPUS_BASELINE_PASS",
     "nutrition_lane": "DOWNSTREAM_DO_NOT_MUTATE",
-    "yt_cul_lane": "INDEPENDENT_SCHEDULED_CHILD_PROGRAMME__RECONCILE_BEFORE_RETRY__DO_NOT_MUTATE_FROM_CORPUS_LANE",
+    "yt_cul_lane": "INDEPENDENT_CONCURRENT_PR206__DO_NOT_MUTATE_FROM_CORPUS_LANE",
     "recommendation_optimization": "DOWNSTREAM_DO_NOT_MUTATE",
     "knowledge_core": "READ_ONLY_RECONCILIATION_ONLY",
     "billing": "NO_BILLING_AUTHORIZATION"
@@ -47,7 +48,6 @@
     "handover_protocol": "docs/HANDOVER_PROTOCOL.md",
     "menon_v8009_live_evidence": "data/generated/step8g/menon-v8009-live-pass.json",
     "menon_v8009_live_closeout": "docs/CORPUS_SCALE_STEP8G_MENON_V8009_LIVE_POPULATION_PASS.md",
-    "v8009_discovery_summary": "data/generated/step8g/ora-next-source-discovery-v8009-summary.json",
     "magyar_hold_doc": "docs/CORPUS_SCALE_STEP8G_MAGYAR_KONYHA_1901_PROVENANCE_HOLD.md",
     "magyar_hold_evidence": "data/generated/step8g/magyar-konyha-1901-provenance-hold.json",
     "ceska_hold_doc": "docs/CORPUS_SCALE_STEP8G_CESKA_KUCHARKA_1883_PROVENANCE_HOLD.md",
@@ -55,31 +55,25 @@
     "artusi_rights_measurement_doc": "docs/CORPUS_SCALE_STEP8G_ARTUSI_1891_RIGHTS_AND_MEASUREMENT.md",
     "artusi_measurement_evidence": "data/generated/step8g/artusi-1891-v8009-measurement.json",
     "artusi_v8010_prewrite_evidence": "data/generated/step8g/artusi-v8010-prewrite-evidence.json",
-    "artusi_v8010_prewrite_workflow": ".github/workflows/corpus-scale-step8g-artusi-v8010-prewrite.yml"
+    "artusi_v8010_runtime_descriptor": "data/generated/step8g/v8010-runtime-descriptor.mjs",
+    "artusi_v8010_runtime_core": "src/server/step8g-v8010-live-runtime.mjs",
+    "artusi_v8010_hydration_core": "src/server/step8g-v8010-hydration-runtime.mjs",
+    "artusi_v8010_api": "functions/api/step8g/v8010.js",
+    "artusi_v8010_owner_runner": "step8g-v8010-populate.html",
+    "artusi_v8010_live_workflow": ".github/workflows/corpus-scale-step8g-artusi-v8010-live.yml",
+    "artusi_v8010_descriptor_workflow": ".github/workflows/corpus-scale-step8g-artusi-v8010-runtime-descriptor.yml"
   },
   "operating_contract": {
-    "autonomy": "Proceed autonomously through technically resolvable rights/source qualification, provenance/attribution classification, bounded measurement, protected prewrite, implementation, ordinary CI/deployment and source-audit work. Stop only for a genuine human/security/cost/source-rights/topology/unrecoverable blocker, an owner-authenticated production-write gate, or continuation boundary.",
+    "autonomy": "Proceed autonomously through technically resolvable rights/source qualification, provenance/attribution classification, bounded measurement, protected prewrite, implementation, ordinary CI/deployment and source-audit work. Stop at genuine human/security/cost/source-rights/topology/unrecoverable blockers, owner-authenticated production-write gates, or continuation boundaries.",
     "rights": "Fail closed. Private runtime creates no reuse permission. Unknown or materially unresolved rights are held or rejected. Every admitted cohort must carry exact provenance plus attribution/disclosure classification.",
     "storage": "Protected recipe bodies remain in private Cloudflare D1. GitHub contains only public code and public-safe evidence/artifacts. Browser-direct protected database access is forbidden.",
     "authentication": "Every protected request remains server-side authenticated and authorized through the application-owned identity verifier, exact allowlist and secure session. Do not weaken or emulate the owner authentication gate.",
     "billing_firewall": "No paid infrastructure, billing enablement or automatic overage authorization.",
     "topology": "Exactly two protected recipe-body D1 shards. No third shard is authorized.",
-    "d1_budget": "Live v8009 and the v8010 prewrite both preserve the existing maximum of 16/16 D1 subqueries with zero assumed headroom.",
+    "d1_budget": "v8010 implementation preserves the existing maximum of 16/16 D1 subqueries with zero assumed headroom.",
     "public_activation": "Public runtime remains 85 recipes and broader public corpus/recommendation activation is not authorized.",
     "source_authority": "Historical provenance is not authority for cultural authenticity, nutrition, allergens, dietary classification, scaling or medical claims."
   },
-  "roadmap_order": [
-    "rights/source qualification",
-    "attribution/provenance classification",
-    "rights-clean protected ingestion",
-    "LEGAL_CORPUS_BASELINE_PASS",
-    "corpus normalization and categorization",
-    "nutrition and vitamin applicability audit",
-    "recommendation readiness",
-    "recipe family and adaptation",
-    "YouTube and authoritative-evidence refinement",
-    "further product features"
-  ],
   "live_protected_state": {
     "active_version": "v8009",
     "parent_version": "v8008",
@@ -100,37 +94,15 @@
     "recommendation_admission_changed": false,
     "third_shard_used": false,
     "billing_expansion": false,
-    "cultural_authenticity_authority_imported": false
+    "note": "Artusi v8010 code is deployed but no owner-authenticated v8010 production D1 population has been performed. Protected production therefore remains v8009 / 10,923."
   },
-  "completed_source_work": {
-    "magyar_konyha_1901": {
-      "status": "HOLD_SOURCE_PROVENANCE_FAIL_CLOSED",
-      "terminal": "STEP_8G_HOLD_MAGYAR_KONYHA_1901_PROVENANCE_AUTHOR_MISMATCH",
-      "source_url": "https://archive.org/details/b28112982",
-      "recipe_count": 1240,
-      "reason": "The ORA author field Rézi néni conflicts with independent bibliography for the exact 1901 item. Keep excluded by exact source key until provenance and rights attribution are corrected."
-    },
-    "ceska_kucharka_1883": {
-      "status": "HOLD_SOURCE_PROVENANCE_FAIL_CLOSED",
-      "source_collection": "ceska-kuchyne",
-      "source_work": "Česká kuchařka",
-      "ora_source_author": "Marie Dumková",
-      "source_year": "1883",
-      "recipe_count": 1876,
-      "reason": "Independent bibliography for the exact 1883 monograph identifies Hanna/Hana Dumková rather than the ORA author label Marie Dumková. Apparent copyright-term expiry does not override the exact attribution mismatch; the cohort is held fail-closed."
-    },
-    "menon_v8009": {
-      "status": "LIVE_PROTECTED_PASS",
-      "terminal": "STEP_8G_MENON_V8009_PROTECTED_POPULATION_PASS",
-      "cohort_id": "ORA_MENON_1801_CUISINIERE_BOURGEOISE_B22019935",
-      "recipe_count": 752,
-      "active_version": "v8009",
-      "composed_recipe_count": 10923
-    }
+  "source_state": {
+    "magyar_konyha_1901": "HOLD_SOURCE_PROVENANCE_FAIL_CLOSED",
+    "ceska_kucharka_1883": "HOLD_SOURCE_PROVENANCE_FAIL_CLOSED",
+    "menon_v8009": "LIVE_PROTECTED_PASS",
+    "artusi_1891": "RIGHTS_AND_MEASUREMENT_PASS__V8010_PREWRITE_PASS__IMPLEMENTED_MERGED_DEPLOYED_OWNER_GATE"
   },
-  "artusi_1891": {
-    "status": "RIGHTS_AND_MEASUREMENT_PASS__V8010_PREWRITE_PASS__IMPLEMENTATION_EARNED",
-    "measurement_terminal": "STEP_8G_ORA_ARTUSI_1891_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+  "artusi_v8010": {
     "cohort_id": "ORA_ARTUSI_1891_SCIENZA_CUCINA_GUTENBERG_59047",
     "collection": "cucina-italiana",
     "source_repository": "AdamBouhmad/open-recipe-archive",
@@ -143,36 +115,11 @@
     "source_url": "https://www.gutenberg.org/ebooks/59047",
     "digitized_edition_year": "1922",
     "digitized_edition_label": "25th edition",
-    "digitized_edition_recipe_count": 790,
-    "ora_record_count": 829,
-    "parseable_recipe_count": 829,
-    "parseable_recipe_ratio": 1,
-    "distinct_normalized_titles": 806,
-    "unique_title_ratio": 0.9722557297949337,
-    "exact_baseline_title_overlap_count": 1,
-    "novel_normalized_title_count": 805,
-    "novel_title_ratio": 0.9987593052109182,
-    "distinct_ingredient_phrase_count": 2877,
-    "novel_ingredient_phrase_count": 2504,
-    "rights_documented": true,
-    "repository_reuse_pass": true,
-    "attribution_classified": true,
-    "edition_semantics_classified": true,
-    "source_grounding_sample_pass": true,
-    "rights_audit_pass": true,
-    "cultural_authenticity_authority_imported": false
-  },
-  "v8010_prewrite": {
-    "status": "PASS_IMPLEMENTATION_EARNED",
-    "terminal_candidate": "STEP_8G_ARTUSI_V8010_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
-    "decision": "EARN_V8010_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE",
     "parent_version": "v8009",
     "parent_recipe_count": 10923,
     "target_version": "v8010",
     "child_recipe_count": 829,
     "target_composed_recipe_count": 11752,
-    "layer_manifest_sha256": "7a1cefb2928f133efd011afa47f763098581394fe596bd676fd37eca2654a4c8",
-    "population_plan_sha256": "d62629884fc1da42acf7748db51f1fc98166e26d2edf503bb5504ee31adb0d66",
     "body_shard_rows": [
       430,
       399
@@ -180,118 +127,100 @@
     "body_batch_count": 83,
     "route_batch_count": 83,
     "max_rows_per_batch": 10,
-    "max_body_bytes": 8155,
-    "max_batch_body_bytes": 44790,
-    "max_write_request_bytes": 18485,
-    "max_allowed_write_request_bytes": 262144,
-    "request_size_pass": true,
-    "two_shard_capacity_pass": true,
-    "cumulative_per_shard_rows": [
-      5919,
-      5833
-    ],
-    "cumulative_layered_physical_body_bytes": 44512380,
     "max_planned_d1_subqueries": 16,
     "max_allowed_d1_subqueries": 16,
-    "limiting_operation": "routeWriteFresh",
-    "ten_layer_hydration_canary_d1_subqueries": 4,
-    "bounded_hydration_worst_case_d1_subqueries": 11,
     "d1_budget_headroom_assumed": false,
-    "live_d1_writes_performed": 0,
-    "protected_population_completed": false
+    "expected_hydration_layers": 10,
+    "implementation_state": "IMPLEMENTED_MERGED_DEPLOYED_READY_FOR_OWNER_AUTHENTICATED_PRODUCTION_POPULATION",
+    "protected_population_completed": false,
+    "production_d1_writes_performed_by_implementation": 0,
+    "public_runtime_activation_authorized": false,
+    "recommendation_admission_authorized": false,
+    "third_shard_authorized": false,
+    "billing_expansion_authorized": false
   },
   "ci_and_deployment": {
-    "artusi_measurement_workflow_run": 35434362009,
-    "artusi_measurement_workflow_job": 105874413351,
-    "artusi_v8010_prewrite_workflow_run": 35434665133,
-    "artusi_v8010_prewrite_workflow_job": 105875193330,
-    "artusi_v8010_prewrite_artifact_id": 10581217830,
-    "artusi_v8010_prewrite_artifact_zip_sha256": "c415ee32a4c18037e58e6c338f5c810b91592cd1d6453f84fa6d8bcb182debe8",
-    "pr_202_validation": "PASS",
-    "pr_202_deploy": "PASS",
-    "pr_202_cloudflare_pages": "PASS",
-    "pr_203_corpus_prewrite": "PASS",
-    "pr_203_validation": "PASS",
-    "pr_203_deploy": "PASS",
-    "pr_203_cloudflare_pages": "PASS",
-    "note": "A separate YT-CUL adaptive daily discovery check failed on the later repository state; it is tracked under the independent child programme and does not invalidate the Artusi corpus prewrite evidence."
-  },
-  "source_discovery": {
-    "latest_rebased_baseline": "v8009",
-    "latest_rebased_count": 10923,
-    "v8009_discovery_terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_CANDIDATES_FOUND",
-    "v8009_discovery_rights_review_eligible_count_before_ceska_hold": 27,
-    "sequence_note": "The highest v8009 discovery candidate Česká kuchařka was held fail-closed on provenance. Artusi was then selected, independently rights-qualified, measured, and prewritten. Do not infer a current post-Artusi remaining-candidate count until discovery is rerun after v8010 is live."
+    "implementation_pr": 205,
+    "implementation_head": "cf53416045a1be0fe6f36a2cabffc36ac2153070",
+    "implementation_merge_commit": "d1f0fec9ac6ee142145c00881f02f08f9cf5dad0",
+    "pr_v8010_runtime_contract": "PASS",
+    "pr_exact_pinned_source_and_route_fingerprint_verification": "PASS",
+    "pr_descriptor_regeneration_exact_match": "PASS",
+    "pr_api_syntax_check": "PASS",
+    "pr_owner_runner_contract_check": "PASS",
+    "pr_ci_no_production_mutation_check": "PASS",
+    "pr_public_validation": "PASS",
+    "pr_browser_validation": "PASS",
+    "pr_cloudflare_pages": "PASS",
+    "main_post_merge_validation": "PASS",
+    "main_browser_validation": "PASS",
+    "main_production_public_runtime_smoke": "PASS",
+    "main_build": "PASS",
+    "main_deploy": "PASS",
+    "main_cloudflare_pages": "PASS",
+    "pr_runtime_workflow_run": 35447843666,
+    "pr_descriptor_workflow_run": 35447843689,
+    "pr_validation_workflow_run": 35447843646,
+    "main_build_workflow_run": 35447936255,
+    "main_validation_workflow_run": 35447936742,
+    "cloudflare_deployment_id": "806d6754-b26f-4171-a84f-83629335cbdd"
   },
   "concurrent_child_programmes": {
     "youtube_culinary": {
       "state_file": "data/generated/youtube-culinary-work-unit-state.json",
       "generated_at": "2026-09-19T13:14:19.598Z",
-      "source_daily_state_fingerprint": "34b21e243f6e56e1f3599873a829876c790fe306f852f67719eb111d5a86b4a8",
       "primary_outcome": "failure",
-      "latest_quota_date": "2026-09-17",
-      "latest_daily_terminal_state": "DAILY_DISCOVERY_QUOTA_PORTFOLIO_COMPLETE",
       "closure_status": "PRIMARY_RUN_FAILED",
       "material_transition": true,
-      "roadmap_handover_reconciliation": "STATIC_ROADMAP_AND_HANDOVER_RECONCILIATION_REQUIRED_IF_CONTINUATION_CHANGES",
       "successor_action": "RECONCILE_CURRENT_DURABLE_STATE_BEFORE_RETRY",
-      "next_trigger_disposition": "NO_EQUIVALENT_LIVE_RETRY_BEFORE_RECONCILIATION",
-      "scheduler_disposition": "RECONCILE_BEFORE_RETRY",
-      "authority_note": "Do not retry or mutate the YouTube programme from the corpus lane. No automatic Knowledge Core promotion, app admission, publication or paid infrastructure is authorized."
+      "concurrent_pr": 206,
+      "concurrent_pr_scope": "Quota-resilience repair. It is independent of the corpus lane and based on the Artusi merge commit.",
+      "authority_note": "Do not modify, merge around, replay, or retry YT-CUL from the corpus lane. Fresh-reconcile PR #206 and generated state before any future YT-CUL action."
     }
   },
-  "active_human_gate": "NONE",
+  "active_human_gate": {
+    "type": "OWNER_AUTHENTICATED_PRODUCTION_WRITE",
+    "target": "ARTUSI_V8010_PROTECTED_POPULATION",
+    "production_origin": "https://culinary-recommender-app.pages.dev",
+    "runner_path": "/step8g-v8010-populate.html",
+    "required_state_before_run": "Current same-browser Culinary owner session",
+    "action": "Owner opens the production v8010 runner and selects Run / resume v8010.",
+    "expected_terminal": "STEP_8G_ARTUSI_V8010_PROTECTED_POPULATION_PASS",
+    "expected_final_active_version": "v8010",
+    "expected_child_recipe_count": 829,
+    "expected_parent_recipe_count": 10923,
+    "expected_composed_recipe_count": 11752,
+    "expected_body_batch_count": 83,
+    "expected_route_batch_count": 83,
+    "expected_shard_count": 2,
+    "expected_hydration_layers": 10,
+    "expected_max_d1_subqueries": 16,
+    "restart_safe": true,
+    "stop_if": "Any runner failure, auth/session error, binding error, free-limit fail-closed result, fingerprint mismatch, route/body verification mismatch, hydration/rollback mismatch, unexpected D1 budget result, or other non-PASS terminal."
+  },
   "legal_corpus_baseline": {
     "status": "NOT_YET_EARNED",
     "current_live_admitted_protected_recipe_count": 10923,
     "current_live_corpus_version": "v8009",
-    "v8010_candidate_composed_recipe_count": 11752,
-    "reason": "The Legal Corpus First decision is not satisfied by recipe count alone. Artusi has earned v8010 implementation but has not yet been production-populated, and materially valuable rights-review candidates remain in the source universe. Continue the rights-clean scale loop until marginal value, technical/cost constraints, or another explicit stop condition bounds the useful corpus.",
-    "pass_must_record": [
-      "admitted recipe count and corpus version",
-      "source/cohort inventory",
-      "rights/reuse basis per cohort or record where required",
-      "provenance completeness",
-      "attribution/disclosure requirement and readiness",
-      "held/rejected cohorts and reasons",
-      "storage/retrieval/cost measurements",
-      "authentication/private-data boundary verification"
-    ]
+    "after_successful_v8010_owner_run_candidate_count": 11752,
+    "reason": "Artusi v8010 is implemented and deployed but has not crossed the owner-authenticated production population gate. Even after a successful v8010 run, LEGAL_CORPUS_BASELINE_PASS must be separately reassessed rather than inferred from recipe count alone."
   },
   "next_iteration": {
-    "status": "V8010_IMPLEMENTATION_READY",
-    "next_action": "IMPLEMENT_ARTUSI_V8010_PROTECTED_RUNTIME",
-    "implementation_scope": [
-      "freeze or generate the exact v8010 runtime descriptor from the accepted prewrite evidence",
-      "implement v8010 protected runtime core using parent v8009 and exact Artusi cohort tuple",
-      "implement bounded ten-layer hydration across v8001 through v8010",
-      "add authenticated /api/step8g/v8010 production endpoint",
-      "add exact pinned-source/fingerprint payload verifier",
-      "add v8010 runtime boundary tests",
-      "add restart-safe owner production runner for v8010",
-      "add CI proving zero production mutation and the unchanged <=16 D1-subquery envelope",
-      "merge only after normal validation and deployment pass",
-      "then stop at the owner-authenticated v8010 production-population gate"
-    ],
-    "expected_owner_gate_after_deployment": {
-      "target_version": "v8010",
-      "expected_child_recipe_count": 829,
-      "expected_parent_recipe_count": 10923,
-      "expected_composed_recipe_count": 11752,
-      "expected_shard_count": 2,
-      "expected_max_d1_subqueries": 16,
-      "expected_hydration_layers": 10
-    },
-    "after_future_live_pass": [
-      "capture exact terminal evidence and closeout v8010",
-      "fresh-rebase source discovery against live v8010 / 11,752",
-      "preserve Magyar and Česká provenance holds",
-      "select next source-specific rights review candidate",
+    "status": "HUMAN_GATE__V8010_OWNER_AUTHENTICATED_PRODUCTION_POPULATION_READY",
+    "next_action": "OWNER_RUN_OR_RESUME_STEP8G_V8010_PRODUCTION_POPULATION",
+    "after_pass": [
+      "capture exact v8010 terminal evidence",
+      "write v8010 live PASS evidence and closeout documentation",
+      "verify active pointer v8010 and exact 11,752 composition",
+      "verify ten-layer hydration, rollback/fail-closed proof, idempotent replay and <=16 D1 subqueries",
+      "fresh-rebase source discovery against live v8010 / 11,752 while preserving Magyar and Česká holds",
+      "select the next rights-clean source candidate or bound marginal source value",
       "reassess LEGAL_CORPUS_BASELINE_PASS without automatically opening downstream lanes"
-    ]
+    ],
+    "no_autonomous_crossing": "The owner-authenticated production-write gate cannot be crossed by CI or repository automation."
   },
   "not_authorized": [
-    "No v8010 production D1 population before implementation, CI/deployment and the owner-authenticated browser gate.",
+    "No v8010 production D1 population without the owner-authenticated browser gate.",
     "No paid infrastructure or billing/automatic overage authorization.",
     "No third D1 shard.",
     "No D1 query-budget expansion beyond 16.",
@@ -300,14 +229,14 @@
     "No generic web scraping/crawling.",
     "No browser-direct protected database access.",
     "No custom shared-password downgrade.",
-    "No Nutrition lane mutation before its roadmap turn.",
-    "No YT-CUL retry/mutation from the corpus lane.",
+    "No Nutrition or recommendation lane mutation before roadmap authority.",
+    "No YT-CUL mutation/retry from the corpus lane, including concurrent PR #206.",
     "No Knowledge Core mutation from the app lane unless separately authorized.",
     "No automatic inference of cultural authenticity, nutrition, allergen, dietary or scaling authority from historical source provenance.",
-    "No automatic declaration of LEGAL_CORPUS_BASELINE_PASS from the Artusi prewrite or future v8010 live PASS alone."
+    "No automatic declaration of LEGAL_CORPUS_BASELINE_PASS from v8010 deployment or future v8010 live PASS alone."
   ],
   "stop_conditions": [
-    "An owner-authenticated v8010 production-write gate is reached after implementation and deployment.",
+    "The current owner-authenticated v8010 production-write gate.",
     "Paid infrastructure or billing would be required.",
     "Two-shard topology proves insufficient and a third shard would be required.",
     "A runtime operation exceeds or requires expansion beyond the existing 16 D1-subquery ceiling.",
@@ -317,5 +246,5 @@
     "A genuine unrecoverable technical error occurs.",
     "A continuation/chat-memory boundary is reached."
   ],
-  "terminal_instruction_for_new_chat": "Continue from docs/handovers/CURRENT.json. Fresh-reconcile GitHub first. Live protected production is v8009 / 10,923 with terminal STEP_8G_MENON_V8009_PROTECTED_POPULATION_PASS, two shards, max observed D1 16/16 and zero assumed headroom. PR #201 holds Česká kuchařka 1883 fail-closed on author/provenance mismatch. PR #202 qualified Pellegrino Artusi, La scienza in cucina e l'arte di mangiar bene: 829 ORA records, 829/829 parseable, 805 novel normalized titles, rights/provenance/edition semantics and attribution gates PASS. PR #203 then earned v8010 prewrite implementation authority: parent v8009 / 10,923, child 829, target v8010 / 11,752, two shards, 83 batches, <=10 rows/batch, max planned D1 16/16, no production writes. No human gate is currently active. Next action is autonomous Artusi v8010 protected-runtime implementation, CI and deployment; stop only when the owner-authenticated v8010 production-population gate is reached or another genuine gate/error occurs. LEGAL_CORPUS_BASELINE_PASS remains unearned. Preserve Magyar and Česká holds. Separately, YT-CUL-5E is PRIMARY_RUN_FAILED with a material transition and must be reconciled before any retry; do not retry it from the corpus lane."
+  "terminal_instruction_for_new_chat": "Continue from docs/handovers/CURRENT.json and fresh-reconcile GitHub first. Artusi v8010 implementation PR #205 is merged at d1f0fec9ac6ee142145c00881f02f08f9cf5dad0 and post-merge validation/build/deploy/Cloudflare are green. No v8010 production D1 writes have occurred; protected production remains Menon v8009 / 10,923 with max D1 16/16. Human gate: in the same browser with a current Culinary owner session, open /step8g-v8010-populate.html on the production origin and Run / resume v8010. Expected PASS is STEP_8G_ARTUSI_V8010_PROTECTED_POPULATION_PASS with final active v8010 / 11,752, 83 body and 83 route batches, two shards, ten-layer hydration, rollback fail-closed proof, idempotent replay and max D1 <=16. On PASS, capture/commit live evidence and closeout, then rebase source discovery and reassess LEGAL_CORPUS_BASELINE_PASS. Preserve Magyar and Česká holds. Separately, PR #206 is an open concurrent YT-CUL quota-resilience repair based on this Artusi merge; do not mutate or retry YT-CUL from the corpus lane."
 }
