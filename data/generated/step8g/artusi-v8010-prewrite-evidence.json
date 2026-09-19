@@ -1,0 +1,178 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ARTUSI_V8010_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_ARTUSI_V8010_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-19",
+  "workflowRun": 35434665133,
+  "workflowJob": 105875193330,
+  "artifactId": 10581217830,
+  "artifactZipSha256": "c415ee32a4c18037e58e6c338f5c810b91592cd1d6453f84fa6d8bcb182debe8",
+  "source": {
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "collection": "cucina-italiana",
+    "recordCount": 829,
+    "measurementTerminal": "STEP_8G_ORA_ARTUSI_1891_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+    "sourceCohort": {
+      "cohortId": "ORA_ARTUSI_1891_SCIENZA_CUCINA_GUTENBERG_59047",
+      "sourceWork": "La scienza in cucina e l'arte di mangiar bene",
+      "sourceAuthor": "Pellegrino Artusi",
+      "sourceAuthorClassification": "IDENTIFIED_AUTHOR",
+      "sourceYear": "1891",
+      "sourceYearSemantics": "WORK_FIRST_PUBLICATION_YEAR",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/59047",
+      "digitizedEditionYear": "1922",
+      "digitizedEditionLabel": "25th edition",
+      "digitizedEditionRecipeCount": 790,
+      "recordCount": 829,
+      "licenseId": "public-domain",
+      "packetDescriptorSha256": "33a6efb308ae002048049e498df12bebd98fed6b99c2d987877d2d058ee30982"
+    },
+    "repositoryLayerLicense": "Unlicense",
+    "culturalAuthenticityAuthorityImported": false
+  },
+  "parent": {
+    "activeCorpusVersion": "v8009",
+    "composedRecipeCount": 10923,
+    "fingerprintSha256": "ce72534d3afc0058a1a3ac19335f36f23bca4c440a16e8e5fff6796fe2423309",
+    "fingerprintMaterial": {
+      "activeCorpusVersion": "v8009",
+      "composedRecipeCount": 10923,
+      "liveTerminal": "STEP_8G_MENON_V8009_PROTECTED_POPULATION_PASS",
+      "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "layerManifestSha256": "b4419eae1a4403988f65fe10b70c319a99f0c48d34bd44721310f3c1da1ebc0e",
+      "populationPlanSha256": "f2a99f619a9088bcb4072517e5a2d1588240ca1880058d2c277ed5c6d1db78b7",
+      "bodyShardRows": [
+        380,
+        372
+      ],
+      "parentCompositionRouteCount": 10171,
+      "composedRouteCount": 10923
+    }
+  },
+  "layer": {
+    "corpusVersion": "v8010",
+    "parentCorpusVersion": "v8009",
+    "recipeCount": 829,
+    "manifestSha256": "7a1cefb2928f133efd011afa47f763098581394fe596bd676fd37eca2654a4c8",
+    "populationPlanSha256": "d62629884fc1da42acf7748db51f1fc98166e26d2edf503bb5504ee31adb0d66",
+    "batchCount": 83,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 8155,
+    "maxBatchBodyBytes": 44790,
+    "maxWriteRequestBytes": 18485,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "operationBudget": {
+      "authD1Subqueries": 1,
+      "maxRowsPerBatch": 10,
+      "operations": {
+        "status": 1,
+        "bindings": 3,
+        "freeLimitSimulation": 1,
+        "initialize": 8,
+        "bodyWriteFresh": 15,
+        "bodyWriteReplay": 3,
+        "progress": 7,
+        "copyParentRoutesFresh": 6,
+        "routeWriteFresh": 16,
+        "routeWriteReplay": 4,
+        "activate": 8,
+        "rollback": 3,
+        "tenLayerHydrationCanary": 4,
+        "boundedHydrationWorstCase": 11,
+        "evidence": 7
+      },
+      "maxPlannedD1Subqueries": 16,
+      "maxAllowedD1Subqueries": 16,
+      "limitingOperations": [
+        "routeWriteFresh"
+      ],
+      "pass": true,
+      "headroomAssumed": false
+    },
+    "shardDescriptors": [
+      {
+        "shardNumber": 0,
+        "rowCount": 430,
+        "totalBodyBytes": 1580810,
+        "firstOrdinal": 2,
+        "lastOrdinal": 828,
+        "entriesSha256": "23896acd3e78230fe987c9d3c754b1ded53249841a05256ed2927f669a887a00"
+      },
+      {
+        "shardNumber": 1,
+        "rowCount": 399,
+        "totalBodyBytes": 1462680,
+        "firstOrdinal": 0,
+        "lastOrdinal": 825,
+        "entriesSha256": "12c6a84de8f58551ad5eb024300f2576715da85c9d65af14f081c6efaa1de75e"
+      }
+    ],
+    "batchIdsSha256": "f807febfec44ddb9cb16e38a019a4845eba28c612a00cf361dbcdba6039e8124"
+  },
+  "composition": {
+    "activeCorpusVersion": "v8010",
+    "parentCorpusVersion": "v8009",
+    "cumulativeRecipeCount": 11752,
+    "capacity": {
+      "parentLayeredPhysicalBodyBytes": 41468890,
+      "addedLayerBodyBytes": 3043490,
+      "layeredPhysicalBodyBytes": 44512380,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {
+          "shardNumber": 0,
+          "parentRowCount": 5489,
+          "addedRowCount": 430,
+          "rowCount": 5919,
+          "parentBodyBytes": 20945262,
+          "addedBodyBytes": 1580810,
+          "totalBodyBytes": 22526072,
+          "withinProjectDatabaseBudget": true
+        },
+        {
+          "shardNumber": 1,
+          "parentRowCount": 5434,
+          "addedRowCount": 399,
+          "rowCount": 5833,
+          "parentBodyBytes": 20523628,
+          "addedBodyBytes": 1462680,
+          "totalBodyBytes": 21986308,
+          "withinProjectDatabaseBudget": true
+        }
+      ]
+    },
+    "routing": {
+      "shardCount": 2,
+      "mode": "CONTROL_INDEX_EXACT_ROUTE_THEN_BATCH_HYDRATE_BY_SHARD",
+      "fullCorpusScans": 0,
+      "maxProtectedD1Subqueries": 16,
+      "d1BudgetHeadroomAssumed": false
+    }
+  },
+  "gates": {
+    "requestSizePass": true,
+    "operationBudgetPass": true,
+    "capacityPass": true,
+    "topologyPass": true,
+    "countPass": true,
+    "batchSizePass": true,
+    "uniqueIdsPass": true,
+    "bodySizePass": true
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "d1BudgetExpansion": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "step8fReopened": false
+  },
+  "decision": "EARN_V8010_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE"
+}
