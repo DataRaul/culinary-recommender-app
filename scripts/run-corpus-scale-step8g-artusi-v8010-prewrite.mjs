@@ -287,7 +287,11 @@ const evidence = {
       sourceAuthor: SOURCE.sourceAuthor,
       sourceAuthorClassification: SOURCE.authorClassification,
       sourceYear: SOURCE.sourceYear,
+      sourceYearSemantics: SOURCE.sourceYearSemantics,
       sourceUrl: SOURCE.sourceUrl,
+      digitizedEditionYear: SOURCE.digitizedEditionYear,
+      digitizedEditionLabel: SOURCE.digitizedEditionLabel,
+      digitizedEditionRecipeCount: SOURCE.digitizedEditionRecipeCount,
       recordCount: SOURCE.expectedRecipeCount,
       licenseId: SOURCE.license,
       packetDescriptorSha256
