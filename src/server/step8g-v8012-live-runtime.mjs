@@ -32,7 +32,7 @@ export const STEP8G_V8012_LIVE_SHARD_SPECS = STEP8B_LIVE_SHARD_SPECS;
 
 const SOURCE_REPOSITORY = "AdamBouhmad/open-recipe-archive";
 const SOURCE_COLLECTION = "wiener-kueche";
-const PARENT_VERSIONS = ["v8001", "v8002", "v8003", "v8004", "v8005", "v8006", "v8007", "v8008", "v8009", "v8011"];
+const PARENT_VERSIONS = ["v8001", "v8002", "v8003", "v8004", "v8005", "v8006", "v8007", "v8008", "v8009", "v8010", "v8011"];
 const SOURCES = Object.freeze([
   Object.freeze({
     cohortId: "ORA_SELESKOWITZ_1883_WIENER_KOCHBUCH_BUB_GB_OP8YAQAAMAAJ",
