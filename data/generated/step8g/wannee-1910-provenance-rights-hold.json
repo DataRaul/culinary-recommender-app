@@ -1,0 +1,53 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_WANNEE_1910_PROVENANCE_RIGHTS_HOLD_V1",
+  "date": "2026-09-19",
+  "pass": false,
+  "terminal": "STEP_8G_HOLD_WANNEE_1910_DIGITIZED_EDITION_RIGHTS_MISMATCH",
+  "sourceRepository": "AdamBouhmad/open-recipe-archive",
+  "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+  "collection": "hollandse-keuken",
+  "recipeCount": 1067,
+  "oraIdentity": {
+    "sourceTitle": "Kookboek van de Amsterdamse Huishoudschool",
+    "sourceAuthor": "C.J. Wannée",
+    "sourceYear": "1910",
+    "sourceUrl": "https://archive.org/details/bwb_Y0-BXP-037",
+    "licenseId": "public-domain"
+  },
+  "independentFindings": {
+    "originalAuthor": "Cornelia Johanna Wannée",
+    "originalAuthorLife": "1880-1932",
+    "firstEditionYear": 1910,
+    "exactDigitizedItemActualEdition": "14th edition",
+    "exactDigitizedItemEditionYear": 1958,
+    "exactDigitizedItemAdditionalEditor": "R. Lotgering-Hillebrand",
+    "additionalEditorLife": "1892-1984",
+    "digitizedItemContainsLaterRevisionMaterial": true,
+    "oraSourceYearDoesNotIdentifyDigitizedEditionYear": true
+  },
+  "rightsBoundary": {
+    "euOrdinaryLiteraryTerm": "life_plus_70_years",
+    "originalWanneeLayerPublicDomainByAge": true,
+    "laterLotgeringHillebrandEditorialLayerSafelyPublicDomain": false,
+    "exactDigitizedSourceReusableAsBlanketPublicDomain": false,
+    "privateRuntimeCreatesPermission": false
+  },
+  "sources": [
+    "https://collecties.kb.nl/themas/koken/kookboeken-uit-1901-1945",
+    "https://archive.org/details/bwb_Y0-BXP-037",
+    "https://archive.org/stream/bwb_Y0-BXP-037/bwb_Y0-BXP-037_djvu.txt",
+    "https://search.worldcat.org/title/Kookboek-van-de-Amsterdamse-Huishoudschool/oclc/150289436",
+    "https://www.nationaalarchief.nl/onderzoeken/fotocollectie/a9ce5674-d0b4-102d-bcf8-003048976d84",
+    "https://eur-lex.europa.eu/eli/dir/2006/116/oj"
+  ],
+  "decision": "HOLD_SOURCE_PROVENANCE_AND_RIGHTS_FAIL_CLOSED",
+  "measurementAuthorized": false,
+  "prewriteAuthorized": false,
+  "protectedPopulationAuthorized": false,
+  "publicRuntimeChangeAuthorized": false,
+  "recommendationAdmissionAuthorized": false,
+  "thirdShardAuthorized": false,
+  "d1BudgetExpansionAuthorized": false,
+  "billingExpansionAuthorized": false,
+  "resolutionRequired": "A source-grounded edition whose reused text is independently shown to be public domain or otherwise licensed, with exact edition provenance separated from the 1958 Lotgering-Hillebrand revision layer."
+}
