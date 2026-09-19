@@ -1,0 +1,116 @@
+# Step 8G — Frøken Jensen 1921 rights and bounded measurement
+
+Date: 2026-09-19
+
+Status: `PASS_RIGHTS__V8010_MEASUREMENT_PENDING__NO_PREWRITE`
+
+Pinned source repository: `AdamBouhmad/open-recipe-archive`
+
+Pinned commit: `ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8`
+
+Exact ORA cohort:
+
+- Collection: `danske-kokken`
+- Source work: *Frøken Jensens kogebog*
+- ORA author: `Kristine Marie Jensen`
+- ORA source year: `1921`
+- Source-year semantics: **exact reused edition/printing year**
+- Exact source URL: `https://archive.org/details/frkenjensensko00jens`
+- Exact digitized edition: **23rd printing, 1921**
+- Exact ORA candidate records: **1,372**
+- ORA licence marker: `public-domain`
+
+## Source identity and rights basis
+
+Rights marker:
+
+`PASS_RIGHTS_VERIFIED_BOUNDED_FROKEN_JENSEN_1921_23RD_PRINTING`
+
+The exact source packet is independently supportable rather than relying on ORA metadata alone.
+
+1. The Internet Archive item identifies *Frøken Jensens kogebog*, Kristine Marie Jensen, publication date 1921, Copenhagen publisher Gyldendalske Boghandel / Nordisk Forlag, and marks the item `NOT_IN_COPYRIGHT`:
+   `https://archive.org/details/frkenjensensko00jens`
+
+2. The exact OCR/title page states `TREOGTYVENDE OPLAG` (23rd printing) and the Roman-numeral year 1921:
+   `https://archive.org/stream/frkenjensensko00jens/frkenjensensko00jens_djvu.txt`
+
+3. Dansk Biografisk Leksikon records Kristine Marie Jensen as 17 July 1858–7 February 1923. Lex records that *Frøken Jensens Kogebog* first appeared in 1901 and reached 27 printings during Jensen's lifetime:
+   `https://biografiskleksikon.lex.dk/Kristine_Marie_Jensen`
+   `https://lex.dk/Fr%C3%B8ken_Jensens_Kogebog`
+
+4. EU Directive 2006/116/EC Article 1 provides the ordinary literary-work term as author life plus 70 years:
+   `https://eur-lex.europa.eu/eli/dir/2006/116/oj/eng`
+
+Jensen died in 1923, so her identified authorial layer is outside the EU life-plus-70 term. The exact 1921 printing was published during her lifetime and the title page does not identify the later posthumous editorial layers that Lex says were introduced by the publisher in later editions.
+
+This classification does not rely on private deployment as a rights basis.
+
+## Provenance semantics
+
+Marker:
+
+`CLASSIFIED_SOURCE_YEAR_AS_EXACT_DIGITIZED_EDITION_1921_23RD_PRINTING`
+
+For this cohort:
+
+- `source_year=1921` is the year of the exact reused 23rd printing;
+- first publication of the work was 1901;
+- exact digitized source is Internet Archive item `frkenjensensko00jens`;
+- later attribution/UI must preserve both the historical work identity and the exact 1921 edition/printing identity.
+
+## Repository-layer reuse
+
+The pinned ORA `LICENSE.md` must independently pass the existing repository-layer Unlicense/public-domain-dedication check before downstream authority is earned.
+
+## Attribution/disclosure classification
+
+Marker:
+
+`CLASSIFIED_READY_FOR_PRIVATE_CORPUS__FROKEN_JENSEN_1921_EXACT_EDITION_ATTRIBUTION`
+
+If this cohort later becomes user-visible, retain at minimum:
+
+- historical work title;
+- author: Kristine Marie Jensen;
+- work first publication: 1901;
+- exact reused edition/printing: 23rd printing, 1921;
+- exact Internet Archive source;
+- ORA repository provenance and pinned revision;
+- reuse classification: authorial term expired + exact archive item not-in-copyright marker + pinned ORA repository-layer dedication.
+
+This does not authorize broader public corpus activation.
+
+## Measurement contract
+
+The bounded measurement must run against exact active protected `v8010` / **11,752** plus the unchanged public runtime.
+
+It must fail closed unless all of the following pass:
+
+- exact 1,372-row ORA source tuple;
+- repository-layer reuse verification;
+- rights documentation;
+- attribution/disclosure classification;
+- exact 1921 / 23rd-printing edition classification;
+- exact single-source grouping;
+- structural parseability threshold;
+- title uniqueness threshold;
+- marginal title novelty threshold against the full v8010 protected baseline.
+
+Fresh discovery already indicated 1,372 rows, 100% parseability, 1,297 novel normalized titles, and strong marginal novelty. Discovery does not substitute for this source-specific rights-aware measurement.
+
+## Boundaries
+
+This document does **not** authorize:
+
+- a v8011 prewrite;
+- protected D1 population;
+- public runtime or recommendation widening;
+- a third shard;
+- D1-query ceiling expansion;
+- paid infrastructure or billing expansion;
+- Nutrition, YT-CUL, Recipe Family or Knowledge Core mutation;
+- cultural-authenticity, nutrition, allergen, dietary, scaling or medical authority.
+
+Only a green deterministic bounded measurement may earn:
+
+`SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`
