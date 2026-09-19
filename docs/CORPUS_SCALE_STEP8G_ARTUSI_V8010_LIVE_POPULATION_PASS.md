@@ -64,8 +64,12 @@ This PASS satisfies the Artusi v8010 owner-authenticated production-write gate.
 
 It does **not by itself** earn `LEGAL_CORPUS_BASELINE_PASS`. The controlling Legal Corpus First decision requires continued rights/provenance review until the useful rights-clean corpus is bounded by diminishing marginal coverage/quality value, technical/cost constraints, or another explicit stop condition.
 
-The next no-write source-discovery run must therefore be rebased against live `v8010` / 11,752, exclude all sources protected through Artusi, preserve the exact Magyar 1901 and Česká kuchařka 1883 provenance holds, and preserve the existing `cocina-espanola` collection hold. Discovery remains non-authoritative for rights and cannot itself authorize ingestion.
+The no-write Open Recipe Archive source discovery was rebased against live `v8010` / 11,752 in workflow run `35461568341` / job `105946255252`. It passed with **25 rights-review-eligible cohorts** after excluding all eight already-protected ORA sources through Artusi, preserving the exact Magyar 1901 and Česká kuchařka 1883 provenance holds, and preserving the existing `cocina-espanola` collection hold.
+
+The highest-ranked remaining candidate is `hollandse-keuken`: C.J. Wannée, *Kookboek van de Amsterdamse Huishoudschool* (1910), 1,067 recipes, 100% parseability, 1,020 novel normalized titles, and a 0.9980430528375733 novel-title ratio. Discovery does not clear rights or authorize ingestion; the next authority is **source-specific documentary rights review only**.
 
 Recipe Family, Nutrition expansion, broad recommendation optimization, public corpus widening, third-shard work and billing expansion remain downstream or unauthorized under the current roadmap order.
 
 Canonical machine-readable live evidence: `data/generated/step8g/artusi-v8010-live-pass.json`.
+
+Fresh v8010 discovery summary: `data/generated/step8g/ora-next-source-discovery-v8010-summary.json`.
