@@ -37,6 +37,14 @@ const MENON_IDENTITY = Object.freeze({
   source_year: "1801",
   license: "public-domain"
 });
+const CESKA_KUCHARKA_PROVENANCE_HOLD = Object.freeze({
+  collection: "ceska-kuchyne",
+  source_url: "https://archive.org/details/ceska_kucharka-dumkova",
+  source_title: "Česká kuchařka",
+  author: "Marie Dumková",
+  source_year: "1883",
+  license: "public-domain"
+});
 const MAGYAR_KONYHA_PROVENANCE_HOLD = Object.freeze({
   collection: "magyar-konyha",
   source_url: "https://archive.org/details/b28112982",
@@ -192,7 +200,10 @@ const excludedSourceKeys = new Set([
   ...cocinaIdentities.map(oraSourceKey),
   oraSourceKey(MENON_IDENTITY)
 ]);
-const heldSourceKeys = new Set([oraSourceKey(MAGYAR_KONYHA_PROVENANCE_HOLD)]);
+const heldSourceKeys = new Set([
+  oraSourceKey(MAGYAR_KONYHA_PROVENANCE_HOLD),
+  oraSourceKey(CESKA_KUCHARKA_PROVENANCE_HOLD)
+]);
 const heldCollections = new Set(["cocina-espanola"]);
 const result = discoverOraNextSources({
   collectionRows: allRows,
@@ -218,16 +229,26 @@ const output = {
   },
   exclusions: {
     alreadyProtectedSources: 7,
-    heldSources: [{
-      collection: MAGYAR_KONYHA_PROVENANCE_HOLD.collection,
-      sourceUrl: MAGYAR_KONYHA_PROVENANCE_HOLD.source_url,
-      sourceTitle: MAGYAR_KONYHA_PROVENANCE_HOLD.source_title,
-      sourceAuthorAsInOra: MAGYAR_KONYHA_PROVENANCE_HOLD.author,
-      sourceYear: MAGYAR_KONYHA_PROVENANCE_HOLD.source_year,
-      reason: "ORA_AUTHOR_METADATA_CONFLICTS_WITH_EXACT_1901_SOURCE_BIBLIOGRAPHY"
-    }],
+    heldSources: [
+      {
+        collection: MAGYAR_KONYHA_PROVENANCE_HOLD.collection,
+        sourceUrl: MAGYAR_KONYHA_PROVENANCE_HOLD.source_url,
+        sourceTitle: MAGYAR_KONYHA_PROVENANCE_HOLD.source_title,
+        sourceAuthorAsInOra: MAGYAR_KONYHA_PROVENANCE_HOLD.author,
+        sourceYear: MAGYAR_KONYHA_PROVENANCE_HOLD.source_year,
+        reason: "ORA_AUTHOR_METADATA_CONFLICTS_WITH_EXACT_1901_SOURCE_BIBLIOGRAPHY"
+      },
+      {
+        collection: CESKA_KUCHARKA_PROVENANCE_HOLD.collection,
+        sourceUrl: CESKA_KUCHARKA_PROVENANCE_HOLD.source_url,
+        sourceTitle: CESKA_KUCHARKA_PROVENANCE_HOLD.source_title,
+        sourceAuthorAsInOra: CESKA_KUCHARKA_PROVENANCE_HOLD.author,
+        sourceYear: CESKA_KUCHARKA_PROVENANCE_HOLD.source_year,
+        reason: "ORA_AUTHOR_METADATA_CONFLICTS_WITH_CZECH_NATIONAL_LIBRARY_1883_MONOGRAPH"
+      }
+    ],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8009 are excluded, including Menon 1801. The exact 1901 magyar-konyha source is held for provenance/author mismatch, and cocina-espanola remains under its existing collection rights hold."
+    reason: "All exact sources protected through v8009 are excluded, including Menon 1801. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys are held for provenance/author mismatch, and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
