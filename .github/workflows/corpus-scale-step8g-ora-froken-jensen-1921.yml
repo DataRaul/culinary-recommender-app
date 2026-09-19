@@ -1,0 +1,92 @@
+name: Corpus Scale Step 8G Frøken Jensen 1921 measurement
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-ora-froken-jensen-1921.yml'
+      - 'scripts/corpus-scale-step8g-ora-froken-jensen-1921-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-ora-froken-jensen-1921.mjs'
+      - 'tests/corpus-scale-step8g-ora-froken-jensen-1921.test.js'
+      - 'docs/CORPUS_SCALE_STEP8G_FROKEN_JENSEN_1921_RIGHTS_AND_MEASUREMENT.md'
+      - 'data/generated/step8g/froken-jensen-1921-v8010-measurement.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-ora-froken-jensen-1921-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  measure-froken-jensen-1921:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - name: Checkout pinned ForkRecipe protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: futurechef/forkrecipe-recipes
+          ref: c32255266af39bd77444d39452f3df8088ac8fd9
+          path: forkrecipe
+
+      - name: Checkout pinned UniTools protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: farcrak/unitools-recipes
+          ref: 1d09e9548d957dd0375301146a86dddf5e269c1b
+          path: unitools
+
+      - name: Checkout pinned CC0 protected baseline
+        uses: actions/checkout@v4
+        with:
+          repository: sylGauthier/recipes
+          ref: b12e481d1c220a13e0847a34e148d5872a16928e
+          path: cc0-recipes
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test Frøken Jensen 1921 source-specific gate
+        run: node --test tests/corpus-scale-step8g-ora-froken-jensen-1921.test.js
+
+      - name: Measure exact 1372-row Frøken Jensen cohort against live v8010 baseline
+        run: >-
+          node scripts/run-corpus-scale-step8g-ora-froken-jensen-1921.mjs
+          --ora=./open-recipe-archive
+          --forkrecipe=./forkrecipe
+          --unitools=./unitools
+          --cc0=./cc0-recipes
+          --rights-doc=./docs/CORPUS_SCALE_STEP8G_FROKEN_JENSEN_1921_RIGHTS_AND_MEASUREMENT.md
+          --out=.tmp/step8g-froken-jensen-1921-measurement
+
+      - name: Verify bounded measurement authority and no-write boundaries
+        run: >-
+          node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-froken-jensen-1921-measurement/measurement.json","utf8"));
+          if(p.pass!==true||p.terminal!=="STEP_8G_ORA_FROKEN_JENSEN_1921_MEASUREMENT_EARNED_COHORT_CANDIDATE")process.exit(1);
+          if(p.baseline.activeProtectedVersion!=="v8010"||p.baseline.activeProtectedCount!==11752)process.exit(1);
+          if(p.candidate?.recipeCount!==1372||p.candidate?.sourceUrl!=="https://archive.org/details/frkenjensensko00jens"||p.candidate?.sourceYearSemantics!=="EXACT_DIGITIZED_EDITION_YEAR"||p.candidate?.digitizedEditionYear!=="1921"||p.candidate?.digitizedEditionLabel!=="23rd printing")process.exit(1);
+          const g=p.gates;if(!g.rightsDocumented||!g.repositoryReusePass||!g.attributionClassified||!g.editionSemanticsClassified||!g.exactCountPass||!g.singleSourcePass||!g.rightsMetadataPass||!g.rightsAuditPass||!g.structuralQualityPass||!g.culinaryCoveragePass)process.exit(1);
+          const b=p.boundaries;if(b.liveD1WritesPerformed!==0||b.protectedPopulationAuthorized!==false||b.publicRuntimeChangeAuthorized!==false||b.recommendationAdmissionAuthorized!==false||b.thirdShardAuthorized!==false||b.d1BudgetExpansionAuthorized!==false||b.billingExpansionAuthorized!==false)process.exit(1);
+          if(p.nextAuthority!=="SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY")process.exit(1);
+          console.log(JSON.stringify({terminal:p.terminal,recipes:p.candidate.recipeCount,parseable:p.candidate.parseableRecipeRatio,unique:p.candidate.uniqueTitleRatio,novel:p.candidate.novelTitleRatio,nextAuthority:p.nextAuthority}));'
+
+      - name: Upload Frøken Jensen 1921 bounded measurement evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-froken-jensen-1921-v8010-measurement
+          path: .tmp/step8g-froken-jensen-1921-measurement/measurement.json
+          if-no-files-found: error
+          retention-days: 30
