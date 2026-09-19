@@ -70,6 +70,14 @@ const WANNEE_PROVENANCE_RIGHTS_HOLD = Object.freeze({
   source_year: "1910",
   license: "public-domain"
 });
+const SCHILLER_PROVENANCE_HOLD = Object.freeze({
+  collection: "german-kitchen",
+  source_url: "https://www.gutenberg.org/ebooks/52879",
+  source_title: "Neuestes Süddeutsches Kochbuch",
+  author: "Viktorine Schiller",
+  source_year: "1858",
+  license: "public-domain"
+});
 const COCINA_SOURCES = Object.freeze([
   Object.freeze({
     collection: "cocina-mexicana",
@@ -224,7 +232,8 @@ const excludedSourceKeys = new Set([
 const heldSourceKeys = new Set([
   oraSourceKey(MAGYAR_KONYHA_PROVENANCE_HOLD),
   oraSourceKey(CESKA_KUCHARKA_PROVENANCE_HOLD),
-  oraSourceKey(WANNEE_PROVENANCE_RIGHTS_HOLD)
+  oraSourceKey(WANNEE_PROVENANCE_RIGHTS_HOLD),
+  oraSourceKey(SCHILLER_PROVENANCE_HOLD)
 ]);
 const heldCollections = new Set(["cocina-espanola"]);
 const result = discoverOraNextSources({
@@ -275,10 +284,18 @@ const output = {
         sourceAuthorAsInOra: WANNEE_PROVENANCE_RIGHTS_HOLD.author,
         sourceYear: WANNEE_PROVENANCE_RIGHTS_HOLD.source_year,
         reason: "ORA_1910_WORK_YEAR_POINTS_TO_1958_14TH_EDITION_WITH_LATER_EDITORIAL_RIGHTS_LAYER"
+      },
+      {
+        collection: SCHILLER_PROVENANCE_HOLD.collection,
+        sourceUrl: SCHILLER_PROVENANCE_HOLD.source_url,
+        sourceTitle: SCHILLER_PROVENANCE_HOLD.source_title,
+        sourceAuthorAsInOra: SCHILLER_PROVENANCE_HOLD.author,
+        sourceYear: SCHILLER_PROVENANCE_HOLD.source_year,
+        reason: "ORA_SOURCE_YEAR_1858_CONFLICTS_WITH_EXACT_GUTENBERG_1843_TITLE_PAGE_AND_BIBLIOGRAPHY"
       }
     ],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8010 are excluded, including Menon 1801 and Artusi 1891. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; and cocina-espanola remains under its existing collection rights hold."
+    reason: "All exact sources protected through v8010 are excluded, including Menon 1801 and Artusi 1891. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
