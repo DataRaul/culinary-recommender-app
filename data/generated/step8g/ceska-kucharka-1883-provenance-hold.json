@@ -1,0 +1,54 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_CESKA_KUCHARKA_1883_PROVENANCE_HOLD_V1",
+  "date": "2026-09-19",
+  "pass": false,
+  "terminal": "STEP_8G_HOLD_CESKA_KUCHARKA_1883_PROVENANCE_AUTHOR_MISMATCH",
+  "sourceRepository": "AdamBouhmad/open-recipe-archive",
+  "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+  "collection": "ceska-kuchyne",
+  "recipeCount": 1876,
+  "oraIdentity": {
+    "sourceTitle": "Česká kuchařka",
+    "sourceUrl": "https://archive.org/details/ceska_kucharka-dumkova",
+    "sourceAuthor": "Marie Dumková",
+    "sourceYear": "1883",
+    "licenseId": "public-domain"
+  },
+  "independentEvidence": [
+    {
+      "source": "National Library of the Czech Republic — Kramerius",
+      "url": "https://kramerius.nkp.cz/kramerius/MShowMonograph.do?id=17692",
+      "finding": "The exact 1883 monograph Česká kuchařka is catalogued under author Hanna Dumková, not Marie Dumková; publisher Alois Hynek, Prague, [1883], 636 pages."
+    },
+    {
+      "source": "Czech Wikisource author authority page",
+      "url": "https://cs.wikisource.org/wiki/Autor:Hana_Dumkov%C3%A1",
+      "finding": "Hana/Hanna Dumková is identified as a Czech cookbook writer (1847–1920) and Česká kuchařka (1883) is listed among her works with the National Library copy."
+    },
+    {
+      "source": "Czech Republic e-Sbírka — Act No. 121/2000, sections 27–28",
+      "url": "https://e-sbirka.gov.cz/sb/2000/121",
+      "finding": "Economic copyright generally lasts for the author's life plus 70 years; once the term expires the work may be freely used subject to the remaining statutory conditions. The apparent age therefore does not cure an incorrect source-author identity in this project's provenance ledger."
+    }
+  ],
+  "disposition": "HOLD_SOURCE_PROVENANCE_FAIL_CLOSED",
+  "reason": "The pinned ORA source-author field identifies Marie Dumková, while the Czech National Library's exact 1883 monograph record identifies Hanna Dumková and independent author records identify Hana/Hanna Dumková. Exact provenance is therefore not sufficiently reliable to earn source-specific rights clearance.",
+  "rightsTermObservation": "The identified Hana/Hanna Dumková died in 1920, so the work appears to be outside the ordinary Czech life-plus-70 economic-rights term. This observation does not override the attribution/provenance mismatch and is not used to admit the current ORA packet.",
+  "reentryRequirements": [
+    "Correct the exact author identity for the ORA source key and reconcile Marie Dumková versus Hana/Hanna Dumková.",
+    "Establish the source-specific reuse basis using corrected provenance.",
+    "Classify attribution/disclosure requirements for the corrected identity.",
+    "Only after those gates pass may bounded v8009 marginal-value measurement or prewrite be earned."
+  ],
+  "boundaries": {
+    "sourceRightsCleared": false,
+    "boundedMeasurementEarned": false,
+    "prewriteAuthorized": false,
+    "protectedPopulationAuthorized": false,
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "billingExpansionAuthorized": false
+  }
+}
