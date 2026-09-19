@@ -2,7 +2,7 @@
 
 Date: 2026-09-19
 
-Status: `PASS_RIGHTS__V8010_MEASUREMENT_PENDING__NO_PREWRITE`
+Status: `PASS_RIGHTS__V8010_MEASUREMENT_PASS__V8011_PREWRITE_CAPACITY_ONLY`
 
 Pinned source repository: `AdamBouhmad/open-recipe-archive`
 
@@ -114,3 +114,36 @@ This document does **not** authorize:
 Only a green deterministic bounded measurement may earn:
 
 `SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`
+
+
+## Bounded measurement result
+
+Workflow run `35462036487` / job `105947499302` completed successfully.
+
+Terminal:
+
+`STEP_8G_ORA_FROKEN_JENSEN_1921_MEASUREMENT_EARNED_COHORT_CANDIDATE`
+
+Measured against active protected `v8010` / 11,752:
+
+- exact candidate rows: 1,372;
+- parseable rows: 1,372 / 1,372;
+- distinct normalized titles: 1,301;
+- unique-title ratio: 0.9482507288629738;
+- exact baseline-title overlaps: 4;
+- novel normalized titles: 1,297;
+- novel-title ratio: 0.9969254419677172;
+- distinct ingredient phrases: 3,942;
+- novel ingredient phrases: 3,449;
+- ontology-resolved occurrence ratio: 0.20641135445980668.
+
+All rights, repository-reuse, attribution, exact-edition semantics, exact-count, source-identity, structural-quality and culinary-coverage gates passed.
+
+The measurement earns only:
+
+`SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`
+
+It does not authorize protected population.
+
+Canonical public-safe measurement evidence:
+`data/generated/step8g/froken-jensen-1921-v8010-measurement.json`.
