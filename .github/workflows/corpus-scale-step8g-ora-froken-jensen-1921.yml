@@ -83,6 +83,13 @@ jobs:
           if(p.nextAuthority!=="SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY")process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,recipes:p.candidate.recipeCount,parseable:p.candidate.parseableRecipeRatio,unique:p.candidate.uniqueTitleRatio,novel:p.candidate.novelTitleRatio,nextAuthority:p.nextAuthority}));'
 
+      - name: Verify frozen Frøken Jensen measurement parity
+        run: >-
+          node -e 'const fs=require("fs");const a=JSON.parse(fs.readFileSync(".tmp/step8g-froken-jensen-1921-measurement/measurement.json","utf8"));const f=JSON.parse(fs.readFileSync("data/generated/step8g/froken-jensen-1921-v8010-measurement.json","utf8"));
+          const pick=x=>({schema:x.schema,pass:x.pass,terminal:x.terminal,baseline:x.baseline,candidate:x.candidate,thresholds:x.thresholds,gates:x.gates,evidenceSamples:x.evidenceSamples,nextAuthority:x.nextAuthority,boundaries:x.boundaries,date:x.date,sourceRepository:x.sourceRepository,sourceCommit:x.sourceCommit,sourcePins:x.sourcePins,publicRuntimeRecipeCount:x.publicRuntimeRecipeCount});
+          if(JSON.stringify(pick(a))!==JSON.stringify(pick(f)))process.exit(1);
+          console.log("STEP8G_FROKEN_JENSEN_1921_V8010_FROZEN_MEASUREMENT_PARITY_PASS");'
+
       - name: Upload Frøken Jensen 1921 bounded measurement evidence
         uses: actions/upload-artifact@v4
         with:
