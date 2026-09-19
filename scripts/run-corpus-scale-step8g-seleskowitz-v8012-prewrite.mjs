@@ -370,20 +370,4 @@ const validation = {
 await mkdir(resolve(args.output), { recursive: true });
 await writeFile(resolve(args.output, "prewrite-evidence.json"), `${JSON.stringify(evidence, null, 2)}\n`, "utf8");
 await writeFile(resolve(args.output, "prewrite-validation.json"), `${JSON.stringify(validation, null, 2)}\n`, "utf8");
-process.stdout.write(`${JSON.stringify({
-  pass,
-  terminalCandidate: evidence.terminalCandidate,
-  counts: validation.countContract,
-  layer: {
-    batchCount: evidence.layer.batchCount,
-    maxRowsPerBatch,
-    maxBodyBytes,
-    maxBatchBodyBytes,
-    maxWriteRequestBytes,
-    shardDescriptors: evidence.layer.shardDescriptors
-  },
-  capacity,
-  operationBudget,
-  gates: evidence.gates,
-  decision: evidence.decision
-}, null, 2)}\n`);
+process.stdout.write(`${JSON.stringify(evidence, null, 2)}\n`);
