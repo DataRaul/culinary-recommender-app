@@ -2,7 +2,7 @@
 
 Date: 2026-09-19
 
-Status: `PASS_RIGHTS__V8010_MEASUREMENT_PASS__V8011_PREWRITE_CAPACITY_ONLY`
+Status: `PASS_RIGHTS__V8010_MEASUREMENT_PASS__V8011_PREWRITE_PASS__IMPLEMENTATION_EARNED`
 
 Pinned source repository: `AdamBouhmad/open-recipe-archive`
 
@@ -147,3 +147,42 @@ It does not authorize protected population.
 
 Canonical public-safe measurement evidence:
 `data/generated/step8g/froken-jensen-1921-v8010-measurement.json`.
+
+
+## v8011 prewrite result
+
+Workflow run `35462201611` / job `105947947623` completed successfully.
+
+Terminal candidate:
+
+`STEP_8G_FROKEN_JENSEN_V8011_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED`
+
+Count contract:
+
+- parent `v8010`: 11,752;
+- Frøken Jensen child layer: 1,372;
+- candidate `v8011`: **13,124**.
+
+Existing topology/cost envelope remains valid:
+
+- protected D1 shards: **2**;
+- child rows by shard: 651 / 721;
+- candidate cumulative rows by shard: 6,570 / 6,554;
+- candidate cumulative body bytes by shard: 24,606,632 / 24,298,109;
+- cumulative layered physical body bytes: 48,904,741;
+- body batches: 139;
+- maximum rows per batch: 10;
+- maximum write request: 14,653 bytes versus 262,144 allowed;
+- planned maximum D1 subqueries: **16 / 16**;
+- limiting operation: `routeWriteFresh`;
+- bounded eleven-layer hydration worst case: 12;
+- D1-budget headroom assumed: false.
+
+Every prewrite capacity/topology/count/request/body/ID gate passed. No live D1 write, public-runtime change, recommendation admission, third shard, D1-budget expansion or billing expansion occurred.
+
+Canonical evidence:
+`data/generated/step8g/froken-jensen-v8011-prewrite-evidence.json`.
+
+Decision:
+
+`EARN_V8011_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE`
