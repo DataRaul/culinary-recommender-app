@@ -2,7 +2,7 @@
 
 Date: 2026-09-19
 
-Status: `PASS_RIGHTS__V8011_MEASUREMENT_PENDING`
+Status: `PASS_RIGHTS__V8011_MEASUREMENT_EARNED_COHORT_CANDIDATE`
 
 Pinned source repository: `AdamBouhmad/open-recipe-archive`
 
@@ -76,6 +76,28 @@ If later user-visible, retain at minimum the historical title, Louise Seleskowit
 The bounded measurement must run against exact active protected `v8011` / **13,124** plus the unchanged public runtime. It must fail closed unless exact count/source identity, repository reuse, rights documentation, attribution, edition semantics, structural quality and marginal novelty all pass.
 
 Fresh no-write discovery found 1,722 rows, 100% parseability, 1,697 novel normalized titles, and a 0.994141769185706 novel-title ratio. Discovery itself does not clear rights or authorize ingestion.
+
+## Earned measurement result
+
+Frozen machine-readable evidence: `data/generated/step8g/seleskowitz-1883-v8011-measurement.json`.
+
+Terminal:
+
+`STEP_8G_ORA_SELESKOWITZ_1883_MEASUREMENT_EARNED_COHORT_CANDIDATE`
+
+Against active protected `v8011` / **13,124**:
+
+- exact candidate rows: **1,722**
+- parseable rows: **1,722 / 1,722**
+- distinct normalized titles: **1,707**
+- exact baseline title overlaps: **10**
+- novel normalized titles: **1,697**
+- novel-title ratio: **0.994141769185706**
+- distinct ingredient phrases: **5,603**
+- novel ingredient phrases: **4,956**
+- all rights, repository-reuse, attribution, edition-semantics, exact-count, structural-quality and culinary-coverage gates: **PASS**
+
+The only earned downstream authority is `SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`.
 
 ## Boundaries
 
