@@ -87,7 +87,7 @@ jobs:
           const menon=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/b22019935");
           if(!menon||!menon.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
           if(p.rightsReviewEligibleCount!==26)process.exit(1);
-          if(p.topRightsReviewCandidates?.[0]?.sourceTitle!=="La scienza in cucina e l'arte di mangiar bene")process.exit(1);
+          if(p.topRightsReviewCandidates?.[0]?.sourceUrl!=="https://www.gutenberg.org/ebooks/59047")process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle,nextAuthority:p.nextAuthority}));'
 
       - name: Expose compact discovery summary
