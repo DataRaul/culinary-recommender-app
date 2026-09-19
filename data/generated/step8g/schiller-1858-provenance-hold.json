@@ -1,0 +1,43 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_SCHILLER_1858_PROVENANCE_HOLD_V1",
+  "date": "2026-09-19",
+  "pass": false,
+  "terminal": "STEP_8G_HOLD_SCHILLER_1858_SOURCE_YEAR_MISMATCH_GUTENBERG_1843",
+  "sourceRepository": "AdamBouhmad/open-recipe-archive",
+  "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+  "collection": "german-kitchen",
+  "recipeCount": 885,
+  "oraIdentity": {
+    "sourceTitle": "Neuestes Süddeutsches Kochbuch",
+    "sourceAuthor": "Viktorine Schiller",
+    "sourceYear": "1858",
+    "sourceUrl": "https://www.gutenberg.org/ebooks/52879",
+    "licenseId": "public-domain"
+  },
+  "independentFindings": {
+    "exactGutenbergTitle": "Neuestes Süddeutsches Kochbuch für alle Stände",
+    "exactGutenbergAuthor": "Viktorine Schiller",
+    "exactGutenbergTitlePagePublicationPlace": "Stuttgart",
+    "exactGutenbergTitlePagePublisher": "E. Schweizerbart'sche Verlagshandlung",
+    "exactGutenbergTitlePageYear": 1843,
+    "gutenbergCopyrightMarker": "Public domain in the USA",
+    "bibliographicSupportYear": 1843,
+    "oraSourceYearMatchesExactDigitizedSource": false
+  },
+  "sources": [
+    "https://www.gutenberg.org/ebooks/52879",
+    "https://www.gutenberg.org/files/52879/52879-h/52879-h.htm",
+    "https://de.wikisource.org/wiki/Kochb%C3%BCcher"
+  ],
+  "decision": "HOLD_SOURCE_PROVENANCE_FAIL_CLOSED",
+  "rightsStatus": "NOT_REJECTED_ON_COPYRIGHT_AGE__PROVENANCE_MISMATCH_CONTROLS",
+  "measurementAuthorized": false,
+  "prewriteAuthorized": false,
+  "protectedPopulationAuthorized": false,
+  "publicRuntimeChangeAuthorized": false,
+  "recommendationAdmissionAuthorized": false,
+  "thirdShardAuthorized": false,
+  "d1BudgetExpansionAuthorized": false,
+  "billingExpansionAuthorized": false,
+  "resolutionRequired": "Reconcile the ORA source_year=1858 against the exact Gutenberg 1843 source and encode an independently supported edition/year provenance tuple before any measurement."
+}

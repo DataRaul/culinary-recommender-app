@@ -60,7 +60,7 @@ jobs:
       - name: Test source-discovery contract
         run: node --test tests/corpus-scale-step8g-ora-next-source-discovery.test.js
 
-      - name: Scan source-level ORA cohorts against active v8009 baseline
+      - name: Scan source-level ORA cohorts against active v8010 baseline
         run: >-
           node scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs
           --ora=./open-recipe-archive
@@ -72,7 +72,7 @@ jobs:
       - name: Verify discovery remains no-write and cannot clear rights
         run: >-
           node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-ora-next-source-discovery/discovery.json","utf8"));
-          if(p.baseline.activeProtectedVersion!=="v8009"||p.baseline.activeProtectedCount!==10923)process.exit(1);
+          if(p.baseline.activeProtectedVersion!=="v8010"||p.baseline.activeProtectedCount!==11752)process.exit(1);
           const b=p.boundaries;
           if(b.liveD1WritesPerformed!==0||b.sourceRightsClearedByDiscovery!==false||b.measurementEarnedByDiscovery!==false||b.protectedPopulationAuthorized!==false||b.publicRuntimeChangeAuthorized!==false||b.recommendationAdmissionAuthorized!==false||b.thirdShardAuthorized!==false||b.d1BudgetExpansionAuthorized!==false||b.billingExpansionAuthorized!==false)process.exit(1);
           if(p.exclusions.heldCollections.includes("cocina-espanola")!==true)process.exit(1);
@@ -86,8 +86,18 @@ jobs:
           if(!ceskaExcluded||!ceskaExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
           const menon=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/b22019935");
           if(!menon||!menon.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
-          if(p.rightsReviewEligibleCount!==26)process.exit(1);
-          if(p.topRightsReviewCandidates?.[0]?.sourceUrl!=="https://www.gutenberg.org/ebooks/59047")process.exit(1);
+          const artusi=p.excludedSources.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/59047");
+          if(!artusi||!artusi.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
+          const wanneeHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/bwb_Y0-BXP-037");
+          if(!wanneeHeld||wanneeHeld.reason!=="ORA_1910_WORK_YEAR_POINTS_TO_1958_14TH_EDITION_WITH_LATER_EDITORIAL_RIGHTS_LAYER")process.exit(1);
+          const wanneeExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/bwb_Y0-BXP-037");
+          if(!wanneeExcluded||!wanneeExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          const schillerHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/52879");
+          if(!schillerHeld||schillerHeld.reason!=="ORA_SOURCE_YEAR_1858_CONFLICTS_WITH_EXACT_GUTENBERG_1843_TITLE_PAGE_AND_BIBLIOGRAPHY")process.exit(1);
+          const schillerExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/52879");
+          if(!schillerExcluded||!schillerExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          if(p.rightsReviewEligibleCount!==23)process.exit(1);
+          if(p.topRightsReviewCandidates?.[0]?.sourceUrl!=="https://archive.org/details/frkenjensensko00jens")process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle,nextAuthority:p.nextAuthority}));'
 
       - name: Expose compact discovery summary
