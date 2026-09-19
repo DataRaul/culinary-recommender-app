@@ -1,0 +1,166 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ORA_NEXT_SOURCE_DISCOVERY_V8009_SUMMARY_V1",
+  "date": "2026-09-19",
+  "workflowRun": 35433855145,
+  "workflowJob": 105873090635,
+  "artifactId": 10581961714,
+  "pass": true,
+  "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_CANDIDATES_FOUND",
+  "baseline": {
+    "activeProtectedVersion": "v8009",
+    "activeProtectedCount": 10923,
+    "baselineRecipeObjects": 11008,
+    "distinctNormalizedTitles": 10388,
+    "distinctIngredientPhrases": 25940
+  },
+  "collectionCount": 31,
+  "sourceGroupCount": 59,
+  "measuredCandidateCount": 29,
+  "rightsReviewEligibleCount": 27,
+  "nextAuthority": "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY",
+  "topRightsReviewCandidates": [
+    {
+      "collection": "ceska-kuchyne",
+      "sourceTitle": "Česká kuchařka",
+      "sourceAuthor": "Marie Dumková",
+      "sourceYear": "1883",
+      "sourceUrl": "https://archive.org/details/ceska_kucharka-dumkova",
+      "recipeCount": 1876,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9493603411513859,
+      "exactBaselineTitleOverlapCount": 1,
+      "novelNormalizedTitleCount": 1780,
+      "novelTitleRatio": 0.9994385176866929,
+      "novelIngredientPhraseCount": 3688
+    },
+    {
+      "collection": "cucina-italiana",
+      "sourceTitle": "La scienza in cucina e l'arte di mangiar bene",
+      "sourceAuthor": "Pellegrino Artusi",
+      "sourceYear": "1891",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/59047",
+      "recipeCount": 829,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9722557297949337,
+      "exactBaselineTitleOverlapCount": 1,
+      "novelNormalizedTitleCount": 805,
+      "novelTitleRatio": 0.9987593052109182,
+      "novelIngredientPhraseCount": 2504
+    },
+    {
+      "collection": "hollandse-keuken",
+      "sourceTitle": "Kookboek van de Amsterdamse Huishoudschool",
+      "sourceAuthor": "C.J. Wannée",
+      "sourceYear": "1910",
+      "sourceUrl": "https://archive.org/details/bwb_Y0-BXP-037",
+      "recipeCount": 1067,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9578256794751641,
+      "exactBaselineTitleOverlapCount": 2,
+      "novelNormalizedTitleCount": 1020,
+      "novelTitleRatio": 0.9980430528375733,
+      "novelIngredientPhraseCount": 2677
+    },
+    {
+      "collection": "german-kitchen",
+      "sourceTitle": "Neuestes Süddeutsches Kochbuch",
+      "sourceAuthor": "Viktorine Schiller",
+      "sourceYear": "1858",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/52879",
+      "recipeCount": 885,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9615819209039548,
+      "exactBaselineTitleOverlapCount": 2,
+      "novelNormalizedTitleCount": 849,
+      "novelTitleRatio": 0.9976498237367802,
+      "novelIngredientPhraseCount": 2674
+    },
+    {
+      "collection": "danske-kokken",
+      "sourceTitle": "Frøken Jensens kogebog",
+      "sourceAuthor": "Kristine Marie Jensen",
+      "sourceYear": "1921",
+      "sourceUrl": "https://archive.org/details/frkenjensensko00jens",
+      "recipeCount": 1372,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9482507288629738,
+      "exactBaselineTitleOverlapCount": 4,
+      "novelNormalizedTitleCount": 1297,
+      "novelTitleRatio": 0.9969254419677172,
+      "novelIngredientPhraseCount": 3461
+    },
+    {
+      "collection": "wiener-kueche",
+      "sourceTitle": "Wiener Kochbuch",
+      "sourceAuthor": "Louise Seleskowitz",
+      "sourceYear": "1883",
+      "sourceUrl": "https://archive.org/details/bub_gb_oP8yAQAAMAAJ",
+      "recipeCount": 1722,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9912891986062717,
+      "exactBaselineTitleOverlapCount": 6,
+      "novelNormalizedTitleCount": 1701,
+      "novelTitleRatio": 0.9964850615114236,
+      "novelIngredientPhraseCount": 5056
+    },
+    {
+      "collection": "german-kitchen",
+      "sourceTitle": "Volks-Kochbuch",
+      "sourceAuthor": "Hedwig Heyl",
+      "sourceYear": "1905",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/13921",
+      "recipeCount": 249,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9718875502008032,
+      "exactBaselineTitleOverlapCount": 1,
+      "novelNormalizedTitleCount": 241,
+      "novelTitleRatio": 0.9958677685950413,
+      "novelIngredientPhraseCount": 924
+    },
+    {
+      "collection": "wiener-kueche",
+      "sourceTitle": "Allgemeines österreichisches oder neuestes Wiener Kochbuch",
+      "sourceAuthor": "Anna Dorn",
+      "sourceYear": "1825",
+      "sourceUrl": "https://archive.org/details/b21525936",
+      "recipeCount": 850,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9694117647058823,
+      "exactBaselineTitleOverlapCount": 4,
+      "novelNormalizedTitleCount": 820,
+      "novelTitleRatio": 0.9951456310679612,
+      "novelIngredientPhraseCount": 2505
+    }
+  ],
+  "exclusions": {
+    "alreadyProtectedSources": 7,
+    "heldSources": [
+      {
+        "collection": "magyar-konyha",
+        "sourceUrl": "https://archive.org/details/b28112982",
+        "sourceTitle": "Képes budapesti szakácskönyv",
+        "sourceAuthorAsInOra": "Rézi néni",
+        "sourceYear": "1901",
+        "reason": "ORA_AUTHOR_METADATA_CONFLICTS_WITH_EXACT_1901_SOURCE_BIBLIOGRAPHY"
+      }
+    ],
+    "heldCollections": [
+      "cocina-espanola"
+    ]
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "sourceRightsClearedByDiscovery": false,
+    "measurementEarnedByDiscovery": false,
+    "protectedPopulationAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "d1BudgetExpansionAuthorized": false,
+    "billingExpansionAuthorized": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false
+  }
+}

@@ -28,6 +28,15 @@ const ABBOTT_IDENTITY = Object.freeze({
   license: "public-domain"
 });
 const RIGAUD_EXPECTED_COUNT = 789;
+const MENON_EXPECTED_COUNT = 752;
+const MENON_IDENTITY = Object.freeze({
+  collection: "cuisine-francaise",
+  source_url: "https://archive.org/details/b22019935",
+  source_title: "La Cuisinière bourgeoise",
+  author: "Menon",
+  source_year: "1801",
+  license: "public-domain"
+});
 const MAGYAR_KONYHA_PROVENANCE_HOLD = Object.freeze({
   collection: "magyar-konyha",
   source_url: "https://archive.org/details/b28112982",
@@ -56,7 +65,7 @@ const COCINA_SOURCES = Object.freeze([
     expectedRecipeCount: 2129
   })
 ]);
-const EXPECTED_PROTECTED_COUNT = 10171;
+const EXPECTED_PROTECTED_COUNT = 10923;
 
 function parseArgs(argv) {
   const options = { ora: null, forkrecipe: null, unitools: null, cc0: null, output: ".tmp/step8g-ora-next-source-discovery" };
@@ -149,11 +158,13 @@ const cocinaIdentities = COCINA_SOURCES.map(sourceIdentityRow);
 const bwRows = allRows.filter(row => matchesIdentity(row, bwIdentity));
 const turabiRows = allRows.filter(row => matchesIdentity(row, turabiIdentity));
 const rigaudRows = allRows.filter(row => matchesIdentity(row, rigaudIdentity));
+const menonRows = allRows.filter(row => matchesIdentity(row, MENON_IDENTITY));
 const cocinaRows = cocinaIdentities.map(identity => allRows.filter(row => matchesIdentity(row, identity)));
 if (abbottRows.length !== ABBOTT_EXPECTED_COUNT) throw new Error(`ABBOTT_EXPECTED_${ABBOTT_EXPECTED_COUNT}_GOT_${abbottRows.length}`);
 if (bwRows.length !== ORA_BW_SOURCE.expectedRecipeCount) throw new Error(`BOSSE_WATANNA_EXPECTED_${ORA_BW_SOURCE.expectedRecipeCount}_GOT_${bwRows.length}`);
 if (turabiRows.length !== ORA_TURABI_SOURCE.expectedRecipeCount) throw new Error(`TURABI_EXPECTED_${ORA_TURABI_SOURCE.expectedRecipeCount}_GOT_${turabiRows.length}`);
 if (rigaudRows.length !== RIGAUD_EXPECTED_COUNT) throw new Error(`RIGAUD_EXPECTED_${RIGAUD_EXPECTED_COUNT}_GOT_${rigaudRows.length}`);
+if (menonRows.length !== MENON_EXPECTED_COUNT) throw new Error(`MENON_EXPECTED_${MENON_EXPECTED_COUNT}_GOT_${menonRows.length}`);
 for (let i = 0; i < COCINA_SOURCES.length; i++) {
   if (cocinaRows[i].length !== COCINA_SOURCES[i].expectedRecipeCount) {
     throw new Error(`COCINA_SOURCE_${i}_EXPECTED_${COCINA_SOURCES[i].expectedRecipeCount}_GOT_${cocinaRows[i].length}`);
@@ -168,16 +179,18 @@ const protectedBaseline = [
   ...bwRows.map(parseOraJsonlRecipe),
   ...turabiRows.map(parseOraJsonlRecipe),
   ...rigaudRows.map(parseOraJsonlRecipe),
-  ...cocinaRows.flat().map(parseOraJsonlRecipe)
+  ...cocinaRows.flat().map(parseOraJsonlRecipe),
+  ...menonRows.map(parseOraJsonlRecipe)
 ];
-if (protectedBaseline.length !== EXPECTED_PROTECTED_COUNT) throw new Error(`V8008_PROTECTED_BASELINE_COUNT_${protectedBaseline.length}`);
+if (protectedBaseline.length !== EXPECTED_PROTECTED_COUNT) throw new Error(`V8009_PROTECTED_BASELINE_COUNT_${protectedBaseline.length}`);
 
 const excludedSourceKeys = new Set([
   oraSourceKey(ABBOTT_IDENTITY),
   oraSourceKey(bwIdentity),
   oraSourceKey(turabiIdentity),
   oraSourceKey(rigaudIdentity),
-  ...cocinaIdentities.map(oraSourceKey)
+  ...cocinaIdentities.map(oraSourceKey),
+  oraSourceKey(MENON_IDENTITY)
 ]);
 const heldSourceKeys = new Set([oraSourceKey(MAGYAR_KONYHA_PROVENANCE_HOLD)]);
 const heldCollections = new Set(["cocina-espanola"]);
@@ -187,13 +200,13 @@ const result = discoverOraNextSources({
   excludedSourceKeys,
   heldSourceKeys,
   heldCollections,
-  activeProtectedVersion: "v8008",
+  activeProtectedVersion: "v8009",
   activeProtectedCount: EXPECTED_PROTECTED_COUNT
 });
 
 const output = {
   ...result,
-  date: "2026-09-18",
+  date: "2026-09-19",
   sourceRepository: "AdamBouhmad/open-recipe-archive",
   sourceCommit: pins.ora,
   collectionCount: index.length,
@@ -204,7 +217,7 @@ const output = {
     cc0Baseline: pins.cc0
   },
   exclusions: {
-    alreadyProtectedSources: 6,
+    alreadyProtectedSources: 7,
     heldSources: [{
       collection: MAGYAR_KONYHA_PROVENANCE_HOLD.collection,
       sourceUrl: MAGYAR_KONYHA_PROVENANCE_HOLD.source_url,
@@ -214,7 +227,7 @@ const output = {
       reason: "ORA_AUTHOR_METADATA_CONFLICTS_WITH_EXACT_1901_SOURCE_BIBLIOGRAPHY"
     }],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8008 are excluded. The exact 1901 magyar-konyha source is held for provenance/author mismatch, and cocina-espanola remains under its existing collection rights hold."
+    reason: "All exact sources protected through v8009 are excluded, including Menon 1801. The exact 1901 magyar-konyha source is held for provenance/author mismatch, and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
