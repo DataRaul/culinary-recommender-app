@@ -88,8 +88,12 @@ jobs:
           if(!menon||!menon.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
           const artusi=p.excludedSources.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/59047");
           if(!artusi||!artusi.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
-          if(p.rightsReviewEligibleCount!==25)process.exit(1);
-          if(p.topRightsReviewCandidates?.[0]?.sourceUrl!=="https://archive.org/details/bwb_Y0-BXP-037")process.exit(1);
+          const wanneeHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/bwb_Y0-BXP-037");
+          if(!wanneeHeld||wanneeHeld.reason!=="ORA_1910_WORK_YEAR_POINTS_TO_1958_14TH_EDITION_WITH_LATER_EDITORIAL_RIGHTS_LAYER")process.exit(1);
+          const wanneeExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/bwb_Y0-BXP-037");
+          if(!wanneeExcluded||!wanneeExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          if(p.rightsReviewEligibleCount!==24)process.exit(1);
+          if(p.topRightsReviewCandidates?.[0]?.sourceUrl!=="https://www.gutenberg.org/ebooks/52879")process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle,nextAuthority:p.nextAuthority}));'
 
       - name: Expose compact discovery summary
