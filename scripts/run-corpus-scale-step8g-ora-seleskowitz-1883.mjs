@@ -198,12 +198,4 @@ const output = {
 
 await mkdir(resolve(options.output), { recursive: true });
 await writeFile(resolve(options.output, "measurement.json"), `${JSON.stringify(output, null, 2)}\n`, "utf8");
-process.stdout.write(`${JSON.stringify({
-  pass: output.pass,
-  terminal: output.terminal,
-  baseline: output.baseline,
-  candidate: output.candidate,
-  gates: output.gates,
-  nextAuthority: output.nextAuthority,
-  boundaries: output.boundaries
-}, null, 2)}\n`);
+process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
