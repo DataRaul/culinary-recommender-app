@@ -80,10 +80,14 @@ jobs:
           if(!held||held.reason!=="ORA_AUTHOR_METADATA_CONFLICTS_WITH_EXACT_1901_SOURCE_BIBLIOGRAPHY")process.exit(1);
           const excluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/b28112982");
           if(!excluded||!excluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          const ceskaHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/ceska_kucharka-dumkova");
+          if(!ceskaHeld||ceskaHeld.reason!=="ORA_AUTHOR_METADATA_CONFLICTS_WITH_CZECH_NATIONAL_LIBRARY_1883_MONOGRAPH")process.exit(1);
+          const ceskaExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/ceska_kucharka-dumkova");
+          if(!ceskaExcluded||!ceskaExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
           const menon=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/b22019935");
           if(!menon||!menon.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
-          if(p.rightsReviewEligibleCount!==27)process.exit(1);
-          if(p.topRightsReviewCandidates?.[0]?.sourceTitle!=="Česká kuchařka")process.exit(1);
+          if(p.rightsReviewEligibleCount!==26)process.exit(1);
+          if(p.topRightsReviewCandidates?.[0]?.sourceTitle!=="La scienza in cucina e l'arte di mangiar bene")process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle,nextAuthority:p.nextAuthority}));'
 
       - name: Expose compact discovery summary
