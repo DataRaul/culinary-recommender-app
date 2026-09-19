@@ -1,47 +1,24 @@
 {
   "schema": "CORPUS_SCALE_STEP8G_ORA_NEXT_SOURCE_DISCOVERY_V8010_SUMMARY_V1",
   "date": "2026-09-19",
-  "workflowRun": 35461568341,
-  "workflowJob": 105946255252,
-  "artifactId": 10589089144,
+  "workflowRun": 35462201713,
+  "workflowJob": 105947958721,
+  "artifactId": 10590071281,
   "pass": true,
   "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_CANDIDATES_FOUND",
   "baseline": {
     "activeProtectedVersion": "v8010",
-    "activeProtectedCount": 11752
+    "activeProtectedCount": 11752,
+    "baselineRecipeObjects": 11837,
+    "distinctNormalizedTitles": 11193,
+    "distinctIngredientPhrases": 28444
   },
   "collectionCount": 31,
   "sourceGroupCount": 59,
-  "measuredCandidateCount": 27,
-  "rightsReviewEligibleCount": 25,
+  "measuredCandidateCount": 25,
+  "rightsReviewEligibleCount": 23,
   "nextAuthority": "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY",
   "topRightsReviewCandidates": [
-    {
-      "collection": "hollandse-keuken",
-      "sourceTitle": "Kookboek van de Amsterdamse Huishoudschool",
-      "sourceAuthor": "C.J. Wannée",
-      "sourceYear": "1910",
-      "sourceUrl": "https://archive.org/details/bwb_Y0-BXP-037",
-      "recipeCount": 1067,
-      "parseableRecipeRatio": 1,
-      "uniqueTitleRatio": 0.9578256794751641,
-      "novelTitleRatio": 0.9980430528375733,
-      "novelNormalizedTitleCount": 1020,
-      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
-    },
-    {
-      "collection": "german-kitchen",
-      "sourceTitle": "Neuestes Süddeutsches Kochbuch",
-      "sourceAuthor": "Viktorine Schiller",
-      "sourceYear": "1858",
-      "sourceUrl": "https://www.gutenberg.org/ebooks/52879",
-      "recipeCount": 885,
-      "parseableRecipeRatio": 1,
-      "uniqueTitleRatio": 0.9615819209039548,
-      "novelTitleRatio": 0.9976498237367802,
-      "novelNormalizedTitleCount": 849,
-      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
-    },
     {
       "collection": "danske-kokken",
       "sourceTitle": "Frøken Jensens kogebog",
@@ -119,6 +96,32 @@
       "novelTitleRatio": 0.9885057471264368,
       "novelNormalizedTitleCount": 774,
       "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
+    },
+    {
+      "collection": "louisiana-creole",
+      "sourceTitle": "La Cuisine Creole",
+      "sourceAuthor": "Lafcadio Hearn",
+      "sourceYear": "1885",
+      "sourceUrl": "https://archive.org/details/lacuisinecreolec00hear",
+      "recipeCount": 712,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9396067415730337,
+      "novelTitleRatio": 0.9715994020926756,
+      "novelNormalizedTitleCount": 650,
+      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
+    },
+    {
+      "collection": "ye-old-american",
+      "sourceTitle": "The Boston Cooking-School Cook Book",
+      "sourceAuthor": "Fannie Merritt Farmer",
+      "sourceYear": "1896",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/65061",
+      "recipeCount": 1776,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9667792792792793,
+      "novelTitleRatio": 0.9702970297029703,
+      "novelNormalizedTitleCount": 1666,
+      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
     }
   ],
   "exclusions": {
@@ -133,6 +136,16 @@
         "collection": "ceska-kuchyne",
         "sourceUrl": "https://archive.org/details/ceska_kucharka-dumkova",
         "reason": "ORA_AUTHOR_METADATA_CONFLICTS_WITH_CZECH_NATIONAL_LIBRARY_1883_MONOGRAPH"
+      },
+      {
+        "collection": "hollandse-keuken",
+        "sourceUrl": "https://archive.org/details/bwb_Y0-BXP-037",
+        "reason": "ORA_1910_WORK_YEAR_POINTS_TO_1958_14TH_EDITION_WITH_LATER_EDITORIAL_RIGHTS_LAYER"
+      },
+      {
+        "collection": "german-kitchen",
+        "sourceUrl": "https://www.gutenberg.org/ebooks/52879",
+        "reason": "ORA_SOURCE_YEAR_1858_CONFLICTS_WITH_EXACT_GUTENBERG_1843_TITLE_PAGE_AND_BIBLIOGRAPHY"
       }
     ],
     "heldCollections": [
