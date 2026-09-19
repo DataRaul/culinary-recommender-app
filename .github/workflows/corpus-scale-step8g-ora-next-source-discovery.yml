@@ -82,8 +82,8 @@ jobs:
           if(!excluded||!excluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
           const menon=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/b22019935");
           if(!menon||!menon.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
-          if(!(p.rightsReviewEligibleCount>0&&p.rightsReviewEligibleCount<28))process.exit(1);
-          if(p.topRightsReviewCandidates?.[0]?.sourceTitle==="La Cuisinière bourgeoise")process.exit(1);
+          if(p.rightsReviewEligibleCount!==27)process.exit(1);
+          if(p.topRightsReviewCandidates?.[0]?.sourceTitle!=="Česká kuchařka")process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle,nextAuthority:p.nextAuthority}));'
 
       - name: Expose compact discovery summary
