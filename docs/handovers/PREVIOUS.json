@@ -1,10 +1,10 @@
 {
-  "handover": "CULINARY_APP_LEGAL_CORPUS_FIRST_MENON_1801_MEASUREMENT_PASS_V42",
+  "handover": "CULINARY_APP_LEGAL_CORPUS_FIRST_MENON_V8009_DEPLOYED_OWNER_GATE_V43",
   "handover_date": "2026-09-18",
   "timezone": "Europe/Madrid",
-  "status": "LEGAL_CORPUS_FIRST_ACTIVE__V8008_LIVE__MAGYAR_PROVENANCE_HOLD__MENON_1801_RIGHTS_AND_MEASUREMENT_PASS__V8009_PREWRITE_READY__LEGAL_CORPUS_BASELINE_NOT_YET_EARNED",
-  "human_needed": false,
-  "handover_written_against_main_sha": "d3454ead34cc42b76b467fc5bf4b957e9aa5d5dd",
+  "status": "LEGAL_CORPUS_FIRST_ACTIVE__V8008_LIVE__MENON_V8009_IMPLEMENTED_MERGED_DEPLOYED__OWNER_AUTH_PRODUCTION_POPULATION_GATE__MAGYAR_PROVENANCE_HOLD__YT_CUL_PRIMARY_RUN_FAILED_RECONCILE_BEFORE_RETRY__LEGAL_CORPUS_BASELINE_NOT_YET_EARNED",
+  "human_needed": true,
+  "handover_written_against_main_sha": "56bf968ee10adf11fb55a059d11d48aa54af75f9",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
@@ -17,7 +17,9 @@
     "magyar_provenance_hold_merge_sha": "ddd7e9e2b760255e6da29e9d23e9f11401c46317",
     "menon_rights_measurement_pr": 195,
     "menon_rights_measurement_merge_sha": "bfd42cfb3d65865f60f447bca37441b5d4c0d7f0",
-    "latest_main_note": "main later advanced by unrelated reviewed YouTube bridge sync d3454ead34cc42b76b467fc5bf4b957e9aa5d5dd; preserve it and do not infer new corpus-lane authority from that concurrent child-programme update."
+    "menon_v8009_implementation_pr": 198,
+    "menon_v8009_implementation_merge_sha": "56bf968ee10adf11fb55a059d11d48aa54af75f9",
+    "open_pr_count_at_handover": 0
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -31,7 +33,7 @@
     "blocking_milestone": "LEGAL_CORPUS_BASELINE_PASS",
     "recipe_family": "DEFERRED_PENDING_LEGAL_CORPUS_BASELINE_PASS",
     "nutrition_lane": "DOWNSTREAM_DO_NOT_MUTATE",
-    "yt_cul_lane": "INDEPENDENT_SCHEDULED_CHILD_PROGRAMME__DO_NOT_MUTATE_FROM_CORPUS_LANE",
+    "yt_cul_lane": "INDEPENDENT_SCHEDULED_CHILD_PROGRAMME__DO_NOT_RETRY_OR_MUTATE_FROM_CORPUS_LANE",
     "recommendation_optimization": "DOWNSTREAM_DO_NOT_MUTATE",
     "knowledge_core": "READ_ONLY_RECONCILIATION_ONLY",
     "billing": "NO_BILLING_AUTHORIZATION"
@@ -46,7 +48,11 @@
     "magyar_hold_doc": "docs/CORPUS_SCALE_STEP8G_MAGYAR_KONYHA_1901_PROVENANCE_HOLD.md",
     "magyar_hold_evidence": "data/generated/step8g/magyar-konyha-1901-provenance-hold.json",
     "menon_rights_measurement_doc": "docs/CORPUS_SCALE_STEP8G_MENON_1801_RIGHTS_AND_MEASUREMENT.md",
-    "menon_measurement_evidence": "data/generated/step8g/menon-1801-v8008-measurement.json"
+    "menon_measurement_evidence": "data/generated/step8g/menon-1801-v8008-measurement.json",
+    "menon_v8009_prewrite_evidence": "data/generated/step8g/menon-v8009-prewrite-evidence.json",
+    "menon_v8009_runtime_descriptor": "data/generated/step8g/v8009-runtime-descriptor.mjs",
+    "menon_v8009_owner_runner": "step8g-v8009-populate.html",
+    "menon_v8009_api": "functions/api/step8g/v8009.js"
   },
   "operating_contract": {
     "autonomy": "Proceed autonomously through technically resolvable rights/source qualification, provenance/attribution classification, bounded measurement, protected prewrite, implementation, ordinary CI/deployment and source-audit work. Stop only for a genuine human/security/cost/source-rights/topology/unrecoverable blocker, an owner-authenticated production-write gate, or continuation boundary.",
@@ -55,7 +61,7 @@
     "authentication": "Every protected request remains server-side authenticated and authorized through the application-owned identity verifier, exact allowlist and secure session. Do not weaken or emulate the owner authentication gate.",
     "billing_firewall": "No paid infrastructure, billing enablement or automatic overage authorization.",
     "topology": "Exactly two protected recipe-body D1 shards. No third shard is authorized.",
-    "d1_budget": "Authenticated v8008 observed the existing maximum of 16/16 D1 subqueries. Zero headroom is assumed. v8009 prewrite must prove the Menon layer fits the same ceiling; otherwise stop.",
+    "d1_budget": "v8009 prewrite and implementation preserve the existing maximum of 16/16 D1 subqueries with zero assumed headroom.",
     "public_activation": "Public runtime remains 85 recipes and broader public corpus/recommendation activation is not authorized.",
     "source_authority": "Historical provenance is not authority for cultural authenticity, nutrition, allergens, dietary classification, scaling or medical claims."
   },
@@ -77,12 +83,6 @@
     "composed_recipe_count": 10171,
     "latest_terminal": "STEP_8G_COCINA_MEXICANA_V8008_PROTECTED_POPULATION_PASS",
     "shard_count": 2,
-    "eight_layer_hydration_pass": true,
-    "rollback_pass": true,
-    "rollback_hydration_fail_closed_pass": true,
-    "idempotent_body_replay_pass": true,
-    "idempotent_route_replay_pass": true,
-    "full_corpus_scans": 0,
     "max_observed_d1_subqueries": 16,
     "max_allowed_d1_subqueries": 16,
     "d1_budget_headroom_assumed": false,
@@ -91,76 +91,108 @@
     "recommendation_admission_changed": false,
     "third_shard_used": false,
     "billing_expansion": false,
-    "cultural_authenticity_authority_imported": false
+    "cultural_authenticity_authority_imported": false,
+    "note": "v8009 code is deployed but no owner-authenticated v8009 production D1 population has yet been performed."
   },
-  "completed_source_work": {
+  "menon_v8009": {
+    "source_cohort_id": "ORA_MENON_1801_CUISINIERE_BOURGEOISE_B22019935",
+    "source_repository": "AdamBouhmad/open-recipe-archive",
+    "source_commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "collection": "cuisine-francaise",
+    "source_work": "La Cuisinière bourgeoise",
+    "source_author_repository_label": "Menon",
+    "source_author_display": "Joseph Menon",
+    "source_author_classification": "IDENTIFIED_AUTHOR",
+    "source_year": "1801",
+    "source_url": "https://archive.org/details/b22019935",
+    "recipe_count": 752,
+    "parent_version": "v8008",
+    "parent_recipe_count": 10171,
+    "target_version": "v8009",
+    "target_composed_recipe_count": 10923,
+    "child_shard_rows": [
+      380,
+      372
+    ],
+    "body_batch_count": 76,
+    "route_batch_count": 76,
+    "rows_per_batch_max": 10,
+    "max_planned_d1_subqueries": 16,
+    "d1_budget_headroom_assumed": false,
+    "two_shard_capacity_pass": true,
+    "request_size_pass": true,
+    "rights_documented": true,
+    "attribution_classified": true,
+    "implementation_state": "IMPLEMENTED_MERGED_DEPLOYED_READY_FOR_OWNER_AUTHENTICATED_PRODUCTION_POPULATION",
+    "protected_population_completed": false,
+    "live_d1_writes_performed_by_implementation_pr": 0,
+    "public_runtime_activation_authorized": false,
+    "recommendation_admission_authorized": false,
+    "third_shard_authorized": false,
+    "billing_expansion_authorized": false
+  },
+  "ci_and_deployment": {
+    "implementation_pr": 198,
+    "implementation_head": "e792124585573e7e523f67673639e37ff9665d13",
+    "implementation_merge_commit": "56bf968ee10adf11fb55a059d11d48aa54af75f9",
+    "v8009_runtime_validation": "PASS",
+    "exact_pinned_source_and_route_fingerprint_verification": "PASS",
+    "api_syntax_check": "PASS",
+    "owner_runner_contract_check": "PASS",
+    "ci_no_production_mutation_check": "PASS",
+    "pr_public_validation": "PASS",
+    "main_post_merge_validation": "PASS",
+    "main_browser_validation": "PASS",
+    "main_production_public_runtime_smoke": "PASS",
+    "github_pages_build_and_deploy": "PASS",
+    "cloudflare_pages": "PASS",
+    "cloudflare_deployment_check_completed_at": "2026-09-18T16:55:35Z",
+    "cloudflare_preview_deployment_id": "650cec0c-44c1-4273-8d45-897ce1b1cc24"
+  },
+  "held_source_work": {
     "magyar_konyha_1901": {
       "status": "HOLD_SOURCE_PROVENANCE_FAIL_CLOSED",
       "terminal": "STEP_8G_HOLD_MAGYAR_KONYHA_1901_PROVENANCE_AUTHOR_MISMATCH",
       "source_url": "https://archive.org/details/b28112982",
       "recipe_count": 1240,
-      "reason": "The ORA author field Rézi néni conflicts with independent bibliography for the exact 1901 item. The cohort remains held and excluded by exact source key until provenance and rights attribution are corrected."
-    },
-    "menon_1801": {
-      "status": "PASS_RIGHTS__PASS_V8008_BOUNDED_MEASUREMENT__PREWRITE_CAPACITY_ONLY",
-      "terminal": "STEP_8G_ORA_MENON_1801_MEASUREMENT_EARNED_COHORT_CANDIDATE",
-      "cohort_id": "ORA_MENON_1801_CUISINIERE_BOURGEOISE_B22019935",
-      "source_work": "La Cuisinière bourgeoise",
-      "source_author": "Menon",
-      "source_year": "1801",
-      "source_url": "https://archive.org/details/b22019935",
-      "recipe_count": 752,
-      "parseable_recipe_count": 752,
-      "distinct_normalized_titles": 730,
-      "unique_title_ratio": 0.9707446808510638,
-      "exact_baseline_title_overlap_count": 0,
-      "novel_normalized_title_count": 730,
-      "novel_title_ratio": 1,
-      "distinct_ingredient_phrase_count": 1985,
-      "novel_ingredient_phrase_count": 1426,
-      "rights_documented": true,
-      "repository_reuse_pass": true,
-      "attribution_classified": true,
-      "rights_metadata_pass": true,
-      "structural_quality_pass": true,
-      "culinary_coverage_pass": true,
-      "workflow_run": 35342302108,
-      "workflow_job": 105590763587,
-      "next_authority": "SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY",
-      "protected_population_authorized": false,
-      "live_d1_writes_performed": 0
+      "reason": "ORA author field Rézi néni conflicts with independent bibliography for the exact 1901 item. Keep excluded by exact source key until provenance and rights attribution are corrected."
     }
-  },
-  "ci_and_deployment": {
-    "menon_pr_head": "f4250d971c84df052b6ee645183cffa54be5f532",
-    "menon_merge_commit": "bfd42cfb3d65865f60f447bca37441b5d4c0d7f0",
-    "pr_validation": "PASS",
-    "post_merge_validate": "PASS",
-    "build": "PASS",
-    "deploy": "PASS",
-    "cloudflare_pages": "PASS"
   },
   "concurrent_child_programmes": {
     "youtube_culinary": {
       "state_file": "data/generated/youtube-culinary-work-unit-state.json",
-      "closure_status": "CLOSED_CONTINUE",
-      "material_transition": false,
-      "roadmap_handover_reconciliation": "RUNTIME_STATE_CURRENT_NO_STATIC_RECONCILIATION_REQUIRED",
-      "successor_action": "WAIT_FOR_NEXT_YOUTUBE_QUOTA_DAY",
-      "authority_note": "No automatic Knowledge Core promotion, app admission, publication or paid infrastructure is authorized."
+      "generated_at": "2026-09-18T13:41:23.352Z",
+      "primary_outcome": "failure",
+      "latest_quota_date": "2026-09-17",
+      "latest_daily_terminal_state": "DAILY_DISCOVERY_QUOTA_PORTFOLIO_COMPLETE",
+      "closure_status": "PRIMARY_RUN_FAILED",
+      "material_transition": true,
+      "roadmap_handover_reconciliation": "STATIC_ROADMAP_AND_HANDOVER_RECONCILIATION_REQUIRED_IF_CONTINUATION_CHANGES",
+      "successor_action": "RECONCILE_CURRENT_DURABLE_STATE_BEFORE_RETRY",
+      "next_trigger_disposition": "NO_EQUIVALENT_LIVE_RETRY_BEFORE_RECONCILIATION",
+      "scheduler_disposition": "RECONCILE_BEFORE_RETRY",
+      "authority_note": "This handover records the generated state discrepancy. Do not retry or mutate the YouTube programme from the corpus lane. No automatic Knowledge Core promotion, app admission, publication or paid infrastructure is authorized."
     }
   },
-  "active_human_gate": "NONE",
+  "active_human_gate": {
+    "type": "OWNER_AUTHENTICATED_PRODUCTION_WRITE",
+    "target": "MENON_V8009_PROTECTED_POPULATION",
+    "production_origin": "https://culinary-recommender-app.pages.dev",
+    "runner_path": "/step8g-v8009-populate.html",
+    "required_state_before_run": "Current same-browser Culinary owner session",
+    "action": "Owner opens the production v8009 runner and selects Run / resume v8009.",
+    "expected_terminal": "STEP_8G_MENON_V8009_PROTECTED_POPULATION_PASS",
+    "expected_final_active_version": "v8009",
+    "expected_composed_recipe_count": 10923,
+    "restart_safe": true,
+    "stop_if": "Any runner failure, auth/session error, binding error, free-limit fail-closed result, fingerprint mismatch, route/body verification mismatch, unexpected D1 budget result, or other non-PASS terminal."
+  },
   "legal_corpus_baseline": {
     "status": "NOT_YET_EARNED",
-    "current_admitted_protected_recipe_count": 10171,
-    "current_corpus_version": "v8008",
-    "discovery_after_magyar_hold": {
-      "rights_review_eligible_count": 28,
-      "top_candidate_at_that_time": "Menon / La Cuisinière bourgeoise / 1801",
-      "note": "Menon has since independently passed source-specific rights and bounded v8008 measurement but is not yet prewritten or protected-populated."
-    },
-    "reason": "The legal-corpus programme still has many materially valuable source cohorts under review, and the newly qualified Menon cohort has only earned prewrite/capacity authority. It is not yet part of the protected corpus.",
+    "current_live_admitted_protected_recipe_count": 10171,
+    "current_live_corpus_version": "v8008",
+    "after_successful_v8009_owner_run_candidate_count": 10923,
+    "reason": "Menon v8009 is implemented and deployed but has not yet crossed the owner-authenticated production population gate. After a successful v8009 closeout, separately reassess whether to continue rights-clean source expansion or whether the legal-corpus baseline criteria are now sufficiently met; do not declare the baseline automatically from this implementation deployment.",
     "pass_must_record": [
       "admitted recipe count and corpus version",
       "source/cohort inventory",
@@ -173,25 +205,20 @@
     ]
   },
   "next_iteration": {
-    "status": "V8009_PREWRITE_CAPACITY_MEASUREMENT_READY",
-    "parent_version": "v8008",
-    "parent_recipe_count": 10171,
-    "candidate_cohort_id": "ORA_MENON_1801_CUISINIERE_BOURGEOISE_B22019935",
-    "candidate_source_repository": "AdamBouhmad/open-recipe-archive",
-    "candidate_source_commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
-    "candidate_collection": "cuisine-francaise",
-    "candidate_source_work": "La Cuisinière bourgeoise",
-    "candidate_source_author": "Menon",
-    "candidate_source_year": "1801",
-    "candidate_source_url": "https://archive.org/details/b22019935",
-    "candidate_recipe_count": 752,
-    "provisional_target_version": "v8009",
-    "provisional_composed_recipe_count": 10923,
-    "next_action": "BUILD_AND_RUN_SOURCE_SPECIFIC_V8009_MENON_PREWRITE_CAPACITY_MEASUREMENT_ONLY",
-    "rule": "Use the proven v8008 two-shard private-D1 architecture and exact Menon source tuple. Prewrite must prove storage, request size, deterministic IDs/routes, replay plan, parent composition, two-shard capacity and the unchanged 16-D1-subquery ceiling with zero assumed headroom. Do not implement or populate v8009 unless prewrite independently passes. Prewrite itself performs no live D1 writes."
+    "status": "HUMAN_GATE__V8009_OWNER_AUTHENTICATED_PRODUCTION_POPULATION_READY",
+    "next_action": "OWNER_RUN_OR_RESUME_STEP8G_V8009_PRODUCTION_POPULATION",
+    "after_pass": [
+      "capture exact terminal evidence",
+      "write v8009 live PASS evidence and closeout documentation",
+      "verify active pointer v8009 and exact 10,923 composition",
+      "verify nine-layer hydration, rollback/fail-closed proof, idempotent replay and <=16 D1 subqueries",
+      "fresh-discover/re-rank remaining rights-review candidates excluding admitted and held exact source keys",
+      "reassess LEGAL_CORPUS_BASELINE_PASS without reopening downstream lanes prematurely"
+    ],
+    "no_autonomous_crossing": "The owner-authenticated production-write gate cannot be crossed by CI or repository automation."
   },
   "not_authorized": [
-    "No v8009 production D1 population from the measurement PASS alone.",
+    "No v8009 production D1 population without the owner-authenticated browser gate.",
     "No paid infrastructure or billing/automatic overage authorization.",
     "No third D1 shard.",
     "No D1 query-budget expansion beyond 16.",
@@ -201,20 +228,21 @@
     "No browser-direct protected database access.",
     "No custom shared-password downgrade.",
     "No Nutrition lane mutation before its roadmap turn.",
-    "No YT-CUL mutation from the corpus lane.",
+    "No YT-CUL retry/mutation from the corpus lane.",
     "No Knowledge Core mutation from the app lane unless separately authorized.",
-    "No automatic inference of cultural authenticity, nutrition, allergen, dietary or scaling authority from historical source provenance."
+    "No automatic inference of cultural authenticity, nutrition, allergen, dietary or scaling authority from historical source provenance.",
+    "No automatic declaration of LEGAL_CORPUS_BASELINE_PASS merely because v8009 implementation is deployed."
   ],
   "stop_conditions": [
-    "An owner-authenticated production-write gate is reached.",
+    "The current owner-authenticated v8009 production-write gate.",
     "Paid infrastructure or billing would be required.",
     "Two-shard topology proves insufficient and a third shard would be required.",
-    "The v8009 prewrite cannot remain within the existing 16 D1-subquery ceiling.",
+    "A runtime operation exceeds or requires expansion beyond the existing 16 D1-subquery ceiling.",
     "Source rights/provenance become materially unresolved.",
     "Security/account/secrets action requires the owner.",
     "Marginal source value becomes too low.",
     "A genuine unrecoverable technical error occurs.",
     "A continuation/chat-memory boundary is reached."
   ],
-  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub. Live protected production remains v8008 / 10,171 recipes on exactly two shards with max observed D1 subqueries 16/16 and zero assumed headroom. PR #194 merged a fail-closed provenance hold for magyar-konyha 1901 / b28112982. PR #195 then independently qualified Menon, La Cuisinière bourgeoise (1801), exact source b22019935: 752/752 parseable, 730 distinct normalized titles, zero exact v8008 title overlaps, rights/repository-reuse/attribution/source-identity/structural/coverage gates all PASS. Terminal STEP_8G_ORA_MENON_1801_MEASUREMENT_EARNED_COHORT_CANDIDATE earns only SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY; no D1 writes occurred and v8009 population is not authorized. Next action is build/run v8009 Menon prewrite/capacity measurement against v8008, proving two-shard capacity and the unchanged 16-query ceiling before implementation. LEGAL_CORPUS_BASELINE_PASS remains unearned. Preserve unrelated YouTube child-programme state on main and do not mutate it from this lane."
+  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub and generated child-programme state. PR #198 is merged at 56bf968ee10adf11fb55a059d11d48aa54af75f9 and Menon v8009 implementation/deployment is green, including Cloudflare Pages. Live protected production nevertheless remains v8008 / 10,171 until the owner-authenticated production runner succeeds. Human gate: open the production origin at /step8g-v8009-populate.html in the same browser with a current Culinary owner session and Run / resume v8009. Expected PASS is STEP_8G_MENON_V8009_PROTECTED_POPULATION_PASS with final active v8009 / 10,923, two shards, nine-layer hydration, rollback proof, idempotent replay and max D1 <=16. On PASS, capture and commit live evidence/closeout, then continue the rights-clean source lane and reassess LEGAL_CORPUS_BASELINE_PASS. Preserve the Magyar provenance hold. Separately, the latest generated YouTube state is PRIMARY_RUN_FAILED with a material transition and requires reconciliation before any retry; do not retry it from the corpus lane."
 }
