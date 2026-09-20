@@ -126,4 +126,7 @@ test("v8014 API returns structured write-body exception diagnostics", () => {
 });
 
 
-test("v8014 owner runner exposes repaired production marker", () => {\n  const html = readFileSync(new URL("../step8g-v8014-populate.html", import.meta.url), "utf8");\n  assert.match(html, /V8014_WRITE_DIAGNOSTIC_R1/);\n});\n
+test("v8014 owner runner exposes repaired production marker", () => {
+  const html = readFileSync(new URL("../step8g-v8014-populate.html", import.meta.url), "utf8");
+  assert.match(html, /V8014_WRITE_DIAGNOSTIC_R1/);
+});
