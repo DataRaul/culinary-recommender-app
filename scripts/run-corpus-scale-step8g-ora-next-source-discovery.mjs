@@ -39,6 +39,7 @@ const MENON_IDENTITY = Object.freeze({
 });
 const ARTUSI_EXPECTED_COUNT = 829;
 const FROKEN_JENSEN_EXPECTED_COUNT = 1372;
+const SELESKOWITZ_EXPECTED_COUNT = 1722;
 const ARTUSI_IDENTITY = Object.freeze({
   collection: "cucina-italiana",
   source_url: "https://www.gutenberg.org/ebooks/59047",
@@ -53,6 +54,14 @@ const FROKEN_JENSEN_IDENTITY = Object.freeze({
   source_title: "Frøken Jensens kogebog",
   author: "Kristine Marie Jensen",
   source_year: "1921",
+  license: "public-domain"
+});
+const SELESKOWITZ_IDENTITY = Object.freeze({
+  collection: "wiener-kueche",
+  source_url: "https://archive.org/details/bub_gb_oP8yAQAAMAAJ",
+  source_title: "Wiener Kochbuch",
+  author: "Louise Seleskowitz",
+  source_year: "1883",
   license: "public-domain"
 });
 const CESKA_KUCHARKA_PROVENANCE_HOLD = Object.freeze({
@@ -95,6 +104,14 @@ const SCHILLER_PROVENANCE_HOLD = Object.freeze({
   source_year: "1858",
   license: "public-domain"
 });
+const INDIAN_COOKERY_PROVENANCE_HOLD = Object.freeze({
+  collection: "indian-kitchen",
+  source_url: "https://archive.org/details/cu31924059630735",
+  source_title: "Indian Cookery and Confectionery",
+  author: "E.P. Veerasawmy",
+  source_year: "1900",
+  license: "public-domain"
+});
 const COCINA_SOURCES = Object.freeze([
   Object.freeze({
     collection: "cocina-mexicana",
@@ -115,7 +132,7 @@ const COCINA_SOURCES = Object.freeze([
     expectedRecipeCount: 2129
   })
 ]);
-const EXPECTED_PROTECTED_COUNT = 13124;
+const EXPECTED_PROTECTED_COUNT = 14846;
 
 function parseArgs(argv) {
   const options = { ora: null, forkrecipe: null, unitools: null, cc0: null, output: ".tmp/step8g-ora-next-source-discovery" };
@@ -211,6 +228,7 @@ const rigaudRows = allRows.filter(row => matchesIdentity(row, rigaudIdentity));
 const menonRows = allRows.filter(row => matchesIdentity(row, MENON_IDENTITY));
 const artusiRows = allRows.filter(row => matchesIdentity(row, ARTUSI_IDENTITY));
 const frokenJensenRows = allRows.filter(row => matchesIdentity(row, FROKEN_JENSEN_IDENTITY));
+const seleskowitzRows = allRows.filter(row => matchesIdentity(row, SELESKOWITZ_IDENTITY));
 const cocinaRows = cocinaIdentities.map(identity => allRows.filter(row => matchesIdentity(row, identity)));
 if (abbottRows.length !== ABBOTT_EXPECTED_COUNT) throw new Error(`ABBOTT_EXPECTED_${ABBOTT_EXPECTED_COUNT}_GOT_${abbottRows.length}`);
 if (bwRows.length !== ORA_BW_SOURCE.expectedRecipeCount) throw new Error(`BOSSE_WATANNA_EXPECTED_${ORA_BW_SOURCE.expectedRecipeCount}_GOT_${bwRows.length}`);
@@ -219,6 +237,7 @@ if (rigaudRows.length !== RIGAUD_EXPECTED_COUNT) throw new Error(`RIGAUD_EXPECTE
 if (menonRows.length !== MENON_EXPECTED_COUNT) throw new Error(`MENON_EXPECTED_${MENON_EXPECTED_COUNT}_GOT_${menonRows.length}`);
 if (artusiRows.length !== ARTUSI_EXPECTED_COUNT) throw new Error(`ARTUSI_EXPECTED_${ARTUSI_EXPECTED_COUNT}_GOT_${artusiRows.length}`);
 if (frokenJensenRows.length !== FROKEN_JENSEN_EXPECTED_COUNT) throw new Error(`FROKEN_JENSEN_EXPECTED_${FROKEN_JENSEN_EXPECTED_COUNT}_GOT_${frokenJensenRows.length}`);
+if (seleskowitzRows.length !== SELESKOWITZ_EXPECTED_COUNT) throw new Error(`SELESKOWITZ_EXPECTED_${SELESKOWITZ_EXPECTED_COUNT}_GOT_${seleskowitzRows.length}`);
 for (let i = 0; i < COCINA_SOURCES.length; i++) {
   if (cocinaRows[i].length !== COCINA_SOURCES[i].expectedRecipeCount) {
     throw new Error(`COCINA_SOURCE_${i}_EXPECTED_${COCINA_SOURCES[i].expectedRecipeCount}_GOT_${cocinaRows[i].length}`);
@@ -236,9 +255,10 @@ const protectedBaseline = [
   ...cocinaRows.flat().map(parseOraJsonlRecipe),
   ...menonRows.map(parseOraJsonlRecipe),
   ...artusiRows.map(parseOraJsonlRecipe),
-  ...frokenJensenRows.map(parseOraJsonlRecipe)
+  ...frokenJensenRows.map(parseOraJsonlRecipe),
+  ...seleskowitzRows.map(parseOraJsonlRecipe)
 ];
-if (protectedBaseline.length !== EXPECTED_PROTECTED_COUNT) throw new Error(`V8011_PROTECTED_BASELINE_COUNT_${protectedBaseline.length}`);
+if (protectedBaseline.length !== EXPECTED_PROTECTED_COUNT) throw new Error(`V8012_PROTECTED_BASELINE_COUNT_${protectedBaseline.length}`);
 
 const excludedSourceKeys = new Set([
   oraSourceKey(ABBOTT_IDENTITY),
@@ -248,14 +268,16 @@ const excludedSourceKeys = new Set([
   ...cocinaIdentities.map(oraSourceKey),
   oraSourceKey(MENON_IDENTITY),
   oraSourceKey(ARTUSI_IDENTITY),
-  oraSourceKey(FROKEN_JENSEN_IDENTITY)
+  oraSourceKey(FROKEN_JENSEN_IDENTITY),
+  oraSourceKey(SELESKOWITZ_IDENTITY)
 ]);
 const heldSourceKeys = new Set([
   oraSourceKey(MAGYAR_KONYHA_PROVENANCE_HOLD),
   oraSourceKey(CESKA_KUCHARKA_PROVENANCE_HOLD),
   oraSourceKey(ANNA_DORN_1825_PROVENANCE_HOLD),
   oraSourceKey(WANNEE_PROVENANCE_RIGHTS_HOLD),
-  oraSourceKey(SCHILLER_PROVENANCE_HOLD)
+  oraSourceKey(SCHILLER_PROVENANCE_HOLD),
+  oraSourceKey(INDIAN_COOKERY_PROVENANCE_HOLD)
 ]);
 const heldCollections = new Set(["cocina-espanola"]);
 const result = discoverOraNextSources({
@@ -264,13 +286,13 @@ const result = discoverOraNextSources({
   excludedSourceKeys,
   heldSourceKeys,
   heldCollections,
-  activeProtectedVersion: "v8011",
+  activeProtectedVersion: "v8012",
   activeProtectedCount: EXPECTED_PROTECTED_COUNT
 });
 
 const output = {
   ...result,
-  date: "2026-09-19",
+  date: "2026-09-20",
   sourceRepository: "AdamBouhmad/open-recipe-archive",
   sourceCommit: pins.ora,
   collectionCount: index.length,
@@ -281,7 +303,7 @@ const output = {
     cc0Baseline: pins.cc0
   },
   exclusions: {
-    alreadyProtectedSources: 9,
+    alreadyProtectedSources: 10,
     heldSources: [
       {
         collection: MAGYAR_KONYHA_PROVENANCE_HOLD.collection,
@@ -322,10 +344,18 @@ const output = {
         sourceAuthorAsInOra: SCHILLER_PROVENANCE_HOLD.author,
         sourceYear: SCHILLER_PROVENANCE_HOLD.source_year,
         reason: "ORA_SOURCE_YEAR_1858_CONFLICTS_WITH_EXACT_GUTENBERG_1843_TITLE_PAGE_AND_BIBLIOGRAPHY"
+      },
+      {
+        collection: INDIAN_COOKERY_PROVENANCE_HOLD.collection,
+        sourceUrl: INDIAN_COOKERY_PROVENANCE_HOLD.source_url,
+        sourceTitle: INDIAN_COOKERY_PROVENANCE_HOLD.source_title,
+        sourceAuthorAsInOra: INDIAN_COOKERY_PROVENANCE_HOLD.author,
+        sourceYear: INDIAN_COOKERY_PROVENANCE_HOLD.source_year,
+        reason: "ORA_AUTHOR_METADATA_E_P_VEERASAWMY_CONFLICTS_WITH_EXACT_ARCHIVE_ITEM_MRS_I_R_DEY"
       }
     ],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8011 are excluded, including Menon 1801, Artusi 1891 and Frøken Jensen 1921. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; and cocina-espanola remains under its existing collection rights hold."
+    reason: "All exact sources protected through v8012 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921 and Seleskowitz 1883. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
