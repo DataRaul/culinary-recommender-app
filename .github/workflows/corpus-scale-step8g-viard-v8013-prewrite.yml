@@ -56,6 +56,13 @@ jobs:
           if(!Object.values(p.gates).every(Boolean))process.exit(1);
           const b=p.boundaries;if(b.liveD1WritesPerformed!==0||b.publicRuntimeChanged!==false||b.recommendationAdmissionPerformed!==false||b.thirdShardUsed!==false||b.d1BudgetExpansion!==false||b.billingExpansion!==false||b.nutritionLaneModified!==false||b.youtubeCulinaryStateModified!==false||b.knowledgeCoreWritePerformed!==false||b.culturalAuthenticityAuthorityImported!==false)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminalCandidate,counts:{parent:p.parent.composedRecipeCount,child:p.layer.recipeCount,composed:p.composition.cumulativeRecipeCount},fingerprints:{parent:p.parent.fingerprintSha256,manifest:p.layer.manifestSha256,populationPlan:p.layer.populationPlanSha256,batchIds:p.layer.batchIdsSha256,packet:p.source.sourceCohort.packetDescriptorSha256},maxWriteRequestBytes:p.layer.maxWriteRequestBytes,capacity:p.composition.capacity,operationBudget:p.layer.operationBudget,gates:p.gates}));'
+      - name: Verify frozen v8013 prewrite parity
+        run: >-
+          node -e 'const fs=require("fs");const a=JSON.parse(fs.readFileSync(".tmp/step8g-viard-v8013-prewrite/prewrite-evidence.json","utf8"));const f=JSON.parse(fs.readFileSync("data/generated/step8g/viard-v8013-prewrite-evidence.json","utf8"));
+          const pick=x=>({pass:x.pass,terminalCandidate:x.terminalCandidate,parent:x.parent,layer:{corpusVersion:x.layer.corpusVersion,parentCorpusVersion:x.layer.parentCorpusVersion,recipeCount:x.layer.recipeCount,manifestSha256:x.layer.manifestSha256,populationPlanSha256:x.layer.populationPlanSha256,batchCount:x.layer.batchCount,maxRowsPerBatch:x.layer.maxRowsPerBatch,maxBodyBytes:x.layer.maxBodyBytes,maxBatchBodyBytes:x.layer.maxBatchBodyBytes,maxWriteRequestBytes:x.layer.maxWriteRequestBytes,maxAllowedWriteRequestBytes:x.layer.maxAllowedWriteRequestBytes,requestSizePass:x.layer.requestSizePass,operationBudget:x.layer.operationBudget,shardDescriptors:x.layer.shardDescriptors,batchIdsSha256:x.layer.batchIdsSha256},composition:x.composition,gates:x.gates,boundaries:x.boundaries,decision:x.decision,source:x.source,parentFingerprint:x.parent.fingerprintSha256});
+          if(JSON.stringify(pick(a))!==JSON.stringify(pick(f)))process.exit(1);
+          console.log("STEP8G_VIARD_V8013_FROZEN_PREWRITE_PARITY_PASS");'
+
       - name: Upload public-safe v8013 prewrite evidence
         uses: actions/upload-artifact@v4
         with:
