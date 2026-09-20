@@ -2,7 +2,7 @@
 
 Date: 2026-09-20
 
-Status: `PASS_RIGHTS__V8013_MEASUREMENT_GATE_READY`
+Status: `PASS_RIGHTS__V8013_MEASUREMENT_EARNED_COHORT_CANDIDATE`
 
 Pinned source repository: `AdamBouhmad/open-recipe-archive`
 
@@ -78,3 +78,36 @@ Documentary references:
 - Open Library edition: https://openlibrary.org/books/OL7091254M/La_cuisine_creole
 - Spain Copyright Act consolidated text: https://www.boe.es/eli/es/rdlg/1996/04/12/1/con
 - EU Copyright Term Directive: https://eur-lex.europa.eu/eli/dir/2006/116/oj/eng
+
+
+## Bounded measurement result
+
+Workflow run `35506922578` completed successfully.
+
+Terminal:
+
+`STEP_8G_ORA_HEARN_1885_MEASUREMENT_EARNED_COHORT_CANDIDATE`
+
+Measured against active protected `v8013` / **15,653**:
+
+- exact candidate rows: **712**
+- parseable rows: **712 / 712**
+- distinct normalized titles: **669**
+- unique-title ratio: **0.9396067415730337**
+- exact baseline-title overlaps: **20**
+- novel normalized titles: **649**
+- novel-title ratio: **0.9701046337817638**
+- distinct ingredient phrases: **2,427**
+- novel ingredient phrases: **1,761**
+- ontology-resolved occurrence ratio: **0.19547588561673068**
+
+All rights, repository-reuse, attribution, edition-semantics, exact-count, source-identity, structural-quality and culinary-coverage gates passed.
+
+The measurement earns only:
+
+`SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`
+
+It does not authorize protected population.
+
+Canonical public-safe measurement evidence:
+`data/generated/step8g/hearn-1885-v8013-measurement.json`.
