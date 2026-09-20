@@ -20,7 +20,7 @@ import {
   buildV8013ParentFingerprint,
   plannedV8014OperationBudget
 } from "./corpus-scale-step8g-hearn-v8014-prewrite-core.mjs";
-import { ORA_VIARD_1806_SOURCE } from "./corpus-scale-step8g-ora-hearn-1806-core.mjs";
+import { ORA_HEARN_1885_SOURCE } from "./corpus-scale-step8g-ora-hearn-1885-core.mjs";
 
 const ORA_REPOSITORY = "AdamBouhmad/open-recipe-archive";
 const ORA_COMMIT = "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8";
@@ -30,7 +30,7 @@ const sha256 = value => createHash("sha256").update(String(value)).digest("hex")
 const utf8Bytes = value => encoder.encode(String(value)).byteLength;
 
 const SOURCE = Object.freeze({
-  ...ORA_VIARD_1806_SOURCE,
+  ...ORA_HEARN_1885_SOURCE,
   authorClassification: "IDENTIFIED_AUTHOR",
   idPrefix: "ora_hearn_1885_",
   packetSchema: "STEP8G_ORA_HEARN_1885_PROTECTED_SOURCE_PACKET_V1"
@@ -169,7 +169,7 @@ function buildPlan(packets) {
       publicRuntimeActivationAuthorized: false,
       evidenceRefs: [
         "data/generated/step8g/hearn-1885-v8013-measurement.json",
-        "docs/CORPUS_SCALE_STEP8G_VIARD_1806_RIGHTS_AND_MEASUREMENT.md",
+        "docs/CORPUS_SCALE_STEP8G_HEARN_1885_RIGHTS_AND_MEASUREMENT.md",
         SOURCE.sourceUrl,
         `https://github.com/${ORA_REPOSITORY}/tree/${ORA_COMMIT}/collections/${SOURCE.collection}`
       ]
