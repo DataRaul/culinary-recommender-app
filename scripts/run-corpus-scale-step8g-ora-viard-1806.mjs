@@ -141,7 +141,8 @@ const cocinaExact = COCINA_SOURCES.flatMap(source => cocinaRows.filter(row => ex
 const menonRows = frenchRows.filter(row => exact(row, ORA_MENON_1801_SOURCE));
 const artusiRows = italianRows.filter(row => exact(row, ORA_ARTUSI_1891_SOURCE));
 const frokenRows = danishRows.filter(row => exact(row, ORA_FROKEN_JENSEN_1921_SOURCE));
-const candidateRows = vienneseRows.filter(row => exact(row, ORA_VIARD_1806_SOURCE));
+const seleskowitzRows = vienneseRows.filter(row => exact(row, ORA_SELESKOWITZ_1883_SOURCE));
+const candidateRows = frenchRows.filter(row => exact(row, ORA_VIARD_1806_SOURCE));
 
 if (abbottRows.length !== ABBOTT.expectedRecipeCount) throw new Error(`ABBOTT_${abbottRows.length}`);
 if (bwRows.length !== ORA_BW_SOURCE.expectedRecipeCount) throw new Error(`BW_${bwRows.length}`);
@@ -151,6 +152,7 @@ if (cocinaExact.length !== COCINA_SOURCES.reduce((sum, source) => sum + source.e
 if (menonRows.length !== ORA_MENON_1801_SOURCE.expectedRecipeCount) throw new Error(`MENON_${menonRows.length}`);
 if (artusiRows.length !== ORA_ARTUSI_1891_SOURCE.expectedRecipeCount) throw new Error(`ARTUSI_${artusiRows.length}`);
 if (frokenRows.length !== ORA_FROKEN_JENSEN_1921_SOURCE.expectedRecipeCount) throw new Error(`FROKEN_JENSEN_${frokenRows.length}`);
+if (seleskowitzRows.length !== ORA_SELESKOWITZ_1883_SOURCE.expectedRecipeCount) throw new Error(`SELESKOWITZ_${seleskowitzRows.length}`);
 if (candidateRows.length !== ORA_VIARD_1806_SOURCE.expectedRecipeCount) throw new Error(`VIARD_${candidateRows.length}`);
 
 const protectedBaseline = [
