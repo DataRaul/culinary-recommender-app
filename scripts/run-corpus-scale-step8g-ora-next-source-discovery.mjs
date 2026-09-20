@@ -104,6 +104,14 @@ const SCHILLER_PROVENANCE_HOLD = Object.freeze({
   source_year: "1858",
   license: "public-domain"
 });
+const INDIAN_COOKERY_PROVENANCE_HOLD = Object.freeze({
+  collection: "indian-kitchen",
+  source_url: "https://archive.org/details/cu31924059630735",
+  source_title: "Indian Cookery and Confectionery",
+  author: "E.P. Veerasawmy",
+  source_year: "1900",
+  license: "public-domain"
+});
 const COCINA_SOURCES = Object.freeze([
   Object.freeze({
     collection: "cocina-mexicana",
@@ -268,7 +276,8 @@ const heldSourceKeys = new Set([
   oraSourceKey(CESKA_KUCHARKA_PROVENANCE_HOLD),
   oraSourceKey(ANNA_DORN_1825_PROVENANCE_HOLD),
   oraSourceKey(WANNEE_PROVENANCE_RIGHTS_HOLD),
-  oraSourceKey(SCHILLER_PROVENANCE_HOLD)
+  oraSourceKey(SCHILLER_PROVENANCE_HOLD),
+  oraSourceKey(INDIAN_COOKERY_PROVENANCE_HOLD)
 ]);
 const heldCollections = new Set(["cocina-espanola"]);
 const result = discoverOraNextSources({
@@ -335,10 +344,18 @@ const output = {
         sourceAuthorAsInOra: SCHILLER_PROVENANCE_HOLD.author,
         sourceYear: SCHILLER_PROVENANCE_HOLD.source_year,
         reason: "ORA_SOURCE_YEAR_1858_CONFLICTS_WITH_EXACT_GUTENBERG_1843_TITLE_PAGE_AND_BIBLIOGRAPHY"
+      },
+      {
+        collection: INDIAN_COOKERY_PROVENANCE_HOLD.collection,
+        sourceUrl: INDIAN_COOKERY_PROVENANCE_HOLD.source_url,
+        sourceTitle: INDIAN_COOKERY_PROVENANCE_HOLD.source_title,
+        sourceAuthorAsInOra: INDIAN_COOKERY_PROVENANCE_HOLD.author,
+        sourceYear: INDIAN_COOKERY_PROVENANCE_HOLD.source_year,
+        reason: "ORA_AUTHOR_METADATA_E_P_VEERASAWMY_CONFLICTS_WITH_EXACT_ARCHIVE_ITEM_MRS_I_R_DEY"
       }
     ],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8012 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921 and Seleskowitz 1883. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; and cocina-espanola remains under its existing collection rights hold."
+    reason: "All exact sources protected through v8012 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921 and Seleskowitz 1883. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
