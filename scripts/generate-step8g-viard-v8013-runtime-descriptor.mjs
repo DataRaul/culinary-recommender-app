@@ -32,7 +32,7 @@ const SOURCE = Object.freeze({
   license: "public-domain",
   expectedRecipeCount: 807,
   idPrefix: "ora_viard_1806_",
-  packetSchema: "STEP8G_ORA_SELESKOWITZ_1883_PROTECTED_SOURCE_PACKET_V1"
+  packetSchema: "STEP8G_ORA_VIARD_1806_PROTECTED_SOURCE_PACKET_V1"
 });
 const encoder = new TextEncoder();
 const sha256 = value => createHash("sha256").update(String(value)).digest("hex");
@@ -143,12 +143,12 @@ function buildPlan(packets) {
       id: SOURCE.cohortId,
       sourceName: `${SOURCE.sourceTitle} (${SOURCE.expectedRecipeCount}-record rights-cleared historical cohort)`,
       sourceVersion: SOURCE_COMMIT,
-      admissionState: "STEP_8G_ORA_SELESKOWITZ_1883_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+      admissionState: "STEP_8G_ORA_VIARD_1806_MEASUREMENT_EARNED_COHORT_CANDIDATE",
       protectedPopulationAllowed: true,
       publicRuntimeActivationAuthorized: false,
       evidenceRefs: [
-        "data/generated/step8g/viard-1883-v8012-measurement.json",
-        "docs/CORPUS_SCALE_STEP8G_SELESKOWITZ_1883_RIGHTS_AND_MEASUREMENT.md",
+        "data/generated/step8g/viard-1806-v8012-measurement.json",
+        "docs/CORPUS_SCALE_STEP8G_VIARD_1806_RIGHTS_AND_MEASUREMENT.md",
         SOURCE.sourceUrl,
         `https://github.com/${SOURCE_REPOSITORY}/tree/${SOURCE_COMMIT}/collections/${SOURCE.collection}`
       ]
@@ -213,7 +213,7 @@ const descriptor = {
 
 const outputPath = resolve(args.output);
 await mkdir(dirname(outputPath), { recursive: true });
-await writeFile(outputPath, `export const STEP8G_V8012_RUNTIME_DESCRIPTOR=Object.freeze(${JSON.stringify(descriptor)});\n`, "utf8");
+await writeFile(outputPath, `export const STEP8G_V8013_RUNTIME_DESCRIPTOR=Object.freeze(${JSON.stringify(descriptor)});\n`, "utf8");
 process.stdout.write(`${JSON.stringify({
   pass: true,
   output: args.output,
