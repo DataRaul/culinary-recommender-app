@@ -1,10 +1,10 @@
 {
-  "handover": "CULINARY_APP_LEGAL_CORPUS_FIRST_VIARD_V8013_LIVE_HEARN_V8014_IMPLEMENTED_OWNER_GATE_V49",
+  "handover": "CULINARY_APP_LEGAL_CORPUS_FIRST_VIARD_V8013_LIVE_HEARN_V8014_WRITE_REPAIR_OWNER_GATE_V50",
   "handover_date": "2026-09-20",
   "timezone": "Atlantic/Canary",
-  "status": "HUMAN_NEEDED__V8013_LIVE_15653__HEARN_V8014_RIGHTS_MEASUREMENT_PREWRITE_IMPLEMENTATION_MERGED__OWNER_AUTH_PRODUCTION_WRITE_GATE__LEGAL_CORPUS_BASELINE_NOT_YET_EARNED",
+  "status": "HUMAN_NEEDED__V8013_LIVE_15653__HEARN_V8014_FIRST_OWNER_ATTEMPT_OPAQUE_BODY_WRITE_500__REPAIR_MERGED__OWNER_AUTH_RETRY_GATE__LEGAL_CORPUS_BASELINE_NOT_YET_EARNED",
   "human_needed": true,
-  "handover_written_against_main_sha": "19155d12397c851a1b164be742472e14e9b32bda",
+  "handover_written_against_main_sha": "19700e5c8ef17660c67b5fe29fbd9279b79029c3",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
@@ -12,7 +12,9 @@
     "implementation_pr": 214,
     "implementation_merge_sha": "19155d12397c851a1b164be742472e14e9b32bda",
     "open_pr_count_at_handover": 0,
-    "concurrent_open_prs": []
+    "concurrent_open_prs": [],
+    "repair_pr": 216,
+    "repair_merge_sha": "19700e5c8ef17660c67b5fe29fbd9279b79029c3"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -140,7 +142,7 @@
     "expected_hydration_layers": 14,
     "prewrite_manifest_sha256": "a5448c3d7acb1defe048d6811c685aa92cb8e2d9db72d23020eb8b4f421e9807",
     "prewrite_population_plan_sha256": "02d20193647dd5c3b3a14556332cb3bfca2f7212c9d359b15f1142c792f59a47",
-    "implementation_state": "IMPLEMENTED_MERGED_READY_FOR_OWNER_AUTHENTICATED_PRODUCTION_POPULATION",
+    "implementation_state": "IMPLEMENTED_MERGED__FIRST_OWNER_ATTEMPT_STOPPED_AT_BODY_BATCH_1_OPAQUE_HTTP_500__DIAGNOSTIC_REPAIR_MERGED__READY_FOR_OWNER_RETRY_AFTER_PRODUCTION_DEPLOY_VERIFICATION",
     "protected_population_completed": false,
     "production_d1_writes_performed_by_implementation": 0,
     "public_runtime_activation_authorized": false,
@@ -161,7 +163,15 @@
     "cloudflare_preview_deploy": "PASS",
     "cloudflare_preview_url": "https://a02f0a39.culinary-recommender-app.pages.dev",
     "main_contains_v8014_runner": true,
-    "production_pages_post_merge_verification": "NOT_INDEPENDENTLY_OBSERVABLE_FROM_AVAILABLE_TOOLS__VERIFY_BEFORE_OWNER_RUN"
+    "production_pages_post_merge_verification": "NOT_INDEPENDENTLY_OBSERVABLE_FROM_AVAILABLE_TOOLS__VERIFY_BEFORE_OWNER_RUN",
+    "repair_pr": 216,
+    "repair_merge_commit": "19700e5c8ef17660c67b5fe29fbd9279b79029c3",
+    "repair_v8014_runtime_run": 35529233914,
+    "repair_public_validation_run": 35529233807,
+    "repair_checks_pass": true,
+    "repair_cloudflare_preview_deploy": "PASS",
+    "repair_cloudflare_preview_url": "https://4a64d01e.culinary-recommender-app.pages.dev",
+    "production_pages_post_repair_verification": "NOT_INDEPENDENTLY_OBSERVABLE_FROM_AVAILABLE_TOOLS__VERIFY_BEFORE_OWNER_RETRY"
   },
   "concurrent_child_programmes": {
     "youtube_culinary": {
@@ -184,8 +194,8 @@
     "target": "HEARN_V8014_PROTECTED_POPULATION",
     "production_origin": "https://culinary-recommender-app.pages.dev",
     "runner_path": "/step8g-v8014-populate.html",
-    "precondition": "Verify production serves the merged v8014 runner, then use a current same-browser Culinary owner session.",
-    "action": "Owner opens the production v8014 runner and selects Run / resume v8014.",
+    "precondition": "Verify production serves the merged PR #216 repaired v8014 runner, then use a current same-browser Culinary owner session.",
+    "action": "Owner opens the production v8014 runner and selects Run / resume v8014 once. The repaired runner will perform at most one automatic restart-safe retry only if an opaque 5xx/unknown-commit response occurs.",
     "expected_terminal": "STEP_8G_HEARN_V8014_PROTECTED_POPULATION_PASS",
     "expected_final_active_version": "v8014",
     "expected_child_recipe_count": 712,
@@ -231,5 +241,44 @@
     "No automatic cultural-authenticity, nutrition, allergen, dietary, scaling or medical authority.",
     "No automatic declaration of LEGAL_CORPUS_BASELINE_PASS from v8014 implementation or future live PASS alone."
   ],
-  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub and docs/handovers/CURRENT.json first. Viard v8013 is live at 15,653 after STEP_8G_VIARD_V8013_PROTECTED_POPULATION_PASS. PR #214 merged at 19155d12397c851a1b164be742472e14e9b32bda, preserving all prior holds, adding the Heyl 1905 contributor-rights hold, and adding Lafcadio Hearn 1885 rights + measurement PASS, v8014 prewrite PASS, exact descriptor and complete owner-gated v8014 runtime. No v8014 production writes occurred. Verify production serves /step8g-v8014-populate.html, then owner runs/resumes v8014. Expected PASS: active v8014 / 16,365, child 712, parent 15,653, 72 body + 72 route batches, two shards, fourteen-layer hydration, rollback fail-closed, idempotent replay and max D1 <=16. Preserve all existing holds. YT-CUL remains independent and must not be manually retried from corpus lane."
+  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub and docs/handovers/CURRENT.json first. Viard v8013 remains live at 15,653. Hearn v8014 implementation is merged, but the first owner production attempt stopped immediately at body batch 1/72 with opaque HTTP 500 NON_JSON_RESPONSE after session/status/bindings/free-limit/initialize all passed. PR #216 merged at 19700e5c8ef17660c67b5fe29fbd9279b79029c3 and adds structured write-body diagnostics plus exactly one restart-safe automatic retry for opaque 5xx/unknown-commit-state responses; all v8014 runtime and public validation CI passed and the Cloudflare PR preview deployed successfully. No corpus/fingerprint/batch/topology/query-ceiling changes were made. Verify production serves the repaired /step8g-v8014-populate.html, then owner runs/resumes v8014 once. If it passes, expect active v8014 / 16,365. If it fails, capture the full repaired JSON including diagnostic status/contentType/cfRay/bodyPrefix or STEP8G_V8014_WRITE_BODY_EXCEPTION reason; do not request a blind equivalent retry.",
+  "last_owner_attempt": {
+    "pass": false,
+    "completed": [
+      "session",
+      "status",
+      "bindings",
+      "free-limit",
+      "initialize"
+    ],
+    "failed_step": "write-body",
+    "failed_batch": "1/72",
+    "observed_http_status": 500,
+    "browser_error": "NON_JSON_RESPONSE",
+    "protected_active_version_remains": "v8013",
+    "interpretation": "Failure occurred after initialization and before any verified v8014 body-batch completion. Exact commit state of the first body batch was not established by the opaque response; restart-safe logic must verify on retry."
+  },
+  "repair": {
+    "pr": 216,
+    "merge_sha": "19700e5c8ef17660c67b5fe29fbd9279b79029c3",
+    "branch": "repair/v8014-opaque-write-500",
+    "changes": [
+      "write-body unexpected exceptions return structured owner-only JSON where catchable",
+      "runner preserves HTTP status/content-type/cf-ray/truncated non-JSON body prefix",
+      "runner performs exactly one restart-safe retry only for opaque 5xx or existing unknown-commit-state condition"
+    ],
+    "corpus_or_fingerprint_changed": false,
+    "batch_geometry_changed": false,
+    "d1_topology_changed": false,
+    "d1_query_ceiling_changed": false,
+    "ci": {
+      "v8014_live_runtime_run": 35529233914,
+      "v8014_live_runtime": "PASS",
+      "public_validation_run": 35529233807,
+      "public_validation": "PASS",
+      "cloudflare_preview_deploy": "PASS",
+      "preview_url": "https://4a64d01e.culinary-recommender-app.pages.dev"
+    },
+    "production_deployment_verification": "NOT_INDEPENDENDENTLY_OBSERVABLE_FROM_AVAILABLE_TOOLS__VERIFY_PRODUCTION_SERVES_REPAIR_BEFORE_OWNER_RETRY"
+  }
 }
