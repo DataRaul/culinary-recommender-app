@@ -3,7 +3,7 @@ import { execFileSync } from "node:child_process";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
-import { STEP8G_V8013_RUNTIME_DESCRIPTOR } from "../data/generated/step8g/v8013-runtime-descriptor.mjs";
+import { STEP8G_V8012_RUNTIME_DESCRIPTOR } from "../data/generated/step8g/v8012-runtime-descriptor.mjs";
 import { buildStep8APopulationPlan } from "./corpus-scale-step8a-core.mjs";
 import { STEP8G_MAX_DATABASE_BYTES, STEP8G_MAX_ROWS_PER_WRITE_BATCH, STEP8G_MAX_TOTAL_BYTES, STEP8G_SHARD_COUNT } from "./corpus-scale-step8g-population-core.mjs";
 import { parseOraJsonlRecipe } from "./corpus-scale-step8g-ora-bosse-watanna-core.mjs";
@@ -20,7 +20,7 @@ import {
   buildV8012ParentFingerprint,
   plannedV8013OperationBudget
 } from "./corpus-scale-step8g-viard-v8013-prewrite-core.mjs";
-import { ORA_SELESKOWITZ_1883_SOURCE } from "./corpus-scale-step8g-ora-viard-1806-core.mjs";
+import { ORA_VIARD_1806_SOURCE } from "./corpus-scale-step8g-ora-viard-1806-core.mjs";
 
 const ORA_REPOSITORY = "AdamBouhmad/open-recipe-archive";
 const ORA_COMMIT = "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8";
@@ -30,7 +30,7 @@ const sha256 = value => createHash("sha256").update(String(value)).digest("hex")
 const utf8Bytes = value => encoder.encode(String(value)).byteLength;
 
 const SOURCE = Object.freeze({
-  ...ORA_SELESKOWITZ_1883_SOURCE,
+  ...ORA_VIARD_1806_SOURCE,
   authorClassification: "IDENTIFIED_AUTHOR",
   idPrefix: "ora_viard_1806_",
   packetSchema: "STEP8G_ORA_VIARD_1806_PROTECTED_SOURCE_PACKET_V1"
@@ -169,7 +169,7 @@ function buildPlan(packets) {
       publicRuntimeActivationAuthorized: false,
       evidenceRefs: [
         "data/generated/step8g/viard-1806-v8012-measurement.json",
-        "docs/CORPUS_SCALE_STEP8G_SELESKOWITZ_1883_RIGHTS_AND_MEASUREMENT.md",
+        "docs/CORPUS_SCALE_STEP8G_VIARD_1806_RIGHTS_AND_MEASUREMENT.md",
         SOURCE.sourceUrl,
         `https://github.com/${ORA_REPOSITORY}/tree/${ORA_COMMIT}/collections/${SOURCE.collection}`
       ]
@@ -244,11 +244,11 @@ const [candidate, measurement, parentPrewrite, parentLive] = await Promise.all([
   readFile(resolve(args.parentLive), "utf8").then(JSON.parse)
 ]);
 
-if (measurement?.pass !== true || measurement?.terminal !== "STEP_8G_ORA_VIARD_1806_MEASUREMENT_EARNED_COHORT_CANDIDATE" || Number(measurement?.candidate?.recipeCount) !== STEP8G_VIARD_V8013_CHILD_COUNT) throw new Error("EARNED_SELESKOWITZ_MEASUREMENT_REQUIRED");
+if (measurement?.pass !== true || measurement?.terminal !== "STEP_8G_ORA_VIARD_1806_MEASUREMENT_EARNED_COHORT_CANDIDATE" || Number(measurement?.candidate?.recipeCount) !== STEP8G_VIARD_V8013_CHILD_COUNT) throw new Error("EARNED_VIARD_MEASUREMENT_REQUIRED");
 if (measurement?.nextAuthority !== "SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY") throw new Error("MEASUREMENT_PREWRITE_ONLY_AUTHORITY_REQUIRED");
 if (measurement?.boundaries?.liveD1WritesPerformed !== 0 || measurement?.boundaries?.protectedPopulationAuthorized !== false || measurement?.boundaries?.thirdShardAuthorized !== false || measurement?.boundaries?.billingExpansionAuthorized !== false) throw new Error("MEASUREMENT_BOUNDARY_MISMATCH");
 
-const parentFingerprint = buildV8012ParentFingerprint({ prewriteEvidence: parentPrewrite, liveEvidence: parentLive, runtimeDescriptor: STEP8G_V8013_RUNTIME_DESCRIPTOR });
+const parentFingerprint = buildV8012ParentFingerprint({ prewriteEvidence: parentPrewrite, liveEvidence: parentLive, runtimeDescriptor: STEP8G_V8012_RUNTIME_DESCRIPTOR });
 const packets = buildPackets(candidate);
 const plan = buildPlan(packets);
 const capacity = computeCapacity(parentPrewrite, plan);
