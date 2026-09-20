@@ -121,6 +121,14 @@ const INDIAN_COOKERY_PROVENANCE_HOLD = Object.freeze({
   source_year: "1900",
   license: "public-domain"
 });
+const HEYL_1905_CONTRIBUTOR_RIGHTS_HOLD = Object.freeze({
+  collection: "german-kitchen",
+  source_url: "https://www.gutenberg.org/ebooks/13921",
+  source_title: "Volks-Kochbuch",
+  author: "Hedwig Heyl",
+  source_year: "1905",
+  license: "public-domain"
+});
 const COCINA_SOURCES = Object.freeze([
   Object.freeze({
     collection: "cocina-mexicana",
@@ -290,7 +298,8 @@ const heldSourceKeys = new Set([
   oraSourceKey(ANNA_DORN_1825_PROVENANCE_HOLD),
   oraSourceKey(WANNEE_PROVENANCE_RIGHTS_HOLD),
   oraSourceKey(SCHILLER_PROVENANCE_HOLD),
-  oraSourceKey(INDIAN_COOKERY_PROVENANCE_HOLD)
+  oraSourceKey(INDIAN_COOKERY_PROVENANCE_HOLD),
+  oraSourceKey(HEYL_1905_CONTRIBUTOR_RIGHTS_HOLD)
 ]);
 const heldCollections = new Set(["cocina-espanola"]);
 const result = discoverOraNextSources({
@@ -365,10 +374,18 @@ const output = {
         sourceAuthorAsInOra: INDIAN_COOKERY_PROVENANCE_HOLD.author,
         sourceYear: INDIAN_COOKERY_PROVENANCE_HOLD.source_year,
         reason: "ORA_AUTHOR_METADATA_E_P_VEERASAWMY_CONFLICTS_WITH_EXACT_ARCHIVE_ITEM_MRS_I_R_DEY"
+      },
+      {
+        collection: HEYL_1905_CONTRIBUTOR_RIGHTS_HOLD.collection,
+        sourceUrl: HEYL_1905_CONTRIBUTOR_RIGHTS_HOLD.source_url,
+        sourceTitle: HEYL_1905_CONTRIBUTOR_RIGHTS_HOLD.source_title,
+        sourceAuthorAsInOra: HEYL_1905_CONTRIBUTOR_RIGHTS_HOLD.author,
+        sourceYear: HEYL_1905_CONTRIBUTOR_RIGHTS_HOLD.source_year,
+        reason: "EXACT_1905_EDITION_CREDITS_UNIDENTIFIED_FRAU_DR_ENGELKEN_WITH_NEW_ORDERING_AND_ADDITIONS__CONTRIBUTOR_TERM_UNRESOLVED"
       }
     ],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8013 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883 and Viard 1806. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; and cocina-espanola remains under its existing collection rights hold."
+    reason: "All exact sources protected through v8013 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883 and Viard 1806. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; the 1905 Volks-Kochbuch source is held because the exact edition credits an unidentified Frau Dr. Engelken with new ordering and additions and her contribution term cannot be resolved; and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
