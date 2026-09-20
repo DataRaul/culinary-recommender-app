@@ -51,7 +51,7 @@ jobs:
         run: >-
           node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-hearn-v8014-prewrite/prewrite-evidence.json","utf8"));
           if(p.pass!==true||p.terminalCandidate!=="STEP_8G_HEARN_V8014_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED")process.exit(1);
-          if(p.parent.activeCorpusVersion!=="v8013"||p.parent.composedRecipeCount!==16365||p.layer.corpusVersion!=="v8014"||p.layer.recipeCount!==712||p.composition.cumulativeRecipeCount!==16365)process.exit(1);
+          if(p.parent.activeCorpusVersion!=="v8013"||p.parent.composedRecipeCount!==15653||p.layer.corpusVersion!=="v8014"||p.layer.recipeCount!==712||p.composition.cumulativeRecipeCount!==16365)process.exit(1);
           if(p.composition.routing.shardCount!==2||p.layer.maxRowsPerBatch>10||p.layer.operationBudget.maxPlannedD1Subqueries>16||p.layer.operationBudget.headroomAssumed!==false)process.exit(1);
           if(!Object.values(p.gates).every(Boolean))process.exit(1);
           const b=p.boundaries;if(b.liveD1WritesPerformed!==0||b.publicRuntimeChanged!==false||b.recommendationAdmissionPerformed!==false||b.thirdShardUsed!==false||b.d1BudgetExpansion!==false||b.billingExpansion!==false||b.nutritionLaneModified!==false||b.youtubeCulinaryStateModified!==false||b.knowledgeCoreWritePerformed!==false||b.culturalAuthenticityAuthorityImported!==false)process.exit(1);
