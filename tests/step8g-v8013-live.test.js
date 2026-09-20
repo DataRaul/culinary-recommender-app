@@ -44,7 +44,7 @@ test("v8013 freezes 81 body and 81 route batches over the exact two-shard child 
   assert.equal(expectedStep8GV8013BodyBatchIds().length, 81);
   assert.equal(expectedStep8GV8013RouteBatchIds().length, 81);
   assert.equal(expectedStep8GV8013BodyBatchIds()[0], "s00-b000000");
-  assert.equal(expectedStep8GV8013RouteBatchIds().at(-1), "route-v8013-s01-b000088");
+  assert.equal(expectedStep8GV8013RouteBatchIds().at(-1), "route-v8013-s01-b000039");
 });
 
 test("public-safe descriptor contains fingerprints only, not protected recipe bodies", () => {
