@@ -1,0 +1,174 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_VIARD_V8013_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_VIARD_V8013_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-20",
+  "source": {
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "collection": "cuisine-francaise",
+    "recordCount": 807,
+    "measurementTerminal": "STEP_8G_ORA_VIARD_1806_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+    "sourceCohort": {
+      "cohortId": "ORA_VIARD_1806_LE_CUISINIER_IMPERIAL_LECUISINIERIMPE00VIARGOOG",
+      "sourceWork": "Le Cuisinier impérial",
+      "sourceAuthor": "A. Viard",
+      "sourceAuthorClassification": "IDENTIFIED_AUTHOR",
+      "sourceYear": "1806",
+      "sourceYearSemantics": "SOURCE_TUPLE_YEAR_ALIGNED_WITH_BNF_1806_FIRST_EDITION",
+      "sourceUrl": "https://archive.org/details/lecuisinierimpe00viargoog",
+      "digitizedEditionYear": "1806",
+      "digitizedEditionLabel": "1806 first edition bibliographic alignment",
+      "workFirstPublicationYear": "1806",
+      "recordCount": 807,
+      "licenseId": "public-domain",
+      "packetDescriptorSha256": "c05c44205b517ba4377f132e035d2767dbe319356a9ce9fbfbca794a6e21f84b"
+    },
+    "repositoryLayerLicense": "Unlicense",
+    "culturalAuthenticityAuthorityImported": false
+  },
+  "parent": {
+    "activeCorpusVersion": "v8012",
+    "composedRecipeCount": 14846,
+    "fingerprintSha256": "55c2b63daf98d46185b6c28e3a888bf69a433d1a3a553ef987b4404cc872247f",
+    "fingerprintMaterial": {
+      "activeCorpusVersion": "v8012",
+      "composedRecipeCount": 14846,
+      "liveTerminal": "STEP_8G_SELESKOWITZ_V8012_PROTECTED_POPULATION_PASS",
+      "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "layerManifestSha256": "cf704acc15db07978678764f1af601535e4c73e12c536d4de58f552418b00364",
+      "populationPlanSha256": "cd401acb4b8ae40c1c6b9820c6b9a64b4555355a4bc572910ecf427448501990",
+      "bodyShardRows": [
+        841,
+        881
+      ],
+      "parentCompositionRouteCount": 13124,
+      "composedRouteCount": 14846
+    }
+  },
+  "layer": {
+    "corpusVersion": "v8013",
+    "parentCorpusVersion": "v8012",
+    "recipeCount": 807,
+    "manifestSha256": "2f4b83f39b324f600c4dd36ac212c62577a536875513b7a81ac0efd049aa71a4",
+    "populationPlanSha256": "e703003e9e01d5c00f64b5093a1188393840b6a6df813fddf37f8b20e2014dca",
+    "batchCount": 81,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 7365,
+    "maxBatchBodyBytes": 45153,
+    "maxWriteRequestBytes": 18370,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "operationBudget": {
+      "authD1Subqueries": 1,
+      "maxRowsPerBatch": 10,
+      "operations": {
+        "status": 1,
+        "bindings": 3,
+        "freeLimitSimulation": 1,
+        "initialize": 8,
+        "bodyWriteFresh": 15,
+        "bodyWriteReplay": 3,
+        "progress": 7,
+        "copyParentRoutesFresh": 6,
+        "routeWriteFresh": 16,
+        "routeWriteReplay": 4,
+        "activate": 8,
+        "rollback": 3,
+        "thirteenLayerHydrationCanary": 4,
+        "boundedHydrationWorstCase": 14,
+        "evidence": 7
+      },
+      "maxPlannedD1Subqueries": 16,
+      "maxAllowedD1Subqueries": 16,
+      "limitingOperations": [
+        "routeWriteFresh"
+      ],
+      "pass": true,
+      "headroomAssumed": false
+    },
+    "shardDescriptors": [
+      {
+        "shardNumber": 0,
+        "rowCount": 407,
+        "totalBodyBytes": 1524929,
+        "firstOrdinal": 0,
+        "lastOrdinal": 806,
+        "entriesSha256": "bc2f387db5480cf5e5377f5f7a60126ad56f3713f2efaa1f1e4ca0a9e8dc1633"
+      },
+      {
+        "shardNumber": 1,
+        "rowCount": 400,
+        "totalBodyBytes": 1505257,
+        "firstOrdinal": 3,
+        "lastOrdinal": 805,
+        "entriesSha256": "1d175075b692ab64847abb008b727c9c2608c9af583974a1f528b757128a768a"
+      }
+    ],
+    "batchIdsSha256": "de1f06e6b89e61ca2e0217227963e26aae16f719d25b1529ef080fe61641a198"
+  },
+  "composition": {
+    "activeCorpusVersion": "v8013",
+    "parentCorpusVersion": "v8012",
+    "cumulativeRecipeCount": 15653,
+    "capacity": {
+      "parentLayeredPhysicalBodyBytes": 54760091,
+      "addedLayerBodyBytes": 3030186,
+      "layeredPhysicalBodyBytes": 57790277,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {
+          "shardNumber": 0,
+          "parentRowCount": 7411,
+          "addedRowCount": 407,
+          "rowCount": 7818,
+          "parentBodyBytes": 27463781,
+          "addedBodyBytes": 1524929,
+          "totalBodyBytes": 28988710,
+          "withinProjectDatabaseBudget": true
+        },
+        {
+          "shardNumber": 1,
+          "parentRowCount": 7435,
+          "addedRowCount": 400,
+          "rowCount": 7835,
+          "parentBodyBytes": 27296310,
+          "addedBodyBytes": 1505257,
+          "totalBodyBytes": 28801567,
+          "withinProjectDatabaseBudget": true
+        }
+      ]
+    },
+    "routing": {
+      "shardCount": 2,
+      "mode": "CONTROL_INDEX_EXACT_ROUTE_THEN_BATCH_HYDRATE_BY_SHARD",
+      "fullCorpusScans": 0,
+      "maxProtectedD1Subqueries": 16,
+      "d1BudgetHeadroomAssumed": false
+    }
+  },
+  "gates": {
+    "requestSizePass": true,
+    "operationBudgetPass": true,
+    "capacityPass": true,
+    "topologyPass": true,
+    "countPass": true,
+    "batchSizePass": true,
+    "uniqueIdsPass": true,
+    "bodySizePass": true
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "d1BudgetExpansion": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "step8fReopened": false
+  },
+  "decision": "EARN_V8013_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE"
+}
