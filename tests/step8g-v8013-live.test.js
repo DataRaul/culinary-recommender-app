@@ -84,14 +84,14 @@ test("live runtime source encodes restart-safe v8012 parent-copy acceptance with
   assert.match(source, /\[STEP8G_V8013_PARENT_VERSION, STEP8G_V8013_CORPUS_VERSION\]\.includes\(pointer\.activeVersion\)/);
   assert.match(source, /PARENT_ROUTES_IDEMPOTENT_SKIP/);
   assert.match(source, /V8013_ACTIVE_WITHOUT_EXACT_PARENT_ROUTES/);
-  assert.match(source, /STEP8G_V8013_EXPECTED_PARENT_ROUTE_COUNT = 15653/);
-  assert.match(source, /PARENT_VERSIONS = \["v8001", "v8002", "v8003", "v8004", "v8005", "v8006", "v8007", "v8008", "v8009", "v8010", "v8012"\]/);
+  assert.match(source, /STEP8G_V8013_EXPECTED_PARENT_ROUTE_COUNT = 14846/);
+  assert.match(source, /PARENT_VERSIONS = \["v8001", "v8002", "v8003", "v8004", "v8005", "v8006", "v8007", "v8008", "v8009", "v8010", "v8011", "v8012"\]/);
   assert.doesNotMatch(source, /thirdShardAuthorized:\s*true/);
 });
 
 
-test("owner runner proves all twelve corpus layers with exact count labels", () => {
+test("owner runner proves all thirteen corpus layers with exact count labels", () => {
   const html = readFileSync(new URL("../step8g-v8013-populate.html", import.meta.url), "utf8");
-  for (const token of ["v8010=await loadHistoricalCanary(\"cucina-italiana\"","v8012=await loadHistoricalCanary(\"danske-kokken\"","recipeIds:[v8001,v8002,v8003,v8004,v8005,v8006,v8007,v8008,v8009,v8010,v8012,v8013]","packets?.length!==12","1,722-child-bodies","1,722-child-routes","14,846-route composition","14,846-recipe v8013 composition"]) assert.match(html, new RegExp(token.replace(/[.*+?^$\{\}()|[\]\\]/g, "\\$&")));
-  assert.doesNotMatch(html, /exactly eleven packets/);
+  for (const token of ["v8010=await loadHistoricalCanary(\"cucina-italiana\"","v8011=await loadHistoricalCanary(\"danske-kokken\"","v8012=await loadHistoricalCanary(\"wiener-kueche\"","recipeIds:[v8001,v8002,v8003,v8004,v8005,v8006,v8007,v8008,v8009,v8010,v8011,v8012,v8013]","packets?.length!==13","807-child-bodies","807-child-routes","15,653-route composition","15,653-recipe v8013 composition"]) assert.match(html, new RegExp(token.replace(/[.*+?^$\{\}()|[\]\\]/g, "\\$&")));
+  assert.doesNotMatch(html, /exactly twelve packets/);
 });
