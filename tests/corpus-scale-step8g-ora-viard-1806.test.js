@@ -5,7 +5,7 @@ import {
   ORA_VIARD_1806_REJECT_TERMINAL,
   ORA_VIARD_1806_SOURCE,
   measureOraViard1806Candidate
-} from "../scripts/corpus-scale-step8g-ora-viard-1883-core.mjs";
+} from "../scripts/corpus-scale-step8g-ora-viard-1806-core.mjs";
 
 function row(i, overrides = {}) {
   return {
@@ -23,7 +23,7 @@ function row(i, overrides = {}) {
 const baseline = Array.from({ length: 100 }, (_, i) => ({ title: `Baseline ${i}`, ingredients: [`baseline ingredient ${i}`] }));
 const passInputs = candidateRows => ({candidateRows, baselineRecipes: baseline, rightsDocumented:true, repositoryReusePass:true, attributionClassified:true, editionSemanticsClassified:true});
 
-test("Viard exact 1883 cohort earns bounded measurement only when rights and edition gates pass", () => {
+test("Viard exact 1806 cohort earns bounded measurement only when rights and edition gates pass", () => {
   const rows=Array.from({length:ORA_VIARD_1806_SOURCE.expectedRecipeCount},(_,i)=>row(i));
   const r=measureOraViard1806Candidate(passInputs(rows));
   assert.equal(r.pass,true); assert.equal(r.terminal,ORA_VIARD_1806_CANDIDATE_TERMINAL);
