@@ -60,7 +60,7 @@ jobs:
       - name: Test source-discovery contract
         run: node --test tests/corpus-scale-step8g-ora-next-source-discovery.test.js
 
-      - name: Scan source-level ORA cohorts against active v8012 baseline
+      - name: Scan source-level ORA cohorts against active v8013 baseline
         run: >-
           node scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs
           --ora=./open-recipe-archive
@@ -72,7 +72,7 @@ jobs:
       - name: Verify discovery remains no-write and cannot clear rights
         run: >-
           node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-ora-next-source-discovery/discovery.json","utf8"));
-          if(p.baseline.activeProtectedVersion!=="v8012"||p.baseline.activeProtectedCount!==14846)process.exit(1);
+          if(p.baseline.activeProtectedVersion!=="v8013"||p.baseline.activeProtectedCount!==15653)process.exit(1);
           const b=p.boundaries;
           if(b.liveD1WritesPerformed!==0||b.sourceRightsClearedByDiscovery!==false||b.measurementEarnedByDiscovery!==false||b.protectedPopulationAuthorized!==false||b.publicRuntimeChangeAuthorized!==false||b.recommendationAdmissionAuthorized!==false||b.thirdShardAuthorized!==false||b.d1BudgetExpansionAuthorized!==false||b.billingExpansionAuthorized!==false)process.exit(1);
           if(p.exclusions.heldCollections.includes("cocina-espanola")!==true)process.exit(1);
@@ -96,6 +96,8 @@ jobs:
           if(!froken||!froken.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
           const seleskowitz=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/bub_gb_oP8yAQAAMAAJ");
           if(!seleskowitz||!seleskowitz.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
+          const viard=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/lecuisinierimpe00viargoog");
+          if(!viard||!viard.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
           const wanneeHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/bwb_Y0-BXP-037");
           if(!wanneeHeld||wanneeHeld.reason!=="ORA_1910_WORK_YEAR_POINTS_TO_1958_14TH_EDITION_WITH_LATER_EDITORIAL_RIGHTS_LAYER")process.exit(1);
           const wanneeExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/bwb_Y0-BXP-037");
@@ -108,6 +110,10 @@ jobs:
           if(!indianHeld||indianHeld.reason!=="ORA_AUTHOR_METADATA_E_P_VEERASAWMY_CONFLICTS_WITH_EXACT_ARCHIVE_ITEM_MRS_I_R_DEY")process.exit(1);
           const indianExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/cu31924059630735");
           if(!indianExcluded||!indianExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          const heylHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/13921");
+          if(!heylHeld||heylHeld.reason!=="EXACT_1905_EDITION_CREDITS_UNIDENTIFIED_FRAU_DR_ENGELKEN_WITH_NEW_ORDERING_AND_ADDITIONS__CONTRIBUTOR_TERM_UNRESOLVED")process.exit(1);
+          const heylExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/13921");
+          if(!heylExcluded||!heylExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
           if(!Number.isInteger(p.rightsReviewEligibleCount)||p.rightsReviewEligibleCount<0)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle||null,nextAuthority:p.nextAuthority}));'
 
