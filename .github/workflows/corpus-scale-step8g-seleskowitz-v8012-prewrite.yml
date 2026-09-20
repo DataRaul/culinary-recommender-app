@@ -1,0 +1,74 @@
+name: Corpus Scale Step 8G Seleskowitz v8012 prewrite
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-seleskowitz-v8012-prewrite.yml'
+      - 'scripts/corpus-scale-step8g-seleskowitz-v8012-prewrite-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-seleskowitz-v8012-prewrite.mjs'
+      - 'tests/corpus-scale-step8g-seleskowitz-v8012-prewrite.test.js'
+      - 'data/generated/step8g/seleskowitz-1883-v8011-measurement.json'
+      - 'data/generated/step8g/froken-jensen-v8011-prewrite-evidence.json'
+      - 'data/generated/step8g/froken-jensen-v8011-live-pass.json'
+      - 'data/generated/step8g/seleskowitz-v8012-prewrite-evidence.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-seleskowitz-v8012-prewrite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prewrite-v8012:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Test v8012 prewrite contract
+        run: node --test tests/corpus-scale-step8g-seleskowitz-v8012-prewrite.test.js
+      - name: Build exact v8012 no-write prewrite
+        run: >-
+          node scripts/run-corpus-scale-step8g-seleskowitz-v8012-prewrite.mjs
+          --ora=./open-recipe-archive
+          --measurement=data/generated/step8g/seleskowitz-1883-v8011-measurement.json
+          --parent-prewrite=data/generated/step8g/froken-jensen-v8011-prewrite-evidence.json
+          --parent-live=data/generated/step8g/froken-jensen-v8011-live-pass.json
+          --out=.tmp/step8g-seleskowitz-v8012-prewrite
+      - name: Verify exact prewrite pass and authority boundaries
+        run: >-
+          node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-seleskowitz-v8012-prewrite/prewrite-evidence.json","utf8"));
+          if(p.pass!==true||p.terminalCandidate!=="STEP_8G_SELESKOWITZ_V8012_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED")process.exit(1);
+          if(p.parent.activeCorpusVersion!=="v8011"||p.parent.composedRecipeCount!==13124||p.layer.corpusVersion!=="v8012"||p.layer.recipeCount!==1722||p.composition.cumulativeRecipeCount!==14846)process.exit(1);
+          if(p.composition.routing.shardCount!==2||p.layer.maxRowsPerBatch>10||p.layer.operationBudget.maxPlannedD1Subqueries>16||p.layer.operationBudget.headroomAssumed!==false)process.exit(1);
+          if(!Object.values(p.gates).every(Boolean))process.exit(1);
+          const b=p.boundaries;if(b.liveD1WritesPerformed!==0||b.publicRuntimeChanged!==false||b.recommendationAdmissionPerformed!==false||b.thirdShardUsed!==false||b.d1BudgetExpansion!==false||b.billingExpansion!==false||b.nutritionLaneModified!==false||b.youtubeCulinaryStateModified!==false||b.knowledgeCoreWritePerformed!==false||b.culturalAuthenticityAuthorityImported!==false)process.exit(1);
+          console.log(JSON.stringify({terminal:p.terminalCandidate,counts:{parent:p.parent.composedRecipeCount,child:p.layer.recipeCount,composed:p.composition.cumulativeRecipeCount},fingerprints:{parent:p.parent.fingerprintSha256,manifest:p.layer.manifestSha256,populationPlan:p.layer.populationPlanSha256,batchIds:p.layer.batchIdsSha256,packet:p.source.sourceCohort.packetDescriptorSha256},maxWriteRequestBytes:p.layer.maxWriteRequestBytes,capacity:p.composition.capacity,operationBudget:p.layer.operationBudget,gates:p.gates}));'
+      - name: Verify frozen v8012 prewrite parity
+        run: >-
+          node -e 'const fs=require("fs");const a=JSON.parse(fs.readFileSync(".tmp/step8g-seleskowitz-v8012-prewrite/prewrite-evidence.json","utf8"));const f=JSON.parse(fs.readFileSync("data/generated/step8g/seleskowitz-v8012-prewrite-evidence.json","utf8"));
+          const pick=x=>({pass:x.pass,terminalCandidate:x.terminalCandidate,parent:x.parent,layer:{corpusVersion:x.layer.corpusVersion,parentCorpusVersion:x.layer.parentCorpusVersion,recipeCount:x.layer.recipeCount,manifestSha256:x.layer.manifestSha256,populationPlanSha256:x.layer.populationPlanSha256,batchCount:x.layer.batchCount,maxRowsPerBatch:x.layer.maxRowsPerBatch,maxBodyBytes:x.layer.maxBodyBytes,maxBatchBodyBytes:x.layer.maxBatchBodyBytes,maxWriteRequestBytes:x.layer.maxWriteRequestBytes,maxAllowedWriteRequestBytes:x.layer.maxAllowedWriteRequestBytes,requestSizePass:x.layer.requestSizePass,operationBudget:x.layer.operationBudget,shardDescriptors:x.layer.shardDescriptors,batchIdsSha256:x.layer.batchIdsSha256},composition:x.composition,gates:x.gates,boundaries:x.boundaries,decision:x.decision,source:x.source,parentFingerprint:x.parent.fingerprintSha256});
+          if(JSON.stringify(pick(a))!==JSON.stringify(pick(f)))process.exit(1);
+          console.log("STEP8G_SELESKOWITZ_V8012_FROZEN_PREWRITE_PARITY_PASS");'
+
+      - name: Upload public-safe v8012 prewrite evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-seleskowitz-v8012-prewrite
+          path: |
+            .tmp/step8g-seleskowitz-v8012-prewrite/prewrite-evidence.json
+            .tmp/step8g-seleskowitz-v8012-prewrite/prewrite-validation.json
+          if-no-files-found: error
+          retention-days: 30
