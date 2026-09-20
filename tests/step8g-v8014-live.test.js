@@ -44,7 +44,7 @@ test("v8014 freezes 72 body and 72 route batches over the exact two-shard child 
   assert.equal(expectedStep8GV8014BodyBatchIds().length, 72);
   assert.equal(expectedStep8GV8014RouteBatchIds().length, 72);
   assert.equal(expectedStep8GV8014BodyBatchIds()[0], "s00-b000000");
-  assert.equal(expectedStep8GV8014RouteBatchIds().at(-1), "route-v8014-s01-b000039");
+  assert.equal(expectedStep8GV8014RouteBatchIds().at(-1), "route-v8014-s01-b000034");
 });
 
 test("public-safe descriptor contains fingerprints only, not protected recipe bodies", () => {
@@ -93,5 +93,5 @@ test("live runtime source encodes restart-safe v8013 parent-copy acceptance with
 test("owner runner proves all fourteen corpus layers with exact count labels", () => {
   const html = readFileSync(new URL("../step8g-v8014-populate.html", import.meta.url), "utf8");
   for (const token of ["v8010=await loadHistoricalCanary(\"cucina-italiana\"","v8011=await loadHistoricalCanary(\"danske-kokken\"","v8013=await loadHistoricalCanary(\"wiener-kueche\"","recipeIds:[v8001,v8002,v8003,v8004,v8005,v8006,v8007,v8008,v8009,v8010,v8011,v8013,v8014]","packets?.length!==14","712-child-bodies","712-child-routes","16,365-route composition","16,365-recipe v8014 composition"]) assert.match(html, new RegExp(token.replace(/[.*+?^$\{\}()|[\]\\]/g, "\\$&")));
-  assert.doesNotMatch(html, /exactly twelve packets/);
+  assert.doesNotMatch(html, /exactly thirteen packets/);
 });
