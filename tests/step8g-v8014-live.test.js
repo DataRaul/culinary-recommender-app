@@ -107,3 +107,20 @@ test("owner runner proves all fourteen corpus layers with exact count labels", (
   for (const token of tokens) assert.equal(html.includes(token), true, `owner runner missing: ${token}`);
   assert.doesNotMatch(html, /exactly thirteen packets/);
 });
+
+
+test("v8014 owner runner preserves opaque 5xx diagnostics and retries only once", () => {
+  const html = readFileSync(new URL("../step8g-v8014-populate.html", import.meta.url), "utf8");
+  assert.match(html, /NON_JSON_RESPONSE/);
+  assert.match(html, /cf-ray/);
+  assert.match(html, /bodyPrefix/);
+  assert.match(html, /opaque5xx/);
+  assert.match(html, /retrying once after opaque server failure/);
+  assert.match(html, /allowRetry=true/);
+});
+
+test("v8014 API returns structured write-body exception diagnostics", () => {
+  const api = readFileSync(new URL("../functions/api/step8g/v8014.js", import.meta.url), "utf8");
+  assert.match(api, /STEP8G_V8014_WRITE_BODY_EXCEPTION/);
+  assert.match(api, /MATERIALIZE_OR_D1_BODY_WRITE/);
+});
