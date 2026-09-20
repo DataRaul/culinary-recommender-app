@@ -2,7 +2,7 @@
 
 Date: 2026-09-20
 
-Status: `PASS_RIGHTS__V8012_MEASUREMENT_GATE_READY`
+Status: `PASS_RIGHTS__V8012_MEASUREMENT_EARNED_COHORT_CANDIDATE`
 
 Pinned source repository: `AdamBouhmad/open-recipe-archive`
 
@@ -73,3 +73,36 @@ Fresh no-write discovery found 807 rows and a novel-title ratio of approximately
 This document does **not** authorize protected D1 population, a v8013 prewrite, public runtime/recommendation widening, a third shard, D1-budget expansion, paid infrastructure, Nutrition/YT-CUL/Recipe Family/Knowledge Core mutation, or cultural-authenticity/nutrition/allergen/dietary/scaling/medical authority.
 
 Only a green deterministic measurement may earn `SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`.
+
+
+## Bounded measurement result
+
+Workflow run `35505833962` completed successfully.
+
+Terminal:
+
+`STEP_8G_ORA_VIARD_1806_MEASUREMENT_EARNED_COHORT_CANDIDATE`
+
+Measured against active protected `v8012` / **14,846**:
+
+- exact candidate rows: **807**
+- parseable rows: **807 / 807**
+- distinct normalized titles: **783**
+- unique-title ratio: **0.9702602230483272**
+- exact baseline-title overlaps: **11**
+- novel normalized titles: **772**
+- novel-title ratio: **0.9859514687100894**
+- distinct ingredient phrases: **2,235**
+- novel ingredient phrases: **1,516**
+- ontology-resolved occurrence ratio: **0.24015101772816808**
+
+All rights, repository-reuse, attribution, edition-semantics, exact-count, source-identity, structural-quality and culinary-coverage gates passed.
+
+The measurement earns only:
+
+`SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`
+
+It does not authorize protected population.
+
+Canonical public-safe measurement evidence:
+`data/generated/step8g/viard-1806-v8012-measurement.json`.
