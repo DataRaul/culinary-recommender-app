@@ -59,7 +59,7 @@ for (const [sourceOrdinal, rawJson] of rawLines.entries()) {
   const ordinal = rows.length, recipeId = `${source.idPrefix}${slug(row.slug || row.title || String(sourceOrdinal))}`;
   rows.push({ ordinal, sourceOrdinal, rawJson, recipeId, sourceCohortId: source.cohortId, shardNumber: recipeDatabaseShardForId(recipeId, 2) });
 }
-if (rows.length !== STEP8G_V8013_EXPECTED_RECIPE_COUNT) throw new Error(`VIARD_1883_EXPECTED_${STEP8G_V8013_EXPECTED_RECIPE_COUNT}_GOT_${rows.length}`);
+if (rows.length !== STEP8G_V8013_EXPECTED_RECIPE_COUNT) throw new Error(`VIARD_1806_EXPECTED_${STEP8G_V8013_EXPECTED_RECIPE_COUNT}_GOT_${rows.length}`);
 if (new Set(rows.map(row => row.recipeId)).size !== rows.length) throw new Error("SOURCE_RECIPE_ID_UNIVERSE_NOT_UNIQUE");
 for (const source of SOURCES) {
   const count = rows.filter(row => row.sourceCohortId === source.cohortId).length;
@@ -105,7 +105,7 @@ process.stdout.write(`${JSON.stringify({
   bodyBatchCount: bodyBatches.length,
   routeBatchCount: routeBatchIds.length,
   shardRows: byShard.map(group => group.length),
-  parentRouteCount: 15653,
+  parentRouteCount: 14846,
   composedRouteCount: 15653,
   restartSafeResume: true,
   sourceAuthorHandling: "IDENTIFIED_AUTHOR",
