@@ -69,7 +69,7 @@ jobs:
           if (evidence.layer.operationBudget.maxPlannedD1Subqueries !== 16 || evidence.layer.operationBudget.headroomAssumed !== false) throw new Error('D1_BUDGET_BOUNDARY_MISMATCH');
           const committed = await readFile('data/generated/step8g/v8013-runtime-descriptor.mjs', 'utf8');
           const candidate = await readFile('.tmp/v8013-runtime-descriptor.mjs', 'utf8');
-          // committed parity is frozen after this candidate run
+          if (committed !== candidate) throw new Error('COMMITTED_RUNTIME_DESCRIPTOR_NOT_EXACT_GENERATED_CANDIDATE');
           console.log(JSON.stringify({pass:true,bodyBatchCount,routeBatchCount,bodyShardRows:descriptor.bodyShardRows,containsRecipeBodies:false,ciMutation:false}));
           NODE
 
