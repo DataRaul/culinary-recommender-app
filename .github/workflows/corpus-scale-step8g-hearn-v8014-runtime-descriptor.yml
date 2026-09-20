@@ -67,6 +67,7 @@ jobs:
           if (bodyBatchCount !== 72 || routeBatchCount !== 72) throw new Error('BATCH_COUNT_MISMATCH');
           if (JSON.stringify(descriptor).includes('rawJson')) throw new Error('PROTECTED_BODY_LEAK_IN_DESCRIPTOR');
           if (evidence.layer.operationBudget.maxPlannedD1Subqueries !== 16 || evidence.layer.operationBudget.headroomAssumed !== false) throw new Error('D1_BUDGET_BOUNDARY_MISMATCH');
+          const committed = await readFile('data/generated/step8g/v8014-runtime-descriptor.mjs', 'utf8');
           const candidate = await readFile('.tmp/v8014-runtime-descriptor.mjs', 'utf8');
           if (committed !== candidate) throw new Error('COMMITTED_RUNTIME_DESCRIPTOR_NOT_EXACT_GENERATED_CANDIDATE');
           console.log(JSON.stringify({pass:true,bodyBatchCount,routeBatchCount,bodyShardRows:descriptor.bodyShardRows,containsRecipeBodies:false,ciMutation:false}));
