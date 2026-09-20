@@ -110,6 +110,10 @@ jobs:
           if(!indianHeld||indianHeld.reason!=="ORA_AUTHOR_METADATA_E_P_VEERASAWMY_CONFLICTS_WITH_EXACT_ARCHIVE_ITEM_MRS_I_R_DEY")process.exit(1);
           const indianExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/cu31924059630735");
           if(!indianExcluded||!indianExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          const heylHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/13921");
+          if(!heylHeld||heylHeld.reason!=="EXACT_1905_EDITION_CREDITS_UNIDENTIFIED_FRAU_DR_ENGELKEN_WITH_NEW_ORDERING_AND_ADDITIONS__CONTRIBUTOR_TERM_UNRESOLVED")process.exit(1);
+          const heylExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/13921");
+          if(!heylExcluded||!heylExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
           if(!Number.isInteger(p.rightsReviewEligibleCount)||p.rightsReviewEligibleCount<0)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle||null,nextAuthority:p.nextAuthority}));'
 
