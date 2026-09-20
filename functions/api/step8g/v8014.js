@@ -103,10 +103,14 @@ export async function onRequestPost({ request, env }) {
     return jsonResponse({ ok: pass, step: STEP, action, result, protectedDataReturned: false, publicRuntimeChanged: false, metrics: metrics(total, 0, result.d1Subqueries) }, pass ? 200 : 409);
   }
   if (action === "write-body") {
-    const materialized = await materializeStep8GV8014IncomingBodyBatch(payload.batch || {});
-    if (!materialized.pass) return jsonResponse({ ok: false, step: STEP, action, error: "STEP8G_V8014_BODY_BATCH_REJECTED", reason: materialized.reason, protectedDataReturned: false, metrics: metrics(auth) }, 400);
-    const result = await writeStep8GV8014BodyBatch(dbs[materialized.batch.shardNumber], materialized.batch), total = auth + result.d1Subqueries, pass = result.pass && total <= MAX_D1;
-    return jsonResponse({ ok: pass, step: STEP, action, batchId: materialized.batch.batchId, shardNumber: materialized.batch.shardNumber, result, routeEntries: materialized.batch.entries.map(entry => ({ recipeId: entry.recipeId, corpusVersion: "v8014", shardNumber: materialized.batch.shardNumber, sourceCohortId: entry.sourceCohortId, bodySha256: entry.bodySha256, bodyBytes: entry.bodyBytes })), protectedDataReturned: false, publicRuntimeChanged: false, fullCorpusScans: 0, metrics: metrics(total, result.d1Subqueries) }, pass ? 200 : result.status === "WRITE_ERROR_UNKNOWN_COMMIT_STATE" ? 503 : 409);
+    try {
+      const materialized = await materializeStep8GV8014IncomingBodyBatch(payload.batch || {});
+      if (!materialized.pass) return jsonResponse({ ok: false, step: STEP, action, error: "STEP8G_V8014_BODY_BATCH_REJECTED", reason: materialized.reason, protectedDataReturned: false, metrics: metrics(auth) }, 400);
+      const result = await writeStep8GV8014BodyBatch(dbs[materialized.batch.shardNumber], materialized.batch), total = auth + result.d1Subqueries, pass = result.pass && total <= MAX_D1;
+      return jsonResponse({ ok: pass, step: STEP, action, batchId: materialized.batch.batchId, shardNumber: materialized.batch.shardNumber, result, routeEntries: materialized.batch.entries.map(entry => ({ recipeId: entry.recipeId, corpusVersion: "v8014", shardNumber: materialized.batch.shardNumber, sourceCohortId: entry.sourceCohortId, bodySha256: entry.bodySha256, bodyBytes: entry.bodyBytes })), protectedDataReturned: false, publicRuntimeChanged: false, fullCorpusScans: 0, metrics: metrics(total, result.d1Subqueries) }, pass ? 200 : result.status === "WRITE_ERROR_UNKNOWN_COMMIT_STATE" ? 503 : 409);
+    } catch (error) {
+      return jsonResponse({ ok: false, step: STEP, action, error: "STEP8G_V8014_WRITE_BODY_EXCEPTION", phase: "MATERIALIZE_OR_D1_BODY_WRITE", reason: String(error?.message || error || "UNKNOWN_WRITE_BODY_EXCEPTION").slice(0, 300), protectedDataReturned: false, publicRuntimeChanged: false, fullCorpusScans: 0, metrics: metrics(auth) }, 503);
+    }
   }
   if (action === "write-route") {
     const result = await writeStep8GV8014RouteBatch(env.CULINARY_CONTROL_DB, dbs, payload), total = auth + result.d1Subqueries, pass = result.pass && total <= MAX_D1;
