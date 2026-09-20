@@ -124,3 +124,6 @@ test("v8014 API returns structured write-body exception diagnostics", () => {
   assert.match(api, /STEP8G_V8014_WRITE_BODY_EXCEPTION/);
   assert.match(api, /MATERIALIZE_OR_D1_BODY_WRITE/);
 });
+
+
+test("v8014 owner runner exposes repaired production marker", () => {\n  const html = readFileSync(new URL("../step8g-v8014-populate.html", import.meta.url), "utf8");\n  assert.match(html, /V8014_WRITE_DIAGNOSTIC_R1/);\n});\n
