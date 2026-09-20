@@ -147,8 +147,8 @@ function buildPlan(packets) {
       protectedPopulationAllowed: true,
       publicRuntimeActivationAuthorized: false,
       evidenceRefs: [
-        "data/generated/step8g/hearn-1806-v8012-measurement.json",
-        "docs/CORPUS_SCALE_STEP8G_VIARD_1806_RIGHTS_AND_MEASUREMENT.md",
+        "data/generated/step8g/hearn-1885-v8013-measurement.json",
+        "docs/CORPUS_SCALE_STEP8G_HEARN_1885_RIGHTS_AND_MEASUREMENT.md",
         SOURCE.sourceUrl,
         `https://github.com/${SOURCE_REPOSITORY}/tree/${SOURCE_COMMIT}/collections/${SOURCE.collection}`
       ]
