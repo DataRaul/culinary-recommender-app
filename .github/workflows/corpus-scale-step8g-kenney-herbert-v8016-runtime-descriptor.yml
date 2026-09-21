@@ -42,6 +42,12 @@ jobs:
           if(!s.includes("STEP8G_V8016_RUNTIME_DESCRIPTOR"))process.exit(1);
           if(s.includes("bodyJson")||s.includes("rawJson")||s.includes("parsedIngredients"))process.exit(1);
           console.log("STEP8G_V8016_PUBLIC_SAFE_DESCRIPTOR_PASS");'
+      - name: Verify frozen descriptor parity
+        run: >-
+          node -e 'const fs=require("fs");const a=fs.readFileSync(".tmp/v8016-runtime-descriptor.mjs","utf8");const f=fs.readFileSync("data/generated/step8g/v8016-runtime-descriptor.mjs","utf8");
+          if(a!==f)process.exit(1);
+          console.log("STEP8G_V8016_FROZEN_DESCRIPTOR_PARITY_PASS");'
+
       - name: Upload descriptor
         uses: actions/upload-artifact@v4
         with:
