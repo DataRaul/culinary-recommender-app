@@ -1,19 +1,21 @@
 {
-  "handover": "CULINARY_APP_CHAN_V8015_IMPLEMENTATION_MERGED_OWNER_AUTH_POPULATION_GATE_V55",
+  "handover": "CULINARY_APP_V8015_LIVE_POST_DISCOVERY_KENNEY_HERBERT_MEASUREMENT_PASS_V56",
   "handover_date": "2026-09-21",
   "timezone": "Atlantic/Canary",
-  "status": "HUMAN_NEEDED__V8014_LIVE_16365__CHAN_V8015_IMPLEMENTATION_MERGED_AND_VALIDATED__OWNER_AUTH_PRODUCTION_POPULATION_GATE",
-  "human_needed": true,
-  "handover_written_against_main_sha": "66a91f7add5e99790222b0ad26bb7798624519a0",
+  "status": "AUTO_READY__V8015_LIVE_16510__POST_V8015_DISCOVERY_15_RIGHTS_REVIEW_ELIGIBLE__KENNEY_HERBERT_1885_MEASUREMENT_PASS__V8016_PREWRITE_NEXT__LEGAL_CORPUS_BASELINE_NOT_EARNED",
+  "human_needed": false,
+  "handover_written_against_main_sha": "236ef27066bd7a43a957dd7ae3b513ae4b66731c",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
-    "implementation_pr": 225,
-    "implementation_merge_sha": "66a91f7add5e99790222b0ad26bb7798624519a0",
-    "handover_compatibility_pr": 227,
-    "handover_compatibility_merge_sha": "434c5a1051edd2f369dd26fd5cc0634ac7132c61",
+    "chan_v8015_implementation_pr": 225,
+    "chan_v8015_implementation_merge_sha": "66a91f7add5e99790222b0ad26bb7798624519a0",
+    "chan_v8015_closeout_discovery_pr": 229,
+    "chan_v8015_closeout_discovery_merge_sha": "63645e8d83b20f60c75ce2fac6546c1b1ea1fb8c",
+    "kenney_herbert_rights_measurement_pr": 230,
+    "kenney_herbert_rights_measurement_merge_sha": "236ef27066bd7a43a957dd7ae3b513ae4b66731c",
     "open_pr_count_at_handover": 0,
-    "handover_branch": "handover/chan-v8015-owner-gate-v55"
+    "handover_branch": "handover/v8015-live-kenney-measurement-v56"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -33,7 +35,7 @@
     "billing": "NO_BILLING_AUTHORIZATION"
   },
   "operating_contract": {
-    "autonomy": "Autonomous implementation/CI/merge work is complete. Stop at the owner-authenticated production-write gate. After the owner supplies terminal evidence, resume autonomous closeout/reconciliation unless a new genuine human/security/cost/source-rights/topology/unrecoverable blocker appears.",
+    "autonomy": "Proceed autonomously through technically resolvable v8016 no-write prewrite/capacity work and, if earned, protected-runtime implementation/CI/merge. Stop only at a genuine owner-authenticated production-write gate or another human/security/cost/source-rights/topology/unrecoverable blocker.",
     "rights": "Fail closed. Private runtime creates no reuse permission. Unknown or materially unresolved rights are held or rejected. Every admitted cohort carries exact provenance plus attribution/disclosure classification.",
     "storage": "Protected recipe bodies remain in private Cloudflare D1. GitHub contains only public code and public-safe evidence/artifacts.",
     "authentication": "Protected production writes require the real owner-authenticated application session. Do not emulate, bypass, synthesize or weaken authentication.",
@@ -60,14 +62,20 @@
     "chan_v8015_workflow": ".github/workflows/corpus-scale-step8g-chan-v8015-live.yml",
     "chan_v8015_owner_runner": "step8g-v8015-populate.html",
     "hearn_v8014_live_evidence": "data/generated/step8g/hearn-v8014-live-pass.json",
-    "youtube_culinary_work_unit_state": "data/generated/youtube-culinary-work-unit-state.json"
+    "youtube_culinary_work_unit_state": "data/generated/youtube-culinary-work-unit-state.json",
+    "chan_v8015_live_evidence": "data/generated/step8g/chan-v8015-live-pass.json",
+    "chan_v8015_live_closeout": "docs/CORPUS_SCALE_STEP8G_CHAN_V8015_LIVE_POPULATION_PASS.md",
+    "post_v8015_discovery_runner": "scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs",
+    "post_v8015_discovery_workflow": ".github/workflows/corpus-scale-step8g-ora-next-source-discovery.yml",
+    "kenney_herbert_rights_measurement": "docs/CORPUS_SCALE_STEP8G_KENNEY_HERBERT_1885_RIGHTS_AND_MEASUREMENT.md",
+    "kenney_herbert_measurement_evidence": "data/generated/step8g/kenney-herbert-1885-v8015-measurement.json"
   },
   "live_protected_state": {
-    "active_version": "v8014",
-    "composed_recipe_count": 16365,
-    "latest_terminal": "STEP_8G_HEARN_V8014_PROTECTED_POPULATION_PASS",
+    "active_version": "v8015",
+    "composed_recipe_count": 16510,
+    "latest_terminal": "STEP_8G_CHAN_V8015_PROTECTED_POPULATION_PASS",
     "shard_count": 2,
-    "hydration_layers": 14,
+    "hydration_layers": 15,
     "max_observed_d1_subqueries": 16,
     "max_allowed_d1_subqueries": 16,
     "d1_budget_headroom_assumed": false,
@@ -76,7 +84,7 @@
     "recommendation_admission_changed": false,
     "third_shard_used": false,
     "billing_expansion": false,
-    "production_v8015_writes_performed": 0
+    "production_v8015_population_pass": true
   },
   "chan_v8015": {
     "cohort_id": "ORA_CHAN_1917_CHINESE_COOK_BOOK_CHINESECOOKBOOK00CHAN",
@@ -115,12 +123,20 @@
     "expected_hydration_layers": 15,
     "manifest_sha256": "d5264a8e514994d00669836ffa682be734465f209fe63f3fe3ffa445b2f3a3f4",
     "population_plan_sha256": "f6f5980d38ae8f7d1aab45e88b21381edd02a1f14c382f5ed736340e376da8a4",
-    "implementation_state": "MERGED_AND_VALIDATED__PRODUCTION_POPULATION_NOT_RUN",
-    "production_d1_writes_performed": 0,
+    "implementation_state": "LIVE_PROTECTED_POPULATION_PASS",
+    "production_d1_writes_performed": "OWNER_AUTHENTICATED_POPULATION_COMPLETED",
     "public_runtime_activation_authorized": false,
     "recommendation_admission_authorized": false,
     "third_shard_authorized": false,
-    "billing_expansion_authorized": false
+    "billing_expansion_authorized": false,
+    "final_protected_active_version": "v8015",
+    "live_terminal": "STEP_8G_CHAN_V8015_PROTECTED_POPULATION_PASS",
+    "idempotent_body_replay_pass": true,
+    "idempotent_route_replay_pass": true,
+    "fifteen_layer_hydration_pass": true,
+    "rollback_pass": true,
+    "rollback_hydration_fail_closed_pass": true,
+    "max_observed_d1_subqueries": 16
   },
   "implementation_validation": {
     "pr225_final_head": "3df53885a46ca73e36dc6977d69e47b28cef3c92",
@@ -148,56 +164,17 @@
     "public_safe_descriptor_contains_recipe_bodies": false
   },
   "owner_gate": {
-    "state": "HUMAN_NEEDED",
-    "reason": "The next operation writes protected production D1 and requires the real owner-authenticated application session. This must not be simulated or bypassed.",
-    "precondition": "Fresh-check that the current main deployment containing implementation merge 66a91f7add5e99790222b0ad26bb7798624519a0 is deployed successfully before running the owner gate.",
-    "path": "/step8g-v8015-populate.html",
-    "auth_canary_path": "/auth-canary.html",
-    "owner_action": [
-      "Open the production app and confirm/sign in through /auth-canary.html.",
-      "Open /step8g-v8015-populate.html on the production deployment.",
-      "Click Run / resume v8015 once. The runner is restart-safe; if an opaque 5xx/unknown commit state occurs it performs the bounded one-retry contract and otherwise stops fail-closed.",
-      "Do not use a preview deployment for the production population gate.",
-      "Copy the final JSON result back into ChatGPT."
-    ],
-    "expected_terminal": "STEP_8G_CHAN_V8015_PROTECTED_POPULATION_PASS",
-    "expected_terminal_contract": {
-      "pass": true,
-      "restartSafeRunner": true,
-      "sourceCohortIds": [
-        "ORA_CHAN_1917_CHINESE_COOK_BOOK_CHINESECOOKBOOK00CHAN"
-      ],
-      "sourceAuthorHandling": "IDENTIFIED_AUTHOR",
-      "parentCorpusVersion": "v8014",
-      "activeCorpusVersion": "v8015",
-      "childRecipeCount": 145,
-      "parentRecipeCount": 16365,
-      "composedRecipeCount": 16510,
-      "bodyBatchCount": 15,
-      "routeBatchCount": 15,
-      "shardCount": 2,
-      "idempotentBodyReplayPass": true,
-      "idempotentRouteReplayPass": true,
-      "fifteenLayerHydrationPass": true,
-      "rollbackPass": true,
-      "rollbackHydrationFailClosedPass": true,
-      "finalProtectedActiveVersion": "v8015",
-      "fullCorpusScans": 0,
-      "maxAllowedD1Subqueries": 16,
-      "d1BudgetHeadroomAssumed": false,
-      "publicRuntimeChanged": false,
-      "recommendationAdmissionChanged": false,
-      "thirdShardUsed": false,
-      "billingExpansion": false,
-      "culturalAuthenticityAuthorityImported": false
-    }
+    "state": "CLOSED_PASS",
+    "terminal": "STEP_8G_CHAN_V8015_PROTECTED_POPULATION_PASS",
+    "result": "Owner-authenticated v8015 protected population completed successfully; final active protected version is v8015 with 16,510 recipes.",
+    "future_rule": "Any future protected production population (including v8016 if eventually implemented) again requires the real owner-authenticated production runner and must not be simulated or bypassed."
   },
   "after_owner_pass": [
-    "Capture exact v8015 terminal evidence in a public-safe generated evidence artifact.",
-    "Write v8015 live closeout documentation and rotate the handover.",
-    "Fresh-reconcile protected live state as v8015 / 16,510 only after exact terminal PASS.",
-    "Run fresh post-v8015 source discovery / diminishing-marginal-value reassessment.",
-    "Reassess LEGAL_CORPUS_BASELINE_PASS; do not declare it automatically from v8015 PASS alone."
+    "COMPLETED: captured exact v8015 terminal evidence and live closeout.",
+    "COMPLETED: fresh-reconciled protected live state as v8015 / 16,510.",
+    "COMPLETED: ran fresh post-v8015 discovery; 15 source cohorts remain rights-review eligible.",
+    "COMPLETED: performed source-specific documentary rights review and deterministic measurement for Arthur Robert Kenney-Herbert / Culinary Jottings for Madras 1885.",
+    "NEXT: run deterministic no-write v8016 prewrite/capacity gate for the 501-row Kenney-Herbert cohort."
   ],
   "concurrent_child_programmes": {
     "youtube_culinary": {
@@ -220,13 +197,15 @@
   },
   "legal_corpus_baseline": {
     "status": "NOT_YET_EARNED",
-    "current_live_version": "v8014",
-    "current_live_recipe_count": 16365,
-    "candidate_v8015_recipe_count": 16510,
-    "reason": "Chan v8015 implementation is merged and validated, but the protected production population has not yet run. LEGAL_CORPUS_BASELINE_PASS remains downstream of the exact v8015 live terminal plus the subsequent fresh marginal-value reassessment."
+    "current_live_version": "v8015",
+    "current_live_recipe_count": 16510,
+    "remaining_rights_review_eligible_sources": 15,
+    "measured_next_candidate": "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN",
+    "measured_next_candidate_recipe_count": 501,
+    "reason": "Fresh post-v8015 discovery found 15 structurally/marginally eligible source cohorts, and Kenney-Herbert 1885 independently passed documentary rights review plus deterministic bounded measurement with 450 novel normalized titles. Marginal value is therefore not exhausted; proceed to v8016 prewrite rather than declaring LEGAL_CORPUS_BASELINE_PASS."
   },
   "not_authorized": [
-    "No v8015 production D1 population except through the real owner-authenticated production runner.",
+    "No v8016 production D1 population until a deterministic prewrite passes, a v8016 protected runtime is implemented/validated/merged, and the real owner completes the future authenticated production runner.",
     "No owner-authentication emulation, bypass or synthetic session.",
     "No paid infrastructure or billing/automatic overage authorization.",
     "No third D1 shard.",
@@ -238,17 +217,78 @@
     "No weakening of source-rights/provenance gates.",
     "No generic web scraping/crawling.",
     "No automatic cultural-authenticity, nutrition, allergen, dietary, scaling or medical authority.",
-    "No declaration of LEGAL_CORPUS_BASELINE_PASS from implementation merge or v8015 population alone."
+    "No declaration of LEGAL_CORPUS_BASELINE_PASS while fresh discovery continues to identify high-marginal-value rights-review-eligible cohorts."
   ],
   "next_action": {
-    "state": "HUMAN_NEEDED",
-    "actor": "OWNER",
-    "action": "After confirming the production deployment is current and owner authentication works, run /step8g-v8015-populate.html once and return the terminal JSON. No further autonomous corpus mutation should occur before that evidence."
+    "state": "AUTO_READY",
+    "actor": "CHATGPT",
+    "action": "Build and run the deterministic no-write Kenney-Herbert v8016 prewrite/capacity gate over live v8015 / 16,510. Target composition is 16,510 parent + 501 child = 17,011. Preserve exactly two shards, <=16 D1 subqueries with zero assumed headroom, existing free/no-billing envelope, and all no-public/no-recommendation authority boundaries."
   },
-  "terminal_instruction_for_new_chat": "Continue the Culinary App lane from docs/handovers/CURRENT.json and fresh-reconcile GitHub/deployments first. PR #225 is merged at 66a91f7add5e99790222b0ad26bb7798624519a0 and its v8015 implementation is validated: exact Chan descriptor, protected runtime, fifteen-layer hydration, authenticated API, verifier/tests, read-only CI and owner-only restart-safe runner are present. Live protected production data is STILL Hearn v8014 / 16,365 because no v8015 production write has been run. The next step is HUMAN_NEEDED: confirm current main deployment is green, authenticate as owner, run /step8g-v8015-populate.html once, and return the terminal JSON. Expected PASS is STEP_8G_CHAN_V8015_PROTECTED_POPULATION_PASS with 145 child recipes, 16,365 parent, 16,510 composed, 15 body + 15 route batches, two shards, fifteen-layer hydration, rollback fail-closed, final v8015 active, max D1 <=16, and no public/recommendation/topology/billing widening. After exact PASS, capture evidence/closeout, fresh-reconcile live v8015, then run post-v8015 marginal-value discovery and reassess LEGAL_CORPUS_BASELINE_PASS.",
+  "terminal_instruction_for_new_chat": "Continue the Culinary App Legal Corpus First lane from docs/handovers/CURRENT.json and fresh-reconcile GitHub first. Live protected production is Chan v8015 / 16,510 with exact terminal STEP_8G_CHAN_V8015_PROTECTED_POPULATION_PASS. PR #229 merged Chan live closeout plus post-v8015 discovery at 63645e8d83b20f60c75ce2fac6546c1b1ea1fb8c. Discovery found 15 rights-review-eligible cohorts, so LEGAL_CORPUS_BASELINE_PASS is not earned. PR #230 merged at 236ef27066bd7a43a957dd7ae3b513ae4b66731c and independently qualified/measured Arthur Robert Kenney-Herbert / Culinary Jottings for Madras, exact 1885 fifth edition: 501/501 parseable, 450 novel normalized titles (0.9473684210526315), 1,580 novel ingredient phrases, terminal STEP_8G_ORA_KENNEY_HERBERT_1885_MEASUREMENT_EARNED_COHORT_CANDIDATE. Authority is SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY. Next action is autonomous deterministic NO-WRITE v8016 prewrite for parent v8015 / 16,510 + 501 = target 17,011. Do not perform production writes. Preserve two shards, max 16 D1 subqueries/no assumed headroom, public runtime 85, no recommendation/billing/topology widening. If prewrite and implementation later pass, stop again at the real owner-authenticated v8016 production-write gate.",
   "continuation_boundary": {
-    "reason": "OWNER_AUTHENTICATED_PRODUCTION_WRITE_REQUIRED",
-    "safe_boundary": "V8015_IMPLEMENTATION_MERGED_AND_VALIDATED__NO_V8015_PRODUCTION_WRITES__LIVE_V8014_UNCHANGED",
-    "ordinary_implementation_stopped": true
+    "reason": "NO_HUMAN_GATE__SOURCE_SPECIFIC_V8016_PREWRITE_CAPACITY_MEASUREMENT_NEXT",
+    "safe_boundary": "V8015_LIVE_16510__KENNEY_HERBERT_1885_MEASUREMENT_PASS__NO_V8016_WRITES",
+    "ordinary_implementation_stopped": false
+  },
+  "post_v8015_discovery": {
+    "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_CANDIDATES_FOUND",
+    "workflow_run": 35626609074,
+    "workflow_conclusion": "success",
+    "baseline_version": "v8015",
+    "baseline_recipe_count": 16510,
+    "collection_count": 31,
+    "source_group_count": 59,
+    "measured_candidate_count": 17,
+    "rights_review_eligible_count": 15,
+    "next_authority": "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY",
+    "selected_next_candidate": {
+      "collection": "indian-kitchen",
+      "source_work": "Culinary Jottings for Madras",
+      "source_author": "Wyvern (A.R. Kenney-Herbert)",
+      "source_year": "1885",
+      "source_url": "https://archive.org/details/culinaryjottings00kenn",
+      "recipe_count": 501,
+      "novel_normalized_title_count": 450,
+      "novel_title_ratio": 0.9473684210526315
+    },
+    "legal_corpus_baseline_earned": false
+  },
+  "kenney_herbert_1885": {
+    "cohort_id": "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN",
+    "collection": "indian-kitchen",
+    "source_repository": "AdamBouhmad/open-recipe-archive",
+    "source_commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "source_work": "Culinary Jottings for Madras",
+    "source_author": "Wyvern (A.R. Kenney-Herbert)",
+    "canonical_author": "Arthur Robert Kenney-Herbert",
+    "source_author_classification": "IDENTIFIED_AUTHOR",
+    "source_url": "https://archive.org/details/culinaryjottings00kenn",
+    "source_year": "1885",
+    "source_year_semantics": "EXACT_DIGITIZED_FIFTH_EDITION_YEAR",
+    "digitized_edition_label": "5th edition",
+    "work_first_publication_year": "1878",
+    "publisher": "Higginbotham and Co.",
+    "publication_place": "Madras",
+    "rights_marker": "PASS_RIGHTS_VERIFIED_BOUNDED_KENNEY_HERBERT_1885_FIFTH_EDITION_TERM_EXPIRED",
+    "measurement_terminal": "STEP_8G_ORA_KENNEY_HERBERT_1885_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+    "measurement_workflow_run": 35627285745,
+    "measurement_workflow_conclusion": "success",
+    "public_validation_run": 35627285751,
+    "public_validation_conclusion": "success",
+    "baseline_version": "v8015",
+    "baseline_recipe_count": 16510,
+    "recipe_count": 501,
+    "parseable_recipe_count": 501,
+    "parseable_recipe_ratio": 1,
+    "distinct_normalized_titles": 475,
+    "exact_baseline_title_overlap_count": 25,
+    "novel_normalized_title_count": 450,
+    "novel_title_ratio": 0.9473684210526315,
+    "distinct_ingredient_phrase_count": 2161,
+    "novel_ingredient_phrase_count": 1580,
+    "ontology_resolved_occurrence_ratio": 0.19099785663253155,
+    "cultural_authenticity_authority_imported": false,
+    "next_authority": "SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY",
+    "protected_population_authorized": false
   }
 }
