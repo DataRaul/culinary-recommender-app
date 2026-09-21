@@ -20,10 +20,10 @@ const SOURCES = Object.freeze([
     sourceUrl: "https://archive.org/details/culinaryjottings00kenn",
     sourceTitle: "Culinary Jottings for Madras",
     author: "Wyvern (A.R. Kenney-Herbert)",
-    sourceYear: "1917",
+    sourceYear: "1885",
     license: "public-domain",
     expectedRecipeCount: 501,
-    idPrefix: "ora_chan_1917_"
+    idPrefix: "ora_kenney_herbert_1885_"
   })
 ]);
 
