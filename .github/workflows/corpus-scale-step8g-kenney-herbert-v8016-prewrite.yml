@@ -57,6 +57,12 @@ jobs:
           if(!Object.values(p.gates).every(Boolean))process.exit(1);
           const b=p.boundaries;if(b.liveD1WritesPerformed!==0||b.publicRuntimeChanged!==false||b.recommendationAdmissionPerformed!==false||b.thirdShardUsed!==false||b.d1BudgetExpansion!==false||b.billingExpansion!==false||b.nutritionLaneModified!==false||b.youtubeCulinaryStateModified!==false||b.knowledgeCoreWritePerformed!==false||b.culturalAuthenticityAuthorityImported!==false)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminalCandidate,counts:{parent:p.parent.composedRecipeCount,child:p.layer.recipeCount,composed:p.composition.cumulativeRecipeCount},fingerprints:{parent:p.parent.fingerprintSha256,manifest:p.layer.manifestSha256,populationPlan:p.layer.populationPlanSha256,batchIds:p.layer.batchIdsSha256,packet:p.source.sourceCohort.packetDescriptorSha256},maxWriteRequestBytes:p.layer.maxWriteRequestBytes,capacity:p.composition.capacity,operationBudget:p.layer.operationBudget,gates:p.gates}));'
+      - name: Verify frozen v8016 prewrite parity
+        run: >-
+          node -e 'const fs=require("fs");const a=JSON.parse(fs.readFileSync(".tmp/step8g-kenney-herbert-v8016-prewrite/prewrite-evidence.json","utf8"));const f=JSON.parse(fs.readFileSync("data/generated/step8g/kenney-herbert-v8016-prewrite-evidence.json","utf8"));
+          if(JSON.stringify(a)!==JSON.stringify(f))process.exit(1);
+          console.log("STEP8G_KENNEY_HERBERT_V8016_FROZEN_PREWRITE_PARITY_PASS");'
+
       - name: Upload public-safe v8016 prewrite evidence
         uses: actions/upload-artifact@v4
         with:
