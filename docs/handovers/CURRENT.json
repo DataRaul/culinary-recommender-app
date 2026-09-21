@@ -11,14 +11,22 @@
     "knowledge_core": "READ_ONLY_RECONCILIATION_ONLY",
     "implementation_pr": 214,
     "implementation_merge_sha": "19155d12397c851a1b164be742472e14e9b32bda",
-    "open_pr_count_at_handover": 0,
-    "concurrent_open_prs": [],
+    "open_pr_count_at_handover": 1,
+    "concurrent_open_prs": [
+      {
+        "number": 221,
+        "title": "Close Hearn v8014 live PASS and rotate handover",
+        "purpose": "HANDOVER_AND_V8014_CLOSEOUT_ONLY"
+      }
+    ],
     "repair_pr": 216,
     "repair_merge_sha": "19700e5c8ef17660c67b5fe29fbd9279b79029c3",
     "repair_marker_pr": 218,
     "repair_marker_merge_sha": "9c5b018da8cdbe431552efca3782c6ac3b680ef8",
     "handover_branch": "handover/hearn-v8014-live-pass-v53",
-    "latest_completed_owner_gate": "STEP_8G_HEARN_V8014_PROTECTED_POPULATION_PASS"
+    "latest_completed_owner_gate": "STEP_8G_HEARN_V8014_PROTECTED_POPULATION_PASS",
+    "handover_pr": 221,
+    "closeout_pr": 221
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
