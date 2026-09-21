@@ -2,7 +2,7 @@
 
 Date: 2026-09-21
 
-Status: `PASS_RIGHTS__V8015_MEASUREMENT_CANDIDATE_PENDING_DETERMINISTIC_RUN`
+Status: `PASS_RIGHTS__V8015_MEASUREMENT_EARNED_COHORT_CANDIDATE`
 
 Pinned source repository: `AdamBouhmad/open-recipe-archive`
 
@@ -81,3 +81,36 @@ Documentary references:
 - Prospect Books edition history: https://prospectbooks.co.uk/products-page/current-titles/culinary-jottings-for-madras/
 - Spain Copyright Act, transitional provision 4: https://www.boe.es/buscar/act.php?id=BOE-A-1996-8930
 - Spain 1879 Copyright Act, Article 6: https://www.boe.es/buscar/doc.php?id=BOE-A-1879-40001
+
+
+## Bounded measurement result
+
+Workflow run `35627136239` completed successfully.
+
+Terminal:
+
+`STEP_8G_ORA_KENNEY_HERBERT_1885_MEASUREMENT_EARNED_COHORT_CANDIDATE`
+
+Measured against active protected `v8015` / **16,510**:
+
+- exact candidate rows: **501**
+- parseable rows: **501 / 501**
+- distinct normalized titles: **475**
+- unique-title ratio: **0.9481037924151696**
+- exact baseline-title overlaps: **25**
+- novel normalized titles: **450**
+- novel-title ratio: **0.9473684210526315**
+- distinct ingredient phrases: **2,161**
+- novel ingredient phrases: **1,580**
+- ontology-resolved occurrence ratio: **0.19099785663253155**
+
+All rights, repository-reuse, attribution, edition-semantics, exact-count, source-identity, structural-quality and culinary-coverage gates passed.
+
+The measurement earns only:
+
+`SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`
+
+It does not authorize protected population.
+
+Canonical public-safe measurement evidence:
+`data/generated/step8g/kenney-herbert-1885-v8015-measurement.json`.
