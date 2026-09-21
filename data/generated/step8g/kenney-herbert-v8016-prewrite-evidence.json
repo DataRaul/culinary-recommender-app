@@ -1,0 +1,175 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_KENNEY_HERBERT_V8016_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_KENNEY_HERBERT_V8016_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-21",
+  "source": {
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "collection": "indian-kitchen",
+    "recordCount": 501,
+    "measurementTerminal": "STEP_8G_ORA_KENNEY_HERBERT_1885_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+    "sourceCohort": {
+      "cohortId": "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN",
+      "sourceWork": "Culinary Jottings for Madras",
+      "sourceAuthor": "Wyvern (A.R. Kenney-Herbert)",
+      "sourceAuthorClassification": "IDENTIFIED_AUTHOR",
+      "sourceYear": "1885",
+      "sourceYearSemantics": "EXACT_DIGITIZED_FIFTH_EDITION_YEAR",
+      "sourceUrl": "https://archive.org/details/culinaryjottings00kenn",
+      "digitizedEditionYear": "1885",
+      "digitizedEditionLabel": "5th edition",
+      "workFirstPublicationYear": "1878",
+      "recordCount": 501,
+      "licenseId": "public-domain",
+      "packetDescriptorSha256": "cc1950c2f88ba20af1fc723210b8b29f314e37b7b3b25e1955d2dd92a2c55142"
+    },
+    "repositoryLayerLicense": "Unlicense",
+    "culturalAuthenticityAuthorityImported": false
+  },
+  "parent": {
+    "activeCorpusVersion": "v8015",
+    "composedRecipeCount": 16510,
+    "fingerprintSha256": "b3d527d3488a6ee47bd2bcbdd4eaaf2934055e1eec20c5a28ab0151d259ecfa5",
+    "fingerprintMaterial": {
+      "activeCorpusVersion": "v8015",
+      "composedRecipeCount": 16510,
+      "liveTerminal": "STEP_8G_CHAN_V8015_PROTECTED_POPULATION_PASS",
+      "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "layerManifestSha256": "d5264a8e514994d00669836ffa682be734465f209fe63f3fe3ffa445b2f3a3f4",
+      "populationPlanSha256": "f6f5980d38ae8f7d1aab45e88b21381edd02a1f14c382f5ed736340e376da8a4",
+      "bodyShardRows": [
+        69,
+        76
+      ],
+      "parentCompositionRouteCount": 16365,
+      "composedRouteCount": 16510
+    }
+  },
+  "layer": {
+    "corpusVersion": "v8016",
+    "parentCorpusVersion": "v8015",
+    "recipeCount": 501,
+    "manifestSha256": "df427ee80e3bb902615d48279e7ab80280382b17fcea061e1dfacbe9dd4a67ca",
+    "populationPlanSha256": "2531a470dabb619847f50c95bdae7bee28521b1984bb5ee85a59faf119eb4dca",
+    "batchCount": 51,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 8471,
+    "maxBatchBodyBytes": 45516,
+    "maxWriteRequestBytes": 18652,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "operationBudget": {
+      "authD1Subqueries": 1,
+      "maxRowsPerBatch": 10,
+      "operations": {
+        "status": 1,
+        "bindings": 3,
+        "freeLimitSimulation": 1,
+        "initialize": 8,
+        "bodyWriteFresh": 15,
+        "bodyWriteReplay": 3,
+        "progress": 7,
+        "copyParentRoutesFresh": 6,
+        "routeWriteFresh": 16,
+        "routeWriteReplay": 4,
+        "activate": 8,
+        "rollback": 3,
+        "sixteenLayerHydrationCanary": 4,
+        "boundedHydrationWorstCase": 16,
+        "evidence": 7
+      },
+      "maxPlannedD1Subqueries": 16,
+      "maxAllowedD1Subqueries": 16,
+      "limitingOperations": [
+        "routeWriteFresh",
+        "boundedHydrationWorstCase"
+      ],
+      "pass": true,
+      "headroomAssumed": false
+    },
+    "shardDescriptors": [
+      {
+        "shardNumber": 0,
+        "rowCount": 259,
+        "totalBodyBytes": 952893,
+        "firstOrdinal": 0,
+        "lastOrdinal": 500,
+        "entriesSha256": "6364a1ac6f16e63b24dce1262640c0dce7b20cc12aaddcf1892fd08d54d64e21"
+      },
+      {
+        "shardNumber": 1,
+        "rowCount": 242,
+        "totalBodyBytes": 882463,
+        "firstOrdinal": 1,
+        "lastOrdinal": 497,
+        "entriesSha256": "92338d6a0932b12a7d49ba076b1712a8e85b4f25f55283839f3eb5201e0f0be8"
+      }
+    ],
+    "batchIdsSha256": "dc14479d7a746d5ed1dbb55504e3f6a2614044f8113483cbc744e33850d6de03"
+  },
+  "composition": {
+    "activeCorpusVersion": "v8016",
+    "parentCorpusVersion": "v8015",
+    "cumulativeRecipeCount": 17011,
+    "capacity": {
+      "parentLayeredPhysicalBodyBytes": 60433326,
+      "addedLayerBodyBytes": 1835356,
+      "layeredPhysicalBodyBytes": 62268682,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {
+          "shardNumber": 0,
+          "parentRowCount": 8254,
+          "addedRowCount": 259,
+          "rowCount": 8513,
+          "parentBodyBytes": 30326277,
+          "addedBodyBytes": 952893,
+          "totalBodyBytes": 31279170,
+          "withinProjectDatabaseBudget": true
+        },
+        {
+          "shardNumber": 1,
+          "parentRowCount": 8256,
+          "addedRowCount": 242,
+          "rowCount": 8498,
+          "parentBodyBytes": 30107049,
+          "addedBodyBytes": 882463,
+          "totalBodyBytes": 30989512,
+          "withinProjectDatabaseBudget": true
+        }
+      ]
+    },
+    "routing": {
+      "shardCount": 2,
+      "mode": "CONTROL_INDEX_EXACT_ROUTE_THEN_BATCH_HYDRATE_BY_SHARD",
+      "fullCorpusScans": 0,
+      "maxProtectedD1Subqueries": 16,
+      "d1BudgetHeadroomAssumed": false
+    }
+  },
+  "gates": {
+    "requestSizePass": true,
+    "operationBudgetPass": true,
+    "capacityPass": true,
+    "topologyPass": true,
+    "countPass": true,
+    "batchSizePass": true,
+    "uniqueIdsPass": true,
+    "bodySizePass": true
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "d1BudgetExpansion": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "step8fReopened": false
+  },
+  "decision": "EARN_V8016_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE"
+}
