@@ -1,10 +1,10 @@
 {
-  "handover": "CULINARY_APP_V8016_RUNTIME_PR233_IN_PROGRESS_V57",
+  "handover": "CULINARY_APP_V8016_IMPLEMENTATION_MERGED_OWNER_AUTH_POPULATION_GATE_V58",
   "handover_date": "2026-09-22",
   "timezone": "Atlantic/Canary",
-  "status": "AUTO_READY__V8015_LIVE_16510__KENNEY_HERBERT_V8016_PREWRITE_PASS__PR233_RUNTIME_IMPL_SUBSTANTIVE_GATES_PASS__PUBLIC_VALIDATION_PENDING__NO_V8016_PRODUCTION_WRITES",
-  "human_needed": false,
-  "handover_written_against_main_sha": "7f1c5aa83000759ce6e044b6de5dae53588fa9af",
+  "status": "HUMAN_NEEDED__V8015_LIVE_16510__KENNEY_HERBERT_V8016_IMPLEMENTATION_MERGED_AND_VALIDATED__OWNER_AUTH_PRODUCTION_POPULATION_GATE",
+  "human_needed": true,
+  "handover_written_against_main_sha": "c3786f9bcaca6db0c6fe4e73dc5beeb1f6ea34a2",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
@@ -13,10 +13,12 @@
     "kenney_herbert_rights_measurement_pr": 230,
     "kenney_herbert_v8016_prewrite_pr": 232,
     "kenney_herbert_v8016_prewrite_merge_sha": "7f1c5aa83000759ce6e044b6de5dae53588fa9af",
-    "active_runtime_pr": 233,
-    "active_runtime_branch": "step8g/kenney-herbert-v8016-live-runtime",
-    "active_runtime_head": "565c1b0b97ef36ef7782a49d63c412897d4a32ea",
-    "handover_branch": "handover/v8016-runtime-pr233-v57"
+    "v8016_runtime_pr": 233,
+    "v8016_runtime_merge_sha": "c3786f9bcaca6db0c6fe4e73dc5beeb1f6ea34a2",
+    "safety_handover_pr": 234,
+    "safety_handover_merge_sha": "fef3cd5eb11fffa3e5c344afc7e341bd0f7ced12",
+    "open_pr_count_at_handover": 0,
+    "handover_branch": "handover/v8016-owner-gate-v58"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -36,7 +38,7 @@
     "billing": "NO_BILLING_AUTHORIZATION"
   },
   "operating_contract": {
-    "autonomy": "Proceed autonomously on PR #233 through remaining technically resolvable CI/repair/merge. After a green merge and deployment verification, stop at the real owner-authenticated v8016 production-write gate. Do not simulate or bypass authentication.",
+    "autonomy": "Autonomous v8016 implementation/CI/merge work is complete. Stop at the real owner-authenticated production-write gate. After the owner returns the exact terminal JSON, resume autonomous closeout, fresh post-v8016 source discovery, and LEGAL_CORPUS_BASELINE_PASS reassessment unless another genuine human/security/cost/source-rights/topology/unrecoverable blocker appears.",
     "rights": "Fail closed. Private runtime creates no reuse permission. Unknown or materially unresolved rights are held or rejected. Every admitted cohort carries exact provenance plus attribution/disclosure classification.",
     "storage": "Protected recipe bodies remain in private Cloudflare D1. GitHub contains only public code and public-safe evidence/artifacts.",
     "authentication": "Protected production writes require the real owner-authenticated application session. Do not emulate, bypass, synthesize or weaken authentication.",
@@ -151,43 +153,84 @@
     "max_observed_d1_subqueries": 16
   },
   "implementation_validation": {
-    "pr225_final_head": "3df53885a46ca73e36dc6977d69e47b28cef3c92",
-    "pr225_cloudflare_preview": "https://2a982595.culinary-recommender-app.pages.dev",
-    "pr225_runtime_workflow_run": 35622180970,
-    "pr225_runtime_workflow_conclusion": "success",
-    "pr225_descriptor_workflow_run": 35622180907,
-    "pr225_descriptor_workflow_conclusion": "success",
-    "pr225_public_validation_run": 35622181085,
-    "pr225_public_validation_conclusion": "success",
-    "main_public_validation_run": 35622463799,
-    "main_public_validation_conclusion": "success",
-    "main_public_validation_includes": [
+    "pr233_final_head": "565c1b0b97ef36ef7782a49d63c412897d4a32ea",
+    "descriptor_workflow_run": 35667662670,
+    "descriptor_workflow_conclusion": "success",
+    "live_runtime_workflow_run": 35667662748,
+    "live_runtime_workflow_conclusion": "success",
+    "public_validation_run": 35667662765,
+    "public_validation_conclusion": "success",
+    "public_validation_includes": [
       "npm run validate",
-      "browser tests",
-      "production public-runtime smoke"
+      "browser tests"
     ],
-    "main_pages_run": 35622462990,
-    "main_pages_state_at_handover": "IN_PROGRESS__BUILD_PASS__DEPLOY_PENDING",
-    "exact_runtime_contract_pass": true,
+    "descriptor_parity_pass": true,
+    "descriptor_contains_recipe_bodies": false,
     "payload_fingerprint_pass": true,
     "api_syntax_pass": true,
     "owner_runner_contract_pass": true,
     "ci_production_mutation_capability": false,
-    "public_safe_descriptor_contains_recipe_bodies": false
+    "exact_parent_version": "v8015",
+    "exact_target_version": "v8016",
+    "sixteen_layer_hydration_implemented": true,
+    "rollback_target": "v8015",
+    "production_http_probe": "UNAVAILABLE_FROM_CURRENT_WEB_TOOL__OWNER_LOAD_PRECONDITION_REQUIRED",
+    "note": "PR #233 merged exactly after all PR-level implementation gates passed. The available GitHub workflow wrapper exposes PR-triggered runs, not a separate post-merge push run, so the merged tree is validated by the green final PR head. External browsing could not directly load the Cloudflare Pages production URL."
   },
   "owner_gate": {
-    "state": "NOT_YET_REACHED",
-    "reason": "PR #233 must first complete general public validation, merge, and be verified on current production deployment. Only then may the owner-authenticated v8016 production runner be used.",
-    "future_path": "/step8g-v8016-populate.html",
+    "state": "HUMAN_NEEDED",
+    "reason": "The next operation writes protected production D1 and requires the real owner-authenticated application session. Authentication must not be simulated, bypassed or synthesized.",
+    "precondition": "Confirm the production Cloudflare Pages deployment is current by loading the v8016 runner on the production domain. If it does not load or still shows an older version, do not run population; allow/resolve deployment first.",
+    "production_runner_url": "https://culinary-recommender-app.pages.dev/step8g-v8016-populate.html",
+    "path": "/step8g-v8016-populate.html",
+    "auth_canary_url": "https://culinary-recommender-app.pages.dev/auth-canary.html",
     "auth_canary_path": "/auth-canary.html",
-    "expected_future_terminal": "STEP_8G_KENNEY_HERBERT_V8016_PROTECTED_POPULATION_PASS"
+    "owner_action": [
+      "Open the production auth canary and confirm/sign in using the real Culinary owner session.",
+      "Open the production v8016 runner URL.",
+      "Confirm the page states Kenney-Herbert v8016, 501 child recipes, parent v8015 / 16,510 and target 17,011.",
+      "Click Run / resume v8016 once. The runner is restart-safe and uses the bounded one-retry contract only for unknown-commit/opaque 5xx cases.",
+      "Do not use a preview deployment for production population.",
+      "Copy the final JSON result back into ChatGPT."
+    ],
+    "expected_terminal": "STEP_8G_KENNEY_HERBERT_V8016_PROTECTED_POPULATION_PASS",
+    "expected_terminal_contract": {
+      "pass": true,
+      "restartSafeRunner": true,
+      "sourceCohortIds": [
+        "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN"
+      ],
+      "sourceAuthorHandling": "IDENTIFIED_AUTHOR",
+      "parentCorpusVersion": "v8015",
+      "activeCorpusVersion": "v8016",
+      "childRecipeCount": 501,
+      "parentRecipeCount": 16510,
+      "composedRecipeCount": 17011,
+      "bodyBatchCount": 51,
+      "routeBatchCount": 51,
+      "shardCount": 2,
+      "idempotentBodyReplayPass": true,
+      "idempotentRouteReplayPass": true,
+      "sixteenLayerHydrationPass": true,
+      "rollbackPass": true,
+      "rollbackHydrationFailClosedPass": true,
+      "finalProtectedActiveVersion": "v8016",
+      "fullCorpusScans": 0,
+      "maxAllowedD1Subqueries": 16,
+      "d1BudgetHeadroomAssumed": false,
+      "publicRuntimeChanged": false,
+      "recommendationAdmissionChanged": false,
+      "thirdShardUsed": false,
+      "billingExpansion": false,
+      "culturalAuthenticityAuthorityImported": false
+    }
   },
   "after_owner_pass": [
-    "COMPLETED: captured exact v8015 terminal evidence and live closeout.",
-    "COMPLETED: fresh-reconciled protected live state as v8015 / 16,510.",
-    "COMPLETED: ran fresh post-v8015 discovery; 15 source cohorts remain rights-review eligible.",
-    "COMPLETED: performed source-specific documentary rights review and deterministic measurement for Arthur Robert Kenney-Herbert / Culinary Jottings for Madras 1885.",
-    "NEXT: run deterministic no-write v8016 prewrite/capacity gate for the 501-row Kenney-Herbert cohort."
+    "Capture the exact v8016 terminal JSON as public-safe generated evidence.",
+    "Write v8016 live closeout documentation and rotate the handover.",
+    "Fresh-reconcile protected live state as v8016 / 17,011 only after exact terminal PASS.",
+    "Run fresh post-v8016 source discovery / diminishing-marginal-value reassessment.",
+    "Reassess LEGAL_CORPUS_BASELINE_PASS; do not declare it automatically from v8016 PASS alone."
   ],
   "concurrent_child_programmes": {
     "youtube_culinary": {
@@ -213,10 +256,10 @@
     "current_live_version": "v8015",
     "current_live_recipe_count": 16510,
     "candidate_v8016_recipe_count": 17011,
-    "reason": "Kenney-Herbert v8016 has passed rights, measurement and prewrite. Its protected runtime implementation is on PR #233 and substantive implementation gates pass, but production remains v8015. Baseline must not be declared from implementation alone; after any exact v8016 live PASS, fresh post-v8016 marginal-value discovery/reassessment remains required."
+    "reason": "Kenney-Herbert v8016 rights, measurement, prewrite and implementation all passed, but protected production is still v8015. Even after a future exact v8016 population PASS, LEGAL_CORPUS_BASELINE_PASS remains downstream of a fresh post-v8016 marginal-value/source-discovery reassessment."
   },
   "not_authorized": [
-    "No v8016 production D1 population before PR #233 is merged, deployed, and the real owner uses the authenticated production runner.",
+    "No v8016 production D1 population except through the real owner-authenticated production runner after confirming the production deployment is current.",
     "No owner-authentication emulation, bypass or synthetic session.",
     "No paid infrastructure or billing/automatic overage authorization.",
     "No third D1 shard.",
@@ -228,18 +271,18 @@
     "No weakening of source-rights/provenance gates.",
     "No generic web scraping/crawling.",
     "No automatic cultural-authenticity, nutrition, allergen, dietary, scaling or medical authority.",
-    "No LEGAL_CORPUS_BASELINE_PASS declaration from v8016 implementation or future population alone."
+    "No LEGAL_CORPUS_BASELINE_PASS declaration from v8016 implementation or population alone."
   ],
   "next_action": {
-    "state": "AUTO_READY",
-    "actor": "CHATGPT",
-    "action": "Fresh-reconcile PR #233 head 565c1b0b97ef36ef7782a49d63c412897d4a32ea. Descriptor workflow 35667662670 and live runtime workflow 35667662748 are green. Public validation 35667662765 was pending with no job allocated at handover. When public validation is green, review PR diff, merge #233, verify main validation/deployment, rotate handover to HUMAN_NEEDED owner-auth v8016 population gate. Do not perform production writes."
+    "state": "HUMAN_NEEDED",
+    "actor": "OWNER",
+    "action": "Load the production auth canary and v8016 runner, confirm the deployment shows Kenney-Herbert v8016 / 501 child / parent 16,510 / target 17,011, authenticate with the real owner session, run /step8g-v8016-populate.html once, and return the terminal JSON. Do not run if the production page is not current."
   },
-  "terminal_instruction_for_new_chat": "Continue Culinary App Legal Corpus First from docs/handovers/CURRENT.json and fresh-reconcile GitHub first. Live protected production remains Chan v8015 / 16,510; no v8016 production writes have occurred. Kenney-Herbert 1885 rights+measurement passed (501 recipes) and v8016 prewrite PR #232 merged at 7f1c5aa83000759ce6e044b6de5dae53588fa9af for target 17,011 on two shards and max 16 D1 queries. PR #233 is the active v8016 runtime implementation, head 565c1b0b97ef36ef7782a49d63c412897d4a32ea. It contains frozen v8016 descriptor, protected runtime, sixteen-layer hydration, authenticated API, exact payload verifier/tests, read-only CI and owner-only restart-safe /step8g-v8016-populate.html. Descriptor run 35667662670 PASS; live runtime run 35667662748 PASS including payload fingerprints/API/owner-runner/no-CI-mutation. Public validation run 35667662765 was still pending with no job allocated at handover. Next: wait/recheck that run, repair only if needed, merge #233 when all green, verify current main deployment, then stop at HUMAN_NEEDED and give owner the production /step8g-v8016-populate.html link. Expected future live terminal: STEP_8G_KENNEY_HERBERT_V8016_PROTECTED_POPULATION_PASS. After owner PASS, close out v8016, run fresh post-v8016 discovery, and reassess LEGAL_CORPUS_BASELINE_PASS.",
+  "terminal_instruction_for_new_chat": "Continue Culinary App Legal Corpus First from docs/handovers/CURRENT.json and fresh-reconcile GitHub first. Live protected production remains Chan v8015 / 16,510. Kenney-Herbert 1885 passed rights + measurement (501 recipes), v8016 prewrite PR #232 merged at 7f1c5aa83000759ce6e044b6de5dae53588fa9af, and v8016 runtime PR #233 merged at c3786f9bcaca6db0c6fe4e73dc5beeb1f6ea34a2. Final PR #233 head 565c1b0b97ef36ef7782a49d63c412897d4a32ea passed descriptor run 35667662670, live runtime run 35667662748, and public validation 35667662765. Exact target: v8015 parent 16,510 + 501 child = v8016 17,011; 51 body + 51 route batches; layer shard rows 259/242; two shards; max 16 D1 subqueries with zero assumed headroom; sixteen-layer hydration; rollback target v8015; public/recommendation/topology/billing unchanged. No v8016 production writes have occurred. NEXT IS HUMAN_NEEDED: owner must confirm production deployment by loading https://culinary-recommender-app.pages.dev/step8g-v8016-populate.html, authenticate through https://culinary-recommender-app.pages.dev/auth-canary.html, run the v8016 production runner once, and return terminal JSON. Expected terminal is STEP_8G_KENNEY_HERBERT_V8016_PROTECTED_POPULATION_PASS. After exact PASS, close out v8016, fresh-run post-v8016 discovery, and reassess LEGAL_CORPUS_BASELINE_PASS.",
   "continuation_boundary": {
-    "reason": "PUBLIC_VALIDATION_PENDING_BEFORE_PR233_MERGE",
-    "safe_boundary": "V8015_LIVE_16510__V8016_RUNTIME_PR233_SUBSTANTIVE_GATES_PASS__ZERO_V8016_PRODUCTION_WRITES",
-    "ordinary_implementation_stopped": false
+    "reason": "OWNER_AUTHENTICATED_PRODUCTION_WRITE_REQUIRED",
+    "safe_boundary": "V8016_IMPLEMENTATION_MERGED_AND_VALIDATED__NO_V8016_PRODUCTION_WRITES__LIVE_V8015_UNCHANGED",
+    "ordinary_implementation_stopped": true
   },
   "post_v8015_discovery": {
     "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_CANDIDATES_FOUND",
@@ -304,6 +347,16 @@
   },
   "kenney_herbert_v8016": {
     "source_cohort_id": "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN",
+    "collection": "indian-kitchen",
+    "source_repository": "AdamBouhmad/open-recipe-archive",
+    "source_commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "source_work": "Culinary Jottings for Madras",
+    "source_author": "Wyvern (A.R. Kenney-Herbert)",
+    "canonical_author": "Arthur Robert Kenney-Herbert",
+    "source_author_classification": "IDENTIFIED_AUTHOR",
+    "source_url": "https://archive.org/details/culinaryjottings00kenn",
+    "source_year": "1885",
+    "source_year_semantics": "EXACT_DIGITIZED_FIFTH_EDITION_YEAR",
     "parent_version": "v8015",
     "parent_recipe_count": 16510,
     "child_recipe_count": 501,
@@ -326,31 +379,19 @@
     "max_planned_d1_subqueries": 16,
     "max_allowed_d1_subqueries": 16,
     "d1_budget_headroom_assumed": false,
+    "expected_hydration_layers": 16,
     "manifest_sha256": "df427ee80e3bb902615d48279e7ab80280382b17fcea061e1dfacbe9dd4a67ca",
     "population_plan_sha256": "2531a470dabb619847f50c95bdae7bee28521b1984bb5ee85a59faf119eb4dca",
     "packet_descriptor_sha256": "cc1950c2f88ba20af1fc723210b8b29f314e37b7b3b25e1955d2dd92a2c55142",
     "parent_fingerprint_sha256": "b3d527d3488a6ee47bd2bcbdd4eaaf2934055e1eec20c5a28ab0151d259ecfa5",
     "prewrite_terminal": "STEP_8G_KENNEY_HERBERT_V8016_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
-    "prewrite_decision": "EARN_V8016_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE",
-    "implementation_pr": 233,
-    "implementation_head": "565c1b0b97ef36ef7782a49d63c412897d4a32ea",
-    "descriptor_workflow_run": 35667662670,
-    "descriptor_workflow_conclusion": "success",
-    "live_runtime_workflow_run": 35667662748,
-    "live_runtime_workflow_conclusion": "success",
-    "public_validation_run": 35667662765,
-    "public_validation_state_at_handover": "PENDING__NO_JOB_ALLOCATED_YET",
-    "descriptor_parity_pass": true,
-    "payload_fingerprint_pass": true,
-    "api_syntax_pass": true,
-    "owner_runner_contract_pass": true,
-    "ci_production_mutation_capability": false,
-    "sixteen_layer_hydration_implemented": true,
-    "rollback_target": "v8015",
+    "implementation_state": "MERGED_AND_VALIDATED__PRODUCTION_POPULATION_NOT_RUN",
+    "implementation_merge_sha": "c3786f9bcaca6db0c6fe4e73dc5beeb1f6ea34a2",
     "production_d1_writes_performed": 0,
     "public_runtime_activation_authorized": false,
     "recommendation_admission_authorized": false,
     "third_shard_authorized": false,
-    "billing_expansion_authorized": false
+    "billing_expansion_authorized": false,
+    "cultural_authenticity_authority_imported": false
   }
 }
