@@ -1,41 +1,25 @@
 {
-  "handover": "CULINARY_APP_CHAN_V8015_RUNTIME_TAKEOVER_PR225_PHASE1_PASS_V54",
+  "handover": "CULINARY_APP_CHAN_V8015_IMPLEMENTATION_MERGED_OWNER_AUTH_POPULATION_GATE_V55",
   "handover_date": "2026-09-21",
   "timezone": "Atlantic/Canary",
-  "status": "AUTO_READY__V8014_LIVE_16365__CHAN_V8015_RIGHTS_MEASUREMENT_PREWRITE_PASS__PR225_PHASE1_DESCRIPTOR_PASS__RUNTIME_IMPLEMENTATION_IN_PROGRESS",
-  "human_needed": false,
-  "handover_written_against_main_sha": "9f59fd5029cb5522144f42fd77c620363b86acee",
+  "status": "HUMAN_NEEDED__V8014_LIVE_16365__CHAN_V8015_IMPLEMENTATION_MERGED_AND_VALIDATED__OWNER_AUTH_PRODUCTION_POPULATION_GATE",
+  "human_needed": true,
+  "handover_written_against_main_sha": "66a91f7add5e99790222b0ad26bb7798624519a0",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
-    "open_pr_count_at_handover": 1,
-    "active_pr": {
-      "number": 225,
-      "title": "Build Chan v8015 protected runtime",
-      "branch": "step8g/chan-v8015-live-runtime",
-      "head_sha": "ace7609eb7316868974fe6025c7334ec012ddac3",
-      "base_sha": "9f59fd5029cb5522144f42fd77c620363b86acee",
-      "mergeable": true
-    },
-    "prior_chan_prs": [
-      {
-        "number": 223,
-        "purpose": "CHAN_1917_RIGHTS_AND_BOUNDED_MEASUREMENT",
-        "state": "MERGED"
-      },
-      {
-        "number": 224,
-        "purpose": "CHAN_V8015_PREWRITE_CAPACITY",
-        "state": "MERGED"
-      }
-    ],
-    "handover_branch": "handover/chan-v8015-runtime-takeover-v54"
+    "implementation_pr": 225,
+    "implementation_merge_sha": "66a91f7add5e99790222b0ad26bb7798624519a0",
+    "handover_compatibility_pr": 227,
+    "handover_compatibility_merge_sha": "434c5a1051edd2f369dd26fd5cc0634ac7132c61",
+    "open_pr_count_at_handover": 0,
+    "handover_branch": "handover/chan-v8015-owner-gate-v55"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
     "previous": "docs/handovers/PREVIOUS.json",
     "protocol": "docs/HANDOVER_PROTOCOL.md",
-    "rule": "Live GitHub state outranks this snapshot. Fresh-reconcile main, open PRs/branches/CI and generated child-programme state before mutation."
+    "rule": "Live GitHub state outranks this snapshot. Fresh-reconcile main, open PRs/branches/CI/deployments and generated child-programme state before mutation."
   },
   "lane": {
     "name": "Culinary App / Culinary Lab — Legal Corpus First",
@@ -49,16 +33,15 @@
     "billing": "NO_BILLING_AUTHORIZATION"
   },
   "operating_contract": {
-    "autonomy": "Proceed autonomously through technically resolvable protected-runtime implementation, ordinary CI/deployment, PR repair and safe merge. Stop at genuine human/security/cost/source-rights/topology/unrecoverable blockers, owner-authenticated production-write gates, terminal material results, or continuation boundaries.",
+    "autonomy": "Autonomous implementation/CI/merge work is complete. Stop at the owner-authenticated production-write gate. After the owner supplies terminal evidence, resume autonomous closeout/reconciliation unless a new genuine human/security/cost/source-rights/topology/unrecoverable blocker appears.",
     "rights": "Fail closed. Private runtime creates no reuse permission. Unknown or materially unresolved rights are held or rejected. Every admitted cohort carries exact provenance plus attribution/disclosure classification.",
     "storage": "Protected recipe bodies remain in private Cloudflare D1. GitHub contains only public code and public-safe evidence/artifacts.",
-    "authentication": "Protected production writes remain owner-authenticated through the existing application identity/session gate. Do not weaken or emulate it.",
+    "authentication": "Protected production writes require the real owner-authenticated application session. Do not emulate, bypass, synthesize or weaken authentication.",
     "billing_firewall": "No paid infrastructure, billing enablement or automatic overage authorization.",
     "topology": "Exactly two protected recipe-body D1 shards. No third shard is authorized.",
     "d1_budget": "Maximum 16 D1 subqueries with zero assumed headroom.",
     "public_activation": "Public runtime remains 85 recipes; broader public corpus/recommendation activation is not authorized.",
-    "source_authority": "Historical provenance is not authority for cultural authenticity, nutrition, allergens, dietary classification, scaling or medical claims.",
-    "ci_authority": "Ordinary expected GitHub Actions validation and technically necessary reruns are standing-preapproved under AGENTS.md."
+    "source_authority": "Historical provenance is not authority for cultural authenticity, nutrition, allergens, dietary classification, scaling or medical claims."
   },
   "canonical_documents": {
     "legal_corpus_config": "config/legal_corpus_first_private_runtime.json",
@@ -68,9 +51,16 @@
     "chan_measurement_evidence": "data/generated/step8g/chan-1917-v8014-measurement.json",
     "chan_v8015_prewrite": "docs/CORPUS_SCALE_STEP8G_CHAN_V8015_PREWRITE.md",
     "chan_v8015_prewrite_evidence": "data/generated/step8g/chan-v8015-prewrite-evidence.json",
-    "pending_v8015_runtime_descriptor": "data/generated/step8g/v8015-runtime-descriptor.mjs",
-    "youtube_culinary_work_unit_state": "data/generated/youtube-culinary-work-unit-state.json",
-    "hearn_v8014_live_evidence": "data/generated/step8g/hearn-v8014-live-pass.json"
+    "chan_v8015_runtime_descriptor": "data/generated/step8g/v8015-runtime-descriptor.mjs",
+    "chan_v8015_runtime_core": "src/server/step8g-v8015-live-runtime.mjs",
+    "chan_v8015_hydration": "src/server/step8g-v8015-hydration-runtime.mjs",
+    "chan_v8015_api": "functions/api/step8g/v8015.js",
+    "chan_v8015_verifier": "scripts/verify-step8g-v8015-live-payloads.mjs",
+    "chan_v8015_tests": "tests/step8g-v8015-live.test.js",
+    "chan_v8015_workflow": ".github/workflows/corpus-scale-step8g-chan-v8015-live.yml",
+    "chan_v8015_owner_runner": "step8g-v8015-populate.html",
+    "hearn_v8014_live_evidence": "data/generated/step8g/hearn-v8014-live-pass.json",
+    "youtube_culinary_work_unit_state": "data/generated/youtube-culinary-work-unit-state.json"
   },
   "live_protected_state": {
     "active_version": "v8014",
@@ -80,12 +70,13 @@
     "hydration_layers": 14,
     "max_observed_d1_subqueries": 16,
     "max_allowed_d1_subqueries": 16,
+    "d1_budget_headroom_assumed": false,
     "public_runtime_recipe_count": 85,
     "public_runtime_changed": false,
     "recommendation_admission_changed": false,
     "third_shard_used": false,
     "billing_expansion": false,
-    "d1_budget_headroom_assumed": false
+    "production_v8015_writes_performed": 0
   },
   "chan_v8015": {
     "cohort_id": "ORA_CHAN_1917_CHINESE_COOK_BOOK_CHINESECOOKBOOK00CHAN",
@@ -124,61 +115,107 @@
     "expected_hydration_layers": 15,
     "manifest_sha256": "d5264a8e514994d00669836ffa682be734465f209fe63f3fe3ffa445b2f3a3f4",
     "population_plan_sha256": "f6f5980d38ae8f7d1aab45e88b21381edd02a1f14c382f5ed736340e376da8a4",
-    "prewrite_decision": "EARN_V8015_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE",
+    "implementation_state": "MERGED_AND_VALIDATED__PRODUCTION_POPULATION_NOT_RUN",
     "production_d1_writes_performed": 0,
     "public_runtime_activation_authorized": false,
     "recommendation_admission_authorized": false,
     "third_shard_authorized": false,
     "billing_expansion_authorized": false
   },
-  "pr225": {
-    "state": "OPEN_PHASE1_PASS",
-    "head_sha": "ace7609eb7316868974fe6025c7334ec012ddac3",
-    "changed_files": [
-      ".github/workflows/corpus-scale-step8g-chan-v8015-runtime-descriptor.yml",
-      "scripts/generate-step8g-chan-v8015-runtime-descriptor.mjs"
+  "implementation_validation": {
+    "pr225_final_head": "3df53885a46ca73e36dc6977d69e47b28cef3c92",
+    "pr225_cloudflare_preview": "https://2a982595.culinary-recommender-app.pages.dev",
+    "pr225_runtime_workflow_run": 35622180970,
+    "pr225_runtime_workflow_conclusion": "success",
+    "pr225_descriptor_workflow_run": 35622180907,
+    "pr225_descriptor_workflow_conclusion": "success",
+    "pr225_public_validation_run": 35622181085,
+    "pr225_public_validation_conclusion": "success",
+    "main_public_validation_run": 35622463799,
+    "main_public_validation_conclusion": "success",
+    "main_public_validation_includes": [
+      "npm run validate",
+      "browser tests",
+      "production public-runtime smoke"
     ],
-    "descriptor_workflow_run": 35606918640,
-    "descriptor_workflow_conclusion": "success",
-    "public_validation_run": 35606918566,
-    "public_validation_conclusion": "success",
-    "cloudflare_preview": "https://30be8272.culinary-recommender-app.pages.dev",
-    "generated_descriptor": {
-      "contains_recipe_bodies": false,
-      "source_commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
-      "body_shard_rows": [
-        69,
-        76
-      ],
-      "parent_composition_route_count": 16365,
-      "composed_route_count": 16510,
-      "layer_manifest_sha256": "d5264a8e514994d00669836ffa682be734465f209fe63f3fe3ffa445b2f3a3f4",
-      "population_plan_sha256": "f6f5980d38ae8f7d1aab45e88b21381edd02a1f14c382f5ed736340e376da8a4"
-    },
-    "remaining_implementation": [
-      "Freeze exact generated public-safe v8015 runtime descriptor on PR branch.",
-      "Add v8015 protected live runtime using v8014 as proven parent pattern.",
-      "Add bounded fifteen-layer hydration runtime.",
-      "Add authenticated /api/step8g/v8015 endpoint.",
-      "Add deterministic payload verifier and v8015 live tests.",
-      "Add read-only v8015 live workflow and CI mutation-capability guard.",
-      "Add owner-only restart-safe step8g-v8015-populate.html runner with existing structured 5xx diagnostics/retry contract.",
-      "Run CI/preview, repair if necessary, and merge only when exact gates pass.",
-      "After merge, stop at the owner-authenticated production-write gate; do not simulate or bypass owner authentication."
-    ]
+    "main_pages_run": 35622462990,
+    "main_pages_state_at_handover": "IN_PROGRESS__BUILD_PASS__DEPLOY_PENDING",
+    "exact_runtime_contract_pass": true,
+    "payload_fingerprint_pass": true,
+    "api_syntax_pass": true,
+    "owner_runner_contract_pass": true,
+    "ci_production_mutation_capability": false,
+    "public_safe_descriptor_contains_recipe_bodies": false
   },
+  "owner_gate": {
+    "state": "HUMAN_NEEDED",
+    "reason": "The next operation writes protected production D1 and requires the real owner-authenticated application session. This must not be simulated or bypassed.",
+    "precondition": "Fresh-check that the current main deployment containing implementation merge 66a91f7add5e99790222b0ad26bb7798624519a0 is deployed successfully before running the owner gate.",
+    "path": "/step8g-v8015-populate.html",
+    "auth_canary_path": "/auth-canary.html",
+    "owner_action": [
+      "Open the production app and confirm/sign in through /auth-canary.html.",
+      "Open /step8g-v8015-populate.html on the production deployment.",
+      "Click Run / resume v8015 once. The runner is restart-safe; if an opaque 5xx/unknown commit state occurs it performs the bounded one-retry contract and otherwise stops fail-closed.",
+      "Do not use a preview deployment for the production population gate.",
+      "Copy the final JSON result back into ChatGPT."
+    ],
+    "expected_terminal": "STEP_8G_CHAN_V8015_PROTECTED_POPULATION_PASS",
+    "expected_terminal_contract": {
+      "pass": true,
+      "restartSafeRunner": true,
+      "sourceCohortIds": [
+        "ORA_CHAN_1917_CHINESE_COOK_BOOK_CHINESECOOKBOOK00CHAN"
+      ],
+      "sourceAuthorHandling": "IDENTIFIED_AUTHOR",
+      "parentCorpusVersion": "v8014",
+      "activeCorpusVersion": "v8015",
+      "childRecipeCount": 145,
+      "parentRecipeCount": 16365,
+      "composedRecipeCount": 16510,
+      "bodyBatchCount": 15,
+      "routeBatchCount": 15,
+      "shardCount": 2,
+      "idempotentBodyReplayPass": true,
+      "idempotentRouteReplayPass": true,
+      "fifteenLayerHydrationPass": true,
+      "rollbackPass": true,
+      "rollbackHydrationFailClosedPass": true,
+      "finalProtectedActiveVersion": "v8015",
+      "fullCorpusScans": 0,
+      "maxAllowedD1Subqueries": 16,
+      "d1BudgetHeadroomAssumed": false,
+      "publicRuntimeChanged": false,
+      "recommendationAdmissionChanged": false,
+      "thirdShardUsed": false,
+      "billingExpansion": false,
+      "culturalAuthenticityAuthorityImported": false
+    }
+  },
+  "after_owner_pass": [
+    "Capture exact v8015 terminal evidence in a public-safe generated evidence artifact.",
+    "Write v8015 live closeout documentation and rotate the handover.",
+    "Fresh-reconcile protected live state as v8015 / 16,510 only after exact terminal PASS.",
+    "Run fresh post-v8015 source discovery / diminishing-marginal-value reassessment.",
+    "Reassess LEGAL_CORPUS_BASELINE_PASS; do not declare it automatically from v8015 PASS alone."
+  ],
   "concurrent_child_programmes": {
     "youtube_culinary": {
       "state_file": "data/generated/youtube-culinary-work-unit-state.json",
-      "generated_at": "2026-09-20T13:37:56.019Z",
+      "generated_at": "2026-09-21T15:57:31.533Z",
       "primary_outcome": "success",
-      "latest_quota_date": "2026-09-20",
-      "latest_daily_terminal_state": "DAILY_DISCOVERY_PROVIDER_QUOTA_EXHAUSTED_SAFE_CLOSE",
+      "latest_quota_date": "2026-09-21",
+      "latest_daily_terminal_state": "DAILY_DISCOVERY_QUOTA_PORTFOLIO_COMPLETE",
       "closure_status": "CLOSED_CONTINUE",
       "material_transition": false,
       "successor_action": "WAIT_FOR_NEXT_YOUTUBE_QUOTA_DAY",
+      "next_trigger_disposition": "NEXT_QUOTA_DAY_SCHEDULED_WAKEUP",
       "scheduler_disposition": "CONTINUE_BOUNDED_WAKEUP",
-      "authority_note": "Independent scheduled child programme. Do not mutate/retry it from the corpus lane; fresh-reconcile because a newer scheduled run may supersede this snapshot."
+      "automatic_knowledge_core_promotion_authorized": false,
+      "automatic_app_admission_authorized": false,
+      "automatic_publication_authorized": false,
+      "paid_infrastructure_authorized": false,
+      "authority_note": "Independent scheduled child programme. Do not mutate or retry it from the corpus lane; fresh-reconcile because a newer scheduled run may supersede this snapshot."
     }
   },
   "legal_corpus_baseline": {
@@ -186,10 +223,11 @@
     "current_live_version": "v8014",
     "current_live_recipe_count": 16365,
     "candidate_v8015_recipe_count": 16510,
-    "reason": "Post-v8014 discovery found an independently rights-clean, materially novel Chan 1917 cohort. Rights/measurement and v8015 prewrite gates passed, so protected v8015 implementation is now earned. Baseline reassessment remains downstream of the v8015 live result and subsequent fresh marginal-value decision."
+    "reason": "Chan v8015 implementation is merged and validated, but the protected production population has not yet run. LEGAL_CORPUS_BASELINE_PASS remains downstream of the exact v8015 live terminal plus the subsequent fresh marginal-value reassessment."
   },
   "not_authorized": [
-    "No v8015 production D1 population outside the owner-authenticated browser gate.",
+    "No v8015 production D1 population except through the real owner-authenticated production runner.",
+    "No owner-authentication emulation, bypass or synthetic session.",
     "No paid infrastructure or billing/automatic overage authorization.",
     "No third D1 shard.",
     "No D1 query-budget expansion beyond 16.",
@@ -200,27 +238,17 @@
     "No weakening of source-rights/provenance gates.",
     "No generic web scraping/crawling.",
     "No automatic cultural-authenticity, nutrition, allergen, dietary, scaling or medical authority.",
-    "No declaration of LEGAL_CORPUS_BASELINE_PASS from prewrite or implementation alone."
+    "No declaration of LEGAL_CORPUS_BASELINE_PASS from implementation merge or v8015 population alone."
   ],
-  "next_autonomous_action": {
-    "state": "READY",
-    "lane": "STEP8G_RIGHTS_CLEAN_PROTECTED_SCALE",
-    "action": "Continue open PR #225 from head ace7609eb7316868974fe6025c7334ec012ddac3. Freeze the exact successful v8015 runtime descriptor, implement the protected v8015 live/runtime/hydration/API/verifier/tests/workflow/owner-runner surface using the proven v8014 contracts, run ordinary CI and preview validation, repair autonomously if technically resolvable, and merge only when all exact no-write implementation gates pass.",
-    "stop_conditions": [
-      "owner-authenticated production-write gate after merged implementation",
-      "genuine source-rights/provenance ambiguity requiring human/legal judgment",
-      "new paid cost or infrastructure decision",
-      "security/access decision",
-      "topology change",
-      "unrecoverable technical failure",
-      "terminal material result",
-      "continuation boundary"
-    ]
+  "next_action": {
+    "state": "HUMAN_NEEDED",
+    "actor": "OWNER",
+    "action": "After confirming the production deployment is current and owner authentication works, run /step8g-v8015-populate.html once and return the terminal JSON. No further autonomous corpus mutation should occur before that evidence."
   },
-  "terminal_instruction_for_new_chat": "Continue the Culinary App lane from docs/handovers/CURRENT.json. Fresh-reconcile GitHub before mutation. Live protected state is Hearn v8014 / 16,365. Chan 1917 passed rights + bounded measurement (145 recipes; 138 novel normalized titles; 95.83% novel-title ratio) and v8015 prewrite passed for exact composition 16,510 on the existing two shards and 16-query envelope. PR #225 is open at head ace7609eb7316868974fe6025c7334ec012ddac3; Phase 1 descriptor generation and public validation passed, but the frozen descriptor/runtime/hydration/API/verifier/tests/live workflow/owner runner remain to be implemented. Continue PR #225 autonomously; stop only when merged implementation reaches the owner-authenticated production-write gate or another genuine stop condition.",
+  "terminal_instruction_for_new_chat": "Continue the Culinary App lane from docs/handovers/CURRENT.json and fresh-reconcile GitHub/deployments first. PR #225 is merged at 66a91f7add5e99790222b0ad26bb7798624519a0 and its v8015 implementation is validated: exact Chan descriptor, protected runtime, fifteen-layer hydration, authenticated API, verifier/tests, read-only CI and owner-only restart-safe runner are present. Live protected production data is STILL Hearn v8014 / 16,365 because no v8015 production write has been run. The next step is HUMAN_NEEDED: confirm current main deployment is green, authenticate as owner, run /step8g-v8015-populate.html once, and return the terminal JSON. Expected PASS is STEP_8G_CHAN_V8015_PROTECTED_POPULATION_PASS with 145 child recipes, 16,365 parent, 16,510 composed, 15 body + 15 route batches, two shards, fifteen-layer hydration, rollback fail-closed, final v8015 active, max D1 <=16, and no public/recommendation/topology/billing widening. After exact PASS, capture evidence/closeout, fresh-reconcile live v8015, then run post-v8015 marginal-value discovery and reassess LEGAL_CORPUS_BASELINE_PASS.",
   "continuation_boundary": {
-    "reason": "USER_REQUESTED_HANDOVER_DURING_TAKEOVER_AFTER_PRIOR_CHAT_BUG",
-    "safe_boundary": "PR225_PHASE1_DESCRIPTOR_GENERATION_PASS__NO_PRODUCTION_WRITES__MAIN_V8014_LIVE_UNCHANGED",
+    "reason": "OWNER_AUTHENTICATED_PRODUCTION_WRITE_REQUIRED",
+    "safe_boundary": "V8015_IMPLEMENTATION_MERGED_AND_VALIDATED__NO_V8015_PRODUCTION_WRITES__LIVE_V8014_UNCHANGED",
     "ordinary_implementation_stopped": true
   }
 }
