@@ -437,7 +437,7 @@ export async function activateStep8GV8015Pointer(controlDb) {
   const pointer = await readStep8GPointer(controlDb); let q = pointer.d1Subqueries;
   if (pointer.activeVersion === STEP8G_V8015_CORPUS_VERSION) return { pass: true, skipped: true, status: "ALREADY_ACTIVE", previousVersion: pointer.previousVersion, d1Subqueries: q };
   if (pointer.activeVersion !== STEP8G_V8015_PARENT_VERSION) return { pass: false, status: "PARENT_NOT_ACTIVE", activeVersion: pointer.activeVersion, d1Subqueries: q };
-  const result = await controlDb.prepare(`UPDATE ${STEP8G_POINTER_TABLE} SET previous_version=active_version,active_version='v8015',manifest_sha256=?,updated_at=CURRENT_TIMESTAMP WHERE scope=? AND active_version='v8013'`).bind(descriptor.layerManifestSha256, STEP8G_POINTER_SCOPE).run(); q++;
+  const result = await controlDb.prepare(`UPDATE ${STEP8G_POINTER_TABLE} SET previous_version=active_version,active_version='v8015',manifest_sha256=?,updated_at=CURRENT_TIMESTAMP WHERE scope=? AND active_version='v8014'`).bind(descriptor.layerManifestSha256, STEP8G_POINTER_SCOPE).run(); q++;
   return { pass: Number(result?.meta?.changes ?? 0) === 1, status: "ACTIVATED_V8015", previousVersion: STEP8G_V8015_PARENT_VERSION, d1Subqueries: q };
 }
 

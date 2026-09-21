@@ -1,4 +1,4 @@
-name: Corpus Scale Step 8G Hearn v8015 live runtime
+name: Corpus Scale Step 8G Chan v8015 live runtime
 
 on:
   pull_request:
@@ -19,7 +19,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: corpus-step8g-hearn-v8015-live-${{ github.ref }}
+  group: corpus-step8g-chan-v8015-live-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

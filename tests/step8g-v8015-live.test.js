@@ -16,10 +16,10 @@ import { STEP8G_V8015_MAX_HYDRATED_CANDIDATES, STEP8G_V8015_MAX_HYDRATION_D1_SUB
 
 const prewrite = JSON.parse(readFileSync(new URL("../data/generated/step8g/chan-v8015-prewrite-evidence.json", import.meta.url), "utf8"));
 
-test("v8015 runtime is frozen to the earned Hearn prewrite and exact composition", () => {
+test("v8015 runtime is frozen to the earned Chan prewrite and exact composition", () => {
   const summary = publicStep8GV8015Summary();
   assert.equal(summary.corpusVersion, "v8015");
-  assert.equal(summary.parentCorpusVersion, "v8013");
+  assert.equal(summary.parentCorpusVersion, "v8014");
   assert.equal(summary.recipeCount, 145);
   assert.equal(summary.cumulativeRecipeCount, 16510);
   assert.deepEqual(summary.sourceCohortIds, ["ORA_CHAN_1917_CHINESE_COOK_BOOK_CHINESECOOKBOOK00CHAN"]);
@@ -36,7 +36,7 @@ test("v8015 runtime is frozen to the earned Hearn prewrite and exact composition
   assert.equal(STEP8G_V8015_RUNTIME_DESCRIPTOR.sourceCommit, prewrite.source.commit);
 });
 
-test("v8015 freezes 72 body and 72 route batches over the exact two-shard child layout", () => {
+test("v8015 freezes 15 body and 15 route batches over the exact two-shard child layout", () => {
   assert.equal(STEP8G_V8015_EXPECTED_RECIPE_COUNT, 145);
   assert.equal(STEP8G_V8015_EXPECTED_ROUTE_COUNT, 16510);
   assert.equal(STEP8G_V8015_EXPECTED_BODY_BATCH_COUNT, 15);
@@ -73,7 +73,7 @@ test("body materialization fails closed on unclassified or structurally invalid 
 test("hydration and fresh route writes remain inside the exact free-tier D1 envelope", () => {
   assert.equal(STEP8G_V8015_MAX_HYDRATED_CANDIDATES, 256);
   assert.equal(STEP8G_V8015_MAX_HYDRATION_D1_SUBQUERIES, 15);
-  assert.equal(prewrite.layer.operationBudget.operations.fourteenLayerHydrationCanary, 4);
+  assert.equal(prewrite.layer.operationBudget.operations.fifteenLayerHydrationCanary, 4);
   assert.equal(prewrite.layer.operationBudget.operations.routeWriteFresh, 16);
   assert.equal(prewrite.layer.operationBudget.maxPlannedD1Subqueries, 16);
   assert.equal(prewrite.layer.operationBudget.headroomAssumed, false);
