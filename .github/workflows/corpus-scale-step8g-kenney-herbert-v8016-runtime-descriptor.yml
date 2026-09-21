@@ -1,0 +1,57 @@
+name: Corpus Scale Step 8G Kenney-Herbert v8016 runtime descriptor
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-kenney-herbert-v8016-runtime-descriptor.yml'
+      - 'scripts/generate-step8g-kenney-herbert-v8016-runtime-descriptor.mjs'
+      - 'scripts/corpus-scale-step8g-kenney-herbert-v8016-prewrite-core.mjs'
+      - 'data/generated/step8g/kenney-herbert-v8016-prewrite-evidence.json'
+      - 'data/generated/step8g/v8016-runtime-descriptor.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate-descriptor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Generate exact v8016 public-safe runtime descriptor
+        run: >-
+          node scripts/generate-step8g-kenney-herbert-v8016-runtime-descriptor.mjs
+          --ora=./open-recipe-archive
+          --out=.tmp/v8016-runtime-descriptor.mjs
+      - name: Emit descriptor for freezing
+        run: cat .tmp/v8016-runtime-descriptor.mjs
+      - name: Verify generated descriptor contains no recipe bodies
+        run: >-
+          node -e 'const fs=require("fs");const s=fs.readFileSync(".tmp/v8016-runtime-descriptor.mjs","utf8");
+          if(!s.includes("STEP8G_V8016_RUNTIME_DESCRIPTOR"))process.exit(1);
+          if(s.includes("bodyJson")||s.includes("rawJson")||s.includes("parsedIngredients"))process.exit(1);
+          console.log("STEP8G_V8016_PUBLIC_SAFE_DESCRIPTOR_PASS");'
+      - name: Verify frozen descriptor parity
+        run: >-
+          node -e 'const fs=require("fs");const a=fs.readFileSync(".tmp/v8016-runtime-descriptor.mjs","utf8");const f=fs.readFileSync("data/generated/step8g/v8016-runtime-descriptor.mjs","utf8");
+          if(a!==f)process.exit(1);
+          console.log("STEP8G_V8016_FROZEN_DESCRIPTOR_PARITY_PASS");'
+
+      - name: Upload descriptor
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-v8016-runtime-descriptor
+          path: .tmp/v8016-runtime-descriptor.mjs
+          if-no-files-found: error
+          retention-days: 30
