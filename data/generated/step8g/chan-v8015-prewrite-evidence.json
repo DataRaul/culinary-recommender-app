@@ -1,0 +1,175 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_CHAN_V8015_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_CHAN_V8015_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-21",
+  "source": {
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "collection": "chinese-kitchen",
+    "recordCount": 145,
+    "measurementTerminal": "STEP_8G_ORA_CHAN_1917_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+    "sourceCohort": {
+      "cohortId": "ORA_CHAN_1917_CHINESE_COOK_BOOK_CHINESECOOKBOOK00CHAN",
+      "sourceWork": "The Chinese Cook Book",
+      "sourceAuthor": "Shiu Wong Chan",
+      "sourceAuthorClassification": "IDENTIFIED_AUTHOR",
+      "sourceYear": "1917",
+      "sourceYearSemantics": "EXACT_DIGITIZED_FIRST_EDITION_YEAR",
+      "sourceUrl": "https://archive.org/details/chinesecookbook00chan",
+      "digitizedEditionYear": "1917",
+      "digitizedEditionLabel": "1st edition",
+      "workFirstPublicationYear": "1917",
+      "recordCount": 145,
+      "licenseId": "public-domain",
+      "packetDescriptorSha256": "6b707dc005f4312c5bf6052bd007f86989b34d3bf02c069a6611828698c581c2"
+    },
+    "repositoryLayerLicense": "Unlicense",
+    "culturalAuthenticityAuthorityImported": false
+  },
+  "parent": {
+    "activeCorpusVersion": "v8014",
+    "composedRecipeCount": 16365,
+    "fingerprintSha256": "cf2386e22cdcbfdc387d0cdf1819ede2c9b8261a4ac2de46a72610a804bf9195",
+    "fingerprintMaterial": {
+      "activeCorpusVersion": "v8014",
+      "composedRecipeCount": 16365,
+      "liveTerminal": "STEP_8G_HEARN_V8014_PROTECTED_POPULATION_PASS",
+      "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "layerManifestSha256": "a5448c3d7acb1defe048d6811c685aa92cb8e2d9db72d23020eb8b4f421e9807",
+      "populationPlanSha256": "02d20193647dd5c3b3a14556332cb3bfca2f7212c9d359b15f1142c792f59a47",
+      "bodyShardRows": [
+        367,
+        345
+      ],
+      "parentCompositionRouteCount": 15653,
+      "composedRouteCount": 16365
+    }
+  },
+  "layer": {
+    "corpusVersion": "v8015",
+    "parentCorpusVersion": "v8014",
+    "recipeCount": 145,
+    "manifestSha256": "d5264a8e514994d00669836ffa682be734465f209fe63f3fe3ffa445b2f3a3f4",
+    "populationPlanSha256": "f6f5980d38ae8f7d1aab45e88b21381edd02a1f14c382f5ed736340e376da8a4",
+    "batchCount": 15,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 4235,
+    "maxBatchBodyBytes": 32988,
+    "maxWriteRequestBytes": 12523,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "operationBudget": {
+      "authD1Subqueries": 1,
+      "maxRowsPerBatch": 10,
+      "operations": {
+        "status": 1,
+        "bindings": 3,
+        "freeLimitSimulation": 1,
+        "initialize": 8,
+        "bodyWriteFresh": 15,
+        "bodyWriteReplay": 3,
+        "progress": 7,
+        "copyParentRoutesFresh": 6,
+        "routeWriteFresh": 16,
+        "routeWriteReplay": 4,
+        "activate": 8,
+        "rollback": 3,
+        "fifteenLayerHydrationCanary": 4,
+        "boundedHydrationWorstCase": 16,
+        "evidence": 7
+      },
+      "maxPlannedD1Subqueries": 16,
+      "maxAllowedD1Subqueries": 16,
+      "limitingOperations": [
+        "routeWriteFresh",
+        "boundedHydrationWorstCase"
+      ],
+      "pass": true,
+      "headroomAssumed": false
+    },
+    "shardDescriptors": [
+      {
+        "shardNumber": 0,
+        "rowCount": 69,
+        "totalBodyBytes": 217881,
+        "firstOrdinal": 2,
+        "lastOrdinal": 143,
+        "entriesSha256": "3bc11d66d047b4cd9be34ee4ba143a21e8da40d31912aec8f1121a21d57ffeda"
+      },
+      {
+        "shardNumber": 1,
+        "rowCount": 76,
+        "totalBodyBytes": 233090,
+        "firstOrdinal": 0,
+        "lastOrdinal": 144,
+        "entriesSha256": "c9221d4c799706e27ff8f4b1695eab2da168c4a3370f53eee5e20925db62a182"
+      }
+    ],
+    "batchIdsSha256": "743b919f4f684dd1ec25308925e5b50d6bb390abc1a1f114399e0812d9db4bb7"
+  },
+  "composition": {
+    "activeCorpusVersion": "v8015",
+    "parentCorpusVersion": "v8014",
+    "cumulativeRecipeCount": 16510,
+    "capacity": {
+      "parentLayeredPhysicalBodyBytes": 59982355,
+      "addedLayerBodyBytes": 450971,
+      "layeredPhysicalBodyBytes": 60433326,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {
+          "shardNumber": 0,
+          "parentRowCount": 8185,
+          "addedRowCount": 69,
+          "rowCount": 8254,
+          "parentBodyBytes": 30108396,
+          "addedBodyBytes": 217881,
+          "totalBodyBytes": 30326277,
+          "withinProjectDatabaseBudget": true
+        },
+        {
+          "shardNumber": 1,
+          "parentRowCount": 8180,
+          "addedRowCount": 76,
+          "rowCount": 8256,
+          "parentBodyBytes": 29873959,
+          "addedBodyBytes": 233090,
+          "totalBodyBytes": 30107049,
+          "withinProjectDatabaseBudget": true
+        }
+      ]
+    },
+    "routing": {
+      "shardCount": 2,
+      "mode": "CONTROL_INDEX_EXACT_ROUTE_THEN_BATCH_HYDRATE_BY_SHARD",
+      "fullCorpusScans": 0,
+      "maxProtectedD1Subqueries": 16,
+      "d1BudgetHeadroomAssumed": false
+    }
+  },
+  "gates": {
+    "requestSizePass": true,
+    "operationBudgetPass": true,
+    "capacityPass": true,
+    "topologyPass": true,
+    "countPass": true,
+    "batchSizePass": true,
+    "uniqueIdsPass": true,
+    "bodySizePass": true
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "d1BudgetExpansion": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "step8fReopened": false
+  },
+  "decision": "EARN_V8015_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE"
+}
