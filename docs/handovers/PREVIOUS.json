@@ -1,10 +1,10 @@
 {
-  "handover": "CULINARY_APP_LEGAL_CORPUS_FIRST_VIARD_V8013_LIVE_HEARN_V8014_WRITE_REPAIR_OWNER_GATE_V50",
+  "handover": "CULINARY_APP_LEGAL_CORPUS_FIRST_VIARD_V8013_LIVE_HEARN_V8014_D1_FREE_TIER_DAILY_WRITE_GATE_V51",
   "handover_date": "2026-09-20",
   "timezone": "Atlantic/Canary",
-  "status": "HUMAN_NEEDED__V8013_LIVE_15653__HEARN_V8014_FIRST_OWNER_ATTEMPT_OPAQUE_BODY_WRITE_500__REPAIR_MERGED__OWNER_AUTH_RETRY_GATE__LEGAL_CORPUS_BASELINE_NOT_YET_EARNED",
+  "status": "HUMAN_NEEDED__V8013_LIVE_15653__HEARN_V8014_OWNER_RETRY_REACHED_D1_FREE_TIER_DAILY_ROW_WRITE_LIMIT__WAIT_FOR_MIDNIGHT_UTC_RESET__NO_PAID_UPGRADE_AUTHORIZED",
   "human_needed": true,
-  "handover_written_against_main_sha": "19700e5c8ef17660c67b5fe29fbd9279b79029c3",
+  "handover_written_against_main_sha": "9c5b018da8cdbe431552efca3782c6ac3b680ef8",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
@@ -14,7 +14,9 @@
     "open_pr_count_at_handover": 0,
     "concurrent_open_prs": [],
     "repair_pr": 216,
-    "repair_merge_sha": "19700e5c8ef17660c67b5fe29fbd9279b79029c3"
+    "repair_merge_sha": "19700e5c8ef17660c67b5fe29fbd9279b79029c3",
+    "repair_marker_pr": 218,
+    "repair_marker_merge_sha": "9c5b018da8cdbe431552efca3782c6ac3b680ef8"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -142,7 +144,7 @@
     "expected_hydration_layers": 14,
     "prewrite_manifest_sha256": "a5448c3d7acb1defe048d6811c685aa92cb8e2d9db72d23020eb8b4f421e9807",
     "prewrite_population_plan_sha256": "02d20193647dd5c3b3a14556332cb3bfca2f7212c9d359b15f1142c792f59a47",
-    "implementation_state": "IMPLEMENTED_MERGED__FIRST_OWNER_ATTEMPT_STOPPED_AT_BODY_BATCH_1_OPAQUE_HTTP_500__DIAGNOSTIC_REPAIR_MERGED__READY_FOR_OWNER_RETRY_AFTER_PRODUCTION_DEPLOY_VERIFICATION",
+    "implementation_state": "IMPLEMENTED_MERGED__DIAGNOSTIC_REPAIR_AND_VISIBLE_MARKER_MERGED__OWNER_RUN_BLOCKED_BY_D1_FREE_TIER_DAILY_ROW_WRITE_LIMIT__WAIT_FOR_MIDNIGHT_UTC_RESET",
     "protected_population_completed": false,
     "production_d1_writes_performed_by_implementation": 0,
     "public_runtime_activation_authorized": false,
@@ -171,7 +173,10 @@
     "repair_checks_pass": true,
     "repair_cloudflare_preview_deploy": "PASS",
     "repair_cloudflare_preview_url": "https://4a64d01e.culinary-recommender-app.pages.dev",
-    "production_pages_post_repair_verification": "NOT_INDEPENDENTLY_OBSERVABLE_FROM_AVAILABLE_TOOLS__VERIFY_BEFORE_OWNER_RETRY"
+    "production_pages_post_repair_verification": "NOT_INDEPENDENTLY_OBSERVABLE_FROM_AVAILABLE_TOOLS__VERIFY_BEFORE_OWNER_RETRY",
+    "repair_marker_pr": 218,
+    "repair_marker_merge_commit": "9c5b018da8cdbe431552efca3782c6ac3b680ef8",
+    "visible_repair_marker": "V8014_WRITE_DIAGNOSTIC_R1"
   },
   "concurrent_child_programmes": {
     "youtube_culinary": {
@@ -190,23 +195,19 @@
     }
   },
   "active_human_gate": {
-    "type": "OWNER_AUTHENTICATED_PRODUCTION_WRITE",
+    "type": "D1_FREE_TIER_DAILY_ROW_WRITE_LIMIT",
     "target": "HEARN_V8014_PROTECTED_POPULATION",
+    "provider": "Cloudflare D1",
+    "reset": "MIDNIGHT_UTC_NEXT_DAY",
+    "action_after_reset": "Using the repaired production runner showing V8014_WRITE_DIAGNOSTIC_R1, owner selects Run / resume v8014 once after the daily D1 reset.",
     "production_origin": "https://culinary-recommender-app.pages.dev",
     "runner_path": "/step8g-v8014-populate.html",
-    "precondition": "Verify production serves the merged PR #216 repaired v8014 runner, then use a current same-browser Culinary owner session.",
-    "action": "Owner opens the production v8014 runner and selects Run / resume v8014 once. The repaired runner will perform at most one automatic restart-safe retry only if an opaque 5xx/unknown-commit response occurs.",
     "expected_terminal": "STEP_8G_HEARN_V8014_PROTECTED_POPULATION_PASS",
     "expected_final_active_version": "v8014",
-    "expected_child_recipe_count": 712,
-    "expected_parent_recipe_count": 15653,
     "expected_composed_recipe_count": 16365,
-    "expected_body_batch_count": 72,
-    "expected_route_batch_count": 72,
-    "expected_shard_count": 2,
-    "expected_hydration_layers": 14,
-    "expected_max_d1_subqueries": 16,
     "restart_safe": true,
+    "no_retry_before_reset": true,
+    "paid_upgrade_authorized": false,
     "stop_on_any_non_pass": true
   },
   "legal_corpus_baseline": {
@@ -239,9 +240,11 @@
     "No weakening of source-rights/provenance gates.",
     "No generic web scraping/crawling.",
     "No automatic cultural-authenticity, nutrition, allergen, dietary, scaling or medical authority.",
-    "No automatic declaration of LEGAL_CORPUS_BASELINE_PASS from v8014 implementation or future live PASS alone."
+    "No automatic declaration of LEGAL_CORPUS_BASELINE_PASS from v8014 implementation or future live PASS alone.",
+    "No paid Cloudflare/D1 plan upgrade or billing expansion to bypass the daily free-tier row-write limit.",
+    "No equivalent v8014 production retry before the midnight UTC daily D1 reset."
   ],
-  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub and docs/handovers/CURRENT.json first. Viard v8013 remains live at 15,653. Hearn v8014 implementation is merged, but the first owner production attempt stopped immediately at body batch 1/72 with opaque HTTP 500 NON_JSON_RESPONSE after session/status/bindings/free-limit/initialize all passed. PR #216 merged at 19700e5c8ef17660c67b5fe29fbd9279b79029c3 and adds structured write-body diagnostics plus exactly one restart-safe automatic retry for opaque 5xx/unknown-commit-state responses; all v8014 runtime and public validation CI passed and the Cloudflare PR preview deployed successfully. No corpus/fingerprint/batch/topology/query-ceiling changes were made. Verify production serves the repaired /step8g-v8014-populate.html, then owner runs/resumes v8014 once. If it passes, expect active v8014 / 16,365. If it fails, capture the full repaired JSON including diagnostic status/contentType/cfRay/bodyPrefix or STEP8G_V8014_WRITE_BODY_EXCEPTION reason; do not request a blind equivalent retry.",
+  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub and docs/handovers/CURRENT.json first. Viard v8013 remains live at 15,653. The repaired Hearn v8014 runner is merged and visibly marked V8014_WRITE_DIAGNOSTIC_R1. The latest owner run passed session/status/bindings/free-limit/initialize but stopped on body batch 1/72 with structured HTTP 503 STEP8G_V8014_WRITE_BODY_EXCEPTION because Cloudflare D1 reported that the account exceeded the free-tier daily row-write limit. This is now a provider quota gate, not an unresolved code defect. Do not retry before the next midnight UTC D1 reset and do not authorize a paid upgrade. After reset, owner runs/resumes the same restart-safe v8014 runner once. Expected PASS remains active v8014 / 16,365. If any non-PASS occurs, capture the exact JSON and stop.",
   "last_owner_attempt": {
     "pass": false,
     "completed": [
@@ -253,10 +256,19 @@
     ],
     "failed_step": "write-body",
     "failed_batch": "1/72",
-    "observed_http_status": 500,
-    "browser_error": "NON_JSON_RESPONSE",
+    "observed_http_status": 503,
+    "error": "STEP8G_V8014_WRITE_BODY_EXCEPTION",
+    "phase": "MATERIALIZE_OR_D1_BODY_WRITE",
+    "reason": "D1_ERROR: Your account has exceeded D1's free tier daily row write limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue.",
+    "metrics": {
+      "d1Subqueries": 1,
+      "shardQueries": 0,
+      "controlQueries": 0,
+      "maxAllowedD1Subqueries": 16,
+      "withinBudget": true
+    },
     "protected_active_version_remains": "v8013",
-    "interpretation": "Failure occurred after initialization and before any verified v8014 body-batch completion. Exact commit state of the first body batch was not established by the opaque response; restart-safe logic must verify on retry."
+    "interpretation": "Confirmed provider daily row-write quota gate. No further owner retry is authorized before the provider reset because the repository billing firewall forbids paid upgrade/overage without explicit owner authorization."
   },
   "repair": {
     "pr": 216,
