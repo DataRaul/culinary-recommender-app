@@ -1,21 +1,22 @@
 {
-  "handover": "CULINARY_APP_V8015_LIVE_POST_DISCOVERY_KENNEY_HERBERT_MEASUREMENT_PASS_V56",
-  "handover_date": "2026-09-21",
+  "handover": "CULINARY_APP_V8016_RUNTIME_PR233_IN_PROGRESS_V57",
+  "handover_date": "2026-09-22",
   "timezone": "Atlantic/Canary",
-  "status": "AUTO_READY__V8015_LIVE_16510__POST_V8015_DISCOVERY_15_RIGHTS_REVIEW_ELIGIBLE__KENNEY_HERBERT_1885_MEASUREMENT_PASS__V8016_PREWRITE_NEXT__LEGAL_CORPUS_BASELINE_NOT_EARNED",
+  "status": "AUTO_READY__V8015_LIVE_16510__KENNEY_HERBERT_V8016_PREWRITE_PASS__PR233_RUNTIME_IMPL_SUBSTANTIVE_GATES_PASS__PUBLIC_VALIDATION_PENDING__NO_V8016_PRODUCTION_WRITES",
   "human_needed": false,
-  "handover_written_against_main_sha": "236ef27066bd7a43a957dd7ae3b513ae4b66731c",
+  "handover_written_against_main_sha": "7f1c5aa83000759ce6e044b6de5dae53588fa9af",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
     "chan_v8015_implementation_pr": 225,
-    "chan_v8015_implementation_merge_sha": "66a91f7add5e99790222b0ad26bb7798624519a0",
     "chan_v8015_closeout_discovery_pr": 229,
-    "chan_v8015_closeout_discovery_merge_sha": "63645e8d83b20f60c75ce2fac6546c1b1ea1fb8c",
     "kenney_herbert_rights_measurement_pr": 230,
-    "kenney_herbert_rights_measurement_merge_sha": "236ef27066bd7a43a957dd7ae3b513ae4b66731c",
-    "open_pr_count_at_handover": 0,
-    "handover_branch": "handover/v8015-live-kenney-measurement-v56"
+    "kenney_herbert_v8016_prewrite_pr": 232,
+    "kenney_herbert_v8016_prewrite_merge_sha": "7f1c5aa83000759ce6e044b6de5dae53588fa9af",
+    "active_runtime_pr": 233,
+    "active_runtime_branch": "step8g/kenney-herbert-v8016-live-runtime",
+    "active_runtime_head": "565c1b0b97ef36ef7782a49d63c412897d4a32ea",
+    "handover_branch": "handover/v8016-runtime-pr233-v57"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -35,7 +36,7 @@
     "billing": "NO_BILLING_AUTHORIZATION"
   },
   "operating_contract": {
-    "autonomy": "Proceed autonomously through technically resolvable v8016 no-write prewrite/capacity work and, if earned, protected-runtime implementation/CI/merge. Stop only at a genuine owner-authenticated production-write gate or another human/security/cost/source-rights/topology/unrecoverable blocker.",
+    "autonomy": "Proceed autonomously on PR #233 through remaining technically resolvable CI/repair/merge. After a green merge and deployment verification, stop at the real owner-authenticated v8016 production-write gate. Do not simulate or bypass authentication.",
     "rights": "Fail closed. Private runtime creates no reuse permission. Unknown or materially unresolved rights are held or rejected. Every admitted cohort carries exact provenance plus attribution/disclosure classification.",
     "storage": "Protected recipe bodies remain in private Cloudflare D1. GitHub contains only public code and public-safe evidence/artifacts.",
     "authentication": "Protected production writes require the real owner-authenticated application session. Do not emulate, bypass, synthesize or weaken authentication.",
@@ -68,7 +69,18 @@
     "post_v8015_discovery_runner": "scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs",
     "post_v8015_discovery_workflow": ".github/workflows/corpus-scale-step8g-ora-next-source-discovery.yml",
     "kenney_herbert_rights_measurement": "docs/CORPUS_SCALE_STEP8G_KENNEY_HERBERT_1885_RIGHTS_AND_MEASUREMENT.md",
-    "kenney_herbert_measurement_evidence": "data/generated/step8g/kenney-herbert-1885-v8015-measurement.json"
+    "kenney_herbert_measurement_evidence": "data/generated/step8g/kenney-herbert-1885-v8015-measurement.json",
+    "kenney_herbert_v8016_prewrite": "docs/CORPUS_SCALE_STEP8G_KENNEY_HERBERT_V8016_PREWRITE.md",
+    "kenney_herbert_v8016_prewrite_evidence": "data/generated/step8g/kenney-herbert-v8016-prewrite-evidence.json",
+    "v8016_runtime_descriptor": "data/generated/step8g/v8016-runtime-descriptor.mjs",
+    "v8016_runtime_core": "src/server/step8g-v8016-live-runtime.mjs",
+    "v8016_hydration": "src/server/step8g-v8016-hydration-runtime.mjs",
+    "v8016_api": "functions/api/step8g/v8016.js",
+    "v8016_verifier": "scripts/verify-step8g-v8016-live-payloads.mjs",
+    "v8016_tests": "tests/step8g-v8016-live.test.js",
+    "v8016_workflow": ".github/workflows/corpus-scale-step8g-kenney-herbert-v8016-live.yml",
+    "v8016_descriptor_workflow": ".github/workflows/corpus-scale-step8g-kenney-herbert-v8016-runtime-descriptor.yml",
+    "v8016_owner_runner": "step8g-v8016-populate.html"
   },
   "live_protected_state": {
     "active_version": "v8015",
@@ -84,7 +96,7 @@
     "recommendation_admission_changed": false,
     "third_shard_used": false,
     "billing_expansion": false,
-    "production_v8015_population_pass": true
+    "production_v8016_writes_performed": 0
   },
   "chan_v8015": {
     "cohort_id": "ORA_CHAN_1917_CHINESE_COOK_BOOK_CHINESECOOKBOOK00CHAN",
@@ -164,10 +176,11 @@
     "public_safe_descriptor_contains_recipe_bodies": false
   },
   "owner_gate": {
-    "state": "CLOSED_PASS",
-    "terminal": "STEP_8G_CHAN_V8015_PROTECTED_POPULATION_PASS",
-    "result": "Owner-authenticated v8015 protected population completed successfully; final active protected version is v8015 with 16,510 recipes.",
-    "future_rule": "Any future protected production population (including v8016 if eventually implemented) again requires the real owner-authenticated production runner and must not be simulated or bypassed."
+    "state": "NOT_YET_REACHED",
+    "reason": "PR #233 must first complete general public validation, merge, and be verified on current production deployment. Only then may the owner-authenticated v8016 production runner be used.",
+    "future_path": "/step8g-v8016-populate.html",
+    "auth_canary_path": "/auth-canary.html",
+    "expected_future_terminal": "STEP_8G_KENNEY_HERBERT_V8016_PROTECTED_POPULATION_PASS"
   },
   "after_owner_pass": [
     "COMPLETED: captured exact v8015 terminal evidence and live closeout.",
@@ -199,13 +212,11 @@
     "status": "NOT_YET_EARNED",
     "current_live_version": "v8015",
     "current_live_recipe_count": 16510,
-    "remaining_rights_review_eligible_sources": 15,
-    "measured_next_candidate": "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN",
-    "measured_next_candidate_recipe_count": 501,
-    "reason": "Fresh post-v8015 discovery found 15 structurally/marginally eligible source cohorts, and Kenney-Herbert 1885 independently passed documentary rights review plus deterministic bounded measurement with 450 novel normalized titles. Marginal value is therefore not exhausted; proceed to v8016 prewrite rather than declaring LEGAL_CORPUS_BASELINE_PASS."
+    "candidate_v8016_recipe_count": 17011,
+    "reason": "Kenney-Herbert v8016 has passed rights, measurement and prewrite. Its protected runtime implementation is on PR #233 and substantive implementation gates pass, but production remains v8015. Baseline must not be declared from implementation alone; after any exact v8016 live PASS, fresh post-v8016 marginal-value discovery/reassessment remains required."
   },
   "not_authorized": [
-    "No v8016 production D1 population until a deterministic prewrite passes, a v8016 protected runtime is implemented/validated/merged, and the real owner completes the future authenticated production runner.",
+    "No v8016 production D1 population before PR #233 is merged, deployed, and the real owner uses the authenticated production runner.",
     "No owner-authentication emulation, bypass or synthetic session.",
     "No paid infrastructure or billing/automatic overage authorization.",
     "No third D1 shard.",
@@ -217,17 +228,17 @@
     "No weakening of source-rights/provenance gates.",
     "No generic web scraping/crawling.",
     "No automatic cultural-authenticity, nutrition, allergen, dietary, scaling or medical authority.",
-    "No declaration of LEGAL_CORPUS_BASELINE_PASS while fresh discovery continues to identify high-marginal-value rights-review-eligible cohorts."
+    "No LEGAL_CORPUS_BASELINE_PASS declaration from v8016 implementation or future population alone."
   ],
   "next_action": {
     "state": "AUTO_READY",
     "actor": "CHATGPT",
-    "action": "Build and run the deterministic no-write Kenney-Herbert v8016 prewrite/capacity gate over live v8015 / 16,510. Target composition is 16,510 parent + 501 child = 17,011. Preserve exactly two shards, <=16 D1 subqueries with zero assumed headroom, existing free/no-billing envelope, and all no-public/no-recommendation authority boundaries."
+    "action": "Fresh-reconcile PR #233 head 565c1b0b97ef36ef7782a49d63c412897d4a32ea. Descriptor workflow 35667662670 and live runtime workflow 35667662748 are green. Public validation 35667662765 was pending with no job allocated at handover. When public validation is green, review PR diff, merge #233, verify main validation/deployment, rotate handover to HUMAN_NEEDED owner-auth v8016 population gate. Do not perform production writes."
   },
-  "terminal_instruction_for_new_chat": "Continue the Culinary App Legal Corpus First lane from docs/handovers/CURRENT.json and fresh-reconcile GitHub first. Live protected production is Chan v8015 / 16,510 with exact terminal STEP_8G_CHAN_V8015_PROTECTED_POPULATION_PASS. PR #229 merged Chan live closeout plus post-v8015 discovery at 63645e8d83b20f60c75ce2fac6546c1b1ea1fb8c. Discovery found 15 rights-review-eligible cohorts, so LEGAL_CORPUS_BASELINE_PASS is not earned. PR #230 merged at 236ef27066bd7a43a957dd7ae3b513ae4b66731c and independently qualified/measured Arthur Robert Kenney-Herbert / Culinary Jottings for Madras, exact 1885 fifth edition: 501/501 parseable, 450 novel normalized titles (0.9473684210526315), 1,580 novel ingredient phrases, terminal STEP_8G_ORA_KENNEY_HERBERT_1885_MEASUREMENT_EARNED_COHORT_CANDIDATE. Authority is SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY. Next action is autonomous deterministic NO-WRITE v8016 prewrite for parent v8015 / 16,510 + 501 = target 17,011. Do not perform production writes. Preserve two shards, max 16 D1 subqueries/no assumed headroom, public runtime 85, no recommendation/billing/topology widening. If prewrite and implementation later pass, stop again at the real owner-authenticated v8016 production-write gate.",
+  "terminal_instruction_for_new_chat": "Continue Culinary App Legal Corpus First from docs/handovers/CURRENT.json and fresh-reconcile GitHub first. Live protected production remains Chan v8015 / 16,510; no v8016 production writes have occurred. Kenney-Herbert 1885 rights+measurement passed (501 recipes) and v8016 prewrite PR #232 merged at 7f1c5aa83000759ce6e044b6de5dae53588fa9af for target 17,011 on two shards and max 16 D1 queries. PR #233 is the active v8016 runtime implementation, head 565c1b0b97ef36ef7782a49d63c412897d4a32ea. It contains frozen v8016 descriptor, protected runtime, sixteen-layer hydration, authenticated API, exact payload verifier/tests, read-only CI and owner-only restart-safe /step8g-v8016-populate.html. Descriptor run 35667662670 PASS; live runtime run 35667662748 PASS including payload fingerprints/API/owner-runner/no-CI-mutation. Public validation run 35667662765 was still pending with no job allocated at handover. Next: wait/recheck that run, repair only if needed, merge #233 when all green, verify current main deployment, then stop at HUMAN_NEEDED and give owner the production /step8g-v8016-populate.html link. Expected future live terminal: STEP_8G_KENNEY_HERBERT_V8016_PROTECTED_POPULATION_PASS. After owner PASS, close out v8016, run fresh post-v8016 discovery, and reassess LEGAL_CORPUS_BASELINE_PASS.",
   "continuation_boundary": {
-    "reason": "NO_HUMAN_GATE__SOURCE_SPECIFIC_V8016_PREWRITE_CAPACITY_MEASUREMENT_NEXT",
-    "safe_boundary": "V8015_LIVE_16510__KENNEY_HERBERT_1885_MEASUREMENT_PASS__NO_V8016_WRITES",
+    "reason": "PUBLIC_VALIDATION_PENDING_BEFORE_PR233_MERGE",
+    "safe_boundary": "V8015_LIVE_16510__V8016_RUNTIME_PR233_SUBSTANTIVE_GATES_PASS__ZERO_V8016_PRODUCTION_WRITES",
     "ordinary_implementation_stopped": false
   },
   "post_v8015_discovery": {
@@ -290,5 +301,56 @@
     "cultural_authenticity_authority_imported": false,
     "next_authority": "SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY",
     "protected_population_authorized": false
+  },
+  "kenney_herbert_v8016": {
+    "source_cohort_id": "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN",
+    "parent_version": "v8015",
+    "parent_recipe_count": 16510,
+    "child_recipe_count": 501,
+    "target_version": "v8016",
+    "target_composed_recipe_count": 17011,
+    "body_shard_rows": [
+      259,
+      242
+    ],
+    "body_batch_count": 51,
+    "route_batch_count": 51,
+    "max_rows_per_batch": 10,
+    "max_write_request_bytes": 18652,
+    "max_allowed_write_request_bytes": 262144,
+    "projected_layered_physical_body_bytes": 62268682,
+    "projected_shard_rows": [
+      8513,
+      8498
+    ],
+    "max_planned_d1_subqueries": 16,
+    "max_allowed_d1_subqueries": 16,
+    "d1_budget_headroom_assumed": false,
+    "manifest_sha256": "df427ee80e3bb902615d48279e7ab80280382b17fcea061e1dfacbe9dd4a67ca",
+    "population_plan_sha256": "2531a470dabb619847f50c95bdae7bee28521b1984bb5ee85a59faf119eb4dca",
+    "packet_descriptor_sha256": "cc1950c2f88ba20af1fc723210b8b29f314e37b7b3b25e1955d2dd92a2c55142",
+    "parent_fingerprint_sha256": "b3d527d3488a6ee47bd2bcbdd4eaaf2934055e1eec20c5a28ab0151d259ecfa5",
+    "prewrite_terminal": "STEP_8G_KENNEY_HERBERT_V8016_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+    "prewrite_decision": "EARN_V8016_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_AND_16_QUERY_ENVELOPE",
+    "implementation_pr": 233,
+    "implementation_head": "565c1b0b97ef36ef7782a49d63c412897d4a32ea",
+    "descriptor_workflow_run": 35667662670,
+    "descriptor_workflow_conclusion": "success",
+    "live_runtime_workflow_run": 35667662748,
+    "live_runtime_workflow_conclusion": "success",
+    "public_validation_run": 35667662765,
+    "public_validation_state_at_handover": "PENDING__NO_JOB_ALLOCATED_YET",
+    "descriptor_parity_pass": true,
+    "payload_fingerprint_pass": true,
+    "api_syntax_pass": true,
+    "owner_runner_contract_pass": true,
+    "ci_production_mutation_capability": false,
+    "sixteen_layer_hydration_implemented": true,
+    "rollback_target": "v8015",
+    "production_d1_writes_performed": 0,
+    "public_runtime_activation_authorized": false,
+    "recommendation_admission_authorized": false,
+    "third_shard_authorized": false,
+    "billing_expansion_authorized": false
   }
 }
