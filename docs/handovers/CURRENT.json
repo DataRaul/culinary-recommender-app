@@ -84,7 +84,8 @@
     "public_runtime_changed": false,
     "recommendation_admission_changed": false,
     "third_shard_used": false,
-    "billing_expansion": false
+    "billing_expansion": false,
+    "d1_budget_headroom_assumed": false
   },
   "chan_v8015": {
     "cohort_id": "ORA_CHAN_1917_CHINESE_COOK_BOOK_CHINESECOOKBOOK00CHAN",
