@@ -9,6 +9,7 @@ import { ORA_BW_SOURCE, parseOraJsonlRecipe } from "./corpus-scale-step8g-ora-bo
 import { ORA_TURABI_SOURCE } from "./corpus-scale-step8g-ora-turabi-core.mjs";
 import { ORA_RIGAUD_SOURCE } from "./corpus-scale-step8g-ora-rigaud-core.mjs";
 import { ORA_HEARN_1885_SOURCE } from "./corpus-scale-step8g-ora-hearn-1885-core.mjs";
+import { ORA_CHAN_1917_SOURCE } from "./corpus-scale-step8g-ora-chan-1917-core.mjs";
 import { discoverOraNextSources, oraSourceKey } from "./corpus-scale-step8g-ora-next-source-discovery-core.mjs";
 
 const ORA_EXPECTED_COMMIT = "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8";
@@ -150,7 +151,8 @@ const COCINA_SOURCES = Object.freeze([
     expectedRecipeCount: 2129
   })
 ]);
-const EXPECTED_PROTECTED_COUNT = 16365;
+const CHAN_EXPECTED_COUNT = 145;
+const EXPECTED_PROTECTED_COUNT = 16510;
 
 function parseArgs(argv) {
   const options = { ora: null, forkrecipe: null, unitools: null, cc0: null, output: ".tmp/step8g-ora-next-source-discovery" };
@@ -240,6 +242,7 @@ const bwIdentity = sourceIdentityRow(ORA_BW_SOURCE);
 const turabiIdentity = sourceIdentityRow(ORA_TURABI_SOURCE);
 const rigaudIdentity = sourceIdentityRow(ORA_RIGAUD_SOURCE);
 const hearnIdentity = sourceIdentityRow(ORA_HEARN_1885_SOURCE);
+const chanIdentity = sourceIdentityRow(ORA_CHAN_1917_SOURCE);
 const cocinaIdentities = COCINA_SOURCES.map(sourceIdentityRow);
 const bwRows = allRows.filter(row => matchesIdentity(row, bwIdentity));
 const turabiRows = allRows.filter(row => matchesIdentity(row, turabiIdentity));
@@ -250,6 +253,7 @@ const frokenJensenRows = allRows.filter(row => matchesIdentity(row, FROKEN_JENSE
 const seleskowitzRows = allRows.filter(row => matchesIdentity(row, SELESKOWITZ_IDENTITY));
 const viardRows = allRows.filter(row => matchesIdentity(row, VIARD_IDENTITY));
 const hearnRows = allRows.filter(row => matchesIdentity(row, hearnIdentity));
+const chanRows = allRows.filter(row => matchesIdentity(row, chanIdentity));
 const cocinaRows = cocinaIdentities.map(identity => allRows.filter(row => matchesIdentity(row, identity)));
 if (abbottRows.length !== ABBOTT_EXPECTED_COUNT) throw new Error(`ABBOTT_EXPECTED_${ABBOTT_EXPECTED_COUNT}_GOT_${abbottRows.length}`);
 if (bwRows.length !== ORA_BW_SOURCE.expectedRecipeCount) throw new Error(`BOSSE_WATANNA_EXPECTED_${ORA_BW_SOURCE.expectedRecipeCount}_GOT_${bwRows.length}`);
@@ -261,6 +265,7 @@ if (frokenJensenRows.length !== FROKEN_JENSEN_EXPECTED_COUNT) throw new Error(`F
 if (seleskowitzRows.length !== SELESKOWITZ_EXPECTED_COUNT) throw new Error(`SELESKOWITZ_EXPECTED_${SELESKOWITZ_EXPECTED_COUNT}_GOT_${seleskowitzRows.length}`);
 if (viardRows.length !== VIARD_EXPECTED_COUNT) throw new Error(`VIARD_EXPECTED_${VIARD_EXPECTED_COUNT}_GOT_${viardRows.length}`);
 if (hearnRows.length !== ORA_HEARN_1885_SOURCE.expectedRecipeCount) throw new Error(`HEARN_EXPECTED_${ORA_HEARN_1885_SOURCE.expectedRecipeCount}_GOT_${hearnRows.length}`);
+if (chanRows.length !== CHAN_EXPECTED_COUNT) throw new Error(`CHAN_EXPECTED_${CHAN_EXPECTED_COUNT}_GOT_${chanRows.length}`);
 for (let i = 0; i < COCINA_SOURCES.length; i++) {
   if (cocinaRows[i].length !== COCINA_SOURCES[i].expectedRecipeCount) {
     throw new Error(`COCINA_SOURCE_${i}_EXPECTED_${COCINA_SOURCES[i].expectedRecipeCount}_GOT_${cocinaRows[i].length}`);
@@ -281,9 +286,10 @@ const protectedBaseline = [
   ...frokenJensenRows.map(parseOraJsonlRecipe),
   ...seleskowitzRows.map(parseOraJsonlRecipe),
   ...viardRows.map(parseOraJsonlRecipe),
-  ...hearnRows.map(parseOraJsonlRecipe)
+  ...hearnRows.map(parseOraJsonlRecipe),
+  ...chanRows.map(parseOraJsonlRecipe)
 ];
-if (protectedBaseline.length !== EXPECTED_PROTECTED_COUNT) throw new Error(`V8014_PROTECTED_BASELINE_COUNT_${protectedBaseline.length}`);
+if (protectedBaseline.length !== EXPECTED_PROTECTED_COUNT) throw new Error(`V8015_PROTECTED_BASELINE_COUNT_${protectedBaseline.length}`);
 
 const excludedSourceKeys = new Set([
   oraSourceKey(ABBOTT_IDENTITY),
@@ -296,7 +302,8 @@ const excludedSourceKeys = new Set([
   oraSourceKey(FROKEN_JENSEN_IDENTITY),
   oraSourceKey(SELESKOWITZ_IDENTITY),
   oraSourceKey(VIARD_IDENTITY),
-  oraSourceKey(hearnIdentity)
+  oraSourceKey(hearnIdentity),
+  oraSourceKey(chanIdentity)
 ]);
 const heldSourceKeys = new Set([
   oraSourceKey(MAGYAR_KONYHA_PROVENANCE_HOLD),
@@ -314,7 +321,7 @@ const result = discoverOraNextSources({
   excludedSourceKeys,
   heldSourceKeys,
   heldCollections,
-  activeProtectedVersion: "v8014",
+  activeProtectedVersion: "v8015",
   activeProtectedCount: EXPECTED_PROTECTED_COUNT
 });
 
@@ -331,7 +338,7 @@ const output = {
     cc0Baseline: pins.cc0
   },
   exclusions: {
-    alreadyProtectedSources: 12,
+    alreadyProtectedSources: 13,
     heldSources: [
       {
         collection: MAGYAR_KONYHA_PROVENANCE_HOLD.collection,
@@ -391,7 +398,7 @@ const output = {
       }
     ],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8014 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883, Viard 1806 and Hearn 1885. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; the 1905 Volks-Kochbuch source is held because the exact edition credits an unidentified Frau Dr. Engelken with new ordering and additions and her contribution term cannot be resolved; and cocina-espanola remains under its existing collection rights hold."
+    reason: "All exact sources protected through v8015 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883, Viard 1806, Hearn 1885 and Chan 1917. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; the 1905 Volks-Kochbuch source is held because the exact edition credits an unidentified Frau Dr. Engelken with new ordering and additions and her contribution term cannot be resolved; and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
