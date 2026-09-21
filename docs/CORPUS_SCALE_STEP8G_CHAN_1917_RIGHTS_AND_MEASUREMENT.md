@@ -2,7 +2,7 @@
 
 Date: 2026-09-21
 
-Status: `PASS_RIGHTS__V8014_MEASUREMENT_PENDING`
+Status: `PASS_RIGHTS__V8014_MEASUREMENT_EARNED_COHORT_CANDIDATE`
 
 Pinned source repository: `AdamBouhmad/open-recipe-archive`
 
@@ -82,3 +82,36 @@ Documentary references:
 - U.S. Copyright Office, public-domain term guidance: https://copyright.gov/what-is-copyright/
 - Spain Copyright Act, Articles 41 and 199: https://www.boe.es/eli/es/rdlg/1996/04/12/1/con
 - EU Copyright Term Directive, Article 7: https://eur-lex.europa.eu/eli/dir/2006/116/oj/eng
+
+
+## Bounded measurement result
+
+Workflow run `35605618561` completed successfully.
+
+Terminal:
+
+`STEP_8G_ORA_CHAN_1917_MEASUREMENT_EARNED_COHORT_CANDIDATE`
+
+Measured against active protected `v8014` / **16,365**:
+
+- exact candidate rows: **145**
+- parseable rows: **145 / 145**
+- distinct normalized titles: **144**
+- unique-title ratio: **0.993103448275862**
+- exact baseline-title overlaps: **6**
+- novel normalized titles: **138**
+- novel-title ratio: **0.9583333333333334**
+- distinct ingredient phrases: **458**
+- novel ingredient phrases: **412**
+- ontology-resolved occurrence ratio: **0.07650862068965517**
+
+All rights, repository-reuse, attribution, edition-semantics, exact-count, source-identity, structural-quality and culinary-coverage gates passed.
+
+The measurement earns only:
+
+`SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`
+
+It does not authorize protected population.
+
+Canonical public-safe measurement evidence:
+`data/generated/step8g/chan-1917-v8014-measurement.json`.
