@@ -193,7 +193,6 @@ async function buildBody(rawJson, ordinal, sourceOrdinal) {
       historicalSourceLabelOnly: true,
       knowledgeCoreWriteAuthorized: false
     }
-  };    }
   };
   const bodyJson = JSON.stringify(packet);
   return {
