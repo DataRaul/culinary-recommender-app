@@ -59,7 +59,7 @@
     "storage": "Protected recipe bodies remain private in Cloudflare D1; GitHub contains code, descriptors, fingerprints and public-safe evidence only. The merged v8018 implementation and CI performed zero production D1 writes.",
     "d1": "v8018 implementation preserves optimized <=8 D1 subqueries/request and hard fail-safe 16 as non-spendable headroom. It references v8015 base + v8016 delta + v8017 delta and would write only the v8018 delta; zero parent-route copying.",
     "topology": "Exactly two protected recipe-body D1 shards. v8018 prewrite proved the 481-row layer fits this topology; no third shard is authorized.",
-    "public_activation": "Public runtime remains 85 recipes. v8018 implementation does not widen public corpus or recommendation admission.",
+    "public_activation": "Public runtime remains 85 recipes. Broader public corpus or recommendation admission is not authorized; v8018 implementation does not widen either.",
     "billing_firewall": "No paid infrastructure, billing enablement or automatic overage authorization."
   },
   "canonical_documents": {
