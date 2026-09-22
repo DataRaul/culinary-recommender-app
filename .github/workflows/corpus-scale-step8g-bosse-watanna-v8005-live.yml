@@ -11,7 +11,6 @@ on:
       - 'step8g-v8005-populate.html'
       - 'scripts/verify-step8g-v8005-live-payloads.mjs'
       - 'tests/step8g-v8005-live.test.js'
-      - 'docs/handovers/CURRENT.json'
   workflow_dispatch:
 permissions:
   contents: read
