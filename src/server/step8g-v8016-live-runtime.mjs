@@ -28,11 +28,12 @@ export const STEP8G_V8016_EXPECTED_ROUTE_COUNT = 17011;
 export const STEP8G_V8016_EXPECTED_PARENT_ROUTE_COUNT = 16510;
 export const STEP8G_V8016_MAX_ROWS_PER_BATCH = 10;
 export const STEP8G_V8016_MAX_PROTECTED_D1_SUBQUERIES = 16;
+export const STEP8G_V8016_OPTIMIZED_MAX_REQUEST_D1_SUBQUERIES = 8;
 export const STEP8G_V8016_LIVE_SHARD_SPECS = STEP8B_LIVE_SHARD_SPECS;
 
 const SOURCE_REPOSITORY = "AdamBouhmad/open-recipe-archive";
 const SOURCE_COLLECTION = "indian-kitchen";
-const PARENT_VERSIONS = ["v8001", "v8002", "v8003", "v8004", "v8005", "v8006", "v8007", "v8008", "v8009", "v8010", "v8011", "v8012", "v8013", "v8014", "v8015"];
+export const STEP8G_V8016_ROUTE_STORAGE_MODE = "PARENT_V8015_REFERENCE_PLUS_V8016_DELTA";
 const SOURCES = Object.freeze([
   Object.freeze({
     cohortId: "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN",
@@ -210,6 +211,7 @@ export function publicStep8GV8016Summary() {
     shardCount: 2,
     maxRowsPerBatch: STEP8G_V8016_MAX_ROWS_PER_BATCH,
     maxProtectedD1Subqueries: STEP8G_V8016_MAX_PROTECTED_D1_SUBQUERIES,
+    optimizedMaxRequestD1Subqueries: STEP8G_V8016_OPTIMIZED_MAX_REQUEST_D1_SUBQUERIES,
     layerManifestSha256: descriptor.layerManifestSha256,
     populationPlanSha256: descriptor.populationPlanSha256,
     publicRuntimeActivationAuthorized: false,
@@ -218,7 +220,10 @@ export function publicStep8GV8016Summary() {
     thirdShardAuthorized: false,
     culturalAuthenticityAuthorityImported: false,
     restartSafeResume: true,
-    sourceAuthorHandling: "IDENTIFIED_AUTHOR"
+    sourceAuthorHandling: "IDENTIFIED_AUTHOR",
+    routeStorageMode: STEP8G_V8016_ROUTE_STORAGE_MODE,
+    parentRouteRowsCopied: 0,
+    deltaRouteRowsExpected: STEP8G_V8016_EXPECTED_RECIPE_COUNT
   };
 }
 
@@ -293,8 +298,12 @@ export async function writeStep8GV8016BodyBatch(db, batch) {
     return { pass: Number(promoted?.meta?.changes ?? 0) === 1, status: "RECOVERED_UNKNOWN_COMMIT_AND_VERIFIED", rowCount: rows.rowCount, d1Subqueries: q };
   }
   if (typeof db.batch !== "function") return { pass: false, status: "D1_BATCH_UNAVAILABLE", d1Subqueries: q };
-  const statements = batch.entries.map(entry => db.prepare(`INSERT OR ABORT INTO ${STEP8B_RECIPE_TABLE} (corpus_version,ordinal,recipe_id,body_json,body_bytes,body_sha256,source_cohort_id) VALUES (?,?,?,?,?,?,?)`).bind(STEP8G_V8016_CORPUS_VERSION, entry.ordinal, entry.recipeId, entry.bodyJson, entry.bodyBytes, entry.bodySha256, entry.sourceCohortId));
-  statements.push(db.prepare(`INSERT OR ABORT INTO ${STEP8B_RECEIPT_TABLE} (corpus_version,batch_id,expected_sha256,row_count,verified) VALUES (?,?,?,?,0)`).bind(STEP8G_V8016_CORPUS_VERSION, batch.batchId, batch.expectedSha256, batch.rowCount));
+  const valueSql = batch.entries.map(() => "(?,?,?,?,?,?,?)").join(",");
+  const valueArgs = batch.entries.flatMap(entry => [STEP8G_V8016_CORPUS_VERSION, entry.ordinal, entry.recipeId, entry.bodyJson, entry.bodyBytes, entry.bodySha256, entry.sourceCohortId]);
+  const statements = [
+    db.prepare(`INSERT OR ABORT INTO ${STEP8B_RECIPE_TABLE} (corpus_version,ordinal,recipe_id,body_json,body_bytes,body_sha256,source_cohort_id) VALUES ${valueSql}`).bind(...valueArgs),
+    db.prepare(`INSERT OR ABORT INTO ${STEP8B_RECEIPT_TABLE} (corpus_version,batch_id,expected_sha256,row_count,verified) VALUES (?,?,?,?,0)`).bind(STEP8G_V8016_CORPUS_VERSION, batch.batchId, batch.expectedSha256, batch.rowCount)
+  ];
   try { await db.batch(statements); }
   catch { return { pass: false, status: "WRITE_ERROR_UNKNOWN_COMMIT_STATE", d1Subqueries: q + statements.length }; }
   q += statements.length;
@@ -340,16 +349,12 @@ export async function copyStep8GV8016ParentRoutes(controlDb) {
   let q = pointer.d1Subqueries;
   if (![STEP8G_V8016_PARENT_VERSION, STEP8G_V8016_CORPUS_VERSION].includes(pointer.activeVersion)) return { pass: false, status: "V8015_PARENT_OR_V8016_ACTIVE_REQUIRED", activeVersion: pointer.activeVersion, d1Subqueries: q };
   const parent = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version='v8015'`).first(); q++;
-  if (Number(parent?.c || 0) !== STEP8G_V8016_EXPECTED_PARENT_ROUTE_COUNT) return { pass: false, status: "V8015_ROUTE_BASELINE_NOT_EXACT", rowCount: Number(parent?.c || 0), d1Subqueries: q };
-  const versions = PARENT_VERSIONS.map(() => "?").join(",");
-  const existing = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version='v8016' AND corpus_version IN (${versions})`).bind(...PARENT_VERSIONS).first(); q++;
-  if (Number(existing?.c || 0) === STEP8G_V8016_EXPECTED_PARENT_ROUTE_COUNT) return { pass: true, skipped: true, status: "PARENT_ROUTES_IDEMPOTENT_SKIP", rowCount: STEP8G_V8016_EXPECTED_PARENT_ROUTE_COUNT, d1Subqueries: q };
-  if (Number(existing?.c || 0) !== 0) return { pass: false, status: "PARENT_ROUTE_PARTIAL_CONFLICT", rowCount: Number(existing?.c || 0), d1Subqueries: q };
-  if (pointer.activeVersion !== STEP8G_V8016_PARENT_VERSION) return { pass: false, status: "V8016_ACTIVE_WITHOUT_EXACT_PARENT_ROUTES", d1Subqueries: q };
-  await controlDb.prepare(`INSERT OR ABORT INTO ${STEP8G_ROUTE_TABLE} (composition_version,recipe_id,corpus_version,shard_number,source_cohort_id,body_sha256,body_bytes) SELECT 'v8016',recipe_id,corpus_version,shard_number,source_cohort_id,body_sha256,body_bytes FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version='v8015'`).run(); q++;
-  const after = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version='v8016' AND corpus_version IN (${versions})`).bind(...PARENT_VERSIONS).first(); q++;
-  const count = Number(after?.c || 0);
-  return { pass: count === STEP8G_V8016_EXPECTED_PARENT_ROUTE_COUNT, status: count === STEP8G_V8016_EXPECTED_PARENT_ROUTE_COUNT ? "PARENT_ROUTES_COPIED_AND_VERIFIED" : "PARENT_ROUTE_COPY_MISMATCH", rowCount: count, d1Subqueries: q };
+  const parentCount = Number(parent?.c || 0);
+  if (parentCount !== STEP8G_V8016_EXPECTED_PARENT_ROUTE_COUNT) return { pass: false, status: "V8015_ROUTE_BASELINE_NOT_EXACT", rowCount: parentCount, physicalRowsWritten: 0, d1Subqueries: q };
+  const copiedParent = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version='v8016' AND corpus_version<>'v8016'`).first(); q++;
+  const copiedParentCount = Number(copiedParent?.c || 0);
+  if (copiedParentCount !== 0) return { pass: false, status: "V8016_PARENT_ROUTE_COPY_FORBIDDEN", rowCount: parentCount, staleCopiedParentRows: copiedParentCount, physicalRowsWritten: 0, d1Subqueries: q };
+  return { pass: true, skipped: true, status: "PARENT_ROUTES_REFERENCED_FROM_V8015", rowCount: parentCount, physicalRowsWritten: 0, routeStorageMode: STEP8G_V8016_ROUTE_STORAGE_MODE, d1Subqueries: q };
 }
 
 async function verifyRoutes(controlDb, entries) {
@@ -391,8 +396,12 @@ export async function writeStep8GV8016RouteBatch(controlDb, shardDbs, payload = 
     const promoted = await controlDb.prepare(`UPDATE ${STEP8G_ROUTE_RECEIPT_TABLE} SET verified=1 WHERE composition_version='v8016' AND batch_id=? AND expected_sha256=? AND row_count=? AND verified=0`).bind(batch.batchId, observed, batch.rowCount).run(); q++;
     return { pass: Number(promoted?.meta?.changes ?? 0) === 1, status: "RECOVERED_UNKNOWN_COMMIT_AND_VERIFIED", rowCount: verified.rowCount, d1Subqueries: q };
   }
-  const statements = entries.map(entry => controlDb.prepare(`INSERT OR ABORT INTO ${STEP8G_ROUTE_TABLE} (composition_version,recipe_id,corpus_version,shard_number,source_cohort_id,body_sha256,body_bytes) VALUES ('v8016',?,?,?,?,?,?)`).bind(entry.recipeId, entry.corpusVersion, entry.shardNumber, entry.sourceCohortId, entry.bodySha256, entry.bodyBytes));
-  statements.push(controlDb.prepare(`INSERT OR ABORT INTO ${STEP8G_ROUTE_RECEIPT_TABLE} (composition_version,batch_id,expected_sha256,row_count,verified) VALUES ('v8016',?,?,?,0)`).bind(batch.batchId, observed, batch.rowCount));
+  const valueSql = entries.map(() => "('v8016',?,?,?,?,?,?)").join(",");
+  const valueArgs = entries.flatMap(entry => [entry.recipeId, entry.corpusVersion, entry.shardNumber, entry.sourceCohortId, entry.bodySha256, entry.bodyBytes]);
+  const statements = [
+    controlDb.prepare(`INSERT OR ABORT INTO ${STEP8G_ROUTE_TABLE} (composition_version,recipe_id,corpus_version,shard_number,source_cohort_id,body_sha256,body_bytes) VALUES ${valueSql}`).bind(...valueArgs),
+    controlDb.prepare(`INSERT OR ABORT INTO ${STEP8G_ROUTE_RECEIPT_TABLE} (composition_version,batch_id,expected_sha256,row_count,verified) VALUES ('v8016',?,?,?,0)`).bind(batch.batchId, observed, batch.rowCount)
+  ];
   try { await controlDb.batch(statements); }
   catch { return { pass: false, status: "WRITE_ERROR_UNKNOWN_COMMIT_STATE", d1Subqueries: q + statements.length }; }
   q += statements.length;
@@ -403,8 +412,7 @@ export async function writeStep8GV8016RouteBatch(controlDb, shardDbs, payload = 
 }
 
 export async function readStep8GV8016RouteProgress(controlDb) {
-  const versions = PARENT_VERSIONS.map(() => "?").join(",");
-  const parent = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version='v8016' AND corpus_version IN (${versions})`).bind(...PARENT_VERSIONS).first();
+  const parent = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version='v8015'`).first();
   const child = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version='v8016' AND corpus_version='v8016'`).first();
   const receipts = await controlDb.prepare(`SELECT batch_id,expected_sha256,row_count,verified FROM ${STEP8G_ROUTE_RECEIPT_TABLE} WHERE composition_version='v8016' ORDER BY batch_id`).all();
   const completed = [], pending = [], conflicts = [];

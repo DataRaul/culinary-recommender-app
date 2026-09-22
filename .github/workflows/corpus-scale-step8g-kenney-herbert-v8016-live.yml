@@ -67,6 +67,10 @@ jobs:
             'IDENTIFIED_AUTHOR',
             'STEP_8G_KENNEY_HERBERT_V8016_PROTECTED_POPULATION_PASS',
             'maxAllowedD1Subqueries:16',
+            'optimizedMaxRequestD1Subqueries:8',
+            'parentRouteRowsCopied:0',
+            'PARENT_V8015_REFERENCE_PLUS_V8016_DELTA',
+            '16510-parent-routes-referenced-zero-copy',
             'd1BudgetHeadroomAssumed:false',
             '/api/auth/session'
           ];

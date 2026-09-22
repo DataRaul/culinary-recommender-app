@@ -6,27 +6,33 @@ const ALLOWED_VERSIONS = new Set(["v8001", "v8002", "v8003", "v8004", "v8005", "
 const VERSIONS = [...ALLOWED_VERSIONS];
 export const STEP8G_V8016_MAX_HYDRATED_CANDIDATES = 256;
 export const STEP8G_V8016_LOOKUP_IDS_PER_QUERY = 97;
-export const STEP8G_V8016_MAX_HYDRATION_D1_SUBQUERIES = 15;
+export const STEP8G_V8016_MAX_HYDRATION_D1_SUBQUERIES = 7;
 const bytes = value => encoder.encode(String(value)).byteLength;
 const chunks = (values, size) => { const out = []; for (let i = 0; i < values.length; i += size) out.push(values.slice(i, i + size)); return out; };
 
 async function lookupRoutes(controlDb, ids) {
   const routes = [];
+  const seen = new Set();
   let q = 0;
   for (const chunk of chunks(ids, STEP8G_V8016_LOOKUP_IDS_PER_QUERY)) {
     const placeholders = chunk.map(() => "?").join(",");
-    const rows = await controlDb.prepare(`SELECT r.recipe_id,r.corpus_version,r.shard_number,r.source_cohort_id,r.body_sha256,r.body_bytes FROM ${STEP8G_ROUTE_TABLE} r JOIN ${STEP8G_POINTER_TABLE} p ON p.scope=? AND p.active_version='v8016' WHERE r.composition_version='v8016' AND r.recipe_id IN (${placeholders})`).bind(STEP8G_POINTER_SCOPE, ...chunk).all();
+    const rows = await controlDb.prepare(`SELECT r.recipe_id,r.corpus_version,r.shard_number,r.source_cohort_id,r.body_sha256,r.body_bytes FROM ${STEP8G_ROUTE_TABLE} r JOIN ${STEP8G_POINTER_TABLE} p ON p.scope=? AND p.active_version='v8016' WHERE r.composition_version IN ('v8015','v8016') AND r.recipe_id IN (${placeholders})`).bind(STEP8G_POINTER_SCOPE, ...chunk).all();
     q++;
-    for (const row of rows?.results || []) routes.push({
-      recipeId: String(row.recipe_id),
-      corpusVersion: String(row.corpus_version),
-      shardNumber: Number(row.shard_number),
-      sourceCohortId: String(row.source_cohort_id),
-      bodySha256: String(row.body_sha256),
-      bodyBytes: Number(row.body_bytes)
-    });
+    for (const row of rows?.results || []) {
+      const recipeId = String(row.recipe_id);
+      if (seen.has(recipeId)) return { pass: false, reason: "ROUTE_DUPLICATE_ACROSS_PARENT_AND_DELTA", routes, d1Subqueries: q };
+      seen.add(recipeId);
+      routes.push({
+        recipeId,
+        corpusVersion: String(row.corpus_version),
+        shardNumber: Number(row.shard_number),
+        sourceCohortId: String(row.source_cohort_id),
+        bodySha256: String(row.body_sha256),
+        bodyBytes: Number(row.body_bytes)
+      });
+    }
   }
-  return { routes, d1Subqueries: q };
+  return { pass: true, routes, d1Subqueries: q };
 }
 
 async function lookupBodies(shardDbs, routes) {
@@ -60,7 +66,9 @@ export async function hydrateStep8GV8016ProtectedRecipesBounded(controlDb, shard
   const ids = [...new Set(recipeIds.map(value => String(value || "")).filter(Boolean))];
   if (ids.length !== recipeIds.length) return { pass: false, reason: "DUPLICATE_OR_EMPTY_RECIPE_ID", d1Subqueries: 0, routeQueries: 0, shardQueries: 0 };
   if (ids.length > STEP8G_V8016_MAX_HYDRATED_CANDIDATES) return { pass: false, reason: "HYDRATION_CANDIDATE_LIMIT_EXCEEDED", d1Subqueries: 0, routeQueries: 0, shardQueries: 0 };
-  const routes = await lookupRoutes(controlDb, ids), byRoute = new Map(routes.routes.map(route => [route.recipeId, route]));
+  const routes = await lookupRoutes(controlDb, ids);
+  if (!routes.pass) return { pass: false, reason: routes.reason, d1Subqueries: routes.d1Subqueries, routeQueries: routes.d1Subqueries, shardQueries: 0 };
+  const byRoute = new Map(routes.routes.map(route => [route.recipeId, route]));
   if (byRoute.size !== ids.length || ids.some(id => !byRoute.has(id))) return { pass: false, reason: "ROUTE_LOOKUP_INCOMPLETE_OR_COMPOSITION_INACTIVE", d1Subqueries: routes.d1Subqueries, routeQueries: routes.d1Subqueries, shardQueries: 0 };
   const bodies = await lookupBodies(shardDbs, routes.routes);
   if (!bodies.pass) return { pass: false, reason: bodies.reason, d1Subqueries: routes.d1Subqueries + bodies.shardQueries, routeQueries: routes.d1Subqueries, shardQueries: bodies.shardQueries };

@@ -11,14 +11,18 @@ import {
   STEP8G_V8016_EXPECTED_ROUTE_COUNT,
   STEP8G_V8016_EXPECTED_PARENT_ROUTE_COUNT,
   STEP8G_V8016_MAX_PROTECTED_D1_SUBQUERIES,
+  STEP8G_V8016_OPTIMIZED_MAX_REQUEST_D1_SUBQUERIES,
+  STEP8G_V8016_ROUTE_STORAGE_MODE,
   publicStep8GV8016Summary,
   expectedStep8GV8016BodyBatchIds,
   expectedStep8GV8016RouteBatchIds
 } from "../src/server/step8g-v8016-live-runtime.mjs";
 import {
   STEP8G_V8016_MAX_HYDRATED_CANDIDATES,
-  STEP8G_V8016_MAX_HYDRATION_D1_SUBQUERIES
+  STEP8G_V8016_MAX_HYDRATION_D1_SUBQUERIES,
+  hydrateStep8GV8016ProtectedRecipesBounded
 } from "../src/server/step8g-v8016-hydration-runtime.mjs";
+import { sha256Hex } from "../src/server/step8b-live.mjs";
 
 const prewrite = JSON.parse(readFileSync(new URL("../data/generated/step8g/kenney-herbert-v8016-prewrite-evidence.json", import.meta.url), "utf8"));
 
@@ -59,7 +63,9 @@ test("v8016 exact child and route layout is frozen", () => {
 test("v8016 remains inside the two-shard and 16-query envelope", () => {
   assert.equal(STEP8G_V8016_MAX_PROTECTED_D1_SUBQUERIES,16);
   assert.equal(STEP8G_V8016_MAX_HYDRATED_CANDIDATES,256);
-  assert.equal(STEP8G_V8016_MAX_HYDRATION_D1_SUBQUERIES,15);
+  assert.equal(STEP8G_V8016_MAX_HYDRATION_D1_SUBQUERIES,7);
+  assert.equal(STEP8G_V8016_OPTIMIZED_MAX_REQUEST_D1_SUBQUERIES,8);
+  assert.equal(STEP8G_V8016_ROUTE_STORAGE_MODE,"PARENT_V8015_REFERENCE_PLUS_V8016_DELTA");
   assert.equal(prewrite.layer.operationBudget.maxPlannedD1Subqueries,16);
   assert.equal(prewrite.layer.operationBudget.headroomAssumed,false);
   assert.equal(prewrite.layer.operationBudget.operations.sixteenLayerHydrationCanary,4);
@@ -69,8 +75,12 @@ test("v8016 remains inside the two-shard and 16-query envelope", () => {
 test("v8016 runtime preserves exact v8015 parent and all historical layers", () => {
   const source=readFileSync(new URL("../src/server/step8g-v8016-live-runtime.mjs",import.meta.url),"utf8");
   assert.match(source,/STEP8G_V8016_EXPECTED_PARENT_ROUTE_COUNT = 16510/);
-  assert.match(source,/PARENT_VERSIONS = \["v8001", "v8002", "v8003", "v8004", "v8005", "v8006", "v8007", "v8008", "v8009", "v8010", "v8011", "v8012", "v8013", "v8014", "v8015"\]/);
+  assert.match(source,/PARENT_ROUTES_REFERENCED_FROM_V8015/);
   assert.match(source,/composition_version='v8015'/);
+  assert.equal(source.includes("SELECT 'v8016',recipe_id,corpus_version"),false);
+  assert.equal(source.includes("PARENT_ROUTES_COPIED_AND_VERIFIED"),false);
+  assert.match(source,/valueSql = batch\.entries\.map/);
+  assert.match(source,/valueSql = entries\.map/);
   assert.match(source,/active_version='v8015'/);
   assert.match(source,/ROLLED_BACK_TO_V8015/);
 });
@@ -88,13 +98,16 @@ test("owner runner proves all sixteen layers and exact terminal contract", () =>
     "packets?.length!==16",
     "501-child-bodies",
     "501-child-routes",
-    "16510-parent-routes",
+    "16510-parent-routes-referenced-zero-copy",
     "sixteen-layer-hydration",
     "rollback-v8015",
     "STEP_8G_KENNEY_HERBERT_V8016_PROTECTED_POPULATION_PASS",
     "sixteenLayerHydrationPass:true",
     "17,011-recipe v8016 composition",
     "maxAllowedD1Subqueries:16",
+    "optimizedMaxRequestD1Subqueries:8",
+    "parentRouteRowsCopied:0",
+    "PARENT_V8015_REFERENCE_PLUS_V8016_DELTA",
     "d1BudgetHeadroomAssumed:false",
     "/api/auth/session"
   ];
@@ -107,4 +120,41 @@ test("v8016 API preserves structured write diagnostics", () => {
   assert.match(api,/STEP8G_V8016_WRITE_BODY_EXCEPTION/);
   assert.match(api,/WRITE_ERROR_UNKNOWN_COMMIT_STATE/);
   assert.match(api,/STEP8G_V8016_FREE_LIMIT_FAIL_CLOSED/);
+});
+
+
+test("v8016 hydration resolves v8015 parent routes plus v8016 delta routes", async () => {
+  const encoder=new TextEncoder();
+  const parentBody=JSON.stringify({canonicalRecipeId:"parent-recipe",layer:"v8015"});
+  const childBody=JSON.stringify({canonicalRecipeId:"child-recipe",layer:"v8016"});
+  const parentHash=await sha256Hex(parentBody), childHash=await sha256Hex(childBody);
+  const routeRows=[
+    {recipe_id:"parent-recipe",corpus_version:"v8015",shard_number:0,source_cohort_id:"parent",body_sha256:parentHash,body_bytes:encoder.encode(parentBody).byteLength},
+    {recipe_id:"child-recipe",corpus_version:"v8016",shard_number:1,source_cohort_id:"child",body_sha256:childHash,body_bytes:encoder.encode(childBody).byteLength}
+  ];
+  const controlDb={
+    prepare(){return{bind(){return{all:async()=>({results:routeRows})}}}}
+  };
+  const bodyRows=[
+    [{corpus_version:"v8015",recipe_id:"parent-recipe",body_json:parentBody,body_bytes:encoder.encode(parentBody).byteLength,body_sha256:parentHash,source_cohort_id:"parent"}],
+    [{corpus_version:"v8016",recipe_id:"child-recipe",body_json:childBody,body_bytes:encoder.encode(childBody).byteLength,body_sha256:childHash,source_cohort_id:"child"}]
+  ];
+  const shardDbs=bodyRows.map(rows=>({prepare(){return{bind(){return{all:async()=>({results:rows})}}}}}));
+  const result=await hydrateStep8GV8016ProtectedRecipesBounded(controlDb,shardDbs,["parent-recipe","child-recipe"]);
+  assert.equal(result.pass,true);
+  assert.equal(result.packets.length,2);
+  assert.equal(result.routeQueries,1);
+  assert.equal(result.shardQueries,2);
+  assert.equal(result.d1Subqueries,3);
+});
+
+test("v8016 hydration fails closed if a parent route was physically duplicated into the delta", async () => {
+  const routeRows=[
+    {recipe_id:"duplicate",corpus_version:"v8015",shard_number:0,source_cohort_id:"parent",body_sha256:"a".repeat(64),body_bytes:1},
+    {recipe_id:"duplicate",corpus_version:"v8015",shard_number:0,source_cohort_id:"parent",body_sha256:"a".repeat(64),body_bytes:1}
+  ];
+  const controlDb={prepare(){return{bind(){return{all:async()=>({results:routeRows})}}}}};
+  const result=await hydrateStep8GV8016ProtectedRecipesBounded(controlDb,[],["duplicate"]);
+  assert.equal(result.pass,false);
+  assert.equal(result.reason,"ROUTE_DUPLICATE_ACROSS_PARENT_AND_DELTA");
 });
