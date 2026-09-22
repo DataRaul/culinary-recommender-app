@@ -1,0 +1,59 @@
+name: Corpus Scale Step 8G Fannie Farmer v8017 runtime descriptor
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-fannie-farmer-v8017-runtime-descriptor.yml'
+      - 'scripts/generate-step8g-fannie-farmer-v8017-runtime-descriptor.mjs'
+      - 'scripts/corpus-scale-step8g-fannie-farmer-v8017-prewrite-core.mjs'
+      - 'scripts/corpus-scale-step8g-ora-fannie-farmer-1910-core.mjs'
+      - 'data/generated/step8g/fannie-farmer-v8017-prewrite-evidence.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  descriptor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate exact v8017 runtime descriptor
+        run: >-
+          node scripts/generate-step8g-fannie-farmer-v8017-runtime-descriptor.mjs
+          --ora=./open-recipe-archive
+          --out=.tmp/v8017-runtime-descriptor.mjs
+
+      - name: Verify descriptor against earned prewrite
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from "node:fs";
+          const p=JSON.parse(readFileSync("data/generated/step8g/fannie-farmer-v8017-prewrite-evidence.json","utf8"));
+          const text=readFileSync(".tmp/v8017-runtime-descriptor.mjs","utf8");
+          const json=JSON.parse(text.slice(text.indexOf("Object.freeze(")+14,-3));
+          if(p.pass!==true) process.exit(1);
+          if(json.layerManifestSha256!==p.layer.manifestSha256) process.exit(1);
+          if(json.populationPlanSha256!==p.layer.populationPlanSha256) process.exit(1);
+          if(json.parentCompositionRouteCount!==17011||json.composedRouteCount!==18787) process.exit(1);
+          if(JSON.stringify(json.bodyShardRows)!==JSON.stringify([880,896])) process.exit(1);
+          if(json.bodyHashHexByShard.some(x=>x.length%64!==0)||json.routeHashHexByShard.some(x=>x.length%64!==0)) process.exit(1);
+          console.log(JSON.stringify({pass:true,manifest:json.layerManifestSha256,plan:json.populationPlanSha256,bodyShardRows:json.bodyShardRows,bodyBatches:json.bodyHashHexByShard.map(x=>x.length/64),routeBatches:json.routeHashHexByShard.map(x=>x.length/64)}));
+          NODE
+
+      - name: Print public-safe descriptor
+        run: cat .tmp/v8017-runtime-descriptor.mjs
