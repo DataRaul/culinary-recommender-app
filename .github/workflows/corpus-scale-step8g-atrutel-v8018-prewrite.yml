@@ -1,0 +1,71 @@
+name: Corpus Scale Step 8G Atrutel v8018 prewrite
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-atrutel-v8018-prewrite.yml'
+      - 'scripts/corpus-scale-step8g-atrutel-v8018-prewrite-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-atrutel-v8018-prewrite.mjs'
+      - 'tests/corpus-scale-step8g-atrutel-v8018-prewrite.test.js'
+      - 'data/generated/step8g/atrutel-1874-v8017-measurement.json'
+      - 'data/generated/step8g/fannie-farmer-v8017-prewrite-evidence.json'
+      - 'data/generated/step8g/fannie-farmer-v8017-live-pass.json'
+      - 'data/generated/step8g/v8017-runtime-descriptor.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-atrutel-v8018-prewrite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prewrite-v8018:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Test optimized v8018 prewrite contract
+        run: node --test tests/corpus-scale-step8g-atrutel-v8018-prewrite.test.js
+      - name: Build exact v8018 no-write prewrite
+        run: >-
+          node scripts/run-corpus-scale-step8g-atrutel-v8018-prewrite.mjs
+          --ora=./open-recipe-archive
+          --measurement=data/generated/step8g/atrutel-1874-v8017-measurement.json
+          --parent-prewrite=data/generated/step8g/fannie-farmer-v8017-prewrite-evidence.json
+          --parent-live=data/generated/step8g/fannie-farmer-v8017-live-pass.json
+          --out=.tmp/step8g-atrutel-v8018-prewrite
+      - name: Verify exact prewrite pass and optimized no-copy boundaries
+        run: >-
+          node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-atrutel-v8018-prewrite/prewrite-evidence.json","utf8"));
+          if(p.pass!==true||p.terminalCandidate!=="STEP_8G_ATRUTEL_V8018_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED")process.exit(1);
+          if(p.parent.activeCorpusVersion!=="v8017"||p.parent.composedRecipeCount!==18787||p.layer.corpusVersion!=="v8018"||p.layer.recipeCount!==481||p.composition.cumulativeRecipeCount!==19268)process.exit(1);
+          if(p.composition.routing.shardCount!==2||p.layer.maxRowsPerBatch>10)process.exit(1);
+          if(p.composition.routing.routeStorageMode!=="V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA_PLUS_V8018_DELTA"||p.composition.routing.parentRouteRowsCopied!==0||p.composition.routing.physicalV8018DeltaRouteRows!==481)process.exit(1);
+          if(p.layer.operationBudget.maxPlannedD1Subqueries>8||p.layer.operationBudget.optimizedTargetMaxD1Subqueries!==8||p.layer.operationBudget.hardFailSafeMaxD1Subqueries!==16||p.layer.operationBudget.hardFailSafeIsNotSpendableHeadroom!==true)process.exit(1);
+          if(p.layer.logicalWriteEstimate.parentRouteRowsCopied!==0||p.layer.logicalWriteEstimate.parentRouteRowsAvoided!==18787)process.exit(1);
+          if(p.layer.shardDescriptors.reduce((s,x)=>s+x.rowCount,0)!==481||p.layer.shardDescriptors.length!==2)process.exit(1);
+          if(!Object.values(p.gates).every(Boolean))process.exit(1);
+          const b=p.boundaries;if(b.liveD1WritesPerformed!==0||b.publicRuntimeChanged!==false||b.recommendationAdmissionPerformed!==false||b.thirdShardUsed!==false||b.d1BudgetExpansion!==false||b.billingExpansion!==false||b.nutritionLaneModified!==false||b.youtubeCulinaryStateModified!==false||b.knowledgeCoreWritePerformed!==false||b.culturalAuthenticityAuthorityImported!==false||b.parentRouteCopyAuthorized!==false)process.exit(1);
+          console.log(JSON.stringify({terminal:p.terminalCandidate,counts:{parent:p.parent.composedRecipeCount,child:p.layer.recipeCount,composed:p.composition.cumulativeRecipeCount},shards:p.layer.shardDescriptors.map(x=>({shardNumber:x.shardNumber,rowCount:x.rowCount,totalBodyBytes:x.totalBodyBytes})),batches:p.layer.batchCount,routeStorageMode:p.composition.routing.routeStorageMode,parentRouteRowsCopied:p.composition.routing.parentRouteRowsCopied,maxPlannedD1Subqueries:p.layer.operationBudget.maxPlannedD1Subqueries,maxWriteRequestBytes:p.layer.maxWriteRequestBytes,capacity:p.composition.capacity,logicalWriteEstimate:p.layer.logicalWriteEstimate,fingerprints:{parent:p.parent.fingerprintSha256,manifest:p.layer.manifestSha256,populationPlan:p.layer.populationPlanSha256,packet:p.source.sourceCohort.packetDescriptorSha256}}));'
+      - name: Upload public-safe v8018 prewrite evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-atrutel-v8018-prewrite
+          path: |
+            .tmp/step8g-atrutel-v8018-prewrite/prewrite-evidence.json
+            .tmp/step8g-atrutel-v8018-prewrite/prewrite-validation.json
+          if-no-files-found: error
+          retention-days: 30
