@@ -101,6 +101,39 @@ Do not weaken the source gate merely to reach five. If five qualified independen
 
 A completed leaf is not searched again by the routine daily run. Refresh requires a separately recorded reason such as material technique gap, source invalidation, major product change or explicit owner request.
 
+
+## Discovery query strategy — world-champion first
+
+For each incomplete barbecue leaf, the first discovery pass must deliberately search for championship-level practitioners rather than generic recipe popularity.
+
+The primary query template is:
+
+`world champion + barbecue/grill + product/cut`
+
+Examples:
+
+- `world champion barbecue chicken`;
+- `world champion BBQ ribs`;
+- `world champion brisket barbecue`;
+- `world champion grilled fish`;
+- `world champion barbecue vegetables`.
+
+Equivalent ordering and competition-language variants should also be tried where useful, including:
+
+- `<product/cut> barbecue world champion`;
+- `barbecue world champion <product/cut>`;
+- `competition BBQ champion <product/cut>`;
+- `grand champion BBQ <product/cut>`;
+- the relevant language/local competition term for a named tradition when the English query would systematically miss qualified practitioners.
+
+The purpose of this query strategy is **candidate discovery**. A title, description or search result using “world champion” does not automatically qualify the source. The programme must verify the claimed credential or otherwise establish domain competence before that source can count toward the five-source synthesis set.
+
+For every leaf, championship-oriented queries are searched **before** generic expert/educator queries. If fewer than five independent admission-qualified championship-level sources exist or are discoverable for that leaf, fill the remaining positions using other strongly qualified specialist practitioners or culinary educators under the existing source-admission gate. Never lower the admission threshold merely to complete the set of five.
+
+The daily engine should record which query class produced each admitted source so later review can distinguish:
+
+`WORLD_CHAMPION_DISCOVERY` / `COMPETITION_CHAMPION_DISCOVERY` / `SPECIALIST_FALLBACK_DISCOVERY`.
+
 ## Source-admission principles
 
 Popularity alone is insufficient. The source set should favor demonstrated competence relevant to the exact technique: recognized competition credentials where meaningful, established specialist practitioners/pitmasters, respected culinary educators, or similarly strong domain evidence.
