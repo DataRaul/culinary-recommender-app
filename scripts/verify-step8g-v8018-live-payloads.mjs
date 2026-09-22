@@ -27,7 +27,7 @@ const SOURCES = Object.freeze([
   })
 ]);
 
-function parseArgsfunction parseArgs(argv) {
+function parseArgs(argv) {
   const out = { candidate: null };
   for (const arg of argv) if (arg.startsWith("--candidate=")) out.candidate = arg.slice(12);
   if (!out.candidate) throw new Error("--candidate=<checked-out source path> is required");
