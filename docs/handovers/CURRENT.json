@@ -2,7 +2,7 @@
   "handover": "CULINARY_APP_V8017_LIVE_PASS_POST_V8017_DISCOVERY_ACTIVE_V63",
   "handover_date": "2026-09-22",
   "timezone": "Atlantic/Canary",
-  "status": "V8017_LIVE_PASS_18787__LEGAL_CORPUS_BASELINE_NOT_YET_EARNED__GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD__NEXT_SOURCE_REVIEW_PENDING_DISCOVERY_RERUN__YT_CUL_POLICY_OR_QUOTA_HOLD",
+  "status": "V8017_LIVE_PASS_18787__LEGAL_CORPUS_BASELINE_NOT_EARNED__GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD__ATRUTEL_1874_RIGHTS_REVIEW_NEXT__YT_CUL_POLICY_OR_QUOTA_HOLD",
   "human_needed": false,
   "handover_written_against_main_sha": "6a5829c9a8dee6c18915171d31028e4931cd7f9b",
   "repository": {
@@ -69,7 +69,8 @@
     "v8017_live_pass_doc": "docs/CORPUS_SCALE_STEP8G_FANNIE_FARMER_V8017_LIVE_POPULATION_PASS.md",
     "post_v8017_discovery": "data/generated/step8g/post-v8017-discovery-summary.json",
     "post_v8017_baseline_reassessment": "docs/CORPUS_SCALE_STEP8G_POST_V8017_BASELINE_REASSESSMENT.md",
-    "gorriti_1890_hold": "docs/CORPUS_SCALE_STEP8G_GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD.md"
+    "gorriti_1890_hold": "docs/CORPUS_SCALE_STEP8G_GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD.md",
+    "post_v8017_after_gorriti_hold_discovery": "data/generated/step8g/post-v8017-after-gorriti-hold-discovery-summary.json"
   },
   "live_protected_state": {
     "active_version": "v8017",
@@ -171,7 +172,20 @@
     "measured_candidate_count": 15,
     "rights_review_eligible_count_before_gorriti_hold": 13,
     "leading_candidate_review": "GORRITI_1890_HELD_CONTRIBUTOR_RIGHTS_UNRESOLVED",
-    "reason": "Fresh no-write discovery against exact v8017 / 18,787 found material rights-review-eligible cohorts. Cocina Ecléctica 1890 was the leading candidate but is held fail-closed because its separately attributed community-contributor layer lacks cohort-wide Spain-facing term resolution."
+    "reason": "Fresh no-write discovery against exact v8017 / 18,787 found material rights-review-eligible cohorts. Cocina Ecléctica 1890 was the leading candidate but is held fail-closed because its separately attributed community-contributor layer lacks cohort-wide Spain-facing term resolution.",
+    "rights_review_eligible_count_after_gorriti_hold": 12,
+    "hold_adjusted_discovery_workflow_run": 35770307910,
+    "hold_adjusted_discovery_artifact_id": 10714116499,
+    "next_source_review": {
+      "sourceTitle": "An Easy and Economical Book of Jewish Cookery",
+      "sourceAuthor": "Estella Atrutel",
+      "sourceYear": "1874",
+      "sourceUrl": "https://archive.org/details/b2807967x",
+      "recipeCount": 481,
+      "novelTitleRatio": 0.9072847682119205,
+      "novelNormalizedTitleCount": 411,
+      "authority": "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
+    }
   },
   "concurrent_child_programmes": {
     "youtube_culinary": {
@@ -222,14 +236,14 @@
   ],
   "human_gate": null,
   "next_action": {
-    "state": "MACHINE_ONLY_DISCOVERY_RECONCILIATION_IN_PROGRESS",
+    "state": "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY",
     "actor": "AUTONOMOUS_CORPUS_LANE",
-    "action": "Complete the v8017 no-write discovery rerun with the Gorriti 1890 contributor-rights hold encoded, then select only the next source-specific documentary rights/provenance review. Do not authorize v8018 population merely from discovery."
+    "action": "Review exact Estella Atrutel 1874 source identity, edition, author term, repository reuse and attribution. If and only if documentary rights/provenance pass, run bounded source-specific marginal-value measurement against v8017 / 18,787. No v8018 population is authorized."
   },
-  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub and read CURRENT. v8017 is fully live at 18,787 with terminal STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS and maxObservedD1Subqueries=8. Fresh post-v8017 discovery found 13 rights-review-eligible cohorts before source-specific review. Leading Cocina Ecléctica (Gorriti 1890) is held fail-closed because separately attributed community-contributor terms are unresolved in the Spain-facing framework. Complete the discovery rerun with that hold encoded, select only the next source-specific review candidate, and do not jump to v8018 population without the subsequent earned gates. YT-CUL remains independently held on DAILY_SEARCH_HOLD_POLICY_OR_QUOTA.",
+  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub and read CURRENT. v8017 is fully live at 18,787 with certified maxObservedD1Subqueries=8. LEGAL_CORPUS_BASELINE_PASS is not earned. Gorriti 1890 is held fail-closed on unresolved community-contributor terms. Hold-adjusted v8017 discovery run 35770307910 found 12 eligible cohorts; next candidate is Estella Atrutel, An Easy and Economical Book of Jewish Cookery (1874), 481 rows, 100% parseable, ~90.7% title novelty. Authority is source-specific documentary rights/provenance review only; if that passes, bounded measurement against v8017 may run. Do not authorize v8018 population without subsequent earned gates. YT-CUL remains independently held.",
   "continuation_boundary": {
-    "reason": "V8017_LIVE_PASS__POST_V8017_BASELINE_NOT_EARNED__GORRITI_HOLD_ENCODED__NEXT_SOURCE_REVIEW_DISCOVERY_RERUN",
-    "safe_boundary": "V8017_ACTIVE_18787__SOURCE_REVIEW_ONLY__NO_V8018_POPULATION_AUTHORITY",
+    "reason": "V8017_LIVE_PASS__BASELINE_NOT_EARNED__GORRITI_HOLD__ATRUTEL_RIGHTS_REVIEW_NEXT",
+    "safe_boundary": "V8017_ACTIVE_18787__ATRUTEL_SOURCE_REVIEW_ONLY__NO_V8018_POPULATION_AUTHORITY",
     "ordinary_implementation_stopped": false
   }
 }
