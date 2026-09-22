@@ -396,11 +396,11 @@ export async function writeStep8GV8016RouteBatch(controlDb, shardDbs, payload = 
     const promoted = await controlDb.prepare(`UPDATE ${STEP8G_ROUTE_RECEIPT_TABLE} SET verified=1 WHERE composition_version='v8016' AND batch_id=? AND expected_sha256=? AND row_count=? AND verified=0`).bind(batch.batchId, observed, batch.rowCount).run(); q++;
     return { pass: Number(promoted?.meta?.changes ?? 0) === 1, status: "RECOVERED_UNKNOWN_COMMIT_AND_VERIFIED", rowCount: verified.rowCount, d1Subqueries: q };
   }
-  const valueSql = entries.map(() => "(\'v8016\',?,?,?,?,?,?)").join(",");
+  const valueSql = entries.map(() => "('v8016',?,?,?,?,?,?)").join(",");
   const valueArgs = entries.flatMap(entry => [entry.recipeId, entry.corpusVersion, entry.shardNumber, entry.sourceCohortId, entry.bodySha256, entry.bodyBytes]);
   const statements = [
     controlDb.prepare(`INSERT OR ABORT INTO ${STEP8G_ROUTE_TABLE} (composition_version,recipe_id,corpus_version,shard_number,source_cohort_id,body_sha256,body_bytes) VALUES ${valueSql}`).bind(...valueArgs),
-    controlDb.prepare(`INSERT OR ABORT INTO ${STEP8G_ROUTE_RECEIPT_TABLE} (composition_version,batch_id,expected_sha256,row_count,verified) VALUES (\'v8016\',?,?,?,0)`).bind(batch.batchId, observed, batch.rowCount)
+    controlDb.prepare(`INSERT OR ABORT INTO ${STEP8G_ROUTE_RECEIPT_TABLE} (composition_version,batch_id,expected_sha256,row_count,verified) VALUES ('v8016',?,?,?,0)`).bind(batch.batchId, observed, batch.rowCount)
   ];
   try { await controlDb.batch(statements); }
   catch { return { pass: false, status: "WRITE_ERROR_UNKNOWN_COMMIT_STATE", d1Subqueries: q + statements.length }; }
@@ -412,7 +412,7 @@ export async function writeStep8GV8016RouteBatch(controlDb, shardDbs, payload = 
 }
 
 export async function readStep8GV8016RouteProgress(controlDb) {
-  const parent = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version=\'v8015\'`).first();
+  const parent = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version='v8015'`).first();
   const child = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version='v8016' AND corpus_version='v8016'`).first();
   const receipts = await controlDb.prepare(`SELECT batch_id,expected_sha256,row_count,verified FROM ${STEP8G_ROUTE_RECEIPT_TABLE} WHERE composition_version='v8016' ORDER BY batch_id`).all();
   const completed = [], pending = [], conflicts = [];
