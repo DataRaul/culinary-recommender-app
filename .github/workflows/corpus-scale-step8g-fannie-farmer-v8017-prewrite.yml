@@ -1,0 +1,78 @@
+name: Corpus Scale Step 8G Fannie Farmer v8017 prewrite
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-fannie-farmer-v8017-prewrite.yml'
+      - 'scripts/corpus-scale-step8g-fannie-farmer-v8017-prewrite-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-fannie-farmer-v8017-prewrite.mjs'
+      - 'tests/corpus-scale-step8g-fannie-farmer-v8017-prewrite.test.js'
+      - 'data/generated/step8g/fannie-farmer-1910-v8016-measurement.json'
+      - 'data/generated/step8g/kenney-herbert-v8016-prewrite-evidence.json'
+      - 'data/generated/step8g/kenney-herbert-v8016-live-pass.json'
+      - 'data/generated/step8g/v8016-runtime-descriptor.mjs'
+      - 'data/generated/step8g/v8016-d1-cost-optimization.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-fannie-farmer-v8017-prewrite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prewrite-v8017:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test optimized v8017 prewrite contract
+        run: node --test tests/corpus-scale-step8g-fannie-farmer-v8017-prewrite.test.js
+
+      - name: Build exact v8017 no-write prewrite
+        run: >-
+          node scripts/run-corpus-scale-step8g-fannie-farmer-v8017-prewrite.mjs
+          --ora=./open-recipe-archive
+          --measurement=data/generated/step8g/fannie-farmer-1910-v8016-measurement.json
+          --parent-prewrite=data/generated/step8g/kenney-herbert-v8016-prewrite-evidence.json
+          --parent-live=data/generated/step8g/kenney-herbert-v8016-live-pass.json
+          --optimization=data/generated/step8g/v8016-d1-cost-optimization.json
+          --out=.tmp/step8g-fannie-farmer-v8017-prewrite
+
+      - name: Verify exact prewrite pass and optimized no-copy boundaries
+        run: >-
+          node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-fannie-farmer-v8017-prewrite/prewrite-evidence.json","utf8"));
+          if(p.pass!==true||p.terminalCandidate!=="STEP_8G_FANNIE_FARMER_V8017_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED")process.exit(1);
+          if(p.parent.activeCorpusVersion!=="v8016"||p.parent.composedRecipeCount!==17011||p.layer.corpusVersion!=="v8017"||p.layer.recipeCount!==1776||p.composition.cumulativeRecipeCount!==18787)process.exit(1);
+          if(p.composition.routing.shardCount!==2||p.layer.maxRowsPerBatch>10)process.exit(1);
+          if(p.composition.routing.routeStorageMode!=="V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA"||p.composition.routing.parentRouteRowsCopied!==0||p.composition.routing.physicalV8017DeltaRouteRows!==1776)process.exit(1);
+          if(p.layer.operationBudget.maxPlannedD1Subqueries>8||p.layer.operationBudget.optimizedTargetMaxD1Subqueries!==8||p.layer.operationBudget.hardFailSafeMaxD1Subqueries!==16||p.layer.operationBudget.hardFailSafeIsNotSpendableHeadroom!==true)process.exit(1);
+          if(p.layer.logicalWriteEstimate.parentRouteRowsCopied!==0||p.layer.logicalWriteEstimate.parentRouteRowsAvoided!==17011)process.exit(1);
+          if(!Object.values(p.gates).every(Boolean))process.exit(1);
+          const b=p.boundaries;if(b.liveD1WritesPerformed!==0||b.publicRuntimeChanged!==false||b.recommendationAdmissionPerformed!==false||b.thirdShardUsed!==false||b.d1BudgetExpansion!==false||b.billingExpansion!==false||b.nutritionLaneModified!==false||b.youtubeCulinaryStateModified!==false||b.knowledgeCoreWritePerformed!==false||b.culturalAuthenticityAuthorityImported!==false||b.parentRouteCopyAuthorized!==false)process.exit(1);
+          console.log(JSON.stringify({terminal:p.terminalCandidate,counts:{parent:p.parent.composedRecipeCount,child:p.layer.recipeCount,composed:p.composition.cumulativeRecipeCount},routeStorageMode:p.composition.routing.routeStorageMode,parentRouteRowsCopied:p.composition.routing.parentRouteRowsCopied,maxPlannedD1Subqueries:p.layer.operationBudget.maxPlannedD1Subqueries,maxWriteRequestBytes:p.layer.maxWriteRequestBytes,capacity:p.composition.capacity,logicalWriteEstimate:p.layer.logicalWriteEstimate,fingerprints:{parent:p.parent.fingerprintSha256,manifest:p.layer.manifestSha256,populationPlan:p.layer.populationPlanSha256,packet:p.source.sourceCohort.packetDescriptorSha256}}));'
+
+      - name: Upload public-safe v8017 prewrite evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-fannie-farmer-v8017-prewrite
+          path: |
+            .tmp/step8g-fannie-farmer-v8017-prewrite/prewrite-evidence.json
+            .tmp/step8g-fannie-farmer-v8017-prewrite/prewrite-validation.json
+          if-no-files-found: error
+          retention-days: 30

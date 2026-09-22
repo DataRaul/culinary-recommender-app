@@ -1,0 +1,40 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_FANNIE_FARMER_V8017_PREWRITE_VALIDATION_V1",
+  "date": "2026-09-22",
+  "pass": true,
+  "parentFingerprintSha256": "f0ef89477c0d4086317bafee9a2741ce006eba86632ecfaccec9c4548e2c2525",
+  "childDescriptorUniverseSha256": "795d9c836b4b89cf9538f62e372a058eb7024e20fdb492a07242faa9b62eff1b",
+  "manifestSha256": "6fc563094dbf07f8174e4823ae03ce90d6e05346d1ddd1f84dab469c2f912963",
+  "populationPlanSha256": "4806c2ef5a3233e9798062a9ee7f64a89de79731fc816be52490c27d12daa625",
+  "countContract": {
+    "parent": 17011,
+    "child": 1776,
+    "composed": 18787
+  },
+  "routeStorageMode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA",
+  "parentRouteRowsCopied": 0,
+  "gates": {
+    "requestSizePass": true,
+    "operationBudgetPass": true,
+    "capacityPass": true,
+    "topologyPass": true,
+    "countPass": true,
+    "batchSizePass": true,
+    "uniqueIdsPass": true,
+    "bodySizePass": true,
+    "routeArchitecturePass": true
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "d1BudgetExpansion": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "parentRouteCopyAuthorized": false
+  }
+}
