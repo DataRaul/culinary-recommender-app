@@ -17,7 +17,7 @@ const EXPECTED_CHILD=481,EXPECTED_PARENT=18787,EXPECTED_COMPOSED=19268,EXPECTED_
 const SOURCES=[
  {cohortId:"ORA_ATRUTEL_1874_EASY_ECONOMICAL_JEWISH_COOKERY_B2807967X",url:"https://archive.org/details/b2807967x",title:"An Easy and Economical Book of Jewish Cookery",author:"Estella Atrutel",year:"1874",license:"public-domain",prefix:"ora_atrutel_1874_",count:481}
 ];
-const runButton=const runButton=document.getElementById("run"),status=document.getElementById("status"),output=document.getElementById("output");
+const runButton=document.getElementById("run"),status=document.getElementById("status"),output=document.getElementById("output");
 function slug(v){return String(v??"").normalize("NFKD").replace(/\p{M}+/gu,"").toLowerCase().replace(/[^a-z0-9]+/g,"_").replace(/^_+|_+$/g,"");}
 function shardForRecipeId(id){let h=0x721c9dc5;for(let i=0;i<id.length;i++){h^=id.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0;}return h%2;}
 function chunk(v,n){const out=[];for(let i=0;i<v.length;i+=n)out.push(v.slice(i,i+n));return out;}
