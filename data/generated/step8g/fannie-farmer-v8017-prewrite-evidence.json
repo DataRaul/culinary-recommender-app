@@ -1,0 +1,203 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_FANNIE_FARMER_V8017_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_FANNIE_FARMER_V8017_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-22",
+  "source": {
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "collection": "ye-old-american",
+    "recordCount": 1776,
+    "measurementTerminal": "STEP_8G_ORA_FANNIE_FARMER_1910_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+    "sourceCohort": {
+      "cohortId": "ORA_FANNIE_FARMER_BOSTON_COOKING_SCHOOL_GUTENBERG_65061",
+      "sourceWork": "The Boston Cooking-School Cook Book",
+      "sourceAuthor": "Fannie Merritt Farmer",
+      "sourceAuthorClassification": "IDENTIFIED_AUTHOR",
+      "sourceYear": "1896",
+      "sourceYearSemantics": "ORA_WORK_FIRST_PUBLICATION_YEAR_1896__EXACT_DIGITIZED_EDITION_1910_REVISED",
+      "workFirstPublicationYear": "1896",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/65061",
+      "digitizedEditionYear": "1910",
+      "digitizedEditionLabel": "1910 revised edition with 125 new recipes",
+      "projectGutenbergEbookNumber": "65061",
+      "recordCount": 1776,
+      "licenseId": "public-domain",
+      "packetDescriptorSha256": "795d9c836b4b89cf9538f62e372a058eb7024e20fdb492a07242faa9b62eff1b"
+    },
+    "repositoryLayerLicense": "Unlicense",
+    "culturalAuthenticityAuthorityImported": false
+  },
+  "parent": {
+    "activeCorpusVersion": "v8016",
+    "composedRecipeCount": 17011,
+    "fingerprintSha256": "f0ef89477c0d4086317bafee9a2741ce006eba86632ecfaccec9c4548e2c2525",
+    "fingerprintMaterial": {
+      "activeCorpusVersion": "v8016",
+      "composedRecipeCount": 17011,
+      "liveTerminal": "STEP_8G_KENNEY_HERBERT_V8016_PROTECTED_POPULATION_PASS",
+      "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "layerManifestSha256": "df427ee80e3bb902615d48279e7ab80280382b17fcea061e1dfacbe9dd4a67ca",
+      "populationPlanSha256": "2531a470dabb619847f50c95bdae7bee28521b1984bb5ee85a59faf119eb4dca",
+      "bodyShardRows": [
+        259,
+        242
+      ],
+      "composedRouteCount": 17011,
+      "routeStorageMode": "PARENT_V8015_REFERENCE_PLUS_V8016_DELTA",
+      "parentRouteRowsCopied": 0,
+      "optimizedMaxRequestD1Subqueries": 8
+    }
+  },
+  "layer": {
+    "corpusVersion": "v8017",
+    "parentCorpusVersion": "v8016",
+    "recipeCount": 1776,
+    "manifestSha256": "6fc563094dbf07f8174e4823ae03ce90d6e05346d1ddd1f84dab469c2f912963",
+    "populationPlanSha256": "4806c2ef5a3233e9798062a9ee7f64a89de79731fc816be52490c27d12daa625",
+    "batchCount": 178,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 5787,
+    "maxBatchBodyBytes": 36739,
+    "maxWriteRequestBytes": 13251,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "operationBudget": {
+      "maxRowsPerBatch": 10,
+      "routeStorageMode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA",
+      "parentRouteRowsCopied": 0,
+      "operations": {
+        "status": 1,
+        "bindings": 3,
+        "freeLimitSimulation": 1,
+        "initialize": 8,
+        "bodyWriteFresh": 6,
+        "bodyWriteReplay": 3,
+        "progress": 7,
+        "verifyParentAncestry": 4,
+        "routeWriteFresh": 7,
+        "routeWriteReplay": 4,
+        "activate": 8,
+        "rollback": 3,
+        "seventeenLayerHydrationCanary": 4,
+        "boundedHydrationWorstCase": 8,
+        "evidence": 7
+      },
+      "maxPlannedD1Subqueries": 8,
+      "optimizedTargetMaxD1Subqueries": 8,
+      "hardFailSafeMaxD1Subqueries": 16,
+      "limitingOperations": [
+        "initialize",
+        "activate",
+        "boundedHydrationWorstCase"
+      ],
+      "pass": true,
+      "optimizedTargetHeadroomAssumed": false,
+      "hardFailSafeIsNotSpendableHeadroom": true
+    },
+    "shardDescriptors": [
+      {
+        "shardNumber": 0,
+        "rowCount": 880,
+        "totalBodyBytes": 2818507,
+        "firstOrdinal": 0,
+        "lastOrdinal": 1775,
+        "entriesSha256": "dfcf29dc79db641852c3b93b96ddbfd18d3a0ab10aa51f527d0257486f97923c"
+      },
+      {
+        "shardNumber": 1,
+        "rowCount": 896,
+        "totalBodyBytes": 2840134,
+        "firstOrdinal": 1,
+        "lastOrdinal": 1774,
+        "entriesSha256": "4185942932e390143a89bc46a0ad09f5271c9b31f288354f01726fe14d9254f6"
+      }
+    ],
+    "batchIdsSha256": "b1f03356699c37013ebb2ea4e1d0c499c3b3006a70f8982b9d293973a9152c7d",
+    "logicalWriteEstimate": {
+      "definition": "Application-table body rows + v8017 delta route rows + one body receipt and one route receipt per batch; excludes index amplification, DDL and pointer/control writes. Cloudflare D1 meta.rows_written remains authoritative.",
+      "childBodyRows": 1776,
+      "v8017DeltaRouteRows": 1776,
+      "bodyReceiptRows": 178,
+      "routeReceiptRows": 178,
+      "estimatedRowsBeforeControlAndIndexAmplification": 3908,
+      "parentLogicalRouteRowsReferenced": 17011,
+      "parentRouteRowsCopied": 0,
+      "parentRouteRowsAvoided": 17011
+    }
+  },
+  "composition": {
+    "activeCorpusVersion": "v8017",
+    "parentCorpusVersion": "v8016",
+    "cumulativeRecipeCount": 18787,
+    "capacity": {
+      "parentLayeredPhysicalBodyBytes": 62268682,
+      "addedLayerBodyBytes": 5658641,
+      "layeredPhysicalBodyBytes": 67927323,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {
+          "shardNumber": 0,
+          "parentRowCount": 8513,
+          "addedRowCount": 880,
+          "rowCount": 9393,
+          "parentBodyBytes": 31279170,
+          "addedBodyBytes": 2818507,
+          "totalBodyBytes": 34097677,
+          "withinProjectDatabaseBudget": true
+        },
+        {
+          "shardNumber": 1,
+          "parentRowCount": 8498,
+          "addedRowCount": 896,
+          "rowCount": 9394,
+          "parentBodyBytes": 30989512,
+          "addedBodyBytes": 2840134,
+          "totalBodyBytes": 33829646,
+          "withinProjectDatabaseBudget": true
+        }
+      ]
+    },
+    "routing": {
+      "shardCount": 2,
+      "routeStorageMode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA",
+      "parentRouteRowsCopied": 0,
+      "physicalV8017DeltaRouteRows": 1776,
+      "ancestryVersions": [
+        "v8015",
+        "v8016",
+        "v8017"
+      ],
+      "ancestryLookupShape": "ONE_CONTROL_QUERY_PER_ID_CHUNK_WITH_COMPOSITION_VERSION_IN_V8015_V8016_V8017",
+      "fullCorpusScans": 0,
+      "optimizedMaxProtectedD1Subqueries": 8,
+      "hardFailSafeMaxD1Subqueries": 16,
+      "hardFailSafeIsNotSpendableHeadroom": true
+    }
+  },
+  "gates": {
+    "requestSizePass": true,
+    "operationBudgetPass": true,
+    "capacityPass": true,
+    "topologyPass": true,
+    "countPass": true,
+    "batchSizePass": true,
+    "uniqueIdsPass": true,
+    "bodySizePass": true,
+    "routeArchitecturePass": true
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "d1BudgetExpansion": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "parentRouteCopyAuthorized": false
+  },
+  "decision": "EARN_V8017_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_OPTIMIZED_DELTA_ROUTE_ENVELOPE"
+}
