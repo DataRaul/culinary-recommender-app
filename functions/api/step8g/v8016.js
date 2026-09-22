@@ -98,7 +98,7 @@ export async function onRequestPost({ request, env }) {
     const control = await initializeStep8GV8016ControlSchema(env.CULINARY_CONTROL_DB), total = auth + shardQueries + control.d1Subqueries, pass = total <= MAX_D1;
     return jsonResponse({ ok: pass, step: STEP, action, protectedDataReturned: false, publicRuntimeChanged: false, fullCorpusScans: 0, metrics: metrics(total, shardQueries, control.d1Subqueries) }, pass ? 200 : 409);
   }
-  if (action === "copy-parent-routes") {
+  if (action === "copy-parent-routes" || action === "verify-parent-routes") {
     const result = await copyStep8GV8016ParentRoutes(env.CULINARY_CONTROL_DB), total = auth + result.d1Subqueries, pass = result.pass && total <= MAX_D1;
     return jsonResponse({ ok: pass, step: STEP, action, result, protectedDataReturned: false, publicRuntimeChanged: false, metrics: metrics(total, 0, result.d1Subqueries) }, pass ? 200 : 409);
   }
