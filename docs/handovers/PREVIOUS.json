@@ -1,20 +1,25 @@
 {
-  "handover": "CULINARY_APP_V8016_LIVE_POST_DISCOVERY_FANNIE_FARMER_REVIEW_READY_V60",
+  "handover": "CULINARY_APP_V8017_RUNTIME_MERGED_OWNER_POPULATION_GATE_V61",
   "handover_date": "2026-09-22",
   "timezone": "Atlantic/Canary",
-  "status": "AUTO_READY__V8016_LIVE_17011__POST_V8016_DISCOVERY_PASS__LEGAL_CORPUS_BASELINE_NOT_EARNED__FANNIE_FARMER_RIGHTS_REVIEW_NEXT",
-  "human_needed": false,
-  "handover_written_against_main_sha": "f47bf309a6ead7e2dc2e55e55a661200c305a8f3",
+  "status": "HUMAN_NEEDED__V8016_LIVE_17011__V8017_RUNTIME_MERGED_GREEN__OWNER_AUTH_POPULATION_GATE__YT_CUL_POLICY_OR_QUOTA_HOLD_RECONCILED",
+  "human_needed": true,
+  "handover_written_against_main_sha": "55a3b51a01b92605a796c40a35634ce6dcf7a60e",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
-    "v8016_closeout_discovery_pr": 238,
-    "v8016_closeout_discovery_merge_sha": "f47bf309a6ead7e2dc2e55e55a661200c305a8f3",
-    "post_v8016_discovery_workflow_run": 35720690011,
-    "post_v8016_discovery_artifact_id": 10690743693,
-    "public_validation_run": 35720690020,
+    "fannie_rights_measurement_pr": 240,
+    "fannie_prewrite_pr": 241,
+    "fannie_prewrite_merge_sha": "0a3a3d15010ecfead7265250236d2801c70a82dc",
+    "v8017_runtime_pr": 244,
+    "v8017_runtime_merge_sha": "55a3b51a01b92605a796c40a35634ce6dcf7a60e",
+    "v8017_runtime_ci_run": 35766328501,
+    "v8017_descriptor_ci_run": 35766328397,
+    "v8017_prewrite_ci_run": 35766328215,
+    "public_validation_run": 35766328179,
+    "cloudflare_preview_status": "PASS",
     "open_pr_count_before_handover": 0,
-    "handover_branch": "handover/v8016-live-post-discovery-v60"
+    "handover_branch": "handover/v8017-runtime-owner-gate-v61"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -28,16 +33,16 @@
     "blocking_milestone": "LEGAL_CORPUS_BASELINE_PASS",
     "recipe_family": "DEFERRED_PENDING_LEGAL_CORPUS_BASELINE_PASS",
     "nutrition_lane": "DOWNSTREAM_DO_NOT_MUTATE",
-    "yt_cul_lane": "INDEPENDENT_SCHEDULED_CHILD_PROGRAMME__DO_NOT_MUTATE_FROM_CORPUS_LANE",
+    "yt_cul_lane": "INDEPENDENT_CHILD_PROGRAMME__HARD_HOLD__DO_NOT_MUTATE_FROM_CORPUS_LANE",
     "recommendation_optimization": "DOWNSTREAM_DO_NOT_MUTATE",
     "knowledge_core": "READ_ONLY_RECONCILIATION_ONLY",
     "billing": "NO_BILLING_AUTHORIZATION"
   },
   "operating_contract": {
-    "autonomy": "Proceed autonomously with the selected Fannie Merritt Farmer source-specific documentary rights/provenance review and bounded marginal-value measurement. Stop only at a genuine unresolved rights, human/auth/security, material cost/topology or unrecoverable technical gate.",
-    "rights": "Fail closed. Discovery eligibility is not rights clearance. Private runtime creates no reuse permission.",
-    "storage": "Protected recipe bodies remain private in Cloudflare D1; GitHub contains only code and public-safe evidence.",
-    "d1": "No production D1 write is authorized by discovery or source review. Hard API ceiling remains 16. Future corpus layers must preserve delta-route ancestry and must never reintroduce full parent-route copying.",
+    "autonomy": "Ordinary implementation and CI are standing-preapproved. The v8017 implementation lane has reached a genuine human-only owner-authenticated production population gate.",
+    "rights": "Fannie Merritt Farmer / The Boston Cooking-School Cook Book exact source-specific rights/provenance and bounded measurement passed before v8017 prewrite. Continue to fail closed on new sources.",
+    "storage": "Protected recipe bodies remain private in Cloudflare D1; GitHub contains code, descriptors, fingerprints and public-safe evidence only.",
+    "d1": "Hard API ceiling remains 16; optimized operational target is <=8 D1 subqueries/request. v8017 must reference v8015 base + v8016 delta and write only the v8017 delta; zero parent-route copying.",
     "topology": "Exactly two protected recipe-body D1 shards. No third shard is authorized.",
     "public_activation": "Public runtime remains 85 recipes; broader public corpus/recommendation activation is not authorized.",
     "billing_firewall": "No paid infrastructure, billing enablement or automatic overage authorization."
@@ -46,11 +51,16 @@
     "legal_corpus_config": "config/legal_corpus_first_private_runtime.json",
     "legal_corpus_decision": "docs/LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_DECISION.md",
     "handover_protocol": "docs/HANDOVER_PROTOCOL.md",
-    "v8016_live_evidence": "data/generated/step8g/kenney-herbert-v8016-live-pass.json",
-    "v8016_live_closeout": "docs/CORPUS_SCALE_STEP8G_KENNEY_HERBERT_V8016_LIVE_POPULATION_PASS.md",
-    "post_v8016_discovery_summary": "data/generated/step8g/post-v8016-discovery-summary.json",
-    "post_v8016_baseline_reassessment": "docs/CORPUS_SCALE_STEP8G_POST_V8016_BASELINE_REASSESSMENT.md",
-    "youtube_culinary_work_unit_state": "data/generated/youtube-culinary-work-unit-state.json"
+    "fannie_rights_measurement": "docs/CORPUS_SCALE_STEP8G_FANNIE_FARMER_1910_RIGHTS_AND_MEASUREMENT.md",
+    "fannie_measurement_evidence": "data/generated/step8g/fannie-farmer-1910-v8016-measurement.json",
+    "fannie_v8017_prewrite": "docs/CORPUS_SCALE_STEP8G_FANNIE_FARMER_V8017_PREWRITE.md",
+    "fannie_v8017_prewrite_evidence": "data/generated/step8g/fannie-farmer-v8017-prewrite-evidence.json",
+    "v8017_runtime_descriptor": "data/generated/step8g/v8017-runtime-descriptor.mjs",
+    "v8017_owner_runner": "step8g-v8017-populate.html",
+    "youtube_culinary_roadmap": "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md",
+    "youtube_culinary_work_unit_state": "data/generated/youtube-culinary-work-unit-state.json",
+    "youtube_culinary_daily_state": "data/generated/youtube-culinary-daily-discovery-state.json",
+    "barbecue_roadmap": "docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md"
   },
   "live_protected_state": {
     "active_version": "v8016",
@@ -63,84 +73,131 @@
     "d1_budget_headroom_assumed": false,
     "route_storage_mode": "PARENT_V8015_REFERENCE_PLUS_V8016_DELTA",
     "parent_route_rows_copied": 0,
-    "delta_route_rows": 501,
     "public_runtime_recipe_count": 85,
     "public_runtime_changed": false,
     "recommendation_admission_changed": false,
     "third_shard_used": false,
     "billing_expansion": false
   },
-  "post_v8016_discovery": {
-    "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_CANDIDATES_FOUND",
-    "workflow_run": 35720690011,
-    "workflow_conclusion": "success",
-    "artifact_id": 10690743693,
-    "baseline_version": "v8016",
-    "baseline_recipe_count": 17011,
-    "collection_count": 31,
-    "source_group_count": 59,
-    "measured_candidate_count": 16,
-    "rights_review_eligible_count": 14,
-    "selected_next_candidate": {
-      "collection": "ye-old-american",
-      "source_work": "The Boston Cooking-School Cook Book",
-      "source_author": "Fannie Merritt Farmer",
-      "ora_source_year": "1896",
-      "source_url": "https://www.gutenberg.org/ebooks/65061",
-      "recipe_count": 1776,
-      "novel_normalized_title_count": 1609,
-      "novel_title_ratio": 0.9370995923121724
+  "v8017_implementation": {
+    "state": "IMPLEMENTATION_MERGED_GREEN__PRODUCTION_POPULATION_NOT_RUN",
+    "source_cohort_id": "ORA_FANNIE_FARMER_BOSTON_COOKING_SCHOOL_GUTENBERG_65061",
+    "source_work": "The Boston Cooking-School Cook Book",
+    "source_author": "Fannie Merritt Farmer",
+    "source_author_handling": "IDENTIFIED_AUTHOR",
+    "work_first_publication_year": "1896",
+    "digitized_edition_year": "1910",
+    "digitized_edition_label": "1910 revised edition with 125 new recipes",
+    "source_url": "https://www.gutenberg.org/ebooks/65061",
+    "child_recipe_count": 1776,
+    "parent_recipe_count": 17011,
+    "target_composed_recipe_count": 18787,
+    "target_hydration_layers": 17,
+    "body_batch_count": 178,
+    "route_batch_count": 178,
+    "shard_count": 2,
+    "body_shard_rows": [
+      880,
+      896
+    ],
+    "route_storage_mode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA",
+    "parent_route_rows_copied": 0,
+    "optimized_max_request_d1_subqueries": 8,
+    "hard_fail_safe_max_d1_subqueries": 16,
+    "layer_manifest_sha256": "6fc563094dbf07f8174e4823ae03ce90d6e05346d1ddd1f84dab469c2f912963",
+    "population_plan_sha256": "4806c2ef5a3233e9798062a9ee7f64a89de79731fc816be52490c27d12daa625",
+    "ci": {
+      "live_runtime": "PASS",
+      "runtime_descriptor": "PASS",
+      "prewrite": "PASS",
+      "public_v0": "PASS",
+      "cloudflare_preview": "PASS"
     },
-    "next_authority": "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
+    "production_d1_writes_performed_by_implementation_or_ci": 0,
+    "expected_owner_terminal": "STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS"
   },
   "legal_corpus_baseline": {
     "status": "NOT_YET_EARNED",
     "current_live_version": "v8016",
     "current_live_recipe_count": 17011,
-    "reason": "Fresh post-v8016 discovery still finds 14 source cohorts eligible for documentary rights review; the selected Fannie Farmer candidate has 1,776 recipes and ~93.71% novel-title ratio, so material marginal coverage remains."
-  },
-  "next_candidate_review": {
-    "source_work": "The Boston Cooking-School Cook Book",
-    "source_author": "Fannie Merritt Farmer",
-    "collection": "ye-old-american",
-    "source_url": "https://www.gutenberg.org/ebooks/65061",
-    "ora_source_year": "1896",
-    "recipe_count": 1776,
-    "provenance_issue": "ORA source_year=1896 appears to represent work-first publication. Project Gutenberg ebook #65061 identifies the digitized text as a 1910 revised edition. Resolve exact edition semantics and reuse basis before measurement can earn a protected cohort.",
-    "current_status": "RIGHTS_AND_PROVENANCE_REVIEW_REQUIRED__NO_V8017_AUTHORITY_YET"
+    "reason": "v8017 has been earned and implemented but is not yet populated. After a successful owner population to v8017 / 18,787, rerun the post-version discovery/baseline reassessment before deciding whether LEGAL_CORPUS_BASELINE_PASS is earned."
   },
   "concurrent_child_programmes": {
     "youtube_culinary": {
-      "state_file": "data/generated/youtube-culinary-work-unit-state.json",
-      "generated_at": "2026-09-21T15:57:31.533Z",
-      "latest_quota_date": "2026-09-21",
-      "latest_daily_terminal_state": "DAILY_DISCOVERY_QUOTA_PORTFOLIO_COMPLETE",
-      "closure_status": "CLOSED_CONTINUE",
-      "successor_action": "WAIT_FOR_NEXT_YOUTUBE_QUOTA_DAY",
-      "scheduler_disposition": "CONTINUE_BOUNDED_WAKEUP",
-      "authority_note": "Independent scheduled child programme; do not mutate/retry from corpus lane. Fresh-reconcile because a newer scheduled run may supersede this snapshot."
+      "work_unit_id": "YT_CUL_5E_ADAPTIVE_DAILY_DISCOVERY",
+      "generated_at": "2026-09-22T14:05:36.557Z",
+      "latest_quota_date": "2026-09-22",
+      "latest_daily_terminal_state": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+      "closure_status": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+      "search_calls_on_hold_day": 83,
+      "routine_ceiling": 90,
+      "provider_failure": {
+        "endpoint": "search.list",
+        "http_status": 429,
+        "api_status": "RESOURCE_EXHAUSTED",
+        "api_reason": "rateLimitExceeded",
+        "near_routine_ceiling": false
+      },
+      "successor_action": "RESOLVE_DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+      "scheduler_disposition": "HOLD_FAIL_CLOSED",
+      "next_trigger_disposition": "NO_LIVE_SEARCH_UNTIL_HOLD_RESOLVED",
+      "yt_cul_6_readiness_earned": false,
+      "authority_note": "Independent scheduled child programme. The hold is reconciled into the static roadmap/handover; do not retry or mutate it from the corpus lane."
+    },
+    "barbecue_technique_corpus": {
+      "state": "REGISTERED_POST_USABLE_APP_SUCCESSOR__NOT_ACTIVE",
+      "activation_gate": "LEGAL_CORPUS_BASELINE_PASS_AND_USABLE_RECOMMENDATION_BASELINE",
+      "discovery_priority": "WORLD_CHAMPION_PLUS_BARBECUE_OR_GRILL_PLUS_PRODUCT_OR_CUT_FIRST",
+      "scope": "CONVENTIONAL_BARBECUE_GRILL_ONLY",
+      "exclusions": [
+        "UNDERGROUND_OR_EARTH_OVEN",
+        "ASH_OR_EMBER_BURIED",
+        "NON_GRILL_FIRE_PIT_OR_CAMPFIRE"
+      ],
+      "automatic_publication_authorized": false
     }
   },
   "not_authorized": [
-    "No v8017 prewrite or protected population before a source-specific Fannie Farmer rights/provenance and bounded measurement PASS earns that next step.",
+    "No v8017 production D1 population from CI or an unauthenticated path; use only the owner-authenticated runner.",
     "No generic web scraping/crawling.",
     "No paid infrastructure, billing enablement or automatic overage authorization.",
     "No third D1 shard.",
-    "No full parent-route copy for any future corpus version.",
+    "No full parent-route copy for v8017 or any future corpus version.",
     "No broader public corpus/recommendation activation.",
     "No Nutrition or Recipe Family mutation before LEGAL_CORPUS_BASELINE_PASS.",
-    "No YT-CUL mutation/retry from corpus lane.",
+    "No YT-CUL live Search while DAILY_SEARCH_HOLD_POLICY_OR_QUOTA is active.",
+    "No YT-CUL mutation/retry from the corpus lane.",
     "No Knowledge Core write from app lane unless separately authorized."
   ],
-  "next_action": {
-    "state": "AUTO_READY",
-    "actor": "CHATGPT",
-    "action": "Perform source-specific documentary rights/provenance review and deterministic bounded measurement for Fannie Merritt Farmer / The Boston Cooking-School Cook Book. Explicitly resolve ORA source_year=1896 versus the Project Gutenberg #65061 1910 revised digitized edition. Do not start v8017 prewrite until that review and measurement earn the cohort."
+  "human_gate": {
+    "reason": "OWNER_AUTHENTICATED_PROTECTED_PRODUCTION_POPULATION_REQUIRED",
+    "actor": "OWNER",
+    "action": "Open the deployed step8g-v8017-populate.html while authenticated and run the restart-safe v8017 population. Return the complete terminal JSON.",
+    "expected_success_terminal": "STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS",
+    "expected_success_state": {
+      "activeCorpusVersion": "v8017",
+      "composedRecipeCount": 18787,
+      "childRecipeCount": 1776,
+      "parentRecipeCount": 17011,
+      "shardCount": 2,
+      "seventeenLayerHydrationPass": true,
+      "rollbackPass": true,
+      "rollbackHydrationFailClosedPass": true,
+      "finalProtectedActiveVersion": "v8017",
+      "parentRouteRowsCopied": 0,
+      "routeStorageMode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA",
+      "optimizedMaxRequestD1Subqueries": 8
+    }
   },
-  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub first and read docs/handovers/CURRENT.json. Live protected production is v8016 / 17,011 after STEP_8G_KENNEY_HERBERT_V8016_PROTECTED_POPULATION_PASS. PR #238 merged at f47bf309a6ead7e2dc2e55e55a661200c305a8f3. The owner run observed max 8 D1 subqueries; optimized API proof confirms routeStorageMode=PARENT_V8015_REFERENCE_PLUS_V8016_DELTA and parentRouteRowsCopied=0. Fresh post-v8016 discovery run 35720690011 PASS found 31 collections, 59 source groups, 16 measured candidates and 14 rights-review-eligible cohorts. LEGAL_CORPUS_BASELINE_PASS is NOT earned because material marginal value remains. Selected next candidate is Fannie Merritt Farmer / The Boston Cooking-School Cook Book: 1,776 recipes, 1,609 novel normalized titles, ~93.71% novelty, source https://www.gutenberg.org/ebooks/65061. IMPORTANT provenance issue: ORA source_year=1896 but Gutenberg #65061 is a 1910 revised digitized edition; resolve work-first-publication versus digitized-edition semantics and exact reuse basis. NEXT AUTO action is documentary rights/provenance review + bounded measurement only. No v8017 prewrite/population yet.",
+  "next_action": {
+    "state": "HUMAN_NEEDED",
+    "actor": "OWNER",
+    "action": "Run the authenticated v8017 owner population runner. After a PASS, ChatGPT should record live evidence, validate optimized API status, close out v8017, run post-v8017 source discovery/baseline reassessment, and continue only under the resulting authority."
+  },
+  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub first and read docs/handovers/CURRENT.json plus the latest generated YouTube work-unit state. v8017 implementation is merged green in PR #244 at 55a3b51a01b92605a796c40a35634ce6dcf7a60e, but live protected production remains v8016 / 17,011 because no v8017 production write has occurred. Human gate: owner must run step8g-v8017-populate.html while authenticated. Expected PASS is STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS with v8017 / 18,787, 17-layer hydration, zero parent-route copies and <=8 observed D1 subqueries. Separately, YT-CUL is on DAILY_SEARCH_HOLD_POLICY_OR_QUOTA after a 429 rateLimitExceeded at 83/90 routine calls; no live Search until that child-programme hold is resolved. Barbecue successor remains registered and world-champion-first but inactive until its activation gates are earned.",
   "continuation_boundary": {
-    "reason": "V8016_CLOSEOUT_AND_POST_DISCOVERY_DECISION_COMPLETE__NEXT_SOURCE_REVIEW_READY",
-    "safe_boundary": "V8016_LIVE_17011__POST_V8016_DISCOVERY_PASS__BASELINE_NOT_EARNED__NO_V8017_WORK_STARTED",
-    "ordinary_implementation_stopped": false
+    "reason": "V8017_RUNTIME_IMPLEMENTATION_MERGED_GREEN__OWNER_AUTH_PRODUCTION_GATE__YT_CUL_HOLD_RECONCILED",
+    "safe_boundary": "V8016_LIVE_17011__V8017_RUNTIME_READY__ZERO_V8017_PRODUCTION_WRITES",
+    "ordinary_implementation_stopped": true
   }
 }
