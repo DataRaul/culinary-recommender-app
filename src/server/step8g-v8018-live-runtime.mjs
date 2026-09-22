@@ -482,11 +482,3 @@ export async function rollbackStep8GV8018Pointer(controlDb) {
   const result = await controlDb.prepare(`UPDATE ${STEP8G_POINTER_TABLE} SET previous_version=active_version,active_version='v8017',manifest_sha256=?,updated_at=CURRENT_TIMESTAMP WHERE scope=? AND active_version='v8018'`).bind(STEP8G_V8017_RUNTIME_DESCRIPTOR.layerManifestSha256, STEP8G_POINTER_SCOPE).run(); q++;
   return { pass: Number(result?.meta?.changes ?? 0) === 1, status: "ROLLED_BACK_TO_V8017", d1Subqueries: q };
 }
-
-export async function rollbackStep8GV8018Pointer(controlDb) {
-  const pointer = await readStep8GPointer(controlDb); let q = pointer.d1Subqueries;
-  if (pointer.activeVersion === STEP8G_V8018_PARENT_VERSION) return { pass: true, skipped: true, status: "ALREADY_ROLLED_BACK", d1Subqueries: q };
-  if (pointer.activeVersion !== STEP8G_V8018_CORPUS_VERSION) return { pass: false, status: "ROLLBACK_SOURCE_NOT_ACTIVE", activeVersion: pointer.activeVersion, d1Subqueries: q };
-  const result = await controlDb.prepare(`UPDATE ${STEP8G_POINTER_TABLE} SET previous_version=active_version,active_version='v8016',manifest_sha256=?,updated_at=CURRENT_TIMESTAMP WHERE scope=? AND active_version='v8018'`).bind(STEP8G_V8016_RUNTIME_DESCRIPTOR.layerManifestSha256, STEP8G_POINTER_SCOPE).run(); q++;
-  return { pass: Number(result?.meta?.changes ?? 0) === 1, status: "ROLLED_BACK_TO_V8016", d1Subqueries: q };
-}
