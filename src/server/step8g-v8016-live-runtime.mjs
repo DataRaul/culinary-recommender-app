@@ -28,6 +28,7 @@ export const STEP8G_V8016_EXPECTED_ROUTE_COUNT = 17011;
 export const STEP8G_V8016_EXPECTED_PARENT_ROUTE_COUNT = 16510;
 export const STEP8G_V8016_MAX_ROWS_PER_BATCH = 10;
 export const STEP8G_V8016_MAX_PROTECTED_D1_SUBQUERIES = 16;
+export const STEP8G_V8016_OPTIMIZED_MAX_REQUEST_D1_SUBQUERIES = 8;
 export const STEP8G_V8016_LIVE_SHARD_SPECS = STEP8B_LIVE_SHARD_SPECS;
 
 const SOURCE_REPOSITORY = "AdamBouhmad/open-recipe-archive";
@@ -210,6 +211,7 @@ export function publicStep8GV8016Summary() {
     shardCount: 2,
     maxRowsPerBatch: STEP8G_V8016_MAX_ROWS_PER_BATCH,
     maxProtectedD1Subqueries: STEP8G_V8016_MAX_PROTECTED_D1_SUBQUERIES,
+    optimizedMaxRequestD1Subqueries: STEP8G_V8016_OPTIMIZED_MAX_REQUEST_D1_SUBQUERIES,
     layerManifestSha256: descriptor.layerManifestSha256,
     populationPlanSha256: descriptor.populationPlanSha256,
     publicRuntimeActivationAuthorized: false,
