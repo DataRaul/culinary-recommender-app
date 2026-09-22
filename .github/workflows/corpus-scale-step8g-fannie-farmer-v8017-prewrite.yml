@@ -7,8 +7,10 @@ on:
       - '.github/workflows/corpus-scale-step8g-fannie-farmer-v8017-prewrite.yml'
       - 'scripts/corpus-scale-step8g-fannie-farmer-v8017-prewrite-core.mjs'
       - 'scripts/run-corpus-scale-step8g-fannie-farmer-v8017-prewrite.mjs'
+      - 'scripts/generate-step8g-fannie-farmer-v8017-runtime-descriptor.mjs'
       - 'tests/corpus-scale-step8g-fannie-farmer-v8017-prewrite.test.js'
       - 'data/generated/step8g/fannie-farmer-1910-v8016-measurement.json'
+      - 'data/generated/step8g/fannie-farmer-v8017-prewrite-evidence.json'
       - 'data/generated/step8g/kenney-herbert-v8016-prewrite-evidence.json'
       - 'data/generated/step8g/kenney-herbert-v8016-live-pass.json'
       - 'data/generated/step8g/v8016-runtime-descriptor.mjs'
@@ -67,12 +69,37 @@ jobs:
           const b=p.boundaries;if(b.liveD1WritesPerformed!==0||b.publicRuntimeChanged!==false||b.recommendationAdmissionPerformed!==false||b.thirdShardUsed!==false||b.d1BudgetExpansion!==false||b.billingExpansion!==false||b.nutritionLaneModified!==false||b.youtubeCulinaryStateModified!==false||b.knowledgeCoreWritePerformed!==false||b.culturalAuthenticityAuthorityImported!==false||b.parentRouteCopyAuthorized!==false)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminalCandidate,counts:{parent:p.parent.composedRecipeCount,child:p.layer.recipeCount,composed:p.composition.cumulativeRecipeCount},routeStorageMode:p.composition.routing.routeStorageMode,parentRouteRowsCopied:p.composition.routing.parentRouteRowsCopied,maxPlannedD1Subqueries:p.layer.operationBudget.maxPlannedD1Subqueries,maxWriteRequestBytes:p.layer.maxWriteRequestBytes,capacity:p.composition.capacity,logicalWriteEstimate:p.layer.logicalWriteEstimate,fingerprints:{parent:p.parent.fingerprintSha256,manifest:p.layer.manifestSha256,populationPlan:p.layer.populationPlanSha256,packet:p.source.sourceCohort.packetDescriptorSha256}}));'
 
-      - name: Upload public-safe v8017 prewrite evidence
+      - name: Generate exact v8017 runtime descriptor
+        run: >-
+          node scripts/generate-step8g-fannie-farmer-v8017-runtime-descriptor.mjs
+          --ora=./open-recipe-archive
+          --out=.tmp/v8017-runtime-descriptor.mjs
+
+      - name: Verify runtime descriptor against earned prewrite
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from "node:fs";
+          const p=JSON.parse(readFileSync("data/generated/step8g/fannie-farmer-v8017-prewrite-evidence.json","utf8"));
+          const text=readFileSync(".tmp/v8017-runtime-descriptor.mjs","utf8");
+          const json=JSON.parse(text.slice(text.indexOf("Object.freeze(")+14,-3));
+          if(p.pass!==true) process.exit(1);
+          if(json.layerManifestSha256!==p.layer.manifestSha256) process.exit(1);
+          if(json.populationPlanSha256!==p.layer.populationPlanSha256) process.exit(1);
+          if(json.parentCompositionRouteCount!==17011||json.composedRouteCount!==18787) process.exit(1);
+          if(JSON.stringify(json.bodyShardRows)!==JSON.stringify([880,896])) process.exit(1);
+          console.log(JSON.stringify({pass:true,manifest:json.layerManifestSha256,plan:json.populationPlanSha256,bodyShardRows:json.bodyShardRows,bodyBatches:json.bodyHashHexByShard.map(x=>x.length/64),routeBatches:json.routeHashHexByShard.map(x=>x.length/64)}));
+          NODE
+
+      - name: Print public-safe runtime descriptor
+        run: cat .tmp/v8017-runtime-descriptor.mjs
+
+      - name: Upload public-safe v8017 evidence
         uses: actions/upload-artifact@v4
         with:
           name: step8g-fannie-farmer-v8017-prewrite
           path: |
             .tmp/step8g-fannie-farmer-v8017-prewrite/prewrite-evidence.json
             .tmp/step8g-fannie-farmer-v8017-prewrite/prewrite-validation.json
+            .tmp/v8017-runtime-descriptor.mjs
           if-no-files-found: error
           retention-days: 30
