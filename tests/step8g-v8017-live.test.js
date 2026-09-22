@@ -15,7 +15,8 @@ import {
   STEP8G_V8017_ROUTE_STORAGE_MODE,
   publicStep8GV8017Summary,
   expectedStep8GV8017BodyBatchIds,
-  expectedStep8GV8017RouteBatchIds
+  expectedStep8GV8017RouteBatchIds,
+  readStep8GV8017RouteProgress
 } from "../src/server/step8g-v8017-live-runtime.mjs";
 import {
   STEP8G_V8017_MAX_HYDRATED_CANDIDATES,
@@ -83,6 +84,34 @@ test("v8017 references v8015 base plus v8016 delta and writes no parent copies",
   assert.equal(source.includes("PARENT_ROUTES_COPIED_AND_VERIFIED"),false);
   assert.match(source,/active_version='v8016'/);
   assert.match(source,/ROLLED_BACK_TO_V8016/);
+});
+
+
+
+test("v8017 route progress uses three control queries so activation stays within eight total", async () => {
+  const prepared = [];
+  const controlDb = {
+    prepare(sql) {
+      prepared.push(sql);
+      return {
+        first: async () => {
+          if (sql.includes("base_count")) return { base_count: 16510, parent_delta_count: 501 };
+          if (sql.includes("corpus_version='v8017'")) return { c: 1776 };
+          throw new Error("UNEXPECTED_FIRST_QUERY");
+        },
+        all: async () => ({ results: [] })
+      };
+    }
+  };
+  const result = await readStep8GV8017RouteProgress(controlDb);
+  assert.equal(result.d1Subqueries,3);
+  assert.equal(result.baseRouteCount,16510);
+  assert.equal(result.parentDeltaRouteCount,501);
+  assert.equal(result.parentRouteCount,17011);
+  assert.equal(result.newRouteCount,1776);
+  assert.equal(prepared.length,3);
+  assert.match(prepared[0],/SUM\(CASE WHEN composition_version='v8015'/);
+  assert.match(prepared[0],/parent_delta_count/);
 });
 
 test("v8017 API preserves auth, diagnostics and rollback evidence shape", () => {
