@@ -421,8 +421,11 @@ export async function writeStep8GV8017RouteBatch(controlDb, shardDbs, payload = 
 }
 
 export async function readStep8GV8017RouteProgress(controlDb) {
-  const base = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version='v8015'`).first();
-  const parentDelta = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version='v8016' AND corpus_version='v8016'`).first();
+  const parent = await controlDb.prepare(`SELECT
+    SUM(CASE WHEN composition_version='v8015' THEN 1 ELSE 0 END) AS base_count,
+    SUM(CASE WHEN composition_version='v8016' AND corpus_version='v8016' THEN 1 ELSE 0 END) AS parent_delta_count
+    FROM ${STEP8G_ROUTE_TABLE}
+    WHERE composition_version IN ('v8015','v8016')`).first();
   const child = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${STEP8G_ROUTE_TABLE} WHERE composition_version='v8017' AND corpus_version='v8017'`).first();
   const receipts = await controlDb.prepare(`SELECT batch_id,expected_sha256,row_count,verified FROM ${STEP8G_ROUTE_RECEIPT_TABLE} WHERE composition_version='v8017' ORDER BY batch_id`).all();
   const completed = [], pending = [], conflicts = [];
@@ -435,7 +438,7 @@ export async function readStep8GV8017RouteProgress(controlDb) {
   const seen = new Set([...completed, ...pending]);
   const missing = routeBatches.map(batch => batch.batchId).filter(id => !seen.has(id));
   const receiptRows = completed.reduce((sum, id) => sum + routeBatchById.get(id).rowCount, 0);
-  const baseRows = Number(base?.c || 0), parentDeltaRows = Number(parentDelta?.c || 0), childRows = Number(child?.c || 0);
+  const baseRows = Number(parent?.base_count || 0), parentDeltaRows = Number(parent?.parent_delta_count || 0), childRows = Number(child?.c || 0);
   const parentRows = baseRows + parentDeltaRows;
   return {
     pass: conflicts.length === 0,
@@ -450,7 +453,7 @@ export async function readStep8GV8017RouteProgress(controlDb) {
     missingBatchIds: missing,
     conflicts,
     fullCorpusScans: 0,
-    d1Subqueries: 4
+    d1Subqueries: 3
   };
 }
 
