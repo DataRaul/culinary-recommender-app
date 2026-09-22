@@ -133,6 +133,11 @@ jobs:
           const americanExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/12815");
           if(!americanExcluded||!americanExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
           if(p.topRightsReviewCandidates?.some(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/12815"))process.exit(1);
+          const beetonHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/10136");
+          if(!beetonHeld||beetonHeld.reason!=="BEETON_1861_RECIPE_MATTER_FROM_UNNAMED_CORRESPONDENTS_PRIVATE_CIRCLE_AND_OTHER_WRITERS__ORA_FLATTENS_TO_BEETON")process.exit(1);
+          const beetonExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/10136");
+          if(!beetonExcluded||!beetonExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          if(p.topRightsReviewCandidates?.some(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/10136"))process.exit(1);
           if(!Number.isInteger(p.rightsReviewEligibleCount)||p.rightsReviewEligibleCount<0)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle||null,nextAuthority:p.nextAuthority}));'
 
