@@ -1,8 +1,8 @@
 {
-  "handover": "CULINARY_APP_V8017_LIVE_PASS_POST_V8017_DISCOVERY_ACTIVE_V63",
+  "handover": "CULINARY_APP_V8017_LIVE_PASS_ATRUTEL_1874_MEASUREMENT_EARNED_V64",
   "handover_date": "2026-09-22",
   "timezone": "Atlantic/Canary",
-  "status": "V8017_LIVE_PASS_18787__LEGAL_CORPUS_BASELINE_NOT_EARNED__GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD__ATRUTEL_1874_RIGHTS_REVIEW_NEXT__YT_CUL_POLICY_OR_QUOTA_HOLD",
+  "status": "V8017_LIVE_PASS_18787__LEGAL_CORPUS_BASELINE_NOT_EARNED__GORRITI_HOLD__ATRUTEL_1874_RIGHTS_AND_MEASUREMENT_PASS__V8018_PREWRITE_ONLY_EARNED__YT_CUL_POLICY_OR_QUOTA_HOLD",
   "human_needed": false,
   "handover_written_against_main_sha": "6a5829c9a8dee6c18915171d31028e4931cd7f9b",
   "repository": {
@@ -70,7 +70,9 @@
     "post_v8017_discovery": "data/generated/step8g/post-v8017-discovery-summary.json",
     "post_v8017_baseline_reassessment": "docs/CORPUS_SCALE_STEP8G_POST_V8017_BASELINE_REASSESSMENT.md",
     "gorriti_1890_hold": "docs/CORPUS_SCALE_STEP8G_GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD.md",
-    "post_v8017_after_gorriti_hold_discovery": "data/generated/step8g/post-v8017-after-gorriti-hold-discovery-summary.json"
+    "post_v8017_after_gorriti_hold_discovery": "data/generated/step8g/post-v8017-after-gorriti-hold-discovery-summary.json",
+    "atrutel_1874_rights_measurement": "docs/CORPUS_SCALE_STEP8G_ATRUTEL_1874_RIGHTS_AND_MEASUREMENT.md",
+    "atrutel_1874_measurement_evidence": "data/generated/step8g/atrutel-1874-v8017-measurement.json"
   },
   "live_protected_state": {
     "active_version": "v8017",
@@ -179,12 +181,21 @@
     "next_source_review": {
       "sourceTitle": "An Easy and Economical Book of Jewish Cookery",
       "sourceAuthor": "Estella Atrutel",
+      "canonicalAuthor": "Estella Benzaquen Atrutel",
       "sourceYear": "1874",
       "sourceUrl": "https://archive.org/details/b2807967x",
+      "rightsStatus": "PASS_RIGHTS_VERIFIED_BOUNDED_ATRUTEL_1874_FIRST_EDITION_AUTHOR_TERM_EXPIRED",
+      "measurementTerminal": "STEP_8G_ORA_ATRUTEL_1874_MEASUREMENT_EARNED_COHORT_CANDIDATE",
       "recipeCount": 481,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9417879417879418,
       "novelTitleRatio": 0.9072847682119205,
       "novelNormalizedTitleCount": 411,
-      "authority": "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
+      "distinctIngredientPhraseCount": 1517,
+      "novelIngredientPhraseCount": 1066,
+      "workflowRun": 35771097369,
+      "artifactId": 10714735207,
+      "nextAuthority": "SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY"
     }
   },
   "concurrent_child_programmes": {
@@ -236,14 +247,14 @@
   ],
   "human_gate": null,
   "next_action": {
-    "state": "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY",
+    "state": "SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY",
     "actor": "AUTONOMOUS_CORPUS_LANE",
-    "action": "Review exact Estella Atrutel 1874 source identity, edition, author term, repository reuse and attribution. If and only if documentary rights/provenance pass, run bounded source-specific marginal-value measurement against v8017 / 18,787. No v8018 population is authorized."
+    "action": "Run a no-write v8018 prewrite/capacity/cost measurement for the exact 481-row Atrutel cohort over live v8017 / 18,787. Preserve exactly two shards, optimized <=8 D1/request target, hard 16 fail-safe, no parent-route copying, no public/recommendation/billing widening. A prewrite PASS may earn implementation only; production population still requires its separate owner-authenticated gate."
   },
-  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub and read CURRENT. v8017 is fully live at 18,787 with certified maxObservedD1Subqueries=8. LEGAL_CORPUS_BASELINE_PASS is not earned. Gorriti 1890 is held fail-closed on unresolved community-contributor terms. Hold-adjusted v8017 discovery run 35770307910 found 12 eligible cohorts; next candidate is Estella Atrutel, An Easy and Economical Book of Jewish Cookery (1874), 481 rows, 100% parseable, ~90.7% title novelty. Authority is source-specific documentary rights/provenance review only; if that passes, bounded measurement against v8017 may run. Do not authorize v8018 population without subsequent earned gates. YT-CUL remains independently held.",
+  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub and read CURRENT. v8017 is live at 18,787. LEGAL_CORPUS_BASELINE_PASS is not earned. Gorriti 1890 is held. Estella Atrutel 1874 exact first edition has passed source-specific rights and bounded measurement against v8017: 481 rows, 100% parseable, 411 novel normalized titles (~90.7%), 1,066 novel ingredient phrases. Terminal STEP_8G_ORA_ATRUTEL_1874_MEASUREMENT_EARNED_COHORT_CANDIDATE. Next authority is no-write SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY for v8018; do not perform production D1 writes until implementation and owner-auth gate are separately earned.",
   "continuation_boundary": {
-    "reason": "V8017_LIVE_PASS__BASELINE_NOT_EARNED__GORRITI_HOLD__ATRUTEL_RIGHTS_REVIEW_NEXT",
-    "safe_boundary": "V8017_ACTIVE_18787__ATRUTEL_SOURCE_REVIEW_ONLY__NO_V8018_POPULATION_AUTHORITY",
+    "reason": "ATRUTEL_1874_RIGHTS_AND_MEASUREMENT_PASS__V8018_PREWRITE_ONLY_EARNED",
+    "safe_boundary": "V8017_ACTIVE_18787__V8018_PREWRITE_NO_WRITE_ONLY",
     "ordinary_implementation_stopped": false
   }
 }
