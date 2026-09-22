@@ -1,0 +1,30 @@
+{
+  "schema":"CULINARY_STEP8G_POST_V8017_AFTER_GORRITI_HOLD_DISCOVERY_SUMMARY_V1",
+  "date":"2026-09-22",
+  "pass":true,
+  "terminal":"STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_CANDIDATES_FOUND",
+  "baseline":{"activeProtectedVersion":"v8017","activeProtectedCount":18787},
+  "workflowRun":35770307910,
+  "artifactId":10714116499,
+  "artifactName":"step8g-ora-next-discovery-c31-g59-m14-e12",
+  "collectionCount":31,
+  "sourceGroupCount":59,
+  "measuredCandidateCount":14,
+  "rightsReviewEligibleCount":12,
+  "encodedHold":{"sourceTitle":"Cocina Ecléctica","sourceAuthor":"Juana Manuela Gorriti","sourceYear":"1890","reason":"COMMUNITY_COOKBOOK_SEPARATELY_ATTRIBUTED_CONTRIBUTOR_TERMS_UNRESOLVED_SPAIN_FACING"},
+  "nextAuthority":"SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY",
+  "nextCandidate":{
+    "collection":"jewish-kitchen",
+    "sourceTitle":"An Easy and Economical Book of Jewish Cookery",
+    "sourceUrl":"https://archive.org/details/b2807967x",
+    "sourceAuthor":"Estella Atrutel",
+    "sourceYear":"1874",
+    "recipeCount":481,
+    "parseableRecipeRatio":1,
+    "uniqueTitleRatio":0.9417879417879418,
+    "novelTitleRatio":0.9072847682119205,
+    "novelNormalizedTitleCount":411,
+    "rightsReviewStatus":"REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
+  },
+  "boundaries":{"liveD1WritesPerformed":0,"sourceRightsClearedByDiscovery":false,"measurementEarnedByDiscovery":false,"protectedPopulationAuthorized":false,"publicRuntimeChangeAuthorized":false,"recommendationAdmissionAuthorized":false,"thirdShardAuthorized":false,"d1BudgetExpansionAuthorized":false,"billingExpansionAuthorized":false}
+}
