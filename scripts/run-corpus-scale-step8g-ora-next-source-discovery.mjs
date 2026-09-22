@@ -133,6 +133,14 @@ const HEYL_1905_CONTRIBUTOR_RIGHTS_HOLD = Object.freeze({
   source_year: "1905",
   license: "public-domain"
 });
+const GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD = Object.freeze({
+  collection: "cocina-argentina",
+  source_url: "https://archive.org/details/cocina-eclectica-juana-manuela-gorriti",
+  source_title: "Cocina Ecléctica",
+  author: "Juana Manuela Gorriti",
+  source_year: "1890",
+  license: "public-domain"
+});
 const COCINA_SOURCES = Object.freeze([
   Object.freeze({
     collection: "cocina-mexicana",
@@ -326,7 +334,8 @@ const heldSourceKeys = new Set([
   oraSourceKey(WANNEE_PROVENANCE_RIGHTS_HOLD),
   oraSourceKey(SCHILLER_PROVENANCE_HOLD),
   oraSourceKey(INDIAN_COOKERY_PROVENANCE_HOLD),
-  oraSourceKey(HEYL_1905_CONTRIBUTOR_RIGHTS_HOLD)
+  oraSourceKey(HEYL_1905_CONTRIBUTOR_RIGHTS_HOLD),
+  oraSourceKey(GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD)
 ]);
 const heldCollections = new Set(["cocina-espanola"]);
 const result = discoverOraNextSources({
@@ -409,10 +418,18 @@ const output = {
         sourceAuthorAsInOra: HEYL_1905_CONTRIBUTOR_RIGHTS_HOLD.author,
         sourceYear: HEYL_1905_CONTRIBUTOR_RIGHTS_HOLD.source_year,
         reason: "EXACT_1905_EDITION_CREDITS_UNIDENTIFIED_FRAU_DR_ENGELKEN_WITH_NEW_ORDERING_AND_ADDITIONS__CONTRIBUTOR_TERM_UNRESOLVED"
+      },
+      {
+        collection: GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD.collection,
+        sourceUrl: GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD.source_url,
+        sourceTitle: GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD.source_title,
+        sourceAuthorAsInOra: GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD.author,
+        sourceYear: GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD.source_year,
+        reason: "COMMUNITY_COOKBOOK_SEPARATELY_ATTRIBUTED_CONTRIBUTOR_TERMS_UNRESOLVED_SPAIN_FACING"
       }
     ],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8017 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883, Viard 1806, Hearn 1885, Chan 1917, Kenney-Herbert 1885 and the exact Fannie Farmer 1910 revised edition represented by the ORA work-year tuple 1896. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; the 1905 Volks-Kochbuch source is held because the exact edition credits an unidentified Frau Dr. Engelken with new ordering and additions and her contribution term cannot be resolved; and cocina-espanola remains under its existing collection rights hold."
+    reason: "All exact sources protected through v8017 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883, Viard 1806, Hearn 1885, Chan 1917, Kenney-Herbert 1885 and the exact Fannie Farmer 1910 revised edition represented by the ORA work-year tuple 1896. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; the 1905 Volks-Kochbuch source is held because the exact edition credits an unidentified Frau Dr. Engelken with new ordering and additions and her contribution term cannot be resolved; Cocina Ecléctica 1890 is held because its community-contributor layer contains separately attributed recipe contributions whose Spain-facing terms have not been established cohort-wide; and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
