@@ -147,8 +147,8 @@
     "barbecue_technique_corpus": {
       "state": "REGISTERED_POST_USABLE_APP_SUCCESSOR__NOT_ACTIVE",
       "activation_gate": "LEGAL_CORPUS_BASELINE_PASS_AND_USABLE_RECOMMENDATION_BASELINE",
-      "discovery_priority": "WORLD_CHAMPION_PLUS_BARbecue_OR_GRILL_PLUS_PRODUCT_OR_CUT_FIRST",
-      "scope": "CONVENTIONAL_BARbecue_GRILL_ONLY",
+      "discovery_priority": "WORLD_CHAMPION_PLUS_BARBECUE_OR_GRILL_PLUS_PRODUCT_OR_CUT_FIRST",
+      "scope": "CONVENTIONAL_BARBECUE_GRILL_ONLY",
       "exclusions": [
         "UNDERGROUND_OR_EARTH_OVEN",
         "ASH_OR_EMBER_BURIED",
