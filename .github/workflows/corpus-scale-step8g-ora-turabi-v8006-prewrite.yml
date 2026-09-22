@@ -19,8 +19,6 @@ on:
       - 'data/generated/step8g/v8005-runtime-descriptor.mjs'
       - 'docs/CORPUS_SCALE_STEP8G_ORA_TURABI_V8006_PREWRITE.md'
       - 'config/corpus_scale_step8_roadmap.json'
-      - 'docs/handovers/CURRENT.json'
-      - 'docs/handovers/PREVIOUS.json'
   workflow_dispatch:
 
 permissions:
