@@ -40,6 +40,7 @@
 | V1.x / Corpus Scale / 100k Readiness | USER-ACCEPTED TARGET / STEP 1 READY | Cloudflare Pages + exact-email Access/OTP + Worker + R2/pre-built indexes; D1 benchmark-gated; portable provider-neutral corpus; no mass ingestion yet |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
+| Post-usable-app / Barbecue Technique Corpus | PLANNED / OWNER-PRIORITY | five-source one-shot YouTube synthesis into conventional-barbecue technique families, ranges, alternatives and safety constraints; no transcripts/images/media/copying |
 
 ## 2026-09-01 Brain / World Recipe Atlas reconciliation
 
@@ -80,6 +81,15 @@ Three lanes may proceed independently under their own gates:
 3. **Recipe-unlock nutrition lane** — B7 completed the first post-Gate-F composition tranche; continue targeting residual composition/form/nutrient-field/quantity blockers against the 76 curated-recipe baseline and separately admitted recipes by measured unlock value.
 
 Brain-derived ranking/eligibility/substitution behavior remains a fourth, **separately gated** lane and is not authorized by any of the three above.
+
+
+## 2026-09-22 owner-priority — Barbecue Technique Corpus
+
+After the legal corpus and usable recommendation baseline are earned, the next high-priority YouTube refinement is the bounded **Barbecue Technique Corpus** defined in `docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md`.
+
+This programme is intentionally narrower than generic YouTube recipe discovery. It creates conventional-barbecue technique families from **five independent admission-qualified references per leaf**, stores references/provenance plus project-authored normalized observations and derived ranges, and excludes transcripts, images, downloaded media and copied recipe prose. Underground/earth-oven, ash-buried and non-grill fire-pit/campfire techniques are outside V1.
+
+Activation terminal: `BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY`.
 
 ## Completed V1 lineage
 

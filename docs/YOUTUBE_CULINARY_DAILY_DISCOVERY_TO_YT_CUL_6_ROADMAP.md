@@ -299,6 +299,21 @@ Project Coach conclusion:
 - preserve source-of-truth/authority boundaries;
 - add queue backpressure, validation and cumulative handover state so the programme can run repeatedly without confusing activity with progress.
 
+
+## 2026-09-22 owner-priority successor — Barbecue Technique Corpus
+
+The owner has selected a finite barbecue-technique programme as the preferred post-usable-app use of this YouTube acquisition machinery.
+
+Canonical object: `docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md`.
+
+This does **not** change today's YT-CUL-5E authority or consume Search early. Once `LEGAL_CORPUS_BASELINE_PASS` and the usable recommendation baseline are earned and fresh reconciliation confirms no higher-priority conflict, record `BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY` and implement the scheduler transition.
+
+At activation, broad daily discovery is replaced by barbecue-only gap filling:
+
+`incomplete barbecue leaf -> find five independent admission-qualified references -> normalize technique variables -> synthesize ranges/alternatives -> validate safety firewall -> mark leaf complete -> retire leaf from routine Search -> move to next incomplete leaf`
+
+V1 is conventional barbecue/grill only. Underground/earth-oven, ash/ember-buried and non-grill fire-pit/campfire techniques are explicitly excluded. Durable state keeps references/IDs, provenance, qualification metadata and project-authored structured observations/ranges; it does not retain transcripts, images, downloaded video/audio, copied recipe prose or bulk raw API payload history.
+
 ## Immediate next action
 
 `WAIT_FOR_NEXT_YOUTUBE_QUOTA_DAY__YT_CUL_5E_ADAPTIVE_V2`

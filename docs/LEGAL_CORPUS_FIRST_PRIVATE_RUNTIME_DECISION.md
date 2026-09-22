@@ -89,3 +89,15 @@ Unauthorized third-party intrusion is not an authorized distribution path and mu
 - Nutrition and YT-CUL remain independent and resumable, but are downstream product-priority lanes until the legal corpus baseline is known.
 - Public recommendation activation remains separately gated; a private-corpus PASS does not automatically authorize broad public recipe publication.
 - No paid infrastructure, third D1 shard, broader billing authority, or weakening of source-rights controls is authorized by this decision.
+
+
+## 2026-09-22 owner-priority sequencing amendment — barbecue after usable baseline
+
+The legal-corpus-first ordering remains controlling through the usable recommendation baseline. Once `LEGAL_CORPUS_BASELINE_PASS`, corpus normalization/categorization, applicable nutrition audit and recommendation readiness have produced an accepted usable app baseline, the bounded Barbecue Technique Corpus becomes the next owner-priority YouTube/product-learning lane.
+
+This narrowly supersedes the earlier generic ordering that placed broad Recipe Family/adaptation work ahead of all YouTube refinement. Broad Recipe Family work remains planned, but the barbecue object may run first because it is a finite, user-valued technique corpus with explicit source-count, storage, safety and scope boundaries.
+
+Canonical object: `docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md`.
+
+No current Step 8G authority, source-rights gate, private-runtime boundary, billing firewall or current scheduled YT-CUL authority is changed before the activation gate is earned.
+
