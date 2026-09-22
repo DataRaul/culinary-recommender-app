@@ -1,10 +1,10 @@
 {
-  "handover": "CULINARY_APP_V8017_RUNTIME_MERGED_OWNER_POPULATION_GATE_V61",
+  "handover": "CULINARY_APP_V8017_ACTIVE_EXACT_COST_GATE_FIXED_RERUN_REQUIRED_V62",
   "handover_date": "2026-09-22",
   "timezone": "Atlantic/Canary",
-  "status": "HUMAN_NEEDED__V8016_LIVE_17011__V8017_RUNTIME_MERGED_GREEN__OWNER_AUTH_POPULATION_GATE__YT_CUL_POLICY_OR_QUOTA_HOLD_RECONCILED",
+  "status": "HUMAN_NEEDED__V8017_ACTIVE_18787_EXACT__FIRST_OWNER_RUN_REACHED_EVIDENCE__FINAL_COST_GATE_9_GT_8__FIX_MERGED__CERTIFICATION_RERUN_REQUIRED__YT_CUL_POLICY_OR_QUOTA_HOLD",
   "human_needed": true,
-  "handover_written_against_main_sha": "55a3b51a01b92605a796c40a35634ce6dcf7a60e",
+  "handover_written_against_main_sha": "6a5829c9a8dee6c18915171d31028e4931cd7f9b",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
@@ -19,7 +19,11 @@
     "public_validation_run": 35766328179,
     "cloudflare_preview_status": "PASS",
     "open_pr_count_before_handover": 0,
-    "handover_branch": "handover/v8017-runtime-owner-gate-v61"
+    "handover_branch": "handover/v8017-runtime-owner-gate-v61",
+    "v8017_eight_query_fix_pr": 246,
+    "v8017_eight_query_fix_merge_sha": "6a5829c9a8dee6c18915171d31028e4931cd7f9b",
+    "v8017_eight_query_fix_ci_run": 35768184132,
+    "v8017_eight_query_fix_public_validation_run": 35768184128
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -63,15 +67,14 @@
     "barbecue_roadmap": "docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md"
   },
   "live_protected_state": {
-    "active_version": "v8016",
-    "composed_recipe_count": 17011,
-    "latest_terminal": "STEP_8G_KENNEY_HERBERT_V8016_PROTECTED_POPULATION_PASS",
+    "active_version": "v8017",
+    "composed_recipe_count": 18787,
+    "certification_status": "ACTIVE_EXACT_COMPOSITION_CONFIRMED_BY_OWNER_RUN_EVIDENCE__FINAL_OPTIMIZED_COST_TERMINAL_PENDING_RERUN",
+    "evidence_basis": "Owner runner completed reactivate-v8017 and evidence; runner code only records evidence after confirming activeVersion=v8017, composedRecipeCount=18787 and 178/178 body/route batches.",
     "shard_count": 2,
-    "hydration_layers": 16,
-    "max_observed_d1_subqueries": 8,
+    "hydration_layers": 17,
     "max_allowed_d1_subqueries": 16,
-    "d1_budget_headroom_assumed": false,
-    "route_storage_mode": "PARENT_V8015_REFERENCE_PLUS_V8016_DELTA",
+    "route_storage_mode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA",
     "parent_route_rows_copied": 0,
     "public_runtime_recipe_count": 85,
     "public_runtime_changed": false,
@@ -80,7 +83,7 @@
     "billing_expansion": false
   },
   "v8017_implementation": {
-    "state": "IMPLEMENTATION_MERGED_GREEN__PRODUCTION_POPULATION_NOT_RUN",
+    "state": "IMPLEMENTATION_MERGED_GREEN__FIRST_OWNER_RUN_POPULATED_AND_REACTIVATED__TERMINAL_COST_CERTIFICATION_FAILED_9_GT_8__ONE_QUERY_FIX_MERGED__RERUN_REQUIRED",
     "source_cohort_id": "ORA_FANNIE_FARMER_BOSTON_COOKING_SCHOOL_GUTENBERG_65061",
     "source_work": "The Boston Cooking-School Cook Book",
     "source_author": "Fannie Merritt Farmer",
@@ -114,13 +117,48 @@
       "cloudflare_preview": "PASS"
     },
     "production_d1_writes_performed_by_implementation_or_ci": 0,
-    "expected_owner_terminal": "STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS"
+    "expected_owner_terminal": "STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS",
+    "first_owner_run": {
+      "pass": false,
+      "failure": "Optimized v8017 D1 request ceiling exceeded: 9 > 8.",
+      "completed": [
+        "session",
+        "status",
+        "bindings",
+        "free-limit",
+        "initialize",
+        "1776-child-bodies",
+        "body-progress",
+        "17011-parent-routes-referenced-zero-copy",
+        "1776-child-routes",
+        "route-progress",
+        "idempotent-replays",
+        "activate-v8017",
+        "seventeen-layer-hydration",
+        "rollback-v8016",
+        "rollback-fail-closed",
+        "reactivate-v8017",
+        "evidence"
+      ],
+      "interpretation": "All substantive population/integrity/rollback/reactivation/evidence gates completed. Final terminal failed only because the activation path used 9 D1 queries against the preregistered optimized target of 8."
+    },
+    "cost_fix": {
+      "pr": 246,
+      "merge_sha": "6a5829c9a8dee6c18915171d31028e4931cd7f9b",
+      "change": "Coalesced separate v8015 base and v8016 delta route-count reads in readStep8GV8017RouteProgress, reducing route progress from 4 D1 queries to 3.",
+      "worst_case_activation_d1_subqueries": 8,
+      "threshold_relaxed": false,
+      "data_rewrite_performed": false,
+      "dedicated_v8017_ci": "PASS",
+      "public_v0": "PASS",
+      "preview_deploy": "PASS"
+    }
   },
   "legal_corpus_baseline": {
-    "status": "NOT_YET_EARNED",
-    "current_live_version": "v8016",
-    "current_live_recipe_count": 17011,
-    "reason": "v8017 has been earned and implemented but is not yet populated. After a successful owner population to v8017 / 18,787, rerun the post-version discovery/baseline reassessment before deciding whether LEGAL_CORPUS_BASELINE_PASS is earned."
+    "status": "NOT_YET_REASSESSED_POST_V8017",
+    "current_live_version": "v8017",
+    "current_live_recipe_count": 18787,
+    "reason": "The exact v8017 composition is active, but the owner terminal must be rerun after the eight-query fix before closeout and post-v8017 discovery/baseline reassessment."
   },
   "concurrent_child_programmes": {
     "youtube_culinary": {
@@ -170,9 +208,9 @@
     "No Knowledge Core write from app lane unless separately authorized."
   ],
   "human_gate": {
-    "reason": "OWNER_AUTHENTICATED_PROTECTED_PRODUCTION_POPULATION_REQUIRED",
+    "reason": "V8017_OPTIMIZED_COST_TERMINAL_CERTIFICATION_RERUN_REQUIRED",
     "actor": "OWNER",
-    "action": "Open the deployed step8g-v8017-populate.html while authenticated and run the restart-safe v8017 population. Return the complete terminal JSON.",
+    "action": "Refresh/open the production step8g-v8017-populate.html while authenticated and rerun it. Existing v8017 body and route batches are restart-safe/idempotent; the rerun must certify maxObservedD1Subqueries <= 8 and emit the PASS terminal.",
     "expected_success_terminal": "STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS",
     "expected_success_state": {
       "activeCorpusVersion": "v8017",
@@ -186,18 +224,19 @@
       "finalProtectedActiveVersion": "v8017",
       "parentRouteRowsCopied": 0,
       "routeStorageMode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA",
+      "maxObservedD1Subqueries": 8,
       "optimizedMaxRequestD1Subqueries": 8
     }
   },
   "next_action": {
     "state": "HUMAN_NEEDED",
     "actor": "OWNER",
-    "action": "Run the authenticated v8017 owner population runner. After a PASS, ChatGPT should record live evidence, validate optimized API status, close out v8017, run post-v8017 source discovery/baseline reassessment, and continue only under the resulting authority."
+    "action": "Rerun the authenticated v8017 owner population page after the merged one-query optimization and return the full terminal JSON. Do not start v8018/post-v8017 discovery until the PASS terminal is captured."
   },
-  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub first and read docs/handovers/CURRENT.json plus the latest generated YouTube work-unit state. v8017 implementation is merged green in PR #244 at 55a3b51a01b92605a796c40a35634ce6dcf7a60e, but live protected production remains v8016 / 17,011 because no v8017 production write has occurred. Human gate: owner must run step8g-v8017-populate.html while authenticated. Expected PASS is STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS with v8017 / 18,787, 17-layer hydration, zero parent-route copies and <=8 observed D1 subqueries. Separately, YT-CUL is on DAILY_SEARCH_HOLD_POLICY_OR_QUOTA after a 429 rateLimitExceeded at 83/90 routine calls; no live Search until that child-programme hold is resolved. Barbecue successor remains registered and world-champion-first but inactive until its activation gates are earned.",
+  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub and read CURRENT. v8017 exact composition is already active at 18,787 because the first owner run completed reactivation and evidence, but its final certification failed at maxObservedD1Subqueries=9 > optimized target 8. PR #246 fixed the real query inefficiency without relaxing the threshold by reducing route progress from 4 control queries to 3; merged at 6a5829c9a8dee6c18915171d31028e4931cd7f9b with v8017 CI and Public V0 PASS. Human gate: rerun step8g-v8017-populate.html while authenticated. Existing writes are idempotent. Expected terminal is STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS with maxObservedD1Subqueries<=8. YT-CUL remains separately fail-closed on DAILY_SEARCH_HOLD_POLICY_OR_QUOTA.",
   "continuation_boundary": {
-    "reason": "V8017_RUNTIME_IMPLEMENTATION_MERGED_GREEN__OWNER_AUTH_PRODUCTION_GATE__YT_CUL_HOLD_RECONCILED",
-    "safe_boundary": "V8016_LIVE_17011__V8017_RUNTIME_READY__ZERO_V8017_PRODUCTION_WRITES",
+    "reason": "V8017_ACTIVE_EXACT__FIRST_TERMINAL_COST_GATE_FAILED__EIGHT_QUERY_FIX_MERGED__OWNER_RERUN_REQUIRED",
+    "safe_boundary": "V8017_ACTIVE_18787__NO_V8018_AUTHORITY__RERUN_ONLY",
     "ordinary_implementation_stopped": true
   }
 }
