@@ -128,6 +128,11 @@ jobs:
           if(!gorritiHeld||gorritiHeld.reason!=="COMMUNITY_COOKBOOK_SEPARATELY_ATTRIBUTED_CONTRIBUTOR_TERMS_UNRESOLVED_SPAIN_FACING")process.exit(1);
           const gorritiExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/cocina-eclectica-juana-manuela-gorriti");
           if(!gorritiExcluded||!gorritiExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          const americanHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/12815");
+          if(!americanHeld||americanHeld.reason!=="EXACT_1796_EDITION_UNNAMED_PRESS_PREPARER_ALTERATIONS__ORA_EXTRACT_PRESERVES_UNCORRECTED_RECIPE_VALUES")process.exit(1);
+          const americanExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/12815");
+          if(!americanExcluded||!americanExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          if(p.topRightsReviewCandidates?.some(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/12815"))process.exit(1);
           if(!Number.isInteger(p.rightsReviewEligibleCount)||p.rightsReviewEligibleCount<0)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle||null,nextAuthority:p.nextAuthority}));'
 
