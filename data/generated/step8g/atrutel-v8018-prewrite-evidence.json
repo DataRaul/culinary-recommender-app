@@ -1,0 +1,160 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ATRUTEL_V8018_PREWRITE_V1",
+  "pass": true,
+  "terminalCandidate": "STEP_8G_ATRUTEL_V8018_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+  "date": "2026-09-22",
+  "source": {
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "collection": "jewish-kitchen",
+    "recordCount": 481,
+    "measurementTerminal": "STEP_8G_ORA_ATRUTEL_1874_MEASUREMENT_EARNED_COHORT_CANDIDATE",
+    "sourceCohort": {
+      "cohortId": "ORA_ATRUTEL_1874_EASY_ECONOMICAL_JEWISH_COOKERY_B2807967X",
+      "sourceWork": "An Easy and Economical Book of Jewish Cookery",
+      "sourceAuthor": "Estella Atrutel",
+      "sourceAuthorClassification": "IDENTIFIED_AUTHOR",
+      "canonicalAuthor": "Estella Benzaquen Atrutel",
+      "titlePageAuthor": "Mrs. J. Atrutel",
+      "sourceYear": "1874",
+      "sourceUrl": "https://archive.org/details/b2807967x",
+      "digitizedEditionYear": "1874",
+      "digitizedEditionLabel": "1874 first edition",
+      "authorDeathYear": "1884",
+      "recordCount": 481,
+      "licenseId": "public-domain",
+      "packetDescriptorSha256": "af9467ee45d1180ce0e485d356d3e4bf6fc994c4d527d64bcf621640ce8f8821"
+    },
+    "repositoryLayerLicense": "Unlicense",
+    "culturalAuthenticityAuthorityImported": false
+  },
+  "parent": {
+    "activeCorpusVersion": "v8017",
+    "composedRecipeCount": 18787,
+    "fingerprintSha256": "be7947b3607ad3abb2019145e676944926024d81c3fd2b77d9637de9d9e5eb94",
+    "fingerprintMaterial": {
+      "activeCorpusVersion": "v8017",
+      "composedRecipeCount": 18787,
+      "liveTerminal": "STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS",
+      "sourceCommit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "layerManifestSha256": "6fc563094dbf07f8174e4823ae03ce90d6e05346d1ddd1f84dab469c2f912963",
+      "populationPlanSha256": "4806c2ef5a3233e9798062a9ee7f64a89de79731fc816be52490c27d12daa625",
+      "bodyShardRows": [880, 896],
+      "composedRouteCount": 18787,
+      "routeStorageMode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA",
+      "parentRouteRowsCopied": 0,
+      "optimizedMaxRequestD1Subqueries": 8
+    }
+  },
+  "layer": {
+    "corpusVersion": "v8018",
+    "parentCorpusVersion": "v8017",
+    "recipeCount": 481,
+    "manifestSha256": "0ab12e6366fee7cc35a15ace3fb983958bf1f375578f79ae6f2569065ab03efd",
+    "populationPlanSha256": "4fa874fd2c7038019106879775f424d1a7179f6550f78ba0217a6c20c66b00e4",
+    "batchCount": 49,
+    "maxRowsPerBatch": 10,
+    "maxBodyBytes": 6967,
+    "maxBatchBodyBytes": 38300,
+    "maxWriteRequestBytes": 14699,
+    "maxAllowedWriteRequestBytes": 262144,
+    "requestSizePass": true,
+    "operationBudget": {
+      "maxRowsPerBatch": 10,
+      "routeStorageMode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA_PLUS_V8018_DELTA",
+      "parentRouteRowsCopied": 0,
+      "operations": {
+        "status": 1,
+        "bindings": 3,
+        "freeLimitSimulation": 1,
+        "initialize": 8,
+        "bodyWriteFresh": 6,
+        "bodyWriteReplay": 3,
+        "progress": 7,
+        "verifyParentAncestry": 4,
+        "routeWriteFresh": 7,
+        "routeWriteReplay": 4,
+        "activate": 8,
+        "rollback": 3,
+        "eighteenLayerHydrationCanary": 4,
+        "boundedHydrationWorstCase": 8,
+        "evidence": 7
+      },
+      "maxPlannedD1Subqueries": 8,
+      "optimizedTargetMaxD1Subqueries": 8,
+      "hardFailSafeMaxD1Subqueries": 16,
+      "limitingOperations": ["initialize", "activate", "boundedHydrationWorstCase"],
+      "pass": true,
+      "optimizedTargetHeadroomAssumed": false,
+      "hardFailSafeIsNotSpendableHeadroom": true
+    },
+    "shardDescriptors": [
+      {"shardNumber":0,"rowCount":247,"totalBodyBytes":813270,"firstOrdinal":0,"lastOrdinal":478,"entriesSha256":"ad51ad0e12fa373622f94c06e67e6ff0f8d0036f85f7b25b28c09fca7c435ec5"},
+      {"shardNumber":1,"rowCount":234,"totalBodyBytes":777031,"firstOrdinal":1,"lastOrdinal":480,"entriesSha256":"583876ea65d0c5cec221d9a06cc9187414de4bed7c85a0976ffd00e60f4fb598"}
+    ],
+    "batchIdsSha256": "f2bf22918d3b15eb21405dc257059edf387849cea573a1c759e0e52d4a25636f",
+    "logicalWriteEstimate": {
+      "definition": "Application-table body rows + v8018 delta route rows + one body receipt and one route receipt per batch; excludes index amplification, DDL and pointer/control writes. Cloudflare D1 meta.rows_written remains authoritative.",
+      "childBodyRows": 481,
+      "v8018DeltaRouteRows": 481,
+      "bodyReceiptRows": 49,
+      "routeReceiptRows": 49,
+      "estimatedRowsBeforeControlAndIndexAmplification": 1060,
+      "parentLogicalRouteRowsReferenced": 18787,
+      "parentRouteRowsCopied": 0,
+      "parentRouteRowsAvoided": 18787
+    }
+  },
+  "composition": {
+    "activeCorpusVersion": "v8018",
+    "parentCorpusVersion": "v8017",
+    "cumulativeRecipeCount": 19268,
+    "capacity": {
+      "parentLayeredPhysicalBodyBytes": 67927323,
+      "addedLayerBodyBytes": 1590301,
+      "layeredPhysicalBodyBytes": 69517624,
+      "cumulativeBodyBytesWithinProjectTotalBudget": true,
+      "perShard": [
+        {"shardNumber":0,"parentRowCount":9393,"addedRowCount":247,"rowCount":9640,"parentBodyBytes":34097677,"addedBodyBytes":813270,"totalBodyBytes":34910947,"withinProjectDatabaseBudget":true},
+        {"shardNumber":1,"parentRowCount":9394,"addedRowCount":234,"rowCount":9628,"parentBodyBytes":33829646,"addedBodyBytes":777031,"totalBodyBytes":34606677,"withinProjectDatabaseBudget":true}
+      ]
+    },
+    "routing": {
+      "shardCount": 2,
+      "routeStorageMode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA_PLUS_V8018_DELTA",
+      "parentRouteRowsCopied": 0,
+      "physicalV8018DeltaRouteRows": 481,
+      "ancestryVersions": ["v8015","v8016","v8017","v8018"],
+      "ancestryLookupShape": "ONE_CONTROL_QUERY_PER_ID_CHUNK_WITH_COMPOSITION_VERSION_IN_V8015_V8016_V8017_V8018",
+      "fullCorpusScans": 0,
+      "optimizedMaxProtectedD1Subqueries": 8,
+      "hardFailSafeMaxD1Subqueries": 16,
+      "hardFailSafeIsNotSpendableHeadroom": true
+    }
+  },
+  "gates": {
+    "requestSizePass": true,
+    "operationBudgetPass": true,
+    "capacityPass": true,
+    "topologyPass": true,
+    "countPass": true,
+    "batchSizePass": true,
+    "uniqueIdsPass": true,
+    "bodySizePass": true,
+    "routeArchitecturePass": true
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionPerformed": false,
+    "thirdShardUsed": false,
+    "d1BudgetExpansion": false,
+    "billingExpansion": false,
+    "nutritionLaneModified": false,
+    "youtubeCulinaryStateModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "culturalAuthenticityAuthorityImported": false,
+    "parentRouteCopyAuthorized": false
+  },
+  "decision": "EARN_V8018_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_ON_EXISTING_TWO_SHARD_OPTIMIZED_DELTA_ROUTE_ENVELOPE"
+}
