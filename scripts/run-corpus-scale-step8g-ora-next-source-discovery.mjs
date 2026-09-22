@@ -150,6 +150,14 @@ const AMERICAN_COOKERY_1796_TRANSCRIBER_PROVENANCE_HOLD = Object.freeze({
   source_year: "1796",
   license: "public-domain"
 });
+const BEETON_1861_CONTRIBUTOR_PROVENANCE_HOLD = Object.freeze({
+  collection: "victorian-britain",
+  source_url: "https://www.gutenberg.org/ebooks/10136",
+  source_title: "The Book of Household Management",
+  author: "Isabella Beeton",
+  source_year: "1861",
+  license: "public-domain"
+});
 const COCINA_SOURCES = Object.freeze([
   Object.freeze({
     collection: "cocina-mexicana",
@@ -351,7 +359,8 @@ const heldSourceKeys = new Set([
   oraSourceKey(INDIAN_COOKERY_PROVENANCE_HOLD),
   oraSourceKey(HEYL_1905_CONTRIBUTOR_RIGHTS_HOLD),
   oraSourceKey(GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD),
-  oraSourceKey(AMERICAN_COOKERY_1796_TRANSCRIBER_PROVENANCE_HOLD)
+  oraSourceKey(AMERICAN_COOKERY_1796_TRANSCRIBER_PROVENANCE_HOLD),
+  oraSourceKey(BEETON_1861_CONTRIBUTOR_PROVENANCE_HOLD)
 ]);
 const heldCollections = new Set(["cocina-espanola"]);
 const result = discoverOraNextSources({
@@ -450,10 +459,18 @@ const output = {
         sourceAuthorAsInOra: AMERICAN_COOKERY_1796_TRANSCRIBER_PROVENANCE_HOLD.author,
         sourceYear: AMERICAN_COOKERY_1796_TRANSCRIBER_PROVENANCE_HOLD.source_year,
         reason: "EXACT_1796_EDITION_UNNAMED_PRESS_PREPARER_ALTERATIONS__ORA_EXTRACT_PRESERVES_UNCORRECTED_RECIPE_VALUES"
+      },
+      {
+        collection: BEETON_1861_CONTRIBUTOR_PROVENANCE_HOLD.collection,
+        sourceUrl: BEETON_1861_CONTRIBUTOR_PROVENANCE_HOLD.source_url,
+        sourceTitle: BEETON_1861_CONTRIBUTOR_PROVENANCE_HOLD.source_title,
+        sourceAuthorAsInOra: BEETON_1861_CONTRIBUTOR_PROVENANCE_HOLD.author,
+        sourceYear: BEETON_1861_CONTRIBUTOR_PROVENANCE_HOLD.source_year,
+        reason: "BEETON_1861_RECIPE_MATTER_FROM_UNNAMED_CORRESPONDENTS_PRIVATE_CIRCLE_AND_OTHER_WRITERS__ORA_FLATTENS_TO_BEETON"
       }
     ],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8018 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883, Viard 1806, Hearn 1885, Chan 1917, Kenney-Herbert 1885, the exact Fannie Farmer 1910 revised edition represented by the ORA work-year tuple 1896, and Estella Atrutel 1874. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; the 1905 Volks-Kochbuch source is held because the exact edition credits an unidentified Frau Dr. Engelken with new ordering and additions and her contribution term cannot be resolved; Cocina Ecléctica 1890 is held because its community-contributor layer contains separately attributed recipe contributions whose Spain-facing terms have not been established cohort-wide; American Cookery 1796 is held because its exact errata attributes material recipe alterations to an unnamed press preparer and the pinned ORA extraction demonstrably preserves uncorrected altered values; and cocina-espanola remains under its existing collection rights hold."
+    reason: "All exact sources protected through v8018 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883, Viard 1806, Hearn 1885, Chan 1917, Kenney-Herbert 1885, the exact Fannie Farmer 1910 revised edition represented by the ORA work-year tuple 1896, and Estella Atrutel 1874. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; the 1905 Volks-Kochbuch source is held because the exact edition credits an unidentified Frau Dr. Engelken with new ordering and additions and her contribution term cannot be resolved; Cocina Ecléctica 1890 is held because its community-contributor layer contains separately attributed recipe contributions whose Spain-facing terms have not been established cohort-wide; American Cookery 1796 is held because its exact errata attributes material recipe alterations to an unnamed press preparer and the pinned ORA extraction demonstrably preserves uncorrected altered values; The Book of Household Management 1861 is held because its own preface documents recipe matter from unnamed correspondents, a private circle and other cookery writers while the pinned ORA cohort flattens all recipe attribution to Isabella Beeton; and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
