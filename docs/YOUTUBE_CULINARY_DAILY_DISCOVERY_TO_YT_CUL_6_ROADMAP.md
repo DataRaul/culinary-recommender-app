@@ -1,6 +1,6 @@
 # YouTube Culinary Daily Discovery → YT-CUL-6 Roadmap
 
-Status: **ACTIVE / YT-CUL-5E ADAPTIVE V2 / 90-CALL ROUTINE CEILING / PROVIDER-QUOTA SAFE-CLOSE / YT-CUL-6 NOT YET EARNED**
+Status: **HOLD / YT-CUL-5E ADAPTIVE V2 / DAILY_SEARCH_HOLD_POLICY_OR_QUOTA / NO LIVE SEARCH UNTIL RECONCILED / YT-CUL-6 NOT YET EARNED**
 
 Date: 2026-09-19
 
@@ -40,6 +40,24 @@ The repaired operating law is:
 - September 19's 94 attempts are reconciled once as a safe-close historical day and are never replayed.
 
 This amendment changes quota resilience and allocation efficiency only. It does not alter raw-YouTube durability, Knowledge Core authority, app admission, publication, Blue Lagoon isolation, rights, nutrition or paid-infrastructure boundaries.
+
+## 2026-09-22 material quota/policy hold reconciliation
+
+The 2026-09-22 quota-day run stopped after **83 Search calls** when `search.list` returned **HTTP 429 / RESOURCE_EXHAUSTED / rateLimitExceeded**. Because this occurred materially before the 90-call routine ceiling (`nearRoutineCeiling=false`), the existing adaptive-v2 law classifies it as:
+
+```text
+DAILY_SEARCH_HOLD_POLICY_OR_QUOTA
+```
+
+The hold is fail-closed. Durable generated state is authoritative: no live YouTube Search may run again until the assigned quota/policy assumption is explicitly reconciled. Do **not** treat this as the near-ceiling safe-close case, do not blindly retry on the next scheduler wake-up, do not request paid quota or use another project to multiply quota, and do not alter Knowledge Core/app/publication authority.
+
+Current successor action:
+
+```text
+RESOLVE_DAILY_SEARCH_HOLD_POLICY_OR_QUOTA
+```
+
+This hold is independent of the legal-corpus lane and does not block owner-authenticated v8017 protected population. The corpus lane must not resolve or retry the YouTube hold implicitly.
 
 ## Why the daily programme is required
 
@@ -316,6 +334,6 @@ V1 is conventional barbecue/grill only. Underground/earth-oven, ash/ember-buried
 
 ## Immediate next action
 
-`WAIT_FOR_NEXT_YOUTUBE_QUOTA_DAY__YT_CUL_5E_ADAPTIVE_V2`
+`RESOLVE_DAILY_SEARCH_HOLD_POLICY_OR_QUOTA`
 
-YT-CUL-5R and the scheduled adaptive discovery architecture are already active. Resume only on the next valid YouTube quota day under the 90-call routine ceiling and new safe-close/cooling rules. YT-CUL-6 remains unearned until its canonical readiness contract is satisfied.
+Live Search is paused. Reconcile the 2026-09-22 early provider quota exhaustion against the assigned quota/policy before any scheduler reactivation. Do not blind-retry the next quota day. YT-CUL-6 remains unearned until its canonical readiness contract is satisfied.
