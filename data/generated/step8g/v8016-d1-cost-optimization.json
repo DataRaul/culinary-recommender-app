@@ -1,0 +1,59 @@
+{
+  "schema": "CULINARY_STEP8G_V8016_D1_COST_OPTIMIZATION_V1",
+  "date": "2026-09-22",
+  "baselineMainSha": "f3ae13486340e7fe16167097067ec6097f30b4d5",
+  "liveProtectedBeforeRun": {
+    "activeVersion": "v8015",
+    "recipeCount": 16510
+  },
+  "target": {
+    "version": "v8016",
+    "childRecipeCount": 501,
+    "composedRecipeCount": 17011
+  },
+  "problem": {
+    "priorRouteStorageMode": "FULL_PARENT_ROUTE_COPY_PLUS_V8016_DELTA",
+    "parentRouteRowsPreviouslyPlannedForCopy": 16510,
+    "priorFreshRouteWriteRequestD1Subqueries": 16,
+    "priorFreshBodyWriteRequestD1Subqueries": 15,
+    "priorHydrationRequestD1Ceiling": 16
+  },
+  "optimized": {
+    "routeStorageMode": "PARENT_V8015_REFERENCE_PLUS_V8016_DELTA",
+    "parentRouteRowsCopied": 0,
+    "physicalV8016DeltaRouteRows": 501,
+    "multiRowBodyInsert": true,
+    "multiRowRouteInsert": true,
+    "freshBodyWriteRequestD1Subqueries": 6,
+    "freshRouteWriteRequestD1Subqueries": 7,
+    "hydrationInternalD1SubqueryCeiling": 7,
+    "hydrationRequestD1SubqueryCeilingIncludingAuth": 8,
+    "optimizedMaxRequestD1Subqueries": 8,
+    "hardFailSafeMaxD1Subqueries": 16
+  },
+  "logicalApplicationRowWriteEstimate": {
+    "definition": "Base-table INSERT/UPDATE rows in the deterministic owner-run path; excludes SQLite index amplification and DDL metadata writes. Cloudflare D1 meta.rows_written is authoritative for billable usage.",
+    "prior": 17719,
+    "optimized": 1209,
+    "rowsAvoided": 16510,
+    "reductionRatio": 0.9317681584739546
+  },
+  "cloudflareFreePlanContext": {
+    "rowsReadPerDay": 5000000,
+    "rowsWrittenPerDay": 100000,
+    "limitEnforcementEffective": "2026-09-01",
+    "pricingReference": "https://developers.cloudflare.com/d1/platform/pricing/",
+    "enforcementReference": "https://developers.cloudflare.com/changelog/post/2026-09-01-d1-free-tier-limit-enforcement/",
+    "returnObjectReference": "https://developers.cloudflare.com/d1/worker-api/return-object/"
+  },
+  "safety": {
+    "rightsOrSourceFingerprintChanged": false,
+    "recipeBodyDescriptorChanged": false,
+    "populationPlanFingerprintChanged": false,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "thirdShardUsed": false,
+    "billingExpansionAuthorized": false,
+    "productionD1WritesPerformedByOptimization": 0
+  }
+}
