@@ -1,9 +1,9 @@
 {
-  "handover": "CULINARY_APP_V8017_ACTIVE_EXACT_COST_GATE_FIXED_RERUN_REQUIRED_V62",
+  "handover": "CULINARY_APP_V8017_LIVE_PASS_POST_V8017_DISCOVERY_ACTIVE_V63",
   "handover_date": "2026-09-22",
   "timezone": "Atlantic/Canary",
-  "status": "HUMAN_NEEDED__V8017_ACTIVE_18787_EXACT__FIRST_OWNER_RUN_REACHED_EVIDENCE__FINAL_COST_GATE_9_GT_8__FIX_MERGED__CERTIFICATION_RERUN_REQUIRED__YT_CUL_POLICY_OR_QUOTA_HOLD",
-  "human_needed": true,
+  "status": "V8017_LIVE_PASS_18787__LEGAL_CORPUS_BASELINE_NOT_YET_EARNED__GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD__NEXT_SOURCE_REVIEW_PENDING_DISCOVERY_RERUN__YT_CUL_POLICY_OR_QUOTA_HOLD",
+  "human_needed": false,
   "handover_written_against_main_sha": "6a5829c9a8dee6c18915171d31028e4931cd7f9b",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
@@ -64,12 +64,17 @@
     "youtube_culinary_roadmap": "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md",
     "youtube_culinary_work_unit_state": "data/generated/youtube-culinary-work-unit-state.json",
     "youtube_culinary_daily_state": "data/generated/youtube-culinary-daily-discovery-state.json",
-    "barbecue_roadmap": "docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md"
+    "barbecue_roadmap": "docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md",
+    "v8017_live_pass": "data/generated/step8g/fannie-farmer-v8017-live-pass.json",
+    "v8017_live_pass_doc": "docs/CORPUS_SCALE_STEP8G_FANNIE_FARMER_V8017_LIVE_POPULATION_PASS.md",
+    "post_v8017_discovery": "data/generated/step8g/post-v8017-discovery-summary.json",
+    "post_v8017_baseline_reassessment": "docs/CORPUS_SCALE_STEP8G_POST_V8017_BASELINE_REASSESSMENT.md",
+    "gorriti_1890_hold": "docs/CORPUS_SCALE_STEP8G_GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD.md"
   },
   "live_protected_state": {
     "active_version": "v8017",
     "composed_recipe_count": 18787,
-    "certification_status": "ACTIVE_EXACT_COMPOSITION_CONFIRMED_BY_OWNER_RUN_EVIDENCE__FINAL_OPTIMIZED_COST_TERMINAL_PENDING_RERUN",
+    "certification_status": "STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS",
     "evidence_basis": "Owner runner completed reactivate-v8017 and evidence; runner code only records evidence after confirming activeVersion=v8017, composedRecipeCount=18787 and 178/178 body/route batches.",
     "shard_count": 2,
     "hydration_layers": 17,
@@ -80,10 +85,11 @@
     "public_runtime_changed": false,
     "recommendation_admission_changed": false,
     "third_shard_used": false,
-    "billing_expansion": false
+    "billing_expansion": false,
+    "d1_budget_headroom_assumed": false
   },
   "v8017_implementation": {
-    "state": "IMPLEMENTATION_MERGED_GREEN__FIRST_OWNER_RUN_POPULATED_AND_REACTIVATED__TERMINAL_COST_CERTIFICATION_FAILED_9_GT_8__ONE_QUERY_FIX_MERGED__RERUN_REQUIRED",
+    "state": "LIVE_PROTECTED_POPULATION_PASS",
     "source_cohort_id": "ORA_FANNIE_FARMER_BOSTON_COOKING_SCHOOL_GUTENBERG_65061",
     "source_work": "The Boston Cooking-School Cook Book",
     "source_author": "Fannie Merritt Farmer",
@@ -152,13 +158,20 @@
       "dedicated_v8017_ci": "PASS",
       "public_v0": "PASS",
       "preview_deploy": "PASS"
-    }
+    },
+    "owner_terminal": "STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS",
+    "certified_max_observed_d1_subqueries": 8
   },
   "legal_corpus_baseline": {
-    "status": "NOT_YET_REASSESSED_POST_V8017",
+    "status": "NOT_YET_EARNED_POST_V8017__CONTINUE_SOURCE_REVIEW",
     "current_live_version": "v8017",
     "current_live_recipe_count": 18787,
-    "reason": "The exact v8017 composition is active, but the owner terminal must be rerun after the eight-query fix before closeout and post-v8017 discovery/baseline reassessment."
+    "post_v8017_discovery_workflow_run": 35769713453,
+    "post_v8017_discovery_artifact_id": 10713338374,
+    "measured_candidate_count": 15,
+    "rights_review_eligible_count_before_gorriti_hold": 13,
+    "leading_candidate_review": "GORRITI_1890_HELD_CONTRIBUTOR_RIGHTS_UNRESOLVED",
+    "reason": "Fresh no-write discovery against exact v8017 / 18,787 found material rights-review-eligible cohorts. Cocina Ecléctica 1890 was the leading candidate but is held fail-closed because its separately attributed community-contributor layer lacks cohort-wide Spain-facing term resolution."
   },
   "concurrent_child_programmes": {
     "youtube_culinary": {
@@ -207,36 +220,16 @@
     "No YT-CUL mutation/retry from the corpus lane.",
     "No Knowledge Core write from app lane unless separately authorized."
   ],
-  "human_gate": {
-    "reason": "V8017_OPTIMIZED_COST_TERMINAL_CERTIFICATION_RERUN_REQUIRED",
-    "actor": "OWNER",
-    "action": "Refresh/open the production step8g-v8017-populate.html while authenticated and rerun it. Existing v8017 body and route batches are restart-safe/idempotent; the rerun must certify maxObservedD1Subqueries <= 8 and emit the PASS terminal.",
-    "expected_success_terminal": "STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS",
-    "expected_success_state": {
-      "activeCorpusVersion": "v8017",
-      "composedRecipeCount": 18787,
-      "childRecipeCount": 1776,
-      "parentRecipeCount": 17011,
-      "shardCount": 2,
-      "seventeenLayerHydrationPass": true,
-      "rollbackPass": true,
-      "rollbackHydrationFailClosedPass": true,
-      "finalProtectedActiveVersion": "v8017",
-      "parentRouteRowsCopied": 0,
-      "routeStorageMode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA",
-      "maxObservedD1Subqueries": 8,
-      "optimizedMaxRequestD1Subqueries": 8
-    }
-  },
+  "human_gate": null,
   "next_action": {
-    "state": "HUMAN_NEEDED",
-    "actor": "OWNER",
-    "action": "Rerun the authenticated v8017 owner population page after the merged one-query optimization and return the full terminal JSON. Do not start v8018/post-v8017 discovery until the PASS terminal is captured."
+    "state": "MACHINE_ONLY_DISCOVERY_RECONCILIATION_IN_PROGRESS",
+    "actor": "AUTONOMOUS_CORPUS_LANE",
+    "action": "Complete the v8017 no-write discovery rerun with the Gorriti 1890 contributor-rights hold encoded, then select only the next source-specific documentary rights/provenance review. Do not authorize v8018 population merely from discovery."
   },
-  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub and read CURRENT. v8017 exact composition is already active at 18,787 because the first owner run completed reactivation and evidence, but its final certification failed at maxObservedD1Subqueries=9 > optimized target 8. PR #246 fixed the real query inefficiency without relaxing the threshold by reducing route progress from 4 control queries to 3; merged at 6a5829c9a8dee6c18915171d31028e4931cd7f9b with v8017 CI and Public V0 PASS. Human gate: rerun step8g-v8017-populate.html while authenticated. Existing writes are idempotent. Expected terminal is STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS with maxObservedD1Subqueries<=8. YT-CUL remains separately fail-closed on DAILY_SEARCH_HOLD_POLICY_OR_QUOTA.",
+  "terminal_instruction_for_new_chat": "Fresh-reconcile GitHub and read CURRENT. v8017 is fully live at 18,787 with terminal STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS and maxObservedD1Subqueries=8. Fresh post-v8017 discovery found 13 rights-review-eligible cohorts before source-specific review. Leading Cocina Ecléctica (Gorriti 1890) is held fail-closed because separately attributed community-contributor terms are unresolved in the Spain-facing framework. Complete the discovery rerun with that hold encoded, select only the next source-specific review candidate, and do not jump to v8018 population without the subsequent earned gates. YT-CUL remains independently held on DAILY_SEARCH_HOLD_POLICY_OR_QUOTA.",
   "continuation_boundary": {
-    "reason": "V8017_ACTIVE_EXACT__FIRST_TERMINAL_COST_GATE_FAILED__EIGHT_QUERY_FIX_MERGED__OWNER_RERUN_REQUIRED",
-    "safe_boundary": "V8017_ACTIVE_18787__NO_V8018_AUTHORITY__RERUN_ONLY",
-    "ordinary_implementation_stopped": true
+    "reason": "V8017_LIVE_PASS__POST_V8017_BASELINE_NOT_EARNED__GORRITI_HOLD_ENCODED__NEXT_SOURCE_REVIEW_DISCOVERY_RERUN",
+    "safe_boundary": "V8017_ACTIVE_18787__SOURCE_REVIEW_ONLY__NO_V8018_POPULATION_AUTHORITY",
+    "ordinary_implementation_stopped": false
   }
 }
