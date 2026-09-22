@@ -1,10 +1,10 @@
 {
-  "handover": "CULINARY_APP_V8017_LIVE_ATRUTEL_V8018_PREWRITE_GATE_V65",
+  "handover": "CULINARY_APP_V8017_LIVE_ATRUTEL_V8018_IMPLEMENTED_OWNER_GATE_V66",
   "handover_date": "2026-09-22",
   "timezone": "Atlantic/Canary",
-  "status": "V8017_LIVE_18787__ATRUTEL_1874_RIGHTS_MEASUREMENT_MERGED_GREEN__V8018_PREWRITE_ONLY_NEXT__LEGAL_CORPUS_BASELINE_NOT_EARNED__GORRITI_HOLD__YT_CUL_QUOTA_POLICY_HOLD",
-  "human_needed": false,
-  "handover_written_against_main_sha": "e18720af7ee98e41a44f36308274e3524c0e6954",
+  "status": "V8017_LIVE_18787__ATRUTEL_V8018_PREWRITE_PASS__V8018_RUNTIME_IMPLEMENTED_MERGED_GREEN__OWNER_AUTH_PRODUCTION_GATE__LEGAL_CORPUS_BASELINE_NOT_EARNED__GORRITI_HOLD__YT_CUL_QUOTA_POLICY_HOLD",
+  "human_needed": true,
+  "handover_written_against_main_sha": "4da0fd24289844d1a5e4befbeade2d1cbb79abc1",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
@@ -19,7 +19,7 @@
     "public_validation_run": 35766328179,
     "cloudflare_preview_status": "PASS",
     "open_pr_count_before_handover": 0,
-    "handover_branch": "handover/atrutel-v8018-prewrite-v65",
+    "handover_branch": "handover/atrutel-v8018-owner-gate-v66",
     "v8017_eight_query_fix_pr": 246,
     "v8017_eight_query_fix_merge_sha": "6a5829c9a8dee6c18915171d31028e4931cd7f9b",
     "v8017_eight_query_fix_ci_run": 35768184132,
@@ -27,7 +27,14 @@
     "atrutel_rights_measurement_pr": 249,
     "atrutel_rights_measurement_merge_sha": "e18720af7ee98e41a44f36308274e3524c0e6954",
     "atrutel_measurement_ci_run": 35771208154,
-    "atrutel_public_validation_run": 35771208140
+    "atrutel_public_validation_run": 35771208140,
+    "atrutel_v8018_prewrite_pr": 250,
+    "atrutel_v8018_prewrite_merge_sha": "b1813107387bc13744f0a804fd284ad24588b92a",
+    "atrutel_v8018_runtime_pr": 252,
+    "atrutel_v8018_runtime_merge_sha": "4da0fd24289844d1a5e4befbeade2d1cbb79abc1",
+    "atrutel_v8018_live_runtime_ci_run": 35790102224,
+    "atrutel_v8018_descriptor_ci_run": 35790102333,
+    "atrutel_v8018_public_validation_run": 35790102283
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -47,12 +54,12 @@
     "billing": "NO_BILLING_AUTHORIZATION"
   },
   "operating_contract": {
-    "autonomy": "Ordinary implementation and expected CI remain standing-preapproved. No human gate is active now; the next earned action is a machine-only no-write v8018 prewrite/capacity/cost measurement.",
-    "rights": "Source-specific rights/provenance and bounded measurement have passed for Fannie Farmer v8017 and Estella Atrutel 1874. Gorriti 1890 remains fail-closed on unresolved community-contributor terms. Continue source-by-source and fail closed.",
-    "storage": "Protected recipe bodies remain private in Cloudflare D1; GitHub contains code, descriptors, fingerprints and public-safe evidence only.",
-    "d1": "Hard API ceiling remains 16; optimized operational target remains <=8 D1 subqueries/request. Any v8018 design must preserve the existing delta-route ancestry and zero parent-route copying.",
-    "topology": "Exactly two protected recipe-body D1 shards. No third shard is authorized; v8018 prewrite must prove capacity inside this topology before implementation can be earned.",
-    "public_activation": "Public runtime remains 85 recipes; broader public corpus/recommendation activation is not authorized.",
+    "autonomy": "Ordinary v8018 implementation and expected CI completed under standing authority. The lane is now stopped at a genuine human-only owner-authenticated production population gate; autonomous corpus work must not cross it.",
+    "rights": "Source-specific rights/provenance and bounded measurement passed for Estella Atrutel 1874 before v8018 prewrite and implementation. Gorriti 1890 remains fail-closed on unresolved community-contributor terms.",
+    "storage": "Protected recipe bodies remain private in Cloudflare D1; GitHub contains code, descriptors, fingerprints and public-safe evidence only. The merged v8018 implementation and CI performed zero production D1 writes.",
+    "d1": "v8018 implementation preserves optimized <=8 D1 subqueries/request and hard fail-safe 16 as non-spendable headroom. It references v8015 base + v8016 delta + v8017 delta and would write only the v8018 delta; zero parent-route copying.",
+    "topology": "Exactly two protected recipe-body D1 shards. v8018 prewrite proved the 481-row layer fits this topology; no third shard is authorized.",
+    "public_activation": "Public runtime remains 85 recipes. v8018 implementation does not widen public corpus or recommendation admission.",
     "billing_firewall": "No paid infrastructure, billing enablement or automatic overage authorization."
   },
   "canonical_documents": {
@@ -76,7 +83,14 @@
     "gorriti_1890_hold": "docs/CORPUS_SCALE_STEP8G_GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD.md",
     "post_v8017_after_gorriti_hold_discovery": "data/generated/step8g/post-v8017-after-gorriti-hold-discovery-summary.json",
     "atrutel_1874_rights_measurement": "docs/CORPUS_SCALE_STEP8G_ATRUTEL_1874_RIGHTS_AND_MEASUREMENT.md",
-    "atrutel_1874_measurement_evidence": "data/generated/step8g/atrutel-1874-v8017-measurement.json"
+    "atrutel_1874_measurement_evidence": "data/generated/step8g/atrutel-1874-v8017-measurement.json",
+    "atrutel_v8018_prewrite": "docs/CORPUS_SCALE_STEP8G_ATRUTEL_V8018_PREWRITE.md",
+    "atrutel_v8018_prewrite_evidence": "data/generated/step8g/atrutel-v8018-prewrite-evidence.json",
+    "v8018_runtime_descriptor": "data/generated/step8g/v8018-runtime-descriptor.mjs",
+    "v8018_owner_runner": "step8g-v8018-populate.html",
+    "v8018_live_runtime": "src/server/step8g-v8018-live-runtime.mjs",
+    "v8018_hydration_runtime": "src/server/step8g-v8018-hydration-runtime.mjs",
+    "v8018_authenticated_api": "functions/api/step8g/v8018.js"
   },
   "live_protected_state": {
     "active_version": "v8017",
@@ -94,7 +108,9 @@
     "third_shard_used": false,
     "billing_expansion": false,
     "d1_budget_headroom_assumed": false,
-    "max_observed_d1_subqueries": 8
+    "max_observed_d1_subqueries": 8,
+    "v8018_population_performed": false,
+    "note": "v8018 is implemented and merged but is NOT live/populated. Production remains v8017 / 18,787 until the owner-authenticated v8018 runner completes and returns the exact terminal."
   },
   "v8017_implementation": {
     "state": "LIVE_PROTECTED_POPULATION_PASS",
@@ -171,7 +187,7 @@
     "certified_max_observed_d1_subqueries": 8
   },
   "legal_corpus_baseline": {
-    "status": "NOT_YET_EARNED_POST_V8017__ATRUTEL_PREWRITE_NEXT",
+    "status": "NOT_YET_EARNED_POST_V8017__V8018_OWNER_POPULATION_PENDING",
     "current_live_version": "v8017",
     "current_live_recipe_count": 18787,
     "post_v8017_discovery_workflow_run": 35769713453,
@@ -179,7 +195,7 @@
     "measured_candidate_count": 15,
     "rights_review_eligible_count_before_gorriti_hold": 13,
     "leading_candidate_review": "GORRITI_1890_HELD_CONTRIBUTOR_RIGHTS_UNRESOLVED",
-    "reason": "v8017 is live at 18,787 and fresh post-v8017 discovery still found material marginal value. Gorriti 1890 is held on contributor rights; Atrutel 1874 then passed exact source-specific rights and bounded marginal-value measurement. The legal-corpus loop therefore continues, but only a no-write v8018 prewrite/capacity/cost measurement is currently earned.",
+    "reason": "v8017 remains the live protected corpus. Atrutel v8018 prewrite and implementation are green, but v8018 has not yet crossed the owner-authenticated production gate. LEGAL_CORPUS_BASELINE_PASS cannot be reassessed against v8018 until exact production evidence exists.",
     "rights_review_eligible_count_after_gorriti_hold": 12,
     "hold_adjusted_discovery_workflow_run": 35770307910,
     "hold_adjusted_discovery_artifact_id": 10714116499,
@@ -223,7 +239,7 @@
       "scheduler_disposition": "HOLD_FAIL_CLOSED",
       "next_trigger_disposition": "NO_LIVE_SEARCH_UNTIL_HOLD_RESOLVED",
       "yt_cul_6_readiness_earned": false,
-      "authority_note": "Independent scheduled child programme. The hold is reconciled into the static roadmap/handover; do not retry or mutate it from the corpus lane."
+      "authority_note": "Independent scheduled child programme. Latest generated work-unit state remains a material fail-closed hold; do not retry or mutate it from the corpus lane."
     },
     "barbecue_technique_corpus": {
       "state": "REGISTERED_POST_USABLE_APP_SUCCESSOR__NOT_ACTIVE",
@@ -239,7 +255,7 @@
     }
   },
   "not_authorized": [
-    "No v8018 production D1 population until a no-write prewrite passes, implementation is separately merged/validated, and the later owner-authenticated production gate is explicitly reached.",
+    "No v8018 production D1 population from CI, an unauthenticated path, or this autonomous corpus lane. Production may proceed only through the merged owner-authenticated v8018 browser runner under the owner's current Culinary session.",
     "No generic web scraping/crawling.",
     "No paid infrastructure, billing enablement or automatic overage authorization.",
     "No third D1 shard.",
@@ -250,16 +266,97 @@
     "No YT-CUL mutation/retry from the corpus lane.",
     "No Knowledge Core write from app lane unless separately authorized."
   ],
-  "human_gate": null,
-  "next_action": {
-    "state": "READY__SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY",
-    "actor": "AUTONOMOUS_CORPUS_LANE",
-    "action": "Build and run the exact no-write v8018 prewrite/capacity/cost measurement for the 481-row Estella Atrutel 1874 cohort over live v8017 / 18,787. Preserve exactly two shards, <=8 optimized D1 subqueries/request, hard 16 fail-safe, zero parent-route copying, no public/recommendation/billing widening, and zero production D1 writes. If all gates pass, implementation of v8018 may be earned; production population is still not authorized."
+  "human_gate": {
+    "state": "OWNER_AUTHENTICATED_V8018_PRODUCTION_POPULATION_REQUIRED",
+    "reason": "The v8018 runtime is implemented, merged and validated, but actual protected D1 population is a deliberately separate owner-authenticated production action.",
+    "actor": "OWNER_IN_CURRENT_SAME_BROWSER_CULINARY_SESSION",
+    "runner": "step8g-v8018-populate.html",
+    "required_action": "Open the production-deployed v8018 owner runner while authenticated in the same browser session and run/resume the protected population once. Do not share SESSION_SECRET or other credentials in chat.",
+    "expected_terminal": "STEP_8G_ATRUTEL_V8018_PROTECTED_POPULATION_PASS",
+    "expected_live_version_after_pass": "v8018",
+    "expected_composed_recipe_count_after_pass": 19268,
+    "stop_rule": "Do not continue autonomous post-v8018 discovery/baseline work until the exact owner terminal/evidence has been observed and reconciled."
   },
-  "terminal_instruction_for_new_chat": "Continue from docs/handovers/CURRENT.json. Fresh-reconcile GitHub first. Live protected state is v8017 / 18,787 with certified Fannie Farmer terminal STEP_8G_FANNIE_FARMER_V8017_PROTECTED_POPULATION_PASS and maxObservedD1Subqueries=8. LEGAL_CORPUS_BASELINE_PASS is not earned. Gorriti 1890 is held fail-closed on unresolved contributor terms. Estella Atrutel 1874 exact first edition has passed rights and bounded measurement in merged PR #249 (merge e18720af7ee98e41a44f36308274e3524c0e6954): 481 rows, 100% parseable, 411 novel normalized titles (~90.7%), 1,066 novel ingredient phrases. Next authority is READY machine-only no-write v8018 prewrite/capacity/cost measurement. Do not perform v8018 production D1 writes, add a third shard, widen billing/public recommendations, mutate YT-CUL, or write Knowledge Core.",
+  "next_action": {
+    "state": "HUMAN_GATE__OWNER_AUTHENTICATED_V8018_PRODUCTION_POPULATION",
+    "actor": "OWNER_AUTHENTICATED_BROWSER",
+    "action": "Run or resume step8g-v8018-populate.html against the production deployment using the current same-browser Culinary authentication. Expected terminal: STEP_8G_ATRUTEL_V8018_PROTECTED_POPULATION_PASS. Until that terminal is obtained, protected production remains v8017 / 18,787 and no post-v8018 baseline/discovery work is authorized."
+  },
+  "terminal_instruction_for_new_chat": "Continue from docs/handovers/CURRENT.json and fresh-reconcile GitHub first. Protected production is still v8017 / 18,787. Atrutel v8018 no-write prewrite passed and PR #252 merged the validated v8018 runtime at 4da0fd24289844d1a5e4befbeade2d1cbb79abc1; dedicated live runtime, descriptor and Public V0 CI are green. v8018 has NOT been production-populated. The exact next gate is HUMAN_GATE__OWNER_AUTHENTICATED_V8018_PRODUCTION_POPULATION using step8g-v8018-populate.html in the owner's current same-browser Culinary session. Do not bypass owner authentication, perform CI/unauthenticated production writes, add a third shard, widen billing/public recommendations, mutate YT-CUL, or write Knowledge Core. After the exact STEP_8G_ATRUTEL_V8018_PROTECTED_POPULATION_PASS terminal is reconciled, the autonomous corpus lane may resume with post-v8018 live evidence and LEGAL_CORPUS_BASELINE_PASS reassessment.",
   "continuation_boundary": {
-    "reason": "USER_REQUESTED_HANDOVER__ATRUTEL_1874_RIGHTS_MEASUREMENT_MERGED_GREEN__V8018_PREWRITE_ONLY_EARNED",
-    "safe_boundary": "V8017_ACTIVE_18787__NO_OPEN_PRS__V8018_PREWRITE_NO_WRITE_ONLY",
+    "reason": "V8018_PREWRITE_AND_IMPLEMENTATION_MERGED_GREEN__GENUINE_OWNER_AUTH_PRODUCTION_GATE_REACHED",
+    "safe_boundary": "V8017_ACTIVE_18787__V8018_IMPLEMENTED_NOT_POPULATED__NO_OPEN_PRS__OWNER_GATE",
     "ordinary_implementation_stopped": true
+  },
+  "v8018_implementation": {
+    "state": "IMPLEMENTED_MERGED_GREEN__OWNER_AUTH_PRODUCTION_GATE",
+    "source_cohort_id": "ORA_ATRUTEL_1874_EASY_ECONOMICAL_JEWISH_COOKERY_B2807967X",
+    "source_work": "An Easy and Economical Book of Jewish Cookery",
+    "source_author": "Estella Atrutel",
+    "canonical_author": "Estella Benzaquen Atrutel",
+    "title_page_author": "Mrs. J. Atrutel",
+    "source_author_handling": "IDENTIFIED_AUTHOR",
+    "source_year": "1874",
+    "digitized_edition_year": "1874",
+    "digitized_edition_label": "1874 first edition",
+    "source_url": "https://archive.org/details/b2807967x",
+    "child_recipe_count": 481,
+    "parent_recipe_count": 18787,
+    "target_composed_recipe_count": 19268,
+    "target_hydration_layers": 18,
+    "body_batch_count": 49,
+    "route_batch_count": 49,
+    "max_rows_per_batch": 10,
+    "shard_count": 2,
+    "body_shard_rows": [
+      247,
+      234
+    ],
+    "route_storage_mode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA_PLUS_V8018_DELTA",
+    "parent_route_rows_copied": 0,
+    "physical_v8018_delta_route_rows": 481,
+    "optimized_max_request_d1_subqueries": 8,
+    "hard_fail_safe_max_d1_subqueries": 16,
+    "hard_fail_safe_is_not_spendable_headroom": true,
+    "layer_manifest_sha256": "0ab12e6366fee7cc35a15ace3fb983958bf1f375578f79ae6f2569065ab03efd",
+    "population_plan_sha256": "4fa874fd2c7038019106879775f424d1a7179f6550f78ba0217a6c20c66b00e4",
+    "prewrite_terminal": "STEP_8G_ATRUTEL_V8018_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED",
+    "prewrite_merge_sha": "b1813107387bc13744f0a804fd284ad24588b92a",
+    "implementation_merge_sha": "4da0fd24289844d1a5e4befbeade2d1cbb79abc1",
+    "ci": {
+      "live_runtime": {
+        "status": "PASS",
+        "run": 35790102224
+      },
+      "runtime_descriptor": {
+        "status": "PASS",
+        "run": 35790102333
+      },
+      "public_v0": {
+        "status": "PASS",
+        "run": 35790102283
+      },
+      "owner_runner_module_syntax": "PASS",
+      "pinned_source_payload_and_route_fingerprint_parity": "PASS",
+      "ci_production_mutation_capability": false
+    },
+    "production_d1_writes_performed_by_prewrite_implementation_or_ci": 0,
+    "production_population_performed": false,
+    "public_runtime_changed": false,
+    "recommendation_admission_changed": false,
+    "third_shard_used": false,
+    "billing_expansion": false,
+    "nutrition_lane_modified": false,
+    "recipe_family_modified": false,
+    "youtube_culinary_state_modified": false,
+    "knowledge_core_write_performed": false,
+    "cultural_authenticity_authority_imported": false,
+    "religious_practice_authority_imported": false,
+    "expected_owner_terminal": "STEP_8G_ATRUTEL_V8018_PROTECTED_POPULATION_PASS"
+  },
+  "roadmap_reconciliation": {
+    "checked": true,
+    "result": "NO_SEPARATE_STALE_V8018_PREWRITE_NEXT_ACTION_FOUND_OUTSIDE_CURRENT",
+    "note": "Repository search found the old READY__SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY continuation state only in CURRENT; canonical roadmap/governance documents remain structurally correct and require no mutation at this boundary."
   }
 }
