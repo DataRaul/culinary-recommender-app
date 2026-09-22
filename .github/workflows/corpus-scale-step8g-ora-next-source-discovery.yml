@@ -122,6 +122,10 @@ jobs:
           if(!heylHeld||heylHeld.reason!=="EXACT_1905_EDITION_CREDITS_UNIDENTIFIED_FRAU_DR_ENGELKEN_WITH_NEW_ORDERING_AND_ADDITIONS__CONTRIBUTOR_TERM_UNRESOLVED")process.exit(1);
           const heylExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/13921");
           if(!heylExcluded||!heylExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          const gorritiHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/cocina-eclectica-juana-manuela-gorriti");
+          if(!gorritiHeld||gorritiHeld.reason!=="COMMUNITY_COOKBOOK_SEPARATELY_ATTRIBUTED_CONTRIBUTOR_TERMS_UNRESOLVED_SPAIN_FACING")process.exit(1);
+          const gorritiExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/cocina-eclectica-juana-manuela-gorriti");
+          if(!gorritiExcluded||!gorritiExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
           if(!Number.isInteger(p.rightsReviewEligibleCount)||p.rightsReviewEligibleCount<0)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle||null,nextAuthority:p.nextAuthority}));'
 
