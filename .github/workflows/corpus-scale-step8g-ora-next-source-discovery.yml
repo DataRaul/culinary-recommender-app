@@ -60,7 +60,7 @@ jobs:
       - name: Test source-discovery contract
         run: node --test tests/corpus-scale-step8g-ora-next-source-discovery.test.js
 
-      - name: Scan source-level ORA cohorts against active v8016 baseline
+      - name: Scan source-level ORA cohorts against active v8017 baseline
         run: >-
           node scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs
           --ora=./open-recipe-archive
@@ -72,7 +72,7 @@ jobs:
       - name: Verify discovery remains no-write and cannot clear rights
         run: >-
           node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-ora-next-source-discovery/discovery.json","utf8"));
-          if(p.baseline.activeProtectedVersion!=="v8016"||p.baseline.activeProtectedCount!==17011)process.exit(1);
+          if(p.baseline.activeProtectedVersion!=="v8017"||p.baseline.activeProtectedCount!==18787)process.exit(1);
           const b=p.boundaries;
           if(b.liveD1WritesPerformed!==0||b.sourceRightsClearedByDiscovery!==false||b.measurementEarnedByDiscovery!==false||b.protectedPopulationAuthorized!==false||b.publicRuntimeChangeAuthorized!==false||b.recommendationAdmissionAuthorized!==false||b.thirdShardAuthorized!==false||b.d1BudgetExpansionAuthorized!==false||b.billingExpansionAuthorized!==false)process.exit(1);
           if(p.exclusions.heldCollections.includes("cocina-espanola")!==true)process.exit(1);
@@ -104,6 +104,8 @@ jobs:
           if(!chan||!chan.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
           const kenney=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/culinaryjottings00kenn");
           if(!kenney||!kenney.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
+          const fannie=p.excludedSources.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/65061");
+          if(!fannie||!fannie.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
           const wanneeHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/bwb_Y0-BXP-037");
           if(!wanneeHeld||wanneeHeld.reason!=="ORA_1910_WORK_YEAR_POINTS_TO_1958_14TH_EDITION_WITH_LATER_EDITORIAL_RIGHTS_LAYER")process.exit(1);
           const wanneeExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/bwb_Y0-BXP-037");
@@ -120,6 +122,10 @@ jobs:
           if(!heylHeld||heylHeld.reason!=="EXACT_1905_EDITION_CREDITS_UNIDENTIFIED_FRAU_DR_ENGELKEN_WITH_NEW_ORDERING_AND_ADDITIONS__CONTRIBUTOR_TERM_UNRESOLVED")process.exit(1);
           const heylExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/13921");
           if(!heylExcluded||!heylExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          const gorritiHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/cocina-eclectica-juana-manuela-gorriti");
+          if(!gorritiHeld||gorritiHeld.reason!=="COMMUNITY_COOKBOOK_SEPARATELY_ATTRIBUTED_CONTRIBUTOR_TERMS_UNRESOLVED_SPAIN_FACING")process.exit(1);
+          const gorritiExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/cocina-eclectica-juana-manuela-gorriti");
+          if(!gorritiExcluded||!gorritiExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
           if(!Number.isInteger(p.rightsReviewEligibleCount)||p.rightsReviewEligibleCount<0)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle||null,nextAuthority:p.nextAuthority}));'
 
