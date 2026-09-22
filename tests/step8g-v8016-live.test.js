@@ -19,8 +19,10 @@ import {
 } from "../src/server/step8g-v8016-live-runtime.mjs";
 import {
   STEP8G_V8016_MAX_HYDRATED_CANDIDATES,
-  STEP8G_V8016_MAX_HYDRATION_D1_SUBQUERIES
+  STEP8G_V8016_MAX_HYDRATION_D1_SUBQUERIES,
+  hydrateStep8GV8016ProtectedRecipesBounded
 } from "../src/server/step8g-v8016-hydration-runtime.mjs";
+import { sha256Hex } from "../src/server/step8b-live.mjs";
 
 const prewrite = JSON.parse(readFileSync(new URL("../data/generated/step8g/kenney-herbert-v8016-prewrite-evidence.json", import.meta.url), "utf8"));
 
@@ -118,4 +120,41 @@ test("v8016 API preserves structured write diagnostics", () => {
   assert.match(api,/STEP8G_V8016_WRITE_BODY_EXCEPTION/);
   assert.match(api,/WRITE_ERROR_UNKNOWN_COMMIT_STATE/);
   assert.match(api,/STEP8G_V8016_FREE_LIMIT_FAIL_CLOSED/);
+});
+
+
+test("v8016 hydration resolves v8015 parent routes plus v8016 delta routes", async () => {
+  const encoder=new TextEncoder();
+  const parentBody=JSON.stringify({canonicalRecipeId:"parent-recipe",layer:"v8015"});
+  const childBody=JSON.stringify({canonicalRecipeId:"child-recipe",layer:"v8016"});
+  const parentHash=await sha256Hex(parentBody), childHash=await sha256Hex(childBody);
+  const routeRows=[
+    {recipe_id:"parent-recipe",corpus_version:"v8015",shard_number:0,source_cohort_id:"parent",body_sha256:parentHash,body_bytes:encoder.encode(parentBody).byteLength},
+    {recipe_id:"child-recipe",corpus_version:"v8016",shard_number:1,source_cohort_id:"child",body_sha256:childHash,body_bytes:encoder.encode(childBody).byteLength}
+  ];
+  const controlDb={
+    prepare(){return{bind(){return{all:async()=>({results:routeRows})}}}}
+  };
+  const bodyRows=[
+    [{corpus_version:"v8015",recipe_id:"parent-recipe",body_json:parentBody,body_bytes:encoder.encode(parentBody).byteLength,body_sha256:parentHash,source_cohort_id:"parent"}],
+    [{corpus_version:"v8016",recipe_id:"child-recipe",body_json:childBody,body_bytes:encoder.encode(childBody).byteLength,body_sha256:childHash,source_cohort_id:"child"}]
+  ];
+  const shardDbs=bodyRows.map(rows=>({prepare(){return{bind(){return{all:async()=>({results:rows})}}}}}));
+  const result=await hydrateStep8GV8016ProtectedRecipesBounded(controlDb,shardDbs,["parent-recipe","child-recipe"]);
+  assert.equal(result.pass,true);
+  assert.equal(result.packets.length,2);
+  assert.equal(result.routeQueries,1);
+  assert.equal(result.shardQueries,2);
+  assert.equal(result.d1Subqueries,3);
+});
+
+test("v8016 hydration fails closed if a parent route was physically duplicated into the delta", async () => {
+  const routeRows=[
+    {recipe_id:"duplicate",corpus_version:"v8015",shard_number:0,source_cohort_id:"parent",body_sha256:"a".repeat(64),body_bytes:1},
+    {recipe_id:"duplicate",corpus_version:"v8015",shard_number:0,source_cohort_id:"parent",body_sha256:"a".repeat(64),body_bytes:1}
+  ];
+  const controlDb={prepare(){return{bind(){return{all:async()=>({results:routeRows})}}}}};
+  const result=await hydrateStep8GV8016ProtectedRecipesBounded(controlDb,[],["duplicate"]);
+  assert.equal(result.pass,false);
+  assert.equal(result.reason,"ROUTE_DUPLICATE_ACROSS_PARENT_AND_DELTA");
 });
