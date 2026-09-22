@@ -1,0 +1,55 @@
+name: Corpus Scale Step 8G Atrutel v8018 runtime descriptor
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-atrutel-v8018-runtime-descriptor.yml'
+      - 'scripts/generate-step8g-atrutel-v8018-runtime-descriptor.mjs'
+      - 'scripts/corpus-scale-step8g-atrutel-v8018-prewrite-core.mjs'
+      - 'scripts/corpus-scale-step8g-ora-atrutel-1874-core.mjs'
+      - 'data/generated/step8g/atrutel-v8018-prewrite-evidence.json'
+      - 'data/generated/step8g/v8018-runtime-descriptor.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  descriptor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Generate exact v8018 runtime descriptor
+        run: >-
+          node scripts/generate-step8g-atrutel-v8018-runtime-descriptor.mjs
+          --ora=./open-recipe-archive
+          --out=.tmp/v8018-runtime-descriptor.mjs
+      - name: Verify frozen descriptor and earned prewrite
+        run: |
+          cmp data/generated/step8g/v8018-runtime-descriptor.mjs .tmp/v8018-runtime-descriptor.mjs
+          node --input-type=module <<'NODE'
+          import { readFileSync } from "node:fs";
+          const p=JSON.parse(readFileSync("data/generated/step8g/atrutel-v8018-prewrite-evidence.json","utf8"));
+          const text=readFileSync(".tmp/v8018-runtime-descriptor.mjs","utf8");
+          const json=JSON.parse(text.slice(text.indexOf("Object.freeze(")+14,-3));
+          if(p.pass!==true) process.exit(1);
+          if(json.layerManifestSha256!==p.layer.manifestSha256) process.exit(1);
+          if(json.populationPlanSha256!==p.layer.populationPlanSha256) process.exit(1);
+          if(json.parentCompositionRouteCount!==18787||json.composedRouteCount!==19268) process.exit(1);
+          if(JSON.stringify(json.bodyShardRows)!==JSON.stringify([247,234])) process.exit(1);
+          if(JSON.stringify(json.bodyHashHexByShard.map(x=>x.length/64))!==JSON.stringify([25,24])) process.exit(1);
+          if(JSON.stringify(json.routeHashHexByShard.map(x=>x.length/64))!==JSON.stringify([25,24])) process.exit(1);
+          console.log(JSON.stringify({pass:true,manifest:json.layerManifestSha256,plan:json.populationPlanSha256,bodyShardRows:json.bodyShardRows}));
+          NODE

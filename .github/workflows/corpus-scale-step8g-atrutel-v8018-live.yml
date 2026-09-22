@@ -1,0 +1,108 @@
+name: Corpus Scale Step 8G Atrutel v8018 live runtime
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-atrutel-v8018-live.yml'
+      - 'data/generated/step8g/v8018-runtime-descriptor.mjs'
+      - 'data/generated/step8g/atrutel-v8018-prewrite-evidence.json'
+      - 'src/server/step8g-v8018-live-runtime.mjs'
+      - 'src/server/step8g-v8018-hydration-runtime.mjs'
+      - 'functions/api/step8g/v8018.js'
+      - 'scripts/verify-step8g-v8018-live-payloads.mjs'
+      - 'tests/step8g-v8018-live.test.js'
+      - 'step8g-v8018-populate.html'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-atrutel-v8018-live-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-v8018-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test frozen v8018 runtime contract
+        run: node --test tests/step8g-v8018-live.test.js
+
+      - name: Verify exact pinned Atrutel 1874 source payload and route fingerprints
+        run: node scripts/verify-step8g-v8018-live-payloads.mjs --candidate=./open-recipe-archive
+
+      - name: Check authenticated API syntax
+        run: node --check functions/api/step8g/v8018.js
+
+      - name: Check owner runner module syntax
+        run: |
+          node --input-type=module <<'NODE'
+          import { execFileSync } from 'node:child_process';
+          import { readFileSync, writeFileSync } from 'node:fs';
+          const html = readFileSync('step8g-v8018-populate.html', 'utf8');
+          const match = html.match(/<script type="module">([\s\S]*?)<\/script>/);
+          if (!match) throw new Error('OWNER_RUNNER_MODULE_NOT_FOUND');
+          writeFileSync('.tmp-v8018-owner-runner.mjs', match[1], 'utf8');
+          execFileSync(process.execPath, ['--check', '.tmp-v8018-owner-runner.mjs'], {stdio:'inherit'});
+          console.log('PASS: owner runner module syntax is valid.');
+          NODE
+
+      - name: Verify owner runner production gate contract
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          const html = await readFile('step8g-v8018-populate.html', 'utf8');
+          const required = [
+            'EXPECTED_CHILD=481',
+            'EXPECTED_PARENT=18787',
+            'EXPECTED_COMPOSED=19268',
+            'EXPECTED_BATCHES=49',
+            'STEP8G_V8018_FREE_LIMIT_FAIL_CLOSED',
+            'eighteen-layer-hydration',
+            'rollback-v8017',
+            'rollback-fail-closed',
+            'IDENTIFIED_AUTHOR',
+            'STEP_8G_ATRUTEL_V8018_PROTECTED_POPULATION_PASS',
+            'maxAllowedD1Subqueries:16',
+            'optimizedMaxRequestD1Subqueries:8',
+            'parentRouteRowsCopied:0',
+            'V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA_PLUS_V8018_DELTA',
+            '18787-parent-routes-referenced-zero-copy',
+            'd1BudgetHeadroomAssumed:false',
+            '/api/auth/session'
+          ];
+          for (const token of required) if (!html.includes(token)) throw new Error(`OWNER_RUNNER_CONTRACT_MISSING:${token}`);
+          if (html.includes('SESSION_SECRET=') || html.includes('password')) throw new Error('OWNER_RUNNER_MUST_NOT_EMBED_AUTH_SECRET');
+          console.log(JSON.stringify({pass:true,authenticatedBrowserGate:true,productionWritesFromCi:false,protectedBodiesCommitted:false}));
+          NODE
+
+      - name: Verify CI has no production mutation capability
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+          const source = await readFile('.github/workflows/corpus-scale-step8g-atrutel-v8018-live.yml', 'utf8');
+          if (!/permissions:\s*\n\s*contents:\s*read\b/.test(source)) throw new Error('CI_CONTENTS_PERMISSION_NOT_READ_ONLY');
+          const forbidden = [
+            ['wrangler', ' d1 execute', ' --remote'].join(''),
+            ['curl ', '/api/step8g/v8018'].join(''),
+            ['secrets', '.'].join('')
+          ];
+          for (const token of forbidden) if (source.includes(token)) throw new Error('PRODUCTION_MUTATION_CAPABILITY_PRESENT');
+          console.log('PASS: v8018 CI has read-only repository permission, no secrets reference, and no production mutation command.');
+          NODE
