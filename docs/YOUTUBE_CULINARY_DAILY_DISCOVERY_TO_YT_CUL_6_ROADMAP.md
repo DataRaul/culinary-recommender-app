@@ -308,9 +308,9 @@ Canonical object: `docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md`.
 
 This does **not** change today's YT-CUL-5E authority or consume Search early. Once `LEGAL_CORPUS_BASELINE_PASS` and the usable recommendation baseline are earned and fresh reconciliation confirms no higher-priority conflict, record `BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY` and implement the scheduler transition.
 
-At activation, broad daily discovery is replaced by barbecue-only gap filling:
+At activation, broad daily discovery is replaced by barbecue-only gap filling. **Discovery is world-champion first**: each incomplete leaf begins with queries of the form `world champion + barbecue/grill + product/cut` (plus equivalent ordering/competition-language variants), verifies the claimed credential/domain competence, and only then uses specialist fallbacks if fewer than five independent qualified championship-level sources are available.
 
-`incomplete barbecue leaf -> find five independent admission-qualified references -> normalize technique variables -> synthesize ranges/alternatives -> validate safety firewall -> mark leaf complete -> retire leaf from routine Search -> move to next incomplete leaf`
+`incomplete barbecue leaf -> world-champion-first search -> verify source qualification -> find five independent admission-qualified references -> normalize technique variables -> synthesize ranges/alternatives -> validate safety firewall -> mark leaf complete -> retire leaf from routine Search -> move to next incomplete leaf`
 
 V1 is conventional barbecue/grill only. Underground/earth-oven, ash/ember-buried and non-grill fire-pit/campfire techniques are explicitly excluded. Durable state keeps references/IDs, provenance, qualification metadata and project-authored structured observations/ranges; it does not retain transcripts, images, downloaded video/audio, copied recipe prose or bulk raw API payload history.
 
