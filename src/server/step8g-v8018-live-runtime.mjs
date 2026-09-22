@@ -55,7 +55,7 @@ const SOURCES = Object.freeze([
     packetSchema: "STEP8G_ORA_ATRUTEL_1874_PROTECTED_SOURCE_PACKET_V1"
   })
 ]);
-const SOURCE_COHORT_IDS =const SOURCE_COHORT_IDS = new Set(SOURCES.map(source => source.cohortId));
+const SOURCE_COHORT_IDS = new Set(SOURCES.map(source => source.cohortId));
 
 const bodyHashes = descriptor.bodyHashHexByShard.map(value => value.match(/.{64}/g) || []);
 const routeHashes = descriptor.routeHashHexByShard.map(value => value.match(/.{64}/g) || []);
@@ -174,7 +174,7 @@ async function buildBody(rawJson, ordinal, sourceOrdinal) {
       historicalCollectionLabel: SOURCE_COLLECTION,
       repositoryLayerLicense: "Unlicense"
     },
-    sourceContent: {    sourceContent: {
+    sourceContent: {
       rawJson: String(rawJson),
       title: parsed.title,
       slug: parsed.slug,
