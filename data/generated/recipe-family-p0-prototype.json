@@ -1,0 +1,322 @@
+{
+  "schemaVersion": "CULINARY_RECIPE_FAMILY_P0_PROTOTYPE_SUMMARY_V1",
+  "date": "2026-09-23",
+  "pass": true,
+  "terminal": "RECIPE_FAMILY_P0_PROTOTYPE_PASS__CONSULTANT_COACH_REVIEW_NEXT",
+  "observationCount": 10,
+  "familyCount": 2,
+  "eligibleFamilyCount": 1,
+  "eligibleFamilyIds": [
+    "hummus"
+  ],
+  "sourceComplianceSummary": {
+    "allSourcesPass": true,
+    "protectedSourceExpressionPersistedCount": 0,
+    "attributionRequiredCount": 10,
+    "attributionRequiredReadyCount": 10,
+    "publisherLedgerKeys": [
+      "fandom-recipes-wiki",
+      "forkrecipe",
+      "recidemia",
+      "tappecue",
+      "wikimedia-wikibooks"
+    ]
+  },
+  "families": [
+    {
+      "familyId": "carbonara",
+      "independentObservationCount": 5,
+      "publisherCount": 5,
+      "coreIngredientRoles": [
+        "black_pepper",
+        "cured_pork",
+        "egg",
+        "hard_cheese",
+        "pasta",
+        "pasta_water"
+      ],
+      "coreTechniques": [
+        "mix_egg_and_cheese",
+        "cook_pasta_al_dente",
+        "off_heat_emulsification",
+        "render_cured_pork"
+      ],
+      "requiredQuantityState": [
+        {
+          "roleId": "cured_pork",
+          "pass": true,
+          "selected": {
+            "basis": "MASS_PERCENT_OF_PASTA",
+            "unit": "ratio_percent",
+            "independentObservationCount": 4,
+            "observedRange": {
+              "lower": 25.555556,
+              "upper": 111.111111
+            },
+            "robustCenter": 45.625,
+            "recommendedRange": {
+              "lower": 29.826389,
+              "upper": 65.138889
+            },
+            "robustSpreadRatio": 2.183935,
+            "distinctPublisherCount": 4
+          }
+        },
+        {
+          "roleId": "egg",
+          "pass": false,
+          "selected": null
+        },
+        {
+          "roleId": "hard_cheese",
+          "pass": false,
+          "selected": null
+        }
+      ],
+      "variants": [
+        {
+          "signal": "butter_added",
+          "independentObservationCount": 2,
+          "state": "OBSERVED_VARIANT"
+        },
+        {
+          "signal": "parsley_added",
+          "independentObservationCount": 2,
+          "state": "OBSERVED_VARIANT"
+        },
+        {
+          "signal": "alfredo_sauce_added",
+          "independentObservationCount": 1,
+          "state": "CANDIDATE_VARIANT"
+        },
+        {
+          "signal": "pecorino_or_pecorino_parmigiano_blend",
+          "independentObservationCount": 1,
+          "state": "CANDIDATE_VARIANT"
+        },
+        {
+          "signal": "pecorino_plus_parmigiano",
+          "independentObservationCount": 1,
+          "state": "CANDIDATE_VARIANT"
+        },
+        {
+          "signal": "white_wine_added",
+          "independentObservationCount": 1,
+          "state": "CANDIDATE_VARIANT"
+        }
+      ],
+      "appAuthoringEligible": false,
+      "terminal": "APP_AUTHORING_HOLD",
+      "candidateAppOwnedRecipeProjection": null,
+      "provenanceObservationIds": [
+        "carbonara_fandom_spaghetti",
+        "carbonara_forkrecipe_c3225526",
+        "carbonara_recidemia_nd0020009",
+        "carbonara_tappecue_ccbysa3",
+        "carbonara_wikibooks_4640105"
+      ]
+    },
+    {
+      "familyId": "hummus",
+      "independentObservationCount": 5,
+      "publisherCount": 4,
+      "coreIngredientRoles": [
+        "chickpeas",
+        "garlic",
+        "lemon",
+        "olive_oil",
+        "tahini",
+        "salt"
+      ],
+      "coreTechniques": [
+        "combine_tahini_lemon",
+        "cook_chickpeas",
+        "puree_chickpeas",
+        "soak_chickpeas"
+      ],
+      "requiredQuantityState": [
+        {
+          "roleId": "tahini",
+          "pass": true,
+          "selected": {
+            "basis": "VOLUME_PERCENT_OF_DRY_CHICKPEAS",
+            "unit": "ratio_percent",
+            "independentObservationCount": 4,
+            "observedRange": {
+              "lower": 25,
+              "upper": 50
+            },
+            "robustCenter": 25,
+            "recommendedRange": {
+              "lower": 25,
+              "upper": 31.25
+            },
+            "robustSpreadRatio": 1.25,
+            "distinctPublisherCount": 3
+          }
+        },
+        {
+          "roleId": "lemon",
+          "pass": true,
+          "selected": {
+            "basis": "VOLUME_PERCENT_OF_DRY_CHICKPEAS",
+            "unit": "ratio_percent",
+            "independentObservationCount": 3,
+            "observedRange": {
+              "lower": 12.5,
+              "upper": 62.5
+            },
+            "robustCenter": 25,
+            "recommendedRange": {
+              "lower": 18.75,
+              "upper": 43.75
+            },
+            "robustSpreadRatio": 2.333333,
+            "distinctPublisherCount": 2
+          }
+        },
+        {
+          "roleId": "garlic",
+          "pass": true,
+          "selected": {
+            "basis": "CLOVES_PER_CUP_DRY_CHICKPEAS",
+            "unit": "count_ratio",
+            "independentObservationCount": 4,
+            "observedRange": {
+              "lower": 1,
+              "upper": 8
+            },
+            "robustCenter": 2.75,
+            "recommendedRange": {
+              "lower": 1.4375,
+              "upper": 5
+            },
+            "robustSpreadRatio": 3.478261,
+            "distinctPublisherCount": 3
+          }
+        }
+      ],
+      "variants": [
+        {
+          "signal": "baking_soda_softening",
+          "independentObservationCount": 2,
+          "state": "OBSERVED_VARIANT"
+        },
+        {
+          "signal": "cayenne_added",
+          "independentObservationCount": 1,
+          "state": "CANDIDATE_VARIANT"
+        },
+        {
+          "signal": "cumin_added",
+          "independentObservationCount": 1,
+          "state": "CANDIDATE_VARIANT"
+        },
+        {
+          "signal": "paprika_added",
+          "independentObservationCount": 1,
+          "state": "CANDIDATE_VARIANT"
+        },
+        {
+          "signal": "skin_removal",
+          "independentObservationCount": 1,
+          "state": "CANDIDATE_VARIANT"
+        }
+      ],
+      "appAuthoringEligible": true,
+      "terminal": "APP_AUTHORING_ELIGIBLE",
+      "candidateAppOwnedRecipeProjection": {
+        "projectionId": "recipe_family_p0_hummus_candidate_v1",
+        "state": "CANDIDATE_ONLY_NOT_PUBLIC_OR_RUNTIME_ADMITTED",
+        "basis": {
+          "ingredient": "dry_chickpeas",
+          "value": 1,
+          "unit": "cup"
+        },
+        "ingredients": [
+          {
+            "role": "chickpeas",
+            "workingValue": 1,
+            "unit": "cup",
+            "note": "dry base quantity"
+          },
+          {
+            "role": "tahini",
+            "recommendedPercentOfBaseVolume": {
+              "lower": 25,
+              "upper": 31.25
+            },
+            "workingPercent": 25
+          },
+          {
+            "role": "lemon",
+            "recommendedPercentOfBaseVolume": {
+              "lower": 18.75,
+              "upper": 43.75
+            },
+            "workingPercent": 25
+          },
+          {
+            "role": "garlic",
+            "recommendedClovesPerCupBase": {
+              "lower": 1.4375,
+              "upper": 5
+            },
+            "workingClovesPerCup": 2.75
+          },
+          {
+            "role": "salt",
+            "quantityState": "TO_TASTE_NOT_SYNTHESIZED_AS_NUMERIC_AUTHORITY"
+          },
+          {
+            "role": "water_or_cooking_liquid",
+            "quantityState": "TEXTURE_ADJUSTMENT_NO_FIXED_AUTHORITY"
+          },
+          {
+            "role": "olive_oil",
+            "quantityState": "OPTIONAL_FINISH"
+          }
+        ],
+        "projectAuthoredTechniquePlan": [
+          "Soak the dried chickpeas, then drain and rinse them.",
+          "Cook the chickpeas until they are soft enough to puree smoothly.",
+          "Puree the chickpeas, then blend in tahini, lemon and garlic.",
+          "Add reserved cooking liquid or water gradually until the texture is smooth and spreadable.",
+          "Season to taste and add an optional olive-oil finish."
+        ],
+        "provenanceObservationIds": [
+          "hummus_fandom_authentic",
+          "hummus_forkrecipe_c3225526",
+          "hummus_recidemia_vg0040681",
+          "hummus_wikibooks_greek_4532021",
+          "hummus_wikibooks_iii_4630237"
+        ],
+        "rightsState": "PROJECT_AUTHORED_EXPRESSION_FROM_NORMALIZED_FACTUAL_EVIDENCE",
+        "activationAuthority": "NONE"
+      },
+      "provenanceObservationIds": [
+        "hummus_fandom_authentic",
+        "hummus_forkrecipe_c3225526",
+        "hummus_recidemia_vg0040681",
+        "hummus_wikibooks_greek_4532021",
+        "hummus_wikibooks_iii_4630237"
+      ]
+    }
+  ],
+  "aggregate": {
+    "familiesAttempted": 2,
+    "familiesAppAuthoringEligible": 1,
+    "medianIndependentObservations": 5,
+    "legalSourceBlocks": 0,
+    "protectedExpressionPersisted": 0,
+    "publicRuntimeRecipeCountChanged": false,
+    "protectedCorpusChanged": false,
+    "d1Reads": 0,
+    "d1Writes": 0,
+    "knowledgeCoreWrites": 0,
+    "youtubeStateChanges": 0,
+    "newShard": false,
+    "billingExpansion": false
+  },
+  "nextGate": "RECIPE_FAMILY_P0_CONSULTANT_COACH_BLOCKING_REVIEW"
+}
