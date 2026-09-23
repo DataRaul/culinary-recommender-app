@@ -1,6 +1,6 @@
 # Recipe Family Synthesis P0 — Roadmap Gate
 
-Status: **ACTIVE GOVERNANCE / IMPLEMENTATION DEFERRED PENDING LEGAL_CORPUS_BASELINE_PASS**
+Status: **ACTIVE / P0 PROTOTYPE REVIEW PASS / UI LEGAL CONFORMANCE VALIDATION PENDING**
 
 This gate formalizes the Recipe Family controls and now inherits the owner-approved sequencing decision in:
 
@@ -52,7 +52,7 @@ The public GitHub repository remains code/review infrastructure. Protected recip
    - The public GitHub repository is treated as public disclosure: protected third-party expression may not be committed merely because the runtime database/app is access-gated.
    - The intent/disclaimer language is governance, not a claimed legal defence.
 
-4. **Legal corpus foundation** — NEXT / BLOCKING.
+4. **Legal corpus foundation** — COMPLETE / PASS.
    - Step 8G rights-clean protected scale becomes the principal execution lane.
    - Continue source/cohort rights and provenance audits, prioritizing Open Recipe Archive collection-by-collection and treating RecipeDB as an independent salvage lane.
    - Admit only records/cohorts that earn the applicable rights/reuse state; public/downloadable availability alone is insufficient.
@@ -61,20 +61,20 @@ The public GitHub repository remains code/review infrastructure. Protected recip
    - Earn `LEGAL_CORPUS_BASELINE_PASS` with the admitted count, source inventory, rights/attribution states, held/rejected reasons, storage/retrieval measurements and private-access verification.
    - Raw count is an output, not a success criterion.
 
-5. **Two-family deterministic prototype** — DEFERRED UNTIL `LEGAL_CORPUS_BASELINE_PASS`.
+5. **Two-family deterministic prototype** — COMPLETE / PASS.
    - Families remain `carbonara`, `hummus`.
    - Required order remains: `source eligibility preflight -> bounded one-time observation acquisition -> family synthesis -> expression-independence validation -> attribution-requirement validation -> prototype report -> Consultant/Coach review`.
    - Build factual observation normalization, family synthesis, reference/observed/recommended ranges, variant classification, provenance, attribution requirements, validation report and one candidate app-owned recipe projection per eligible family.
    - Measure legal/source blocks, operator effort, contradictions, unresolved facts, cumulative publisher extraction and whether additional source collection has positive information gain.
    - No recurring Carbonara/Hummus refresh is scheduled or implied.
 
-6. **P0 prototype review gate** — BLOCKING AFTER PROTOTYPE.
+6. **P0 prototype review gate** — COMPLETE / PASS.
    - Run existing Consultant + Project Coach challenge.
    - Consultant must challenge whether source/legal controls are proportionate, reference claims exceed evidence, variants are noise, additional collection has positive information gain, synthesis outperforms duplicate source storage, and 100k readiness is not being confused with rights-cleared source volume.
    - Project Coach must verify sequencing, explicit terminal evidence, cumulative extraction control, absence of protected expression from persistent objects/public repo, attribution fail-closed behavior, no unearned refresh loop, and preservation of the public/private runtime firewall.
    - Neither role creates legal permission, production authority or public activation authority.
 
-7. **10-family bounded expansion** — UNLOCKED ONLY ON PROTOTYPE PASS.
+7. **10-family bounded expansion** — UNLOCKED / NEXT NONPUBLIC ACTION.
    - Expand only if the two-family prototype demonstrates useful stable ranges, practical recipe quality, manageable source/compliance effort and clean provenance.
    - Expansion remains bounded; there is no raw recipe-count target and no mass crawling authority.
    - Each family receives its own one-time bounded baseline unless a later explicit research trigger earns more collection.
@@ -84,7 +84,7 @@ The public GitHub repository remains code/review infrastructure. Protected recip
    - This permits a project-authored candidate recipe object to enter existing `RecipeSource` / evaluator / planner review gates.
    - Evidence sources do not automatically become the displayed recipe source; display obligations follow the actual reuse/licence/permission/Terms basis.
 
-9. **UI legal-conformance gate** — BLOCKING WHEN REAL CANDIDATE OBJECTS EXIST.
+9. **UI legal-conformance gate** — IMPLEMENTED ON REAL HUMMUS CANDIDATE / PR VALIDATION PENDING.
    - Trigger when the first real `APP_AUTHORING_ELIGIBLE` candidate exists with classified source rights/provenance and public-attribution state; do not build speculative licence UI before useful objects exist.
    - Use real candidate recipe/source/provenance/attribution objects as browser and renderer fixtures, plus synthetic negative fixtures exercising `UNSATISFIABLE` and `UNKNOWN` states.
    - This gate does **not** decide source legality again. It revalidates that the UI implements the already-encoded legal/source result correctly.
@@ -94,6 +94,8 @@ The public GitHub repository remains code/review infrastructure. Protected recip
    - Tests must also prove that protected third-party expression cannot leak from evidence/provenance objects and that a new source class is not considered supported merely because the Wikibooks-specific renderer works.
    - Required layers: object/schema validation -> renderer unit test -> browser acceptance with real candidate objects -> negative browser fixtures -> public-runtime fail-closed assertion.
    - Required terminal state before public/reusable admission for the tested source class: `RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS`.
+   - Real candidate execution uses `recipe_family_p0_hummus_candidate_v1`; committed evidence records 5 attribution notices across 4 source classes, zero protected-expression leakage, fail-closed `UNSATISFIABLE` / `UNKNOWN` states, and zero public-runtime admission authority.
+   - After green PR validation, the earned next action is the bounded 10-family expansion in nonpublic candidate space; public activation remains separately gated.
 
 10. **Public recommendation activation** — SEPARATELY GATED.
    - Legal corpus baseline, P0 pass, 10-family expansion, `APP_AUTHORING_ELIGIBLE`, or UI legal-conformance PASS do **not** by themselves authorize broad public recommendation activation.

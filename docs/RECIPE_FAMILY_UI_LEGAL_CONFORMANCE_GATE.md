@@ -1,8 +1,22 @@
 # Recipe Family Synthesis P0 — UI Legal Conformance Gate
 
-Status: **PLANNED / BLOCKING WHEN REAL CANDIDATE OBJECTS EXIST / NOT YET DUE**
+Status: **IMPLEMENTED / REAL-CANDIDATE PASS PENDING PR VALIDATION**
 
 This gate is intentionally downstream of source-rights review. It does not decide whether a source may be acquired or used; that is owned by the source-compliance gate. It proves that the Culinary UI and public/reusable admission path correctly implement the obligations already encoded on real recipe/source objects.
+
+## 2026-09-24 real-candidate execution
+
+The trigger is now earned by the first real Recipe Family candidate: `recipe_family_p0_hummus_candidate_v1`. The bounded P0 prototype and Consultant/Project Coach review passed before this gate began.
+
+The implementation uses the real Hummus candidate plus its five normalized provenance observations. It renders five required attribution notices across four distinct publisher/source classes (Fandom Recipes Wiki, ForkRecipe, Recidemia and Wikibooks), while the candidate recipe instructions remain project-authored expression derived from normalized factual evidence.
+
+Deterministic and browser acceptance cover the required negative cases. `REQUIRED + UNSATISFIABLE` and `UNKNOWN` states produce no public/reusable render; protected-expression sentinel fields cannot leak through the renderer; missing required external attribution fields fail closed; and private/gated context cannot bypass the admission rule. The existing Wikibooks browser path is routed through the same generic provenance renderer so the gate does not assume that Wikibooks-specific rendering proves support for other source classes.
+
+Committed evidence: `data/generated/recipe-family-ui-legal-conformance-v1.json`.
+
+Expected terminal after green PR validation: `RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS`.
+
+This PASS does **not** admit the Hummus candidate or any new Recipe Family object to the public runtime. The candidate retains `activationAuthority=NONE`, the public runtime remains 85 recipes, and the next earned work is `RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC`.
 
 ## Why this is a separate gate
 

@@ -2,6 +2,7 @@ import { RECIPES } from "./data/recipes.js";
 import { ingredientById, normalizeIngredient } from "./data/ingredients.js";
 import { loadState } from "./domain/storage.js";
 import { searchRecipesByIngredients } from "./domain/search.js";
+import { inspectExternalRecipeProvenance, renderExternalRecipeProvenance } from "./domain/public-attribution.js";
 
 const app = document.querySelector("#app");
 const nav = document.querySelector("#bottomNav");
@@ -74,11 +75,17 @@ function provenanceLine(recipe) {
   if (provenance?.sourceType !== "EXTERNAL_OPEN_RECIPE") {
     return `<p class="micro">Nutrition is a project-authored low-confidence estimate unless the separate reviewed NutritionSource can calculate the full recipe. Cost is a relative tier, not a live supermarket price.</p>`;
   }
-  return `<p class="micro external-source">Adapted from <a href="${escapeHtml(provenance.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(provenance.sourceName)}</a> · <a href="${escapeHtml(provenance.sourceRevisionUrl)}" target="_blank" rel="noopener noreferrer">revision ${escapeHtml(provenance.sourceRevisionId)}</a> · <a href="${escapeHtml(provenance.licenseUrl)}" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>. ${escapeHtml(provenance.attribution)} ${escapeHtml(provenance.transformation)} Source nutrition values are not imported as authoritative composition.</p>`;
+  return renderExternalRecipeProvenance(provenance, {
+    nutritionNotice: "Source nutrition values are not imported as authoritative composition."
+  });
 }
 
 function resultCard(item) {
   const recipe = item.recipe;
+  if (
+    recipe.provenance?.sourceType === "EXTERNAL_OPEN_RECIPE" &&
+    !inspectExternalRecipeProvenance(recipe.provenance).allowed
+  ) return "";
   const matched = item.secondaryMatches.map(labelIngredient);
   const missing = item.missingSecondary.map(labelIngredient);
   const sourceBadge = recipe.provenance?.sourceType === "EXTERNAL_OPEN_RECIPE" ? " · open external recipe" : " · curated recipe";
@@ -112,7 +119,12 @@ function renderSearchResults(result, mainId, secondaryIds) {
   const coverageCopy = secondaryIds.length
     ? `Secondary ingredients are ranked by exact use${result.requiredSecondaryMismatchCount ? `; ${result.requiredSecondaryMismatchCount} candidate(s) were excluded by the require-all setting` : ""}.`
     : "Add secondary ingredients when you want to prioritize leftovers that pair with the main ingredient.";
-  target.innerHTML = `<section class="search-result-summary"><div><p class="eyebrow">Deterministic results</p><h2>${result.eligible.length} dish${result.eligible.length === 1 ? "" : "es"} for ${escapeHtml(labelIngredient(mainId))}</h2><p class="hint">${coverageCopy}</p></div></section><section class="recipe-list">${result.eligible.map(resultCard).join("")}</section>`;
+  const renderedCards = result.eligible.map(resultCard).filter(Boolean);
+  if (!renderedCards.length) {
+    target.innerHTML = `<section class="shortfall"><strong>No public-renderable recipe remains after provenance checks.</strong><p>Required source attribution is incomplete or unclassified, so the app fails closed instead of showing an incomplete public notice.</p></section>`;
+    return;
+  }
+  target.innerHTML = `<section class="search-result-summary"><div><p class="eyebrow">Deterministic results</p><h2>${renderedCards.length} dish${renderedCards.length === 1 ? "" : "es"} for ${escapeHtml(labelIngredient(mainId))}</h2><p class="hint">${coverageCopy}</p></div></section><section class="recipe-list">${renderedCards.join("")}</section>`;
 }
 
 function parseSecondary(raw) {

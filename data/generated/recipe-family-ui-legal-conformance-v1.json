@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "CULINARY_RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_SUMMARY_V1",
+  "date": "2026-09-24",
+  "pass": true,
+  "terminal": "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS",
+  "realCandidate": {
+    "familyId": "hummus",
+    "projectionId": "recipe_family_p0_hummus_candidate_v1",
+    "attributionNoticeCount": 5,
+    "distinctSourceClassCount": 4,
+    "sourceClassKeys": [
+      "fandom-recipes-wiki",
+      "forkrecipe",
+      "recidemia",
+      "wikimedia-wikibooks"
+    ],
+    "requiredAttributionReady": true
+  },
+  "negativeCases": {
+    "attributionRequiredUnsatisfiableFailClosed": true,
+    "attributionUnknownFailClosed": true,
+    "privateOrPublicAdmissionCannotBypassFailClosed": true,
+    "protectedEvidenceExpressionLeakCount": 0
+  },
+  "publicRuntime": {
+    "admissionAuthorizedByThisGate": false,
+    "candidateActivationAuthority": "NONE",
+    "admissionResult": "PUBLIC_RUNTIME_ADMISSION_NOT_SEPARATELY_AUTHORIZED",
+    "recipeCountChanged": false
+  },
+  "boundaries": {
+    "protectedCorpusChanged": false,
+    "d1Reads": 0,
+    "d1Writes": 0,
+    "knowledgeCoreWrites": 0,
+    "youtubeStateChanges": 0,
+    "newShard": false,
+    "billingExpansion": false
+  },
+  "nextPrimaryAction": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC"
+}

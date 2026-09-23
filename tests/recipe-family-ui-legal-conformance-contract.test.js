@@ -8,8 +8,8 @@ const roadmapUrl = new URL("../docs/RECIPE_FAMILY_SYNTHESIS_ROADMAP_GATE.md", im
 const contract = JSON.parse(readFileSync(contractUrl, "utf8"));
 const roadmap = readFileSync(roadmapUrl, "utf8");
 
-test("UI legal conformance waits for real candidate objects and blocks public/reusable admission", () => {
-  assert.equal(contract.state, "CONTRACT_ONLY_TRIGGERED_WHEN_REAL_CANDIDATE_OBJECTS_EXIST");
+test("UI legal conformance is triggered by the real candidate and still blocks public/reusable admission", () => {
+  assert.equal(contract.state, "TRIGGERED_REAL_CANDIDATE_IMPLEMENTATION_VALIDATION_PENDING");
   assert.equal(contract.trigger.event, "FIRST_REAL_APP_AUTHORING_CANDIDATE_WITH_CLASSIFIED_SOURCE_RIGHTS_AND_ATTRIBUTION");
   assert.equal(contract.trigger.doNotRunBeforeUsefulObjectsExist, true);
   assert.ok(contract.blockingBefore.includes("PUBLIC_OR_REUSABLE_RECIPE_ADMISSION"));
@@ -49,6 +49,25 @@ test("gate requires renderer, browser, negative and public-runtime evidence", ()
   ]) {
     assert.ok(contract.testLayers.includes(layer), `missing test layer ${layer}`);
   }
-  assert.match(roadmap, /UI legal-conformance gate.*BLOCKING WHEN REAL CANDIDATE OBJECTS EXIST/s);
+  assert.match(roadmap, /UI legal-conformance gate.*REAL HUMMUS CANDIDATE \/ PR VALIDATION PENDING/s);
   assert.match(roadmap, /UI legal-conformance PASS on real candidate objects/);
+  assert.equal(contract.currentRealCandidate.projectionId, "recipe_family_p0_hummus_candidate_v1");
+  assert.equal(contract.currentRealCandidate.publicRuntimeAdmissionAuthorized, false);
+  assert.equal(contract.nextOnPass, "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC");
+});
+
+
+test("committed real-candidate evidence freezes PASS without public admission", () => {
+  const evidence = JSON.parse(readFileSync(new URL("../data/generated/recipe-family-ui-legal-conformance-v1.json", import.meta.url), "utf8"));
+  assert.equal(evidence.pass, true);
+  assert.equal(evidence.terminal, "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS");
+  assert.equal(evidence.realCandidate.projectionId, "recipe_family_p0_hummus_candidate_v1");
+  assert.equal(evidence.realCandidate.attributionNoticeCount, 5);
+  assert.ok(evidence.realCandidate.distinctSourceClassCount >= 4);
+  assert.equal(evidence.negativeCases.attributionRequiredUnsatisfiableFailClosed, true);
+  assert.equal(evidence.negativeCases.attributionUnknownFailClosed, true);
+  assert.equal(evidence.negativeCases.protectedEvidenceExpressionLeakCount, 0);
+  assert.equal(evidence.publicRuntime.admissionAuthorizedByThisGate, false);
+  assert.equal(evidence.publicRuntime.recipeCountChanged, false);
+  assert.equal(evidence.nextPrimaryAction, "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC");
 });
