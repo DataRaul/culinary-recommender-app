@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "CULINARY_NUTRITION_VITAMIN_APPLICABILITY_AUDIT_CONTRACT_V1",
+  "state": "FROZEN_NO_WRITE_AUDIT",
+  "protectedCorpusVersion": "v8018",
+  "expectedRecipeCount": 19268,
+  "normalizationBaselineConfig": "config/corpus_normalization_baseline_v1.json",
+  "normalizationMappingSummary": "data/generated/corpus-normalization-mapping-v1.json",
+  "authority": {
+    "sourceRefetchAtExactPinsAuthorized": true,
+    "d1ReadsAuthorized": false,
+    "d1WritesAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "publicRuntimeMutationAuthorized": false,
+    "recommendationBehaviorMutationAuthorized": false,
+    "newNutritionEvidenceAuthorized": false,
+    "vitaminMineralInferenceAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "thirdShardAuthorized": false,
+    "billingExpansionAuthorized": false
+  },
+  "applicabilityStates": [
+    "CURRENT_ENGINE_AUTHORITATIVE",
+    "CURRENT_ENGINE_PARTIAL",
+    "IDENTITY_READY_QUANTITY_BLOCKED",
+    "IDENTITY_BLOCKED",
+    "STRUCTURAL_BLOCKED",
+    "SCHEMA_NOT_IMPLEMENTED",
+    "UNKNOWN"
+  ],
+  "acceptanceCriteria": [
+    "ALL_19268_PROTECTED_RECIPES_RECONSTRUCTED_FROM_EXACT_PINNED_SOURCES",
+    "EVERY_LAYER_AND_COHORT_COUNT_MATCHES_FROZEN_BASELINE",
+    "INGREDIENT_IDENTITY_READINESS_COUNTS_ONLY_EXISTING_CANONICAL_EXACT_ALIAS_MATCHES",
+    "NO_FUZZY_OR_SEMANTIC_INGREDIENT_INFERENCE",
+    "UNITOOLS_CURRENT_ENGINE_TEST_REQUIRES_ALL_EXACT_IDENTITIES_POSITIVE_STRUCTURED_QUANTITIES_UNITS_AND_SERVINGS",
+    "FORKRECIPE_RATIO_PARTS_DO_NOT_IMPLY_ABSOLUTE_MASS_OR_SERVINGS",
+    "CC0_AND_ORA_RAW_TEXT_QUANTITIES_ARE_NOT_PROMOTED_TO_CANONICAL_QUANTITY_AUTHORITY",
+    "CURRENT_PUBLIC_NUTRITION_ENGINE_MEASURED_SEPARATELY_ON_AUTHORED_GOLDEN_AND_PUBLIC_RUNTIME_CORPORA",
+    "MACRO_NUTRIENT_AND_VITAMIN_MINERAL_APPLICABILITY_REPORTED_SEPARATELY",
+    "NO_VITAMIN_OR_MINERAL_VALUE_INFERRED_FROM_UNTRACKED_SOURCE_DATA",
+    "NO_D1_PUBLIC_RECOMMENDATION_NUTRITION_KC_SHARD_OR_BILLING_MUTATION"
+  ],
+  "nextGateOnPass": "RECOMMENDATION_READINESS_AUDIT"
+}
