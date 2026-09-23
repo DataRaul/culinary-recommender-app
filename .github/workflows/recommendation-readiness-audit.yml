@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "config/recommendation_readiness_audit_v1.json"
+      - "config/recommendation_readiness_repair_v1.json"
       - "scripts/recommendation-readiness-core.mjs"
       - "scripts/run-recommendation-readiness-audit.mjs"
       - "tests/recommendation-readiness-core.test.js"
