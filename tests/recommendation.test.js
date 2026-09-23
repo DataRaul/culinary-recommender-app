@@ -86,3 +86,42 @@ test("unknown nutrition is distinct from explicit numeric zero", () => {
   assert.equal(explicitZero.components.protein, 0);
   assert.deepEqual(explicitZero.evidence.unavailableSoftSignals, []);
 });
+
+
+test("fully available recommendation evidence keeps the original positive weight scale", () => {
+  const recipe = RECIPES.find(item =>
+    Number.isFinite(item?.nutrition?.perServing?.proteinG) &&
+    Number.isFinite(item?.nutrition?.perServing?.fibreG)
+  );
+  assert.ok(recipe);
+  const profile = normalizeProfile({
+    ...DEFAULT_PROFILE,
+    maxMinutes: 180,
+    skill: 4,
+    budget: 4,
+    cuisinePreferences: [],
+    priorityPacks: []
+  });
+  const evaluated = evaluateRecipe(recipe, profile);
+  assert.equal(evaluated.eligible, true);
+  assert.equal(evaluated.evidence.scoreNormalization.positiveWeightScale, 1);
+  assert.deepEqual(evaluated.evidence.unavailableSoftSignals, []);
+});
+
+test("priority packs skip unavailable nutrition signals rather than imputing them", () => {
+  const recipe = ACTIVATED_EXTERNAL_RECIPES.find(item => item.id === "unitools_tortilla_espanola");
+  const profile = normalizeProfile({
+    ...DEFAULT_PROFILE,
+    maxMinutes: 180,
+    skill: 4,
+    budget: 4,
+    cuisinePreferences: [],
+    priorityPacks: [
+      { id: "healthy_convenience", scope: "all" },
+      { id: "high_protein_convenience", scope: "all" }
+    ]
+  });
+  const evaluated = evaluateRecipe(recipe, profile);
+  assert.equal(evaluated.eligible, true);
+  assert.deepEqual(evaluated.evidence.unavailablePrioritySignals, ["nutrition", "protein"]);
+});
