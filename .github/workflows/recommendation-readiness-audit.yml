@@ -1,0 +1,39 @@
+name: Recommendation readiness audit
+
+on:
+  pull_request:
+    paths:
+      - "config/recommendation_readiness_audit_v1.json"
+      - "scripts/recommendation-readiness-core.mjs"
+      - "scripts/run-recommendation-readiness-audit.mjs"
+      - "tests/recommendation-readiness-core.test.js"
+      - "data/generated/recommendation-readiness-audit-v1.json"
+      - "docs/RECOMMENDATION_READINESS_AUDIT_V1.md"
+      - "src/domain/recommendation.js"
+      - ".github/workflows/recommendation-readiness-audit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run readiness core tests
+        run: node --test tests/recommendation-readiness-core.test.js
+      - name: Run no-write recommendation readiness audit
+        run: node scripts/run-recommendation-readiness-audit.mjs --output=.tmp/recommendation-readiness-audit-v1.json
+      - name: Verify committed readiness summary
+        run: |
+          node --input-type=module -e 'import assert from "node:assert/strict"; import {readFileSync} from "node:fs"; assert.deepStrictEqual(JSON.parse(readFileSync("data/generated/recommendation-readiness-audit-v1.json","utf8")), JSON.parse(readFileSync(".tmp/recommendation-readiness-audit-v1.json","utf8")));'
+      - name: Upload readiness evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: recommendation-readiness-audit-v1
+          path: .tmp/recommendation-readiness-audit-v1.json
+          if-no-files-found: error

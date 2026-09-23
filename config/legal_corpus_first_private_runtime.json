@@ -5,12 +5,12 @@
   "canonicalDecision": "docs/LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_DECISION.md",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "sequencing": {
-    "primaryNextMilestone": "RECOMMENDATION_READINESS_AUDIT",
+    "primaryNextMilestone": "REPAIR_RECOMMENDATION_READINESS_DEFECT_AND_RERUN_AUDIT",
     "principalExecutionLane": "RECOMMENDATION_READINESS",
-    "recipeFamilyPrototypeState": "DEFERRED_UNTIL_POST_RECOMMENDATION_READINESS",
+    "recipeFamilyPrototypeState": "DEFERRED_UNTIL_USABLE_RECOMMENDATION_BASELINE_PASS",
     "nutritionExpansionPriority": "APPLICABILITY_AUDIT_COMPLETE__CONTINUOUS_EVIDENCE_LANE",
     "youtubeRefinementPriority": "DOWNSTREAM_AFTER_USABLE_RECOMMENDATION_BASELINE",
-    "recommendationOptimizationPriority": "READINESS_AUDIT_ACTIVE_PRIMARY_NEXT",
+    "recommendationOptimizationPriority": "UNKNOWN_NUTRITION_SCORING_REPAIR_ACTIVE_NEXT",
     "postBaselineOrder": [
       "corpus_normalization_and_categorization",
       "nutrition_and_vitamin_applicability_audit",
@@ -146,5 +146,23 @@
     "nutritionEvidenceAdded": false,
     "d1Mutation": false,
     "nextGate": "RECOMMENDATION_READINESS_AUDIT"
+  },
+  "recommendationReadinessAudit": {
+    "status": "RECOMMENDATION_READINESS_AUDIT_PASS__REMEDIATION_REQUIRED",
+    "summary": "data/generated/recommendation-readiness-audit-v1.json",
+    "document": "docs/RECOMMENDATION_READINESS_AUDIT_V1.md",
+    "publicRuntimeRecipeCount": 85,
+    "recommendationEligibleStateCount": 77,
+    "hardMetadataReadyRecommendationEligibleCount": 77,
+    "unknownNutritionRecommendationEligibleCount": 1,
+    "unknownNutritionZeroCoercionCount": 1,
+    "unknownNutritionRecipeIds": [
+      "unitools_tortilla_espanola"
+    ],
+    "protectedIdentityReadyReviewCandidateCount": 112,
+    "protectedReviewedDietaryAuthorityCount": 0,
+    "protectedAutomaticRecommendationReadyCount": 0,
+    "usableRecommendationBaselinePass": false,
+    "nextGate": "REPAIR_RECOMMENDATION_READINESS_DEFECT_AND_RERUN_AUDIT"
   }
 }
