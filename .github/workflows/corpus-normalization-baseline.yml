@@ -44,10 +44,18 @@ jobs:
             --forkrecipe=.tmp/forkrecipe \
             --cc0=.tmp/cc0 \
             --ora=.tmp/ora \
+            --output=.tmp/corpus-normalization-baseline-v1-full.json
+      - name: Build compact baseline summary
+        run: |
+          node scripts/summarize-corpus-normalization-baseline.mjs \
+            --input=.tmp/corpus-normalization-baseline-v1-full.json \
             --output=.tmp/corpus-normalization-baseline-v1.json
+      - name: Verify committed baseline summary
+        run: |
+          node --input-type=module -e "import assert from 'node:assert/strict'; import {readFileSync} from 'node:fs'; assert.deepStrictEqual(JSON.parse(readFileSync('data/generated/corpus-normalization-baseline-v1.json','utf8')), JSON.parse(readFileSync('.tmp/corpus-normalization-baseline-v1.json','utf8')));"
       - name: Upload baseline evidence
         uses: actions/upload-artifact@v4
         with:
           name: corpus-normalization-baseline-v1
-          path: .tmp/corpus-normalization-baseline-v1.json
+          path: |\n            .tmp/corpus-normalization-baseline-v1.json\n            .tmp/corpus-normalization-baseline-v1-full.json
           if-no-files-found: error
