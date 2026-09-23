@@ -239,6 +239,27 @@ Candidate validation run `33494074325` measured:
 
 The only admitted B8 runtime evidence at this point is the exact SR Legacy small-onion portion row. Foundation candidates that do not improve recipe completeness enough to justify their form/field limitations remain deferred or rejected in the review ledger.
 
+## 2026-09-23 current applicability audit
+
+The post-v8018 no-write applicability audit in `data/generated/nutrition-vitamin-applicability-audit-v1.json` is the current whole-system measurement.
+
+Current public-engine state:
+
+- authored authoritative macro/energy calculations: **19 / 76**;
+- golden 84-record corpus: **19 / 84**;
+- public 85-record runtime: **19 / 85**;
+- tracked fields remain energy, protein, carbohydrate, fat and fibre only;
+- vitamin/mineral authoritative schema: **not implemented**.
+
+Protected `v8018 / 19,268` state:
+
+- exact canonical ingredient-alias matches: **36,760 / 144,245 ingredient occurrences (25.4844%)**;
+- recipes with every ingredient identity exact-mapped: **112 / 19,268**;
+- protected recipes directly ready for the current authoritative nutrition engine without a new normalization gate: **0**;
+- vitamin/mineral authoritative protected recipes: **0**.
+
+The dominant issue is not permission to copy source nutrition. It is missing canonical ingredient/quantity/serving applicability under the app's existing evidence contract. Source recipe nutrition remains firewalled from `NutritionSource` authority.
+
 ## Other European source state
 
 ### Fineli / THL Finland
