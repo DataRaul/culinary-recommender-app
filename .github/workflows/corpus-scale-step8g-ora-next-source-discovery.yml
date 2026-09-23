@@ -178,6 +178,11 @@ jobs:
           const canadianExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/canadianfamilyco00deni_0");
           if(!canadianExcluded||!canadianExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
           if(p.topRightsReviewCandidates?.some(x=>x.sourceUrl==="https://archive.org/details/canadianfamilyco00deni_0"))process.exit(1);
+          const jewishManualHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/b22021371");
+          if(!jewishManualHeld||jewishManualHeld.reason!=="EXACT_1846_WORK_CREDITS_ONLY_A_LADY__JUDITH_MONTEFIORE_ATTRIBUTION_LACKS_DOCUMENTARY_PROOF")process.exit(1);
+          const jewishManualExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/b22021371");
+          if(!jewishManualExcluded||!jewishManualExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          if(p.topRightsReviewCandidates?.some(x=>x.sourceUrl==="https://archive.org/details/b22021371"))process.exit(1);
           if(!Number.isInteger(p.rightsReviewEligibleCount)||p.rightsReviewEligibleCount<0)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle||null,nextAuthority:p.nextAuthority}));'
 
