@@ -1,0 +1,327 @@
+{
+  "schemaVersion": "CULINARY_CORPUS_NORMALIZATION_BASELINE_SUMMARY_V1",
+  "date": "2026-09-23",
+  "pass": true,
+  "terminal": "CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_PASS",
+  "protectedCorpusVersion": "v8018",
+  "expectedRecipeCount": 19268,
+  "observedRecipeCount": 19268,
+  "sourcePins": {
+    "unitools": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "forkrecipe": "c32255266af39bd77444d39452f3df8088ac8fd9",
+    "cc0": "b12e481d1c220a13e0847a34e148d5872a16928e",
+    "ora": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8"
+  },
+  "structural": {
+    "titleKnownCount": 19268,
+    "titleKnownRatio": 1,
+    "structurallyParseableCount": 19265,
+    "structurallyParseableRatio": 0.999844,
+    "allCohortThresholdsPass": true,
+    "nonPerfectCohorts": [
+      {
+        "cohortId": "SGAUTHIER_RECIPES_CC0_B12E481D",
+        "observedStructuralRatio": 0.986726,
+        "minimumStructuralRatio": 0.95,
+        "pass": true
+      }
+    ],
+    "exceptions": [
+      {
+        "layer": "v8003",
+        "cohortId": "SGAUTHIER_RECIPES_CC0_B12E481D",
+        "sourceSystem": "CC0_MARKDOWN",
+        "sourceRecordKey": "eggs.md",
+        "titleKnown": true,
+        "ingredientCount": 0,
+        "directionCount": 0
+      },
+      {
+        "layer": "v8003",
+        "cohortId": "SGAUTHIER_RECIPES_CC0_B12E481D",
+        "sourceSystem": "CC0_MARKDOWN",
+        "sourceRecordKey": "peanut-butter.md",
+        "titleKnown": true,
+        "ingredientCount": 0,
+        "directionCount": 8
+      },
+      {
+        "layer": "v8003",
+        "cohortId": "SGAUTHIER_RECIPES_CC0_B12E481D",
+        "sourceSystem": "CC0_MARKDOWN",
+        "sourceRecordKey": "spices-during-pregnancy.md",
+        "titleKnown": true,
+        "ingredientCount": 0,
+        "directionCount": 0
+      }
+    ]
+  },
+  "rawSignalCoverage": {
+    "country": {
+      "recordCoverageCount": 501,
+      "recordCoverageRatio": 0.026002,
+      "distinctNormalizedValueCount": 127,
+      "singletonValueCount": 0
+    },
+    "cuisine": {
+      "recordCoverageCount": 915,
+      "recordCoverageRatio": 0.047488,
+      "distinctNormalizedValueCount": 80,
+      "singletonValueCount": 26
+    },
+    "culture": {
+      "recordCoverageCount": 18541,
+      "recordCoverageRatio": 0.962269,
+      "distinctNormalizedValueCount": 377,
+      "singletonValueCount": 228
+    },
+    "category": {
+      "recordCoverageCount": 1416,
+      "recordCoverageRatio": 0.07349,
+      "distinctNormalizedValueCount": 22,
+      "singletonValueCount": 0
+    },
+    "difficulty": {
+      "recordCoverageCount": 1416,
+      "recordCoverageRatio": 0.07349,
+      "distinctNormalizedValueCount": 8,
+      "singletonValueCount": 0
+    },
+    "collection": {
+      "recordCoverageCount": 17626,
+      "recordCoverageRatio": 0.914781,
+      "distinctNormalizedValueCount": 14,
+      "singletonValueCount": 0
+    },
+    "tags": {
+      "recordCoverageCount": 18766,
+      "recordCoverageRatio": 0.973946,
+      "distinctNormalizedValueCount": 1485,
+      "singletonValueCount": 769
+    },
+    "diets": {
+      "recordCoverageCount": 302,
+      "recordCoverageRatio": 0.015674,
+      "distinctNormalizedValueCount": 4,
+      "singletonValueCount": 0
+    },
+    "time": {
+      "recordCoverageCount": 1416,
+      "recordCoverageRatio": 0.07349
+    },
+    "servings": {
+      "recordCoverageCount": 501,
+      "recordCoverageRatio": 0.026002
+    }
+  },
+  "taxonomyPressure": {
+    "categoryValues": [
+      {
+        "value": "main",
+        "count": 256
+      },
+      {
+        "value": "proteins",
+        "count": 147
+      },
+      {
+        "value": "condiments",
+        "count": 113
+      },
+      {
+        "value": "desserts",
+        "count": 94
+      },
+      {
+        "value": "grains",
+        "count": 88
+      },
+      {
+        "value": "sauces",
+        "count": 88
+      },
+      {
+        "value": "seafood",
+        "count": 80
+      },
+      {
+        "value": "breads",
+        "count": 78
+      },
+      {
+        "value": "vegetables",
+        "count": 78
+      },
+      {
+        "value": "soup",
+        "count": 69
+      },
+      {
+        "value": "dessert",
+        "count": 57
+      },
+      {
+        "value": "stocks",
+        "count": 52
+      },
+      {
+        "value": "snack",
+        "count": 43
+      },
+      {
+        "value": "beverages",
+        "count": 34
+      },
+      {
+        "value": "fermented",
+        "count": 33
+      },
+      {
+        "value": "eggs",
+        "count": 30
+      },
+      {
+        "value": "breakfast",
+        "count": 25
+      },
+      {
+        "value": "bread",
+        "count": 20
+      },
+      {
+        "value": "side",
+        "count": 13
+      },
+      {
+        "value": "salad",
+        "count": 12
+      },
+      {
+        "value": "sauce",
+        "count": 4
+      },
+      {
+        "value": "drink",
+        "count": 2
+      }
+    ],
+    "difficultyValues": [
+      {
+        "value": "2",
+        "count": 366
+      },
+      {
+        "value": "1",
+        "count": 248
+      },
+      {
+        "value": "easy",
+        "count": 219
+      },
+      {
+        "value": "3",
+        "count": 217
+      },
+      {
+        "value": "medium",
+        "count": 205
+      },
+      {
+        "value": "hard",
+        "count": 77
+      },
+      {
+        "value": "4",
+        "count": 70
+      },
+      {
+        "value": "5",
+        "count": 14
+      }
+    ],
+    "cultureDistinctNormalizedValueCount": 377,
+    "cultureSingletonValueCount": 228,
+    "cuisineDistinctNormalizedValueCount": 80,
+    "cuisineSingletonValueCount": 26,
+    "tagDistinctNormalizedValueCount": 1485,
+    "tagSingletonValueCount": 769,
+    "crossSignalCollisionSampleCount": 50
+  },
+  "canonicalTaxonomyAuthorityCoverage": {
+    "geographyCountry": 0,
+    "geographyRegion": 0,
+    "culinaryTradition": 0,
+    "dishCategory": 0,
+    "mealRoles": 0,
+    "techniqueFamilies": 0,
+    "difficulty": 0,
+    "normalizedTime": 0,
+    "normalizedServings": 0,
+    "reviewedDietaryTags": 0,
+    "note": "Counts are zero because protected source metadata remains source-hint/provenance material until a separate reviewed mapping earns canonical app authority. This does not mean source hints are absent."
+  },
+  "interpretation": {
+    "titleCoverageReadyForNormalization": true,
+    "structuralExceptionsRequireExplicitUnknownState": true,
+    "structuralExceptionCount": 3,
+    "rawSignalCoverageIsHeterogeneous": true,
+    "sourceSchemasAreNotSemanticallyInterchangeable": true,
+    "tagsRequireControlledMapping": true,
+    "collectionLabelsAreProvenanceOnly": true,
+    "unknownAndAmbiguousMustRemainExplicit": true,
+    "firstImplementationShouldBeNonDestructiveOverlay": true
+  },
+  "nextGate": {
+    "id": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1",
+    "requiredMappingStates": [
+      "EXACT_SOURCE_NORMALIZATION",
+      "REVIEWED_MAPPING",
+      "AMBIGUOUS",
+      "UNKNOWN"
+    ],
+    "canonicalDimensions": [
+      "geography.country",
+      "geography.region",
+      "culinary.tradition",
+      "culinary.dishCategory",
+      "culinary.mealRoles",
+      "culinary.techniqueFamilies",
+      "culinary.difficulty",
+      "time.prepMinutes",
+      "time.cookMinutes",
+      "time.totalMinutes",
+      "serving.servings",
+      "dietary.reviewedTags"
+    ],
+    "acceptanceCriteria": [
+      "ALL_19268_PROTECTED_RECIPES_RECONSTRUCTED_FROM_EXACT_PINNED_SOURCES",
+      "EVERY_LAYER_AND_COHORT_COUNT_MATCHES_LIVE_PROTECTED_ANCESTRY",
+      "EACH_COHORT_MEETS_OR_EXCEEDS_ITS_ORIGINAL_STRUCTURAL_ADMISSION_THRESHOLD",
+      "RAW_SOURCE_SIGNALS_PRESERVED_SEPARATELY_FROM_CANONICAL_FIELDS",
+      "NO_GUESSED_CUISINE_GEOGRAPHY_MEAL_ROLE_DIETARY_OR_AUTHENTICITY_METADATA",
+      "HISTORICAL_COLLECTION_LABELS_NEVER_AUTO_PROMOTED_TO_CUISINE_AUTHORITY",
+      "NORMALIZATION_MAPPING_MUST_BE_VERSIONED_DETERMINISTIC_AND_REVERSIBLE",
+      "UNKNOWN_AND_AMBIGUOUS_STATES_REMAIN_EXPLICIT",
+      "NO_RECOMMENDATION_NUTRITION_PUBLIC_RUNTIME_D1_OR_KNOWLEDGE_CORE_MUTATION"
+    ],
+    "firstImplementationScope": [
+      "versioned normalization overlay only",
+      "exact/reviewed mappings for low-ambiguity geography, time, servings and difficulty",
+      "separate controlled vocabularies for dish category and meal role",
+      "source culture/cuisine/tag values retained as hints and provenance",
+      "no protected body rewrite and no recommendation behavior change"
+    ]
+  },
+  "boundaries": {
+    "d1ReadsPerformed": 0,
+    "d1WritesPerformed": 0,
+    "protectedBodiesExported": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "nutritionLaneModified": false,
+    "youtubeLaneModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "billingExpansion": false,
+    "thirdShardUsed": false
+  }
+}

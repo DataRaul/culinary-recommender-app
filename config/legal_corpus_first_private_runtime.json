@@ -5,7 +5,7 @@
   "canonicalDecision": "docs/LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_DECISION.md",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "sequencing": {
-    "primaryNextMilestone": "CORPUS_NORMALIZATION_AND_CATEGORIZATION_BASELINE",
+    "primaryNextMilestone": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1",
     "principalExecutionLane": "CORPUS_NORMALIZATION_AND_CATEGORIZATION",
     "recipeFamilyPrototypeState": "DEFERRED_UNTIL_POST_RECOMMENDATION_READINESS",
     "nutritionExpansionPriority": "NEXT_AFTER_CORPUS_NORMALIZATION_AND_CATEGORIZATION",
@@ -67,5 +67,18 @@
     "finalDiscoveryArtifactName": "step8g-ora-next-discovery-c31-g59-m2-e0",
     "measuredCandidateCount": 2,
     "rightsReviewEligibleCount": 0
+  },
+  "corpusNormalizationBaseline": {
+    "status": "CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_PASS",
+    "protectedCorpusVersion": "v8018",
+    "protectedRecipeCount": 19268,
+    "summary": "data/generated/corpus-normalization-baseline-v1.json",
+    "document": "docs/CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_V1.md",
+    "workflowRun": 35895304230,
+    "artifactId": 10766372521,
+    "artifactDigest": "sha256:d3aafd52587b74184ace55e322c1fb13c15d066962e201fa8dad0ada5651d57b",
+    "structurallyParseableCount": 19265,
+    "explicitStructuralExceptionCount": 3,
+    "nextGate": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1"
   }
 }
