@@ -50,6 +50,9 @@ jobs:
             --ora=.tmp/ora \
             --output=.tmp/nutrition-vitamin-applicability-audit-v1-full.json \
             --summary=.tmp/nutrition-vitamin-applicability-audit-v1.json
+      - name: Verify committed applicability summary
+        run: |
+          node --input-type=module -e 'import assert from "node:assert/strict"; import {readFileSync} from "node:fs"; assert.deepStrictEqual(JSON.parse(readFileSync("data/generated/nutrition-vitamin-applicability-audit-v1.json","utf8")), JSON.parse(readFileSync(".tmp/nutrition-vitamin-applicability-audit-v1.json","utf8")));'
       - name: Upload applicability evidence
         uses: actions/upload-artifact@v4
         with:
