@@ -49,7 +49,7 @@ function supportRows(observations, field, bands) {
     .sort((a, b) => b.prevalence - a.prevalence || a.id.localeCompare(b.id));
 }
 
-export function quantitativeGroups(observations, { minimumIndependent = 3, maxRobustSpreadRatio = 4 } = {}) {
+export function quantitativeGroups(observations, { minimumIndependent = 3, minimumDistinctPublishers = 2, maxRobustSpreadRatio = 4 } = {}) {
   const groups = new Map();
   for (const observation of observations) {
     for (const item of observation?.normalized?.quantitative || []) {
@@ -58,6 +58,7 @@ export function quantitativeGroups(observations, { minimumIndependent = 3, maxRo
       if (!groups.has(key)) groups.set(key, new Map());
       groups.get(key).set(observation.source.independenceGroup, {
         observationId: observation.observationId,
+        publisherLedgerKey: observation.source.publisherLedgerKey,
         lower: Number(item.lower),
         upper: Number(item.upper)
       });
@@ -68,6 +69,7 @@ export function quantitativeGroups(observations, { minimumIndependent = 3, maxRo
     const [roleId, basis, unit] = key.split("|");
     const rows = [...byIndependence.values()];
     const midpoints = rows.map(row => (row.lower + row.upper) / 2);
+    const distinctPublisherCount = new Set(rows.map(row => row.publisherLedgerKey)).size;
     const observedRange = {
       lower: round(Math.min(...rows.map(row => row.lower))),
       upper: round(Math.max(...rows.map(row => row.upper)))
@@ -78,6 +80,7 @@ export function quantitativeGroups(observations, { minimumIndependent = 3, maxRo
     const spreadRatio = q25 > 0 ? q75 / q25 : Number.POSITIVE_INFINITY;
     const stable =
       rows.length >= minimumIndependent &&
+      distinctPublisherCount >= minimumDistinctPublishers &&
       Number.isFinite(spreadRatio) &&
       spreadRatio <= maxRobustSpreadRatio;
     return {
@@ -85,6 +88,7 @@ export function quantitativeGroups(observations, { minimumIndependent = 3, maxRo
       basis,
       unit,
       independentObservationCount: rows.length,
+      distinctPublisherCount,
       observedRange,
       robustCenter: q50 == null ? null : round(q50),
       recommendedRange: stable ? { lower: round(q25), upper: round(q75) } : null,
