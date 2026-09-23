@@ -206,6 +206,14 @@ const CREOLE_COOKERY_1885_CONTRIBUTOR_PROVENANCE_HOLD = Object.freeze({
   source_year: "1885",
   license: "public-domain"
 });
+const ART_OF_LIVING_1893_WICKEN_ATTRIBUTION_HOLD = Object.freeze({
+  collection: "australian-table",
+  source_url: "https://archive.org/details/artoflivinginaus00muskiala",
+  source_title: "The Art of Living in Australia",
+  author: "Philip E. Muskett",
+  source_year: "1893",
+  license: "public-domain"
+});
 const COCINA_SOURCES = Object.freeze([
   Object.freeze({
     collection: "cocina-mexicana",
@@ -414,7 +422,8 @@ const heldSourceKeys = new Set([
   oraSourceKey(GREENBAUM_1918_SPAIN_TERM_HOLD),
   oraSourceKey(RANDOLPH_1824_EDITION_PROVENANCE_HOLD),
   oraSourceKey(HARLAND_COMMON_SENSE_1871_PROVENANCE_HOLD),
-  oraSourceKey(CREOLE_COOKERY_1885_CONTRIBUTOR_PROVENANCE_HOLD)
+  oraSourceKey(CREOLE_COOKERY_1885_CONTRIBUTOR_PROVENANCE_HOLD),
+  oraSourceKey(ART_OF_LIVING_1893_WICKEN_ATTRIBUTION_HOLD)
 ]);
 const heldCollections = new Set(["cocina-espanola"]);
 const result = discoverOraNextSources({
@@ -569,10 +578,18 @@ const output = {
         sourceAuthorAsInOra: CREOLE_COOKERY_1885_CONTRIBUTOR_PROVENANCE_HOLD.author,
         sourceYear: CREOLE_COOKERY_1885_CONTRIBUTOR_PROVENANCE_HOLD.source_year,
         reason: "EXACT_1885_TITLE_PAGE_IDENTIFIES_EXCHANGE_AS_EDITOR_AND_RECIPES_AS_HOUSEKEEPER_CONTRIBUTIONS__ORA_FLATTENS_TO_EXCHANGE_AUTHOR"
+      },
+      {
+        collection: ART_OF_LIVING_1893_WICKEN_ATTRIBUTION_HOLD.collection,
+        sourceUrl: ART_OF_LIVING_1893_WICKEN_ATTRIBUTION_HOLD.source_url,
+        sourceTitle: ART_OF_LIVING_1893_WICKEN_ATTRIBUTION_HOLD.source_title,
+        sourceAuthorAsInOra: ART_OF_LIVING_1893_WICKEN_ATTRIBUTION_HOLD.author,
+        sourceYear: ART_OF_LIVING_1893_WICKEN_ATTRIBUTION_HOLD.source_year,
+        reason: "ORA_ATTRIBUTES_RECIPE_COHORT_TO_PHILIP_MUSKETT__EXACT_1893_WORK_CREDITS_COOKERY_RECIPES_TO_HARRIETT_WICKEN"
       }
     ],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8018 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883, Viard 1806, Hearn 1885, Chan 1917, Kenney-Herbert 1885, the exact Fannie Farmer 1910 revised edition represented by the ORA work-year tuple 1896, and Estella Atrutel 1874. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; the 1905 Volks-Kochbuch source is held because the exact edition credits an unidentified Frau Dr. Engelken with new ordering and additions and her contribution term cannot be resolved; Cocina Ecléctica 1890 is held because its community-contributor layer contains separately attributed recipe contributions whose Spain-facing terms have not been established cohort-wide; American Cookery 1796 is held because its exact errata attributes material recipe alterations to an unnamed press preparer and the pinned ORA extraction demonstrably preserves uncorrected altered values; The Book of Household Management 1861 is held because its own preface documents recipe matter from unnamed correspondents, a private circle and other cookery writers while the pinned ORA cohort flattens all recipe attribution to Isabella Beeton; Miss Leslie's Complete Cookery is held because ORA source_year 1851 conflicts with the exact Gutenberg 1853 forty-ninth edition marked thoroughly revised with additions; The Whitehouse Cookbook 1887 is held because ORA assigns sole authorship to F.L. Gillette while the exact title page names both Gillette and Hugo Ziemann; The International Jewish Cook Book 1918 is held because the exact work identity is established but an authoritative Greenbaum death date needed to compute the Spain-facing author term is not; The Virginia Housewife ORA source_year 1824 is held because the exact Gutenberg source reproduces an 1860 edition; Common Sense in the Household is held because ORA source_year 1871 points to an exact Gutenberg representation printed in 1883 with an expressly revised 1880 editorial layer and the book itself documents receipts obtained from unnamed friends and trustworthy housewives; The Creole Cookery Book 1885 is held because the exact title-page/bibliographic record identifies the Christian Woman's Exchange as editor and the recipes as contributions from multiple housekeepers while ORA flattens the cohort to the Exchange as author; and cocina-espanola remains under its existing collection rights hold."
+    reason: "All exact sources protected through v8018 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883, Viard 1806, Hearn 1885, Chan 1917, Kenney-Herbert 1885, the exact Fannie Farmer 1910 revised edition represented by the ORA work-year tuple 1896, and Estella Atrutel 1874. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; the 1905 Volks-Kochbuch source is held because the exact edition credits an unidentified Frau Dr. Engelken with new ordering and additions and her contribution term cannot be resolved; Cocina Ecléctica 1890 is held because its community-contributor layer contains separately attributed recipe contributions whose Spain-facing terms have not been established cohort-wide; American Cookery 1796 is held because its exact errata attributes material recipe alterations to an unnamed press preparer and the pinned ORA extraction demonstrably preserves uncorrected altered values; The Book of Household Management 1861 is held because its own preface documents recipe matter from unnamed correspondents, a private circle and other cookery writers while the pinned ORA cohort flattens all recipe attribution to Isabella Beeton; Miss Leslie's Complete Cookery is held because ORA source_year 1851 conflicts with the exact Gutenberg 1853 forty-ninth edition marked thoroughly revised with additions; The Whitehouse Cookbook 1887 is held because ORA assigns sole authorship to F.L. Gillette while the exact title page names both Gillette and Hugo Ziemann; The International Jewish Cook Book 1918 is held because the exact work identity is established but an authoritative Greenbaum death date needed to compute the Spain-facing author term is not; The Virginia Housewife ORA source_year 1824 is held because the exact Gutenberg source reproduces an 1860 edition; Common Sense in the Household is held because ORA source_year 1871 points to an exact Gutenberg representation printed in 1883 with an expressly revised 1880 editorial layer and the book itself documents receipts obtained from unnamed friends and trustworthy housewives; The Creole Cookery Book 1885 is held because the exact title-page/bibliographic record identifies the Christian Woman's Exchange as editor and the recipes as contributions from multiple housekeepers while ORA flattens the cohort to the Exchange as author; The Art of Living in Australia 1893 is held because the exact work explicitly assigns the cookery recipes to Mrs. H. Wicken while ORA assigns the recipe cohort to Philip E. Muskett; and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
