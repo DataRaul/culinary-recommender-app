@@ -1,6 +1,6 @@
 {
   "schemaVersion": "CULINARY_CORPUS_NORMALIZATION_MAPPING_CONTRACT_V1",
-  "state": "IMPLEMENTATION_CANDIDATE_NO_RUNTIME_MUTATION",
+  "state": "FROZEN_MAPPING_V1_PASS_NO_RUNTIME_MUTATION",
   "protectedCorpusVersion": "v8018",
   "expectedRecipeCount": 19268,
   "baselineConfig": "config/corpus_normalization_baseline_v1.json",
@@ -47,28 +47,110 @@
     "SNACK"
   ],
   "categoryMappings": {
-    "main": { "dishCategory": null, "mealRoles": ["MAIN"] },
-    "proteins": { "dishCategory": "PROTEIN_DISH", "mealRoles": [] },
-    "condiments": { "dishCategory": "CONDIMENT", "mealRoles": [] },
-    "desserts": { "dishCategory": "DESSERT", "mealRoles": ["DESSERT"] },
-    "dessert": { "dishCategory": "DESSERT", "mealRoles": ["DESSERT"] },
-    "grains": { "dishCategory": "GRAIN_DISH", "mealRoles": [] },
-    "sauces": { "dishCategory": "SAUCE", "mealRoles": [] },
-    "sauce": { "dishCategory": "SAUCE", "mealRoles": [] },
-    "seafood": { "dishCategory": "SEAFOOD_DISH", "mealRoles": [] },
-    "breads": { "dishCategory": "BREAD", "mealRoles": [] },
-    "bread": { "dishCategory": "BREAD", "mealRoles": [] },
-    "vegetables": { "dishCategory": "VEGETABLE_DISH", "mealRoles": [] },
-    "soup": { "dishCategory": "SOUP", "mealRoles": [] },
-    "stocks": { "dishCategory": "STOCK", "mealRoles": [] },
-    "snack": { "dishCategory": null, "mealRoles": ["SNACK"] },
-    "beverages": { "dishCategory": "BEVERAGE", "mealRoles": ["BEVERAGE"] },
-    "drink": { "dishCategory": "BEVERAGE", "mealRoles": ["BEVERAGE"] },
-    "fermented": { "dishCategory": "FERMENTED_FOOD", "mealRoles": [] },
-    "eggs": { "dishCategory": "EGG_DISH", "mealRoles": [] },
-    "breakfast": { "dishCategory": null, "mealRoles": ["BREAKFAST"] },
-    "side": { "dishCategory": null, "mealRoles": ["SIDE"] },
-    "salad": { "dishCategory": "SALAD", "mealRoles": [] }
+    "main": {
+      "dishCategory": null,
+      "mealRoles": [
+        "MAIN"
+      ]
+    },
+    "proteins": {
+      "dishCategory": "PROTEIN_DISH",
+      "mealRoles": []
+    },
+    "condiments": {
+      "dishCategory": "CONDIMENT",
+      "mealRoles": []
+    },
+    "desserts": {
+      "dishCategory": "DESSERT",
+      "mealRoles": [
+        "DESSERT"
+      ]
+    },
+    "dessert": {
+      "dishCategory": "DESSERT",
+      "mealRoles": [
+        "DESSERT"
+      ]
+    },
+    "grains": {
+      "dishCategory": "GRAIN_DISH",
+      "mealRoles": []
+    },
+    "sauces": {
+      "dishCategory": "SAUCE",
+      "mealRoles": []
+    },
+    "sauce": {
+      "dishCategory": "SAUCE",
+      "mealRoles": []
+    },
+    "seafood": {
+      "dishCategory": "SEAFOOD_DISH",
+      "mealRoles": []
+    },
+    "breads": {
+      "dishCategory": "BREAD",
+      "mealRoles": []
+    },
+    "bread": {
+      "dishCategory": "BREAD",
+      "mealRoles": []
+    },
+    "vegetables": {
+      "dishCategory": "VEGETABLE_DISH",
+      "mealRoles": []
+    },
+    "soup": {
+      "dishCategory": "SOUP",
+      "mealRoles": []
+    },
+    "stocks": {
+      "dishCategory": "STOCK",
+      "mealRoles": []
+    },
+    "snack": {
+      "dishCategory": null,
+      "mealRoles": [
+        "SNACK"
+      ]
+    },
+    "beverages": {
+      "dishCategory": "BEVERAGE",
+      "mealRoles": [
+        "BEVERAGE"
+      ]
+    },
+    "drink": {
+      "dishCategory": "BEVERAGE",
+      "mealRoles": [
+        "BEVERAGE"
+      ]
+    },
+    "fermented": {
+      "dishCategory": "FERMENTED_FOOD",
+      "mealRoles": []
+    },
+    "eggs": {
+      "dishCategory": "EGG_DISH",
+      "mealRoles": []
+    },
+    "breakfast": {
+      "dishCategory": null,
+      "mealRoles": [
+        "BREAKFAST"
+      ]
+    },
+    "side": {
+      "dishCategory": null,
+      "mealRoles": [
+        "SIDE"
+      ]
+    },
+    "salad": {
+      "dishCategory": "SALAD",
+      "mealRoles": []
+    }
   },
   "difficultyScales": {
     "numeric": "NUMERIC_1_5",
@@ -86,5 +168,15 @@
     "UNKNOWN_AND_AMBIGUOUS_STATES_EXPLICIT",
     "CATEGORY_MAPPING_VALUES_WITHIN_CONTROLLED_VOCABULARIES",
     "NO_D1_PUBLIC_RECOMMENDATION_NUTRITION_KC_SHARD_OR_BILLING_MUTATION"
-  ]
+  ],
+  "evidence": {
+    "initialFullMappingRun": 35906244182,
+    "initialArtifactId": 10770429269,
+    "initialArtifactName": "corpus-normalization-mapping-v1",
+    "initialArtifactDigest": "sha256:e33746038d723bc30ae9e04c69f57ddde11f5e0a767127a7361bf9f4b2b9a181",
+    "observedRecipeCount": 19268,
+    "validOverlayCount": 19268,
+    "uniqueIdentityCount": 19268
+  },
+  "nextGateAfterPass": "NUTRITION_VITAMIN_APPLICABILITY_AUDIT"
 }
