@@ -97,6 +97,8 @@
     "pr": 276,
     "mergeSha": "e92d5f13f08790c7c013701618bdcd8fd7ba35af",
     "branchValidation": "SUCCESS",
-    "terminal": "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS"
+    "terminal": "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS",
+    "transitionPr": 277,
+    "transitionPurpose": "TERMINAL_STATE_AND_HANDOVER_RECONCILIATION"
   }
 }
