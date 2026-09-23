@@ -1,0 +1,1063 @@
+{
+  "schemaVersion": "CULINARY_NUTRITION_VITAMIN_APPLICABILITY_AUDIT_SUMMARY_V1",
+  "date": "2026-09-23",
+  "pass": true,
+  "terminal": "NUTRITION_VITAMIN_APPLICABILITY_AUDIT_PASS",
+  "protectedCorpusVersion": "v8018",
+  "expectedRecipeCount": 19268,
+  "observedRecipeCount": 19268,
+  "sourcePins": {
+    "unitools": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "forkrecipe": "c32255266af39bd77444d39452f3df8088ac8fd9",
+    "cc0": "b12e481d1c220a13e0847a34e148d5872a16928e",
+    "ora": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8"
+  },
+  "cohortCountChecks": [
+    {
+      "cohortId": "unitools-world-recipes-v1_1_0",
+      "expectedCount": 501,
+      "observedCount": 501,
+      "pass": true
+    },
+    {
+      "cohortId": "FORKRECIPE_PINNED_STEP7E",
+      "expectedCount": 915,
+      "observedCount": 915,
+      "pass": true
+    },
+    {
+      "cohortId": "SGAUTHIER_RECIPES_CC0_B12E481D",
+      "expectedCount": 226,
+      "observedCount": 226,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_ABBOTT_1864_AE3BD2C",
+      "expectedCount": 713,
+      "observedCount": 713,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_BOSSE_WATANNA_1914_JAPANESE_SHELF_AE3BD2C",
+      "expectedCount": 109,
+      "observedCount": 109,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_TURABI_EFENDI_1864_OTTOMAN_SHELF_AE3BD2C",
+      "expectedCount": 442,
+      "observedCount": 442,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_RIGAUD_1785_PORTUGUESE_SOURCE_AE3BD2C",
+      "expectedCount": 789,
+      "observedCount": 789,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_GALVAN_RIVERA_1845_DICCIONARIO_COCINA_AE3BD2C",
+      "expectedCount": 4347,
+      "observedCount": 4347,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C",
+      "expectedCount": 2129,
+      "observedCount": 2129,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_MENON_1801_CUISINIERE_BOURGEOISE_B22019935",
+      "expectedCount": 752,
+      "observedCount": 752,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_ARTUSI_1891_SCIENZA_CUCINA_GUTENBERG_59047",
+      "expectedCount": 829,
+      "observedCount": 829,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_FROKEN_JENSEN_1921_KOGEBOG_23RD_FRKENJENSENSKO00JENS",
+      "expectedCount": 1372,
+      "observedCount": 1372,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_SELESKOWITZ_1883_WIENER_KOCHBUCH_BUB_GB_OP8YAQAAMAAJ",
+      "expectedCount": 1722,
+      "observedCount": 1722,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_VIARD_1806_LE_CUISINIER_IMPERIAL_LECUISINIERIMPE00VIARGOOG",
+      "expectedCount": 807,
+      "observedCount": 807,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_HEARN_1885_LA_CUISINE_CREOLE_LACUISINECREOLEC00HEAR",
+      "expectedCount": 712,
+      "observedCount": 712,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_CHAN_1917_CHINESE_COOK_BOOK_CHINESECOOKBOOK00CHAN",
+      "expectedCount": 145,
+      "observedCount": 145,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN",
+      "expectedCount": 501,
+      "observedCount": 501,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_FANNIE_FARMER_BOSTON_COOKING_SCHOOL_GUTENBERG_65061",
+      "expectedCount": 1776,
+      "observedCount": 1776,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_ATRUTEL_1874_EASY_ECONOMICAL_JEWISH_COOKERY_B2807967X",
+      "expectedCount": 481,
+      "observedCount": 481,
+      "pass": true
+    }
+  ],
+  "currentPublicNutritionEngine": {
+    "authored": {
+      "recipeCount": 76,
+      "authoritativeRecipeCount": 19,
+      "estimateRecipeCount": 57,
+      "authoritativeRecipeRatio": 0.25,
+      "sourceSelectionStateCounts": {
+        "EUROPEAN_PRIMARY_COMPLETE": 19,
+        "NO_COMPLETE_AUTHORITATIVE_RECIPE_CALCULATION": 57
+      },
+      "methodCounts": {
+        "EUROPEAN_PRIMARY_STATIC_CALCULATION_V1": 19,
+        "INFERRED_ESTIMATE": 57
+      },
+      "blockerCounts": {
+        "ambiguous_portion_unit": 20,
+        "missing_density": 54,
+        "unsupported_quantity_unit": 6
+      },
+      "missingNutrientFieldCounts": {
+        "fibreG": 7
+      },
+      "semanticIssueCounts": {
+        "mixed_incompatible_carbohydrate_semantics": 16
+      },
+      "authoritativeRecipeIds": [
+        "east_asian_egg_pea_fried_rice",
+        "indian_chicken_spinach_curry",
+        "indian_chickpea_cauliflower_curry",
+        "indian_red_lentil_spinach_dal",
+        "indian_turmeric_chicken_pea_rice",
+        "italian_mushroom_pea_orzo",
+        "italian_red_lentil_pasta",
+        "med_chicken_orzo_vegetables",
+        "med_lemon_chicken_couscous",
+        "med_prawn_tomato_couscous",
+        "med_quinoa_chickpea_bowl",
+        "med_quinoa_egg_spinach_bowl",
+        "med_salmon_barley_spinach",
+        "middle_eastern_bulgur_chickpea_salad",
+        "middle_eastern_chicken_tahini_bowl",
+        "middle_eastern_chickpea_tahini_plate",
+        "middle_eastern_red_lentil_carrot_soup",
+        "spanish_pepper_cottage_frittata",
+        "spanish_potato_onion_tortilla"
+      ]
+    },
+    "golden84": {
+      "recipeCount": 84,
+      "authoritativeRecipeCount": 19,
+      "estimateRecipeCount": 65,
+      "authoritativeRecipeRatio": 0.2262,
+      "sourceSelectionStateCounts": {
+        "EUROPEAN_PRIMARY_COMPLETE": 19,
+        "NO_COMPLETE_AUTHORITATIVE_RECIPE_CALCULATION": 65
+      },
+      "methodCounts": {
+        "EUROPEAN_PRIMARY_STATIC_CALCULATION_V1": 19,
+        "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED": 8,
+        "INFERRED_ESTIMATE": 57
+      },
+      "blockerCounts": {
+        "ambiguous_portion_unit": 21,
+        "invalid_quantity": 10,
+        "missing_density": 67,
+        "unsupported_quantity_unit": 13
+      },
+      "missingNutrientFieldCounts": {
+        "fibreG": 7
+      },
+      "semanticIssueCounts": {
+        "mixed_incompatible_carbohydrate_semantics": 16
+      },
+      "authoritativeRecipeIds": [
+        "east_asian_egg_pea_fried_rice",
+        "indian_chicken_spinach_curry",
+        "indian_chickpea_cauliflower_curry",
+        "indian_red_lentil_spinach_dal",
+        "indian_turmeric_chicken_pea_rice",
+        "italian_mushroom_pea_orzo",
+        "italian_red_lentil_pasta",
+        "med_chicken_orzo_vegetables",
+        "med_lemon_chicken_couscous",
+        "med_prawn_tomato_couscous",
+        "med_quinoa_chickpea_bowl",
+        "med_quinoa_egg_spinach_bowl",
+        "med_salmon_barley_spinach",
+        "middle_eastern_bulgur_chickpea_salad",
+        "middle_eastern_chicken_tahini_bowl",
+        "middle_eastern_chickpea_tahini_plate",
+        "middle_eastern_red_lentil_carrot_soup",
+        "spanish_pepper_cottage_frittata",
+        "spanish_potato_onion_tortilla"
+      ]
+    },
+    "publicRuntime": {
+      "recipeCount": 85,
+      "authoritativeRecipeCount": 19,
+      "estimateRecipeCount": 66,
+      "authoritativeRecipeRatio": 0.2235,
+      "sourceSelectionStateCounts": {
+        "EUROPEAN_PRIMARY_COMPLETE": 19,
+        "NO_COMPLETE_AUTHORITATIVE_RECIPE_CALCULATION": 66
+      },
+      "methodCounts": {
+        "EUROPEAN_PRIMARY_STATIC_CALCULATION_V1": 19,
+        "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED": 9,
+        "INFERRED_ESTIMATE": 57
+      },
+      "blockerCounts": {
+        "ambiguous_portion_unit": 21,
+        "invalid_quantity": 11,
+        "missing_density": 67,
+        "unsupported_quantity_unit": 14
+      },
+      "missingNutrientFieldCounts": {
+        "fibreG": 7
+      },
+      "semanticIssueCounts": {
+        "mixed_incompatible_carbohydrate_semantics": 16
+      },
+      "authoritativeRecipeIds": [
+        "east_asian_egg_pea_fried_rice",
+        "indian_chicken_spinach_curry",
+        "indian_chickpea_cauliflower_curry",
+        "indian_red_lentil_spinach_dal",
+        "indian_turmeric_chicken_pea_rice",
+        "italian_mushroom_pea_orzo",
+        "italian_red_lentil_pasta",
+        "med_chicken_orzo_vegetables",
+        "med_lemon_chicken_couscous",
+        "med_prawn_tomato_couscous",
+        "med_quinoa_chickpea_bowl",
+        "med_quinoa_egg_spinach_bowl",
+        "med_salmon_barley_spinach",
+        "middle_eastern_bulgur_chickpea_salad",
+        "middle_eastern_chicken_tahini_bowl",
+        "middle_eastern_chickpea_tahini_plate",
+        "middle_eastern_red_lentil_carrot_soup",
+        "spanish_pepper_cottage_frittata",
+        "spanish_potato_onion_tortilla"
+      ]
+    },
+    "trackedNutrientKeys": [
+      "energyKcal",
+      "proteinG",
+      "carbohydrateG",
+      "fatG",
+      "fibreG"
+    ]
+  },
+  "protectedCorpusApplicability": {
+    "recipeCount": 19268,
+    "recipesWithIngredients": 19265,
+    "structuralIngredientEmpty": 3,
+    "ingredientOccurrences": 144245,
+    "resolvedIngredientOccurrences": 36760,
+    "unresolvedIngredientOccurrences": 107485,
+    "resolvedIngredientOccurrenceRatio": 0.254844,
+    "recipesWithAllIngredientIdentitiesResolved": 112,
+    "allIngredientIdentityReadyRatio": 0.005813,
+    "sourceSystemCounts": {
+      "CC0_MARKDOWN": 226,
+      "FORKRECIPE": 915,
+      "OPEN_RECIPE_ARCHIVE_JSONL": 16804,
+      "OPEN_RECIPE_ARCHIVE_MARKDOWN": 822,
+      "UNITOOLS": 501
+    },
+    "quantityModelCounts": {
+      "RATIO_PARTS_ONLY_NO_ABSOLUTE_MASS_OR_SERVINGS": 915,
+      "RAW_TEXT_AMOUNT_STRIPPED_BY_CURRENT_PARSER_NO_CANONICAL_QUANTITY_OBJECT": 226,
+      "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 17626,
+      "STRUCTURED_QUANTITY_UNIT_AND_SERVINGS_PRESENT_AT_SOURCE": 501
+    },
+    "layerApplicability": [
+      {
+        "layer": "v8001",
+        "recipeCount": 501,
+        "recipesWithIngredients": 501,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 5404,
+        "resolvedIngredientOccurrences": 2597,
+        "unresolvedIngredientOccurrences": 2807,
+        "resolvedIngredientOccurrenceRatio": 0.48057,
+        "recipesWithAllIngredientIdentitiesResolved": 1,
+        "allIngredientIdentityReadyRatio": 0.001996,
+        "sourceSystemCounts": {
+          "UNITOOLS": 501
+        },
+        "quantityModelCounts": {
+          "STRUCTURED_QUANTITY_UNIT_AND_SERVINGS_PRESENT_AT_SOURCE": 501
+        }
+      },
+      {
+        "layer": "v8002",
+        "recipeCount": 915,
+        "recipesWithIngredients": 915,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 7885,
+        "resolvedIngredientOccurrences": 640,
+        "unresolvedIngredientOccurrences": 7245,
+        "resolvedIngredientOccurrenceRatio": 0.081167,
+        "recipesWithAllIngredientIdentitiesResolved": 0,
+        "allIngredientIdentityReadyRatio": 0,
+        "sourceSystemCounts": {
+          "FORKRECIPE": 915
+        },
+        "quantityModelCounts": {
+          "RATIO_PARTS_ONLY_NO_ABSOLUTE_MASS_OR_SERVINGS": 915
+        }
+      },
+      {
+        "layer": "v8003",
+        "recipeCount": 226,
+        "recipesWithIngredients": 223,
+        "structuralIngredientEmpty": 3,
+        "ingredientOccurrences": 1739,
+        "resolvedIngredientOccurrences": 372,
+        "unresolvedIngredientOccurrences": 1367,
+        "resolvedIngredientOccurrenceRatio": 0.213916,
+        "recipesWithAllIngredientIdentitiesResolved": 1,
+        "allIngredientIdentityReadyRatio": 0.004425,
+        "sourceSystemCounts": {
+          "CC0_MARKDOWN": 226
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_AMOUNT_STRIPPED_BY_CURRENT_PARSER_NO_CANONICAL_QUANTITY_OBJECT": 226
+        }
+      },
+      {
+        "layer": "v8004",
+        "recipeCount": 713,
+        "recipesWithIngredients": 713,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 4625,
+        "resolvedIngredientOccurrences": 756,
+        "unresolvedIngredientOccurrences": 3869,
+        "resolvedIngredientOccurrenceRatio": 0.163459,
+        "recipesWithAllIngredientIdentitiesResolved": 7,
+        "allIngredientIdentityReadyRatio": 0.009818,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_MARKDOWN": 713
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 713
+        }
+      },
+      {
+        "layer": "v8005",
+        "recipeCount": 109,
+        "recipesWithIngredients": 109,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 721,
+        "resolvedIngredientOccurrences": 96,
+        "unresolvedIngredientOccurrences": 625,
+        "resolvedIngredientOccurrenceRatio": 0.133148,
+        "recipesWithAllIngredientIdentitiesResolved": 0,
+        "allIngredientIdentityReadyRatio": 0,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_MARKDOWN": 109
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 109
+        }
+      },
+      {
+        "layer": "v8006",
+        "recipeCount": 442,
+        "recipesWithIngredients": 442,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 2914,
+        "resolvedIngredientOccurrences": 776,
+        "unresolvedIngredientOccurrences": 2138,
+        "resolvedIngredientOccurrenceRatio": 0.266301,
+        "recipesWithAllIngredientIdentitiesResolved": 4,
+        "allIngredientIdentityReadyRatio": 0.00905,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 442
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 442
+        }
+      },
+      {
+        "layer": "v8007",
+        "recipeCount": 789,
+        "recipesWithIngredients": 789,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 6919,
+        "resolvedIngredientOccurrences": 1822,
+        "unresolvedIngredientOccurrences": 5097,
+        "resolvedIngredientOccurrenceRatio": 0.263333,
+        "recipesWithAllIngredientIdentitiesResolved": 3,
+        "allIngredientIdentityReadyRatio": 0.003802,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 789
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 789
+        }
+      },
+      {
+        "layer": "v8008",
+        "recipeCount": 6476,
+        "recipesWithIngredients": 6476,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 50856,
+        "resolvedIngredientOccurrences": 16427,
+        "unresolvedIngredientOccurrences": 34429,
+        "resolvedIngredientOccurrenceRatio": 0.32301,
+        "recipesWithAllIngredientIdentitiesResolved": 48,
+        "allIngredientIdentityReadyRatio": 0.007412,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 6476
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 6476
+        }
+      },
+      {
+        "layer": "v8009",
+        "recipeCount": 752,
+        "recipesWithIngredients": 752,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 6234,
+        "resolvedIngredientOccurrences": 1700,
+        "unresolvedIngredientOccurrences": 4534,
+        "resolvedIngredientOccurrenceRatio": 0.272698,
+        "recipesWithAllIngredientIdentitiesResolved": 5,
+        "allIngredientIdentityReadyRatio": 0.006649,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 752
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 752
+        }
+      },
+      {
+        "layer": "v8010",
+        "recipeCount": 829,
+        "recipesWithIngredients": 829,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 6025,
+        "resolvedIngredientOccurrences": 1273,
+        "unresolvedIngredientOccurrences": 4752,
+        "resolvedIngredientOccurrenceRatio": 0.211286,
+        "recipesWithAllIngredientIdentitiesResolved": 0,
+        "allIngredientIdentityReadyRatio": 0,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 829
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 829
+        }
+      },
+      {
+        "layer": "v8011",
+        "recipeCount": 1372,
+        "recipesWithIngredients": 1372,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 8173,
+        "resolvedIngredientOccurrences": 1958,
+        "unresolvedIngredientOccurrences": 6215,
+        "resolvedIngredientOccurrenceRatio": 0.239569,
+        "recipesWithAllIngredientIdentitiesResolved": 11,
+        "allIngredientIdentityReadyRatio": 0.008017,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 1372
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 1372
+        }
+      },
+      {
+        "layer": "v8012",
+        "recipeCount": 1722,
+        "recipesWithIngredients": 1722,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 11372,
+        "resolvedIngredientOccurrences": 1543,
+        "unresolvedIngredientOccurrences": 9829,
+        "resolvedIngredientOccurrenceRatio": 0.135684,
+        "recipesWithAllIngredientIdentitiesResolved": 4,
+        "allIngredientIdentityReadyRatio": 0.002323,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 1722
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 1722
+        }
+      },
+      {
+        "layer": "v8013",
+        "recipeCount": 807,
+        "recipesWithIngredients": 807,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 6092,
+        "resolvedIngredientOccurrences": 1500,
+        "unresolvedIngredientOccurrences": 4592,
+        "resolvedIngredientOccurrenceRatio": 0.246225,
+        "recipesWithAllIngredientIdentitiesResolved": 7,
+        "allIngredientIdentityReadyRatio": 0.008674,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 807
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 807
+        }
+      },
+      {
+        "layer": "v8014",
+        "recipeCount": 712,
+        "recipesWithIngredients": 712,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 4686,
+        "resolvedIngredientOccurrences": 917,
+        "unresolvedIngredientOccurrences": 3769,
+        "resolvedIngredientOccurrenceRatio": 0.195689,
+        "recipesWithAllIngredientIdentitiesResolved": 9,
+        "allIngredientIdentityReadyRatio": 0.01264,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 712
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 712
+        }
+      },
+      {
+        "layer": "v8015",
+        "recipeCount": 145,
+        "recipesWithIngredients": 145,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 928,
+        "resolvedIngredientOccurrences": 171,
+        "unresolvedIngredientOccurrences": 757,
+        "resolvedIngredientOccurrenceRatio": 0.184267,
+        "recipesWithAllIngredientIdentitiesResolved": 0,
+        "allIngredientIdentityReadyRatio": 0,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 145
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 145
+        }
+      },
+      {
+        "layer": "v8016",
+        "recipeCount": 501,
+        "recipesWithIngredients": 501,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 4199,
+        "resolvedIngredientOccurrences": 806,
+        "unresolvedIngredientOccurrences": 3393,
+        "resolvedIngredientOccurrenceRatio": 0.19195,
+        "recipesWithAllIngredientIdentitiesResolved": 2,
+        "allIngredientIdentityReadyRatio": 0.003992,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 501
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 501
+        }
+      },
+      {
+        "layer": "v8017",
+        "recipeCount": 1776,
+        "recipesWithIngredients": 1776,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 11785,
+        "resolvedIngredientOccurrences": 2382,
+        "unresolvedIngredientOccurrences": 9403,
+        "resolvedIngredientOccurrenceRatio": 0.202121,
+        "recipesWithAllIngredientIdentitiesResolved": 6,
+        "allIngredientIdentityReadyRatio": 0.003378,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 1776
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 1776
+        }
+      },
+      {
+        "layer": "v8018",
+        "recipeCount": 481,
+        "recipesWithIngredients": 481,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 3688,
+        "resolvedIngredientOccurrences": 1024,
+        "unresolvedIngredientOccurrences": 2664,
+        "resolvedIngredientOccurrenceRatio": 0.277657,
+        "recipesWithAllIngredientIdentitiesResolved": 4,
+        "allIngredientIdentityReadyRatio": 0.008316,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 481
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 481
+        }
+      }
+    ],
+    "cohortApplicability": [
+      {
+        "cohortId": "unitools-world-recipes-v1_1_0",
+        "layer": "v8001",
+        "recipeCount": 501,
+        "recipesWithIngredients": 501,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 5404,
+        "resolvedIngredientOccurrences": 2597,
+        "unresolvedIngredientOccurrences": 2807,
+        "resolvedIngredientOccurrenceRatio": 0.48057,
+        "recipesWithAllIngredientIdentitiesResolved": 1,
+        "allIngredientIdentityReadyRatio": 0.001996,
+        "sourceSystemCounts": {
+          "UNITOOLS": 501
+        },
+        "quantityModelCounts": {
+          "STRUCTURED_QUANTITY_UNIT_AND_SERVINGS_PRESENT_AT_SOURCE": 501
+        }
+      },
+      {
+        "cohortId": "FORKRECIPE_PINNED_STEP7E",
+        "layer": "v8002",
+        "recipeCount": 915,
+        "recipesWithIngredients": 915,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 7885,
+        "resolvedIngredientOccurrences": 640,
+        "unresolvedIngredientOccurrences": 7245,
+        "resolvedIngredientOccurrenceRatio": 0.081167,
+        "recipesWithAllIngredientIdentitiesResolved": 0,
+        "allIngredientIdentityReadyRatio": 0,
+        "sourceSystemCounts": {
+          "FORKRECIPE": 915
+        },
+        "quantityModelCounts": {
+          "RATIO_PARTS_ONLY_NO_ABSOLUTE_MASS_OR_SERVINGS": 915
+        }
+      },
+      {
+        "cohortId": "SGAUTHIER_RECIPES_CC0_B12E481D",
+        "layer": "v8003",
+        "recipeCount": 226,
+        "recipesWithIngredients": 223,
+        "structuralIngredientEmpty": 3,
+        "ingredientOccurrences": 1739,
+        "resolvedIngredientOccurrences": 372,
+        "unresolvedIngredientOccurrences": 1367,
+        "resolvedIngredientOccurrenceRatio": 0.213916,
+        "recipesWithAllIngredientIdentitiesResolved": 1,
+        "allIngredientIdentityReadyRatio": 0.004425,
+        "sourceSystemCounts": {
+          "CC0_MARKDOWN": 226
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_AMOUNT_STRIPPED_BY_CURRENT_PARSER_NO_CANONICAL_QUANTITY_OBJECT": 226
+        }
+      },
+      {
+        "cohortId": "ORA_ABBOTT_1864_AE3BD2C",
+        "layer": "v8004",
+        "recipeCount": 713,
+        "recipesWithIngredients": 713,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 4625,
+        "resolvedIngredientOccurrences": 756,
+        "unresolvedIngredientOccurrences": 3869,
+        "resolvedIngredientOccurrenceRatio": 0.163459,
+        "recipesWithAllIngredientIdentitiesResolved": 7,
+        "allIngredientIdentityReadyRatio": 0.009818,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_MARKDOWN": 713
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 713
+        }
+      },
+      {
+        "cohortId": "ORA_BOSSE_WATANNA_1914_JAPANESE_SHELF_AE3BD2C",
+        "layer": "v8005",
+        "recipeCount": 109,
+        "recipesWithIngredients": 109,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 721,
+        "resolvedIngredientOccurrences": 96,
+        "unresolvedIngredientOccurrences": 625,
+        "resolvedIngredientOccurrenceRatio": 0.133148,
+        "recipesWithAllIngredientIdentitiesResolved": 0,
+        "allIngredientIdentityReadyRatio": 0,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_MARKDOWN": 109
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 109
+        }
+      },
+      {
+        "cohortId": "ORA_TURABI_EFENDI_1864_OTTOMAN_SHELF_AE3BD2C",
+        "layer": "v8006",
+        "recipeCount": 442,
+        "recipesWithIngredients": 442,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 2914,
+        "resolvedIngredientOccurrences": 776,
+        "unresolvedIngredientOccurrences": 2138,
+        "resolvedIngredientOccurrenceRatio": 0.266301,
+        "recipesWithAllIngredientIdentitiesResolved": 4,
+        "allIngredientIdentityReadyRatio": 0.00905,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 442
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 442
+        }
+      },
+      {
+        "cohortId": "ORA_RIGAUD_1785_PORTUGUESE_SOURCE_AE3BD2C",
+        "layer": "v8007",
+        "recipeCount": 789,
+        "recipesWithIngredients": 789,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 6919,
+        "resolvedIngredientOccurrences": 1822,
+        "unresolvedIngredientOccurrences": 5097,
+        "resolvedIngredientOccurrenceRatio": 0.263333,
+        "recipesWithAllIngredientIdentitiesResolved": 3,
+        "allIngredientIdentityReadyRatio": 0.003802,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 789
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 789
+        }
+      },
+      {
+        "cohortId": "ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C",
+        "layer": "v8008",
+        "recipeCount": 2129,
+        "recipesWithIngredients": 2129,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 16969,
+        "resolvedIngredientOccurrences": 6373,
+        "unresolvedIngredientOccurrences": 10596,
+        "resolvedIngredientOccurrenceRatio": 0.375567,
+        "recipesWithAllIngredientIdentitiesResolved": 22,
+        "allIngredientIdentityReadyRatio": 0.010333,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 2129
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 2129
+        }
+      },
+      {
+        "cohortId": "ORA_GALVAN_RIVERA_1845_DICCIONARIO_COCINA_AE3BD2C",
+        "layer": "v8008",
+        "recipeCount": 4347,
+        "recipesWithIngredients": 4347,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 33887,
+        "resolvedIngredientOccurrences": 10054,
+        "unresolvedIngredientOccurrences": 23833,
+        "resolvedIngredientOccurrenceRatio": 0.296692,
+        "recipesWithAllIngredientIdentitiesResolved": 26,
+        "allIngredientIdentityReadyRatio": 0.005981,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 4347
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 4347
+        }
+      },
+      {
+        "cohortId": "ORA_MENON_1801_CUISINIERE_BOURGEOISE_B22019935",
+        "layer": "v8009",
+        "recipeCount": 752,
+        "recipesWithIngredients": 752,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 6234,
+        "resolvedIngredientOccurrences": 1700,
+        "unresolvedIngredientOccurrences": 4534,
+        "resolvedIngredientOccurrenceRatio": 0.272698,
+        "recipesWithAllIngredientIdentitiesResolved": 5,
+        "allIngredientIdentityReadyRatio": 0.006649,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 752
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 752
+        }
+      },
+      {
+        "cohortId": "ORA_ARTUSI_1891_SCIENZA_CUCINA_GUTENBERG_59047",
+        "layer": "v8010",
+        "recipeCount": 829,
+        "recipesWithIngredients": 829,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 6025,
+        "resolvedIngredientOccurrences": 1273,
+        "unresolvedIngredientOccurrences": 4752,
+        "resolvedIngredientOccurrenceRatio": 0.211286,
+        "recipesWithAllIngredientIdentitiesResolved": 0,
+        "allIngredientIdentityReadyRatio": 0,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 829
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 829
+        }
+      },
+      {
+        "cohortId": "ORA_FROKEN_JENSEN_1921_KOGEBOG_23RD_FRKENJENSENSKO00JENS",
+        "layer": "v8011",
+        "recipeCount": 1372,
+        "recipesWithIngredients": 1372,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 8173,
+        "resolvedIngredientOccurrences": 1958,
+        "unresolvedIngredientOccurrences": 6215,
+        "resolvedIngredientOccurrenceRatio": 0.239569,
+        "recipesWithAllIngredientIdentitiesResolved": 11,
+        "allIngredientIdentityReadyRatio": 0.008017,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 1372
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 1372
+        }
+      },
+      {
+        "cohortId": "ORA_SELESKOWITZ_1883_WIENER_KOCHBUCH_BUB_GB_OP8YAQAAMAAJ",
+        "layer": "v8012",
+        "recipeCount": 1722,
+        "recipesWithIngredients": 1722,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 11372,
+        "resolvedIngredientOccurrences": 1543,
+        "unresolvedIngredientOccurrences": 9829,
+        "resolvedIngredientOccurrenceRatio": 0.135684,
+        "recipesWithAllIngredientIdentitiesResolved": 4,
+        "allIngredientIdentityReadyRatio": 0.002323,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 1722
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 1722
+        }
+      },
+      {
+        "cohortId": "ORA_VIARD_1806_LE_CUISINIER_IMPERIAL_LECUISINIERIMPE00VIARGOOG",
+        "layer": "v8013",
+        "recipeCount": 807,
+        "recipesWithIngredients": 807,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 6092,
+        "resolvedIngredientOccurrences": 1500,
+        "unresolvedIngredientOccurrences": 4592,
+        "resolvedIngredientOccurrenceRatio": 0.246225,
+        "recipesWithAllIngredientIdentitiesResolved": 7,
+        "allIngredientIdentityReadyRatio": 0.008674,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 807
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 807
+        }
+      },
+      {
+        "cohortId": "ORA_HEARN_1885_LA_CUISINE_CREOLE_LACUISINECREOLEC00HEAR",
+        "layer": "v8014",
+        "recipeCount": 712,
+        "recipesWithIngredients": 712,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 4686,
+        "resolvedIngredientOccurrences": 917,
+        "unresolvedIngredientOccurrences": 3769,
+        "resolvedIngredientOccurrenceRatio": 0.195689,
+        "recipesWithAllIngredientIdentitiesResolved": 9,
+        "allIngredientIdentityReadyRatio": 0.01264,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 712
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 712
+        }
+      },
+      {
+        "cohortId": "ORA_CHAN_1917_CHINESE_COOK_BOOK_CHINESECOOKBOOK00CHAN",
+        "layer": "v8015",
+        "recipeCount": 145,
+        "recipesWithIngredients": 145,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 928,
+        "resolvedIngredientOccurrences": 171,
+        "unresolvedIngredientOccurrences": 757,
+        "resolvedIngredientOccurrenceRatio": 0.184267,
+        "recipesWithAllIngredientIdentitiesResolved": 0,
+        "allIngredientIdentityReadyRatio": 0,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 145
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 145
+        }
+      },
+      {
+        "cohortId": "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN",
+        "layer": "v8016",
+        "recipeCount": 501,
+        "recipesWithIngredients": 501,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 4199,
+        "resolvedIngredientOccurrences": 806,
+        "unresolvedIngredientOccurrences": 3393,
+        "resolvedIngredientOccurrenceRatio": 0.19195,
+        "recipesWithAllIngredientIdentitiesResolved": 2,
+        "allIngredientIdentityReadyRatio": 0.003992,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 501
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 501
+        }
+      },
+      {
+        "cohortId": "ORA_FANNIE_FARMER_BOSTON_COOKING_SCHOOL_GUTENBERG_65061",
+        "layer": "v8017",
+        "recipeCount": 1776,
+        "recipesWithIngredients": 1776,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 11785,
+        "resolvedIngredientOccurrences": 2382,
+        "unresolvedIngredientOccurrences": 9403,
+        "resolvedIngredientOccurrenceRatio": 0.202121,
+        "recipesWithAllIngredientIdentitiesResolved": 6,
+        "allIngredientIdentityReadyRatio": 0.003378,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 1776
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 1776
+        }
+      },
+      {
+        "cohortId": "ORA_ATRUTEL_1874_EASY_ECONOMICAL_JEWISH_COOKERY_B2807967X",
+        "layer": "v8018",
+        "recipeCount": 481,
+        "recipesWithIngredients": 481,
+        "structuralIngredientEmpty": 0,
+        "ingredientOccurrences": 3688,
+        "resolvedIngredientOccurrences": 1024,
+        "unresolvedIngredientOccurrences": 2664,
+        "resolvedIngredientOccurrenceRatio": 0.277657,
+        "recipesWithAllIngredientIdentitiesResolved": 4,
+        "allIngredientIdentityReadyRatio": 0.008316,
+        "sourceSystemCounts": {
+          "OPEN_RECIPE_ARCHIVE_JSONL": 481
+        },
+        "quantityModelCounts": {
+          "RAW_TEXT_QUANTITY_NOT_CANONICALIZED": 481
+        }
+      }
+    ],
+    "directCurrentEngineEligibleSources": {
+      "UNITOOLS": "MEASURED_WITH_ACTUAL_CURRENT_NUTRITION_ENGINE_AFTER_EXACT_IDENTITY_AND_STRUCTURED_QUANTITY_SERVING_GATE",
+      "FORKRECIPE": "BLOCKED_RATIO_PARTS_NO_ABSOLUTE_MASS_OR_SERVINGS",
+      "CC0_MARKDOWN": "BLOCKED_CURRENT_PARSER_DOES_NOT_PRESERVE_CANONICAL_STRUCTURED_QUANTITY_OBJECTS",
+      "OPEN_RECIPE_ARCHIVE_MARKDOWN": "BLOCKED_RAW_TEXT_QUANTITY_NOT_CANONICALIZED",
+      "OPEN_RECIPE_ARCHIVE_JSONL": "BLOCKED_RAW_TEXT_QUANTITY_NOT_CANONICALIZED"
+    },
+    "unitoolsCurrentEngine": {
+      "sourceRecipeCount": 501,
+      "structurallyReadyForCurrentEngineCount": 0,
+      "authoritativeCurrentEngineCount": 0,
+      "structurallyReadyRatio": 0,
+      "authoritativeRatio": 0,
+      "blockerCounts": {
+        "IDENTITY_UNRESOLVED": 2807,
+        "STRUCTURED_QUANTITY_NOT_POSITIVE": 160
+      },
+      "sourceSelectionStateCounts": {},
+      "evidenceStateCounts": {},
+      "readyRecipeKeys": [],
+      "authoritativeRecipeKeys": []
+    }
+  },
+  "vitaminMineralApplicability": {
+    "trackedNutrientKeys": [
+      "energyKcal",
+      "proteinG",
+      "carbohydrateG",
+      "fatG",
+      "fibreG"
+    ],
+    "macroTrackedKeys": [
+      "energyKcal",
+      "proteinG",
+      "carbohydrateG",
+      "fatG",
+      "fibreG"
+    ],
+    "vitaminMineralTrackedKeys": [],
+    "vitaminMineralSchemaReady": false,
+    "authoritativeVitaminMineralRecipeCount": 0,
+    "state": "SCHEMA_NOT_IMPLEMENTED",
+    "note": "The current authoritative calculation engine exposes only energy, protein, carbohydrate, fat and fibre. No vitamin/mineral values are inferred from source datasets."
+  },
+  "interpretation": {
+    "auditPassMeansCoverageComplete": false,
+    "exactIdentityReadinessIsDiagnosticOnly": true,
+    "ingredientIdentityReadinessDoesNotAuthorizeRecommendationAdmission": true,
+    "rawTextQuantityParsingNotPromotedToAuthority": true,
+    "sourceRecipeNutritionNotImportedAsAuthority": true,
+    "currentMacroAuthorityRequiresCompleteExistingEngineCalculation": true,
+    "vitaminMineralUnknownMustRemainExplicit": true,
+    "recommendationReadinessMayUseThisAuditAsFailClosedInput": true
+  },
+  "boundaries": {
+    "d1ReadsPerformed": 0,
+    "d1WritesPerformed": 0,
+    "protectedBodiesExported": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "nutritionEvidenceAdded": false,
+    "nutritionRuntimeChanged": false,
+    "youtubeLaneModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "billingExpansion": false,
+    "thirdShardUsed": false
+  },
+  "nextGate": "RECOMMENDATION_READINESS_AUDIT"
+}
