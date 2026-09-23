@@ -362,10 +362,10 @@
         ],
         "techniques": [
           "soak_chickpeas",
-          "cook_chickpeas_very_soft",
-          "emulsify_tahini_lemon",
           "puree_chickpeas",
-          "adjust_with_water"
+          "adjust_with_water",
+          "cook_chickpeas",
+          "combine_tahini_lemon"
         ],
         "variantSignals": [
           "baking_soda_softening"
@@ -432,11 +432,11 @@
         ],
         "techniques": [
           "soak_chickpeas",
-          "cook_chickpeas_very_soft",
           "remove_some_skins",
-          "emulsify_tahini_lemon",
           "puree_chickpeas",
-          "adjust_with_cooking_liquid"
+          "adjust_with_cooking_liquid",
+          "cook_chickpeas",
+          "combine_tahini_lemon"
         ],
         "variantSignals": [
           "skin_removal"
@@ -497,11 +497,11 @@
         ],
         "techniques": [
           "soak_chickpeas",
-          "cook_chickpeas_very_soft",
           "remove_some_skins",
           "puree_chickpeas",
-          "add_tahini_lemon",
-          "adjust_with_cooking_liquid"
+          "adjust_with_cooking_liquid",
+          "cook_chickpeas",
+          "combine_tahini_lemon"
         ],
         "variantSignals": [
           "baking_soda_softening",
@@ -569,9 +569,9 @@
         ],
         "techniques": [
           "soak_chickpeas",
-          "cook_chickpeas_very_soft",
           "puree_chickpeas",
-          "add_tahini_lemon"
+          "cook_chickpeas",
+          "combine_tahini_lemon"
         ],
         "variantSignals": [
           "paprika_added",
@@ -638,9 +638,9 @@
         ],
         "techniques": [
           "soak_chickpeas",
-          "cook_chickpeas_until_tender",
           "puree_chickpeas",
-          "add_tahini_lemon"
+          "cook_chickpeas",
+          "combine_tahini_lemon"
         ],
         "variantSignals": []
       }
