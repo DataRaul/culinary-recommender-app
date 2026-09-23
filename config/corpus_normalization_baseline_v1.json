@@ -1,0 +1,237 @@
+{
+  "schemaVersion": "CULINARY_CORPUS_NORMALIZATION_BASELINE_CONTRACT_V1",
+  "state": "FROZEN_NO_WRITE_AUDIT",
+  "protectedCorpusVersion": "v8018",
+  "expectedRecipeCount": 19268,
+  "authority": {
+    "d1ReadsAuthorized": false,
+    "d1WritesAuthorized": false,
+    "sourceRefetchAtExactPinsAuthorized": true,
+    "rawSourceMetadataIsCanonicalAppAuthority": false,
+    "automaticCuisineInferenceAuthorized": false,
+    "automaticAuthenticityInferenceAuthorized": false,
+    "automaticMealRoleInferenceAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "nutritionAuthorityImported": false,
+    "publicRuntimeMutationAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false
+  },
+  "sources": {
+    "unitools": {
+      "layer": "v8001",
+      "cohortId": "unitools-world-recipes-v1_1_0",
+      "repository": "farcrak/unitools-recipes",
+      "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+      "dataPath": "unitools-recipes-v1.json",
+      "expectedCount": 501
+    },
+    "forkrecipe": {
+      "layer": "v8002",
+      "cohortId": "FORKRECIPE_PINNED_STEP7E",
+      "repository": "futurechef/forkrecipe-recipes",
+      "commit": "c32255266af39bd77444d39452f3df8088ac8fd9",
+      "recipesPath": "recipes",
+      "expectedCount": 915
+    },
+    "cc0": {
+      "layer": "v8003",
+      "cohortId": "SGAUTHIER_RECIPES_CC0_B12E481D",
+      "repository": "sylGauthier/recipes",
+      "commit": "b12e481d1c220a13e0847a34e148d5872a16928e",
+      "recipesPath": "src",
+      "expectedCount": 226
+    },
+    "ora": {
+      "repository": "AdamBouhmad/open-recipe-archive",
+      "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "cohorts": [
+        {
+          "layer": "v8004",
+          "cohortId": "ORA_ABBOTT_1864_AE3BD2C",
+          "collection": "australian-table",
+          "sourceTitle": "The English and Australian Cookery Book",
+          "sourceUrl": "https://archive.org/details/b21505524",
+          "sourceYear": "1864",
+          "expectedCount": 713
+        },
+        {
+          "layer": "v8005",
+          "cohortId": "ORA_BOSSE_WATANNA_1914_JAPANESE_SHELF_AE3BD2C",
+          "collection": "japanese-kitchen",
+          "sourceTitle": "Chinese-Japanese Cook Book",
+          "sourceUrl": "https://archive.org/details/chinesejapanesec00boss_0",
+          "sourceYear": "1914",
+          "expectedCount": 109
+        },
+        {
+          "layer": "v8006",
+          "cohortId": "ORA_TURABI_EFENDI_1864_OTTOMAN_SHELF_AE3BD2C",
+          "collection": "ottoman-turkish",
+          "sourceTitle": "A Turkish Cookery Book",
+          "sourceUrl": "https://archive.org/details/b21527830",
+          "sourceYear": "1864",
+          "expectedCount": 442
+        },
+        {
+          "layer": "v8007",
+          "cohortId": "ORA_RIGAUD_1785_PORTUGUESE_SOURCE_AE3BD2C",
+          "collection": "cozinha-portuguesa",
+          "sourceTitle": "Cozinheiro moderno, ou nova arte de cozinha",
+          "sourceUrl": "https://archive.org/details/b28764626",
+          "sourceYear": "1785",
+          "expectedCount": 789
+        },
+        {
+          "layer": "v8008",
+          "cohortId": "ORA_GALVAN_RIVERA_1845_DICCIONARIO_COCINA_AE3BD2C",
+          "collection": "cocina-mexicana",
+          "sourceTitle": "Diccionario de cocina, ó El nuevo cocinero mexicano",
+          "sourceUrl": "https://archive.org/details/bub_gb_NdQqAAAAYAAJ",
+          "sourceYear": "1845",
+          "expectedCount": 4347
+        },
+        {
+          "layer": "v8008",
+          "cohortId": "ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C",
+          "collection": "cocina-mexicana",
+          "sourceTitle": "La cocinera poblana",
+          "sourceUrl": "https://archive.org/details/lacocinerapobla00unkngoog",
+          "sourceYear": "1890",
+          "expectedCount": 2129
+        },
+        {
+          "layer": "v8009",
+          "cohortId": "ORA_MENON_1801_CUISINIERE_BOURGEOISE_B22019935",
+          "collection": "cuisine-francaise",
+          "sourceTitle": "La Cuisinière bourgeoise",
+          "sourceUrl": "https://archive.org/details/b22019935",
+          "sourceYear": "1801",
+          "expectedCount": 752
+        },
+        {
+          "layer": "v8010",
+          "cohortId": "ORA_ARTUSI_1891_SCIENZA_CUCINA_GUTENBERG_59047",
+          "collection": "cucina-italiana",
+          "sourceTitle": "La scienza in cucina e l'arte di mangiar bene",
+          "sourceUrl": "https://www.gutenberg.org/ebooks/59047",
+          "sourceYear": "1891",
+          "expectedCount": 829
+        },
+        {
+          "layer": "v8011",
+          "cohortId": "ORA_FROKEN_JENSEN_1921_KOGEBOG_23RD_FRKENJENSENSKO00JENS",
+          "collection": "danske-kokken",
+          "sourceTitle": "Frøken Jensens kogebog",
+          "sourceUrl": "https://archive.org/details/frkenjensensko00jens",
+          "sourceYear": "1921",
+          "expectedCount": 1372
+        },
+        {
+          "layer": "v8012",
+          "cohortId": "ORA_SELESKOWITZ_1883_WIENER_KOCHBUCH_BUB_GB_OP8YAQAAMAAJ",
+          "collection": "wiener-kueche",
+          "sourceTitle": "Wiener Kochbuch",
+          "sourceUrl": "https://archive.org/details/bub_gb_oP8yAQAAMAAJ",
+          "sourceYear": "1883",
+          "expectedCount": 1722
+        },
+        {
+          "layer": "v8013",
+          "cohortId": "ORA_VIARD_1806_LE_CUISINIER_IMPERIAL_LECUISINIERIMPE00VIARGOOG",
+          "collection": "cuisine-francaise",
+          "sourceTitle": "Le Cuisinier impérial",
+          "sourceUrl": "https://archive.org/details/lecuisinierimpe00viargoog",
+          "sourceYear": "1806",
+          "expectedCount": 807
+        },
+        {
+          "layer": "v8014",
+          "cohortId": "ORA_HEARN_1885_LA_CUISINE_CREOLE_LACUISINECREOLEC00HEAR",
+          "collection": "louisiana-creole",
+          "sourceTitle": "La Cuisine Creole",
+          "sourceUrl": "https://archive.org/details/lacuisinecreolec00hear",
+          "sourceYear": "1885",
+          "expectedCount": 712
+        },
+        {
+          "layer": "v8015",
+          "cohortId": "ORA_CHAN_1917_CHINESE_COOK_BOOK_CHINESECOOKBOOK00CHAN",
+          "collection": "chinese-kitchen",
+          "sourceTitle": "The Chinese Cook Book",
+          "sourceUrl": "https://archive.org/details/chinesecookbook00chan",
+          "sourceYear": "1917",
+          "expectedCount": 145
+        },
+        {
+          "layer": "v8016",
+          "cohortId": "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN",
+          "collection": "indian-kitchen",
+          "sourceTitle": "Culinary Jottings for Madras",
+          "sourceUrl": "https://archive.org/details/culinaryjottings00kenn",
+          "sourceYear": "1885",
+          "expectedCount": 501
+        },
+        {
+          "layer": "v8017",
+          "cohortId": "ORA_FANNIE_FARMER_BOSTON_COOKING_SCHOOL_GUTENBERG_65061",
+          "collection": "ye-old-american",
+          "sourceTitle": "The Boston Cooking-School Cook Book",
+          "sourceUrl": "https://www.gutenberg.org/ebooks/65061",
+          "sourceYear": "1896",
+          "expectedCount": 1776
+        },
+        {
+          "layer": "v8018",
+          "cohortId": "ORA_ATRUTEL_1874_EASY_ECONOMICAL_JEWISH_COOKERY_B2807967X",
+          "collection": "jewish-kitchen",
+          "sourceTitle": "An Easy and Economical Book of Jewish Cookery",
+          "sourceUrl": "https://archive.org/details/b2807967x",
+          "sourceYear": "1874",
+          "expectedCount": 481
+        }
+      ]
+    }
+  },
+  "rawSignalSemantics": {
+    "country": "SOURCE_HINT_ONLY",
+    "cuisine": "SOURCE_HINT_ONLY",
+    "culture": "SOURCE_HINT_ONLY",
+    "category": "SOURCE_HINT_ONLY",
+    "tags": "SOURCE_HINT_ONLY",
+    "diets": "SOURCE_HINT_ONLY",
+    "difficulty": "SOURCE_HINT_ONLY",
+    "time": "SOURCE_HINT_ONLY",
+    "servings": "SOURCE_HINT_ONLY",
+    "historicalCollectionLabel": "PROVENANCE_ONLY_NOT_CUISINE_AUTHORITY"
+  },
+  "proposedCanonicalDimensions": [
+    "geography.country",
+    "geography.region",
+    "culinary.tradition",
+    "culinary.dishCategory",
+    "culinary.mealRoles",
+    "culinary.techniqueFamilies",
+    "culinary.difficulty",
+    "time.prepMinutes",
+    "time.cookMinutes",
+    "time.totalMinutes",
+    "serving.servings",
+    "dietary.reviewedTags"
+  ],
+  "mappingStates": [
+    "EXACT_SOURCE_NORMALIZATION",
+    "REVIEWED_MAPPING",
+    "AMBIGUOUS",
+    "UNKNOWN"
+  ],
+  "acceptanceCriteria": [
+    "ALL_19268_PROTECTED_RECIPES_RECONSTRUCTED_FROM_EXACT_PINNED_SOURCES",
+    "EVERY_LAYER_AND_COHORT_COUNT_MATCHES_LIVE_PROTECTED_ANCESTRY",
+    "RAW_SOURCE_SIGNALS_PRESERVED_SEPARATELY_FROM_CANONICAL_FIELDS",
+    "NO_GUESSED_CUISINE_GEOGRAPHY_MEAL_ROLE_DIETARY_OR_AUTHENTICITY_METADATA",
+    "HISTORICAL_COLLECTION_LABELS_NEVER_AUTO_PROMOTED_TO_CUISINE_AUTHORITY",
+    "NORMALIZATION_MAPPING_MUST_BE_VERSIONED_DETERMINISTIC_AND_REVERSIBLE",
+    "UNKNOWN_AND_AMBIGUOUS_STATES_REMAIN_EXPLICIT",
+    "NO_RECOMMENDATION_NUTRITION_PUBLIC_RUNTIME_D1_OR_KNOWLEDGE_CORE_MUTATION"
+  ]
+}
