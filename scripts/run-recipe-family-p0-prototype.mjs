@@ -17,7 +17,7 @@ const [config, packet] = await Promise.all([
 
 const basePolicy = {
   minimumIndependentObservations: 3,
-  quantitativePolicy: { minimumIndependent: 3, maxRobustSpreadRatio: 4 }
+  quantitativePolicy: { minimumIndependent: 3, minimumDistinctPublishers: 2, maxRobustSpreadRatio: 4 }
 };
 
 const definitions = [
@@ -87,6 +87,7 @@ const families = familyDetails.map(row => ({
       basis: item.selected.basis,
       unit: item.selected.unit,
       independentObservationCount: item.selected.independentObservationCount,
+      distinctPublisherCount: item.selected.distinctPublisherCount,
       observedRange: item.selected.observedRange,
       robustCenter: item.selected.robustCenter,
       recommendedRange: item.selected.recommendedRange,
