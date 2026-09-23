@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "CULINARY_RECOMMENDATION_READINESS_AUDIT_CONTRACT_V1",
+  "state": "FROZEN_AUDIT_CONTRACT_NO_RUNTIME_MUTATION",
+  "protectedCorpusVersion": "v8018",
+  "expectedProtectedRecipeCount": 19268,
+  "expectedPublicRuntimeRecipeCount": 85,
+  "legalRuntimeConfig": "config/legal_corpus_first_private_runtime.json",
+  "normalizationSummary": "data/generated/corpus-normalization-mapping-v1.json",
+  "nutritionApplicabilitySummary": "data/generated/nutrition-vitamin-applicability-audit-v1.json",
+  "authority": {
+    "d1ReadsAuthorized": false,
+    "d1WritesAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "publicCorpusWideningAuthorized": false,
+    "recommendationBehaviorMutationAuthorized": false,
+    "newRecipeAdmissionAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "youtubeRetryAuthorized": false,
+    "thirdShardAuthorized": false,
+    "billingExpansionAuthorized": false
+  },
+  "readinessDimensions": [
+    "RIGHTS_AND_PROVENANCE",
+    "STRUCTURAL_RECIPE_USABILITY",
+    "CANONICAL_INGREDIENT_IDENTITY",
+    "HARD_DIETARY_AND_ALLERGEN_METADATA",
+    "MEAL_ROLE_TIME_AND_DIFFICULTY",
+    "RUNTIME_SOFT_METADATA",
+    "NUTRITION_STATE_TRANSPARENCY",
+    "GOVERNANCE_RECOMMENDATION_STATE",
+    "FAIL_CLOSED_SHORTFALL_BEHAVIOR"
+  ],
+  "acceptanceCriteria": [
+    "LEGAL_CORPUS_BASELINE_PASS_REMAINS_FROZEN_AT_V8018_19268",
+    "NORMALIZATION_MAPPING_AND_NUTRITION_APPLICABILITY_SUMMARIES_BOTH_PASS",
+    "PUBLIC_RUNTIME_REMAINS_EXACTLY_85_RECIPES_WITH_NO_NEW_ADMISSION",
+    "EVERY_RECOMMENDATION_ELIGIBLE_PUBLIC_RECORD_HAS_REQUIRED_HARD_METADATA",
+    "SEARCH_ONLY_AND_REFERENCE_ONLY_RECORDS_REMAIN_FAIL_CLOSED_OUTSIDE_THEIR_AUTHORIZED_SURFACE",
+    "UNKNOWN_NUTRITION_IS_NOT_NUMERICALLY_COERCED_TO_ZERO_IN_RECOMMENDATION_COMPONENTS",
+    "PROTECTED_CORPUS_UNKNOWN_DIETARY_OR_INCOMPLETE_HARD_METADATA_CANNOT_GAIN_AUTOMATIC_RECOMMENDATION_ADMISSION",
+    "IDENTITY_READY_PROTECTED_RECORDS_ARE_REVIEW_CANDIDATES_ONLY_NOT_AUTO_ADMITTED",
+    "NO_D1_PUBLIC_CORPUS_RECOMMENDATION_KC_YOUTUBE_SHARD_OR_BILLING_MUTATION"
+  ],
+  "nextGateOnUsableBaselinePass": "RECIPE_FAMILY_AND_ADAPTATION",
+  "nextActionOnReadinessDefect": "REPAIR_RECOMMENDATION_READINESS_DEFECT_AND_RERUN_AUDIT"
+}
