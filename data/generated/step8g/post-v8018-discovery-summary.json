@@ -1,8 +1,8 @@
 {
-  "schema": "CULINARY_STEP8G_POST_V8018_DISCOVERY_SUMMARY_V1",
+  "schema": "CULINARY_STEP8G_POST_V8018_DISCOVERY_SUMMARY_V2",
   "date": "2026-09-23",
   "pass": true,
-  "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_CANDIDATES_FOUND",
+  "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_NO_MATERIAL_CANDIDATE",
   "baseline": {
     "activeProtectedVersion": "v8018",
     "activeProtectedCount": 19268,
@@ -10,146 +10,64 @@
     "distinctNormalizedTitles": 18216,
     "distinctIngredientPhrases": 46747
   },
-  "workflowRun": 35797274824,
-  "artifactId": 10723939351,
-  "artifactName": "step8g-ora-next-discovery-c31-g59-m13-e11",
+  "thresholds": {
+    "minSourceRecipeCount": 50,
+    "minParseableRatio": 0.95,
+    "minUniqueTitleRatio": 0.8,
+    "minNovelTitleRatio": 0.5
+  },
+  "workflowRun": 35854872418,
+  "artifactId": 10746649788,
+  "artifactName": "step8g-ora-next-discovery-c31-g59-m2-e0",
   "collectionCount": 31,
   "sourceGroupCount": 59,
-  "measuredCandidateCount": 13,
-  "rightsReviewEligibleCount": 11,
-  "nextAuthority": "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY",
-  "leadingCandidate": {
-    "collection": "ye-old-american",
-    "sourceTitle": "American Cookery",
-    "sourceUrl": "https://www.gutenberg.org/ebooks/12815",
-    "sourceAuthor": "Amelia Simmons",
-    "sourceYear": "1796",
-    "recipeCount": 122,
-    "parseableRecipeRatio": 1,
-    "uniqueTitleRatio": 0.9344262295081968,
-    "novelTitleRatio": 0.8947368421052632,
-    "novelNormalizedTitleCount": 102,
-    "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW"
-  },
-  "topRightsReviewCandidates": [
-    {
-      "sourceTitle": "American Cookery",
-      "sourceAuthor": "Amelia Simmons",
-      "sourceYear": "1796",
-      "recipeCount": 122,
-      "novelTitleRatio": 0.8947368421052632,
-      "novelNormalizedTitleCount": 102,
-      "sourceUrl": "https://www.gutenberg.org/ebooks/12815"
-    },
-    {
-      "sourceTitle": "The Book of Household Management",
-      "sourceAuthor": "Isabella Beeton",
-      "sourceYear": "1861",
-      "recipeCount": 1382,
-      "novelTitleRatio": 0.8572485207100592,
-      "novelNormalizedTitleCount": 1159,
-      "sourceUrl": "https://www.gutenberg.org/ebooks/10136"
-    },
-    {
-      "sourceTitle": "Miss Leslie's Complete Cookery",
-      "sourceAuthor": "Eliza Leslie",
-      "sourceYear": "1851",
-      "recipeCount": 835,
-      "novelTitleRatio": 0.8310727496917386,
-      "novelNormalizedTitleCount": 674,
-      "sourceUrl": "https://www.gutenberg.org/ebooks/60025"
-    },
-    {
-      "sourceTitle": "The Whitehouse Cookbook",
-      "sourceAuthor": "F.L. Gillette",
-      "sourceYear": "1887",
-      "recipeCount": 1499,
-      "novelTitleRatio": 0.8306620209059233,
-      "novelNormalizedTitleCount": 1192,
-      "sourceUrl": "https://www.gutenberg.org/ebooks/13923"
-    },
-    {
-      "sourceTitle": "The International Jewish Cook Book",
-      "sourceAuthor": "Florence Kreisler Greenbaum",
-      "sourceYear": "1918",
-      "recipeCount": 1492,
-      "novelTitleRatio": 0.8269774011299436,
-      "novelNormalizedTitleCount": 1171,
-      "sourceUrl": "https://archive.org/details/cu31924003580952"
-    },
-    {
-      "sourceTitle": "The Virginia Housewife; Or, Methodical Cook",
-      "sourceAuthor": "Mary Randolph",
-      "sourceYear": "1824",
-      "recipeCount": 445,
-      "novelTitleRatio": 0.8261904761904761,
-      "novelNormalizedTitleCount": 347,
-      "sourceUrl": "https://www.gutenberg.org/ebooks/12519"
-    },
-    {
-      "sourceTitle": "Common Sense in the Household",
-      "sourceAuthor": "Marion Harland",
-      "sourceYear": "1871",
-      "recipeCount": 928,
-      "novelTitleRatio": 0.8013392857142857,
-      "novelNormalizedTitleCount": 718,
-      "sourceUrl": "https://www.gutenberg.org/ebooks/48804"
-    },
-    {
-      "sourceTitle": "The Creole Cookery Book",
-      "sourceAuthor": "Christian Woman's Exchange",
-      "sourceYear": "1885",
-      "recipeCount": 847,
-      "novelTitleRatio": 0.7804195804195804,
-      "novelNormalizedTitleCount": 558,
-      "sourceUrl": "https://archive.org/details/creolecookerybo00unkngoog"
-    },
-    {
-      "sourceTitle": "The Art of Living in Australia",
-      "sourceAuthor": "Philip E. Muskett",
-      "sourceYear": "1893",
-      "recipeCount": 297,
-      "novelTitleRatio": 0.7755102040816326,
-      "novelNormalizedTitleCount": 228,
-      "sourceUrl": "https://archive.org/details/artoflivinginaus00muskiala"
-    },
-    {
-      "sourceTitle": "The Canadian Family Cook Book",
-      "sourceAuthor": "Grace E. Denison",
-      "sourceYear": "1914",
-      "recipeCount": 1146,
-      "novelTitleRatio": 0.7718396714579056,
-      "novelNormalizedTitleCount": 751,
-      "sourceUrl": "https://archive.org/details/canadianfamilyco00deni_0"
-    },
-    {
-      "sourceTitle": "The Jewish Manual",
-      "sourceAuthor": "Judith Cohen Montefiore (attr.)",
-      "sourceYear": "1846",
-      "recipeCount": 409,
-      "novelTitleRatio": 0.7648578811369509,
-      "novelNormalizedTitleCount": 296,
-      "sourceUrl": "https://archive.org/details/b22021371"
-    }
-  ],
-  "structurallyRejected": [
+  "measuredCandidateCount": 2,
+  "rightsReviewEligibleCount": 0,
+  "topRightsReviewCandidates": [],
+  "remainingMeasuredCandidates": [
     {
       "sourceTitle": "Iduns kokbok",
+      "sourceAuthor": "Elisabeth Östman",
+      "sourceYear": "1911",
       "recipeCount": 2818,
-      "novelTitleRatio": 0.6253,
-      "reason": "MARGINAL_VALUE_THRESHOLD_FAIL"
+      "uniqueTitleRatio": 0.6252661462029808,
+      "novelTitleRatio": 0.9971623155505108,
+      "discoveryEligibleForRightsReview": false,
+      "disposition": "MARGINAL_VALUE_THRESHOLD_FAIL"
     },
     {
       "sourceTitle": "Hemmets kokbok",
+      "sourceAuthor": "Fackskolan för huslig ekonomi",
+      "sourceYear": "1911",
       "recipeCount": 1486,
-      "novelTitleRatio": 0.7093,
-      "reason": "MARGINAL_VALUE_THRESHOLD_FAIL"
+      "uniqueTitleRatio": 0.7092866756393001,
+      "novelTitleRatio": 0.9971537001897534,
+      "discoveryEligibleForRightsReview": false,
+      "disposition": "MARGINAL_VALUE_THRESHOLD_FAIL"
     }
   ],
+  "sourceReviewCloseout": {
+    "startingRightsReviewEligibleCount": 11,
+    "finalRightsReviewEligibleCount": 0,
+    "mergedHoldPrs": [
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      264,
+      265,
+      266,
+      267,
+      268
+    ],
+    "conclusion": "All source-level cohorts that cleared the preregistered discovery screen were either already admitted or fail-closed on source-specific rights/provenance review. No additional material source cohort remains eligible for review in the pinned ORA discovery universe."
+  },
+  "baselineDecision": "LEGAL_CORPUS_BASELINE_PASS",
+  "nextAuthority": "CORPUS_NORMALIZATION_AND_CATEGORIZATION_BASELINE",
   "boundaries": {
     "liveD1WritesPerformed": 0,
-    "sourceRightsClearedByDiscovery": false,
-    "measurementEarnedByDiscovery": false,
     "protectedPopulationAuthorized": false,
     "publicRuntimeChangeAuthorized": false,
     "recommendationAdmissionAuthorized": false,
@@ -158,7 +76,6 @@
     "billingExpansionAuthorized": false,
     "nutritionLaneModified": false,
     "youtubeCulinaryStateModified": false,
-    "knowledgeCoreWritePerformed": false,
-    "culturalAuthenticityAuthorityImported": false
+    "knowledgeCoreWritePerformed": false
   }
 }

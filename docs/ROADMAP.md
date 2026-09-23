@@ -37,10 +37,21 @@
 | V1.x / Recipe-unlock evidence | CONTINUOUS | target residual composition/form, nutrient-field and exact quantity blockers by recipe-level unlock value; independent of external RecipeSource breadth |
 | V1.x / Authoritative nutrition coverage | CONTINUOUS | expand reviewed evidence under the approved source policy without guessing |
 | V1.x / Corpus breadth | F2 CONTROL PLANE ACTIVE / RUNTIME GATED | broaden through revision-aware review and measured coverage gaps rather than raw recipe-count growth; no automatic admission |
+| V1.x / Legal Corpus Baseline | COMPLETE / PASS | v8018 protected corpus = 19,268; final hold-adjusted discovery found 0 rights-review-eligible material cohorts; next primary lane is corpus normalization/categorization |
 | V1.x / Corpus Scale / 100k Readiness | USER-ACCEPTED TARGET / STEP 1 READY | Cloudflare Pages + exact-email Access/OTP + Worker + R2/pre-built indexes; D1 benchmark-gated; portable provider-neutral corpus; no mass ingestion yet |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
 | Post-usable-app / Barbecue Technique Corpus | PLANNED / OWNER-PRIORITY | five-source one-shot YouTube synthesis into conventional-barbecue technique families, ranges, alternatives and safety constraints; no transcripts/images/media/copying |
+
+## 2026-09-23 Legal corpus baseline — PASS
+
+The Legal Corpus First loop reached its evidence-based stop condition at **v8018 / 19,268 protected recipes**. After the 11 post-v8018 rights-review-eligible cohorts were handled source-by-source, final no-write discovery run `35854872418` produced `STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_NO_MATERIAL_CANDIDATE`: 2 measured candidates and **0 rights-review-eligible candidates**. The canonical closeout is `docs/CORPUS_SCALE_STEP8G_POST_V8018_BASELINE_REASSESSMENT.md`.
+
+The controlling post-baseline order now applies:
+
+`corpus normalization/categorization -> nutrition/vitamin applicability audit -> recommendation readiness -> Recipe Family/adaptation -> YouTube/authoritative-evidence refinement -> further product features`
+
+The immediate primary action is a **no-write corpus normalization/categorization baseline audit**. This pass does not authorize a new source cohort, v8019, public corpus widening, recommendation behavior changes, a third shard, paid infrastructure, YT-CUL retry or Knowledge Core writes.
 
 ## 2026-09-01 Brain / World Recipe Atlas reconciliation
 
@@ -477,9 +488,11 @@ There is **no minimum E retention target**. If 40k of 118k clear the gate, use 4
 
 Large research-only/reuse-unclear corpora remain excluded from production: Recipe Box ~125k (`FAILED_CURRENT_ADMISSION`), RecipeNLG 2.23M (`FAIL_PRODUCTION / research-educational terms`), and Recipe1M+ >1M (`FAIL_PRODUCTION / research-institution access`).
 
-### Next executable action / handover boundary
+### Scale-program ready action / not the current primary product lane
 
-**NEXT ACTION: STEP 1 — CORPUS SCALE CONTRACT + SYNTHETIC BENCHMARK HARNESS.**
+**SCALE PROGRAM READY ACTION: STEP 1 — CORPUS SCALE CONTRACT + SYNTHETIC BENCHMARK HARNESS.**
+
+This scale-program action remains technically ready, but the later Legal Corpus First sequencing decision controls the primary product order. After the 2026-09-23 `LEGAL_CORPUS_BASELINE_PASS`, the current primary lane is corpus normalization/categorization. Do not use this older scale-program readiness note to bypass that ordering.
 
 The next implementation chat should start here without reopening the already accepted architecture choice:
 

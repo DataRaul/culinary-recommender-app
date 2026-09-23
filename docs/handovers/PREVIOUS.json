@@ -1,28 +1,34 @@
 {
-  "handover": "CULINARY_APP_V8018_LIVE_POST_DISCOVERY_AMERICAN_COOKERY_RIGHTS_REVIEW_V67",
+  "handover": "CULINARY_APP_V8018_LIVE_POST_HOLDS_COMMON_SENSE_RIGHTS_REVIEW_V68",
   "handover_date": "2026-09-23",
   "timezone": "Atlantic/Canary",
-  "status": "V8018_LIVE_19268__POST_V8018_DISCOVERY_PASS_11_RIGHTS_REVIEW_ELIGIBLE__LEGAL_CORPUS_BASELINE_NOT_EARNED__AMERICAN_COOKERY_RIGHTS_REVIEW_NEXT__GORRITI_HOLD__YT_CUL_QUOTA_POLICY_HOLD",
+  "status": "V8018_LIVE_19268__LEGAL_CORPUS_BASELINE_NOT_EARNED__5_RIGHTS_REVIEW_ELIGIBLE__COMMON_SENSE_RIGHTS_REVIEW_NEXT__SIX_NEW_SOURCE_HOLDS_MERGED__GORRITI_HOLD__YT_CUL_QUOTA_POLICY_HOLD",
   "human_needed": false,
-  "handover_written_against_main_sha": "cf69640eaa8b4d42490a9ebb409c79ed9190061a",
+  "handover_written_against_main_sha": "82e2241a7db7be189cec3e50d2576e100ea5f0a9",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
-    "atrutel_rights_measurement_pr": 249,
-    "atrutel_rights_measurement_merge_sha": "e18720af7ee98e41a44f36308274e3524c0e6954",
-    "atrutel_v8018_prewrite_pr": 250,
-    "atrutel_v8018_prewrite_merge_sha": "b1813107387bc13744f0a804fd284ad24588b92a",
-    "atrutel_v8018_runtime_pr": 252,
-    "atrutel_v8018_runtime_merge_sha": "4da0fd24289844d1a5e4befbeade2d1cbb79abc1",
-    "atrutel_v8018_closeout_discovery_pr": 254,
-    "atrutel_v8018_closeout_discovery_merge_sha": "cf69640eaa8b4d42490a9ebb409c79ed9190061a",
-    "post_v8018_discovery_run": 35797483025,
-    "post_v8018_discovery_artifact_id": 10724732272,
-    "post_v8018_discovery_artifact_digest": "sha256:1e356fce02a41152068c91e21c0f21e60bb330b30f06d944fc22db391a007ddc",
-    "post_v8018_public_validation_run": 35797482875,
-    "cloudflare_preview_status": "PASS",
+    "v8018_closeout_pr": 254,
+    "v8018_closeout_merge_sha": "cf69640eaa8b4d42490a9ebb409c79ed9190061a",
+    "american_cookery_hold_pr": 256,
+    "american_cookery_hold_merge_sha": "e60c9dbd0987dbf607309a278b463c619691180d",
+    "beeton_hold_pr": 257,
+    "beeton_hold_merge_sha": "28091e9b3290051daf89c620e34fb0c4951d0c06",
+    "leslie_hold_pr": 258,
+    "leslie_hold_merge_sha": "cd1a216b5f4972ca980eb349d3fb27cf7b4eb901",
+    "whitehouse_hold_pr": 259,
+    "whitehouse_hold_merge_sha": "486947ea0c92b2a9eb4acb889e8afb1b5d5abef9",
+    "greenbaum_hold_pr": 260,
+    "greenbaum_hold_merge_sha": "787c512927945101dcd59aa3ba49affb526ba6de",
+    "randolph_hold_pr": 261,
+    "randolph_hold_merge_sha": "82e2241a7db7be189cec3e50d2576e100ea5f0a9",
+    "duplicate_whitehouse_pr_closed_unmerged": 262,
+    "latest_hold_adjusted_discovery_run": 35800384886,
+    "latest_hold_adjusted_discovery_artifact_id": 10725547900,
+    "latest_hold_adjusted_discovery_artifact_digest": "sha256:2656fe89e50903fece4092223b4b1b47407b3f904252c9faa601287412c1aa87",
+    "latest_public_validation_run": 35800384944,
     "open_pr_count_before_handover": 0,
-    "handover_branch": "handover/v8018-live-post-discovery-v67"
+    "handover_branch": "handover/v8018-post-holds-v68"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -42,8 +48,8 @@
     "billing": "NO_BILLING_AUTHORIZATION"
   },
   "operating_contract": {
-    "autonomy": "Ordinary source-specific documentary rights/provenance review, bounded no-write measurement, implementation PRs and expected repository CI are standing-preapproved under AGENTS.md. No human gate is active. Stop only at a genuine rights/access/security/cost/topology/owner-auth production gate or terminal material result.",
-    "rights": "Proceed source-by-source and fail closed. Discovery ranking does not clear rights. Gorriti 1890 remains held on unresolved separately attributed contributor terms.",
+    "autonomy": "Ordinary source-specific documentary rights/provenance review, bounded no-write measurement, implementation PRs and expected repository CI are standing-preapproved under AGENTS.md. No human gate is active.",
+    "rights": "Proceed source-by-source and fail closed on material author/editor/contributor/edition/provenance ambiguity. Discovery ranking does not clear rights. A source that fails rights/provenance is excluded by exact source key before the next ranking run.",
     "storage": "Protected recipe bodies remain private in Cloudflare D1; GitHub contains code, descriptors, fingerprints and public-safe evidence only.",
     "d1": "Optimized operational target remains <=8 D1 subqueries/request. Hard fail-safe 16 is not spendable headroom. Preserve delta-route ancestry and zero parent-route copying.",
     "topology": "Exactly two protected recipe-body D1 shards. No third shard is authorized.",
@@ -54,17 +60,17 @@
     "legal_corpus_config": "config/legal_corpus_first_private_runtime.json",
     "legal_corpus_decision": "docs/LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_DECISION.md",
     "handover_protocol": "docs/HANDOVER_PROTOCOL.md",
-    "atrutel_1874_rights_measurement": "docs/CORPUS_SCALE_STEP8G_ATRUTEL_1874_RIGHTS_AND_MEASUREMENT.md",
-    "atrutel_1874_measurement_evidence": "data/generated/step8g/atrutel-1874-v8017-measurement.json",
-    "atrutel_v8018_prewrite": "docs/CORPUS_SCALE_STEP8G_ATRUTEL_V8018_PREWRITE.md",
-    "atrutel_v8018_prewrite_evidence": "data/generated/step8g/atrutel-v8018-prewrite-evidence.json",
-    "v8018_runtime_descriptor": "data/generated/step8g/v8018-runtime-descriptor.mjs",
-    "v8018_owner_runner": "step8g-v8018-populate.html",
     "v8018_live_pass": "data/generated/step8g/atrutel-v8018-live-pass.json",
     "v8018_live_pass_doc": "docs/CORPUS_SCALE_STEP8G_ATRUTEL_V8018_LIVE_POPULATION_PASS.md",
     "post_v8018_discovery": "data/generated/step8g/post-v8018-discovery-summary.json",
     "post_v8018_baseline_reassessment": "docs/CORPUS_SCALE_STEP8G_POST_V8018_BASELINE_REASSESSMENT.md",
     "gorriti_1890_hold": "docs/CORPUS_SCALE_STEP8G_GORRITI_1890_CONTRIBUTOR_RIGHTS_HOLD.md",
+    "american_cookery_1796_hold": "docs/CORPUS_SCALE_STEP8G_AMERICAN_COOKERY_1796_TRANSCRIBER_PROVENANCE_HOLD.md",
+    "beeton_1861_hold": "docs/CORPUS_SCALE_STEP8G_BEETON_1861_CONTRIBUTOR_PROVENANCE_HOLD.md",
+    "leslie_1851_hold": "docs/CORPUS_SCALE_STEP8G_LESLIE_1851_EDITION_PROVENANCE_HOLD.md",
+    "whitehouse_1887_hold": "docs/CORPUS_SCALE_STEP8G_WHITEHOUSE_1887_COAUTHOR_PROVENANCE_HOLD.md",
+    "greenbaum_1918_hold": "docs/CORPUS_SCALE_STEP8G_GREENBAUM_1918_SPAIN_TERM_HOLD.md",
+    "randolph_1824_hold": "docs/CORPUS_SCALE_STEP8G_RANDOLPH_1824_EDITION_PROVENANCE_HOLD.md",
     "youtube_culinary_roadmap": "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md",
     "youtube_culinary_work_unit_state": "data/generated/youtube-culinary-work-unit-state.json",
     "youtube_culinary_daily_state": "data/generated/youtube-culinary-daily-discovery-state.json",
@@ -95,56 +101,76 @@
     "third_shard_used": false,
     "billing_expansion": false
   },
-  "v8018_live_closeout": {
-    "owner_terminal": "STEP_8G_ATRUTEL_V8018_PROTECTED_POPULATION_PASS",
-    "restart_safe_runner": true,
-    "idempotent_body_replay_pass": true,
-    "idempotent_route_replay_pass": true,
-    "eighteen_layer_hydration_pass": true,
-    "rollback_pass": true,
-    "rollback_hydration_fail_closed_pass": true,
-    "final_protected_active_version": "v8018",
-    "cultural_authenticity_authority_imported": false,
-    "religious_practice_authority_imported": false,
-    "closeout_pr": 254,
-    "closeout_merge_sha": "cf69640eaa8b4d42490a9ebb409c79ed9190061a"
-  },
-  "legal_corpus_baseline": {
-    "status": "LEGAL_CORPUS_BASELINE_NOT_YET_EARNED__CONTINUE_SOURCE_REVIEW",
-    "current_live_version": "v8018",
-    "current_live_recipe_count": 19268,
-    "post_v8018_discovery_workflow_run": 35797483025,
-    "post_v8018_discovery_artifact_id": 10724732272,
-    "collection_count": 31,
-    "source_group_count": 59,
-    "measured_candidate_count": 13,
-    "rights_review_eligible_count": 11,
-    "reason": "Fresh no-write discovery against v8018 / 19,268 still found 11 source-level cohorts above the preregistered structural and marginal-value thresholds. The Legal Corpus First loop therefore remains active; recipe count alone is not the stop condition.",
-    "next_source_review": {
-      "sourceTitle": "American Cookery",
-      "sourceAuthor": "Amelia Simmons",
-      "sourceYear": "1796",
-      "sourceUrl": "https://www.gutenberg.org/ebooks/12815",
-      "recipeCount": 122,
-      "parseableRecipeRatio": 1,
-      "uniqueTitleRatio": 0.9344262295081968,
-      "novelTitleRatio": 0.8947368421052632,
-      "novelNormalizedTitleCount": 102,
-      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW",
-      "nextAuthority": "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
-    },
-    "other_material_candidates": [
-      "The Book of Household Management — Isabella Beeton — 1861 — 1382 recipes",
-      "Miss Leslie's Complete Cookery — Eliza Leslie — 1851 — 835 recipes",
-      "The Whitehouse Cookbook — F.L. Gillette — 1887 — 1499 recipes",
-      "The International Jewish Cook Book — Florence Kreisler Greenbaum — 1918 — 1492 recipes",
-      "The Virginia Housewife; Or, Methodical Cook — Mary Randolph — 1824 — 445 recipes",
+  "source_review_progress": {
+    "starting_rights_review_eligible_count": 11,
+    "latest_measured_candidate_count": 7,
+    "latest_rights_review_eligible_count": 5,
+    "latest_discovery_terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_CANDIDATES_FOUND",
+    "latest_discovery_run": 35800384886,
+    "latest_discovery_artifact_id": 10725547900,
+    "latest_discovery_artifact_name": "step8g-ora-next-discovery-c31-g59-m7-e5",
+    "merged_holds": [
+      {
+        "source": "American Cookery — Amelia Simmons — ORA 1796 — Gutenberg 12815",
+        "disposition": "HOLD_PROVENANCE_FAIL_CLOSED__UNNAMED_PRESS_PREPARER_ALTERATIONS__ORA_PRESERVES_UNCORRECTED_VALUES",
+        "pr": 256
+      },
+      {
+        "source": "The Book of Household Management — Isabella Beeton — 1861 — Gutenberg 10136",
+        "disposition": "HOLD_RIGHTS_PROVENANCE_FAIL_CLOSED__UNNAMED_RECIPE_CONTRIBUTORS_AND_OTHER_SOURCE_MATERIAL__ORA_FLATTENS_ATTRIBUTION_TO_BEETON",
+        "pr": 257
+      },
+      {
+        "source": "Miss Leslie's Complete Cookery — Eliza Leslie — ORA 1851 — Gutenberg 60025",
+        "disposition": "HOLD_PROVENANCE_FAIL_CLOSED__ORA_1851_CONFLICTS_WITH_EXACT_GUTENBERG_1853_FORTY_NINTH_REVISED_EDITION",
+        "pr": 258
+      },
+      {
+        "source": "The Whitehouse Cookbook — F.L. Gillette — 1887 — Gutenberg 13923",
+        "disposition": "HOLD_PROVENANCE_FAIL_CLOSED__ORA_OMITS_HUGO_ZIEMANN_COAUTHOR",
+        "pr": 259
+      },
+      {
+        "source": "The International Jewish Cook Book — Florence Kreisler Greenbaum — 1918",
+        "disposition": "HOLD_RIGHTS_FAIL_CLOSED__SPAIN_TERM_UNRESOLVED_WITHOUT_VERIFIED_AUTHOR_DEATH_DATE",
+        "pr": 260
+      },
+      {
+        "source": "The Virginia Housewife; Or, Methodical Cook — Mary Randolph — ORA 1824 — Gutenberg 12519",
+        "disposition": "HOLD_PROVENANCE_FAIL_CLOSED__ORA_1824_CONFLICTS_WITH_EXACT_GUTENBERG_1860_EDITION",
+        "pr": 261
+      }
+    ],
+    "remaining_rights_review_candidates": [
       "Common Sense in the Household — Marion Harland — 1871 — 928 recipes",
       "The Creole Cookery Book — Christian Woman's Exchange — 1885 — 847 recipes",
       "The Art of Living in Australia — Philip E. Muskett — 1893 — 297 recipes",
       "The Canadian Family Cook Book — Grace E. Denison — 1914 — 1146 recipes",
       "The Jewish Manual — Judith Cohen Montefiore (attr.) — 1846 — 409 recipes"
     ]
+  },
+  "legal_corpus_baseline": {
+    "status": "LEGAL_CORPUS_BASELINE_NOT_YET_EARNED__CONTINUE_SOURCE_REVIEW",
+    "current_live_version": "v8018",
+    "current_live_recipe_count": 19268,
+    "collection_count": 31,
+    "source_group_count": 59,
+    "measured_candidate_count": 7,
+    "rights_review_eligible_count": 5,
+    "reason": "After six source-specific fail-closed holds, fresh no-write discovery against v8018 / 19,268 still finds five source-level cohorts above the preregistered structural and marginal-value thresholds. Continue Legal Corpus First source-by-source; recipe count alone is not the stop condition.",
+    "next_source_review": {
+      "sourceTitle": "Common Sense in the Household",
+      "sourceAuthor": "Marion Harland",
+      "sourceYear": "1871",
+      "sourceUrl": "https://www.gutenberg.org/ebooks/48804",
+      "recipeCount": 928,
+      "parseableRecipeRatio": 1,
+      "uniqueTitleRatio": 0.9655172413793104,
+      "novelTitleRatio": 0.8013392857142857,
+      "novelNormalizedTitleCount": 718,
+      "rightsReviewStatus": "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW",
+      "nextAuthority": "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
+    }
   },
   "concurrent_child_programmes": {
     "youtube_culinary": {
@@ -188,18 +214,18 @@
   "next_action": {
     "state": "READY__SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY",
     "actor": "AUTONOMOUS_CORPUS_LANE",
-    "source": "American Cookery — Amelia Simmons — 1796 — Gutenberg 12815",
-    "action": "Perform exact source-specific documentary rights/provenance review for American Cookery at https://www.gutenberg.org/ebooks/12815. Independently verify exact edition/work identity, authorship/attribution and Spain-facing rights status rather than relying on ORA public-domain metadata alone. Fail closed on any contributor/editor/edition ambiguity. If and only if rights/provenance pass, run bounded no-write marginal-value measurement against live v8018 / 19,268. Do not prewrite or populate v8019 until measurement separately earns that authority."
+    "source": "Common Sense in the Household — Marion Harland — 1871 — Gutenberg 48804",
+    "action": "Perform exact source-specific documentary rights/provenance review for Common Sense in the Household at https://www.gutenberg.org/ebooks/48804. Independently verify exact edition/work identity, authorship/attribution and Spain-facing rights status rather than relying on ORA public-domain metadata alone. Fail closed on any material editor/contributor/edition ambiguity. If and only if rights/provenance pass, run bounded no-write marginal-value measurement against live v8018 / 19,268. Do not prewrite or populate v8019 until measurement separately earns that authority."
   },
-  "terminal_instruction_for_new_chat": "Continue the Culinary App / Culinary Recommender lane from docs/handovers/CURRENT.json. Fresh-reconcile live GitHub first; live state outranks this handover. Protected production is v8018 / 19,268 with terminal STEP_8G_ATRUTEL_V8018_PROTECTED_POPULATION_PASS, 18 hydration layers, exactly two shards, zero parent-route copying and maxObservedD1Subqueries=8. PR #254 merged the live closeout plus fresh post-v8018 discovery at cf69640eaa8b4d42490a9ebb409c79ed9190061a. Fresh discovery found 13 measured candidates and 11 rights-review-eligible cohorts, so LEGAL_CORPUS_BASELINE_PASS is not earned. The exact next autonomous authority is SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY for American Cookery by Amelia Simmons (1796), Gutenberg 12815; if rights/provenance pass, perform bounded no-write marginal-value measurement before any v8019 prewrite. Preserve Gorriti 1890 contributor-rights hold, YT-CUL DAILY_SEARCH_HOLD_POLICY_OR_QUOTA, two-shard topology, <=8 optimized D1 target, hard 16 non-spendable headroom, public runtime 85, no billing/public recommendation widening, no Nutrition/Recipe Family mutation and no Knowledge Core writes.",
+  "terminal_instruction_for_new_chat": "Continue the Culinary App / Culinary Recommender lane from docs/handovers/CURRENT.json. Fresh-reconcile live GitHub first; live state outranks the handover. Protected production remains v8018 / 19,268 with terminal STEP_8G_ATRUTEL_V8018_PROTECTED_POPULATION_PASS, 18 hydration layers, exactly two shards, zero parent-route copying and maxObservedD1Subqueries=8. Since V67, American Cookery, Beeton, Miss Leslie, Whitehouse, Greenbaum and Randolph were each source-specifically reviewed and fail-closed on exact provenance/rights issues in PRs #256-#261. Fresh no-write discovery after Randolph reports 7 measured candidates and 5 rights-review-eligible cohorts; LEGAL_CORPUS_BASELINE_PASS is still not earned. The exact next autonomous authority is SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY for Common Sense in the Household by Marion Harland (1871), Gutenberg 48804. If rights/provenance pass, perform bounded no-write marginal-value measurement before any v8019 prewrite. Preserve Gorriti and all other registered holds, YT-CUL DAILY_SEARCH_HOLD_POLICY_OR_QUOTA, two-shard topology, <=8 optimized D1 target, hard 16 non-spendable headroom, public runtime 85, no billing/public recommendation widening, no Nutrition/Recipe Family mutation and no Knowledge Core writes.",
   "continuation_boundary": {
-    "reason": "USER_REQUESTED_HANDOVER__V8018_LIVE_CLOSEOUT_AND_POST_V8018_DISCOVERY_MERGED_GREEN__NEXT_SOURCE_RIGHTS_REVIEW_ONLY",
-    "safe_boundary": "V8018_ACTIVE_19268__LEGAL_BASELINE_NOT_EARNED__AMERICAN_COOKERY_RIGHTS_REVIEW_NEXT__NO_OPEN_PRS_BEFORE_HANDOVER_ROTATION",
+    "reason": "USER_REQUESTED_STATUS_AND_HANDOVER__SIX_SOURCE_REVIEWS_FAIL_CLOSED__RANDOLPH_HOLD_MERGED__NEXT_SOURCE_COMMON_SENSE_RIGHTS_REVIEW_ONLY",
+    "safe_boundary": "V8018_ACTIVE_19268__LEGAL_BASELINE_NOT_EARNED__5_RIGHTS_REVIEW_ELIGIBLE__COMMON_SENSE_NEXT__NO_OPEN_PRS_BEFORE_HANDOVER_ROTATION",
     "ordinary_implementation_stopped": true
   },
   "roadmap_reconciliation": {
     "checked": true,
-    "result": "POST_V8018_BASELINE_REASSESSMENT_CANONICALIZED__NO_V8019_AUTHORITY_EARNED",
-    "note": "The canonical post-v8018 baseline reassessment and discovery summary now define the next action. No v8019 prewrite or population is authorized by discovery alone."
+    "result": "NO_SOURCE_SPECIFIC_NEXT_ACTION_STORED_IN_DOCS_ROADMAP__CURRENT_IS_CANONICAL_CONTINUATION_SURFACE",
+    "note": "docs/ROADMAP.md contains no stale American/Beeton/Leslie/Whitehouse/Greenbaum/Randolph source-specific next action. No roadmap mutation is required at this boundary."
   }
 }
