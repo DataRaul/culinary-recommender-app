@@ -57,5 +57,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: corpus-normalization-baseline-v1
-          path: |\n            .tmp/corpus-normalization-baseline-v1.json\n            .tmp/corpus-normalization-baseline-v1-full.json
+          path: |
+            .tmp/corpus-normalization-baseline-v1.json
+            .tmp/corpus-normalization-baseline-v1-full.json
           if-no-files-found: error
