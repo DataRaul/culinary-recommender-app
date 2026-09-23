@@ -5,10 +5,10 @@
   "canonicalDecision": "docs/LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_DECISION.md",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "sequencing": {
-    "primaryNextMilestone": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1",
-    "principalExecutionLane": "CORPUS_NORMALIZATION_AND_CATEGORIZATION",
+    "primaryNextMilestone": "NUTRITION_VITAMIN_APPLICABILITY_AUDIT",
+    "principalExecutionLane": "NUTRITION_AND_VITAMIN_APPLICABILITY",
     "recipeFamilyPrototypeState": "DEFERRED_UNTIL_POST_RECOMMENDATION_READINESS",
-    "nutritionExpansionPriority": "NEXT_AFTER_CORPUS_NORMALIZATION_AND_CATEGORIZATION",
+    "nutritionExpansionPriority": "ACTIVE_PRIMARY_NEXT",
     "youtubeRefinementPriority": "DOWNSTREAM_AFTER_USABLE_RECOMMENDATION_BASELINE",
     "recommendationOptimizationPriority": "DOWNSTREAM_AFTER_NUTRITION_AND_VITAMIN_APPLICABILITY_AUDIT",
     "postBaselineOrder": [
@@ -79,6 +79,33 @@
     "artifactDigest": "sha256:d3aafd52587b74184ace55e322c1fb13c15d066962e201fa8dad0ada5651d57b",
     "structurallyParseableCount": 19265,
     "explicitStructuralExceptionCount": 3,
-    "nextGate": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1"
+    "nextGate": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1_PASS"
+  },
+  "corpusNormalizationMapping": {
+    "status": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1_PASS__FROZEN",
+    "protectedCorpusVersion": "v8018",
+    "protectedRecipeCount": 19268,
+    "summary": "data/generated/corpus-normalization-mapping-v1.json",
+    "document": "docs/CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1.md",
+    "initialWorkflowRun": 35906244182,
+    "initialArtifactId": 10770429269,
+    "initialArtifactDigest": "sha256:e33746038d723bc30ae9e04c69f57ddde11f5e0a767127a7361bf9f4b2b9a181",
+    "validOverlayCount": 19268,
+    "uniqueIdentityCount": 19268,
+    "canonicalAuthority": {
+      "explicitCountry": 501,
+      "reviewedDishCategory": 1079,
+      "reviewedMealRole": 524,
+      "exactDifficulty": 1416,
+      "exactPrepMinutes": 501,
+      "exactCookMinutes": 501,
+      "totalMinutesExact": 870,
+      "totalMinutesReviewed": 501,
+      "totalMinutesAmbiguous": 45,
+      "exactServings": 501
+    },
+    "publicRuntimeChanged": false,
+    "d1Mutation": false,
+    "nextGate": "NUTRITION_VITAMIN_APPLICABILITY_AUDIT"
   }
 }
