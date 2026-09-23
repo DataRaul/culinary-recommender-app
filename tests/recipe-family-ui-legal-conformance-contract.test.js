@@ -9,7 +9,7 @@ const contract = JSON.parse(readFileSync(contractUrl, "utf8"));
 const roadmap = readFileSync(roadmapUrl, "utf8");
 
 test("UI legal conformance is triggered by the real candidate and still blocks public/reusable admission", () => {
-  assert.equal(contract.state, "TRIGGERED_REAL_CANDIDATE_IMPLEMENTATION_VALIDATION_PENDING");
+  assert.equal(contract.state, "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS");
   assert.equal(contract.trigger.event, "FIRST_REAL_APP_AUTHORING_CANDIDATE_WITH_CLASSIFIED_SOURCE_RIGHTS_AND_ATTRIBUTION");
   assert.equal(contract.trigger.doNotRunBeforeUsefulObjectsExist, true);
   assert.ok(contract.blockingBefore.includes("PUBLIC_OR_REUSABLE_RECIPE_ADMISSION"));
