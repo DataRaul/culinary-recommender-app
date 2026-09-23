@@ -37,7 +37,7 @@
 | V1.x / Recipe-unlock evidence | CONTINUOUS | target residual composition/form, nutrient-field and exact quantity blockers by recipe-level unlock value; independent of external RecipeSource breadth |
 | V1.x / Authoritative nutrition coverage | CONTINUOUS | expand reviewed evidence under the approved source policy without guessing |
 | V1.x / Corpus breadth | F2 CONTROL PLANE ACTIVE / RUNTIME GATED | broaden through revision-aware review and measured coverage gaps rather than raw recipe-count growth; no automatic admission |
-| V1.x / Legal Corpus Baseline | COMPLETE / PASS | v8018 protected corpus = 19,268; final hold-adjusted discovery found 0 rights-review-eligible material cohorts; next primary lane is corpus normalization/categorization |
+| V1.x / Legal Corpus Baseline | COMPLETE / PASS | v8018 protected corpus = 19,268; final hold-adjusted discovery found 0 rights-review-eligible material cohorts; next primary lane is corpus normalization/categorization |\n| V1.x / Corpus normalization baseline | COMPLETE / PASS | exact pinned-source reconstruction 19,268/19,268; 3 explicit legacy CC0 structural exceptions; raw taxonomy signals measured without granting canonical authority |
 | V1.x / Corpus Scale / 100k Readiness | USER-ACCEPTED TARGET / STEP 1 READY | Cloudflare Pages + exact-email Access/OTP + Worker + R2/pre-built indexes; D1 benchmark-gated; portable provider-neutral corpus; no mass ingestion yet |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
@@ -51,7 +51,7 @@ The controlling post-baseline order now applies:
 
 `corpus normalization/categorization -> nutrition/vitamin applicability audit -> recommendation readiness -> Recipe Family/adaptation -> YouTube/authoritative-evidence refinement -> further product features`
 
-The immediate primary action is a **no-write corpus normalization/categorization baseline audit**. This pass does not authorize a new source cohort, v8019, public corpus widening, recommendation behavior changes, a third shard, paid infrastructure, YT-CUL retry or Knowledge Core writes.
+The no-write corpus normalization/categorization baseline audit is now **COMPLETE / PASS**. Canonical evidence is `data/generated/corpus-normalization-baseline-v1.json` and `docs/CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_V1.md`. The immediate primary action is `CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1`: a versioned, reversible metadata overlay with explicit UNKNOWN/AMBIGUOUS states. This does not authorize a new source cohort, v8019, protected-body rewrite, public corpus widening, recommendation behavior changes, a third shard, paid infrastructure, YT-CUL retry or Knowledge Core writes.
 
 ## 2026-09-01 Brain / World Recipe Atlas reconciliation
 
