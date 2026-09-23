@@ -49,7 +49,7 @@ test("gate requires renderer, browser, negative and public-runtime evidence", ()
   ]) {
     assert.ok(contract.testLayers.includes(layer), `missing test layer ${layer}`);
   }
-  assert.match(roadmap, /UI legal-conformance gate.*REAL HUMMUS CANDIDATE \/ PR VALIDATION PENDING/s);
+  assert.match(roadmap, /UI legal-conformance gate.*COMPLETE \/ PASS ON REAL HUMMUS CANDIDATE/s);
   assert.match(roadmap, /UI legal-conformance PASS on real candidate objects/);
   assert.equal(contract.currentRealCandidate.projectionId, "recipe_family_p0_hummus_candidate_v1");
   assert.equal(contract.currentRealCandidate.publicRuntimeAdmissionAuthorized, false);
