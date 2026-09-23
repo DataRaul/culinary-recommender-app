@@ -1,19 +1,26 @@
 {
-  "handover": "CULINARY_APP_V8018_NORMALIZATION_BASELINE_PASS_MAPPING_NEXT_V70",
+  "handover": "CULINARY_APP_V8018_NORMALIZATION_MAPPING_V1_PASS_NUTRITION_AUDIT_NEXT_V71",
   "handover_date": "2026-09-23",
   "timezone": "Atlantic/Canary",
-  "status": "V8018_LIVE_19268__LEGAL_CORPUS_BASELINE_PASS__NORMALIZATION_BASELINE_PASS__MAPPING_V1_NEXT__YT_CUL_QUOTA_POLICY_HOLD",
+  "status": "V8018_LIVE_19268__LEGAL_CORPUS_BASELINE_PASS__NORMALIZATION_MAPPING_V1_PASS_FROZEN__NUTRITION_VITAMIN_APPLICABILITY_AUDIT_NEXT__YT_CUL_QUOTA_POLICY_HOLD",
   "human_needed": false,
-  "handover_written_against_main_sha": "a8a1a537d4165fb247d03a41bf1731f305a3b3c8",
+  "handover_written_against_main_sha": "63d44896224fae44eed3c070b39bffcf40661919",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
     "normalization_baseline_pr": 270,
-    "normalization_audit_run": 35895304230,
-    "normalization_audit_artifact_id": 10766372521,
-    "normalization_audit_artifact_name": "corpus-normalization-baseline-v1",
-    "normalization_audit_artifact_digest": "sha256:d3aafd52587b74184ace55e322c1fb13c15d066962e201fa8dad0ada5651d57b",
-    "transition_branch": "audit/corpus-normalization-baseline-v70"
+    "normalization_mapping_pr": 271,
+    "normalization_mapping_merge_sha": "63d44896224fae44eed3c070b39bffcf40661919",
+    "normalization_mapping_initial_run": 35906244182,
+    "normalization_mapping_initial_artifact_id": 10770429269,
+    "normalization_mapping_initial_artifact_digest": "sha256:e33746038d723bc30ae9e04c69f57ddde11f5e0a767127a7361bf9f4b2b9a181",
+    "normalization_mapping_final_branch_run": 35906844285,
+    "normalization_mapping_final_branch_artifact_id": 10770849646,
+    "normalization_mapping_final_branch_artifact_digest": "sha256:37a5aee482223a61ff8e8de5400aa36415cac5e2c6e6f4da17c49a9c7ccef0fe",
+    "final_branch_public_validation_run": 35906844331,
+    "final_branch_public_validation": "SUCCESS",
+    "mapping_branch": "agent/corpus-normalization-mapping-v1",
+    "open_pr_count_after_merge": 0
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -23,33 +30,38 @@
   },
   "lane": {
     "name": "Culinary App / Culinary Lab — Post Legal Corpus Baseline",
-    "active_lane": "CORPUS_NORMALIZATION_AND_CATEGORIZATION",
-    "blocking_milestone": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1",
+    "active_lane": "NUTRITION_AND_VITAMIN_APPLICABILITY",
+    "blocking_milestone": "NUTRITION_VITAMIN_APPLICABILITY_AUDIT",
     "legal_corpus": "LEGAL_CORPUS_BASELINE_PASS",
     "normalization_baseline": "CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_PASS",
+    "normalization_mapping": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1_PASS__FROZEN",
     "recipe_family": "DEFERRED_UNTIL_POST_RECOMMENDATION_READINESS",
-    "nutrition_lane": "NEXT_AFTER_CORPUS_NORMALIZATION_AND_CATEGORIZATION",
-    "yt_cul_lane": "INDEPENDENT_CHILD_PROGRAMME__HARD_HOLD__DO_NOT_MUTATE_FROM_NORMALIZATION_LANE",
+    "nutrition_lane": "ACTIVE_PRIMARY_NEXT",
+    "yt_cul_lane": "INDEPENDENT_CHILD_PROGRAMME__HARD_HOLD__DO_NOT_MUTATE_FROM_NUTRITION_LANE",
     "recommendation_optimization": "DOWNSTREAM_AFTER_NUTRITION_AND_VITAMIN_APPLICABILITY_AUDIT",
     "knowledge_core": "READ_ONLY_RECONCILIATION_ONLY",
     "billing": "NO_BILLING_AUTHORIZATION"
   },
   "operating_contract": {
-    "autonomy": "Ordinary bounded repository implementation, expected CI and non-destructive metadata-overlay work are standing-preapproved under AGENTS.md. No human gate is active. Stop at genuine cost/access/security/topology/rights gates, an unrecoverable error, or a terminal material result.",
-    "normalization": "Raw source country/cuisine/culture/category/tags/diets/difficulty/time/servings remain source hints until a versioned reviewed mapping earns canonical app authority. Historical collection labels are provenance-only. UNKNOWN and AMBIGUOUS are first-class states; no guessing.",
-    "storage": "Protected recipe bodies remain private in Cloudflare D1. The normalization baseline reconstructed exact pinned public sources and performed zero D1 reads/writes; no protected bodies were exported.",
+    "autonomy": "Ordinary bounded repository implementation, expected CI and no-write evidence audits are standing-preapproved under AGENTS.md. No human gate is active. Stop at genuine cost/access/security/topology/rights gates, an unrecoverable error, or a terminal material result.",
+    "normalization": "Mapping V1 is frozen as a reversible overlay. Raw cuisine/culture/tags/collection remain source hints; no tradition/region/dietary authority was guessed. UNKNOWN and AMBIGUOUS remain first-class.",
+    "nutrition": "The next lane is an applicability audit, not automatic nutrition authority. Preserve the approved European-primary source policy, nutrient-semantic firewall, exact provenance, fail-partial/fail-closed behavior and no guessing. Imported/source recipe content does not become authoritative nutrition evidence merely because it is present in the protected corpus.",
+    "storage": "Protected recipe bodies remain private in Cloudflare D1. Mapping V1 performed zero D1 reads/writes and zero protected-body export/rewrite. Begin the nutrition applicability audit from exact pinned-source reconstruction plus existing public-safe nutrition evidence unless a separately justified D1 read gate is earned.",
     "d1": "Optimized operational target remains <=8 D1 subqueries/request. Hard fail-safe 16 is not spendable headroom. Preserve exactly two shards and delta-route ancestry.",
-    "public_activation": "Public runtime remains 85 recipes. Broader public corpus or recommendation admission is not authorized.",
+    "public_activation": "Public runtime remains 85 recipes. Broader public corpus or recommendation admission is not authorized by Mapping V1.",
     "billing_firewall": "No paid infrastructure, billing enablement or automatic overage authorization."
   },
   "canonical_documents": {
     "legal_corpus_config": "config/legal_corpus_first_private_runtime.json",
     "legal_corpus_decision": "docs/LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_DECISION.md",
     "legal_corpus_closeout": "docs/CORPUS_SCALE_STEP8G_POST_V8018_BASELINE_REASSESSMENT.md",
-    "normalization_contract": "config/corpus_normalization_baseline_v1.json",
-    "normalization_summary": "data/generated/corpus-normalization-baseline-v1.json",
-    "normalization_document": "docs/CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_V1.md",
-    "normalization_audit_script": "scripts/run-corpus-normalization-baseline.mjs",
+    "normalization_baseline_contract": "config/corpus_normalization_baseline_v1.json",
+    "normalization_baseline_summary": "data/generated/corpus-normalization-baseline-v1.json",
+    "normalization_baseline_document": "docs/CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_V1.md",
+    "normalization_mapping_contract": "config/corpus_normalization_mapping_v1.json",
+    "normalization_mapping_summary": "data/generated/corpus-normalization-mapping-v1.json",
+    "normalization_mapping_document": "docs/CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1.md",
+    "normalization_mapping_script": "scripts/run-corpus-normalization-mapping-v1.mjs",
     "handover_protocol": "docs/HANDOVER_PROTOCOL.md",
     "roadmap": "docs/ROADMAP.md",
     "youtube_culinary_work_unit_state": "data/generated/youtube-culinary-work-unit-state.json",
@@ -169,9 +181,10 @@
     }
   },
   "not_authorized": [
-    "No protected-body rewrite or D1 mutation from normalization mapping without a separately earned mutation gate.",
+    "No protected-body rewrite or D1 mutation from Mapping V1.",
     "No new source cohort or v8019 population from this lane.",
     "No guessed cuisine/geography/meal-role/dietary/authenticity metadata.",
+    "No automatic nutrition authority or nutrient inference from imported recipe data.",
     "No public corpus/recommendation activation.",
     "No paid infrastructure or billing expansion.",
     "No third D1 shard.",
@@ -180,19 +193,66 @@
   ],
   "human_gate": null,
   "next_action": {
-    "state": "READY__CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1",
+    "state": "READY__NUTRITION_VITAMIN_APPLICABILITY_AUDIT",
     "actor": "AUTONOMOUS_APP_LANE",
-    "action": "Implement the first versioned, deterministic, reversible normalization metadata overlay over the exact v8018 / 19,268 source reconstruction. Start with low-ambiguity exact/reviewed geography, time, servings and difficulty mappings; define separate controlled vocabularies for dish category and meal role; preserve cuisine/culture/tags as source hints; carry the three CC0 structure exceptions as UNKNOWN rather than fabricating values. No D1/protected-body rewrite or recommendation behavior change."
+    "action": "Perform a bounded no-write nutrition/vitamin applicability audit over protected v8018 / 19,268 using the exact pinned-source reconstruction, frozen Mapping V1 metadata and the app's existing reviewed nutrition evidence/policies. Measure which records have sufficient ingredient identity, quantity/portion semantics and evidence coverage for authoritative calculation; separate macro versus vitamin/mineral applicability; classify blockers and explicit UNKNOWN/AMBIGUOUS states; preserve European-primary source selection, nutrient-semantic firewalls and exact provenance. Freeze acceptance criteria and the candidate applicability model before any D1 mutation, recommendation admission or public behavior change."
   },
-  "terminal_instruction_for_new_chat": "Continue the Culinary App / Culinary Recommender lane from docs/handovers/CURRENT.json. Fresh-reconcile live GitHub first. Protected production remains v8018 / 19,268, 18 hydration layers, exactly two shards, maxObservedD1Subqueries=8 and public runtime 85. LEGAL_CORPUS_BASELINE_PASS is earned. The no-write normalization/categorization baseline also passed: exact source reconstruction 19,268/19,268, 19,265 structurally parseable, with three explicit legacy CC0 exceptions that remain above their original 95% cohort gate. Raw source taxonomy coverage is heterogeneous and canonical taxonomy authority remains zero by design. The next autonomous authority is CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1: build a versioned reversible overlay with explicit EXACT_SOURCE_NORMALIZATION / REVIEWED_MAPPING / AMBIGUOUS / UNKNOWN states, beginning with low-ambiguity geography/time/servings/difficulty and separate controlled vocabularies for dish category versus meal role. Preserve source hints/provenance, no guessing, no protected-body/D1 rewrite, no recommendation/public widening, no third shard, no billing, no YT-CUL retry and no Knowledge Core writes.",
+  "terminal_instruction_for_new_chat": "Continue the Culinary App / Culinary Recommender lane from docs/handovers/CURRENT.json. Fresh-reconcile live GitHub first. Protected production remains v8018 / 19,268, 18 hydration layers, exactly two shards, maxObservedD1Subqueries=8 and public runtime 85. LEGAL_CORPUS_BASELINE_PASS, normalization baseline PASS and CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1_PASS__FROZEN are earned. Mapping V1 produced 19,268/19,268 valid unique reversible overlays with deliberately narrow authority: 501 explicit countries, 1,079 reviewed dish categories, 524 reviewed meal roles, 1,416 difficulty mappings, 501 prep, 501 cook, 870 exact + 501 reviewed total-time values with 45 explicit ambiguities, and 501 servings; region/tradition/technique-family/reviewed-dietary authority remains UNKNOWN where not earned. The next autonomous lane is NUTRITION_VITAMIN_APPLICABILITY_AUDIT: begin with a bounded no-write audit using exact pinned-source reconstruction, frozen mapping and existing reviewed nutrition evidence/policies; measure applicability and blockers before mutation. No guessing, no protected-body/D1 mutation, no recommendation/public widening, no third shard, no billing, no YT-CUL retry and no Knowledge Core writes.",
   "continuation_boundary": {
-    "reason": "CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_PASS__TERMINAL_MATERIAL_RESULT__MAPPING_V1_NEXT",
-    "safe_boundary": "V8018_ACTIVE_19268__LEGAL_BASELINE_PASS__NORMALIZATION_BASELINE_PASS__MAPPING_V1_READY",
+    "reason": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1_PASS__TERMINAL_MATERIAL_RESULT__NUTRITION_VITAMIN_APPLICABILITY_AUDIT_NEXT",
+    "safe_boundary": "V8018_ACTIVE_19268__LEGAL_BASELINE_PASS__NORMALIZATION_MAPPING_V1_PASS_FROZEN__NUTRITION_AUDIT_READY",
     "ordinary_implementation_stopped": true
   },
   "roadmap_reconciliation": {
     "checked": true,
-    "result": "UPDATED__NORMALIZATION_BASELINE_PASS__MAPPING_V1_PRIMARY_NEXT",
-    "note": "Post-baseline product order remains controlling. Nutrition/vitamin applicability follows completion of corpus normalization/categorization."
+    "result": "UPDATED__NORMALIZATION_MAPPING_V1_PASS_FROZEN__NUTRITION_VITAMIN_APPLICABILITY_AUDIT_PRIMARY_NEXT",
+    "note": "Post-baseline product order remains controlling. Recommendation readiness follows the nutrition/vitamin applicability audit; Recipe Family and YouTube refinement remain downstream."
+  },
+  "normalization_mapping": {
+    "status": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1_PASS__FROZEN",
+    "expected_recipe_count": 19268,
+    "observed_recipe_count": 19268,
+    "valid_overlay_count": 19268,
+    "unique_identity_count": 19268,
+    "all_cohort_count_and_structural_gates_pass": true,
+    "structural_exceptions_preserved": 3,
+    "authority_coverage": {
+      "geography_country_exact": 501,
+      "geography_region_unknown": 19268,
+      "culinary_tradition_unknown": 19268,
+      "dish_category_reviewed": 1079,
+      "meal_roles_reviewed": 524,
+      "technique_families_unknown": 19268,
+      "difficulty_exact": 1416,
+      "prep_minutes_exact": 501,
+      "cook_minutes_exact": 501,
+      "total_minutes_exact": 870,
+      "total_minutes_reviewed": 501,
+      "total_minutes_ambiguous": 45,
+      "servings_exact": 501,
+      "reviewed_dietary_tags_unknown": 19268
+    },
+    "semantics": [
+      "Country authority only from explicit source country.",
+      "No region inference.",
+      "Cuisine/culture/tags/collection are retained as source hints and are not promoted to culinary tradition/authenticity.",
+      "ForkRecipe activeTime is not relabeled as prep time.",
+      "Difficulty source scales are preserved without false cross-scale equivalence.",
+      "Dish category and meal role use separate reviewed controlled vocabularies.",
+      "Dietary authority remains UNKNOWN in Mapping V1."
+    ],
+    "runtime_boundary": {
+      "d1_reads": 0,
+      "d1_writes": 0,
+      "protected_bodies_exported": 0,
+      "protected_bodies_rewritten": 0,
+      "public_runtime_changed": false,
+      "recommendation_behavior_changed": false,
+      "nutrition_lane_modified": false,
+      "youtube_lane_modified": false,
+      "knowledge_core_write": false,
+      "billing_expansion": false,
+      "third_shard_used": false
+    }
   }
 }

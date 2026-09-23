@@ -1,6 +1,6 @@
 # Recipe Family Synthesis P0 — UI Legal Conformance Gate
 
-Status: **IMPLEMENTED / REAL-CANDIDATE PASS PENDING PR VALIDATION**
+Status: **COMPLETE / PASS**
 
 This gate is intentionally downstream of source-rights review. It does not decide whether a source may be acquired or used; that is owned by the source-compliance gate. It proves that the Culinary UI and public/reusable admission path correctly implement the obligations already encoded on real recipe/source objects.
 
@@ -14,7 +14,7 @@ Deterministic and browser acceptance cover the required negative cases. `REQUIRE
 
 Committed evidence: `data/generated/recipe-family-ui-legal-conformance-v1.json`.
 
-Expected terminal after green PR validation: `RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS`.
+Terminal: `RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS` (PR #276 merged at `e92d5f13f08790c7c013701618bdcd8fd7ba35af` after green full validation/browser acceptance, Step 1 benchmark and Step 7A no-billing proof).
 
 This PASS does **not** admit the Hummus candidate or any new Recipe Family object to the public runtime. The candidate retains `activationAuthority=NONE`, the public runtime remains 85 recipes, and the next earned work is `RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC`.
 

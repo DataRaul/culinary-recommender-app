@@ -1,7 +1,7 @@
 {
   "contractVersion": "0.2.0",
   "gateId": "recipe-family-ui-legal-conformance",
-  "state": "TRIGGERED_REAL_CANDIDATE_IMPLEMENTATION_VALIDATION_PENDING",
+  "state": "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS",
   "purpose": "Revalidate that the UI and public/reusable admission path actually implement the source, licence, attribution and expression-retention obligations already encoded upstream.",
   "notANewLegalOpinion": true,
   "trigger": {
@@ -92,5 +92,13 @@
     "conformanceEvidence": "data/generated/recipe-family-ui-legal-conformance-v1.json",
     "publicRuntimeAdmissionAuthorized": false
   },
-  "nextOnPass": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC"
+  "nextOnPass": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC",
+  "validatedBy": {
+    "pr": 276,
+    "mergeSha": "e92d5f13f08790c7c013701618bdcd8fd7ba35af",
+    "branchValidation": "SUCCESS",
+    "terminal": "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS",
+    "transitionPr": 277,
+    "transitionPurpose": "TERMINAL_STATE_AND_HANDOVER_RECONCILIATION"
+  }
 }
