@@ -58,7 +58,8 @@
               "lower": 29.826389,
               "upper": 65.138889
             },
-            "robustSpreadRatio": 2.183935
+            "robustSpreadRatio": 2.183935,
+            "distinctPublisherCount": 4
           }
         },
         {
@@ -150,7 +151,8 @@
               "lower": 25,
               "upper": 31.25
             },
-            "robustSpreadRatio": 1.25
+            "robustSpreadRatio": 1.25,
+            "distinctPublisherCount": 3
           }
         },
         {
@@ -169,7 +171,8 @@
               "lower": 18.75,
               "upper": 43.75
             },
-            "robustSpreadRatio": 2.333333
+            "robustSpreadRatio": 2.333333,
+            "distinctPublisherCount": 2
           }
         },
         {
@@ -188,7 +191,8 @@
               "lower": 1.4375,
               "upper": 5
             },
-            "robustSpreadRatio": 3.478261
+            "robustSpreadRatio": 3.478261,
+            "distinctPublisherCount": 3
           }
         }
       ],
