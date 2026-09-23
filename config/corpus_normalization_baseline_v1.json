@@ -52,7 +52,8 @@
           "sourceTitle": "The English and Australian Cookery Book",
           "sourceUrl": "https://archive.org/details/b21505524",
           "sourceYear": "1864",
-          "expectedCount": 713
+          "expectedCount": 713,
+          "representation": "markdown"
         },
         {
           "layer": "v8005",
@@ -61,7 +62,8 @@
           "sourceTitle": "Chinese-Japanese Cook Book",
           "sourceUrl": "https://archive.org/details/chinesejapanesec00boss_0",
           "sourceYear": "1914",
-          "expectedCount": 109
+          "expectedCount": 109,
+          "representation": "markdown"
         },
         {
           "layer": "v8006",
@@ -70,7 +72,8 @@
           "sourceTitle": "A Turkish Cookery Book",
           "sourceUrl": "https://archive.org/details/b21527830",
           "sourceYear": "1864",
-          "expectedCount": 442
+          "expectedCount": 442,
+          "representation": "jsonl"
         },
         {
           "layer": "v8007",
@@ -79,7 +82,8 @@
           "sourceTitle": "Cozinheiro moderno, ou nova arte de cozinha",
           "sourceUrl": "https://archive.org/details/b28764626",
           "sourceYear": "1785",
-          "expectedCount": 789
+          "expectedCount": 789,
+          "representation": "jsonl"
         },
         {
           "layer": "v8008",
@@ -88,7 +92,8 @@
           "sourceTitle": "Diccionario de cocina, ó El nuevo cocinero mexicano",
           "sourceUrl": "https://archive.org/details/bub_gb_NdQqAAAAYAAJ",
           "sourceYear": "1845",
-          "expectedCount": 4347
+          "expectedCount": 4347,
+          "representation": "jsonl"
         },
         {
           "layer": "v8008",
@@ -97,7 +102,8 @@
           "sourceTitle": "La cocinera poblana",
           "sourceUrl": "https://archive.org/details/lacocinerapobla00unkngoog",
           "sourceYear": "1890",
-          "expectedCount": 2129
+          "expectedCount": 2129,
+          "representation": "jsonl"
         },
         {
           "layer": "v8009",
@@ -106,7 +112,8 @@
           "sourceTitle": "La Cuisinière bourgeoise",
           "sourceUrl": "https://archive.org/details/b22019935",
           "sourceYear": "1801",
-          "expectedCount": 752
+          "expectedCount": 752,
+          "representation": "jsonl"
         },
         {
           "layer": "v8010",
@@ -115,7 +122,8 @@
           "sourceTitle": "La scienza in cucina e l'arte di mangiar bene",
           "sourceUrl": "https://www.gutenberg.org/ebooks/59047",
           "sourceYear": "1891",
-          "expectedCount": 829
+          "expectedCount": 829,
+          "representation": "jsonl"
         },
         {
           "layer": "v8011",
@@ -124,7 +132,8 @@
           "sourceTitle": "Frøken Jensens kogebog",
           "sourceUrl": "https://archive.org/details/frkenjensensko00jens",
           "sourceYear": "1921",
-          "expectedCount": 1372
+          "expectedCount": 1372,
+          "representation": "jsonl"
         },
         {
           "layer": "v8012",
@@ -133,7 +142,8 @@
           "sourceTitle": "Wiener Kochbuch",
           "sourceUrl": "https://archive.org/details/bub_gb_oP8yAQAAMAAJ",
           "sourceYear": "1883",
-          "expectedCount": 1722
+          "expectedCount": 1722,
+          "representation": "jsonl"
         },
         {
           "layer": "v8013",
@@ -142,7 +152,8 @@
           "sourceTitle": "Le Cuisinier impérial",
           "sourceUrl": "https://archive.org/details/lecuisinierimpe00viargoog",
           "sourceYear": "1806",
-          "expectedCount": 807
+          "expectedCount": 807,
+          "representation": "jsonl"
         },
         {
           "layer": "v8014",
@@ -151,7 +162,8 @@
           "sourceTitle": "La Cuisine Creole",
           "sourceUrl": "https://archive.org/details/lacuisinecreolec00hear",
           "sourceYear": "1885",
-          "expectedCount": 712
+          "expectedCount": 712,
+          "representation": "jsonl"
         },
         {
           "layer": "v8015",
@@ -160,7 +172,8 @@
           "sourceTitle": "The Chinese Cook Book",
           "sourceUrl": "https://archive.org/details/chinesecookbook00chan",
           "sourceYear": "1917",
-          "expectedCount": 145
+          "expectedCount": 145,
+          "representation": "jsonl"
         },
         {
           "layer": "v8016",
@@ -169,7 +182,8 @@
           "sourceTitle": "Culinary Jottings for Madras",
           "sourceUrl": "https://archive.org/details/culinaryjottings00kenn",
           "sourceYear": "1885",
-          "expectedCount": 501
+          "expectedCount": 501,
+          "representation": "jsonl"
         },
         {
           "layer": "v8017",
@@ -178,7 +192,8 @@
           "sourceTitle": "The Boston Cooking-School Cook Book",
           "sourceUrl": "https://www.gutenberg.org/ebooks/65061",
           "sourceYear": "1896",
-          "expectedCount": 1776
+          "expectedCount": 1776,
+          "representation": "jsonl"
         },
         {
           "layer": "v8018",
@@ -187,7 +202,8 @@
           "sourceTitle": "An Easy and Economical Book of Jewish Cookery",
           "sourceUrl": "https://archive.org/details/b2807967x",
           "sourceYear": "1874",
-          "expectedCount": 481
+          "expectedCount": 481,
+          "representation": "jsonl"
         }
       ]
     }
