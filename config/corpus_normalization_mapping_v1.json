@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "CULINARY_CORPUS_NORMALIZATION_MAPPING_CONTRACT_V1",
+  "state": "IMPLEMENTATION_CANDIDATE_NO_RUNTIME_MUTATION",
+  "protectedCorpusVersion": "v8018",
+  "expectedRecipeCount": 19268,
+  "baselineConfig": "config/corpus_normalization_baseline_v1.json",
+  "mappingStates": [
+    "EXACT_SOURCE_NORMALIZATION",
+    "REVIEWED_MAPPING",
+    "AMBIGUOUS",
+    "UNKNOWN"
+  ],
+  "authority": {
+    "sourceRefetchAtExactPinsAuthorized": true,
+    "d1ReadsAuthorized": false,
+    "d1WritesAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "publicRuntimeMutationAuthorized": false,
+    "recommendationBehaviorMutationAuthorized": false,
+    "nutritionMutationAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "thirdShardAuthorized": false,
+    "billingExpansionAuthorized": false
+  },
+  "dishCategoryVocabulary": [
+    "BEVERAGE",
+    "BREAD",
+    "CONDIMENT",
+    "DESSERT",
+    "EGG_DISH",
+    "FERMENTED_FOOD",
+    "GRAIN_DISH",
+    "PROTEIN_DISH",
+    "SALAD",
+    "SAUCE",
+    "SEAFOOD_DISH",
+    "SOUP",
+    "STOCK",
+    "VEGETABLE_DISH"
+  ],
+  "mealRoleVocabulary": [
+    "BEVERAGE",
+    "BREAKFAST",
+    "DESSERT",
+    "MAIN",
+    "SIDE",
+    "SNACK"
+  ],
+  "categoryMappings": {
+    "main": { "dishCategory": null, "mealRoles": ["MAIN"] },
+    "proteins": { "dishCategory": "PROTEIN_DISH", "mealRoles": [] },
+    "condiments": { "dishCategory": "CONDIMENT", "mealRoles": [] },
+    "desserts": { "dishCategory": "DESSERT", "mealRoles": ["DESSERT"] },
+    "dessert": { "dishCategory": "DESSERT", "mealRoles": ["DESSERT"] },
+    "grains": { "dishCategory": "GRAIN_DISH", "mealRoles": [] },
+    "sauces": { "dishCategory": "SAUCE", "mealRoles": [] },
+    "sauce": { "dishCategory": "SAUCE", "mealRoles": [] },
+    "seafood": { "dishCategory": "SEAFOOD_DISH", "mealRoles": [] },
+    "breads": { "dishCategory": "BREAD", "mealRoles": [] },
+    "bread": { "dishCategory": "BREAD", "mealRoles": [] },
+    "vegetables": { "dishCategory": "VEGETABLE_DISH", "mealRoles": [] },
+    "soup": { "dishCategory": "SOUP", "mealRoles": [] },
+    "stocks": { "dishCategory": "STOCK", "mealRoles": [] },
+    "snack": { "dishCategory": null, "mealRoles": ["SNACK"] },
+    "beverages": { "dishCategory": "BEVERAGE", "mealRoles": ["BEVERAGE"] },
+    "drink": { "dishCategory": "BEVERAGE", "mealRoles": ["BEVERAGE"] },
+    "fermented": { "dishCategory": "FERMENTED_FOOD", "mealRoles": [] },
+    "eggs": { "dishCategory": "EGG_DISH", "mealRoles": [] },
+    "breakfast": { "dishCategory": null, "mealRoles": ["BREAKFAST"] },
+    "side": { "dishCategory": null, "mealRoles": ["SIDE"] },
+    "salad": { "dishCategory": "SALAD", "mealRoles": [] }
+  },
+  "difficultyScales": {
+    "numeric": "NUMERIC_1_5",
+    "labels": "LABEL_EASY_MEDIUM_HARD"
+  },
+  "acceptanceCriteria": [
+    "ALL_19268_RECIPES_RECONSTRUCTED_FROM_EXACT_PINNED_SOURCES",
+    "ALL_COHORT_COUNTS_MATCH_BASELINE_CONTRACT",
+    "ALL_COHORT_STRUCTURAL_THRESHOLDS_REMAIN_SATISFIED",
+    "RAW_SOURCE_SIGNALS_PRESERVED_ON_EVERY_OVERLAY_RECORD",
+    "COUNTRY_ONLY_FROM_EXPLICIT_SOURCE_COUNTRY_FIELD",
+    "NO_REGION_INFERENCE",
+    "NO_CUISINE_CULTURE_OR_COLLECTION_PROMOTION_TO_TRADITION_AUTHORITY",
+    "FORKRECIPE_ACTIVE_TIME_NOT_RELABELED_AS_PREP_TIME",
+    "UNKNOWN_AND_AMBIGUOUS_STATES_EXPLICIT",
+    "CATEGORY_MAPPING_VALUES_WITHIN_CONTROLLED_VOCABULARIES",
+    "NO_D1_PUBLIC_RECOMMENDATION_NUTRITION_KC_SHARD_OR_BILLING_MUTATION"
+  ]
+}
