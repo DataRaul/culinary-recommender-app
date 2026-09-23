@@ -121,16 +121,65 @@ async function loadCc0(root, cfg) {
   return rows;
 }
 
+function parseOraMarkdown(markdown) {
+  const text = String(markdown ?? "");
+  const match = /^---\s*\n([\s\S]*?)\n---\s*(?:\n|$)/.exec(text);
+  const meta = {};
+  for (const line of (match?.[1] || "").split(/\r?\n/)) {
+    const field = /^([a-zA-Z0-9_]+):\s*(.*)$/.exec(line);
+    if (!field) continue;
+    let value = field[2].trim();
+    if (/^\[.*\]$/.test(value)) {
+      try { value = JSON.parse(value); } catch {}
+    } else value = value.replace(/^(["'])(.*)\1$/, "$2");
+    meta[field[1]] = value;
+  }
+  return {
+    meta,
+    ingredients: section(text, "Ingredients").split(/\r?\n/).filter(line => /^\s*[-*+]\s+/.test(line)).length,
+    directions: section(text, "(?:Directions|Instructions|Method)").split(/\r?\n/).filter(line => /^\s*(?:\d+[.)]|[-*+])\s+/.test(line)).length
+  };
+}
+
 async function loadOra(root, cfg) {
   if (commitAt(root) !== cfg.commit) throw new Error("ORA_PIN_MISMATCH");
-  const byCollection = new Map();
+  const jsonlByCollection = new Map();
   const output = [];
   for (const cohort of cfg.cohorts) {
-    let rows = byCollection.get(cohort.collection);
+    if (cohort.representation === "markdown") {
+      const dir = resolve(root, "collections", cohort.collection, "recipes");
+      const files = (await readdir(dir)).filter(file => file.endsWith(".md")).sort();
+      const selected = [];
+      for (const file of files) {
+        const parsed = parseOraMarkdown(await readFile(resolve(dir, file), "utf8"));
+        const meta = parsed.meta;
+        if (String(meta.source_url ?? "") === cohort.sourceUrl &&
+            String(meta.source_title ?? "") === cohort.sourceTitle &&
+            String(meta.source_year ?? "") === cohort.sourceYear &&
+            String(meta.license ?? "") === "public-domain") selected.push(parsed);
+      }
+      if (selected.length !== cohort.expectedCount) throw new Error("ORA_MARKDOWN_COUNT_MISMATCH_" + cohort.cohortId + "_" + selected.length);
+      for (const row of selected) {
+        output.push(standardized({
+          layer: cohort.layer, cohortId: cohort.cohortId, sourceSystem: "OPEN_RECIPE_ARCHIVE_MARKDOWN",
+          title: row.meta.title,
+          ingredientCount: row.ingredients,
+          directionCount: row.directions,
+          signals: {
+            culture: row.meta.culture ?? null,
+            tags: Array.isArray(row.meta.tags) ? row.meta.tags : [],
+            collection: row.meta.collection ?? cohort.collection
+          }
+        }));
+      }
+      continue;
+    }
+
+    let rows = jsonlByCollection.get(cohort.collection);
     if (!rows) {
       const text = await readFile(resolve(root, "collections", cohort.collection, "recipes.jsonl"), "utf8");
       rows = text.split(/\r?\n/).filter(Boolean).map(JSON.parse);
-      byCollection.set(cohort.collection, rows);
+      jsonlByCollection.set(cohort.collection, rows);
     }
     const selected = rows.filter(row =>
       String(row.source_url ?? "") === cohort.sourceUrl &&
@@ -138,11 +187,11 @@ async function loadOra(root, cfg) {
       String(row.source_year ?? "") === cohort.sourceYear &&
       String(row.license ?? "") === "public-domain"
     );
-    if (selected.length !== cohort.expectedCount) throw new Error("ORA_COUNT_MISMATCH_" + cohort.cohortId + "_" + selected.length);
+    if (selected.length !== cohort.expectedCount) throw new Error("ORA_JSONL_COUNT_MISMATCH_" + cohort.cohortId + "_" + selected.length);
     for (const row of selected) {
       const structure = oraStructure(row);
       output.push(standardized({
-        layer: cohort.layer, cohortId: cohort.cohortId, sourceSystem: "OPEN_RECIPE_ARCHIVE",
+        layer: cohort.layer, cohortId: cohort.cohortId, sourceSystem: "OPEN_RECIPE_ARCHIVE_JSONL",
         title: row.title,
         ingredientCount: structure.ingredients,
         directionCount: structure.directions,
