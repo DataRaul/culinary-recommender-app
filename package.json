@@ -8,7 +8,7 @@
     "check": "node scripts/check-static.mjs",
     "test": "node --test tests/*.test.js",
     "test:matrix": "node tests/profile-matrix.test.js",
-    "test:browser": "node scripts/browser-smoke.mjs && node scripts/browser-acceptance.mjs && node scripts/browser-gate-f-acceptance.mjs && node scripts/browser-step8f-decision-input.mjs",
+    "test:browser": "node scripts/browser-smoke.mjs && node scripts/browser-acceptance.mjs && node scripts/browser-gate-f-acceptance.mjs && node scripts/browser-step8f-decision-input.mjs && node scripts/browser-recipe-family-ui-legal-conformance.mjs",
     "report:nutrition-coverage": "node scripts/report-nutrition-coverage.mjs",
     "report:recipe-universe": "node scripts/report-recipe-universe-coverage.mjs",
     "report:recipe-corpus-f2": "node scripts/report-wikibooks-gate-f2-coverage.mjs",
@@ -19,7 +19,8 @@
     "discover:recipe-corpus-f2": "node scripts/discover-wikibooks-gate-f2.mjs",
     "queue:recipe-corpus-f2": "node scripts/build-wikibooks-gate-f2-review-queue.mjs",
     "verify:wikibooks-gate-f": "node scripts/verify-wikibooks-gate-f-snapshot.mjs",
-    "validate": "npm run check && npm test"
+    "validate": "npm run check && npm test",
+    "audit:recipe-family-ui-legal": "node scripts/run-recipe-family-ui-legal-conformance.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"
