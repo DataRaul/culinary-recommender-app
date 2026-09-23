@@ -5,12 +5,12 @@
   "canonicalDecision": "docs/LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_DECISION.md",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "sequencing": {
-    "primaryNextMilestone": "REPAIR_RECOMMENDATION_READINESS_DEFECT_AND_RERUN_AUDIT",
-    "principalExecutionLane": "RECOMMENDATION_READINESS",
-    "recipeFamilyPrototypeState": "DEFERRED_UNTIL_USABLE_RECOMMENDATION_BASELINE_PASS",
+    "primaryNextMilestone": "RECIPE_FAMILY_AND_ADAPTATION",
+    "principalExecutionLane": "RECIPE_FAMILY_AND_ADAPTATION",
+    "recipeFamilyPrototypeState": "ACTIVE_PRIMARY_NEXT",
     "nutritionExpansionPriority": "APPLICABILITY_AUDIT_COMPLETE__CONTINUOUS_EVIDENCE_LANE",
-    "youtubeRefinementPriority": "DOWNSTREAM_AFTER_USABLE_RECOMMENDATION_BASELINE",
-    "recommendationOptimizationPriority": "UNKNOWN_NUTRITION_SCORING_REPAIR_ACTIVE_NEXT",
+    "youtubeRefinementPriority": "DOWNSTREAM_AFTER_RECIPE_FAMILY_AND_ADAPTATION",
+    "recommendationOptimizationPriority": "USABLE_RECOMMENDATION_BASELINE_PASS__FROZEN",
     "postBaselineOrder": [
       "corpus_normalization_and_categorization",
       "nutrition_and_vitamin_applicability_audit",
@@ -148,21 +148,26 @@
     "nextGate": "RECOMMENDATION_READINESS_AUDIT"
   },
   "recommendationReadinessAudit": {
-    "status": "RECOMMENDATION_READINESS_AUDIT_PASS__REMEDIATION_REQUIRED",
+    "status": "USABLE_RECOMMENDATION_BASELINE_PASS__FROZEN",
     "summary": "data/generated/recommendation-readiness-audit-v1.json",
     "document": "docs/RECOMMENDATION_READINESS_AUDIT_V1.md",
     "publicRuntimeRecipeCount": 85,
     "recommendationEligibleStateCount": 77,
     "hardMetadataReadyRecommendationEligibleCount": 77,
     "unknownNutritionRecommendationEligibleCount": 1,
-    "unknownNutritionZeroCoercionCount": 1,
+    "unknownNutritionZeroCoercionCount": 0,
     "unknownNutritionRecipeIds": [
       "unitools_tortilla_espanola"
     ],
     "protectedIdentityReadyReviewCandidateCount": 112,
     "protectedReviewedDietaryAuthorityCount": 0,
     "protectedAutomaticRecommendationReadyCount": 0,
-    "usableRecommendationBaselinePass": false,
-    "nextGate": "REPAIR_RECOMMENDATION_READINESS_DEFECT_AND_RERUN_AUDIT"
+    "usableRecommendationBaselinePass": true,
+    "nextGate": "RECIPE_FAMILY_AND_ADAPTATION",
+    "repairContract": "config/recommendation_readiness_repair_v1.json",
+    "repairScope": "UNKNOWN_NUTRITION_SOFT_SCORING_SEMANTIC_REPAIR_ONLY",
+    "unknownNutritionSafeCount": 1,
+    "unknownNutritionMissingSignalDisclosureCount": 1,
+    "publicRuntimeChangedByAdmission": false
   }
 }
