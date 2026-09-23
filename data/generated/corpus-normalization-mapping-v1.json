@@ -1,0 +1,327 @@
+{
+  "schemaVersion": "CULINARY_CORPUS_NORMALIZATION_MAPPING_SUMMARY_V1",
+  "date": "2026-09-23",
+  "pass": true,
+  "terminal": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1_PASS",
+  "protectedCorpusVersion": "v8018",
+  "expectedRecipeCount": 19268,
+  "observedRecipeCount": 19268,
+  "validOverlayCount": 19268,
+  "uniqueIdentityCount": 19268,
+  "sourcePins": {
+    "unitools": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "forkrecipe": "c32255266af39bd77444d39452f3df8088ac8fd9",
+    "cc0": "b12e481d1c220a13e0847a34e148d5872a16928e",
+    "ora": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8"
+  },
+  "cohortChecks": [
+    {
+      "cohortId": "FORKRECIPE_PINNED_STEP7E",
+      "expectedCount": 915,
+      "observedCount": 915,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_ABBOTT_1864_AE3BD2C",
+      "expectedCount": 713,
+      "observedCount": 713,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_ARTUSI_1891_SCIENZA_CUCINA_GUTENBERG_59047",
+      "expectedCount": 829,
+      "observedCount": 829,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_ATRUTEL_1874_EASY_ECONOMICAL_JEWISH_COOKERY_B2807967X",
+      "expectedCount": 481,
+      "observedCount": 481,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_BOSSE_WATANNA_1914_JAPANESE_SHELF_AE3BD2C",
+      "expectedCount": 109,
+      "observedCount": 109,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_CHAN_1917_CHINESE_COOK_BOOK_CHINESECOOKBOOK00CHAN",
+      "expectedCount": 145,
+      "observedCount": 145,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C",
+      "expectedCount": 2129,
+      "observedCount": 2129,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_FANNIE_FARMER_BOSTON_COOKING_SCHOOL_GUTENBERG_65061",
+      "expectedCount": 1776,
+      "observedCount": 1776,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_FROKEN_JENSEN_1921_KOGEBOG_23RD_FRKENJENSENSKO00JENS",
+      "expectedCount": 1372,
+      "observedCount": 1372,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_GALVAN_RIVERA_1845_DICCIONARIO_COCINA_AE3BD2C",
+      "expectedCount": 4347,
+      "observedCount": 4347,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_HEARN_1885_LA_CUISINE_CREOLE_LACUISINECREOLEC00HEAR",
+      "expectedCount": 712,
+      "observedCount": 712,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN",
+      "expectedCount": 501,
+      "observedCount": 501,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_MENON_1801_CUISINIERE_BOURGEOISE_B22019935",
+      "expectedCount": 752,
+      "observedCount": 752,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_RIGAUD_1785_PORTUGUESE_SOURCE_AE3BD2C",
+      "expectedCount": 789,
+      "observedCount": 789,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_SELESKOWITZ_1883_WIENER_KOCHBUCH_BUB_GB_OP8YAQAAMAAJ",
+      "expectedCount": 1722,
+      "observedCount": 1722,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_TURABI_EFENDI_1864_OTTOMAN_SHELF_AE3BD2C",
+      "expectedCount": 442,
+      "observedCount": 442,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "ORA_VIARD_1806_LE_CUISINIER_IMPERIAL_LECUISINIERIMPE00VIARGOOG",
+      "expectedCount": 807,
+      "observedCount": 807,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    },
+    {
+      "cohortId": "SGAUTHIER_RECIPES_CC0_B12E481D",
+      "expectedCount": 226,
+      "observedCount": 226,
+      "observedStructuralRatio": 0.986726,
+      "minimumStructuralRatio": 0.95,
+      "pass": true
+    },
+    {
+      "cohortId": "unitools-world-recipes-v1_1_0",
+      "expectedCount": 501,
+      "observedCount": 501,
+      "observedStructuralRatio": 1,
+      "minimumStructuralRatio": 1,
+      "pass": true
+    }
+  ],
+  "structuralExceptions": [
+    {
+      "layer": "v8003",
+      "cohortId": "SGAUTHIER_RECIPES_CC0_B12E481D",
+      "sourceSystem": "CC0_MARKDOWN",
+      "sourceRecordKey": "eggs.md",
+      "titleKnown": true,
+      "ingredientCount": 0,
+      "directionCount": 0
+    },
+    {
+      "layer": "v8003",
+      "cohortId": "SGAUTHIER_RECIPES_CC0_B12E481D",
+      "sourceSystem": "CC0_MARKDOWN",
+      "sourceRecordKey": "peanut-butter.md",
+      "titleKnown": true,
+      "ingredientCount": 0,
+      "directionCount": 8
+    },
+    {
+      "layer": "v8003",
+      "cohortId": "SGAUTHIER_RECIPES_CC0_B12E481D",
+      "sourceSystem": "CC0_MARKDOWN",
+      "sourceRecordKey": "spices-during-pregnancy.md",
+      "titleKnown": true,
+      "ingredientCount": 0,
+      "directionCount": 0
+    }
+  ],
+  "canonicalAuthorityCoverage": {
+    "geographyCountry": {
+      "EXACT_SOURCE_NORMALIZATION": 501,
+      "REVIEWED_MAPPING": 0,
+      "AMBIGUOUS": 0,
+      "UNKNOWN": 18767
+    },
+    "geographyRegion": {
+      "EXACT_SOURCE_NORMALIZATION": 0,
+      "REVIEWED_MAPPING": 0,
+      "AMBIGUOUS": 0,
+      "UNKNOWN": 19268
+    },
+    "culinaryTradition": {
+      "EXACT_SOURCE_NORMALIZATION": 0,
+      "REVIEWED_MAPPING": 0,
+      "AMBIGUOUS": 0,
+      "UNKNOWN": 19268
+    },
+    "dishCategory": {
+      "EXACT_SOURCE_NORMALIZATION": 0,
+      "REVIEWED_MAPPING": 1079,
+      "AMBIGUOUS": 0,
+      "UNKNOWN": 18189
+    },
+    "mealRoles": {
+      "EXACT_SOURCE_NORMALIZATION": 0,
+      "REVIEWED_MAPPING": 524,
+      "AMBIGUOUS": 0,
+      "UNKNOWN": 18744
+    },
+    "techniqueFamilies": {
+      "EXACT_SOURCE_NORMALIZATION": 0,
+      "REVIEWED_MAPPING": 0,
+      "AMBIGUOUS": 0,
+      "UNKNOWN": 19268
+    },
+    "difficulty": {
+      "EXACT_SOURCE_NORMALIZATION": 1416,
+      "REVIEWED_MAPPING": 0,
+      "AMBIGUOUS": 0,
+      "UNKNOWN": 17852
+    },
+    "prepMinutes": {
+      "EXACT_SOURCE_NORMALIZATION": 501,
+      "REVIEWED_MAPPING": 0,
+      "AMBIGUOUS": 0,
+      "UNKNOWN": 18767
+    },
+    "cookMinutes": {
+      "EXACT_SOURCE_NORMALIZATION": 501,
+      "REVIEWED_MAPPING": 0,
+      "AMBIGUOUS": 0,
+      "UNKNOWN": 18767
+    },
+    "totalMinutes": {
+      "EXACT_SOURCE_NORMALIZATION": 870,
+      "REVIEWED_MAPPING": 501,
+      "AMBIGUOUS": 45,
+      "UNKNOWN": 17852
+    },
+    "servings": {
+      "EXACT_SOURCE_NORMALIZATION": 501,
+      "REVIEWED_MAPPING": 0,
+      "AMBIGUOUS": 0,
+      "UNKNOWN": 18767
+    },
+    "reviewedDietaryTags": {
+      "EXACT_SOURCE_NORMALIZATION": 0,
+      "REVIEWED_MAPPING": 0,
+      "AMBIGUOUS": 0,
+      "UNKNOWN": 19268
+    }
+  },
+  "controlledVocabularies": {
+    "dishCategory": [
+      "BEVERAGE",
+      "BREAD",
+      "CONDIMENT",
+      "DESSERT",
+      "EGG_DISH",
+      "FERMENTED_FOOD",
+      "GRAIN_DISH",
+      "PROTEIN_DISH",
+      "SALAD",
+      "SAUCE",
+      "SEAFOOD_DISH",
+      "SOUP",
+      "STOCK",
+      "VEGETABLE_DISH"
+    ],
+    "mealRoles": [
+      "BEVERAGE",
+      "BREAKFAST",
+      "DESSERT",
+      "MAIN",
+      "SIDE",
+      "SNACK"
+    ],
+    "difficultyScales": {
+      "numeric": "NUMERIC_1_5",
+      "labels": "LABEL_EASY_MEDIUM_HARD"
+    }
+  },
+  "semantics": {
+    "country": "ONLY_EXPLICIT_SOURCE_COUNTRY",
+    "region": "UNKNOWN_V1_NO_INFERENCE",
+    "tradition": "UNKNOWN_V1_SOURCE_CUISINE_CULTURE_TAGS_RETAINED_AS_HINTS_ONLY",
+    "forkrecipeActiveTime": "SOURCE_HINT_ONLY_NOT_PREP_MINUTES",
+    "category": "REVIEWED_EXPLICIT_SPLIT_BETWEEN_DISH_CATEGORY_AND_MEAL_ROLE",
+    "difficulty": "SOURCE_SCALE_PRESERVED_NO_CROSS_SCALE_EQUIVALENCE",
+    "dietary": "UNKNOWN_V1_NO_AUTOMATIC_DIETARY_PROMOTION"
+  },
+  "boundaries": {
+    "d1ReadsPerformed": 0,
+    "d1WritesPerformed": 0,
+    "protectedBodiesExported": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationBehaviorChanged": false,
+    "nutritionLaneModified": false,
+    "youtubeLaneModified": false,
+    "knowledgeCoreWritePerformed": false,
+    "billingExpansion": false,
+    "thirdShardUsed": false
+  },
+  "nextGate": "NUTRITION_VITAMIN_APPLICABILITY_AUDIT"
+}
