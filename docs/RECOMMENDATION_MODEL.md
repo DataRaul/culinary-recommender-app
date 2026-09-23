@@ -25,6 +25,10 @@
 
 Weights are public V0 heuristics, not learned medical or behavioural truth. They are deliberately isolated behind the recommendation boundary so a later public-safe Brain-derived policy can replace them without UI coupling.
 
+### Missing soft evidence
+
+Unavailable soft evidence is not converted to numeric zero. For nutrition, the scorer uses only tracked nutrient signals that are actually numeric; if both fibre and protein are unavailable, the nutrition component is `null` and the protein component is `null`. The base score then re-normalizes the positive soft weights across the signals that are available, preserving the original score exactly when all signals are present. This prevents missing nutrition authority from becoming a false zero-value claim or an automatic penalty. Priority-pack bonuses are stricter: an unavailable signal earns no bonus and is recorded as unavailable rather than imputed. Hard constraints are never reweighted or relaxed.
+
 ## Composable priority packs
 Priority packs are optional, inspectable soft lenses over the base score. A profile may hold at most three unique packs, each scoped to `all`, `lunch` or `dinner`.
 
