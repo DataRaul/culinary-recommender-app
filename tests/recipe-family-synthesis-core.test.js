@@ -41,6 +41,7 @@ test("quantitative synthesis never mixes incompatible bases", () => {
   const groups=quantitativeGroups(observations);
   assert.equal(groups.length,2);
   assert.equal(groups.find(x=>x.basis==="MASS").independentObservationCount,3);
+  assert.equal(groups.find(x=>x.basis==="MASS").distinctPublisherCount,3);
   assert.equal(groups.find(x=>x.basis==="VOLUME").recommendedRange,null);
 });
 
@@ -76,4 +77,22 @@ test("candidate gate fails closed when a required quantitative role has insuffic
   });
   assert.equal(out.gate.appAuthoringEligible,false);
   assert.equal(out.candidateAppOwnedRecipeProjection,null);
+});
+
+
+test("quantitative range requires publisher diversity as well as independent preparations", () => {
+  const sharedPublisher = id => ({
+    ...source(id),
+    publisherLedgerKey: "shared-publisher"
+  });
+  const observations = [
+    { observationId:"a",source:sharedPublisher("a"),normalized:{quantitative:[{roleId:"x",lower:10,upper:10,basis:"MASS",unit:"pct"}]}},
+    { observationId:"b",source:sharedPublisher("b"),normalized:{quantitative:[{roleId:"x",lower:12,upper:12,basis:"MASS",unit:"pct"}]}},
+    { observationId:"c",source:sharedPublisher("c"),normalized:{quantitative:[{roleId:"x",lower:14,upper:14,basis:"MASS",unit:"pct"}]}}
+  ];
+  const [group] = quantitativeGroups(observations, { minimumIndependent: 3, minimumDistinctPublishers: 2, maxRobustSpreadRatio: 4 });
+  assert.equal(group.independentObservationCount, 3);
+  assert.equal(group.distinctPublisherCount, 1);
+  assert.equal(group.stableForPilot, false);
+  assert.equal(group.recommendedRange, null);
 });
