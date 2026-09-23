@@ -68,7 +68,8 @@
     "d1": "Operational target remains <=8 D1 subqueries/request; hard fail-safe 16 is not spendable headroom.",
     "billing_firewall": "No paid infrastructure/API/corpus licensing or automatic billing expansion.",
     "youtube": "Do not retry YT-CUL live Search while DAILY_SEARCH_HOLD_POLICY_OR_QUOTA remains active.",
-    "knowledge_core": "No Knowledge Core write from this app lane unless separately authorized."
+    "knowledge_core": "No Knowledge Core write from this app lane unless separately authorized.",
+    "public_activation": "Public runtime remains 85 recipes. Broader public corpus, recommendation, or Recipe Family runtime admission is not authorized by P0 or UI legal conformance PASS."
   },
   "canonical_documents": {
     "roadmap": "docs/ROADMAP.md",
@@ -100,7 +101,8 @@
     "public_runtime_changed": false,
     "recommendation_admission_changed": false,
     "third_shard_used": false,
-    "billing_expansion": false
+    "billing_expansion": false,
+    "d1_budget_headroom_assumed": false
   },
   "recommendation_readiness": {
     "status": "USABLE_RECOMMENDATION_BASELINE_PASS",
