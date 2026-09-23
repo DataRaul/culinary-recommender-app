@@ -73,7 +73,32 @@ const definitions = [
   }
 ];
 
-const families = definitions.map(definition => synthesizeFamily(packet.observations, config, definition));
+const familyDetails = definitions.map(definition => synthesizeFamily(packet.observations, config, definition));
+const families = familyDetails.map(row => ({
+  familyId: row.familyId,
+  independentObservationCount: row.independentObservationCount,
+  publisherCount: row.publisherCount,
+  coreIngredientRoles: row.referenceProfile.ingredientSupport.map(item => item.id),
+  coreTechniques: row.referenceProfile.techniqueSupport.map(item => item.id),
+  requiredQuantityState: row.gate.requiredQuantityState.map(item => ({
+    roleId: item.roleId,
+    pass: item.pass,
+    selected: item.selected ? {
+      basis: item.selected.basis,
+      unit: item.selected.unit,
+      independentObservationCount: item.selected.independentObservationCount,
+      observedRange: item.selected.observedRange,
+      robustCenter: item.selected.robustCenter,
+      recommendedRange: item.selected.recommendedRange,
+      robustSpreadRatio: item.selected.robustSpreadRatio
+    } : null
+  })),
+  variants: row.variantProfile,
+  appAuthoringEligible: row.gate.appAuthoringEligible,
+  terminal: row.gate.terminal,
+  candidateAppOwnedRecipeProjection: row.candidateAppOwnedRecipeProjection,
+  provenanceObservationIds: row.provenance.map(item => item.observationId).sort()
+}));
 const allSourcesPass =
   packet.observations.length > 0 &&
   packet.observations.every(row =>
@@ -85,7 +110,7 @@ const allSourcesPass =
     (row.source.publicAttributionRequirement !== "REQUIRED" || row.source.publicAttributionState === "READY")
   );
 
-const eligible = families.filter(row => row.gate.appAuthoringEligible);
+const eligible = families.filter(row => row.appAuthoringEligible);
 const summary = {
   schemaVersion: "CULINARY_RECIPE_FAMILY_P0_PROTOTYPE_SUMMARY_V1",
   date: "2026-09-23",
