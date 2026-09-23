@@ -5,12 +5,12 @@
   "canonicalDecision": "docs/LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_DECISION.md",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "sequencing": {
-    "primaryNextMilestone": "NUTRITION_VITAMIN_APPLICABILITY_AUDIT",
-    "principalExecutionLane": "NUTRITION_AND_VITAMIN_APPLICABILITY",
+    "primaryNextMilestone": "RECOMMENDATION_READINESS_AUDIT",
+    "principalExecutionLane": "RECOMMENDATION_READINESS",
     "recipeFamilyPrototypeState": "DEFERRED_UNTIL_POST_RECOMMENDATION_READINESS",
-    "nutritionExpansionPriority": "ACTIVE_PRIMARY_NEXT",
+    "nutritionExpansionPriority": "APPLICABILITY_AUDIT_COMPLETE__CONTINUOUS_EVIDENCE_LANE",
     "youtubeRefinementPriority": "DOWNSTREAM_AFTER_USABLE_RECOMMENDATION_BASELINE",
-    "recommendationOptimizationPriority": "DOWNSTREAM_AFTER_NUTRITION_AND_VITAMIN_APPLICABILITY_AUDIT",
+    "recommendationOptimizationPriority": "READINESS_AUDIT_ACTIVE_PRIMARY_NEXT",
     "postBaselineOrder": [
       "corpus_normalization_and_categorization",
       "nutrition_and_vitamin_applicability_audit",
@@ -106,6 +106,45 @@
     },
     "publicRuntimeChanged": false,
     "d1Mutation": false,
-    "nextGate": "NUTRITION_VITAMIN_APPLICABILITY_AUDIT"
+    "nextGate": "NUTRITION_VITAMIN_APPLICABILITY_AUDIT_PASS"
+  },
+  "nutritionVitaminApplicabilityAudit": {
+    "status": "NUTRITION_VITAMIN_APPLICABILITY_AUDIT_PASS__FROZEN",
+    "protectedCorpusVersion": "v8018",
+    "protectedRecipeCount": 19268,
+    "summary": "data/generated/nutrition-vitamin-applicability-audit-v1.json",
+    "document": "docs/NUTRITION_VITAMIN_APPLICABILITY_AUDIT_V1.md",
+    "workflowRun": 35910295003,
+    "artifactId": 10772324502,
+    "artifactDigest": "sha256:6c779a58871e0f3146cc5dd1cd0dcc4c23e089ce04f58518360fe9bdce5a6641",
+    "currentPublicNutritionEngine": {
+      "authoredAuthoritative": 19,
+      "authoredTotal": 76,
+      "goldenAuthoritative": 19,
+      "goldenTotal": 84,
+      "publicRuntimeAuthoritative": 19,
+      "publicRuntimeTotal": 85,
+      "trackedNutrients": [
+        "energyKcal",
+        "proteinG",
+        "carbohydrateG",
+        "fatG",
+        "fibreG"
+      ]
+    },
+    "protectedApplicability": {
+      "ingredientOccurrences": 144245,
+      "exactCanonicalIngredientMatches": 36760,
+      "exactCanonicalIngredientMatchRatio": 0.254844,
+      "allIngredientIdentityReadyRecipes": 112,
+      "directCurrentEngineAuthoritativeRecipes": 0,
+      "vitaminMineralSchemaReady": false,
+      "authoritativeVitaminMineralRecipes": 0
+    },
+    "publicRuntimeChanged": false,
+    "nutritionRuntimeChanged": false,
+    "nutritionEvidenceAdded": false,
+    "d1Mutation": false,
+    "nextGate": "RECOMMENDATION_READINESS_AUDIT"
   }
 }
