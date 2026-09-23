@@ -9,6 +9,7 @@ on:
       - "tests/corpus-normalization-mapping-v1.test.js"
       - ".github/workflows/corpus-normalization-mapping-v1.yml"
       - "docs/CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1.md"
+      - "data/generated/corpus-normalization-mapping-v1.json"
   workflow_dispatch:
 
 permissions:
@@ -49,6 +50,9 @@ jobs:
             --ora=.tmp/ora \
             --output=.tmp/corpus-normalization-mapping-v1-full.json \
             --summary=.tmp/corpus-normalization-mapping-v1.json
+      - name: Verify committed mapping summary
+        run: |
+          node --input-type=module -e 'import assert from "node:assert/strict"; import {readFileSync} from "node:fs"; assert.deepStrictEqual(JSON.parse(readFileSync("data/generated/corpus-normalization-mapping-v1.json","utf8")), JSON.parse(readFileSync(".tmp/corpus-normalization-mapping-v1.json","utf8")));'
       - name: Upload mapping evidence
         uses: actions/upload-artifact@v4
         with:
