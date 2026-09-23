@@ -444,6 +444,8 @@ const summary = {
   },
   protectedCorpusApplicability: {
     ...protectedCorpus,
+    layerApplicability: grouped.layers,
+    cohortApplicability: grouped.cohorts,
     directCurrentEngineEligibleSources,
     unitoolsCurrentEngine: {
       sourceRecipeCount: unitoolsEngine.sourceRecipeCount,
