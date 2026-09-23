@@ -2,7 +2,7 @@
 
 Date: 2026-09-23
 
-Status: `RECOMMENDATION_READINESS_AUDIT_PASS__REMEDIATION_REQUIRED`
+Status: `USABLE_RECOMMENDATION_BASELINE_PASS__FROZEN`
 
 ## Purpose
 
@@ -41,3 +41,27 @@ The audit executed successfully without mutating runtime state.
 - the protected corpus remains correctly held: **112** records have all ingredient identities exact-mapped, **0** have reviewed dietary authority in Mapping V1, **0** are automatically recommendation-ready, and no protected record is admitted.
 
 Therefore the audit itself passes, but the usable recommendation baseline is **not yet earned**. The bounded successor is to repair unknown-nutrition scoring so unavailable nutrition signals remain explicit and non-numeric, then rerun this same audit before advancing to Recipe Family/adaptation.
+
+
+## Remediation closeout
+
+The bounded readiness repair changed recommendation scoring semantics only for unavailable soft evidence.
+
+- unknown nutrition/protein soft components remain `null`, not numeric zero;
+- available positive soft weights are re-normalized across available signals;
+- unavailable priority-pack signals earn no bonus and remain explicit;
+- hard constraints, recommendation-state governance and source/nutrition firewalls are unchanged;
+- public runtime remains **85** recipes with **77** recommendation-state eligible, **2** Search-only and **6** reference-only records;
+- the one eligible unknown-nutrition record, `unitools_tortilla_espanola`, now reports missing nutrition/protein explicitly;
+- unknown-nutrition safe count is **1 / 1**, zero-coercion count is **0**, and missing-signal disclosure count is **1 / 1**;
+- protected v8018 remains **0 automatically recommendation-ready**; its **112** exact-identity-ready records remain review candidates only.
+
+The rerun therefore earns:
+
+`USABLE_RECOMMENDATION_BASELINE_PASS`
+
+Successor:
+
+`RECIPE_FAMILY_AND_ADAPTATION`
+
+The audit rerun itself performs no mutation. The repository change that earned this result is the separately bounded scoring remediation defined in `config/recommendation_readiness_repair_v1.json`.

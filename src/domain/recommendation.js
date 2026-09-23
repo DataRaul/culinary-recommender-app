@@ -4,10 +4,47 @@ import { isIngredientPermanentlyExcluded } from "./exclusions.js";
 
 const clamp01 = value => Math.max(0, Math.min(1, value));
 const closeness = (a, b, span = 3) => clamp01(1 - Math.abs(a - b) / span);
+const finiteNumber = value => typeof value === "number" && Number.isFinite(value);
+
+function nutritionFit(nutrition, proteinTarget) {
+  const available = [];
+  if (finiteNumber(nutrition?.fibreG)) available.push(clamp01(nutrition.fibreG / 14));
+  if (finiteNumber(nutrition?.proteinG)) available.push(clamp01(nutrition.proteinG / proteinTarget));
+  return available.length ? available.reduce((sum, value) => sum + value, 0) / available.length : null;
+}
+
+function weightedBaseScore(components, weights) {
+  let totalPositiveWeight = 0;
+  let availablePositiveWeight = 0;
+  let positiveScore = 0;
+  let negativeScore = 0;
+
+  for (const [key, weight] of Object.entries(weights)) {
+    const value = components[key];
+    if (weight > 0) {
+      totalPositiveWeight += weight;
+      if (!finiteNumber(value)) continue;
+      availablePositiveWeight += weight;
+      positiveScore += value * weight;
+    } else if (finiteNumber(value)) {
+      negativeScore += value * weight;
+    }
+  }
+
+  const positiveWeightScale = availablePositiveWeight > 0
+    ? totalPositiveWeight / availablePositiveWeight
+    : 0;
+  return {
+    score: positiveScore * positiveWeightScale + negativeScore,
+    totalPositiveWeight,
+    availablePositiveWeight,
+    positiveWeightScale
+  };
+}
 
 function packAdjustment(recipe, profile, mealType, components) {
   const packs = activePriorityPacks(profile, mealType);
-  if (!packs.length) return { bonus: 0, packs: [] };
+  if (!packs.length) return { bonus: 0, packs: [], unavailableSignals: [] };
 
   const signals = {
     budget: components.budget,
@@ -26,10 +63,22 @@ function packAdjustment(recipe, profile, mealType, components) {
   };
 
   let rawBonus = 0;
+  const unavailableSignals = new Set();
   for (const pack of packs) {
-    for (const [signal, weight] of Object.entries(pack.signals || {})) rawBonus += (signals[signal] || 0) * weight;
+    for (const [signal, weight] of Object.entries(pack.signals || {})) {
+      const value = signals[signal];
+      if (!finiteNumber(value)) {
+        unavailableSignals.add(signal);
+        continue;
+      }
+      rawBonus += value * weight;
+    }
   }
-  return { bonus: Number(Math.min(0.24, rawBonus).toFixed(6)), packs };
+  return {
+    bonus: Number(Math.min(0.24, rawBonus).toFixed(6)),
+    packs,
+    unavailableSignals: [...unavailableSignals].sort()
+  };
 }
 
 export function hardConstraintReasons(recipe, rawProfile, mealType = null, context = {}) {
@@ -69,12 +118,12 @@ export function evaluateRecipe(recipe, rawProfile, context = {}) {
 
   const nutrition = recipe.nutrition?.perServing || {};
   const proteinTarget = profile.proteinEmphasis >= 4 ? 30 : profile.proteinEmphasis >= 3 ? 22 : 15;
-  const nutritionScore = clamp01((nutrition.fibreG || 0) / 14) * 0.5 + clamp01((nutrition.proteinG || 0) / proteinTarget) * 0.5;
+  const nutritionScore = nutritionFit(nutrition, proteinTarget);
   const budgetScore = recipe.economics.costTier <= profile.budget ? 1 : clamp01(1 - (recipe.economics.costTier - profile.budget) * 0.35);
   const speedScore = clamp01(1 - recipe.time.totalMinutes / Math.max(profile.maxMinutes * 1.4, 1));
   const skillScore = closeness(recipe.culinary.difficulty, profile.skill);
   const cuisineScore = profile.cuisinePreferences.length === 0 ? 0.7 : profile.cuisinePreferences.includes(recipe.culinary.cuisine) ? 1 : 0.45;
-  const proteinScore = clamp01((nutrition.proteinG || 0) / proteinTarget);
+  const proteinScore = finiteNumber(nutrition.proteinG) ? clamp01(nutrition.proteinG / proteinTarget) : null;
   const mealPrepScore = recipe.convenience.mealPrepSuitability / 4;
   const noveltyScore = profile.variety <= 1 ? closeness(recipe.discovery.novelty, 1) : profile.variety >= 4 ? recipe.discovery.novelty / 4 : closeness(recipe.discovery.novelty, profile.variety);
   const availability = resolveAvailability(recipe, profile);
@@ -110,9 +159,14 @@ export function evaluateRecipe(recipe, rawProfile, context = {}) {
     pantry: 0.05,
     substitutionPenalty: -0.08
   };
-  const baseScore = Object.entries(components).reduce((sum, [key, value]) => sum + value * weights[key], 0);
+  const weighted = weightedBaseScore(components, weights);
+  const baseScore = weighted.score;
   const pack = packAdjustment(recipe, profile, mealType, components);
   const score = baseScore + pack.bonus;
+  const unavailableSoftSignals = Object.entries(components)
+    .filter(([, value]) => !finiteNumber(value))
+    .map(([key]) => key)
+    .sort();
 
   const reasons = [];
   if (components.budget >= 0.95) reasons.push(`${"€".repeat(recipe.economics.costTier)} budget fit`);
@@ -134,6 +188,18 @@ export function evaluateRecipe(recipe, rawProfile, context = {}) {
     activePriorityPacks: pack.packs.map(item => ({ id: item.id, scope: item.scope, label: item.label })),
     components,
     availability,
+    evidence: {
+      unavailableSoftSignals,
+      unavailablePrioritySignals: pack.unavailableSignals,
+      scoreNormalization: {
+        totalPositiveWeight: Number(weighted.totalPositiveWeight.toFixed(6)),
+        availablePositiveWeight: Number(weighted.availablePositiveWeight.toFixed(6)),
+        positiveWeightScale: Number(weighted.positiveWeightScale.toFixed(6))
+      },
+      nutritionState: unavailableSoftSignals.includes("nutrition") || unavailableSoftSignals.includes("protein")
+        ? "PARTIAL_OR_UNKNOWN"
+        : "AVAILABLE"
+    },
     explanation: `Recommended because it fits ${reasons.slice(0, 4).join(", ") || "your selected profile"}.`
   };
 }
