@@ -387,5 +387,5 @@ const output = {
 
 await mkdir(dirname(resolve(args.output)), { recursive:true });
 await writeFile(resolve(args.output), JSON.stringify(output,null,2) + "\n", "utf8");
-process.stdout.write(JSON.stringify({ pass:output.pass, terminal:output.terminal, observedRecipeCount:output.observedRecipeCount, corpus:output.corpus, canonicalTaxonomyAuthorityCoverage:output.canonicalTaxonomyAuthorityCoverage, boundaries:output.boundaries }, null, 2) + "\n");
+process.stdout.write(JSON.stringify({ pass:output.pass, terminal:output.terminal, observedRecipeCount:output.observedRecipeCount, deficientCohorts:output.cohorts.filter(row => row.structurallyParseableCount !== row.recipeCount), corpus:output.corpus, canonicalTaxonomyAuthorityCoverage:output.canonicalTaxonomyAuthorityCoverage, boundaries:output.boundaries }, null, 2) + "\n");
 if (!pass) process.exitCode=1;
