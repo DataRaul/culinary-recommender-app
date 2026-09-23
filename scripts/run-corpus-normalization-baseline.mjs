@@ -45,9 +45,9 @@ function emptySignals() {
   };
 }
 
-function standardized({ layer, cohortId, sourceSystem, title, ingredientCount, directionCount, signals }) {
+function standardized({ layer, cohortId, sourceSystem, sourceRecordKey, title, ingredientCount, directionCount, signals }) {
   return {
-    layer, cohortId, sourceSystem,
+    layer, cohortId, sourceSystem, sourceRecordKey: String(sourceRecordKey ?? ""),
     titleKnown: nonEmpty(title),
     ingredientCount: Number(ingredientCount || 0),
     directionCount: Number(directionCount || 0),
@@ -60,7 +60,7 @@ async function loadUnitools(root, cfg) {
   const dataset = JSON.parse(await readFile(resolve(root, cfg.dataPath), "utf8"));
   if (!Array.isArray(dataset.recipes) || dataset.recipes.length !== cfg.expectedCount) throw new Error("UNITOOLS_COUNT_MISMATCH");
   return dataset.recipes.map(recipe => standardized({
-    layer: cfg.layer, cohortId: cfg.cohortId, sourceSystem: "UNITOOLS",
+    layer: cfg.layer, cohortId: cfg.cohortId, sourceSystem: "UNITOOLS", sourceRecordKey: recipe.slug,
     title: recipe.name?.en || recipe.nativeName || recipe.slug,
     ingredientCount: Array.isArray(recipe.ingredients) ? recipe.ingredients.length : 0,
     directionCount: Array.isArray(recipe.steps) ? recipe.steps.length : 0,
@@ -84,7 +84,7 @@ async function loadForkrecipe(root, cfg) {
     const mod = await import(pathToFileURL(resolve(dir, file)).href);
     const recipe = mod.default || {};
     rows.push(standardized({
-      layer: cfg.layer, cohortId: cfg.cohortId, sourceSystem: "FORKRECIPE",
+      layer: cfg.layer, cohortId: cfg.cohortId, sourceSystem: "FORKRECIPE", sourceRecordKey: file,
       title: recipe.title || recipe.slug,
       ingredientCount: Array.isArray(recipe.ingredients) ? recipe.ingredients.length : 0,
       directionCount: Array.isArray(recipe.processNodes) ? recipe.processNodes.length : 0,
@@ -110,7 +110,7 @@ async function loadCc0(root, cfg) {
   for (const file of files) {
     const parsed = parseCc0MarkdownRecipe(await readFile(resolve(dir, file), "utf8"), { fileName: file });
     rows.push(standardized({
-      layer: cfg.layer, cohortId: cfg.cohortId, sourceSystem: "CC0_MARKDOWN",
+      layer: cfg.layer, cohortId: cfg.cohortId, sourceSystem: "CC0_MARKDOWN", sourceRecordKey: file,
       title: parsed.title,
       ingredientCount: parsed.ingredients.length,
       directionCount: parsed.directions.length,
@@ -156,12 +156,12 @@ async function loadOra(root, cfg) {
         if (String(meta.source_url ?? "") === cohort.sourceUrl &&
             String(meta.source_title ?? "") === cohort.sourceTitle &&
             String(meta.source_year ?? "") === cohort.sourceYear &&
-            String(meta.license ?? "") === "public-domain") selected.push(parsed);
+            String(meta.license ?? "") === "public-domain") selected.push({ ...parsed, file });
       }
       if (selected.length !== cohort.expectedCount) throw new Error("ORA_MARKDOWN_COUNT_MISMATCH_" + cohort.cohortId + "_" + selected.length);
       for (const row of selected) {
         output.push(standardized({
-          layer: cohort.layer, cohortId: cohort.cohortId, sourceSystem: "OPEN_RECIPE_ARCHIVE_MARKDOWN",
+          layer: cohort.layer, cohortId: cohort.cohortId, sourceSystem: "OPEN_RECIPE_ARCHIVE_MARKDOWN", sourceRecordKey: row.file,
           title: row.meta.title,
           ingredientCount: row.ingredients,
           directionCount: row.directions,
@@ -191,7 +191,7 @@ async function loadOra(root, cfg) {
     for (const row of selected) {
       const structure = oraStructure(row);
       output.push(standardized({
-        layer: cohort.layer, cohortId: cohort.cohortId, sourceSystem: "OPEN_RECIPE_ARCHIVE_JSONL",
+        layer: cohort.layer, cohortId: cohort.cohortId, sourceSystem: "OPEN_RECIPE_ARCHIVE_JSONL", sourceRecordKey: row.slug || row.title,
         title: row.title,
         ingredientCount: structure.ingredients,
         directionCount: structure.directions,
@@ -304,20 +304,31 @@ const records = [
 
 const grouped = groupSummaries(records);
 const corpus = summarize(records);
-const expectedCohortCounts = new Map([
-  [config.sources.unitools.cohortId, config.sources.unitools.expectedCount],
-  [config.sources.forkrecipe.cohortId, config.sources.forkrecipe.expectedCount],
-  [config.sources.cc0.cohortId, config.sources.cc0.expectedCount],
-  ...config.sources.ora.cohorts.map(row => [row.cohortId,row.expectedCount])
-]);
+const sourceContracts = [
+  config.sources.unitools,
+  config.sources.forkrecipe,
+  config.sources.cc0,
+  ...config.sources.ora.cohorts
+];
+const expectedCohortCounts = new Map(sourceContracts.map(row => [row.cohortId, row.expectedCount]));
+const minStructuralRatios = new Map(sourceContracts.map(row => [row.cohortId, Number(row.minStructuralRatio ?? 1)]));
 const countMismatches = grouped.cohorts
   .filter(row => expectedCohortCounts.get(row.cohortId) !== row.recipeCount)
   .map(row => ({ cohortId: row.cohortId, expected: expectedCohortCounts.get(row.cohortId), actual: row.recipeCount }));
 
+const structuralExceptions = records
+  .filter(row => !(row.titleKnown && row.ingredientCount > 0 && row.directionCount > 0))
+  .map(row => ({ layer: row.layer, cohortId: row.cohortId, sourceSystem: row.sourceSystem, sourceRecordKey: row.sourceRecordKey, titleKnown: row.titleKnown, ingredientCount: row.ingredientCount, directionCount: row.directionCount }));
+const structuralThresholds = grouped.cohorts.map(row => ({
+  cohortId: row.cohortId,
+  observedStructuralRatio: row.structurallyParseableRatio,
+  minimumStructuralRatio: minStructuralRatios.get(row.cohortId) ?? 1,
+  pass: row.structurallyParseableRatio >= (minStructuralRatios.get(row.cohortId) ?? 1)
+}));
 const pass = records.length === config.expectedRecipeCount &&
   countMismatches.length === 0 &&
   corpus.titleKnownCount === records.length &&
-  corpus.structurallyParseableCount === records.length;
+  structuralThresholds.every(row => row.pass);
 
 const output = {
   schemaVersion:"CULINARY_CORPUS_NORMALIZATION_BASELINE_AUDIT_V1",
@@ -334,6 +345,8 @@ const output = {
     ora:config.sources.ora.commit
   },
   countMismatches,
+  structuralThresholds,
+  structuralExceptions,
   corpus,
   ...grouped,
   canonicalTaxonomyAuthorityCoverage:{
@@ -350,7 +363,9 @@ const output = {
     note:"Counts are zero because protected source metadata remains source-hint/provenance material until a separate reviewed mapping earns canonical app authority. This does not mean source hints are absent."
   },
   interpretation:{
-    titleAndStructureReadyForNormalization: corpus.structurallyParseableCount === records.length,
+    titleCoverageReadyForNormalization: corpus.titleKnownCount === records.length,
+    structuralExceptionsRequireExplicitUnknownState: structuralExceptions.length > 0,
+    structuralExceptionCount: structuralExceptions.length,
     rawSignalCoverageIsHeterogeneous:true,
     sourceSchemasAreNotSemanticallyInterchangeable:true,
     tagsRequireControlledMapping:true,
@@ -387,5 +402,5 @@ const output = {
 
 await mkdir(dirname(resolve(args.output)), { recursive:true });
 await writeFile(resolve(args.output), JSON.stringify(output,null,2) + "\n", "utf8");
-process.stdout.write(JSON.stringify({ pass:output.pass, terminal:output.terminal, observedRecipeCount:output.observedRecipeCount, deficientCohorts:output.cohorts.filter(row => row.structurallyParseableCount !== row.recipeCount), corpus:output.corpus, canonicalTaxonomyAuthorityCoverage:output.canonicalTaxonomyAuthorityCoverage, boundaries:output.boundaries }, null, 2) + "\n");
+process.stdout.write(JSON.stringify({ pass:output.pass, terminal:output.terminal, observedRecipeCount:output.observedRecipeCount, structuralThresholds:output.structuralThresholds, structuralExceptions:output.structuralExceptions, corpus:output.corpus, canonicalTaxonomyAuthorityCoverage:output.canonicalTaxonomyAuthorityCoverage, boundaries:output.boundaries }, null, 2) + "\n");
 if (!pass) process.exitCode=1;
