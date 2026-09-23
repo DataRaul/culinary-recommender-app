@@ -8,7 +8,7 @@ const roadmapUrl = new URL("../docs/RECIPE_FAMILY_SYNTHESIS_ROADMAP_GATE.md", im
 const contract = JSON.parse(readFileSync(contractUrl, "utf8"));
 const roadmap = readFileSync(roadmapUrl, "utf8");
 
-test("UI legal conformance waits for real candidate objects and blocks public/reusable admission", () => {
+test("UI legal conformance is triggered by the real candidate and still blocks public/reusable admission", () => {
   assert.equal(contract.state, "TRIGGERED_REAL_CANDIDATE_IMPLEMENTATION_VALIDATION_PENDING");
   assert.equal(contract.trigger.event, "FIRST_REAL_APP_AUTHORING_CANDIDATE_WITH_CLASSIFIED_SOURCE_RIGHTS_AND_ATTRIBUTION");
   assert.equal(contract.trigger.doNotRunBeforeUsefulObjectsExist, true);
@@ -49,7 +49,7 @@ test("gate requires renderer, browser, negative and public-runtime evidence", ()
   ]) {
     assert.ok(contract.testLayers.includes(layer), `missing test layer ${layer}`);
   }
-  assert.match(roadmap, /UI legal-conformance gate.*BLOCKING WHEN REAL CANDIDATE OBJECTS EXIST/s);
+  assert.match(roadmap, /UI legal-conformance gate.*REAL HUMMUS CANDIDATE \/ PR VALIDATION PENDING/s);
   assert.match(roadmap, /UI legal-conformance PASS on real candidate objects/);
   assert.equal(contract.currentRealCandidate.projectionId, "recipe_family_p0_hummus_candidate_v1");
   assert.equal(contract.currentRealCandidate.publicRuntimeAdmissionAuthorized, false);
