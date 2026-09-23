@@ -1,6 +1,6 @@
 # Recipe Family Synthesis P0 — Roadmap Gate
 
-Status: **ACTIVE / P0 PROTOTYPE REVIEW PASS / UI LEGAL CONFORMANCE VALIDATION PENDING**
+Status: **ACTIVE / UI LEGAL CONFORMANCE PASS / 10-FAMILY NONPUBLIC EXPANSION NEXT**
 
 This gate formalizes the Recipe Family controls and now inherits the owner-approved sequencing decision in:
 
@@ -84,7 +84,7 @@ The public GitHub repository remains code/review infrastructure. Protected recip
    - This permits a project-authored candidate recipe object to enter existing `RecipeSource` / evaluator / planner review gates.
    - Evidence sources do not automatically become the displayed recipe source; display obligations follow the actual reuse/licence/permission/Terms basis.
 
-9. **UI legal-conformance gate** — IMPLEMENTED ON REAL HUMMUS CANDIDATE / PR VALIDATION PENDING.
+9. **UI legal-conformance gate** — COMPLETE / PASS ON REAL HUMMUS CANDIDATE.
    - Trigger when the first real `APP_AUTHORING_ELIGIBLE` candidate exists with classified source rights/provenance and public-attribution state; do not build speculative licence UI before useful objects exist.
    - Use real candidate recipe/source/provenance/attribution objects as browser and renderer fixtures, plus synthetic negative fixtures exercising `UNSATISFIABLE` and `UNKNOWN` states.
    - This gate does **not** decide source legality again. It revalidates that the UI implements the already-encoded legal/source result correctly.
