@@ -1,7 +1,7 @@
 {
-  "contractVersion": "0.1.0",
+  "contractVersion": "0.2.0",
   "gateId": "recipe-family-ui-legal-conformance",
-  "state": "CONTRACT_ONLY_TRIGGERED_WHEN_REAL_CANDIDATE_OBJECTS_EXIST",
+  "state": "TRIGGERED_REAL_CANDIDATE_IMPLEMENTATION_VALIDATION_PENDING",
   "purpose": "Revalidate that the UI and public/reusable admission path actually implement the source, licence, attribution and expression-retention obligations already encoded upstream.",
   "notANewLegalOpinion": true,
   "trigger": {
@@ -83,5 +83,14 @@
     "NEW_ATTRIBUTION_OR_DISCLOSURE_OBLIGATION_CANNOT_BE_EXPRESSED_BY_CURRENT_OBJECT_MODEL",
     "NEW_SOURCE_CLASS_REQUIRES_MATERIALLY_DIFFERENT_PUBLIC_DISPLAY_BEHAVIOR",
     "PUBLIC_OR_COMMERCIAL_USE_SCOPE_MATERIALLY_WIDENS"
-  ]
+  ],
+  "currentRealCandidate": {
+    "familyId": "hummus",
+    "projectionId": "recipe_family_p0_hummus_candidate_v1",
+    "prototypeEvidence": "data/generated/recipe-family-p0-prototype.json",
+    "sourceObservationEvidence": "data/generated/recipe-family-p0-source-observations.json",
+    "conformanceEvidence": "data/generated/recipe-family-ui-legal-conformance-v1.json",
+    "publicRuntimeAdmissionAuthorized": false
+  },
+  "nextOnPass": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC"
 }
