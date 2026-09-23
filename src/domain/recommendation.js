@@ -44,7 +44,7 @@ function weightedBaseScore(components, weights) {
 
 function packAdjustment(recipe, profile, mealType, components) {
   const packs = activePriorityPacks(profile, mealType);
-  if (!packs.length) return { bonus: 0, packs: [] };
+  if (!packs.length) return { bonus: 0, packs: [], unavailableSignals: [] };
 
   const signals = {
     budget: components.budget,
