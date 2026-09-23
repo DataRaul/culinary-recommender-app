@@ -173,6 +173,11 @@ jobs:
           const artLivingExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/artoflivinginaus00muskiala");
           if(!artLivingExcluded||!artLivingExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
           if(p.topRightsReviewCandidates?.some(x=>x.sourceUrl==="https://archive.org/details/artoflivinginaus00muskiala"))process.exit(1);
+          const canadianHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/canadianfamilyco00deni_0");
+          if(!canadianHeld||canadianHeld.reason!=="EXACT_1914_WORK_IDENTIFIES_RECIPES_BY_PROMINENT_CANADIAN_LADIES_AND_CONTRIBUTOR_LIST__ORA_FLATTENS_TO_GRACE_DENISON_AUTHOR")process.exit(1);
+          const canadianExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/canadianfamilyco00deni_0");
+          if(!canadianExcluded||!canadianExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          if(p.topRightsReviewCandidates?.some(x=>x.sourceUrl==="https://archive.org/details/canadianfamilyco00deni_0"))process.exit(1);
           if(!Number.isInteger(p.rightsReviewEligibleCount)||p.rightsReviewEligibleCount<0)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle||null,nextAuthority:p.nextAuthority}));'
 
