@@ -1,6 +1,6 @@
 {
   "schemaVersion": "CULINARY_NUTRITION_VITAMIN_APPLICABILITY_AUDIT_CONTRACT_V1",
-  "state": "FROZEN_NO_WRITE_AUDIT",
+  "state": "FROZEN_AUDIT_PASS_NO_RUNTIME_MUTATION",
   "protectedCorpusVersion": "v8018",
   "expectedRecipeCount": 19268,
   "normalizationBaselineConfig": "config/corpus_normalization_baseline_v1.json",
@@ -40,5 +40,18 @@
     "NO_VITAMIN_OR_MINERAL_VALUE_INFERRED_FROM_UNTRACKED_SOURCE_DATA",
     "NO_D1_PUBLIC_RECOMMENDATION_NUTRITION_KC_SHARD_OR_BILLING_MUTATION"
   ],
-  "nextGateOnPass": "RECOMMENDATION_READINESS_AUDIT"
+  "nextGateOnPass": "RECOMMENDATION_READINESS_AUDIT",
+  "evidence": {
+    "workflowRun": 35910295003,
+    "artifactId": 10772324502,
+    "artifactName": "nutrition-vitamin-applicability-audit-v1",
+    "artifactDigest": "sha256:6c779a58871e0f3146cc5dd1cd0dcc4c23e089ce04f58518360fe9bdce5a6641",
+    "authoredAuthoritativeRecipeCount": 19,
+    "authoredRecipeCount": 76,
+    "protectedExactIdentityResolvedOccurrences": 36760,
+    "protectedIngredientOccurrences": 144245,
+    "protectedAllIngredientIdentityReadyRecipeCount": 112,
+    "protectedCurrentEngineAuthoritativeCount": 0,
+    "vitaminMineralSchemaReady": false
+  }
 }
