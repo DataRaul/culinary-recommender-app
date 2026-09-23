@@ -1,162 +1,161 @@
 {
-  "handover": "CULINARY_APP_V8018_NORMALIZATION_MAPPING_V1_PASS_NUTRITION_AUDIT_NEXT_V71",
-  "handover_date": "2026-09-23",
+  "handover": "CULINARY_APP_RECIPE_FAMILY_UI_LEGAL_PASS_10_FAMILY_EXPANSION_NEXT_V77",
+  "handover_date": "2026-09-24",
   "timezone": "Atlantic/Canary",
-  "status": "V8018_LIVE_19268__LEGAL_CORPUS_BASELINE_PASS__NORMALIZATION_MAPPING_V1_PASS_FROZEN__NUTRITION_VITAMIN_APPLICABILITY_AUDIT_NEXT__YT_CUL_QUOTA_POLICY_HOLD",
+  "status": "V8018_LIVE_19268__LEGAL_BASELINE_PASS__NORMALIZATION_PASS__NUTRITION_APPLICABILITY_PASS__USABLE_RECOMMENDATION_BASELINE_PASS__RECIPE_FAMILY_P0_REVIEW_PASS__UI_LEGAL_CONFORMANCE_PASS__10_FAMILY_NONPUBLIC_EXPANSION_NEXT__YT_CUL_HARD_HOLD",
   "human_needed": false,
-  "handover_written_against_main_sha": "63d44896224fae44eed3c070b39bffcf40661919",
+  "handover_written_against_main_sha": "e92d5f13f08790c7c013701618bdcd8fd7ba35af",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
-    "normalization_baseline_pr": 270,
-    "normalization_mapping_pr": 271,
-    "normalization_mapping_merge_sha": "63d44896224fae44eed3c070b39bffcf40661919",
-    "normalization_mapping_initial_run": 35906244182,
-    "normalization_mapping_initial_artifact_id": 10770429269,
-    "normalization_mapping_initial_artifact_digest": "sha256:e33746038d723bc30ae9e04c69f57ddde11f5e0a767127a7361bf9f4b2b9a181",
-    "normalization_mapping_final_branch_run": 35906844285,
-    "normalization_mapping_final_branch_artifact_id": 10770849646,
-    "normalization_mapping_final_branch_artifact_digest": "sha256:37a5aee482223a61ff8e8de5400aa36415cac5e2c6e6f4da17c49a9c7ccef0fe",
-    "final_branch_public_validation_run": 35906844331,
-    "final_branch_public_validation": "SUCCESS",
-    "mapping_branch": "agent/corpus-normalization-mapping-v1",
-    "open_pr_count_after_merge": 0
+    "fresh_reconcile_rule": "Live GitHub main/open PRs/CI/generated child-programme state outrank this snapshot.",
+    "latest_material_prs": [
+      {
+        "pr": 272,
+        "state": "MERGED",
+        "purpose": "nutrition/vitamin applicability audit"
+      },
+      {
+        "pr": 273,
+        "state": "MERGED",
+        "purpose": "recommendation readiness audit"
+      },
+      {
+        "pr": 274,
+        "state": "MERGED",
+        "purpose": "preserve unknown nutrition in recommendation scoring"
+      },
+      {
+        "pr": 275,
+        "state": "MERGED",
+        "purpose": "bounded Carbonara + Hummus Recipe Family prototype and blocking review"
+      },
+      {
+        "pr": 276,
+        "state": "MERGED",
+        "purpose": "real-candidate Recipe Family UI legal conformance"
+      }
+    ],
+    "latest_material_main_sha": "e92d5f13f08790c7c013701618bdcd8fd7ba35af"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
     "previous": "docs/handovers/PREVIOUS.json",
     "protocol": "docs/HANDOVER_PROTOCOL.md",
-    "rule": "Live GitHub state outranks this snapshot. Fresh-reconcile main, open PRs/branches/CI/deployments and generated child-programme state before mutation."
+    "rotation": "old CURRENT -> PREVIOUS; new complete snapshot -> CURRENT"
   },
   "lane": {
-    "name": "Culinary App / Culinary Lab — Post Legal Corpus Baseline",
-    "active_lane": "NUTRITION_AND_VITAMIN_APPLICABILITY",
-    "blocking_milestone": "NUTRITION_VITAMIN_APPLICABILITY_AUDIT",
+    "name": "Culinary App / Culinary Recommender — Recipe Family and Adaptation",
+    "active_lane": "RECIPE_FAMILY_AND_ADAPTATION",
+    "blocking_milestone": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC",
     "legal_corpus": "LEGAL_CORPUS_BASELINE_PASS",
-    "normalization_baseline": "CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_PASS",
-    "normalization_mapping": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1_PASS__FROZEN",
-    "recipe_family": "DEFERRED_UNTIL_POST_RECOMMENDATION_READINESS",
-    "nutrition_lane": "ACTIVE_PRIMARY_NEXT",
-    "yt_cul_lane": "INDEPENDENT_CHILD_PROGRAMME__HARD_HOLD__DO_NOT_MUTATE_FROM_NUTRITION_LANE",
-    "recommendation_optimization": "DOWNSTREAM_AFTER_NUTRITION_AND_VITAMIN_APPLICABILITY_AUDIT",
-    "knowledge_core": "READ_ONLY_RECONCILIATION_ONLY",
+    "normalization": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1_PASS__FROZEN",
+    "nutrition_applicability": "NUTRITION_VITAMIN_APPLICABILITY_AUDIT_PASS",
+    "recommendation_readiness": "USABLE_RECOMMENDATION_BASELINE_PASS",
+    "recipe_family_p0": "RECIPE_FAMILY_P0_PROTOTYPE_REVIEW_PASS__BOUNDED_EXPANSION_UNLOCKED",
+    "ui_legal_conformance": "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS",
+    "public_activation": "SEPARATELY_GATED__NOT_AUTHORIZED",
+    "yt_cul_lane": "INDEPENDENT_CHILD_PROGRAMME__DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+    "knowledge_core": "NO_WRITE_FROM_CURRENT_APP_LANE",
     "billing": "NO_BILLING_AUTHORIZATION"
   },
   "operating_contract": {
-    "autonomy": "Ordinary bounded repository implementation, expected CI and no-write evidence audits are standing-preapproved under AGENTS.md. No human gate is active. Stop at genuine cost/access/security/topology/rights gates, an unrecoverable error, or a terminal material result.",
-    "normalization": "Mapping V1 is frozen as a reversible overlay. Raw cuisine/culture/tags/collection remain source hints; no tradition/region/dietary authority was guessed. UNKNOWN and AMBIGUOUS remain first-class.",
-    "nutrition": "The next lane is an applicability audit, not automatic nutrition authority. Preserve the approved European-primary source policy, nutrient-semantic firewall, exact provenance, fail-partial/fail-closed behavior and no guessing. Imported/source recipe content does not become authoritative nutrition evidence merely because it is present in the protected corpus.",
-    "storage": "Protected recipe bodies remain private in Cloudflare D1. Mapping V1 performed zero D1 reads/writes and zero protected-body export/rewrite. Begin the nutrition applicability audit from exact pinned-source reconstruction plus existing public-safe nutrition evidence unless a separately justified D1 read gate is earned.",
-    "d1": "Optimized operational target remains <=8 D1 subqueries/request. Hard fail-safe 16 is not spendable headroom. Preserve exactly two shards and delta-route ancestry.",
-    "public_activation": "Public runtime remains 85 recipes. Broader public corpus or recommendation admission is not authorized by Mapping V1.",
-    "billing_firewall": "No paid infrastructure, billing enablement or automatic overage authorization."
+    "autonomy": "Ordinary bounded repository implementation, normal CI/browser acceptance and roadmap-required no-write evidence work are standing-preapproved under AGENTS.md. Do not ask for routine Actions approval.",
+    "recipe_family": "Expansion remains bounded and nonpublic. Each family must earn its own source-compliance, factual synthesis, provenance, quantity/technique and APP_AUTHORING_ELIGIBLE gates. A failed source blocks that source, not the family. A held family is an acceptable fail-closed result.",
+    "legal_ui": "UI legal conformance is implementation conformance, not a new legal opinion. REQUIRED+READY attribution must render required fields; UNSATISFIABLE/UNKNOWN fail closed. New materially different source/licence classes re-trigger the gate.",
+    "public_runtime": "Public runtime remains 85 recipes. APP_AUTHORING_ELIGIBLE and UI legal PASS do not authorize public/runtime admission.",
+    "storage": "Protected production remains v8018 / 19,268 in exactly two D1 shards. No protected-body rewrite/export or D1 mutation is authorized by Recipe Family expansion unless a later earned gate explicitly requires it.",
+    "d1": "Operational target remains <=8 D1 subqueries/request; hard fail-safe 16 is not spendable headroom.",
+    "billing_firewall": "No paid infrastructure/API/corpus licensing or automatic billing expansion.",
+    "youtube": "Do not retry YT-CUL live Search while DAILY_SEARCH_HOLD_POLICY_OR_QUOTA remains active.",
+    "knowledge_core": "No Knowledge Core write from this app lane unless separately authorized."
   },
   "canonical_documents": {
-    "legal_corpus_config": "config/legal_corpus_first_private_runtime.json",
-    "legal_corpus_decision": "docs/LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_DECISION.md",
-    "legal_corpus_closeout": "docs/CORPUS_SCALE_STEP8G_POST_V8018_BASELINE_REASSESSMENT.md",
-    "normalization_baseline_contract": "config/corpus_normalization_baseline_v1.json",
-    "normalization_baseline_summary": "data/generated/corpus-normalization-baseline-v1.json",
-    "normalization_baseline_document": "docs/CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_V1.md",
-    "normalization_mapping_contract": "config/corpus_normalization_mapping_v1.json",
-    "normalization_mapping_summary": "data/generated/corpus-normalization-mapping-v1.json",
-    "normalization_mapping_document": "docs/CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1.md",
-    "normalization_mapping_script": "scripts/run-corpus-normalization-mapping-v1.mjs",
-    "handover_protocol": "docs/HANDOVER_PROTOCOL.md",
     "roadmap": "docs/ROADMAP.md",
+    "recipe_family_roadmap_gate": "docs/RECIPE_FAMILY_SYNTHESIS_ROADMAP_GATE.md",
+    "recipe_family_p0_result": "docs/RECIPE_FAMILY_P0_PROTOTYPE_RESULT.md",
+    "recipe_family_p0_summary": "data/generated/recipe-family-p0-prototype.json",
+    "recipe_family_p0_observations": "data/generated/recipe-family-p0-source-observations.json",
+    "recipe_family_p0_review_contract": "config/recipe_family_p0_review_v1.json",
+    "ui_legal_gate": "docs/RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_GATE.md",
+    "ui_legal_contract": "config/recipe_family_ui_legal_conformance_gate.json",
+    "ui_legal_evidence": "data/generated/recipe-family-ui-legal-conformance-v1.json",
+    "recommendation_readiness": "data/generated/recommendation-readiness-audit-v1.json",
+    "nutrition_applicability": "data/generated/nutrition-vitamin-applicability-audit-v1.json",
+    "legal_corpus_closeout": "docs/CORPUS_SCALE_STEP8G_POST_V8018_BASELINE_REASSESSMENT.md",
     "youtube_culinary_work_unit_state": "data/generated/youtube-culinary-work-unit-state.json",
-    "barbecue_roadmap": "docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md"
+    "barbecue_roadmap": "docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md",
+    "handover_protocol": "docs/HANDOVER_PROTOCOL.md"
   },
   "live_protected_state": {
     "active_version": "v8018",
     "composed_recipe_count": 19268,
     "certification_status": "STEP_8G_ATRUTEL_V8018_PROTECTED_POPULATION_PASS",
-    "shard_count": 2,
     "hydration_layers": 18,
+    "shard_count": 2,
     "max_observed_d1_subqueries": 8,
     "optimized_max_request_d1_subqueries": 8,
     "max_allowed_d1_subqueries": 16,
-    "d1_budget_headroom_assumed": false,
-    "route_storage_mode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA_PLUS_V8018_DELTA",
-    "parent_route_rows_copied": 0,
-    "full_corpus_scans": 0,
     "public_runtime_recipe_count": 85,
     "public_runtime_changed": false,
     "recommendation_admission_changed": false,
     "third_shard_used": false,
     "billing_expansion": false
   },
-  "normalization_baseline": {
-    "status": "CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_PASS",
-    "expected_recipe_count": 19268,
-    "observed_recipe_count": 19268,
-    "title_known_count": 19268,
-    "structurally_parseable_count": 19265,
-    "structurally_parseable_ratio": 0.999844,
-    "structural_exceptions": [
-      "v8003 / eggs.md — ingredients 0, directions 0",
-      "v8003 / peanut-butter.md — ingredients 0, directions 8",
-      "v8003 / spices-during-pregnancy.md — ingredients 0, directions 0"
+  "recommendation_readiness": {
+    "status": "USABLE_RECOMMENDATION_BASELINE_PASS",
+    "public_runtime_count": 85,
+    "recommendation_state_eligible": 77,
+    "eligible_hard_metadata_ready": 77,
+    "search_only": 2,
+    "reference_only": 6,
+    "unknown_tracked_nutrition_eligible_count": 1,
+    "unknown_nutrition_zero_coercion_count": 0,
+    "protected_exact_identity_review_candidates": 112,
+    "protected_automatically_recommendation_ready": 0
+  },
+  "recipe_family_p0": {
+    "terminal": "RECIPE_FAMILY_P0_PROTOTYPE_REVIEW_PASS__BOUNDED_EXPANSION_UNLOCKED__UI_LEGAL_GATE_DUE",
+    "family_count": 2,
+    "hummus": {
+      "observations": 5,
+      "publisher_count": 4,
+      "state": "APP_AUTHORING_ELIGIBLE",
+      "projection_id": "recipe_family_p0_hummus_candidate_v1",
+      "activation_authority": "NONE"
+    },
+    "carbonara": {
+      "observations": 5,
+      "publisher_count": 5,
+      "state": "APP_AUTHORING_HOLD",
+      "unresolved_required_quantities": [
+        "egg",
+        "hard_cheese"
+      ],
+      "collection_disposition": "TARGETED_ONLY_IF_CARBONARA_AUTHORING_IS_REVISITED"
+    },
+    "bounded_10_family_expansion_unlocked": true,
+    "public_or_runtime_admission_unlocked": false
+  },
+  "ui_legal_conformance": {
+    "terminal": "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS",
+    "merged_pr": 276,
+    "merge_sha": "e92d5f13f08790c7c013701618bdcd8fd7ba35af",
+    "real_candidate_projection_id": "recipe_family_p0_hummus_candidate_v1",
+    "attribution_notice_count": 5,
+    "distinct_source_class_count": 4,
+    "source_classes": [
+      "fandom-recipes-wiki",
+      "forkrecipe",
+      "recidemia",
+      "wikimedia-wikibooks"
     ],
-    "cc0_original_gate": {
-      "observed_ratio": 0.986726,
-      "minimum_ratio": 0.95,
-      "pass": true
-    },
-    "raw_signal_coverage": {
-      "tags": {
-        "count": 18766,
-        "ratio": 0.973946,
-        "distinct": 1485,
-        "singletons": 769
-      },
-      "culture": {
-        "count": 18541,
-        "ratio": 0.962269,
-        "distinct": 377,
-        "singletons": 228
-      },
-      "collection": {
-        "count": 17626,
-        "ratio": 0.914781,
-        "distinct": 14
-      },
-      "category": {
-        "count": 1416,
-        "ratio": 0.07349,
-        "distinct": 22
-      },
-      "difficulty": {
-        "count": 1416,
-        "ratio": 0.07349,
-        "distinct": 8
-      },
-      "time": {
-        "count": 1416,
-        "ratio": 0.07349
-      },
-      "cuisine": {
-        "count": 915,
-        "ratio": 0.047488,
-        "distinct": 80
-      },
-      "country": {
-        "count": 501,
-        "ratio": 0.026002,
-        "distinct": 127
-      },
-      "servings": {
-        "count": 501,
-        "ratio": 0.026002
-      },
-      "diets": {
-        "count": 302,
-        "ratio": 0.015674,
-        "distinct": 4
-      }
-    },
-    "canonical_taxonomy_authority_coverage": "ZERO_BY_DESIGN_PENDING_MAPPING_V1",
-    "interpretation": "Raw source signals are heterogeneous and not semantically interchangeable. Tags/culture are broad but noisy; category and difficulty mix incompatible vocabularies/scales. First implementation must be a reversible overlay with explicit UNKNOWN/AMBIGUOUS states."
+    "protected_expression_leak_count": 0,
+    "required_unsatisfiable_fail_closed": true,
+    "unknown_fail_closed": true,
+    "private_runtime_bypass": false,
+    "public_runtime_admission_authorized": false,
+    "validation": "SUCCESS__FULL_STATIC_UNIT_BROWSER__STEP1_BENCHMARK__STEP7A_NO_BILLING_PROOF"
   },
   "concurrent_child_programmes": {
     "youtube_culinary": {
@@ -171,88 +170,41 @@
       "yt_cul_6_readiness_earned": false
     },
     "barbecue_technique_corpus": {
-      "state": "REGISTERED_POST_USABLE_APP_SUCCESSOR__NOT_ACTIVE",
+      "state": "REGISTERED_OWNER_PRIORITY__PREREQUISITES_SATISFIED__NOT_ACTIVE_IN_CURRENT_LANE",
       "activation_gate": "LEGAL_CORPUS_BASELINE_PASS_AND_USABLE_RECOMMENDATION_BASELINE",
       "legal_corpus_gate_satisfied": true,
-      "usable_recommendation_gate_satisfied": false,
+      "usable_recommendation_gate_satisfied": true,
+      "sequencing": "Current controlling order keeps Recipe Family/adaptation ahead of YouTube/authoritative-evidence refinement.",
       "discovery_priority": "WORLD_CHAMPION_PLUS_BARBECUE_OR_GRILL_PLUS_PRODUCT_OR_CUT_FIRST",
       "scope": "CONVENTIONAL_BARBECUE_GRILL_ONLY",
       "automatic_publication_authorized": false
     }
   },
   "not_authorized": [
-    "No protected-body rewrite or D1 mutation from Mapping V1.",
-    "No new source cohort or v8019 population from this lane.",
-    "No guessed cuisine/geography/meal-role/dietary/authenticity metadata.",
-    "No automatic nutrition authority or nutrient inference from imported recipe data.",
-    "No public corpus/recommendation activation.",
-    "No paid infrastructure or billing expansion.",
+    "No Hummus or other Recipe Family candidate public/runtime admission from P0 or UI legal PASS alone.",
+    "No v8019 or new protected source cohort from this lane.",
+    "No protected-body rewrite/export or D1 mutation.",
     "No third D1 shard.",
-    "No YT-CUL live Search while DAILY_SEARCH_HOLD_POLICY_OR_QUOTA is active.",
-    "No Knowledge Core write from app lane unless separately authorized."
+    "No paid infrastructure, API, corpus licensing or billing expansion.",
+    "No YT-CUL live Search retry while the hard hold remains active.",
+    "No Knowledge Core write from the current app lane.",
+    "No guessing missing source rights, attribution, quantities, nutrition, cuisine, geography, dietary or authenticity authority."
   ],
   "human_gate": null,
   "next_action": {
-    "state": "READY__NUTRITION_VITAMIN_APPLICABILITY_AUDIT",
+    "state": "READY__RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC",
     "actor": "AUTONOMOUS_APP_LANE",
-    "action": "Perform a bounded no-write nutrition/vitamin applicability audit over protected v8018 / 19,268 using the exact pinned-source reconstruction, frozen Mapping V1 metadata and the app's existing reviewed nutrition evidence/policies. Measure which records have sufficient ingredient identity, quantity/portion semantics and evidence coverage for authoritative calculation; separate macro versus vitamin/mineral applicability; classify blockers and explicit UNKNOWN/AMBIGUOUS states; preserve European-primary source selection, nutrient-semantic firewalls and exact provenance. Freeze acceptance criteria and the candidate applicability model before any D1 mutation, recommendation admission or public behavior change."
+    "action": "Execute the bounded 10-family Recipe Family expansion under the frozen P0/source-compliance/UI-legal contracts. First fresh-reconcile the current roadmap and select the bounded family cohort using product usefulness and evidence diversity rather than raw row count. For each family, use one-time bounded evidence, normalize factual structure/quantities/techniques/variants, preserve source/provenance/attribution classifications, generate candidate app-owned projections only when gates pass, and report held families explicitly. Keep all outputs nonpublic; do not alter the 85-recipe runtime or protected v8018 corpus. Re-run UI legal conformance only if a materially new source/licence/permission class introduces obligations not already represented."
   },
-  "terminal_instruction_for_new_chat": "Continue the Culinary App / Culinary Recommender lane from docs/handovers/CURRENT.json. Fresh-reconcile live GitHub first. Protected production remains v8018 / 19,268, 18 hydration layers, exactly two shards, maxObservedD1Subqueries=8 and public runtime 85. LEGAL_CORPUS_BASELINE_PASS, normalization baseline PASS and CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1_PASS__FROZEN are earned. Mapping V1 produced 19,268/19,268 valid unique reversible overlays with deliberately narrow authority: 501 explicit countries, 1,079 reviewed dish categories, 524 reviewed meal roles, 1,416 difficulty mappings, 501 prep, 501 cook, 870 exact + 501 reviewed total-time values with 45 explicit ambiguities, and 501 servings; region/tradition/technique-family/reviewed-dietary authority remains UNKNOWN where not earned. The next autonomous lane is NUTRITION_VITAMIN_APPLICABILITY_AUDIT: begin with a bounded no-write audit using exact pinned-source reconstruction, frozen mapping and existing reviewed nutrition evidence/policies; measure applicability and blockers before mutation. No guessing, no protected-body/D1 mutation, no recommendation/public widening, no third shard, no billing, no YT-CUL retry and no Knowledge Core writes.",
+  "terminal_instruction_for_new_chat": "Continue the Culinary App / Culinary Recommender lane from docs/handovers/CURRENT.json. Fresh-reconcile live GitHub first. Protected production remains v8018 / 19,268, 18 hydration layers, exactly two shards, maxObservedD1Subqueries=8; public runtime remains 85. Nutrition applicability and usable recommendation baselines are PASS. Recipe Family P0 and its Consultant/Project Coach review are PASS: Hummus is APP_AUTHORING_ELIGIBLE candidate-only, Carbonara is held on egg/hard-cheese quantity authority. UI legal conformance is PASS through PR #276 with generic multi-source attribution and fail-closed UNKNOWN/UNSATISFIABLE behavior; it grants no public admission. Next autonomous action is RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC. Preserve the YT-CUL hard hold, no D1/protected-body mutation, no third shard, no billing, no public widening and no Knowledge Core writes.",
   "continuation_boundary": {
-    "reason": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1_PASS__TERMINAL_MATERIAL_RESULT__NUTRITION_VITAMIN_APPLICABILITY_AUDIT_NEXT",
-    "safe_boundary": "V8018_ACTIVE_19268__LEGAL_BASELINE_PASS__NORMALIZATION_MAPPING_V1_PASS_FROZEN__NUTRITION_AUDIT_READY",
-    "ordinary_implementation_stopped": true
+    "reason": "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS__TERMINAL_MATERIAL_RESULT__10_FAMILY_BOUNDED_EXPANSION_NEXT",
+    "safe_boundary": "V8018_ACTIVE_19268__USABLE_RECOMMENDATION_BASELINE_PASS__RECIPE_FAMILY_P0_PASS__UI_LEGAL_PASS__10_FAMILY_NONPUBLIC_READY",
+    "ordinary_implementation_stopped_for_rotation": true
   },
   "roadmap_reconciliation": {
     "checked": true,
-    "result": "UPDATED__NORMALIZATION_MAPPING_V1_PASS_FROZEN__NUTRITION_VITAMIN_APPLICABILITY_AUDIT_PRIMARY_NEXT",
-    "note": "Post-baseline product order remains controlling. Recommendation readiness follows the nutrition/vitamin applicability audit; Recipe Family and YouTube refinement remain downstream."
-  },
-  "normalization_mapping": {
-    "status": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1_PASS__FROZEN",
-    "expected_recipe_count": 19268,
-    "observed_recipe_count": 19268,
-    "valid_overlay_count": 19268,
-    "unique_identity_count": 19268,
-    "all_cohort_count_and_structural_gates_pass": true,
-    "structural_exceptions_preserved": 3,
-    "authority_coverage": {
-      "geography_country_exact": 501,
-      "geography_region_unknown": 19268,
-      "culinary_tradition_unknown": 19268,
-      "dish_category_reviewed": 1079,
-      "meal_roles_reviewed": 524,
-      "technique_families_unknown": 19268,
-      "difficulty_exact": 1416,
-      "prep_minutes_exact": 501,
-      "cook_minutes_exact": 501,
-      "total_minutes_exact": 870,
-      "total_minutes_reviewed": 501,
-      "total_minutes_ambiguous": 45,
-      "servings_exact": 501,
-      "reviewed_dietary_tags_unknown": 19268
-    },
-    "semantics": [
-      "Country authority only from explicit source country.",
-      "No region inference.",
-      "Cuisine/culture/tags/collection are retained as source hints and are not promoted to culinary tradition/authenticity.",
-      "ForkRecipe activeTime is not relabeled as prep time.",
-      "Difficulty source scales are preserved without false cross-scale equivalence.",
-      "Dish category and meal role use separate reviewed controlled vocabularies.",
-      "Dietary authority remains UNKNOWN in Mapping V1."
-    ],
-    "runtime_boundary": {
-      "d1_reads": 0,
-      "d1_writes": 0,
-      "protected_bodies_exported": 0,
-      "protected_bodies_rewritten": 0,
-      "public_runtime_changed": false,
-      "recommendation_behavior_changed": false,
-      "nutrition_lane_modified": false,
-      "youtube_lane_modified": false,
-      "knowledge_core_write": false,
-      "billing_expansion": false,
-      "third_shard_used": false
-    }
+    "result": "UPDATED__RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS__10_FAMILY_BOUNDED_EXPANSION_PRIMARY_NEXT",
+    "note": "Recipe Family/adaptation remains ahead of YouTube/authoritative-evidence refinement in the controlling post-baseline order."
   }
 }
