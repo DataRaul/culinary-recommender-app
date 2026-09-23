@@ -34,6 +34,9 @@ jobs:
         run: node scripts/validate-recipe-family-source-compliance.mjs data/generated/recipe-family-p0-source-observations.json
       - name: Run bounded prototype
         run: node scripts/run-recipe-family-p0-prototype.mjs --output=.tmp/recipe-family-p0-prototype.json
+      - name: Verify committed prototype summary
+        run: |
+          node --input-type=module -e 'import assert from "node:assert/strict"; import {readFileSync} from "node:fs"; assert.deepStrictEqual(JSON.parse(readFileSync("data/generated/recipe-family-p0-prototype.json","utf8")), JSON.parse(readFileSync(".tmp/recipe-family-p0-prototype.json","utf8")));'
       - name: Upload prototype evidence
         uses: actions/upload-artifact@v4
         with:
