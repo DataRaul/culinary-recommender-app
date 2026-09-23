@@ -23,7 +23,8 @@
       "repository": "farcrak/unitools-recipes",
       "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
       "dataPath": "unitools-recipes-v1.json",
-      "expectedCount": 501
+      "expectedCount": 501,
+      "minStructuralRatio": 1
     },
     "forkrecipe": {
       "layer": "v8002",
@@ -31,7 +32,8 @@
       "repository": "futurechef/forkrecipe-recipes",
       "commit": "c32255266af39bd77444d39452f3df8088ac8fd9",
       "recipesPath": "recipes",
-      "expectedCount": 915
+      "expectedCount": 915,
+      "minStructuralRatio": 1
     },
     "cc0": {
       "layer": "v8003",
@@ -39,7 +41,8 @@
       "repository": "sylGauthier/recipes",
       "commit": "b12e481d1c220a13e0847a34e148d5872a16928e",
       "recipesPath": "src",
-      "expectedCount": 226
+      "expectedCount": 226,
+      "minStructuralRatio": 0.95
     },
     "ora": {
       "repository": "AdamBouhmad/open-recipe-archive",
@@ -53,7 +56,8 @@
           "sourceUrl": "https://archive.org/details/b21505524",
           "sourceYear": "1864",
           "expectedCount": 713,
-          "representation": "markdown"
+          "representation": "markdown",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8005",
@@ -63,7 +67,8 @@
           "sourceUrl": "https://archive.org/details/chinesejapanesec00boss_0",
           "sourceYear": "1914",
           "expectedCount": 109,
-          "representation": "markdown"
+          "representation": "markdown",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8006",
@@ -73,7 +78,8 @@
           "sourceUrl": "https://archive.org/details/b21527830",
           "sourceYear": "1864",
           "expectedCount": 442,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8007",
@@ -83,7 +89,8 @@
           "sourceUrl": "https://archive.org/details/b28764626",
           "sourceYear": "1785",
           "expectedCount": 789,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8008",
@@ -93,7 +100,8 @@
           "sourceUrl": "https://archive.org/details/bub_gb_NdQqAAAAYAAJ",
           "sourceYear": "1845",
           "expectedCount": 4347,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8008",
@@ -103,7 +111,8 @@
           "sourceUrl": "https://archive.org/details/lacocinerapobla00unkngoog",
           "sourceYear": "1890",
           "expectedCount": 2129,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8009",
@@ -113,7 +122,8 @@
           "sourceUrl": "https://archive.org/details/b22019935",
           "sourceYear": "1801",
           "expectedCount": 752,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8010",
@@ -123,7 +133,8 @@
           "sourceUrl": "https://www.gutenberg.org/ebooks/59047",
           "sourceYear": "1891",
           "expectedCount": 829,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8011",
@@ -133,7 +144,8 @@
           "sourceUrl": "https://archive.org/details/frkenjensensko00jens",
           "sourceYear": "1921",
           "expectedCount": 1372,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8012",
@@ -143,7 +155,8 @@
           "sourceUrl": "https://archive.org/details/bub_gb_oP8yAQAAMAAJ",
           "sourceYear": "1883",
           "expectedCount": 1722,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8013",
@@ -153,7 +166,8 @@
           "sourceUrl": "https://archive.org/details/lecuisinierimpe00viargoog",
           "sourceYear": "1806",
           "expectedCount": 807,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8014",
@@ -163,7 +177,8 @@
           "sourceUrl": "https://archive.org/details/lacuisinecreolec00hear",
           "sourceYear": "1885",
           "expectedCount": 712,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8015",
@@ -173,7 +188,8 @@
           "sourceUrl": "https://archive.org/details/chinesecookbook00chan",
           "sourceYear": "1917",
           "expectedCount": 145,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8016",
@@ -183,7 +199,8 @@
           "sourceUrl": "https://archive.org/details/culinaryjottings00kenn",
           "sourceYear": "1885",
           "expectedCount": 501,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8017",
@@ -193,7 +210,8 @@
           "sourceUrl": "https://www.gutenberg.org/ebooks/65061",
           "sourceYear": "1896",
           "expectedCount": 1776,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         },
         {
           "layer": "v8018",
@@ -203,7 +221,8 @@
           "sourceUrl": "https://archive.org/details/b2807967x",
           "sourceYear": "1874",
           "expectedCount": 481,
-          "representation": "jsonl"
+          "representation": "jsonl",
+          "minStructuralRatio": 1
         }
       ]
     }
@@ -243,6 +262,7 @@
   "acceptanceCriteria": [
     "ALL_19268_PROTECTED_RECIPES_RECONSTRUCTED_FROM_EXACT_PINNED_SOURCES",
     "EVERY_LAYER_AND_COHORT_COUNT_MATCHES_LIVE_PROTECTED_ANCESTRY",
+    "EACH_COHORT_MEETS_OR_EXCEEDS_ITS_ORIGINAL_STRUCTURAL_ADMISSION_THRESHOLD",
     "RAW_SOURCE_SIGNALS_PRESERVED_SEPARATELY_FROM_CANONICAL_FIELDS",
     "NO_GUESSED_CUISINE_GEOGRAPHY_MEAL_ROLE_DIETARY_OR_AUTHENTICITY_METADATA",
     "HISTORICAL_COLLECTION_LABELS_NEVER_AUTO_PROMOTED_TO_CUISINE_AUTHORITY",
