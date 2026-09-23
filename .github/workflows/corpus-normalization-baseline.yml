@@ -1,0 +1,53 @@
+name: Corpus normalization baseline audit
+
+on:
+  pull_request:
+    paths:
+      - "config/corpus_normalization_baseline_v1.json"
+      - "scripts/run-corpus-normalization-baseline.mjs"
+      - ".github/workflows/corpus-normalization-baseline.yml"
+      - "data/generated/corpus-normalization-baseline-v1.json"
+      - "docs/CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_V1.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Checkout pinned UniTools
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+      - name: Checkout pinned ForkRecipe
+        run: |
+          git clone --filter=blob:none https://github.com/futurechef/forkrecipe-recipes.git .tmp/forkrecipe
+          git -C .tmp/forkrecipe checkout --detach c32255266af39bd77444d39452f3df8088ac8fd9
+      - name: Checkout pinned CC0 recipes
+        run: |
+          git clone --filter=blob:none https://github.com/sylGauthier/recipes.git .tmp/cc0
+          git -C .tmp/cc0 checkout --detach b12e481d1c220a13e0847a34e148d5872a16928e
+      - name: Checkout pinned Open Recipe Archive
+        run: |
+          git clone --filter=blob:none https://github.com/AdamBouhmad/open-recipe-archive.git .tmp/ora
+          git -C .tmp/ora checkout --detach ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+      - name: Run no-write normalization baseline
+        run: |
+          node scripts/run-corpus-normalization-baseline.mjs \
+            --unitools=.tmp/unitools \
+            --forkrecipe=.tmp/forkrecipe \
+            --cc0=.tmp/cc0 \
+            --ora=.tmp/ora \
+            --output=.tmp/corpus-normalization-baseline-v1.json
+      - name: Upload baseline evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: corpus-normalization-baseline-v1
+          path: .tmp/corpus-normalization-baseline-v1.json
+          if-no-files-found: error
