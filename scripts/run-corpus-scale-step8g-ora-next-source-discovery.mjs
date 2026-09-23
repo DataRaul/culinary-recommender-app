@@ -174,6 +174,14 @@ const WHITEHOUSE_1887_COAUTHOR_PROVENANCE_HOLD = Object.freeze({
   source_year: "1887",
   license: "public-domain"
 });
+const GREENBAUM_1918_SPAIN_TERM_HOLD = Object.freeze({
+  collection: "jewish-kitchen",
+  source_url: "https://archive.org/details/cu31924003580952",
+  source_title: "The International Jewish Cook Book",
+  author: "Florence Kreisler Greenbaum",
+  source_year: "1918",
+  license: "public-domain"
+});
 const COCINA_SOURCES = Object.freeze([
   Object.freeze({
     collection: "cocina-mexicana",
@@ -378,7 +386,8 @@ const heldSourceKeys = new Set([
   oraSourceKey(AMERICAN_COOKERY_1796_TRANSCRIBER_PROVENANCE_HOLD),
   oraSourceKey(BEETON_1861_CONTRIBUTOR_PROVENANCE_HOLD),
   oraSourceKey(LESLIE_1851_EDITION_PROVENANCE_HOLD),
-  oraSourceKey(WHITEHOUSE_1887_COAUTHOR_PROVENANCE_HOLD)
+  oraSourceKey(WHITEHOUSE_1887_COAUTHOR_PROVENANCE_HOLD),
+  oraSourceKey(GREENBAUM_1918_SPAIN_TERM_HOLD)
 ]);
 const heldCollections = new Set(["cocina-espanola"]);
 const result = discoverOraNextSources({
@@ -501,10 +510,18 @@ const output = {
         sourceAuthorAsInOra: WHITEHOUSE_1887_COAUTHOR_PROVENANCE_HOLD.author,
         sourceYear: WHITEHOUSE_1887_COAUTHOR_PROVENANCE_HOLD.source_year,
         reason: "ORA_SINGLE_AUTHOR_GILLETTE_CONFLICTS_WITH_EXACT_TWO_AUTHOR_GILLETTE_AND_ZIEMANN"
+      },
+      {
+        collection: GREENBAUM_1918_SPAIN_TERM_HOLD.collection,
+        sourceUrl: GREENBAUM_1918_SPAIN_TERM_HOLD.source_url,
+        sourceTitle: GREENBAUM_1918_SPAIN_TERM_HOLD.source_title,
+        sourceAuthorAsInOra: GREENBAUM_1918_SPAIN_TERM_HOLD.author,
+        sourceYear: GREENBAUM_1918_SPAIN_TERM_HOLD.source_year,
+        reason: "VERIFIED_AUTHOR_DEATH_DATE_ABSENT__SPAIN_TERM_UNCOMPUTABLE"
       }
     ],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8018 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883, Viard 1806, Hearn 1885, Chan 1917, Kenney-Herbert 1885, the exact Fannie Farmer 1910 revised edition represented by the ORA work-year tuple 1896, and Estella Atrutel 1874. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; the 1905 Volks-Kochbuch source is held because the exact edition credits an unidentified Frau Dr. Engelken with new ordering and additions and her contribution term cannot be resolved; Cocina Ecléctica 1890 is held because its community-contributor layer contains separately attributed recipe contributions whose Spain-facing terms have not been established cohort-wide; American Cookery 1796 is held because its exact errata attributes material recipe alterations to an unnamed press preparer and the pinned ORA extraction demonstrably preserves uncorrected altered values; The Book of Household Management 1861 is held because its own preface documents recipe matter from unnamed correspondents, a private circle and other cookery writers while the pinned ORA cohort flattens all recipe attribution to Isabella Beeton; Miss Leslie's Complete Cookery is held because ORA source_year 1851 conflicts with the exact Gutenberg 1853 forty-ninth edition marked thoroughly revised with additions; The Whitehouse Cookbook 1887 is held because ORA assigns sole authorship to F.L. Gillette while the exact title page names both Gillette and Hugo Ziemann; and cocina-espanola remains under its existing collection rights hold."
+    reason: "All exact sources protected through v8018 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883, Viard 1806, Hearn 1885, Chan 1917, Kenney-Herbert 1885, the exact Fannie Farmer 1910 revised edition represented by the ORA work-year tuple 1896, and Estella Atrutel 1874. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; the 1905 Volks-Kochbuch source is held because the exact edition credits an unidentified Frau Dr. Engelken with new ordering and additions and her contribution term cannot be resolved; Cocina Ecléctica 1890 is held because its community-contributor layer contains separately attributed recipe contributions whose Spain-facing terms have not been established cohort-wide; American Cookery 1796 is held because its exact errata attributes material recipe alterations to an unnamed press preparer and the pinned ORA extraction demonstrably preserves uncorrected altered values; The Book of Household Management 1861 is held because its own preface documents recipe matter from unnamed correspondents, a private circle and other cookery writers while the pinned ORA cohort flattens all recipe attribution to Isabella Beeton; Miss Leslie's Complete Cookery is held because ORA source_year 1851 conflicts with the exact Gutenberg 1853 forty-ninth edition marked thoroughly revised with additions; The Whitehouse Cookbook 1887 is held because ORA assigns sole authorship to F.L. Gillette while the exact title page names both Gillette and Hugo Ziemann; The International Jewish Cook Book 1918 is held because the exact work identity is established but an authoritative Greenbaum death date needed to compute the Spain-facing author term is not; and cocina-espanola remains under its existing collection rights hold."
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"
