@@ -2,7 +2,7 @@
 
 Date: 2026-09-23
 
-Status: `AUDIT_CONTRACT_FROZEN__EVIDENCE_PENDING`
+Status: `RECOMMENDATION_READINESS_AUDIT_PASS__REMEDIATION_REQUIRED`
 
 ## Purpose
 
@@ -26,3 +26,18 @@ The protected corpus can expose review candidates without creating recommendatio
 ## Boundaries
 
 This audit performs no D1 read/write, protected-body export/rewrite, public corpus widening, recommendation behavior change, new admission, Knowledge Core write, YouTube retry, third shard or billing expansion.
+
+## Initial measured result
+
+The audit executed successfully without mutating runtime state.
+
+- public runtime: **85** recipes;
+- recommendation-state eligible: **77**;
+- Search-only: **2**;
+- reference-only incomplete hard metadata: **6**;
+- all 77 recommendation-state eligible records have the required hard metadata and remain evaluator-eligible under the permissive audit profile;
+- exactly **1** recommendation-eligible record has fully unknown tracked nutrition: `unitools_tortilla_espanola`;
+- that record currently receives numeric `0` for both nutrition and protein soft-score components, so missing authority is being used as zero evidence;
+- the protected corpus remains correctly held: **112** records have all ingredient identities exact-mapped, **0** have reviewed dietary authority in Mapping V1, **0** are automatically recommendation-ready, and no protected record is admitted.
+
+Therefore the audit itself passes, but the usable recommendation baseline is **not yet earned**. The bounded successor is to repair unknown-nutrition scoring so unavailable nutrition signals remain explicit and non-numeric, then rerun this same audit before advancing to Recipe Family/adaptation.
