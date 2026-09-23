@@ -1,4 +1,69 @@
 {
   "schemaVersion": "CULINARY_RECOMMENDATION_READINESS_AUDIT_SUMMARY_V1",
-  "placeholder": true
+  "date": "2026-09-23",
+  "auditExecutionPass": true,
+  "usableRecommendationBaselinePass": false,
+  "terminal": "RECOMMENDATION_READINESS_AUDIT_PASS_REMEDIATION_REQUIRED",
+  "protectedCorpusVersion": "v8018",
+  "publicRuntime": {
+    "recipeCount": 85,
+    "authoredRecipeCount": 76,
+    "externalRecipeCount": 9,
+    "recommendationStateCounts": {
+      "ELIGIBLE": 77,
+      "REFERENCE_ONLY_INCOMPLETE_HARD_METADATA": 6,
+      "SEARCH_ONLY": 2
+    },
+    "recommendationEligibleStateCount": 77,
+    "evaluatorEligibleCount": 77,
+    "hardMetadataReadyRecommendationEligibleCount": 77,
+    "hardMetadataBlockedRecommendationEligibleIds": [],
+    "unknownNutritionRecommendationEligibleCount": 1,
+    "unknownNutritionSafeCount": 0,
+    "unknownNutritionZeroCoercionCount": 1,
+    "unknownNutritionMissingSignalDisclosureCount": 0,
+    "unknownNutritionRecommendationEligibleIds": [
+      "unitools_tortilla_espanola"
+    ]
+  },
+  "protectedCorpus": {
+    "recipeCount": 19268,
+    "structurallyUsableCount": 19265,
+    "structuralExceptionCount": 3,
+    "allIngredientIdentityReadyCount": 112,
+    "reviewedDietaryAuthorityCount": 0,
+    "directCurrentEngineAuthoritativeNutritionCount": 0,
+    "automaticRecommendationReadyCount": 0,
+    "identityReadyReviewCandidateCount": 112,
+    "automaticAdmissionState": "HELD_FAIL_CLOSED",
+    "blockingReasons": [
+      "REVIEWED_DIETARY_AUTHORITY_ABSENT_ACROSS_FROZEN_MAPPING_V1",
+      "FULL_RECOMMENDATION_HARD_METADATA_NOT_EARNED_FOR_PROTECTED_CORPUS",
+      "NUTRITION_UNKNOWN_MUST_REMAIN_EXPLICIT_AND_SEPARATE_FROM_ADMISSION"
+    ]
+  },
+  "gates": {
+    "legalCorpusBaselinePass": true,
+    "normalizationMappingPass": true,
+    "nutritionApplicabilityPass": true,
+    "publicHardMetadataPass": true,
+    "unknownNutritionSemanticsPass": false,
+    "protectedFailClosedPass": true
+  },
+  "finding": "ELIGIBLE_UNKNOWN_NUTRITION_IS_COERCED_TO_NUMERIC_ZERO_IN_SOFT_RECOMMENDATION_COMPONENTS",
+  "boundaries": {
+    "d1ReadsPerformed": 0,
+    "d1WritesPerformed": 0,
+    "protectedBodiesExported": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "publicCorpusWidened": false,
+    "recommendationBehaviorChanged": false,
+    "newRecipeAdmission": false,
+    "knowledgeCoreWritePerformed": false,
+    "youtubeStateModified": false,
+    "billingExpansion": false,
+    "thirdShardUsed": false
+  },
+  "nextGate": "REPAIR_RECOMMENDATION_READINESS_DEFECT_AND_RERUN_AUDIT"
 }
