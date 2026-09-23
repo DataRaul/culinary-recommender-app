@@ -163,6 +163,11 @@ jobs:
           const harlandExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/48804");
           if(!harlandExcluded||!harlandExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
           if(p.topRightsReviewCandidates?.some(x=>x.sourceUrl==="https://www.gutenberg.org/ebooks/48804"))process.exit(1);
+          const creoleHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/creolecookerybo00unkngoog");
+          if(!creoleHeld||creoleHeld.reason!=="EXACT_1885_TITLE_PAGE_IDENTIFIES_EXCHANGE_AS_EDITOR_AND_RECIPES_AS_HOUSEKEEPER_CONTRIBUTIONS__ORA_FLATTENS_TO_EXCHANGE_AUTHOR")process.exit(1);
+          const creoleExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/creolecookerybo00unkngoog");
+          if(!creoleExcluded||!creoleExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          if(p.topRightsReviewCandidates?.some(x=>x.sourceUrl==="https://archive.org/details/creolecookerybo00unkngoog"))process.exit(1);
           if(!Number.isInteger(p.rightsReviewEligibleCount)||p.rightsReviewEligibleCount<0)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle||null,nextAuthority:p.nextAuthority}));'
 
