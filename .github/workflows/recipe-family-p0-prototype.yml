@@ -1,0 +1,42 @@
+name: Recipe Family P0 prototype
+
+on:
+  pull_request:
+    paths:
+      - "config/recipe_family_synthesis_p0.json"
+      - "data/generated/recipe-family-p0-source-observations.json"
+      - "data/generated/recipe-family-p0-prototype.json"
+      - "scripts/recipe-family-synthesis-core.mjs"
+      - "scripts/run-recipe-family-p0-prototype.mjs"
+      - "scripts/validate-recipe-family-source-compliance.mjs"
+      - "tests/recipe-family-source-compliance.test.js"
+      - "tests/recipe-family-synthesis-core.test.js"
+      - "docs/RECIPE_FAMILY_P0_PROTOTYPE_RESULT.md"
+      - ".github/workflows/recipe-family-p0-prototype.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prototype:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run source compliance tests
+        run: node --test tests/recipe-family-source-compliance.test.js
+      - name: Run synthesis core tests
+        run: node --test tests/recipe-family-synthesis-core.test.js
+      - name: Validate bounded source observations
+        run: node scripts/validate-recipe-family-source-compliance.mjs data/generated/recipe-family-p0-source-observations.json
+      - name: Run bounded prototype
+        run: node scripts/run-recipe-family-p0-prototype.mjs --output=.tmp/recipe-family-p0-prototype.json
+      - name: Upload prototype evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: recipe-family-p0-prototype
+          path: .tmp/recipe-family-p0-prototype.json
+          if-no-files-found: error
