@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "config/recipe_family_synthesis_p0.json"
+      - "config/recipe_family_p0_review_v1.json"
       - "data/generated/recipe-family-p0-source-observations.json"
       - "data/generated/recipe-family-p0-prototype.json"
       - "scripts/recipe-family-synthesis-core.mjs"
@@ -11,6 +12,9 @@ on:
       - "scripts/validate-recipe-family-source-compliance.mjs"
       - "tests/recipe-family-source-compliance.test.js"
       - "tests/recipe-family-synthesis-core.test.js"
+      - "tests/recipe-family-p0-review.test.js"
+      - "scripts/run-recipe-family-p0-review.mjs"
+      - "data/generated/recipe-family-p0-review-v1.json"
       - "docs/RECIPE_FAMILY_P0_PROTOTYPE_RESULT.md"
       - ".github/workflows/recipe-family-p0-prototype.yml"
   workflow_dispatch:
@@ -30,6 +34,8 @@ jobs:
         run: node --test tests/recipe-family-source-compliance.test.js
       - name: Run synthesis core tests
         run: node --test tests/recipe-family-synthesis-core.test.js
+      - name: Run blocking review governance tests
+        run: node --test tests/recipe-family-p0-review.test.js
       - name: Validate bounded source observations
         run: node scripts/validate-recipe-family-source-compliance.mjs data/generated/recipe-family-p0-source-observations.json
       - name: Run bounded prototype
@@ -37,9 +43,13 @@ jobs:
       - name: Verify committed prototype summary
         run: |
           node --input-type=module -e 'import assert from "node:assert/strict"; import {readFileSync} from "node:fs"; assert.deepStrictEqual(JSON.parse(readFileSync("data/generated/recipe-family-p0-prototype.json","utf8")), JSON.parse(readFileSync(".tmp/recipe-family-p0-prototype.json","utf8")));'
+      - name: Run Consultant + Project Coach blocking review
+        run: node scripts/run-recipe-family-p0-review.mjs --prototype=.tmp/recipe-family-p0-prototype.json --output=.tmp/recipe-family-p0-review-v1.json
       - name: Upload prototype evidence
         uses: actions/upload-artifact@v4
         with:
           name: recipe-family-p0-prototype
-          path: .tmp/recipe-family-p0-prototype.json
+          path: |
+            .tmp/recipe-family-p0-prototype.json
+            .tmp/recipe-family-p0-review-v1.json
           if-no-files-found: error
