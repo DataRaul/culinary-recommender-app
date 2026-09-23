@@ -1,0 +1,59 @@
+name: Corpus normalization mapping V1
+
+on:
+  pull_request:
+    paths:
+      - "config/corpus_normalization_mapping_v1.json"
+      - "scripts/corpus-normalization-mapping-v1-core.mjs"
+      - "scripts/run-corpus-normalization-mapping-v1.mjs"
+      - "tests/corpus-normalization-mapping-v1.test.js"
+      - ".github/workflows/corpus-normalization-mapping-v1.yml"
+      - "docs/CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mapping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run mapping core tests
+        run: node --test tests/corpus-normalization-mapping-v1.test.js
+      - name: Checkout pinned UniTools
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+      - name: Checkout pinned ForkRecipe
+        run: |
+          git clone --filter=blob:none https://github.com/futurechef/forkrecipe-recipes.git .tmp/forkrecipe
+          git -C .tmp/forkrecipe checkout --detach c32255266af39bd77444d39452f3df8088ac8fd9
+      - name: Checkout pinned CC0 recipes
+        run: |
+          git clone --filter=blob:none https://github.com/sylGauthier/recipes.git .tmp/cc0
+          git -C .tmp/cc0 checkout --detach b12e481d1c220a13e0847a34e148d5872a16928e
+      - name: Checkout pinned Open Recipe Archive
+        run: |
+          git clone --filter=blob:none https://github.com/AdamBouhmad/open-recipe-archive.git .tmp/ora
+          git -C .tmp/ora checkout --detach ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+      - name: Build reversible normalization overlay
+        run: |
+          node scripts/run-corpus-normalization-mapping-v1.mjs \
+            --unitools=.tmp/unitools \
+            --forkrecipe=.tmp/forkrecipe \
+            --cc0=.tmp/cc0 \
+            --ora=.tmp/ora \
+            --output=.tmp/corpus-normalization-mapping-v1-full.json \
+            --summary=.tmp/corpus-normalization-mapping-v1.json
+      - name: Upload mapping evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: corpus-normalization-mapping-v1
+          path: |
+            .tmp/corpus-normalization-mapping-v1.json
+            .tmp/corpus-normalization-mapping-v1-full.json
+          if-no-files-found: error
