@@ -3,7 +3,7 @@
   "policyId": "CULINARY_REPOSITORY_WORK_UNIT_LIFECYCLE_V1",
   "workUnitId": "YT_CUL_5E_ADAPTIVE_DAILY_DISCOVERY",
   "workflow": ".github/workflows/yt-cul-5d-daily-discovery.yml",
-  "generatedAt": "2026-09-22T14:05:36.557Z",
+  "generatedAt": "2026-09-23T14:17:11.611Z",
   "sourceDailyStateFingerprint": "e7cac4fa7bd610a27803aa3d5652af2d101c32709362339f8e21cad53922e77c",
   "primaryOutcome": "success",
   "latestQuotaDate": "2026-09-22",
