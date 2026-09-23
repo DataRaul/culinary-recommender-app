@@ -168,6 +168,11 @@ jobs:
           const creoleExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/creolecookerybo00unkngoog");
           if(!creoleExcluded||!creoleExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
           if(p.topRightsReviewCandidates?.some(x=>x.sourceUrl==="https://archive.org/details/creolecookerybo00unkngoog"))process.exit(1);
+          const artLivingHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/artoflivinginaus00muskiala");
+          if(!artLivingHeld||artLivingHeld.reason!=="ORA_ATTRIBUTES_RECIPE_COHORT_TO_PHILIP_MUSKETT__EXACT_1893_WORK_CREDITS_COOKERY_RECIPES_TO_HARRIETT_WICKEN")process.exit(1);
+          const artLivingExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/artoflivinginaus00muskiala");
+          if(!artLivingExcluded||!artLivingExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          if(p.topRightsReviewCandidates?.some(x=>x.sourceUrl==="https://archive.org/details/artoflivinginaus00muskiala"))process.exit(1);
           if(!Number.isInteger(p.rightsReviewEligibleCount)||p.rightsReviewEligibleCount<0)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle||null,nextAuthority:p.nextAuthority}));'
 
