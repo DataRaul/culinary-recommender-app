@@ -1,0 +1,649 @@
+{
+  "schemaVersion": "CULINARY_RECIPE_FAMILY_P0_SOURCE_OBSERVATIONS_V1",
+  "generatedAt": "2026-09-23",
+  "policy": "config/recipe_family_synthesis_p0.json",
+  "note": "Normalized factual observations only. No source prose, transcript, image, audio, or protected expressive text is retained.",
+  "observations": [
+    {
+      "observationId": "carbonara_forkrecipe_c3225526",
+      "familyId": "carbonara",
+      "source": {
+        "publisher": "ForkRecipe",
+        "creator": "ForkRecipe Kitchen",
+        "url": "https://github.com/futurechef/forkrecipe-recipes/blob/c32255266af39bd77444d39452f3df8088ac8fd9/recipes/pasta-alla-carbonara.js",
+        "accessedAt": "2026-09-23",
+        "independenceGroup": "forkrecipe-carbonara-c3225526",
+        "publisherLedgerKey": "forkrecipe",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-23",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "ForkRecipe Kitchen — Pasta alla Carbonara",
+        "attributionLicenseOrBasis": "CC BY-SA 4.0"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "pasta",
+          "cured_pork",
+          "egg",
+          "hard_cheese",
+          "black_pepper",
+          "pasta_water"
+        ],
+        "quantitative": [
+          {
+            "roleId": "cured_pork",
+            "lower": 37.5,
+            "upper": 37.5,
+            "basis": "FORKRECIPE_RELATIVE_PARTS_PER_100_PASTA_PARTS",
+            "unit": "ratio_percent"
+          },
+          {
+            "roleId": "hard_cheese",
+            "lower": 25,
+            "upper": 25,
+            "basis": "FORKRECIPE_RELATIVE_PARTS_PER_100_PASTA_PARTS",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "render_cured_pork",
+          "mix_egg_and_cheese",
+          "cook_pasta_al_dente",
+          "coat_pasta_in_rendered_fat",
+          "off_heat_emulsification"
+        ],
+        "variantSignals": []
+      }
+    },
+    {
+      "observationId": "carbonara_wikibooks_4640105",
+      "familyId": "carbonara",
+      "source": {
+        "publisher": "Wikibooks",
+        "creator": "Wikibooks contributors",
+        "url": "https://en.wikibooks.org/w/index.php?title=Cookbook:Spaghetti_alla_Carbonara&oldid=4640105",
+        "accessedAt": "2026-09-23",
+        "independenceGroup": "wikibooks-carbonara-4640105",
+        "publisherLedgerKey": "wikimedia-wikibooks",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-23",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "REFERENCE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Wikibooks contributors — Spaghetti alla Carbonara, revision 4640105",
+        "attributionLicenseOrBasis": "CC BY-SA"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "pasta",
+          "cured_pork",
+          "egg",
+          "hard_cheese",
+          "black_pepper",
+          "olive_oil",
+          "pasta_water"
+        ],
+        "quantitative": [
+          {
+            "roleId": "cured_pork",
+            "lower": 50,
+            "upper": 111.111111,
+            "basis": "MASS_PERCENT_OF_PASTA",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "render_cured_pork",
+          "mix_egg_and_cheese",
+          "cook_pasta_al_dente",
+          "coat_pasta_in_rendered_fat",
+          "off_heat_emulsification"
+        ],
+        "variantSignals": [
+          "pecorino_plus_parmigiano"
+        ]
+      }
+    },
+    {
+      "observationId": "carbonara_tappecue_ccbysa3",
+      "familyId": "carbonara",
+      "source": {
+        "publisher": "Tappecue",
+        "creator": "Tappecue recipe dataset",
+        "url": "https://www.tappecue.com/recipes/carbonara-%28guanciale%2C-egg%2C-and-pecorino-romano%29",
+        "accessedAt": "2026-09-23",
+        "independenceGroup": "tappecue-carbonara",
+        "publisherLedgerKey": "tappecue",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-23",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Tappecue — Carbonara (Guanciale, Egg, and Pecorino Romano)",
+        "attributionLicenseOrBasis": "CC BY-SA 3.0"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "pasta",
+          "cured_pork",
+          "egg",
+          "hard_cheese",
+          "black_pepper",
+          "olive_oil",
+          "pasta_water"
+        ],
+        "quantitative": [
+          {
+            "roleId": "cured_pork",
+            "lower": 25.555556,
+            "upper": 25.555556,
+            "basis": "MASS_PERCENT_OF_PASTA",
+            "unit": "ratio_percent"
+          },
+          {
+            "roleId": "hard_cheese",
+            "lower": 22.222222,
+            "upper": 22.222222,
+            "basis": "MASS_PERCENT_OF_PASTA",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "render_cured_pork",
+          "mix_egg_and_cheese",
+          "cook_pasta_al_dente",
+          "coat_pasta_in_rendered_fat",
+          "off_heat_emulsification"
+        ],
+        "variantSignals": [
+          "pecorino_or_pecorino_parmigiano_blend"
+        ]
+      }
+    },
+    {
+      "observationId": "carbonara_fandom_spaghetti",
+      "familyId": "carbonara",
+      "source": {
+        "publisher": "Recipes Wiki / Fandom",
+        "creator": "Catsrecipes Y-Group",
+        "url": "https://recipes.fandom.com/wiki/Spaghetti_Carbonara",
+        "accessedAt": "2026-09-23",
+        "independenceGroup": "fandom-spaghetti-carbonara",
+        "publisherLedgerKey": "fandom-recipes-wiki",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-23",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "VARIANT_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Recipes Wiki / Fandom contributors — Spaghetti Carbonara",
+        "attributionLicenseOrBasis": "CC BY-SA community content"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "pasta",
+          "cured_pork",
+          "egg",
+          "hard_cheese",
+          "black_pepper",
+          "butter",
+          "parsley",
+          "cream_sauce"
+        ],
+        "quantitative": [
+          {
+            "roleId": "cured_pork",
+            "lower": 31.25,
+            "upper": 31.25,
+            "basis": "MASS_PERCENT_OF_PASTA",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "cook_cured_pork",
+          "mix_egg_and_cheese",
+          "cook_pasta",
+          "gentle_heat_egg_coating"
+        ],
+        "variantSignals": [
+          "alfredo_sauce_added",
+          "butter_added",
+          "parsley_added"
+        ]
+      }
+    },
+    {
+      "observationId": "carbonara_recidemia_nd0020009",
+      "familyId": "carbonara",
+      "source": {
+        "publisher": "Recidemia",
+        "creator": "Recidemia contributors",
+        "url": "https://recidemia.com/type/ND.002.0009",
+        "accessedAt": "2026-09-23",
+        "independenceGroup": "recidemia-carbonara-nd0020009",
+        "publisherLedgerKey": "recidemia",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-23",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "VARIANT_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Recidemia contributors — Bucatini alla Carbonara",
+        "attributionLicenseOrBasis": "CC BY-SA 4.0"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "pasta",
+          "cured_pork",
+          "egg",
+          "hard_cheese",
+          "black_pepper",
+          "white_wine",
+          "butter",
+          "parsley",
+          "pasta_water"
+        ],
+        "quantitative": [
+          {
+            "roleId": "cured_pork",
+            "lower": 60,
+            "upper": 60,
+            "basis": "MASS_PERCENT_OF_PASTA",
+            "unit": "ratio_percent"
+          },
+          {
+            "roleId": "hard_cheese",
+            "lower": 80,
+            "upper": 80,
+            "basis": "MASS_PERCENT_OF_PASTA",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "render_cured_pork",
+          "reduce_wine",
+          "mix_egg_and_cheese",
+          "cook_pasta_al_dente",
+          "off_heat_emulsification"
+        ],
+        "variantSignals": [
+          "white_wine_added",
+          "butter_added",
+          "parsley_added"
+        ]
+      }
+    },
+    {
+      "observationId": "hummus_forkrecipe_c3225526",
+      "familyId": "hummus",
+      "source": {
+        "publisher": "ForkRecipe",
+        "creator": "ForkRecipe Kitchen",
+        "url": "https://github.com/futurechef/forkrecipe-recipes/blob/c32255266af39bd77444d39452f3df8088ac8fd9/recipes/hummus.js",
+        "accessedAt": "2026-09-23",
+        "independenceGroup": "forkrecipe-hummus-c3225526",
+        "publisherLedgerKey": "forkrecipe",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-23",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "ForkRecipe Kitchen — Hummus",
+        "attributionLicenseOrBasis": "CC BY-SA 4.0"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "chickpeas",
+          "tahini",
+          "lemon",
+          "garlic",
+          "salt",
+          "baking_soda",
+          "water",
+          "olive_oil"
+        ],
+        "quantitative": [
+          {
+            "roleId": "tahini",
+            "lower": 60,
+            "upper": 60,
+            "basis": "FORKRECIPE_RELATIVE_PARTS_PER_100_CHICKPEA_PARTS",
+            "unit": "ratio_percent"
+          },
+          {
+            "roleId": "lemon",
+            "lower": 30,
+            "upper": 30,
+            "basis": "FORKRECIPE_RELATIVE_PARTS_PER_100_CHICKPEA_PARTS",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "soak_chickpeas",
+          "cook_chickpeas_very_soft",
+          "emulsify_tahini_lemon",
+          "puree_chickpeas",
+          "adjust_with_water"
+        ],
+        "variantSignals": [
+          "baking_soda_softening"
+        ]
+      }
+    },
+    {
+      "observationId": "hummus_wikibooks_greek_4532021",
+      "familyId": "hummus",
+      "source": {
+        "publisher": "Wikibooks",
+        "creator": "Wikibooks contributors",
+        "url": "https://en.wikibooks.org/w/index.php?title=Cookbook:Hummus_(Greek)&oldid=4532021",
+        "accessedAt": "2026-09-23",
+        "independenceGroup": "wikibooks-hummus-greek-4532021",
+        "publisherLedgerKey": "wikimedia-wikibooks",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-23",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "REFERENCE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Wikibooks contributors — Hummus (Greek), revision 4532021",
+        "attributionLicenseOrBasis": "CC BY-SA"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "chickpeas",
+          "tahini",
+          "lemon",
+          "garlic",
+          "salt",
+          "olive_oil",
+          "water"
+        ],
+        "quantitative": [
+          {
+            "roleId": "tahini",
+            "lower": 25,
+            "upper": 25,
+            "basis": "VOLUME_PERCENT_OF_DRY_CHICKPEAS",
+            "unit": "ratio_percent"
+          },
+          {
+            "roleId": "lemon",
+            "lower": 25,
+            "upper": 25,
+            "basis": "VOLUME_PERCENT_OF_DRY_CHICKPEAS",
+            "unit": "ratio_percent"
+          },
+          {
+            "roleId": "garlic",
+            "lower": 4,
+            "upper": 4,
+            "basis": "CLOVES_PER_CUP_DRY_CHICKPEAS",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "soak_chickpeas",
+          "cook_chickpeas_very_soft",
+          "remove_some_skins",
+          "emulsify_tahini_lemon",
+          "puree_chickpeas",
+          "adjust_with_cooking_liquid"
+        ],
+        "variantSignals": [
+          "skin_removal"
+        ]
+      }
+    },
+    {
+      "observationId": "hummus_fandom_authentic",
+      "familyId": "hummus",
+      "source": {
+        "publisher": "Recipes Wiki / Fandom",
+        "creator": "Recipes Wiki contributors",
+        "url": "https://recipes.fandom.com/wiki/Authentic_Hummus_Recipe",
+        "accessedAt": "2026-09-23",
+        "independenceGroup": "fandom-authentic-hummus",
+        "publisherLedgerKey": "fandom-recipes-wiki",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-23",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Recipes Wiki / Fandom contributors — Authentic Hummus Recipe",
+        "attributionLicenseOrBasis": "CC BY-SA community content"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "chickpeas",
+          "tahini",
+          "lemon",
+          "garlic",
+          "salt",
+          "cumin",
+          "baking_soda",
+          "olive_oil"
+        ],
+        "quantitative": [
+          {
+            "roleId": "tahini",
+            "lower": 50,
+            "upper": 50,
+            "basis": "VOLUME_PERCENT_OF_DRY_CHICKPEAS",
+            "unit": "ratio_percent"
+          },
+          {
+            "roleId": "garlic",
+            "lower": 1,
+            "upper": 2,
+            "basis": "CLOVES_PER_CUP_DRY_CHICKPEAS",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "soak_chickpeas",
+          "cook_chickpeas_very_soft",
+          "remove_some_skins",
+          "puree_chickpeas",
+          "add_tahini_lemon",
+          "adjust_with_cooking_liquid"
+        ],
+        "variantSignals": [
+          "baking_soda_softening",
+          "cumin_added"
+        ]
+      }
+    },
+    {
+      "observationId": "hummus_recidemia_vg0040681",
+      "familyId": "hummus",
+      "source": {
+        "publisher": "Recidemia",
+        "creator": "Recidemia contributors",
+        "url": "https://recidemia.com/recipe/VG.004.0681.001",
+        "accessedAt": "2026-09-23",
+        "independenceGroup": "recidemia-hummus-vg0040681",
+        "publisherLedgerKey": "recidemia",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-23",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Recidemia contributors — Hummus and Tahini",
+        "attributionLicenseOrBasis": "CC BY-SA 4.0"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "chickpeas",
+          "tahini",
+          "lemon",
+          "garlic",
+          "paprika",
+          "cayenne",
+          "olive_oil"
+        ],
+        "quantitative": [
+          {
+            "roleId": "tahini",
+            "lower": 25,
+            "upper": 25,
+            "basis": "VOLUME_PERCENT_OF_DRY_CHICKPEAS",
+            "unit": "ratio_percent"
+          },
+          {
+            "roleId": "lemon",
+            "lower": 12.5,
+            "upper": 12.5,
+            "basis": "VOLUME_PERCENT_OF_DRY_CHICKPEAS",
+            "unit": "ratio_percent"
+          },
+          {
+            "roleId": "garlic",
+            "lower": 1,
+            "upper": 1.5,
+            "basis": "CLOVES_PER_CUP_DRY_CHICKPEAS",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "soak_chickpeas",
+          "cook_chickpeas_very_soft",
+          "puree_chickpeas",
+          "add_tahini_lemon"
+        ],
+        "variantSignals": [
+          "paprika_added",
+          "cayenne_added"
+        ]
+      }
+    },
+    {
+      "observationId": "hummus_wikibooks_iii_4630237",
+      "familyId": "hummus",
+      "source": {
+        "publisher": "Wikibooks",
+        "creator": "Wikibooks contributors",
+        "url": "https://en.wikibooks.org/w/index.php?title=Cookbook:Hummus_III&oldid=4630237",
+        "accessedAt": "2026-09-23",
+        "independenceGroup": "wikibooks-hummus-iii-4630237",
+        "publisherLedgerKey": "wikimedia-wikibooks",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-23",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Wikibooks contributors — Hummus III, revision 4630237",
+        "attributionLicenseOrBasis": "CC BY-SA"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "chickpeas",
+          "tahini",
+          "lemon",
+          "garlic",
+          "salt",
+          "olive_oil"
+        ],
+        "quantitative": [
+          {
+            "roleId": "tahini",
+            "lower": 25,
+            "upper": 25,
+            "basis": "VOLUME_PERCENT_OF_DRY_CHICKPEAS",
+            "unit": "ratio_percent"
+          },
+          {
+            "roleId": "lemon",
+            "lower": 62.5,
+            "upper": 62.5,
+            "basis": "VOLUME_PERCENT_OF_DRY_CHICKPEAS",
+            "unit": "ratio_percent"
+          },
+          {
+            "roleId": "garlic",
+            "lower": 8,
+            "upper": 8,
+            "basis": "CLOVES_PER_CUP_DRY_CHICKPEAS",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "soak_chickpeas",
+          "cook_chickpeas_until_tender",
+          "puree_chickpeas",
+          "add_tahini_lemon"
+        ],
+        "variantSignals": []
+      }
+    }
+  ]
+}
