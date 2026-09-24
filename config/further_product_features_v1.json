@@ -85,7 +85,7 @@
     {
       "id": "D5",
       "name": "Fitness Integration",
-      "state": "P0_ADAPTER_PROTOTYPE_BUILT_VALIDATION_PENDING",
+      "state": "P0_ADAPTER_PROTOTYPE_PASS__BEHAVIOR_DEFERRED",
       "reason": "EXISTING_USER_PERMISSION_GATED_PORTABLE_BACKUP_SUPPORTS_A_MINIMUM_DATA_ONE_WAY_DESIGN_WITHOUT_CROSS_APP_RUNTIME_COUPLING",
       "runtimeActivationAuthorized": false,
       "adapterBoundary": {
@@ -116,7 +116,10 @@
       "postPrototypeDisposition": "DEFER_BEHAVIOR_WORK",
       "successorPrincipalLane": "PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
       "prototypeContract": "config/fitness_integration_p0_adapter_prototype.json",
-      "prototypeDocument": "docs/FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE.md"
+      "prototypeDocument": "docs/FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE.md",
+      "prototypeValidationRun": 1080,
+      "prototypeValidationRunId": 36059408517,
+      "behaviorDisposition": "DEFERRED"
     },
     {
       "id": "D6",
@@ -138,7 +141,7 @@
     "knowledgeCoreWriteAuthorized": false,
     "barbecueMutationAuthorized": false
   },
-  "nextGate": "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE_VALIDATION",
+  "nextGate": "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY",
   "reassessment": {
     "terminal": "FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3_PASS",
     "date": "2026-09-24",
@@ -152,6 +155,10 @@
     "deferD5BehaviorAfterPrototype": true,
     "successorPrincipalLane": "PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
     "successorContract": "config/protected_corpus_runtime_usability_v1.json",
-    "successorDocument": "docs/PROTECTED_CORPUS_RUNTIME_USABILITY_V1.md"
+    "successorDocument": "docs/PROTECTED_CORPUS_RUNTIME_USABILITY_V1.md",
+    "d5PrototypeState": "PASS",
+    "d5PrototypeValidationRun": 1080,
+    "d5PrototypeValidationRunId": 36059408517,
+    "d5BehaviorState": "DEFERRED"
   }
 }
