@@ -1,9 +1,9 @@
 # Corpus Scale Step 8 — Measured Population and Activation Roadmap
 
-Status: **STEP 8A PASS / STEP 8B PASS / STEP 8C PASS / STEP 8D PASS / STEP 8E PASS / STEP 8F HUMAN DECISION READY / STEP 8G READY**
+Status: **STEP 8A–8F PASS / STEP 8G ADVANCED TO v8018 / LEGAL CORPUS BASELINE PASS**
 
 Decision date: **2026-09-10**  
-Current-state reconciliation: **2026-09-14**
+Current-state reconciliation: **2026-09-24**
 
 Entry terminal:
 
@@ -18,8 +18,8 @@ This document defines the post-Step-7E continuation of the existing large-corpus
 - **8C — COMPLETE PASS:** pinned UniTools 501-record cohort qualified as rights-clean protected-population input only.
 - **8D — COMPLETE PASS:** 501 pinned UniTools recipes populated across the exact two-shard protected topology.
 - **8E — COMPLETE PASS:** exact one-record recommendation-eligible subset earned; 500 UniTools records remain stored-only.
-- **8F — READY / HUMAN GATE:** all non-activating machine decision-input checks pass; explicit public-runtime authorization is now required.
-- **8G — READY:** protected scale continuation is independently unlocked by 8D PASS and does not depend on 8F.
+- **8F — COMPLETE PASS:** the owner approved exactly `unitools_tortilla_espanola`; PR #160 activated only that record and the public runtime is now 85 recipes.
+- **8G — LEGAL CORPUS BASELINE PASS:** protected population advanced independently to v8018 / 19,268 recipes on exactly two recipe-body shards. Final hold-adjusted discovery found 0 rights-review-eligible remaining source cohorts under the frozen discovery/marginal-value contract.
 
 The Step 8B production closeout is frozen in `docs/CORPUS_SCALE_STEP8B_LIVE_CANARY_PASS.md`.
 
@@ -180,33 +180,23 @@ Terminal outcomes:
 
 ## 9. Step 8F — Public Runtime Activation Decision
 
-Status: **READY / EXPLICIT HUMAN PUBLIC-RUNTIME GATE**
+Status: **COMPLETE PASS / EXACT ONE-RECORD ACTIVATION**
 
-All non-activating machine checks are complete for the exact one-record Step 8E subset. Current public runtime remains 84 recipes and unchanged. `runtimeActivationAuthorized` is false.
+Terminal: `STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED`.
 
-Before any newly earned external subset affects normal recommendations:
+The owner explicitly approved the exact Step 8E one-record subset. PR #160 activated only `unitools_tortilla_espanola`; validation, browser acceptance, deployment and production smoke passed. The public runtime therefore moved from 84 to **85** records. No other protected record gained public recommendation authority.
 
-- run V1/V2 golden parity where applicable;
-- run hard-filter and safety regression;
-- run deterministic ranking/planner regression;
-- run profile/browser acceptance;
-- verify attribution/licensing display obligations;
-- freeze exact approved subset/version;
-- require explicit human public-runtime authorization.
+Frozen closeout: `docs/CORPUS_SCALE_STEP8F_PUBLIC_RUNTIME_ACTIVATION_PASS.md`.
 
-Terminal outcomes:
-
-- `STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED`
-- `STEP_8F_PUBLIC_RUNTIME_HOLD`
-- `STEP_8F_BEHAVIOR_REGRESSION_REDESIGN_REQUIRED`
-
-An approval applies only to the exact reviewed subset/version.
+Any future public activation remains a new explicit gate; this approval does not generalize beyond the exact reviewed record.
 
 ## 10. Step 8G — Continued Protected Scale Expansion Loop
 
-Status: **READY AFTER STEP 8D PASS**
+Status: **ADVANCED THROUGH v8018 / LEGAL CORPUS BASELINE PASS**
 
-8G does **not** depend on 8F. Protected large-corpus learning should not be blocked merely because the owner has not activated new public recommendation behavior.
+8G remained independent of 8F and advanced through multiple rights-reviewed protected cohorts to **v8018 / 19,268 recipes**. The current topology remains exactly two recipe-body D1 shards; the certified maximum in the final owner run is 8 D1 subqueries/request. Final hold-adjusted discovery then found 0 rights-review-eligible remaining source cohorts, earning `LEGAL_CORPUS_BASELINE_PASS`. Canonical closeout: `docs/CORPUS_SCALE_STEP8G_POST_V8018_BASELINE_REASSESSMENT.md`.
+
+The loop may be reopened only if new source evidence or a new explicitly approved discovery universe earns a material candidate; raw count alone is not a reason to resume population.
 
 Continue only while marginal coverage/quality value justifies ingestion and review complexity. Stop when source rights/provenance are insufficient, marginal coverage is low, Free-plan headroom becomes unsafe, additional shards cross the measured architecture/reserved-slot boundary, a paid/billing authorization would be required, or another genuine human/security/legal gate is reached.
 
@@ -248,10 +238,10 @@ STEP 7E PASS
 | 8A | Complete | No | None |
 | 8B | Complete | Completed exact no-billing account/binding actions | None |
 | 8C | Complete | No unresolved material rights gate for pinned cohort | None |
-| 8D | **Yes now**, within earned topology/source/cost limits | Stop on new cost/security/account boundary | None |
-| 8E | Yes for bounded app admission review | Existing app gates remain controlling | None |
-| 8F | Tests/preparation yes | **Explicit human public-runtime decision** | Exact approved subset only |
-| 8G | Yes after 8D PASS within protected-scale boundaries | Stop on cost/rights/security/account boundary | None |
+| 8D | Complete for the recorded UniTools population gate | Stop on new cost/security/account boundary | None |
+| 8E | Complete for the exact recorded eligibility census | Existing app gates remain controlling | None |
+| 8F | Complete for the exact one-record approved subset | Human decision completed for that subset only | `unitools_tortilla_espanola` only |
+| 8G | Current legal-corpus loop stopped at v8018 after source exhaustion under frozen criteria | Reopen only on newly earned source/cost/rights evidence | None |
 
 ## 13. Boundaries unchanged
 
@@ -275,6 +265,6 @@ Step 8 does not authorize:
 
 ## 14. Current next action
 
-Proceed with **Step 8D protected population of the exact pinned UniTools 501-record cohort** on the already-earned two-shard topology.
+The Step 8 population programme is no longer waiting on Step 8D. Its current protected terminal is **v8018 / 19,268 / LEGAL_CORPUS_BASELINE_PASS**.
 
-Machine work should first define and test the Step 8D source transformation, deterministic population manifest, bounded batch/resume/idempotency behavior, evidence envelope and protected live surface. No public recommendation behavior may change. No additional shard or paid infrastructure is authorized.
+Follow the post-v8018 product order in `docs/ROADMAP.md` and `docs/CORPUS_SCALE_STEP8G_POST_V8018_BASELINE_REASSESSMENT.md`. Do not restart protected population, create a third shard, or broaden public recommendation behavior without newly earned evidence and the controlling gate.
