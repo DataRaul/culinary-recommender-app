@@ -21,11 +21,11 @@
     ],
     "currentPostBaselinePosition": "FURTHER_PRODUCT_FEATURES",
     "furtherProductFeatures": {
-      "status": "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN_BUILT_VALIDATION_PENDING",
+      "status": "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN_PASS",
       "contract": "config/further_product_features_v1.json",
       "document": "docs/FURTHER_PRODUCT_FEATURES_READINESS_V1.md",
       "selectedNextDesignCandidate": "D5_FITNESS_INTEGRATION",
-      "nextGate": "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN_VALIDATION",
+      "nextGate": "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE",
       "publicRuntimeChangeAuthorized": false,
       "designContract": "config/recipe_images_p0.json",
       "designDocument": "docs/RECIPE_IMAGES_P0_DESIGN_CONTRACT.md",
@@ -47,7 +47,9 @@
       "fitnessSourceMainSha": "3fd69badda5269021728e5a5d1681aac98d17147",
       "fitnessPortableBackupSchemaVersion": 3,
       "fitnessDesignContract": "config/fitness_integration_p0.json",
-      "fitnessDesignDocument": "docs/FITNESS_INTEGRATION_P0_DESIGN_CONTRACT.md"
+      "fitnessDesignDocument": "docs/FITNESS_INTEGRATION_P0_DESIGN_CONTRACT.md",
+      "fitnessDesignValidationRun": 1063,
+      "fitnessDesignValidationRunId": 36028970545
     }
   },
   "sourceAdmission": {
