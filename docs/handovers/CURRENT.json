@@ -1,77 +1,41 @@
 {
-  "handover": "CULINARY_APP_RECIPE_FAMILY_EXPANSION_CLOSEOUT_YT_HOLD_RECONCILIATION_NEXT_V81",
+  "handover": "CULINARY_APP_BARBECUE_ACTIVATION_READY_V82",
   "handover_date": "2026-09-24",
   "timezone": "Atlantic/Canary",
-  "status": "V8018_LIVE_19268__USABLE_RECOMMENDATION_BASELINE_PASS__RECIPE_FAMILY_10_FAMILY_EXPANSION_COMPLETE_8_ELIGIBLE_2_HOLD__PUBLIC_RUNTIME_85_UNCHANGED__YT_CUL_HARD_HOLD__BARBECUE_PRODUCT_PREREQUISITES_SATISFIED_NOT_ACTIVE",
+  "status": "V8018_LIVE_19268__PUBLIC_RUNTIME_85_UNCHANGED__RECIPE_FAMILY_COMPLETE_8_ELIGIBLE_2_HOLD__YT_CUL_RATE_LIMIT_RECONCILED__BARBECUE_ACTIVATION_READY__BOUNDED_IMPLEMENTATION_NEXT",
   "human_needed": false,
-  "handover_written_against_main_sha": "2acc942349bdecc293c3c37493f551b56f49e2f6",
+  "handover_written_against_main_sha": "abe8fb87ad2f745643ff99cb6e76eaf0dbd51ef7",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
     "fresh_reconcile_rule": "Live GitHub main/open PRs/CI/generated child-programme state outrank this snapshot.",
     "latest_material_prs": [
       {
-        "pr": 272,
-        "state": "MERGED",
-        "purpose": "nutrition/vitamin applicability audit"
-      },
-      {
-        "pr": 273,
-        "state": "MERGED",
-        "purpose": "recommendation readiness audit"
-      },
-      {
-        "pr": 274,
-        "state": "MERGED",
-        "purpose": "preserve unknown nutrition in recommendation scoring"
-      },
-      {
-        "pr": 275,
-        "state": "MERGED",
-        "purpose": "bounded Carbonara + Hummus Recipe Family prototype and blocking review"
-      },
-      {
-        "pr": 276,
-        "state": "MERGED",
-        "purpose": "real-candidate Recipe Family UI legal conformance"
-      },
-      {
-        "pr": 277,
-        "state": "MERGED",
-        "purpose": "record UI legal PASS, advance 10-family bounded expansion, rotate handover"
-      },
-      {
-        "pr": 278,
-        "state": "MERGED",
-        "purpose": "early durable takeover checkpoint before 10-family expansion"
-      },
-      {
-        "pr": 279,
-        "state": "MERGED",
-        "purpose": "Recipe Family bounded expansion tranche 1: guacamole, pancakes, tortilla española"
-      },
-      {
-        "pr": 280,
-        "state": "MERGED",
-        "purpose": "finalize Recipe Family tranche 1 PASS and rotate handover"
-      },
-      {
-        "pr": 281,
-        "state": "MERGED",
-        "purpose": "Recipe Family bounded expansion tranche 2: cacio e pepe, pesto Genovese, pizza Margherita hold"
-      },
-      {
-        "pr": 282,
-        "state": "MERGED",
-        "purpose": "finalize Recipe Family tranche 2 PASS and rotate handover"
-      },
-      {
         "pr": 283,
         "state": "MERGED",
-        "purpose": "final Recipe Family expansion tranche: basic tomato pasta sauce + ragù Bolognese"
+        "purpose": "complete final Recipe Family expansion tranche"
+      },
+      {
+        "pr": 284,
+        "state": "MERGED",
+        "purpose": "close Recipe Family expansion and rotate V81 handover"
+      },
+      {
+        "pr": 285,
+        "state": "MERGED",
+        "purpose": "repair YT-CUL provider rate-limit classification and add 1-second pacing",
+        "merge_sha": "428d3d6ee47e616d777e7d516c2c30854450220a",
+        "validation": "Validate public V0 run #1000 SUCCESS"
+      },
+      {
+        "pr": 286,
+        "state": "MERGED",
+        "purpose": "durably reclassify September 22 hold and unlock barbecue successor",
+        "merge_sha": "abe8fb87ad2f745643ff99cb6e76eaf0dbd51ef7",
+        "validation": "Validate public V0 run #1002 SUCCESS"
       }
     ],
-    "latest_material_main_sha": "2acc942349bdecc293c3c37493f551b56f49e2f6"
+    "latest_material_main_sha": "abe8fb87ad2f745643ff99cb6e76eaf0dbd51ef7"
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -80,57 +44,46 @@
     "rotation": "old CURRENT -> PREVIOUS; new complete snapshot -> CURRENT"
   },
   "lane": {
-    "name": "Culinary App / Culinary Recommender — YouTube / authoritative-evidence refinement reconciliation",
-    "active_lane": "YOUTUBE_AUTHORITATIVE_EVIDENCE_REFINEMENT_RECONCILIATION",
-    "blocking_milestone": "RESOLVE_DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+    "name": "Culinary App / Culinary Recommender — Barbecue Technique Corpus successor",
+    "active_lane": "BARBECUE_TECHNIQUE_CORPUS_BOUNDED_IMPLEMENTATION",
+    "blocking_milestone": "BARBECUE_TECHNIQUE_CORPUS_PILOT_PASS",
     "legal_corpus": "LEGAL_CORPUS_BASELINE_PASS",
     "normalization": "CORPUS_NORMALIZATION_CATEGORIZATION_MAPPING_V1_PASS__FROZEN",
     "nutrition_applicability": "NUTRITION_VITAMIN_APPLICABILITY_AUDIT_PASS",
     "recommendation_readiness": "USABLE_RECOMMENDATION_BASELINE_PASS",
-    "recipe_family_p0": "RECIPE_FAMILY_P0_PROTOTYPE_REVIEW_PASS",
-    "ui_legal_conformance": "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS",
     "recipe_family_expansion": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_COMPLETE_WITH_EXPLICIT_HOLDS",
+    "yt_cul_generic": "DAILY_SEARCH_HOLD_RATE_LIMIT__GENERIC_LIVE_SEARCH_FAIL_CLOSED",
+    "barbecue": "BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY__BOUNDED_IMPLEMENTATION_NEXT",
     "public_activation": "SEPARATELY_GATED__NOT_AUTHORIZED",
-    "yt_cul_lane": "INDEPENDENT_CHILD_PROGRAMME__DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
-    "barbecue": "PRODUCT_PREREQUISITES_SATISFIED__YT_CUL_HOLD_RECONCILIATION_REQUIRED__NOT_ACTIVE",
     "knowledge_core": "NO_WRITE_FROM_CURRENT_APP_LANE",
     "billing": "NO_BILLING_AUTHORIZATION"
   },
   "operating_contract": {
     "autonomy": "Ordinary bounded repository implementation, normal CI/browser acceptance and roadmap-required no-write evidence work are standing-preapproved under AGENTS.md. Do not ask for routine Actions approval.",
-    "recipe_family": "Expansion remains bounded and nonpublic. Each family must earn its own source-compliance, factual synthesis, provenance, quantity/technique and APP_AUTHORING_ELIGIBLE gates. A failed source blocks that source, not the family. A held family is an acceptable fail-closed result.",
-    "legal_ui": "UI legal conformance is implementation conformance, not a new legal opinion. REQUIRED+READY attribution must render required fields; UNSATISFIABLE/UNKNOWN fail closed. New materially different source/licence classes re-trigger the gate.",
-    "public_runtime": "Public runtime remains 85 recipes. APP_AUTHORING_ELIGIBLE and UI legal PASS do not authorize public/runtime admission.",
-    "storage": "Protected production remains v8018 / 19,268 in exactly two D1 shards. No protected-body rewrite/export or D1 mutation is authorized by Recipe Family expansion unless a later earned gate explicitly requires it.",
+    "barbecue_scope": "Conventional above-ground barbecue/grill only. Charcoal, gas, kettle, pellet and conventional smoker/barbecue apparatus are in scope. Underground/earth-oven, buried, ash/ember-buried, non-grill fire-pit/campfire and open-hearth techniques are excluded from V1.",
+    "barbecue_source_rule": "Each leaf targets five independent admission-qualified references. World-champion/competition queries run first; title wording alone never qualifies a source. Specialist/educator fallback is allowed only when fewer than five championship-level qualified sources are available. Never lower the source gate to reach five.",
+    "barbecue_storage": "Durable state may retain references/IDs, creator/channel identity, qualification/provenance metadata, project-authored normalized observations, derived ranges/alternatives, safety state and compact programme state. No transcripts, copied recipe prose/instructions, images, downloaded video/audio or bulk raw API payload history.",
+    "barbecue_safety": "Practitioner videos are not food-safety authority. Safety constraints must come from appropriate safety authorities.",
+    "youtube": "Generic YT-CUL remains fail-closed at DAILY_SEARCH_HOLD_RATE_LIMIT. PR #285 introduced 1-second provider-call pacing and a distinct rate-limit lifecycle state. Do not resume generic Search. The next authorized use of the YouTube lane is the bounded barbecue successor implementation.",
+    "quota": "Owner-verified Search limit remains 100/day; preserve provider headroom/reserve and existing fail-closed quota semantics. No paid quota, second project or quota multiplication.",
+    "public_runtime": "Public runtime remains 85 recipes. Barbecue research/technique synthesis does not authorize public/runtime admission.",
+    "storage": "Protected production remains v8018 / 19,268 in exactly two D1 shards. Barbecue work does not authorize protected-body rewrite/export or D1 mutation.",
     "d1": "Operational target remains <=8 D1 subqueries/request; hard fail-safe 16 is not spendable headroom.",
-    "billing_firewall": "No paid infrastructure/API/corpus licensing or automatic billing expansion.",
-    "youtube": "Do not retry YT-CUL live Search while DAILY_SEARCH_HOLD_POLICY_OR_QUOTA remains active.",
     "knowledge_core": "No Knowledge Core write from this app lane unless separately authorized.",
-    "public_activation": "Public runtime remains 85 recipes. Broader public corpus, recommendation, or Recipe Family runtime admission is not authorized by P0 or UI legal conformance PASS."
+    "billing_firewall": "No paid infrastructure/API/corpus licensing or automatic billing expansion."
   },
   "canonical_documents": {
     "roadmap": "docs/ROADMAP.md",
-    "recipe_family_roadmap_gate": "docs/RECIPE_FAMILY_SYNTHESIS_ROADMAP_GATE.md",
-    "recipe_family_p0_result": "docs/RECIPE_FAMILY_P0_PROTOTYPE_RESULT.md",
-    "recipe_family_p0_summary": "data/generated/recipe-family-p0-prototype.json",
-    "recipe_family_p0_observations": "data/generated/recipe-family-p0-source-observations.json",
-    "recipe_family_p0_review_contract": "config/recipe_family_p0_review_v1.json",
-    "ui_legal_gate": "docs/RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_GATE.md",
-    "ui_legal_contract": "config/recipe_family_ui_legal_conformance_gate.json",
-    "ui_legal_evidence": "data/generated/recipe-family-ui-legal-conformance-v1.json",
+    "barbecue_roadmap": "docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md",
+    "youtube_transition_roadmap": "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md",
+    "youtube_culinary_work_unit_state": "data/generated/youtube-culinary-work-unit-state.json",
+    "youtube_culinary_daily_state": "data/generated/youtube-culinary-daily-discovery-state.json",
+    "youtube_rate_limit_reconciliation": "data/generated/youtube-culinary-rate-limit-reconciliation-v1.json",
+    "recipe_family_closeout": "data/generated/recipe-family-expansion-closeout-v1.json",
     "recommendation_readiness": "data/generated/recommendation-readiness-audit-v1.json",
     "nutrition_applicability": "data/generated/nutrition-vitamin-applicability-audit-v1.json",
     "legal_corpus_closeout": "docs/CORPUS_SCALE_STEP8G_POST_V8018_BASELINE_REASSESSMENT.md",
-    "youtube_culinary_work_unit_state": "data/generated/youtube-culinary-work-unit-state.json",
-    "barbecue_roadmap": "docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md",
-    "handover_protocol": "docs/HANDOVER_PROTOCOL.md",
-    "recipe_family_expansion_tranche_1_observations": "data/generated/recipe-family-expansion-tranche-1-source-observations.json",
-    "recipe_family_expansion_tranche_1_evidence": "data/generated/recipe-family-expansion-tranche-1-evidence.json",
-    "recipe_family_expansion_tranche_2_observations": "data/generated/recipe-family-expansion-tranche-2-source-observations.json",
-    "recipe_family_expansion_tranche_2_evidence": "data/generated/recipe-family-expansion-tranche-2-evidence.json",
-    "recipe_family_expansion_final_tranche_observations": "data/generated/recipe-family-expansion-final-tranche-source-observations.json",
-    "recipe_family_expansion_final_tranche_evidence": "data/generated/recipe-family-expansion-final-tranche-evidence.json",
-    "recipe_family_expansion_closeout": "data/generated/recipe-family-expansion-closeout-v1.json"
+    "handover_protocol": "docs/HANDOVER_PROTOCOL.md"
   },
   "live_protected_state": {
     "active_version": "v8018",
@@ -145,8 +98,7 @@
     "public_runtime_changed": false,
     "recommendation_admission_changed": false,
     "third_shard_used": false,
-    "billing_expansion": false,
-    "d1_budget_headroom_assumed": false
+    "billing_expansion": false
   },
   "recommendation_readiness": {
     "status": "USABLE_RECOMMENDATION_BASELINE_PASS",
@@ -155,292 +107,115 @@
     "eligible_hard_metadata_ready": 77,
     "search_only": 2,
     "reference_only": 6,
-    "unknown_tracked_nutrition_eligible_count": 1,
-    "unknown_nutrition_zero_coercion_count": 0,
     "protected_exact_identity_review_candidates": 112,
     "protected_automatically_recommendation_ready": 0
   },
-  "recipe_family_p0": {
-    "terminal": "RECIPE_FAMILY_P0_PROTOTYPE_REVIEW_PASS__BOUNDED_EXPANSION_UNLOCKED__UI_LEGAL_GATE_DUE",
-    "family_count": 2,
-    "hummus": {
-      "observations": 5,
-      "publisher_count": 4,
-      "state": "APP_AUTHORING_ELIGIBLE",
-      "projection_id": "recipe_family_p0_hummus_candidate_v1",
-      "activation_authority": "NONE"
-    },
-    "carbonara": {
-      "observations": 5,
-      "publisher_count": 5,
-      "state": "APP_AUTHORING_HOLD",
-      "unresolved_required_quantities": [
-        "egg",
-        "hard_cheese"
-      ],
-      "collection_disposition": "TARGETED_ONLY_IF_CARBONARA_AUTHORING_IS_REVISITED"
-    },
-    "bounded_10_family_expansion_unlocked": true,
-    "public_or_runtime_admission_unlocked": false
-  },
-  "ui_legal_conformance": {
-    "terminal": "RECIPE_FAMILY_UI_LEGAL_CONFORMANCE_PASS",
-    "merged_pr": 276,
-    "merge_sha": "e92d5f13f08790c7c013701618bdcd8fd7ba35af",
-    "real_candidate_projection_id": "recipe_family_p0_hummus_candidate_v1",
-    "attribution_notice_count": 5,
-    "distinct_source_class_count": 4,
-    "source_classes": [
-      "fandom-recipes-wiki",
-      "forkrecipe",
-      "recidemia",
-      "wikimedia-wikibooks"
+  "recipe_family_expansion": {
+    "terminal": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_COMPLETE_WITH_EXPLICIT_HOLDS",
+    "cohort_count": 10,
+    "app_authoring_eligible_count": 8,
+    "app_authoring_hold_count": 2,
+    "public_or_runtime_admitted_count": 0,
+    "eligible_families": [
+      "hummus",
+      "guacamole",
+      "pancakes",
+      "tortilla_espanola",
+      "cacio_e_pepe",
+      "pesto_genovese",
+      "basic_tomato_pasta_sauce",
+      "ragu_bolognese_family"
     ],
-    "protected_expression_leak_count": 0,
-    "required_unsatisfiable_fail_closed": true,
-    "unknown_fail_closed": true,
-    "private_runtime_bypass": false,
-    "public_runtime_admission_authorized": false,
-    "validation": "SUCCESS__FULL_STATIC_UNIT_BROWSER__STEP1_BENCHMARK__STEP7A_NO_BILLING_PROOF"
-  },
-  "concurrent_child_programmes": {
-    "youtube_culinary": {
-      "work_unit_id": "YT_CUL_5E_ADAPTIVE_DAILY_DISCOVERY",
-      "generated_at": "2026-09-23T14:17:11.611Z",
-      "latest_quota_date": "2026-09-22",
-      "latest_daily_terminal_state": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
-      "closure_status": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
-      "successor_action": "RESOLVE_DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
-      "scheduler_disposition": "HOLD_FAIL_CLOSED",
-      "next_trigger_disposition": "NO_LIVE_SEARCH_UNTIL_HOLD_RESOLVED",
-      "yt_cul_6_readiness_earned": false
-    },
-    "barbecue_technique_corpus": {
-      "state": "PRODUCT_PREREQUISITES_SATISFIED__YT_CUL_HOLD_RECONCILIATION_REQUIRED__NOT_ACTIVE",
-      "activation_gate": "LEGAL_CORPUS_BASELINE_PASS_AND_USABLE_RECOMMENDATION_BASELINE_AND_NO_HIGHER_PRIORITY_GATE_AND_SAFE_YT_CHILD_REPURPOSE",
-      "legal_corpus_gate_satisfied": true,
-      "usable_recommendation_gate_satisfied": true,
-      "recipe_family_sequence_satisfied": true,
-      "yt_child_repurpose_gate_satisfied": false,
-      "blocking_state": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
-      "discovery_priority": "WORLD_CHAMPION_PLUS_BARBECUE_OR_GRILL_PLUS_PRODUCT_OR_CUT_FIRST",
-      "scope": "CONVENTIONAL_BARBECUE_GRILL_ONLY",
-      "automatic_publication_authorized": false
+    "held_families": {
+      "carbonara": "EGG_AND_HARD_CHEESE_QUANTITY_AUTHORITY_UNRESOLVED",
+      "pizza_margherita": "HOME_OVEN_TIME_TEMPERATURE_EQUIPMENT_CONTEXT_NOT_YET_STABLE_ACROSS_THREE_INDEPENDENT_PREPARATIONS"
     }
   },
+  "youtube_reconciliation": {
+    "historical_quota_date": "2026-09-22",
+    "search_calls": 83,
+    "routine_search_capacity": 90,
+    "provider_http_status": 429,
+    "provider_api_status": "RESOURCE_EXHAUSTED",
+    "provider_reason": "rateLimitExceeded",
+    "original_hold": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+    "durable_hold": "DAILY_SEARCH_HOLD_RATE_LIMIT",
+    "repair_pr": 285,
+    "repair_merge_sha": "428d3d6ee47e616d777e7d516c2c30854450220a",
+    "repair_validation": "Validate public V0 run #1000 SUCCESS",
+    "reconciliation_pr": 286,
+    "reconciliation_merge_sha": "abe8fb87ad2f745643ff99cb6e76eaf0dbd51ef7",
+    "reconciliation_validation": "Validate public V0 run #1002 SUCCESS",
+    "generic_live_search_authorized": false,
+    "no_competing_active_youtube_child_programme": true,
+    "barbecue_repurpose_safe": true
+  },
+  "barbecue_technique_corpus": {
+    "state": "BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY",
+    "activation_earned_date": "2026-09-24",
+    "activation_basis": "Legal corpus baseline, usable recommendation baseline and Recipe Family sequencing complete; YT-CUL rate-limit defect repaired and green; generic lane remains fail-closed; fresh reconcile found no competing active Culinary YouTube child programme.",
+    "pilot_terminal": "BARBECUE_TECHNIQUE_CORPUS_PILOT_PASS",
+    "pilot_scope": {
+      "leaves": [
+        "one poultry leaf",
+        "one beef leaf",
+        "one pork leaf",
+        "one fish/seafood leaf",
+        "one vegetable leaf"
+      ],
+      "minimum_materially_different_traditions": 2,
+      "qualified_independent_references_per_completed_leaf": 5,
+      "world_champion_first": true,
+      "structured_adjustment_axes_required": true,
+      "safety_firewall_required": true,
+      "prohibited_durable_content": [
+        "transcripts",
+        "images",
+        "video",
+        "audio",
+        "copied recipe prose",
+        "copied creator instructions"
+      ]
+    },
+    "publication_authorized": false,
+    "app_admission_authorized": false,
+    "knowledge_core_promotion_authorized": false
+  },
   "not_authorized": [
-    "No Hummus or other Recipe Family candidate public/runtime admission from P0 or UI legal PASS alone.",
+    "No generic YT-CUL live Search retry.",
+    "No automatic public/runtime admission from Recipe Family or Barbecue states.",
     "No v8019 or new protected source cohort from this lane.",
     "No protected-body rewrite/export or D1 mutation.",
     "No third D1 shard.",
     "No paid infrastructure, API, corpus licensing or billing expansion.",
-    "No YT-CUL live Search retry while the hard hold remains active.",
+    "No second YouTube project or quota multiplication.",
     "No Knowledge Core write from the current app lane.",
-    "No guessing missing source rights, attribution, quantities, nutrition, cuisine, geography, dietary or authenticity authority."
+    "No retention of transcripts, copied recipe prose/instructions, images, downloaded video/audio or bulk raw YouTube payload history.",
+    "No lowering source qualification merely to reach five sources."
   ],
   "human_gate": null,
   "next_action": {
-    "state": "READY__RESOLVE_DAILY_SEARCH_HOLD_POLICY_OR_QUOTA__NO_LIVE_SEARCH",
+    "state": "READY__BARBECUE_TECHNIQUE_CORPUS_BOUNDED_IMPLEMENTATION",
     "actor": "AUTONOMOUS_APP_LANE",
-    "action": "Fresh-reconcile the YT-CUL scheduled workflow, current generated work-unit state, workflow history and failure/hold evidence to determine whether DAILY_SEARCH_HOLD_POLICY_OR_QUOTA reflects quota exhaustion, a policy guard, or stale lifecycle closure. Use diagnostics and repository state only while the hold remains active; do not execute live YouTube Search. If the existing lifecycle's own resolver can clear the hold under the existing free quota/policy and without billing expansion, reconcile the child-programme state and then reassess BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY. If resolution requires paid quota, policy relaxation, credentials/security change or another human-only decision, stop at that exact gate."
+    "action": "Implement the Barbecue Technique Corpus successor control plane and scheduler transition without live Search during implementation/CI. Freeze the five pilot leaves, world-champion-first query classes, source-qualification/independence gate, five-source completion rule, structured adjustment axes, safety-authority firewall, storage/copyright exclusions, quota/reserve controls, 1-second provider pacing, rate-limit classification, lifecycle closure and deterministic tests. After green validation, repurpose the scheduled YouTube lane to the barbecue programme; generic YT-CUL discovery must remain retired/fail-closed. Live barbecue Search may begin only under the validated successor control plane and existing free quota/policy."
   },
-  "terminal_instruction_for_new_chat": "Continue the Culinary App / Culinary Recommender lane from docs/handovers/CURRENT.json and fresh-reconcile live GitHub first. PR #283 merged green at 2acc942349bdecc293c3c37493f551b56f49e2f6 after Validate public V0 run #998 SUCCESS. The frozen 10-family Recipe Family expansion is COMPLETE / PASS WITH EXPLICIT HOLDS: 8 families are candidate-only APP_AUTHORING_ELIGIBLE (Hummus, Guacamole, Pancakes, Tortilla Española, Cacio e Pepe, Pesto Genovese, basic tomato pasta sauce, ragù Bolognese); Carbonara remains held on egg/hard-cheese quantity authority and Pizza Margherita remains held on home-oven execution-context evidence. No family gained public/runtime admission. Protected production remains v8018 / 19,268 / 18 hydration layers / exactly two shards / maxObservedD1Subqueries=8; public runtime remains 85. The controlling next lane is YouTube/authoritative-evidence refinement, but YT_CUL_5E remains hard-held at DAILY_SEARCH_HOLD_POLICY_OR_QUOTA with NO_LIVE_SEARCH_UNTIL_HOLD_RESOLVED. Product-side prerequisites for the owner-priority Barbecue Technique Corpus are satisfied, but it is NOT ACTIVE until the YT-CUL hold/repurpose reconciliation completes. Next autonomous action: diagnose/resolve the hold without live Search; no D1/protected-body mutation, third shard, billing, public widening, or Knowledge Core write.",
+  "terminal_instruction_for_new_chat": "Continue the Culinary App / Culinary Recommender lane from docs/handovers/CURRENT.json and fresh-reconcile live GitHub first. PR #286 merged green at abe8fb87ad2f745643ff99cb6e76eaf0dbd51ef7 after Validate public V0 run #1002 SUCCESS. PR #285 repaired the September 22 YouTube rate-limit classification/pacing; durable state now classifies the incident as DAILY_SEARCH_HOLD_RATE_LIMIT and generic YT-CUL live Search remains fail-closed. BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY is earned. Next autonomous action is the bounded barbecue successor implementation: five pilot leaves (poultry, beef, pork, fish/seafood, vegetables), world-champion-first discovery, five independent qualified references per completed leaf, structured adjustment ranges/alternatives, separate safety authority, no transcripts/media/copied prose, existing free quota + 1-second pacing + fail-closed controls. Protected production stays v8018 / 19,268 / two shards; public runtime stays 85; no D1/KC/public/billing widening.",
   "continuation_boundary": {
-    "reason": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_CLOSEOUT_PASS__YT_HOLD_RECONCILIATION_NEXT",
-    "safe_boundary": "PR283_MERGED_GREEN__8_ELIGIBLE_2_HOLD__V8018_19268_UNCHANGED__YT_CUL_HARD_HOLD_PRESERVED",
+    "reason": "YT_CUL_RATE_LIMIT_RECONCILED__BARBECUE_ACTIVATION_READY",
+    "safe_boundary": "PR286_MERGED_GREEN__GENERIC_YT_FAIL_CLOSED__BARBECUE_SUCCESSOR_IMPLEMENTATION_READY",
     "ordinary_implementation_stopped_for_rotation": true,
     "resume_after_rotation": true
   },
-  "roadmap_reconciliation": {
-    "checked": true,
-    "result": "RECIPE_FAMILY_EXPANSION_COMPLETE__YOUTUBE_REFINEMENT_NEXT__YT_HOLD_MUST_RESOLVE_BEFORE_LIVE_SEARCH_OR_BARbecue_ACTIVATION",
-    "note": "Recipe Family/adaptation is closed. The controlling sequence advances to YouTube/authoritative-evidence refinement, but YT-CUL remains fail-closed. Barbecue product prerequisites are satisfied and owner-priority, yet activation remains blocked by child-programme hold/repurpose reconciliation."
-  },
   "takeover_checkpoint": {
     "date_local": "2026-09-24",
-    "reason": "DURABLE_CLOSEOUT_AFTER_REPEATED_CHAT_FAILURES",
     "fresh_reconcile": {
-      "main_sha": "2acc942349bdecc293c3c37493f551b56f49e2f6",
-      "latest_pr": 283,
+      "main_sha": "abe8fb87ad2f745643ff99cb6e76eaf0dbd51ef7",
+      "latest_pr": 286,
       "latest_pr_state": "MERGED",
-      "newer_or_open_prs": 0
+      "latest_validation_run": 1002,
+      "latest_validation_conclusion": "SUCCESS"
     },
-    "canonical_next_lane": "YOUTUBE_AUTHORITATIVE_EVIDENCE_REFINEMENT_RECONCILIATION",
-    "checkpoint_policy": "EARLY_ROTATION_AT_EACH_MATERIAL_BOUNDARY",
-    "latest_durable_boundary": "PR283_MERGED_GREEN__RECIPE_FAMILY_CLOSEOUT_V81_ROTATION"
-  },
-  "recipe_family_expansion": {
-    "gate": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC",
-    "frozen_cohort": [
-      "carbonara",
-      "pizza_margherita",
-      "cacio_e_pepe",
-      "pesto_genovese",
-      "hummus",
-      "guacamole",
-      "tortilla_espanola",
-      "pancakes",
-      "basic_tomato_pasta_sauce",
-      "ragu_bolognese_family"
-    ],
-    "preserved_prototype": {
-      "carbonara": "APP_AUTHORING_HOLD__EGG_AND_HARD_CHEESE_QUANTITY_AUTHORITY_UNRESOLVED",
-      "hummus": "APP_AUTHORING_ELIGIBLE__CANDIDATE_ONLY__ACTIVATION_AUTHORITY_NONE"
-    },
-    "tranche_1": {
-      "terminal": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_TRANCHE_1_PASS",
-      "merged_pr": 279,
-      "merge_sha": "47d47d3e31fb939f3fd5afc9eca2bbaf87b6cdc9",
-      "validation": {
-        "recipe_family_workflow": "SUCCESS__RUN_13",
-        "full_public_static_browser": "SUCCESS__RUN_991"
-      },
-      "observation_count": 12,
-      "families": {
-        "guacamole": {
-          "state": "APP_AUTHORING_ELIGIBLE",
-          "observations": 4,
-          "publishers": 3,
-          "activation_authority": "NONE"
-        },
-        "pancakes": {
-          "state": "APP_AUTHORING_ELIGIBLE",
-          "observations": 4,
-          "publishers": 3,
-          "activation_authority": "NONE"
-        },
-        "tortilla_espanola": {
-          "state": "APP_AUTHORING_ELIGIBLE",
-          "observations": 4,
-          "publishers": 3,
-          "activation_authority": "NONE"
-        }
-      },
-      "source_expression_persisted_count": 0,
-      "public_runtime_changed": false,
-      "protected_corpus_changed": false,
-      "d1_reads": 0,
-      "d1_writes": 0,
-      "third_shard_used": false,
-      "knowledge_core_write": false,
-      "youtube_state_changed": false,
-      "billing_expansion": false
-    },
-    "completed_nonprototype_families": [
-      "guacamole",
-      "pancakes",
-      "tortilla_espanola",
-      "cacio_e_pepe",
-      "pesto_genovese",
-      "basic_tomato_pasta_sauce",
-      "ragu_bolognese_family"
-    ],
-    "remaining_frozen_families": [],
-    "next_tranche_candidate": [],
-    "public_activation_authorized": false,
-    "tranche_2": {
-      "terminal": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_TRANCHE_2_PASS_WITH_EXPLICIT_PIZZA_HOLD",
-      "merged_pr": 281,
-      "merge_sha": "5e295a46c663c579f693caf81339eb2acd991706",
-      "validation": {
-        "validate_public_v0": "SUCCESS",
-        "workflow_run_number": 994,
-        "workflow_run_id": 35937898462
-      },
-      "observation_count": 12,
-      "families": {
-        "cacio_e_pepe": {
-          "state": "APP_AUTHORING_ELIGIBLE",
-          "observations": 4,
-          "publishers": 3,
-          "activation_authority": "NONE"
-        },
-        "pesto_genovese": {
-          "state": "APP_AUTHORING_ELIGIBLE",
-          "observations": 4,
-          "publishers": 4,
-          "activation_authority": "NONE"
-        },
-        "pizza_margherita": {
-          "state": "APP_AUTHORING_HOLD",
-          "observations": 4,
-          "publishers": 4,
-          "hold_reason": "HOME_OVEN_TIME_TEMPERATURE_EQUIPMENT_CONTEXT_NOT_YET_STABLE_ACROSS_THREE_INDEPENDENT_PREPARATIONS",
-          "activation_authority": "NONE"
-        }
-      },
-      "source_expression_persisted_count": 0,
-      "public_runtime_changed": false,
-      "protected_corpus_changed": false,
-      "d1_reads": 0,
-      "d1_writes": 0,
-      "third_shard_used": false,
-      "knowledge_core_write": false,
-      "youtube_state_changed": false,
-      "billing_expansion": false
-    },
-    "held_expansion_families": [
-      "pizza_margherita"
-    ],
-    "final_tranche": {
-      "terminal": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_FINAL_TRANCHE_PASS",
-      "merged_pr": 283,
-      "merge_sha": "2acc942349bdecc293c3c37493f551b56f49e2f6",
-      "validation": {
-        "validate_public_v0": "SUCCESS",
-        "workflow_run_number": 998,
-        "workflow_run_id": 35939477327,
-        "validated_head_sha": "1b44f66d2a6de98996b937e4c469eb89e29a8d52"
-      },
-      "observation_count": 8,
-      "families": {
-        "basic_tomato_pasta_sauce": {
-          "state": "APP_AUTHORING_ELIGIBLE",
-          "observations": 4,
-          "publishers": 3,
-          "activation_authority": "NONE"
-        },
-        "ragu_bolognese_family": {
-          "state": "APP_AUTHORING_ELIGIBLE",
-          "observations": 4,
-          "publishers": 3,
-          "activation_authority": "NONE"
-        }
-      },
-      "source_expression_persisted_count": 0,
-      "materially_new_source_class_introduced": false,
-      "ui_legal_retriggered": false,
-      "public_runtime_changed": false,
-      "protected_corpus_changed": false,
-      "d1_reads": 0,
-      "d1_writes": 0,
-      "third_shard_used": false,
-      "knowledge_core_write": false,
-      "youtube_state_changed": false,
-      "billing_expansion": false
-    },
-    "closeout": {
-      "terminal": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_COMPLETE_WITH_EXPLICIT_HOLDS",
-      "cohort_count": 10,
-      "app_authoring_eligible_count": 8,
-      "app_authoring_hold_count": 2,
-      "public_or_runtime_admitted_count": 0,
-      "eligible_families": [
-        "hummus",
-        "guacamole",
-        "pancakes",
-        "tortilla_espanola",
-        "cacio_e_pepe",
-        "pesto_genovese",
-        "basic_tomato_pasta_sauce",
-        "ragu_bolognese_family"
-      ],
-      "held_families": {
-        "carbonara": "EGG_AND_HARD_CHEESE_QUANTITY_AUTHORITY_UNRESOLVED",
-        "pizza_margherita": "HOME_OVEN_TIME_TEMPERATURE_EQUIPMENT_CONTEXT_NOT_YET_STABLE_ACROSS_THREE_INDEPENDENT_PREPARATIONS"
-      },
-      "closeout_artifact": "data/generated/recipe-family-expansion-closeout-v1.json",
-      "public_activation_authorized": false
-    }
+    "canonical_next_lane": "BARBECUE_TECHNIQUE_CORPUS_BOUNDED_IMPLEMENTATION",
+    "checkpoint_policy": "EARLY_ROTATION_AT_EACH_MATERIAL_BOUNDARY"
   }
 }
