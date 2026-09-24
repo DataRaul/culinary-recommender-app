@@ -34,7 +34,7 @@ A schedule is a wake-up mechanism, not an authority grant.
 
 Daily operational evidence should not cause large documentation rewrites.
 
-Routine YT-CUL daily progress is canonical in:
+Historical generic YT-CUL daily progress is canonical in:
 
 - `data/generated/youtube-culinary-daily-discovery-state.json`;
 - `data/generated/youtube-culinary-work-unit-state.json`.
@@ -115,6 +115,30 @@ Any future workflow containing `schedule:` must be registered in `config/work_un
 - material transition states where applicable.
 
 CI must fail when an unregistered scheduled workflow or incomplete lifecycle contract is introduced.
+
+
+## 2026-09-24 successor transition — Barbecue Technique Corpus
+
+The generic `YT_CUL_5E_ADAPTIVE_DAILY_DISCOVERY` cron is retired after PR #285 repaired provider-rate-limit classification and PR #286 durably reconciled the historical hold. Its workflow remains available for **dry-run diagnostics only** and may not perform generic live Search.
+
+The active scheduled work unit is now `BARBECUE_TECHNIQUE_CORPUS_V1` in `.github/workflows/barbecue-technique-corpus-daily.yml`.
+
+Its bounded sequence is:
+
+```text
+activation-ready reconciliation
+→ deterministic five-leaf/world-champion-first preflight
+→ at most 16 Search calls per quota day under the 100/day assignment
+→ one-second provider pacing
+→ durable ID/reference-only candidate pointers
+→ independent credential/domain qualification review
+→ five independent qualified sources per completed leaf
+→ project-authored technique synthesis + separate safety authority
+→ BARBECUE_TECHNIQUE_CORPUS_PILOT_PASS
+→ retire/replace scheduler before any expansion
+```
+
+Provider routine-capacity classification remains anchored to **90 Search calls**, not the smaller 16-call pilot budget, so a daily-quota failure early in the provider envelope cannot be mislabeled as a near-ceiling safe close. Raw YouTube payloads, transcripts, copied creator instructions, images, downloaded media and engagement/creator-quality scoring remain outside durable state.
 
 ## No permanent external watcher dependency
 
