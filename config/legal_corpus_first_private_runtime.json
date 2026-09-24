@@ -21,11 +21,11 @@
     ],
     "currentPostBaselinePosition": "FURTHER_PRODUCT_FEATURES",
     "furtherProductFeatures": {
-      "status": "D3_RECIPE_IMAGES_P0_ASSET_PILOT_PASS",
+      "status": "D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION_BUILT_VALIDATION_PENDING",
       "contract": "config/further_product_features_v1.json",
       "document": "docs/FURTHER_PRODUCT_FEATURES_READINESS_V1.md",
       "selectedNextDesignCandidate": "D3_RECIPE_IMAGES",
-      "nextGate": "D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION",
+      "nextGate": "D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION_VALIDATION",
       "publicRuntimeChangeAuthorized": false,
       "designContract": "config/recipe_images_p0.json",
       "designDocument": "docs/RECIPE_IMAGES_P0_DESIGN_CONTRACT.md",
@@ -33,7 +33,8 @@
       "assetPilotContract": "config/recipe_images_p0_asset_pilot.json",
       "assetPilotDocument": "docs/RECIPE_IMAGES_P0_ASSET_PILOT.md",
       "assetPilotValidationRun": 1045,
-      "assetPilotValidationRunId": 36011579007
+      "assetPilotValidationRunId": 36011579007,
+      "browserIntegrationContract": "config/recipe_images_p0_browser_integration.json"
     }
   },
   "sourceAdmission": {
