@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "CULINARY_FURTHER_PRODUCT_FEATURES_READINESS_V1",
+  "date": "2026-09-24",
+  "state": "READINESS_AUDIT_PASS",
+  "sourceOfTruth": "DataRaul/culinary-recommender-app",
+  "currentFacts": {
+    "legalCorpusBaseline": "LEGAL_CORPUS_BASELINE_PASS",
+    "protectedCorpusVersion": "v8018",
+    "protectedRecipeCount": 19268,
+    "publicRuntimeRecipeCount": 85,
+    "recommendationReadiness": "USABLE_RECOMMENDATION_BASELINE_PASS",
+    "recipeFamilyExpansion": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_COMPLETE_WITH_EXPLICIT_HOLDS",
+    "scaleFoundation": "CURRENT_SCALE_FOUNDATION_RECONCILIATION_PASS",
+    "vitaminMineralSchemaReady": false,
+    "protectedAutomaticallyRecommendationReady": 0,
+    "barbecueLane": "BARBECUE_TECHNIQUE_CORPUS_SCHEDULED_PILOT_ACTIVE",
+    "barbecuePilotComplete": false
+  },
+  "capabilities": [
+    {
+      "id": "D1",
+      "name": "Nutrient Gap Awareness",
+      "state": "BLOCKED",
+      "reason": "VITAMIN_MINERAL_SCHEMA_AND_AUTHORITATIVE_HEALTHY_POPULATION_EVIDENCE_NOT_READY",
+      "runtimeActivationAuthorized": false
+    },
+    {
+      "id": "D2",
+      "name": "Existing Supplement Routine Checker",
+      "state": "BLOCKED",
+      "reason": "DEDICATED_SUPPLEMENT_EVIDENCE_AND_SAFETY_LAYER_NOT_BUILT",
+      "runtimeActivationAuthorized": false
+    },
+    {
+      "id": "D3",
+      "name": "Recipe Images",
+      "state": "READY_FOR_BOUNDED_P0_DESIGN",
+      "reason": "TEXT_DATA_RECOMMENDATION_AND_SCALE_FOUNDATIONS_ARE_NOW_STRONG_ENOUGH_FOR_A_SEPARATELY_GATED_MEDIA_PILOT",
+      "runtimeActivationAuthorized": false,
+      "mediaBoundary": {
+        "thirdPartyRecipeSourceImagesAuthorized": false,
+        "protectedCorpusSourceImagesAuthorized": false,
+        "wikibooksCommonsImagesAuthorized": false,
+        "initialPilotAssetClasses": [
+          "PROJECT_AUTHORED",
+          "PROJECT_COMMISSIONED_OR_GENERATED_WITH_RECORDED_PROVENANCE"
+        ],
+        "recordLevelProvenanceRequired": true,
+        "altTextRequired": true,
+        "performanceBudgetRequired": true
+      }
+    },
+    {
+      "id": "D4",
+      "name": "Local Grocery Price Intelligence",
+      "state": "BLOCKED",
+      "reason": "NO_LAWFUL_RELIABLE_PRICE_SOURCE_OR_USER_RECEIPT_EVIDENCE_PIPELINE",
+      "runtimeActivationAuthorized": false
+    },
+    {
+      "id": "D5",
+      "name": "Fitness Integration",
+      "state": "DEFERRED",
+      "reason": "SEPARATE_FITNESS_OWNERSHIP_AND_INPUT_ADAPTER_CONTRACT_REQUIRED",
+      "runtimeActivationAuthorized": false
+    },
+    {
+      "id": "D6",
+      "name": "Advanced Culinary Exploration",
+      "state": "DEFERRED_OWNER_PRIORITY_SEQUENCE",
+      "reason": "BARBECUE_TECHNIQUE_CORPUS_SCHEDULED_PILOT_IS_ACTIVE_AND_REMAINS_THE_OWNER_PRIORITY_TECHNIQUE_LANE",
+      "runtimeActivationAuthorized": false
+    }
+  ],
+  "selectedNextDesignCandidate": "D3",
+  "selectionRule": "SELECT_THE_FIRST_CAPABILITY_WHOSE_EXISTING_ACTIVATION_BOUNDARY_IS_EARNED_WITHOUT_NEW_EXTERNAL_DATA_SECURITY_COST_OR_HUMAN_DEPENDENCIES",
+  "authority": {
+    "boundedDesignWorkAuthorized": true,
+    "publicRuntimeChangeAuthorized": false,
+    "newExternalMediaAdmissionAuthorized": false,
+    "protectedCorpusMutationAuthorized": false,
+    "thirdD1ShardAuthorized": false,
+    "paidInfrastructureAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextGate": "D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT"
+}

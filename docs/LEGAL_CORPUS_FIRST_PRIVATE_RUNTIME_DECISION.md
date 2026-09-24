@@ -101,3 +101,20 @@ Canonical object: `docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md`.
 
 No current Step 8G authority, source-rights gate, private-runtime boundary, billing firewall or current scheduled YT-CUL authority is changed before the activation gate is earned.
 
+
+
+## 2026-09-24 post-baseline completion amendment
+
+The originally approved sequence has now materially completed through legal corpus baseline, normalization/categorization, nutrition/vitamin applicability audit, recommendation readiness, bounded Recipe Family/adaptation expansion and current scale-foundation reconciliation.
+
+The Barbecue Technique Corpus remains the active **separate scheduled owner-priority technique lane**. Ordinary app-development work may now enter a bounded **further product features readiness** lane provided it does not mutate or outrun Barbecue state.
+
+Current further-product terminal:
+
+`FURTHER_PRODUCT_FEATURES_READINESS_PASS`
+
+Selected next design gate:
+
+`D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT`
+
+This selection authorizes design only. It does not admit third-party recipe-source media, change the public runtime, mutate protected D1 data, authorize a third shard, enable paid image services or write to Knowledge Core.
