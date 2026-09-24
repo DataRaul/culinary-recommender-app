@@ -10,6 +10,7 @@ import {
   createInitialBarbecueState,
   loadBarbecueConfig,
   pendingCandidateCount,
+  refreshBarbecueDiscoveryPhases,
   selectBarbecueDailyQueries,
   validateBarbecueConfig,
   validateBarbecueState
@@ -81,7 +82,7 @@ export async function runBarbecueDiscovery({fetchImpl=fetch,now=new Date()}={}) 
   noBlueLagoon(PROJECT_IDENTITY);
   const config=validateBarbecueConfig(await loadBarbecueConfig(join(REPO_ROOT,"config/barbecue_technique_corpus_v1.json")));
   if (DAILY_LIMIT!==config.assignedDailySearchLimit) throw new Error("assigned Search limit does not match barbecue contract");
-  let state=await loadState(config);
+  let state=refreshBarbecueDiscoveryPhases(await loadState(config),config);
   const quotaDate=getYoutubeQuotaDate(now);
   if (state.pilotPass) return {result:"BARBECUE_TECHNIQUE_CORPUS_PILOT_PASS",quotaDate,dryRun:DRY_RUN,searchCallsExecuted:0,candidatePointersAdded:0};
   if (state.hardHold) return {result:state.hardHold,quotaDate,dryRun:DRY_RUN,searchCallsExecuted:0,candidatePointersAdded:0};
@@ -99,7 +100,7 @@ export async function runBarbecueDiscovery({fetchImpl=fetch,now=new Date()}={}) 
     return {result:state.hardHold,quotaDate,dryRun:DRY_RUN,searchCallsExecuted:0,candidatePointersAdded:0};
   }
 
-  const queries=selectBarbecueDailyQueries(config,state,[]);
+  const queries=selectBarbecueDailyQueries(config,state);
   if (DRY_RUN) return {result:"BARBECUE_DRY_RUN_PASS",quotaDate,dryRun:true,plannedSearchCalls:queries.length,queryClasses:[...new Set(queries.map(row=>row.queryClass))],searchCallsExecuted:0,candidatePointersAdded:0};
 
   const apiKey=process.env[API_KEY_NAME];
@@ -115,6 +116,7 @@ export async function runBarbecueDiscovery({fetchImpl=fetch,now=new Date()}={}) 
     try {
       const payload=await fetchSearch(fetchImpl,requestFor(query,apiKey),beforeYoutubeRequest);
       searchCallsExecuted+=1;
+      if (!state.usedQueryIds.includes(query.queryId)) state.usedQueryIds.push(query.queryId);
       let retainedForQuery=0;
       for (const item of payload?.items ?? []) {
         const pointer=createDurableCandidatePointer(item,query,quotaDate);
