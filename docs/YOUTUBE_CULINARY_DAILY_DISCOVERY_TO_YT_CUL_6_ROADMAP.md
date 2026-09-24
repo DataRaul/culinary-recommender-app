@@ -1,6 +1,6 @@
 # YouTube Culinary Daily Discovery → YT-CUL-6 Roadmap
 
-Status: **HOLD / YT-CUL-5E ADAPTIVE V2 / DAILY_SEARCH_HOLD_POLICY_OR_QUOTA / NO LIVE SEARCH UNTIL RECONCILED / YT-CUL-6 NOT YET EARNED**
+Status: **RECONCILED / YT-CUL-5E GENERIC DISCOVERY FAIL-CLOSED / DAILY_SEARCH_HOLD_RATE_LIMIT / BARBECUE SUCCESSOR READY / YT-CUL-6 NOT EARNED**
 
 Date: 2026-09-19
 
@@ -86,6 +86,18 @@ Official references rechecked 2026-09-24:
 
 - https://developers.google.com/youtube/v3/docs/search/list
 - https://developers.google.com/youtube/v3/docs/errors
+
+## 2026-09-24 post-PR-285 durable reconciliation
+
+PR #285 merged at `428d3d6ee47e616d777e7d516c2c30854450220a` after **Validate public V0 run #1000** completed successfully. The repair is therefore no longer validation-pending.
+
+The September 22 incident is durably reclassified from `DAILY_SEARCH_HOLD_POLICY_OR_QUOTA` to `DAILY_SEARCH_HOLD_RATE_LIMIT`. The historical 83 Search attempts and provider response remain preserved; only the control-plane interpretation changes. Generic YT-CUL live Search remains fail-closed, so this reconciliation does not spend quota or authorize a blind retry.
+
+Fresh repository reconciliation found no competing active Culinary YouTube child programme. Because the legal-corpus baseline, usable recommendation baseline and Recipe Family sequencing prerequisites are already complete, the held generic lane is now safe to repurpose through a separately bounded implementation change. Record:
+
+`BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY`
+
+This state authorizes implementation of the bounded barbecue successor. It does **not** itself authorize publication, Knowledge Core promotion, app admission, paid quota, a second project, or generic YT-CUL Search resumption.
 
 ## Why the daily programme is required
 
@@ -362,6 +374,6 @@ V1 is conventional barbecue/grill only. Underground/earth-oven, ash/ember-buried
 
 ## Immediate next action
 
-`RESOLVE_DAILY_SEARCH_HOLD_POLICY_OR_QUOTA`
+`BARBECUE_TECHNIQUE_CORPUS_BOUNDED_IMPLEMENTATION`
 
-Live Search is paused. Reconcile the 2026-09-22 early provider quota exhaustion against the assigned quota/policy before any scheduler reactivation. Do not blind-retry the next quota day. YT-CUL-6 remains unearned until its canonical readiness contract is satisfied.
+Generic YT-CUL live Search remains paused under `DAILY_SEARCH_HOLD_RATE_LIMIT`. Repurpose the bounded YouTube child lane to the owner-priority conventional-barbecue programme, preserving 1-second provider pacing, quota/reserve controls, fail-closed lifecycle semantics, five-source admission, world-champion-first discovery, rights/provenance boundaries, and zero automatic publication. No live Search is required merely to implement and validate the successor control plane.
