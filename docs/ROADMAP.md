@@ -45,7 +45,7 @@
 | V1.x / Corpus Scale / 100k Readiness | USER-ACCEPTED TARGET / STEP 1 READY | Cloudflare Pages + exact-email Access/OTP + Worker + R2/pre-built indexes; D1 benchmark-gated; portable provider-neutral corpus; no mass ingestion yet |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
-| Post-usable-app / Barbecue Technique Corpus | ACTIVATION READY / OWNER-PRIORITY / BOUNDED IMPLEMENTATION NEXT | PR #285 green repair + durable rate-limit reconciliation satisfy the child-programme repurpose gate; generic YT-CUL remains fail-closed until the barbecue successor control plane is implemented; five-source conventional-barbecue synthesis contract unchanged |
+| Post-usable-app / Barbecue Technique Corpus | ACTIVATION READY / CONTROL PLANE IMPLEMENTED / VALIDATION PENDING | bounded five-leaf world-champion-first successor implemented; generic YT-CUL cron retired; live barbecue acquisition remains gated on green validation/merge; five-source conventional-barbecue synthesis contract unchanged |
 
 ## 2026-09-23 Legal corpus baseline — PASS
 

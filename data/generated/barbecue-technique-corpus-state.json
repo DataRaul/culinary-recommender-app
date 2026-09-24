@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "barbecue-technique-corpus-state-v1",
+  "programmeId": "BARBECUE_TECHNIQUE_CORPUS_V1",
+  "programmeStatus": "ACTIVE_BOUNDED_DISCOVERY",
+  "activationState": "BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY",
+  "queryVintage": "barbecue-v1-world-champion-first-2026-09-24",
+  "policyRecheckedAt": "2026-09-24",
+  "assignedDailySearchLimit": 100,
+  "protectedReserveCalls": 5,
+  "dailySearchBudget": 16,
+  "minYoutubeRequestIntervalMs": 1000,
+  "candidateBacklogCap": 50,
+  "maxCandidatesPerLeaf": 12,
+  "lastCompletedQuotaDate": null,
+  "completedQuotaDays": [],
+  "hardHold": null,
+  "pilotPass": false,
+  "leaves": [
+    {
+      "leafId": "poultry_chicken_competition",
+      "product": "poultry",
+      "cutForm": "chicken",
+      "tradition": "AMERICAN_COMPETITION_BARBECUE",
+      "method": "DIRECT_INDIRECT_GRILL",
+      "status": "DISCOVERY_PENDING",
+      "championshipSearchExhausted": false,
+      "candidatePointers": [],
+      "qualifiedSources": [],
+      "synthesis": null
+    },
+    {
+      "leafId": "beef_brisket_competition",
+      "product": "beef",
+      "cutForm": "brisket",
+      "tradition": "AMERICAN_COMPETITION_BARBECUE",
+      "method": "LOW_SLOW_SMOKER_BARBECUE",
+      "status": "DISCOVERY_PENDING",
+      "championshipSearchExhausted": false,
+      "candidatePointers": [],
+      "qualifiedSources": [],
+      "synthesis": null
+    },
+    {
+      "leafId": "pork_ribs_competition",
+      "product": "pork",
+      "cutForm": "ribs",
+      "tradition": "AMERICAN_COMPETITION_BARBECUE",
+      "method": "LOW_SLOW_SMOKER_OR_GRILL",
+      "status": "DISCOVERY_PENDING",
+      "championshipSearchExhausted": false,
+      "candidatePointers": [],
+      "qualifiedSources": [],
+      "synthesis": null
+    },
+    {
+      "leafId": "fish_parrilla",
+      "product": "fish_seafood",
+      "cutForm": "fish",
+      "tradition": "SPANISH_PARRILLA",
+      "method": "DIRECT_GRILL",
+      "status": "DISCOVERY_PENDING",
+      "championshipSearchExhausted": false,
+      "candidatePointers": [],
+      "qualifiedSources": [],
+      "synthesis": null
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "product": "vegetables",
+      "cutForm": "mixed vegetables",
+      "tradition": "SPANISH_PARRILLA",
+      "method": "DIRECT_GRILL",
+      "status": "DISCOVERY_PENDING",
+      "championshipSearchExhausted": false,
+      "candidatePointers": [],
+      "qualifiedSources": [],
+      "synthesis": null
+    }
+  ],
+  "authority": {
+    "automaticPublicationAuthorized": false,
+    "automaticAppAdmissionAuthorized": false,
+    "automaticKnowledgeCorePromotionAuthorized": false,
+    "paidQuotaAuthorized": false,
+    "secondProjectAuthorized": false
+  },
+  "usedQueryIds": []
+}

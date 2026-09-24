@@ -1,0 +1,147 @@
+{
+  "schemaVersion": "barbecue-technique-corpus-v1",
+  "programmeId": "BARBECUE_TECHNIQUE_CORPUS_V1",
+  "activationState": "BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY",
+  "queryVintage": "barbecue-v1-world-champion-first-2026-09-24",
+  "assignedDailySearchLimit": 100,
+  "protectedReserveCalls": 5,
+  "dailySearchBudget": 16,
+  "minYoutubeRequestIntervalMs": 1000,
+  "policyRecheckedAt": "2026-09-24",
+  "policyMaxAgeDays": 30,
+  "candidateBacklogCap": 50,
+  "maxCandidatesPerLeaf": 12,
+  "requiredQualifiedIndependentSourcesPerLeaf": 5,
+  "queryClassOrder": [
+    "WORLD_CHAMPION_DISCOVERY",
+    "COMPETITION_CHAMPION_DISCOVERY",
+    "SPECIALIST_FALLBACK_DISCOVERY"
+  ],
+  "worldChampionTemplates": [
+    {
+      "queryClass": "WORLD_CHAMPION_DISCOVERY",
+      "template": "world champion barbecue {term}"
+    },
+    {
+      "queryClass": "WORLD_CHAMPION_DISCOVERY",
+      "template": "{term} barbecue world champion"
+    },
+    {
+      "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+      "template": "competition BBQ champion {term}"
+    },
+    {
+      "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+      "template": "grand champion BBQ {term}"
+    }
+  ],
+  "specialistFallbackTemplates": [
+    {
+      "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+      "template": "expert pitmaster barbecue {term}"
+    },
+    {
+      "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+      "template": "professional grilling instructor {term}"
+    }
+  ],
+  "pilotLeaves": [
+    {
+      "leafId": "poultry_chicken_competition",
+      "product": "poultry",
+      "cutForm": "chicken",
+      "tradition": "AMERICAN_COMPETITION_BARBECUE",
+      "method": "DIRECT_INDIRECT_GRILL",
+      "equipmentBoundary": "CONVENTIONAL_GRILL_OR_BARBECUE",
+      "searchTerm": "chicken",
+      "localizedChampionQueries": []
+    },
+    {
+      "leafId": "beef_brisket_competition",
+      "product": "beef",
+      "cutForm": "brisket",
+      "tradition": "AMERICAN_COMPETITION_BARBECUE",
+      "method": "LOW_SLOW_SMOKER_BARBECUE",
+      "equipmentBoundary": "CONVENTIONAL_SMOKER_OR_BARBECUE",
+      "searchTerm": "brisket",
+      "localizedChampionQueries": []
+    },
+    {
+      "leafId": "pork_ribs_competition",
+      "product": "pork",
+      "cutForm": "ribs",
+      "tradition": "AMERICAN_COMPETITION_BARBECUE",
+      "method": "LOW_SLOW_SMOKER_OR_GRILL",
+      "equipmentBoundary": "CONVENTIONAL_SMOKER_OR_BARBECUE",
+      "searchTerm": "ribs",
+      "localizedChampionQueries": []
+    },
+    {
+      "leafId": "fish_parrilla",
+      "product": "fish_seafood",
+      "cutForm": "fish",
+      "tradition": "SPANISH_PARRILLA",
+      "method": "DIRECT_GRILL",
+      "equipmentBoundary": "CONVENTIONAL_GRILL_OR_PARRILLA",
+      "searchTerm": "grilled fish",
+      "localizedChampionQueries": [
+        "campeón parrilla pescado",
+        "campeón mundial parrilla pescado"
+      ]
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "product": "vegetables",
+      "cutForm": "mixed vegetables",
+      "tradition": "SPANISH_PARRILLA",
+      "method": "DIRECT_GRILL",
+      "equipmentBoundary": "CONVENTIONAL_GRILL_OR_PARRILLA",
+      "searchTerm": "barbecue vegetables",
+      "localizedChampionQueries": [
+        "campeón parrilla verduras",
+        "campeón mundial parrilla verduras"
+      ]
+    }
+  ],
+  "adjustmentAxes": [
+    "heat_source_fuel",
+    "direct_vs_indirect_heat",
+    "heat_intensity",
+    "time_endpoint",
+    "brine_salt_level_duration",
+    "marinade_duration",
+    "sweetness",
+    "acidity",
+    "spice_heat",
+    "smoke_intensity",
+    "glaze_sauce_timing",
+    "resting_finishing"
+  ],
+  "excludedScope": [
+    "underground",
+    "earth oven",
+    "buried cooking",
+    "ash buried",
+    "ember buried",
+    "fire pit without grill",
+    "campfire without grill",
+    "open hearth"
+  ],
+  "durableStorageForbidden": [
+    "transcript",
+    "copied recipe prose",
+    "copied creator instructions",
+    "image",
+    "downloaded video",
+    "downloaded audio",
+    "bulk raw API payload"
+  ],
+  "authority": {
+    "automaticPublicationAuthorized": false,
+    "automaticAppAdmissionAuthorized": false,
+    "automaticKnowledgeCorePromotionAuthorized": false,
+    "paidQuotaAuthorized": false,
+    "secondProjectAuthorized": false
+  },
+  "routineProviderSearchCapacity": 90
+}
