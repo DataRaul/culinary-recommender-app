@@ -3,21 +3,30 @@
   "policyId": "CULINARY_REPOSITORY_WORK_UNIT_LIFECYCLE_V1",
   "workUnitId": "YT_CUL_5E_ADAPTIVE_DAILY_DISCOVERY",
   "workflow": ".github/workflows/yt-cul-5d-daily-discovery.yml",
-  "generatedAt": "2026-09-23T14:17:11.611Z",
-  "sourceDailyStateFingerprint": "e7cac4fa7bd610a27803aa3d5652af2d101c32709362339f8e21cad53922e77c",
+  "generatedAt": "2026-09-24T10:23:00.000Z",
+  "sourceDailyStateFingerprint": "ec9e40da06f571c4e7cd0f851bf9429cf3da92b7e6f9db2cb4437419cf250351",
   "primaryOutcome": "success",
   "latestQuotaDate": "2026-09-22",
-  "latestDailyTerminalState": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
-  "closureStatus": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+  "latestDailyTerminalState": "DAILY_SEARCH_HOLD_RATE_LIMIT",
+  "closureStatus": "DAILY_SEARCH_HOLD_RATE_LIMIT",
   "materialTransition": true,
-  "roadmapHandoverReconciliation": "STATIC_ROADMAP_AND_HANDOVER_RECONCILIATION_REQUIRED",
-  "successorAction": "RESOLVE_DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
-  "nextTriggerDisposition": "NO_LIVE_SEARCH_UNTIL_HOLD_RESOLVED",
+  "roadmapHandoverReconciliation": "RECONCILED__BARBECUE_SUCCESSOR_BOUNDARY_READY",
+  "successorAction": "BARBECUE_TECHNIQUE_CORPUS_BOUNDED_IMPLEMENTATION",
+  "nextTriggerDisposition": "NO_GENERIC_LIVE_SEARCH__SUCCESSOR_IMPLEMENTATION_REQUIRED",
   "schedulerDisposition": "HOLD_FAIL_CLOSED",
   "authority": {
     "automaticKnowledgeCorePromotionAuthorized": false,
     "automaticAppAdmissionAuthorized": false,
     "automaticPublicationAuthorized": false,
     "paidInfrastructureAuthorized": false
+  },
+  "reconciliation": {
+    "sourceRepairPr": 285,
+    "sourceRepairMergeSha": "428d3d6ee47e616d777e7d516c2c30854450220a",
+    "validationRunId": 35940552696,
+    "validationRunNumber": 1000,
+    "historicalClassificationRepaired": true,
+    "genericDiscoveryRetiredForProductSequencing": true,
+    "barbecueRepurposeSafe": true
   }
 }

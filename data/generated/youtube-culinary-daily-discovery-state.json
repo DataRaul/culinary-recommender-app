@@ -1,7 +1,7 @@
 {
   "schemaVersion": "youtube-culinary-daily-discovery-state-v1",
   "phase": "YT-CUL-5D",
-  "programmeStatus": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+  "programmeStatus": "DAILY_SEARCH_HOLD_RATE_LIMIT",
   "queryVintage": "yt-cul-5e-adaptive-portfolio-v2-2026-09-19",
   "policyRecheckedAt": "2026-09-05",
   "assignedDailySearchLimit": 100,
@@ -4341,15 +4341,18 @@
       "duplicatePairsSuppressed": 1,
       "uniqueUsefulSourceDomains": 0,
       "unresolvedReviewBacklogAfterRun": 0,
-      "terminalState": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+      "terminalState": "DAILY_SEARCH_HOLD_RATE_LIMIT",
       "providerQuotaTerminal": {
-        "terminalState": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+        "terminalState": "DAILY_SEARCH_HOLD_RATE_LIMIT",
         "nearRoutineCeiling": false,
         "failedAttemptRecorded": true,
         "endpoint": "search.list",
         "httpStatus": 429,
         "apiStatus": "RESOURCE_EXHAUSTED",
-        "apiReason": "rateLimitExceeded"
+        "apiReason": "rateLimitExceeded",
+        "failureClass": "PROVIDER_RATE_LIMIT",
+        "retryAfterSeconds": null,
+        "reconciledOriginalTerminalState": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA"
       },
       "researchKpis": {
         "searchUtilization": 0.9222222222222223,
@@ -4515,7 +4518,7 @@
       }
     }
   ],
-  "hardHold": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+  "hardHold": "DAILY_SEARCH_HOLD_RATE_LIMIT",
   "ytCul6Readiness": {
     "earned": false,
     "packetId": null,
@@ -4526,5 +4529,20 @@
     "quotaDate": "2026-09-18",
     "searchCallsUsed": 83,
     "terminalState": "INCOMPLETE_QUOTA_DAY_CARRIED_FORWARD_NO_REUSE"
+  },
+  "holdReconciliation": {
+    "reconciledAt": "2026-09-24",
+    "sourceRepairPr": 285,
+    "sourceRepairMergeSha": "428d3d6ee47e616d777e7d516c2c30854450220a",
+    "sourceRepairHeadSha": "96c907518a322f62a05720cf38fabae89bf7ef55",
+    "validationWorkflow": "Validate public V0",
+    "validationRunId": 35940552696,
+    "validationRunNumber": 1000,
+    "validationConclusion": "success",
+    "originalHold": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+    "durableHold": "DAILY_SEARCH_HOLD_RATE_LIMIT",
+    "basis": "rateLimitExceeded is a provider time-window rate-limit signal, not evidence of daily Search quota exhaustion",
+    "genericLiveSearchAuthorized": false,
+    "successorRepurpose": "BARBECUE_TECHNIQUE_CORPUS"
   }
 }
