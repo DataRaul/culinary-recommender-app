@@ -95,10 +95,10 @@ The bounded design gate is now implemented and validated in PR #300. `D3_RECIPE_
 
 ## D3 asset-pilot progression
 
-The six exact project-authored SVG assets are now materialized under `assets/recipes/`, with a deterministic builder that computes byte counts/content hashes and rejects remote or active SVG constructs. Public UI activation remains false until validation passes.
+The six exact project-authored SVG assets are materialized under `assets/recipes/` and passed the deterministic registry, hash, byte-budget, same-origin and active-content security gate in validation run #1045. Public UI activation remains false.
 
 ## Next executable action
 
-`D3_RECIPE_IMAGES_P0_ASSET_PILOT_VALIDATION`
+`D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION`
 
-Run the full repository/browser suite, close the asset-pilot evidence, then proceed to bounded browser integration only if green.
+Integrate only the six validated project-owned assets into supported recipe cards with deterministic fallback, alt text, reserved 4:3 layout and browser/performance acceptance. Images must remain semantically invisible to ranking and hard constraints.
