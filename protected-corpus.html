@@ -53,8 +53,14 @@
     <div class="row">
       <button id="prepare" type="button" hidden>Prepare / resume private index</button>
       <button id="refresh" type="button">Refresh status</button>
+      <button id="runCanary" type="button" hidden>Run live verification</button>
     </div>
     <p id="prepareProgress" class="muted" hidden aria-live="polite"></p>
+    <div id="canaryEvidencePanel" hidden>
+      <p class="muted">Sanitized verification result — no account, session, or recipe-body data.</p>
+      <pre id="canaryEvidence" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre>
+      <button id="copyCanary" type="button">Copy verification result</button>
+    </div>
   </section>
 
   <section class="panel" aria-labelledby="browseHeading">
@@ -82,6 +88,10 @@
   const statusNode = document.getElementById('status');
   const prepareButton = document.getElementById('prepare');
   const progressNode = document.getElementById('prepareProgress');
+  const runCanaryButton = document.getElementById('runCanary');
+  const canaryEvidencePanel = document.getElementById('canaryEvidencePanel');
+  const canaryEvidenceNode = document.getElementById('canaryEvidence');
+  const copyCanaryButton = document.getElementById('copyCanary');
   const resultsNode = document.getElementById('results');
   const resultStatus = document.getElementById('resultStatus');
   const moreButton = document.getElementById('more');
@@ -93,6 +103,10 @@
   let cursor = '';
   let currentQuery = '';
   let indexStatus = null;
+  const CANARY_TARGETS = [
+    { recipeId:'unitools:risotto-alla-milanese', shardNumber:0 },
+    { recipeId:'unitools:spaghetti-carbonara', shardNumber:1 }
+  ];
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const sourceLine = item => [item.sourceWork,item.sourceAuthor,item.sourceYear].filter(Boolean).join(' · ') || item.sourceCohortId || 'Source recorded';
@@ -120,6 +134,8 @@
   function showAuthRequired() {
     statusNode.innerHTML = 'Authenticated access is required. <a href="/auth-canary.html">Sign in or check the private session</a>, then return here.';
     prepareButton.hidden = true;
+    runCanaryButton.hidden = true;
+    canaryEvidencePanel.hidden = true;
     resultsNode.innerHTML = '';
     resultStatus.textContent = 'No protected query was sent before authentication.';
   }
@@ -132,12 +148,14 @@
       indexStatus = null;
       statusNode.textContent = 'Authenticated. Private search index is not initialized yet.';
       prepareButton.hidden = false;
+      runCanaryButton.hidden = true;
       prepareButton.textContent = 'Prepare private index';
       return true;
     }
     if (!result.ok) {
       statusNode.textContent = 'Authenticated, but private index status failed: ' + (result.error || result.reason || 'unknown error');
       prepareButton.hidden = false;
+      runCanaryButton.hidden = true;
       return true;
     }
     indexStatus = result;
@@ -145,6 +163,7 @@
       ? '<span class="status-good">Ready:</span> ' + result.indexedRecipeCount.toLocaleString() + ' / ' + result.expectedRecipeCount.toLocaleString() + ' recipes indexed; ' + result.structuralPartialCount + ' partial structural records.'
       : 'Authenticated. Indexed ' + result.indexedRecipeCount.toLocaleString() + ' / ' + result.expectedRecipeCount.toLocaleString() + ' recipes.';
     prepareButton.hidden = result.ready === true;
+    runCanaryButton.hidden = result.ready !== true;
     prepareButton.textContent = result.indexedRecipeCount ? 'Resume private index' : 'Prepare private index';
     if (result.ready) await loadResults(true);
     return true;
@@ -178,6 +197,84 @@
       progressNode.textContent = 'Stopped safely: ' + error.message + '. Re-running resumes from the last committed recipe.';
     } finally {
       prepareButton.disabled = false;
+    }
+  }
+
+  function requireCanaryEnvelope(label, result) {
+    if (!result?.ok) throw new Error(label + ': ' + (result?.error || result?.reason || 'request failed'));
+    if (Number(result?.metrics?.d1Subqueries) > 8) throw new Error(label + ': D1 target budget exceeded');
+    if (Number(result?.fullCorpusScans || 0) !== 0) throw new Error(label + ': full-corpus scan observed');
+    if (result?.publicRuntimeChanged !== false) throw new Error(label + ': public runtime changed');
+    if (result?.recommendationAdmissionChanged !== false) throw new Error(label + ': recommendation admission changed');
+    return Number(result?.metrics?.d1Subqueries || 0);
+  }
+
+  async function runLiveVerification() {
+    runCanaryButton.disabled = true;
+    canaryEvidencePanel.hidden = false;
+    canaryEvidenceNode.textContent = 'Running bounded live verification…';
+    try {
+      const observedD1 = [];
+      const status = await apiGet({ action:'status' });
+      observedD1.push(requireCanaryEnvelope('status', status));
+      if (
+        status.ready !== true ||
+        status.activeVersion !== 'v8018' ||
+        Number(status.indexedRecipeCount) !== 19268 ||
+        Number(status.ftsRecipeCount) !== 19268 ||
+        Number(status.structuralPartialCount) !== 3
+      ) throw new Error('status: exact v8018 19,268 / 19,268 / 3-partial acceptance not met');
+
+      const browse = await apiGet({ action:'browse', limit:24 });
+      observedD1.push(requireCanaryEnvelope('browse', browse));
+      if (!Array.isArray(browse.items) || browse.items.length < 1) throw new Error('browse: no bounded results returned');
+
+      const search = await apiGet({ action:'search', q:'carbonara', limit:24 });
+      observedD1.push(requireCanaryEnvelope('search', search));
+      if (!Array.isArray(search.items) || !search.items.some(item => item.recipeId === 'unitools:spaghetti-carbonara')) {
+        throw new Error('search: fixed carbonara canary not returned');
+      }
+
+      const detailResults = [];
+      for (const target of CANARY_TARGETS) {
+        const detail = await apiGet({ action:'detail', recipeId:target.recipeId });
+        observedD1.push(requireCanaryEnvelope('detail shard ' + target.shardNumber, detail));
+        if (
+          !detail.item ||
+          detail.item.recipeId !== target.recipeId ||
+          Number(detail.item.shardNumber) !== target.shardNumber ||
+          !detail.item.sourceCohortId ||
+          detail.item.authority?.protectedBrowseOnly !== true ||
+          detail.item.authority?.recommendationEligible !== false ||
+          detail.item.authority?.publicRuntimeActivated !== false
+        ) throw new Error('detail shard ' + target.shardNumber + ': protected detail/provenance contract not met');
+        detailResults.push(detail);
+      }
+
+      const evidence = {
+        terminal:'PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS',
+        activeVersion:'v8018',
+        indexedRecipeCount:19268,
+        ftsRecipeCount:19268,
+        structuralPartialCount:3,
+        browsePass:true,
+        searchPass:true,
+        detailShard0Pass:true,
+        detailShard1Pass:true,
+        sourceProvenancePass:detailResults.every(result => Boolean(result.item?.sourceCohortId)),
+        maxObservedD1Subqueries:Math.max(...observedD1),
+        fullCorpusScans:0,
+        publicRuntimeChanged:false,
+        recommendationAdmissionChanged:false
+      };
+      canaryEvidenceNode.textContent = JSON.stringify(evidence, null, 2);
+    } catch (error) {
+      canaryEvidenceNode.textContent = JSON.stringify({
+        terminal:'PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_STOPPED_SAFE',
+        reason:String(error?.message || error).slice(0,240)
+      }, null, 2);
+    } finally {
+      runCanaryButton.disabled = false;
     }
   }
 
@@ -239,6 +336,17 @@
 
   document.getElementById('refresh').addEventListener('click', refreshStatus);
   prepareButton.addEventListener('click', prepareIndex);
+  runCanaryButton.addEventListener('click', runLiveVerification);
+  copyCanaryButton.addEventListener('click', async () => {
+    const text = canaryEvidenceNode.textContent || '';
+    try {
+      await navigator.clipboard.writeText(text);
+      copyCanaryButton.textContent = 'Copied';
+      setTimeout(() => { copyCanaryButton.textContent = 'Copy verification result'; }, 1200);
+    } catch {
+      copyCanaryButton.textContent = 'Select and copy the result above';
+    }
+  });
   moreButton.addEventListener('click', () => loadResults(false));
   document.getElementById('searchForm').addEventListener('submit', event => {
     event.preventDefault();
