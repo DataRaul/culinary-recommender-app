@@ -2,7 +2,7 @@
 
 Date: **2026-09-24**
 
-Status: **BUILT / VALIDATION PENDING**
+Status: **PASS / FURTHER D5 BEHAVIOR DEFERRED**
 
 ## Scope
 
@@ -37,4 +37,6 @@ The existing Culinary profile remains the only recommendation input. Removing th
 
 This prototype does not authorize fitness-derived culinary ranking, calorie/TDEE estimation, nutrition or supplement prescription, medical inference, cloud sync, automatic folder/file reads, cross-app localStorage reads, workout-app writes, protected D1 writes, third-shard creation, paid infrastructure/API, Knowledge Core writes or Barbecue mutation.
 
-After validation, further D5 behavior work is deferred and the independent app-development lane proceeds to `PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY`.
+Validation evidence: **Validate public V0 #1080** (workflow run `36059408517`) passed the deterministic suite and Chromium browser acceptance on the prototype head. The browser test proved preview-before-save, exact five-field persistence, sensitive/unknown-field exclusion and an unchanged Culinary recommendation profile.
+
+Further D5 behavior work is now **DEFERRED**. The independent app-development lane proceeds to `PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY`.
