@@ -42,7 +42,7 @@
 | V1.x / Nutrition/vitamin applicability audit | COMPLETE / PASS | current authored macro authority 19/76; protected exact ingredient matches 36,760/144,245 and 112 all-identity-ready recipes; 0 protected recipes directly current-engine authoritative; vitamin/mineral schema not implemented |\n| V1.x / Recommendation readiness audit | COMPLETE / PASS — USABLE BASELINE | public runtime 85; 77 recommendation-state eligible and hard-metadata ready; unknown nutrition remains explicit/non-numeric after bounded repair; protected v8018 remains 0 automatically recommendation-ready; Recipe Family/adaptation is next |
 | V1.x / Recipe Family P0 prototype | COMPLETE / PASS | bounded Carbonara + Hummus prototype; Hummus APP_AUTHORING_ELIGIBLE, Carbonara held on egg/hard-cheese quantity authority; Consultant + Project Coach blocking review passed |
 | V1.x / Recipe Family UI legal conformance | COMPLETE / PASS | PR #276; real Hummus candidate proves generic multi-source attribution + fail-closed UNKNOWN/UNSATISFIABLE behavior; no public/runtime admission |\n| V1.x / Recipe Family 10-family bounded expansion | COMPLETE / PASS WITH EXPLICIT HOLDS | PR #283 green and merged; 10-family closeout = 8 candidate-only APP_AUTHORING_ELIGIBLE + 2 fail-closed HOLD (Carbonara, Pizza Margherita); 0 public/runtime admissions; v8018/D1/shards/KC/billing unchanged |
-| V1.x / Corpus Scale / 100k Readiness | STEP 1 V2 HARDENING COMPLETE / PASS | PR #291 candidate: frozen 84-record oracle preserved; current 85-record public seed passes deterministic 1k→100k hardened benchmark; 100k build 6.126s, validation 3.125s, retrieval p95 max 7.508ms, rank p95 max 6.447ms, peak heap 697.9MB; 10 broad/common/rare scenarios; no D1/public/protected/billing/Barbecue widening |
+| V1.x / Corpus Scale / 100k Readiness | STEP 1 V2 HARDENING COMPLETE / PASS | PR #291 merged (`200680b9`): frozen 84-record oracle preserved; current 85-record public seed passes deterministic 1k→100k hardened benchmark; 100k build 6.126s, validation 3.125s, retrieval p95 max 7.508ms, rank p95 max 6.447ms, peak heap 697.9MB; 10 broad/common/rare scenarios; no D1/public/protected/billing/Barbecue widening |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
 | Post-usable-app / Barbecue Technique Corpus | CONTROL PLANE VALIDATION PASS / SCHEDULED PILOT ACTIVE / FIRST ACQUISITION PENDING | PR #288 merged green; bounded five-leaf world-champion-first scheduler is active; generic YT-CUL cron retired; five-source conventional-barbecue synthesis contract unchanged |
@@ -494,11 +494,11 @@ Large research-only/reuse-unclear corpora remain excluded from production: Recip
 
 ### Scale-program ready action / not the current primary product lane
 
-**SCALE PROGRAM STEP 1 V2 HARDENING: COMPLETE / PASS ON PR #291 CANDIDATE.**
+**SCALE PROGRAM STEP 1 V2 HARDENING: COMPLETE / PASS / PR #291 MERGED.**
 
 The independent app-development scale lane has now re-established the Step-1 contract against current repository truth without disturbing the separately scheduled Barbecue programme. The immutable 84-record historical `ALL_RECIPES` oracle remains frozen, while the current 85-record `PUBLIC_RUNTIME_RECIPES` state is separately fingerprinted and used as the V2 synthetic benchmark seed.
 
-PR #291 candidate evidence:
+PR #291 merged evidence:
 
 1. deterministic 1k / 10k / 50k / 100k catalogues;
 2. deterministic per-record entropy to prevent clone repetition from understating compressed transfer/storage cost;
@@ -508,7 +508,7 @@ PR #291 candidate evidence:
 6. 100k build 6,126.347 ms; structural validation 3,125.071 ms;
 7. 100k peak RSS 816,226,304 B; peak heap 697,934,632 B;
 8. maximum 100k gzip transfer/query 640,737 B; maximum retrieval p95 7.508 ms; maximum rank p95 6.447 ms;
-9. Step-1 workflow run #23 / 35995278468 SUCCESS; Validate public V0, Step 4 and Step 7A also green on the same candidate head;
+9. final-head Step-1 workflow run #26 / 35995816545 SUCCESS with artifact 10806550530; Validate public V0 #1020 / 35995816580, Step 4 / 35995816549 and Step 7A / 35995816569 also green; merge `200680b90b1ad887e9796fe255a09102e61b9293`;
 10. no Cloudflare provisioning, new real-source ingestion, protected corpus mutation, D1 authorization, public behavior change, Knowledge Core write, billing expansion or Barbecue mutation.
 
 Historical Steps 2–7 remain repository evidence and are not discarded merely because Step 1 was hardened. The next independent scale action is to fresh-reconcile/revalidate those existing implementations against the V2 Step-1/current-85 seed, beginning with the Step-2 RecipeSource compatibility boundary where necessary, rather than blindly rebuilding already completed steps.

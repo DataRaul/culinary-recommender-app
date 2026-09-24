@@ -205,7 +205,7 @@ No paid Cloudflare plan, paid search service, paid API, paid corpus licence or c
 
 The original sequence remains valid, with these clarifications:
 
-1. **Scale contract + synthetic benchmark — COMPLETE / V2 HARDENING PASS.** Preserve the immutable 84-record historical oracle separately from the current 85-record public benchmark seed; deterministic 1k/10k/50k/100k catalogues now exercise broad/common/rare query shapes, bounded retrieval before detail hydration, exact fingerprint/structure checks and persisted CI benchmark evidence. PR #291 candidate run #23 passes all Step-1 thresholds. No Cloudflare account provisioning was required.
+1. **Scale contract + synthetic benchmark — COMPLETE / V2 HARDENING PASS.** Preserve the immutable 84-record historical oracle separately from the current 85-record public benchmark seed; deterministic 1k/10k/50k/100k catalogues now exercise broad/common/rare query shapes, bounded retrieval before detail hydration, exact fingerprint/structure checks and persisted CI benchmark evidence. PR #291 merged at `200680b90b1ad887e9796fe255a09102e61b9293`; final-head run #26 / 35995816545 passes all Step-1 thresholds. No Cloudflare account provisioning was required.
 2. **`RecipeSource` V2 compatibility.** V1/V2 behavioral parity before runtime replacement.
 3. **Metadata/detail + portable object layout.** Define provider-neutral manifests/shards/index artefacts that map naturally to R2 but can move elsewhere.
 4. **Indexed retrieval scale proof.** Prove pre-built deterministic index intersections first. Introduce D1 only if this test earns it.
@@ -216,14 +216,14 @@ The original sequence remains valid, with these clarifications:
 
 ## 11. Next executable action / continuation contract
 
-**STEP 1 V2: COMPLETE / PASS ON PR #291 CANDIDATE.**
+**STEP 1 V2: COMPLETE / PASS / PR #291 MERGED.**
 
 The hardened Step-1 evidence preserves the R2-first/pre-built-index architecture hypothesis: at 100k synthetic records, build/validation, memory, transfer, bounded retrieval and ranking remain inside the frozen budgets. This result does not itself provision or authorize production infrastructure.
 
 Because Steps 2–7 already exist historically in this repository, continuation must not recreate them blindly. The next independent scale-development action is:
 
 1. fresh-reconcile `main`, open PRs and concurrent scheduled child programmes;
-2. merge PR #291 only if its green candidate head remains current and unchanged;
+2. treat PR #291 merge `200680b90b1ad887e9796fe255a09102e61b9293` as the Step-1 V2 closeout baseline;
 3. treat the immutable 84-record `ALL_RECIPES` corpus as the historical behavioral oracle and the explicitly fingerprinted 85-record `PUBLIC_RUNTIME_RECIPES` corpus as the current scale seed;
 4. reconcile existing Step-2 RecipeSource V2 compatibility evidence against the hardened Step-1 contract/current seed, then proceed through later existing scale artifacts only where fresh evidence shows a real compatibility gap;
 5. preserve D1 as benchmark-gated rather than inferred from corpus size;

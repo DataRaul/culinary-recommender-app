@@ -1,6 +1,6 @@
 # Corpus Scale / 100k Readiness — Step 1 Synthetic Benchmark Contract
 
-Status: **V2 HARDENING COMPLETE / PASS / PR #291 VALIDATION GREEN**
+Status: **V2 HARDENING COMPLETE / PASS / PR #291 MERGED**
 
 This is the executable Step-1 contract referenced by `docs/ROADMAP.md` and `docs/CORPUS_SCALE_CLOUDFLARE_ACCEPTED_ARCHITECTURE.md`.
 
@@ -148,7 +148,7 @@ Acceptance remains fail-closed. A threshold failure is evidence to repair/reconc
 
 ## PR #291 measured evidence
 
-Candidate head validated by Corpus scale Step 1 workflow run **#23 / run 35995278468: SUCCESS**. The same head also passed Validate public V0, Step 4 indexed-retrieval proof and Step 7A no-billing-auth proof.
+PR #291 merged at `200680b90b1ad887e9796fe255a09102e61b9293`. Its final pre-merge head was validated again by Corpus scale Step 1 workflow run **#26 / run 35995816545: SUCCESS**, with benchmark artifact **10806550530**. The same final head also passed Validate public V0 run **#1020 / 35995816580**, Step 4 indexed-retrieval proof **35995816549**, and Step 7A no-billing-auth proof **35995816569**.
 
 | Size | Build | Validation | Peak RSS | Peak heap | Max transfer gzip | Max retrieval p95 | Max rank p95 |
 |---:|---:|---:|---:|---:|---:|---:|---:|
@@ -188,7 +188,7 @@ The runner exits non-zero on baseline drift or any acceptance failure.
 
 ## Gate after Step 1
 
-V2 Step 1 is complete when PR #291 merges with the measured candidate unchanged.
+V2 Step 1 is complete. PR #291 merged the measured candidate unchanged at `200680b90b1ad887e9796fe255a09102e61b9293`.
 
 That result authorizes only continuation of the **independent scale-development lane**. It does not authorize:
 
