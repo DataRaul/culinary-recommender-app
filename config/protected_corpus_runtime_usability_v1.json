@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
+  "date": "2026-09-24",
+  "state": "P0_EVIDENCE_AUDIT_READY",
+  "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
+  "sourceOfTruth": "DataRaul/culinary-recommender-app",
+  "currentFacts": {
+    "protectedCorpusVersion": "v8018",
+    "protectedRecipeCount": 19268,
+    "publicRuntimeRecipeCount": 85,
+    "protectedShardCount": 2,
+    "titleKnownCount": 19268,
+    "structurallyParseableCount": 19265,
+    "structuralExceptionCount": 3,
+    "exactCanonicalIngredientMatches": 36760,
+    "ingredientOccurrenceCount": 144245,
+    "allIngredientIdentityReadyRecipes": 112,
+    "protectedAutomaticRecommendationReadyCount": 0,
+    "reviewedDietaryAuthorityCount": 0,
+    "directCurrentNutritionEngineAuthoritativeRecipes": 0,
+    "maxObservedD1SubqueriesPerRequest": 8,
+    "hardMaxD1SubqueriesPerRequest": 16,
+    "scaleRequiredProofCount": 170000,
+    "scaleStressProofCount": 250000
+  },
+  "ownerPriority": {
+    "finishD5SafeAdapterPrototypeFirst": true,
+    "deferD5BehaviorAfterPrototype": true,
+    "successorPrincipalLane": "PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
+    "barbecueLaneRemainsIndependent": true
+  },
+  "capabilityBaseline": {
+    "enabled": [
+      "PROTECTED_V8018_ALREADY_POPULATED",
+      "EXACT_TWO_SHARD_ROUTING",
+      "AUTHENTICATED_PROTECTED_READ_BOUNDARY",
+      "CROSS_SHARD_HYDRATION_PRIMITIVES",
+      "NO_FULL_CORPUS_SCAN_ARCHITECTURE",
+      "19268_OF_19268_TITLE_IDENTITY_BASELINE",
+      "19265_OF_19268_STRUCTURAL_PARSE_BASELINE",
+      "VERSIONED_REVERSIBLE_NORMALIZATION_OVERLAY",
+      "170K_REQUIRED_AND_250K_STRESS_SCALE_PROOF"
+    ],
+    "notYetProvenAsUserCapability": [
+      "END_USER_BROWSE_OVER_FULL_V8018",
+      "END_USER_SEARCH_OVER_FULL_V8018",
+      "PAGINATED_FILTERED_PRIVATE_DISCOVERY_AT_V8018",
+      "FULL_V8018_BROWSER_PERFORMANCE_ACCEPTANCE",
+      "PROGRESSIVE_RECOMMENDATION_OVER_PROTECTED_CORPUS"
+    ]
+  },
+  "blockers": [
+    {
+      "id": "BROWSE_SEARCH_PRODUCT_SURFACE",
+      "severity": "FIRST_TEST_TARGET",
+      "state": "NOT_YET_PROVEN",
+      "evidence": "Storage/auth/routing/hydration are proven separately, but the owner-facing 19,268-recipe browse/search experience is not yet an earned product terminal."
+    },
+    {
+      "id": "CANONICAL_INGREDIENT_IDENTITY_COVERAGE",
+      "severity": "RECOMMENDATION_BLOCKER",
+      "state": "PARTIAL",
+      "evidence": "Only 112/19,268 recipes currently have all ingredient identities exact-mapped; 36,760/144,245 ingredient occurrences exact-match the current canonical ingredient layer."
+    },
+    {
+      "id": "DIETARY_ALLERGEN_AUTHORITY",
+      "severity": "HARD_FILTER_BLOCKER",
+      "state": "MISSING_FOR_PROTECTED_AUTOMATIC_ADMISSION",
+      "evidence": "Protected reviewed dietary authority count is 0 under the current mapping/audit contract."
+    },
+    {
+      "id": "RECOMMENDATION_ADMISSION",
+      "severity": "PRODUCT_BLOCKER",
+      "state": "ZERO_AUTOMATICALLY_READY",
+      "evidence": "0 protected recipes are automatically recommendation-ready under the current fail-closed rules."
+    },
+    {
+      "id": "NUTRITION_AUTHORITY",
+      "severity": "SOFT_FEATURE_BLOCKER_NOT_BROWSE_BLOCKER",
+      "state": "ZERO_DIRECT_CURRENT_ENGINE",
+      "evidence": "0 protected recipes are directly authoritative under the current nutrition engine; nutrition must remain independent and must not block safe browse/search."
+    },
+    {
+      "id": "SPARSE_CANONICAL_METADATA",
+      "severity": "FILTER_QUALITY_BLOCKER",
+      "state": "PARTIAL",
+      "evidence": "Large portions of geography, tradition, technique, time, servings, meal-role and category authority remain UNKNOWN; UNKNOWN must stay explicit rather than inferred."
+    },
+    {
+      "id": "STRUCTURAL_EXCEPTIONS",
+      "severity": "LOW",
+      "state": "KNOWN",
+      "evidence": "3 legacy CC0 records are explicit structural exceptions and must fail gracefully in browse/detail surfaces."
+    }
+  ],
+  "gates": [
+    {
+      "id": "P0_EVIDENCE_AND_CONTRACT_AUDIT",
+      "state": "READY",
+      "purpose": "Freeze the real-v8018 usability baseline and prove the programme is measuring live protected state rather than synthetic assumptions."
+    },
+    {
+      "id": "P1_PRIVATE_BROWSE_SEARCH_CANARY",
+      "state": "NEXT_AFTER_D5_PROTOTYPE",
+      "purpose": "Make all 19,268 protected recipes safely discoverable to an authorized user without granting recommendation authority.",
+      "acceptance": [
+        "AUTH_REQUIRED_BEFORE_ANY_PROTECTED_RECIPE_SHARD_QUERY",
+        "EXACT_V8018_VERSION_AND_19268_RECORD_UNIVERSE",
+        "BOUNDED_PAGINATED_BROWSE_NO_FULL_CORPUS_SCAN",
+        "BOUNDED_TEXT_SEARCH_RETURNS_STABLE_IDS_BEFORE_BODY_HYDRATION",
+        "DETAIL_FETCH_WORKS_ACROSS_BOTH_SHARDS",
+        "TARGET_D1_SUBQUERIES_PER_REQUEST_AT_OR_BELOW_8_AND_HARD_FAIL_ABOVE_16",
+        "THREE_STRUCTURAL_EXCEPTIONS_FAIL_SOFT",
+        "SOURCE_PROVENANCE_AVAILABLE_ON_DETAIL",
+        "MOBILE_BROWSER_ACCEPTANCE",
+        "NO_PUBLIC_RUNTIME_OR_RECOMMENDATION_ADMISSION_CHANGE"
+      ]
+    },
+    {
+      "id": "P2_METADATA_USABILITY_MEASUREMENT",
+      "state": "BLOCKED_ON_P1",
+      "purpose": "Measure which browse/filter dimensions work across v8018 and rank missing metadata by user value and repair leverage."
+    },
+    {
+      "id": "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+      "state": "BLOCKED_ON_P2_AND_HARD_METADATA",
+      "purpose": "Admit bounded recipe subsets only when hard ingredient/dietary/allergen/provenance semantics are sufficient; keep UNKNOWN fail-closed and nutrition independent."
+    },
+    {
+      "id": "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE",
+      "state": "BLOCKED_ON_P3",
+      "purpose": "Continuously test search, filters, hydration, ranking/planner candidate generation, abstention, latency, memory, D1 query counts and browser UX against real v8018."
+    }
+  ],
+  "syntheticScalePolicy": {
+    "retain100kBenchmark": true,
+    "retain170kRequiredProof": true,
+    "retain250kStressProof": true,
+    "role": "REGRESSION_AND_HEADROOM_ONLY",
+    "realV8018BecomesPrimaryProductTestCorpus": true
+  },
+  "authority": {
+    "privateBrowseSearchImplementationAuthorizedAfterD5Prototype": true,
+    "protectedBodyRewriteAuthorized": false,
+    "newProtectedSourceIngestionAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "paidInfrastructureAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextExecutionSequence": [
+    "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE",
+    "D5_BEHAVIOR_WORK_DEFER",
+    "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY"
+  ]
+}
