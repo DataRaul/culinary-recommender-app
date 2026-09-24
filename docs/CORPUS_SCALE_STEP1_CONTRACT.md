@@ -1,81 +1,130 @@
 # Corpus Scale / 100k Readiness — Step 1 Synthetic Benchmark Contract
 
-Status: **IMPLEMENTATION BUILT / FULL REPOSITORY VALIDATION AND 1K→100K MEASUREMENT PENDING**
+Status: **V2 HARDENING COMPLETE / PASS / PR #291 VALIDATION GREEN**
 
 This is the executable Step-1 contract referenced by `docs/ROADMAP.md` and `docs/CORPUS_SCALE_CLOUDFLARE_ACCEPTED_ARCHITECTURE.md`.
 
-It is intentionally provider-neutral. It models the accepted Cloudflare R2 + pre-built-index shape without provisioning Cloudflare, ingesting a new real corpus, introducing D1, changing public recommendation behavior, or creating a private Knowledge Core runtime dependency.
+It remains provider-neutral. It models the accepted object-store + pre-built-index shape locally without provisioning Cloudflare, ingesting a new real corpus, introducing D1, changing public recommendation behavior, mutating the protected v8018 corpus, touching the scheduled Barbecue programme, or creating a private Knowledge Core runtime dependency.
 
-## Golden behavioral oracle
+## Baseline separation
 
-The frozen Step-1 baseline is the reviewed `ALL_RECIPES` corpus at app `main` commit:
+Step 1 now preserves two explicit and independently frozen baselines.
+
+### Historical behavioral oracle
+
+The immutable historical `ALL_RECIPES` oracle remains the reviewed 84-record corpus from app main commit:
 
 `8625cbb6457442229aa1dedee67d94c9a0727d7a`
 
-Expected composition at that baseline:
+Expected composition:
 
-- **84 total reviewed runtime records**;
-- **76 curated/authored recipes**;
-- **8 Gate-F external recipes**.
+- **84 total records**;
+- **76 authored records**;
+- **8 Wikibooks Gate-F external records**.
 
-The benchmark runner refuses to proceed if the runtime count is not 84. It also emits a deterministic SHA-256 fingerprint of the sorted recipe IDs so each measurement records the exact identity set it used.
+Frozen fingerprint:
 
-Synthetic records are deterministic clones of the golden records with unique synthetic IDs and explicit `SYNTHETIC_ONLY_NEVER_PRODUCTION` provenance. They are benchmark material only and must never be treated as admitted recipes.
+- IDs SHA-256: `062105fae761ce06357fdd2b068ed41c89590b9b89d984fbbe3ebb76d1b1407a`
+- records SHA-256: `4b876f65ca0aa2ab6db3c2e4f1ca6c0af9e91f03e3923dfd3bfd9da2bcfe2f41`
+
+This oracle is not rewritten by later public-runtime admission.
+
+### Current synthetic benchmark seed
+
+The V2 scale run uses the current 85-record `PUBLIC_RUNTIME_RECIPES` state at the Step-1 restart baseline:
+
+`ca6a1129e52b45cac3b39f61402c7466f71d6761`
+
+Frozen fingerprint:
+
+- IDs SHA-256: `fbd3e7121f741db2f637fcea917d07ad410c189a0d6c2f1394c23f83ed5bc025`
+- records SHA-256: `d866a89b0182d15707a9377ff827af4f235b87d1e324e4e37298e85626ffe1c5`
+
+The runner fails closed on count or fingerprint drift. A future public-runtime change must therefore be deliberately reconciled and re-baselined before the scale benchmark can silently move.
+
+Synthetic records remain deterministic clones with unique synthetic IDs and explicit `SYNTHETIC_ONLY_NEVER_PRODUCTION` provenance. Each clone also carries deterministic per-record SHA-256 benchmark entropy derived from source identity + ordinal so compression measurements are not unrealistically dominated by repeated clone payloads.
 
 ## Synthetic catalogue sizes
 
-The required default progression is:
+The required progression remains:
 
 1. 1,000 records;
 2. 10,000 records;
 3. 50,000 records;
 4. 100,000 records.
 
-Each larger catalogue deterministically cycles through the same golden recipes. The benchmark therefore measures scale characteristics while holding culinary content shape and evaluator semantics stable.
+No real external recipe is created or admitted by these synthetic catalogues.
 
 ## Provider-neutral object/index model
 
 The local model represents:
 
 - immutable serialized recipe-detail objects;
-- a stable ordinal-to-recipe-ID manifest in memory;
-- deterministic pre-built posting-list shards for:
+- a stable ordinal-to-recipe-ID manifest;
+- deterministic posting-list indexes for:
   - canonical ingredient;
   - cuisine;
   - dietary tag;
   - meal type;
   - main protein;
-  - cumulative time buckets (`under-30`, `under-45`, `under-60`);
-  - cumulative skill/difficulty ceilings (`lte-1` through `lte-4` where applicable);
-- sorted posting-list intersections before detail hydration;
-- a hard runtime candidate cap of **256** records before the existing evaluator/scorer is invoked.
+  - cumulative time buckets;
+  - cumulative skill/difficulty ceilings;
+- sorted posting-list intersections;
+- a hard runtime candidate cap of **256** records before existing evaluator/scorer execution.
 
-Posting lists use compact integer ordinals in Step 1. This is an implementation hypothesis for measurement, not a permanently frozen R2 shard format. Step 3/4 may change the portable physical layout if measured evidence warrants it.
+The V2 timed retrieval path now performs a bounded posting intersection and stops after the candidate cap is satisfied, before recipe-detail hydration. Full intersection remains available outside the timed path only to measure true candidate cardinality/selectivity.
+
+Posting lists remain an implementation hypothesis for measurement, not a permanently frozen R2 physical format.
+
+## Benchmark hardness
+
+The benchmark must not pass using one favorable query shape. V2 deterministically exercises broad, common and rare retrieval shapes, including:
+
+- broadest available index;
+- broad meal;
+- meal + time;
+- cuisine + meal + time;
+- ingredient + meal;
+- diet + meal + time;
+- protein + meal;
+- rare cuisine;
+- rare ingredient;
+- rare protein.
+
+Duplicate query signatures are removed. Acceptance requires:
+
+- at least **7** distinct query scenarios;
+- at least **7** scenarios with positive candidates;
+- at least **3** distinct full candidate cardinalities;
+- actual exercise of the **256** candidate cap at catalogue sizes of 10k or larger.
+
+The green PR #291 run exercised **10** scenarios, all 10 positive, with **8** distinct full-candidate cardinalities.
 
 ## Required metrics
 
-Every requested size must report:
+Every requested size reports:
 
 - total serialized recipe bytes;
 - average, p95 and maximum recipe-object bytes;
 - raw and gzip pre-built-index bytes;
 - gzip index bytes per record;
 - index shard count;
-- full candidate-set cardinality before the 256-record cap;
+- full candidate-set cardinality;
 - bounded candidate cardinality;
-- raw and gzip transferred bytes for each benchmark query;
-- local retrieval p50/p95 latency, including posting-list intersection plus detail JSON hydration;
-- existing deterministic filter/ranking p50/p95 latency over the bounded candidates;
+- selectivity ratio;
+- raw and gzip transferred bytes;
+- local retrieval p50/p95 latency;
+- existing deterministic filter/ranking p50/p95 latency;
 - build time;
 - validation time;
-- peak sampled process RSS and heap-used memory;
-- deterministic catalogue SHA-256 validation fingerprint.
+- sampled process RSS and heap-used memory;
+- deterministic catalogue SHA-256.
 
-The benchmark uses several deterministic query shapes selected from the most common available meal, time, cuisine, ingredient and dietary index dimensions. This intentionally includes broad and narrower intersections rather than optimizing for one hand-picked happy path.
+Validation verifies synthetic provenance, ordinal/entropy integrity, unique IDs, every expected index membership, posting order/range, total membership equivalence and a digest covering complete serialized synthetic bodies plus index postings.
 
-## Step-1 acceptance thresholds
+Explicit garbage collection is permitted only between benchmark phases/scenarios when Node is run with `--expose-gc`, so sampled live-memory pressure is not polluted by unreachable objects retained from prior independent phases. It is not invoked inside timed retrieval or ranking samples.
 
-These thresholds are project architecture budgets. They are deliberately independent from transient Cloudflare free-tier quotas, which must be revalidated later at provisioning time.
+## Acceptance thresholds
 
 | Metric | Threshold |
 |---|---:|
@@ -90,23 +139,30 @@ These thresholds are project architecture budgets. They are deliberately indepen
 | 100k structural validation time | **≤ 30 s** |
 | 100k peak sampled RSS | **≤ 1 GiB** |
 | 100k peak sampled heap used | **≤ 768 MiB** |
+| Query scenarios | **≥ 7** |
+| Positive query scenarios | **≥ 7** |
+| Distinct full-candidate cardinalities | **≥ 3** |
+| Candidate-cap exercise at ≥10k | **required** |
 
-Acceptance is fail-closed: every applicable check must pass. A threshold failure is evidence to reconcile the index/object design; it does not automatically authorize D1, paid infrastructure, weaker hard filters, a larger candidate cap, or a public behavior change.
+Acceptance remains fail-closed. A threshold failure is evidence to repair/reconcile the retrieval/object design; it does not authorize D1, paid infrastructure, weaker hard filters, a larger candidate cap, or a public behavior change.
 
-## Validation contract
+## PR #291 measured evidence
 
-`tests/corpus-scale-step1.test.js` covers:
+Candidate head validated by Corpus scale Step 1 workflow run **#23 / run 35995278468: SUCCESS**. The same head also passed Validate public V0, Step 4 indexed-retrieval proof and Step 7A no-billing-auth proof.
 
-- deterministic golden fingerprinting and synthetic identity;
-- non-mutating synthetic cloning/provenance;
-- retrieval index dimensions;
-- deterministic posting-list intersections;
-- candidate caps;
-- transfer/latency report shape;
-- catalogue structural validation;
-- fail-closed threshold evaluation.
+| Size | Build | Validation | Peak RSS | Peak heap | Max transfer gzip | Max retrieval p95 | Max rank p95 |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1k | 95.689 ms | 44.253 ms | 120,213,504 B | 37,164,288 B | 104,018 B | 10.443 ms | 10.340 ms |
+| 10k | 674.114 ms | 317.568 ms | 167,374,848 B | 72,354,608 B | 151,872 B | 7.531 ms | 6.983 ms |
+| 50k | 3,033.085 ms | 1,557.445 ms | 393,048,064 B | 291,597,776 B | 370,947 B | 7.990 ms | 6.928 ms |
+| 100k | 6,126.347 ms | 3,125.071 ms | 816,226,304 B | 697,934,632 B | 640,737 B | 7.508 ms | 6.447 ms |
 
-The full benchmark additionally validates every synthetic record, unique ID, benchmark provenance marker, all expected posting memberships, sorted/in-range posting lists and a deterministic catalogue digest.
+100k catalogue SHA-256:
+`1451acfddca7ad0082c196707937c6c1f55ff1ded1e5a1cf7b0dd3aba15cf354`
+
+All original scale budgets and all V2 hardness checks passed.
+
+The workflow writes the full JSON report and uploads it as the `corpus-scale-step1-report` CI artifact for review/audit.
 
 ## Runner
 
@@ -116,34 +172,36 @@ Default full run:
 npm run benchmark:corpus-scale-step1
 ```
 
-Optional bounded diagnostic run:
+Evidence file:
+
+```bash
+node --expose-gc scripts/run-corpus-scale-step1.mjs --output=corpus-scale-step1-report.json
+```
+
+Optional bounded diagnostic:
 
 ```bash
 node --expose-gc scripts/run-corpus-scale-step1.mjs --sizes=1000,10000 --repetitions=4
 ```
 
-Optional report file:
+The runner exits non-zero on baseline drift or any acceptance failure.
 
-```bash
-node --expose-gc scripts/run-corpus-scale-step1.mjs --output=/tmp/corpus-scale-step1.json
-```
+## Gate after Step 1
 
-The runner exits non-zero when any measured acceptance threshold fails.
+V2 Step 1 is complete when PR #291 merges with the measured candidate unchanged.
 
-## Gate after measurement
-
-A full green 1k→10k→50k→100k report is required before Step 1 may be called complete.
-
-Even after Step 1 passes, the result authorizes only progression to the next roadmap implementation step. It does **not** authorize:
+That result authorizes only continuation of the **independent scale-development lane**. It does not authorize:
 
 - production Cloudflare provisioning;
 - real mass recipe ingestion;
-- Open Recipe Archive / ForkRecipe / UniTools / RecipeDB admission;
-- D1;
+- a new protected corpus version;
+- protected D1 mutation or a third shard;
+- D1 as a new architecture dependency;
 - paid infrastructure;
 - public signup or any-email authentication;
-- a public recommendation/ranking behavior change;
-- weakening source-rights, provenance, nutrition, allergen, dietary, permanent-exclusion or review gates;
-- private Knowledge Core browser/runtime access.
+- public recommendation/ranking behavior changes;
+- weakening rights, provenance, nutrition, allergen, dietary, exclusion or review gates;
+- private Knowledge Core browser/runtime access;
+- any Barbecue workflow/state/query change.
 
-Cloudflare Access exact-email invitation-only membership remains a hard accepted production constraint, but it is not implemented or exercised in Step 1.
+Because historical Steps 2–7 already exist in the repository, the next scale action is **reconciliation/revalidation of those existing artifacts against the hardened V2 Step-1 contract and current 85-record public seed**, not blind reimplementation of already-completed work.
