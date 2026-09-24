@@ -83,9 +83,9 @@ P1 does **not**:
 
 1. deterministic runtime/API tests — **PASS**;
 2. mobile browser acceptance with mocked authenticated protected responses and a zero-query unauthenticated assertion — **PASS**;
-3. PR CI — **Validate public V0 #1088 PASS** (workflow run `36061685454`);
-4. merge only when green;
-5. deploy through the existing Pages path;
+3. terminal-verifier PR CI — **Validate public V0 #1092 PASS** (workflow run `36069895736`);
+4. PR #309 merged at `5222da210d40721886f6ab0fc093e14c727f296b`;
+5. production Pages deployment **#360 PASS** (workflow run `36070082857`) and post-merge **Validate public V0 #1093 PASS** (workflow run `36070083309`);
 6. one authenticated owner live canary builds/resumes the compact index until ready, then uses the built-in **Run live verification** action to prove **19,268 / 19,268**, exactly **3** structural partial records, bounded browse/search, detail hydration across both shards, provenance, and live D1 counts at or below 8; the owner copies only the sanitized terminal JSON result.
 
 P1 is not terminal PASS until that live owner canary succeeds.
