@@ -1,0 +1,165 @@
+# Protected Corpus Runtime Usability V1
+
+Date: **2026-09-24**
+
+Status: **OWNER-PRIORITY PROGRAMME / P0 EVIDENCE AUDIT READY**
+
+Objective: turn the already-populated protected corpus **v8018 / 19,268 recipes** into a corpus the owner can actually use, while preserving the fail-closed recommendation, rights, nutrition, security and cost boundaries.
+
+## Priority decision
+
+The owner-priority sequence is now:
+
+```text
+D5 Fitness Integration safe adapter prototype
+-> defer further D5 behavior work
+-> Protected Corpus Runtime Usability V1 becomes the principal app-development lane
+```
+
+The Barbecue Technique Corpus remains a separate scheduled lane and is not modified by this programme.
+
+## What is already enabled
+
+The project has already solved most of the scale/storage problem:
+
+- v8018 contains **19,268 protected recipes**;
+- exact topology is **two D1 recipe-body shards**;
+- authenticated protected reads, revocation and fail-closed unauthenticated behavior have been proven;
+- cross-shard route/body hydration primitives exist;
+- the architecture is explicitly bounded and avoids full-corpus scans;
+- final owner runs observed at most **8 D1 subqueries/request** against a hard fail-safe of 16;
+- **19,268 / 19,268** titles are known;
+- **19,265 / 19,268** records are structurally parseable;
+- a deterministic reversible normalization overlay exists for every protected identity;
+- scale architecture has already passed **170k required / 250k stress** proof.
+
+Therefore the question is no longer “can we store 20k recipes?” It is “which 20k-recipe product capabilities work, which fail, and what is the highest-leverage repair?”
+
+## Current blockers
+
+### 1. Full protected browse/search is not yet an earned product capability
+
+Storage/auth/routing/hydration were proven during population. That is not the same as proving a user can browse, search, paginate and open recipes across the full v8018 corpus comfortably on the real app.
+
+This is the **first runtime test target**.
+
+### 2. Ingredient identity is the main recommendation bottleneck
+
+Current protected evidence:
+
+- ingredient occurrences: **144,245**;
+- exact canonical ingredient matches: **36,760**;
+- recipes with every ingredient identity exact-ready: **112 / 19,268**.
+
+Browse/search does not need to wait for perfect ingredient identity. Recommendation hard filters do.
+
+### 3. Dietary/allergen authority is not ready for automatic protected recommendation admission
+
+The protected mapping currently has **0 reviewed dietary-authority recipes** under the strict current contract. Unknown must remain unknown; imported prose or source labels cannot silently become hard dietary/allergen truth.
+
+### 4. Automatic protected recommendation readiness is currently zero
+
+The recommendation-readiness audit correctly reports **0 / 19,268 automatically recommendation-ready**. The programme will not solve this by weakening the gate. It will create measured subsets and repair the highest-value blockers.
+
+### 5. Nutrition is incomplete but is not a browse/search blocker
+
+The current nutrition engine directly authorizes **0 protected recipes**. Nutrition remains an independent evidence lane. Recipes may still become safely browsable and, later, potentially recommendable with explicitly unknown nutrition where the existing recommendation contract permits it.
+
+### 6. Canonical filter metadata is sparse
+
+Many geography, tradition, technique, time, servings, category and meal-role fields remain UNKNOWN. P2 will measure filter usefulness over the real corpus and prioritize repairs by user value rather than attempting blanket enrichment.
+
+### 7. Three structural exceptions are known
+
+Three legacy CC0 records remain explicit structural exceptions. They are a useful failure-mode test: browse/detail surfaces must fail softly rather than corrupt the session or hide the problem.
+
+## Gate sequence
+
+### P0 — Evidence and contract audit
+
+Freeze the real v8018 product baseline and verify that the programme's counts match the generated normalization, nutrition and recommendation evidence. Synthetic scale results remain regression/headroom evidence, not the primary product corpus.
+
+### P1 — Private browse/search canary
+
+After the bounded D5 adapter prototype is closed, implement and test an owner-only protected browse/search surface over **all 19,268 records**.
+
+Required behavior:
+
+- authenticate before protected queries;
+- paginate/bound every query;
+- search/index IDs before body hydration;
+- hydrate only bounded result/detail sets;
+- work across both shards;
+- preserve target <=8 D1 subqueries/request and hard fail-safe <=16;
+- never perform a full-corpus request scan;
+- expose source/provenance on detail;
+- fail softly on the three structural exceptions;
+- pass mobile/browser acceptance;
+- do not change public runtime admission or recommendation authority.
+
+### P2 — Metadata usability measurement
+
+On the real 19,268 corpus, measure what users can actually filter or understand today: ingredient, source, category, meal role, geography, time, servings, difficulty and other dimensions.
+
+Produce a ranked blocker table:
+
+```text
+dimension
+-> current authoritative coverage
+-> user-visible failure/limitation
+-> number of recipes unlocked by repair
+-> repair difficulty
+-> evidence/source requirement
+-> next bounded repair tranche
+```
+
+Do not infer missing metadata merely to improve percentages.
+
+### P3 — Progressive recommendation admission
+
+Do not wait for every recipe to become perfect. Create bounded cohorts that pass the existing hard constraints.
+
+A protected record may become a recommendation candidate only after the required ingredient identity, dietary/allergen/permanent-exclusion semantics, provenance and deterministic compatibility are earned. Missing nutrition remains explicit and independent.
+
+The expected product shape is progressive:
+
+```text
+19,268 browsable/searchable
+-> smaller hard-safe recommendation subset
+-> larger subset after targeted metadata repairs
+-> repeated measurement and expansion
+```
+
+### P4 — Real-20k regression and product acceptance
+
+The **real v8018 corpus becomes the primary product-scale test corpus**.
+
+Continuously measure:
+
+- search latency and result stability;
+- pagination and filter behavior;
+- cross-shard hydration;
+- D1 subquery counts;
+- transferred bytes / memory;
+- malformed/unknown metadata handling;
+- recommendation candidate generation and abstention;
+- planner behavior over eligible subsets;
+- mobile/browser UX.
+
+Keep 100k, 170k and 250k synthetic proofs as regression/headroom tests.
+
+## Stop/repair rule
+
+Every run must classify failures into one of:
+
+- runtime/retrieval;
+- metadata/normalization;
+- hard safety/eligibility;
+- recommendation/planner compatibility;
+- performance/cost;
+- rights/provenance;
+- browser/UX.
+
+Then repair the highest-value technically resolvable blocker and rerun the affected bounded tests plus the real-v8018 regression set.
+
+No raw coverage percentage can override source authority, dietary/allergen safety, provenance, security, D1 budget, or the zero-recurring-cost posture.
