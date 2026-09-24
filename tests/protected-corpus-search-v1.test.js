@@ -181,5 +181,12 @@ test("P1 owner browser is network-only and explicitly communicates protected-onl
   assert.match(html, /\/api\/auth\/session/);
   assert.match(html, /\/api\/protected-corpus\/v1/);
   assert.match(html, /metrics\?\.d1Subqueries > 8/);
+  assert.match(html, /PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS/);
+  assert.match(html, /unitools:risotto-alla-milanese/);
+  assert.match(html, /unitools:spaghetti-carbonara/);
+  assert.match(html, /Number\(status\.indexedRecipeCount\) !== 19268/);
+  assert.match(html, /Number\(status\.ftsRecipeCount\) !== 19268/);
+  assert.match(html, /Number\(status\.structuralPartialCount\) !== 3/);
+  assert.doesNotMatch(html, /canaryEvidence[^\n]*(?:account|email|session)/i);
   assert.match(sw, /"\/protected-corpus\.html"/);
 });
