@@ -1,6 +1,6 @@
 # Barbecue Technique Corpus — Roadmap Object V1
 
-Status: **PRODUCT PREREQUISITES SATISFIED / YT-CUL HOLD RECONCILIATION REQUIRED / OWNER-PRIORITY / NOT ACTIVE**
+Status: **BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY / OWNER-PRIORITY / BOUNDED IMPLEMENTATION NEXT / NOT YET LIVE**
 
 Date: 2026-09-22
 
@@ -21,13 +21,13 @@ Activation is earned only when all of the following are true:
 3. No higher-priority production/security/rights gate requires the YouTube child programme to remain paused.
 4. A fresh repository reconciliation confirms that the scheduled YouTube lane can be repurposed without overwriting another active child programme.
 
-As of 2026-09-24, the legal-corpus, usable-recommendation and Recipe Family sequencing prerequisites are satisfied. Activation is **not yet earned** because the existing `YT_CUL_5E_ADAPTIVE_DAILY_DISCOVERY` child programme is hard-held at `DAILY_SEARCH_HOLD_POLICY_OR_QUOTA` and must be resolved/reconciled before its scheduled lane can be repurposed. No live YouTube Search is authorized while that hold remains active.
+As of 2026-09-24, all four activation conditions are satisfied. PR #285 repaired the September 22 provider-rate-limit classification and pacing, **Validate public V0 run #1000** passed, and durable reconciliation now records the generic child programme as fail-closed at `DAILY_SEARCH_HOLD_RATE_LIMIT`. Fresh repository reconciliation found no competing active Culinary YouTube child programme, so the held lane can be safely repurposed without overwriting active work.
 
-When all four conditions are true, record:
+Recorded terminal:
 
 `BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY`
 
-That state authorizes a bounded implementation PR that switches the daily YouTube discovery focus to this barbecue programme. It does not itself authorize publication.
+This state authorizes a bounded implementation PR that switches the YouTube discovery focus to this barbecue programme. Generic YT-CUL Search remains unauthorized until that successor control plane is implemented and validated; activation readiness does not authorize publication.
 
 ## Scope — conventional barbecue only
 
@@ -168,9 +168,9 @@ The corpus must remain project-authored synthesis, not a reconstruction of any o
 
 ## Daily-run transition
 
-Before activation, the existing YT-CUL child programme keeps its current authority and schedule.
+Activation readiness is now earned. Until the bounded successor implementation merges, the existing generic YT-CUL child programme remains fail-closed and must make no live Search calls.
 
-After `BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY`:
+The successor implementation must:
 
 - repurpose the bounded daily Search budget to barbecue coverage only;
 - prioritize incomplete barbecue leaves and coverage gaps rather than generic recipe discovery;
