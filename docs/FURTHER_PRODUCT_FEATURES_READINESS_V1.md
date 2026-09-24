@@ -89,8 +89,12 @@ This gate does not authorize:
 - Barbecue workflow/state changes;
 - weakening any provenance, licensing, accessibility or performance boundary.
 
+## D3 progression
+
+The bounded design gate is now implemented and validated in PR #300. `D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT` is PASS with a six-recipe project-authored cohort and explicit media/provenance/accessibility/performance firewalls.
+
 ## Next executable action
 
-`D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT`
+`D3_RECIPE_IMAGES_P0_ASSET_PILOT`
 
-Define the bounded media schema, provenance/reuse states, fallback behavior, accessibility contract, performance budget and a small public-safe pilot cohort. No image asset is published merely because the contract exists.
+Create or obtain only P0-permitted project-controlled assets, build the deterministic registry, and prove browser accessibility/performance before any public image activation.

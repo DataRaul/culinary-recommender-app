@@ -21,12 +21,15 @@
     ],
     "currentPostBaselinePosition": "FURTHER_PRODUCT_FEATURES",
     "furtherProductFeatures": {
-      "status": "FURTHER_PRODUCT_FEATURES_READINESS_PASS",
+      "status": "D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT_PASS",
       "contract": "config/further_product_features_v1.json",
       "document": "docs/FURTHER_PRODUCT_FEATURES_READINESS_V1.md",
       "selectedNextDesignCandidate": "D3_RECIPE_IMAGES",
-      "nextGate": "D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT",
-      "publicRuntimeChangeAuthorized": false
+      "nextGate": "D3_RECIPE_IMAGES_P0_ASSET_PILOT",
+      "publicRuntimeChangeAuthorized": false,
+      "designContract": "config/recipe_images_p0.json",
+      "designDocument": "docs/RECIPE_IMAGES_P0_DESIGN_CONTRACT.md",
+      "validationRun": 1038
     }
   },
   "sourceAdmission": {
