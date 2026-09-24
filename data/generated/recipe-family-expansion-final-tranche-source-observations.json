@@ -1,0 +1,442 @@
+{
+  "schemaVersion": "CULINARY_RECIPE_FAMILY_EXPANSION_FINAL_TRANCHE_SOURCE_OBSERVATIONS_V1",
+  "generatedAt": "2026-09-24",
+  "policy": "config/recipe_family_synthesis_p0.json",
+  "scope": [
+    "basic_tomato_pasta_sauce",
+    "ragu_bolognese_family"
+  ],
+  "note": "Normalized factual observations only. No source prose, transcript, image, audio, or protected expressive text is retained. The final tranche reuses source classes already admitted in tranche 2 and does not widen public-display obligations.",
+  "observations": [
+    {
+      "observationId": "basic_tomato_pasta_sauce_lci_spaghetti_20260924",
+      "familyId": "basic_tomato_pasta_sauce",
+      "source": {
+        "publisher": "La Cucina Italiana",
+        "url": "https://www.lacucinaitaliana.com/recipe/pasta/spaghetti-with-tomato-sauce",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "lci-spaghetti-tomato-sauce-20260924",
+        "publisherLedgerKey": "la-cucina-italiana",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "NO_RELEVANT_RESTRICTION_FOUND",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "pasta",
+          "tomato",
+          "olive_oil",
+          "allium",
+          "basil",
+          "salt"
+        ],
+        "quantitative": [
+          {
+            "roleId": "tomato",
+            "lower": 222.222222,
+            "upper": 222.222222,
+            "basis": "TOMATO_MASS_PERCENT_OF_DRY_PASTA_MASS",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "cook_tomato_to_sauce",
+          "cook_pasta_al_dente",
+          "finish_pasta_with_tomato_sauce"
+        ],
+        "variantSignals": [
+          "garlic_aromatic"
+        ]
+      }
+    },
+    {
+      "observationId": "basic_tomato_pasta_sauce_lci_primer_20260924",
+      "familyId": "basic_tomato_pasta_sauce",
+      "source": {
+        "publisher": "La Cucina Italiana",
+        "url": "https://www.lacucinaitaliana.com/italian-food/hacks/tomato-pasta-answers-to-all-your-questions",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "lci-tomato-pasta-primer-20260924",
+        "publisherLedgerKey": "la-cucina-italiana",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "NO_RELEVANT_RESTRICTION_FOUND",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "pasta",
+          "tomato",
+          "olive_oil",
+          "allium",
+          "basil",
+          "salt"
+        ],
+        "quantitative": [
+          {
+            "roleId": "tomato",
+            "lower": 266.666667,
+            "upper": 266.666667,
+            "basis": "TOMATO_MASS_PERCENT_OF_DRY_PASTA_MASS",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "cook_tomato_to_sauce",
+          "cook_pasta_al_dente",
+          "finish_pasta_with_tomato_sauce"
+        ],
+        "variantSignals": [
+          "garlic_or_onion_aromatic",
+          "carrot_celery_optional"
+        ]
+      }
+    },
+    {
+      "observationId": "basic_tomato_pasta_sauce_giallozafferano_20260924",
+      "familyId": "basic_tomato_pasta_sauce",
+      "source": {
+        "publisher": "GialloZafferano",
+        "url": "https://www.giallozafferano.com/recipes/spaghetti-with-tomato-sauce.html",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "giallozafferano-spaghetti-tomato-sauce-20260924",
+        "publisherLedgerKey": "giallozafferano",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "NO_RELEVANT_RESTRICTION_FOUND",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "pasta",
+          "tomato",
+          "olive_oil",
+          "allium",
+          "basil",
+          "salt"
+        ],
+        "quantitative": [
+          {
+            "roleId": "tomato",
+            "lower": 250,
+            "upper": 250,
+            "basis": "TOMATO_MASS_PERCENT_OF_DRY_PASTA_MASS",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "cook_tomato_to_sauce",
+          "cook_pasta_al_dente",
+          "finish_pasta_with_tomato_sauce"
+        ],
+        "variantSignals": [
+          "garlic_aromatic",
+          "longer_tomato_reduction"
+        ]
+      }
+    },
+    {
+      "observationId": "basic_tomato_pasta_sauce_recipesfromitaly_20260924",
+      "familyId": "basic_tomato_pasta_sauce",
+      "source": {
+        "publisher": "Recipes from Italy",
+        "url": "https://www.recipesfromitaly.com/spaghetti-al-pomodoro/",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "recipesfromitaly-spaghetti-pomodoro-20260924",
+        "publisherLedgerKey": "recipes-from-italy",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "NO_RELEVANT_RESTRICTION_FOUND",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "pasta",
+          "tomato",
+          "olive_oil",
+          "allium",
+          "basil",
+          "salt"
+        ],
+        "quantitative": [
+          {
+            "roleId": "tomato",
+            "lower": 228.571429,
+            "upper": 228.571429,
+            "basis": "TOMATO_MASS_PERCENT_OF_DRY_PASTA_MASS",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "cook_tomato_to_sauce",
+          "cook_pasta_al_dente",
+          "finish_pasta_with_tomato_sauce"
+        ],
+        "variantSignals": [
+          "garlic_aromatic",
+          "food_mill_texture"
+        ]
+      }
+    },
+    {
+      "observationId": "ragu_bolognese_family_giallozafferano_20260924",
+      "familyId": "ragu_bolognese_family",
+      "source": {
+        "publisher": "GialloZafferano",
+        "url": "https://www.giallozafferano.com/recipes/Ragu-alla-bolognese.html",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "giallozafferano-ragu-bolognese-20260924",
+        "publisherLedgerKey": "giallozafferano",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "NO_RELEVANT_RESTRICTION_FOUND",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "beef",
+          "pancetta",
+          "onion",
+          "carrot",
+          "celery",
+          "tomato",
+          "wine",
+          "broth",
+          "olive_oil"
+        ],
+        "quantitative": [
+          {
+            "roleId": "tomato",
+            "lower": 100,
+            "upper": 100,
+            "basis": "TOMATO_PUREE_MASS_PERCENT_OF_BEEF_MASS",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "render_pancetta",
+          "soften_soffritto",
+          "brown_beef",
+          "deglaze_with_wine",
+          "slow_simmer_ragu"
+        ],
+        "variantSignals": [
+          "red_wine",
+          "broth_adjustment"
+        ]
+      }
+    },
+    {
+      "observationId": "ragu_bolognese_family_lci_abcs_20260924",
+      "familyId": "ragu_bolognese_family",
+      "source": {
+        "publisher": "La Cucina Italiana",
+        "url": "https://www.lacucinaitaliana.com/italian-food/how-to-cook/traditional-ragu",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "lci-traditional-ragu-abcs-20260924",
+        "publisherLedgerKey": "la-cucina-italiana",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "NO_RELEVANT_RESTRICTION_FOUND",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "beef",
+          "pancetta",
+          "onion",
+          "carrot",
+          "celery",
+          "tomato",
+          "wine",
+          "broth",
+          "milk"
+        ],
+        "quantitative": [
+          {
+            "roleId": "tomato",
+            "lower": 100,
+            "upper": 100,
+            "basis": "TOMATO_PUREE_MASS_PERCENT_OF_BEEF_MASS",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "render_pancetta",
+          "soften_soffritto",
+          "brown_beef",
+          "deglaze_with_wine",
+          "slow_simmer_ragu"
+        ],
+        "variantSignals": [
+          "white_wine",
+          "milk_finish"
+        ]
+      }
+    },
+    {
+      "observationId": "ragu_bolognese_family_lci_pro_tips_20260924",
+      "familyId": "ragu_bolognese_family",
+      "source": {
+        "publisher": "La Cucina Italiana",
+        "url": "https://www.lacucinaitaliana.com/italian-food/how-to-cook/ragu-bolognese-basic-recipe-tips-secrets",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "lci-ragu-bolognese-pro-tips-20260924",
+        "publisherLedgerKey": "la-cucina-italiana",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "NO_RELEVANT_RESTRICTION_FOUND",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "beef",
+          "pancetta",
+          "onion",
+          "carrot",
+          "celery",
+          "tomato",
+          "wine",
+          "broth",
+          "milk",
+          "olive_oil"
+        ],
+        "quantitative": [
+          {
+            "roleId": "tomato",
+            "lower": 36.363636,
+            "upper": 36.363636,
+            "basis": "TOMATO_PUREE_MASS_PERCENT_OF_BEEF_MASS",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "render_pancetta",
+          "soften_soffritto",
+          "brown_beef",
+          "deglaze_with_wine",
+          "slow_simmer_ragu"
+        ],
+        "variantSignals": [
+          "white_wine",
+          "milk_finish",
+          "lower_tomato_ratio"
+        ]
+      }
+    },
+    {
+      "observationId": "ragu_bolognese_family_recipesfromitaly_20260924",
+      "familyId": "ragu_bolognese_family",
+      "source": {
+        "publisher": "Recipes from Italy",
+        "url": "https://www.recipesfromitaly.com/bolognese-sauce-recipe/",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "recipesfromitaly-bolognese-sauce-20260924",
+        "publisherLedgerKey": "recipes-from-italy",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "NO_RELEVANT_RESTRICTION_FOUND",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "beef",
+          "pancetta",
+          "onion",
+          "carrot",
+          "celery",
+          "tomato",
+          "wine",
+          "broth",
+          "milk",
+          "olive_oil"
+        ],
+        "quantitative": [
+          {
+            "roleId": "tomato",
+            "lower": 100,
+            "upper": 100,
+            "basis": "TOMATO_PUREE_MASS_PERCENT_OF_BEEF_MASS",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "render_pancetta",
+          "soften_soffritto",
+          "brown_beef",
+          "deglaze_with_wine",
+          "slow_simmer_ragu"
+        ],
+        "variantSignals": [
+          "white_wine",
+          "milk_finish"
+        ]
+      }
+    }
+  ]
+}
