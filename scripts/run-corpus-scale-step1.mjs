@@ -14,13 +14,19 @@ export const STEP1_BASELINES = Object.freeze({
   historicalGoldenOracle: Object.freeze({
     sourceMainSha: "8625cbb6457442229aa1dedee67d94c9a0727d7a",
     expectedRecipeCount: 84,
-    expectedFingerprint: null,
+    expectedFingerprint: Object.freeze({
+      idsSha256: "062105fae761ce06357fdd2b068ed41c89590b9b89d984fbbe3ebb76d1b1407a",
+      recordsSha256: "4b876f65ca0aa2ab6db3c2e4f1ca6c0af9e91f03e3923dfd3bfd9da2bcfe2f41"
+    }),
     scope: "ALL_RECIPES = frozen 84-record historical behavioral oracle"
   }),
   currentBenchmarkSeed: Object.freeze({
     sourceMainSha: "ca6a1129e52b45cac3b39f61402c7466f71d6761",
     expectedRecipeCount: 85,
-    expectedFingerprint: null,
+    expectedFingerprint: Object.freeze({
+      idsSha256: "fbd3e7121f741db2f637fcea917d07ad410c189a0d6c2f1394c23f83ed5bc025",
+      recordsSha256: "d866a89b0182d15707a9377ff827af4f235b87d1e324e4e37298e85626ffe1c5"
+    }),
     scope: "PUBLIC_RUNTIME_RECIPES = current 85-record public runtime benchmark seed"
   })
 });
