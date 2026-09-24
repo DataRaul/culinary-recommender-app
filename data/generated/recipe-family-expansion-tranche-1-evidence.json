@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_RECIPE_FAMILY_EXPANSION_TRANCHE_1_EVIDENCE_V1",
   "date": "2026-09-24",
-  "state": "IMPLEMENTED_PR_VALIDATION_PENDING",
+  "state": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_TRANCHE_1_PASS",
   "targetGate": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC",
   "tranche": 1,
   "sourceObservationFile": "data/generated/recipe-family-expansion-tranche-1-source-observations.json",
@@ -123,5 +123,18 @@
     "hummus"
   ],
   "publicActivationAuthorized": false,
-  "nextOnGreenValidation": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_TRANCHE_2_NONPUBLIC"
+  "nextOnGreenValidation": "COMPLETED__RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_TRANCHE_2_NONPUBLIC_NEXT",
+  "validatedBy": {
+    "pr": 279,
+    "mergeSha": "47d47d3e31fb939f3fd5afc9eca2bbaf87b6cdc9",
+    "recipeFamilyWorkflow": {
+      "runNumber": 13,
+      "conclusion": "success"
+    },
+    "fullPublicValidation": {
+      "runNumber": 991,
+      "conclusion": "success"
+    },
+    "terminal": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_TRANCHE_1_PASS"
+  }
 }
