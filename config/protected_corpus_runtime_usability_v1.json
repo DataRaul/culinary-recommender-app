@@ -123,9 +123,9 @@
       "document": "docs/PROTECTED_CORPUS_P1_PRIVATE_BROWSE_SEARCH_V1.md",
       "page": "protected-corpus.html",
       "api": "/api/protected-corpus/v1",
-      "liveOwnerCanary": "PENDING_POST_MERGE_DEPLOY",
-      "validationRun": 1088,
-      "validationRunId": 36061685454
+      "liveOwnerCanary": "PENDING_AUTHENTICATED_OWNER_VERIFICATION",
+      "validationRun": 1093,
+      "validationRunId": 36070083309
     },
     {
       "id": "P2_METADATA_USABILITY_MEASUREMENT",

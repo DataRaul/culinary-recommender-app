@@ -64,10 +64,10 @@
   "validation": {
     "deterministic": "PASS",
     "browser": "PASS",
-    "liveOwnerCanary": "PENDING_POST_MERGE_DEPLOY",
+    "liveOwnerCanary": "PENDING_AUTHENTICATED_OWNER_VERIFICATION",
     "exactIndexCount": null,
     "exactStructuralPartialCount": null,
-    "validationRun": 1088,
-    "validationRunId": 36061685454
+    "validationRun": 1093,
+    "validationRunId": 36070083309
   }
 }
