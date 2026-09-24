@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE_V1",
   "date": "2026-09-24",
-  "state": "BUILT_VALIDATION_PENDING",
+  "state": "PASS__BEHAVIOR_DEFERRED",
   "sourceDesignContract": "config/fitness_integration_p0.json",
   "sourceRepository": "DataRaul/Mobile-first-workout-recommendation-app",
   "sourceMainSha": "3fd69badda5269021728e5a5d1681aac98d17147",
@@ -70,6 +70,14 @@
   },
   "postPrototypeDisposition": "DEFER_BEHAVIOR_WORK",
   "successorPrincipalLane": "PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
-  "validationRun": null,
-  "validationRunId": null
+  "validationRun": 1080,
+  "validationRunId": 36059408517,
+  "validationEvidence": {
+    "deterministicSuite": "PASS",
+    "browserAcceptance": "PASS",
+    "sensitiveFieldBoundary": "PASS",
+    "previewBeforePersistence": "PASS",
+    "culinaryProfileUnchanged": "PASS",
+    "offlineShellModuleCache": "PASS"
+  }
 }
