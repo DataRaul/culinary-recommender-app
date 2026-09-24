@@ -85,7 +85,7 @@
     {
       "id": "D5",
       "name": "Fitness Integration",
-      "state": "P0_ADAPTER_DESIGN_CONTRACT_BUILT_VALIDATION_PENDING",
+      "state": "P0_ADAPTER_DESIGN_CONTRACT_PASS",
       "reason": "EXISTING_USER_PERMISSION_GATED_PORTABLE_BACKUP_SUPPORTS_A_MINIMUM_DATA_ONE_WAY_DESIGN_WITHOUT_CROSS_APP_RUNTIME_COUPLING",
       "runtimeActivationAuthorized": false,
       "adapterBoundary": {
@@ -107,7 +107,9 @@
         "individualizedMacroOrSupplementPrescriptionAuthorized": false
       },
       "designContract": "config/fitness_integration_p0.json",
-      "designDocument": "docs/FITNESS_INTEGRATION_P0_DESIGN_CONTRACT.md"
+      "designDocument": "docs/FITNESS_INTEGRATION_P0_DESIGN_CONTRACT.md",
+      "designValidationRun": 1063,
+      "designValidationRunId": 36028970545
     },
     {
       "id": "D6",
@@ -129,12 +131,12 @@
     "knowledgeCoreWriteAuthorized": false,
     "barbecueMutationAuthorized": false
   },
-  "nextGate": "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN_VALIDATION",
+  "nextGate": "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE",
   "reassessment": {
     "terminal": "FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3_PASS",
     "date": "2026-09-24",
     "document": "docs/FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3.md",
-    "decision": "D5_P0_ADAPTER_DESIGN_CONTRACT_BUILT_VALIDATION_PENDING",
+    "decision": "D5_P0_ADAPTER_DESIGN_CONTRACT_PASS",
     "publicRuntimeActivationAuthorized": false
   }
 }
