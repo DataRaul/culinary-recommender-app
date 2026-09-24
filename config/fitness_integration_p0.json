@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "CULINARY_FITNESS_INTEGRATION_P0_DESIGN_V1",
+  "date": "2026-09-24",
+  "state": "P0_ADAPTER_DESIGN_CONTRACT",
+  "entryTerminal": "FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3_PASS",
+  "capabilityId": "D5",
+  "sourceContract": {
+    "repository": "DataRaul/Mobile-first-workout-recommendation-app",
+    "pinnedMainSha": "3fd69badda5269021728e5a5d1681aac98d17147",
+    "portableBackupFileName": "workout-recommender-backup.json",
+    "acceptedBackupSchemaVersions": [
+      2,
+      3
+    ],
+    "preferredBackupSchemaVersion": 3,
+    "inputMode": "USER_SELECTED_LOCAL_FILE_ONLY",
+    "automaticFolderReadAllowed": false,
+    "crossAppLocalStorageReadAllowed": false,
+    "cloudSyncAllowed": false,
+    "sourceAppMutationAllowed": false,
+    "automaticRefreshAllowed": false
+  },
+  "fieldContract": {
+    "allowedSourceFields": [
+      "schemaVersion",
+      "profile.goal",
+      "profile.daysPerWeek",
+      "profile.sessionMinutes",
+      "profile.trainingWeekdays"
+    ],
+    "outputFields": [
+      "sourceBackupSchemaVersion",
+      "trainingGoal",
+      "plannedTrainingDaysPerWeek",
+      "plannedSessionMinutes",
+      "preferredTrainingWeekdays"
+    ],
+    "allowedTrainingGoals": [
+      "strength",
+      "hypertrophy",
+      "power",
+      "endurance",
+      "general",
+      "conditioning",
+      "mobility"
+    ],
+    "allowedDaysPerWeek": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "allowedSessionMinutes": [
+      30,
+      45,
+      60,
+      75
+    ],
+    "weekdayValues": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "requiredProfileFields": [
+      "goal",
+      "daysPerWeek",
+      "sessionMinutes"
+    ],
+    "trainingWeekdaysOptional": true
+  },
+  "minimization": {
+    "rawBackupPersistenceAllowed": false,
+    "sourceBackupHashPersistenceAllowed": false,
+    "sourceNameAllowed": false,
+    "sourceConstraintsAllowed": false,
+    "sourceLevelAllowed": false,
+    "sourceEquipmentAllowed": false,
+    "sourceFavoritesAllowed": false,
+    "sourceWorkoutStructureAllowed": false,
+    "sourceProgrammeDetailsAllowed": false,
+    "sourceActiveSessionAllowed": false,
+    "sourceHistoryAllowed": false,
+    "sourceSetLoadRepsRirAllowed": false,
+    "sourceGymStateAllowed": false,
+    "sourceReadinessCheckAllowed": false,
+    "sourcePreferenceDetailsAllowed": false,
+    "unknownFieldsIgnoredNotPersisted": true,
+    "explicitPreviewBeforeAnyFuturePersistenceRequired": true
+  },
+  "behaviorFirewalls": {
+    "rankingAuthority": false,
+    "recipeEligibilityAuthority": false,
+    "dietaryAllergenAuthority": false,
+    "nutritionAuthority": false,
+    "calorieBurnEstimationAuthority": false,
+    "tdeeEstimationAuthority": false,
+    "individualizedMacroPrescriptionAuthority": false,
+    "supplementPrescriptionAuthority": false,
+    "medicalOrInjuryInferenceAuthority": false,
+    "protectedCorpusAuthority": false,
+    "publicRecipeAdmissionAuthority": false
+  },
+  "failureContract": {
+    "invalidJson": "REJECT_FAIL_CLOSED",
+    "unsupportedSchema": "REJECT_FAIL_CLOSED",
+    "missingProfile": "REJECT_FAIL_CLOSED",
+    "invalidAllowlistedField": "REJECT_FAIL_CLOSED",
+    "sensitiveOnlyData": "NO_CONTEXT_EXTRACTED",
+    "sourceAppUnavailable": "NO_EFFECT_ON_CULINARY_APP"
+  },
+  "authority": {
+    "designContractAuthorized": true,
+    "adapterPrototypeAuthorized": false,
+    "publicRuntimeActivationAuthorized": false,
+    "culinaryBehaviorChangeAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "thirdD1ShardAuthorized": false,
+    "paidInfrastructureAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "workoutRepositoryWriteAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextGate": "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE"
+}

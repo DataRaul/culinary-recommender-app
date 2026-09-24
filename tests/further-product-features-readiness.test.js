@@ -18,9 +18,9 @@ test("post-D3 reassessment selects D5 bounded adapter design without runtime aut
   assert.equal(summary.terminal, "FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3_PASS");
   assert.equal(summary.selectedNextDesignCandidate, "D5");
   assert.equal(summary.selectedName, "Fitness Integration");
-  assert.equal(summary.selectedState, "READY_FOR_BOUNDED_ADAPTER_DESIGN");
+  assert.equal(summary.selectedState, "P0_ADAPTER_DESIGN_CONTRACT_PASS");
   assert.equal(summary.runtimeActivationAuthorized, false);
-  assert.equal(summary.nextGate, "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN");
+  assert.equal(summary.nextGate, "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE");
 });
 
 test("D1 remains fail-closed while vitamin/mineral schema is unavailable", () => {
@@ -71,7 +71,7 @@ test("readiness audit may authorize bounded design only, never product/runtime w
 });
 
 
-test("D5 remains one-way, user-permission-gated and non-medical", () => {
+test("D5 adapter-design progression remains one-way, user-permission-gated and non-medical", () => {
   for (const key of [
     "automaticFolderReadAuthorized",
     "crossAppLocalStorageReadAuthorized",

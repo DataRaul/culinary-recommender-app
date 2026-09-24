@@ -132,3 +132,12 @@ The verified workout source baseline is `DataRaul/Mobile-first-workout-recommend
 Next executable action:
 
 `D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN`
+
+
+## D5 P0 adapter-design progression
+
+The bounded D5 design contract is now built in `config/fitness_integration_p0.json` and `docs/FITNESS_INTEGRATION_P0_DESIGN_CONTRACT.md`.
+
+Current state: `P0_ADAPTER_DESIGN_CONTRACT_PASS` after Validate public V0 run **#1063 / 36028970545** succeeded.
+
+The exact allowlist is limited to workout backup schema version plus profile goal, days/week, session minutes and preferred weekdays. Name, pain/injury constraints, level, equipment, programme/session/history/set data, gym state and readiness data remain excluded. No runtime activation or culinary behavior authority is granted.
