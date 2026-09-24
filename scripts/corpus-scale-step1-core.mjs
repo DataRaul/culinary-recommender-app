@@ -354,7 +354,6 @@ export function validateSyntheticCatalogue(catalogue, options = {}) {
   if (catalogue.ids.length !== catalogue.targetSize) throw new Error("id count mismatch");
 
   const seen = new Set();
-  const expectedIndexes = new Map();
   const digest = createHash("sha256");
   for (let ordinal = 0; ordinal < catalogue.targetSize; ordinal += 1) {
     const body = catalogue.objectBodies[ordinal];
@@ -372,9 +371,6 @@ export function validateSyntheticCatalogue(catalogue, options = {}) {
     for (const key of indexKeysForRecipe(recipe)) {
       const postings = catalogue.indexes.get(key);
       if (!postings || !includesSorted(postings, ordinal)) throw new Error(`index ${key} missing ordinal ${ordinal}`);
-      const expected = expectedIndexes.get(key) || [];
-      expected.push(ordinal);
-      expectedIndexes.set(key, expected);
     }
     digest.update(body);
     digest.update("\n");
@@ -382,21 +378,18 @@ export function validateSyntheticCatalogue(catalogue, options = {}) {
   }
 
   const actualKeys = [...catalogue.indexes.keys()].sort();
-  const expectedKeys = [...expectedIndexes.keys()].sort();
-  if (actualKeys.length !== expectedKeys.length || actualKeys.some((key, index) => key !== expectedKeys[index])) {
-    throw new Error("index key set does not exactly match recipe-derived expectations");
-  }
-
   for (const key of actualKeys) {
     const postings = catalogue.indexes.get(key);
-    const expected = expectedIndexes.get(key);
-    if (postings.length !== expected.length) throw new Error(`posting length mismatch for ${key}`);
+    if (!postings.length) throw new Error(`empty posting list for ${key}`);
     let previous = -1;
     for (let index = 0; index < postings.length; index += 1) {
       const ordinal = postings[index];
       if (!Number.isInteger(ordinal) || ordinal < 0 || ordinal >= catalogue.targetSize) throw new Error(`invalid ordinal in ${key}`);
       if (ordinal <= previous) throw new Error(`posting list not strictly ordered for ${key}`);
-      if (ordinal !== expected[index]) throw new Error(`unexpected posting membership for ${key} at position ${index}`);
+      const recipe = JSON.parse(catalogue.objectBodies[ordinal]);
+      if (!indexKeysForRecipe(recipe).includes(key)) {
+        throw new Error(`unexpected posting membership for ${key} at ordinal ${ordinal}`);
+      }
       previous = ordinal;
     }
     digest.update(key);
