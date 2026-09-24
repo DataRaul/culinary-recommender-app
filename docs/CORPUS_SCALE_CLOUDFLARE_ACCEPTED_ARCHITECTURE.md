@@ -214,21 +214,19 @@ The original sequence remains valid, with these clarifications:
 7. **Production-shaped real-source pilot.** Provision Cloudflare only when infrastructure proof is ready; configure exact-email Access allowlist; use B (~928 Spanish public-domain candidate records) only after rights audit. This is the first new large real-source runtime pilot.
 8. **Measured population/readiness gate.** Scale B -> C -> D -> verified E cohorts only as rights, quality, retrieval, cost and behavior pass.
 
-## 11. Next executable action / continuation contract
+## 11. Current continuation contract
 
-**STEP 1 V2: COMPLETE / PASS / PR #291 MERGED.**
+The original R2-first architecture in this document is retained as design lineage, but later no-billing-authorization and live D1 evidence supersede it for current production storage/auth decisions. See `docs/CORPUS_SCALE_NO_BILLING_AUTH_170K_ARCHITECTURE.md` and `docs/CORPUS_SCALE_CURRENT_STATE_RECONCILIATION_2026-09-24.md`.
 
-The hardened Step-1 evidence preserves the R2-first/pre-built-index architecture hypothesis: at 100k synthetic records, build/validation, memory, transfer, bounded retrieval and ranking remain inside the frozen budgets. This result does not itself provision or authorize production infrastructure.
+The 2026-09-24 independent scale continuation has now fresh-reconciled Steps 1–6:
 
-Because Steps 2–7 already exist historically in this repository, continuation must not recreate them blindly. The next independent scale-development action is:
+1. Step 1 V2 — PASS / PR #291;
+2. Step 2 current-runtime RecipeSource parity — PASS / PR #294;
+3. Step 3 current-runtime portable layout — PASS / PR #295;
+4. Step 4 current-runtime 1k → 100k indexed retrieval — PASS / PR #296 / D1 not earned by corpus-size benchmark alone;
+5. Step 5 existing source-neutral control plane — revalidated / PASS / PR #297;
+6. Step 6 current-85 incremental validation with historical-84 golden retention — PASS / PR #297.
 
-1. fresh-reconcile `main`, open PRs and concurrent scheduled child programmes;
-2. treat PR #291 merge `200680b90b1ad887e9796fe255a09102e61b9293` as the Step-1 V2 closeout baseline;
-3. treat the immutable 84-record `ALL_RECIPES` corpus as the historical behavioral oracle and the explicitly fingerprinted 85-record `PUBLIC_RUNTIME_RECIPES` corpus as the current scale seed;
-4. reconcile existing Step-2 RecipeSource V2 compatibility evidence against the hardened Step-1 contract/current seed, then proceed through later existing scale artifacts only where fresh evidence shows a real compatibility gap;
-5. preserve D1 as benchmark-gated rather than inferred from corpus size;
-6. make no real mass recipe ingestion, public behavior change, protected D1 mutation, paid service, weakening of licensing/provenance/nutrition rules, private Knowledge Core runtime dependency, or Barbecue mutation;
-7. keep the scheduled Barbecue programme independent; its workflow/state/quota are not inputs to the scale benchmark;
-8. before every material write or merge, fresh-reconcile GitHub state.
+Historical Steps 7/8 are already materially ahead of this original design: the later no-billing D1 architecture passed 170k required / 250k stress proof, live auth/security canaries passed, Step 8F activated exactly one reviewed public record, and protected Step 8G reached v8018 / 19,268 recipes on exactly two D1 recipe-body shards before earning `LEGAL_CORPUS_BASELINE_PASS`.
 
-The accepted Cloudflare target architecture and invitation-only exact-email access policy remain unchanged. Cloudflare account/project/domain/Access provisioning remains a later human/setup gate only when the production-shaped provisioning step is actually re-entered.
+Therefore continuation must **not** replay provisioning or protected population merely to satisfy this older eight-step document. The scale foundation is current-state reconciled; future work should reopen it only when a new product/runtime change exposes a measured compatibility gap. The scheduled Barbecue programme remains independent and unchanged.
