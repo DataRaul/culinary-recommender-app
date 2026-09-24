@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Private protected corpus</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+    body { margin: 0; background: Canvas; color: CanvasText; }
+    main { max-width: 62rem; margin: 0 auto; padding: 1rem; }
+    header { display:flex; gap:.75rem; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; }
+    h1 { margin:.25rem 0; font-size:clamp(1.6rem,5vw,2.4rem); }
+    h2 { margin:.25rem 0 .65rem; }
+    p { line-height:1.5; }
+    .muted { opacity:.72; font-size:.92rem; }
+    .panel { border:1px solid color-mix(in srgb, CanvasText 22%, transparent); border-radius:1rem; padding:1rem; margin:1rem 0; }
+    .row { display:flex; gap:.65rem; flex-wrap:wrap; align-items:center; }
+    input[type=search] { flex:1 1 16rem; min-width:0; padding:.8rem; border-radius:.65rem; border:1px solid color-mix(in srgb, CanvasText 28%, transparent); font:inherit; }
+    button,.button { padding:.72rem 1rem; border-radius:.65rem; border:1px solid color-mix(in srgb, CanvasText 30%, transparent); background:ButtonFace; color:ButtonText; font:inherit; cursor:pointer; text-decoration:none; }
+    button.primary { font-weight:700; }
+    button:disabled { opacity:.5; cursor:not-allowed; }
+    #results { display:grid; gap:.7rem; }
+    .recipe { width:100%; text-align:left; padding:.9rem; border-radius:.8rem; border:1px solid color-mix(in srgb, CanvasText 18%, transparent); background:transparent; color:inherit; }
+    .recipe strong { display:block; font-size:1.03rem; }
+    .recipe span { display:block; margin-top:.25rem; opacity:.72; font-size:.9rem; }
+    #detail[hidden],#prepareProgress[hidden] { display:none; }
+    ol { padding-left:1.35rem; }
+    li { margin:.4rem 0; line-height:1.45; }
+    .source { overflow-wrap:anywhere; }
+    .status-good { font-weight:700; }
+    @media (max-width: 540px) {
+      main { padding:.75rem; }
+      .panel { padding:.85rem; border-radius:.8rem; }
+      .row > button,.row > .button { flex:1 1 auto; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <p class="muted">Owner-only canary · v8018</p>
+      <h1>Protected recipe corpus</h1>
+      <p class="muted">Private browse/search over 19,268 protected recipes. This surface does not admit recipes into public or recommendation runtime.</p>
+    </div>
+    <a class="button" href="/auth-canary.html">Auth controls</a>
+  </header>
+
+  <section class="panel" aria-labelledby="statusHeading">
+    <h2 id="statusHeading">Private index</h2>
+    <p id="status" aria-live="polite">Checking authenticated access…</p>
+    <div class="row">
+      <button id="prepare" type="button" hidden>Prepare / resume private index</button>
+      <button id="refresh" type="button">Refresh status</button>
+    </div>
+    <p id="prepareProgress" class="muted" hidden aria-live="polite"></p>
+  </section>
+
+  <section class="panel" aria-labelledby="browseHeading">
+    <h2 id="browseHeading">Browse and search</h2>
+    <form id="searchForm" class="row">
+      <input id="query" type="search" maxlength="80" placeholder="Search recipe titles or source…" aria-label="Search protected recipes">
+      <button class="primary" type="submit">Search</button>
+      <button id="clearSearch" type="button">Browse all</button>
+    </form>
+    <p id="resultStatus" class="muted" aria-live="polite"></p>
+    <div id="results"></div>
+    <div class="row" style="margin-top:.8rem"><button id="more" type="button" hidden>Load more</button></div>
+  </section>
+
+  <section id="detail" class="panel" hidden aria-labelledby="detailTitle">
+    <div class="row" style="justify-content:space-between">
+      <h2 id="detailTitle">Recipe</h2>
+      <button id="closeDetail" type="button">Close</button>
+    </div>
+    <div id="detailBody"></div>
+  </section>
+</main>
+<script>
+  const API = '/api/protected-corpus/v1';
+  const statusNode = document.getElementById('status');
+  const prepareButton = document.getElementById('prepare');
+  const progressNode = document.getElementById('prepareProgress');
+  const resultsNode = document.getElementById('results');
+  const resultStatus = document.getElementById('resultStatus');
+  const moreButton = document.getElementById('more');
+  const queryInput = document.getElementById('query');
+  const detailPanel = document.getElementById('detail');
+  const detailTitle = document.getElementById('detailTitle');
+  const detailBody = document.getElementById('detailBody');
+  let mode = 'browse';
+  let cursor = '';
+  let currentQuery = '';
+  let indexStatus = null;
+
+  const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const sourceLine = item => [item.sourceWork,item.sourceAuthor,item.sourceYear].filter(Boolean).join(' · ') || item.sourceCohortId || 'Source recorded';
+
+  async function readJson(response) {
+    const body = await response.json().catch(() => ({ error:'NON_JSON_RESPONSE' }));
+    return { httpStatus: response.status, ...body };
+  }
+
+  async function apiGet(params) {
+    const url = new URL(API, location.origin);
+    Object.entries(params).forEach(([key,value]) => { if (value !== '' && value != null) url.searchParams.set(key, value); });
+    return readJson(await fetch(url, { cache:'no-store', credentials:'same-origin' }));
+  }
+
+  async function apiPost(body) {
+    return readJson(await fetch(API, {
+      method:'POST',
+      credentials:'same-origin',
+      headers:{'content-type':'application/json'},
+      body:JSON.stringify(body)
+    }));
+  }
+
+  function showAuthRequired() {
+    statusNode.innerHTML = 'Authenticated access is required. <a href="/auth-canary.html">Sign in or check the private session</a>, then return here.';
+    prepareButton.hidden = true;
+    resultsNode.innerHTML = '';
+    resultStatus.textContent = 'No protected query was sent before authentication.';
+  }
+
+  async function refreshStatus() {
+    const auth = await readJson(await fetch('/api/auth/session', { cache:'no-store', credentials:'same-origin' }));
+    if (auth.httpStatus !== 200 || auth.authenticated !== true) { showAuthRequired(); return false; }
+    const result = await apiGet({ action:'status' });
+    if (result.httpStatus === 409 && result.error === 'INDEX_NOT_INITIALIZED') {
+      indexStatus = null;
+      statusNode.textContent = 'Authenticated. Private search index is not initialized yet.';
+      prepareButton.hidden = false;
+      prepareButton.textContent = 'Prepare private index';
+      return true;
+    }
+    if (!result.ok) {
+      statusNode.textContent = 'Authenticated, but private index status failed: ' + (result.error || result.reason || 'unknown error');
+      prepareButton.hidden = false;
+      return true;
+    }
+    indexStatus = result;
+    statusNode.innerHTML = result.ready
+      ? '<span class="status-good">Ready:</span> ' + result.indexedRecipeCount.toLocaleString() + ' / ' + result.expectedRecipeCount.toLocaleString() + ' recipes indexed; ' + result.structuralPartialCount + ' partial structural records.'
+      : 'Authenticated. Indexed ' + result.indexedRecipeCount.toLocaleString() + ' / ' + result.expectedRecipeCount.toLocaleString() + ' recipes.';
+    prepareButton.hidden = result.ready === true;
+    prepareButton.textContent = result.indexedRecipeCount ? 'Resume private index' : 'Prepare private index';
+    if (result.ready) await loadResults(true);
+    return true;
+  }
+
+  async function prepareIndex() {
+    prepareButton.disabled = true;
+    progressNode.hidden = false;
+    try {
+      let status = await apiGet({ action:'status' });
+      if (status.httpStatus === 409 && status.error === 'INDEX_NOT_INITIALIZED') {
+        const initialized = await apiPost({ action:'initialize-index' });
+        if (!initialized.ok) throw new Error(initialized.error || initialized.reason || 'Index initialization failed');
+        status = await apiGet({ action:'status' });
+      }
+      if (!status.ok) throw new Error(status.error || status.reason || 'Index status failed');
+      let next = status.lastIndexedRecipeId || '';
+      let indexed = Number(status.indexedRecipeCount || 0);
+      while (indexed < Number(status.expectedRecipeCount || 19268)) {
+        const batch = await apiPost({ action:'index-batch', cursor:next });
+        if (!batch.ok) throw new Error(batch.error || batch.reason || 'Index batch failed');
+        if (batch.metrics?.d1Subqueries > 8) throw new Error('D1 target budget exceeded');
+        if (batch.indexedCount === 0 && batch.done !== true) throw new Error('Index made no progress');
+        next = batch.nextCursor || next;
+        indexed += Number(batch.indexedCount || 0);
+        progressNode.textContent = 'Preparing private index: ' + Math.min(indexed,19268).toLocaleString() + ' / 19,268';
+        if (batch.done) break;
+      }
+      await refreshStatus();
+    } catch (error) {
+      progressNode.textContent = 'Stopped safely: ' + error.message + '. Re-running resumes from the last committed recipe.';
+    } finally {
+      prepareButton.disabled = false;
+    }
+  }
+
+  function appendResults(items, replace) {
+    if (replace) resultsNode.innerHTML = '';
+    for (const item of items) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'recipe';
+      button.dataset.recipeId = item.recipeId;
+      button.innerHTML = '<strong>' + escapeHtml(item.title) + '</strong><span>' + escapeHtml(sourceLine(item)) + ' · ' + escapeHtml(item.structuralState) + '</span>';
+      button.addEventListener('click', () => openDetail(item.recipeId));
+      resultsNode.appendChild(button);
+    }
+  }
+
+  async function loadResults(replace = false) {
+    if (!indexStatus?.ready) {
+      resultStatus.textContent = 'Private index must be ready before browsing.';
+      return;
+    }
+    if (replace) cursor = '';
+    const params = mode === 'search'
+      ? { action:'search', q:currentQuery, cursor, limit:24 }
+      : { action:'browse', cursor, limit:24 };
+    const result = await apiGet(params);
+    if (!result.ok) {
+      resultStatus.textContent = result.error || result.reason || 'Query failed.';
+      return;
+    }
+    appendResults(result.items || [], replace);
+    cursor = result.nextCursor || '';
+    moreButton.hidden = !result.nextCursor;
+    resultStatus.textContent = mode === 'search'
+      ? ((result.items || []).length + ' result(s) in this page for “' + currentQuery + '”.')
+      : ((result.items || []).length + ' recipe(s) in this page.');
+  }
+
+  async function openDetail(recipeId) {
+    const result = await apiGet({ action:'detail', recipeId });
+    if (!result.ok || !result.item) {
+      resultStatus.textContent = result.error || result.reason || 'Recipe detail failed.';
+      return;
+    }
+    const item = result.item;
+    detailTitle.textContent = item.title;
+    const ingredients = (item.ingredients || []).map(value => '<li>' + escapeHtml(value) + '</li>').join('');
+    const directions = (item.directions || []).map(value => '<li>' + escapeHtml(value) + '</li>').join('');
+    const sourceUrl = item.sourceUrl ? '<p class="source"><a href="' + escapeHtml(item.sourceUrl) + '" rel="noreferrer">Open source/provenance</a></p>' : '';
+    detailBody.innerHTML =
+      '<p><strong>Source:</strong> ' + escapeHtml(sourceLine(item)) + '</p>' +
+      '<p class="muted">Protected browse only · recommendation authority: not granted · structural state: ' + escapeHtml(item.structuralState) + '</p>' +
+      sourceUrl +
+      '<h3>Ingredients</h3>' + (ingredients ? '<ul>' + ingredients + '</ul>' : '<p>Structure unavailable for this source record.</p>') +
+      '<h3>Directions</h3>' + (directions ? '<ol>' + directions + '</ol>' : '<p>Structure unavailable for this source record.</p>');
+    detailPanel.hidden = false;
+    detailPanel.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  document.getElementById('refresh').addEventListener('click', refreshStatus);
+  prepareButton.addEventListener('click', prepareIndex);
+  moreButton.addEventListener('click', () => loadResults(false));
+  document.getElementById('searchForm').addEventListener('submit', event => {
+    event.preventDefault();
+    const query = queryInput.value.trim();
+    if (!query) return;
+    mode = 'search'; currentQuery = query; loadResults(true);
+  });
+  document.getElementById('clearSearch').addEventListener('click', () => {
+    queryInput.value = ''; currentQuery = ''; mode = 'browse'; loadResults(true);
+  });
+  document.getElementById('closeDetail').addEventListener('click', () => { detailPanel.hidden = true; });
+
+  refreshStatus().catch(() => { statusNode.textContent = 'Private status request failed safely.'; });
+</script>
+</body>
+</html>
