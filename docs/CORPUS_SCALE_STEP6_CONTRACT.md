@@ -1,6 +1,6 @@
 # Corpus Scale / 100k Readiness — Step 6 Incremental Large-Corpus Validation
 
-Status: **CURRENT 85-SEED RECONCILIATION BUILT / FULL REPOSITORY VALIDATION PENDING / NO REAL LARGE-CORPUS POPULATION**
+Status: **PASS / CURRENT 85-SEED INCREMENTAL VALIDATION RECONCILED / HISTORICAL 84 ORACLE PRESERVED / NO REAL LARGE-CORPUS POPULATION**
 
 Step 5 established a deterministic source registry, rights/provenance control plane, explicit review decisions and source-neutral ingestion stages. Step 6 adds the validation architecture needed to change a large portable corpus without making every ordinary pull request run a full 100k × profile-matrix workload. In the current continuation, ordinary incremental fixtures start from the 85-record `PUBLIC_RUNTIME_RECIPES` scale seed while the immutable 84-record `ALL_RECIPES` corpus remains the historical golden retention oracle.
 
@@ -194,6 +194,10 @@ Step 6 does **not** authorize:
 - automatic source admission;
 - weakening rights/provenance/nutrition/media/hard-filter gates;
 - private Knowledge Core browser/runtime dependency.
+
+## Current validation evidence
+
+PR #297 full repository validation run #1029 passed the current-seed Step 6 suite and full browser acceptance. The added reconciliation proof starts ordinary incremental planning from all 85 current public-runtime records, proves a semantic no-op across portable version roots, preserves all 85 unchanged records without index churn, and independently verifies exact retention of the historical 84-record golden oracle.
 
 ## Step 6 PASS condition
 
