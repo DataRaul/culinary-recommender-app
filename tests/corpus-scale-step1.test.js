@@ -9,6 +9,7 @@ import {
   fingerprintGoldenCorpus,
   indexKeysForRecipe,
   intersectPostings,
+  intersectPostingsBounded,
   syntheticRecipeFromGolden,
   validateSyntheticCatalogue
 } from "../scripts/corpus-scale-step1-core.mjs";
@@ -73,6 +74,10 @@ test("synthetic catalogue builds deterministic postings and validates", () => {
   assert.equal(vegan.length, 10);
   const medVegan = intersectPostings(catalogue.indexes, ["cuisine:mediterranean", "diet:vegan"]);
   assert.equal(medVegan.length, 10);
+  assert.deepEqual(
+    intersectPostingsBounded(catalogue.indexes, ["cuisine:mediterranean", "diet:vegan"], 3),
+    medVegan.slice(0, 3)
+  );
   const validation = validateSyntheticCatalogue(catalogue);
   assert.match(validation.catalogueSha256, /^[a-f0-9]{64}$/);
 
