@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_RECIPE_IMAGES_P0_ASSET_PILOT_V1",
   "date": "2026-09-24",
-  "state": "ASSET_PILOT_BUILT_VALIDATION_PENDING",
+  "state": "ASSET_PILOT_PASS",
   "entryGate": "D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT_PASS",
   "designContract": "config/recipe_images_p0.json",
   "assetClass": "PROJECT_AUTHORED",
@@ -93,5 +93,10 @@
     "knowledgeCoreWriteAuthorized": false,
     "barbecueMutationAuthorized": false
   },
-  "nextGate": "D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION"
+  "nextGate": "D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION",
+  "validation": {
+    "runNumber": 1045,
+    "runId": 36011579007,
+    "conclusion": "SUCCESS"
+  }
 }
