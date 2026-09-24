@@ -2,7 +2,7 @@
 
 Date: **2026-09-24**
 
-Status: **BUILT / VALIDATION PENDING / NO RUNTIME ACTIVATION**
+Status: **PASS / D5 P0 ADAPTER DESIGN CONTRACT VALIDATED / NO RUNTIME ACTIVATION**
 
 Entry terminal: `FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3_PASS`
 
@@ -104,6 +104,8 @@ Any future use of the context requires a separate behavior contract with determi
 No failure in the fitness adapter may block ordinary Culinary use.
 
 ## Repository implementation
+
+Validation run **#1063 / 36028970545** passed the deterministic and browser suite for the built design contract. A final PR-head validation remains mandatory after recording this evidence.
 
 This design gate adds:
 
