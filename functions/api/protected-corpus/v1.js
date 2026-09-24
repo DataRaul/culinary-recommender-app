@@ -72,6 +72,16 @@ function withBudget(body, authD1Subqueries, status = 200) {
       metrics: metrics(total)
     }, 503);
   }
+  if (total > PROTECTED_SEARCH_TARGET_MAX_D1) {
+    return jsonResponse({
+      ok: false,
+      step: STEP,
+      error: "TARGET_D1_BUDGET_EXCEEDED",
+      protectedDataReturned: false,
+      fullCorpusScans: 0,
+      metrics: metrics(total)
+    }, 503);
+  }
   return jsonResponse({
     ...body,
     ok: body?.pass !== false,
