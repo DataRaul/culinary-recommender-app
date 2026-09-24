@@ -9,6 +9,8 @@ import {
   evaluateLeafCompletion,
   evaluatePilotPass,
   loadBarbecueConfig,
+  refreshBarbecueDiscoveryPhases,
+  rejectCandidatePointer,
   selectBarbecueDailyQueries,
   setLeafSynthesis,
   validateBarbecueConfig,
@@ -110,6 +112,35 @@ function synthesisFor(leafId) {
     adjustmentAxes: Object.fromEntries(config.adjustmentAxes.slice(0, 8).map(axis => [axis, { alternatives: ["A","B"] }]))
   };
 }
+
+test("successful query ids are not selected twice and fallback waits for championship review", () => {
+  let state = createInitialBarbecueState(config);
+  const firstPortfolio = buildBarbecueQueryPortfolio(config, state);
+  const target = state.leaves[0];
+  const championQueries = firstPortfolio.filter(row => row.leafId === target.leafId);
+  state.usedQueryIds = championQueries.map(row => row.queryId);
+  const firstCandidate = createDurableCandidatePointer(
+    { id: { videoId: "review-me" }, snippet: { channelId: "review-channel" } },
+    championQueries[0],
+    "2026-09-24"
+  );
+  state = addCandidatePointers(state, config, [firstCandidate]);
+  state = refreshBarbecueDiscoveryPhases(state, config);
+  assert.equal(state.leaves[0].championshipSearchExhausted, false);
+  assert.equal(buildBarbecueQueryPortfolio(config, state).filter(row => row.leafId === target.leafId).length, 0);
+
+  state = rejectCandidatePointer(state, config, target.leafId, firstCandidate.sourceRef, {
+    projectAuthoredRationale: "Independent credential review did not verify championship or sufficient domain competence."
+  });
+  assert.equal(state.leaves[0].championshipSearchExhausted, true);
+  const fallback = buildBarbecueQueryPortfolio(config, state).filter(row => row.leafId === target.leafId);
+  assert.ok(fallback.length > 0);
+  assert.equal(fallback.every(row => row.queryClass === "SPECIALIST_FALLBACK_DISCOVERY"), true);
+
+  state.usedQueryIds.push(fallback[0].queryId);
+  const selected = selectBarbecueDailyQueries(config, state);
+  assert.equal(selected.some(row => row.queryId === fallback[0].queryId), false);
+});
 
 test("five independent qualified sources plus safety-backed synthesis are required per leaf", () => {
   let state = createInitialBarbecueState(config);
