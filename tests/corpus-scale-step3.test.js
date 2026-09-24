@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { ALL_RECIPES } from "../src/data/corpus-v1.js";
+import { ALL_RECIPES, PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
 import { indexKeysForRecipe } from "../scripts/corpus-scale-step1-core.mjs";
 import {
   PORTABLE_CORPUS_CONTRACT_VERSION,
@@ -17,6 +17,10 @@ function materialized(options = {}) {
   return materializePortableCorpusArtifacts(ALL_RECIPES, { version: VERSION, ...options });
 }
 
+function currentRuntimeMaterialized(options = {}) {
+  return materializePortableCorpusArtifacts(PUBLIC_RUNTIME_RECIPES, { version: VERSION, ...options });
+}
+
 function manifestFrom(files) {
   return JSON.parse(files.get(`${ROOT}/manifest.json`));
 }
@@ -27,7 +31,7 @@ function metadataRows(files, manifest) {
   );
 }
 
-test("Step 3 portable artifact build is deterministic over the 84-record golden corpus", () => {
+test("Step 3 preserves deterministic portable artifacts over the historical 84-record golden corpus", () => {
   const first = materialized();
   const second = materialized();
   assert.equal(ALL_RECIPES.length, 84);
@@ -42,6 +46,31 @@ test("Step 3 portable artifact build is deterministic over the 84-record golden 
   assert.ok(manifest.indexes.keyCount > 0);
   assert.equal(manifest.invariants.providerNeutral, true);
   assert.equal(manifest.invariants.publicRuntimeSwitchAuthorized, false);
+});
+
+test("Step 3 reconciles the current 85-record public runtime without rewriting the historical oracle", () => {
+  assert.equal(ALL_RECIPES.length, 84);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
+
+  const first = currentRuntimeMaterialized({ metadataShardSize: 11 });
+  const second = currentRuntimeMaterialized({ metadataShardSize: 11 });
+  assert.deepEqual([...first.files.entries()], [...second.files.entries()]);
+  assert.deepEqual([...first.kinds.entries()], [...second.kinds.entries()]);
+
+  const manifest = manifestFrom(first.files);
+  assert.equal(manifest.recipeCount, 85);
+  assert.equal(manifest.detailObjects.objectCount, 85);
+  assert.equal(manifest.metadata.shardCount, 8);
+
+  const rows = metadataRows(first.files, manifest).sort((a, b) => a.ordinal - b.ordinal);
+  assert.deepEqual(rows.map(row => row.id), PUBLIC_RUNTIME_RECIPES.map(recipe => recipe.id));
+
+  const reconstructed = rows.map(row => JSON.parse(first.files.get(`${ROOT}/${row.detailPath}`)));
+  assert.deepEqual(reconstructed, PUBLIC_RUNTIME_RECIPES);
+
+  const validation = validatePortableCorpusArtifacts(first.files, { version: VERSION });
+  assert.equal(validation.pass, true);
+  assert.equal(validation.recipeCount, 85);
 });
 
 test("artifact stream emits immutable recipe bodies before corpus-wide index finalization", () => {
