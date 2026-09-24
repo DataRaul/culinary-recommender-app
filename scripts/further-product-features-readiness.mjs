@@ -42,7 +42,7 @@ export function validateFurtherProductFeaturesReadiness(config) {
   const d5 = byId.get("D5");
   if (config.state === "POST_D3_REASSESSMENT_PASS") {
     if (config.selectedNextDesignCandidate !== "D5") errors.push("D5 must be the selected next design candidate after D3 closeout");
-    const d5AllowedStates = new Set(["READY_FOR_BOUNDED_ADAPTER_DESIGN","P0_ADAPTER_DESIGN_CONTRACT_BUILT_VALIDATION_PENDING","P0_ADAPTER_DESIGN_CONTRACT_PASS"]);
+    const d5AllowedStates = new Set(["READY_FOR_BOUNDED_ADAPTER_DESIGN","P0_ADAPTER_DESIGN_CONTRACT_BUILT_VALIDATION_PENDING","P0_ADAPTER_DESIGN_CONTRACT_PASS","P0_ADAPTER_PROTOTYPE_BUILT_VALIDATION_PENDING","P0_ADAPTER_PROTOTYPE_PASS__BEHAVIOR_DEFERRED"]);
     if (!d5AllowedStates.has(d5?.state)) errors.push("D5 state is outside the bounded adapter-design progression");
     const boundary = d5?.adapterBoundary || {};
     if (boundary.inputMode !== "USER_SELECTED_PORTABLE_BACKUP_ONLY") errors.push("D5 input must remain user-selected portable backup only");
@@ -82,7 +82,11 @@ export function validateFurtherProductFeaturesReadiness(config) {
       ? "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN"
       : d5?.state === "P0_ADAPTER_DESIGN_CONTRACT_BUILT_VALIDATION_PENDING"
         ? "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN_VALIDATION"
-        : "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE"
+        : d5?.state === "P0_ADAPTER_DESIGN_CONTRACT_PASS"
+          ? "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE"
+          : d5?.state === "P0_ADAPTER_PROTOTYPE_BUILT_VALIDATION_PENDING"
+            ? "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE_VALIDATION"
+            : "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY"
     : d3?.state === "READY_FOR_BOUNDED_P0_DESIGN"
       ? "D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT"
       : d3?.state === "P0_DESIGN_CONTRACT_BUILT_VALIDATION_PENDING"

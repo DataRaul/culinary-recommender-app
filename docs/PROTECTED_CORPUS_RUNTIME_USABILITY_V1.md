@@ -2,7 +2,7 @@
 
 Date: **2026-09-24**
 
-Status: **OWNER-PRIORITY PROGRAMME / P0 EVIDENCE AUDIT READY**
+Status: **P0 EVIDENCE AUDIT PASS / P1 PRIVATE BROWSE-SEARCH READY**
 
 Objective: turn the already-populated protected corpus **v8018 / 19,268 recipes** into a corpus the owner can actually use, while preserving the fail-closed recommendation, rights, nutrition, security and cost boundaries.
 
@@ -11,9 +11,9 @@ Objective: turn the already-populated protected corpus **v8018 / 19,268 recipes*
 The owner-priority sequence is now:
 
 ```text
-D5 Fitness Integration safe adapter prototype
--> defer further D5 behavior work
--> P1: make all 19,268 privately browsable/searchable
+D5 Fitness Integration safe adapter prototype — PASS
+-> further D5 behavior work — DEFERRED
+-> P1: make all 19,268 privately browsable/searchable — READY
 -> Culinary Brain Corpus Calibration V1 + P2 metadata usability measurement
 -> P3 progressively earned recommendation subsets
 -> P4 real-v8018 recommendation/regression matrix
@@ -78,11 +78,13 @@ Three legacy CC0 records remain explicit structural exceptions. They are a usefu
 
 ## Gate sequence
 
-### P0 — Evidence and contract audit
+### P0 — Evidence and contract audit — PASS
 
-Freeze the real v8018 product baseline and verify that the programme's counts match the generated normalization, nutrition and recommendation evidence. Synthetic scale results remain regression/headroom evidence, not the primary product corpus.
+The real v8018 product baseline is frozen and matches the generated normalization, nutrition and recommendation evidence. Synthetic scale results remain regression/headroom evidence, not the primary product corpus.
 
-### P1 — Private browse/search canary
+The D5 safe adapter prototype also passed Validate public V0 #1080 (workflow run `36059408517`), including deterministic and browser acceptance. Further D5 behavior is explicitly deferred, so P1 is now the first incomplete gate.
+
+### P1 — Private browse/search canary — READY
 
 After the bounded D5 adapter prototype is closed, implement and test an owner-only protected browse/search surface over **all 19,268 records**.
 

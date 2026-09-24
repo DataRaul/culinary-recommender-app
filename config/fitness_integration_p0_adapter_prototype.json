@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "CULINARY_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE_V1",
+  "date": "2026-09-24",
+  "state": "PASS__BEHAVIOR_DEFERRED",
+  "sourceDesignContract": "config/fitness_integration_p0.json",
+  "sourceRepository": "DataRaul/Mobile-first-workout-recommendation-app",
+  "sourceMainSha": "3fd69badda5269021728e5a5d1681aac98d17147",
+  "inputMode": "USER_SELECTED_LOCAL_FILE_ONLY",
+  "acceptedBackupSchemaVersions": [
+    2,
+    3
+  ],
+  "fieldContract": {
+    "allowedSourceFields": [
+      "schemaVersion",
+      "profile.goal",
+      "profile.daysPerWeek",
+      "profile.sessionMinutes",
+      "profile.trainingWeekdays"
+    ],
+    "persistedOutputFields": [
+      "sourceBackupSchemaVersion",
+      "trainingGoal",
+      "plannedTrainingDaysPerWeek",
+      "plannedSessionMinutes",
+      "preferredTrainingWeekdays"
+    ]
+  },
+  "persistence": {
+    "explicitPreviewBeforePersistenceRequired": true,
+    "localBrowserPersistenceOnly": true,
+    "rawBackupPersistenceAuthorized": false,
+    "rawBackupHashPersistenceAuthorized": false,
+    "unknownOrExcludedFieldPersistenceAuthorized": false,
+    "removeStoredContextSupported": true
+  },
+  "behaviorFirewalls": {
+    "recipeRanking": false,
+    "recipeEligibility": false,
+    "dietaryAllergenAuthority": false,
+    "nutritionAuthority": false,
+    "calorieBurnOrTdee": false,
+    "macroOrSupplementPrescription": false,
+    "medicalOrInjuryInference": false,
+    "protectedCorpusMutation": false,
+    "publicRecipeAdmission": false
+  },
+  "acceptance": [
+    "USER_SELECTS_LOCAL_BACKUP_FILE",
+    "INVALID_OR_UNSUPPORTED_BACKUP_FAILS_CLOSED",
+    "PREVIEW_OCCURS_BEFORE_PERSISTENCE",
+    "PERSISTED_CONTEXT_HAS_EXACT_FIVE_FIELD_OUTPUT_SHAPE",
+    "SENSITIVE_AND_UNKNOWN_WORKOUT_FIELDS_DO_NOT_CROSS_BOUNDARY",
+    "CULINARY_PROFILE_AND_RECOMMENDATION_INPUTS_REMAIN_UNCHANGED",
+    "MOBILE_BROWSER_ACCEPTANCE",
+    "OFFLINE_SHELL_RETAINS_ADAPTER_MODULE"
+  ],
+  "authority": {
+    "adapterPrototypeSurfaceAuthorized": true,
+    "fitnessDerivedCulinaryBehaviorAuthorized": false,
+    "cloudSyncAuthorized": false,
+    "automaticFileReadAuthorized": false,
+    "crossAppLocalStorageReadAuthorized": false,
+    "workoutRepositoryWriteAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "thirdD1ShardAuthorized": false,
+    "paidInfrastructureAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "postPrototypeDisposition": "DEFER_BEHAVIOR_WORK",
+  "successorPrincipalLane": "PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
+  "validationRun": 1080,
+  "validationRunId": 36059408517,
+  "validationEvidence": {
+    "deterministicSuite": "PASS",
+    "browserAcceptance": "PASS",
+    "sensitiveFieldBoundary": "PASS",
+    "previewBeforePersistence": "PASS",
+    "culinaryProfileUnchanged": "PASS",
+    "offlineShellModuleCache": "PASS"
+  }
+}

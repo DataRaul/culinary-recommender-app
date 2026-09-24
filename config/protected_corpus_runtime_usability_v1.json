@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
   "date": "2026-09-24",
-  "state": "P0_EVIDENCE_AUDIT_READY",
+  "state": "P0_EVIDENCE_AUDIT_PASS__P1_READY",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
@@ -27,7 +27,11 @@
     "finishD5SafeAdapterPrototypeFirst": true,
     "deferD5BehaviorAfterPrototype": true,
     "successorPrincipalLane": "PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
-    "barbecueLaneRemainsIndependent": true
+    "barbecueLaneRemainsIndependent": true,
+    "d5SafeAdapterPrototypeState": "PASS",
+    "d5SafeAdapterPrototypeValidationRun": 1080,
+    "d5SafeAdapterPrototypeValidationRunId": 36059408517,
+    "d5BehaviorDisposition": "DEFERRED"
   },
   "capabilityBaseline": {
     "enabled": [
@@ -96,12 +100,12 @@
   "gates": [
     {
       "id": "P0_EVIDENCE_AND_CONTRACT_AUDIT",
-      "state": "READY",
+      "state": "PASS",
       "purpose": "Freeze the real-v8018 usability baseline and prove the programme is measuring live protected state rather than synthetic assumptions."
     },
     {
       "id": "P1_PRIVATE_BROWSE_SEARCH_CANARY",
-      "state": "NEXT_AFTER_D5_PROTOTYPE",
+      "state": "READY",
       "purpose": "Make all 19,268 protected recipes safely discoverable to an authorized user without granting recommendation authority.",
       "acceptance": [
         "AUTH_REQUIRED_BEFORE_ANY_PROTECTED_RECIPE_SHARD_QUERY",
@@ -151,8 +155,6 @@
     "barbecueMutationAuthorized": false
   },
   "nextExecutionSequence": [
-    "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE",
-    "D5_BEHAVIOR_WORK_DEFER",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY",
     "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
@@ -170,5 +172,23 @@
     "fullCorpusRecipeCount": 19268,
     "liveRuntimeDependencyAuthorized": false,
     "disagreementOutcome": "UNKNOWN_AMBIGUOUS_OR_REVIEW"
-  }
+  },
+  "completedTransitions": [
+    {
+      "id": "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE",
+      "state": "PASS",
+      "validationRun": 1080,
+      "validationRunId": 36059408517
+    },
+    {
+      "id": "D5_BEHAVIOR_WORK_DEFER",
+      "state": "PASS",
+      "disposition": "DEFERRED_NO_FURTHER_D5_BEHAVIOR"
+    },
+    {
+      "id": "PROTECTED_CORPUS_RUNTIME_USABILITY_P0_EVIDENCE_AND_CONTRACT_AUDIT",
+      "state": "PASS",
+      "evidence": "CANONICAL_GENERATED_BASELINE_MATCH"
+    }
+  ]
 }

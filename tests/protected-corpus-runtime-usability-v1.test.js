@@ -30,10 +30,23 @@ test("programme fails closed if protected evidence drifts", () => {
   assert.ok(validateProtectedCorpusRuntimeUsability(mutated, evidence).some(error => error.includes("recipe count")));
 });
 
-test("programme preserves D5 prototype then defer then real-corpus/Brain priority", () => {
+test("programme records D5 prototype/defer closeout and makes real-corpus P1 first remaining priority", () => {
+  assert.equal(config.state, "P0_EVIDENCE_AUDIT_PASS__P1_READY");
+  assert.equal(config.gates.find(gate => gate.id === "P0_EVIDENCE_AND_CONTRACT_AUDIT").state, "PASS");
+  assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state, "READY");
+  assert.equal(config.nextExecutionSequence[0], "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY");
+
   const mutated = structuredClone(config);
   mutated.ownerPriority.deferD5BehaviorAfterPrototype = false;
   assert.ok(validateProtectedCorpusRuntimeUsability(mutated, evidence).some(error => error.includes("D5 behavior")));
+
+  const reopenedD5 = structuredClone(config);
+  reopenedD5.ownerPriority.d5SafeAdapterPrototypeState = "BUILT_VALIDATION_PENDING";
+  assert.ok(validateProtectedCorpusRuntimeUsability(reopenedD5, evidence).some(error => error.includes("closed PASS")));
+
+  const undeferredD5 = structuredClone(config);
+  undeferredD5.ownerPriority.d5BehaviorDisposition = "ACTIVE";
+  assert.ok(validateProtectedCorpusRuntimeUsability(undeferredD5, evidence).some(error => error.includes("DEFERRED")));
 
   const brainRuntime = structuredClone(config);
   brainRuntime.brainCalibration.liveRuntimeDependencyAuthorized = true;

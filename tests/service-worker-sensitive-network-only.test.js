@@ -5,13 +5,14 @@ import { readFileSync } from "node:fs";
 const sw = readFileSync(new URL("../sw.js", import.meta.url), "utf8");
 
 test("service worker never Cache-Storages API/auth/protected Step 7E traffic", () => {
-  assert.match(sw, /const CACHE = "culinary-recommender-v1-1-4-recipe-images-p0"/);
+  assert.match(sw, /const CACHE = "culinary-recommender-v1-1-5-fitness-integration-p0"/);
   assert.match(sw, /"\/api\/"/);
   assert.match(sw, /"\/src\/data\/external\/generated\/forkrecipe-step7e-live\/"/);
   assert.match(sw, /"\/auth-canary\.html"/);
   assert.match(sw, /"\/auth-cookie-probe\.html"/);
   assert.match(sw, /"\/auth-session-commit-probe\.html"/);
   assert.match(sw, /"\/step7e-final\.html"/);
+  assert.match(sw, /"\.\/src\/domain\/fitness-integration-p0\.js"/);
 
   const bypassIndex = sw.indexOf("if (url.origin !== self.location.origin || isNetworkOnly(url))");
   const cacheLookupIndex = sw.indexOf("caches.match(event.request)");

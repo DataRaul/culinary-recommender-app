@@ -11,16 +11,18 @@ const config = JSON.parse(
   await readFile(new URL("../config/further_product_features_v1.json", import.meta.url), "utf8")
 );
 
-test("post-D3 reassessment selects D5 bounded adapter design without runtime authority", () => {
+test("post-D3 reassessment advances D5 through bounded adapter prototype without behavior authority", () => {
   assert.deepEqual(validateFurtherProductFeaturesReadiness(config), []);
   const summary = summarizeFurtherProductFeaturesReadiness(config);
   assert.equal(summary.pass, true);
   assert.equal(summary.terminal, "FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3_PASS");
   assert.equal(summary.selectedNextDesignCandidate, "D5");
   assert.equal(summary.selectedName, "Fitness Integration");
-  assert.equal(summary.selectedState, "P0_ADAPTER_DESIGN_CONTRACT_PASS");
+  assert.equal(summary.selectedState, "P0_ADAPTER_PROTOTYPE_PASS__BEHAVIOR_DEFERRED");
   assert.equal(summary.runtimeActivationAuthorized, false);
-  assert.equal(summary.nextGate, "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE");
+  assert.equal(config.capabilities.find(row => row.id === "D5").prototypeValidationRun, 1080);
+  assert.equal(config.capabilities.find(row => row.id === "D5").behaviorDisposition, "DEFERRED");
+  assert.equal(summary.nextGate, "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY");
 });
 
 test("D1 remains fail-closed while vitamin/mineral schema is unavailable", () => {
