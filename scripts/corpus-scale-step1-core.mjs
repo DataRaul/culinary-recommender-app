@@ -354,6 +354,7 @@ export function validateSyntheticCatalogue(catalogue, options = {}) {
   if (catalogue.ids.length !== catalogue.targetSize) throw new Error("id count mismatch");
 
   const seen = new Set();
+  let expectedMembershipCount = 0;
   const digest = createHash("sha256");
   for (let ordinal = 0; ordinal < catalogue.targetSize; ordinal += 1) {
     const body = catalogue.objectBodies[ordinal];
@@ -371,6 +372,7 @@ export function validateSyntheticCatalogue(catalogue, options = {}) {
     for (const key of indexKeysForRecipe(recipe)) {
       const postings = catalogue.indexes.get(key);
       if (!postings || !includesSorted(postings, ordinal)) throw new Error(`index ${key} missing ordinal ${ordinal}`);
+      expectedMembershipCount += 1;
     }
     digest.update(body);
     digest.update("\n");
@@ -378,24 +380,24 @@ export function validateSyntheticCatalogue(catalogue, options = {}) {
   }
 
   const actualKeys = [...catalogue.indexes.keys()].sort();
+  let actualMembershipCount = 0;
   for (const key of actualKeys) {
     const postings = catalogue.indexes.get(key);
     if (!postings.length) throw new Error(`empty posting list for ${key}`);
+    actualMembershipCount += postings.length;
     let previous = -1;
-    for (let index = 0; index < postings.length; index += 1) {
-      const ordinal = postings[index];
+    for (const ordinal of postings) {
       if (!Number.isInteger(ordinal) || ordinal < 0 || ordinal >= catalogue.targetSize) throw new Error(`invalid ordinal in ${key}`);
       if (ordinal <= previous) throw new Error(`posting list not strictly ordered for ${key}`);
-      const recipe = JSON.parse(catalogue.objectBodies[ordinal]);
-      if (!indexKeysForRecipe(recipe).includes(key)) {
-        throw new Error(`unexpected posting membership for ${key} at ordinal ${ordinal}`);
-      }
       previous = ordinal;
     }
     digest.update(key);
     digest.update(":");
     digest.update(postings.join(","));
     digest.update("\n");
+  }
+  if (actualMembershipCount !== expectedMembershipCount) {
+    throw new Error(`index membership count mismatch: expected ${expectedMembershipCount}, found ${actualMembershipCount}`);
   }
   updatePeak(catalogue.metrics.peakMemory, memorySnapshot());
 
