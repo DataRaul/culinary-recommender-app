@@ -49,6 +49,7 @@ const MAX_EXTERNAL_BYTES = 512 * 1024;
 const EXTERNAL_FETCH_TIMEOUT_MS = 8000;
 const MAX_EXTERNAL_REDIRECTS = 3;
 const REVIEW_CONCURRENCY = 6;
+export const YT_CUL_5E_MIN_YOUTUBE_REQUEST_INTERVAL_MS = 1000;
 const STATE_PATH = process.env.YT_CUL_DAILY_STATE_PATH || "data/generated/youtube-culinary-daily-discovery-state.json";
 const BRIDGE_PATH = process.env.YT_CUL_CANONICAL_REVIEW_BRIDGE_PATH || "data/generated/youtube-culinary-canonical-review-bridge.json";
 const POLICY_RECHECKED_AT = process.env.YT_CUL_POLICY_RECHECKED_AT || "2026-09-05";
@@ -83,12 +84,38 @@ export function buildAdaptiveSearchRequest(query, apiKey) {
   return youtubeRequest(SEARCH_ENDPOINT, { part: "snippet", type: query.resourceType, maxResults: SEARCH_RESULTS_PER_CALL, safeSearch: "strict", q: query.queryText }, apiKey);
 }
 
-async function fetchJson(fetchImpl, request, endpoint) {
+export function createYoutubeApiPacer({
+  minIntervalMs = YT_CUL_5E_MIN_YOUTUBE_REQUEST_INTERVAL_MS,
+  nowMs = () => Date.now(),
+  sleepImpl = ms => new Promise(resolve => setTimeout(resolve, ms))
+} = {}) {
+  if (!Number.isFinite(minIntervalMs) || minIntervalMs < 0) throw new Error("minIntervalMs must be a non-negative number");
+  let nextAllowedAt = null;
+  return async () => {
+    const now = Number(nowMs());
+    if (!Number.isFinite(now)) throw new Error("nowMs must return a finite number");
+    if (nextAllowedAt != null && now < nextAllowedAt) await sleepImpl(nextAllowedAt - now);
+    const afterWait = Number(nowMs());
+    if (!Number.isFinite(afterWait)) throw new Error("nowMs must return a finite number");
+    nextAllowedAt = afterWait + minIntervalMs;
+  };
+}
+
+async function fetchJson(fetchImpl, request, endpoint, beforeYoutubeRequest = null) {
+  if (beforeYoutubeRequest) await beforeYoutubeRequest(endpoint);
   const response = await fetchImpl(request.url, request.init);
   let payload;
   try { payload = await response.json(); } catch { throw new Error(`${endpoint} returned non-JSON HTTP ${response.status}`); }
   if (!response.ok) {
-    const safe = { endpoint, httpStatus: response.status, apiStatus: payload?.error?.status ?? null, apiReason: payload?.error?.errors?.[0]?.reason ?? null };
+    const retryAfterRaw = response.headers?.get?.("retry-after") ?? null;
+    const retryAfterSeconds = /^\d+$/.test(String(retryAfterRaw ?? "")) ? Number(retryAfterRaw) : null;
+    const safe = {
+      endpoint,
+      httpStatus: response.status,
+      apiStatus: payload?.error?.status ?? null,
+      apiReason: payload?.error?.errors?.[0]?.reason ?? null,
+      retryAfterSeconds
+    };
     const error = new Error(`${endpoint} failed: ${JSON.stringify(safe)}`);
     error.youtubeApiFailure = safe;
     throw error;
@@ -98,10 +125,27 @@ async function fetchJson(fetchImpl, request, endpoint) {
 
 export function classifyYoutubeSearchQuotaFailure(error, { searchCallsUsed, searchCapacity } = {}) {
   const failure = error?.youtubeApiFailure;
-  if (!failure || failure.endpoint !== "search.list") return null;
-  const quotaStatus = failure.apiStatus === "RESOURCE_EXHAUSTED";
-  const quotaReason = ["rateLimitExceeded", "quotaExceeded", "dailyLimitExceeded"].includes(failure.apiReason);
-  if (![403, 429].includes(failure.httpStatus) || (!quotaStatus && !quotaReason)) return null;
+  if (!failure || failure.endpoint !== "search.list" || ![403, 429].includes(failure.httpStatus)) return null;
+
+  if (failure.apiReason === "rateLimitExceeded") {
+    return {
+      terminalState: "DAILY_SEARCH_HOLD_RATE_LIMIT",
+      progressStatus: "PROVIDER_RATE_LIMIT_HOLD",
+      failureClass: "RATE_LIMIT",
+      nearRoutineCeiling: false,
+      failedAttemptRecorded: true,
+      endpoint: failure.endpoint,
+      httpStatus: failure.httpStatus,
+      apiStatus: failure.apiStatus,
+      apiReason: failure.apiReason,
+      retryAfterSeconds: failure.retryAfterSeconds ?? null
+    };
+  }
+
+  const quotaReason = ["quotaExceeded", "dailyLimitExceeded"].includes(failure.apiReason);
+  const unclassifiedResourceExhaustion = failure.apiStatus === "RESOURCE_EXHAUSTED" && !failure.apiReason;
+  if (!quotaReason && !unclassifiedResourceExhaustion) return null;
+
   const capacity = Number.isInteger(searchCapacity) && searchCapacity > 0 ? searchCapacity : 0;
   const used = Number.isInteger(searchCallsUsed) && searchCallsUsed >= 0 ? searchCallsUsed : 0;
   const safeCloseThreshold = Math.max(1, capacity - 5);
@@ -109,12 +153,14 @@ export function classifyYoutubeSearchQuotaFailure(error, { searchCallsUsed, sear
   return {
     terminalState: nearRoutineCeiling ? "DAILY_DISCOVERY_PROVIDER_QUOTA_EXHAUSTED_SAFE_CLOSE" : "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
     progressStatus: nearRoutineCeiling ? "PROVIDER_QUOTA_EXHAUSTED_SAFE_CLOSE" : "PROVIDER_QUOTA_EXHAUSTED_EARLY_HOLD",
+    failureClass: "DAILY_QUOTA",
     nearRoutineCeiling,
     failedAttemptRecorded: true,
     endpoint: failure.endpoint,
     httpStatus: failure.httpStatus,
     apiStatus: failure.apiStatus,
-    apiReason: failure.apiReason
+    apiReason: failure.apiReason,
+    retryAfterSeconds: failure.retryAfterSeconds ?? null
   };
 }
 
@@ -251,12 +297,12 @@ function ensureFocusMetric(progress, focus) {
   return progress.sameDayFocusMetrics[focus];
 }
 
-async function acquireYoutubeTranche(fetchImpl, apiKey, queries, cacheDir, retrievedAt, transient, onSearchAttempt) {
+async function acquireYoutubeTranche(fetchImpl, apiKey, queries, cacheDir, retrievedAt, transient, onSearchAttempt, beforeYoutubeRequest) {
   const channelQueries = new Map(), playlistQueries = new Map();
   for (const query of queries) {
     await onSearchAttempt(query);
     const request = buildAdaptiveSearchRequest(query, apiKey);
-    const payload = await fetchJson(fetchImpl, request, "search.list");
+    const payload = await fetchJson(fetchImpl, request, "search.list", beforeYoutubeRequest);
     await writeTransient(cacheDir, `search-${query.queryId}.json`, { retrievedAt, endpoint: "search.list", queryId: query.queryId }, payload);
     for (const item of payload.items ?? []) {
       if (query.resourceType === "channel" && item?.id?.channelId) channelQueries.set(item.id.channelId, query);
@@ -268,7 +314,7 @@ async function acquireYoutubeTranche(fetchImpl, apiKey, queries, cacheDir, retri
   for (const batch of chunks(newChannels, 50)) {
     if (!batch.length) continue;
     const request = youtubeRequest(CHANNELS_ENDPOINT, { part: "contentDetails", id: batch.join(",") }, apiKey);
-    const payload = await fetchJson(fetchImpl, request, "channels.list");
+    const payload = await fetchJson(fetchImpl, request, "channels.list", beforeYoutubeRequest);
     await writeTransient(cacheDir, `channels-${hash(batch.join(",")).slice(0, 10)}.json`, { retrievedAt, endpoint: "channels.list" }, payload);
     for (const item of payload.items ?? []) {
       const uploads = item?.contentDetails?.relatedPlaylists?.uploads;
@@ -285,7 +331,7 @@ async function acquireYoutubeTranche(fetchImpl, apiKey, queries, cacheDir, retri
   for (const [playlistId, query] of surfaces) {
     transient.seenPlaylists.add(playlistId);
     const request = youtubeRequest(PLAYLIST_ITEMS_ENDPOINT, { part: "contentDetails", playlistId, maxResults: PLAYLIST_ITEMS_PER_SURFACE }, apiKey);
-    const payload = await fetchJson(fetchImpl, request, "playlistItems.list");
+    const payload = await fetchJson(fetchImpl, request, "playlistItems.list", beforeYoutubeRequest);
     await writeTransient(cacheDir, `playlist-${hash(playlistId).slice(0, 12)}.json`, { retrievedAt, endpoint: "playlistItems.list", queryId: query.queryId }, payload);
     for (const item of payload.items ?? []) {
       const videoId = item?.contentDetails?.videoId;
@@ -297,7 +343,7 @@ async function acquireYoutubeTranche(fetchImpl, apiKey, queries, cacheDir, retri
   for (const batch of chunks([...videoQueries.keys()], 50)) {
     if (!batch.length) continue;
     const request = youtubeRequest(VIDEOS_ENDPOINT, { part: "snippet", id: batch.join(",") }, apiKey);
-    const payload = await fetchJson(fetchImpl, request, "videos.list");
+    const payload = await fetchJson(fetchImpl, request, "videos.list", beforeYoutubeRequest);
     await writeTransient(cacheDir, `videos-${hash(batch.join(",")).slice(0, 10)}.json`, { retrievedAt, endpoint: "videos.list" }, payload);
     for (const item of payload.items ?? []) {
       const query = videoQueries.get(item?.id);
@@ -403,7 +449,7 @@ function buildSummary(state, day, result, dryRun = false) {
     searchCallsExecuted: day?.searchCalls ?? 0, searchCapacity: day?.searchCapacity ?? 0, tranchesRun: day?.tranches?.length ?? 0, reallocations: Math.max(0, (day?.tranches?.length ?? 0) - 1),
     independentPagesReviewed: day?.independentPagesReviewed ?? 0, recipeStructuredPagesConfirmed: day?.recipeStructuredPagesConfirmed ?? 0, reviewReadyPacketsCreated: day?.reviewReadyPacketsCreated ?? 0, duplicatePairsSuppressed: day?.duplicatePairsSuppressed ?? 0, uniqueUsefulSourceDomains: day?.uniqueUsefulSourceDomains ?? 0,
     unresolvedReviewBacklog: state.unresolvedPackets.length, researchKpis: day?.researchKpis ?? {}, canonicalLearning: summarizeCanonicalLearning(state), ytCul6ReadinessEarned: state.ytCul6Readiness.earned,
-    controls: { protectedSearchReserve: state.protectedReserveCalls, routineSearchCapacity: YT_CUL_5E_DAILY_SEARCH_CAPACITY, rawYoutubeApiDataEmbedded: false, rawYoutubePayloadDeletedBeforeExit: true, youtubeStatisticsRead: false, audiovisualDownloaded: false, automaticAtlasPromotionAuthorized: false, automaticAppAdmissionAuthorized: false, blueLagoonCrossUse: false }
+    controls: { protectedSearchReserve: state.protectedReserveCalls, routineSearchCapacity: YT_CUL_5E_DAILY_SEARCH_CAPACITY, minYoutubeRequestIntervalMs: YT_CUL_5E_MIN_YOUTUBE_REQUEST_INTERVAL_MS, rawYoutubeApiDataEmbedded: false, rawYoutubePayloadDeletedBeforeExit: true, youtubeStatisticsRead: false, audiovisualDownloaded: false, automaticAtlasPromotionAuthorized: false, automaticAppAdmissionAuthorized: false, blueLagoonCrossUse: false }
   };
   assertPolicySafeDurableObject(summary);
   return summary;
@@ -426,6 +472,7 @@ export async function runAdaptiveDailyDiscovery({ fetchImpl = fetch, now = new D
   const apiKey = process.env[YT_CUL_SECRET_NAME];
   if (!apiKey) throw new Error(`${YT_CUL_SECRET_NAME} is required for live YT-CUL-5E`);
   const progress = state.quotaDayProgress;
+  const beforeYoutubeRequest = createYoutubeApiPacer();
   if (progress.searchCapacity !== gate.dailyCapacity || progress.searchCapacity > YT_CUL_5E_DAILY_SEARCH_CAPACITY || progress.searchCapacity > DAILY_LIMIT - YT_CUL_MIN_SEARCH_RESERVE) throw new Error("adaptive daily capacity violates reserve control");
   const sameDayPackets = () => progress.newPacketIds.map(id => state.unresolvedPackets.find(packet => packet.packetId === id)).filter(Boolean);
   const transient = { channelUploads: new Map(), seenPlaylists: new Set(), seenVideos: new Set(), seenExternalUrls: new Set() };
@@ -445,7 +492,7 @@ export async function runAdaptiveDailyDiscovery({ fetchImpl = fetch, now = new D
       const onSearchAttempt = async query => { progress.searchCallsUsed += 1; progress.usedQueryIds.push(query.queryId); progress.status = "IN_PROGRESS"; await saveState(state); };
       let acquisition;
       try {
-        acquisition = await acquireYoutubeTranche(fetchImpl, apiKey, allocation.queries, actualCacheDir, retrievedAt, transient, onSearchAttempt);
+        acquisition = await acquireYoutubeTranche(fetchImpl, apiKey, allocation.queries, actualCacheDir, retrievedAt, transient, onSearchAttempt, beforeYoutubeRequest);
       } catch (error) {
         const quota = classifyYoutubeSearchQuotaFailure(error, { searchCallsUsed: progress.searchCallsUsed, searchCapacity: progress.searchCapacity });
         if (!quota) throw error;
@@ -453,12 +500,14 @@ export async function runAdaptiveDailyDiscovery({ fetchImpl = fetch, now = new D
         progress.status = quota.progressStatus;
         progress.providerQuotaTerminal = {
           terminalState: quota.terminalState,
+          failureClass: quota.failureClass,
           nearRoutineCeiling: quota.nearRoutineCeiling,
           failedAttemptRecorded: quota.failedAttemptRecorded,
           endpoint: quota.endpoint,
           httpStatus: quota.httpStatus,
           apiStatus: quota.apiStatus,
-          apiReason: quota.apiReason
+          apiReason: quota.apiReason,
+          retryAfterSeconds: quota.retryAfterSeconds ?? null
         };
         await saveState(state);
         break;
