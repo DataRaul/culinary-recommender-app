@@ -339,7 +339,7 @@ Cost remains relative, deterministic and explainable. Culinary quality remains n
 
 The Culinary & Nutrition Brain is authorized and its broader Atlas development is active on an unmerged Knowledge Core branch, while Gate F2 remains a branch-local public-app control plane with no automatic admission or runtime activation. The public app must never call private Knowledge Core at runtime. Downstream behavior changes remain separately evidence- and test-gated.
 
-## V1.x Corpus Scale / 100k Readiness — USER-ACCEPTED TARGET / STEP 1 READY / NO MASS INGESTION
+## V1.x Corpus Scale / 100k Readiness — STEP 1 V2 HARDENING COMPLETE / PASS / NO MASS INGESTION
 
 This program defines the scale architecture required before any very large real recipe corpus is admitted. It does **not** authorize mass ingestion, replace the current nutrition/evidence lane, or make raw recipe count a success criterion.
 
