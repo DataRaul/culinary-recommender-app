@@ -1,6 +1,6 @@
 # Corpus Scale / 100k Readiness — Accepted Cloudflare Architecture
 
-Status: **USER-ACCEPTED TARGET ARCHITECTURE / IMPLEMENTATION NOT YET BENCHMARK-VALIDATED / STEP 1 READY / NO MASS INGESTION AUTHORIZED**
+Status: **USER-ACCEPTED TARGET ARCHITECTURE / STEP 1 V2 HARDENING PASS / NO MASS INGESTION AUTHORIZED**
 
 This document reconciles the earlier Firebase-first production sketch in `docs/ROADMAP.md` with the later Knowledge Core review, large-corpus source research and the user's explicit architecture/access decision on 2026-09-04.
 
@@ -205,7 +205,7 @@ No paid Cloudflare plan, paid search service, paid API, paid corpus licence or c
 
 The original sequence remains valid, with these clarifications:
 
-1. **Scale contract + synthetic benchmark — NEXT / READY.** Use the existing reviewed corpus as the golden oracle; create deterministic 1k/10k/50k/100k synthetic corpora. Measure candidate-index size, detail-object size, candidate-set cardinality, transferred bytes, local filter/rank latency, build time and validation cost. Model the accepted R2/pre-built-index architecture first. No Cloudflare account provisioning is required to begin.
+1. **Scale contract + synthetic benchmark — COMPLETE / V2 HARDENING PASS.** Preserve the immutable 84-record historical oracle separately from the current 85-record public benchmark seed; deterministic 1k/10k/50k/100k catalogues now exercise broad/common/rare query shapes, bounded retrieval before detail hydration, exact fingerprint/structure checks and persisted CI benchmark evidence. PR #291 candidate run #23 passes all Step-1 thresholds. No Cloudflare account provisioning was required.
 2. **`RecipeSource` V2 compatibility.** V1/V2 behavioral parity before runtime replacement.
 3. **Metadata/detail + portable object layout.** Define provider-neutral manifests/shards/index artefacts that map naturally to R2 but can move elsewhere.
 4. **Indexed retrieval scale proof.** Prove pre-built deterministic index intersections first. Introduce D1 only if this test earns it.
@@ -216,19 +216,19 @@ The original sequence remains valid, with these clarifications:
 
 ## 11. Next executable action / continuation contract
 
-**NEXT ACTION: STEP 1 — CORPUS SCALE CONTRACT + SYNTHETIC BENCHMARK HARNESS.**
+**STEP 1 V2: COMPLETE / PASS ON PR #291 CANDIDATE.**
 
-A continuation chat should:
+The hardened Step-1 evidence preserves the R2-first/pre-built-index architecture hypothesis: at 100k synthetic records, build/validation, memory, transfer, bounded retrieval and ranking remain inside the frozen budgets. This result does not itself provision or authorize production infrastructure.
 
-1. fresh-reconcile `main`, open PRs, active branches and concurrent nutrition work;
-2. treat this document plus `docs/ROADMAP.md` and `docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md` as the architecture/source contract;
-3. preserve the current reviewed recipe corpus as the golden behavioral oracle;
-4. implement only synthetic benchmark/scale-contract infrastructure first;
-5. benchmark R2-style immutable object + pre-built index shapes locally/provider-neutrally before provisioning Cloudflare;
-6. include acceptance thresholds and metrics sufficient to decide whether R2-only retrieval is viable;
-7. keep D1 absent unless benchmark evidence earns a separate prototype;
-8. make no real mass recipe ingestion, no public behavior change, no paid service, no weakening of licensing/provenance/nutrition rules and no private Knowledge Core runtime dependency;
-9. preserve nutrition B24 work as a separate resumable lane and do not overwrite it;
-10. before every write/merge, fresh-reconcile GitHub state again.
+Because Steps 2–7 already exist historically in this repository, continuation must not recreate them blindly. The next independent scale-development action is:
 
-The user has accepted the Cloudflare target architecture and the invitation-only access policy. No further architecture-choice confirmation is required before Step 1. Cloudflare account/project/domain/Access provisioning remains a later human/setup gate when Step 7 is actually reached.
+1. fresh-reconcile `main`, open PRs and concurrent scheduled child programmes;
+2. merge PR #291 only if its green candidate head remains current and unchanged;
+3. treat the immutable 84-record `ALL_RECIPES` corpus as the historical behavioral oracle and the explicitly fingerprinted 85-record `PUBLIC_RUNTIME_RECIPES` corpus as the current scale seed;
+4. reconcile existing Step-2 RecipeSource V2 compatibility evidence against the hardened Step-1 contract/current seed, then proceed through later existing scale artifacts only where fresh evidence shows a real compatibility gap;
+5. preserve D1 as benchmark-gated rather than inferred from corpus size;
+6. make no real mass recipe ingestion, public behavior change, protected D1 mutation, paid service, weakening of licensing/provenance/nutrition rules, private Knowledge Core runtime dependency, or Barbecue mutation;
+7. keep the scheduled Barbecue programme independent; its workflow/state/quota are not inputs to the scale benchmark;
+8. before every material write or merge, fresh-reconcile GitHub state.
+
+The accepted Cloudflare target architecture and invitation-only exact-email access policy remain unchanged. Cloudflare account/project/domain/Access provisioning remains a later human/setup gate only when the production-shaped provisioning step is actually re-entered.
