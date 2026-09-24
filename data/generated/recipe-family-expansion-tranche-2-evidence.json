@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_RECIPE_FAMILY_EXPANSION_TRANCHE_2_EVIDENCE_V1",
   "date": "2026-09-24",
-  "state": "IMPLEMENTED_PR_VALIDATION_PENDING",
+  "state": "PASS",
   "targetGate": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC",
   "tranche": 2,
   "sourceObservationFile": "data/generated/recipe-family-expansion-tranche-2-source-observations.json",
@@ -128,5 +128,15 @@
     "hummus"
   ],
   "publicActivationAuthorized": false,
-  "nextOnGreenValidation": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_FINAL_TRANCHE_NONPUBLIC"
+  "nextOnGreenValidation": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_FINAL_TRANCHE_NONPUBLIC",
+  "terminal": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_TRANCHE_2_PASS_WITH_EXPLICIT_PIZZA_HOLD",
+  "validation": {
+    "validatePublicV0": "SUCCESS",
+    "workflowRunNumber": 994,
+    "workflowRunId": 35937898462,
+    "headSha": "2ba78a0772e6c5f619ae18cdf237fdd7479e1be9",
+    "mergedPr": 281,
+    "mergeSha": "5e295a46c663c579f693caf81339eb2acd991706"
+  },
+  "nextAction": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_FINAL_TRANCHE_NONPUBLIC"
 }
