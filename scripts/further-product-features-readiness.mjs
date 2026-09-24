@@ -78,7 +78,11 @@ export function validateFurtherProductFeaturesReadiness(config) {
   }
   if (authority.boundedDesignWorkAuthorized !== true) errors.push("bounded design work must be explicitly authorized");
   const expectedNextGate = config.state === "POST_D3_REASSESSMENT_PASS"
-    ? "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN"
+    ? d5?.state === "READY_FOR_BOUNDED_ADAPTER_DESIGN"
+      ? "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN"
+      : d5?.state === "P0_ADAPTER_DESIGN_CONTRACT_BUILT_VALIDATION_PENDING"
+        ? "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN_VALIDATION"
+        : "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE"
     : d3?.state === "READY_FOR_BOUNDED_P0_DESIGN"
       ? "D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT"
       : d3?.state === "P0_DESIGN_CONTRACT_BUILT_VALIDATION_PENDING"
