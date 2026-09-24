@@ -2,7 +2,7 @@
 
 Date: **2026-09-24**
 
-Status: **IMPLEMENTATION BUILT / VALIDATION PENDING**
+Status: **IMPLEMENTATION CI PASS / LIVE OWNER CANARY PENDING**
 
 ## Objective
 
@@ -68,9 +68,9 @@ P1 does **not**:
 
 ## Validation sequence
 
-1. deterministic runtime/API tests;
-2. mobile browser acceptance with mocked authenticated protected responses and a zero-query unauthenticated assertion;
-3. PR CI;
+1. deterministic runtime/API tests — **PASS**;
+2. mobile browser acceptance with mocked authenticated protected responses and a zero-query unauthenticated assertion — **PASS**;
+3. PR CI — **Validate public V0 #1088 PASS** (workflow run `36061685454`);
 4. merge only when green;
 5. deploy through the existing Pages path;
 6. one authenticated owner live canary builds/resumes the compact index until it proves **19,268 / 19,268**, verifies the expected **3** structural partial records, exercises browse/search/detail across both shards, and confirms all live D1 counts remain at or below 8.
