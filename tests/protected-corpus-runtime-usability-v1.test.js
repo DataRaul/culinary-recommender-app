@@ -31,9 +31,9 @@ test("programme fails closed if protected evidence drifts", () => {
 });
 
 test("programme records D5 prototype/defer closeout and makes real-corpus P1 first remaining priority", () => {
-  assert.equal(config.state, "P1_IMPLEMENTATION_BUILT_VALIDATION_PENDING");
+  assert.equal(config.state, "P1_IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING");
   assert.equal(config.gates.find(gate => gate.id === "P0_EVIDENCE_AND_CONTRACT_AUDIT").state, "PASS");
-  assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state, "IMPLEMENTATION_BUILT_VALIDATION_PENDING");
+  assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state, "IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING");
   assert.equal(config.nextExecutionSequence[0], "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY");
 
   const mutated = structuredClone(config);
