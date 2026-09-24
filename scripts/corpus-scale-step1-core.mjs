@@ -2,8 +2,13 @@ import { createHash } from "node:crypto";
 import { gzipSync } from "node:zlib";
 import { performance } from "node:perf_hooks";
 
+export const CORPUS_SCALE_CONTRACT_VERSION = "CORPUS_SCALE_STEP1_V2_HARDENED";
 export const CORPUS_SCALE_TARGETS = Object.freeze([1_000, 10_000, 50_000, 100_000]);
 export const CORPUS_SCALE_QUERY_CAP = 256;
+export const CORPUS_SCALE_MIN_QUERY_SCENARIOS = 7;
+export const CORPUS_SCALE_MIN_POSITIVE_QUERY_SCENARIOS = 7;
+export const CORPUS_SCALE_MIN_DISTINCT_CARDINALITIES = 3;
+export const CORPUS_SCALE_CAP_EXERCISE_MIN_SIZE = 10_000;
 
 export const CORPUS_SCALE_ACCEPTANCE = Object.freeze({
   maxAverageRecipeBytes: 12 * 1024,
@@ -16,7 +21,11 @@ export const CORPUS_SCALE_ACCEPTANCE = Object.freeze({
   maxValidationMsAt100k: 30_000,
   maxRssBytesAt100k: 1024 * 1024 * 1024,
   maxHeapUsedBytesAt100k: 768 * 1024 * 1024,
-  maxBoundedCandidates: CORPUS_SCALE_QUERY_CAP
+  maxBoundedCandidates: CORPUS_SCALE_QUERY_CAP,
+  minQueryScenarios: CORPUS_SCALE_MIN_QUERY_SCENARIOS,
+  minPositiveQueryScenarios: CORPUS_SCALE_MIN_POSITIVE_QUERY_SCENARIOS,
+  minDistinctFullCandidateCardinalities: CORPUS_SCALE_MIN_DISTINCT_CARDINALITIES,
+  capExerciseMinTargetSize: CORPUS_SCALE_CAP_EXERCISE_MIN_SIZE
 });
 
 const percentile = (values, ratio) => {
@@ -47,6 +56,10 @@ export function fingerprintGoldenCorpus(goldenRecipes = []) {
   };
 }
 
+function benchmarkEntropy(sourceId, ordinal) {
+  return createHash("sha256").update(`${sourceId}\0${ordinal}`).digest("hex");
+}
+
 export function syntheticRecipeFromGolden(goldenRecipe, ordinal) {
   const synthetic = cloneRecipe(goldenRecipe);
   const sourceId = goldenRecipe.id;
@@ -56,6 +69,7 @@ export function syntheticRecipeFromGolden(goldenRecipe, ordinal) {
     benchmarkSynthetic: true,
     benchmarkSourceRecipeId: sourceId,
     benchmarkOrdinal: ordinal,
+    benchmarkEntropySha256: benchmarkEntropy(sourceId, ordinal),
     benchmarkAdmissionState: "SYNTHETIC_ONLY_NEVER_PRODUCTION"
   };
   return synthetic;
@@ -202,38 +216,53 @@ export function intersectPostings(indexes, queryKeys) {
   return result;
 }
 
-function mostCommonKey(indexes, prefix) {
+function mostCommonKey(indexes, prefix = "") {
   return [...indexes.entries()]
     .filter(([key]) => key.startsWith(prefix))
     .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))[0]?.[0] || null;
 }
 
+function leastCommonKey(indexes, prefix) {
+  return [...indexes.entries()]
+    .filter(([key, postings]) => key.startsWith(prefix) && postings.length > 0)
+    .sort((a, b) => a[1].length - b[1].length || a[0].localeCompare(b[0]))[0]?.[0] || null;
+}
+
 export function benchmarkQueryScenarios(indexes) {
+  const broadest = mostCommonKey(indexes);
   const meal = indexes.has("meal:dinner") ? "meal:dinner" : mostCommonKey(indexes, "meal:");
   const time = indexes.has("time:under-45") ? "time:under-45" : mostCommonKey(indexes, "time:");
   const cuisine = mostCommonKey(indexes, "cuisine:");
   const ingredient = mostCommonKey(indexes, "ingredient:");
   const diet = indexes.has("diet:vegetarian") ? "diet:vegetarian" : mostCommonKey(indexes, "diet:");
+  const protein = mostCommonKey(indexes, "protein:");
+  const rareCuisine = leastCommonKey(indexes, "cuisine:");
+  const rareIngredient = leastCommonKey(indexes, "ingredient:");
+  const rareProtein = leastCommonKey(indexes, "protein:");
 
   const candidates = [
-    [meal].filter(Boolean),
-    [meal, time].filter(Boolean),
-    [cuisine, meal, time].filter(Boolean),
-    [ingredient, meal].filter(Boolean),
-    [diet, meal, time].filter(Boolean)
+    { name: "broadest-index", keys: [broadest].filter(Boolean) },
+    { name: "meal-broad", keys: [meal].filter(Boolean) },
+    { name: "meal-time", keys: [meal, time].filter(Boolean) },
+    { name: "cuisine-meal-time", keys: [cuisine, meal, time].filter(Boolean) },
+    { name: "ingredient-meal", keys: [ingredient, meal].filter(Boolean) },
+    { name: "diet-meal-time", keys: [diet, meal, time].filter(Boolean) },
+    { name: "protein-meal", keys: [protein, meal].filter(Boolean) },
+    { name: "rare-cuisine", keys: [rareCuisine].filter(Boolean) },
+    { name: "rare-ingredient", keys: [rareIngredient].filter(Boolean) },
+    { name: "rare-protein", keys: [rareProtein].filter(Boolean) }
   ];
 
   const seen = new Set();
   return candidates
-    .filter(keys => keys.length > 0)
-    .map(keys => [...new Set(keys)])
-    .filter(keys => {
+    .filter(({ keys }) => keys.length > 0)
+    .map(({ name, keys }) => ({ name, keys: [...new Set(keys)] }))
+    .filter(({ keys }) => {
       const signature = keys.join("|");
       if (seen.has(signature)) return false;
       seen.add(signature);
       return true;
-    })
-    .map((keys, index) => ({ name: `scenario_${index + 1}`, keys }));
+    });
 }
 
 function queryTransferBytes(catalogue, scenario, boundedOrdinals) {
@@ -293,6 +322,7 @@ export function benchmarkCatalogueQueries(catalogue, rankCandidateRecipes, optio
       ...scenario,
       fullCandidateCount: allOrdinals.length,
       boundedCandidateCount: boundedOrdinals.length,
+      selectivityRatio: rounded(allOrdinals.length / catalogue.targetSize),
       rankedCount,
       transfer,
       retrievalP50Ms: rounded(percentile(retrievalSamples, 0.5)),
@@ -324,28 +354,49 @@ export function validateSyntheticCatalogue(catalogue, options = {}) {
   if (catalogue.ids.length !== catalogue.targetSize) throw new Error("id count mismatch");
 
   const seen = new Set();
+  const expectedIndexes = new Map();
   const digest = createHash("sha256");
   for (let ordinal = 0; ordinal < catalogue.targetSize; ordinal += 1) {
-    const recipe = JSON.parse(catalogue.objectBodies[ordinal]);
+    const body = catalogue.objectBodies[ordinal];
+    const recipe = JSON.parse(body);
     if (recipe.id !== catalogue.ids[ordinal]) throw new Error(`id mismatch at ordinal ${ordinal}`);
     if (seen.has(recipe.id)) throw new Error(`duplicate id ${recipe.id}`);
     seen.add(recipe.id);
     if (!recipe.provenance?.benchmarkSynthetic) throw new Error(`missing benchmark marker for ${recipe.id}`);
-    if (!recipe.provenance?.benchmarkSourceRecipeId) throw new Error(`missing source recipe id for ${recipe.id}`);
+    const sourceId = recipe.provenance?.benchmarkSourceRecipeId;
+    if (!sourceId) throw new Error(`missing source recipe id for ${recipe.id}`);
+    if (recipe.provenance?.benchmarkOrdinal !== ordinal) throw new Error(`benchmark ordinal mismatch for ${recipe.id}`);
+    if (recipe.provenance?.benchmarkEntropySha256 !== benchmarkEntropy(sourceId, ordinal)) {
+      throw new Error(`benchmark entropy mismatch for ${recipe.id}`);
+    }
     for (const key of indexKeysForRecipe(recipe)) {
       const postings = catalogue.indexes.get(key);
       if (!postings || !includesSorted(postings, ordinal)) throw new Error(`index ${key} missing ordinal ${ordinal}`);
+      const expected = expectedIndexes.get(key) || [];
+      expected.push(ordinal);
+      expectedIndexes.set(key, expected);
     }
-    digest.update(recipe.id);
+    digest.update(body);
     digest.update("\n");
     if ((ordinal + 1) % sampleEvery === 0) updatePeak(catalogue.metrics.peakMemory, memorySnapshot());
   }
 
-  for (const [key, postings] of catalogue.indexes) {
+  const actualKeys = [...catalogue.indexes.keys()].sort();
+  const expectedKeys = [...expectedIndexes.keys()].sort();
+  if (actualKeys.length !== expectedKeys.length || actualKeys.some((key, index) => key !== expectedKeys[index])) {
+    throw new Error("index key set does not exactly match recipe-derived expectations");
+  }
+
+  for (const key of actualKeys) {
+    const postings = catalogue.indexes.get(key);
+    const expected = expectedIndexes.get(key);
+    if (postings.length !== expected.length) throw new Error(`posting length mismatch for ${key}`);
     let previous = -1;
-    for (const ordinal of postings) {
+    for (let index = 0; index < postings.length; index += 1) {
+      const ordinal = postings[index];
       if (!Number.isInteger(ordinal) || ordinal < 0 || ordinal >= catalogue.targetSize) throw new Error(`invalid ordinal in ${key}`);
       if (ordinal <= previous) throw new Error(`posting list not strictly ordered for ${key}`);
+      if (ordinal !== expected[index]) throw new Error(`unexpected posting membership for ${key} at position ${index}`);
       previous = ordinal;
     }
     digest.update(key);
@@ -366,6 +417,12 @@ export function evaluateScaleAcceptance(sizeReport, thresholds = CORPUS_SCALE_AC
   const maxRetrievalP95 = Math.max(0, ...sizeReport.queries.map(query => query.retrievalP95Ms));
   const maxRankP95 = Math.max(0, ...sizeReport.queries.map(query => query.rankP95Ms));
   const maxBoundedCandidates = Math.max(0, ...sizeReport.queries.map(query => query.boundedCandidateCount));
+  const positiveQueryScenarioCount = sizeReport.queries.filter(query => query.fullCandidateCount > 0).length;
+  const distinctFullCandidateCardinalities = new Set(sizeReport.queries.map(query => query.fullCandidateCount)).size;
+  const capExercised = sizeReport.queries.some(query =>
+    query.fullCandidateCount > thresholds.maxBoundedCandidates &&
+    query.boundedCandidateCount === thresholds.maxBoundedCandidates
+  );
 
   const checks = {
     averageRecipeBytes: sizeReport.metrics.averageRecipeBytes <= thresholds.maxAverageRecipeBytes,
@@ -374,8 +431,15 @@ export function evaluateScaleAcceptance(sizeReport, thresholds = CORPUS_SCALE_AC
     transferGzipBytesPerQuery: maxTransfer <= thresholds.maxTransferGzipBytesPerQuery,
     retrievalP95Ms: maxRetrievalP95 <= thresholds.maxRetrievalP95Ms,
     rankP95Ms: maxRankP95 <= thresholds.maxRankP95Ms,
-    boundedCandidates: maxBoundedCandidates <= thresholds.maxBoundedCandidates
+    boundedCandidates: maxBoundedCandidates <= thresholds.maxBoundedCandidates,
+    queryScenarioCount: sizeReport.queries.length >= thresholds.minQueryScenarios,
+    positiveQueryScenarioCount: positiveQueryScenarioCount >= thresholds.minPositiveQueryScenarios,
+    candidateCardinalitySpread: distinctFullCandidateCardinalities >= thresholds.minDistinctFullCandidateCardinalities
   };
+
+  if (sizeReport.targetSize >= thresholds.capExerciseMinTargetSize) {
+    checks.candidateCapExercised = capExercised;
+  }
 
   if (sizeReport.targetSize === 100_000) {
     checks.buildMsAt100k = sizeReport.metrics.buildMs <= thresholds.maxBuildMsAt100k;
@@ -391,7 +455,11 @@ export function evaluateScaleAcceptance(sizeReport, thresholds = CORPUS_SCALE_AC
       maxTransferGzipBytesPerQuery: maxTransfer,
       maxRetrievalP95Ms: maxRetrievalP95,
       maxRankP95Ms: maxRankP95,
-      maxBoundedCandidates
+      maxBoundedCandidates,
+      queryScenarioCount: sizeReport.queries.length,
+      positiveQueryScenarioCount,
+      distinctFullCandidateCardinalities,
+      capExercised
     }
   };
 }
@@ -409,7 +477,7 @@ export function runStep1Benchmark(goldenRecipes, rankCandidateRecipes, options =
     reports.push(sizeReport);
   }
   return {
-    contractVersion: "CORPUS_SCALE_STEP1_V1",
+    contractVersion: CORPUS_SCALE_CONTRACT_VERSION,
     generatedAt: new Date().toISOString(),
     targetSizes: [...sizes],
     queryCap: Number(options.queryCap) || CORPUS_SCALE_QUERY_CAP,
