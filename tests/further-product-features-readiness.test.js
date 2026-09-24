@@ -11,16 +11,16 @@ const config = JSON.parse(
   await readFile(new URL("../config/further_product_features_v1.json", import.meta.url), "utf8")
 );
 
-test("further-product-features readiness contract passes and selects D3 design without runtime authority", () => {
+test("post-D3 reassessment selects D5 bounded adapter design without runtime authority", () => {
   assert.deepEqual(validateFurtherProductFeaturesReadiness(config), []);
   const summary = summarizeFurtherProductFeaturesReadiness(config);
   assert.equal(summary.pass, true);
-  assert.equal(summary.terminal, "FURTHER_PRODUCT_FEATURES_READINESS_PASS");
-  assert.equal(summary.selectedNextDesignCandidate, "D3");
-  assert.equal(summary.selectedName, "Recipe Images");
-  assert.equal(summary.selectedState, "P0_COMPLETE");
+  assert.equal(summary.terminal, "FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3_PASS");
+  assert.equal(summary.selectedNextDesignCandidate, "D5");
+  assert.equal(summary.selectedName, "Fitness Integration");
+  assert.equal(summary.selectedState, "READY_FOR_BOUNDED_ADAPTER_DESIGN");
   assert.equal(summary.runtimeActivationAuthorized, false);
-  assert.equal(summary.nextGate, "FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3");
+  assert.equal(summary.nextGate, "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN");
 });
 
 test("D1 remains fail-closed while vitamin/mineral schema is unavailable", () => {
@@ -68,4 +68,25 @@ test("readiness audit may authorize bounded design only, never product/runtime w
     mutated.authority[key] = true;
     assert.ok(validateFurtherProductFeaturesReadiness(mutated).some(error => error.includes(key)));
   }
+});
+
+
+test("D5 remains one-way, user-permission-gated and non-medical", () => {
+  for (const key of [
+    "automaticFolderReadAuthorized",
+    "crossAppLocalStorageReadAuthorized",
+    "cloudSyncAuthorized",
+    "sourceAppMutationAuthorized",
+    "medicalInferenceAuthorized",
+    "calorieBurnEstimationAuthorized",
+    "individualizedMacroOrSupplementPrescriptionAuthorized"
+  ]) {
+    const mutated = structuredClone(config);
+    mutated.capabilities.find(row => row.id === "D5").adapterBoundary[key] = true;
+    assert.ok(validateFurtherProductFeaturesReadiness(mutated).some(error => error.includes("D5")));
+  }
+
+  const sensitive = structuredClone(config);
+  sensitive.capabilities.find(row => row.id === "D5").adapterBoundary.sensitiveWorkoutFieldsDefaultExcluded = false;
+  assert.ok(validateFurtherProductFeaturesReadiness(sensitive).some(error => error.includes("sensitive workout fields")));
 });
