@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "CULINARY_YT_CUL_RATE_LIMIT_RECONCILIATION_V1",
+  "generatedAt": "2026-09-24",
+  "state": "REPOSITORY_REPAIR_IMPLEMENTED__PR_VALIDATION_PENDING__LIVE_SEARCH_STILL_HELD",
+  "historicalIncident": {
+    "quotaDate": "2026-09-22",
+    "workflowRunId": 35737758698,
+    "workflowRunNumber": 18,
+    "searchCallsExecuted": 83,
+    "routineSearchCapacity": 90,
+    "httpStatus": 429,
+    "apiStatus": "RESOURCE_EXHAUSTED",
+    "apiReason": "rateLimitExceeded",
+    "priorTerminalState": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA"
+  },
+  "diagnosis": {
+    "classificationDefect": true,
+    "finding": "rateLimitExceeded is a provider time-window rate-limit signal and must not be inferred as daily quota exhaustion",
+    "policyVintageAtDiagnosis": "2026-09-05",
+    "policyMaxAgeDays": 30,
+    "policyVintageFreshOn20260924": true,
+    "unresolvedReviewBacklog": 0,
+    "competingCulinaryYoutubeWorkflowFoundForQuotaDate": false
+  },
+  "repair": {
+    "minYoutubeRequestIntervalMs": 1000,
+    "newRateLimitTerminalState": "DAILY_SEARCH_HOLD_RATE_LIMIT",
+    "rateLimitProgressState": "PROVIDER_RATE_LIMIT_HOLD",
+    "dailyQuotaClassificationPreserved": true,
+    "retryAfterSecondsPersistedWhenNumeric": true,
+    "lifecycleRegistryUpdated": true,
+    "liveSearchUsedForRepairValidation": false
+  },
+  "authority": {
+    "clearHistoricalHoldAuthorized": false,
+    "liveSearchAuthorized": false,
+    "paidQuotaAuthorized": false,
+    "secondProjectQuotaMultiplicationAuthorized": false,
+    "knowledgeCorePromotionAuthorized": false,
+    "appAdmissionAuthorized": false,
+    "publicationAuthorized": false
+  },
+  "nextOnGreenValidation": "DURABLE_YT_CUL_HOLD_REPURPOSE_RECONCILIATION_BEFORE_ANY_LIVE_SEARCH"
+}

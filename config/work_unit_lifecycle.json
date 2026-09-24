@@ -41,12 +41,13 @@
         "docs/YOUTUBE_CULINARY_DAILY_DISCOVERY_TO_YT_CUL_6_ROADMAP.md on material transition",
         "docs/handovers/CURRENT.json on material continuation boundary"
       ],
-      "successor_rule": "Routine closed days, including near-ceiling provider-quota safe-closes, continue to the next quota-day wake-up without replay. Materially early provider quota exhaustion becomes a policy/quota hold. A durable hard hold stops live Search until its explicit resolution contract is satisfied. YT_CUL_6_READINESS_EARNED hands off to a separately bounded YT-CUL-6 readiness reconciliation and never auto-authorizes Atlas promotion, app admission or publication.",
+      "successor_rule": "Routine closed days, including near-ceiling provider-quota safe-closes, continue to the next quota-day wake-up without replay. Confirmed daily quota exhaustion and provider time-window rate limiting are distinct: materially early daily quota exhaustion becomes a policy/quota hold, while rateLimitExceeded becomes DAILY_SEARCH_HOLD_RATE_LIMIT. A durable hard hold stops live Search until its explicit resolution contract is satisfied. YT_CUL_6_READINESS_EARNED hands off to a separately bounded YT-CUL-6 readiness reconciliation and never auto-authorizes Atlas promotion, app admission or publication.",
       "retirement_rule": "When a hard hold or YT-CUL-6 readiness makes recurring live discovery ineligible, the persisted work-unit state must mark the scheduler HOLD_OR_RETIRE. The cron may remain only as a fail-closed no-live-spend wake-up until a bounded repository change removes, replaces or re-authorizes it.",
       "material_transition_states": [
         "DAILY_SEARCH_HOLD_REVIEW_BACKLOG",
         "DAILY_SEARCH_HOLD_LOW_MARGINAL_VALUE",
         "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+        "DAILY_SEARCH_HOLD_RATE_LIMIT",
         "YT_CUL_6_READINESS_EARNED",
         "PRIMARY_RUN_FAILED"
       ]

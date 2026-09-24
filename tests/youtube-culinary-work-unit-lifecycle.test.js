@@ -50,6 +50,16 @@ test("hard hold requires material reconciliation and fail-closed scheduler", () 
   assert.match(state.roadmapHandoverReconciliation, /REQUIRED/);
 });
 
+test("rate-limit hold closes into explicit fail-closed reconciliation", () => {
+  const state = deriveWorkUnitState(
+    baseState({ hardHold: "DAILY_SEARCH_HOLD_RATE_LIMIT" })
+  );
+  assert.equal(state.closureStatus, "DAILY_SEARCH_HOLD_RATE_LIMIT");
+  assert.equal(state.successorAction, "RESOLVE_DAILY_SEARCH_HOLD_RATE_LIMIT");
+  assert.equal(state.schedulerDisposition, "HOLD_FAIL_CLOSED");
+  assert.equal(state.nextTriggerDisposition, "NO_LIVE_SEARCH_UNTIL_HOLD_RESOLVED");
+});
+
 test("YT-CUL-6 readiness cannot silently become app admission", () => {
   const state = validateWorkUnitState(
     deriveWorkUnitState(baseState({ ytCul6ReadinessEarned: true }))

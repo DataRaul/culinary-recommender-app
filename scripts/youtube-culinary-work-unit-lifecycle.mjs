@@ -6,7 +6,8 @@ export const WORKFLOW_PATH = ".github/workflows/yt-cul-5d-daily-discovery.yml";
 const HARD_HOLDS = new Set([
   "DAILY_SEARCH_HOLD_REVIEW_BACKLOG",
   "DAILY_SEARCH_HOLD_LOW_MARGINAL_VALUE",
-  "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA"
+  "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+  "DAILY_SEARCH_HOLD_RATE_LIMIT"
 ]);
 
 function fingerprint(value) {

@@ -10,7 +10,12 @@ import {
   nextTrancheSize,
   selectNextAdaptiveTranche
 } from "../scripts/youtube-culinary-adaptive-portfolio.mjs";
-import { buildAdaptiveSearchRequest, classifyYoutubeSearchQuotaFailure } from "../scripts/run-youtube-culinary-adaptive-discovery.mjs";
+import {
+  YT_CUL_5E_MIN_YOUTUBE_REQUEST_INTERVAL_MS,
+  buildAdaptiveSearchRequest,
+  classifyYoutubeSearchQuotaFailure,
+  createYoutubeApiPacer
+} from "../scripts/run-youtube-culinary-adaptive-discovery.mjs";
 
 function state() {
   return {
@@ -108,16 +113,51 @@ test("zero-evidence focus is fully cooled after the bounded same-day threshold",
   assert.equal(tranche.queries.filter(q => q.focus === "LEVANT_EASTERN_MEDITERRANEAN__PULSES_FLATBREAD").length, 0);
 });
 
-test("provider Search quota exhaustion near the routine ceiling is a safe close, while early exhaustion remains a hard hold", () => {
-  const error = new Error("synthetic provider quota exhaustion");
-  error.youtubeApiFailure = { endpoint: "search.list", httpStatus: 429, apiStatus: "RESOURCE_EXHAUSTED", apiReason: "rateLimitExceeded" };
+test("provider daily Search quota exhaustion near the routine ceiling is a safe close, while early exhaustion remains a hard hold", () => {
+  const error = new Error("synthetic provider daily quota exhaustion");
+  error.youtubeApiFailure = { endpoint: "search.list", httpStatus: 403, apiStatus: "RESOURCE_EXHAUSTED", apiReason: "quotaExceeded" };
   const near = classifyYoutubeSearchQuotaFailure(error, { searchCallsUsed: 87, searchCapacity: 90 });
   assert.equal(near.terminalState, "DAILY_DISCOVERY_PROVIDER_QUOTA_EXHAUSTED_SAFE_CLOSE");
+  assert.equal(near.failureClass, "DAILY_QUOTA");
   assert.equal(near.nearRoutineCeiling, true);
   const early = classifyYoutubeSearchQuotaFailure(error, { searchCallsUsed: 40, searchCapacity: 90 });
   assert.equal(early.terminalState, "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA");
+  assert.equal(early.failureClass, "DAILY_QUOTA");
   assert.equal(early.nearRoutineCeiling, false);
   assert.equal(classifyYoutubeSearchQuotaFailure(new Error("other"), { searchCallsUsed: 89, searchCapacity: 90 }), null);
+});
+
+test("provider rateLimitExceeded is a distinct hard hold, never inferred as daily quota exhaustion", () => {
+  const error = new Error("synthetic provider rate limit");
+  error.youtubeApiFailure = {
+    endpoint: "search.list",
+    httpStatus: 429,
+    apiStatus: "RESOURCE_EXHAUSTED",
+    apiReason: "rateLimitExceeded",
+    retryAfterSeconds: 2
+  };
+  const classified = classifyYoutubeSearchQuotaFailure(error, { searchCallsUsed: 83, searchCapacity: 90 });
+  assert.equal(classified.terminalState, "DAILY_SEARCH_HOLD_RATE_LIMIT");
+  assert.equal(classified.progressStatus, "PROVIDER_RATE_LIMIT_HOLD");
+  assert.equal(classified.failureClass, "RATE_LIMIT");
+  assert.equal(classified.nearRoutineCeiling, false);
+  assert.equal(classified.retryAfterSeconds, 2);
+});
+
+test("YouTube API pacer enforces deterministic spacing without slowing tests", async () => {
+  assert.equal(YT_CUL_5E_MIN_YOUTUBE_REQUEST_INTERVAL_MS, 1000);
+  let now = 10000;
+  const sleeps = [];
+  const pacer = createYoutubeApiPacer({
+    minIntervalMs: 1000,
+    nowMs: () => now,
+    sleepImpl: async ms => { sleeps.push(ms); now += ms; }
+  });
+  await pacer();
+  await pacer();
+  now += 400;
+  await pacer();
+  assert.deepEqual(sleeps, [1000, 600]);
 });
 
 test("promising same-day discovery creates bounded candidate-label follow-up searches", () => {
