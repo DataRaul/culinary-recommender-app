@@ -51,10 +51,23 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
   if (authority.privateBrowseSearchImplementationAuthorizedAfterD5Prototype !== true) errors.push("private browse/search successor implementation must be authorized after D5 prototype");
 
   const sequence = config.nextExecutionSequence || [];
+  const brain = config.brainCalibration || {};
+  if (brain.id !== "CULINARY_BRAIN_CORPUS_CALIBRATION_V1") errors.push("Culinary Brain calibration contract is required");
+  if (brain.browseSearchBlocksOnBrain !== false) errors.push("browse/search must not block on Brain calibration");
+  if (brain.startsWith !== "P2_METADATA_USABILITY_MEASUREMENT") errors.push("Brain calibration must start with P2 metadata usability");
+  if (brain.goldenCalibrationRecipeCount !== 85) errors.push("Brain calibration golden set must remain 85");
+  if (brain.initialProtectedPilotTarget !== 500) errors.push("Brain calibration protected pilot target must remain 500");
+  if (brain.fullCorpusRecipeCount !== 19268) errors.push("Brain calibration full corpus count must remain 19268");
+  if (brain.liveRuntimeDependencyAuthorized !== false) errors.push("live Brain runtime dependency must remain unauthorized");
+  if (brain.disagreementOutcome !== "UNKNOWN_AMBIGUOUS_OR_REVIEW") errors.push("Brain disagreement must fail closed to unknown/ambiguous/review");
+
   const expected = [
     "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE",
     "D5_BEHAVIOR_WORK_DEFER",
-    "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY"
+    "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY",
+    "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
+    "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+    "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
   ];
   if (JSON.stringify(sequence) !== JSON.stringify(expected)) errors.push("unexpected execution sequence");
   return errors;
