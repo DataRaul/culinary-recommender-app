@@ -59,6 +59,34 @@ RESOLVE_DAILY_SEARCH_HOLD_POLICY_OR_QUOTA
 
 This hold is independent of the legal-corpus lane and does not block owner-authenticated v8017 protected population. The corpus lane must not resolve or retry the YouTube hold implicitly.
 
+## 2026-09-24 rate-limit classification repair
+
+Fresh reconciliation of the September 22 workflow logs, generated state and current provider semantics found a control-plane classification defect rather than evidence that the owner-verified 100/day Search Queries assignment had changed.
+
+The September 22 provider response was:
+
+```text
+HTTP 429 / RESOURCE_EXHAUSTED / rateLimitExceeded
+```
+
+Google's current API error semantics distinguish `rateLimitExceeded` (too many requests within a time span) from daily-quota exhaustion reasons such as `quotaExceeded` / `dailyLimitExceeded`. The Search endpoint remains governed by its dedicated Search Queries allocation. Therefore YT-CUL must not infer daily-quota exhaustion from `rateLimitExceeded` merely because the response also carries `RESOURCE_EXHAUSTED`.
+
+Repository repair law:
+
+- pace YouTube API requests with a minimum **1000 ms** interval between provider calls;
+- classify `rateLimitExceeded` as `DAILY_SEARCH_HOLD_RATE_LIMIT`;
+- keep confirmed daily-quota exhaustion under the existing near-ceiling safe-close / materially-early policy-quota rules;
+- persist a sanitized provider failure class and numeric `Retry-After` value when one is supplied;
+- preserve the current historical hard hold during repository-only repair; no live Search is used to validate this fix;
+- do not request paid quota, duplicate projects, relax credential/security controls, auto-promote Knowledge Core evidence, or admit content into the app.
+
+The historical September 22 hold remains fail-closed until a separately durable continuation/repurpose reconciliation explicitly clears or replaces it. This repair changes classification and request pacing only; it does not authorize generic YT-CUL Search to resume.
+
+Official references rechecked 2026-09-24:
+
+- https://developers.google.com/youtube/v3/docs/search/list
+- https://developers.google.com/youtube/v3/docs/errors
+
 ## Why the daily programme is required
 
 The Search Queries allowance is a renewable quota-day resource, not a one-time pool. The programme should use that renewable resource to accumulate genuinely useful culinary discovery evidence over multiple days rather than expecting one pilot to populate the World Recipe Atlas.
