@@ -1,10 +1,10 @@
 {
-  "handover": "CULINARY_APP_BARBECUE_CONTROL_PLANE_PASS_V83",
+  "handover": "CULINARY_APP_BARBECUE_FIRST_SCHEDULED_RUN_PENDING_V84",
   "handover_date": "2026-09-24",
   "timezone": "Atlantic/Canary",
-  "status": "V8018_LIVE_19268__PUBLIC_RUNTIME_85_UNCHANGED__RECIPE_FAMILY_COMPLETE_8_ELIGIBLE_2_HOLD__YT_CUL_GENERIC_RETIRED__BARBECUE_CONTROL_PLANE_PASS__SCHEDULED_PILOT_ACTIVE",
+  "status": "V8018_LIVE_19268__PUBLIC_RUNTIME_85_UNCHANGED__RECIPE_FAMILY_COMPLETE_8_ELIGIBLE_2_HOLD__YT_CUL_GENERIC_RETIRED__BARBECUE_CONTROL_PLANE_PASS__FIRST_SCHEDULED_ACQUISITION_PENDING",
   "human_needed": false,
-  "handover_written_against_main_sha": "37b30dfb96075af1716c9aa225451677b3f451be",
+  "handover_written_against_main_sha": "21016bed57ab266a9410fe5b435fc6c56797a541",
   "repository": {
     "primary": "DataRaul/culinary-recommender-app",
     "source_of_truth": "GitHub",
@@ -30,9 +30,17 @@
         "purpose": "implement bounded Barbecue Technique Corpus control plane and replace generic YT-CUL cron",
         "merge_sha": "37b30dfb96075af1716c9aa225451677b3f451be",
         "validation": "Validate public V0 run #1007 SUCCESS"
+      },
+      {
+        "pr": 289,
+        "state": "MERGED",
+        "purpose": "close barbecue control-plane PASS, activate scheduled bounded pilot, and rotate V83 handover",
+        "merge_sha": "21016bed57ab266a9410fe5b435fc6c56797a541",
+        "validation": "Validate public V0 run #1009 SUCCESS (takeover-reported; no contradictory live GitHub state found)"
       }
     ],
-    "latest_material_main_sha": "37b30dfb96075af1716c9aa225451677b3f451be"
+    "latest_material_main_sha": "21016bed57ab266a9410fe5b435fc6c56797a541",
+    "open_prs": []
   },
   "handover_protocol": {
     "current": "docs/handovers/CURRENT.json",
@@ -50,7 +58,7 @@
     "recommendation_readiness": "USABLE_RECOMMENDATION_BASELINE_PASS",
     "recipe_family_expansion": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_COMPLETE_WITH_EXPLICIT_HOLDS",
     "yt_cul_generic": "DAILY_SEARCH_HOLD_RATE_LIMIT__GENERIC_CRON_RETIRED__DRY_RUN_DIAGNOSTICS_ONLY",
-    "barbecue": "BARBECUE_TECHNIQUE_CORPUS_CONTROL_PLANE_VALIDATION_PASS__SCHEDULED_PILOT_ACTIVE__FIRST_ACQUISITION_PENDING",
+    "barbecue": "BARBECUE_TECHNIQUE_CORPUS_CONTROL_PLANE_VALIDATION_PASS__ACTIVE_BOUNDED_DISCOVERY__FIRST_SCHEDULED_ACQUISITION_PENDING",
     "public_activation": "SEPARATELY_GATED__NOT_AUTHORIZED",
     "knowledge_core": "NO_WRITE_FROM_CURRENT_APP_LANE",
     "billing": "NO_BILLING_AUTHORIZATION"
@@ -205,6 +213,27 @@
       "max_candidates_per_leaf": 12,
       "restart_safe_query_ids": true,
       "specialist_fallback_only_after_championship_search_and_review": true
+    },
+    "programme_status": "ACTIVE_BOUNDED_DISCOVERY",
+    "first_live_acquisition": "NOT_YET_RUN",
+    "last_completed_quota_date": null,
+    "completed_quota_days": [],
+    "hard_hold": null,
+    "pilot_pass": false,
+    "candidate_pointer_count": 0,
+    "qualified_source_count": 0,
+    "scheduler_reconciliation": {
+      "workflow": ".github/workflows/barbecue-technique-corpus-daily.yml",
+      "cron": "20 9 * * *",
+      "scheduled_utc": "09:20",
+      "scheduled_atlantic_canary_current": "10:20",
+      "workflow_activation_merged_at_utc": "2026-09-24T10:51:58Z",
+      "september_24_slot_status": "PRE_MERGE_SLOT_ALREADY_PASSED",
+      "scheduler_failure": false,
+      "manual_duplicate_live_search_authorized": false,
+      "expected_first_normal_wakeup_utc": "2026-09-25T09:20:00Z",
+      "expected_first_normal_wakeup_atlantic_canary": "2026-09-25T10:20:00+01:00",
+      "basis": "Workflow activation occurred after the September 24 scheduled slot; generated barbecue state still shows zero completed quota days, zero candidates and no hard hold."
     }
   },
   "not_authorized": [
@@ -221,27 +250,32 @@
   ],
   "human_gate": null,
   "next_action": {
-    "state": "WAIT_FOR_NEXT_BARBECUE_QUOTA_DAY__THEN_REVIEW_FIRST_CANDIDATE_BATCH",
+    "state": "WAIT_FOR_NEXT_BARBECUE_QUOTA_DAY__FIRST_ACQUISITION_PENDING",
     "actor": "REPOSITORY_SCHEDULED_WORK_UNIT_THEN_AUTONOMOUS_APP_LANE",
-    "action": "Do not manually resume generic YT-CUL Search. The registered barbecue workflow now owns the next quota-day acquisition wake-up. After it advances data/generated/barbecue-technique-corpus-state.json, fresh-reconcile that state. Review discovered candidate pointers using independent credential/domain-competence evidence; title wording alone never qualifies. Count a source only with a unique independence key and project-authored rationale/normalized observations. Continue championship/competition discovery before specialist fallback, synthesize a leaf only after five independent qualified sources, and use separate food-safety authority. If the workflow records a hard hold, reconcile that exact hold before any equivalent live retry."
+    "action": "Do not manually dispatch equivalent live Barbecue acquisition for the missed pre-merge September 24 slot. After the first normal scheduled wake-up on 2026-09-25 09:20 UTC / 10:20 Atlantic/Canary, fresh-reconcile main, open PRs, workflow result, barbecue programme state and barbecue work-unit state. On success, independently verify credential/domain competence for each candidate; title wording alone never qualifies. Explicitly QUALIFY or REJECT; count only unique independence keys; retain policy-safe provenance/reference data and project-authored normalized observations; continue championship/competition discovery before specialist fallback; synthesize only after five independent qualified sources per leaf; use separate authoritative food-safety evidence. On provider/policy/quota hard hold, stop live Search, preserve partial state and do not equivalent-retry until the material cause changes. If the scheduler runs without state advance, inspect jobs/logs and repair autonomously when technically resolvable."
   },
-  "terminal_instruction_for_new_chat": "Continue the Culinary App / Culinary Recommender lane from docs/handovers/CURRENT.json and fresh-reconcile live GitHub first. PR #288 merged green at 37b30dfb96075af1716c9aa225451677b3f451be after Validate public V0 run #1007 SUCCESS. BARBECUE_TECHNIQUE_CORPUS_CONTROL_PLANE_VALIDATION_PASS is earned. The new sole scheduled Culinary YouTube acquisition workflow is .github/workflows/barbecue-technique-corpus-daily.yml; generic YT-CUL cron is retired and diagnostics-only. Pilot: five conventional-grill leaves (poultry/chicken, beef/brisket, pork/ribs, fish/parrilla, vegetables/parrilla), world-champion/competition first, 5 independent qualified references per completed leaf, 16 Search calls/day pilot budget under 100/day assigned limit, 90-call provider classification envelope, >=5 protected reserve, 1-second pacing, restart-safe query IDs, no transcripts/media/copied prose, separate safety authority. Next: read barbecue generated state; if first scheduled acquisition has advanced it, review candidates and continue bounded coverage; if not, do not duplicate live Search manually. Protected production remains v8018 / 19,268 / two shards; public runtime remains 85; no D1/KC/public/billing widening.",
+  "terminal_instruction_for_new_chat": "Continue Culinary Recommender from docs/handovers/CURRENT.json and fresh-reconcile live GitHub first. Baseline before V84 rotation: main 21016bed57ab266a9410fe5b435fc6c56797a541; PR #289 merged; no open PRs. Barbecue is ACTIVE_BOUNDED_DISCOVERY but first live acquisition has not run: zero completed quota days, zero candidate pointers, zero qualified sources, no hard hold, pilotPass=false. Schedule cron '20 9 * * *' is 09:20 UTC / currently 10:20 Atlantic/Canary. The workflow merged at 2026-09-24T10:51:58Z, after the September 24 slot, so this is not scheduler failure and no manual duplicate Search is authorized. Expected first normal wake-up: 2026-09-25T09:20Z / 10:20 Atlantic/Canary. After it runs, reconcile workflow + generated barbecue state and continue the five-leaf, five-independent-source, world-champion-first pilot. Generic YT-CUL remains retired/fail-closed. Protected production remains v8018 / 19,268 / two shards; public runtime remains 85; no v8019, D1/KC/public/billing widening.",
   "continuation_boundary": {
-    "reason": "BARBECUE_CONTROL_PLANE_VALIDATION_PASS__SCHEDULED_PILOT_ACTIVE",
-    "safe_boundary": "PR288_MERGED_GREEN__GENERIC_YT_CRON_RETIRED__BARBECUE_SCHEDULER_REGISTERED__FIRST_ACQUISITION_PENDING",
+    "reason": "BARBECUE_CONTROL_PLANE_PASS__FIRST_SCHEDULED_RUN_NOT_YET_OCCURRED",
+    "safe_boundary": "PR289_MERGED_GREEN__NO_OPEN_PRS__FIRST_SCHEDULED_RUN_PENDING__NO_MANUAL_DUPLICATE_SEARCH__NEXT_NORMAL_WAKEUP_2026-09-25T09:20Z",
     "ordinary_implementation_stopped_for_rotation": true,
     "resume_after_rotation": true
   },
   "takeover_checkpoint": {
     "date_local": "2026-09-24",
     "fresh_reconcile": {
-      "main_sha": "37b30dfb96075af1716c9aa225451677b3f451be",
-      "latest_pr": 288,
+      "main_sha": "21016bed57ab266a9410fe5b435fc6c56797a541",
+      "latest_pr": 289,
       "latest_pr_state": "MERGED",
-      "latest_validation_run": 1007,
-      "latest_validation_conclusion": "SUCCESS"
+      "open_prs": 0,
+      "barbecue_programme_status": "ACTIVE_BOUNDED_DISCOVERY",
+      "barbecue_completed_quota_days": 0,
+      "barbecue_candidate_pointers": 0,
+      "barbecue_qualified_sources": 0,
+      "barbecue_hard_hold": null,
+      "first_scheduled_acquisition": "NOT_YET_RUN"
     },
     "canonical_next_lane": "BARBECUE_TECHNIQUE_CORPUS_SCHEDULED_PILOT",
-    "checkpoint_policy": "EARLY_ROTATION_AT_EACH_MATERIAL_BOUNDARY"
+    "checkpoint_policy": "WAIT_FOR_NORMAL_SCHEDULED_WAKEUP__NO_DUPLICATE_LIVE_SEARCH"
   }
 }
