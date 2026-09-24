@@ -3,6 +3,7 @@ import { ingredientById, normalizeIngredient } from "./data/ingredients.js";
 import { loadState } from "./domain/storage.js";
 import { searchRecipesByIngredients } from "./domain/search.js";
 import { inspectExternalRecipeProvenance, renderExternalRecipeProvenance } from "./domain/public-attribution.js";
+import { bindRecipeImageFallbacks, recipeImageMarkup } from "./recipe-images-p0-runtime.js";
 
 const app = document.querySelector("#app");
 const nav = document.querySelector("#bottomNav");
@@ -90,6 +91,7 @@ function resultCard(item) {
   const missing = item.missingSecondary.map(labelIngredient);
   const sourceBadge = recipe.provenance?.sourceType === "EXTERNAL_OPEN_RECIPE" ? " · open external recipe" : " · curated recipe";
   return `<article class="recipe-card search-result-card">
+    ${recipeImageMarkup(recipe.id)}
     <div class="recipe-top"><div><p class="eyebrow">${escapeHtml(recipe.culinary.cuisine)} · ingredient match${sourceBadge}</p><h3>${escapeHtml(recipe.identity.canonicalTitle)}</h3></div><span class="cost-pill">${euroTier(recipe.economics.costTier)}</span></div>
     <div class="meta-row"><span>${recipe.time.totalMinutes} min</span><span>Level ${recipe.culinary.difficulty}/4</span><span>${escapeHtml(nutritionLabel(recipe))}</span><span>Novelty ${recipe.discovery.novelty}/4</span></div>
     <p class="reason">Uses <strong>${escapeHtml(labelIngredient(item.mainIngredientId))}</strong>${matched.length ? ` + ${matched.map(escapeHtml).join(", ")}` : ""}. ${escapeHtml(item.explanation)}</p>
@@ -125,6 +127,7 @@ function renderSearchResults(result, mainId, secondaryIds) {
     return;
   }
   target.innerHTML = `<section class="search-result-summary"><div><p class="eyebrow">Deterministic results</p><h2>${renderedCards.length} dish${renderedCards.length === 1 ? "" : "es"} for ${escapeHtml(labelIngredient(mainId))}</h2><p class="hint">${coverageCopy}</p></div></section><section class="recipe-list">${renderedCards.join("")}</section>`;
+  bindRecipeImageFallbacks(target);
 }
 
 function parseSecondary(raw) {
