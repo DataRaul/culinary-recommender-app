@@ -81,6 +81,7 @@ export function createInitialBarbecueState(config) {
     maxCandidatesPerLeaf: config.maxCandidatesPerLeaf,
     lastCompletedQuotaDate: null,
     completedQuotaDays: [],
+    usedQueryIds: [],
     hardHold: null,
     pilotPass: false,
     leaves: config.pilotLeaves.map(leaf=>({
@@ -105,6 +106,7 @@ export function validateBarbecueState(state, config) {
   if (!state || typeof state !== "object" || state.schemaVersion !== BARBECUE_STATE_SCHEMA) throw new Error("invalid barbecue state");
   if (state.programmeId !== BARBECUE_PROGRAMME_ID) throw new Error("barbecue state programme mismatch");
   if (!Array.isArray(state.leaves) || state.leaves.length !== config.pilotLeaves.length) throw new Error("barbecue state leaf count mismatch");
+  if (!Array.isArray(state.usedQueryIds)) throw new Error("barbecue state usedQueryIds must be an array");
   if (state.authority?.automaticPublicationAuthorized !== false || state.authority?.automaticAppAdmissionAuthorized !== false || state.authority?.automaticKnowledgeCorePromotionAuthorized !== false || state.authority?.paidQuotaAuthorized !== false || state.authority?.secondProjectAuthorized !== false) throw new Error("barbecue state authority widened");
   assertNoForbiddenKeys(state);
   assertPolicySafeDurableObject(state);
@@ -119,7 +121,7 @@ export function buildBarbecueQueryPortfolio(config, state) {
   validateBarbecueState(state, config);
   const out=[];
   for (const leaf of state.leaves) {
-    if (leaf.status === "COMPLETE") continue;
+    if (leaf.status === "COMPLETE" || leaf.qualifiedSources.length >= config.requiredQualifiedIndependentSourcesPerLeaf) continue;
     const spec=config.pilotLeaves.find(row=>row.leafId===leaf.leafId);
     const templates=leaf.championshipSearchExhausted ? config.specialistFallbackTemplates : config.worldChampionTemplates;
     for (const row of templates) {
@@ -146,7 +148,7 @@ export function buildBarbecueQueryPortfolio(config, state) {
   return out;
 }
 
-export function selectBarbecueDailyQueries(config, state, usedQueryIds = []) {
+export function selectBarbecueDailyQueries(config, state, usedQueryIds = state.usedQueryIds ?? []) {
   const used=new Set(usedQueryIds);
   const portfolio=buildBarbecueQueryPortfolio(config,state).filter(row=>!used.has(row.queryId));
   const byLeaf=new Map();
@@ -179,6 +181,7 @@ export function createDurableCandidatePointer(rawItem, query, quotaDate) {
     canonicalReference:`https://www.youtube.com/watch?v=${youtubeVideoRef}`,
     creatorChannelRef,
     leafId:query.leafId,
+    queryId:query.queryId,
     queryClass:query.queryClass,
     discoveredQuotaDate:quotaDate,
     qualificationStatus:"PENDING_REVIEW",
@@ -201,12 +204,42 @@ export function addCandidatePointers(state, config, pointers) {
   return validateBarbecueState(next,config);
 }
 
+function championshipQueryIdsForLeaf(config, leafId) {
+  const spec=config.pilotLeaves.find(row=>row.leafId===leafId);
+  if (!spec) return [];
+  const ids=[];
+  for (const row of config.worldChampionTemplates) ids.push(`bbq-${hash(`${leafId}|${row.queryClass}|${row.template}`).slice(0,18)}`);
+  for (const text of spec.localizedChampionQueries ?? []) ids.push(`bbq-${hash(`${leafId}|localized|${text}`).slice(0,18)}`);
+  return ids;
+}
+
+export function refreshBarbecueDiscoveryPhases(state, config) {
+  const next=clone(state);
+  const used=new Set(next.usedQueryIds ?? []);
+  for (const leaf of next.leaves) {
+    if (leaf.status==="COMPLETE") continue;
+    if (leaf.qualifiedSources.length >= config.requiredQualifiedIndependentSourcesPerLeaf) {
+      leaf.status=leaf.synthesis ? (evaluateLeafCompletion(leaf,config) ? "COMPLETE" : "SYNTHESIS_HOLD") : "SYNTHESIS_PENDING";
+      continue;
+    }
+    const championshipIds=championshipQueryIdsForLeaf(config,leaf.leafId);
+    const allChampionshipQueriesUsed=championshipIds.length>0 && championshipIds.every(id=>used.has(id));
+    const pendingChampionship=leaf.candidatePointers.some(pointer=>pointer.qualificationStatus==="PENDING_REVIEW" && ["WORLD_CHAMPION_DISCOVERY","COMPETITION_CHAMPION_DISCOVERY"].includes(pointer.queryClass));
+    if (allChampionshipQueriesUsed && !pendingChampionship) leaf.championshipSearchExhausted=true;
+    const pending=leaf.candidatePointers.some(pointer=>pointer.qualificationStatus==="PENDING_REVIEW");
+    if (pending) leaf.status="REVIEW_PENDING";
+    else if (leaf.championshipSearchExhausted) leaf.status="DISCOVERY_PENDING";
+  }
+  return validateBarbecueState(next,config);
+}
+
 export function applySourceQualification(state, config, leafId, sourceRef, review) {
   const next=clone(state);
   const leaf=next.leaves.find(row=>row.leafId===leafId);
   if (!leaf) throw new Error("unknown barbecue leaf");
   const pointer=leaf.candidatePointers.find(row=>row.sourceRef===sourceRef);
   if (!pointer) throw new Error("candidate pointer not found");
+  if (pointer.qualificationStatus !== "PENDING_REVIEW") throw new Error("candidate pointer has already been reviewed");
   assertNoForbiddenKeys(review);
   if (!nonEmpty(review?.independenceKey)) throw new Error("qualification review requires independenceKey");
   if (!nonEmpty(review?.projectAuthoredRationale)) throw new Error("qualification review requires project-authored rationale");
@@ -224,7 +257,21 @@ export function applySourceQualification(state, config, leafId, sourceRef, revie
     normalizedObservations:clone(review.normalizedObservations ?? {})
   });
   pointer.qualificationStatus="QUALIFIED";
-  return validateBarbecueState(next,config);
+  return refreshBarbecueDiscoveryPhases(next,config);
+}
+
+export function rejectCandidatePointer(state, config, leafId, sourceRef, review) {
+  const next=clone(state);
+  const leaf=next.leaves.find(row=>row.leafId===leafId);
+  if (!leaf) throw new Error("unknown barbecue leaf");
+  const pointer=leaf.candidatePointers.find(row=>row.sourceRef===sourceRef);
+  if (!pointer) throw new Error("candidate pointer not found");
+  if (pointer.qualificationStatus !== "PENDING_REVIEW") throw new Error("candidate pointer has already been reviewed");
+  assertNoForbiddenKeys(review);
+  if (!nonEmpty(review?.projectAuthoredRationale)) throw new Error("candidate rejection requires project-authored rationale");
+  pointer.qualificationStatus="REJECTED";
+  pointer.projectAuthoredRejectionRationale=review.projectAuthoredRationale;
+  return refreshBarbecueDiscoveryPhases(next,config);
 }
 
 export function setLeafSynthesis(state, config, leafId, synthesis) {
