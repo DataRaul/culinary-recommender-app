@@ -6,7 +6,7 @@
 | D2 Existing Supplement Routine Checker | DEFERRED | dedicated evidence/safety layer; no prescribing or individualized therapeutic dose |
 | D3 Recipe Images | P0 COMPLETE / FROZEN BASELINE | exact six project-authored SVGs are green in plan/search cards; broader media coverage requires a new explicit expansion gate |
 | D4 Local Grocery Price Intelligence | DEFERRED | lawful reliable price source or user/receipt evidence |
-| D5 Fitness Integration | P0 ADAPTER DESIGN PASS / PROTOTYPE NEXT | exact minimum-data one-way contract validated against the user-selected workout backup; no runtime activation, medical inference or nutrition-prescription authority |
+| D5 Fitness Integration | P0 ADAPTER DESIGN PASS / SAFE PROTOTYPE NEXT THEN DEFER | finish the minimum-data user-selected backup prototype only; after prototype proof, defer all fitness-derived culinary behavior while Protected Corpus Runtime Usability V1 becomes the principal lane |
 | D6 Advanced Culinary Exploration | DEFERRED / OWNER-PRIORITY SEQUENCE | technique curricula, regional depth, advanced challenges; do not outrun the active Barbecue Technique Corpus scheduled pilot |
 | Culinary & Nutrition Brain P0 | AUTHORIZED / FOUNDATION BUILT | Knowledge Core canonical reasoning may produce narrow reviewed static public-safe exports; app runtime behavior remains separately gated |
 
@@ -29,3 +29,8 @@ This does not authorize third-party source media. Existing external/protected re
 The source fitness app already has a user-permission-gated portable JSON backup (schema v3), no cloud sync and no silent shared-folder access. That is sufficient to design a narrow one-way adapter without creating a server, runtime coupling or automatic data sharing.
 
 D5 design does not authorize public behavior activation, medical inference, calorie-burn estimation, individualized macro/supplement prescription, automatic folder reads, cross-app localStorage reads, source-app mutation or default intake of sensitive workout fields. D1/D2/D4 remain blocked; D6 remains sequenced behind Barbecue.
+
+
+## 2026-09-24 owner-priority successor after D5 prototype
+
+After the safe D5 adapter prototype proves user-selected import, preview and field minimization, D5 behavior work is deferred. The principal independent app-development lane becomes `PROTECTED_CORPUS_RUNTIME_USABILITY_V1`: make v8018 / 19,268 protected recipes privately browsable/searchable, measure real metadata blockers, and progressively earn recommendation subsets without weakening hard safety or provenance gates. See `docs/PROTECTED_CORPUS_RUNTIME_USABILITY_V1.md`.
