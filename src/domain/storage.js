@@ -1,5 +1,6 @@
 import { DEFAULT_PROFILE, normalizeProfile } from "./profile.js";
 import { DEFAULT_PANTRY_STAPLES } from "../data/ingredients.js";
+import { sanitizeFitnessContext } from "./fitness-integration-p0.js";
 
 export const STORAGE_KEY = "culinary-recommender.state.v1";
 export const SCHEMA_VERSION = 1;
@@ -12,7 +13,8 @@ export const DEFAULT_STATE = {
   savedPlans: [],
   recommendationHistory: [],
   preferences: { language: "en", reducedMotion: false },
-  availabilityHistory: []
+  availabilityHistory: [],
+  fitnessContext: null
 };
 
 const clone = value => JSON.parse(JSON.stringify(value));
@@ -28,7 +30,8 @@ export function normalizeState(input = {}) {
     savedPlans: Array.isArray(value.savedPlans) ? value.savedPlans : [],
     recommendationHistory: Array.isArray(value.recommendationHistory) ? value.recommendationHistory : [],
     availabilityHistory: Array.isArray(value.availabilityHistory) ? value.availabilityHistory : [],
-    preferences: { ...DEFAULT_STATE.preferences, ...(value.preferences || {}) }
+    preferences: { ...DEFAULT_STATE.preferences, ...(value.preferences || {}) },
+    fitnessContext: sanitizeFitnessContext(value.fitnessContext)
   };
 }
 
