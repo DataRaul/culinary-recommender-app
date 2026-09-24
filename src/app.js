@@ -6,6 +6,7 @@ import { buildGroceryList } from "./domain/grocery.js";
 import { estimatePortfolioCost } from "./domain/cost.js";
 import { loadState, saveState, exportState, importState } from "./domain/storage.js";
 import { suggestSubstitutions } from "./domain/substitution.js";
+import { bindRecipeImageFallbacks, recipeImageMarkup } from "./recipe-images-p0-runtime.js";
 
 const app = document.querySelector("#app");
 const nav = document.querySelector("#bottomNav");
@@ -171,6 +172,7 @@ function recipeCard(item) {
   const r = item.recipe;
   const adaptations = item.availability?.adaptations || [];
   return `<article class="recipe-card">
+    ${recipeImageMarkup(r.id)}
     <div class="recipe-top"><div><p class="eyebrow">${escapeHtml(item.slot.day)} · ${escapeHtml(item.slot.mealType)}</p><h3>${escapeHtml(r.identity.canonicalTitle)}</h3></div><span class="cost-pill" aria-label="Cost tier ${r.economics.costTier} of 4">${euroTier(r.economics.costTier)}</span></div>
     <div class="meta-row"><span>${r.time.totalMinutes} min</span><span>Level ${r.culinary.difficulty}/4</span><span>${escapeHtml(r.culinary.cuisine)}</span><span>${nutritionLine(r)}</span></div>
     <p class="reason">${escapeHtml(item.explanation)}</p>
@@ -188,6 +190,7 @@ function renderPlan() {
     <section class="summary-strip"><div><strong>${state.plan.items.length}</strong><span>meals</span></div><div><strong>${grocery.portions}</strong><span>planned portions</span></div><div><strong>${grocery.shopping.length}</strong><span>shopping lines</span></div><div><strong>${grocery.reusedIngredientCount}</strong><span>reused ingredients</span></div><div><strong>${cost.label}</strong><span>basket tier</span></div></section>
     ${state.plan.shortfalls.length ? `<section class="shortfall"><strong>Plan shortfall</strong><p>I couldn't fill ${state.plan.shortfalls.length} selected slot${state.plan.shortfalls.length === 1 ? "" : "s"} without weakening hard constraints.</p>${state.plan.shortfalls.map(s => `<p>${escapeHtml(s.slot.day)} ${escapeHtml(s.slot.mealType)}: ${s.causes.map(c => `${escapeHtml(c.reason)} (${c.count})`).join("; ") || "no eligible recipe"}</p>`).join("")}</section>` : ""}
     <section class="recipe-list">${state.plan.items.map(recipeCard).join("")}</section>`;
+  bindRecipeImageFallbacks(app);
   document.querySelector("#editWeek").addEventListener("click", () => { activeView = "start"; render(); });
   document.querySelectorAll(".swap-button").forEach(button => button.addEventListener("click", () => {
     state.plan = { ...swapSlot(RECIPES, state.profile, state.plan, button.dataset.slotId), generatedAt: new Date().toISOString() };

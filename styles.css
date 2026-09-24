@@ -76,6 +76,11 @@ button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-v
 .summary-strip span { color: var(--muted); font-size: .74rem; }
 .recipe-list { display: grid; gap: 1rem; }
 .recipe-card h3 { font-size: 1.35rem; }
+.recipe-media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 16px; background: var(--surface-2); margin: 0 0 1rem; }
+.recipe-media-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; }
+.recipe-media-fallback { position: absolute; inset: 0; display: grid; place-items: center; padding: 1rem; color: var(--muted); background: var(--surface-2); text-align: center; font-size: .78rem; }
+.recipe-media[data-image-state="loaded"] .recipe-media-image { opacity: 1; }
+.recipe-media[data-image-state="loaded"] .recipe-media-fallback { display: none; }
 .meta-row { margin: .6rem 0 1rem; }
 .reason { font-weight: 650; }
 .adapt-note { padding: .75rem; border-left: 4px solid var(--warning); background: #f7efe3; border-radius: 8px; margin: .8rem 0; }
