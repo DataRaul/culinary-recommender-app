@@ -83,5 +83,6 @@
     "automaticKnowledgeCorePromotionAuthorized": false,
     "paidQuotaAuthorized": false,
     "secondProjectAuthorized": false
-  }
+  },
+  "usedQueryIds": []
 }
