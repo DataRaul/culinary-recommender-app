@@ -30,10 +30,22 @@ test("programme fails closed if protected evidence drifts", () => {
   assert.ok(validateProtectedCorpusRuntimeUsability(mutated, evidence).some(error => error.includes("recipe count")));
 });
 
-test("programme preserves D5 prototype then defer then protected-corpus priority", () => {
+test("programme preserves D5 prototype then defer then real-corpus/Brain priority", () => {
   const mutated = structuredClone(config);
   mutated.ownerPriority.deferD5BehaviorAfterPrototype = false;
   assert.ok(validateProtectedCorpusRuntimeUsability(mutated, evidence).some(error => error.includes("D5 behavior")));
+
+  const brainRuntime = structuredClone(config);
+  brainRuntime.brainCalibration.liveRuntimeDependencyAuthorized = true;
+  assert.ok(validateProtectedCorpusRuntimeUsability(brainRuntime, evidence).some(error => error.includes("live Brain runtime")));
+
+  const browseBlocked = structuredClone(config);
+  browseBlocked.brainCalibration.browseSearchBlocksOnBrain = true;
+  assert.ok(validateProtectedCorpusRuntimeUsability(browseBlocked, evidence).some(error => error.includes("browse/search")));
+
+  const disagreementVote = structuredClone(config);
+  disagreementVote.brainCalibration.disagreementOutcome = "MAJORITY_VOTE";
+  assert.ok(validateProtectedCorpusRuntimeUsability(disagreementVote, evidence).some(error => error.includes("fail closed")));
 });
 
 test("programme cannot silently widen public, billing, shard, KC or Barbecue authority", () => {
