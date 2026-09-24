@@ -2,7 +2,7 @@
 
 Date: **2026-09-24**
 
-Status: **ASSETS BUILT / FULL REPOSITORY VALIDATION PENDING / PUBLIC UI ACTIVATION FALSE**
+Status: **PASS / SIX PROJECT-AUTHORED ASSETS VALIDATED / PUBLIC UI ACTIVATION FALSE**
 
 Entry gate: `D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT_PASS`
 
@@ -98,6 +98,8 @@ No:
 - Knowledge Core write;
 - Barbecue workflow/state mutation;
 - public UI image activation in this gate.
+
+Validation run **#1045 / 36011579007** passed the full repository and browser suite with all six SVG file/security/budget/registry checks green. Final PR-head validation remains mandatory after closeout metadata updates.
 
 ## Next gate after PASS
 
