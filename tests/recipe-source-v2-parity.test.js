@@ -2,7 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { RecipeSource } from "../src/core/contracts.js";
-import { ALL_RECIPES } from "../src/data/corpus-v1.js";
+import { ALL_RECIPES, PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
+import { fingerprintGoldenCorpus } from "../scripts/corpus-scale-step1-core.mjs";
 import {
   PortableJsonRecipeSourceV2,
   createRecipeSourceV2,
@@ -187,4 +188,52 @@ test("RecipeSource V2 compatibility fixture stays bound to the reviewed golden c
   assert.deepEqual(v2.list().map(recipe => recipe.id), ALL_RECIPES.map(recipe => recipe.id));
   assert.equal(new Set(v2.list().map(recipe => recipe.id)).size, ALL_RECIPES.length);
   assert.equal(ALL_RECIPES.length, 84);
+});
+
+
+const CURRENT_PUBLIC_RUNTIME_FINGERPRINT = Object.freeze({
+  recipeCount: 85,
+  idsSha256: "fbd3e7121f741db2f637fcea917d07ad410c189a0d6c2f1394c23f83ed5bc025",
+  recordsSha256: "d866a89b0182d15707a9377ff827af4f235b87d1e324e4e37298e85626ffe1c5"
+});
+
+test("Step 2 reconciles the current 85-record public runtime through the V2 JSON boundary", () => {
+  const fingerprint = fingerprintGoldenCorpus(PUBLIC_RUNTIME_RECIPES);
+  assert.deepEqual(fingerprint, CURRENT_PUBLIC_RUNTIME_FINGERPRINT);
+
+  const v2Rows = createRecipeSourceV2(PUBLIC_RUNTIME_RECIPES).list();
+  assert.equal(v2Rows.length, 85);
+  assert.deepEqual(v2Rows, PUBLIC_RUNTIME_RECIPES);
+  assert.deepEqual(v2Rows.map(recipe => recipe.id), PUBLIC_RUNTIME_RECIPES.map(recipe => recipe.id));
+});
+
+test("current public runtime preserves direct/V2 ranking, planner and ingredient-search behavior", () => {
+  const directRows = PUBLIC_RUNTIME_RECIPES;
+  const v2Rows = createRecipeSourceV2(PUBLIC_RUNTIME_RECIPES).list();
+  const contexts = [
+    { mealType: "lunch" },
+    { mealType: "dinner" },
+    { mealType: "lunch", mode: "search" },
+    { mealType: "dinner", mode: "search" }
+  ];
+
+  for (const profile of profiles) {
+    for (const context of contexts) {
+      assert.deepEqual(rankRecipes(v2Rows, profile, context), rankRecipes(directRows, profile, context));
+    }
+  }
+
+  for (const profile of profiles.slice(0, 4)) {
+    assert.deepEqual(planSlots(v2Rows, profile, defaultSlots()), planSlots(directRows, profile, defaultSlots()));
+    assert.deepEqual(planSlots(v2Rows, profile, allWeekSlots()), planSlots(directRows, profile, allWeekSlots()));
+  }
+
+  for (const profile of profiles.slice(0, 5)) {
+    for (const query of queryCases) {
+      assert.deepEqual(
+        searchRecipesByIngredients(v2Rows, profile, query),
+        searchRecipesByIngredients(directRows, profile, query)
+      );
+    }
+  }
 });
