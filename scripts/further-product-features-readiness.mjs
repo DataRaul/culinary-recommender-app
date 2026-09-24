@@ -42,7 +42,8 @@ export function validateFurtherProductFeaturesReadiness(config) {
   const d5 = byId.get("D5");
   if (config.state === "POST_D3_REASSESSMENT_PASS") {
     if (config.selectedNextDesignCandidate !== "D5") errors.push("D5 must be the selected next design candidate after D3 closeout");
-    const d5AllowedStates = new Set(["READY_FOR_BOUNDED_ADAPTER_DESIGN","P0_ADAPTER_DESIGN_CONTRACT_BUILT_VALIDATION_PENDING","P0_ADAPTER_DESIGN_CONTRACT_PASS"]);\n    if (!d5AllowedStates.has(d5?.state)) errors.push("D5 state is outside the bounded adapter-design progression");
+    const d5AllowedStates = new Set(["READY_FOR_BOUNDED_ADAPTER_DESIGN","P0_ADAPTER_DESIGN_CONTRACT_BUILT_VALIDATION_PENDING","P0_ADAPTER_DESIGN_CONTRACT_PASS"]);
+    if (!d5AllowedStates.has(d5?.state)) errors.push("D5 state is outside the bounded adapter-design progression");
     const boundary = d5?.adapterBoundary || {};
     if (boundary.inputMode !== "USER_SELECTED_PORTABLE_BACKUP_ONLY") errors.push("D5 input must remain user-selected portable backup only");
     if (boundary.automaticFolderReadAuthorized !== false) errors.push("D5 automatic folder read must remain unauthorized");
