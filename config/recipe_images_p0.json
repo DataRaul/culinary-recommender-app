@@ -39,6 +39,7 @@
     "reuseState",
     "provenance",
     "contentSha256",
+    "assetPath",
     "format",
     "width",
     "height",
@@ -54,7 +55,8 @@
     "asyncDecodePreferred": true,
     "sameOriginStaticAssetsOnly": true,
     "altTextRequired": true,
-    "altTextMaxChars": 180
+    "altTextMaxChars": 180,
+    "sameOriginAssetPathPrefix": "/assets/recipes/"
   },
   "performanceBudgets": {
     "maxBytesPerCardAsset": 180000,
