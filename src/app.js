@@ -7,6 +7,7 @@ import { estimatePortfolioCost } from "./domain/cost.js";
 import { loadState, saveState, exportState, importState } from "./domain/storage.js";
 import { suggestSubstitutions } from "./domain/substitution.js";
 import { bindRecipeImageFallbacks, recipeImageMarkup } from "./recipe-images-p0-runtime.js";
+import { parseWorkoutBackupForFitnessContext } from "./domain/fitness-integration-p0.js";
 
 const app = document.querySelector("#app");
 const nav = document.querySelector("#bottomNav");
@@ -241,14 +242,69 @@ function bindIngredientForm(formSelector, inputSelector, key) {
 }
 function removeIngredient(key,id) { state.profile[key] = state.profile[key].filter(value=>value!==id); persist(); renderPantry(); }
 
+function fitnessContextMarkup(context) {
+  if (!context) return "<p class='micro'>No workout context is stored.</p>";
+  const weekdayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const weekdays = context.preferredTrainingWeekdays.length
+    ? context.preferredTrainingWeekdays.map(day => weekdayNames[day]).join(", ")
+    : "Not supplied";
+  return `<div class="result-box"><p><strong>Stored local fitness context · inactive</strong></p><p>Goal: ${escapeHtml(context.trainingGoal.replaceAll("_"," "))} · ${context.plannedTrainingDaysPerWeek} days/week · ${context.plannedSessionMinutes} min/session</p><p class="micro">Preferred weekdays: ${escapeHtml(weekdays)} · source backup schema v${context.sourceBackupSchemaVersion}</p></div>`;
+}
+
 function renderProfile() {
-  app.innerHTML = `<section class="page-heading"><div><p class="eyebrow">Saved locally</p><h1>Profile & privacy</h1><p class="lede">No account or server is required. Your profile, plan and availability memory stay in this browser unless you export them.</p></div></section><section class="panel">${profileControls()}<div class="button-row"><button id="applyProfile" class="primary-action compact" type="button">Save profile</button><button id="exportProfile" class="secondary-action" type="button">Export JSON</button><label class="secondary-action file-button">Import JSON<input id="importProfile" type="file" accept="application/json" hidden></label></div></section><section class="confidence-note"><strong>Safety boundary</strong><p>For generally healthy adults. Nutrition is approximate educational information. Declared allergies are treated as hard filters where mapped, but this small corpus cannot guarantee allergen safety or cross-contamination.</p></section>`;
+  app.innerHTML = `<section class="page-heading"><div><p class="eyebrow">Saved locally</p><h1>Profile & privacy</h1><p class="lede">No account or server is required. Your profile, plan and availability memory stay in this browser unless you export them.</p></div></section>
+  <section class="panel">${profileControls()}<div class="button-row"><button id="applyProfile" class="primary-action compact" type="button">Save profile</button><button id="exportProfile" class="secondary-action" type="button">Export JSON</button><label class="secondary-action file-button">Import JSON<input id="importProfile" type="file" accept="application/json" hidden></label></div></section>
+  <section class="panel" id="fitnessIntegrationPanel"><p class="eyebrow">Optional local prototype</p><h2>Workout backup adapter</h2><p class="hint">Select a workout-recommender backup yourself. The app previews only goal, planned days, session length and preferred weekdays. Nothing from the file is saved until you explicitly save this minimized preview.</p>
+    <div class="button-row"><label class="secondary-action file-button">Select workout backup<input id="importWorkoutBackup" type="file" accept=".json,application/json" hidden></label><button id="removeFitnessContext" class="secondary-action" type="button" ${state.fitnessContext ? "" : "hidden"}>Remove stored fitness context</button></div>
+    <div id="fitnessPreview" class="result-box" hidden aria-live="polite"></div>
+    <button id="saveFitnessContext" class="primary-action compact" type="button" hidden>Save preview locally</button>
+    <div id="fitnessStoredContext">${fitnessContextMarkup(state.fitnessContext)}</div>
+    <p class="micro">This context is deliberately inactive: it does not change recipe eligibility, ranking, allergens, nutrition, calories, TDEE, supplements or medical behavior.</p>
+  </section>
+  <section class="confidence-note"><strong>Safety boundary</strong><p>For generally healthy adults. Nutrition is approximate educational information. Declared allergies are treated as hard filters where mapped, but this small corpus cannot guarantee allergen safety or cross-contamination.</p></section>`;
   bindProfileControls();
   document.querySelector("#applyProfile").addEventListener("click",()=>{ persist(); announce("Profile saved locally."); });
   document.querySelector("#exportProfile").addEventListener("click",()=>{
     const blob = new Blob([exportState(state)],{type:"application/json"}); const url=URL.createObjectURL(blob); const a=document.createElement("a"); a.href=url; a.download=`culinary-recommender-${new Date().toISOString().slice(0,10)}.json`; a.click(); URL.revokeObjectURL(url);
   });
   document.querySelector("#importProfile").addEventListener("change", async event => { const file=event.target.files?.[0]; if(!file)return; try{state=importState(await file.text());persist();announce("Backup imported.");render();}catch(error){announce(error.message);} });
+
+  let pendingFitnessContext = null;
+  const preview = document.querySelector("#fitnessPreview");
+  const saveFitness = document.querySelector("#saveFitnessContext");
+  document.querySelector("#importWorkoutBackup").addEventListener("change", async event => {
+    pendingFitnessContext = null;
+    saveFitness.hidden = true;
+    const file = event.target.files?.[0];
+    if (!file) { preview.hidden = true; return; }
+    try {
+      pendingFitnessContext = parseWorkoutBackupForFitnessContext(await file.text());
+      const weekdayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+      const weekdays = pendingFitnessContext.preferredTrainingWeekdays.length
+        ? pendingFitnessContext.preferredTrainingWeekdays.map(day => weekdayNames[day]).join(", ")
+        : "Not supplied";
+      preview.innerHTML = `<p><strong>Preview — not saved</strong></p><p>Goal: ${escapeHtml(pendingFitnessContext.trainingGoal.replaceAll("_"," "))}</p><p>Planned training: ${pendingFitnessContext.plannedTrainingDaysPerWeek} days/week · ${pendingFitnessContext.plannedSessionMinutes} min/session</p><p>Preferred weekdays: ${escapeHtml(weekdays)}</p><p class="micro">Workout backup schema v${pendingFitnessContext.sourceBackupSchemaVersion}. All other workout fields are discarded at the adapter boundary.</p>`;
+      preview.hidden = false;
+      saveFitness.hidden = false;
+    } catch (error) {
+      preview.textContent = error.message;
+      preview.hidden = false;
+      announce("Workout backup was rejected.");
+    }
+  });
+  saveFitness.addEventListener("click", () => {
+    if (!pendingFitnessContext) return;
+    state.fitnessContext = pendingFitnessContext;
+    persist();
+    announce("Fitness context saved locally and remains inactive.");
+    renderProfile();
+  });
+  document.querySelector("#removeFitnessContext").addEventListener("click", () => {
+    state.fitnessContext = null;
+    persist();
+    announce("Stored fitness context removed.");
+    renderProfile();
+  });
 }
 
 function emptyPrompt(title, body) { return `<section class="empty-state"><p class="eyebrow">Nothing here yet</p><h1>${escapeHtml(title)}</h1><p>${escapeHtml(body)}</p><button class="primary-action compact" id="emptyStart">Start planning</button></section>`; }
