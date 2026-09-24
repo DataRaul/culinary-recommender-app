@@ -5,11 +5,11 @@
   "canonicalDecision": "docs/LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_DECISION.md",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "sequencing": {
-    "primaryNextMilestone": "RECIPE_FAMILY_AND_ADAPTATION",
-    "principalExecutionLane": "RECIPE_FAMILY_AND_ADAPTATION",
-    "recipeFamilyPrototypeState": "ACTIVE_PRIMARY_NEXT",
+    "primaryNextMilestone": "FURTHER_PRODUCT_FEATURES",
+    "principalExecutionLane": "FURTHER_PRODUCT_FEATURES_READINESS",
+    "recipeFamilyPrototypeState": "COMPLETE_10_FAMILY_BOUNDED_EXPANSION__8_ELIGIBLE_2_HOLD",
     "nutritionExpansionPriority": "APPLICABILITY_AUDIT_COMPLETE__CONTINUOUS_EVIDENCE_LANE",
-    "youtubeRefinementPriority": "DOWNSTREAM_AFTER_RECIPE_FAMILY_AND_ADAPTATION",
+    "youtubeRefinementPriority": "BARBECUE_SCHEDULED_PILOT_ACTIVE__SEPARATE_OWNER_PRIORITY_LANE",
     "recommendationOptimizationPriority": "USABLE_RECOMMENDATION_BASELINE_PASS__FROZEN",
     "postBaselineOrder": [
       "corpus_normalization_and_categorization",
@@ -18,7 +18,16 @@
       "recipe_family_and_adaptation",
       "youtube_and_authoritative_evidence_refinement",
       "further_product_features"
-    ]
+    ],
+    "currentPostBaselinePosition": "FURTHER_PRODUCT_FEATURES",
+    "furtherProductFeatures": {
+      "status": "FURTHER_PRODUCT_FEATURES_READINESS_PASS",
+      "contract": "config/further_product_features_v1.json",
+      "document": "docs/FURTHER_PRODUCT_FEATURES_READINESS_V1.md",
+      "selectedNextDesignCandidate": "D3_RECIPE_IMAGES",
+      "nextGate": "D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT",
+      "publicRuntimeChangeAuthorized": false
+    }
   },
   "sourceAdmission": {
     "rightsGated": true,
