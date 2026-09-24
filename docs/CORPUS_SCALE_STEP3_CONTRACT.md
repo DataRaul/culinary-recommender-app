@@ -1,8 +1,8 @@
 # Corpus Scale / 100k Readiness — Step 3 Portable Object Layout
 
-Status: **IMPLEMENTATION BUILT / FULL REPOSITORY VALIDATION PENDING**
+Status: **CURRENT 85-RUNTIME RECONCILIATION BUILT / FULL REPOSITORY VALIDATION PENDING / HISTORICAL 84 ORACLE PRESERVED**
 
-Step 1 proved that the accepted bounded-index architecture can satisfy the frozen 1k→100k synthetic performance gates. Step 2 added a provider-neutral `RecipeSource` V2 compatibility layer and proved V1/V2 behavioral parity while leaving V1 as the public default.
+Step 1 V2 proved that the accepted bounded-index architecture can satisfy the frozen 1k→100k synthetic performance gates against the current 85-record seed while preserving the historical 84-record oracle. Step 2 then reconciled the provider-neutral `RecipeSource` V2 compatibility layer against the current 85-record public runtime and proved direct/V2 behavioral parity while leaving V1 as the public default.
 
 Step 3 now defines the canonical portable artefact shape that later storage adapters may publish to Cloudflare R2 or another object store. This is a build-time/data-layout milestone only: it does not provision Cloudflare, switch the public runtime to V2, ingest a new real corpus, introduce D1, or authorize paid infrastructure.
 
@@ -40,7 +40,7 @@ The JSON files are canonical. Gzip is a transport/storage representation and is 
 
 ## Detail objects
 
-A detail object is the canonical recipe record serialized without semantic transformation. Ordinal order preserves the supplied `RecipeSource` order. For the current reviewed corpus this means reconstruction from `000000...` upward must exactly reproduce all 84 V1 records in their existing order.
+A detail object is the canonical recipe record serialized without semantic transformation. Ordinal order preserves the supplied `RecipeSource` order. The historical golden oracle still reconstructs all 84 V1 records in its existing order. The default Step-3 build command now targets the current 85-record `PUBLIC_RUNTIME_RECIPES` sequence and must reconstruct those 85 records exactly, without rewriting the historical oracle.
 
 Detail paths use a deterministic fixed ordinal width. The manifest records the width and path template so a bounded candidate ordinal can be mapped to a detail object without provider-specific logic.
 
@@ -103,7 +103,8 @@ It contains no timestamp so identical inputs/options produce byte-identical cano
 `tests/corpus-scale-step3.test.js` verifies:
 
 - byte-for-byte deterministic builds;
-- exact reconstruction of the current 84-record reviewed corpus;
+- exact reconstruction of the historical 84-record golden oracle;
+- exact deterministic reconstruction and validation of the current 85-record public runtime;
 - lightweight metadata/detail separation;
 - metadata sharding behavior;
 - exact continuity with Step 1 index keys and postings;
@@ -135,7 +136,7 @@ node scripts/build-corpus-scale-step3.mjs \
   --metadata-shard-size=500
 ```
 
-Generated artefacts are not automatically admitted as new runtime data and are not automatically uploaded anywhere.
+The default command builds portable artefacts from the current 85-record public runtime. The historical 84-record corpus remains a frozen test oracle. Generated artefacts are not automatically admitted as new runtime data and are not automatically uploaded anywhere.
 
 ## Memory implication from Step 1
 
