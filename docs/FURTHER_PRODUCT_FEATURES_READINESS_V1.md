@@ -93,8 +93,12 @@ This gate does not authorize:
 
 The bounded design gate is now implemented and validated in PR #300. `D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT` is PASS with a six-recipe project-authored cohort and explicit media/provenance/accessibility/performance firewalls.
 
+## D3 asset-pilot progression
+
+The six exact project-authored SVG assets are now materialized under `assets/recipes/`, with a deterministic builder that computes byte counts/content hashes and rejects remote or active SVG constructs. Public UI activation remains false until validation passes.
+
 ## Next executable action
 
-`D3_RECIPE_IMAGES_P0_ASSET_PILOT`
+`D3_RECIPE_IMAGES_P0_ASSET_PILOT_VALIDATION`
 
-Create or obtain only P0-permitted project-controlled assets, build the deterministic registry, and prove browser accessibility/performance before any public image activation.
+Run the full repository/browser suite, close the asset-pilot evidence, then proceed to bounded browser integration only if green.
