@@ -229,7 +229,92 @@ async function desktopAcceptance() {
   await page.close();
 }
 
+
+async function protectedCorpusAcceptance() {
+  // First prove the page sends no protected query before the session check succeeds.
+  {
+    const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+    let protectedCalls = 0;
+    await page.route("**/api/auth/session", route => route.fulfill({
+      status: 401,
+      contentType: "application/json",
+      body: JSON.stringify({ authenticated:false, reason:"NO_SESSION" })
+    }));
+    await page.route("**/api/protected-corpus/v1**", route => {
+      protectedCalls += 1;
+      return route.fulfill({ status:500, contentType:"application/json", body:JSON.stringify({ ok:false }) });
+    });
+    await page.goto(`${baseUrl}/protected-corpus.html`, { waitUntil:"networkidle" });
+    await page.getByText(/Authenticated access is required/).waitFor();
+    if (protectedCalls !== 0) throw new Error("Protected corpus page queried protected API before authentication");
+    await page.close();
+  }
+
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  const errors = [];
+  page.on("pageerror", error => errors.push(error.message));
+  await page.route("**/api/auth/session", route => route.fulfill({
+    status:200,
+    contentType:"application/json",
+    body:JSON.stringify({ authenticated:true, account:{ id:"owner", email:"owner@example.test" } })
+  }));
+  await page.route("**/api/protected-corpus/v1**", route => {
+    const url = new URL(route.request().url());
+    const action = url.searchParams.get("action") || "status";
+    const common = { ok:true, step:"PROTECTED-CORPUS-P1", protectedDataReturned:false, publicRuntimeChanged:false, recommendationAdmissionChanged:false, fullCorpusScans:0, metrics:{ d1Subqueries:2, targetMaxD1Subqueries:8, hardMaxD1Subqueries:16, withinTarget:true, withinHardLimit:true } };
+    if (action === "status") return route.fulfill({
+      status:200, contentType:"application/json",
+      body:JSON.stringify({ ...common, pass:true, ready:true, activeVersion:"v8018", indexedRecipeCount:19268, ftsRecipeCount:19268, structuralPartialCount:3, lastIndexedRecipeId:"zz-last", expectedRecipeCount:19268 })
+    });
+    if (action === "browse") return route.fulfill({
+      status:200, contentType:"application/json",
+      body:JSON.stringify({ ...common, protectedDataReturned:true, pass:true, items:[
+        { recipeId:"recipe-a", title:"Alpha Soup", sourceCohortId:"SOURCE_A", sourceWork:"Historic Cookery", sourceAuthor:"Author A", sourceYear:"1901", structuralState:"PARSEABLE" },
+        { recipeId:"recipe-b", title:"Beta Tart", sourceCohortId:"SOURCE_B", sourceWork:"Cookery Book", sourceAuthor:"Author B", sourceYear:"1888", structuralState:"PARTIAL" }
+      ], nextCursor:null })
+    });
+    if (action === "search") return route.fulfill({
+      status:200, contentType:"application/json",
+      body:JSON.stringify({ ...common, protectedDataReturned:true, pass:true, items:[
+        { recipeId:"recipe-a", title:"Alpha Soup", sourceCohortId:"SOURCE_A", sourceWork:"Historic Cookery", sourceAuthor:"Author A", sourceYear:"1901", structuralState:"PARSEABLE" }
+      ], nextCursor:null })
+    });
+    if (action === "detail") return route.fulfill({
+      status:200, contentType:"application/json",
+      body:JSON.stringify({ ...common, protectedDataReturned:true, pass:true, item:{
+        recipeId:"recipe-a", title:"Alpha Soup", sourceCohortId:"SOURCE_A", sourceWork:"Historic Cookery", sourceAuthor:"Author A", sourceYear:"1901",
+        sourceUrl:"https://example.test/source", structuralState:"PARSEABLE", ingredients:["1 cup ingredient"], directions:["Cook carefully."],
+        authority:{ protectedBrowseOnly:true, recommendationEligible:false, publicRuntimeActivated:false, nutritionAuthorityGranted:false, dietaryAllergenAuthorityGranted:false }
+      } })
+    });
+    return route.fulfill({ status:400, contentType:"application/json", body:JSON.stringify({ ...common, ok:false, error:"UNKNOWN_ACTION" }) });
+  });
+
+  await page.goto(`${baseUrl}/protected-corpus.html`, { waitUntil:"networkidle" });
+  await page.getByRole("heading", { name:"Protected recipe corpus" }).waitFor();
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
+  if (overflow) throw new Error("Protected corpus mobile layout has unexpected horizontal overflow");
+  await page.getByText(/19,268 \/ 19,268 recipes indexed/).waitFor();
+  if (await page.locator(".recipe").count() !== 2) throw new Error("Protected browse did not render bounded results");
+
+  await page.getByLabel("Search protected recipes").fill("soup");
+  await page.getByRole("button", { name:"Search" }).click();
+  await page.getByText("Alpha Soup").waitFor();
+  if (await page.locator(".recipe").count() !== 1) throw new Error("Protected search did not replace browse results");
+
+  await page.getByText("Alpha Soup").click();
+  await page.getByRole("heading", { name:"Alpha Soup" }).waitFor();
+  await page.getByText(/recommendation authority: not granted/i).waitFor();
+  const provenance = page.getByRole("link", { name:"Open source/provenance" });
+  await provenance.waitFor();
+  if ((await provenance.getAttribute("href")) !== "https://example.test/source") throw new Error("Protected detail provenance URL missing");
+
+  if (errors.length) throw new Error(`Protected corpus page errors: ${errors.join(" | ")}`);
+  await page.close();
+}
+
 await mobileAcceptance();
 await desktopAcceptance();
+await protectedCorpusAcceptance();
 await browser.close();
 console.log("Comprehensive browser acceptance passed.");
