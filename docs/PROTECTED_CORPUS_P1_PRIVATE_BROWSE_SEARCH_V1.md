@@ -52,6 +52,19 @@ The owner page `/protected-corpus.html` is network-only in the service worker so
 - Source/provenance: source work, author/year where present, cohort and source URL are shown.
 - Structural exceptions: records lacking ingredient/direction structure remain discoverable and display a soft `PARTIAL` state rather than failing the corpus page.
 
+## Terminal owner verification
+
+After the private index is ready, the owner page exposes one bounded **Run live verification** action. It reuses only the existing authenticated P1 API and checks the exact terminal contract in one continuous browser session:
+
+- status is exactly `v8018`, `19,268 / 19,268`, with exactly **3** soft structural exceptions;
+- bounded browse returns protected summaries without a full-corpus request scan;
+- bounded FTS search resolves the fixed Carbonara canary;
+- fixed public-known v8001 ancestry representatives prove detail hydration from **shard 0** (`unitools:risotto-alla-milanese`) and **shard 1** (`unitools:spaghetti-carbonara`);
+- source/cohort provenance and protected-only authority remain present;
+- every observed request remains at or below the **8 D1** target.
+
+The verifier emits only a sanitized terminal JSON result: corpus/count/budget/boolean acceptance evidence. It does not include owner account/email, session material, recipe bodies, ingredients or directions.
+
 ## Authority firewalls
 
 P1 does **not**:
@@ -73,6 +86,6 @@ P1 does **not**:
 3. PR CI — **Validate public V0 #1088 PASS** (workflow run `36061685454`);
 4. merge only when green;
 5. deploy through the existing Pages path;
-6. one authenticated owner live canary builds/resumes the compact index until it proves **19,268 / 19,268**, verifies the expected **3** structural partial records, exercises browse/search/detail across both shards, and confirms all live D1 counts remain at or below 8.
+6. one authenticated owner live canary builds/resumes the compact index until ready, then uses the built-in **Run live verification** action to prove **19,268 / 19,268**, exactly **3** structural partial records, bounded browse/search, detail hydration across both shards, provenance, and live D1 counts at or below 8; the owner copies only the sanitized terminal JSON result.
 
 P1 is not terminal PASS until that live owner canary succeeds.
