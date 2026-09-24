@@ -61,7 +61,7 @@
       "product": "beef",
       "cutForm": "brisket",
       "tradition": "AMERICAN_COMPETITION_BARBECUE",
-      "method": "LOW_SLOW_SMOKER_BARbecue",
+      "method": "LOW_SLOW_SMOKER_BARBECUE",
       "equipmentBoundary": "CONVENTIONAL_SMOKER_OR_BARBECUE",
       "searchTerm": "brisket",
       "localizedChampionQueries": []
@@ -142,5 +142,6 @@
     "automaticKnowledgeCorePromotionAuthorized": false,
     "paidQuotaAuthorized": false,
     "secondProjectAuthorized": false
-  }
+  },
+  "routineProviderSearchCapacity": 90
 }
