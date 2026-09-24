@@ -632,6 +632,49 @@
           "onion_optional"
         ]
       }
+    },
+    {
+      "observationId": "tortilla_spaininfo_20260924",
+      "familyId": "tortilla_espanola",
+      "source": {
+        "publisher": "Turespaña / Spain.info",
+        "creator": "Turespaña",
+        "url": "https://www.spain.info/es/receta/tortilla-patata/",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "spaininfo-tortilla-patata-20260924",
+        "publisherLedgerKey": "spain-info",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "NO_RELEVANT_RESTRICTION_FOUND",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "REFERENCE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "potato",
+          "egg",
+          "olive_oil",
+          "salt",
+          "onion"
+        ],
+        "quantitative": [],
+        "techniques": [
+          "gently_cook_potato_in_oil",
+          "combine_potato_with_beaten_egg",
+          "pan_set_first_side",
+          "flip_and_finish_second_side"
+        ],
+        "variantSignals": [
+          "onion_included"
+        ]
+      }
     }
   ]
 }
