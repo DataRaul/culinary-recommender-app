@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_P1_PRIVATE_BROWSE_SEARCH_V1",
   "date": "2026-09-24",
-  "state": "IMPLEMENTATION_BUILT_VALIDATION_PENDING",
+  "state": "IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING",
   "baseMainSha": "e4557f25b0ce9e5e98f13957bcad2eabf0dea9ea",
   "protectedCorpusVersion": "v8018",
   "expectedRecipeCount": 19268,
@@ -62,10 +62,12 @@
     "NO_PUBLIC_RUNTIME_OR_RECOMMENDATION_ADMISSION_CHANGE"
   ],
   "validation": {
-    "deterministic": null,
-    "browser": null,
+    "deterministic": "PASS",
+    "browser": "PASS",
     "liveOwnerCanary": "PENDING_POST_MERGE_DEPLOY",
     "exactIndexCount": null,
-    "exactStructuralPartialCount": null
+    "exactStructuralPartialCount": null,
+    "validationRun": 1088,
+    "validationRunId": 36061685454
   }
 }
