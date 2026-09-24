@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "CULINARY_RECIPE_IMAGES_P0_ASSET_PILOT_V1",
+  "date": "2026-09-24",
+  "state": "ASSET_PILOT_BUILT_VALIDATION_PENDING",
+  "entryGate": "D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT_PASS",
+  "designContract": "config/recipe_images_p0.json",
+  "assetClass": "PROJECT_AUTHORED",
+  "reuseState": "PROJECT_OWNED_INTERNAL_AND_PUBLIC_APP_USE",
+  "provenance": {
+    "origin": "Project-authored SVG illustrations created specifically for Culinary Recommender D3 P0",
+    "rightsBasis": "Project-authored assets; no third-party recipe-provider media, stock media, or remote image reuse"
+  },
+  "assets": [
+    {
+      "assetId": "p0_spanish_potato_onion_tortilla",
+      "recipeId": "spanish_potato_onion_tortilla",
+      "repositoryPath": "assets/recipes/spanish_potato_onion_tortilla.svg",
+      "assetPath": "/assets/recipes/spanish_potato_onion_tortilla.svg",
+      "format": "svg",
+      "width": 960,
+      "height": 720,
+      "altText": "Stylized potato and onion tortilla cut into golden wedges on a plate."
+    },
+    {
+      "assetId": "p0_med_chicken_orzo_vegetables",
+      "recipeId": "med_chicken_orzo_vegetables",
+      "repositoryPath": "assets/recipes/med_chicken_orzo_vegetables.svg",
+      "assetPath": "/assets/recipes/med_chicken_orzo_vegetables.svg",
+      "format": "svg",
+      "width": 960,
+      "height": 720,
+      "altText": "Stylized bowl of lemon chicken, orzo, tomatoes and green vegetables."
+    },
+    {
+      "assetId": "p0_indian_chickpea_cauliflower_curry",
+      "recipeId": "indian_chickpea_cauliflower_curry",
+      "repositoryPath": "assets/recipes/indian_chickpea_cauliflower_curry.svg",
+      "assetPath": "/assets/recipes/indian_chickpea_cauliflower_curry.svg",
+      "format": "svg",
+      "width": 960,
+      "height": 720,
+      "altText": "Stylized orange curry with chickpeas, cauliflower and green herbs in a bowl."
+    },
+    {
+      "assetId": "p0_east_asian_miso_salmon_rice",
+      "recipeId": "east_asian_miso_salmon_rice",
+      "repositoryPath": "assets/recipes/east_asian_miso_salmon_rice.svg",
+      "assetPath": "/assets/recipes/east_asian_miso_salmon_rice.svg",
+      "format": "svg",
+      "width": 960,
+      "height": 720,
+      "altText": "Stylized miso salmon fillet with rice and green vegetables on a plate."
+    },
+    {
+      "assetId": "p0_middle_eastern_mujaddara",
+      "recipeId": "middle_eastern_mujaddara",
+      "repositoryPath": "assets/recipes/middle_eastern_mujaddara.svg",
+      "assetPath": "/assets/recipes/middle_eastern_mujaddara.svg",
+      "format": "svg",
+      "width": 960,
+      "height": 720,
+      "altText": "Stylized bowl of mujaddara with lentils, rice and browned onion strands."
+    },
+    {
+      "assetId": "p0_latin_chicken_black_bean_tacos",
+      "recipeId": "latin_chicken_black_bean_tacos",
+      "repositoryPath": "assets/recipes/latin_chicken_black_bean_tacos.svg",
+      "assetPath": "/assets/recipes/latin_chicken_black_bean_tacos.svg",
+      "format": "svg",
+      "width": 960,
+      "height": 720,
+      "altText": "Stylized trio of chicken and black bean tacos with tomato and greens."
+    }
+  ],
+  "svgSecurity": {
+    "scriptElementsAllowed": false,
+    "foreignObjectAllowed": false,
+    "externalHrefAllowed": false,
+    "eventHandlerAttributesAllowed": false,
+    "embeddedRasterDataAllowed": false
+  },
+  "publicationBoundary": {
+    "exactPilotAssetFilesMayShipAsStaticPublicFiles": true,
+    "publicUiActivationAuthorized": false,
+    "recipeRuntimeBehaviorChanged": false,
+    "externalMediaAdmissionAuthorized": false,
+    "protectedCorpusMutationAuthorized": false
+  },
+  "authority": {
+    "paidMediaServiceAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "thirdD1ShardAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextGate": "D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION"
+}
