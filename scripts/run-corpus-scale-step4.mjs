@@ -1,16 +1,17 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
-import { ALL_RECIPES } from "../src/data/corpus-v1.js";
+import { PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
 import { DEFAULT_PROFILE } from "../src/domain/profile.js";
 import { rankRecipes } from "../src/domain/recommendation.js";
 import { CORPUS_SCALE_TARGETS } from "./corpus-scale-step1-core.mjs";
 import { runStep4Benchmark } from "./corpus-scale-step4-core.mjs";
 
-export const STEP4_GOLDEN_BASELINE = Object.freeze({
-  sourceMainSha: "7696a5994bc32c7893a5af06e0f2de13d88b9036",
-  expectedRecipeCount: 84,
-  scope: "ALL_RECIPES = 76 curated authored + 8 Gate-F external records"
+export const STEP4_RUNTIME_BASELINE = Object.freeze({
+  sourceMainSha: "72d792ab0bd17ae5ad418e1b92b27ac2770f8843",
+  expectedRecipeCount: 85,
+  historicalOracleRecipeCount: 84,
+  scope: "PUBLIC_RUNTIME_RECIPES = frozen historical 84-record oracle + 1 explicitly activated Step 8F UniTools record"
 });
 
 function argumentValue(name) {
@@ -44,18 +45,18 @@ function rankCandidateRecipes(recipes, scenario) {
 }
 
 async function main() {
-  if (ALL_RECIPES.length !== STEP4_GOLDEN_BASELINE.expectedRecipeCount) {
+  if (PUBLIC_RUNTIME_RECIPES.length !== STEP4_RUNTIME_BASELINE.expectedRecipeCount) {
     throw new Error(
-      `Step 4 golden baseline drift: expected ${STEP4_GOLDEN_BASELINE.expectedRecipeCount} recipes from ${STEP4_GOLDEN_BASELINE.sourceMainSha}, found ${ALL_RECIPES.length}. Reconcile and explicitly refreeze before benchmarking.`
+      `Step 4 current-runtime baseline drift: expected ${STEP4_RUNTIME_BASELINE.expectedRecipeCount} recipes from ${STEP4_RUNTIME_BASELINE.sourceMainSha}, found ${PUBLIC_RUNTIME_RECIPES.length}. Reconcile and explicitly refreeze before benchmarking.`
     );
   }
 
   const sizes = parseSizes();
   const repetitions = parseRepetitions();
-  const report = runStep4Benchmark(ALL_RECIPES, rankCandidateRecipes, { sizes, repetitions });
+  const report = runStep4Benchmark(PUBLIC_RUNTIME_RECIPES, rankCandidateRecipes, { sizes, repetitions });
   const output = {
     generatedBy: "scripts/run-corpus-scale-step4.mjs",
-    goldenBaseline: STEP4_GOLDEN_BASELINE,
+    runtimeBaseline: STEP4_RUNTIME_BASELINE,
     interpretation: {
       pass: "R2-style provider-neutral pre-built index retrieval satisfies the frozen Step 4 local gates. D1 is not earned by this proof.",
       fail: "A failed retrieval gate requires evidence review. It does not automatically authorize D1, paid infrastructure, a larger candidate cap, weaker hard filters, or public behavior changes.",

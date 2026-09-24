@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { ALL_RECIPES } from "../src/data/corpus-v1.js";
+import { ALL_RECIPES, PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
 import {
   CORPUS_SCALE_QUERY_CAP,
   benchmarkQueryScenarios,
@@ -36,7 +36,7 @@ function permissiveThresholds() {
   };
 }
 
-test("Step 4 direct model reads exactly the Step 3 canonical 84-record detail and index objects", () => {
+test("Step 4 preserves exact Step 3 reads for the historical 84-record oracle", () => {
   const portable = materializePortableCorpusArtifacts(ALL_RECIPES, { version: "v0001" });
   const model = buildStep4RetrievalModel(ALL_RECIPES, ALL_RECIPES.length, {
     synthetic: false,
@@ -57,10 +57,32 @@ test("Step 4 direct model reads exactly the Step 3 canonical 84-record detail an
   }
 });
 
+test("Step 4 direct model reads exactly the Step 3 canonical current 85-record runtime objects", () => {
+  const portable = materializePortableCorpusArtifacts(PUBLIC_RUNTIME_RECIPES, { version: "v0001" });
+  const model = buildStep4RetrievalModel(PUBLIC_RUNTIME_RECIPES, PUBLIC_RUNTIME_RECIPES.length, {
+    synthetic: false,
+    version: "v0001"
+  });
+
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
+  assert.equal(model.targetSize, 85);
+  assert.equal(model.detailStrategy, "CANONICAL_GOLDEN_DETAIL_PAYLOAD_WARMED_PER_SCENARIO");
+
+  for (let ordinal = 0; ordinal < PUBLIC_RUNTIME_RECIPES.length; ordinal += 1) {
+    const path = portableDetailPathForOrdinal(ordinal, PUBLIC_RUNTIME_RECIPES.length);
+    assert.equal(readPortableDetailObject(model, ordinal), portable.files.get(`${ROOT}/${path}`));
+  }
+
+  for (const key of model.indexes.keys()) {
+    const path = portableIndexPathForKey(key);
+    assert.equal(readPortableIndexObject(model, key), portable.files.get(`${ROOT}/${path}`));
+  }
+});
+
 test("Step 4 scale model preserves Step 1 candidate intersections and bounded detail identities", () => {
   const targetSize = 1_000;
-  const step1 = buildSyntheticCatalogue(ALL_RECIPES, targetSize);
-  const model = buildStep4RetrievalModel(ALL_RECIPES, targetSize);
+  const step1 = buildSyntheticCatalogue(PUBLIC_RUNTIME_RECIPES, targetSize);
+  const model = buildStep4RetrievalModel(PUBLIC_RUNTIME_RECIPES, targetSize);
   const scenarios = benchmarkQueryScenarios(step1.indexes);
 
   for (const scenario of scenarios) {
@@ -79,7 +101,7 @@ test("Step 4 scale model preserves Step 1 candidate intersections and bounded de
 });
 
 test("portable retrieval uses one browser request, no metadata scan, bounded index reads and bounded detail reads", () => {
-  const model = buildStep4RetrievalModel(ALL_RECIPES, 1_000);
+  const model = buildStep4RetrievalModel(PUBLIC_RUNTIME_RECIPES, 1_000);
   const scenario = benchmarkQueryScenarios(model.indexes)[0];
   const result = executeStep4PortableQuery(model, scenario, { measureBytes: true });
 
@@ -98,7 +120,7 @@ test("portable retrieval uses one browser request, no metadata scan, bounded ind
 });
 
 test("query benchmark is deterministic in cardinality/read shape and acceptance can pass without timing flakiness", () => {
-  const model = buildStep4RetrievalModel(ALL_RECIPES, 1_000);
+  const model = buildStep4RetrievalModel(PUBLIC_RUNTIME_RECIPES, 1_000);
   const rankStub = recipes => recipes.map(recipe => recipe.id);
   const first = benchmarkStep4Queries(model, rankStub, { repetitions: 2 });
   const second = benchmarkStep4Queries(model, rankStub, { repetitions: 2 });
@@ -128,7 +150,7 @@ test("query benchmark is deterministic in cardinality/read shape and acceptance 
 });
 
 test("retrieval gate failure is fail-closed and earns review only, never automatic D1 adoption", () => {
-  const model = buildStep4RetrievalModel(ALL_RECIPES, 1_000);
+  const model = buildStep4RetrievalModel(PUBLIC_RUNTIME_RECIPES, 1_000);
   const rows = benchmarkStep4Queries(model, recipes => recipes, { repetitions: 1 });
   const failedRows = rows.map((row, index) => index === 0 ? { ...row, retrievalP95Ms: 999_999 } : row);
   const thresholds = permissiveThresholds();
@@ -141,7 +163,7 @@ test("retrieval gate failure is fail-closed and earns review only, never automat
 });
 
 test("scale model retains only a bounded per-scenario detail payload cache, never a second full corpus", () => {
-  const model = buildStep4RetrievalModel(ALL_RECIPES, 10_000);
+  const model = buildStep4RetrievalModel(PUBLIC_RUNTIME_RECIPES, 10_000);
   assert.equal(Object.hasOwn(model, "objectBodies"), false);
   assert.equal(Object.hasOwn(model, "detailObjects"), false);
   assert.equal(model.detailStrategy, "DETERMINISTIC_SYNTHETIC_DETAIL_PAYLOAD_WARMED_PER_SCENARIO");

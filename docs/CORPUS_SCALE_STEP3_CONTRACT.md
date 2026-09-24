@@ -1,6 +1,6 @@
 # Corpus Scale / 100k Readiness — Step 3 Portable Object Layout
 
-Status: **CURRENT 85-RUNTIME RECONCILIATION BUILT / FULL REPOSITORY VALIDATION PENDING / HISTORICAL 84 ORACLE PRESERVED**
+Status: **PASS / PR #295 MERGED / CURRENT 85-RUNTIME PORTABLE LAYOUT VALIDATED / HISTORICAL 84 ORACLE PRESERVED**
 
 Step 1 V2 proved that the accepted bounded-index architecture can satisfy the frozen 1k→100k synthetic performance gates against the current 85-record seed while preserving the historical 84-record oracle. Step 2 then reconciled the provider-neutral `RecipeSource` V2 compatibility layer against the current 85-record public runtime and proved direct/V2 behavioral parity while leaving V1 as the public default.
 
