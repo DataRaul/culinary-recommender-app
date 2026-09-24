@@ -1,0 +1,152 @@
+name: Barbecue Technique Corpus daily acquisition
+
+on:
+  schedule:
+    - cron: '20 9 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run barbecue preflight and query planning without YouTube Search spend'
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: barbecue-technique-corpus-daily
+  cancel-in-progress: false
+
+jobs:
+  barbecue-daily:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CULINARY_YOUTUBE_API_KEY: ${{ secrets.CULINARY_YOUTUBE_API_KEY }}
+      CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT: '100'
+      CULINARY_YOUTUBE_PROJECT_IDENTITY: ${{ vars.CULINARY_YOUTUBE_PROJECT_IDENTITY || 'culinary-youtube-discovery' }}
+      YT_BBQ_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+      YT_BBQ_STATE_PATH: data/generated/barbecue-technique-corpus-state.json
+      YT_BBQ_WORK_UNIT_STATE_PATH: data/generated/barbecue-technique-corpus-work-unit-state.json
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fail-closed barbecue preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT}" != "100" ]]; then
+            echo "::error::Barbecue V1 is armed only for the owner-verified 100/day Search Queries limit."
+            exit 2
+          fi
+          if [[ -z "${CULINARY_YOUTUBE_PROJECT_IDENTITY:-}" ]]; then
+            echo "::error::CULINARY_YOUTUBE_PROJECT_IDENTITY is missing."
+            exit 2
+          fi
+          if [[ "${CULINARY_YOUTUBE_PROJECT_IDENTITY}" =~ [Bb][Ll][Uu][Ee].*[Ll][Aa][Gg][Oo][Oo][Nn] ]] || [[ "${CULINARY_YOUTUBE_PROJECT_IDENTITY}" =~ [Mm][Uu][Ss][Ii][Cc] ]]; then
+            echo "::error::Blue Lagoon/music identity is forbidden in the Culinary API client."
+            exit 2
+          fi
+          if [[ "${YT_BBQ_DRY_RUN}" != "true" && "${YT_BBQ_DRY_RUN}" != "false" ]]; then
+            echo "::error::YT_BBQ_DRY_RUN must resolve to true or false."
+            exit 2
+          fi
+          if [[ "${YT_BBQ_DRY_RUN}" == "false" ]]; then
+            if [[ -z "${CULINARY_YOUTUBE_API_KEY:-}" ]]; then
+              echo "::error::CULINARY_YOUTUBE_API_KEY is required for live barbecue discovery."
+              exit 2
+            fi
+            echo "::add-mask::$CULINARY_YOUTUBE_API_KEY"
+          fi
+
+      - name: Validate barbecue and inherited YouTube controls before live spend
+        run: >-
+          node --test
+          tests/barbecue-technique-corpus-control-plane.test.js
+          tests/barbecue-technique-corpus-work-unit-lifecycle.test.js
+          tests/youtube-culinary-adaptive-portfolio.test.js
+          tests/youtube-culinary-work-unit-lifecycle.test.js
+
+      - name: Execute one quota-date-aware barbecue acquisition cycle
+        id: daily
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/run-barbecue-technique-corpus-discovery.mjs | tee "$RUNNER_TEMP/barbecue-technique-corpus-summary.json"
+
+      - name: Reconcile barbecue work-unit closure state
+        if: always()
+        env:
+          YT_BBQ_PRIMARY_OUTCOME: ${{ steps.daily.outcome || 'failure' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/reconcile-barbecue-technique-corpus-work-unit.mjs | tee "$RUNNER_TEMP/barbecue-technique-corpus-work-unit.json"
+
+      - name: Persist compact barbecue programme state
+        if: always() && env.YT_BBQ_DRY_RUN == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git status --porcelain -- \
+            data/generated/barbecue-technique-corpus-state.json \
+            data/generated/barbecue-technique-corpus-work-unit-state.json | grep -q .; then
+            echo "No barbecue state change to persist."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/generated/barbecue-technique-corpus-state.json \
+            data/generated/barbecue-technique-corpus-work-unit-state.json
+          git commit -m "Barbecue technique corpus daily safe state [skip ci]"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            sleep $((attempt * 2))
+          done
+          echo "::error::Could not persist barbecue state after three bounded retries."
+          exit 3
+
+      - name: Record compact policy-safe barbecue summary
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "# Barbecue Technique Corpus daily acquisition" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          node --input-type=module <<'NODE'
+          import { readFile, appendFile } from 'node:fs/promises';
+          let summary = null;
+          let work = null;
+          try { summary = JSON.parse(await readFile(`${process.env.RUNNER_TEMP}/barbecue-technique-corpus-summary.json`, 'utf8')); } catch {}
+          try { work = JSON.parse(await readFile(process.env.YT_BBQ_WORK_UNIT_STATE_PATH, 'utf8')); } catch {}
+          const lines = [
+            `- Result: **${summary?.result ?? 'NO_SAFE_SUMMARY_PRODUCED'}**`,
+            `- YouTube quota date: ${summary?.quotaDate ?? 'unknown'}`,
+            `- Dry run: ${summary?.dryRun ?? 'unknown'}`,
+            `- Search calls: ${summary?.searchCallsExecuted ?? 0}`,
+            `- Candidate pointers added: ${summary?.candidatePointersAdded ?? 0}`,
+            `- Pending candidate backlog: ${summary?.pendingCandidateBacklog ?? 0}`,
+            `- Raw YouTube API data durable: ${summary?.rawYoutubeApiDataDurable ?? false}`,
+            `- Automatic publication: ${summary?.automaticPublicationAuthorized ?? false}`,
+            `- Automatic app admission: ${summary?.automaticAppAdmissionAuthorized ?? false}`,
+            `- Automatic Knowledge Core promotion: ${summary?.automaticKnowledgeCorePromotionAuthorized ?? false}`,
+            `- Work-unit closure: **${work?.closureStatus ?? 'NO_CLOSURE_STATE'}**`,
+            `- Successor: ${work?.successorAction ?? 'unknown'}`,
+            `- Scheduler disposition: ${work?.schedulerDisposition ?? 'unknown'}`,
+            ''
+          ];
+          await appendFile(process.env.GITHUB_STEP_SUMMARY, lines.join('\n'), 'utf8');
+          NODE
