@@ -299,6 +299,7 @@ async function protectedCorpusAcceptance() {
 
   await page.getByLabel("Search protected recipes").fill("soup");
   await page.getByRole("button", { name:"Search" }).click();
+  await page.getByText(/1 result\(s\) in this page for/).waitFor();
   await page.getByText("Alpha Soup").waitFor();
   if (await page.locator(".recipe").count() !== 1) throw new Error("Protected search did not replace browse results");
 
