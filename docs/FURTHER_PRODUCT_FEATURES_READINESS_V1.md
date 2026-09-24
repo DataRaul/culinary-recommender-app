@@ -111,3 +111,24 @@ D3 Recipe Images completed its bounded P0 through PR #302 and post-merge validat
 Terminal: `D3_RECIPE_IMAGES_P0_COMPLETE`.
 
 The earned baseline is exactly six project-authored assets on plan/search cards. Broader media coverage is not automatic. The next action is `FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3`, which must reassess D1/D2/D4/D5/D6 against their original activation boundaries and preserve the independent Barbecue scheduled lane.
+
+
+## Post-D3 reassessment
+
+Status: **PASS / D5 FITNESS INTEGRATION READY FOR BOUNDED ADAPTER DESIGN / NO RUNTIME ACTIVATION**
+
+Terminal: `FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3_PASS`
+
+After D3 closed at `D3_RECIPE_IMAGES_P0_COMPLETE`, the remaining capabilities were re-evaluated against the original selection rule.
+
+- D1 remains blocked: vitamin/mineral schema plus authoritative healthy-population evidence are still absent.
+- D2 remains blocked: a dedicated supplement evidence/safety layer is still absent.
+- D4 remains blocked: no lawful reliable local-price or user-receipt evidence pipeline exists.
+- D6 remains sequenced behind the active Barbecue Technique Corpus pilot.
+- D5 can now enter **design only** because the separate workout app already exposes a validated, user-selected portable JSON backup and explicitly has no cloud sync or silent shared-folder read.
+
+The verified workout source baseline is `DataRaul/Mobile-first-workout-recommendation-app` main `3fd69badda5269021728e5a5d1681aac98d17147`, backup schema v3. The design gate must remain one-way and minimum-data: no cross-app localStorage access, no automatic folder scanning, no workout-app mutation, no medical inference, no calorie-burn estimation, no individualized macro/supplement prescription, and sensitive workout fields are excluded by default.
+
+Next executable action:
+
+`D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN`
