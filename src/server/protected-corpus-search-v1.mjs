@@ -343,7 +343,7 @@ export async function indexProtectedCorpusBatch(controlDb, shardDbs, cursor = ""
 
 export async function protectedSearchIndexStatus(controlDb) {
   const pointer = await readStep8GPointer(controlDb);
-  const summary = await controlDb.prepare(`SELECT COUNT(*) AS c, SUM(CASE WHEN structural_state='PARTIAL' THEN 1 ELSE 0 END) AS partial_count FROM ${PROTECTED_SEARCH_INDEX_TABLE} WHERE corpus_version='v8018'`).first();
+  const summary = await controlDb.prepare(`SELECT COUNT(*) AS c, SUM(CASE WHEN structural_state='PARTIAL' THEN 1 ELSE 0 END) AS partial_count, MAX(recipe_id) AS last_recipe_id FROM ${PROTECTED_SEARCH_INDEX_TABLE} WHERE corpus_version='v8018'`).first();
   const fts = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${PROTECTED_SEARCH_FTS_TABLE}`).first();
   const summaryCount = Number(summary?.c || 0);
   const ftsCount = Number(fts?.c || 0);
@@ -354,6 +354,7 @@ export async function protectedSearchIndexStatus(controlDb) {
     indexedRecipeCount: summaryCount,
     ftsRecipeCount: ftsCount,
     structuralPartialCount: Number(summary?.partial_count || 0),
+    lastIndexedRecipeId: summary?.last_recipe_id == null ? null : String(summary.last_recipe_id),
     expectedRecipeCount: PROTECTED_SEARCH_EXPECTED_COUNT,
     d1Subqueries: pointer.d1Subqueries + 2,
     fullCorpusScans: 0
