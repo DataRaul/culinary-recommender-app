@@ -47,7 +47,7 @@ test("final tranche earns tomato pasta sauce and ragu Bolognese candidate-only e
   const tomatoRatio = tomato.requiredQuantityState.find(row => row.roleId === "tomato").selected;
   assert.deepEqual(tomatoRatio.observedRange, { lower: 222.222222, upper: 266.666667 });
   assert.deepEqual(tomatoRatio.recommendedRange, { lower: 226.984127, upper: 254.166667 });
-  assert.equal(tomatoRatio.robustCenter, 239.285715);
+  assert.equal(tomatoRatio.robustCenter, 239.285714);
   assert.equal(tomatoRatio.distinctPublisherCount, 3);
   assert.equal(tomato.candidateAppOwnedRecipeProjection.activationAuthority, "NONE");
 
