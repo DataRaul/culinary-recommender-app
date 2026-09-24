@@ -7,6 +7,10 @@ import {
   recipeImageForId,
   recipeImageMarkup
 } from "../src/recipe-images-p0-runtime.js";
+import {
+  summarizeRecipeImagesP0BrowserIntegration,
+  validateRecipeImagesP0BrowserIntegration
+} from "../scripts/recipe-images-p0-browser-integration.mjs";
 
 const integration = JSON.parse(
   await readFile(new URL("../config/recipe_images_p0_browser_integration.json", import.meta.url), "utf8")
@@ -18,6 +22,16 @@ const appSource = await readFile(new URL("../src/app.js", import.meta.url), "utf
 const searchSource = await readFile(new URL("../src/search-ui.js", import.meta.url), "utf8");
 const css = await readFile(new URL("../styles.css", import.meta.url), "utf8");
 const sw = await readFile(new URL("../sw.js", import.meta.url), "utf8");
+
+test("browser integration contract validates against the exact asset pilot", () => {
+  assert.deepEqual(validateRecipeImagesP0BrowserIntegration(integration, pilot), []);
+  const summary = summarizeRecipeImagesP0BrowserIntegration(integration, pilot);
+  assert.equal(summary.pass, true);
+  assert.equal(summary.terminal, "D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION_PASS");
+  assert.equal(summary.recipeCount, 6);
+  assert.equal(summary.publicRecipeRuntimeChanged, false);
+  assert.equal(summary.externalMediaAdmissionAuthorized, false);
+});
 
 test("browser registry exactly matches the validated six-asset pilot", () => {
   const runtimeIds = Object.keys(RECIPE_IMAGES_P0_BROWSER_REGISTRY).sort();
