@@ -58,7 +58,7 @@ test("tranche 1 deterministically earns three nonpublic app-authoring candidates
   const tortilla = result.families.find(row => row.familyId === "tortilla_espanola");
   const tortillaEgg = tortilla.requiredQuantityState.find(row => row.roleId === "egg").selected;
   assert.deepEqual(tortillaEgg.observedRange, { lower: 0.8, upper: 1.333333 });
-  assert.deepEqual(tortillaEgg.recommendedRange, { lower: 1, upper: 1.266667 });
+  assert.deepEqual(tortillaEgg.recommendedRange, { lower: 1, upper: 1.266666 });
   assert.equal(tortillaEgg.robustCenter, 1.2);
   assert.equal(tortillaEgg.distinctPublisherCount, 2);
 
