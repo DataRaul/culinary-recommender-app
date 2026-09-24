@@ -22,8 +22,9 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
   if (applicability.recipesWithAllIngredientIdentitiesResolved !== facts.allIngredientIdentityReadyRecipes) errors.push("all-ingredient-ready recipe count mismatch");
   if (applicability.unitoolsCurrentEngine?.authoritativeCurrentEngineCount !== facts.directCurrentNutritionEngineAuthoritativeRecipes) errors.push("protected nutrition authority mismatch");
 
-  if (recommendation.protectedAutomaticRecommendationReadyCount !== facts.protectedAutomaticRecommendationReadyCount) errors.push("protected recommendation-ready count mismatch");
-  if (recommendation.protectedReviewedDietaryAuthorityCount !== facts.reviewedDietaryAuthorityCount) errors.push("protected dietary-authority count mismatch");
+  const protectedRecommendation = recommendation.protectedCorpus || {};
+  if (protectedRecommendation.automaticRecommendationReadyCount !== facts.protectedAutomaticRecommendationReadyCount) errors.push("protected recommendation-ready count mismatch");
+  if (protectedRecommendation.reviewedDietaryAuthorityCount !== facts.reviewedDietaryAuthorityCount) errors.push("protected dietary-authority count mismatch");
 
   if (facts.maxObservedD1SubqueriesPerRequest > facts.hardMaxD1SubqueriesPerRequest) errors.push("observed D1 subqueries exceed hard limit");
   if (facts.scaleRequiredProofCount < 100000 || facts.scaleStressProofCount < facts.scaleRequiredProofCount) errors.push("scale proof envelope regressed");
