@@ -34,7 +34,7 @@
     {
       "id": "D3",
       "name": "Recipe Images",
-      "state": "READY_FOR_BOUNDED_P0_DESIGN",
+      "state": "P0_DESIGN_CONTRACT_BUILT_VALIDATION_PENDING",
       "reason": "TEXT_DATA_RECOMMENDATION_AND_SCALE_FOUNDATIONS_ARE_NOW_STRONG_ENOUGH_FOR_A_SEPARATELY_GATED_MEDIA_PILOT",
       "runtimeActivationAuthorized": false,
       "mediaBoundary": {
@@ -48,7 +48,9 @@
         "recordLevelProvenanceRequired": true,
         "altTextRequired": true,
         "performanceBudgetRequired": true
-      }
+      },
+      "designContract": "config/recipe_images_p0.json",
+      "designDocument": "docs/RECIPE_IMAGES_P0_DESIGN_CONTRACT.md"
     },
     {
       "id": "D4",
@@ -84,5 +86,5 @@
     "knowledgeCoreWriteAuthorized": false,
     "barbecueMutationAuthorized": false
   },
-  "nextGate": "D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT"
+  "nextGate": "D3_RECIPE_IMAGES_P0_DESIGN_CONTRACT_VALIDATION"
 }
