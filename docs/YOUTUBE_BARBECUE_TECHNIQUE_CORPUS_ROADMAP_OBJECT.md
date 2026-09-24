@@ -1,6 +1,6 @@
 # Barbecue Technique Corpus — Roadmap Object V1
 
-Status: **PRODUCT PREREQUISITES SATISFIED / YT-CUL HOLD RECONCILIATION REQUIRED / OWNER-PRIORITY / NOT ACTIVE**
+Status: **PRODUCT PREREQUISITES SATISFIED / RATE-LIMIT REPAIR PASS / REPURPOSE IMPLEMENTATION READY / OWNER-PRIORITY / NOT ACTIVE**
 
 Date: 2026-09-22
 
@@ -21,7 +21,7 @@ Activation is earned only when all of the following are true:
 3. No higher-priority production/security/rights gate requires the YouTube child programme to remain paused.
 4. A fresh repository reconciliation confirms that the scheduled YouTube lane can be repurposed without overwriting another active child programme.
 
-As of 2026-09-24, the legal-corpus, usable-recommendation and Recipe Family sequencing prerequisites are satisfied. Activation is **not yet earned** because the existing `YT_CUL_5E_ADAPTIVE_DAILY_DISCOVERY` child programme is hard-held at `DAILY_SEARCH_HOLD_POLICY_OR_QUOTA` and must be resolved/reconciled before its scheduled lane can be repurposed. No live YouTube Search is authorized while that hold remains active.
+As of 2026-09-24, the legal-corpus, usable-recommendation and Recipe Family sequencing prerequisites are satisfied. PR #285 also completed the repository-only rate-limit classification/pacing repair with zero live Search. The historical `YT_CUL_5E_ADAPTIVE_DAILY_DISCOVERY` hard hold remains intentionally preserved as a safety lock, so activation is **not yet earned**: the generic scheduled child programme still has to be retired/replaced by a bounded barbecue-specific control plane before any live Search can resume. The repurpose implementation itself is now authorized as repository-only work; live YouTube Search is still not authorized.
 
 When all four conditions are true, record:
 
