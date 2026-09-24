@@ -1,6 +1,6 @@
 # Barbecue Technique Corpus — Roadmap Object V1
 
-Status: **BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY / OWNER-PRIORITY / BOUNDED IMPLEMENTATION NEXT / NOT YET LIVE**
+Status: **BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY / CONTROL PLANE IMPLEMENTED / VALIDATION PENDING / NOT YET LIVE**
 
 Date: 2026-09-22
 
@@ -27,7 +27,7 @@ Recorded terminal:
 
 `BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY`
 
-This state authorizes a bounded implementation PR that switches the YouTube discovery focus to this barbecue programme. Generic YT-CUL Search remains unauthorized until that successor control plane is implemented and validated; activation readiness does not authorize publication.
+This state authorizes the bounded implementation now carried by the current control-plane PR. Generic YT-CUL Search remains unauthorized. The barbecue schedule becomes live only after this successor control plane passes deterministic/public validation and merges; activation readiness does not authorize publication.
 
 ## Scope — conventional barbecue only
 
@@ -200,3 +200,16 @@ Pilot scope:
 - zero retained transcripts/images/video/audio/copied recipe prose.
 
 A pilot PASS earns controlled family expansion. It does not authorize unbounded search or publication.
+
+
+## 2026-09-24 bounded control-plane implementation
+
+The successor implementation freezes five pilot leaves (poultry/chicken, beef/brisket, pork/ribs, fish/parrilla and vegetables/parrilla), at least two traditions, a 16-call daily pilot budget, a 90-call provider-capacity classification envelope, the existing 100/day assignment, at least five calls of protected reserve, and one-second provider pacing.
+
+The implementation is restart-safe across quota days: successful query IDs are durable and not replayed routinely. Championship/competition queries are exhausted before specialist fallback; fallback cannot begin merely because a title claims “world champion.” Candidate qualification requires independent credential or domain-competence evidence and a unique independence key. Five qualified sources plus project-authored adjustment-axis synthesis and separate food-safety authority are required before a leaf can complete.
+
+The old generic YT-CUL cron is removed. Its workflow remains diagnostics-only with `dry_run=true`. The new barbecue workflow is the sole registered scheduled Culinary YouTube acquisition work unit.
+
+Implementation terminal before live acquisition:
+
+`BARBECUE_TECHNIQUE_CORPUS_CONTROL_PLANE_VALIDATION_PASS`
