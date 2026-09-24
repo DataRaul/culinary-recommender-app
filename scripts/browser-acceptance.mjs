@@ -273,20 +273,29 @@ async function protectedCorpusAcceptance() {
         { recipeId:"recipe-b", title:"Beta Tart", sourceCohortId:"SOURCE_B", sourceWork:"Cookery Book", sourceAuthor:"Author B", sourceYear:"1888", structuralState:"PARTIAL" }
       ], nextCursor:null })
     });
-    if (action === "search") return route.fulfill({
-      status:200, contentType:"application/json",
-      body:JSON.stringify({ ...common, protectedDataReturned:true, pass:true, items:[
-        { recipeId:"recipe-a", title:"Alpha Soup", sourceCohortId:"SOURCE_A", sourceWork:"Historic Cookery", sourceAuthor:"Author A", sourceYear:"1901", structuralState:"PARSEABLE" }
-      ], nextCursor:null })
-    });
-    if (action === "detail") return route.fulfill({
-      status:200, contentType:"application/json",
-      body:JSON.stringify({ ...common, protectedDataReturned:true, pass:true, item:{
-        recipeId:"recipe-a", title:"Alpha Soup", sourceCohortId:"SOURCE_A", sourceWork:"Historic Cookery", sourceAuthor:"Author A", sourceYear:"1901",
-        sourceUrl:"https://example.test/source", structuralState:"PARSEABLE", ingredients:["1 cup ingredient"], directions:["Cook carefully."],
-        authority:{ protectedBrowseOnly:true, recommendationEligible:false, publicRuntimeActivated:false, nutritionAuthorityGranted:false, dietaryAllergenAuthorityGranted:false }
-      } })
-    });
+    if (action === "search") {
+      const isCarbonara = url.searchParams.get("q") === "carbonara";
+      return route.fulfill({
+        status:200, contentType:"application/json",
+        body:JSON.stringify({ ...common, protectedDataReturned:true, pass:true, items:isCarbonara ? [
+          { recipeId:"unitools:spaghetti-carbonara", title:"Spaghetti Carbonara", sourceCohortId:"unitools-world-recipes-v1_1_0", sourceWork:"UniTools", sourceAuthor:null, sourceYear:null, structuralState:"PARSEABLE" }
+        ] : [
+          { recipeId:"recipe-a", title:"Alpha Soup", sourceCohortId:"SOURCE_A", sourceWork:"Historic Cookery", sourceAuthor:"Author A", sourceYear:"1901", structuralState:"PARSEABLE" }
+        ], nextCursor:null })
+      });
+    }
+    if (action === "detail") {
+      const recipeId = url.searchParams.get("recipeId");
+      const item = recipeId === "unitools:risotto-alla-milanese"
+        ? { recipeId, shardNumber:0, title:"Risotto alla Milanese", sourceCohortId:"unitools-world-recipes-v1_1_0", sourceWork:"UniTools", sourceUrl:"https://example.test/risotto", structuralState:"PARSEABLE", ingredients:["1 cup ingredient"], directions:["Cook carefully."], authority:{ protectedBrowseOnly:true, recommendationEligible:false, publicRuntimeActivated:false, nutritionAuthorityGranted:false, dietaryAllergenAuthorityGranted:false } }
+        : recipeId === "unitools:spaghetti-carbonara"
+          ? { recipeId, shardNumber:1, title:"Spaghetti Carbonara", sourceCohortId:"unitools-world-recipes-v1_1_0", sourceWork:"UniTools", sourceUrl:"https://example.test/carbonara", structuralState:"PARSEABLE", ingredients:["1 cup ingredient"], directions:["Cook carefully."], authority:{ protectedBrowseOnly:true, recommendationEligible:false, publicRuntimeActivated:false, nutritionAuthorityGranted:false, dietaryAllergenAuthorityGranted:false } }
+          : { recipeId:"recipe-a", shardNumber:0, title:"Alpha Soup", sourceCohortId:"SOURCE_A", sourceWork:"Historic Cookery", sourceAuthor:"Author A", sourceYear:"1901", sourceUrl:"https://example.test/source", structuralState:"PARSEABLE", ingredients:["1 cup ingredient"], directions:["Cook carefully."], authority:{ protectedBrowseOnly:true, recommendationEligible:false, publicRuntimeActivated:false, nutritionAuthorityGranted:false, dietaryAllergenAuthorityGranted:false } };
+      return route.fulfill({
+        status:200, contentType:"application/json",
+        body:JSON.stringify({ ...common, protectedDataReturned:true, pass:true, item })
+      });
+    }
     return route.fulfill({ status:400, contentType:"application/json", body:JSON.stringify({ ...common, ok:false, error:"UNKNOWN_ACTION" }) });
   });
 
@@ -309,6 +318,15 @@ async function protectedCorpusAcceptance() {
   const provenance = page.getByRole("link", { name:"Open source/provenance" });
   await provenance.waitFor();
   if ((await provenance.getAttribute("href")) !== "https://example.test/source") throw new Error("Protected detail provenance URL missing");
+
+  await page.getByRole("button", { name:"Run live verification" }).click();
+  await page.getByText(/PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS/).waitFor();
+  const canaryEvidence = JSON.parse(await page.locator("#canaryEvidence").innerText());
+  if (canaryEvidence.activeVersion !== "v8018") throw new Error("Live verifier did not pin v8018");
+  if (canaryEvidence.indexedRecipeCount !== 19268 || canaryEvidence.ftsRecipeCount !== 19268 || canaryEvidence.structuralPartialCount !== 3) throw new Error("Live verifier exact corpus counts failed");
+  if (canaryEvidence.browsePass !== true || canaryEvidence.searchPass !== true || canaryEvidence.detailShard0Pass !== true || canaryEvidence.detailShard1Pass !== true || canaryEvidence.sourceProvenancePass !== true) throw new Error("Live verifier functional matrix failed");
+  if (canaryEvidence.maxObservedD1Subqueries > 8 || canaryEvidence.fullCorpusScans !== 0) throw new Error("Live verifier D1/scan budget failed");
+  if (canaryEvidence.publicRuntimeChanged !== false || canaryEvidence.recommendationAdmissionChanged !== false) throw new Error("Live verifier authority firewall failed");
 
   if (errors.length) throw new Error(`Protected corpus page errors: ${errors.join(" | ")}`);
   await page.close();
