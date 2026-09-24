@@ -84,5 +84,17 @@
     "paidQuotaAuthorized": false,
     "secondProjectAuthorized": false
   },
-  "usedQueryIds": []
+  "usedQueryIds": [],
+  "controlPlaneStatus": "BARBECUE_TECHNIQUE_CORPUS_CONTROL_PLANE_VALIDATION_PASS",
+  "controlPlaneValidation": {
+    "pullRequest": 288,
+    "headSha": "34f571741762c5a57c133a075bae9d5f664eb0c2",
+    "mergeSha": "37b30dfb96075af1716c9aa225451677b3f451be",
+    "workflow": "Validate public V0",
+    "runId": 35989282976,
+    "runNumber": 1007,
+    "conclusion": "success",
+    "mergedAt": "2026-09-24T10:49:34Z",
+    "liveSearchUsedForValidation": false
+  }
 }

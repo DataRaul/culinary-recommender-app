@@ -1,6 +1,6 @@
 # Barbecue Technique Corpus — Roadmap Object V1
 
-Status: **BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY / CONTROL PLANE IMPLEMENTED / VALIDATION PENDING / NOT YET LIVE**
+Status: **BARBECUE_TECHNIQUE_CORPUS_CONTROL_PLANE_VALIDATION_PASS / SCHEDULED PILOT ACTIVE / FIRST ACQUISITION PENDING**
 
 Date: 2026-09-22
 
@@ -27,7 +27,7 @@ Recorded terminal:
 
 `BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY`
 
-This state authorizes the bounded implementation now carried by the current control-plane PR. Generic YT-CUL Search remains unauthorized. The barbecue schedule becomes live only after this successor control plane passes deterministic/public validation and merges; activation readiness does not authorize publication.
+The bounded successor control plane passed validation in PR #288 and is merged. Generic YT-CUL Search remains unauthorized; its cron is retired. The barbecue scheduler is now the sole registered Culinary YouTube acquisition wake-up. This does not authorize publication.
 
 ## Scope — conventional barbecue only
 
@@ -213,3 +213,22 @@ The old generic YT-CUL cron is removed. Its workflow remains diagnostics-only wi
 Implementation terminal before live acquisition:
 
 `BARBECUE_TECHNIQUE_CORPUS_CONTROL_PLANE_VALIDATION_PASS`
+
+
+## 2026-09-24 control-plane closeout
+
+PR #288 merged at `37b30dfb96075af1716c9aa225451677b3f451be` after **Validate public V0 run #1007 SUCCESS**.
+
+Recorded terminal:
+
+`BARBECUE_TECHNIQUE_CORPUS_CONTROL_PLANE_VALIDATION_PASS`
+
+The scheduled pilot is now active under `.github/workflows/barbecue-technique-corpus-daily.yml`. No live YouTube Search occurred during implementation or validation. The first acquisition remains a future quota-day work unit and must obey the 16-call pilot budget, 90-call provider-capacity classification, 100/day assigned limit, protected reserve, one-second pacing, restart-safe query IDs, world-champion/competition-first ordering, and fail-closed lifecycle.
+
+Generic `YT_CUL_5E_ADAPTIVE_DAILY_DISCOVERY` is retired from cron and remains dry-run diagnostics only.
+
+Next material boundary:
+
+`FIRST_BARBECUE_CANDIDATE_BATCH_REVIEW_OR_FAIL_CLOSED_HOLD`
+
+Candidate titles are not qualification evidence. Any candidate that is to count toward a leaf still requires independent credential/domain-competence verification, a unique independence key, project-authored normalized observations, and the separate safety-authority firewall.

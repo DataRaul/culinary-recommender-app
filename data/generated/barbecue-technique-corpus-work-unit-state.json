@@ -17,5 +17,14 @@
     "automaticAppAdmissionAuthorized": false,
     "automaticPublicationAuthorized": false,
     "paidInfrastructureAuthorized": false
+  },
+  "controlPlaneValidation": {
+    "terminal": "BARBECUE_TECHNIQUE_CORPUS_CONTROL_PLANE_VALIDATION_PASS",
+    "pullRequest": 288,
+    "mergeSha": "37b30dfb96075af1716c9aa225451677b3f451be",
+    "validationRunNumber": 1007,
+    "validationConclusion": "success",
+    "scheduledWorkflowActive": true,
+    "genericYtCulCronRetired": true
   }
 }
