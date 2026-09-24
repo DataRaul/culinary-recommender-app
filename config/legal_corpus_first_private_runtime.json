@@ -21,11 +21,11 @@
     ],
     "currentPostBaselinePosition": "FURTHER_PRODUCT_FEATURES",
     "furtherProductFeatures": {
-      "status": "D3_RECIPE_IMAGES_P0_COMPLETE",
+      "status": "FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3_PASS",
       "contract": "config/further_product_features_v1.json",
       "document": "docs/FURTHER_PRODUCT_FEATURES_READINESS_V1.md",
-      "selectedNextDesignCandidate": "D3_RECIPE_IMAGES",
-      "nextGate": "FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3",
+      "selectedNextDesignCandidate": "D5_FITNESS_INTEGRATION",
+      "nextGate": "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN",
       "publicRuntimeChangeAuthorized": false,
       "designContract": "config/recipe_images_p0.json",
       "designDocument": "docs/RECIPE_IMAGES_P0_DESIGN_CONTRACT.md",
@@ -41,7 +41,11 @@
       "postMergeValidationRun": 1058,
       "postMergeValidationRunId": 36023832531,
       "pagesDeploymentRun": 353,
-      "pagesDeploymentRunId": 36023831159
+      "pagesDeploymentRunId": 36023831159,
+      "reassessmentDocument": "docs/FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3.md",
+      "fitnessSourceRepository": "DataRaul/Mobile-first-workout-recommendation-app",
+      "fitnessSourceMainSha": "3fd69badda5269021728e5a5d1681aac98d17147",
+      "fitnessPortableBackupSchemaVersion": 3
     }
   },
   "sourceAdmission": {

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_FURTHER_PRODUCT_FEATURES_READINESS_V1",
   "date": "2026-09-24",
-  "state": "READINESS_AUDIT_PASS",
+  "state": "POST_D3_REASSESSMENT_PASS",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
     "legalCorpusBaseline": "LEGAL_CORPUS_BASELINE_PASS",
@@ -14,7 +14,16 @@
     "vitaminMineralSchemaReady": false,
     "protectedAutomaticallyRecommendationReady": 0,
     "barbecueLane": "BARBECUE_TECHNIQUE_CORPUS_SCHEDULED_PILOT_ACTIVE",
-    "barbecuePilotComplete": false
+    "barbecuePilotComplete": false,
+    "workoutApp": {
+      "repository": "DataRaul/Mobile-first-workout-recommendation-app",
+      "verifiedMainSha": "3fd69badda5269021728e5a5d1681aac98d17147",
+      "portableBackupSchemaVersion": 3,
+      "portableBackupFileName": "workout-recommender-backup.json",
+      "userPermissionGatedFileAccess": true,
+      "cloudSync": false,
+      "silentSharedFolderRead": false
+    }
   },
   "capabilities": [
     {
@@ -76,9 +85,27 @@
     {
       "id": "D5",
       "name": "Fitness Integration",
-      "state": "DEFERRED",
-      "reason": "SEPARATE_FITNESS_OWNERSHIP_AND_INPUT_ADAPTER_CONTRACT_REQUIRED",
-      "runtimeActivationAuthorized": false
+      "state": "READY_FOR_BOUNDED_ADAPTER_DESIGN",
+      "reason": "EXISTING_USER_PERMISSION_GATED_PORTABLE_BACKUP_SUPPORTS_A_MINIMUM_DATA_ONE_WAY_DESIGN_WITHOUT_CROSS_APP_RUNTIME_COUPLING",
+      "runtimeActivationAuthorized": false,
+      "adapterBoundary": {
+        "sourceRepository": "DataRaul/Mobile-first-workout-recommendation-app",
+        "sourceMainSha": "3fd69badda5269021728e5a5d1681aac98d17147",
+        "supportedSourceBackupSchemaVersions": [
+          2,
+          3
+        ],
+        "preferredSourceBackupSchemaVersion": 3,
+        "inputMode": "USER_SELECTED_PORTABLE_BACKUP_ONLY",
+        "automaticFolderReadAuthorized": false,
+        "crossAppLocalStorageReadAuthorized": false,
+        "cloudSyncAuthorized": false,
+        "sourceAppMutationAuthorized": false,
+        "sensitiveWorkoutFieldsDefaultExcluded": true,
+        "medicalInferenceAuthorized": false,
+        "calorieBurnEstimationAuthorized": false,
+        "individualizedMacroOrSupplementPrescriptionAuthorized": false
+      }
     },
     {
       "id": "D6",
@@ -88,7 +115,7 @@
       "runtimeActivationAuthorized": false
     }
   ],
-  "selectedNextDesignCandidate": "D3",
+  "selectedNextDesignCandidate": "D5",
   "selectionRule": "SELECT_THE_FIRST_CAPABILITY_WHOSE_EXISTING_ACTIVATION_BOUNDARY_IS_EARNED_WITHOUT_NEW_EXTERNAL_DATA_SECURITY_COST_OR_HUMAN_DEPENDENCIES",
   "authority": {
     "boundedDesignWorkAuthorized": true,
@@ -100,5 +127,12 @@
     "knowledgeCoreWriteAuthorized": false,
     "barbecueMutationAuthorized": false
   },
-  "nextGate": "FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3"
+  "nextGate": "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN",
+  "reassessment": {
+    "terminal": "FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3_PASS",
+    "date": "2026-09-24",
+    "document": "docs/FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3.md",
+    "decision": "D5_READY_FOR_BOUNDED_ADAPTER_DESIGN",
+    "publicRuntimeActivationAuthorized": false
+  }
 }
