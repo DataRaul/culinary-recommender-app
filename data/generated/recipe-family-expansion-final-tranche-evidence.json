@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_RECIPE_FAMILY_EXPANSION_FINAL_TRANCHE_EVIDENCE_V1",
   "date": "2026-09-24",
-  "state": "IMPLEMENTED_PR_VALIDATION_PENDING",
+  "state": "PASS",
   "targetGate": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC",
   "tranche": "FINAL",
   "sourceObservationFile": "data/generated/recipe-family-expansion-final-tranche-source-observations.json",
@@ -95,5 +95,15 @@
   ],
   "remainingFrozenFamilies": [],
   "publicActivationAuthorized": false,
-  "nextOnGreenValidation": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_CLOSEOUT_REVIEW"
+  "nextOnGreenValidation": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_CLOSEOUT_REVIEW",
+  "terminal": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_FINAL_TRANCHE_PASS",
+  "validation": {
+    "validatePublicV0": "SUCCESS",
+    "workflowRunNumber": 998,
+    "workflowRunId": 35939477327,
+    "headSha": "1b44f66d2a6de98996b937e4c469eb89e29a8d52",
+    "mergedPr": 283,
+    "mergeSha": "2acc942349bdecc293c3c37493f551b56f49e2f6"
+  },
+  "nextAction": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_CLOSEOUT_COMPLETE"
 }

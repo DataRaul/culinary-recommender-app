@@ -1,6 +1,6 @@
 # Barbecue Technique Corpus — Roadmap Object V1
 
-Status: **PLANNED / OWNER-PRIORITY POST-USABLE-APP / NOT ACTIVE**
+Status: **PRODUCT PREREQUISITES SATISFIED / YT-CUL HOLD RECONCILIATION REQUIRED / OWNER-PRIORITY / NOT ACTIVE**
 
 Date: 2026-09-22
 
@@ -20,6 +20,8 @@ Activation is earned only when all of the following are true:
 2. The app has reached a usable recommendation baseline over the admitted corpus: normalized/categorized corpus, applicable nutrition audit complete enough for the usable baseline, and recommendation readiness accepted.
 3. No higher-priority production/security/rights gate requires the YouTube child programme to remain paused.
 4. A fresh repository reconciliation confirms that the scheduled YouTube lane can be repurposed without overwriting another active child programme.
+
+As of 2026-09-24, the legal-corpus, usable-recommendation and Recipe Family sequencing prerequisites are satisfied. Activation is **not yet earned** because the existing `YT_CUL_5E_ADAPTIVE_DAILY_DISCOVERY` child programme is hard-held at `DAILY_SEARCH_HOLD_POLICY_OR_QUOTA` and must be resolved/reconciled before its scheduled lane can be repurposed. No live YouTube Search is authorized while that hold remains active.
 
 When all four conditions are true, record:
 

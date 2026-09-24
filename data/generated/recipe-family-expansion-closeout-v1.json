@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "CULINARY_RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_CLOSEOUT_V1",
+  "date": "2026-09-24",
+  "terminal": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_COMPLETE_WITH_EXPLICIT_HOLDS",
+  "result": "PASS_WITH_EXPLICIT_HOLDS",
+  "publicActivationAuthorized": false,
+  "cohort": [
+    {
+      "familyId": "carbonara",
+      "state": "APP_AUTHORING_HOLD",
+      "origin": "P0_PROTOTYPE",
+      "reason": "EGG_AND_HARD_CHEESE_QUANTITY_AUTHORITY_UNRESOLVED"
+    },
+    {
+      "familyId": "pizza_margherita",
+      "state": "APP_AUTHORING_HOLD",
+      "origin": "TRANCHE_2",
+      "reason": "HOME_OVEN_TIME_TEMPERATURE_EQUIPMENT_CONTEXT_NOT_YET_STABLE_ACROSS_THREE_INDEPENDENT_PREPARATIONS"
+    },
+    {
+      "familyId": "hummus",
+      "state": "APP_AUTHORING_ELIGIBLE",
+      "origin": "P0_PROTOTYPE",
+      "activationAuthority": "NONE"
+    },
+    {
+      "familyId": "guacamole",
+      "state": "APP_AUTHORING_ELIGIBLE",
+      "origin": "TRANCHE_1",
+      "activationAuthority": "NONE"
+    },
+    {
+      "familyId": "pancakes",
+      "state": "APP_AUTHORING_ELIGIBLE",
+      "origin": "TRANCHE_1",
+      "activationAuthority": "NONE"
+    },
+    {
+      "familyId": "tortilla_espanola",
+      "state": "APP_AUTHORING_ELIGIBLE",
+      "origin": "TRANCHE_1",
+      "activationAuthority": "NONE"
+    },
+    {
+      "familyId": "cacio_e_pepe",
+      "state": "APP_AUTHORING_ELIGIBLE",
+      "origin": "TRANCHE_2",
+      "activationAuthority": "NONE"
+    },
+    {
+      "familyId": "pesto_genovese",
+      "state": "APP_AUTHORING_ELIGIBLE",
+      "origin": "TRANCHE_2",
+      "activationAuthority": "NONE"
+    },
+    {
+      "familyId": "basic_tomato_pasta_sauce",
+      "state": "APP_AUTHORING_ELIGIBLE",
+      "origin": "FINAL_TRANCHE",
+      "activationAuthority": "NONE"
+    },
+    {
+      "familyId": "ragu_bolognese_family",
+      "state": "APP_AUTHORING_ELIGIBLE",
+      "origin": "FINAL_TRANCHE",
+      "activationAuthority": "NONE"
+    }
+  ],
+  "summary": {
+    "cohortCount": 10,
+    "appAuthoringEligibleCount": 8,
+    "appAuthoringHoldCount": 2,
+    "publicOrRuntimeAdmittedCount": 0,
+    "remainingFrozenFamilies": 0,
+    "expansionTrancheProtectedExpressionPersistedCount": 0
+  },
+  "validation": {
+    "finalTranchePr": 283,
+    "finalTrancheMergeSha": "2acc942349bdecc293c3c37493f551b56f49e2f6",
+    "validatePublicV0": "SUCCESS",
+    "workflowRunNumber": 998,
+    "workflowRunId": 35939477327,
+    "validatedHeadSha": "1b44f66d2a6de98996b937e4c469eb89e29a8d52"
+  },
+  "runtimeBoundary": {
+    "protectedCorpusVersion": "v8018",
+    "protectedCorpusRecipeCount": 19268,
+    "hydrationLayers": 18,
+    "shardCount": 2,
+    "maxObservedD1Subqueries": 8,
+    "publicRuntimeRecipeCount": 85,
+    "protectedCorpusChanged": false,
+    "publicRuntimeChanged": false,
+    "d1Writes": 0,
+    "thirdShardUsed": false,
+    "billingExpansion": false,
+    "knowledgeCoreWrite": false
+  },
+  "downstream": {
+    "controllingNextLane": "YOUTUBE_AUTHORITATIVE_EVIDENCE_REFINEMENT_RECONCILIATION",
+    "youtubeCulinaryState": "DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+    "youtubeSuccessorAction": "RESOLVE_DAILY_SEARCH_HOLD_POLICY_OR_QUOTA",
+    "liveYoutubeSearchAuthorized": false,
+    "barbecueTechniqueCorpus": {
+      "productPrerequisitesSatisfied": true,
+      "activationReady": false,
+      "blocker": "YT_CUL_CHILD_PROGRAMME_HOLD_AND_REPURPOSE_RECONCILIATION_REQUIRED",
+      "ownerPriority": true
+    }
+  }
+}
