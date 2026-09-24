@@ -10,6 +10,14 @@ on:
       - "scripts/corpus-scale-step1-core.mjs"
       - "scripts/run-corpus-scale-step1.mjs"
       - "tests/corpus-scale-step1.test.js"
+      - "src/data/corpus-v1.js"
+      - "src/data/recipes.js"
+      - "src/data/recipes-v1.js"
+      - "src/data/recipes-v1-search.js"
+      - "src/data/external/wikibooks-gate-f-v1.js"
+      - "src/data/external/unitools-step8f-v1.js"
+      - "src/domain/recommendation.js"
+      - "src/domain/profile.js"
 
 concurrency:
   group: corpus-scale-step1-${{ github.ref }}
@@ -30,4 +38,12 @@ jobs:
       - name: Validate Step 1 contract tests
         run: node --test tests/corpus-scale-step1.test.js
       - name: Run deterministic 1k to 100k benchmark
-        run: npm run benchmark:corpus-scale-step1
+        run: node --expose-gc scripts/run-corpus-scale-step1.mjs --output=corpus-scale-step1-report.json
+      - name: Upload benchmark report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: corpus-scale-step1-report
+          path: corpus-scale-step1-report.json
+          if-no-files-found: ignore
+          retention-days: 14

@@ -42,7 +42,7 @@
 | V1.x / Nutrition/vitamin applicability audit | COMPLETE / PASS | current authored macro authority 19/76; protected exact ingredient matches 36,760/144,245 and 112 all-identity-ready recipes; 0 protected recipes directly current-engine authoritative; vitamin/mineral schema not implemented |\n| V1.x / Recommendation readiness audit | COMPLETE / PASS — USABLE BASELINE | public runtime 85; 77 recommendation-state eligible and hard-metadata ready; unknown nutrition remains explicit/non-numeric after bounded repair; protected v8018 remains 0 automatically recommendation-ready; Recipe Family/adaptation is next |
 | V1.x / Recipe Family P0 prototype | COMPLETE / PASS | bounded Carbonara + Hummus prototype; Hummus APP_AUTHORING_ELIGIBLE, Carbonara held on egg/hard-cheese quantity authority; Consultant + Project Coach blocking review passed |
 | V1.x / Recipe Family UI legal conformance | COMPLETE / PASS | PR #276; real Hummus candidate proves generic multi-source attribution + fail-closed UNKNOWN/UNSATISFIABLE behavior; no public/runtime admission |\n| V1.x / Recipe Family 10-family bounded expansion | COMPLETE / PASS WITH EXPLICIT HOLDS | PR #283 green and merged; 10-family closeout = 8 candidate-only APP_AUTHORING_ELIGIBLE + 2 fail-closed HOLD (Carbonara, Pizza Margherita); 0 public/runtime admissions; v8018/D1/shards/KC/billing unchanged |
-| V1.x / Corpus Scale / 100k Readiness | USER-ACCEPTED TARGET / STEP 1 READY | Cloudflare Pages + exact-email Access/OTP + Worker + R2/pre-built indexes; D1 benchmark-gated; portable provider-neutral corpus; no mass ingestion yet |
+| V1.x / Corpus Scale / 100k Readiness | STEP 1 V2 HARDENING COMPLETE / PASS | PR #291 candidate: frozen 84-record oracle preserved; current 85-record public seed passes deterministic 1k→100k hardened benchmark; 100k build 6.126s, validation 3.125s, retrieval p95 max 7.508ms, rank p95 max 6.447ms, peak heap 697.9MB; 10 broad/common/rare scenarios; no D1/public/protected/billing/Barbecue widening |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
 | Post-usable-app / Barbecue Technique Corpus | CONTROL PLANE VALIDATION PASS / SCHEDULED PILOT ACTIVE / FIRST ACQUISITION PENDING | PR #288 merged green; bounded five-leaf world-champion-first scheduler is active; generic YT-CUL cron retired; five-source conventional-barbecue synthesis contract unchanged |
@@ -494,22 +494,25 @@ Large research-only/reuse-unclear corpora remain excluded from production: Recip
 
 ### Scale-program ready action / not the current primary product lane
 
-**SCALE PROGRAM READY ACTION: STEP 1 — CORPUS SCALE CONTRACT + SYNTHETIC BENCHMARK HARNESS.**
+**SCALE PROGRAM STEP 1 V2 HARDENING: COMPLETE / PASS ON PR #291 CANDIDATE.**
 
-This scale-program action remains technically ready, but the later Legal Corpus First sequencing decision controls the primary product order. After the 2026-09-23 `LEGAL_CORPUS_BASELINE_PASS`, the current primary lane is corpus normalization/categorization. Do not use this older scale-program readiness note to bypass that ordering.
+The independent app-development scale lane has now re-established the Step-1 contract against current repository truth without disturbing the separately scheduled Barbecue programme. The immutable 84-record historical `ALL_RECIPES` oracle remains frozen, while the current 85-record `PUBLIC_RUNTIME_RECIPES` state is separately fingerprinted and used as the V2 synthetic benchmark seed.
 
-The next implementation chat should start here without reopening the already accepted architecture choice:
+PR #291 candidate evidence:
 
-1. fresh-reconcile app `main`, open PRs, active branches and concurrent work;
-2. read this section plus `docs/CORPUS_SCALE_CLOUDFLARE_ACCEPTED_ARCHITECTURE.md` and `docs/CORPUS_SCALE_100K_REFERENCE_AND_SOURCE_ROADMAP.md` as the governing scale contract;
-3. preserve the reviewed current recipe corpus as the golden behavioral oracle;
-4. implement only Step-1 synthetic benchmark/scale-contract infrastructure first;
-5. generate deterministic synthetic 1k/10k/50k/100k catalogues without real external recipe ingestion;
-6. model provider-neutral R2-style immutable recipe objects + pre-built retrieval indexes and measure record/index sizes, candidate cardinalities, bytes, memory, local retrieval/filter/ranking latency, build time and validation cost;
-7. define explicit acceptance thresholds before choosing Step-2/3 implementation details;
-8. do not add D1 unless later Step-4 benchmark evidence earns it;
-9. make no production Cloudflare provisioning, no mass real-source ingestion, no paid infrastructure, no public ranking behavior change and no private Knowledge Core runtime dependency in Step 1;
-10. preserve nutrition B24 as an independent resumable lane; at the 2026-09-04 reconciliation, `agent/nutrition-b24-priority-reconciliation` contained one workflow-only commit and had diverged behind current `main`, while `agent/nutrition-b24-feta-composition` had no unique commits relative to the then-current main lineage;
-11. before every meaningful write or merge, fresh-reconcile GitHub again because branch state may have changed since this snapshot.
+1. deterministic 1k / 10k / 50k / 100k catalogues;
+2. deterministic per-record entropy to prevent clone repetition from understating compressed transfer/storage cost;
+3. 10 broad/common/rare query scenarios, all positive, spanning 8 distinct full-candidate cardinalities;
+4. bounded posting intersection before detail hydration, with the 256-candidate cap actually exercised;
+5. exact fail-closed baseline fingerprints, structural/index membership validation and full-body/index catalogue digests;
+6. 100k build 6,126.347 ms; structural validation 3,125.071 ms;
+7. 100k peak RSS 816,226,304 B; peak heap 697,934,632 B;
+8. maximum 100k gzip transfer/query 640,737 B; maximum retrieval p95 7.508 ms; maximum rank p95 6.447 ms;
+9. Step-1 workflow run #23 / 35995278468 SUCCESS; Validate public V0, Step 4 and Step 7A also green on the same candidate head;
+10. no Cloudflare provisioning, new real-source ingestion, protected corpus mutation, D1 authorization, public behavior change, Knowledge Core write, billing expansion or Barbecue mutation.
 
-The user has accepted the Cloudflare target architecture and the exact-email invitation-only policy. The next chat may proceed autonomously with Step 1 after fresh reconciliation.
+Historical Steps 2–7 remain repository evidence and are not discarded merely because Step 1 was hardened. The next independent scale action is to fresh-reconcile/revalidate those existing implementations against the V2 Step-1/current-85 seed, beginning with the Step-2 RecipeSource compatibility boundary where necessary, rather than blindly rebuilding already completed steps.
+
+Barbecue remains a separate scheduled child programme. Its workflow, generated state, quota and next scheduled wake-up are outside this scale lane.
+
+The user-accepted Cloudflare target architecture and exact-email invitation-only policy remain unchanged.
