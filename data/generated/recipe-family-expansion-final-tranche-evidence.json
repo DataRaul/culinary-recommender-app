@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "CULINARY_RECIPE_FAMILY_EXPANSION_FINAL_TRANCHE_EVIDENCE_V1",
+  "date": "2026-09-24",
+  "state": "IMPLEMENTED_PR_VALIDATION_PENDING",
+  "targetGate": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC",
+  "tranche": "FINAL",
+  "sourceObservationFile": "data/generated/recipe-family-expansion-final-tranche-source-observations.json",
+  "runner": "scripts/run-recipe-family-expansion-final-tranche.mjs",
+  "terminalCandidate": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_FINAL_TRANCHE_PASS",
+  "families": [
+    {
+      "familyId": "basic_tomato_pasta_sauce",
+      "independentObservationCount": 4,
+      "publisherCount": 3,
+      "terminalCandidate": "APP_AUTHORING_ELIGIBLE",
+      "requiredRanges": {
+        "tomato": {
+          "basis": "TOMATO_MASS_PERCENT_OF_DRY_PASTA_MASS",
+          "observedRange": {
+            "lower": 222.222222,
+            "upper": 266.666667
+          },
+          "recommendedRange": {
+            "lower": 226.984127,
+            "upper": 254.166667
+          },
+          "robustCenter": 239.285715,
+          "distinctPublisherCount": 3
+        }
+      }
+    },
+    {
+      "familyId": "ragu_bolognese_family",
+      "independentObservationCount": 4,
+      "publisherCount": 3,
+      "terminalCandidate": "APP_AUTHORING_ELIGIBLE",
+      "requiredRanges": {
+        "tomato": {
+          "basis": "TOMATO_PUREE_MASS_PERCENT_OF_BEEF_MASS",
+          "observedRange": {
+            "lower": 36.363636,
+            "upper": 100
+          },
+          "recommendedRange": {
+            "lower": 84.090909,
+            "upper": 100
+          },
+          "robustCenter": 100,
+          "distinctPublisherCount": 3
+        }
+      }
+    }
+  ],
+  "sourceCompliance": {
+    "observationCount": 8,
+    "protectedExpressionPersistedCount": 0,
+    "sourceClasses": [
+      "la-cucina-italiana",
+      "giallozafferano",
+      "recipes-from-italy"
+    ],
+    "materiallyNewSourceClassIntroduced": false,
+    "publicDisplayObligationIntroduced": false,
+    "uiLegalConformanceRetriggered": false
+  },
+  "runtimeBoundary": {
+    "publicRuntimeRecipeCount": 85,
+    "publicRuntimeChanged": false,
+    "protectedCorpusVersion": "v8018",
+    "protectedCorpusRecipeCount": 19268,
+    "protectedCorpusChanged": false,
+    "d1Reads": 0,
+    "d1Writes": 0,
+    "shardCount": 2,
+    "thirdShardUsed": false,
+    "youtubeStateChanged": false,
+    "knowledgeCoreWrite": false,
+    "billingExpansion": false
+  },
+  "completedExpansionFamilies": [
+    "guacamole",
+    "pancakes",
+    "tortilla_espanola",
+    "cacio_e_pepe",
+    "pesto_genovese",
+    "basic_tomato_pasta_sauce",
+    "ragu_bolognese_family"
+  ],
+  "heldExpansionFamilies": [
+    "pizza_margherita"
+  ],
+  "preservedPrototypeFamilies": [
+    "carbonara",
+    "hummus"
+  ],
+  "remainingFrozenFamilies": [],
+  "publicActivationAuthorized": false,
+  "nextOnGreenValidation": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_CLOSEOUT_REVIEW"
+}
