@@ -216,6 +216,26 @@ export function intersectPostings(indexes, queryKeys) {
   return result;
 }
 
+export function intersectPostingsBounded(indexes, queryKeys, limit = CORPUS_SCALE_QUERY_CAP) {
+  const cap = Math.max(1, Number(limit) || CORPUS_SCALE_QUERY_CAP);
+  const postings = [...new Set(queryKeys)]
+    .map(key => indexes.get(key) || [])
+    .sort((a, b) => a.length - b.length);
+  if (!postings.length || postings.some(list => list.length === 0)) return [];
+
+  const [smallest, ...rest] = postings;
+  if (!rest.length) return smallest.slice(0, cap);
+
+  const result = [];
+  for (const ordinal of smallest) {
+    if (rest.every(list => includesSorted(list, ordinal))) {
+      result.push(ordinal);
+      if (result.length >= cap) break;
+    }
+  }
+  return result;
+}
+
 function mostCommonKey(indexes, prefix = "") {
   return [...indexes.entries()]
     .filter(([key]) => key.startsWith(prefix))
@@ -294,7 +314,7 @@ export function benchmarkCatalogueQueries(catalogue, rankCandidateRecipes, optio
 
   for (const scenario of scenarios) {
     const allOrdinals = intersectPostings(catalogue.indexes, scenario.keys);
-    const boundedOrdinals = allOrdinals.slice(0, queryCap);
+    const boundedOrdinals = intersectPostingsBounded(catalogue.indexes, scenario.keys, queryCap);
     const transfer = queryTransferBytes(catalogue, scenario, boundedOrdinals);
     const retrievalSamples = [];
     const rankSamples = [];
@@ -302,7 +322,7 @@ export function benchmarkCatalogueQueries(catalogue, rankCandidateRecipes, optio
 
     for (let repetition = 0; repetition < repetitions + 1; repetition += 1) {
       const retrievalStartedAt = performance.now();
-      const ordinals = intersectPostings(catalogue.indexes, scenario.keys).slice(0, queryCap);
+      const ordinals = intersectPostingsBounded(catalogue.indexes, scenario.keys, queryCap);
       const recipes = ordinals.map(ordinal => JSON.parse(catalogue.objectBodies[ordinal]));
       const retrievalMs = performance.now() - retrievalStartedAt;
 
