@@ -4,7 +4,7 @@
 |---|---|---|
 | D1 Nutrient Gap Awareness | DEFERRED | authoritative healthy-population evidence layer; no deficiency diagnosis |
 | D2 Existing Supplement Routine Checker | DEFERRED | dedicated evidence/safety layer; no prescribing or individualized therapeutic dose |
-| D3 Recipe Images | P0 DESIGN CONTRACT PASS / ASSET PILOT NEXT | six-recipe project-authored pilot contract validated; media remains separately gated and no asset/runtime activation is implied |
+| D3 Recipe Images | P0 ASSET PILOT PASS / BROWSER INTEGRATION NEXT | six project-authored SVG assets validated under same-origin/provenance/accessibility/performance and active-content firewalls; public UI activation remains false until the next gate |
 | D4 Local Grocery Price Intelligence | DEFERRED | lawful reliable price source or user/receipt evidence |
 | D5 Fitness Integration | DEFERRED | thin adapter; fitness and culinary ownership remain separate |
 | D6 Advanced Culinary Exploration | DEFERRED / OWNER-PRIORITY SEQUENCE | technique curricula, regional depth, advanced challenges; do not outrun the active Barbecue Technique Corpus scheduled pilot |

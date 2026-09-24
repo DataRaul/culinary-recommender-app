@@ -18,9 +18,9 @@ test("further-product-features readiness contract passes and selects D3 design w
   assert.equal(summary.terminal, "FURTHER_PRODUCT_FEATURES_READINESS_PASS");
   assert.equal(summary.selectedNextDesignCandidate, "D3");
   assert.equal(summary.selectedName, "Recipe Images");
-  assert.equal(summary.selectedState, "P0_DESIGN_CONTRACT_PASS");
+  assert.equal(summary.selectedState, "P0_ASSET_PILOT_PASS");
   assert.equal(summary.runtimeActivationAuthorized, false);
-  assert.equal(summary.nextGate, "D3_RECIPE_IMAGES_P0_ASSET_PILOT");
+  assert.equal(summary.nextGate, "D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION");
 });
 
 test("D1 remains fail-closed while vitamin/mineral schema is unavailable", () => {

@@ -34,7 +34,7 @@
     {
       "id": "D3",
       "name": "Recipe Images",
-      "state": "P0_DESIGN_CONTRACT_PASS",
+      "state": "P0_ASSET_PILOT_PASS",
       "reason": "TEXT_DATA_RECOMMENDATION_AND_SCALE_FOUNDATIONS_ARE_NOW_STRONG_ENOUGH_FOR_A_SEPARATELY_GATED_MEDIA_PILOT",
       "runtimeActivationAuthorized": false,
       "mediaBoundary": {
@@ -52,7 +52,11 @@
       "designContract": "config/recipe_images_p0.json",
       "designDocument": "docs/RECIPE_IMAGES_P0_DESIGN_CONTRACT.md",
       "validationRun": 1038,
-      "validationRunId": 36010054816
+      "validationRunId": 36010054816,
+      "assetPilotContract": "config/recipe_images_p0_asset_pilot.json",
+      "assetPilotDocument": "docs/RECIPE_IMAGES_P0_ASSET_PILOT.md",
+      "assetPilotValidationRun": 1045,
+      "assetPilotValidationRunId": 36011579007
     },
     {
       "id": "D4",
@@ -88,5 +92,5 @@
     "knowledgeCoreWriteAuthorized": false,
     "barbecueMutationAuthorized": false
   },
-  "nextGate": "D3_RECIPE_IMAGES_P0_ASSET_PILOT"
+  "nextGate": "D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION"
 }
