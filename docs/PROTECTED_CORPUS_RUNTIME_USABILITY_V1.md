@@ -2,7 +2,7 @@
 
 Date: **2026-09-24**
 
-Status: **P0 EVIDENCE AUDIT PASS / P1 PRIVATE BROWSE-SEARCH READY**
+Status: **P1 IMPLEMENTATION CI PASS / LIVE OWNER CANARY PENDING**
 
 Objective: turn the already-populated protected corpus **v8018 / 19,268 recipes** into a corpus the owner can actually use, while preserving the fail-closed recommendation, rights, nutrition, security and cost boundaries.
 
@@ -84,7 +84,7 @@ The real v8018 product baseline is frozen and matches the generated normalizatio
 
 The D5 safe adapter prototype also passed Validate public V0 #1080 (workflow run `36059408517`), including deterministic and browser acceptance. Further D5 behavior is explicitly deferred, so P1 is now the first incomplete gate.
 
-### P1 — Private browse/search canary — READY
+### P1 — Private browse/search canary — IMPLEMENTATION CI PASS / LIVE OWNER CANARY PENDING
 
 After the bounded D5 adapter prototype is closed, implement and test an owner-only protected browse/search surface over **all 19,268 records**.
 
@@ -186,3 +186,10 @@ Every run must classify failures into one of:
 Then repair the highest-value technically resolvable blocker and rerun the affected bounded tests plus the real-v8018 regression set.
 
 No raw coverage percentage can override source authority, dietary/allergen safety, provenance, security, D1 budget, or the zero-recurring-cost posture.
+
+
+## P1 implementation note — 2026-09-24
+
+The bounded owner-only implementation is now encoded in `config/protected_corpus_p1_private_browse_search_v1.json` and `docs/PROTECTED_CORPUS_P1_PRIVATE_BROWSE_SEARCH_V1.md`. It reuses both protected body shards, builds only a compact control-D1 browse/search index, requires authentication before protected queries, uses keyset pagination + FTS search, exposes provenance on detail, and keeps public/recommendation authority unchanged. P1 remains non-terminal until PR CI and the post-deploy authenticated owner live canary pass.
+
+P1 implementation validation: Validate public V0 #1088 (workflow `36061685454`) passed deterministic and browser acceptance. The remaining terminal gate is the authenticated post-deploy live owner canary; no corpus/recommendation authority is widened by the CI pass.

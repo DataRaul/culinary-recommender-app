@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_P1_PRIVATE_BROWSE_SEARCH_V1",
+  "date": "2026-09-24",
+  "state": "IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING",
+  "baseMainSha": "e4557f25b0ce9e5e98f13957bcad2eabf0dea9ea",
+  "protectedCorpusVersion": "v8018",
+  "expectedRecipeCount": 19268,
+  "page": "protected-corpus.html",
+  "api": "/api/protected-corpus/v1",
+  "storage": {
+    "controlIndexTable": "culinary_protected_recipe_search_v1",
+    "controlFtsTable": "culinary_protected_recipe_search_fts_v1",
+    "searchEngine": "D1_SQLITE_FTS5",
+    "protectedBodyShards": 2,
+    "protectedBodyRewriteAuthorized": false,
+    "thirdShardAuthorized": false
+  },
+  "bounds": {
+    "indexBatchRecipes": 40,
+    "browseSearchPageMax": 50,
+    "detailHydrationRecipes": 1,
+    "targetMaxD1SubqueriesPerRequestIncludingAuth": 8,
+    "hardMaxD1SubqueriesPerRequest": 16,
+    "fullCorpusRequestScansAuthorized": false,
+    "paginationMode": "KEYSET_RECIPE_ID",
+    "indexBuildRestartMode": "LAST_INDEXED_RECIPE_ID"
+  },
+  "auth": {
+    "requiredBeforeProtectedQuery": true,
+    "canonicalSessionValidation": "currentSessionAccount",
+    "unauthenticatedProtectedQueriesExpected": 0
+  },
+  "product": {
+    "privateBrowseEnabled": true,
+    "privateFtsSearchEnabled": true,
+    "privateDetailEnabled": true,
+    "sourceProvenanceVisible": true,
+    "structuralExceptionsFailSoft": true,
+    "mobileBrowserSurface": true
+  },
+  "authority": {
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "nutritionAuthorityWideningAuthorized": false,
+    "dietaryAllergenAuthorityWideningAuthorized": false,
+    "knowledgeCoreRuntimeDependencyAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "newSourceIngestionAuthorized": false,
+    "paidInfrastructureAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "acceptance": [
+    "AUTH_REQUIRED_BEFORE_ANY_PROTECTED_RECIPE_SHARD_QUERY",
+    "EXACT_V8018_VERSION_AND_19268_RECORD_UNIVERSE",
+    "BOUNDED_PAGINATED_BROWSE_NO_FULL_CORPUS_SCAN",
+    "BOUNDED_TEXT_SEARCH_RETURNS_STABLE_IDS_BEFORE_BODY_HYDRATION",
+    "DETAIL_FETCH_WORKS_ACROSS_BOTH_SHARDS",
+    "TARGET_D1_SUBQUERIES_PER_REQUEST_AT_OR_BELOW_8_AND_HARD_FAIL_ABOVE_16",
+    "THREE_STRUCTURAL_EXCEPTIONS_FAIL_SOFT",
+    "SOURCE_PROVENANCE_AVAILABLE_ON_DETAIL",
+    "MOBILE_BROWSER_ACCEPTANCE",
+    "NO_PUBLIC_RUNTIME_OR_RECOMMENDATION_ADMISSION_CHANGE"
+  ],
+  "validation": {
+    "deterministic": "PASS",
+    "browser": "PASS",
+    "liveOwnerCanary": "PENDING_POST_MERGE_DEPLOY",
+    "exactIndexCount": null,
+    "exactStructuralPartialCount": null,
+    "validationRun": 1088,
+    "validationRunId": 36061685454
+  }
+}

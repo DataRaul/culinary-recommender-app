@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
   "date": "2026-09-24",
-  "state": "P0_EVIDENCE_AUDIT_PASS__P1_READY",
+  "state": "P1_IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
@@ -105,7 +105,7 @@
     },
     {
       "id": "P1_PRIVATE_BROWSE_SEARCH_CANARY",
-      "state": "READY",
+      "state": "IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING",
       "purpose": "Make all 19,268 protected recipes safely discoverable to an authorized user without granting recommendation authority.",
       "acceptance": [
         "AUTH_REQUIRED_BEFORE_ANY_PROTECTED_RECIPE_SHARD_QUERY",
@@ -118,7 +118,14 @@
         "SOURCE_PROVENANCE_AVAILABLE_ON_DETAIL",
         "MOBILE_BROWSER_ACCEPTANCE",
         "NO_PUBLIC_RUNTIME_OR_RECOMMENDATION_ADMISSION_CHANGE"
-      ]
+      ],
+      "contract": "config/protected_corpus_p1_private_browse_search_v1.json",
+      "document": "docs/PROTECTED_CORPUS_P1_PRIVATE_BROWSE_SEARCH_V1.md",
+      "page": "protected-corpus.html",
+      "api": "/api/protected-corpus/v1",
+      "liveOwnerCanary": "PENDING_POST_MERGE_DEPLOY",
+      "validationRun": 1088,
+      "validationRunId": 36061685454
     },
     {
       "id": "P2_METADATA_USABILITY_MEASUREMENT",
