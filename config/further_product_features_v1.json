@@ -85,7 +85,7 @@
     {
       "id": "D5",
       "name": "Fitness Integration",
-      "state": "P0_ADAPTER_DESIGN_CONTRACT_PASS",
+      "state": "P0_ADAPTER_PROTOTYPE_BUILT_VALIDATION_PENDING",
       "reason": "EXISTING_USER_PERMISSION_GATED_PORTABLE_BACKUP_SUPPORTS_A_MINIMUM_DATA_ONE_WAY_DESIGN_WITHOUT_CROSS_APP_RUNTIME_COUPLING",
       "runtimeActivationAuthorized": false,
       "adapterBoundary": {
@@ -104,14 +104,19 @@
         "sensitiveWorkoutFieldsDefaultExcluded": true,
         "medicalInferenceAuthorized": false,
         "calorieBurnEstimationAuthorized": false,
-        "individualizedMacroOrSupplementPrescriptionAuthorized": false
+        "individualizedMacroOrSupplementPrescriptionAuthorized": false,
+        "previewBeforePersistenceRequired": true,
+        "rawWorkoutBackupPersistenceAuthorized": false,
+        "minimizedContextLocalPersistenceAuthorized": true
       },
       "designContract": "config/fitness_integration_p0.json",
       "designDocument": "docs/FITNESS_INTEGRATION_P0_DESIGN_CONTRACT.md",
       "designValidationRun": 1063,
       "designValidationRunId": 36028970545,
       "postPrototypeDisposition": "DEFER_BEHAVIOR_WORK",
-      "successorPrincipalLane": "PROTECTED_CORPUS_RUNTIME_USABILITY_V1"
+      "successorPrincipalLane": "PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
+      "prototypeContract": "config/fitness_integration_p0_adapter_prototype.json",
+      "prototypeDocument": "docs/FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE.md"
     },
     {
       "id": "D6",
@@ -133,7 +138,7 @@
     "knowledgeCoreWriteAuthorized": false,
     "barbecueMutationAuthorized": false
   },
-  "nextGate": "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE",
+  "nextGate": "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE_VALIDATION",
   "reassessment": {
     "terminal": "FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3_PASS",
     "date": "2026-09-24",
