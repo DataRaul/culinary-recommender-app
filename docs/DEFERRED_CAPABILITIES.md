@@ -6,7 +6,7 @@
 | D2 Existing Supplement Routine Checker | DEFERRED | dedicated evidence/safety layer; no prescribing or individualized therapeutic dose |
 | D3 Recipe Images | P0 COMPLETE / FROZEN BASELINE | exact six project-authored SVGs are green in plan/search cards; broader media coverage requires a new explicit expansion gate |
 | D4 Local Grocery Price Intelligence | DEFERRED | lawful reliable price source or user/receipt evidence |
-| D5 Fitness Integration | READY FOR BOUNDED ADAPTER DESIGN | one-way user-selected portable-backup contract only; fitness and culinary ownership remain separate; no medical/nutrition-prescription inference |
+| D5 Fitness Integration | P0 ADAPTER DESIGN BUILT / VALIDATION PENDING | exact minimum-data one-way contract built against the user-selected workout backup; no runtime activation, medical inference or nutrition-prescription authority |
 | D6 Advanced Culinary Exploration | DEFERRED / OWNER-PRIORITY SEQUENCE | technique curricula, regional depth, advanced challenges; do not outrun the active Barbecue Technique Corpus scheduled pilot |
 | Culinary & Nutrition Brain P0 | AUTHORIZED / FOUNDATION BUILT | Knowledge Core canonical reasoning may produce narrow reviewed static public-safe exports; app runtime behavior remains separately gated |
 
