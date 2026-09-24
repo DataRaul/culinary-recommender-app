@@ -125,7 +125,7 @@ export async function runBarbecueDiscovery({fetchImpl=fetch,now=new Date()}={}) 
       }
     } catch (error) {
       searchCallsExecuted+=1;
-      const classified=classifyYoutubeSearchQuotaFailure(error,{searchCallsUsed:searchCallsExecuted,searchCapacity:config.dailySearchBudget});
+      const classified=classifyYoutubeSearchQuotaFailure(error,{searchCallsUsed:searchCallsExecuted,searchCapacity:config.routineProviderSearchCapacity});
       if (!classified) throw error;
       terminalState=mapHold(classified);
       providerFailure={failureClass:classified.failureClass,httpStatus:classified.httpStatus,apiStatus:classified.apiStatus,apiReason:classified.apiReason,retryAfterSeconds:classified.retryAfterSeconds ?? null};
@@ -149,7 +149,7 @@ export async function runBarbecueDiscovery({fetchImpl=fetch,now=new Date()}={}) 
   };
 }
 
-const isMain=process.argv[1] && fileURLToPath(import.meta.url)===join(process.cwd(),process.argv[1]);
+const isMain=process.argv[1] && fileURLToPath(import.meta.url)===process.argv[1];
 if (isMain) {
   runBarbecueDiscovery().then(summary=>console.log(JSON.stringify(summary))).catch(error=>{console.error(error instanceof Error?error.message:String(error));process.exitCode=1;});
 }
