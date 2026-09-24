@@ -41,6 +41,7 @@ export function validateBarbecueConfig(config) {
   if (config.assignedDailySearchLimit !== 100) throw new Error("barbecue pilot is armed only for assigned Search limit 100/day");
   if (!Number.isInteger(config.protectedReserveCalls) || config.protectedReserveCalls < 5) throw new Error("protected reserve must be >=5");
   if (!Number.isInteger(config.dailySearchBudget) || config.dailySearchBudget < 1 || config.dailySearchBudget > 32) throw new Error("daily Search budget must be 1..32 for the pilot");
+  if (!Number.isInteger(config.routineProviderSearchCapacity) || config.routineProviderSearchCapacity < config.dailySearchBudget || config.routineProviderSearchCapacity > config.assignedDailySearchLimit - config.protectedReserveCalls) throw new Error("routine provider Search capacity must cover the pilot budget while preserving the protected reserve");
   if (config.dailySearchBudget > config.assignedDailySearchLimit - config.protectedReserveCalls) throw new Error("daily Search budget violates protected reserve");
   if (!Number.isFinite(config.minYoutubeRequestIntervalMs) || config.minYoutubeRequestIntervalMs < 1000) throw new Error("provider pacing must be at least 1000 ms");
   if (!Array.isArray(config.pilotLeaves) || config.pilotLeaves.length !== 5) throw new Error("pilot must freeze exactly five leaves");
