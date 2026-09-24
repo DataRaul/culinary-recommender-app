@@ -16,11 +16,11 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
   if (normalization.structural?.titleKnownCount !== facts.titleKnownCount) errors.push("title coverage mismatch");
   if (normalization.structural?.structurallyParseableCount !== facts.structurallyParseableCount) errors.push("structural parse coverage mismatch");
 
-  const applicability = nutrition.protectedApplicability || {};
+  const applicability = nutrition.protectedCorpusApplicability || {};
   if (applicability.ingredientOccurrences !== facts.ingredientOccurrenceCount) errors.push("ingredient occurrence count mismatch");
-  if (applicability.exactCanonicalIngredientMatches !== facts.exactCanonicalIngredientMatches) errors.push("exact ingredient match count mismatch");
-  if (applicability.allIngredientIdentityReadyRecipes !== facts.allIngredientIdentityReadyRecipes) errors.push("all-ingredient-ready recipe count mismatch");
-  if (applicability.directCurrentEngineAuthoritativeRecipes !== facts.directCurrentNutritionEngineAuthoritativeRecipes) errors.push("protected nutrition authority mismatch");
+  if (applicability.resolvedIngredientOccurrences !== facts.exactCanonicalIngredientMatches) errors.push("exact ingredient match count mismatch");
+  if (applicability.recipesWithAllIngredientIdentitiesResolved !== facts.allIngredientIdentityReadyRecipes) errors.push("all-ingredient-ready recipe count mismatch");
+  if (applicability.unitoolsCurrentEngine?.authoritativeCurrentEngineCount !== facts.directCurrentNutritionEngineAuthoritativeRecipes) errors.push("protected nutrition authority mismatch");
 
   if (recommendation.protectedAutomaticRecommendationReadyCount !== facts.protectedAutomaticRecommendationReadyCount) errors.push("protected recommendation-ready count mismatch");
   if (recommendation.protectedReviewedDietaryAuthorityCount !== facts.reviewedDietaryAuthorityCount) errors.push("protected dietary-authority count mismatch");
