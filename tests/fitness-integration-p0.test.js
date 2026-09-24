@@ -7,9 +7,19 @@ import {
   validateFitnessIntegrationP0Config,
   validateWorkoutBackupForFitnessContext
 } from "../scripts/fitness-integration-p0.mjs";
+import {
+  FITNESS_CONTEXT_OUTPUT_FIELDS,
+  FITNESS_CONTEXT_SOURCE_FIELDS,
+  parseWorkoutBackupForFitnessContext,
+  sanitizeFitnessContext
+} from "../src/domain/fitness-integration-p0.js";
+import { normalizeState } from "../src/domain/storage.js";
 
 const config = JSON.parse(
   await readFile(new URL("../config/fitness_integration_p0.json", import.meta.url), "utf8")
+);
+const prototypeConfig = JSON.parse(
+  await readFile(new URL("../config/fitness_integration_p0_adapter_prototype.json", import.meta.url), "utf8")
 );
 
 function backup(overrides = {}) {
@@ -114,4 +124,59 @@ test("fitness context never gains culinary, medical, calorie or nutrition author
     mutated.authority[key] = true;
     assert.ok(validateFitnessIntegrationP0Config(mutated).some(error => error.includes(key)));
   }
+});
+
+
+test("P0 adapter prototype mirrors the exact design allowlist and requires preview before persistence", () => {
+  assert.deepEqual(FITNESS_CONTEXT_SOURCE_FIELDS, config.fieldContract.allowedSourceFields);
+  assert.deepEqual(FITNESS_CONTEXT_OUTPUT_FIELDS, config.fieldContract.outputFields);
+  assert.deepEqual(prototypeConfig.fieldContract.allowedSourceFields, config.fieldContract.allowedSourceFields);
+  assert.deepEqual(prototypeConfig.fieldContract.persistedOutputFields, config.fieldContract.outputFields);
+  assert.equal(prototypeConfig.persistence.explicitPreviewBeforePersistenceRequired, true);
+  assert.equal(prototypeConfig.persistence.rawBackupPersistenceAuthorized, false);
+  assert.equal(prototypeConfig.persistence.rawBackupHashPersistenceAuthorized, false);
+  assert.equal(prototypeConfig.postPrototypeDisposition, "DEFER_BEHAVIOR_WORK");
+  assert.equal(prototypeConfig.successorPrincipalLane, "PROTECTED_CORPUS_RUNTIME_USABILITY_V1");
+});
+
+test("browser adapter extracts only the five-field context and rejects malformed files", () => {
+  const context = parseWorkoutBackupForFitnessContext(JSON.stringify(backup()));
+  assert.deepEqual(Object.keys(context), [...FITNESS_CONTEXT_OUTPUT_FIELDS]);
+  assert.deepEqual(context, {
+    sourceBackupSchemaVersion: 3,
+    trainingGoal: "hypertrophy",
+    plannedTrainingDaysPerWeek: 3,
+    plannedSessionMinutes: 60,
+    preferredTrainingWeekdays: [1,3,5]
+  });
+  assert.throws(() => parseWorkoutBackupForFitnessContext("{not-json"));
+  assert.throws(() => parseWorkoutBackupForFitnessContext(JSON.stringify({ schemaVersion: 999, profile: backup().profile })));
+});
+
+test("Culinary persistence sanitizes fitness context and cannot retain excluded workout fields", () => {
+  const extracted = parseWorkoutBackupForFitnessContext(JSON.stringify(backup()));
+  const normalized = normalizeState({
+    fitnessContext: {
+      ...extracted,
+      name: "Must not cross",
+      constraints: ["back_pain"],
+      history: [{ weight: 100, reps: 8, rir: 2 }],
+      unknownFutureField: "private"
+    }
+  });
+  assert.deepEqual(Object.keys(normalized.fitnessContext), [...FITNESS_CONTEXT_OUTPUT_FIELDS]);
+  const serialized = JSON.stringify(normalized.fitnessContext);
+  for (const forbidden of ["Must not cross","back_pain","weight","reps","rir","private","unknownFutureField"]) {
+    assert.equal(serialized.includes(forbidden), false, forbidden);
+  }
+  assert.deepEqual(sanitizeFitnessContext(normalized.fitnessContext), normalized.fitnessContext);
+});
+
+test("fitness context remains outside the Culinary recommendation profile", () => {
+  const extracted = parseWorkoutBackupForFitnessContext(JSON.stringify(backup()));
+  const withoutFitness = normalizeState({});
+  const withFitness = normalizeState({ fitnessContext: extracted });
+  assert.deepEqual(withFitness.profile, withoutFitness.profile);
+  assert.notDeepEqual(withFitness.fitnessContext, null);
+  for (const [key,value] of Object.entries(prototypeConfig.behaviorFirewalls)) assert.equal(value, false, key);
 });
