@@ -148,6 +148,50 @@ async function mobileAcceptance() {
   const restored = JSON.parse(await page.evaluate(() => localStorage.getItem("culinary-recommender.state.v1")));
   if (restored.profile.dietaryMode === "vegan") throw new Error("Profile import did not restore prior dietary mode");
 
+  // D5 P0 adapter: explicit local file selection -> minimized preview -> explicit save.
+  const workoutBackup = {
+    schemaVersion: 3,
+    profile: {
+      name: "Must never cross",
+      goal: "hypertrophy",
+      level: "intermediate",
+      daysPerWeek: 3,
+      sessionMinutes: 60,
+      constraints: ["back_pain"],
+      equipment: ["barbell"],
+      favorites: ["private-favorite"],
+      trainingWeekdays: [1,3,5]
+    },
+    activeProgram: { id: "private-program", weight: 100, reps: 8, rir: 2 },
+    activeSession: { id: "private-session" },
+    history: [{ id: "private-history", weight: 100, reps: 8, rir: 2 }],
+    preferences: { readinessCheck: { value: "private-readiness" } }
+  };
+  const profileBeforeFitness = JSON.stringify(restored.profile);
+  await page.locator("#importWorkoutBackup").setInputFiles({
+    name: "workout-recommender-backup.json",
+    mimeType: "application/json",
+    buffer: Buffer.from(JSON.stringify(workoutBackup))
+  });
+  await page.getByText("Preview — not saved").waitFor();
+  const previewText = await page.locator("#fitnessPreview").innerText();
+  for (const forbidden of ["Must never cross","back_pain","barbell","private-program","private-session","private-history","private-readiness","100"]) {
+    if (previewText.includes(forbidden)) throw new Error(`Sensitive workout field leaked into preview: ${forbidden}`);
+  }
+  const beforeFitnessSave = JSON.parse(await page.evaluate(() => localStorage.getItem("culinary-recommender.state.v1")));
+  if (beforeFitnessSave.fitnessContext) throw new Error("Fitness context persisted before explicit save");
+  await page.locator("#saveFitnessContext").click();
+  await page.getByText("Stored local fitness context · inactive").waitFor();
+  const afterFitnessSave = JSON.parse(await page.evaluate(() => localStorage.getItem("culinary-recommender.state.v1")));
+  const fitnessKeys = Object.keys(afterFitnessSave.fitnessContext || {});
+  const expectedFitnessKeys = ["sourceBackupSchemaVersion","trainingGoal","plannedTrainingDaysPerWeek","plannedSessionMinutes","preferredTrainingWeekdays"];
+  if (fitnessKeys.join("|") !== expectedFitnessKeys.join("|")) throw new Error(`Unexpected persisted fitness context fields: ${fitnessKeys.join(",")}`);
+  const storedFitnessText = JSON.stringify(afterFitnessSave.fitnessContext);
+  for (const forbidden of ["Must never cross","back_pain","barbell","private-program","private-session","private-history","private-readiness","weight","reps","rir"]) {
+    if (storedFitnessText.includes(forbidden)) throw new Error(`Sensitive workout field leaked into persistence: ${forbidden}`);
+  }
+  if (JSON.stringify(afterFitnessSave.profile) !== profileBeforeFitness) throw new Error("Fitness adapter mutated the Culinary recommendation profile");
+
   if (errors.length) throw new Error(`Mobile page errors: ${errors.join(" | ")}`);
   await page.close();
 }
