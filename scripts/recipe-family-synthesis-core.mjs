@@ -149,6 +149,7 @@ export function synthesizeFamily(allObservations, config, definition) {
     return { roleId: spec.roleId, pass: Boolean(selected), selected };
   });
 
+  const publisherCount = new Set(familyRows.map(row => row.source.publisherLedgerKey)).size;
   const allAttributionReady = familyRows.every(row =>
     row.source.publicAttributionRequirement !== "REQUIRED" ||
     row.source.publicAttributionState === "READY"
@@ -156,6 +157,7 @@ export function synthesizeFamily(allObservations, config, definition) {
   const sourceExpressionPersisted = familyRows.some(row => row.source.sourceExpressionPersisted === true);
   const appAuthoringEligible =
     familyRows.length >= definition.minimumIndependentObservations &&
+    publisherCount >= (definition.minimumDistinctPublishers ?? 1) &&
     requiredIngredientState.every(row => row.pass) &&
     requiredTechniqueState.every(row => row.pass) &&
     requiredQuantityState.every(row => row.pass) &&
@@ -172,7 +174,7 @@ export function synthesizeFamily(allObservations, config, definition) {
   return {
     familyId: definition.familyId,
     independentObservationCount: familyRows.length,
-    publisherCount: new Set(familyRows.map(row => row.source.publisherLedgerKey)).size,
+    publisherCount,
     sourceRoleCounts: Object.fromEntries(
       [...familyRows.reduce((map, row) => map.set(row.source.role, (map.get(row.source.role) || 0) + 1), new Map()).entries()]
         .sort(([a], [b]) => a.localeCompare(b))
@@ -190,6 +192,8 @@ export function synthesizeFamily(allObservations, config, definition) {
     },
     variantProfile: variantRows(familyRows, config),
     gate: {
+      minimumDistinctPublishers: definition.minimumDistinctPublishers ?? 1,
+      publisherDiversityPass: publisherCount >= (definition.minimumDistinctPublishers ?? 1),
       requiredIngredientState,
       requiredTechniqueState,
       requiredQuantityState,

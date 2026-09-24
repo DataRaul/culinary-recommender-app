@@ -1,0 +1,680 @@
+{
+  "schemaVersion": "CULINARY_RECIPE_FAMILY_EXPANSION_TRANCHE_1_SOURCE_OBSERVATIONS_V1",
+  "generatedAt": "2026-09-24",
+  "policy": "config/recipe_family_synthesis_p0.json",
+  "scope": [
+    "guacamole",
+    "pancakes",
+    "tortilla_espanola"
+  ],
+  "note": "Normalized factual observations only. No source prose, transcript, image, audio, or protected expressive text is retained.",
+  "observations": [
+    {
+      "observationId": "guacamole_forkrecipe_c3225526",
+      "familyId": "guacamole",
+      "source": {
+        "publisher": "ForkRecipe",
+        "creator": "ForkRecipe Kitchen",
+        "url": "https://github.com/futurechef/forkrecipe-recipes/blob/c32255266af39bd77444d39452f3df8088ac8fd9/recipes/guacamole.js",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "forkrecipe-guacamole-c3225526",
+        "publisherLedgerKey": "forkrecipe",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "ForkRecipe Kitchen — Guacamole",
+        "attributionLicenseOrBasis": "CC BY-SA 4.0"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "avocado",
+          "onion",
+          "chile",
+          "cilantro",
+          "salt",
+          "lime"
+        ],
+        "quantitative": [
+          {
+            "roleId": "lime",
+            "lower": 8,
+            "upper": 8,
+            "basis": "FORKRECIPE_RELATIVE_PARTS_PER_100_AVOCADO_PARTS",
+            "unit": "ratio_percent"
+          }
+        ],
+        "techniques": [
+          "mash_avocado",
+          "combine_fresh_aromatics"
+        ],
+        "variantSignals": [
+          "molcajete_style_aromatic_paste"
+        ]
+      }
+    },
+    {
+      "observationId": "guacamole_wikibooks_i_4636788",
+      "familyId": "guacamole",
+      "source": {
+        "publisher": "Wikibooks",
+        "creator": "Wikibooks contributors",
+        "url": "https://en.wikibooks.org/w/index.php?title=Cookbook:Guacamole_I&oldid=4636788",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "wikibooks-guacamole-i-4636788",
+        "publisherLedgerKey": "wikimedia-wikibooks",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Wikibooks contributors — Guacamole I, revision 4636788",
+        "attributionLicenseOrBasis": "CC BY-SA"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "avocado",
+          "lime",
+          "chile",
+          "salt",
+          "olive_oil",
+          "garlic",
+          "black_pepper",
+          "pico_de_gallo"
+        ],
+        "quantitative": [
+          {
+            "roleId": "lime",
+            "lower": 0.125,
+            "upper": 0.125,
+            "basis": "LIME_UNITS_PER_AVOCADO",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "mash_avocado",
+          "combine_fresh_aromatics"
+        ],
+        "variantSignals": [
+          "pico_de_gallo_added",
+          "olive_oil_added"
+        ]
+      }
+    },
+    {
+      "observationId": "guacamole_wikibooks_chile_free_4517631",
+      "familyId": "guacamole",
+      "source": {
+        "publisher": "Wikibooks",
+        "creator": "Wikibooks contributors",
+        "url": "https://en.wikibooks.org/w/index.php?title=Cookbook:Guacamole_(Chile-Free)&oldid=4517631",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "wikibooks-guacamole-chile-free-4517631",
+        "publisherLedgerKey": "wikimedia-wikibooks",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Wikibooks contributors — Guacamole (Chile-Free), revision 4517631",
+        "attributionLicenseOrBasis": "CC BY-SA"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "avocado",
+          "lime",
+          "onion",
+          "tomato",
+          "cilantro",
+          "garlic",
+          "salt"
+        ],
+        "quantitative": [
+          {
+            "roleId": "lime",
+            "lower": 0.75,
+            "upper": 0.75,
+            "basis": "LIME_UNITS_PER_AVOCADO",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "mash_avocado",
+          "combine_fresh_aromatics"
+        ],
+        "variantSignals": [
+          "chile_omitted",
+          "tomato_added"
+        ]
+      }
+    },
+    {
+      "observationId": "guacamole_recidemia_sn0010202",
+      "familyId": "guacamole",
+      "source": {
+        "publisher": "Recidemia",
+        "creator": "Recidemia contributors",
+        "url": "https://recidemia.com/recipe/SN.001.0202.001",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "recidemia-guacamole-sn0010202",
+        "publisherLedgerKey": "recidemia",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Recidemia contributors — Guacamole Perfecto!",
+        "attributionLicenseOrBasis": "CC BY-SA 4.0"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "avocado",
+          "lime",
+          "onion",
+          "tomato",
+          "cilantro",
+          "chile",
+          "salt",
+          "oregano",
+          "white_pepper"
+        ],
+        "quantitative": [
+          {
+            "roleId": "lime",
+            "lower": 0.25,
+            "upper": 0.25,
+            "basis": "LIME_UNITS_PER_AVOCADO",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "mash_avocado",
+          "combine_fresh_aromatics"
+        ],
+        "variantSignals": [
+          "tomato_added",
+          "oregano_added"
+        ]
+      }
+    },
+    {
+      "observationId": "pancakes_forkrecipe_c3225526",
+      "familyId": "pancakes",
+      "source": {
+        "publisher": "ForkRecipe",
+        "creator": "ForkRecipe Kitchen",
+        "url": "https://github.com/futurechef/forkrecipe-recipes/blob/c32255266af39bd77444d39452f3df8088ac8fd9/recipes/buttermilk-pancakes.js",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "forkrecipe-buttermilk-pancakes-c3225526",
+        "publisherLedgerKey": "forkrecipe",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "ForkRecipe Kitchen — Fluffy Buttermilk Diner Pancakes",
+        "attributionLicenseOrBasis": "CC BY-SA 4.0"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "flour",
+          "cultured_or_milk_liquid",
+          "egg",
+          "chemical_leavener",
+          "salt",
+          "sugar",
+          "fat"
+        ],
+        "quantitative": [
+          {
+            "roleId": "cultured_or_milk_liquid",
+            "lower": 150,
+            "upper": 150,
+            "basis": "ML_LIQUID_PER_100G_FLOUR",
+            "unit": "ratio_percent"
+          },
+          {
+            "roleId": "egg",
+            "lower": 1,
+            "upper": 1,
+            "basis": "EGGS_PER_100G_FLOUR",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "mix_dry_ingredients",
+          "combine_wet_and_dry_minimally",
+          "griddle_cook",
+          "flip_after_surface_bubbles"
+        ],
+        "variantSignals": [
+          "buttermilk_base"
+        ]
+      }
+    },
+    {
+      "observationId": "pancakes_wikibooks_light_fluffy_4522787",
+      "familyId": "pancakes",
+      "source": {
+        "publisher": "Wikibooks",
+        "creator": "Wikibooks contributors",
+        "url": "https://en.wikibooks.org/w/index.php?title=Cookbook:Light_Fluffy_Pancakes&oldid=4522787",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "wikibooks-light-fluffy-pancakes-4522787",
+        "publisherLedgerKey": "wikimedia-wikibooks",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Wikibooks contributors — Light Fluffy Pancakes, revision 4522787",
+        "attributionLicenseOrBasis": "CC BY-SA"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "flour",
+          "cultured_or_milk_liquid",
+          "egg",
+          "chemical_leavener",
+          "salt",
+          "sugar",
+          "fat"
+        ],
+        "quantitative": [
+          {
+            "roleId": "cultured_or_milk_liquid",
+            "lower": 1,
+            "upper": 1,
+            "basis": "CUPS_LIQUID_PER_CUP_FLOUR",
+            "unit": "volume_ratio"
+          },
+          {
+            "roleId": "egg",
+            "lower": 1,
+            "upper": 1,
+            "basis": "EGGS_PER_CUP_FLOUR",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "mix_dry_ingredients",
+          "combine_wet_and_dry_minimally",
+          "griddle_cook",
+          "flip_after_surface_bubbles"
+        ],
+        "variantSignals": [
+          "mixed_buttermilk_and_milk"
+        ]
+      }
+    },
+    {
+      "observationId": "pancakes_wikibooks_ginger_4522790",
+      "familyId": "pancakes",
+      "source": {
+        "publisher": "Wikibooks",
+        "creator": "Wikibooks contributors",
+        "url": "https://en.wikibooks.org/w/index.php?title=Cookbook:Ginger_Pancakes&oldid=4522790",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "wikibooks-ginger-pancakes-4522790",
+        "publisherLedgerKey": "wikimedia-wikibooks",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Wikibooks contributors — Ginger Pancakes, revision 4522790",
+        "attributionLicenseOrBasis": "CC BY-SA"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "flour",
+          "cultured_or_milk_liquid",
+          "egg",
+          "chemical_leavener",
+          "salt",
+          "sugar",
+          "fat",
+          "ginger"
+        ],
+        "quantitative": [
+          {
+            "roleId": "cultured_or_milk_liquid",
+            "lower": 1,
+            "upper": 1,
+            "basis": "CUPS_LIQUID_PER_CUP_FLOUR",
+            "unit": "volume_ratio"
+          },
+          {
+            "roleId": "egg",
+            "lower": 1,
+            "upper": 1,
+            "basis": "EGGS_PER_CUP_FLOUR",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "mix_dry_ingredients",
+          "combine_wet_and_dry_minimally",
+          "griddle_cook",
+          "flip_after_surface_bubbles"
+        ],
+        "variantSignals": [
+          "ginger_added"
+        ]
+      }
+    },
+    {
+      "observationId": "pancakes_recidemia_br0080230",
+      "familyId": "pancakes",
+      "source": {
+        "publisher": "Recidemia",
+        "creator": "Recidemia contributors",
+        "url": "https://recidemia.com/recipe/BR.008.0230.001",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "recidemia-whole-wheat-buttermilk-pancakes-br0080230",
+        "publisherLedgerKey": "recidemia",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Recidemia contributors — Whole Wheat Buttermilk Pancakes",
+        "attributionLicenseOrBasis": "CC BY-SA 4.0"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "flour",
+          "cultured_or_milk_liquid",
+          "egg",
+          "chemical_leavener",
+          "salt",
+          "sugar",
+          "fat",
+          "whole_wheat_flour"
+        ],
+        "quantitative": [
+          {
+            "roleId": "cultured_or_milk_liquid",
+            "lower": 1,
+            "upper": 1,
+            "basis": "CUPS_LIQUID_PER_CUP_FLOUR",
+            "unit": "volume_ratio"
+          },
+          {
+            "roleId": "egg",
+            "lower": 1,
+            "upper": 1,
+            "basis": "EGGS_PER_CUP_FLOUR",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "mix_dry_ingredients",
+          "combine_wet_and_dry_minimally",
+          "griddle_cook",
+          "flip_after_surface_bubbles"
+        ],
+        "variantSignals": [
+          "whole_wheat_blend"
+        ]
+      }
+    },
+    {
+      "observationId": "tortilla_wikibooks_spanish_omelet_4517807",
+      "familyId": "tortilla_espanola",
+      "source": {
+        "publisher": "Wikibooks",
+        "creator": "Wikibooks contributors",
+        "url": "https://en.wikibooks.org/w/index.php?title=Cookbook:Spanish_Omelet&oldid=4517807",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "wikibooks-spanish-omelet-4517807",
+        "publisherLedgerKey": "wikimedia-wikibooks",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Wikibooks contributors — Spanish Omelet, revision 4517807",
+        "attributionLicenseOrBasis": "CC BY-SA"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "potato",
+          "egg",
+          "olive_oil",
+          "salt",
+          "onion"
+        ],
+        "quantitative": [
+          {
+            "roleId": "egg",
+            "lower": 1.333333,
+            "upper": 1.333333,
+            "basis": "EGGS_PER_100G_POTATO",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "gently_cook_potato_in_oil",
+          "combine_potato_with_beaten_egg",
+          "pan_set_first_side",
+          "flip_and_finish_second_side"
+        ],
+        "variantSignals": [
+          "onion_included"
+        ]
+      }
+    },
+    {
+      "observationId": "tortilla_wikibooks_spanish_potato_omelette_4429173",
+      "familyId": "tortilla_espanola",
+      "source": {
+        "publisher": "Wikibooks",
+        "creator": "Wikibooks contributors",
+        "url": "https://en.wikibooks.org/w/index.php?title=Cookbook:Spanish_Potato_Omelette&oldid=4429173",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "wikibooks-spanish-potato-omelette-4429173",
+        "publisherLedgerKey": "wikimedia-wikibooks",
+        "acquisitionMode": "LICENSED_REUSE",
+        "lawfulAccess": "YES",
+        "termsState": "ALLOWS_INTENDED_USE",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "OPEN_LICENCE",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "REQUIRED",
+        "publicAttributionState": "READY",
+        "attributionLabel": "Wikibooks contributors — Spanish Potato Omelette, revision 4429173",
+        "attributionLicenseOrBasis": "CC BY-SA"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "potato",
+          "egg",
+          "olive_oil",
+          "salt",
+          "onion"
+        ],
+        "quantitative": [
+          {
+            "roleId": "egg",
+            "lower": 0.8,
+            "upper": 0.8,
+            "basis": "EGGS_PER_100G_POTATO",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "gently_cook_potato_in_oil",
+          "combine_potato_with_beaten_egg",
+          "pan_set_first_side",
+          "flip_and_finish_second_side"
+        ],
+        "variantSignals": [
+          "onion_included"
+        ]
+      }
+    },
+    {
+      "observationId": "tortilla_spanishchef_20260924",
+      "familyId": "tortilla_espanola",
+      "source": {
+        "publisher": "The Spanish Chef",
+        "creator": "Omar Allibhoy",
+        "url": "https://www.thespanishchef.com/recipes/tortilla-de-patata/",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "spanish-chef-tortilla-de-patata-20260924",
+        "publisherLedgerKey": "the-spanish-chef",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "NO_RELEVANT_RESTRICTION_FOUND",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "STRUCTURE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "potato",
+          "egg",
+          "olive_oil",
+          "salt",
+          "onion"
+        ],
+        "quantitative": [
+          {
+            "roleId": "egg",
+            "lower": 1.2,
+            "upper": 1.2,
+            "basis": "EGGS_PER_100G_POTATO",
+            "unit": "count_ratio"
+          }
+        ],
+        "techniques": [
+          "gently_cook_potato_in_oil",
+          "combine_potato_with_beaten_egg",
+          "pan_set_first_side",
+          "flip_and_finish_second_side"
+        ],
+        "variantSignals": [
+          "onion_optional"
+        ]
+      }
+    },
+    {
+      "observationId": "tortilla_spaininfo_20260924",
+      "familyId": "tortilla_espanola",
+      "source": {
+        "publisher": "Turespaña / Spain.info",
+        "creator": "Turespaña",
+        "url": "https://www.spain.info/es/receta/tortilla-patata/",
+        "accessedAt": "2026-09-24",
+        "independenceGroup": "spaininfo-tortilla-patata-20260924",
+        "publisherLedgerKey": "spain-info",
+        "acquisitionMode": "MANUAL_REVIEW",
+        "lawfulAccess": "YES",
+        "termsState": "NO_RELEVANT_RESTRICTION_FOUND",
+        "termsCheckedAt": "2026-09-24",
+        "reuseBasis": "STANDARD_COPYRIGHT",
+        "databaseExtractionRisk": "LOW",
+        "cumulativeExtractionRisk": "LOW",
+        "role": "REFERENCE_EVIDENCE",
+        "sourceExpressionPersisted": false,
+        "rawExpressionRetention": "NONE",
+        "publicAttributionRequirement": "NOT_REQUIRED",
+        "publicAttributionState": "NOT_APPLICABLE"
+      },
+      "normalized": {
+        "ingredientRoles": [
+          "potato",
+          "egg",
+          "olive_oil",
+          "salt",
+          "onion"
+        ],
+        "quantitative": [],
+        "techniques": [
+          "gently_cook_potato_in_oil",
+          "combine_potato_with_beaten_egg",
+          "pan_set_first_side",
+          "flip_and_finish_second_side"
+        ],
+        "variantSignals": [
+          "onion_included"
+        ]
+      }
+    }
+  ]
+}
