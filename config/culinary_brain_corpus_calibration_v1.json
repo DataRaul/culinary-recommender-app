@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
+  "date": "2026-09-24",
+  "state": "ROADMAP_ENCODED_NOT_YET_EXECUTING",
+  "pattern": "FITNESS_BRAIN_CALIBRATION_ANALOGUE",
+  "knowledgeCoreDomain": "culinary_nutrition",
+  "runtimeDependencyAuthorized": false,
+  "objective": "CALIBRATE_AND_ENRICH_REAL_V8018_FOR_PROGRESSIVE_DETERMINISTIC_RECOMMENDATION",
+  "entryConditions": [
+    "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE_COMPLETE",
+    "D5_BEHAVIOR_WORK_DEFERRED",
+    "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_STABLE_IDENTITIES_AVAILABLE"
+  ],
+  "executionRelationship": {
+    "browseSearchBlocksOnBrain": false,
+    "runsParallelWithMetadataUsability": true,
+    "fullCorpus": {
+      "version": "v8018",
+      "recipeCount": 19268
+    },
+    "goldenCalibrationRecipeCount": 85,
+    "initialProtectedPilotTarget": 500
+  },
+  "authorityOrder": [
+    "SOURCE_AND_PROVENANCE_FACTS",
+    "HARD_SAFETY_AND_EVIDENCE_CONTRACTS",
+    "DETERMINISTIC_APP_AND_USER_STATE",
+    "BRAIN_AND_MODEL_SOFT_SEMANTIC_PRIORS"
+  ],
+  "disagreementOutcome": "UNKNOWN_AMBIGUOUS_OR_REVIEW",
+  "noMajorityVote": true,
+  "candidateSoftFields": [
+    "dishFamily",
+    "mealRole",
+    "techniqueFamily",
+    "difficulty",
+    "convenience",
+    "similarity",
+    "culinaryTraditionConfidence",
+    "adaptationFit",
+    "recommendationUtility"
+  ],
+  "neverGrantedByBrainOrModelAlone": [
+    "SOURCE_RIGHTS",
+    "ALLERGEN_SAFETY",
+    "DIETARY_HARD_AUTHORITY",
+    "PERMANENT_EXCLUSION_OVERRIDE",
+    "NUTRITION_AUTHORITY",
+    "PUBLIC_RECIPE_ADMISSION",
+    "RECOMMENDATION_ELIGIBILITY"
+  ],
+  "calibrationStages": [
+    "C0_GOLDEN_85",
+    "C1_STRATIFIED_PROTECTED_PILOT_APPROX_500",
+    "C2_FROZEN_FULL_V8018_CLASSIFICATION",
+    "C3_DETERMINISTIC_RECOMMENDATION_PRIOR_CALIBRATION",
+    "C4_REAL_V8018_FAILURE_REPAIR_LOOP"
+  ],
+  "requiredProvenance": [
+    "CORPUS_VERSION",
+    "KNOWLEDGE_CORE_PIN",
+    "MODEL_PROMPT_SCHEMA_VERSION_IF_USED",
+    "FIELD",
+    "PROPOSED_VALUE",
+    "AUTHORITY_CLASS",
+    "CONFIDENCE_OR_EVIDENCE_STATE",
+    "DISAGREEMENT_STATE",
+    "RECONCILIATION_RESULT",
+    "REASON_CODE"
+  ],
+  "authority": {
+    "livePrivateKnowledgeCoreRuntimeAuthorized": false,
+    "liveLlmRecommendationRuntimeAuthorized": false,
+    "brainMajorityVoteAuthorized": false,
+    "nutritionAuthorityFromBrainAuthorized": false,
+    "hardSafetyAuthorityFromBrainAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "automaticPublicAdmissionAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "newSourceIngestionAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  }
+}

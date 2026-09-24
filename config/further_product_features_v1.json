@@ -109,7 +109,9 @@
       "designContract": "config/fitness_integration_p0.json",
       "designDocument": "docs/FITNESS_INTEGRATION_P0_DESIGN_CONTRACT.md",
       "designValidationRun": 1063,
-      "designValidationRunId": 36028970545
+      "designValidationRunId": 36028970545,
+      "postPrototypeDisposition": "DEFER_BEHAVIOR_WORK",
+      "successorPrincipalLane": "PROTECTED_CORPUS_RUNTIME_USABILITY_V1"
     },
     {
       "id": "D6",
@@ -138,5 +140,13 @@
     "document": "docs/FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3.md",
     "decision": "D5_P0_ADAPTER_DESIGN_CONTRACT_PASS",
     "publicRuntimeActivationAuthorized": false
+  },
+  "ownerPriorityOverride": {
+    "date": "2026-09-24",
+    "finishD5SafeAdapterPrototypeFirst": true,
+    "deferD5BehaviorAfterPrototype": true,
+    "successorPrincipalLane": "PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
+    "successorContract": "config/protected_corpus_runtime_usability_v1.json",
+    "successorDocument": "docs/PROTECTED_CORPUS_RUNTIME_USABILITY_V1.md"
   }
 }
