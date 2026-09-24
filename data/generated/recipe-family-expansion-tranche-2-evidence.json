@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "CULINARY_RECIPE_FAMILY_EXPANSION_TRANCHE_2_EVIDENCE_V1",
+  "date": "2026-09-24",
+  "state": "IMPLEMENTED_PR_VALIDATION_PENDING",
+  "targetGate": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC",
+  "tranche": 2,
+  "sourceObservationFile": "data/generated/recipe-family-expansion-tranche-2-source-observations.json",
+  "runner": "scripts/run-recipe-family-expansion-tranche-2.mjs",
+  "terminalCandidate": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_TRANCHE_2_PASS_WITH_EXPLICIT_PIZZA_HOLD",
+  "families": [
+    {
+      "familyId": "cacio_e_pepe",
+      "independentObservationCount": 4,
+      "publisherCount": 3,
+      "terminalCandidate": "APP_AUTHORING_ELIGIBLE",
+      "requiredRanges": {
+        "pecorino": {
+          "basis": "CHEESE_MASS_PERCENT_OF_PASTA_MASS",
+          "observedRange": {
+            "lower": 31.25,
+            "upper": 41.666667
+          },
+          "recommendedRange": {
+            "lower": 32.291667,
+            "upper": 37.5
+          },
+          "robustCenter": 33.333333,
+          "distinctPublisherCount": 2
+        }
+      }
+    },
+    {
+      "familyId": "pesto_genovese",
+      "independentObservationCount": 4,
+      "publisherCount": 4,
+      "terminalCandidate": "APP_AUTHORING_ELIGIBLE",
+      "requiredRanges": {
+        "garlic": {
+          "basis": "GARLIC_CLOVES_PER_100G_BASIL",
+          "observedRange": {
+            "lower": 2,
+            "upper": 4
+          },
+          "recommendedRange": {
+            "lower": 2.928572,
+            "upper": 3.5
+          },
+          "robustCenter": 3,
+          "distinctPublisherCount": 3
+        }
+      }
+    },
+    {
+      "familyId": "pizza_margherita",
+      "independentObservationCount": 4,
+      "publisherCount": 4,
+      "terminalCandidate": "APP_AUTHORING_HOLD",
+      "stableRanges": {
+        "mozzarella": {
+          "basis": "GRAMS_PER_PIZZA",
+          "observedRange": {
+            "lower": 66.666667,
+            "upper": 80
+          },
+          "recommendedRange": {
+            "lower": 73.333334,
+            "upper": 80
+          },
+          "robustCenter": 80,
+          "distinctPublisherCount": 3
+        }
+      },
+      "hold": {
+        "reason": "HOME_OVEN_TIME_TEMPERATURE_EQUIPMENT_CONTEXT_NOT_YET_STABLE_ACROSS_THREE_INDEPENDENT_PREPARATIONS",
+        "homeOvenTemperatureEvidenceCount": 2,
+        "requiredHomeOvenTemperatureEvidenceCount": 3,
+        "woodFiredAndHomeOvenSemanticsKeptSeparate": true,
+        "collectionDisposition": "TARGETED_ONLY_IF_PIZZA_AUTHORING_IS_REVISITED"
+      }
+    }
+  ],
+  "sourceCompliance": {
+    "observationCount": 12,
+    "protectedExpressionPersistedCount": 0,
+    "sourceClasses": [
+      "forkrecipe",
+      "la-cucina-italiana",
+      "alimentinutrizione-crea",
+      "pesto-genovese-consortium",
+      "recipes-from-italy",
+      "giallozafferano",
+      "avpn",
+      "le-fooding-big-mamma"
+    ],
+    "publicDisplayObligationIntroduced": false,
+    "uiLegalConformanceRetriggered": false
+  },
+  "runtimeBoundary": {
+    "publicRuntimeRecipeCount": 85,
+    "publicRuntimeChanged": false,
+    "protectedCorpusVersion": "v8018",
+    "protectedCorpusRecipeCount": 19268,
+    "protectedCorpusChanged": false,
+    "d1Reads": 0,
+    "d1Writes": 0,
+    "shardCount": 2,
+    "thirdShardUsed": false,
+    "youtubeStateChanged": false,
+    "knowledgeCoreWrite": false,
+    "billingExpansion": false
+  },
+  "completedExpansionFamilies": [
+    "guacamole",
+    "pancakes",
+    "tortilla_espanola",
+    "cacio_e_pepe",
+    "pesto_genovese"
+  ],
+  "heldExpansionFamilies": [
+    "pizza_margherita"
+  ],
+  "remainingFrozenFamilies": [
+    "basic_tomato_pasta_sauce",
+    "ragu_bolognese_family"
+  ],
+  "preservedPrototypeFamilies": [
+    "carbonara",
+    "hummus"
+  ],
+  "publicActivationAuthorized": false,
+  "nextOnGreenValidation": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_FINAL_TRANCHE_NONPUBLIC"
+}
