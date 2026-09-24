@@ -96,3 +96,27 @@ test("quantitative range requires publisher diversity as well as independent pre
   assert.equal(group.stableForPilot, false);
   assert.equal(group.recommendedRange, null);
 });
+
+
+test("family eligibility can require distinct publisher diversity", () => {
+  const rows=["a","b","c"].map(id=>({
+    observationId:id,
+    familyId:"f",
+    source:{...source(id), publisherLedgerKey:"same-publisher"},
+    normalized:{ingredientRoles:["core"],techniques:["t"],quantitative:[],variantSignals:[]}
+  }));
+  const out=synthesizeFamily(rows,config,{
+    familyId:"f",
+    minimumIndependentObservations:3,
+    minimumDistinctPublishers:2,
+    quantitativePolicy:{minimumIndependent:3,minimumDistinctPublishers:2,maxRobustSpreadRatio:4},
+    requiredIngredientRoles:["core"],
+    requiredTechniques:["t"],
+    requiredQuantitativeRoles:[],
+    projectCandidate:()=>({ok:true})
+  });
+  assert.equal(out.publisherCount,1);
+  assert.equal(out.gate.publisherDiversityPass,false);
+  assert.equal(out.gate.appAuthoringEligible,false);
+  assert.equal(out.candidateAppOwnedRecipeProjection,null);
+});
