@@ -1,8 +1,6 @@
 name: YT-CUL-5E adaptive daily discovery
 
 on:
-  schedule:
-    - cron: '20 9 * * *'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -27,7 +25,7 @@ jobs:
       CULINARY_YOUTUBE_SEARCH_DAILY_LIMIT: '100'
       CULINARY_YOUTUBE_PROJECT_IDENTITY: ${{ vars.CULINARY_YOUTUBE_PROJECT_IDENTITY || 'culinary-youtube-discovery' }}
       YT_CUL_POLICY_RECHECKED_AT: '2026-09-05'
-      YT_CUL_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+      YT_CUL_DRY_RUN: ${{ inputs.dry_run }}
       YT_CUL_DAILY_STATE_PATH: data/generated/youtube-culinary-daily-discovery-state.json
       YT_CUL_WORK_UNIT_STATE_PATH: data/generated/youtube-culinary-work-unit-state.json
       YT_CUL_CANONICAL_REVIEW_BRIDGE_PATH: data/generated/youtube-culinary-canonical-review-bridge.json
@@ -59,8 +57,8 @@ jobs:
             echo "::error::Blue Lagoon/music identity is forbidden in the Culinary API client."
             exit 2
           fi
-          if [[ "${YT_CUL_DRY_RUN}" != "true" && "${YT_CUL_DRY_RUN}" != "false" ]]; then
-            echo "::error::YT_CUL_DRY_RUN must resolve to true or false."
+          if [[ "${YT_CUL_DRY_RUN}" != "true" ]]; then
+            echo "::error::Generic YT-CUL live Search is retired; this workflow is diagnostics-only and requires dry_run=true."
             exit 2
           fi
           if [[ "${YT_CUL_DRY_RUN}" == "false" ]]; then
