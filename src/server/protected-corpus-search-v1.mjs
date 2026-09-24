@@ -275,7 +275,7 @@ async function verifyAndProject(routes, bodiesById) {
 
 async function writeIndexRows(controlDb, rows) {
   if (!rows.length) return { pass: true, d1Subqueries: 0 };
-  const summaryValues = rows.map(() => "(?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP)").join(",");
+  const summaryValues = rows.map(() => "(?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP)").join(",");
   const summaryArgs = rows.flatMap(row => [
     row.recipeId,row.corpusVersion,row.bodyCorpusVersion,row.shardNumber,row.sourceCohortId,row.title,
     row.sourceWork,row.sourceAuthor,row.sourceYear,row.sourceUrl,row.sourceLicense,row.attributionText,row.structuralState
