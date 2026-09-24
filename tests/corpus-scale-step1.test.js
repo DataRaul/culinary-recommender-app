@@ -83,7 +83,7 @@ test("synthetic catalogue builds deterministic postings and validates", () => {
   corrupted.indexes.set("unexpected:stale-posting", [0]);
   assert.throws(
     () => validateSyntheticCatalogue(corrupted),
-    /index key set does not exactly match/
+    /index membership count mismatch/
   );
 });
 
