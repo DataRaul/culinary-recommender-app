@@ -1,8 +1,8 @@
 # Corpus Scale / 100k Readiness — Step 4 Indexed Retrieval Scale Proof
 
-Status: **IMPLEMENTATION BUILT / FULL 1K→100K MEASUREMENT AND REPOSITORY VALIDATION PENDING**
+Status: **CURRENT 85-RUNTIME RECONCILIATION BUILT / FULL 1K→100K MEASUREMENT AND REPOSITORY VALIDATION PENDING**
 
-Step 1 proved the original synthetic bounded-index hypothesis. Step 2 proved `RecipeSource` V1/V2 behavioral parity. Step 3 froze a provider-neutral portable corpus layout with immutable detail objects, lightweight metadata shards and deterministic pre-built ordinal indexes.
+Step 1 V2 proved the hardened synthetic bounded-index hypothesis against the current 85-record public seed while preserving the historical 84-record oracle. Step 2 proved current-runtime `RecipeSource` V1/V2 behavioral parity. Step 3 then validated a provider-neutral portable corpus layout for the current 85-record public runtime, again preserving the historical oracle.
 
 Step 4 now tests the actual Step-3-shaped retrieval path at 1k / 10k / 50k / 100k without provisioning Cloudflare or introducing D1.
 
@@ -26,19 +26,17 @@ If yes, **D1 is not earned** and Step 5 may proceed.
 
 If no, the failure earns evidence review only. It does not automatically authorize D1. The failed dimension must first be classified because SQL cannot repair every possible problem (for example, ranking cost, excessive detail-object reads or unrelated build memory).
 
-## Golden baseline
+## Current-runtime baseline and historical oracle
 
-Step 4 is frozen against the reviewed 84-recipe runtime corpus on `main` at:
-
-`7696a5994bc32c7893a5af06e0f2de13d88b9036`
+The full Step 4 runner is now frozen against the current 85-record public runtime established after Step 3 merge `72d792ab0bd17ae5ad418e1b92b27ac2770f8843`.
 
 Composition:
 
-- 76 curated/authored recipes;
-- 8 exact-revision Gate-F external recipes;
-- 84 total `ALL_RECIPES` records.
+- the immutable historical 84-record `ALL_RECIPES` oracle remains preserved for compatibility checks;
+- the current runtime adds the one explicitly approved Step 8F UniTools record;
+- 85 total `PUBLIC_RUNTIME_RECIPES` records seed the full 1k → 100k retrieval proof.
 
-The full runner fails closed if that count drifts. A changed golden corpus must be consciously reconciled/refrozen rather than silently benchmarked under an old contract.
+The runner fails closed if the current public runtime count drifts. The historical 84-record oracle remains separately exercised and is not rewritten merely because the active public runtime gained one explicitly admitted record.
 
 ## Scale model
 
@@ -52,7 +50,7 @@ For each target size it builds only:
 
 It deliberately does **not** retain a second full serialized 100k-detail corpus in memory. Synthetic detail JSON is reconstructed deterministically on read from the frozen golden fixture. This keeps the benchmark focused on retrieval/index behavior while preserving Step 3's memory lesson.
 
-A separate compatibility test proves that, in non-synthetic 84-record mode, Step 4 reads are byte-identical to the actual Step 3 canonical detail and index artifacts.
+Separate compatibility tests prove byte-identical Step 3 detail/index reads for both the frozen historical 84-record oracle and the current 85-record public runtime.
 
 ## Runtime request model
 
@@ -140,7 +138,8 @@ A FAIL requires classification of the exact failed checks. Only a failure that S
 
 `tests/corpus-scale-step4.test.js` verifies:
 
-- byte-identical Step 3 detail/index reads on the reviewed 84-record corpus;
+- byte-identical Step 3 detail/index reads on the historical 84-record oracle;
+- byte-identical Step 3 detail/index reads on the current 85-record public runtime;
 - Step 1/Step 4 candidate-intersection parity at synthetic scale;
 - exact bounded candidate identities;
 - one browser request and zero metadata scans;
