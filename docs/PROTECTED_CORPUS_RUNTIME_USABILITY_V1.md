@@ -13,7 +13,10 @@ The owner-priority sequence is now:
 ```text
 D5 Fitness Integration safe adapter prototype
 -> defer further D5 behavior work
--> Protected Corpus Runtime Usability V1 becomes the principal app-development lane
+-> P1: make all 19,268 privately browsable/searchable
+-> Culinary Brain Corpus Calibration V1 + P2 metadata usability measurement
+-> P3 progressively earned recommendation subsets
+-> P4 real-v8018 recommendation/regression matrix
 ```
 
 The Barbecue Technique Corpus remains a separate scheduled lane and is not modified by this programme.
@@ -96,6 +99,24 @@ Required behavior:
 - fail softly on the three structural exceptions;
 - pass mobile/browser acceptance;
 - do not change public runtime admission or recommendation authority.
+
+### Brain calibration — parallel with P2
+
+Once P1 gives the owner a stable real-v8018 browse/search surface, start `CULINARY_BRAIN_CORPUS_CALIBRATION_V1` in parallel with metadata usability measurement.
+
+Use the existing Knowledge Core `culinary_nutrition` Brain under the same architectural pattern as the Fitness Brain: reusable Brain reasoning calibrates local deterministic priors; the browser does not call private Knowledge Core or an LLM at recommendation time.
+
+Calibration ladder:
+
+1. **C0:** existing 85-recipe public runtime as the curated/golden behavioral set;
+2. **C1:** frozen stratified protected pilot of approximately 500 recipes;
+3. **C2:** only after calibration gates pass, frozen classification/reconciliation over all 19,268 protected identities;
+4. **C3:** reviewed reconciled soft fields may become versioned deterministic recommendation priors;
+5. **C4:** real-v8018 matrix identifies classification, authority, ranking, abstention and UX failures for bounded repair.
+
+Authority is field-specific, not a model vote. Source/provenance and hard safety/evidence contracts outrank Brain/model inference. Material disagreement resolves to explicit UNKNOWN/AMBIGUOUS/REVIEW.
+
+Canonical contract: `docs/CULINARY_BRAIN_CORPUS_CALIBRATION_V1.md` and `config/culinary_brain_corpus_calibration_v1.json`.
 
 ### P2 — Metadata usability measurement
 
