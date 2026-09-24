@@ -180,3 +180,13 @@ test("fitness context remains outside the Culinary recommendation profile", () =
   assert.notDeepEqual(withFitness.fitnessContext, null);
   for (const [key,value] of Object.entries(prototypeConfig.behaviorFirewalls)) assert.equal(value, false, key);
 });
+
+
+test("optional training weekdays remain safely representable as an empty minimized field", () => {
+  const source = backup();
+  delete source.profile.trainingWeekdays;
+  const extracted = parseWorkoutBackupForFitnessContext(JSON.stringify(source));
+  assert.deepEqual(extracted.preferredTrainingWeekdays, []);
+  const normalized = normalizeState({ fitnessContext: extracted });
+  assert.deepEqual(normalized.fitnessContext, extracted);
+});
