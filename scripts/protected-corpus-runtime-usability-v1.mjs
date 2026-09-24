@@ -32,6 +32,8 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
   const priority = config.ownerPriority || {};
   if (priority.finishD5SafeAdapterPrototypeFirst !== true) errors.push("D5 safe adapter prototype must finish first");
   if (priority.deferD5BehaviorAfterPrototype !== true) errors.push("D5 behavior must defer after prototype");
+  if (priority.d5SafeAdapterPrototypeState !== "PASS") errors.push("D5 safe adapter prototype must be closed PASS before P1");
+  if (priority.d5BehaviorDisposition !== "DEFERRED") errors.push("D5 behavior disposition must be DEFERRED before P1");
   if (priority.successorPrincipalLane !== "PROTECTED_CORPUS_RUNTIME_USABILITY_V1") errors.push("protected corpus usability must be successor principal lane");
   if (priority.barbecueLaneRemainsIndependent !== true) errors.push("Barbecue lane must remain independent");
 
@@ -62,8 +64,6 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
   if (brain.disagreementOutcome !== "UNKNOWN_AMBIGUOUS_OR_REVIEW") errors.push("Brain disagreement must fail closed to unknown/ambiguous/review");
 
   const expected = [
-    "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE",
-    "D5_BEHAVIOR_WORK_DEFER",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY",
     "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
