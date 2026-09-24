@@ -313,6 +313,8 @@ export function benchmarkCatalogueQueries(catalogue, rankCandidateRecipes, optio
   const results = [];
 
   for (const scenario of scenarios) {
+    if (typeof global.gc === "function") global.gc();
+    updatePeak(catalogue.metrics.peakMemory, memorySnapshot());
     const allOrdinals = intersectPostings(catalogue.indexes, scenario.keys);
     const boundedOrdinals = intersectPostingsBounded(catalogue.indexes, scenario.keys, queryCap);
     const transfer = queryTransferBytes(catalogue, scenario, boundedOrdinals);
@@ -486,6 +488,8 @@ export function runStep1Benchmark(goldenRecipes, rankCandidateRecipes, options =
     if (typeof global.gc === "function") global.gc();
     const catalogue = buildSyntheticCatalogue(goldenRecipes, targetSize, options);
     const queries = benchmarkCatalogueQueries(catalogue, rankCandidateRecipes, options);
+    if (typeof global.gc === "function") global.gc();
+    updatePeak(catalogue.metrics.peakMemory, memorySnapshot());
     const validation = validateSyntheticCatalogue(catalogue, options);
     const sizeReport = { targetSize, goldenFingerprint: catalogue.goldenFingerprint, metrics: catalogue.metrics, queries, validation };
     sizeReport.acceptance = evaluateScaleAcceptance(sizeReport, options.thresholds || CORPUS_SCALE_ACCEPTANCE);
