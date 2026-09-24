@@ -1,6 +1,6 @@
 # Corpus Scale / 100k Readiness — Step 4 Indexed Retrieval Scale Proof
 
-Status: **CURRENT 85-RUNTIME RECONCILIATION BUILT / FULL 1K→100K MEASUREMENT AND REPOSITORY VALIDATION PENDING**
+Status: **PASS / CURRENT 85-RUNTIME 1K→100K INDEXED RETRIEVAL PROOF GREEN / D1 NOT EARNED**
 
 Step 1 V2 proved the hardened synthetic bounded-index hypothesis against the current 85-record public seed while preserving the historical 84-record oracle. Step 2 proved current-runtime `RecipeSource` V1/V2 behavioral parity. Step 3 then validated a provider-neutral portable corpus layout for the current 85-record public runtime, again preserving the historical oracle.
 
@@ -189,6 +189,12 @@ Step 4 does **not** authorize:
 - paid infrastructure/API/corpus licensing;
 - weaker dietary/allergen/permanent-exclusion/source-rights/nutrition gates;
 - private Knowledge Core browser/runtime dependency.
+
+## Current-runtime measured PASS evidence
+
+PR #296 validation measured the full current-runtime-seeded 1k → 10k → 50k → 100k proof green. At 100k, index/model build completed in **4.400 s**, sampled RSS was **272.8 MB**, sampled heap used was **78.7 MB**, maximum observed retrieval p95 across the 100k scenarios was **16.031 ms**, and maximum observed rank/filter p95 was **5.542 ms**. All bounded-read/transfer checks passed and the terminal D1 decision remained `NOT_EARNED_R2_PREBUILT_INDEX_PATH_PASSES`.
+
+The historical 84-record oracle remains unchanged; the proof seed is the current 85-record public runtime. This PASS does not authorize public-runtime widening, protected-corpus mutation, D1, paid infrastructure, Barbecue changes, or Knowledge Core changes.
 
 ## Next action after PASS
 
