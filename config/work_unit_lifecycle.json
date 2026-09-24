@@ -19,6 +19,41 @@
   ],
   "scheduled_work_units": [
     {
+      "id": "BARBECUE_TECHNIQUE_CORPUS_V1",
+      "workflow": ".github/workflows/barbecue-technique-corpus-daily.yml",
+      "kind": "STATEFUL_DAILY_QUOTA_PROGRAMME",
+      "durable_state": [
+        "data/generated/barbecue-technique-corpus-state.json",
+        "data/generated/barbecue-technique-corpus-work-unit-state.json"
+      ],
+      "preflight_contract": [
+        "verify BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY and frozen five-leaf conventional-grill scope",
+        "verify owner-confirmed assigned Search limit 100/day, pilot budget 16/day, routine provider capacity 90 and protected reserve",
+        "verify Culinary-only project identity and credentials",
+        "run world-champion/competition discovery before specialist fallback",
+        "require independent credential/domain evidence before source qualification",
+        "preserve one-second provider pacing, backlog, copyright/storage and safety-authority firewalls"
+      ],
+      "closure_surfaces": [
+        "data/generated/barbecue-technique-corpus-state.json",
+        "data/generated/barbecue-technique-corpus-work-unit-state.json",
+        "GitHub Actions compact policy-safe summary",
+        "docs/YOUTUBE_BARBECUE_TECHNIQUE_CORPUS_ROADMAP_OBJECT.md on material transition",
+        "docs/handovers/CURRENT.json on material continuation boundary"
+      ],
+      "successor_rule": "Routine closed acquisition days continue to the next quota-day wake-up. Provider time-window rate limiting becomes BARBECUE_SEARCH_HOLD_RATE_LIMIT and fails closed. Confirmed daily quota exhaustion preserves the inherited provider-capacity safe-close/hold distinction. Review backlog fails closed. BARBECUE_TECHNIQUE_CORPUS_PILOT_PASS retires recurring pilot acquisition into a separately bounded closeout/expansion decision and never auto-publishes or auto-admits content.",
+      "retirement_rule": "When BARBECUE_TECHNIQUE_CORPUS_PILOT_PASS or a hard hold makes recurring acquisition ineligible, persisted work-unit state must mark HOLD_OR_RETIRE; the schedule cannot silently cross into expansion, publication, app admission or Knowledge Core promotion.",
+      "material_transition_states": [
+        "BARBECUE_SEARCH_HOLD_RATE_LIMIT",
+        "BARBECUE_SEARCH_HOLD_POLICY_OR_QUOTA",
+        "BARBECUE_REVIEW_BACKLOG",
+        "BARBECUE_TECHNIQUE_CORPUS_PILOT_PASS",
+        "PRIMARY_RUN_FAILED"
+      ]
+    }
+  ],
+  "retired_work_units": [
+    {
       "id": "YT_CUL_5E_ADAPTIVE_DAILY_DISCOVERY",
       "workflow": ".github/workflows/yt-cul-5d-daily-discovery.yml",
       "kind": "STATEFUL_DAILY_QUOTA_PROGRAMME",
@@ -50,7 +85,9 @@
         "DAILY_SEARCH_HOLD_RATE_LIMIT",
         "YT_CUL_6_READINESS_EARNED",
         "PRIMARY_RUN_FAILED"
-      ]
+      ],
+      "retired_on": "2026-09-24",
+      "retirement_reason": "REPLACED_BY_BARBECUE_TECHNIQUE_CORPUS_AFTER_PR285_RATE_LIMIT_REPAIR_AND_PR286_RECONCILIATION"
     }
   ]
 }
