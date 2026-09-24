@@ -237,7 +237,7 @@ All technical criteria passed. The user's 2026-09-01 instruction to run the acce
 
 ## Deferred / future lanes
 
-Nutrient-gap awareness, supplement-routine checking, live/local grocery prices, fitness integration and advanced culinary exploration remain deferred/blocked under their existing boundaries. **D3 Recipe Images is now READY FOR BOUNDED P0 DESIGN only** after `FURTHER_PRODUCT_FEATURES_READINESS_PASS`; source media remains separately licensed/excluded and no public asset/runtime activation is implied. Brain P0 itself is no longer deferred; downstream behavior changes remain separately gated.
+Nutrient-gap awareness, supplement-routine checking and live/local grocery prices remain blocked under their existing evidence/source boundaries. D3 Recipe Images is `P0_COMPLETE` with exactly six project-authored assets as the frozen baseline. `FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3_PASS` selects D5 Fitness Integration for **bounded adapter design only** using the separate workout app's user-selected portable backup; there is no runtime activation, automatic cross-app access, medical inference, calorie-burn estimation or individualized nutrition/supplement prescription. D6 Advanced Culinary Exploration remains sequenced behind the active Barbecue Technique Corpus pilot. Brain P0 itself is no longer deferred; downstream behavior changes remain separately gated.
 
 After B7, the next ordinary nutrition work remains coverage-driven: target residual composition/form blockers, missing tracked nutrient fields and exact quantity semantics with the highest recipe-level unlock value, while preserving the carbohydrate semantic firewall and all source/licensing provenance.
 
