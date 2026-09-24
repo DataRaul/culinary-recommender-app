@@ -43,10 +43,31 @@
 | V1.x / Recipe Family P0 prototype | COMPLETE / PASS | bounded Carbonara + Hummus prototype; Hummus APP_AUTHORING_ELIGIBLE, Carbonara held on egg/hard-cheese quantity authority; Consultant + Project Coach blocking review passed |
 | V1.x / Recipe Family UI legal conformance | COMPLETE / PASS | PR #276; real Hummus candidate proves generic multi-source attribution + fail-closed UNKNOWN/UNSATISFIABLE behavior; no public/runtime admission |\n| V1.x / Recipe Family 10-family bounded expansion | COMPLETE / PASS WITH EXPLICIT HOLDS | PR #283 green and merged; 10-family closeout = 8 candidate-only APP_AUTHORING_ELIGIBLE + 2 fail-closed HOLD (Carbonara, Pizza Margherita); 0 public/runtime admissions; v8018/D1/shards/KC/billing unchanged |
 | V1.x / Corpus Scale / 100k Readiness | CURRENT SCALE FOUNDATION RECONCILIATION PASS | PRs #291/#294/#295/#296/#297 fresh-reconciled Steps 1–6 to the current 85-record public seed while preserving the historical 84-record oracle; downstream reconciliation confirms the later no-billing D1 architecture is already live and ahead of the original 100k design: Step 7A passed 170k required / 250k stress, Step 8F activated exactly one reviewed public record, and Step 8G reached v8018 / 19,268 protected recipes on exactly two shards before LEGAL_CORPUS_BASELINE_PASS. No replay of provisioning/population; reopen scale foundation only on a measured compatibility gap; Barbecue remains separate |
-| V1.x / Further Product Features | D5 FITNESS P0 ADAPTER DESIGN PASS / PROTOTYPE NEXT | Validate public V0 #1063 passed the exact minimum-data one-way contract: user-selected workout backup schema + goal/days/session-minutes/weekdays only. Name, constraints, history, set data and other sensitive/private fields remain excluded; prototype is next and still carries no fitness-derived culinary behavior, calorie/TDEE, nutrition/supplement prescription, cloud sync, D1, billing, KC or Barbecue widening |
+| V1.x / Further Product Features | D5 FITNESS P0 ADAPTER DESIGN PASS / SAFE PROTOTYPE NEXT THEN DEFER | Complete only the minimum-data user-selected backup prototype, prove excluded fields cannot cross the boundary, then defer D5 behavior work. No fitness-derived culinary behavior, calorie/TDEE, nutrition/supplement prescription, cloud sync, D1, billing, KC or Barbecue widening |\n| V1.x / Protected Corpus Runtime Usability V1 | OWNER PRIORITY / P0 EVIDENCE AUDIT READY | After D5 safe prototype, make protected v8018 / 19,268 practically usable: private browse/search first, then measure metadata blockers, progressively admit hard-safe recommendation subsets, and continuously regression-test the real 19k corpus while retaining 100k/170k/250k synthetic headroom proofs |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
 | Post-usable-app / Barbecue Technique Corpus | CONTROL PLANE VALIDATION PASS / SCHEDULED PILOT ACTIVE / FIRST ACQUISITION PENDING | PR #288 merged green; bounded five-leaf world-champion-first scheduler is active; generic YT-CUL cron retired; five-source conventional-barbecue synthesis contract unchanged |
+
+
+
+## 2026-09-24 owner-priority — Protected Corpus Runtime Usability V1
+
+The owner has reprioritized the independent app-development lane around actual use of the existing **v8018 / 19,268 protected recipes**.
+
+Execution order:
+
+```text
+D5 safe adapter prototype
+-> defer further Fitness Integration behavior
+-> Protected Corpus Runtime Usability V1
+```
+
+The first protected-corpus product gate is a private authenticated **browse/search canary across the complete v8018 universe**, not automatic recommendation admission. Existing evidence already proves two-shard protected storage, authentication/revocation, bounded cross-shard hydration, 19,268 known titles, 19,265 structurally parseable records, and scale headroom through 170k required / 250k stress. The programme must now measure the real user-facing capability and expose failures instead of treating population count as product readiness.
+
+Current recommendation blockers remain explicit: 36,760/144,245 exact canonical ingredient matches, only 112 recipes with all ingredient identities exact-ready, 0 reviewed protected dietary-authority recipes, 0 protected recipes automatically recommendation-ready, and 0 directly authoritative under the current protected nutrition applicability audit. These facts do **not** block safe private browse/search; they control later recommendation/filter admission.
+
+Canonical programme: `docs/PROTECTED_CORPUS_RUNTIME_USABILITY_V1.md`.
+Machine contract: `config/protected_corpus_runtime_usability_v1.json`.
 
 ## 2026-09-23 Legal corpus baseline — PASS
 
