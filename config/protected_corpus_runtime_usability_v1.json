@@ -153,6 +153,22 @@
   "nextExecutionSequence": [
     "D5_FITNESS_INTEGRATION_P0_ADAPTER_PROTOTYPE",
     "D5_BEHAVIOR_WORK_DEFER",
-    "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY"
-  ]
+    "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY",
+    "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
+    "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+    "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+  ],
+  "brainCalibration": {
+    "id": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
+    "state": "ROADMAP_ENCODED_NOT_YET_EXECUTING",
+    "contract": "config/culinary_brain_corpus_calibration_v1.json",
+    "document": "docs/CULINARY_BRAIN_CORPUS_CALIBRATION_V1.md",
+    "browseSearchBlocksOnBrain": false,
+    "startsWith": "P2_METADATA_USABILITY_MEASUREMENT",
+    "goldenCalibrationRecipeCount": 85,
+    "initialProtectedPilotTarget": 500,
+    "fullCorpusRecipeCount": 19268,
+    "liveRuntimeDependencyAuthorized": false,
+    "disagreementOutcome": "UNKNOWN_AMBIGUOUS_OR_REVIEW"
+  }
 }
