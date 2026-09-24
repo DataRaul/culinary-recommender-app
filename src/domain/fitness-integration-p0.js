@@ -77,7 +77,10 @@ export function sanitizeFitnessContext(value) {
   if (!ACCEPTED_SCHEMAS.has(schema) || !ALLOWED_GOALS.has(goal) || !ALLOWED_DAYS.has(days) || !ALLOWED_SESSION_MINUTES.has(minutes)) return null;
 
   let weekdays;
-  try { weekdays = normalizeWeekdays(value.preferredTrainingWeekdays, days); }
+  const weekdayInput = Array.isArray(value.preferredTrainingWeekdays) && value.preferredTrainingWeekdays.length === 0
+    ? null
+    : value.preferredTrainingWeekdays;
+  try { weekdays = normalizeWeekdays(weekdayInput, days); }
   catch { return null; }
 
   return {
