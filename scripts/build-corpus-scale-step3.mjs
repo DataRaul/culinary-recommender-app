@@ -1,7 +1,7 @@
 import { mkdir, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
-import { ALL_RECIPES } from "../src/data/corpus-v1.js";
+import { PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
 import {
   PORTABLE_CORPUS_DEFAULT_METADATA_SHARD_SIZE,
   PORTABLE_CORPUS_DEFAULT_VERSION,
@@ -35,7 +35,7 @@ await mkdir(outputRoot, { recursive: true });
 const summary = {
   outputRoot,
   corpusVersion: args.version,
-  recipeCount: ALL_RECIPES.length,
+  recipeCount: PUBLIC_RUNTIME_RECIPES.length,
   artifactCount: 0,
   detailObjectCount: 0,
   metadataShardCount: 0,
@@ -44,7 +44,7 @@ const summary = {
   manifest: null
 };
 
-for (const artifact of createPortableCorpusArtifactStream(ALL_RECIPES, {
+for (const artifact of createPortableCorpusArtifactStream(PUBLIC_RUNTIME_RECIPES, {
   version: args.version,
   metadataShardSize: args.metadataShardSize
 })) {
