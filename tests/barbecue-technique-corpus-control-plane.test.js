@@ -127,7 +127,7 @@ test("successful query ids are not selected twice and fallback waits for champio
   state = addCandidatePointers(state, config, [firstCandidate]);
   state = refreshBarbecueDiscoveryPhases(state, config);
   assert.equal(state.leaves[0].championshipSearchExhausted, false);
-  assert.equal(buildBarbecueQueryPortfolio(config, state).filter(row => row.leafId === target.leafId).length, 0);
+  assert.equal(selectBarbecueDailyQueries(config, state).filter(row => row.leafId === target.leafId).length, 0);
 
   state = rejectCandidatePointer(state, config, target.leafId, firstCandidate.sourceRef, {
     projectAuthoredRationale: "Independent credential review did not verify championship or sufficient domain competence."
