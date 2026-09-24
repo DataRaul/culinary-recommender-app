@@ -26,7 +26,7 @@ export function validateFurtherProductFeaturesReadiness(config) {
 
   const d3 = byId.get("D3");
   if (config.selectedNextDesignCandidate !== "D3") errors.push("D3 must be the selected next design candidate for this audit");
-  const d3AllowedStates = new Set(["READY_FOR_BOUNDED_P0_DESIGN","P0_DESIGN_CONTRACT_BUILT_VALIDATION_PENDING","P0_DESIGN_CONTRACT_PASS","P0_ASSET_PILOT_BUILT_VALIDATION_PENDING","P0_ASSET_PILOT_PASS","P0_BROWSER_INTEGRATION_BUILT_VALIDATION_PENDING","P0_BROWSER_INTEGRATION_PASS"]);
+  const d3AllowedStates = new Set(["READY_FOR_BOUNDED_P0_DESIGN","P0_DESIGN_CONTRACT_BUILT_VALIDATION_PENDING","P0_DESIGN_CONTRACT_PASS","P0_ASSET_PILOT_BUILT_VALIDATION_PENDING","P0_ASSET_PILOT_PASS","P0_BROWSER_INTEGRATION_BUILT_VALIDATION_PENDING","P0_BROWSER_INTEGRATION_PASS","P0_COMPLETE"]);
   if (!d3AllowedStates.has(d3?.state)) errors.push("D3 state is outside the bounded P0 design progression");
   if (d3?.mediaBoundary?.thirdPartyRecipeSourceImagesAuthorized !== false) errors.push("D3 third-party source images must remain unauthorized");
   if (d3?.mediaBoundary?.protectedCorpusSourceImagesAuthorized !== false) errors.push("D3 protected-corpus source images must remain unauthorized");
@@ -68,7 +68,9 @@ export function validateFurtherProductFeaturesReadiness(config) {
             ? "D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION"
             : d3?.state === "P0_BROWSER_INTEGRATION_BUILT_VALIDATION_PENDING"
               ? "D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION_VALIDATION"
-              : "D3_RECIPE_IMAGES_P0_CLOSEOUT";
+              : d3?.state === "P0_BROWSER_INTEGRATION_PASS"
+                ? "D3_RECIPE_IMAGES_P0_CLOSEOUT"
+                : "FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3";
   if (config.nextGate !== expectedNextGate) errors.push("unexpected nextGate");
   return errors;
 }

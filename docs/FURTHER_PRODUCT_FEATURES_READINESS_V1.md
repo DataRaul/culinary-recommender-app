@@ -102,3 +102,12 @@ The six exact project-authored SVG assets are materialized under `assets/recipes
 `D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION`
 
 Integrate only the six validated project-owned assets into supported recipe cards with deterministic fallback, alt text, reserved 4:3 layout and browser/performance acceptance. Images must remain semantically invisible to ranking and hard constraints.
+
+
+## D3 P0 closeout
+
+D3 Recipe Images completed its bounded P0 through PR #302 and post-merge validation #1058 / Pages deployment #353.
+
+Terminal: `D3_RECIPE_IMAGES_P0_COMPLETE`.
+
+The earned baseline is exactly six project-authored assets on plan/search cards. Broader media coverage is not automatic. The next action is `FURTHER_PRODUCT_FEATURES_REASSESSMENT_AFTER_D3`, which must reassess D1/D2/D4/D5/D6 against their original activation boundaries and preserve the independent Barbecue scheduled lane.
