@@ -2,7 +2,7 @@
 
 Date: **2026-09-24**
 
-Status: **BUILT / FULL REPOSITORY + BROWSER VALIDATION PENDING**
+Status: **PASS / EXACT SIX-ASSET PUBLIC UI INTEGRATION GREEN**
 
 Entry terminal: `D3_RECIPE_IMAGES_P0_ASSET_PILOT_PASS`
 
@@ -110,6 +110,17 @@ No:
 - paid media/API service;
 - Knowledge Core write;
 - Barbecue workflow/state mutation.
+
+## Validation evidence
+
+PR-head validation run **#1053 / 36022986195** passed:
+
+- full deterministic repository validation;
+- complete browser acceptance including the dedicated P0 loaded-image and forced-image-failure checks;
+- Step 1 benchmark run **#28**;
+- Step 7A 170k/250k no-billing architecture proof run **#27**.
+
+The initial PR-head run #1052 exposed one stale service-worker cache-version assertion after the deliberate cache-version bump. That regression test was updated to the new explicit cache version; no runtime security boundary was weakened. The repaired final-head run is green.
 
 ## PASS terminal
 
