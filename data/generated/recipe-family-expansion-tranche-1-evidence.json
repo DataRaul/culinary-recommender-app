@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "CULINARY_RECIPE_FAMILY_EXPANSION_TRANCHE_1_EVIDENCE_V1",
+  "date": "2026-09-24",
+  "state": "IMPLEMENTED_PR_VALIDATION_PENDING",
+  "targetGate": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_NONPUBLIC",
+  "tranche": 1,
+  "sourceObservationFile": "data/generated/recipe-family-expansion-tranche-1-source-observations.json",
+  "runner": "scripts/run-recipe-family-expansion-tranche-1.mjs",
+  "families": [
+    {
+      "familyId": "guacamole",
+      "independentObservationCount": 4,
+      "publisherCount": 3,
+      "terminalCandidate": "APP_AUTHORING_ELIGIBLE",
+      "requiredRanges": {
+        "lime": {
+          "basis": "LIME_UNITS_PER_AVOCADO",
+          "observedRange": {
+            "lower": 0.125,
+            "upper": 0.75
+          },
+          "recommendedRange": {
+            "lower": 0.1875,
+            "upper": 0.5
+          },
+          "robustCenter": 0.25,
+          "distinctPublisherCount": 2
+        }
+      }
+    },
+    {
+      "familyId": "pancakes",
+      "independentObservationCount": 4,
+      "publisherCount": 3,
+      "terminalCandidate": "APP_AUTHORING_ELIGIBLE",
+      "requiredRanges": {
+        "cultured_or_milk_liquid": {
+          "basis": "CUPS_LIQUID_PER_CUP_FLOUR",
+          "observedRange": {
+            "lower": 1,
+            "upper": 1
+          },
+          "recommendedRange": {
+            "lower": 1,
+            "upper": 1
+          },
+          "robustCenter": 1,
+          "distinctPublisherCount": 2
+        },
+        "egg": {
+          "basis": "EGGS_PER_CUP_FLOUR",
+          "observedRange": {
+            "lower": 1,
+            "upper": 1
+          },
+          "recommendedRange": {
+            "lower": 1,
+            "upper": 1
+          },
+          "robustCenter": 1,
+          "distinctPublisherCount": 2
+        }
+      }
+    },
+    {
+      "familyId": "tortilla_espanola",
+      "independentObservationCount": 4,
+      "publisherCount": 3,
+      "terminalCandidate": "APP_AUTHORING_ELIGIBLE",
+      "requiredRanges": {
+        "egg": {
+          "basis": "EGGS_PER_100G_POTATO",
+          "observedRange": {
+            "lower": 0.8,
+            "upper": 1.333333
+          },
+          "recommendedRange": {
+            "lower": 1,
+            "upper": 1.266666
+          },
+          "robustCenter": 1.2,
+          "distinctPublisherCount": 2
+        }
+      }
+    }
+  ],
+  "sourceCompliance": {
+    "observationCount": 12,
+    "minimumPublishersPerEligibleFamily": 3,
+    "minimumPublishersPerStableQuantitativeRange": 2,
+    "protectedExpressionPersistedCount": 0,
+    "sourceClasses": [
+      "forkrecipe",
+      "wikimedia-wikibooks",
+      "recidemia",
+      "the-spanish-chef",
+      "spain-info"
+    ]
+  },
+  "runtimeBoundary": {
+    "publicRuntimeRecipeCount": 85,
+    "publicRuntimeChanged": false,
+    "protectedCorpusVersion": "v8018",
+    "protectedCorpusRecipeCount": 19268,
+    "protectedCorpusChanged": false,
+    "d1Reads": 0,
+    "d1Writes": 0,
+    "shardCount": 2,
+    "thirdShardUsed": false,
+    "youtubeStateChanged": false,
+    "knowledgeCoreWrite": false,
+    "billingExpansion": false
+  },
+  "remainingFrozenFamilies": [
+    "pizza_margherita",
+    "cacio_e_pepe",
+    "pesto_genovese",
+    "basic_tomato_pasta_sauce",
+    "ragu_bolognese_family"
+  ],
+  "preservedPrototypeFamilies": [
+    "carbonara",
+    "hummus"
+  ],
+  "publicActivationAuthorized": false,
+  "nextOnGreenValidation": "RECIPE_FAMILY_10_FAMILY_BOUNDED_EXPANSION_TRANCHE_2_NONPUBLIC"
+}
