@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "CULINARY_RECIPE_IMAGES_P0_DESIGN_V1",
+  "date": "2026-09-24",
+  "state": "P0_DESIGN_CONTRACT",
+  "entryTerminal": "FURTHER_PRODUCT_FEATURES_READINESS_PASS",
+  "capabilityId": "D3",
+  "scope": {
+    "pilotRecipeCount": 6,
+    "pilotRecipeIds": [
+      "spanish_potato_onion_tortilla",
+      "med_chicken_orzo_vegetables",
+      "indian_chickpea_cauliflower_curry",
+      "east_asian_miso_salmon_rice",
+      "middle_eastern_mujaddara",
+      "latin_chicken_black_bean_tacos"
+    ],
+    "projectAuthoredRecipesOnly": true,
+    "externalRecipeRecordsIncluded": false,
+    "protectedCorpusRecordsIncluded": false
+  },
+  "assetPolicy": {
+    "allowedAssetClasses": [
+      "PROJECT_AUTHORED",
+      "PROJECT_COMMISSIONED_OR_GENERATED_WITH_RECORDED_PROVENANCE"
+    ],
+    "thirdPartyRecipeSourceMediaAllowed": false,
+    "remoteThirdPartyImageUrlsAllowed": false,
+    "wikibooksCommonsMediaAllowed": false,
+    "protectedCorpusSourceMediaAllowed": false,
+    "stockMediaAllowed": false,
+    "assetReuseStateMustBeExplicit": true,
+    "recordLevelProvenanceRequired": true,
+    "contentHashRequired": true
+  },
+  "assetRecordRequiredFields": [
+    "assetId",
+    "recipeId",
+    "assetClass",
+    "reuseState",
+    "provenance",
+    "contentSha256",
+    "format",
+    "width",
+    "height",
+    "bytes",
+    "altText"
+  ],
+  "presentationContract": {
+    "aspectRatio": "4:3",
+    "reservedLayoutSpaceRequired": true,
+    "missingAssetFallbackRequired": true,
+    "missingAssetFallbackMustNotBlockRecipeUse": true,
+    "lazyLoadNonCriticalImages": true,
+    "asyncDecodePreferred": true,
+    "sameOriginStaticAssetsOnly": true,
+    "altTextRequired": true,
+    "altTextMaxChars": 180
+  },
+  "performanceBudgets": {
+    "maxBytesPerCardAsset": 180000,
+    "maxPilotBytes": 1080000,
+    "maxWidthPx": 1280,
+    "maxHeightPx": 960,
+    "allowedFormats": [
+      "webp",
+      "avif",
+      "png",
+      "svg"
+    ]
+  },
+  "behaviorFirewalls": {
+    "rankingSignal": false,
+    "eligibilitySignal": false,
+    "nutritionAuthority": false,
+    "dietaryAllergenAuthority": false,
+    "recipeIdentityAuthority": false,
+    "sourceRightsAuthority": false,
+    "publicRecipeAdmissionAuthority": false,
+    "protectedCorpusMutationAuthority": false
+  },
+  "authority": {
+    "designContractAuthorized": true,
+    "assetPublicationAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "newExternalMediaAdmissionAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "thirdD1ShardAuthorized": false,
+    "paidMediaServiceAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextGate": "D3_RECIPE_IMAGES_P0_ASSET_PILOT"
+}
