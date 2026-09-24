@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { ALL_RECIPES } from "../src/data/corpus-v1.js";
+import { ALL_RECIPES, PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
 import { DEFAULT_PROFILE, normalizeProfile } from "../src/domain/profile.js";
 import { rankRecipes } from "../src/domain/recommendation.js";
 import { materializePortableCorpusArtifacts } from "../scripts/corpus-scale-step3-core.mjs";
@@ -16,7 +16,7 @@ import {
 } from "../scripts/corpus-scale-step6-core.mjs";
 
 function cloneRecipes() {
-  return structuredClone(ALL_RECIPES);
+  return structuredClone(PUBLIC_RUNTIME_RECIPES);
 }
 
 function artifacts(recipes, version, metadataShardSize = 20) {
@@ -24,7 +24,7 @@ function artifacts(recipes, version, metadataShardSize = 20) {
 }
 
 function appendedRecipe() {
-  const recipe = structuredClone(ALL_RECIPES[0]);
+  const recipe = structuredClone(PUBLIC_RUNTIME_RECIPES[0]);
   recipe.id = "step6_incremental_added_recipe";
   recipe.identity.canonicalTitle = "Step 6 Incremental Added Recipe";
   return recipe;
@@ -40,8 +40,34 @@ function changedInstructionRecipes() {
   return recipes;
 }
 
+test("Step 6 uses the current 85-record public runtime as the scale seed while retaining the historical 84-record oracle", () => {
+  assert.equal(ALL_RECIPES.length, 84);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
+
+  const previous = artifacts(PUBLIC_RUNTIME_RECIPES, "v0001");
+  const next = artifacts(cloneRecipes(), "v0002");
+  const plan = buildIncrementalValidationPlan(previous.files, next.files, {
+    previousVersion: "v0001",
+    nextVersion: "v0002"
+  });
+
+  assert.equal(plan.mode, "INCREMENTAL");
+  assert.equal(plan.previousRecipeCount, 85);
+  assert.equal(plan.nextRecipeCount, 85);
+  assert.deepEqual(plan.affectedRecipeIds, []);
+  assert.deepEqual(plan.changedIndexKeys, []);
+
+  const result = validateIncrementalArtifacts(next.files, plan);
+  assert.equal(result.pass, true);
+  assert.equal(result.skippedUnchangedRecipeCount, 85);
+
+  const goldenRetention = validateGoldenRecipeRetention(ALL_RECIPES, next.files, { nextVersion: "v0002" });
+  assert.equal(goldenRetention.pass, true);
+  assert.equal(goldenRetention.goldenRecipeCount, 84);
+});
+
 test("append-only one-record change produces a bounded incremental validation plan", () => {
-  const previous = artifacts(ALL_RECIPES, "v0001");
+  const previous = artifacts(PUBLIC_RUNTIME_RECIPES, "v0001");
   const nextRecipes = [...cloneRecipes(), appendedRecipe()];
   const next = artifacts(nextRecipes, "v0002");
   const plan = buildIncrementalValidationPlan(previous.files, next.files, {
@@ -67,7 +93,7 @@ test("append-only one-record change produces a bounded incremental validation pl
 });
 
 test("detail-only recipe change validates only the changed body and does not invent index changes", () => {
-  const previous = artifacts(ALL_RECIPES, "v0001");
+  const previous = artifacts(PUBLIC_RUNTIME_RECIPES, "v0001");
   const nextRecipes = changedInstructionRecipes();
   const next = artifacts(nextRecipes, "v0002");
   const plan = buildIncrementalValidationPlan(previous.files, next.files, {
@@ -76,17 +102,17 @@ test("detail-only recipe change validates only the changed body and does not inv
   });
 
   assert.equal(plan.mode, "INCREMENTAL");
-  assert.deepEqual(plan.changedRecipeIds, [ALL_RECIPES[0].id]);
+  assert.deepEqual(plan.changedRecipeIds, [PUBLIC_RUNTIME_RECIPES[0].id]);
   assert.deepEqual(plan.metadataChangedRecipeIds, []);
   assert.deepEqual(plan.changedIndexKeys, []);
   const result = validateIncrementalArtifacts(next.files, plan);
   assert.equal(result.pass, true);
-  assert.deepEqual(result.validatedRecipeIds, [ALL_RECIPES[0].id]);
-  assert.equal(result.skippedUnchangedRecipeCount, ALL_RECIPES.length - 1);
+  assert.deepEqual(result.validatedRecipeIds, [PUBLIC_RUNTIME_RECIPES[0].id]);
+  assert.equal(result.skippedUnchangedRecipeCount, PUBLIC_RUNTIME_RECIPES.length - 1);
 });
 
 test("existing ordinal drift fails over to full validation instead of pretending incrementality", () => {
-  const previous = artifacts(ALL_RECIPES, "v0001");
+  const previous = artifacts(PUBLIC_RUNTIME_RECIPES, "v0001");
   const reordered = cloneRecipes();
   [reordered[0], reordered[1]] = [reordered[1], reordered[0]];
   const next = artifacts(reordered, "v0002");
@@ -104,7 +130,7 @@ test("existing ordinal drift fails over to full validation instead of pretending
 });
 
 test("incremental budget is explicit and large relative churn fails over to full validation", () => {
-  const previous = artifacts(ALL_RECIPES, "v0001");
+  const previous = artifacts(PUBLIC_RUNTIME_RECIPES, "v0001");
   const next = artifacts([...cloneRecipes(), appendedRecipe()], "v0002");
   const plan = buildIncrementalValidationPlan(previous.files, next.files, {
     previousVersion: "v0001",
@@ -117,7 +143,7 @@ test("incremental budget is explicit and large relative churn fails over to full
 });
 
 test("tampered changed detail fails closed against metadata hash/byte invariants", () => {
-  const previous = artifacts(ALL_RECIPES, "v0001");
+  const previous = artifacts(PUBLIC_RUNTIME_RECIPES, "v0001");
   const nextRecipes = changedInstructionRecipes();
   const next = artifacts(nextRecipes, "v0002");
   const plan = buildIncrementalValidationPlan(previous.files, next.files, {
@@ -139,7 +165,7 @@ test("tampered changed detail fails closed against metadata hash/byte invariants
 });
 
 test("tampered changed index is detected fail-closed", () => {
-  const previous = artifacts(ALL_RECIPES, "v0001");
+  const previous = artifacts(PUBLIC_RUNTIME_RECIPES, "v0001");
   const next = artifacts([...cloneRecipes(), appendedRecipe()], "v0002");
   const plan = buildIncrementalValidationPlan(previous.files, next.files, {
     previousVersion: "v0001",
@@ -163,13 +189,13 @@ test("tampered changed index is detected fail-closed", () => {
 });
 
 test("external changed recipe requires immutable provenance and keeps source nutrition non-authoritative", () => {
-  const externalIndex = ALL_RECIPES.findIndex(recipe => recipe.provenance?.sourceType === "EXTERNAL_OPEN_RECIPE");
+  const externalIndex = PUBLIC_RUNTIME_RECIPES.findIndex(recipe => recipe.provenance?.sourceType === "EXTERNAL_OPEN_RECIPE");
   assert.ok(externalIndex >= 0);
-  const valid = ALL_RECIPES[externalIndex];
+  const valid = PUBLIC_RUNTIME_RECIPES[externalIndex];
   assert.deepEqual(validateCanonicalRecipeShape(valid), []);
   assert.deepEqual(validateRecipeProvenanceInvariant(valid), []);
 
-  const previous = artifacts(ALL_RECIPES, "v0001");
+  const previous = artifacts(PUBLIC_RUNTIME_RECIPES, "v0001");
   const nextRecipes = cloneRecipes();
   nextRecipes[externalIndex].provenance.sourceRevisionUrl = null;
   nextRecipes[externalIndex].governance.sourceNutritionIgnoredForAuthority = false;
@@ -207,7 +233,7 @@ test("deterministic regression sampling is bounded and seed-stable", () => {
 });
 
 test("bounded changed/stable sample preserves deterministic ranking without 100k profile explosion", () => {
-  const previous = artifacts(ALL_RECIPES, "v0001");
+  const previous = artifacts(PUBLIC_RUNTIME_RECIPES, "v0001");
   const nextRecipes = [...cloneRecipes(), appendedRecipe()];
   const next = artifacts(nextRecipes, "v0002");
   const plan = buildIncrementalValidationPlan(previous.files, next.files, {

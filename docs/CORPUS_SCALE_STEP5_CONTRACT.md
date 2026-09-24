@@ -1,6 +1,6 @@
 # Corpus Scale / 100k Readiness — Step 5 Generalized Ingestion / Control Plane
 
-Status: **IMPLEMENTATION BUILT / FULL REPOSITORY VALIDATION PENDING / NO NEW REAL-SOURCE ADMISSION**
+Status: **PASS / EXISTING SOURCE-NEUTRAL CONTROL PLANE REVALIDATED / NO NEW REAL-SOURCE ADMISSION**
 
 Step 4 proved the provider-neutral pre-built-index retrieval path through 100k synthetic records and therefore did **not** earn D1. Step 5 now generalizes the already-reviewed Wikibooks Gate F2 control machinery into a source-adapter-neutral ingestion/review boundary.
 
@@ -239,6 +239,14 @@ Step 5 does **not** authorize:
 - image/media admission by inheritance;
 - weakening allergen/dietary/permanent-exclusion/hard-metadata gates;
 - private Knowledge Core browser/runtime dependency.
+
+## Current continuation reconciliation
+
+The 2026-09-24 independent scale-development continuation found **no current-runtime compatibility gap** in Step 5. This layer is source/control-plane governance rather than a recipe-count-specific runtime adapter: its deterministic source registry, explicit review authority, rights states, nutrition/media firewalls, immutable provenance and runtime-activation=false invariants remain valid with the current 85-record public runtime. The existing Gate F2 compatibility fixtures still preserve 8 reviewed admits and 5 reviewed rejects. Step 5 therefore requires fresh full repository/browser validation, not reinvention or recipe-count rewrites.
+
+## Current validation evidence
+
+PR #297 full repository validation run #1029 passed the unchanged Step 5 control-plane and ingestion-pipeline suites together with the full deterministic and browser acceptance suite. The continuation therefore records Step 5 as revalidated without inventing recipe-count-specific changes.
 
 ## Step 5 PASS condition
 
