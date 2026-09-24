@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "CULINARY_RECIPE_IMAGES_P0_BROWSER_INTEGRATION_V1",
+  "date": "2026-09-24",
+  "state": "BROWSER_INTEGRATION_BUILT_VALIDATION_PENDING",
+  "entryGate": "D3_RECIPE_IMAGES_P0_ASSET_PILOT_PASS",
+  "assetPilot": "config/recipe_images_p0_asset_pilot.json",
+  "exactRecipeIds": [
+    "spanish_potato_onion_tortilla",
+    "med_chicken_orzo_vegetables",
+    "indian_chickpea_cauliflower_curry",
+    "east_asian_miso_salmon_rice",
+    "middle_eastern_mujaddara",
+    "latin_chicken_black_bean_tacos"
+  ],
+  "surfaces": [
+    "PLAN_RECIPE_CARD",
+    "INGREDIENT_SEARCH_RESULT_CARD"
+  ],
+  "presentation": {
+    "aspectRatio": "4:3",
+    "width": 960,
+    "height": 720,
+    "lazyLoading": true,
+    "asyncDecode": true,
+    "altTextFromValidatedRegistry": true,
+    "sameOriginAssetsOnly": true,
+    "offlineCacheExactPilotAssets": true,
+    "fallbackOnLoadError": true,
+    "fallbackPreservesRecipeContent": true
+  },
+  "behavior": {
+    "recipeCountChanged": false,
+    "rankingChanged": false,
+    "searchChanged": false,
+    "plannerChanged": false,
+    "nutritionChanged": false,
+    "hardFiltersChanged": false,
+    "sourceAttributionChanged": false,
+    "publicRecipeAdmissionChanged": false
+  },
+  "mediaAuthority": {
+    "exactPilotUiMediaActivationAuthorized": true,
+    "thirdPartyRecipeSourceMediaAuthorized": false,
+    "protectedCorpusSourceMediaAuthorized": false,
+    "wikibooksCommonsMediaAuthorized": false,
+    "remoteMediaAuthorized": false,
+    "stockMediaAuthorized": false
+  },
+  "infrastructureAuthority": {
+    "protectedD1WriteAuthorized": false,
+    "thirdD1ShardAuthorized": false,
+    "paidMediaServiceAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "passTerminal": "D3_RECIPE_IMAGES_P0_BROWSER_INTEGRATION_PASS",
+  "nextGateOnPass": "D3_RECIPE_IMAGES_P0_CLOSEOUT"
+}
