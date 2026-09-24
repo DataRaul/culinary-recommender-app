@@ -1,8 +1,8 @@
 # Corpus Scale / 100k Readiness — Step 6 Incremental Large-Corpus Validation
 
-Status: **IMPLEMENTATION BUILT / FULL REPOSITORY VALIDATION PENDING / NO REAL LARGE-CORPUS POPULATION**
+Status: **CURRENT 85-SEED RECONCILIATION BUILT / FULL REPOSITORY VALIDATION PENDING / NO REAL LARGE-CORPUS POPULATION**
 
-Step 5 established a deterministic source registry, rights/provenance control plane, explicit review decisions and source-neutral ingestion stages. Step 6 adds the validation architecture needed to change a large portable corpus without making every ordinary pull request run a full 100k × profile-matrix workload.
+Step 5 established a deterministic source registry, rights/provenance control plane, explicit review decisions and source-neutral ingestion stages. Step 6 adds the validation architecture needed to change a large portable corpus without making every ordinary pull request run a full 100k × profile-matrix workload. In the current continuation, ordinary incremental fixtures start from the 85-record `PUBLIC_RUNTIME_RECIPES` scale seed while the immutable 84-record `ALL_RECIPES` corpus remains the historical golden retention oracle.
 
 ## Objective
 
@@ -130,7 +130,7 @@ The plan records exactly which recipe IDs, metadata shards and index keys were v
 
 The reviewed 84-record corpus remains the behavioral/data oracle during scale-up.
 
-`validateGoldenRecipeRetention()` requires every golden recipe ID to remain present and byte-equivalent in a larger next corpus unless an explicit separately reviewed change intentionally updates that golden record.
+`validateGoldenRecipeRetention()` requires every historical golden recipe ID to remain present and byte-equivalent in a larger next corpus unless an explicit separately reviewed change intentionally updates that golden record. Separately, the incremental planner now exercises the current 85-record public runtime as its ordinary previous-version seed, so the one explicitly activated Step 8F record cannot disappear merely because the historical oracle remains 84.
 
 Adding thousands of new recipes therefore cannot silently rewrite an existing reviewed recipe.
 
@@ -167,6 +167,7 @@ The 100k performance/retrieval benchmark remains separately runnable and is not 
 
 `tests/corpus-scale-step6.test.js` covers:
 
+- explicit 85-record current-scale-seed / 84-record historical-oracle separation;
 - append-only incremental addition;
 - detail-only change without invented index churn;
 - ordinal-drift fallback to full validation;
