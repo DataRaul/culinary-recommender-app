@@ -44,13 +44,40 @@
 | V1.x / Recipe Family UI legal conformance | COMPLETE / PASS | PR #276; real Hummus candidate proves generic multi-source attribution + fail-closed UNKNOWN/UNSATISFIABLE behavior; no public/runtime admission |\n| V1.x / Recipe Family 10-family bounded expansion | COMPLETE / PASS WITH EXPLICIT HOLDS | PR #283 green and merged; 10-family closeout = 8 candidate-only APP_AUTHORING_ELIGIBLE + 2 fail-closed HOLD (Carbonara, Pizza Margherita); 0 public/runtime admissions; v8018/D1/shards/KC/billing unchanged |
 | V1.x / Corpus Scale / 100k Readiness | CURRENT SCALE FOUNDATION RECONCILIATION PASS | PRs #291/#294/#295/#296/#297 fresh-reconciled Steps 1–6 to the current 85-record public seed while preserving the historical 84-record oracle; downstream reconciliation confirms the later no-billing D1 architecture is already live and ahead of the original 100k design: Step 7A passed 170k required / 250k stress, Step 8F activated exactly one reviewed public record, and Step 8G reached v8018 / 19,268 protected recipes on exactly two shards before LEGAL_CORPUS_BASELINE_PASS. No replay of provisioning/population; reopen scale foundation only on a measured compatibility gap; Barbecue remains separate |
 | V1.x / Further Product Features | D5 FITNESS P0 ADAPTER PROTOTYPE PASS / BEHAVIOR DEFERRED | Validate public V0 #1080 passed deterministic + Chromium browser acceptance. User-selected workout backup is minimized to schema + goal/days/session-minutes/weekdays only after explicit save; sensitive/unknown fields cannot cross the adapter boundary; no fitness-derived ranking, calorie/TDEE, nutrition/supplement or medical behavior. Further D5 behavior is deferred |
-| V1.x / Protected Corpus Runtime Usability V1 | P1 LIVE BUILD PARTIAL / FREE-TIER D1 DAILY QUOTA HOLD | PR #311 repaired the first-batch 100-bound-parameter defect and the changed-variable owner retry then advanced to approximately 13k/19,268 before the Workers Free D1 daily operation limit was reached. Partial index state is preserved. Current design is explicitly restart-safe across UTC quota days; per-batch `meta.rows_written` telemetry plus an 80k browser-observed daily write guard are being added so the canary stops before Cloudflare's 100k/day free write ceiling. Terminal P1 still requires exact 19,268/19,268, exactly 3 structural partials, browse/search, both shards, provenance and <=8 D1/request; no public/recommendation widening |
-| V1.x / Culinary Brain Corpus Calibration V1 | ROADMAP-ENCODED / STARTS WITH P2 | Fitness-Brain-style development calibration: 85-recipe golden set -> ~500 stratified protected pilot -> frozen full-v8018 classification/reconciliation -> deterministic local recommendation priors -> real-19k failure/repair loop. No live KC/LLM runtime, no majority vote, no hard-safety/nutrition/admission authority from Brain inference alone |
+| V1.x / Protected Corpus Runtime Usability V1 | P1 LIVE BUILD PARTIAL / FREE-TIER D1 DAILY QUOTA HOLD / ZERO-D1 PREP ACTIVE | PR #312 merged the provider-limit reconciliation, per-batch `meta.rows_written` telemetry and 80k observed-write guard after the restart-safe index reached approximately 13k/19,268. Partial index state is preserved. While the live P1 continuation waits for a fresh provider quota day, owner-approved zero-D1 parallel preparation may run: C0 Golden-85 harness, P2 metadata-usability harness from frozen summaries, and C1 stratification design. Terminal P1 still requires exact 19,268/19,268, exactly 3 structural partials, browse/search, both shards, provenance and <=8 D1/request; no public/recommendation widening |
+| V1.x / Culinary Brain Corpus Calibration V1 | C0 ZERO-D1 PREP ACTIVE / C1 PROTECTED EXECUTION BLOCKED ON P1 | Owner-approved quota-gap split: exercise the 85-recipe Golden-set harness now, build P2 measurement logic from frozen v8018 summaries, and freeze the C1 cohort-quota methodology without protected recipe selection. Exact ~500 protected selection/execution still waits for P1 terminal acceptance. No live KC/LLM runtime, no majority vote, no hard-safety/nutrition/admission authority from Brain inference alone |
 | V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
 | Post-usable-app / Barbecue Technique Corpus | CONTROL PLANE VALIDATION PASS / SCHEDULED PILOT ACTIVE / FIRST ACQUISITION PENDING | PR #288 merged green; bounded five-leaf world-champion-first scheduler is active; generic YT-CUL cron retired; five-source conventional-barbecue synthesis contract unchanged |
 
 
+
+## 2026-09-25 owner-approved quota-gap parallelization
+
+The owner explicitly approved using the Cloudflare D1 quota-hold interval for **zero-D1 preparation** instead of leaving the independent app-development lane idle. This is a split of preparation from protected execution; it does **not** waive the P1 terminal gate.
+
+Authorized while P1 remains on `PROVIDER_D1_DAILY_LIMIT_HOLD__PARTIAL_INDEX_PRESERVED`:
+
+```text
+C0 Golden-85 local calibration harness
++ P2 metadata-usability harness over frozen repository summaries
++ C1 stratification methodology and source-cohort quota plan
+```
+
+Still blocked until P1 reaches exact live acceptance:
+
+```text
+C1 exact protected recipe-ID selection/execution
++ P2 live/full-v8018 runtime measurement
++ C2 full-v8018 classification
++ P3 protected recommendation admission
+```
+
+The preparation lane must perform **0 protected D1 reads and 0 D1 writes**, cannot rewrite/export protected bodies, cannot widen public/runtime recommendation authority, cannot write Knowledge Core, cannot add paid infrastructure or a third shard, and cannot mutate the independent Barbecue lane. Frozen `data/generated/corpus-normalization-mapping-v1.json` may be used as repository evidence because it was already generated with zero D1 reads/writes.
+
+Canonical quota-gap contract: `config/culinary_quota_gap_parallel_prep_v1.json`.
+Implementation: `scripts/culinary-quota-gap-parallel-prep-v1.mjs`.
+Tests: `tests/culinary-quota-gap-parallel-prep-v1.test.js`.
 
 ## 2026-09-24 owner-priority — Protected Corpus Runtime Usability V1
 
