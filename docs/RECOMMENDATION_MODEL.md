@@ -55,7 +55,7 @@ Exclusions may be exact canonical IDs or encoded ingredient-family IDs. Family m
 Unknown but well-formed future tokens can persist in local profile state. They do not create fake knowledge or block unrelated recipes; if a future corpus later uses the same canonical token, the stored hard preference immediately applies.
 
 ## Declared allergens
-Declared allergens are hard filters over the recipe's mapped allergen metadata and over substitution candidates. They are not soft score components. The user-facing V0 vocabulary matches the current ontology: gluten, milk, egg, fish, crustacean, soy, peanut, tree nut and sesame. This mechanism cannot establish cross-contamination safety.
+Declared allergens are hard filters over the recipe's mapped allergen metadata and over substitution candidates. They are not soft score components. The user-facing V0 vocabulary matches the current ontology: gluten, milk, egg, fish, crustacean, celery, soy, peanut, tree nut and sesame. This mechanism cannot establish cross-contamination safety.
 
 ## Fridge-first search
 Search uses the same evaluator rather than a separate recommendation truth.

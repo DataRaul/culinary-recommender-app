@@ -132,6 +132,23 @@ async function mobileAcceptance() {
   const allergySearchText = await page.locator("#searchResults").innerText();
   if (!allergySearchText.includes("declared allergen: fish")) throw new Error("User-facing fish allergen did not block salmon search");
 
+  // EU celery P0: the Celery control persists and hard-blocks the known celery recipe.
+  await page.getByRole("button", { name: "Profile" }).click();
+  await page.getByRole("heading", { name: "Profile & privacy" }).waitFor();
+  await page.locator('#allergenSafetyPanel [data-allergen="celery"]').check({ force: true });
+  await page.locator("#saveAllergens").click();
+  await page.getByRole("heading", { name: "Profile & privacy" }).waitFor();
+  const celeryState = JSON.parse(await page.evaluate(() => localStorage.getItem("culinary-recommender.state.v1")));
+  if (!celeryState.profile.allergens.includes("celery")) throw new Error("Celery allergen filter did not persist");
+  await page.getByRole("button", { name: "Search" }).click();
+  await page.getByLabel(/Main ingredient/).fill("celery");
+  await page.getByLabel("Recommendation lens").selectOption("ingredients");
+  await page.getByLabel("Time today").selectOption("60");
+  await page.getByLabel("Effort / skill today").selectOption("4");
+  await page.getByRole("button", { name: /Find dishes/ }).click();
+  const celerySearchText = await page.locator("#searchResults").innerText();
+  if (!celerySearchText.includes("declared allergen: celery")) throw new Error("User-facing celery allergen did not block the known celery recipe");
+
   // Profile export/import round trip in-browser.
   await page.getByRole("button", { name: "Profile" }).click();
   await page.getByRole("heading", { name: "Profile & privacy" }).waitFor();

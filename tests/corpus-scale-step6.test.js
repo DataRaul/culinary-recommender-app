@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { ALL_RECIPES, PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
+import { ALL_RECIPES, CURRENT_PUBLIC_BASE_RECIPES, PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
 import { DEFAULT_PROFILE, normalizeProfile } from "../src/domain/profile.js";
 import { rankRecipes } from "../src/domain/recommendation.js";
 import { materializePortableCorpusArtifacts } from "../scripts/corpus-scale-step3-core.mjs";
@@ -61,9 +61,14 @@ test("Step 6 uses the current 85-record public runtime as the scale seed while r
   assert.equal(result.pass, true);
   assert.equal(result.skippedUnchangedRecipeCount, 85);
 
-  const goldenRetention = validateGoldenRecipeRetention(ALL_RECIPES, next.files, { nextVersion: "v0002" });
-  assert.equal(goldenRetention.pass, true);
-  assert.equal(goldenRetention.goldenRecipeCount, 84);
+  const currentBaseRetention = validateGoldenRecipeRetention(CURRENT_PUBLIC_BASE_RECIPES, next.files, { nextVersion: "v0002" });
+  assert.equal(currentBaseRetention.pass, true);
+  assert.equal(currentBaseRetention.goldenRecipeCount, 84);
+
+  const historicalCelery = ALL_RECIPES.find(recipe => recipe.id === "med_pumpkin_white_bean_barley_stew");
+  const currentCelery = CURRENT_PUBLIC_BASE_RECIPES.find(recipe => recipe.id === "med_pumpkin_white_bean_barley_stew");
+  assert.equal(historicalCelery.allergySafety.declaredAllergens.includes("celery"), false);
+  assert.equal(currentCelery.allergySafety.declaredAllergens.includes("celery"), true);
 });
 
 test("append-only one-record change produces a bounded incremental validation plan", () => {
@@ -210,16 +215,16 @@ test("external changed recipe requires immutable provenance and keeps source nut
   assert.ok(result.errors.some(error => error.includes("source nutrition must remain non-authoritative")));
 });
 
-test("reviewed golden corpus must remain byte-equivalent inside a larger next corpus", () => {
+test("current reviewed 84-record public base must remain byte-equivalent inside a larger next corpus", () => {
   const next = artifacts([...cloneRecipes(), appendedRecipe()], "v0002");
-  const pass = validateGoldenRecipeRetention(ALL_RECIPES, next.files, { nextVersion: "v0002" });
+  const pass = validateGoldenRecipeRetention(CURRENT_PUBLIC_BASE_RECIPES, next.files, { nextVersion: "v0002" });
   assert.equal(pass.pass, true);
   assert.equal(pass.goldenRecipeCount, 84);
 
   const changed = artifacts(changedInstructionRecipes(), "v0002");
-  const fail = validateGoldenRecipeRetention(ALL_RECIPES, changed.files, { nextVersion: "v0002" });
+  const fail = validateGoldenRecipeRetention(CURRENT_PUBLIC_BASE_RECIPES, changed.files, { nextVersion: "v0002" });
   assert.equal(fail.pass, false);
-  assert.ok(fail.errors.includes(`${ALL_RECIPES[0].id}: golden recipe changed`));
+  assert.ok(fail.errors.includes(`${CURRENT_PUBLIC_BASE_RECIPES[0].id}: golden recipe changed`));
 });
 
 test("deterministic regression sampling is bounded and seed-stable", () => {

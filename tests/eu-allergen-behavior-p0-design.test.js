@@ -7,21 +7,28 @@ import { INGREDIENTS } from "../src/data/ingredients.js";
 const design = JSON.parse(
   await readFile(new URL("../config/eu_allergen_behavior_p0_design.json", import.meta.url), "utf8")
 );
+const activation = JSON.parse(
+  await readFile(new URL("../config/eu_allergen_celery_p0_activation.json", import.meta.url), "utf8")
+);
 const exclusionsUi = await readFile(new URL("../src/exclusions-ui.js", import.meta.url), "utf8");
 
-test("EU allergen P0 design is non-activating and owner-gated", () => {
+test("EU allergen P0 design remains the frozen owner-gated precursor to activation", () => {
   assert.equal(design.id, "EU_ALLERGEN_BEHAVIOR_P0_DESIGN_CONTRACT");
   assert.equal(design.activation.authorized, false);
   assert.equal(design.activation.ownerAuthorizationRequired, true);
   assert.equal(design.implementationGate, "EU_ALLERGEN_CELERY_P0_ACTIVATION");
   assert.equal(design.implementationGateState, "BLOCKED_PENDING_OWNER_AUTHORIZATION");
+  assert.equal(activation.authorization.authorized, true);
+  assert.equal(activation.authorization.scopeExact, true);
 });
 
-test("design identifies celery as the only P0 runtime token without mutating current behavior", () => {
+test("the separately authorized activation implements only the frozen celery P0 scope", () => {
   assert.deepEqual(design.p0Scope.newRuntimeAllergenTokens, ["celery"]);
   assert.ok(INGREDIENTS.celery);
-  assert.deepEqual(INGREDIENTS.celery.allergens, []);
-  assert.equal(exclusionsUi.includes('["celery", "Celery"]'), false);
+  assert.deepEqual(INGREDIENTS.celery.allergens, ["celery"]);
+  assert.equal(exclusionsUi.includes('["celery", "Celery"]'), true);
+  assert.deepEqual(activation.implementation.canonicalIngredientIdsChanged, ["celery"]);
+  assert.deepEqual(activation.implementation.publicRecipeIdsChanged, ["med_pumpkin_white_bean_barley_stew"]);
 });
 
 test("sulphites and absent canonical identities stay deferred", () => {

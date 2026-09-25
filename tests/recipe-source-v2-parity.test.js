@@ -194,7 +194,7 @@ test("RecipeSource V2 compatibility fixture stays bound to the reviewed golden c
 const CURRENT_PUBLIC_RUNTIME_FINGERPRINT = Object.freeze({
   recipeCount: 85,
   idsSha256: "fbd3e7121f741db2f637fcea917d07ad410c189a0d6c2f1394c23f83ed5bc025",
-  recordsSha256: "d866a89b0182d15707a9377ff827af4f235b87d1e324e4e37298e85626ffe1c5"
+  recordsSha256: "80da544e464cb83422f80e6a908ab37c863c8e22ee9654e97f22ef2cd8bee7f1"
 });
 
 test("Step 2 reconciles the current 85-record public runtime through the V2 JSON boundary", () => {

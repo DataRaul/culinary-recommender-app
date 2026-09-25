@@ -32,11 +32,13 @@ test("EU regulatory source review preserves zero-authority Lane 3 boundary", () 
   }
 });
 
-test("Annex II audit truthfully measures the current app allergen vocabulary", () => {
+test("Annex II audit remains a truthful frozen pre-activation snapshot", () => {
   const actualTokens = [...new Set(Object.values(INGREDIENTS).flatMap(item => item.allergens || []))].sort();
+  const preActivationTokens = actualTokens.filter(token => token !== "celery");
   assert.equal(Object.keys(INGREDIENTS).length, 136);
-  assert.deepEqual(actualTokens, allergenAudit.appBaseline.allergenTokens);
-  assert.equal(actualTokens.length, 9);
+  assert.deepEqual(preActivationTokens, allergenAudit.appBaseline.allergenTokens);
+  assert.equal(actualTokens.length, 10);
+  assert.ok(actualTokens.includes("celery"));
 
   const rows = allergenAudit.euAnnexIiCategoryAudit;
   assert.equal(rows.length, 14);
@@ -47,9 +49,9 @@ test("Annex II audit truthfully measures the current app allergen vocabulary", (
   assert.equal(allergenAudit.summary.behaviorChangeMade, false);
 });
 
-test("celery is identified as an evidence gap without silently changing hard-filter behavior", () => {
+test("the frozen audit identifies the celery gap later closed by the separately authorized activation", () => {
   assert.ok(INGREDIENTS.celery);
-  assert.deepEqual(INGREDIENTS.celery.allergens, []);
+  assert.deepEqual(INGREDIENTS.celery.allergens, ["celery"]);
 
   const celery = allergenAudit.euAnnexIiCategoryAudit.find(row => row.category === "CELERY");
   assert.equal(celery.appToken, null);

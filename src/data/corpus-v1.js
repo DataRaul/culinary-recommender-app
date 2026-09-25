@@ -38,17 +38,32 @@ const externalWithoutIdCollisions = EXTERNAL_RECIPES.filter(recipe => {
   return true;
 });
 
-// Historical benchmark/oracle corpus. Step 8F must not rewrite this baseline.
-export const ALL_RECIPES = Object.freeze([...AUTHORED_RECIPES, ...externalWithoutIdCollisions]);
+// Historical benchmark/oracle corpus. Preserve its reviewed pre-activation behavior even
+// when a later explicitly authorized public-runtime safety correction changes authored data.
+const HISTORICAL_AUTHORED_RECIPES = Object.freeze(AUTHORED_RECIPES.map(recipe => {
+  if (recipe.id !== "med_pumpkin_white_bean_barley_stew") return recipe;
+  return Object.freeze({
+    ...recipe,
+    allergySafety: Object.freeze({
+      ...recipe.allergySafety,
+      declaredAllergens: Object.freeze(
+        (recipe.allergySafety?.declaredAllergens || []).filter(allergen => allergen !== "celery")
+      )
+    })
+  });
+}));
+export const ALL_RECIPES = Object.freeze([...HISTORICAL_AUTHORED_RECIPES, ...externalWithoutIdCollisions]);
 export const recipeByIdV1 = id => ALL_RECIPES.find(recipe => recipe.id === id) || null;
 
 // Step 8F adds only the explicitly approved recommendation-eligible UniTools record.
-const publicIds = new Set(ALL_RECIPES.map(recipe => recipe.id));
+// The public runtime is built from current authored records, not the frozen historical oracle.
+export const CURRENT_PUBLIC_BASE_RECIPES = Object.freeze([...AUTHORED_RECIPES, ...externalWithoutIdCollisions]);
+const publicIds = new Set(CURRENT_PUBLIC_BASE_RECIPES.map(recipe => recipe.id));
 export const ACTIVATED_EXTERNAL_RECIPES = Object.freeze(UNITOOLS_STEP8F_RECIPES.filter(recipe => {
   if (publicIds.has(recipe.id)) return false;
   publicIds.add(recipe.id);
   return true;
 }));
 export const PUBLIC_EXTERNAL_RECIPES = Object.freeze([...EXTERNAL_RECIPES, ...ACTIVATED_EXTERNAL_RECIPES]);
-export const PUBLIC_RUNTIME_RECIPES = Object.freeze([...ALL_RECIPES, ...ACTIVATED_EXTERNAL_RECIPES]);
+export const PUBLIC_RUNTIME_RECIPES = Object.freeze([...CURRENT_PUBLIC_BASE_RECIPES, ...ACTIVATED_EXTERNAL_RECIPES]);
 export const publicRecipeById = id => PUBLIC_RUNTIME_RECIPES.find(recipe => recipe.id === id) || null;
