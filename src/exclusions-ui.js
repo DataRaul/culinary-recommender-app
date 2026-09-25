@@ -10,6 +10,7 @@ const ALLERGEN_OPTIONS = [
   ["egg", "Egg"],
   ["fish", "Fish"],
   ["crustacean", "Crustaceans · prawns / shrimp"],
+  ["celery", "Celery"],
   ["soy", "Soy"],
   ["peanut", "Peanut"],
   ["tree_nut", "Tree nuts"],
