@@ -25,7 +25,9 @@
     "paginationMode": "KEYSET_RECIPE_ID",
     "indexBuildRestartMode": "LAST_INDEXED_RECIPE_ID",
     "maxBoundParametersPerQuery": 100,
-    "summaryBoundParametersPerRecipe": 13
+    "summaryBoundParametersPerRecipe": 13,
+    "browserObservedDailyWriteGuard": 80000,
+    "providerRowsWrittenTelemetry": "D1_META_ROWS_WRITTEN"
   },
   "auth": {
     "requiredBeforeProtectedQuery": true,
@@ -66,10 +68,19 @@
   "validation": {
     "deterministic": "PASS",
     "browser": "PASS",
-    "liveOwnerCanary": "BLOCKED_BY_FIRST_BATCH_D1_PARAMETER_LIMIT__REPAIR_IN_PROGRESS",
-    "exactIndexCount": 0,
+    "liveOwnerCanary": "PROVIDER_D1_DAILY_LIMIT_HOLD__PARTIAL_INDEX_PRESERVED",
+    "exactIndexCount": null,
     "exactStructuralPartialCount": 0,
     "validationRun": 1093,
-    "validationRunId": 36070083309
+    "validationRunId": 36070083309,
+    "observedIndexCountApprox": 13000,
+    "observedFailure": "NON_JSON_RESPONSE_WITH_PROVIDER_OPERATION_LIMIT",
+    "providerLimit": {
+      "freeDailyRowsWritten": 100000,
+      "reset": "00:00 UTC",
+      "ftsWriteAmplificationExpected": true,
+      "committedProgressPreserved": true,
+      "blindRetryBeforeResetAuthorized": false
+    }
   }
 }

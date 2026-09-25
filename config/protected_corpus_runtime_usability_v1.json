@@ -123,21 +123,19 @@
       "document": "docs/PROTECTED_CORPUS_P1_PRIVATE_BROWSE_SEARCH_V1.md",
       "page": "protected-corpus.html",
       "api": "/api/protected-corpus/v1",
-      "liveOwnerCanary": "FIRST_ATTEMPT_STOPPED_SAFE_ZERO_INDEXED__D1_PARAMETER_LIMIT_REPAIR_IN_PROGRESS",
+      "liveOwnerCanary": "PROVIDER_D1_DAILY_LIMIT_HOLD__PARTIAL_INDEX_PRESERVED",
       "validationRun": 1093,
       "validationRunId": 36070083309,
       "lastLiveAttempt": {
         "date": "2026-09-25",
-        "indexedRecipeCount": 0,
+        "indexedRecipeCountApprox": 13000,
         "expectedRecipeCount": 19268,
-        "observedOwnerMessage": "INDEX_BATCH_FAILED",
-        "classification": "STATIC_PROOF_D1_BOUND_PARAMETER_LIMIT_MISMATCH",
-        "originalIndexBatchRecipes": 40,
-        "originalSummaryBoundParameters": 520,
-        "providerMaxBoundParametersPerQuery": 100,
-        "repairedIndexBatchRecipes": 7,
-        "repairedSummaryBoundParameters": 91,
-        "blindRetryAuthorized": false
+        "observedOwnerMessage": "NON_JSON_RESPONSE; provider operation limit reached",
+        "classification": "D1_FREE_DAILY_ROWS_WRITTEN_LIMIT_HOLD",
+        "providerFreeDailyRowsWritten": 100000,
+        "providerReset": "00:00 UTC",
+        "committedProgressPreserved": true,
+        "blindRetryBeforeResetAuthorized": false
       }
     },
     {

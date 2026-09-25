@@ -17,11 +17,12 @@ function missingShardBindings(env) {
   return ["CULINARY_RECIPE_SHARD_00_DB","CULINARY_RECIPE_SHARD_01_DB"].filter(name => !env?.[name]);
 }
 
-function metrics(total, { shardQueries = 0, controlQueries = 0 } = {}) {
+function metrics(total, { shardQueries = 0, controlQueries = 0, rowsWritten = 0 } = {}) {
   return {
     d1Subqueries: total,
     shardQueries,
     controlQueries,
+    rowsWritten: Number(rowsWritten || 0),
     targetMaxD1Subqueries: PROTECTED_SEARCH_TARGET_MAX_D1,
     hardMaxD1Subqueries: PROTECTED_SEARCH_HARD_MAX_D1,
     withinTarget: total <= PROTECTED_SEARCH_TARGET_MAX_D1,
@@ -69,7 +70,7 @@ function withBudget(body, authD1Subqueries, status = 200) {
       error: "HARD_D1_BUDGET_EXCEEDED",
       protectedDataReturned: false,
       fullCorpusScans: 0,
-      metrics: metrics(total)
+      metrics: metrics(total, { rowsWritten: body?.rowsWritten })
     }, 503);
   }
   if (total > PROTECTED_SEARCH_TARGET_MAX_D1) {
@@ -79,7 +80,7 @@ function withBudget(body, authD1Subqueries, status = 200) {
       error: "TARGET_D1_BUDGET_EXCEEDED",
       protectedDataReturned: false,
       fullCorpusScans: 0,
-      metrics: metrics(total)
+      metrics: metrics(total, { rowsWritten: body?.rowsWritten })
     }, 503);
   }
   return jsonResponse({
@@ -90,7 +91,7 @@ function withBudget(body, authD1Subqueries, status = 200) {
     publicRuntimeChanged: false,
     recommendationAdmissionChanged: false,
     fullCorpusScans: 0,
-    metrics: metrics(total)
+    metrics: metrics(total, { rowsWritten: body?.rowsWritten })
   }, status);
 }
 

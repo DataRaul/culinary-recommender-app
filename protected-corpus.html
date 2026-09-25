@@ -107,13 +107,44 @@
     { recipeId:'unitools:risotto-alla-milanese', shardNumber:0 },
     { recipeId:'unitools:spaghetti-carbonara', shardNumber:1 }
   ];
+  const D1_DAILY_WRITE_GUARD = 80000;
+  const utcDayKey = () => 'culinary:p1:d1-writes:' + new Date().toISOString().slice(0,10);
+  const readObservedDailyWrites = () => {
+    try { return Math.max(0, Number(localStorage.getItem(utcDayKey()) || 0)); }
+    catch { return 0; }
+  };
+  const saveObservedDailyWrites = value => {
+    try { localStorage.setItem(utcDayKey(), String(Math.max(0, Number(value || 0)))); }
+    catch {}
+  };
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const sourceLine = item => [item.sourceWork,item.sourceAuthor,item.sourceYear].filter(Boolean).join(' · ') || item.sourceCohortId || 'Source recorded';
 
   async function readJson(response) {
-    const body = await response.json().catch(() => ({ error:'NON_JSON_RESPONSE' }));
-    return { httpStatus: response.status, ...body };
+    const raw = await response.text();
+    try { return { httpStatus: response.status, ...JSON.parse(raw) }; }
+    catch {
+      const lower = raw.toLowerCase();
+      const providerLimit = response.status === 429
+        || lower.includes("exceeded d1")
+        || lower.includes("operation limit")
+        || lower.includes("resource limit");
+      return {
+        httpStatus: response.status,
+        error: providerLimit ? 'PROVIDER_D1_DAILY_LIMIT_REACHED' : 'NON_JSON_RESPONSE',
+        reason: providerLimit
+          ? 'Cloudflare D1 daily free-tier limit reached. Committed index progress is preserved; the quota resets at 00:00 UTC.'
+          : 'Non-JSON provider response (HTTP ' + response.status + ').'
+      };
+    }
+  }
+
+  function requireNoDailyProviderHold(result) {
+    if (result?.error === 'PROVIDER_D1_DAILY_LIMIT_REACHED') {
+      saveObservedDailyWrites(D1_DAILY_WRITE_GUARD);
+      throw new Error('D1_DAILY_WRITE_HOLD: quota resets at 00:00 UTC; do not retry before then');
+    }
   }
 
   async function apiGet(params) {
@@ -174,22 +205,35 @@
     progressNode.hidden = false;
     try {
       let status = await apiGet({ action:'status' });
+      requireNoDailyProviderHold(status);
       if (status.httpStatus === 409 && status.error === 'INDEX_NOT_INITIALIZED') {
         const initialized = await apiPost({ action:'initialize-index' });
         if (!initialized.ok) throw new Error(initialized.error || initialized.reason || 'Index initialization failed');
         status = await apiGet({ action:'status' });
+        requireNoDailyProviderHold(status);
       }
-      if (!status.ok) throw new Error(status.error || status.reason || 'Index status failed');
+      if (!status.ok) throw new Error(status.reason || status.error || 'Index status failed');
       let next = status.lastIndexedRecipeId || '';
       let indexed = Number(status.indexedRecipeCount || 0);
+      let observedRowsWritten = readObservedDailyWrites();
+      if (observedRowsWritten >= D1_DAILY_WRITE_GUARD) {
+        throw new Error('D1_DAILY_WRITE_SAFETY_HOLD: browser-observed daily write guard reached; resume after 00:00 UTC');
+      }
       while (indexed < Number(status.expectedRecipeCount || 19268)) {
         const batch = await apiPost({ action:'index-batch', cursor:next });
+        requireNoDailyProviderHold(batch);
         if (!batch.ok) throw new Error(batch.reason || batch.error || 'Index batch failed');
         if (batch.metrics?.d1Subqueries > 8) throw new Error('D1 target budget exceeded');
         if (batch.indexedCount === 0 && batch.done !== true) throw new Error('Index made no progress');
         next = batch.nextCursor || next;
         indexed += Number(batch.indexedCount || 0);
-        progressNode.textContent = 'Preparing private index: ' + Math.min(indexed,19268).toLocaleString() + ' / 19,268';
+        observedRowsWritten += Number(batch.metrics?.rowsWritten || batch.rowsWritten || 0);
+        saveObservedDailyWrites(observedRowsWritten);
+        progressNode.textContent = 'Preparing private index: ' + Math.min(indexed,19268).toLocaleString()
+          + ' / 19,268 · observed D1 rows written today: ' + observedRowsWritten.toLocaleString();
+        if (!batch.done && observedRowsWritten >= D1_DAILY_WRITE_GUARD) {
+          throw new Error('D1_DAILY_WRITE_SAFETY_HOLD: 80,000 browser-observed rows written today; resume after 00:00 UTC');
+        }
         if (batch.done) break;
       }
       await refreshStatus();
