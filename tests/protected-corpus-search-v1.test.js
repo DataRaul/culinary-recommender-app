@@ -3,13 +3,16 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 import {
+  PROTECTED_SEARCH_BROWSER_DAILY_WRITE_GUARD,
   PROTECTED_SEARCH_EXPECTED_COUNT,
+  PROTECTED_SEARCH_FREE_DAILY_ROWS_WRITTEN,
   PROTECTED_SEARCH_INDEX_BATCH_SIZE,
   PROTECTED_SEARCH_MAX_BOUND_PARAMETERS,
   PROTECTED_SEARCH_MAX_PAGE_SIZE,
   PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW,
   PROTECTED_SEARCH_TARGET_MAX_D1,
   boundedPageSize,
+  d1RowsWritten,
   normalizeProtectedSearchQuery,
   projectProtectedPacketForDetail,
   projectProtectedPacketForIndex
@@ -120,6 +123,17 @@ test("P1 search query is bounded FTS syntax and page sizes stay bounded", () => 
   assert.ok((PROTECTED_SEARCH_INDEX_BATCH_SIZE + 1) * PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW > PROTECTED_SEARCH_MAX_BOUND_PARAMETERS);
   assert.equal(PROTECTED_SEARCH_EXPECTED_COUNT, 19268);
   assert.equal(PROTECTED_SEARCH_TARGET_MAX_D1, 8);
+  assert.equal(PROTECTED_SEARCH_FREE_DAILY_ROWS_WRITTEN, 100000);
+  assert.equal(PROTECTED_SEARCH_BROWSER_DAILY_WRITE_GUARD, 80000);
+});
+
+test("P1 D1 row-write telemetry sums provider meta exactly", () => {
+  assert.equal(d1RowsWritten([
+    { meta:{ rows_written:17 } },
+    { meta:{ rows_written:0 } },
+    { meta:{ rows_written:23 } }
+  ]), 40);
+  assert.equal(d1RowsWritten(undefined), 0);
 });
 
 test("P1 runtime uses keyset route pagination + FTS5 and contains no request-time full-corpus scan primitive", () => {
@@ -188,6 +202,11 @@ test("P1 owner browser is network-only and explicitly communicates protected-onl
   assert.match(html, /\/api\/protected-corpus\/v1/);
   assert.match(html, /metrics\?\.d1Subqueries > 8/);
   assert.match(html, /batch\.reason \|\| batch\.error/);
+  assert.match(html, /PROVIDER_D1_DAILY_LIMIT_REACHED/);
+  assert.match(html, /D1_DAILY_WRITE_SAFETY_HOLD/);
+  assert.match(html, /observed D1 rows written today/);
+  assert.match(html, /00:00 UTC/);
+  assert.match(html, /D1_DAILY_WRITE_GUARD = 80000/);
   assert.match(html, /PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS/);
   assert.match(html, /unitools:risotto-alla-milanese/);
   assert.match(html, /unitools:spaghetti-carbonara/);
