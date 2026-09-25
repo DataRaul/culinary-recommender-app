@@ -3,7 +3,7 @@
   "id": "EU_ALLERGEN_RESIDUAL_SEMANTICS_AUDIT_V1",
   "lane": "LANE_3",
   "auditDate": "2026-09-25",
-  "state": "CANDIDATE",
+  "state": "PASS",
   "purpose": "Audit the two existing aggregate Annex II allergen semantics, tree_nut and gluten, against the current canonical ingredient ontology without adding allergen tokens or changing runtime behavior.",
   "legalSource": {
     "instrument": "Regulation (EU) No 1169/2011",
@@ -100,5 +100,13 @@
     "paidInfrastructureOrApiChanges": 0
   },
   "nextGate": "NOT_SELECTED__FUTURE_ONTOLOGY_OR_THRESHOLD_SCHEMA_TRIGGER",
-  "candidateTerminal": "EU_ALLERGEN_RESIDUAL_SEMANTICS_AUDIT_V1_PASS__NO_RUNTIME_CHANGE_EARNED"
+  "terminal": "EU_ALLERGEN_RESIDUAL_SEMANTICS_AUDIT_V1_PASS__NO_RUNTIME_CHANGE_EARNED",
+  "validation": {
+    "workflow": "Validate public V0",
+    "runNumber": 1128,
+    "runId": 36174477005,
+    "conclusion": "SUCCESS",
+    "staticAndUnit": "PASS",
+    "fullChromiumBrowserAcceptance": "PASS"
+  }
 }
