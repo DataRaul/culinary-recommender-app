@@ -141,7 +141,7 @@ async function mobileAcceptance() {
   const celeryState = JSON.parse(await page.evaluate(() => localStorage.getItem("culinary-recommender.state.v1")));
   if (!celeryState.profile.allergens.includes("celery")) throw new Error("Celery allergen filter did not persist");
   await page.getByRole("button", { name: "Search" }).click();
-  await page.getByLabel(/Main ingredient/).fill("pumpkin");
+  await page.getByLabel(/Main ingredient/).fill("celery");
   await page.getByLabel("Recommendation lens").selectOption("ingredients");
   await page.getByLabel("Time today").selectOption("60");
   await page.getByLabel("Effort / skill today").selectOption("4");
