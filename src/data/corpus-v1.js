@@ -57,13 +57,13 @@ export const recipeByIdV1 = id => ALL_RECIPES.find(recipe => recipe.id === id) |
 
 // Step 8F adds only the explicitly approved recommendation-eligible UniTools record.
 // The public runtime is built from current authored records, not the frozen historical oracle.
-const currentPublicBase = Object.freeze([...AUTHORED_RECIPES, ...externalWithoutIdCollisions]);
-const publicIds = new Set(currentPublicBase.map(recipe => recipe.id));
+export const CURRENT_PUBLIC_BASE_RECIPES = Object.freeze([...AUTHORED_RECIPES, ...externalWithoutIdCollisions]);
+const publicIds = new Set(CURRENT_PUBLIC_BASE_RECIPES.map(recipe => recipe.id));
 export const ACTIVATED_EXTERNAL_RECIPES = Object.freeze(UNITOOLS_STEP8F_RECIPES.filter(recipe => {
   if (publicIds.has(recipe.id)) return false;
   publicIds.add(recipe.id);
   return true;
 }));
 export const PUBLIC_EXTERNAL_RECIPES = Object.freeze([...EXTERNAL_RECIPES, ...ACTIVATED_EXTERNAL_RECIPES]);
-export const PUBLIC_RUNTIME_RECIPES = Object.freeze([...currentPublicBase, ...ACTIVATED_EXTERNAL_RECIPES]);
+export const PUBLIC_RUNTIME_RECIPES = Object.freeze([...CURRENT_PUBLIC_BASE_RECIPES, ...ACTIVATED_EXTERNAL_RECIPES]);
 export const publicRecipeById = id => PUBLIC_RUNTIME_RECIPES.find(recipe => recipe.id === id) || null;
