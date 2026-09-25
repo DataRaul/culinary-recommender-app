@@ -184,7 +184,7 @@
       let indexed = Number(status.indexedRecipeCount || 0);
       while (indexed < Number(status.expectedRecipeCount || 19268)) {
         const batch = await apiPost({ action:'index-batch', cursor:next });
-        if (!batch.ok) throw new Error(batch.error || batch.reason || 'Index batch failed');
+        if (!batch.ok) throw new Error(batch.reason || batch.error || 'Index batch failed');
         if (batch.metrics?.d1Subqueries > 8) throw new Error('D1 target budget exceeded');
         if (batch.indexedCount === 0 && batch.done !== true) throw new Error('Index made no progress');
         next = batch.nextCursor || next;
@@ -201,7 +201,7 @@
   }
 
   function requireCanaryEnvelope(label, result) {
-    if (!result?.ok) throw new Error(label + ': ' + (result?.error || result?.reason || 'request failed'));
+    if (!result?.ok) throw new Error(label + ': ' + (result?.reason || result?.error || 'request failed'));
     if (Number(result?.metrics?.d1Subqueries) > 8) throw new Error(label + ': D1 target budget exceeded');
     if (Number(result?.fullCorpusScans || 0) !== 0) throw new Error(label + ': full-corpus scan observed');
     if (result?.publicRuntimeChanged !== false) throw new Error(label + ': public runtime changed');
