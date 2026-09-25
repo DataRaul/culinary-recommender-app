@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_QUOTA_GAP_PARALLEL_PREP_V1",
   "date": "2026-09-25",
-  "state": "AUTHORIZED_ACTIVE",
+  "state": "PASS__PREP_COMPLETE__EXECUTION_WAITS_P1",
   "ownerApproval": "OWNER_EXPLICIT_APPROVAL_2026_09_25",
   "sourceMainSha": "083510c3cafdfcc011af22d10347dece8fb3f812",
   "objective": "USE_P1_PROVIDER_QUOTA_HOLD_FOR_ZERO_D1_C0_P2_C1_PREPARATION_WITHOUT_WEAKENING_P1",
@@ -63,5 +63,7 @@
     "paidInfrastructureAuthorized": false,
     "thirdShardAuthorized": false,
     "barbecueMutationAuthorized": false
-  }
+  },
+  "completedEvidence": "data/generated/culinary-quota-gap-parallel-prep-v1.json",
+  "completedTerminal": "CULINARY_QUOTA_GAP_PARALLEL_PREP_PASS"
 }
