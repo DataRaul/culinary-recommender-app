@@ -1,0 +1,339 @@
+{
+  "schemaVersion": "barbecue-technique-corpus-candidate-review-v1",
+  "reviewId": "BARBECUE_FIRST_CANDIDATE_BATCH_REVIEW_2026_09_25",
+  "reviewedAt": "2026-09-25",
+  "quotaDate": "2026-09-25",
+  "sourceStateRule": "Review only the 34 durable candidate pointers discovered on quota date 2026-09-25. Search-result/title wording is never qualification evidence.",
+  "authority": {
+    "youtubeSearchCalls": 0,
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedRecipeBodyAccess": 0,
+    "knowledgeCoreWrites": 0,
+    "automaticPublicationAuthorized": false,
+    "automaticAppAdmissionAuthorized": false,
+    "paidInfrastructureAuthorized": false
+  },
+  "decisions": [
+    {
+      "leafId": "poultry_chicken_competition",
+      "sourceRef": "youtube:3T9aMG4TS_I",
+      "decision": "QUALIFIED",
+      "independenceKey": "duce-raymond",
+      "evidenceRef": "https://www.sweetbabyraysbbq.com/duce-raymond",
+      "projectAuthoredRationale": "Independent professional profile verifies Duce Raymond as a long-standing barbecue culinary authority and competition cook; qualification is based on creator competence, not candidate title wording.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "poultry_chicken_competition",
+      "sourceRef": "youtube:Fi74kM76KuA",
+      "decision": "QUALIFIED",
+      "independenceKey": "chef-tom-jackson-atbbq",
+      "evidenceRef": "https://www.kmuw.org/people/chef-tom-jackson",
+      "projectAuthoredRationale": "Independent public biography verifies Chef Tom Jackson's culinary training and long-running outdoor-cooking/barbecue instruction role at All Things Barbecue; qualification is competence-based.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "poultry_chicken_competition",
+      "sourceRef": "youtube:VgIGx2ALCac",
+      "decision": "QUALIFIED",
+      "independenceKey": "elite-bbq-smokers",
+      "evidenceRef": "https://southeastbbqchampionship.org/results",
+      "projectAuthoredRationale": "Independent competition results verify Elite BBQ Smokers as an active competition barbecue team; qualification is competition-credential based.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "poultry_chicken_competition",
+      "sourceRef": "youtube:IoSv-yw7Jok",
+      "decision": "QUALIFIED",
+      "independenceKey": "harry-soo-slap-yo-daddy",
+      "evidenceRef": "https://www.cbbqa.com/awards/",
+      "projectAuthoredRationale": "Independent barbecue-association awards record verifies Harry Soo / Slap Yo' Daddy BBQ competition credentials; qualification is credential-based.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "beef_brisket_competition",
+      "sourceRef": "youtube:Xa-Ikwbq_Js",
+      "decision": "QUALIFIED",
+      "independenceKey": "elite-bbq-smokers",
+      "evidenceRef": "https://southeastbbqchampionship.org/results",
+      "projectAuthoredRationale": "Independent competition results verify Elite BBQ Smokers as an active competition barbecue team; qualification is competition-credential based.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "pork_ribs_competition",
+      "sourceRef": "youtube:2XNUH5I9_2o",
+      "decision": "QUALIFIED",
+      "independenceKey": "duce-raymond",
+      "evidenceRef": "https://www.sweetbabyraysbbq.com/duce-raymond",
+      "projectAuthoredRationale": "Independent professional profile verifies Duce Raymond as a long-standing barbecue culinary authority and competition cook; qualification is creator-competence based.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "pork_ribs_competition",
+      "sourceRef": "youtube:Hy5wnwuIZ2M",
+      "decision": "QUALIFIED",
+      "independenceKey": "malcom-reed-killer-hogs",
+      "evidenceRef": "https://worldfoodchampionships.com/talent/profile/our-competitors/6163/malcom-reed",
+      "projectAuthoredRationale": "Independent competition profile verifies Malcom Reed's sustained competition-barbecue experience and educator role; qualification is domain-competence based.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "pork_ribs_competition",
+      "sourceRef": "youtube:0gjToA-uKqU",
+      "decision": "QUALIFIED",
+      "independenceKey": "elite-bbq-smokers",
+      "evidenceRef": "https://southeastbbqchampionship.org/results",
+      "projectAuthoredRationale": "Independent competition results verify Elite BBQ Smokers as an active competition barbecue team; qualification is competition-credential based.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "fish_parrilla",
+      "sourceRef": "youtube:xcVQMW2xv-Q",
+      "decision": "QUALIFIED",
+      "independenceKey": "harry-soo-slap-yo-daddy",
+      "evidenceRef": "https://www.cbbqa.com/awards/",
+      "projectAuthoredRationale": "Independent barbecue-association awards record verifies Harry Soo / Slap Yo' Daddy BBQ competition credentials. This counts only as creator competence for the bounded fish candidate; no fish-specific technique observation is inferred.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "sourceRef": "youtube:071I2veK650",
+      "decision": "QUALIFIED",
+      "independenceKey": "harry-soo-slap-yo-daddy",
+      "evidenceRef": "https://www.cbbqa.com/awards/",
+      "projectAuthoredRationale": "Independent barbecue-association awards record verifies Harry Soo / Slap Yo' Daddy BBQ competition credentials. This counts only as creator competence for the bounded vegetable candidate; no vegetable-specific technique observation is inferred.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "sourceRef": "youtube:8kcAm3wFbBM",
+      "decision": "QUALIFIED",
+      "independenceKey": "bill-purvis-chicken-fried-bbq",
+      "evidenceRef": "https://ibcabbq.org/ibca-top-cooks/",
+      "projectAuthoredRationale": "Independent barbecue-association standings verify Bill Purvis / Chicken Fried BBQ competition performance; qualification is competition-credential based.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "poultry_chicken_competition",
+      "sourceRef": "youtube:KgOlyJz9dug",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Candidate resolves to a general food-media source rather than an independently verified practitioner identity for this leaf; title/query match alone cannot qualify.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "poultry_chicken_competition",
+      "sourceRef": "youtube:chsD9DlJe0g",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify championship credentials or sufficiently strong barbecue-domain competence for the creator; title/query match alone cannot qualify.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "poultry_chicken_competition",
+      "sourceRef": "youtube:EQbKWG2Wz5c",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Creator identity is associated with competitive eating rather than verified barbecue-technique expertise; title/query match alone cannot qualify.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "poultry_chicken_competition",
+      "sourceRef": "youtube:BuyF7GMkP6o",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify championship credentials or sufficiently strong barbecue-domain competence for the creator; title/query match alone cannot qualify.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "beef_brisket_competition",
+      "sourceRef": "youtube:uTP-CJh1TdI",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify the candidate creator's credential/domain-competence evidence strongly enough to count this source.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "beef_brisket_competition",
+      "sourceRef": "youtube:KgOlyJz9dug",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Candidate resolves to a general food-media source rather than an independently verified practitioner identity for this leaf; title/query match alone cannot qualify.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "beef_brisket_competition",
+      "sourceRef": "youtube:ni86LA-_XQQ",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify the candidate creator's credential/domain-competence evidence strongly enough to count this source.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "beef_brisket_competition",
+      "sourceRef": "youtube:S5y7-b_c_Mg",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded review did not establish competition or specialist barbecue credentials adequate for the five-source admission gate.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "pork_ribs_competition",
+      "sourceRef": "youtube:qsMfq-Jjx7E",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify the candidate creator's credential/domain-competence evidence strongly enough to count this source.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "pork_ribs_competition",
+      "sourceRef": "youtube:vEIJLs-bpFw",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Same unresolved creator lineage as another candidate in this leaf; no independent credential evidence was verified, so it does not count.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "pork_ribs_competition",
+      "sourceRef": "youtube:juh_1GeAxJc",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "A barbecue-oriented identity was discoverable, but bounded review did not establish independent competition/specialist credentials strongly enough for this stricter pilot admission gate.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "fish_parrilla",
+      "sourceRef": "youtube:06s3t5hB4eY",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Candidate resolves to a professional football-club media channel, not a barbecue practitioner source.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "fish_parrilla",
+      "sourceRef": "youtube:EafTDIeByhs",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify championship credentials or sufficiently strong grill/barbecue-domain competence for the creator.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "fish_parrilla",
+      "sourceRef": "youtube:zjGT_GLmaq0",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Candidate resolves to general local-news media rather than an independently verified practitioner source.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "fish_parrilla",
+      "sourceRef": "youtube:bkezgiRz3vY",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify championship credentials or sufficiently strong grill/barbecue-domain competence for the creator.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "fish_parrilla",
+      "sourceRef": "youtube:7H7B_haOOs0",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify championship credentials or sufficiently strong grill/barbecue-domain competence for the creator.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "fish_parrilla",
+      "sourceRef": "youtube:smL5yTE4ae8",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Available evidence indicates a general cooking source, but not independently verified specialist barbecue/parrilla competence at the pilot admission threshold.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "sourceRef": "youtube:Q8cfH42DTwg",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify championship credentials or sufficiently strong grill/barbecue-domain competence for the creator.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "sourceRef": "youtube:K2NxOLKIx2g",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Candidate resolves to general news media rather than an independently verified practitioner source.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "sourceRef": "youtube:872ZfnFZLxU",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify championship credentials or sufficiently strong grill/barbecue-domain competence for the creator.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "sourceRef": "youtube:r5cPHJCLqFs",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify championship credentials or sufficiently strong grill/barbecue-domain competence for the creator.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "sourceRef": "youtube:SRzhv8tK8qI",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify championship credentials or sufficiently strong grill/barbecue-domain competence for the creator.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "sourceRef": "youtube:00zp7vNs3O0",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify championship credentials or sufficiently strong grill/barbecue-domain competence for the creator.",
+      "normalizedObservations": {}
+    }
+  ],
+  "expected": {
+    "candidateCount": 34,
+    "qualifiedCount": 11,
+    "rejectedCount": 23,
+    "qualifiedByLeaf": {
+      "poultry_chicken_competition": 4,
+      "beef_brisket_competition": 1,
+      "pork_ribs_competition": 3,
+      "fish_parrilla": 1,
+      "vegetables_parrilla": 2
+    },
+    "completedLeaves": 0,
+    "pilotPass": false
+  }
+}
