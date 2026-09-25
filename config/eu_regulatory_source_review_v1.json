@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "id": "EU_REGULATORY_SOURCE_REVIEW_V1",
+  "lane": "LANE_3",
+  "reviewDate": "2026-09-25",
+  "state": "PASS_CANDIDATE",
+  "nextGate": "EU_REGULATORY_SOURCE_REVIEW_V1_PASS",
+  "sourceScaffold": "config/eu_regulatory_truth_v1.json",
+  "purpose": "Verify the seven bounded official EU/EFSA source families, classify their legal/data role, and determine what research use is safe before any behavior contract.",
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedRecipeBodyReads": 0,
+    "recommendationAuthorityChanges": 0,
+    "nutritionCompositionAuthorityChanges": 0,
+    "allergenBehaviorChanges": 0,
+    "publicRuntimeBehaviorChanges": 0,
+    "knowledgeCoreWrites": 0,
+    "barbecueMutations": 0,
+    "paidInfrastructureOrApiChanges": 0
+  },
+  "reviews": [
+    {
+      "sourceId": "efsa-foodex2",
+      "officialVerification": "PASS",
+      "officialPageReviewedDate": "2026-07-13",
+      "currentVersionSnapshot": "FOODEX2_REVISION_2_WITH_2025_MAINTENANCE_MATERIAL_LISTED",
+      "dataRole": "CLASSIFICATION_TAXONOMY",
+      "safeResearchUse": [
+        "FOOD_CATEGORY_MAPPING_DESIGN",
+        "IDENTIFIER_AND_HIERARCHY_RESEARCH"
+      ],
+      "directRecipeSafetyAuthority": false,
+      "bulkImportAuthorized": false,
+      "reason": "Classification standardisation is useful for mapping but is not itself a legislative authorisation, prohibition or measured food-composition source."
+    },
+    {
+      "sourceId": "ec-eu-health-claims-register",
+      "officialVerification": "PASS",
+      "currentVersionSnapshot": "LIVE_COMMISSION_REGISTER__INFORMATION_ONLY",
+      "dataRole": "INFORMATIONAL_REGISTER",
+      "safeResearchUse": [
+        "CLAIM_STATUS_AND_CONDITION_RESEARCH",
+        "CLAIM_SPECIFIC_LEGAL_ACT_POINTERS"
+      ],
+      "downloadSurfaceObserved": "COMPLETE_HEALTH_CLAIMS_DATASET_XLSX_AVAILABLE",
+      "directRecipeSafetyAuthority": false,
+      "bulkImportAuthorized": false,
+      "reason": "The Commission register is for information only; claim-specific EU legal acts control and nutrition claims are governed separately by Regulation (EC) No 1924/2006."
+    },
+    {
+      "sourceId": "ec-eu-pesticides-database",
+      "officialVerification": "PASS",
+      "currentVersionSnapshot": "LIVE_COMMISSION_DATABASE__NO_LEGAL_VALUE",
+      "dataRole": "INFORMATIONAL_DATABASE",
+      "safeResearchUse": [
+        "MRL_REFERENCE_RESEARCH",
+        "ACTIVE_SUBSTANCE_REFERENCE_RESEARCH",
+        "LEGAL_ACT_POINTER_DISCOVERY"
+      ],
+      "downloadSurfaceObserved": "DOWNLOADS_AND_MACHINE_TO_MACHINE_APIS_AVAILABLE",
+      "directRecipeSafetyAuthority": false,
+      "bulkImportAuthorized": false,
+      "reason": "The database explicitly has no legal value; Official Journal acts control. MRLs also do not establish actual residue levels in a specific ingredient or recipe."
+    },
+    {
+      "sourceId": "ec-food-additives-database",
+      "officialVerification": "PASS",
+      "currentVersionSnapshot": "DERIVED_FROM_UNION_LIST__REGULATION_1333_2008_CURRENT_CONSOLIDATED_2026-08-18",
+      "dataRole": "INFORMATIONAL_DATABASE_DERIVED_FROM_PRIMARY_LAW",
+      "safeResearchUse": [
+        "ADDITIVE_IDENTITY_AND_E_NUMBER_RESEARCH",
+        "FOOD_CATEGORY_AND_CONDITION_OF_USE_RESEARCH"
+      ],
+      "directRecipeSafetyAuthority": false,
+      "bulkImportAuthorized": false,
+      "reason": "The Commission database is a reference tool based on Annex II of Regulation (EC) No 1333/2008; product-specific additive presence is not inferable from a generic canonical ingredient."
+    },
+    {
+      "sourceId": "eurlex-food-information-allergens-1169-2011",
+      "officialVerification": "PASS",
+      "currentVersionSnapshot": "CURRENT_CONSOLIDATED_2025-04-01",
+      "dataRole": "PRIMARY_LEGAL_TEXT",
+      "safeResearchUse": [
+        "ANNEX_II_ALLERGEN_CATEGORY_AUDIT",
+        "FOOD_INFORMATION_REQUIREMENT_RESEARCH"
+      ],
+      "directRecipeSafetyAuthority": false,
+      "bulkImportAuthorized": false,
+      "reason": "Annex II is the controlling EU allergen-category reference, but applying it to app ingredients or user hard filters changes product safety behavior and requires a separate explicit behavior gate."
+    },
+    {
+      "sourceId": "ec-union-list-novel-foods",
+      "officialVerification": "PASS",
+      "currentVersionSnapshot": "IMPLEMENTING_REGULATION_2017_2470_CURRENT_CONSOLIDATED_2026-08-10",
+      "dataRole": "LEGALLY_BACKED_UNION_LIST",
+      "safeResearchUse": [
+        "AUTHORISED_NOVEL_FOOD_IDENTITY_RESEARCH",
+        "CONDITIONS_OF_USE_AND_SPECIFIC_LABELLING_RESEARCH"
+      ],
+      "directRecipeSafetyAuthority": false,
+      "bulkImportAuthorized": false,
+      "reason": "Authorisations are entry-specific and may carry conditions, specifications or labelling requirements; they cannot be generalized to ordinary ingredient recommendation without exact identity and a behavior contract."
+    },
+    {
+      "sourceId": "eurlex-contaminants-2023-915",
+      "officialVerification": "PASS",
+      "currentVersionSnapshot": "CURRENT_CONSOLIDATED_2026-08-19",
+      "dataRole": "PRIMARY_LEGAL_TEXT",
+      "safeResearchUse": [
+        "COMMODITY_CONTAMINANT_LIMIT_RESEARCH",
+        "LEGAL_THRESHOLD_AND_SCOPE_RESEARCH"
+      ],
+      "directRecipeSafetyAuthority": false,
+      "bulkImportAuthorized": false,
+      "reason": "Maximum legal levels are commodity/context specific and do not establish actual contamination of a particular ingredient or recipe."
+    }
+  ],
+  "priorityFinding": {
+    "highestImmediateAppRelevance": "EU_1169_2011_ANNEX_II_ALLERGEN_CATEGORY_AUDIT",
+    "why": "The existing app already treats declared allergens as hard filters, so source-backed vocabulary coverage can be audited without changing behavior.",
+    "behaviorActivationAuthorized": false
+  },
+  "gateRequirements": {
+    "allSevenSourcesVerified": true,
+    "legalWeightPreserved": true,
+    "currentnessSnapshotRecorded": true,
+    "safeResearchUseRecorded": true,
+    "directRecipeSafetyAuthorityFalseForAll": true,
+    "bulkImportAuthorizedFalseForAll": true,
+    "zeroRuntimeMutation": true
+  }
+}
