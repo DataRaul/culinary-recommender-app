@@ -31,16 +31,20 @@ This oracle is not rewritten by later public-runtime admission.
 
 ### Current synthetic benchmark seed
 
-The V2 scale run uses the current 85-record `PUBLIC_RUNTIME_RECIPES` state at the Step-1 restart baseline:
+The V2 scale run uses the current 85-record `PUBLIC_RUNTIME_RECIPES` state. The original Step-1 restart baseline was `ca6a1129e52b45cac3b39f61402c7466f71d6761`. PR #318 deliberately re-baselined only the current-runtime records fingerprint after the explicitly owner-authorized celery allergen metadata correction; the immutable 84-record historical oracle and its fingerprint remain unchanged.
 
-`ca6a1129e52b45cac3b39f61402c7466f71d6761`
+Current PR #318 candidate reference:
 
-Frozen fingerprint:
+`f47f346c5366baa72f78018502e23cca1b9f1da0`
+
+Current fingerprint:
 
 - IDs SHA-256: `fbd3e7121f741db2f637fcea917d07ad410c189a0d6c2f1394c23f83ed5bc025`
-- records SHA-256: `d866a89b0182d15707a9377ff827af4f235b87d1e324e4e37298e85626ffe1c5`
+- records SHA-256: `80da544e464cb83422f80e6a908ab37c863c8e22ee9654e97f22ef2cd8bee7f1`
 
-The runner fails closed on count or fingerprint drift. A future public-runtime change must therefore be deliberately reconciled and re-baselined before the scale benchmark can silently move.
+The IDs fingerprint is unchanged. The records fingerprint changed because the known public celery recipe now truthfully declares the newly authorized `celery` hard-filter token. `ALL_RECIPES` remains the byte-stable historical 84-record oracle, while `CURRENT_PUBLIC_BASE_RECIPES` represents the current corrected 84-record public base used by the 85-record runtime.
+
+The runner fails closed on count or fingerprint drift. A future public-runtime change must therefore be deliberately reconciled and re-baselined before the scale benchmark can silently move. PR #318 reconciliation passed Corpus scale Step 1 run **#39 / 36167651148 SUCCESS**.
 
 Synthetic records remain deterministic clones with unique synthetic IDs and explicit `SYNTHETIC_ONLY_NEVER_PRODUCTION` provenance. Each clone also carries deterministic per-record SHA-256 benchmark entropy derived from source identity + ordinal so compression measurements are not unrealistically dominated by repeated clone payloads.
 
