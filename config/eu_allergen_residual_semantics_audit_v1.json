@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "id": "EU_ALLERGEN_RESIDUAL_SEMANTICS_AUDIT_V1",
+  "lane": "LANE_3",
+  "auditDate": "2026-09-25",
+  "state": "CANDIDATE",
+  "purpose": "Audit the two existing aggregate Annex II allergen semantics, tree_nut and gluten, against the current canonical ingredient ontology without adding allergen tokens or changing runtime behavior.",
+  "legalSource": {
+    "instrument": "Regulation (EU) No 1169/2011",
+    "scope": "Annex II categories 1 and 8",
+    "currentConsolidatedSnapshot": "2025-04-01",
+    "reverifiedAt": "2026-09-25",
+    "canonicalUrl": "https://eur-lex.europa.eu/eli/reg/2011/1169/2025-04-01",
+    "reverifyBeforeSubstantiveUse": true
+  },
+  "treeNutAudit": {
+    "annexIiNamedSpecies": [
+      "almond",
+      "hazelnut",
+      "walnut",
+      "cashew",
+      "pecan",
+      "brazil_nut",
+      "pistachio",
+      "macadamia"
+    ],
+    "canonicalSpeciesPresent": {
+      "almond": "almonds",
+      "walnut": "walnuts",
+      "cashew": "cashews"
+    },
+    "canonicalSpeciesAbsent": [
+      "hazelnut",
+      "pecan",
+      "brazil_nut",
+      "pistachio",
+      "macadamia"
+    ],
+    "presentSpeciesAllCarryAggregateToken": true,
+    "peanutRemainsSeparate": true,
+    "coconutNotPromotedToAnnexIiNut": true,
+    "runtimeChangeEarned": false,
+    "reason": "Every currently canonical Annex II nut species already carries tree_nut. Missing named species are not canonical ingredients, so creating safety vocabulary or identities is not justified by current ontology need."
+  },
+  "glutenAudit": {
+    "annexIiNamedCereals": [
+      "wheat_including_spelt_and_khorasan",
+      "rye",
+      "barley",
+      "oats"
+    ],
+    "canonicalExactCerealIdentitiesPresent": [
+      "barley",
+      "oats"
+    ],
+    "canonicalWheatDerivedProductsOrFamiliesPresent": [
+      "couscous",
+      "bulgur",
+      "pasta",
+      "wholewheat_pasta",
+      "orzo",
+      "noodles",
+      "bread",
+      "tortilla"
+    ],
+    "canonicalNamedCerealIdentitiesAbsent": [
+      "wheat",
+      "rye",
+      "spelt",
+      "khorasan"
+    ],
+    "annexIiExceptionsReviewed": [
+      "wheat_based_glucose_syrups_including_dextrose",
+      "wheat_based_maltodextrins",
+      "barley_based_glucose_syrups",
+      "cereals_used_for_alcoholic_distillates"
+    ],
+    "exactCanonicalExceptionIdentityPresent": false,
+    "aggregateTokenConservativeForCurrentKnownItems": true,
+    "runtimeChangeEarned": false,
+    "reason": "The current ontology has no exact Annex II exception identity that would require removing gluten. Existing known gluten-containing cereal identities/products remain covered by the aggregate hard-filter token."
+  },
+  "deferredUnchanged": [
+    "MUSTARD_NO_CANONICAL_IDENTITY",
+    "LUPIN_NO_CANONICAL_IDENTITY",
+    "MOLLUSCS_NO_CANONICAL_IDENTITY",
+    "SULPHITES_REQUIRE_THRESHOLD_AWARE_QUANTITY_OR_CONCENTRATION_EVIDENCE"
+  ],
+  "boundaries": {
+    "ingredientOntologyChanges": 0,
+    "profileVocabularyChanges": 0,
+    "recipeAllergenMetadataChanges": 0,
+    "recommendationBehaviorChanges": 0,
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedRecipeBodyAccess": 0,
+    "nutritionCompositionAuthorityChanges": 0,
+    "knowledgeCoreWrites": 0,
+    "barbecueMutations": 0,
+    "paidInfrastructureOrApiChanges": 0
+  },
+  "nextGate": "NOT_SELECTED__FUTURE_ONTOLOGY_OR_THRESHOLD_SCHEMA_TRIGGER",
+  "candidateTerminal": "EU_ALLERGEN_RESIDUAL_SEMANTICS_AUDIT_V1_PASS__NO_RUNTIME_CHANGE_EARNED"
+}
