@@ -3,7 +3,7 @@
   "id": "EU_REGULATORY_TRUTH_SCAFFOLD_V1",
   "lane": "LANE_3",
   "ownerApprovedDate": "2026-09-25",
-  "state": "SCAFFOLDING_ACTIVE",
+  "state": "PASS",
   "nextGate": "EU_REGULATORY_TRUTH_SCAFFOLD_V1_PASS",
   "purpose": "Build a bounded, audit-only registry of official EU and EFSA regulatory/classification sources without granting runtime or recommendation authority.",
   "boundaries": {
@@ -59,5 +59,12 @@
     "informationalSourcesHaveControllingLawBoundary": true,
     "runtimeImportIsolationTest": true
   },
-  "postGateDisposition": "RESEARCH_READY_FOR_BOUNDED_SOURCE_REVIEW__BEHAVIOR_STILL_SEPARATELY_GATED"
+  "postGateDisposition": "RESEARCH_READY_FOR_BOUNDED_SOURCE_REVIEW__BEHAVIOR_STILL_SEPARATELY_GATED",
+  "terminal": "EU_REGULATORY_TRUTH_SCAFFOLD_V1_PASS",
+  "validation": {
+    "workflow": "Validate public V0",
+    "runNumber": 1106,
+    "runId": 36128087354,
+    "conclusion": "SUCCESS"
+  }
 }
