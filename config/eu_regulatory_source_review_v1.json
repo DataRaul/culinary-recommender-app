@@ -3,7 +3,7 @@
   "id": "EU_REGULATORY_SOURCE_REVIEW_V1",
   "lane": "LANE_3",
   "reviewDate": "2026-09-25",
-  "state": "PASS_CANDIDATE",
+  "state": "PASS",
   "nextGate": "EU_REGULATORY_SOURCE_REVIEW_V1_PASS",
   "sourceScaffold": "config/eu_regulatory_truth_v1.json",
   "purpose": "Verify the seven bounded official EU/EFSA source families, classify their legal/data role, and determine what research use is safe before any behavior contract.",
@@ -129,5 +129,12 @@
     "directRecipeSafetyAuthorityFalseForAll": true,
     "bulkImportAuthorizedFalseForAll": true,
     "zeroRuntimeMutation": true
+  },
+  "terminal": "EU_REGULATORY_SOURCE_REVIEW_V1_PASS",
+  "validation": {
+    "workflow": "Validate public V0",
+    "runNumber": 1109,
+    "runId": 36130093953,
+    "conclusion": "SUCCESS"
   }
 }
