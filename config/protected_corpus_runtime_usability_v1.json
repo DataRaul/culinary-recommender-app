@@ -123,9 +123,22 @@
       "document": "docs/PROTECTED_CORPUS_P1_PRIVATE_BROWSE_SEARCH_V1.md",
       "page": "protected-corpus.html",
       "api": "/api/protected-corpus/v1",
-      "liveOwnerCanary": "PENDING_AUTHENTICATED_OWNER_VERIFICATION",
+      "liveOwnerCanary": "FIRST_ATTEMPT_STOPPED_SAFE_ZERO_INDEXED__D1_PARAMETER_LIMIT_REPAIR_IN_PROGRESS",
       "validationRun": 1093,
-      "validationRunId": 36070083309
+      "validationRunId": 36070083309,
+      "lastLiveAttempt": {
+        "date": "2026-09-25",
+        "indexedRecipeCount": 0,
+        "expectedRecipeCount": 19268,
+        "observedOwnerMessage": "INDEX_BATCH_FAILED",
+        "classification": "STATIC_PROOF_D1_BOUND_PARAMETER_LIMIT_MISMATCH",
+        "originalIndexBatchRecipes": 40,
+        "originalSummaryBoundParameters": 520,
+        "providerMaxBoundParametersPerQuery": 100,
+        "repairedIndexBatchRecipes": 7,
+        "repairedSummaryBoundParameters": 91,
+        "blindRetryAuthorized": false
+      }
     },
     {
       "id": "P2_METADATA_USABILITY_MEASUREMENT",

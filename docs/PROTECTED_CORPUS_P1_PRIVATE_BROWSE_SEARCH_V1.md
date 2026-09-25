@@ -19,7 +19,7 @@ The P1 canary reuses the existing protected corpus rather than creating a new co
 - browse and search return stable recipe IDs and lightweight metadata before any body hydration;
 - detail fetch hydrates one selected body through the already-proven v8018 bounded hydration runtime.
 
-The index build itself is restart-safe and keyset-paginated by recipe ID. Each request handles at most **40** recipes. Browse/search pages return at most **50** recipes.
+The index build itself is restart-safe and keyset-paginated by recipe ID. Each request handles at most **7** recipes. The original 40-row design was corrected after the first live owner attempt exposed Cloudflare D1's 100-bound-parameter/query ceiling: the summary upsert binds 13 values per recipe, so 40 rows would require 520 parameters while 7 rows require 91. Browse/search pages return at most **50** recipes.
 
 ## D1 budget
 
@@ -36,7 +36,7 @@ Maximum planned index-build request:
 7. FTS removal for the bounded ID set: 1;
 8. FTS insertion for the bounded ID set: 1.
 
-Thus the worst planned batch is **8 D1 subqueries/request**, matching the measured target. Any request above 8 fails closed; 16 remains the hard fail-safe and is not spendable headroom.
+Thus the worst planned batch is **8 D1 subqueries/request**, matching the measured target. The per-statement bind ceiling is independently enforced at **100 parameters/query**; the 7-recipe batch keeps the largest summary statement at **91** bound parameters. Any request above 8 fails closed; 16 remains the hard fail-safe and is not spendable headroom.
 
 ## Authentication and privacy
 
@@ -89,3 +89,7 @@ P1 does **not**:
 6. one authenticated owner live canary builds/resumes the compact index until ready, then uses the built-in **Run live verification** action to prove **19,268 / 19,268**, exactly **3** structural partial records, bounded browse/search, detail hydration across both shards, provenance, and live D1 counts at or below 8; the owner copies only the sanitized terminal JSON result.
 
 P1 is not terminal PASS until that live owner canary succeeds.
+
+## Live owner attempt — first-batch failure and repair
+
+The first authenticated production preparation attempt reached the initialized index at **0 / 19,268** and then stopped safely on the first `index-batch` with `INDEX_BATCH_FAILED`; zero recipes were committed. Static reconciliation against the production code and Cloudflare's documented D1 limit found a deterministic contract mismatch: the 40-recipe summary upsert used 13 bound values per recipe (**520** total) while D1 allows **100 bound parameters per query**. The repair reduces index batches to **7 recipes / 91 summary parameters**, preserves the existing <=8 D1 subquery target, and changes the owner page to surface the server-provided failure reason before the generic error label. No blind retry is authorized until the repaired deployment is green.
