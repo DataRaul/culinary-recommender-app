@@ -1,6 +1,6 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
-  "date": "2026-09-24",
+  "date": "2026-09-25",
   "state": "P1_IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
@@ -140,7 +140,7 @@
     },
     {
       "id": "P2_METADATA_USABILITY_MEASUREMENT",
-      "state": "BLOCKED_ON_P1",
+      "state": "LIVE_EXECUTION_BLOCKED_ON_P1__FROZEN_SUMMARY_HARNESS_PREP_ACTIVE",
       "purpose": "Measure which browse/filter dimensions work across v8018 and rank missing metadata by user value and repair leverage."
     },
     {
@@ -180,7 +180,7 @@
   ],
   "brainCalibration": {
     "id": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
-    "state": "ROADMAP_ENCODED_NOT_YET_EXECUTING",
+    "state": "C0_ZERO_D1_PREP_ACTIVE__C1_PROTECTED_EXECUTION_BLOCKED_ON_P1",
     "contract": "config/culinary_brain_corpus_calibration_v1.json",
     "document": "docs/CULINARY_BRAIN_CORPUS_CALIBRATION_V1.md",
     "browseSearchBlocksOnBrain": false,
@@ -189,7 +189,8 @@
     "initialProtectedPilotTarget": 500,
     "fullCorpusRecipeCount": 19268,
     "liveRuntimeDependencyAuthorized": false,
-    "disagreementOutcome": "UNKNOWN_AMBIGUOUS_OR_REVIEW"
+    "disagreementOutcome": "UNKNOWN_AMBIGUOUS_OR_REVIEW",
+    "preP1PreparationAuthorized": true
   },
   "completedTransitions": [
     {
@@ -208,5 +209,28 @@
       "state": "PASS",
       "evidence": "CANONICAL_GENERATED_BASELINE_MATCH"
     }
-  ]
+  ],
+  "quotaGapParallelPrep": {
+    "state": "AUTHORIZED_ACTIVE",
+    "ownerApprovedDate": "2026-09-25",
+    "contract": "config/culinary_quota_gap_parallel_prep_v1.json",
+    "document": "docs/CULINARY_QUOTA_GAP_PARALLEL_PREP_V1.md",
+    "allowedNow": [
+      "C0_GOLDEN_85_LOCAL_CALIBRATION_HARNESS",
+      "P2_METADATA_USABILITY_HARNESS_FROM_FROZEN_SUMMARIES",
+      "C1_STRATIFIED_COHORT_QUOTA_PLAN"
+    ],
+    "stillBlockedUntilP1Pass": [
+      "C1_EXACT_PROTECTED_RECIPE_ID_SELECTION_AND_EXECUTION",
+      "P2_LIVE_FULL_V8018_MEASUREMENT",
+      "C2_FROZEN_FULL_V8018_CLASSIFICATION",
+      "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION"
+    ],
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedBodyReadOrExportAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "publicOrRecommendationWideningAuthorized": false,
+    "barbecueMutationAuthorized": false
+  }
 }
