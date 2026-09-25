@@ -1,6 +1,6 @@
 # EU Allergen Behavior P0 Design Contract
 
-State: **DESIGN PASS CANDIDATE — ACTIVATION NOT AUTHORIZED**  
+State: **EU_ALLERGEN_BEHAVIOR_P0_DESIGN_PASS — ACTIVATION NOT AUTHORIZED**  
 Lane: **Lane 3 — EU regulatory truth**  
 Date: **2026-09-25**  
 Upstream: `EU_REGULATORY_ALLERGEN_GAP_AUDIT_V1_PASS`
@@ -75,3 +75,7 @@ The future implementation gate is:
 `EU_ALLERGEN_CELERY_P0_ACTIVATION — BLOCKED_PENDING_OWNER_AUTHORIZATION`.
 
 All existing Lane 3 isolation remains: zero protected D1, zero protected-body access, zero NutritionSource authority change, zero Knowledge Core write, zero Barbecue mutation and zero paid infrastructure/API change.
+
+## Validation closeout
+
+Validate public V0 **#1114 / 36130630459** completed **SUCCESS**, including deterministic/unit validation and Chromium browser acceptance. This validates the design and non-activation guard only; no celery allergen behavior has been enabled.
