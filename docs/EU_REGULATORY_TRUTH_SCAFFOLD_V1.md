@@ -1,9 +1,9 @@
 # EU Regulatory Truth Scaffold V1
 
-State: **SCAFFOLDING ACTIVE**  
+State: **EU_REGULATORY_TRUTH_SCAFFOLD_V1_PASS**  
 Owner-authorized lane: **Lane 3**  
 Date: **2026-09-25**  
-Next gate: **EU_REGULATORY_TRUTH_SCAFFOLD_V1_PASS**
+Gate: **EU_REGULATORY_TRUTH_SCAFFOLD_V1_PASS — EARNED**
 
 ## Objective
 
@@ -74,3 +74,9 @@ This is mandatory because registers, Union lists and consolidated legal texts ca
 8. no D1, recommendation, Knowledge Core, Barbecue, billing or public-runtime mutation.
 
 Passing this gate only authorizes a later **bounded source-review/research** step. Any mapping from regulatory evidence into allergen handling, safety constraints, claims display, ingredient eligibility, recommendation logic or other product behavior remains a separate explicit behavior contract and gate.
+
+## Gate closeout — PASS
+
+Validate public V0 run **#1106 / 36128087354** completed **SUCCESS**. Static/unit validation, the new Lane 3 isolation tests and Chromium browser acceptance all passed. Production public-runtime smoke was skipped by the existing PR workflow policy; no public/runtime code was changed.
+
+The earned successor state is `RESEARCH_READY_FOR_BOUNDED_SOURCE_REVIEW__BEHAVIOR_STILL_SEPARATELY_GATED`. The registry remains non-runtime and no D1, protected-corpus, recommendation, NutritionSource, Knowledge Core, Barbecue, billing or public behavior authority has been added.
