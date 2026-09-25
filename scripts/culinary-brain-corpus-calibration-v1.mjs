@@ -12,6 +12,14 @@ export function validateCulinaryBrainCorpusCalibration(config) {
   if (config.executionRelationship?.goldenCalibrationRecipeCount !== 85) errors.push("golden calibration count must remain 85");
   if (config.executionRelationship?.initialProtectedPilotTarget !== 500) errors.push("protected pilot target must remain 500");
   if (config.executionRelationship?.fullCorpus?.version !== "v8018" || config.executionRelationship?.fullCorpus?.recipeCount !== 19268) errors.push("full corpus must remain v8018 / 19268");
+  if (config.executionRelationship?.c0PreparationCanRunDuringP1QuotaHold !== true) errors.push("C0 preparation must be allowed during the P1 quota hold");
+  if (config.executionRelationship?.c1ProtectedExecutionRequiresP1TerminalPass !== true) errors.push("C1 protected execution must remain gated on P1 terminal pass");
+  const prep = config.preP1Preparation || {};
+  if (prep.state !== "AUTHORIZED_ACTIVE") errors.push("pre-P1 zero-D1 preparation must be explicitly authorized");
+  for (const key of ["protectedD1ReadsAuthorized","protectedD1WritesAuthorized","protectedBodiesReadOrExportAuthorized","knowledgeCoreWriteAuthorized"]) {
+    if (prep[key] !== false) errors.push(`preP1Preparation.${key} must remain false`);
+  }
+  if ((prep.blocked || []).includes("C1_EXACT_PROTECTED_RECIPE_ID_SELECTION_AND_EXECUTION") !== true) errors.push("C1 exact protected selection must remain blocked before P1 pass");
   if (config.noMajorityVote !== true || config.disagreementOutcome !== "UNKNOWN_AMBIGUOUS_OR_REVIEW") errors.push("disagreement must fail closed rather than vote");
 
   const never = new Set(config.neverGrantedByBrainOrModelAlone || []);
