@@ -93,3 +93,12 @@ P1 is not terminal PASS until that live owner canary succeeds.
 ## Live owner attempt — first-batch failure and repair
 
 The first authenticated production preparation attempt reached the initialized index at **0 / 19,268** and then stopped safely on the first `index-batch` with `INDEX_BATCH_FAILED`; zero recipes were committed. Static reconciliation against the production code and Cloudflare's documented D1 limit found a deterministic contract mismatch: the 40-recipe summary upsert used 13 bound values per recipe (**520** total) while D1 allows **100 bound parameters per query**. The repair reduces index batches to **7 recipes / 91 summary parameters**, preserves the existing <=8 D1 subquery target, and changes the owner page to surface the server-provided failure reason before the generic error label. No blind retry is authorized until the repaired deployment is green.
+
+
+## Live owner attempt — free-tier daily D1 quota hold
+
+The changed-variable owner retry after PR #311 progressed from **0** to approximately **13k / 19,268** indexed recipes before Cloudflare returned a non-JSON provider-limit response. This proves the 100-bound-parameter repair worked and that committed keyset progress is durable.
+
+Current Cloudflare D1 Workers Free limits are **100,000 rows written/day** and **5,000,000 rows read/day**, reset at **00:00 UTC**. D1 counts index writes as rows written, and Cloudflare explicitly notes that FTS5 increases write cost. Therefore the initial full FTS build is treated as a **restart-safe multi-quota-day canary**, not as a one-day requirement.
+
+The repair records exact `meta.rows_written` from every successful D1 batch, surfaces it in the owner UI, and installs an **80,000 browser-observed row-write safety guard** per UTC day. The guard intentionally leaves headroom for authentication/control activity and other D1 work. A provider daily-limit response is classified as a quota hold, not a corpus/runtime defect. No blind same-day retry is authorized. Committed recipes are never rebuilt; the next eligible run resumes from the last indexed recipe ID.
