@@ -1,6 +1,6 @@
 # EU Allergen Residual Semantics Audit V1
 
-State: **CANDIDATE — ZERO-RUNTIME AUDIT**  
+State: **PASS — ZERO-RUNTIME AUDIT / NO RUNTIME CHANGE EARNED**  
 Lane: **Lane 3 — EU regulatory truth**  
 Date: **2026-09-25**
 
@@ -63,6 +63,6 @@ This is a research/audit gate only:
 - 0 Barbecue mutations;
 - 0 paid infrastructure/API changes.
 
-Candidate terminal after CI: **EU_ALLERGEN_RESIDUAL_SEMANTICS_AUDIT_V1_PASS__NO_RUNTIME_CHANGE_EARNED**.
+Terminal: **EU_ALLERGEN_RESIDUAL_SEMANTICS_AUDIT_V1_PASS__NO_RUNTIME_CHANGE_EARNED**.\n\nValidation: Validate public V0 **#1128 / 36174477005 SUCCESS**, including static/unit validation and full Chromium browser acceptance.
 
 No successor activation is implied. A future Lane 3 gate should be triggered by a new canonical ontology need or by a separately designed threshold-aware evidence schema.
