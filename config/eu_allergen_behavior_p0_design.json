@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "EU_ALLERGEN_BEHAVIOR_P0_DESIGN_CONTRACT",
+  "lane": "LANE_3",
+  "designDate": "2026-09-25",
+  "state": "DESIGN_PASS_CANDIDATE",
+  "sourceAudit": "config/eu_regulatory_allergen_gap_audit_v1.json",
+  "legalSource": {
+    "instrument": "Regulation (EU) No 1169/2011",
+    "scope": "Annex II allergen category mapping",
+    "currentConsolidatedSnapshot": "2025-04-01",
+    "reverifyBeforeActivation": true
+  },
+  "objective": "Define the smallest fail-closed behavior change that can close the material current celery allergen gap without silently broadening unsupported EU allergen semantics.",
+  "activation": {
+    "authorized": false,
+    "ownerAuthorizationRequired": true,
+    "reason": "Adding a new declared-allergen hard filter changes recommendation eligibility and substitution safety behavior."
+  },
+  "p0Scope": {
+    "newRuntimeAllergenTokens": ["celery"],
+    "canonicalIngredientChanges": [
+      {
+        "ingredientId": "celery",
+        "fromAllergens": [],
+        "toAllergens": ["celery"]
+      }
+    ],
+    "publicRecipeMetadataChanges": [
+      {
+        "recipeId": "med_pumpkin_white_bean_barley_stew",
+        "requiredAllergenAddition": "celery",
+        "reason": "Recipe contains canonical celery and current declared-allergen metadata omits the Annex II category."
+      }
+    ],
+    "profileUiChanges": [
+      {
+        "token": "celery",
+        "label": "Celery"
+      }
+    ],
+    "storageSchemaBumpRequired": false,
+    "whyNoSchemaBump": "Profile allergens are already stored as extensible string tokens and normalization preserves well-formed unknown tokens."
+  },
+  "deferredCategories": [
+    {
+      "category": "MUSTARD",
+      "reason": "No canonical mustard ingredient exists; do not create safety behavior without exact ingredient identity and corpus need."
+    },
+    {
+      "category": "LUPIN",
+      "reason": "No canonical lupin ingredient exists; do not create safety behavior without exact ingredient identity and corpus need."
+    },
+    {
+      "category": "MOLLUSCS",
+      "reason": "No canonical mollusc ingredient exists; do not create safety behavior without exact ingredient identity and corpus need."
+    },
+    {
+      "category": "SULPHUR_DIOXIDE_AND_SULPHITES",
+      "reason": "Annex II uses a concentration threshold; a simple boolean ingredient tag is insufficient without quantity/concentration evidence semantics."
+    }
+  ],
+  "knownResidualGapsAfterP0": [
+    "TREE_NUT_CATEGORY_TOKEN_PRESENT_BUT_CANONICAL_SPECIES_COVERAGE_PARTIAL",
+    "CEREALS_CONTAINING_GLUTEN_AGGREGATE_TOKEN_DOES_NOT_MODEL_EVERY_NAMED_CEREAL_OR_EXCEPTION",
+    "MUSTARD_LUPIN_MOLLUSCS_NOT_YET_IN_CANONICAL_INGREDIENT_ONTOLOGY",
+    "SULPHITES_REQUIRE_THRESHOLD_AWARE_EVIDENCE"
+  ],
+  "requiredImplementationInvariants": [
+    "DECLARED_ALLERGEN_FILTER_REMAINS_HARD_AND_PRE_SCORE",
+    "SUBSTITUTION_CANDIDATES_WITH_CELERY_MUST_BE_BLOCKED_WHEN_PROFILE_DECLares_CELERY",
+    "PUBLIC_RECIPE_DECLARED_ALLERGENS_MUST_BE_SUPERSET_OF_CANONICAL_INGREDIENT_ALLERGEN_UNION",
+    "UNKNOWN_PROFILE_ALLERGEN_TOKENS_REMAIN_PRESERVED",
+    "CROSS_CONTAMINATION_DISCLAIMER_REMAINS",
+    "NO_MEDICAL_OR_DIAGNOSTIC_CLAIMS"
+  ],
+  "requiredAcceptance": [
+    "STATIC_AND_UNIT_VALIDATION",
+    "PROFILE_UI_CELERY_CHECKBOX_PERSISTS",
+    "CELERY_HARD_FILTER_BLOCKS_THE_KNOWN_CELERY_RECIPE",
+    "FISH_AND_EXISTING_ALLERGEN_BROWSER_ACCEPTANCE_STILL_PASSES",
+    "SUBSTITUTION_SAFETY_REGRESSION_PASS",
+    "FULL_CHROMIUM_BROWSER_ACCEPTANCE"
+  ],
+  "hardBoundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedRecipeBodyAccess": 0,
+    "nutritionCompositionAuthorityChanges": 0,
+    "knowledgeCoreWrites": 0,
+    "barbecueMutations": 0,
+    "paidInfrastructureOrApiChanges": 0
+  },
+  "implementationGate": "EU_ALLERGEN_CELERY_P0_ACTIVATION",
+  "implementationGateState": "BLOCKED_PENDING_OWNER_AUTHORIZATION"
+}
