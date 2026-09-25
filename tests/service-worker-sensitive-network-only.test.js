@@ -5,7 +5,7 @@ import { readFileSync } from "node:fs";
 const sw = readFileSync(new URL("../sw.js", import.meta.url), "utf8");
 
 test("service worker never Cache-Storages API/auth/protected runtime traffic", () => {
-  assert.match(sw, /const CACHE = "culinary-recommender-v1-1-5-fitness-integration-p0"/);
+  assert.match(sw, /const CACHE = "culinary-recommender-v1-1-6-eu-celery-allergen-p0"/);
   assert.match(sw, /"\/api\/"/);
   assert.match(sw, /"\/src\/data\/external\/generated\/forkrecipe-step7e-live\/"/);
   assert.match(sw, /"\/auth-canary\.html"/);
