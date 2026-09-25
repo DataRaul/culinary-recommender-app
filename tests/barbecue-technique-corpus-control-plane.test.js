@@ -133,6 +133,7 @@ test("successful query ids are not selected twice and fallback waits for champio
     projectAuthoredRationale: "Independent credential review did not verify championship or sufficient domain competence."
   });
   assert.equal(state.leaves[0].championshipSearchExhausted, true);
+  assert.equal(state.leaves[0].status, "DISCOVERY_PENDING");
   const fallback = buildBarbecueQueryPortfolio(config, state).filter(row => row.leafId === target.leafId);
   assert.ok(fallback.length > 0);
   assert.equal(fallback.every(row => row.queryClass === "SPECIALIST_FALLBACK_DISCOVERY"), true);
