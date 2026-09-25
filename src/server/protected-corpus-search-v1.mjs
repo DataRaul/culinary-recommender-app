@@ -12,6 +12,8 @@ export const PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW = 13;
 export const PROTECTED_SEARCH_INDEX_BATCH_SIZE = Math.floor(PROTECTED_SEARCH_MAX_BOUND_PARAMETERS / PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW);
 export const PROTECTED_SEARCH_TARGET_MAX_D1 = 8;
 export const PROTECTED_SEARCH_HARD_MAX_D1 = 16;
+export const PROTECTED_SEARCH_FREE_DAILY_ROWS_WRITTEN = 100000;
+export const PROTECTED_SEARCH_BROWSER_DAILY_WRITE_GUARD = 80000;
 
 const ALLOWED_BODY_VERSIONS = new Set(Array.from({ length: 18 }, (_, index) => `v${8001 + index}`));
 const encoder = new TextEncoder();
@@ -275,8 +277,12 @@ async function verifyAndProject(routes, bodiesById) {
   return rows;
 }
 
+export function d1RowsWritten(results) {
+  return (Array.isArray(results) ? results : []).reduce((total, result) => total + Number(result?.meta?.rows_written || 0), 0);
+}
+
 async function writeIndexRows(controlDb, rows) {
-  if (!rows.length) return { pass: true, d1Subqueries: 0 };
+  if (!rows.length) return { pass: true, d1Subqueries: 0, rowsWritten: 0 };
   if (rows.length > PROTECTED_SEARCH_INDEX_BATCH_SIZE) throw new Error("PROTECTED_INDEX_BATCH_EXCEEDS_D1_PARAMETER_LIMIT");
   const summaryValues = rows.map(() => "(?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP)").join(",");
   const summaryArgs = rows.flatMap(row => [
@@ -307,8 +313,8 @@ async function writeIndexRows(controlDb, rows) {
     controlDb.prepare(`DELETE FROM ${PROTECTED_SEARCH_FTS_TABLE} WHERE recipe_id IN (${ids.map(() => "?").join(",")})`).bind(...ids),
     controlDb.prepare(`INSERT INTO ${PROTECTED_SEARCH_FTS_TABLE} (recipe_id,title,source_work,source_author) VALUES ${ftsValues}`).bind(...ftsArgs)
   ];
-  await controlDb.batch(statements);
-  return { pass: true, d1Subqueries: statements.length };
+  const results = await controlDb.batch(statements);
+  return { pass: true, d1Subqueries: statements.length, rowsWritten: d1RowsWritten(results) };
 }
 
 export async function indexProtectedCorpusBatch(controlDb, shardDbs, cursor = "") {
@@ -352,6 +358,7 @@ export async function indexProtectedCorpusBatch(controlDb, shardDbs, cursor = ""
     nextCursor: rows.at(-1)?.recipeId || String(cursor || ""),
     done: rows.length < PROTECTED_SEARCH_INDEX_BATCH_SIZE,
     d1Subqueries: q,
+    rowsWritten: Number(written.rowsWritten || 0),
     fullCorpusScans: 0
   };
 }
