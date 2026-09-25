@@ -286,9 +286,9 @@ Useful cross-national harmonisation, but membership/pay-per-view and underlying 
 
 EFSA and European Commission sources answer legal, classification and safety questions rather than interchangeable nutrient-composition questions.
 
-Relevant future sources include EFSA FoodEx2, the EU Register of nutrition and health claims, pesticide MRLs, additive authorisations, allergen rules, novel foods, reference-intake/labelling rules and contaminants.
+Owner-authorized Lane 3 now provides the audit-only V1 scaffold in `docs/EU_REGULATORY_TRUTH_SCAFFOLD_V1.md`, `config/eu_regulatory_truth_v1.json` and `src/data/eu-regulatory-evidence-sources-v1.js`. The bounded registry covers FoodEx2, claims, pesticide MRL reference data, additives, allergen/food-information law, novel foods and contaminants while preserving classification-vs-information-vs-legal-text semantics.
 
-These may enter a separate `RegulatoryEvidenceSource` or public-safe distilled artifact. They must not be converted into composition values or silently change recommendation behavior without a future explicit product/safety contract.
+This scaffold performs no runtime fetch or dataset import and grants no recommendation, NutritionSource composition, allergen/safety or public behavior authority. Any such use requires a later explicit behavior contract and fresh official-source verification.
 
 ## Standing evidence rules
 
