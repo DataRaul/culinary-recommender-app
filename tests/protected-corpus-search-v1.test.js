@@ -5,7 +5,9 @@ import { readFileSync } from "node:fs";
 import {
   PROTECTED_SEARCH_EXPECTED_COUNT,
   PROTECTED_SEARCH_INDEX_BATCH_SIZE,
+  PROTECTED_SEARCH_MAX_BOUND_PARAMETERS,
   PROTECTED_SEARCH_MAX_PAGE_SIZE,
+  PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW,
   PROTECTED_SEARCH_TARGET_MAX_D1,
   boundedPageSize,
   normalizeProtectedSearchQuery,
@@ -111,7 +113,11 @@ test("P1 search query is bounded FTS syntax and page sizes stay bounded", () => 
   assert.equal(normalizeProtectedSearchQuery("!!!"), null);
   assert.equal(boundedPageSize(999), PROTECTED_SEARCH_MAX_PAGE_SIZE);
   assert.equal(boundedPageSize(0), 24);
-  assert.equal(PROTECTED_SEARCH_INDEX_BATCH_SIZE, 40);
+  assert.equal(PROTECTED_SEARCH_MAX_BOUND_PARAMETERS, 100);
+  assert.equal(PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW, 13);
+  assert.equal(PROTECTED_SEARCH_INDEX_BATCH_SIZE, 7);
+  assert.ok(PROTECTED_SEARCH_INDEX_BATCH_SIZE * PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW <= PROTECTED_SEARCH_MAX_BOUND_PARAMETERS);
+  assert.ok((PROTECTED_SEARCH_INDEX_BATCH_SIZE + 1) * PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW > PROTECTED_SEARCH_MAX_BOUND_PARAMETERS);
   assert.equal(PROTECTED_SEARCH_EXPECTED_COUNT, 19268);
   assert.equal(PROTECTED_SEARCH_TARGET_MAX_D1, 8);
 });
@@ -181,6 +187,7 @@ test("P1 owner browser is network-only and explicitly communicates protected-onl
   assert.match(html, /\/api\/auth\/session/);
   assert.match(html, /\/api\/protected-corpus\/v1/);
   assert.match(html, /metrics\?\.d1Subqueries > 8/);
+  assert.match(html, /batch\.reason \|\| batch\.error/);
   assert.match(html, /PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS/);
   assert.match(html, /unitools:risotto-alla-milanese/);
   assert.match(html, /unitools:spaghetti-carbonara/);
