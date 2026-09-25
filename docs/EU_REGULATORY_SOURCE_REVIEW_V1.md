@@ -1,6 +1,6 @@
 # EU Regulatory Source Review V1
 
-State: **PASS CANDIDATE**  
+State: **PASS**  
 Lane: **Lane 3 — EU regulatory truth**  
 Date: **2026-09-25**  
 Target gate: **EU_REGULATORY_SOURCE_REVIEW_V1_PASS**
@@ -78,3 +78,7 @@ The review earns `EU_REGULATORY_SOURCE_REVIEW_V1_PASS` only if:
 - every source remains `directRecipeSafetyAuthority:false`;
 - every source remains `bulkImportAuthorized:false`;
 - D1, protected corpus, public runtime, Knowledge Core, Barbecue and billing remain untouched.
+
+## Validation closeout
+
+Validate public V0 **#1109 / 36130093953** completed **SUCCESS**, including deterministic tests and Chromium browser acceptance. This closeout grants no runtime behavior authority.
