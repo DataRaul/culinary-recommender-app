@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "CULINARY_QUOTA_GAP_PARALLEL_PREP_V1",
+  "date": "2026-09-25",
+  "state": "AUTHORIZED_ACTIVE",
+  "ownerApproval": "OWNER_EXPLICIT_APPROVAL_2026_09_25",
+  "sourceMainSha": "083510c3cafdfcc011af22d10347dece8fb3f812",
+  "objective": "USE_P1_PROVIDER_QUOTA_HOLD_FOR_ZERO_D1_C0_P2_C1_PREPARATION_WITHOUT_WEAKENING_P1",
+  "frozenInputs": {
+    "publicRuntimeModule": "src/data/corpus-v1.js",
+    "expectedPublicRuntimeRecipeCount": 85,
+    "protectedMappingSummary": "data/generated/corpus-normalization-mapping-v1.json",
+    "expectedProtectedCorpusVersion": "v8018",
+    "expectedProtectedRecipeCount": 19268
+  },
+  "allowedNow": [
+    "C0_GOLDEN_85_LOCAL_CALIBRATION_HARNESS",
+    "P2_METADATA_USABILITY_HARNESS_FROM_FROZEN_SUMMARIES",
+    "C1_STRATIFICATION_METHODOLOGY_AND_SOURCE_COHORT_QUOTAS"
+  ],
+  "p2DimensionPriority": [
+    "mealRoles",
+    "dishCategory",
+    "culinaryTradition",
+    "techniqueFamilies",
+    "totalMinutes",
+    "difficulty",
+    "servings",
+    "geographyCountry",
+    "geographyRegion",
+    "prepMinutes",
+    "cookMinutes",
+    "reviewedDietaryTags"
+  ],
+  "c1": {
+    "targetRecipeCount": 500,
+    "primaryStratum": "SOURCE_COHORT",
+    "minimumPerSourceCohort": 1,
+    "quotaMethod": "MINIMUM_ONE_THEN_LARGEST_REMAINDER_PROPORTIONAL_TO_FROZEN_COHORT_COUNT",
+    "secondaryAxesToApplyAfterP1": [
+      "INGREDIENT_IDENTITY_READINESS",
+      "KNOWN_VS_UNKNOWN_METADATA",
+      "DISH_CATEGORY_AND_MEAL_ROLE_DIVERSITY",
+      "HISTORICAL_VS_MODERN_SOURCE_CONTEXT_WHERE_AVAILABLE",
+      "STRUCTURAL_EXCEPTION_BOUNDARIES"
+    ],
+    "exactProtectedRecipeIdsMayBeSelectedBeforeP1Pass": false
+  },
+  "blockedUntilP1TerminalPass": [
+    "C1_EXACT_PROTECTED_RECIPE_ID_SELECTION_AND_EXECUTION",
+    "P2_LIVE_FULL_V8018_RUNTIME_MEASUREMENT",
+    "C2_FROZEN_FULL_V8018_CLASSIFICATION",
+    "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION"
+  ],
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesReadOrExported": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationBehaviorChanged": false,
+    "recommendationAuthorityWidened": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidInfrastructureAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  }
+}
