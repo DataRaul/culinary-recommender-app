@@ -3,7 +3,7 @@
   "id": "EU_ALLERGEN_BEHAVIOR_P0_DESIGN_CONTRACT",
   "lane": "LANE_3",
   "designDate": "2026-09-25",
-  "state": "DESIGN_PASS_CANDIDATE",
+  "state": "PASS",
   "sourceAudit": "config/eu_regulatory_allergen_gap_audit_v1.json",
   "legalSource": {
     "instrument": "Regulation (EU) No 1169/2011",
@@ -18,12 +18,16 @@
     "reason": "Adding a new declared-allergen hard filter changes recommendation eligibility and substitution safety behavior."
   },
   "p0Scope": {
-    "newRuntimeAllergenTokens": ["celery"],
+    "newRuntimeAllergenTokens": [
+      "celery"
+    ],
     "canonicalIngredientChanges": [
       {
         "ingredientId": "celery",
         "fromAllergens": [],
-        "toAllergens": ["celery"]
+        "toAllergens": [
+          "celery"
+        ]
       }
     ],
     "publicRecipeMetadataChanges": [
@@ -92,5 +96,12 @@
     "paidInfrastructureOrApiChanges": 0
   },
   "implementationGate": "EU_ALLERGEN_CELERY_P0_ACTIVATION",
-  "implementationGateState": "BLOCKED_PENDING_OWNER_AUTHORIZATION"
+  "implementationGateState": "BLOCKED_PENDING_OWNER_AUTHORIZATION",
+  "terminal": "EU_ALLERGEN_BEHAVIOR_P0_DESIGN_PASS",
+  "validation": {
+    "workflow": "Validate public V0",
+    "runNumber": 1114,
+    "runId": 36130630459,
+    "conclusion": "SUCCESS"
+  }
 }
