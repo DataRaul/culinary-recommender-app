@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "id": "EU_REGULATORY_TRUTH_SCAFFOLD_V1",
+  "lane": "LANE_3",
+  "ownerApprovedDate": "2026-09-25",
+  "state": "PASS",
+  "nextGate": "EU_REGULATORY_TRUTH_SCAFFOLD_V1_PASS",
+  "purpose": "Build a bounded, audit-only registry of official EU and EFSA regulatory/classification sources without granting runtime or recommendation authority.",
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedRecipeBodyReads": 0,
+    "protectedRecipeBodyExports": 0,
+    "recommendationAuthorityChanges": 0,
+    "nutritionCompositionAuthorityChanges": 0,
+    "publicRuntimeBehaviorChanges": 0,
+    "knowledgeCoreWrites": 0,
+    "barbecueMutations": 0,
+    "paidInfrastructureOrApiChanges": 0
+  },
+  "allowed": [
+    "OFFICIAL_SOURCE_VERIFICATION",
+    "SOURCE_ROLE_AND_LEGAL_WEIGHT_METADATA",
+    "STATIC_REGULATORY_EVIDENCE_SCAFFOLD",
+    "DETERMINISTIC_ISOLATION_TESTS",
+    "AUDIT_ONLY_DOCUMENTATION"
+  ],
+  "prohibited": [
+    "PROTECTED_D1_ACCESS",
+    "PROTECTED_RECIPE_BODY_ACCESS_OR_EXPORT",
+    "AUTOMATIC_RECOMMENDATION_OR_RANKING_CHANGE",
+    "NUTRITIONSOURCE_COMPOSITION_PROMOTION",
+    "AUTOMATIC_ALLERGEN_OR_SAFETY_BEHAVIOR_CHANGE",
+    "PUBLIC_RUNTIME_IMPORT_OR_FETCH",
+    "KNOWLEDGE_CORE_WRITE",
+    "BARBECUE_WORKFLOW_QUOTA_OR_STATE_MUTATION",
+    "PAID_SERVICE_OR_LICENSING_COMMITMENT"
+  ],
+  "sourceRegistryModule": "src/data/eu-regulatory-evidence-sources-v1.js",
+  "requiredSourceIds": [
+    "efsa-foodex2",
+    "ec-eu-health-claims-register",
+    "ec-eu-pesticides-database",
+    "ec-food-additives-database",
+    "eurlex-food-information-allergens-1169-2011",
+    "ec-union-list-novel-foods",
+    "eurlex-contaminants-2023-915"
+  ],
+  "gateRequirements": {
+    "officialSourceFamilies": 7,
+    "authorityRecorded": true,
+    "canonicalUrlRecorded": true,
+    "sourceRoleRecorded": true,
+    "legalWeightRecorded": true,
+    "currentnessPolicyRecorded": true,
+    "runtimeFetchFalse": true,
+    "datasetImportFalse": true,
+    "appBehaviorAuthorityFalse": true,
+    "informationalSourcesHaveControllingLawBoundary": true,
+    "runtimeImportIsolationTest": true
+  },
+  "postGateDisposition": "RESEARCH_READY_FOR_BOUNDED_SOURCE_REVIEW__BEHAVIOR_STILL_SEPARATELY_GATED",
+  "terminal": "EU_REGULATORY_TRUTH_SCAFFOLD_V1_PASS",
+  "validation": {
+    "workflow": "Validate public V0",
+    "runNumber": 1106,
+    "runId": 36128087354,
+    "conclusion": "SUCCESS"
+  }
+}

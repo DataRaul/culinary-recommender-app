@@ -182,9 +182,11 @@ Useful for cross-national harmonisation/comparison but may require membership/pa
 
 EFSA/EU sources answer different questions from composition and portion tables.
 
-Potential future sources include EFSA FoodEx2, the EU Register of nutrition and health claims, pesticide MRLs, food-additive authorisations, allergen rules, novel-food authorisations, reference-intake/labelling rules and contaminants.
+Lane 3 is now owner-authorized for **research / zero-runtime-authority scaffolding**. The canonical V1 scaffold is `docs/EU_REGULATORY_TRUTH_SCAFFOLD_V1.md` with machine contract `config/eu_regulatory_truth_v1.json` and static official-source registry `src/data/eu-regulatory-evidence-sources-v1.js`.
 
-These belong in a separate `RegulatoryEvidenceSource` or public-safe distilled artifact. Research/scaffolding is allowed, but regulatory data must not silently alter recommendation behavior or be converted into composition measurements without a future explicit product/safety contract.
+The bounded registry covers EFSA FoodEx2, the EU Register of nutrition and health claims, the EU Pesticides Database, the Commission food-additives database, Regulation (EU) No 1169/2011 / Annex II allergen rules, the Union list of novel foods and Regulation (EU) 2023/915 contaminants. It preserves whether a surface is classification-only, informational, or controlling legal text and requires official-source re-verification before substantive use.
+
+The registry remains audit-only: `runtimeFetch:false`, `datasetImport:false` and `appBehaviorAuthority:false`. Regulatory data must not silently alter recommendation behavior, allergen/safety handling or composition measurements without a future explicit product/safety contract.
 
 ## 8. Standing European evidence rules
 

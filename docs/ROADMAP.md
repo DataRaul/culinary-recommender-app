@@ -46,11 +46,46 @@
 | V1.x / Further Product Features | D5 FITNESS P0 ADAPTER PROTOTYPE PASS / BEHAVIOR DEFERRED | Validate public V0 #1080 passed deterministic + Chromium browser acceptance. User-selected workout backup is minimized to schema + goal/days/session-minutes/weekdays only after explicit save; sensitive/unknown fields cannot cross the adapter boundary; no fitness-derived ranking, calorie/TDEE, nutrition/supplement or medical behavior. Further D5 behavior is deferred |
 | V1.x / Protected Corpus Runtime Usability V1 | P1 LIVE BUILD PARTIAL / FREE-TIER D1 DAILY QUOTA HOLD / ZERO-D1 PREP ACTIVE | PR #312 merged the provider-limit reconciliation, per-batch `meta.rows_written` telemetry and 80k observed-write guard after the restart-safe index reached approximately 13k/19,268. Partial index state is preserved. While the live P1 continuation waits for a fresh provider quota day, owner-approved zero-D1 parallel preparation may run: C0 Golden-85 harness, P2 metadata-usability harness from frozen summaries, and C1 stratification design. Terminal P1 still requires exact 19,268/19,268, exactly 3 structural partials, browse/search, both shards, provenance and <=8 D1/request; no public/recommendation widening |
 | V1.x / Culinary Brain Corpus Calibration V1 | C0 ZERO-D1 PREP PASS / C1 PROTECTED EXECUTION BLOCKED ON P1 | Owner-approved quota-gap split: exercise the 85-recipe Golden-set harness now, build P2 measurement logic from frozen v8018 summaries, and freeze the C1 cohort-quota methodology without protected recipe selection. Exact ~500 protected selection/execution still waits for P1 terminal acceptance. No live KC/LLM runtime, no majority vote, no hard-safety/nutrition/admission authority from Brain inference alone |
-| V1.x / EU regulatory truth lane | RESEARCH / SCAFFOLDING_ALLOWED | classification/regulatory evidence remains separate and audit-only until a future behavior contract |
+| V1.x / EU regulatory truth lane | LANE 3 / SCAFFOLD V1 PASS / BOUNDED SOURCE REVIEW READY / NO-BEHAVIOR AUTHORITY | PR #315 candidate earned `EU_REGULATORY_TRUTH_SCAFFOLD_V1_PASS` in Validate public V0 #1106: seven official EU/EFSA source families registered with legal-weight/currentness semantics, zero runtime imports and explicit 0-D1 / no-recommendation / no-Barbecue isolation. Successor research may review bounded source content; any behavior integration remains separately gated |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
 | Post-usable-app / Barbecue Technique Corpus | CONTROL PLANE VALIDATION PASS / SCHEDULED PILOT ACTIVE / FIRST ACQUISITION PENDING | PR #288 merged green; bounded five-leaf world-champion-first scheduler is active; generic YT-CUL cron retired; five-source conventional-barbecue synthesis contract unchanged |
 
 
+
+## 2026-09-25 owner-approved Lane 3 — EU regulatory truth / scaffolding
+
+The owner explicitly authorized the EU regulatory truth lane as a third independent lane during the protected-D1 quota hold.
+
+Lane 3 may advance only through **research and zero-runtime-authority scaffolding**:
+
+```text
+official EU / EFSA source verification
+-> source-role + legal-weight registry
+-> RegulatoryEvidenceSource-shaped static scaffold
+-> deterministic isolation tests
+-> EU_REGULATORY_TRUTH_SCAFFOLD_V1_PASS
+```
+
+Lane isolation is mandatory:
+
+- protected D1 reads/writes: **0 / 0**;
+- protected recipe-body reads/exports/rewrites: **0**;
+- recommendation/ranking/planner authority changes: **0**;
+- NutritionSource composition authority changes: **0**;
+- public/runtime behavior changes: **0**;
+- Knowledge Core writes: **0**;
+- Barbecue workflow, quota, generated state and source acquisition changes: **0**;
+- paid infrastructure/API/licensing changes: **0**.
+
+The scaffold must preserve the distinction between **classification references**, **informational Commission databases/registers**, and **controlling legal texts**. Informational databases must never be treated as controlling law where the source itself disclaims legal value. Every source is reverified before substantive regulatory use because legal acts and registers can change.
+
+The scaffold gate is earned only when the canonical source registry contains bounded official EU/EFSA source families for FoodEx2 classification, nutrition/health claims, pesticide MRLs, food additives, allergen/food-information rules, novel foods and contaminants; every entry must retain authority, URL, source role, legal-weight semantics, currentness policy and explicit no-runtime/no-behavior flags.
+
+Canonical contract: `config/eu_regulatory_truth_v1.json`.
+Static source registry: `src/data/eu-regulatory-evidence-sources-v1.js`.
+Canonical lane document: `docs/EU_REGULATORY_TRUTH_SCAFFOLD_V1.md`.
+
+Gate closeout: **EU_REGULATORY_TRUTH_SCAFFOLD_V1_PASS** earned in Validate public V0 **#1106 / 36128087354 SUCCESS**. Successor state: `RESEARCH_READY_FOR_BOUNDED_SOURCE_REVIEW__BEHAVIOR_STILL_SEPARATELY_GATED`.
 
 ## 2026-09-25 owner-approved quota-gap parallelization
 
