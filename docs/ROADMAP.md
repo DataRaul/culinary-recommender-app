@@ -46,11 +46,34 @@
 | V1.x / Further Product Features | D5 FITNESS P0 ADAPTER PROTOTYPE PASS / BEHAVIOR DEFERRED | Validate public V0 #1080 passed deterministic + Chromium browser acceptance. User-selected workout backup is minimized to schema + goal/days/session-minutes/weekdays only after explicit save; sensitive/unknown fields cannot cross the adapter boundary; no fitness-derived ranking, calorie/TDEE, nutrition/supplement or medical behavior. Further D5 behavior is deferred |
 | V1.x / Protected Corpus Runtime Usability V1 | P1 LIVE BUILD PARTIAL / FREE-TIER D1 DAILY QUOTA HOLD / ZERO-D1 PREP ACTIVE | PR #312 merged the provider-limit reconciliation, per-batch `meta.rows_written` telemetry and 80k observed-write guard after the restart-safe index reached approximately 13k/19,268. Partial index state is preserved. While the live P1 continuation waits for a fresh provider quota day, owner-approved zero-D1 parallel preparation may run: C0 Golden-85 harness, P2 metadata-usability harness from frozen summaries, and C1 stratification design. Terminal P1 still requires exact 19,268/19,268, exactly 3 structural partials, browse/search, both shards, provenance and <=8 D1/request; no public/recommendation widening |
 | V1.x / Culinary Brain Corpus Calibration V1 | C0 ZERO-D1 PREP PASS / C1 PROTECTED EXECUTION BLOCKED ON P1 | Owner-approved quota-gap split: exercise the 85-recipe Golden-set harness now, build P2 measurement logic from frozen v8018 summaries, and freeze the C1 cohort-quota methodology without protected recipe selection. Exact ~500 protected selection/execution still waits for P1 terminal acceptance. No live KC/LLM runtime, no majority vote, no hard-safety/nutrition/admission authority from Brain inference alone |
-| V1.x / EU regulatory truth lane | LANE 3 / SCAFFOLD V1 PASS / BOUNDED SOURCE REVIEW READY / NO-BEHAVIOR AUTHORITY | PR #315 candidate earned `EU_REGULATORY_TRUTH_SCAFFOLD_V1_PASS` in Validate public V0 #1106: seven official EU/EFSA source families registered with legal-weight/currentness semantics, zero runtime imports and explicit 0-D1 / no-recommendation / no-Barbecue isolation. Successor research may review bounded source content; any behavior integration remains separately gated |
+| V1.x / EU regulatory truth lane | LANE 3 / SOURCE REVIEW V1 + ANNEX II GAP AUDIT PASS CANDIDATE / NO-BEHAVIOR AUTHORITY | Scaffold V1 is merged. Bounded official-source review verifies all seven source families and currentness/legal-weight semantics; zero-behavior Annex II audit finds 9/14 EU headline allergen categories represented by current app tokens, with celery the material existing-ontology gap. Next permitted gate is `EU_ALLERGEN_BEHAVIOR_P0_DESIGN_CONTRACT` design-only; activation remains separately gated |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
 | Post-usable-app / Barbecue Technique Corpus | CONTROL PLANE VALIDATION PASS / SCHEDULED PILOT ACTIVE / FIRST ACQUISITION PENDING | PR #288 merged green; bounded five-leaf world-champion-first scheduler is active; generic YT-CUL cron retired; five-source conventional-barbecue synthesis contract unchanged |
 
 
+
+## 2026-09-25 Lane 3 bounded source review + Annex II gap audit
+
+Following `EU_REGULATORY_TRUTH_SCAFFOLD_V1_PASS`, Lane 3 advanced through the permitted bounded research step without touching runtime behavior.
+
+Canonical review: `config/eu_regulatory_source_review_v1.json` and `docs/EU_REGULATORY_SOURCE_REVIEW_V1.md`.
+
+The seven official source families are now classified by legal/data role and safe research use. Current official snapshots recorded by the review include FoodEx2's 2026-07-13 reviewed data-standardisation surface, Regulation (EU) No 1169/2011 consolidated 2025-04-01, Regulation (EC) No 1333/2008 consolidated 2026-08-18, Implementing Regulation (EU) 2017/2470 consolidated 2026-08-10 and Regulation (EU) 2023/915 consolidated 2026-08-19. Commission health-claims and pesticides surfaces remain explicitly informational; the pesticides database explicitly has no legal value.
+
+The highest-value zero-behavior successor was the Annex II allergen-vocabulary audit:
+
+- current canonical ingredient ontology: 136 ingredients;
+- current distinct app allergen tokens: 9;
+- Annex II headline categories represented at category-token level: 9 / 14 (64.2857%);
+- missing app category tokens: celery, mustard, sulphur dioxide/sulphites, lupin and molluscs;
+- material existing-ontology gap: canonical `celery` exists but currently carries no allergen token;
+- no ontology/profile/recipe metadata or recommendation behavior was changed.
+
+Canonical audit: `config/eu_regulatory_allergen_gap_audit_v1.json` and `docs/EU_REGULATORY_ALLERGEN_GAP_AUDIT_V1.md`.
+
+Hard isolation remains unchanged: 0 protected D1 reads/writes, 0 protected-body access, 0 recommendation/NutritionSource/allergen behavior changes, 0 KC writes, 0 Barbecue mutation and 0 paid-service changes.
+
+The next permitted Lane 3 action after this audit is `EU_ALLERGEN_BEHAVIOR_P0_DESIGN_CONTRACT` **design only**. Implementation/activation of new hard-filter semantics remains separately gated.
 
 ## 2026-09-25 owner-approved Lane 3 — EU regulatory truth / scaffolding
 
