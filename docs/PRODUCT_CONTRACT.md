@@ -31,7 +31,7 @@ The app must not conflate temporary availability with durable preference.
 Temporary unavailable state and permanent exclusions are independently removable and persist locally.
 
 ## Allergen safety controls
-Mapped declared allergens are user-configurable hard filters and also constrain substitution candidates. V0 exposes gluten, milk/dairy, egg, fish, crustaceans, soy, peanut, tree nuts and sesame, matching the current ontology vocabulary. This is recipe-data filtering, not a guarantee against cross-contamination or an individualized medical recommendation.
+Mapped declared allergens are user-configurable hard filters and also constrain substitution candidates. V0 exposes gluten, milk/dairy, egg, fish, crustaceans, celery, soy, peanut, tree nuts and sesame, matching the current ontology vocabulary. This is recipe-data filtering, not a guarantee against cross-contamination or an individualized medical recommendation.
 
 ## V0 boundaries
 - deterministic local recommendation policy;
