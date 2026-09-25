@@ -46,11 +46,33 @@
 | V1.x / Further Product Features | D5 FITNESS P0 ADAPTER PROTOTYPE PASS / BEHAVIOR DEFERRED | Validate public V0 #1080 passed deterministic + Chromium browser acceptance. User-selected workout backup is minimized to schema + goal/days/session-minutes/weekdays only after explicit save; sensitive/unknown fields cannot cross the adapter boundary; no fitness-derived ranking, calorie/TDEE, nutrition/supplement or medical behavior. Further D5 behavior is deferred |
 | V1.x / Protected Corpus Runtime Usability V1 | P1 LIVE BUILD PARTIAL / FREE-TIER D1 DAILY QUOTA HOLD / ZERO-D1 PREP ACTIVE | PR #312 merged the provider-limit reconciliation, per-batch `meta.rows_written` telemetry and 80k observed-write guard after the restart-safe index reached approximately 13k/19,268. Partial index state is preserved. While the live P1 continuation waits for a fresh provider quota day, owner-approved zero-D1 parallel preparation may run: C0 Golden-85 harness, P2 metadata-usability harness from frozen summaries, and C1 stratification design. Terminal P1 still requires exact 19,268/19,268, exactly 3 structural partials, browse/search, both shards, provenance and <=8 D1/request; no public/recommendation widening |
 | V1.x / Culinary Brain Corpus Calibration V1 | C0 ZERO-D1 PREP PASS / C1 PROTECTED EXECUTION BLOCKED ON P1 | Owner-approved quota-gap split: exercise the 85-recipe Golden-set harness now, build P2 measurement logic from frozen v8018 summaries, and freeze the C1 cohort-quota methodology without protected recipe selection. Exact ~500 protected selection/execution still waits for P1 terminal acceptance. No live KC/LLM runtime, no majority vote, no hard-safety/nutrition/admission authority from Brain inference alone |
-| V1.x / EU regulatory truth lane | LANE 3 / SOURCE REVIEW V1 PASS + ANNEX II GAP AUDIT PASS / DESIGN-ONLY NEXT | Validate public V0 #1109 passed: all seven bounded official sources reviewed under correct legal-weight/currentness semantics; Annex II gap audit confirms 9/14 headline category tokens present and five missing (celery, mustard, sulphites, lupin, molluscs), with canonical celery already present but untagged. 0 D1/runtime/recommendation/Barbecue mutation. Next gate: `EU_ALLERGEN_BEHAVIOR_P0_DESIGN_CONTRACT`; behavior activation remains separately gated |
+| V1.x / EU regulatory truth lane | LANE 3 / ALLERGEN BEHAVIOR P0 DESIGN PASS / HUMAN ACTIVATION GATE | Validate public V0 #1114 passed the non-activating design contract. Celery is the narrow future P0 hard-filter candidate; mustard/lupin/molluscs remain deferred on missing canonical identities and sulphites on threshold semantics. 0 runtime behavior changed. Next gate `EU_ALLERGEN_CELERY_P0_ACTIVATION` is blocked pending explicit owner authorization because it changes hard recommendation eligibility |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
 | Post-usable-app / Barbecue Technique Corpus | CONTROL PLANE VALIDATION PASS / SCHEDULED PILOT ACTIVE / FIRST ACQUISITION PENDING | PR #288 merged green; bounded five-leaf world-champion-first scheduler is active; generic YT-CUL cron retired; five-source conventional-barbecue synthesis contract unchanged |
 
 
+
+## 2026-09-25 Lane 3 allergen behavior P0 design — activation not authorized
+
+The design-only successor to the Annex II gap audit is `EU_ALLERGEN_BEHAVIOR_P0_DESIGN_CONTRACT`.
+
+The smallest behavior candidate is **celery only**:
+
+- canonical `celery` already exists but has no allergen token;
+- a public recipe currently uses canonical celery;
+- profile allergen storage is already extensible string-token state;
+- the existing hard-filter/substitution architecture can support one additive token without schema redesign.
+
+The design explicitly defers mustard, lupin and molluscs until canonical ingredient identities exist. Sulphur dioxide/sulphites remains separately blocked because Annex II uses threshold semantics that cannot be represented truthfully by a simple boolean ingredient tag.
+
+Future activation requirements include a Celery UI token, canonical ingredient tagging, exact known-recipe metadata repair, a declared-allergen-superset invariant, substitution safety regression and full browser acceptance.
+
+**No implementation is authorized by this design.** The future behavior gate is `EU_ALLERGEN_CELERY_P0_ACTIVATION — BLOCKED_PENDING_OWNER_AUTHORIZATION` because it would change hard recommendation eligibility.
+
+Canonical design: `config/eu_allergen_behavior_p0_design.json`.
+Design document: `docs/EU_ALLERGEN_BEHAVIOR_P0_DESIGN_CONTRACT.md`.
+
+Design gate closeout: **EU_ALLERGEN_BEHAVIOR_P0_DESIGN_PASS** earned in Validate public V0 **#1114 / 36130630459 SUCCESS**. `EU_ALLERGEN_CELERY_P0_ACTIVATION` remains blocked pending explicit owner authorization.
 
 ## 2026-09-25 Lane 3 bounded source review + Annex II gap audit
 
