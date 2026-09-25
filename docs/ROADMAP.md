@@ -48,9 +48,19 @@
 | V1.x / Culinary Brain Corpus Calibration V1 | C0 ZERO-D1 PREP PASS / C1 PROTECTED EXECUTION BLOCKED ON P1 | Owner-approved quota-gap split: exercise the 85-recipe Golden-set harness now, build P2 measurement logic from frozen v8018 summaries, and freeze the C1 cohort-quota methodology without protected recipe selection. Exact ~500 protected selection/execution still waits for P1 terminal acceptance. No live KC/LLM runtime, no majority vote, no hard-safety/nutrition/admission authority from Brain inference alone |
 | V1.x / EU regulatory truth lane | LANE 3 / RESIDUAL ALLERGEN SEMANTICS AUDIT PASS / NO RUNTIME CHANGE EARNED | Celery P0 remains complete. The bounded successor audited only existing aggregate `tree_nut` and `gluten` semantics against Annex II/current canonical ontology. Current canonical named nut species are already covered; current gluten identities/products remain conservatively covered and no exact Annex II cereal-exception identity is canonical. No new allergen activation or recommendation change. Mustard/lupin/molluscs/sulphites remain deferred |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
-| Post-usable-app / Barbecue Technique Corpus | CONTROL PLANE VALIDATION PASS / SCHEDULED PILOT ACTIVE / FIRST ACQUISITION PENDING | PR #288 merged green; bounded five-leaf world-champion-first scheduler is active; generic YT-CUL cron retired; five-source conventional-barbecue synthesis contract unchanged |
+| Post-usable-app / Barbecue Technique Corpus | SCHEDULED PILOT ACTIVE / FIRST BATCH REVIEW COMPLETE / DISCOVERY CONTINUES | First scheduled quota day completed 16 bounded searches and added 34 candidate pointers; zero-search independent review qualified 11 and rejected 23. No leaf has five sources yet; poultry may enter specialist fallback while the other four leaves continue unused championship queries. No synthesis/public admission/KC/D1/billing widening |
 
 
+
+## 2026-09-25 Barbecue first scheduled acquisition + candidate review
+
+The scheduled Barbecue Technique Corpus pilot has crossed its first live acquisition boundary safely. The 2026-09-25 work unit used the frozen **16-call** Search budget, added **34** durable candidate references, recorded no provider failure and retained no raw YouTube payload.
+
+The follow-on candidate review used **0 additional YouTube Search calls** and applied the standing independent-evidence gate: **11 QUALIFIED / 23 REJECTED**. Current qualified counts are poultry 4, beef 1, pork 3, fish 1 and vegetables 2. No leaf has reached five independent sources; no synthesis, public admission, Knowledge Core promotion, protected D1 work or paid-service change was earned.
+
+Poultry exhausted its championship-query portfolio and may proceed to specialist fallback on its next scheduled quota day. Beef, pork, fish and vegetables still have unused championship/competition queries and must continue those first.
+
+Canonical review: `config/barbecue_technique_corpus_candidate_review_2026_09_25.json`.
 
 ## 2026-09-25 Lane 3 residual allergen semantics audit — PASS
 
