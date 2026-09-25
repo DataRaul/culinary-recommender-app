@@ -7,7 +7,9 @@ export const PROTECTED_SEARCH_EXPECTED_COUNT = 19268;
 export const PROTECTED_SEARCH_INDEX_TABLE = "culinary_protected_recipe_search_v1";
 export const PROTECTED_SEARCH_FTS_TABLE = "culinary_protected_recipe_search_fts_v1";
 export const PROTECTED_SEARCH_MAX_PAGE_SIZE = 50;
-export const PROTECTED_SEARCH_INDEX_BATCH_SIZE = 40;
+export const PROTECTED_SEARCH_MAX_BOUND_PARAMETERS = 100;
+export const PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW = 13;
+export const PROTECTED_SEARCH_INDEX_BATCH_SIZE = Math.floor(PROTECTED_SEARCH_MAX_BOUND_PARAMETERS / PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW);
 export const PROTECTED_SEARCH_TARGET_MAX_D1 = 8;
 export const PROTECTED_SEARCH_HARD_MAX_D1 = 16;
 
@@ -275,6 +277,7 @@ async function verifyAndProject(routes, bodiesById) {
 
 async function writeIndexRows(controlDb, rows) {
   if (!rows.length) return { pass: true, d1Subqueries: 0 };
+  if (rows.length > PROTECTED_SEARCH_INDEX_BATCH_SIZE) throw new Error("PROTECTED_INDEX_BATCH_EXCEEDS_D1_PARAMETER_LIMIT");
   const summaryValues = rows.map(() => "(?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP)").join(",");
   const summaryArgs = rows.flatMap(row => [
     row.recipeId,row.corpusVersion,row.bodyCorpusVersion,row.shardNumber,row.sourceCohortId,row.title,
@@ -327,7 +330,19 @@ export async function indexProtectedCorpusBatch(controlDb, shardDbs, cursor = ""
   try { rows = await verifyAndProject(page.routes, bodies.bodiesById); }
   catch (error) { return { pass: false, reason: String(error?.message || error), indexedCount: 0, nextCursor: String(cursor || ""), done: false, d1Subqueries: q, fullCorpusScans: 0 }; }
 
-  const written = await writeIndexRows(controlDb, rows);
+  let written;
+  try { written = await writeIndexRows(controlDb, rows); }
+  catch (error) {
+    return {
+      pass: false,
+      reason: `PROTECTED_INDEX_WRITE_FAILED:${String(error?.message || error).slice(0,180)}`,
+      indexedCount: 0,
+      nextCursor: String(cursor || ""),
+      done: false,
+      d1Subqueries: q,
+      fullCorpusScans: 0
+    };
+  }
   q += written.d1Subqueries;
   return {
     pass: written.pass && q <= PROTECTED_SEARCH_TARGET_MAX_D1,
