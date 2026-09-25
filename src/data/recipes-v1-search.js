@@ -149,7 +149,7 @@ export const SEARCH_COVERAGE_RECIPES = [
     techniques: ["simmering"], prep: 12, active: 28,
     ingredients: [ing("pumpkin",400,"g","small cubes"),ing("white_beans",300,"g","drained"),ing("barley",120,"g"),ing("canned_tomato",250,"g"),ing("celery",1,"piece","diced"),ing("onion",1,"small"),ing("thyme",1,"tsp")],
     steps: ["Soften onion and celery, then add tomato, pumpkin and barley.","Add water and simmer until barley and pumpkin are tender.","Fold in white beans and thyme and cook until thick and cohesive."],
-    nutrition: { energyKcal: 500, proteinG: 20, carbohydrateG: 96, fatG: 5, fibreG: 19 }, dietary: ["unrestricted","vegetarian","vegan"], allergens: ["gluten"], costTier: 1, mealPrep: 4, batch: 4, freezer: 4, leftovers: 4, portable: 4, flavour: ["earthy","tomato","herbal"], novelty: 2, mainProtein: "legume"
+    nutrition: { energyKcal: 500, proteinG: 20, carbohydrateG: 96, fatG: 5, fibreG: 19 }, dietary: ["unrestricted","vegetarian","vegan"], allergens: ["gluten","celery"], costTier: 1, mealPrep: 4, batch: 4, freezer: 4, leftovers: 4, portable: 4, flavour: ["earthy","tomato","herbal"], novelty: 2, mainProtein: "legume"
   }),
   recipe({
     id: "italian_mushroom_pea_orzo", title: "Mushroom, Pea & Parmesan Orzo", cuisine: "Italian", difficulty: 2,
