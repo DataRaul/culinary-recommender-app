@@ -46,13 +46,13 @@
 | V1.x / Further Product Features | D5 FITNESS P0 ADAPTER PROTOTYPE PASS / BEHAVIOR DEFERRED | Validate public V0 #1080 passed deterministic + Chromium browser acceptance. User-selected workout backup is minimized to schema + goal/days/session-minutes/weekdays only after explicit save; sensitive/unknown fields cannot cross the adapter boundary; no fitness-derived ranking, calorie/TDEE, nutrition/supplement or medical behavior. Further D5 behavior is deferred |
 | V1.x / Protected Corpus Runtime Usability V1 | P1 LIVE BUILD PARTIAL / FREE-TIER D1 DAILY QUOTA HOLD / ZERO-D1 PREP ACTIVE | PR #312 merged the provider-limit reconciliation, per-batch `meta.rows_written` telemetry and 80k observed-write guard after the restart-safe index reached approximately 13k/19,268. Partial index state is preserved. While the live P1 continuation waits for a fresh provider quota day, owner-approved zero-D1 parallel preparation may run: C0 Golden-85 harness, P2 metadata-usability harness from frozen summaries, and C1 stratification design. Terminal P1 still requires exact 19,268/19,268, exactly 3 structural partials, browse/search, both shards, provenance and <=8 D1/request; no public/recommendation widening |
 | V1.x / Culinary Brain Corpus Calibration V1 | C0 ZERO-D1 PREP PASS / C1 PROTECTED EXECUTION BLOCKED ON P1 | Owner-approved quota-gap split: exercise the 85-recipe Golden-set harness now, build P2 measurement logic from frozen v8018 summaries, and freeze the C1 cohort-quota methodology without protected recipe selection. Exact ~500 protected selection/execution still waits for P1 terminal acceptance. No live KC/LLM runtime, no majority vote, no hard-safety/nutrition/admission authority from Brain inference alone |
-| V1.x / EU regulatory truth lane | LANE 3 / RESIDUAL ALLERGEN SEMANTICS AUDIT CANDIDATE / ZERO-RUNTIME | Celery P0 remains complete. Next bounded gate audits only the existing aggregate `tree_nut` and `gluten` semantics against Annex II/current canonical ontology. No new allergen activation, recommendation change, protected D1/body access, KC write, Barbecue mutation or paid-service change. Mustard/lupin/molluscs/sulphites remain deferred |
+| V1.x / EU regulatory truth lane | LANE 3 / RESIDUAL ALLERGEN SEMANTICS AUDIT PASS / NO RUNTIME CHANGE EARNED | Celery P0 remains complete. The bounded successor audited only existing aggregate `tree_nut` and `gluten` semantics against Annex II/current canonical ontology. Current canonical named nut species are already covered; current gluten identities/products remain conservatively covered and no exact Annex II cereal-exception identity is canonical. No new allergen activation or recommendation change. Mustard/lupin/molluscs/sulphites remain deferred |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
 | Post-usable-app / Barbecue Technique Corpus | CONTROL PLANE VALIDATION PASS / SCHEDULED PILOT ACTIVE / FIRST ACQUISITION PENDING | PR #288 merged green; bounded five-leaf world-champion-first scheduler is active; generic YT-CUL cron retired; five-source conventional-barbecue synthesis contract unchanged |
 
 
 
-## 2026-09-25 Lane 3 residual allergen semantics audit — CANDIDATE
+## 2026-09-25 Lane 3 residual allergen semantics audit — PASS
 
 Following the separately authorized celery activation, Lane 3 does **not** automatically activate another Annex II allergen.
 
@@ -66,7 +66,7 @@ The candidate intentionally makes **0 runtime behavior changes**. Mustard, lupin
 Canonical candidate: `config/eu_allergen_residual_semantics_audit_v1.json`.  
 Design/audit note: `docs/EU_ALLERGEN_RESIDUAL_SEMANTICS_AUDIT_V1.md`.
 
-Candidate terminal after CI: **EU_ALLERGEN_RESIDUAL_SEMANTICS_AUDIT_V1_PASS__NO_RUNTIME_CHANGE_EARNED**.
+Validation: Validate public V0 **#1128 / 36174477005 SUCCESS**, including static/unit validation and full Chromium browser acceptance.\n\nTerminal: **EU_ALLERGEN_RESIDUAL_SEMANTICS_AUDIT_V1_PASS__NO_RUNTIME_CHANGE_EARNED**.
 
 ## 2026-09-25 Lane 3 celery allergen P0 activation — PASS
 
