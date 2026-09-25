@@ -180,7 +180,7 @@
   ],
   "brainCalibration": {
     "id": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
-    "state": "C0_ZERO_D1_PREP_ACTIVE__C1_PROTECTED_EXECUTION_BLOCKED_ON_P1",
+    "state": "C0_ZERO_D1_PREP_PASS__C1_PROTECTED_EXECUTION_BLOCKED_ON_P1",
     "contract": "config/culinary_brain_corpus_calibration_v1.json",
     "document": "docs/CULINARY_BRAIN_CORPUS_CALIBRATION_V1.md",
     "browseSearchBlocksOnBrain": false,
@@ -211,7 +211,7 @@
     }
   ],
   "quotaGapParallelPrep": {
-    "state": "AUTHORIZED_ACTIVE",
+    "state": "PASS__PREP_COMPLETE__EXECUTION_WAITS_P1",
     "ownerApprovedDate": "2026-09-25",
     "contract": "config/culinary_quota_gap_parallel_prep_v1.json",
     "document": "docs/CULINARY_QUOTA_GAP_PARALLEL_PREP_V1.md",
@@ -231,6 +231,7 @@
     "protectedBodyReadOrExportAuthorized": false,
     "knowledgeCoreWriteAuthorized": false,
     "publicOrRecommendationWideningAuthorized": false,
-    "barbecueMutationAuthorized": false
+    "barbecueMutationAuthorized": false,
+    "evidence": "data/generated/culinary-quota-gap-parallel-prep-v1.json"
   }
 }

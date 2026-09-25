@@ -15,7 +15,7 @@ export function validateCulinaryBrainCorpusCalibration(config) {
   if (config.executionRelationship?.c0PreparationCanRunDuringP1QuotaHold !== true) errors.push("C0 preparation must be allowed during the P1 quota hold");
   if (config.executionRelationship?.c1ProtectedExecutionRequiresP1TerminalPass !== true) errors.push("C1 protected execution must remain gated on P1 terminal pass");
   const prep = config.preP1Preparation || {};
-  if (prep.state !== "AUTHORIZED_ACTIVE") errors.push("pre-P1 zero-D1 preparation must be explicitly authorized");
+  if (!["AUTHORIZED_ACTIVE","PASS__PREP_COMPLETE__EXECUTION_WAITS_P1"].includes(prep.state)) errors.push("pre-P1 zero-D1 preparation must be explicitly authorized or terminal PASS");
   for (const key of ["protectedD1ReadsAuthorized","protectedD1WritesAuthorized","protectedBodiesReadOrExportAuthorized","knowledgeCoreWriteAuthorized"]) {
     if (prep[key] !== false) errors.push(`preP1Preparation.${key} must remain false`);
   }

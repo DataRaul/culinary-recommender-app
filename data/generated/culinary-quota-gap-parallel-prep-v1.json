@@ -1,0 +1,265 @@
+{
+  "schemaVersion": "CULINARY_QUOTA_GAP_PARALLEL_PREP_EVIDENCE_V1",
+  "date": "2026-09-25",
+  "pass": true,
+  "terminal": "CULINARY_QUOTA_GAP_PARALLEL_PREP_PASS",
+  "sourceMainSha": "d172d35d1575ddac8decdf968bc48c29cf3006d0",
+  "implementationPr": 313,
+  "validation": {
+    "workflow": "Validate public V0",
+    "runId": 36123147511,
+    "deterministicValidationPass": true,
+    "browserAcceptancePass": true,
+    "firstAttemptCompatibilityFailureRepaired": true
+  },
+  "c0Golden85": {
+    "harnessPass": true,
+    "recipeCount": 85,
+    "uniqueRecipeIdCount": 85,
+    "publicRecommendationBaseline": {
+      "recommendationEligible": 77,
+      "searchOnly": 2,
+      "referenceOnly": 6,
+      "hardMetadataReadyEligible": 77
+    },
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "note": "C0 local harness executed in PR #313 CI against PUBLIC_RUNTIME_RECIPES; this is preparation evidence, not Brain-derived authority or ranking change."
+  },
+  "p2FrozenMetadataBlockers": {
+    "source": "data/generated/corpus-normalization-mapping-v1.json",
+    "protectedCorpusVersion": "v8018",
+    "recipeCount": 19268,
+    "liveRuntimeMeasurementPerformed": false,
+    "rows": [
+      {
+        "priority": 1,
+        "dimension": "mealRoles",
+        "authoritativeCount": 524,
+        "authoritativeCoverage": 0.027195,
+        "ambiguousCount": 0,
+        "unknownCount": 18744,
+        "unresolvedCount": 18744
+      },
+      {
+        "priority": 2,
+        "dimension": "dishCategory",
+        "authoritativeCount": 1079,
+        "authoritativeCoverage": 0.056,
+        "ambiguousCount": 0,
+        "unknownCount": 18189,
+        "unresolvedCount": 18189
+      },
+      {
+        "priority": 3,
+        "dimension": "culinaryTradition",
+        "authoritativeCount": 0,
+        "authoritativeCoverage": 0,
+        "ambiguousCount": 0,
+        "unknownCount": 19268,
+        "unresolvedCount": 19268
+      },
+      {
+        "priority": 4,
+        "dimension": "techniqueFamilies",
+        "authoritativeCount": 0,
+        "authoritativeCoverage": 0,
+        "ambiguousCount": 0,
+        "unknownCount": 19268,
+        "unresolvedCount": 19268
+      },
+      {
+        "priority": 5,
+        "dimension": "totalMinutes",
+        "authoritativeCount": 1371,
+        "authoritativeCoverage": 0.071154,
+        "ambiguousCount": 45,
+        "unknownCount": 17852,
+        "unresolvedCount": 17897
+      },
+      {
+        "priority": 6,
+        "dimension": "difficulty",
+        "authoritativeCount": 1416,
+        "authoritativeCoverage": 0.07349,
+        "ambiguousCount": 0,
+        "unknownCount": 17852,
+        "unresolvedCount": 17852
+      },
+      {
+        "priority": 7,
+        "dimension": "servings",
+        "authoritativeCount": 501,
+        "authoritativeCoverage": 0.026002,
+        "ambiguousCount": 0,
+        "unknownCount": 18767,
+        "unresolvedCount": 18767
+      },
+      {
+        "priority": 8,
+        "dimension": "geographyCountry",
+        "authoritativeCount": 501,
+        "authoritativeCoverage": 0.026002,
+        "ambiguousCount": 0,
+        "unknownCount": 18767,
+        "unresolvedCount": 18767
+      },
+      {
+        "priority": 9,
+        "dimension": "geographyRegion",
+        "authoritativeCount": 0,
+        "authoritativeCoverage": 0,
+        "ambiguousCount": 0,
+        "unknownCount": 19268,
+        "unresolvedCount": 19268
+      },
+      {
+        "priority": 10,
+        "dimension": "prepMinutes",
+        "authoritativeCount": 501,
+        "authoritativeCoverage": 0.026002,
+        "ambiguousCount": 0,
+        "unknownCount": 18767,
+        "unresolvedCount": 18767
+      },
+      {
+        "priority": 11,
+        "dimension": "cookMinutes",
+        "authoritativeCount": 501,
+        "authoritativeCoverage": 0.026002,
+        "ambiguousCount": 0,
+        "unknownCount": 18767,
+        "unresolvedCount": 18767
+      },
+      {
+        "priority": 12,
+        "dimension": "reviewedDietaryTags",
+        "authoritativeCount": 0,
+        "authoritativeCoverage": 0,
+        "ambiguousCount": 0,
+        "unknownCount": 19268,
+        "unresolvedCount": 19268
+      }
+    ]
+  },
+  "c1SourceCohortQuotaPlan": {
+    "protectedCorpusVersion": "v8018",
+    "universeCount": 19268,
+    "targetRecipeCount": 500,
+    "sourceCohortCount": 19,
+    "quotaTotal": 500,
+    "allocations": [
+      {
+        "cohortId": "FORKRECIPE_PINNED_STEP7E",
+        "universeCount": 915,
+        "quota": 24
+      },
+      {
+        "cohortId": "ORA_ABBOTT_1864_AE3BD2C",
+        "universeCount": 713,
+        "quota": 19
+      },
+      {
+        "cohortId": "ORA_ARTUSI_1891_SCIENZA_CUCINA_GUTENBERG_59047",
+        "universeCount": 829,
+        "quota": 22
+      },
+      {
+        "cohortId": "ORA_ATRUTEL_1874_EASY_ECONOMICAL_JEWISH_COOKERY_B2807967X",
+        "universeCount": 481,
+        "quota": 13
+      },
+      {
+        "cohortId": "ORA_BOSSE_WATANNA_1914_JAPANESE_SHELF_AE3BD2C",
+        "universeCount": 109,
+        "quota": 4
+      },
+      {
+        "cohortId": "ORA_CHAN_1917_CHINESE_COOK_BOOK_CHINESECOOKBOOK00CHAN",
+        "universeCount": 145,
+        "quota": 5
+      },
+      {
+        "cohortId": "ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C",
+        "universeCount": 2129,
+        "quota": 54
+      },
+      {
+        "cohortId": "ORA_FANNIE_FARMER_BOSTON_COOKING_SCHOOL_GUTENBERG_65061",
+        "universeCount": 1776,
+        "quota": 45
+      },
+      {
+        "cohortId": "ORA_FROKEN_JENSEN_1921_KOGEBOG_23RD_FRKENJENSENSKO00JENS",
+        "universeCount": 1372,
+        "quota": 35
+      },
+      {
+        "cohortId": "ORA_GALVAN_RIVERA_1845_DICCIONARIO_COCINA_AE3BD2C",
+        "universeCount": 4347,
+        "quota": 109
+      },
+      {
+        "cohortId": "ORA_HEARN_1885_LA_CUISINE_CREOLE_LACUISINECREOLEC00HEAR",
+        "universeCount": 712,
+        "quota": 19
+      },
+      {
+        "cohortId": "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN",
+        "universeCount": 501,
+        "quota": 13
+      },
+      {
+        "cohortId": "ORA_MENON_1801_CUISINIERE_BOURGEOISE_B22019935",
+        "universeCount": 752,
+        "quota": 20
+      },
+      {
+        "cohortId": "ORA_RIGAUD_1785_PORTUGUESE_SOURCE_AE3BD2C",
+        "universeCount": 789,
+        "quota": 21
+      },
+      {
+        "cohortId": "ORA_SELESKOWITZ_1883_WIENER_KOCHBUCH_BUB_GB_OP8YAQAAMAAJ",
+        "universeCount": 1722,
+        "quota": 44
+      },
+      {
+        "cohortId": "ORA_TURABI_EFENDI_1864_OTTOMAN_SHELF_AE3BD2C",
+        "universeCount": 442,
+        "quota": 12
+      },
+      {
+        "cohortId": "ORA_VIARD_1806_LE_CUISINIER_IMPERIAL_LECUISINIERIMPE00VIARGOOG",
+        "universeCount": 807,
+        "quota": 21
+      },
+      {
+        "cohortId": "SGAUTHIER_RECIPES_CC0_B12E481D",
+        "universeCount": 226,
+        "quota": 7
+      },
+      {
+        "cohortId": "unitools-world-recipes-v1_1_0",
+        "universeCount": 501,
+        "quota": 13
+      }
+    ],
+    "exactProtectedRecipeIdsSelected": false,
+    "secondaryStrataDeferredUntilP1Terminal": true
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesReadOrExported": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationBehaviorChanged": false,
+    "recommendationAuthorityWidened": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidInfrastructureAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextGate": "WAIT_FOR_P1_TERMINAL_PASS__THEN_FREEZE_EXACT_C1_IDENTITIES_AND_RUN_LIVE_P2"
+}
