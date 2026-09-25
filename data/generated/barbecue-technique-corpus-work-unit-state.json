@@ -2,10 +2,10 @@
   "schemaVersion": "barbecue-technique-corpus-work-unit-state-v1",
   "programmeId": "BARBECUE_TECHNIQUE_CORPUS_V1",
   "workflow": ".github/workflows/barbecue-technique-corpus-daily.yml",
-  "generatedAt": "2026-09-24T10:40:00.000Z",
-  "sourceStateFingerprint": "INITIAL_IMPLEMENTATION_STATE",
+  "generatedAt": "2026-09-25T14:38:14.768Z",
+  "sourceStateFingerprint": "46d01231d993bf1e53e538847e49d2a9ac9aa769d35268fefffeeca3672716fa",
   "primaryOutcome": "success",
-  "latestQuotaDate": null,
+  "latestQuotaDate": "2026-09-25",
   "closureStatus": "CLOSED_CONTINUE",
   "materialTransition": false,
   "roadmapHandoverReconciliation": "RUNTIME_STATE_CURRENT_NO_STATIC_RECONCILIATION_REQUIRED",
@@ -17,14 +17,5 @@
     "automaticAppAdmissionAuthorized": false,
     "automaticPublicationAuthorized": false,
     "paidInfrastructureAuthorized": false
-  },
-  "controlPlaneValidation": {
-    "terminal": "BARBECUE_TECHNIQUE_CORPUS_CONTROL_PLANE_VALIDATION_PASS",
-    "pullRequest": 288,
-    "mergeSha": "37b30dfb96075af1716c9aa225451677b3f451be",
-    "validationRunNumber": 1007,
-    "validationConclusion": "success",
-    "scheduledWorkflowActive": true,
-    "genericYtCulCronRetired": true
   }
 }
