@@ -228,7 +228,7 @@ export function refreshBarbecueDiscoveryPhases(state, config) {
     if (allChampionshipQueriesUsed && !pendingChampionship) leaf.championshipSearchExhausted=true;
     const pending=leaf.candidatePointers.some(pointer=>pointer.qualificationStatus==="PENDING_REVIEW");
     if (pending) leaf.status="REVIEW_PENDING";
-    else if (leaf.championshipSearchExhausted) leaf.status="DISCOVERY_PENDING";
+    else leaf.status="DISCOVERY_PENDING";
   }
   return validateBarbecueState(next,config);
 }

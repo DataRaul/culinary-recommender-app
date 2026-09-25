@@ -1,6 +1,6 @@
 # Barbecue Technique Corpus — Roadmap Object V1
 
-Status: **BARBECUE_TECHNIQUE_CORPUS_CONTROL_PLANE_VALIDATION_PASS / SCHEDULED PILOT ACTIVE / FIRST ACQUISITION PENDING**
+Status: **SCHEDULED PILOT ACTIVE / FIRST ACQUISITION + CANDIDATE REVIEW COMPLETE / DISCOVERY CONTINUES**
 
 Date: 2026-09-22
 
@@ -232,3 +232,30 @@ Next material boundary:
 `FIRST_BARBECUE_CANDIDATE_BATCH_REVIEW_OR_FAIL_CLOSED_HOLD`
 
 Candidate titles are not qualification evidence. Any candidate that is to count toward a leaf still requires independent credential/domain-competence verification, a unique independence key, project-authored normalized observations, and the separate safety-authority firewall.
+
+
+## 2026-09-25 first acquisition + candidate review
+
+The first normal scheduled quota-day work unit completed successfully on 2026-09-25:
+
+- Search calls: **16 / 16 bounded pilot budget**;
+- candidate pointers added: **34**;
+- provider failure: **none**;
+- raw YouTube payload retained durably: **no**;
+- automatic publication/app admission/Knowledge Core promotion: **none**.
+
+The first candidate batch was then reviewed without additional YouTube Search spend. Title/query wording was not treated as qualification evidence. Independent credential/domain-competence evidence earned **11 QUALIFIED** source decisions; **23 candidates were REJECTED** because competence could not be independently verified at the pilot threshold or the source identity was not an appropriate practitioner source.
+
+Qualified-source counts after review:
+
+- poultry/chicken: **4**;
+- beef/brisket: **1**;
+- pork/ribs: **3**;
+- fish/parrilla: **1**;
+- vegetables/parrilla: **2**.
+
+No leaf has five qualified independent sources yet, no technique synthesis was authored, and pilot PASS remains false. Poultry exhausted its frozen championship-query portfolio and may use specialist fallback on the next quota day; the other four leaves retain unused championship/competition queries and must continue those before fallback.
+
+Canonical review: `config/barbecue_technique_corpus_candidate_review_2026_09_25.json`.
+
+Next action: **continue the normal scheduled bounded discovery cadence; no manual duplicate live Search.**
