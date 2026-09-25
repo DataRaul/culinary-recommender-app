@@ -1,6 +1,6 @@
 # EU Regulatory Allergen Gap Audit V1
 
-State: **PASS CANDIDATE**  
+State: **PASS**  
 Lane: **Lane 3 — audit only**  
 Date: **2026-09-25**  
 Source: **Regulation (EU) No 1169/2011, Annex II**  
@@ -56,3 +56,7 @@ This audit performs:
 The next permitted action is **`EU_ALLERGEN_BEHAVIOR_P0_DESIGN_CONTRACT` — design only**.
 
 Design may specify exact evidence authority, migration behavior, UI/profile compatibility, test matrix and fail-closed handling for the missing categories. It may not activate any new allergen behavior without the separate behavior gate.
+
+## Validation closeout
+
+Validate public V0 **#1109 / 36130093953** completed **SUCCESS**, including deterministic tests and Chromium browser acceptance. This closeout grants no runtime behavior authority.
