@@ -39,7 +39,7 @@ export const INGREDIENTS = {
   courgette: item("courgette", "squash", "courgette", ["zucchini", "calabacin", "calabacín"], [], false),
   aubergine: item("aubergine", "nightshade", "aubergine", ["eggplant", "berenjena"], [], false),
   carrot: item("carrot", "root", "carrot", ["carrots", "zanahoria"], [], false),
-  celery: item("celery", "vegetable", "celery", ["apio"], [], false),
+  celery: item("celery", "vegetable", "celery", ["apio"], ["celery"], false),
   mushroom: item("mushroom", "fungus", "mushrooms", ["mushroom", "champignon", "champiñón", "champiñones"], [], false),
   green_beans: item("green_beans", "vegetable", "green beans", ["judias verdes", "judías verdes"], [], false),
   peas: item("peas", "legume_vegetable", "peas", ["green peas", "guisantes", "frozen peas"], [], true, ["legume"]),
