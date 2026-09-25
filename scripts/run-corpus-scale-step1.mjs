@@ -54,7 +54,7 @@ function assertCorpusBaseline(recipes, baseline, label) {
   if (baseline.expectedFingerprint) {
     if (fingerprint.idsSha256 !== baseline.expectedFingerprint.idsSha256 ||
         fingerprint.recordsSha256 !== baseline.expectedFingerprint.recordsSha256) {
-      throw new Error(`${label} fingerprint drift. Reconcile the recipe change and explicitly re-baseline Step 1 before benchmarking.`);
+      throw new Error(`${label} fingerprint drift: expected ${JSON.stringify(baseline.expectedFingerprint)}, found ${JSON.stringify(fingerprint)}. Reconcile the recipe change and explicitly re-baseline Step 1 before benchmarking.`);
     }
   }
   return fingerprint;
