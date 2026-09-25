@@ -16,14 +16,16 @@
     "thirdShardAuthorized": false
   },
   "bounds": {
-    "indexBatchRecipes": 40,
+    "indexBatchRecipes": 7,
     "browseSearchPageMax": 50,
     "detailHydrationRecipes": 1,
     "targetMaxD1SubqueriesPerRequestIncludingAuth": 8,
     "hardMaxD1SubqueriesPerRequest": 16,
     "fullCorpusRequestScansAuthorized": false,
     "paginationMode": "KEYSET_RECIPE_ID",
-    "indexBuildRestartMode": "LAST_INDEXED_RECIPE_ID"
+    "indexBuildRestartMode": "LAST_INDEXED_RECIPE_ID",
+    "maxBoundParametersPerQuery": 100,
+    "summaryBoundParametersPerRecipe": 13
   },
   "auth": {
     "requiredBeforeProtectedQuery": true,
@@ -64,9 +66,9 @@
   "validation": {
     "deterministic": "PASS",
     "browser": "PASS",
-    "liveOwnerCanary": "PENDING_AUTHENTICATED_OWNER_VERIFICATION",
-    "exactIndexCount": null,
-    "exactStructuralPartialCount": null,
+    "liveOwnerCanary": "BLOCKED_BY_FIRST_BATCH_D1_PARAMETER_LIMIT__REPAIR_IN_PROGRESS",
+    "exactIndexCount": 0,
+    "exactStructuralPartialCount": 0,
     "validationRun": 1093,
     "validationRunId": 36070083309
   }
