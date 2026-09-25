@@ -11,7 +11,7 @@ export function validateQuotaGapParallelPrep(config) {
   const errors = [];
   if (!config || typeof config !== "object") return ["config must be an object"];
   if (config.schemaVersion !== CULINARY_QUOTA_GAP_PARALLEL_PREP_SCHEMA) errors.push("unexpected schemaVersion");
-  if (config.state !== "AUTHORIZED_ACTIVE") errors.push("quota-gap preparation must be explicitly active");
+  if (!["AUTHORIZED_ACTIVE","PASS__PREP_COMPLETE__EXECUTION_WAITS_P1"].includes(config.state)) errors.push("quota-gap preparation must be active or terminal PASS");
   if (config.frozenInputs?.expectedPublicRuntimeRecipeCount !== 85) errors.push("public golden set must remain 85");
   if (config.frozenInputs?.expectedProtectedCorpusVersion !== "v8018" || config.frozenInputs?.expectedProtectedRecipeCount !== 19268) errors.push("protected frozen input must remain v8018 / 19268");
   if (config.c1?.targetRecipeCount !== 500) errors.push("C1 target must remain 500");
