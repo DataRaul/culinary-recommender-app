@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
-  "date": "2026-09-24",
-  "state": "ROADMAP_ENCODED_NOT_YET_EXECUTING",
+  "date": "2026-09-25",
+  "state": "C0_ZERO_D1_PREP_ACTIVE__C1_PROTECTED_EXECUTION_BLOCKED_ON_P1",
   "pattern": "FITNESS_BRAIN_CALIBRATION_ANALOGUE",
   "knowledgeCoreDomain": "culinary_nutrition",
   "runtimeDependencyAuthorized": false,
@@ -19,7 +19,9 @@
       "recipeCount": 19268
     },
     "goldenCalibrationRecipeCount": 85,
-    "initialProtectedPilotTarget": 500
+    "initialProtectedPilotTarget": 500,
+    "c0PreparationCanRunDuringP1QuotaHold": true,
+    "c1ProtectedExecutionRequiresP1TerminalPass": true
   },
   "authorityOrder": [
     "SOURCE_AND_PROVENANCE_FACTS",
@@ -81,5 +83,24 @@
     "paidModelOrApiAuthorized": false,
     "thirdShardAuthorized": false,
     "barbecueMutationAuthorized": false
+  },
+  "preP1Preparation": {
+    "ownerApprovedDate": "2026-09-25",
+    "state": "AUTHORIZED_ACTIVE",
+    "contract": "config/culinary_quota_gap_parallel_prep_v1.json",
+    "allowed": [
+      "C0_GOLDEN_85_LOCAL_CALIBRATION_HARNESS",
+      "P2_METADATA_USABILITY_HARNESS_FROM_FROZEN_SUMMARIES",
+      "C1_STRATIFICATION_METHODOLOGY_AND_COHORT_QUOTAS"
+    ],
+    "blocked": [
+      "C1_EXACT_PROTECTED_RECIPE_ID_SELECTION_AND_EXECUTION",
+      "P2_LIVE_FULL_V8018_MEASUREMENT",
+      "C2_FULL_V8018_CLASSIFICATION"
+    ],
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedBodiesReadOrExportAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false
   }
 }
