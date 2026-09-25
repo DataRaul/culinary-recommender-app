@@ -3,7 +3,7 @@
   "id": "EU_REGULATORY_ALLERGEN_GAP_AUDIT_V1",
   "lane": "LANE_3",
   "auditDate": "2026-09-25",
-  "state": "PASS_CANDIDATE",
+  "state": "PASS",
   "source": {
     "sourceId": "eurlex-food-information-allergens-1169-2011",
     "legalInstrument": "Regulation (EU) No 1169/2011",
@@ -27,20 +27,76 @@
     "allergenTokenCount": 9
   },
   "euAnnexIiCategoryAudit": [
-    {"category":"CEREALS_CONTAINING_GLUTEN","appToken":"gluten","state":"CATEGORY_TOKEN_PRESENT"},
-    {"category":"CRUSTACEANS","appToken":"crustacean","state":"CATEGORY_TOKEN_PRESENT"},
-    {"category":"EGGS","appToken":"egg","state":"CATEGORY_TOKEN_PRESENT"},
-    {"category":"FISH","appToken":"fish","state":"CATEGORY_TOKEN_PRESENT"},
-    {"category":"PEANUTS","appToken":"peanut","state":"CATEGORY_TOKEN_PRESENT"},
-    {"category":"SOYBEANS","appToken":"soy","state":"CATEGORY_TOKEN_PRESENT"},
-    {"category":"MILK","appToken":"milk","state":"CATEGORY_TOKEN_PRESENT"},
-    {"category":"NUTS","appToken":"tree_nut","state":"CATEGORY_TOKEN_PRESENT__INGREDIENT_SPECIES_COVERAGE_PARTIAL"},
-    {"category":"CELERY","appToken":null,"state":"MISSING_APP_ALLERGEN_TOKEN__CANONICAL_INGREDIENT_EXISTS"},
-    {"category":"MUSTARD","appToken":null,"state":"MISSING_APP_ALLERGEN_TOKEN__NO_CANONICAL_INGREDIENT"},
-    {"category":"SESAME_SEEDS","appToken":"sesame","state":"CATEGORY_TOKEN_PRESENT"},
-    {"category":"SULPHUR_DIOXIDE_AND_SULPHITES","appToken":null,"state":"MISSING_APP_ALLERGEN_TOKEN__CONCENTRATION_SEMANTICS_REQUIRED"},
-    {"category":"LUPIN","appToken":null,"state":"MISSING_APP_ALLERGEN_TOKEN__NO_CANONICAL_INGREDIENT"},
-    {"category":"MOLLUSCS","appToken":null,"state":"MISSING_APP_ALLERGEN_TOKEN__NO_CANONICAL_INGREDIENT"}
+    {
+      "category": "CEREALS_CONTAINING_GLUTEN",
+      "appToken": "gluten",
+      "state": "CATEGORY_TOKEN_PRESENT"
+    },
+    {
+      "category": "CRUSTACEANS",
+      "appToken": "crustacean",
+      "state": "CATEGORY_TOKEN_PRESENT"
+    },
+    {
+      "category": "EGGS",
+      "appToken": "egg",
+      "state": "CATEGORY_TOKEN_PRESENT"
+    },
+    {
+      "category": "FISH",
+      "appToken": "fish",
+      "state": "CATEGORY_TOKEN_PRESENT"
+    },
+    {
+      "category": "PEANUTS",
+      "appToken": "peanut",
+      "state": "CATEGORY_TOKEN_PRESENT"
+    },
+    {
+      "category": "SOYBEANS",
+      "appToken": "soy",
+      "state": "CATEGORY_TOKEN_PRESENT"
+    },
+    {
+      "category": "MILK",
+      "appToken": "milk",
+      "state": "CATEGORY_TOKEN_PRESENT"
+    },
+    {
+      "category": "NUTS",
+      "appToken": "tree_nut",
+      "state": "CATEGORY_TOKEN_PRESENT__INGREDIENT_SPECIES_COVERAGE_PARTIAL"
+    },
+    {
+      "category": "CELERY",
+      "appToken": null,
+      "state": "MISSING_APP_ALLERGEN_TOKEN__CANONICAL_INGREDIENT_EXISTS"
+    },
+    {
+      "category": "MUSTARD",
+      "appToken": null,
+      "state": "MISSING_APP_ALLERGEN_TOKEN__NO_CANONICAL_INGREDIENT"
+    },
+    {
+      "category": "SESAME_SEEDS",
+      "appToken": "sesame",
+      "state": "CATEGORY_TOKEN_PRESENT"
+    },
+    {
+      "category": "SULPHUR_DIOXIDE_AND_SULPHITES",
+      "appToken": null,
+      "state": "MISSING_APP_ALLERGEN_TOKEN__CONCENTRATION_SEMANTICS_REQUIRED"
+    },
+    {
+      "category": "LUPIN",
+      "appToken": null,
+      "state": "MISSING_APP_ALLERGEN_TOKEN__NO_CANONICAL_INGREDIENT"
+    },
+    {
+      "category": "MOLLUSCS",
+      "appToken": null,
+      "state": "MISSING_APP_ALLERGEN_TOKEN__NO_CANONICAL_INGREDIENT"
+    }
   ],
   "summary": {
     "euHeadlineCategories": 14,
@@ -60,5 +116,12 @@
     "barbecueMutations": 0
   },
   "nextGate": "EU_ALLERGEN_BEHAVIOR_P0_DESIGN_CONTRACT",
-  "nextGateAuthorization": "DESIGN_ONLY_ALLOWED__ACTIVATION_SEPARATELY_GATED"
+  "nextGateAuthorization": "DESIGN_ONLY_ALLOWED__ACTIVATION_SEPARATELY_GATED",
+  "terminal": "EU_REGULATORY_ALLERGEN_GAP_AUDIT_V1_PASS",
+  "validation": {
+    "workflow": "Validate public V0",
+    "runNumber": 1109,
+    "runId": 36130093953,
+    "conclusion": "SUCCESS"
+  }
 }
