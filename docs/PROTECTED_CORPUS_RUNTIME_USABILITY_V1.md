@@ -197,3 +197,10 @@ P1 machine preparation is now complete through PR #309 at `5222da210d40721886f6a
 ## P1 live repair note — D1 parameter ceiling
 
 The first authenticated owner index-build attempt stopped safely at **0 / 19,268**. The original P1 batch contract allowed 40 recipes, but the summary upsert binds 13 values per recipe, which produces 520 bound parameters in one D1 statement. Current D1 allows 100 bound parameters/query. The repair caps the batch at 7 recipes (91 summary parameters), preserves keyset/restart semantics and the <=8 D1/request target, and improves live failure-reason visibility. The owner should not retry until the repaired production deployment is green.
+
+
+## P1 provider-limit reconciliation — 2026-09-25
+
+The repaired live build advanced to approximately **13k / 19,268** before the Workers Free D1 daily operation quota was exhausted. This is now classified as **PROVIDER_D1_DAILY_LIMIT_HOLD__PARTIAL_INDEX_PRESERVED**, not an index-integrity failure. The canonical P1 implementation remains restart-safe by last indexed recipe ID.
+
+The runtime now records per-batch D1 `rows_written` telemetry and the browser enforces an **80,000 observed rows-written/day** guard against Cloudflare's **100,000/day** free-tier ceiling. The initial FTS population may span more than one UTC quota day; that is acceptable under the zero-paid-infrastructure constraint. P2/C0-C1 do not start until P1 reaches its exact terminal live acceptance.
