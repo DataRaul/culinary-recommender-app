@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "EU_ALLERGEN_CELERY_P0_ACTIVATION",
+  "lane": "LANE_3_EU_REGULATORY_TRUTH",
+  "date": "2026-09-25",
+  "designContract": "config/eu_allergen_behavior_p0_design.json",
+  "authorization": {
+    "authorized": true,
+    "source": "OWNER_EXPLICIT_CHAT_AUTHORIZATION",
+    "authorizedDate": "2026-09-25",
+    "scopeExact": true,
+    "scope": [
+      "canonical celery allergen token",
+      "known public celery recipe declared-allergen metadata",
+      "Celery profile UI control",
+      "public recipe declared-allergen superset invariant",
+      "celery hard-filter and substitution-safety acceptance"
+    ]
+  },
+  "implementation": {
+    "state": "AUTHORIZED_IMPLEMENTATION_IN_PROGRESS",
+    "newRuntimeAllergenTokens": ["celery"],
+    "canonicalIngredientIdsChanged": ["celery"],
+    "publicRecipeIdsChanged": ["med_pumpkin_white_bean_barley_stew"],
+    "profileUiTokensAdded": ["celery"],
+    "storageSchemaBumpRequired": false
+  },
+  "explicitlyDeferred": [
+    "mustard",
+    "lupin",
+    "molluscs",
+    "sulphur dioxide / sulphites"
+  ],
+  "hardBoundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedRecipeBodyAccess": 0,
+    "nutritionCompositionAuthorityChanges": 0,
+    "knowledgeCoreWrites": 0,
+    "barbecueMutations": 0,
+    "paidInfrastructureOrApiChanges": 0,
+    "broaderRecommendationOrRankingChanges": 0
+  },
+  "requiredAcceptance": [
+    "STATIC_AND_UNIT_VALIDATION",
+    "PROFILE_UI_CELERY_CHECKBOX_PERSISTS",
+    "CELERY_HARD_FILTER_BLOCKS_THE_KNOWN_CELERY_RECIPE",
+    "FISH_AND_EXISTING_ALLERGEN_BROWSER_ACCEPTANCE_STILL_PASSES",
+    "SUBSTITUTION_SAFETY_REGRESSION_PASS",
+    "PUBLIC_RECIPE_DECLARED_ALLERGEN_SUPERSET_INVARIANT",
+    "FULL_CHROMIUM_BROWSER_ACCEPTANCE"
+  ],
+  "terminalOnPass": "EU_ALLERGEN_CELERY_P0_ACTIVATION_PASS",
+  "validation": null
+}
