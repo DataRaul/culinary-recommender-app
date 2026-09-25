@@ -2,7 +2,7 @@
 
 Date: **2026-09-25**
 
-Status: **AUTHORIZED / ACTIVE / ZERO-D1 PREPARATION**
+Status: **PASS / ZERO-D1 PREPARATION COMPLETE / PROTECTED EXECUTION WAITS ON P1**
 
 ## Purpose
 
@@ -37,3 +37,12 @@ After P1 passes, exact identities must be chosen within the frozen source-cohort
 - Barbecue mutation: **not authorized**
 
 The canonical machine contract is `config/culinary_quota_gap_parallel_prep_v1.json`.
+
+
+## Closeout — 2026-09-25
+
+PR #313 merged at `d172d35d1575ddac8decdf968bc48c29cf3006d0`. Validate public V0 run `36123147511` passed deterministic validation and browser acceptance after one compatibility-only state-string repair.
+
+Terminal preparation evidence: `data/generated/culinary-quota-gap-parallel-prep-v1.json`.
+
+The zero-D1 tranche is complete. The next protected action remains blocked until P1 reaches exact live acceptance.
