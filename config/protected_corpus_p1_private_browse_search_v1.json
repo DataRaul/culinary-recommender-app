@@ -63,7 +63,10 @@
     "THREE_STRUCTURAL_EXCEPTIONS_FAIL_SOFT",
     "SOURCE_PROVENANCE_AVAILABLE_ON_DETAIL",
     "MOBILE_BROWSER_ACCEPTANCE",
-    "NO_PUBLIC_RUNTIME_OR_RECOMMENDATION_ADMISSION_CHANGE"
+    "NO_PUBLIC_RUNTIME_OR_RECOMMENDATION_ADMISSION_CHANGE",
+    "PRODUCTION_FULL_REINDEX_ADMIN_MIGRATION_ONLY",
+    "ROUTINE_CORPUS_CHANGES_USE_INCREMENTAL_INDEX_MAINTENANCE",
+    "FULL_REINDEX_REQUIRES_WRITE_BUDGET_AND_QUOTA_HEADROOM_PREFLIGHT"
   ],
   "validation": {
     "deterministic": "PASS",
@@ -85,5 +88,24 @@
     "observedRowsWrittenToday": 10239,
     "fullIndexBuildCompleted": true,
     "reindexRequired": false
+  },
+  "productionReadiness": {
+    "state": "BLOCKED_PENDING_ADMIN_MIGRATION_ISOLATION",
+    "productionReady": false,
+    "fullReindex": {
+      "executionClass": "ADMIN_MIGRATION_ONLY",
+      "normalRuntimeTriggerAuthorized": false,
+      "ordinaryAuthenticatedUserTriggerAuthorized": false,
+      "requestTimeFullCorpusRebuildAuthorized": false,
+      "explicitMaintenanceGateRequired": true,
+      "projectedRowsWrittenPreflightRequired": true,
+      "quotaHeadroomPreflightRequired": true,
+      "rowsWrittenTelemetryRequired": true
+    },
+    "routineCorpusChanges": {
+      "indexingModeRequired": "INCREMENTAL_ONLY",
+      "fullRebuildFallbackAuthorized": false
+    },
+    "closeCondition": "RUNTIME_ISOLATION_IMPLEMENTED_AND_DETERMINISTICALLY_TESTED"
   }
 }

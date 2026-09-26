@@ -21,6 +21,7 @@ import { onRequestGet as protectedGet, onRequestPost as protectedPost } from "..
 
 const SECRET = "0123456789abcdef0123456789abcdef";
 const ORIGIN = "https://culinary-recommender-app.pages.dev";
+const P1_CONTRACT = JSON.parse(readFileSync(new URL("../config/protected_corpus_p1_private_browse_search_v1.json", import.meta.url), "utf8"));
 
 function route(overrides = {}) {
   return {
@@ -218,4 +219,21 @@ test("P1 owner browser is network-only and explicitly communicates protected-onl
   assert.match(html, /Number\(status\.structuralPartialCount\) !== 3/);
   assert.doesNotMatch(html, /canaryEvidence[^\n]*(?:account|email|session)/i);
   assert.match(sw, /"\/protected-corpus\.html"/);
+});
+
+test("production readiness keeps bulk protected indexing out of normal runtime", () => {
+  const readiness = P1_CONTRACT.productionReadiness;
+  assert.equal(readiness.state, "BLOCKED_PENDING_ADMIN_MIGRATION_ISOLATION");
+  assert.equal(readiness.productionReady, false);
+  assert.equal(readiness.fullReindex.executionClass, "ADMIN_MIGRATION_ONLY");
+  assert.equal(readiness.fullReindex.normalRuntimeTriggerAuthorized, false);
+  assert.equal(readiness.fullReindex.ordinaryAuthenticatedUserTriggerAuthorized, false);
+  assert.equal(readiness.fullReindex.requestTimeFullCorpusRebuildAuthorized, false);
+  assert.equal(readiness.fullReindex.explicitMaintenanceGateRequired, true);
+  assert.equal(readiness.fullReindex.projectedRowsWrittenPreflightRequired, true);
+  assert.equal(readiness.fullReindex.quotaHeadroomPreflightRequired, true);
+  assert.equal(readiness.fullReindex.rowsWrittenTelemetryRequired, true);
+  assert.equal(readiness.routineCorpusChanges.indexingModeRequired, "INCREMENTAL_ONLY");
+  assert.equal(readiness.routineCorpusChanges.fullRebuildFallbackAuthorized, false);
+  assert.equal(readiness.closeCondition, "RUNTIME_ISOLATION_IMPLEMENTED_AND_DETERMINISTICALLY_TESTED");
 });

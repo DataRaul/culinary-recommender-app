@@ -102,3 +102,18 @@ The changed-variable owner retry after PR #311 progressed from **0** to approxim
 Current Cloudflare D1 Workers Free limits are **100,000 rows written/day** and **5,000,000 rows read/day**, reset at **00:00 UTC**. D1 counts index writes as rows written, and Cloudflare explicitly notes that FTS5 increases write cost. Therefore the initial full FTS build is treated as a **restart-safe multi-quota-day canary**, not as a one-day requirement.
 
 The repair records exact `meta.rows_written` from every successful D1 batch, surfaces it in the owner UI, and installs an **80,000 browser-observed row-write safety guard** per UTC day. The guard intentionally leaves headroom for authentication/control activity and other D1 work. A provider daily-limit response is classified as a quota hold, not a corpus/runtime defect. No blind same-day retry is authorized. Committed recipes are never rebuilt; the next eligible run resumes from the last indexed recipe ID.
+
+## Production-readiness boundary — D1 write isolation
+
+The live P1 build demonstrated that bulk FTS population can consume the Workers Free D1 rows-written quota much faster than logical recipe count suggests. That behavior is acceptable for an explicit migration/backfill, but it is not acceptable as ordinary finished-app behavior.
+
+Production readiness therefore requires all of the following:
+
+- full protected-corpus indexing/reindexing is **admin/migration-only**;
+- normal user/runtime flows and ordinary authenticated-user actions cannot trigger a full rebuild;
+- routine corpus additions or edits update the search index incrementally rather than rebuilding the corpus index;
+- any full rebuild has an explicit maintenance gate with a projected `rows_written` budget and available-quota-headroom preflight before execution;
+- provider `meta.rows_written` telemetry remains mandatory during maintenance work;
+- the app is not marked production-ready until the runtime isolation above is implemented and covered by deterministic tests.
+
+Current status: **contract encoded; production readiness remains blocked pending runtime isolation implementation/testing**. This requirement does not authorize or require another rebuild of the already-complete 19,268-record P1 index and does not change the current owner terminal verifier.
