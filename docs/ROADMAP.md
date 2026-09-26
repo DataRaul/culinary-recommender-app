@@ -44,13 +44,38 @@
 | V1.x / Recipe Family UI legal conformance | COMPLETE / PASS | PR #276; real Hummus candidate proves generic multi-source attribution + fail-closed UNKNOWN/UNSATISFIABLE behavior; no public/runtime admission |\n| V1.x / Recipe Family 10-family bounded expansion | COMPLETE / PASS WITH EXPLICIT HOLDS | PR #283 green and merged; 10-family closeout = 8 candidate-only APP_AUTHORING_ELIGIBLE + 2 fail-closed HOLD (Carbonara, Pizza Margherita); 0 public/runtime admissions; v8018/D1/shards/KC/billing unchanged |
 | V1.x / Corpus Scale / 100k Readiness | CURRENT SCALE FOUNDATION RECONCILIATION PASS | PRs #291/#294/#295/#296/#297 fresh-reconciled Steps 1–6 to the current 85-record public seed while preserving the historical 84-record oracle; downstream reconciliation confirms the later no-billing D1 architecture is already live and ahead of the original 100k design: Step 7A passed 170k required / 250k stress, Step 8F activated exactly one reviewed public record, and Step 8G reached v8018 / 19,268 protected recipes on exactly two shards before LEGAL_CORPUS_BASELINE_PASS. No replay of provisioning/population; reopen scale foundation only on a measured compatibility gap; Barbecue remains separate |
 | V1.x / Further Product Features | D5 FITNESS P0 ADAPTER PROTOTYPE PASS / BEHAVIOR DEFERRED | Validate public V0 #1080 passed deterministic + Chromium browser acceptance. User-selected workout backup is minimized to schema + goal/days/session-minutes/weekdays only after explicit save; sensitive/unknown fields cannot cross the adapter boundary; no fitness-derived ranking, calorie/TDEE, nutrition/supplement or medical behavior. Further D5 behavior is deferred |
-| V1.x / Protected Corpus Runtime Usability V1 | P1 FULL INDEX BUILT / TERMINAL STATUS DIAGNOSTIC PENDING | Live owner build completed exact 19,268/19,268 on 2026-09-26 with 10,239 browser-observed D1 rows written that UTC day. Terminal verifier still stopped safely because one exact status invariant (active v8018 / FTS 19,268 / structural partials 3) did not match. No re-index is authorized or required. The verifier is being hardened to return only the sanitized status tuple so the mismatching invariant can be repaired directly; P2/C1 live execution remains blocked until P1 terminal PASS; Barbecue remains independent |
-| V1.x / Culinary Brain Corpus Calibration V1 | C0 ZERO-D1 PREP PASS / C1 PROTECTED EXECUTION BLOCKED ON P1 | Owner-approved quota-gap split: exercise the 85-recipe Golden-set harness now, build P2 measurement logic from frozen v8018 summaries, and freeze the C1 cohort-quota methodology without protected recipe selection. Exact ~500 protected selection/execution still waits for P1 terminal acceptance. No live KC/LLM runtime, no majority vote, no hard-safety/nutrition/admission authority from Brain inference alone |
-| V1.x / EU regulatory truth lane | LANE 3 / RESIDUAL ALLERGEN SEMANTICS AUDIT PASS / NO RUNTIME CHANGE EARNED | Celery P0 remains complete. The bounded successor audited only existing aggregate `tree_nut` and `gluten` semantics against Annex II/current canonical ontology. Current canonical named nut species are already covered; current gluten identities/products remain conservatively covered and no exact Annex II cereal-exception identity is canonical. No new allergen activation or recommendation change. Mustard/lupin/molluscs/sulphites remain deferred |
+| V1.x / Protected Corpus Runtime Usability V1 | P1 FULL INDEX BUILT / DIAGNOSTIC PATCH DEPLOYED / OWNER TERMINAL RE-RUN REQUIRED | Live owner build is exact 19,268/19,268 and must not be rebuilt. PR #321 merged at `9e18feca6af95fd97e4952686a459c3b25037683` after Validate public V0 #1135 passed; post-merge #1136 and Pages #374 also passed. The owner now needs only to run the bounded live verifier again so the sanitized status tuple identifies whether active v8018, FTS 19,268 or structural partials 3 is the remaining mismatch. P2/C1 live execution remains blocked only until this P1 terminal check passes; Barbecue remains independent |
+| V1.x / Culinary Brain Corpus Calibration V1 | LANE 2 PREP PASS / C1 + LIVE P2 READY IMMEDIATELY AFTER P1 | C0 Golden-85 preparation, the frozen P2 blocker harness and the 500-slot/19-cohort C1 allocation are complete. Exact protected IDs have not been selected. When Lane 1 earns P1 terminal PASS, immediately freeze the exact ~500 C1 identities with the existing secondary strata, execute C1, and run live/full-v8018 P2 measurement in parallel. C2 and P3 remain blocked on those results; no live KC/LLM runtime or hard-authority widening |
+| V1.x / EU regulatory truth lane | LANE 3 TERMINAL PASS / PARKED / NO SUCCESSOR SELECTED | Celery P0 is complete and the residual `tree_nut` / `gluten` semantics audit passed without further runtime change. Canonical nextGate is `NOT_SELECTED__FUTURE_ONTOLOGY_OR_THRESHOLD_SCHEMA_TRIGGER`: Lane 3 is not blocked by P1, but it is currently complete/parked rather than an active work queue. Mustard/lupin/molluscs remain deferred until exact ontology need; sulphites remain deferred until threshold-aware evidence semantics exist |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
-| Post-usable-app / Barbecue Technique Corpus | SCHEDULED PILOT ACTIVE / FIRST BATCH REVIEW COMPLETE / DISCOVERY CONTINUES | First scheduled quota day completed 16 bounded searches and added 34 candidate pointers; zero-search independent review qualified 11 and rejected 23. No leaf has five sources yet; poultry may enter specialist fallback while the other four leaves continue unused championship queries. No synthesis/public admission/KC/D1/billing widening |
+| Post-usable-app / Barbecue Technique Corpus | INDEPENDENT SCHEDULED PILOT ACTIVE / DAY 2 COMPLETE / REVIEW BACKLOG 17 / CONTINUE | Daily workflow remains scheduled at `20 9 * * *` (09:20 UTC). 2026-09-25 completed 16 bounded searches + 34 candidates; 2026-09-26 completed 10 searches + 17 new candidates. Current work-unit closure is `CLOSED_CONTINUE`, successor `WAIT_FOR_NEXT_BARBECUE_QUOTA_DAY`, scheduler `CONTINUE_BOUNDED_WAKEUP`, hard hold null. The 17 new candidates remain `PENDING_REVIEW`; prior 34 remain 11 QUALIFIED / 23 REJECTED. No synthesis/public admission/KC/D1/billing widening |
 
 
+
+## 2026-09-26 active-lane reconciliation after PR #321
+
+This section is the concise operational source of truth for the currently discussed lanes. Historical sections below remain evidence, not the current execution queue.
+
+| Stream | Current state | Dependency / next action |
+|---|---|---|
+| Lane 1 — Protected corpus P1 | **FULL INDEX BUILT; OWNER TERMINAL RE-RUN REQUIRED** | Exact 19,268/19,268 is preserved. Do **not** re-index. PR #321 deployed the sanitized terminal diagnostic. Owner runs **Run live verification** once; a PASS unlocks Lane 2, while STOPPED_SAFE now exposes the exact mismatching status tuple for direct repair. |
+| Lane 2 — Brain C1 + live P2 | **PREP COMPLETE; EXECUTION BLOCKED ONLY ON P1** | C0 Golden-85, frozen P2 blocker harness and 500-slot/19-cohort C1 allocation are complete. After P1 PASS: freeze exact C1 IDs, execute C1 and run live/full-v8018 P2 in parallel. C2/P3 remain later gates. |
+| Lane 3 — EU regulatory truth | **TERMINAL PASS; PARKED** | Celery P0 + residual semantics audit are complete. No successor is selected. Reactivate only for a new canonical ontology need or a separately designed threshold-aware evidence schema. |
+| Barbecue Technique Corpus | **INDEPENDENT SCHEDULED PILOT; CONTINUE** | Workflow remains scheduled daily at 09:20 UTC. Current work-unit state is `CLOSED_CONTINUE` / `CONTINUE_BOUNDED_WAKEUP`; hard hold is null. Day 2 added 17 review-pending candidates. Candidate review may proceed separately without changing the daily scheduler. |
+
+### Barbecue continuity proof
+
+The canonical workflow `.github/workflows/barbecue-technique-corpus-daily.yml` remains enabled with cron `20 9 * * *`, `cancel-in-progress: false`, the 100/day Culinary YouTube Search ceiling, and fail-closed preflight. The current generated work-unit state explicitly says:
+
+```text
+closureStatus: CLOSED_CONTINUE
+successorAction: WAIT_FOR_NEXT_BARBECUE_QUOTA_DAY
+nextTriggerDisposition: NEXT_QUOTA_DAY_SCHEDULED_WAKEUP
+schedulerDisposition: CONTINUE_BOUNDED_WAKEUP
+hardHold: null
+```
+
+No scheduler mutation is needed to keep Barbecue running.
 
 ## 2026-09-25 Barbecue first scheduled acquisition + candidate review
 
