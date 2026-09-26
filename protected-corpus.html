@@ -257,9 +257,23 @@
     runCanaryButton.disabled = true;
     canaryEvidencePanel.hidden = false;
     canaryEvidenceNode.textContent = 'Running bounded live verification…';
+    let sanitizedStatus = null;
     try {
       const observedD1 = [];
       const status = await apiGet({ action:'status' });
+      sanitizedStatus = {
+        httpStatus:Number(status?.httpStatus || 0),
+        ready:status?.ready === true,
+        activeVersion:status?.activeVersion || null,
+        indexedRecipeCount:Number(status?.indexedRecipeCount || 0),
+        ftsRecipeCount:Number(status?.ftsRecipeCount || 0),
+        structuralPartialCount:Number(status?.structuralPartialCount || 0),
+        expectedRecipeCount:Number(status?.expectedRecipeCount || 0),
+        d1Subqueries:Number(status?.metrics?.d1Subqueries || 0),
+        fullCorpusScans:Number(status?.fullCorpusScans || 0),
+        publicRuntimeChanged:status?.publicRuntimeChanged,
+        recommendationAdmissionChanged:status?.recommendationAdmissionChanged
+      };
       observedD1.push(requireCanaryEnvelope('status', status));
       if (
         status.ready !== true ||
@@ -315,7 +329,8 @@
     } catch (error) {
       canaryEvidenceNode.textContent = JSON.stringify({
         terminal:'PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_STOPPED_SAFE',
-        reason:String(error?.message || error).slice(0,240)
+        reason:String(error?.message || error).slice(0,240),
+        observedStatus:sanitizedStatus
       }, null, 2);
     } finally {
       runCanaryButton.disabled = false;
