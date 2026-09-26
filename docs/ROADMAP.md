@@ -48,7 +48,7 @@
 | V1.x / Culinary Brain Corpus Calibration V1 | LANE 2 PREP PASS / C1 + LIVE P2 READY IMMEDIATELY AFTER P1 | C0 Golden-85 preparation, the frozen P2 blocker harness and the 500-slot/19-cohort C1 allocation are complete. Exact protected IDs have not been selected. When Lane 1 earns P1 terminal PASS, immediately freeze the exact ~500 C1 identities with the existing secondary strata, execute C1, and run live/full-v8018 P2 measurement in parallel. C2 and P3 remain blocked on those results; no live KC/LLM runtime or hard-authority widening |
 | V1.x / EU regulatory truth lane | LANE 3 TERMINAL PASS / PARKED / NO SUCCESSOR SELECTED | Celery P0 is complete and the residual `tree_nut` / `gluten` semantics audit passed without further runtime change. Canonical nextGate is `NOT_SELECTED__FUTURE_ONTOLOGY_OR_THRESHOLD_SCHEMA_TRIGGER`: Lane 3 is not blocked by P1, but it is currently complete/parked rather than an active work queue. Mustard/lupin/molluscs remain deferred until exact ontology need; sulphites remain deferred until threshold-aware evidence semantics exist |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
-| Post-usable-app / Barbecue Technique Corpus | INDEPENDENT SCHEDULED PILOT ACTIVE / DAY 2 COMPLETE / REVIEW BACKLOG 17 / CONTINUE | Daily workflow remains scheduled at `20 9 * * *` (09:20 UTC). 2026-09-25 completed 16 bounded searches + 34 candidates; 2026-09-26 completed 10 searches + 17 new candidates. Current work-unit closure is `CLOSED_CONTINUE`, successor `WAIT_FOR_NEXT_BARBECUE_QUOTA_DAY`, scheduler `CONTINUE_BOUNDED_WAKEUP`, hard hold null. The 17 new candidates remain `PENDING_REVIEW`; prior 34 remain 11 QUALIFIED / 23 REJECTED. No synthesis/public admission/KC/D1/billing widening |
+| Post-usable-app / Barbecue Technique Corpus | INDEPENDENT SCHEDULED PILOT ACTIVE / DAY 2 REVIEW COMPLETE / POULTRY SYNTHESIS PENDING / CONTINUE | 2026-09-26 review closed all 17 new candidates with 0 additional YouTube Search: 4 QUALIFIED / 13 REJECTED. Cumulative qualified counts are poultry 6, beef 2, pork 4, fish 1, vegetables 2. Poultry now stops discovery at `SYNTHESIS_PENDING`; the other four leaves continue bounded discovery. Scheduler/work-unit remains `CLOSED_CONTINUE` / `CONTINUE_BOUNDED_WAKEUP`, hard hold null; no public/KC/D1/billing widening |
 
 
 
@@ -76,6 +76,16 @@ hardHold: null
 ```
 
 No scheduler mutation is needed to keep Barbecue running.
+
+## 2026-09-26 Barbecue second candidate review — COMPLETE
+
+The second scheduled quota-day acquisition had already completed successfully with **10 Search calls / 17 durable candidates / no provider failure**. The follow-on candidate review used **0 additional YouTube Search calls** and closed all 17 pending references under the existing independent-evidence and unique-independence rules.
+
+Second-batch decisions: **4 QUALIFIED / 13 REJECTED**. Newly qualified creators are Malcom Reed / Killer Hogs and Roel Westra / Pitmaster X for poultry specialist fallback, Christie Vanover / Girls Can Grill for beef, and Heath Riles BBQ for pork. Duplicate Harry Soo candidates in fish/vegetables do not count twice; BeardMeatsFood and general/unverified cooking/media candidates remain rejected at this pilot threshold.
+
+Cumulative qualified counts are now: poultry **6**, beef **2**, pork **4**, fish **1**, vegetables **2**. Poultry has crossed the five-independent-source discovery threshold and is now **SYNTHESIS_PENDING**; routine acquisition must no longer spend Search on that leaf. The other four leaves remain in bounded discovery. No technique synthesis has yet been authored because source-specific normalized observations and separate authoritative food-safety evidence still need to be assembled. Pilot PASS remains false.
+
+Canonical review: `config/barbecue_technique_corpus_candidate_review_2026_09_26.json`.
 
 ## 2026-09-25 Barbecue first scheduled acquisition + candidate review
 
