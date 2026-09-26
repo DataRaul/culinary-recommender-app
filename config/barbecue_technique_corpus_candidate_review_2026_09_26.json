@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "barbecue-technique-corpus-candidate-review-v1",
+  "reviewId": "BARBECUE_SECOND_CANDIDATE_BATCH_REVIEW_2026_09_26",
+  "reviewedAt": "2026-09-26",
+  "quotaDate": "2026-09-26",
+  "sourceStateRule": "Review only the 17 durable candidate pointers discovered on quota date 2026-09-26. Search-result/title wording is never qualification evidence; same-leaf creator duplicates cannot supply another independence key.",
+  "authority": {
+    "youtubeSearchCalls": 0,
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedRecipeBodyAccess": 0,
+    "knowledgeCoreWrites": 0,
+    "automaticPublicationAuthorized": false,
+    "automaticAppAdmissionAuthorized": false,
+    "paidInfrastructureAuthorized": false
+  },
+  "decisions": [
+    {
+      "leafId": "poultry_chicken_competition",
+      "sourceRef": "youtube:erEeh6Ghaj8",
+      "decision": "QUALIFIED",
+      "independenceKey": "malcom-reed-killer-hogs",
+      "evidenceRef": "https://worldfoodchampionships.com/talent/profile/our-competitors/6163/malcom-reed",
+      "projectAuthoredRationale": "Independent competition profile already admitted elsewhere in this pilot verifies Malcom Reed's sustained competition-barbecue experience and educator role; this specialist-fallback candidate qualifies on creator competence, not title wording.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "poultry_chicken_competition",
+      "sourceRef": "youtube:Q7EcO6qcbPQ",
+      "decision": "QUALIFIED",
+      "independenceKey": "roel-westra-pitmaster-x",
+      "evidenceRef": "https://www.24kitchen.nl/programmas/buitengewoon-bbq",
+      "projectAuthoredRationale": "Independent broadcaster 24Kitchen identifies Roel Westra (Pitmaster X) as a BBQ expert teaching barbecue technique across meat, fish and vegetables; this specialist-fallback candidate qualifies on documented domain competence.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "poultry_chicken_competition",
+      "sourceRef": "youtube:pDcn-14oC3o",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Candidate resolves to Epicurious general food-media instruction rather than an independently verified barbecue practitioner identity for this stricter pilot source gate.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "poultry_chicken_competition",
+      "sourceRef": "youtube:dMKE6Cz6WcE",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify a creator identity with competition credentials or sufficiently strong specialist barbecue competence; generic chef/title wording is insufficient.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "beef_brisket_competition",
+      "sourceRef": "youtube:vo8CMWLLVXg",
+      "decision": "QUALIFIED",
+      "independenceKey": "christie-vanover-girls-can-grill",
+      "evidenceRef": "https://www.nbbqa.org/current-members/christie-vanover",
+      "projectAuthoredRationale": "Independent National Barbecue & Grilling Association profile identifies Christie Vanover as a championship pitmaster and certified barbecue judge with competition expertise; qualification is competence-based.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "beef_brisket_competition",
+      "sourceRef": "youtube:EQbKWG2Wz5c",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Creator identity is BeardMeatsFood, a competitive-eating source rather than a verified barbecue-technique practitioner; query/title match does not establish competence.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "pork_ribs_competition",
+      "sourceRef": "youtube:EQbKWG2Wz5c",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Creator identity is BeardMeatsFood, a competitive-eating source rather than a verified barbecue-technique practitioner; query/title match does not establish competence.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "pork_ribs_competition",
+      "sourceRef": "youtube:xlQjCdpOJOE",
+      "decision": "QUALIFIED",
+      "independenceKey": "heath-riles-bbq",
+      "evidenceRef": "https://memphisinmay.org/winners/",
+      "projectAuthoredRationale": "Official Memphis in May results list Heath Riles BBQ as 2025 and 2026 World Championship Barbecue Cooking Contest Grand Champion, with a 2026 first-place ribs finish; qualification is championship-credential based.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "fish_parrilla",
+      "sourceRef": "youtube:eSO0czylRy0",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "This candidate is another Harry Soo source in a leaf that already counts Harry Soo under independence key harry-soo-slap-yo-daddy; the unique-independence rule prevents a second count from the same creator lineage.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "fish_parrilla",
+      "sourceRef": "youtube:EQbKWG2Wz5c",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Creator identity is BeardMeatsFood, a competitive-eating source rather than a verified barbecue/parrilla technique practitioner.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "fish_parrilla",
+      "sourceRef": "youtube:0W2yd5SC72s",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Available evidence did not verify the candidate channel as an independent championship or specialist parrilla practitioner; 'campeones del mundo' wording in the candidate itself is not credential evidence.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "fish_parrilla",
+      "sourceRef": "youtube:XpubqTGxNwo",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Candidate resolves to BRUTA COCINA, a general cooking source; bounded review did not establish specialist barbecue/parrilla or competition credentials at the pilot threshold.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "fish_parrilla",
+      "sourceRef": "youtube:FARaqshVu6Y",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review could not verify the creator identity and championship/specialist grill competence strongly enough to admit this source.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "sourceRef": "youtube:wZUMAHBMrkE",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "This candidate is another Harry Soo source in a leaf that already counts Harry Soo under independence key harry-soo-slap-yo-daddy; it cannot supply a second independent source.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "sourceRef": "youtube:gXkgf1wl4Ls",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Candidate resolves to Jackie Hartlaub, a general recipe/cooking creator; bounded independent review did not verify specialist barbecue/parrilla or competition competence.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "sourceRef": "youtube:7MLgYBCl4i4",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "The candidate demonstrates grilled vegetables, but bounded independent review did not verify championship credentials or sufficiently strong specialist grill/parrilla competence for the creator.",
+      "normalizedObservations": {}
+    },
+    {
+      "leafId": "vegetables_parrilla",
+      "sourceRef": "youtube:XZcoVuX2aRI",
+      "decision": "REJECTED",
+      "independenceKey": null,
+      "evidenceRef": null,
+      "projectAuthoredRationale": "Bounded independent review did not verify the creator identity and championship/specialist grill competence strongly enough to admit this source.",
+      "normalizedObservations": {}
+    }
+  ],
+  "expected": {
+    "candidateCount": 17,
+    "qualifiedCount": 4,
+    "rejectedCount": 13,
+    "newQualifiedByLeaf": {
+      "poultry_chicken_competition": 2,
+      "beef_brisket_competition": 1,
+      "pork_ribs_competition": 1,
+      "fish_parrilla": 0,
+      "vegetables_parrilla": 0
+    },
+    "qualifiedByLeafAfterReview": {
+      "poultry_chicken_competition": 6,
+      "beef_brisket_competition": 2,
+      "pork_ribs_competition": 4,
+      "fish_parrilla": 1,
+      "vegetables_parrilla": 2
+    },
+    "synthesisPendingLeaves": 1,
+    "completedLeaves": 0,
+    "pilotPass": false
+  }
+}
