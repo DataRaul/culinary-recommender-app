@@ -1,6 +1,6 @@
 # Barbecue Technique Corpus — Roadmap Object V1
 
-Status: **SCHEDULED PILOT ACTIVE / FIRST ACQUISITION + CANDIDATE REVIEW COMPLETE / DISCOVERY CONTINUES**
+Status: **SCHEDULED PILOT ACTIVE / DAY 2 CANDIDATE REVIEW COMPLETE / POULTRY SYNTHESIS PENDING / DISCOVERY CONTINUES**
 
 Date: 2026-09-22
 
@@ -259,3 +259,25 @@ No leaf has five qualified independent sources yet, no technique synthesis was a
 Canonical review: `config/barbecue_technique_corpus_candidate_review_2026_09_25.json`.
 
 Next action: **continue the normal scheduled bounded discovery cadence; no manual duplicate live Search.**
+
+
+## 2026-09-26 second acquisition candidate review
+
+The September 26 scheduled work unit completed successfully before review with 10 bounded Search calls, 17 new durable candidate pointers and no provider failure. A zero-Search follow-on review then closed all 17 candidates using the standing independent credential/domain-competence gate and same-leaf independence rule.
+
+Review result: **4 QUALIFIED / 13 REJECTED**.
+
+Newly admitted source identities:
+
+- poultry: Malcom Reed / Killer Hogs — specialist fallback, using the already-admitted independent World Food Championships competence evidence;
+- poultry: Roel Westra / Pitmaster X — specialist fallback, independently profiled by 24Kitchen as a BBQ expert;
+- beef: Christie Vanover / Girls Can Grill — independently profiled by the National Barbecue & Grilling Association as a championship pitmaster and certified judge;
+- pork: Heath Riles BBQ — official Memphis in May results verify 2025 and 2026 Grand Champion status and a 2026 first-place ribs finish.
+
+All remaining September 26 candidates were rejected conservatively because they were same-leaf creator duplicates, general food/media/competitive-eating identities, or lacked independently verifiable championship/specialist barbecue competence at the pilot threshold.
+
+Cumulative qualified counts are poultry **6**, beef **2**, pork **4**, fish **1**, vegetables **2**. Poultry therefore transitions to `SYNTHESIS_PENDING` and is removed from subsequent discovery query portfolios; the other four leaves continue bounded championship/competition discovery under the existing scheduler.
+
+No source-specific technique observations were invented during qualification. Poultry synthesis still requires project-authored normalized observations from the qualified sources plus separate authoritative food-safety references and structured adjustment axes. No public admission, Knowledge Core promotion, protected D1 change, paid quota or pilot PASS is earned by this review.
+
+Canonical review: `config/barbecue_technique_corpus_candidate_review_2026_09_26.json`.

@@ -41,19 +41,24 @@ test("every reviewed candidate has a terminal decision in durable state", () => 
   }
 });
 
-test("qualified sources carry independent evidence and leaf-unique independence keys", () => {
-  const expected = review.expected.qualifiedByLeaf;
+test("first-batch qualified sources remain present with independent evidence", () => {
+  const firstBatchQualified = review.decisions.filter(row => row.decision === "QUALIFIED");
+  for (const decision of firstBatchQualified) {
+    const leaf = state.leaves.find(row => row.leafId === decision.leafId);
+    assert.ok(leaf, decision.leafId);
+    const source = leaf.qualifiedSources.find(row => row.sourceRef === decision.sourceRef);
+    assert.ok(source, `${decision.leafId} ${decision.sourceRef}`);
+    assert.equal(source.independenceKey, decision.independenceKey);
+    assert.equal(source.qualificationEvidenceRef, decision.evidenceRef);
+    assert.match(source.qualificationEvidenceRef, /^https:\/\//);
+    assert.ok(source.projectAuthoredRationale.length > 20);
+    assert.deepEqual(source.normalizedObservations, {});
+  }
   for (const leaf of state.leaves) {
-    assert.equal(leaf.qualifiedSources.length, expected[leaf.leafId]);
     assert.equal(
       new Set(leaf.qualifiedSources.map(row => row.independenceKey)).size,
       leaf.qualifiedSources.length
     );
-    for (const source of leaf.qualifiedSources) {
-      assert.match(source.qualificationEvidenceRef, /^https:\/\//);
-      assert.ok(source.projectAuthoredRationale.length > 20);
-      assert.deepEqual(source.normalizedObservations, {});
-    }
   }
 });
 
@@ -65,7 +70,10 @@ test("review does not invent technique observations or earn pilot completion", (
     const hasPendingReview = leaf.candidatePointers.some(
       pointer => pointer.qualificationStatus === "PENDING_REVIEW"
     );
-    assert.equal(leaf.status, hasPendingReview ? "REVIEW_PENDING" : "DISCOVERY_PENDING");
+    const expectedStatus = leaf.qualifiedSources.length >= 5
+      ? "SYNTHESIS_PENDING"
+      : (hasPendingReview ? "REVIEW_PENDING" : "DISCOVERY_PENDING");
+    assert.equal(leaf.status, expectedStatus);
   }
   assert.equal(state.leaves.find(leaf => leaf.leafId === "poultry_chicken_competition").championshipSearchExhausted, true);
   assert.equal(state.leaves.filter(leaf => leaf.leafId !== "poultry_chicken_competition").every(leaf => leaf.championshipSearchExhausted === false), true);
