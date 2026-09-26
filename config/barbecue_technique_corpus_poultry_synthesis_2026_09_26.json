@@ -1,0 +1,357 @@
+{
+  "schemaVersion": "barbecue-technique-corpus-leaf-synthesis-v1",
+  "synthesisId": "BARBECUE_POULTRY_SYNTHESIS_2026_09_26_V1",
+  "synthesizedAt": "2026-09-26",
+  "leafId": "poultry_chicken_competition",
+  "sourceSetRule": "All six already-qualified poultry sources were reviewed. Five provide detailed technique variables; one exact source is retained at lower resolution rather than having missing numeric stages inferred.",
+  "authority": {
+    "youtubeSearchCalls": 0,
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedRecipeBodyAccess": 0,
+    "knowledgeCoreWrites": 0,
+    "automaticPublicationAuthorized": false,
+    "automaticAppAdmissionAuthorized": false,
+    "paidInfrastructureAuthorized": false
+  },
+  "sourceObservations": [
+    {
+      "sourceRef": "youtube:3T9aMG4TS_I",
+      "independenceKey": "duce-raymond",
+      "qualificationEvidenceRef": "https://www.sweetbabyraysbbq.com/duce-raymond",
+      "normalizedObservations": {
+        "evidenceBasis": "EXACT_SOURCE_PLUS_CREATOR_REPOST",
+        "sourceEvidenceRefs": [
+          "https://www.youtube.com/watch?v=3T9aMG4TS_I",
+          "https://www.linkedin.com/posts/sweet-baby-ray%27s-catering_bbq-competitionbbq-chickenrecipes-activity-7207456778211479552-fKKr"
+        ],
+        "detailLevel": "HIGH",
+        "cutForm": "BONE_IN_SKIN_ON_THIGH",
+        "preparation": [
+          "UNIFORM_TRIM_AND_SHAPE",
+          "SKIN_FAT_REDUCTION"
+        ],
+        "heatApproach": {
+          "pitTempF": 275,
+          "initialMode": "DIRECT_SMOKE",
+          "initialMinutesApprox": 30,
+          "coveredMoistureStage": "CHICKEN_STOCK_AND_BUTTER",
+          "coveredMinutesApprox": 45
+        },
+        "finish": {
+          "practitionerTextureTargetFApprox": 200,
+          "glazeStage": "LATE_SAUCE_SET",
+          "glazeSetMinutesApprox": 5
+        }
+      }
+    },
+    {
+      "sourceRef": "youtube:Fi74kM76KuA",
+      "independenceKey": "chef-tom-jackson-atbbq",
+      "qualificationEvidenceRef": "https://www.kmuw.org/people/chef-tom-jackson",
+      "normalizedObservations": {
+        "evidenceBasis": "EXACT_SOURCE_PLUS_CREATOR_COMPANION_PAGE",
+        "sourceEvidenceRefs": [
+          "https://www.youtube.com/watch?v=Fi74kM76KuA",
+          "https://www.atbbq.com/blogs/recipes/competition-chicken-thighs"
+        ],
+        "detailLevel": "HIGH",
+        "cutForm": "SKIN_ON_CHICKEN_THIGH",
+        "preparation": [
+          "SKIN_FAT_REDUCTION",
+          "UNIFORM_TRIM_AND_SHAPE",
+          "INJECTION_PLUS_SOAK"
+        ],
+        "soakDurationMinutesApprox": 60,
+        "heatApproach": {
+          "pitTempF": 275,
+          "initialMode": "PAN_SMOKE",
+          "initialMinutesApprox": 30,
+          "secondStage": "COVERED_PAN"
+        },
+        "finish": {
+          "glazeTriggerFApprox": 150,
+          "reportedFinishFApprox": 160,
+          "safetyDisposition": "DO_NOT_EXPORT_AS_SAFETY_ENDPOINT__USDA_165F_MINIMUM_GOVERNS"
+        }
+      }
+    },
+    {
+      "sourceRef": "youtube:VgIGx2ALCac",
+      "independenceKey": "elite-bbq-smokers",
+      "qualificationEvidenceRef": "https://southeastbbqchampionship.org/results",
+      "normalizedObservations": {
+        "evidenceBasis": "EXACT_SOURCE",
+        "sourceEvidenceRefs": [
+          "https://www.youtube.com/watch?v=VgIGx2ALCac"
+        ],
+        "detailLevel": "HIGH",
+        "cutForm": "BONE_IN_SKIN_ON_THIGH",
+        "preparation": [
+          "DETAILED_TRIM",
+          "INJECTION_OR_BRINE",
+          "LAYERED_RUB"
+        ],
+        "heatApproach": {
+          "pitTempF": 300,
+          "cooker": "DRUM",
+          "fuel": "LUMP_CHARCOAL",
+          "moistureStage": "BUTTER_BATH"
+        },
+        "finish": {
+          "practitionerTextureTargetFApprox": 208,
+          "glazeStage": "WARM_SAUCE_DIP_AND_SET"
+        }
+      }
+    },
+    {
+      "sourceRef": "youtube:IoSv-yw7Jok",
+      "independenceKey": "harry-soo-slap-yo-daddy",
+      "qualificationEvidenceRef": "https://www.cbbqa.com/awards/",
+      "normalizedObservations": {
+        "evidenceBasis": "EXACT_SOURCE_PLUS_CREATOR_COMPANION_METHOD",
+        "sourceEvidenceRefs": [
+          "https://www.youtube.com/watch?v=IoSv-yw7Jok",
+          "https://www.slapyodaddybbq.com/2024/05/harrys-championship-chicken-shortcut-recipe/"
+        ],
+        "detailLevel": "HIGH",
+        "cutForm": "HALF_CHICKEN_OR_COMPETITION_CHICKEN_CUTS",
+        "preparation": [
+          "BRINE",
+          "UNIFORM_TRIM"
+        ],
+        "brineDurationHoursApprox": 3,
+        "heatApproach": {
+          "pitTempF": 275,
+          "initialMode": "INDIRECT_SMOKE",
+          "smokeWood": "APPLE",
+          "sequence": [
+            "CRUST_SET",
+            "COVERED_FOIL_TENDERIZE"
+          ]
+        },
+        "finish": {
+          "practitionerTextureTargetF": "ABOVE_185",
+          "glazeStage": "OPTIONAL_LATE_SET",
+          "glazeSetMinutesApprox": 5
+        }
+      }
+    },
+    {
+      "sourceRef": "youtube:erEeh6Ghaj8",
+      "independenceKey": "malcom-reed-killer-hogs",
+      "qualificationEvidenceRef": "https://worldfoodchampionships.com/talent/profile/our-competitors/6163/malcom-reed",
+      "normalizedObservations": {
+        "evidenceBasis": "EXACT_SOURCE_PLUS_CREATOR_COMPANION_PAGE",
+        "sourceEvidenceRefs": [
+          "https://www.youtube.com/watch?v=erEeh6Ghaj8",
+          "https://howtobbqright.com/2023/05/25/barbecue-chicken-halves/"
+        ],
+        "detailLevel": "HIGH",
+        "cutForm": "HALF_CHICKEN",
+        "preparation": [
+          "WET_BRINE",
+          "HALVE_WHOLE_CHICKEN"
+        ],
+        "brineDurationHoursApprox": 6,
+        "heatApproach": {
+          "pitTempF": 275,
+          "mode": "INDIRECT_SMOKE",
+          "smokeWood": "HICKORY",
+          "initialSmokeMinutesApprox": 90,
+          "secondStage": "BUTTER_FOIL_WRAP",
+          "secondStageMinutesApprox": 90
+        },
+        "finish": {
+          "reportedBreastEndpointF": 165,
+          "glazeStage": "LATE_SAUCE_SET",
+          "glazeSetMinutesApprox": 15
+        }
+      }
+    },
+    {
+      "sourceRef": "youtube:Q7EcO6qcbPQ",
+      "independenceKey": "roel-westra-pitmaster-x",
+      "qualificationEvidenceRef": "https://www.24kitchen.nl/programmas/buitengewoon-bbq",
+      "normalizedObservations": {
+        "evidenceBasis": "EXACT_SOURCE_METADATA_ONLY",
+        "sourceEvidenceRefs": [
+          "https://www.youtube.com/watch?v=Q7EcO6qcbPQ"
+        ],
+        "detailLevel": "LOW_RESOLUTION",
+        "style": "TEXAS_BBQ_CHICKEN",
+        "preparationThemes": [
+          "BRINING",
+          "DRY_BRINING"
+        ],
+        "methodThemes": [
+          "SMOKED",
+          "GRILLED"
+        ],
+        "equipmentTheme": "PELLET_SMOKER",
+        "numericTechniqueExtracted": false,
+        "limitation": "Exact-source metadata supports technique themes but not reliable numeric stages; no numeric values are inferred."
+      }
+    }
+  ],
+  "safety": {
+    "authority": "USDA_FSIS",
+    "authorityRefs": [
+      "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/safe-temperature-chart",
+      "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/food-thermometers"
+    ],
+    "normalizedConstraints": {
+      "minimumInternalTemperatureF": 165,
+      "minimumInternalTemperatureC": 73.9,
+      "measurementRule": "Measure the thickest edible portion with a food thermometer; avoid bone. For whole poultry, verify the innermost thigh and wing and the thickest breast.",
+      "colorIsNotSafetyEvidence": true,
+      "sourceEndpointConflictPolicy": "Any practitioner endpoint below 165F is non-portable as safety guidance and is overridden by the USDA/FSIS minimum."
+    }
+  },
+  "synthesis": {
+    "projectAuthored": true,
+    "leafId": "poultry_chicken_competition",
+    "synthesisId": "BARBECUE_POULTRY_SYNTHESIS_2026_09_26_V1",
+    "synthesizedAt": "2026-09-26",
+    "qualifiedIndependentSourcesReviewed": 6,
+    "detailedTechniqueSources": 5,
+    "lowerResolutionSources": 1,
+    "safetyAuthorityRefs": [
+      "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/safe-temperature-chart",
+      "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/food-thermometers"
+    ],
+    "safetyConstraints": {
+      "minimumInternalTemperatureF": 165,
+      "minimumInternalTemperatureC": 73.9,
+      "measurementRule": "Measure the thickest edible portion with a food thermometer; avoid bone. For whole poultry, verify the innermost thigh and wing and the thickest breast.",
+      "colorIsNotSafetyEvidence": true,
+      "sourceEndpointConflictPolicy": "Any practitioner endpoint below 165F is non-portable as safety guidance and is overridden by the USDA/FSIS minimum."
+    },
+    "adjustmentAxes": {
+      "heat_source_fuel": {
+        "status": "SUPPORTED_ALTERNATIVES",
+        "alternatives": [
+          "CHARCOAL_OR_LUMP_DRUM_WITH_WOOD_SMOKE",
+          "PELLET_SMOKER",
+          "INDIRECT_SMOKER_WITH_HICKORY_OR_APPLE"
+        ],
+        "decisionNote": "Fuel is a flavor and heat-management choice; the source set does not support one mandatory fuel."
+      },
+      "direct_vs_indirect_heat": {
+        "status": "SUPPORTED_BRANCHES",
+        "alternatives": [
+          "DIRECT_INITIAL_SMOKE_FOR_COMPETITION_THIGHS",
+          "INDIRECT_SMOKE_FOR_THIGHS_OR_HALF_CHICKEN",
+          "COVERED_PAN_OR_FOIL_MOISTURE_STAGE_AFTER_SMOKE"
+        ],
+        "decisionNote": "Preserve direct and indirect branches instead of averaging them into one method."
+      },
+      "heat_intensity": {
+        "status": "SUPPORTED_RANGE",
+        "pitTemperatureFRange": [
+          275,
+          300
+        ],
+        "commonAnchorF": 275,
+        "decisionNote": "Detailed sources cluster at 275F, with a documented 300F competition-thigh branch."
+      },
+      "time_endpoint": {
+        "status": "CUT_AND_METHOD_DEPENDENT",
+        "safetyFloorF": 165,
+        "alternatives": [
+          "THIGHS_CONTINUE_BEYOND_SAFETY_FLOOR_FOR_TENDER_SKIN_AND_TEXTURE",
+          "HALF_CHICKEN_USE_THERMOMETER_VERIFICATION_AT_OR_ABOVE_SAFETY_FLOOR",
+          "USE_STAGE_CUES_FOR_CRUST_AND_GLAZE_IN_ADDITION_TO_TEMPERATURE"
+        ],
+        "practitionerTextureTargetsObservedF": [
+          185,
+          200,
+          208
+        ],
+        "nonPortableSourceEndpoint": {
+          "sourceRef": "youtube:Fi74kM76KuA",
+          "reportedFinishFApprox": 160,
+          "disposition": "REJECT_AS_SAFETY_ENDPOINT__USDA_165F_MINIMUM_GOVERNS"
+        },
+        "decisionNote": "Do not average endpoint temperatures; safety and desired texture are separate controls."
+      },
+      "brine_salt_level_duration": {
+        "status": "SUPPORTED_ALTERNATIVES_NO_CONCENTRATION_CONSENSUS",
+        "durationExamples": [
+          "SHORT_INJECTION_SOAK_AROUND_1_HOUR",
+          "WET_BRINE_AROUND_3_HOURS",
+          "WET_BRINE_AROUND_6_HOURS"
+        ],
+        "decisionNote": "Sources use different brine/injection systems, so no universal salt concentration is inferred."
+      },
+      "marinade_duration": {
+        "status": "NO_STABLE_SEPARATE_MARINADE_CONSENSUS",
+        "alternatives": [
+          "INJECTION_OR_SOAK",
+          "WET_BRINE",
+          "NO_SEPARATE_MARINADE_REQUIRED"
+        ],
+        "decisionNote": "Keep marinade duration optional rather than translating brine/injection evidence into a false universal marinade rule."
+      },
+      "sweetness": {
+        "status": "ADJUSTABLE",
+        "range": "LOW_TO_HIGH",
+        "commonPattern": "Sweet components are concentrated in late glaze or sauce stages rather than treated as a required base seasoning.",
+        "decisionNote": "Expose sweetness as a user-controlled finish variable."
+      },
+      "acidity": {
+        "status": "OPTIONAL_NOT_UNIVERSAL",
+        "alternatives": [
+          "LOW_OR_NONE",
+          "TANGY_SAUCE_OR_MOP_BRANCH"
+        ],
+        "decisionNote": "The qualified set does not support a mandatory acid level."
+      },
+      "spice_heat": {
+        "status": "ADJUSTABLE",
+        "range": "MILD_TO_HOT",
+        "commonPattern": "Heat can enter through rub layers or finishing sauce without changing the core cook sequence."
+      },
+      "smoke_intensity": {
+        "status": "ADJUSTABLE",
+        "range": "LIGHT_TO_MODERATE",
+        "alternatives": [
+          "SHORTER_COMPETITION_SMOKE_STAGE",
+          "LONGER_HICKORY_OR_APPLE_SMOKE_STAGE"
+        ],
+        "decisionNote": "Smoke level should vary with cut size and desired style; no single intensity is universal."
+      },
+      "glaze_sauce_timing": {
+        "status": "STRONGLY_SUPPORTED_LATE_FINISH",
+        "alternatives": [
+          "DIP_OR_BRUSH_AFTER_CORE_COOKING",
+          "SET_GLAZE_BRIEFLY_ON_COOKER"
+        ],
+        "observedSetMinutesRange": [
+          5,
+          15
+        ],
+        "decisionNote": "Late glazing is the most consistent cross-source pattern and reduces prolonged sugar exposure."
+      },
+      "resting_finishing": {
+        "status": "SUPPORTED_ALTERNATIVES",
+        "alternatives": [
+          "BRIEF_REST_THEN_SERVE",
+          "HOLD_FOR_COMPETITION_BOX",
+          "GLAZE_SET_THEN_SHORT_REST"
+        ],
+        "decisionNote": "Holding and resting depend on service context; competition holding is not required for home service."
+      }
+    },
+    "synthesisDecision": "COMPLETE",
+    "completionBasis": {
+      "requiredQualifiedIndependentSources": 5,
+      "observedQualifiedIndependentSources": 6,
+      "uniqueIndependenceKeys": 6,
+      "structuredAdjustmentAxes": 12,
+      "separateSafetyAuthority": true,
+      "prohibitedDurableContentRetained": false
+    }
+  },
+  "terminal": "POULTRY_CHICKEN_COMPETITION_COMPLETE__OTHER_FOUR_LEAVES_CONTINUE_DISCOVERY__PILOT_NOT_YET_PASS"
+}

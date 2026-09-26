@@ -1,6 +1,6 @@
 # Barbecue Technique Corpus — Roadmap Object V1
 
-Status: **SCHEDULED PILOT ACTIVE / DAY 2 CANDIDATE REVIEW COMPLETE / POULTRY SYNTHESIS PENDING / DISCOVERY CONTINUES**
+Status: **SCHEDULED PILOT ACTIVE / POULTRY SYNTHESIS COMPLETE / FOUR LEAVES DISCOVERY CONTINUES**
 
 Date: 2026-09-22
 
@@ -281,3 +281,32 @@ Cumulative qualified counts are poultry **6**, beef **2**, pork **4**, fish **1*
 No source-specific technique observations were invented during qualification. Poultry synthesis still requires project-authored normalized observations from the qualified sources plus separate authoritative food-safety references and structured adjustment axes. No public admission, Knowledge Core promotion, protected D1 change, paid quota or pilot PASS is earned by this review.
 
 Canonical review: `config/barbecue_technique_corpus_candidate_review_2026_09_26.json`.
+
+## 2026-09-26 poultry technique synthesis — COMPLETE
+
+The poultry leaf has completed its one-shot synthesis without any additional YouTube Search calls. All six already-qualified independent poultry sources were reviewed for bounded, project-authored normalized technique variables. Five sources provide detailed technique stages; the Pitmaster X exact source remains intentionally lower resolution because its accessible exact-source metadata does not support reliable numeric-stage extraction. Missing values were not inferred.
+
+The synthesis preserves materially different branches rather than averaging them into false precision. Detailed sources support a **275–300°F** cooker-temperature band, direct and indirect initial-smoke branches, optional covered pan/foil moisture stages, brine/injection durations that vary by method, and a strongly repeated late-glaze/set pattern. Higher poultry finish temperatures used by practitioners are retained as texture preferences rather than safety requirements.
+
+The food-safety firewall is separate and authoritative: USDA/FSIS establishes **165°F / 73.9°C** as the minimum internal temperature for poultry and thermometer placement guidance remains controlling. One qualified practitioner source reports a 160°F finish; that value is explicitly retained only as a source observation and is **not portable as safety guidance**. The USDA/FSIS 165°F minimum overrides it.
+
+Poultry now records:
+
+- qualified independent sources: **6 / 5 required**;
+- source observations reviewed: **6 / 6**;
+- structured adjustment axes: **12 / 12**;
+- separate safety-authority references: **2 USDA/FSIS**;
+- leaf status: **COMPLETE**;
+- Search used for synthesis: **0**;
+- protected D1 reads/writes: **0 / 0**;
+- public/runtime admission: **not authorized**;
+- Knowledge Core promotion: **not authorized**.
+
+Canonical synthesis evidence: `config/barbecue_technique_corpus_poultry_synthesis_2026_09_26.json`.
+
+The pilot itself remains incomplete because beef, pork, fish and vegetables have not yet reached their own five-source synthesis gates. Routine scheduled acquisition therefore continues only for those four leaves. Poultry remains excluded from the query portfolio unless a separately recorded refresh reason is later authorized.
+
+Recorded boundary:
+
+`POULTRY_CHICKEN_COMPETITION_COMPLETE__OTHER_FOUR_LEAVES_CONTINUE_DISCOVERY__PILOT_NOT_YET_PASS`
+
