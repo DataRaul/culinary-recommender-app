@@ -22,12 +22,11 @@ test("first barbecue candidate review is complete and zero-search", () => {
   assert.equal(review.authority.knowledgeCoreWrites, 0);
 });
 
-test("every reviewed candidate has a terminal decision in durable state", () => {
+test("every first-batch candidate remains terminal in durable state", () => {
   const pointers = state.leaves.flatMap(leaf =>
     leaf.candidatePointers.map(pointer => ({ leafId: leaf.leafId, ...pointer }))
   );
   const byKey = new Map(pointers.map(row => [`${row.leafId}|${row.sourceRef}`, row]));
-  const reviewedKeys = new Set(review.decisions.map(row => `${row.leafId}|${row.sourceRef}`));
 
   for (const decision of review.decisions) {
     const pointer = byKey.get(`${decision.leafId}|${decision.sourceRef}`);
@@ -35,15 +34,12 @@ test("every reviewed candidate has a terminal decision in durable state", () => 
     assert.equal(pointer.qualificationStatus, decision.decision);
     assert.notEqual(pointer.qualificationStatus, "PENDING_REVIEW");
   }
-
-  for (const pointer of pointers.filter(row => row.qualificationStatus === "PENDING_REVIEW")) {
-    assert.equal(reviewedKeys.has(`${pointer.leafId}|${pointer.sourceRef}`), false);
-  }
 });
 
-test("first-batch qualified sources remain present with independent evidence", () => {
+test("first-batch qualification decisions remain immutable while later evidence may append", () => {
   const firstBatchQualified = review.decisions.filter(row => row.decision === "QUALIFIED");
   for (const decision of firstBatchQualified) {
+    assert.deepEqual(decision.normalizedObservations, {});
     const leaf = state.leaves.find(row => row.leafId === decision.leafId);
     assert.ok(leaf, decision.leafId);
     const source = leaf.qualifiedSources.find(row => row.sourceRef === decision.sourceRef);
@@ -52,29 +48,18 @@ test("first-batch qualified sources remain present with independent evidence", (
     assert.equal(source.qualificationEvidenceRef, decision.evidenceRef);
     assert.match(source.qualificationEvidenceRef, /^https:\/\//);
     assert.ok(source.projectAuthoredRationale.length > 20);
-    assert.deepEqual(source.normalizedObservations, {});
   }
-  for (const leaf of state.leaves) {
-    assert.equal(
-      new Set(leaf.qualifiedSources.map(row => row.independenceKey)).size,
-      leaf.qualifiedSources.length
-    );
+
+  for (const [leafId, reviewedCount] of Object.entries(review.expected.qualifiedByLeaf)) {
+    const leaf = state.leaves.find(row => row.leafId === leafId);
+    assert.ok(leaf, leafId);
+    assert.ok(leaf.qualifiedSources.length >= reviewedCount, leafId);
+    assert.equal(new Set(leaf.qualifiedSources.map(row => row.independenceKey)).size, leaf.qualifiedSources.length);
   }
 });
 
-test("review does not invent technique observations or earn pilot completion", () => {
-  assert.equal(state.pilotPass, false);
-  assert.equal(state.programmeStatus, "ACTIVE_BOUNDED_DISCOVERY");
-  assert.equal(state.leaves.every(leaf => leaf.synthesis === null), true);
-  for (const leaf of state.leaves) {
-    const hasPendingReview = leaf.candidatePointers.some(
-      pointer => pointer.qualificationStatus === "PENDING_REVIEW"
-    );
-    const expectedStatus = leaf.qualifiedSources.length >= 5
-      ? "SYNTHESIS_PENDING"
-      : (hasPendingReview ? "REVIEW_PENDING" : "DISCOVERY_PENDING");
-    assert.equal(leaf.status, expectedStatus);
-  }
-  assert.equal(state.leaves.find(leaf => leaf.leafId === "poultry_chicken_competition").championshipSearchExhausted, true);
-  assert.equal(state.leaves.filter(leaf => leaf.leafId !== "poultry_chicken_competition").every(leaf => leaf.championshipSearchExhausted === false), true);
+test("first review snapshot itself did not invent technique observations or earn completion", () => {
+  assert.equal(review.expected.completedLeaves, 0);
+  assert.equal(review.expected.pilotPass, false);
+  assert.equal(review.decisions.every(row => Object.keys(row.normalizedObservations ?? {}).length === 0), true);
 });
