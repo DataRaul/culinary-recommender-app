@@ -11,13 +11,21 @@
   "minYoutubeRequestIntervalMs": 1000,
   "candidateBacklogCap": 50,
   "maxCandidatesPerLeaf": 12,
-  "lastCompletedQuotaDate": "2026-09-25",
+  "lastCompletedQuotaDate": "2026-09-26",
   "completedQuotaDays": [
     {
       "quotaDate": "2026-09-25",
       "completedAt": "2026-09-25T14:37:58.936Z",
       "searchCalls": 16,
       "candidatePointersAdded": 34,
+      "terminalState": "BARBECUE_DAILY_DISCOVERY_CONTINUE",
+      "providerFailure": null
+    },
+    {
+      "quotaDate": "2026-09-26",
+      "completedAt": "2026-09-26T13:46:21.013Z",
+      "searchCalls": 10,
+      "candidatePointersAdded": 17,
       "terminalState": "BARBECUE_DAILY_DISCOVERY_CONTINUE",
       "providerFailure": null
     }
@@ -31,7 +39,7 @@
       "cutForm": "chicken",
       "tradition": "AMERICAN_COMPETITION_BARBECUE",
       "method": "DIRECT_INDIRECT_GRILL",
-      "status": "DISCOVERY_PENDING",
+      "status": "REVIEW_PENDING",
       "championshipSearchExhausted": true,
       "candidatePointers": [
         {
@@ -133,6 +141,54 @@
           "discoveredQuotaDate": "2026-09-25",
           "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:erEeh6Ghaj8",
+          "youtubeVideoRef": "erEeh6Ghaj8",
+          "canonicalReference": "https://www.youtube.com/watch?v=erEeh6Ghaj8",
+          "creatorChannelRef": "UC--MxpGXJ3LVD8KvlNzRlcA",
+          "leafId": "poultry_chicken_competition",
+          "queryId": "bbq-90d8df54172887f6a3",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:Q7EcO6qcbPQ",
+          "youtubeVideoRef": "Q7EcO6qcbPQ",
+          "canonicalReference": "https://www.youtube.com/watch?v=Q7EcO6qcbPQ",
+          "creatorChannelRef": "UC_kARM8MBLDBxZQuZeYYQdQ",
+          "leafId": "poultry_chicken_competition",
+          "queryId": "bbq-90d8df54172887f6a3",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:pDcn-14oC3o",
+          "youtubeVideoRef": "pDcn-14oC3o",
+          "canonicalReference": "https://www.youtube.com/watch?v=pDcn-14oC3o",
+          "creatorChannelRef": "UCcjhYlL1WRBjKaJsMH_h7Lg",
+          "leafId": "poultry_chicken_competition",
+          "queryId": "bbq-e70e836c057042ac8a",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:dMKE6Cz6WcE",
+          "youtubeVideoRef": "dMKE6Cz6WcE",
+          "canonicalReference": "https://www.youtube.com/watch?v=dMKE6Cz6WcE",
+          "creatorChannelRef": "UCvp-fQ_pAk_ioTwiPfa_-rg",
+          "leafId": "poultry_chicken_competition",
+          "queryId": "bbq-e70e836c057042ac8a",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
         }
       ],
       "qualifiedSources": [
@@ -185,7 +241,7 @@
       "cutForm": "brisket",
       "tradition": "AMERICAN_COMPETITION_BARBECUE",
       "method": "LOW_SLOW_SMOKER_BARBECUE",
-      "status": "DISCOVERY_PENDING",
+      "status": "REVIEW_PENDING",
       "championshipSearchExhausted": false,
       "candidatePointers": [
         {
@@ -251,6 +307,30 @@
           "qualificationStatus": "REJECTED",
           "automaticQualificationAuthorized": false,
           "projectAuthoredRejectionRationale": "Bounded review did not establish competition or specialist barbecue credentials adequate for the five-source admission gate."
+        },
+        {
+          "sourceRef": "youtube:vo8CMWLLVXg",
+          "youtubeVideoRef": "vo8CMWLLVXg",
+          "canonicalReference": "https://www.youtube.com/watch?v=vo8CMWLLVXg",
+          "creatorChannelRef": "UCEW-QTGS5ImvR_nllVEMmMQ",
+          "leafId": "beef_brisket_competition",
+          "queryId": "bbq-2f9ef7d3e80b32ec21",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:EQbKWG2Wz5c",
+          "youtubeVideoRef": "EQbKWG2Wz5c",
+          "canonicalReference": "https://www.youtube.com/watch?v=EQbKWG2Wz5c",
+          "creatorChannelRef": "UCc9CjaAjsMMvaSghZB7-Kog",
+          "leafId": "beef_brisket_competition",
+          "queryId": "bbq-2f9ef7d3e80b32ec21",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
         }
       ],
       "qualifiedSources": [
@@ -273,7 +353,7 @@
       "cutForm": "ribs",
       "tradition": "AMERICAN_COMPETITION_BARBECUE",
       "method": "LOW_SLOW_SMOKER_OR_GRILL",
-      "status": "DISCOVERY_PENDING",
+      "status": "REVIEW_PENDING",
       "championshipSearchExhausted": false,
       "candidatePointers": [
         {
@@ -350,6 +430,30 @@
           "discoveredQuotaDate": "2026-09-25",
           "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:EQbKWG2Wz5c",
+          "youtubeVideoRef": "EQbKWG2Wz5c",
+          "canonicalReference": "https://www.youtube.com/watch?v=EQbKWG2Wz5c",
+          "creatorChannelRef": "UCc9CjaAjsMMvaSghZB7-Kog",
+          "leafId": "pork_ribs_competition",
+          "queryId": "bbq-b0f38e7132d9319c13",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:xlQjCdpOJOE",
+          "youtubeVideoRef": "xlQjCdpOJOE",
+          "canonicalReference": "https://www.youtube.com/watch?v=xlQjCdpOJOE",
+          "creatorChannelRef": "UCtPVT3HYB5jHMD2NWaMxzxQ",
+          "leafId": "pork_ribs_competition",
+          "queryId": "bbq-b0f38e7132d9319c13",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
         }
       ],
       "qualifiedSources": [
@@ -392,7 +496,7 @@
       "cutForm": "fish",
       "tradition": "SPANISH_PARRILLA",
       "method": "DIRECT_GRILL",
-      "status": "DISCOVERY_PENDING",
+      "status": "REVIEW_PENDING",
       "championshipSearchExhausted": false,
       "candidatePointers": [
         {
@@ -484,6 +588,66 @@
           "discoveredQuotaDate": "2026-09-25",
           "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:eSO0czylRy0",
+          "youtubeVideoRef": "eSO0czylRy0",
+          "canonicalReference": "https://www.youtube.com/watch?v=eSO0czylRy0",
+          "creatorChannelRef": "UC4dtbTXdvjo272b5x_mxRBw",
+          "leafId": "fish_parrilla",
+          "queryId": "bbq-74d5fc16ffc6bcda80",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:EQbKWG2Wz5c",
+          "youtubeVideoRef": "EQbKWG2Wz5c",
+          "canonicalReference": "https://www.youtube.com/watch?v=EQbKWG2Wz5c",
+          "creatorChannelRef": "UCc9CjaAjsMMvaSghZB7-Kog",
+          "leafId": "fish_parrilla",
+          "queryId": "bbq-74d5fc16ffc6bcda80",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:0W2yd5SC72s",
+          "youtubeVideoRef": "0W2yd5SC72s",
+          "canonicalReference": "https://www.youtube.com/watch?v=0W2yd5SC72s",
+          "creatorChannelRef": "UC6DCL4YCyRGeZSFewg5Of2A",
+          "leafId": "fish_parrilla",
+          "queryId": "bbq-4c03a57847173b2517",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:XpubqTGxNwo",
+          "youtubeVideoRef": "XpubqTGxNwo",
+          "canonicalReference": "https://www.youtube.com/watch?v=XpubqTGxNwo",
+          "creatorChannelRef": "UC0kDYiP06Wb13lBbARzo4UA",
+          "leafId": "fish_parrilla",
+          "queryId": "bbq-4c03a57847173b2517",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:FARaqshVu6Y",
+          "youtubeVideoRef": "FARaqshVu6Y",
+          "canonicalReference": "https://www.youtube.com/watch?v=FARaqshVu6Y",
+          "creatorChannelRef": "UCOMH0_w0yzqPvvKNcDrsK6g",
+          "leafId": "fish_parrilla",
+          "queryId": "bbq-4c03a57847173b2517",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
         }
       ],
       "qualifiedSources": [
@@ -506,7 +670,7 @@
       "cutForm": "mixed vegetables",
       "tradition": "SPANISH_PARRILLA",
       "method": "DIRECT_GRILL",
-      "status": "DISCOVERY_PENDING",
+      "status": "REVIEW_PENDING",
       "championshipSearchExhausted": false,
       "candidatePointers": [
         {
@@ -610,6 +774,54 @@
           "qualificationStatus": "REJECTED",
           "automaticQualificationAuthorized": false,
           "projectAuthoredRejectionRationale": "Bounded independent review did not verify championship credentials or sufficiently strong grill/barbecue-domain competence for the creator."
+        },
+        {
+          "sourceRef": "youtube:wZUMAHBMrkE",
+          "youtubeVideoRef": "wZUMAHBMrkE",
+          "canonicalReference": "https://www.youtube.com/watch?v=wZUMAHBMrkE",
+          "creatorChannelRef": "UC4dtbTXdvjo272b5x_mxRBw",
+          "leafId": "vegetables_parrilla",
+          "queryId": "bbq-67e7afcc9d46160424",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:gXkgf1wl4Ls",
+          "youtubeVideoRef": "gXkgf1wl4Ls",
+          "canonicalReference": "https://www.youtube.com/watch?v=gXkgf1wl4Ls",
+          "creatorChannelRef": "UCQ8xm2cvxFaXFyZZB9nOI-g",
+          "leafId": "vegetables_parrilla",
+          "queryId": "bbq-67e7afcc9d46160424",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:7MLgYBCl4i4",
+          "youtubeVideoRef": "7MLgYBCl4i4",
+          "canonicalReference": "https://www.youtube.com/watch?v=7MLgYBCl4i4",
+          "creatorChannelRef": "UC523PXnKu7Xrb5QmoJpktuw",
+          "leafId": "vegetables_parrilla",
+          "queryId": "bbq-d1f4c62c6a57139295",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:XZcoVuX2aRI",
+          "youtubeVideoRef": "XZcoVuX2aRI",
+          "canonicalReference": "https://www.youtube.com/watch?v=XZcoVuX2aRI",
+          "creatorChannelRef": "UCc3uaFrajPQQP9FQoEC1gLA",
+          "leafId": "vegetables_parrilla",
+          "queryId": "bbq-d1f4c62c6a57139295",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-26",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
         }
       ],
       "qualifiedSources": [
@@ -660,7 +872,17 @@
     "bbq-ca25e2e13e6a57a4f6",
     "bbq-f650c4e05c3b3541a4",
     "bbq-dedab8778cb1a2f583",
-    "bbq-ff154c7408824e283d"
+    "bbq-ff154c7408824e283d",
+    "bbq-90d8df54172887f6a3",
+    "bbq-2f9ef7d3e80b32ec21",
+    "bbq-b0f38e7132d9319c13",
+    "bbq-74d5fc16ffc6bcda80",
+    "bbq-67e7afcc9d46160424",
+    "bbq-e70e836c057042ac8a",
+    "bbq-4c03a57847173b2517",
+    "bbq-d1f4c62c6a57139295",
+    "bbq-fdf77648c2a9918f45",
+    "bbq-2dc113241c10d4008d"
   ],
   "controlPlaneStatus": "BARBECUE_TECHNIQUE_CORPUS_CONTROL_PLANE_VALIDATION_PASS",
   "controlPlaneValidation": {
