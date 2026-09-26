@@ -49,7 +49,7 @@
 | V1.x / Culinary Brain Corpus Calibration V1 | LANE 2 PREP PASS / C1 + LIVE P2 READY IMMEDIATELY AFTER P1 | C0 Golden-85 preparation, the frozen P2 blocker harness and the 500-slot/19-cohort C1 allocation are complete. Exact protected IDs have not been selected. When Lane 1 earns P1 terminal PASS, immediately freeze the exact ~500 C1 identities with the existing secondary strata, execute C1, and run live/full-v8018 P2 measurement in parallel. C2 and P3 remain blocked on those results; no live KC/LLM runtime or hard-authority widening |
 | V1.x / EU regulatory truth lane | LANE 3 TERMINAL PASS / PARKED / NO SUCCESSOR SELECTED | Celery P0 is complete and the residual `tree_nut` / `gluten` semantics audit passed without further runtime change. Canonical nextGate is `NOT_SELECTED__FUTURE_ONTOLOGY_OR_THRESHOLD_SCHEMA_TRIGGER`: Lane 3 is not blocked by P1, but it is currently complete/parked rather than an active work queue. Mustard/lupin/molluscs remain deferred until exact ontology need; sulphites remain deferred until threshold-aware evidence semantics exist |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
-| Post-usable-app / Barbecue Technique Corpus | INDEPENDENT SCHEDULED PILOT ACTIVE / DAY 2 REVIEW COMPLETE / POULTRY SYNTHESIS PENDING / CONTINUE | 2026-09-26 review closed all 17 new candidates with 0 additional YouTube Search: 4 QUALIFIED / 13 REJECTED. Cumulative qualified counts are poultry 6, beef 2, pork 4, fish 1, vegetables 2. Poultry now stops discovery at `SYNTHESIS_PENDING`; the other four leaves continue bounded discovery. Scheduler/work-unit remains `CLOSED_CONTINUE` / `CONTINUE_BOUNDED_WAKEUP`, hard hold null; no public/KC/D1/billing widening |
+| Post-usable-app / Barbecue Technique Corpus | INDEPENDENT SCHEDULED PILOT ACTIVE / POULTRY SYNTHESIS COMPLETE / FOUR LEAVES CONTINUE | Poultry now has 6 qualified independent sources, 6/6 bounded normalized source observations, 12/12 structured adjustment axes and separate USDA/FSIS safety authority; the leaf is `COMPLETE` with 0 additional YouTube Search and remains excluded from discovery. Beef 2, pork 4, fish 1 and vegetables 2 continue bounded discovery. Pilot PASS remains false; scheduler/work-unit remains bounded with no public/KC/D1/billing widening |
 
 
 
@@ -62,7 +62,7 @@ This section is the concise operational source of truth for the currently discus
 | Lane 1 — Protected corpus P1 | **FULL INDEX BUILT; OWNER TERMINAL RE-RUN REQUIRED** | Exact 19,268/19,268 is preserved. Do **not** re-index. PR #321 deployed the sanitized terminal diagnostic. Owner runs **Run live verification** once; a PASS unlocks Lane 2, while STOPPED_SAFE now exposes the exact mismatching status tuple for direct repair. |
 | Lane 2 — Brain C1 + live P2 | **PREP COMPLETE; EXECUTION BLOCKED ONLY ON P1** | C0 Golden-85, frozen P2 blocker harness and 500-slot/19-cohort C1 allocation are complete. After P1 PASS: freeze exact C1 IDs, execute C1 and run live/full-v8018 P2 in parallel. C2/P3 remain later gates. |
 | Lane 3 — EU regulatory truth | **TERMINAL PASS; PARKED** | Celery P0 + residual semantics audit are complete. No successor is selected. Reactivate only for a new canonical ontology need or a separately designed threshold-aware evidence schema. |
-| Barbecue Technique Corpus | **INDEPENDENT SCHEDULED PILOT; CONTINUE** | Workflow remains scheduled daily at 09:20 UTC. Current work-unit state is `CLOSED_CONTINUE` / `CONTINUE_BOUNDED_WAKEUP`; hard hold is null. Day 2 added 17 review-pending candidates. Candidate review may proceed separately without changing the daily scheduler. |
+| Barbecue Technique Corpus | **INDEPENDENT SCHEDULED PILOT; POULTRY COMPLETE; CONTINUE FOUR LEAVES** | Poultry synthesis is complete and routine discovery excludes that leaf. Beef, pork, fish and vegetables continue under the existing daily 09:20 UTC scheduler. Current work-unit remains bounded; hard hold is null. No manual duplicate Search is authorized. |
 
 ### Production-readiness invariant — D1 write isolation
 
@@ -81,6 +81,18 @@ hardHold: null
 ```
 
 No scheduler mutation is needed to keep Barbecue running.
+
+## 2026-09-26 Barbecue poultry synthesis — COMPLETE
+
+The poultry leaf has now crossed its full synthesis gate without additional YouTube Search. All six already-qualified independent sources were reviewed for bounded project-authored technique variables; five support detailed stages and the exact Pitmaster X source remains intentionally lower resolution rather than having numeric details inferred. The resulting packet preserves direct/indirect and covered-moisture alternatives, a detailed-source cooker range of **275–300°F**, variable brine/injection durations, and late glaze/set behavior without averaging incompatible methods into one recipe.
+
+Safety remains a separate authority layer. USDA/FSIS minimum poultry temperature **165°F / 73.9°C** and thermometer-placement guidance govern the leaf. A practitioner-reported 160°F finish remains recorded only as a source observation and is explicitly rejected as portable safety guidance.
+
+Completion evidence: **6 / 5 qualified independent sources**, **6 / 6 normalized source observations**, **12 / 12 adjustment axes**, **2 USDA/FSIS safety references**, **0 Search calls for synthesis**, **0 protected D1 reads/writes**, and no public/runtime admission or Knowledge Core promotion. Poultry status is now `COMPLETE`; pilot PASS remains false because beef, pork, fish and vegetables remain in discovery.
+
+Canonical packet: `config/barbecue_technique_corpus_poultry_synthesis_2026_09_26.json`.
+
+Next action: **allow the normal scheduled Barbecue acquisition to continue for beef, pork, fish and vegetables only; do not manually duplicate live Search.**
 
 ## 2026-09-26 Barbecue second candidate review — COMPLETE
 
