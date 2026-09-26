@@ -39,7 +39,7 @@
       "cutForm": "chicken",
       "tradition": "AMERICAN_COMPETITION_BARBECUE",
       "method": "DIRECT_INDIRECT_GRILL",
-      "status": "REVIEW_PENDING",
+      "status": "SYNTHESIS_PENDING",
       "championshipSearchExhausted": true,
       "candidatePointers": [
         {
@@ -151,7 +151,7 @@
           "queryId": "bbq-90d8df54172887f6a3",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -163,7 +163,7 @@
           "queryId": "bbq-90d8df54172887f6a3",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -175,8 +175,9 @@
           "queryId": "bbq-e70e836c057042ac8a",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Candidate resolves to Epicurious general food-media instruction rather than an independently verified barbecue practitioner identity for this stricter pilot source gate."
         },
         {
           "sourceRef": "youtube:dMKE6Cz6WcE",
@@ -187,8 +188,9 @@
           "queryId": "bbq-e70e836c057042ac8a",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Bounded independent review did not verify a creator identity with competition credentials or sufficiently strong specialist barbecue competence; generic chef/title wording is insufficient."
         }
       ],
       "qualifiedSources": [
@@ -231,6 +233,26 @@
           "qualificationEvidenceRef": "https://www.cbbqa.com/awards/",
           "projectAuthoredRationale": "Independent barbecue-association awards record verifies Harry Soo / Slap Yo' Daddy BBQ competition credentials; qualification is credential-based.",
           "normalizedObservations": {}
+        },
+        {
+          "sourceRef": "youtube:erEeh6Ghaj8",
+          "canonicalReference": "https://www.youtube.com/watch?v=erEeh6Ghaj8",
+          "creatorChannelRef": "UC--MxpGXJ3LVD8KvlNzRlcA",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "malcom-reed-killer-hogs",
+          "qualificationEvidenceRef": "https://worldfoodchampionships.com/talent/profile/our-competitors/6163/malcom-reed",
+          "projectAuthoredRationale": "Independent competition profile already admitted elsewhere in this pilot verifies Malcom Reed's sustained competition-barbecue experience and educator role; this specialist-fallback candidate qualifies on creator competence, not title wording.",
+          "normalizedObservations": {}
+        },
+        {
+          "sourceRef": "youtube:Q7EcO6qcbPQ",
+          "canonicalReference": "https://www.youtube.com/watch?v=Q7EcO6qcbPQ",
+          "creatorChannelRef": "UC_kARM8MBLDBxZQuZeYYQdQ",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "roel-westra-pitmaster-x",
+          "qualificationEvidenceRef": "https://www.24kitchen.nl/programmas/buitengewoon-bbq",
+          "projectAuthoredRationale": "Independent broadcaster 24Kitchen identifies Roel Westra (Pitmaster X) as a BBQ expert teaching barbecue technique across meat, fish and vegetables; this specialist-fallback candidate qualifies on documented domain competence.",
+          "normalizedObservations": {}
         }
       ],
       "synthesis": null
@@ -241,7 +263,7 @@
       "cutForm": "brisket",
       "tradition": "AMERICAN_COMPETITION_BARBECUE",
       "method": "LOW_SLOW_SMOKER_BARBECUE",
-      "status": "REVIEW_PENDING",
+      "status": "DISCOVERY_PENDING",
       "championshipSearchExhausted": false,
       "candidatePointers": [
         {
@@ -317,7 +339,7 @@
           "queryId": "bbq-2f9ef7d3e80b32ec21",
           "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -329,8 +351,9 @@
           "queryId": "bbq-2f9ef7d3e80b32ec21",
           "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Creator identity is BeardMeatsFood, a competitive-eating source rather than a verified barbecue-technique practitioner; query/title match does not establish competence."
         }
       ],
       "qualifiedSources": [
@@ -343,6 +366,16 @@
           "qualificationEvidenceRef": "https://southeastbbqchampionship.org/results",
           "projectAuthoredRationale": "Independent competition results verify Elite BBQ Smokers as an active competition barbecue team; qualification is competition-credential based.",
           "normalizedObservations": {}
+        },
+        {
+          "sourceRef": "youtube:vo8CMWLLVXg",
+          "canonicalReference": "https://www.youtube.com/watch?v=vo8CMWLLVXg",
+          "creatorChannelRef": "UCEW-QTGS5ImvR_nllVEMmMQ",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "independenceKey": "christie-vanover-girls-can-grill",
+          "qualificationEvidenceRef": "https://www.nbbqa.org/current-members/christie-vanover",
+          "projectAuthoredRationale": "Independent National Barbecue & Grilling Association profile identifies Christie Vanover as a championship pitmaster and certified barbecue judge with competition expertise; qualification is competence-based.",
+          "normalizedObservations": {}
         }
       ],
       "synthesis": null
@@ -353,7 +386,7 @@
       "cutForm": "ribs",
       "tradition": "AMERICAN_COMPETITION_BARBECUE",
       "method": "LOW_SLOW_SMOKER_OR_GRILL",
-      "status": "REVIEW_PENDING",
+      "status": "DISCOVERY_PENDING",
       "championshipSearchExhausted": false,
       "candidatePointers": [
         {
@@ -440,8 +473,9 @@
           "queryId": "bbq-b0f38e7132d9319c13",
           "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Creator identity is BeardMeatsFood, a competitive-eating source rather than a verified barbecue-technique practitioner; query/title match does not establish competence."
         },
         {
           "sourceRef": "youtube:xlQjCdpOJOE",
@@ -452,7 +486,7 @@
           "queryId": "bbq-b0f38e7132d9319c13",
           "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         }
       ],
@@ -486,6 +520,16 @@
           "qualificationEvidenceRef": "https://southeastbbqchampionship.org/results",
           "projectAuthoredRationale": "Independent competition results verify Elite BBQ Smokers as an active competition barbecue team; qualification is competition-credential based.",
           "normalizedObservations": {}
+        },
+        {
+          "sourceRef": "youtube:xlQjCdpOJOE",
+          "canonicalReference": "https://www.youtube.com/watch?v=xlQjCdpOJOE",
+          "creatorChannelRef": "UCtPVT3HYB5jHMD2NWaMxzxQ",
+          "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
+          "independenceKey": "heath-riles-bbq",
+          "qualificationEvidenceRef": "https://memphisinmay.org/winners/",
+          "projectAuthoredRationale": "Official Memphis in May results list Heath Riles BBQ as 2025 and 2026 World Championship Barbecue Cooking Contest Grand Champion, with a 2026 first-place ribs finish; qualification is championship-credential based.",
+          "normalizedObservations": {}
         }
       ],
       "synthesis": null
@@ -496,7 +540,7 @@
       "cutForm": "fish",
       "tradition": "SPANISH_PARRILLA",
       "method": "DIRECT_GRILL",
-      "status": "REVIEW_PENDING",
+      "status": "DISCOVERY_PENDING",
       "championshipSearchExhausted": false,
       "candidatePointers": [
         {
@@ -598,8 +642,9 @@
           "queryId": "bbq-74d5fc16ffc6bcda80",
           "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "This candidate is another Harry Soo source in a leaf that already counts Harry Soo under independence key harry-soo-slap-yo-daddy; the unique-independence rule prevents a second count from the same creator lineage."
         },
         {
           "sourceRef": "youtube:EQbKWG2Wz5c",
@@ -610,8 +655,9 @@
           "queryId": "bbq-74d5fc16ffc6bcda80",
           "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Creator identity is BeardMeatsFood, a competitive-eating source rather than a verified barbecue/parrilla technique practitioner."
         },
         {
           "sourceRef": "youtube:0W2yd5SC72s",
@@ -622,8 +668,9 @@
           "queryId": "bbq-4c03a57847173b2517",
           "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Available evidence did not verify the candidate channel as an independent championship or specialist parrilla practitioner; 'campeones del mundo' wording in the candidate itself is not credential evidence."
         },
         {
           "sourceRef": "youtube:XpubqTGxNwo",
@@ -634,8 +681,9 @@
           "queryId": "bbq-4c03a57847173b2517",
           "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Candidate resolves to BRUTA COCINA, a general cooking source; bounded review did not establish specialist barbecue/parrilla or competition credentials at the pilot threshold."
         },
         {
           "sourceRef": "youtube:FARaqshVu6Y",
@@ -646,8 +694,9 @@
           "queryId": "bbq-4c03a57847173b2517",
           "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Bounded independent review could not verify the creator identity and championship/specialist grill competence strongly enough to admit this source."
         }
       ],
       "qualifiedSources": [
@@ -670,7 +719,7 @@
       "cutForm": "mixed vegetables",
       "tradition": "SPANISH_PARRILLA",
       "method": "DIRECT_GRILL",
-      "status": "REVIEW_PENDING",
+      "status": "DISCOVERY_PENDING",
       "championshipSearchExhausted": false,
       "candidatePointers": [
         {
@@ -784,8 +833,9 @@
           "queryId": "bbq-67e7afcc9d46160424",
           "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "This candidate is another Harry Soo source in a leaf that already counts Harry Soo under independence key harry-soo-slap-yo-daddy; it cannot supply a second independent source."
         },
         {
           "sourceRef": "youtube:gXkgf1wl4Ls",
@@ -796,8 +846,9 @@
           "queryId": "bbq-67e7afcc9d46160424",
           "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Candidate resolves to Jackie Hartlaub, a general recipe/cooking creator; bounded independent review did not verify specialist barbecue/parrilla or competition competence."
         },
         {
           "sourceRef": "youtube:7MLgYBCl4i4",
@@ -808,8 +859,9 @@
           "queryId": "bbq-d1f4c62c6a57139295",
           "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "The candidate demonstrates grilled vegetables, but bounded independent review did not verify championship credentials or sufficiently strong specialist grill/parrilla competence for the creator."
         },
         {
           "sourceRef": "youtube:XZcoVuX2aRI",
@@ -820,8 +872,9 @@
           "queryId": "bbq-d1f4c62c6a57139295",
           "queryClass": "COMPETITION_CHAMPION_DISCOVERY",
           "discoveredQuotaDate": "2026-09-26",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Bounded independent review did not verify the creator identity and championship/specialist grill competence strongly enough to admit this source."
         }
       ],
       "qualifiedSources": [
@@ -904,5 +957,21 @@
     "rejectedCount": 23,
     "youtubeSearchCallsUsedForReview": 0,
     "nextAction": "CONTINUE_CHAMPIONSHIP_DISCOVERY__POULTRY_SPECIALIST_FALLBACK_ALLOWED"
+  },
+  "secondCandidateBatchReview": {
+    "reviewId": "BARBECUE_SECOND_CANDIDATE_BATCH_REVIEW_2026_09_26",
+    "reviewedAt": "2026-09-26",
+    "candidateCount": 17,
+    "qualifiedCount": 4,
+    "rejectedCount": 13,
+    "youtubeSearchCallsUsedForReview": 0,
+    "qualifiedByLeafAfterReview": {
+      "poultry_chicken_competition": 6,
+      "beef_brisket_competition": 2,
+      "pork_ribs_competition": 4,
+      "fish_parrilla": 1,
+      "vegetables_parrilla": 2
+    },
+    "nextAction": "POULTRY_TECHNIQUE_OBSERVATION_REVIEW_AND_SYNTHESIS__OTHER_LEAVES_CONTINUE_DISCOVERY"
   }
 }
