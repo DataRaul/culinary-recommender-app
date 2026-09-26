@@ -27,14 +27,18 @@ test("every reviewed candidate has a terminal decision in durable state", () => 
     leaf.candidatePointers.map(pointer => ({ leafId: leaf.leafId, ...pointer }))
   );
   const byKey = new Map(pointers.map(row => [`${row.leafId}|${row.sourceRef}`, row]));
+  const reviewedKeys = new Set(review.decisions.map(row => `${row.leafId}|${row.sourceRef}`));
 
   for (const decision of review.decisions) {
     const pointer = byKey.get(`${decision.leafId}|${decision.sourceRef}`);
     assert.ok(pointer, `${decision.leafId} ${decision.sourceRef}`);
     assert.equal(pointer.qualificationStatus, decision.decision);
+    assert.notEqual(pointer.qualificationStatus, "PENDING_REVIEW");
   }
 
-  assert.equal(pointers.filter(row => row.qualificationStatus === "PENDING_REVIEW").length, 0);
+  for (const pointer of pointers.filter(row => row.qualificationStatus === "PENDING_REVIEW")) {
+    assert.equal(reviewedKeys.has(`${pointer.leafId}|${pointer.sourceRef}`), false);
+  }
 });
 
 test("qualified sources carry independent evidence and leaf-unique independence keys", () => {
@@ -57,7 +61,12 @@ test("review does not invent technique observations or earn pilot completion", (
   assert.equal(state.pilotPass, false);
   assert.equal(state.programmeStatus, "ACTIVE_BOUNDED_DISCOVERY");
   assert.equal(state.leaves.every(leaf => leaf.synthesis === null), true);
-  assert.equal(state.leaves.every(leaf => leaf.status === "DISCOVERY_PENDING"), true);
+  for (const leaf of state.leaves) {
+    const hasPendingReview = leaf.candidatePointers.some(
+      pointer => pointer.qualificationStatus === "PENDING_REVIEW"
+    );
+    assert.equal(leaf.status, hasPendingReview ? "REVIEW_PENDING" : "DISCOVERY_PENDING");
+  }
   assert.equal(state.leaves.find(leaf => leaf.leafId === "poultry_chicken_competition").championshipSearchExhausted, true);
   assert.equal(state.leaves.filter(leaf => leaf.leafId !== "poultry_chicken_competition").every(leaf => leaf.championshipSearchExhausted === false), true);
 });

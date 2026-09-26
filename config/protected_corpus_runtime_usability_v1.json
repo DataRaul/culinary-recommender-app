@@ -123,19 +123,20 @@
       "document": "docs/PROTECTED_CORPUS_P1_PRIVATE_BROWSE_SEARCH_V1.md",
       "page": "protected-corpus.html",
       "api": "/api/protected-corpus/v1",
-      "liveOwnerCanary": "PROVIDER_D1_DAILY_LIMIT_HOLD__PARTIAL_INDEX_PRESERVED",
+      "liveOwnerCanary": "FULL_INDEX_BUILT__TERMINAL_STATUS_INVARIANT_DIAGNOSTIC_PENDING",
       "validationRun": 1093,
       "validationRunId": 36070083309,
       "lastLiveAttempt": {
-        "date": "2026-09-25",
-        "indexedRecipeCountApprox": 13000,
+        "date": "2026-09-26",
+        "indexedRecipeCount": 19268,
         "expectedRecipeCount": 19268,
-        "observedOwnerMessage": "NON_JSON_RESPONSE; provider operation limit reached",
-        "classification": "D1_FREE_DAILY_ROWS_WRITTEN_LIMIT_HOLD",
-        "providerFreeDailyRowsWritten": 100000,
-        "providerReset": "00:00 UTC",
-        "committedProgressPreserved": true,
-        "blindRetryBeforeResetAuthorized": false
+        "observedRowsWrittenToday": 10239,
+        "terminal": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_STOPPED_SAFE",
+        "observedOwnerMessage": "status: exact v8018 19,268 / 19,268 / 3-partial acceptance not met",
+        "classification": "TERMINAL_STATUS_INVARIANT_DIAGNOSTIC_PENDING",
+        "fullIndexBuildCompleted": true,
+        "reindexRequired": false,
+        "protectedBodyRewriteRequired": false
       }
     },
     {

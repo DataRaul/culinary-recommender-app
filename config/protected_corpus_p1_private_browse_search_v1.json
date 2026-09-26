@@ -68,19 +68,22 @@
   "validation": {
     "deterministic": "PASS",
     "browser": "PASS",
-    "liveOwnerCanary": "PROVIDER_D1_DAILY_LIMIT_HOLD__PARTIAL_INDEX_PRESERVED",
-    "exactIndexCount": null,
+    "liveOwnerCanary": "FULL_INDEX_BUILT__TERMINAL_STATUS_INVARIANT_DIAGNOSTIC_PENDING",
+    "exactIndexCount": 19268,
     "exactStructuralPartialCount": 0,
     "validationRun": 1093,
     "validationRunId": 36070083309,
     "observedIndexCountApprox": 13000,
-    "observedFailure": "NON_JSON_RESPONSE_WITH_PROVIDER_OPERATION_LIMIT",
+    "observedFailure": "status: exact v8018 19,268 / 19,268 / 3-partial acceptance not met",
     "providerLimit": {
       "freeDailyRowsWritten": 100000,
       "reset": "00:00 UTC",
       "ftsWriteAmplificationExpected": true,
       "committedProgressPreserved": true,
       "blindRetryBeforeResetAuthorized": false
-    }
+    },
+    "observedRowsWrittenToday": 10239,
+    "fullIndexBuildCompleted": true,
+    "reindexRequired": false
   }
 }
