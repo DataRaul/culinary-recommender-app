@@ -2,7 +2,7 @@
 
 Date: **2026-09-27**
 
-Status: **FAILURE MATRIX / REPAIR COHORT FREEZE**
+Status: **FAILURE MATRIX PASS / HARD-AUTHORITY REPAIR READY**
 
 ## Purpose
 
@@ -27,3 +27,22 @@ The successor is C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1. P3 remains blocked until a
 ## Hard boundaries
 
 No protected D1 reads or writes, no runtime protected-body reads, no protected-body rewrite, no public-runtime change, no recommendation admission, no Brain/C2 promotion, no nutrition or dietary/allergen authority promotion, no private Knowledge Core runtime dependency, no paid model/API, no third shard and no Barbecue mutation.
+
+
+## First-unit terminal result — 2026-09-27
+
+The exact pinned reconstruction passed at `CULINARY_BRAIN_C4_FAILURE_MATRIX_PASS__112_IDENTITY_READY_REPAIR_COHORT_FROZEN`.
+
+- reconstructed protected identities: **19,268 / 19,268**;
+- all-ingredient-identity-ready repair cohort: **112**;
+- unresolved-identity recipes: **19,156**;
+- structural exceptions: **3**;
+- reviewed protected dietary authority: **0**;
+- protected automatic recommendation-ready recipes: **0**;
+- repair-cohort SHA-256: `965876ec6dca2a9a4796417d88e44151a87541b39cfe232c42decf2208913468`.
+
+The material causal order is now explicit: hard dietary/allergen authority blocks every protected recipe, and unresolved ingredient identity independently blocks 19,156 of them. Nutrition remains a soft evidence gap, not the admission hard gate. Ranking/planner is intentionally not labelled defective because no protected cohort has yet crossed the upstream authority gate.
+
+Committed compact evidence: `data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json`.
+
+Successor: `C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1`, bounded to the exact 112-recipe identity-ready cohort. No automatic admission is earned by the failure-matrix PASS itself.
