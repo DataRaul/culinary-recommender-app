@@ -117,3 +117,34 @@ Production readiness therefore requires all of the following:
 - the app is not marked production-ready until the runtime isolation above is implemented and covered by deterministic tests.
 
 Current status: **contract encoded; production readiness remains blocked pending runtime isolation implementation/testing**. This requirement does not authorize or require another rebuild of the already-complete 19,268-record P1 index and does not change the current owner terminal verifier.
+
+
+## Live owner status — ForkRecipe structural adapter mismatch
+
+The 2026-09-27 authenticated status endpoint returned the following bounded state:
+
+- active corpus: **v8018**
+- summary index: **19,268 / 19,268**
+- FTS index: **19,268 / 19,268**
+- structural partials: **918**
+- D1 subqueries including auth: **4**
+- full protected-corpus scans: **0**
+- public runtime changed: **false**
+- recommendation admission changed: **false**
+
+The canonical normalization baseline remains **19,265 structurally parseable / 3 structural exceptions**. The excess runtime partial count is therefore **915**, exactly equal to the complete `FORKRECIPE_PINNED_STEP7E` cohort.
+
+Root cause is an adapter-field mismatch, not bad corpus data. ForkRecipe process nodes store their user-facing step text in `processNodes[].instructions` (plural). The P1 projection recognized `instruction` (singular) but omitted `instructions`, causing every ForkRecipe record to appear directionless and therefore `PARTIAL`.
+
+The repair is intentionally narrow and restart-safe:
+
+- add `instructions` support to the P1 direction adapter;
+- require exact live preconditions before mutation: active v8018, 19,268 summary rows, 19,268 FTS rows, 918 total partials, exactly 915 ForkRecipe rows and all 915 currently partial;
+- update only those 915 ForkRecipe summary rows to `PARSEABLE`;
+- require exact postconditions: 19,268 summary rows, 19,268 FTS rows, **3** total partials and **0** ForkRecipe partials;
+- preserve FTS unchanged;
+- perform no protected recipe-body rewrite;
+- perform no full reindex;
+- preserve public/recommendation authority firewalls.
+
+The expected live write cost is approximately **915 D1 rows written**, not another corpus rebuild.
