@@ -63,13 +63,32 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
   if (brain.liveRuntimeDependencyAuthorized !== false) errors.push("live Brain runtime dependency must remain unauthorized");
   if (brain.disagreementOutcome !== "UNKNOWN_AMBIGUOUS_OR_REVIEW") errors.push("Brain disagreement must fail closed to unknown/ambiguous/review");
 
-  const expected = [
-    "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY",
-    "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
-    "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
-    "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
-  ];
+  const p1Gate = (config.gates || []).find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY");
+  const p1Passed = p1Gate?.state === "PASS"
+    && p1Gate?.liveOwnerCanary === "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS";
+  const expected = p1Passed
+    ? [
+        "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+      ]
+    : [
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY",
+        "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+      ];
   if (JSON.stringify(sequence) !== JSON.stringify(expected)) errors.push("unexpected execution sequence");
+  if (p1Passed) {
+    const terminal = p1Gate.terminalEvidence || {};
+    if (terminal.activeVersion !== "v8018"
+      || terminal.indexedRecipeCount !== 19268
+      || terminal.ftsRecipeCount !== 19268
+      || terminal.structuralPartialCount !== 3) errors.push("P1 terminal corpus evidence mismatch");
+    if (terminal.maxObservedD1Subqueries > 8) errors.push("P1 terminal D1 target exceeded");
+    if (terminal.fullCorpusScans !== 0) errors.push("P1 terminal full corpus scan detected");
+    if (terminal.publicRuntimeChanged !== false || terminal.recommendationAdmissionChanged !== false) errors.push("P1 terminal authority firewall changed");
+  }
   return errors;
 }
 

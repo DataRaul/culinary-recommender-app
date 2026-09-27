@@ -2,7 +2,7 @@
 
 Date: **2026-09-24**
 
-Status: **IMPLEMENTATION CI PASS / LIVE OWNER CANARY PENDING**
+Status: **TERMINAL PASS / LIVE OWNER CANARY PASS**
 
 ## Objective
 
@@ -148,3 +148,28 @@ The repair is intentionally narrow and restart-safe:
 - preserve public/recommendation authority firewalls.
 
 The expected live write cost is approximately **915 D1 rows written**, not another corpus rebuild.
+
+
+## Terminal live closeout — 2026-09-27
+
+The authenticated owner canary completed with terminal state `PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS` after the bounded ForkRecipe structural-summary repair.
+
+Observed terminal evidence:
+
+- active version: **v8018**;
+- indexed summaries: **19,268**;
+- FTS rows: **19,268**;
+- structural partials: **3**;
+- browse: **PASS**;
+- search: **PASS**;
+- shard-0 detail hydration: **PASS**;
+- shard-1 detail hydration: **PASS**;
+- source provenance: **PASS**;
+- maximum observed D1 subqueries: **4**;
+- full-corpus scans: **0**;
+- public runtime changed: **false**;
+- recommendation admission changed: **false**.
+
+The repair changed only the ForkRecipe search-summary structural classification. It did not rebuild the index, rewrite FTS, rewrite protected bodies, add a shard, widen public/recommendation authority, mutate Barbecue, or create paid infrastructure. Sanitized terminal evidence is stored in `data/generated/protected-corpus-p1-live-owner-canary-v1.json`.
+
+P1 is therefore complete. The canonical successor is P2 metadata-usability measurement over live/full v8018 in parallel with the already-prepared Culinary Brain C1 exact-cohort freeze/execution. P3 remains separately gated on P2/hard-metadata evidence, and production readiness remains separately blocked on the D1 admin/migration runtime-isolation contract.

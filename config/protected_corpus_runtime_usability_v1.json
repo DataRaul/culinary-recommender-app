@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
-  "date": "2026-09-25",
-  "state": "P1_IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING",
+  "date": "2026-09-27",
+  "state": "P1_LIVE_OWNER_CANARY_PASS__P2_C1_READY",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
@@ -18,7 +18,7 @@
     "protectedAutomaticRecommendationReadyCount": 0,
     "reviewedDietaryAuthorityCount": 0,
     "directCurrentNutritionEngineAuthoritativeRecipes": 0,
-    "maxObservedD1SubqueriesPerRequest": 8,
+    "maxObservedD1SubqueriesPerRequest": 4,
     "hardMaxD1SubqueriesPerRequest": 16,
     "scaleRequiredProofCount": 170000,
     "scaleStressProofCount": 250000
@@ -43,11 +43,11 @@
       "19268_OF_19268_TITLE_IDENTITY_BASELINE",
       "19265_OF_19268_STRUCTURAL_PARSE_BASELINE",
       "VERSIONED_REVERSIBLE_NORMALIZATION_OVERLAY",
-      "170K_REQUIRED_AND_250K_STRESS_SCALE_PROOF"
+      "170K_REQUIRED_AND_250K_STRESS_SCALE_PROOF",
+      "END_USER_BROWSE_OVER_FULL_V8018",
+      "END_USER_SEARCH_OVER_FULL_V8018"
     ],
     "notYetProvenAsUserCapability": [
-      "END_USER_BROWSE_OVER_FULL_V8018",
-      "END_USER_SEARCH_OVER_FULL_V8018",
       "PAGINATED_FILTERED_PRIVATE_DISCOVERY_AT_V8018",
       "FULL_V8018_BROWSER_PERFORMANCE_ACCEPTANCE",
       "PROGRESSIVE_RECOMMENDATION_OVER_PROTECTED_CORPUS"
@@ -105,7 +105,7 @@
     },
     {
       "id": "P1_PRIVATE_BROWSE_SEARCH_CANARY",
-      "state": "IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING",
+      "state": "PASS",
       "purpose": "Make all 19,268 protected recipes safely discoverable to an authorized user without granting recommendation authority.",
       "acceptance": [
         "AUTH_REQUIRED_BEFORE_ANY_PROTECTED_RECIPE_SHARD_QUERY",
@@ -123,7 +123,7 @@
       "document": "docs/PROTECTED_CORPUS_P1_PRIVATE_BROWSE_SEARCH_V1.md",
       "page": "protected-corpus.html",
       "api": "/api/protected-corpus/v1",
-      "liveOwnerCanary": "FULL_INDEX_READY__FORKRECIPE_STRUCTURE_ADAPTER_REPAIR_PENDING",
+      "liveOwnerCanary": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS",
       "validationRun": 1093,
       "validationRunId": 36070083309,
       "lastLiveAttempt": {
@@ -145,11 +145,23 @@
         "reindexRequired": false,
         "ftsRewriteRequired": false,
         "protectedBodyRewriteRequired": false
+      },
+      "terminalEvidence": {
+        "date": "2026-09-27",
+        "file": "data/generated/protected-corpus-p1-live-owner-canary-v1.json",
+        "activeVersion": "v8018",
+        "indexedRecipeCount": 19268,
+        "ftsRecipeCount": 19268,
+        "structuralPartialCount": 3,
+        "maxObservedD1Subqueries": 4,
+        "fullCorpusScans": 0,
+        "publicRuntimeChanged": false,
+        "recommendationAdmissionChanged": false
       }
     },
     {
       "id": "P2_METADATA_USABILITY_MEASUREMENT",
-      "state": "LIVE_EXECUTION_BLOCKED_ON_P1__FROZEN_SUMMARY_HARNESS_PREP_ACTIVE",
+      "state": "READY_FOR_LIVE_EXECUTION__P1_PASS",
       "purpose": "Measure which browse/filter dimensions work across v8018 and rank missing metadata by user value and repair leverage."
     },
     {
@@ -182,14 +194,13 @@
     "barbecueMutationAuthorized": false
   },
   "nextExecutionSequence": [
-    "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY",
     "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
   ],
   "brainCalibration": {
     "id": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
-    "state": "C0_ZERO_D1_PREP_PASS__C1_PROTECTED_EXECUTION_BLOCKED_ON_P1",
+    "state": "C0_ZERO_D1_PREP_PASS__C1_READY_AFTER_P1_PASS",
     "contract": "config/culinary_brain_corpus_calibration_v1.json",
     "document": "docs/CULINARY_BRAIN_CORPUS_CALIBRATION_V1.md",
     "browseSearchBlocksOnBrain": false,
@@ -217,10 +228,17 @@
       "id": "PROTECTED_CORPUS_RUNTIME_USABILITY_P0_EVIDENCE_AND_CONTRACT_AUDIT",
       "state": "PASS",
       "evidence": "CANONICAL_GENERATED_BASELINE_MATCH"
+    },
+    {
+      "id": "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY",
+      "state": "PASS",
+      "date": "2026-09-27",
+      "terminal": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS",
+      "evidence": "data/generated/protected-corpus-p1-live-owner-canary-v1.json"
     }
   ],
   "quotaGapParallelPrep": {
-    "state": "PASS__PREP_COMPLETE__EXECUTION_WAITS_P1",
+    "state": "PASS__PREP_COMPLETE__P1_PASS_UNLOCKED_SUCCESSOR_EXECUTION",
     "ownerApprovedDate": "2026-09-25",
     "contract": "config/culinary_quota_gap_parallel_prep_v1.json",
     "document": "docs/CULINARY_QUOTA_GAP_PARALLEL_PREP_V1.md",
@@ -229,12 +247,7 @@
       "P2_METADATA_USABILITY_HARNESS_FROM_FROZEN_SUMMARIES",
       "C1_STRATIFIED_COHORT_QUOTA_PLAN"
     ],
-    "stillBlockedUntilP1Pass": [
-      "C1_EXACT_PROTECTED_RECIPE_ID_SELECTION_AND_EXECUTION",
-      "P2_LIVE_FULL_V8018_MEASUREMENT",
-      "C2_FROZEN_FULL_V8018_CLASSIFICATION",
-      "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION"
-    ],
+    "stillBlockedUntilP1Pass": [],
     "protectedD1ReadsAuthorized": false,
     "protectedD1WritesAuthorized": false,
     "protectedBodyReadOrExportAuthorized": false,

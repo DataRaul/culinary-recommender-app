@@ -30,11 +30,17 @@ test("programme fails closed if protected evidence drifts", () => {
   assert.ok(validateProtectedCorpusRuntimeUsability(mutated, evidence).some(error => error.includes("recipe count")));
 });
 
-test("programme records D5 prototype/defer closeout and makes real-corpus P1 first remaining priority", () => {
-  assert.equal(config.state, "P1_IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING");
+test("programme records D5 closeout and advances to P2 plus C1 after terminal P1 pass", () => {
+  assert.equal(config.state, "P1_LIVE_OWNER_CANARY_PASS__P2_C1_READY");
   assert.equal(config.gates.find(gate => gate.id === "P0_EVIDENCE_AND_CONTRACT_AUDIT").state, "PASS");
-  assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state, "IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING");
-  assert.equal(config.nextExecutionSequence[0], "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY");
+  assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state, "PASS");
+  assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").liveOwnerCanary, "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS");
+  assert.equal(config.nextExecutionSequence[0], "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2");
+  assert.equal(config.gates.find(gate => gate.id === "P2_METADATA_USABILITY_MEASUREMENT").state, "READY_FOR_LIVE_EXECUTION__P1_PASS");
+
+  const reopenedP1 = structuredClone(config);
+  reopenedP1.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state = "IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING";
+  assert.ok(validateProtectedCorpusRuntimeUsability(reopenedP1, evidence).some(error => error.includes("execution sequence")));
 
   const mutated = structuredClone(config);
   mutated.ownerPriority.deferD5BehaviorAfterPrototype = false;

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_P1_PRIVATE_BROWSE_SEARCH_V1",
-  "date": "2026-09-24",
-  "state": "IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING",
-  "baseMainSha": "e4557f25b0ce9e5e98f13957bcad2eabf0dea9ea",
+  "date": "2026-09-27",
+  "state": "PASS__LIVE_OWNER_CANARY_PASS",
+  "baseMainSha": "6349664a8855006d80f70b2da854f5ff382b7e7d",
   "protectedCorpusVersion": "v8018",
   "expectedRecipeCount": 19268,
   "page": "protected-corpus.html",
@@ -71,13 +71,13 @@
   "validation": {
     "deterministic": "PASS",
     "browser": "PASS",
-    "liveOwnerCanary": "FULL_INDEX_READY__FORKRECIPE_STRUCTURE_ADAPTER_REPAIR_PENDING",
+    "liveOwnerCanary": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS",
     "exactIndexCount": 19268,
-    "exactStructuralPartialCount": 918,
+    "exactStructuralPartialCount": 3,
     "validationRun": 1093,
     "validationRunId": 36070083309,
     "observedIndexCountApprox": 13000,
-    "observedFailure": "918 structural partials observed; 915 excess partials equal exact ForkRecipe cohort size",
+    "observedFailure": null,
     "providerLimit": {
       "freeDailyRowsWritten": 100000,
       "reset": "00:00 UTC",
@@ -99,8 +99,30 @@
       "expectedPostRepairStructuralPartialCount": 3,
       "ftsRewriteRequired": false,
       "protectedBodyRewriteRequired": false,
-      "fullReindexRequired": false
-    }
+      "fullReindexRequired": false,
+      "applied": true,
+      "observedPostRepairStructuralPartialCount": 3,
+      "observedPostRepairFtsCount": 19268,
+      "observedPostRepairIndexCount": 19268
+    },
+    "terminalLiveOwnerCanary": {
+      "date": "2026-09-27",
+      "terminal": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS",
+      "activeVersion": "v8018",
+      "indexedRecipeCount": 19268,
+      "ftsRecipeCount": 19268,
+      "structuralPartialCount": 3,
+      "browsePass": true,
+      "searchPass": true,
+      "detailShard0Pass": true,
+      "detailShard1Pass": true,
+      "sourceProvenancePass": true,
+      "maxObservedD1Subqueries": 4,
+      "fullCorpusScans": 0,
+      "publicRuntimeChanged": false,
+      "recommendationAdmissionChanged": false
+    },
+    "evidenceFile": "data/generated/protected-corpus-p1-live-owner-canary-v1.json"
   },
   "productionReadiness": {
     "state": "BLOCKED_PENDING_ADMIN_MIGRATION_ISOLATION",
