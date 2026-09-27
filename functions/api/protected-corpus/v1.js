@@ -117,15 +117,6 @@ export async function onRequestGet({ request, env }) {
     }
   }
 
-  if (action === "p2-live-alignment") {
-    try {
-      const result = await verifyProtectedCorpusP2LiveAlignment(env.CULINARY_CONTROL_DB);
-      return withBudget({ ...result, protectedDataReturned: false }, auth.authD1Subqueries, result.pass ? 200 : 409);
-    } catch (error) {
-      return jsonResponse({ ok: false, step: STEP, action, error: "P2_LIVE_ALIGNMENT_FAILED", reason: String(error?.message || error).slice(0,240), protectedDataReturned: false, fullCorpusScans: 0, metrics: metrics(auth.authD1Subqueries) }, 409);
-    }
-  }
-
   if (action === "browse") {
     try {
       const result = await browseProtectedCorpus(env.CULINARY_CONTROL_DB, {
@@ -168,6 +159,15 @@ export async function onRequestPost({ request, env }) {
   try { payload = await request.json(); }
   catch { return jsonResponse({ ok: false, step: STEP, error: "INVALID_JSON", protectedDataReturned: false, fullCorpusScans: 0, metrics: metrics(auth.authD1Subqueries) }, 400); }
   const action = String(payload?.action || "");
+
+  if (action === "p2-live-alignment") {
+    try {
+      const result = await verifyProtectedCorpusP2LiveAlignment(env.CULINARY_CONTROL_DB, payload?.recipeIds);
+      return withBudget({ ...result, protectedDataReturned: false }, auth.authD1Subqueries, result.pass ? 200 : 409);
+    } catch (error) {
+      return jsonResponse({ ok: false, step: STEP, action, error: "P2_LIVE_ALIGNMENT_FAILED", reason: String(error?.message || error).slice(0,240), protectedDataReturned: false, fullCorpusScans: 0, metrics: metrics(auth.authD1Subqueries) }, 409);
+    }
+  }
 
   if (action === "initialize-index") {
     try {
