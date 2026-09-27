@@ -127,6 +127,25 @@ if(references.length!==100||new Set(references.map(row=>row.recipeId)).size!==10
 }
 
 const score=scoreC1Predictions(predictions,references,config.preregisteredGates);
+const referenceById=new Map(references.map(row=>[row.recipeId,row]));
+const contradictions=[];
+for(const row of predictions.rows){
+  const ref=referenceById.get(row.recipeId);
+  for(const field of ["dishCategory","mealRole"]){
+    const prediction=row[field];
+    const reference=ref[field];
+    if(reference!=="UNKNOWN" && prediction.decision==="PROPOSE" && prediction.value!==reference){
+      contradictions.push({
+        recipeId:row.recipeId,
+        field,
+        predicted:prediction.value,
+        reference,
+        confidence:prediction.confidence,
+        reasonCode:prediction.reasonCode
+      });
+    }
+  }
+}
 const output={
   schemaVersion:"CULINARY_BRAIN_C1_EVALUATION_EVIDENCE_V1",
   date:"2026-09-27",
@@ -137,6 +156,10 @@ const output={
   evaluatorProvenance:config.evaluator.provenance,
   evaluatorInterpretation:config.evaluator.interpretation,
   score,
+  diagnostics:{
+    contradictionCount:contradictions.length,
+    contradictions
+  },
   boundaries:{
     protectedD1Reads:0,
     protectedD1Writes:0,
