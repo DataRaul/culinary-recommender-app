@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
   "date": "2026-09-27",
-  "state": "P1_LIVE_OWNER_CANARY_PASS__P2_C1_READY",
+  "state": "P1_PASS__C1_FROZEN__P2_MACHINE_MEASUREMENT_PASS_LIVE_ALIGNMENT_PENDING",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
@@ -161,8 +161,13 @@
     },
     {
       "id": "P2_METADATA_USABILITY_MEASUREMENT",
-      "state": "READY_FOR_LIVE_EXECUTION__P1_PASS",
-      "purpose": "Measure which browse/filter dimensions work across v8018 and rank missing metadata by user value and repair leverage."
+      "state": "MACHINE_EXACT_SOURCE_MEASUREMENT_PASS__LIVE_ALIGNMENT_PENDING",
+      "purpose": "Measure which browse/filter dimensions work across v8018 and rank missing metadata by user value and repair leverage.",
+      "contract": "config/protected_corpus_p2_metadata_usability_v1.json",
+      "evidence": "data/generated/protected-corpus-p2-metadata-usability-v1.json",
+      "machineTerminal": "PROTECTED_CORPUS_P2_FULL_V8018_EXACT_SOURCE_MEASUREMENT_PASS__LIVE_ALIGNMENT_PENDING",
+      "liveAlignmentRequired": true,
+      "liveAlignmentState": "PENDING"
     },
     {
       "id": "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
@@ -241,6 +246,14 @@
       "date": "2026-09-27",
       "terminal": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS",
       "evidence": "data/generated/protected-corpus-p1-live-owner-canary-v1.json"
+    },
+    {
+      "id": "PROTECTED_CORPUS_RUNTIME_USABILITY_P2_MACHINE_EXACT_SOURCE_MEASUREMENT",
+      "state": "PASS",
+      "date": "2026-09-27",
+      "terminal": "PROTECTED_CORPUS_P2_FULL_V8018_EXACT_SOURCE_MEASUREMENT_PASS__LIVE_ALIGNMENT_PENDING",
+      "evidence": "data/generated/protected-corpus-p2-metadata-usability-v1.json",
+      "note": "Terminal P2 remains pending bounded live alignment."
     }
   ],
   "quotaGapParallelPrep": {
