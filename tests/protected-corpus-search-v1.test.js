@@ -209,6 +209,10 @@ test("P1 owner browser is network-only and explicitly communicates protected-onl
   assert.match(html, /00:00 UTC/);
   assert.match(html, /D1_DAILY_WRITE_GUARD = 80000/);
   assert.match(html, /PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS/);
+  assert.match(html, /Refreshing private index status/);
+  assert.match(html, /Private index status request failed safely/);
+  assert.match(html, /refreshButton\.disabled = true/);
+  assert.match(html, /refreshButton\.disabled = false/);
   assert.match(html, /observedStatus:sanitizedStatus/);
   assert.match(html, /structuralPartialCount:Number\(status\?\.structuralPartialCount \|\| 0\)/);
   assert.match(html, /ftsRecipeCount:Number\(status\?\.ftsRecipeCount \|\| 0\)/);
