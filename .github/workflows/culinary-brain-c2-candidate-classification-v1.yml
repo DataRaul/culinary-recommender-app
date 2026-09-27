@@ -66,6 +66,9 @@ jobs:
             --output=.tmp/culinary-brain-c2-full-v8018-candidates-v1.json \
             --summary=.tmp/culinary-brain-c2-candidate-classification-summary-v1.json
 
+      - name: Verify committed C2 summary is reproducible
+        run: cmp .tmp/culinary-brain-c2-candidate-classification-summary-v1.json data/generated/culinary-brain-c2-candidate-classification-summary-v1.json
+
       - name: Upload C2 full classification evidence
         uses: actions/upload-artifact@v4
         with:
