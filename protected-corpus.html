@@ -53,6 +53,7 @@
     <div class="row">
       <button id="prepare" type="button" hidden>Prepare / resume private index</button>
       <button id="refresh" type="button">Refresh status</button>
+      <button id="repairForkrecipe" type="button" hidden>Repair ForkRecipe structural metadata</button>
       <button id="runCanary" type="button" hidden>Run live verification</button>
     </div>
     <p id="prepareProgress" class="muted" hidden aria-live="polite"></p>
@@ -89,6 +90,7 @@
   const prepareButton = document.getElementById('prepare');
   const progressNode = document.getElementById('prepareProgress');
   const runCanaryButton = document.getElementById('runCanary');
+  const repairForkrecipeButton = document.getElementById('repairForkrecipe');
   const canaryEvidencePanel = document.getElementById('canaryEvidencePanel');
   const canaryEvidenceNode = document.getElementById('canaryEvidence');
   const copyCanaryButton = document.getElementById('copyCanary');
@@ -165,6 +167,7 @@
   function showAuthRequired() {
     statusNode.innerHTML = 'Authenticated access is required. <a href="/auth-canary.html">Sign in or check the private session</a>, then return here.';
     prepareButton.hidden = true;
+    repairForkrecipeButton.hidden = true;
     runCanaryButton.hidden = true;
     canaryEvidencePanel.hidden = true;
     resultsNode.innerHTML = '';
@@ -172,13 +175,18 @@
   }
 
   async function refreshStatus() {
-    const auth = await readJson(await fetch('/api/auth/session', { cache:'no-store', credentials:'same-origin' }));
+    const refreshButton = document.getElementById('refresh');
+    refreshButton.disabled = true;
+    statusNode.textContent = 'Refreshing private index status…';
+    try {
+      const auth = await readJson(await fetch('/api/auth/session', { cache:'no-store', credentials:'same-origin' }));
     if (auth.httpStatus !== 200 || auth.authenticated !== true) { showAuthRequired(); return false; }
     const result = await apiGet({ action:'status' });
     if (result.httpStatus === 409 && result.error === 'INDEX_NOT_INITIALIZED') {
       indexStatus = null;
       statusNode.textContent = 'Authenticated. Private search index is not initialized yet.';
       prepareButton.hidden = false;
+      repairForkrecipeButton.hidden = true;
       runCanaryButton.hidden = true;
       prepareButton.textContent = 'Prepare private index';
       return true;
@@ -186,6 +194,7 @@
     if (!result.ok) {
       statusNode.textContent = 'Authenticated, but private index status failed: ' + (result.error || result.reason || 'unknown error');
       prepareButton.hidden = false;
+      repairForkrecipeButton.hidden = true;
       runCanaryButton.hidden = true;
       return true;
     }
@@ -193,11 +202,41 @@
     statusNode.innerHTML = result.ready
       ? '<span class="status-good">Ready:</span> ' + result.indexedRecipeCount.toLocaleString() + ' / ' + result.expectedRecipeCount.toLocaleString() + ' recipes indexed; ' + result.structuralPartialCount + ' partial structural records.'
       : 'Authenticated. Indexed ' + result.indexedRecipeCount.toLocaleString() + ' / ' + result.expectedRecipeCount.toLocaleString() + ' recipes.';
+    const structuralPartialCount = Number(result.structuralPartialCount || 0);
     prepareButton.hidden = result.ready === true;
-    runCanaryButton.hidden = result.ready !== true;
+    repairForkrecipeButton.hidden = !(result.ready === true && structuralPartialCount === 918);
+    runCanaryButton.hidden = !(result.ready === true && structuralPartialCount === 3);
     prepareButton.textContent = result.indexedRecipeCount ? 'Resume private index' : 'Prepare private index';
-    if (result.ready) await loadResults(true);
-    return true;
+      if (result.ready) await loadResults(true);
+      return true;
+    } catch (error) {
+      statusNode.textContent = 'Private index status request failed safely: ' + String(error?.message || error).slice(0,180);
+      prepareButton.hidden = true;
+      repairForkrecipeButton.hidden = true;
+      runCanaryButton.hidden = true;
+      return false;
+    } finally {
+      refreshButton.disabled = false;
+    }
+  }
+
+  async function repairForkrecipeStructure() {
+    repairForkrecipeButton.disabled = true;
+    progressNode.hidden = false;
+    progressNode.textContent = 'Repairing ForkRecipe structural metadata only…';
+    try {
+      const result = await apiPost({ action:'repair-forkrecipe-structural-state' });
+      requireNoDailyProviderHold(result);
+      if (!result.ok) throw new Error(result.reason || result.error || 'ForkRecipe structural repair failed');
+      const rowsWritten = Number(result.metrics?.rowsWritten || result.rowsWritten || 0);
+      if (rowsWritten > 0) saveObservedDailyWrites(readObservedDailyWrites() + rowsWritten);
+      progressNode.textContent = 'Repair complete: ' + rowsWritten.toLocaleString() + ' ForkRecipe summary rows corrected. Refreshing status…';
+      await refreshStatus();
+    } catch (error) {
+      progressNode.textContent = 'Stopped safely: ' + String(error?.message || error).slice(0,220);
+    } finally {
+      repairForkrecipeButton.disabled = false;
+    }
   }
 
   async function prepareIndex() {
@@ -393,8 +432,9 @@
     detailPanel.scrollIntoView({ behavior:'smooth', block:'start' });
   }
 
-  document.getElementById('refresh').addEventListener('click', refreshStatus);
+  document.getElementById('refresh').addEventListener('click', () => { void refreshStatus(); });
   prepareButton.addEventListener('click', prepareIndex);
+  repairForkrecipeButton.addEventListener('click', repairForkrecipeStructure);
   runCanaryButton.addEventListener('click', runLiveVerification);
   copyCanaryButton.addEventListener('click', async () => {
     const text = canaryEvidenceNode.textContent || '';

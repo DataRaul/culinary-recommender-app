@@ -5,6 +5,9 @@ import { readFileSync } from "node:fs";
 import {
   PROTECTED_SEARCH_BROWSER_DAILY_WRITE_GUARD,
   PROTECTED_SEARCH_EXPECTED_COUNT,
+  PROTECTED_SEARCH_EXPECTED_STRUCTURAL_PARTIAL_COUNT,
+  PROTECTED_SEARCH_FORKRECIPE_COUNT,
+  PROTECTED_SEARCH_KNOWN_BAD_PARTIAL_COUNT,
   PROTECTED_SEARCH_FREE_DAILY_ROWS_WRITTEN,
   PROTECTED_SEARCH_INDEX_BATCH_SIZE,
   PROTECTED_SEARCH_MAX_BOUND_PARAMETERS,
@@ -15,7 +18,8 @@ import {
   d1RowsWritten,
   normalizeProtectedSearchQuery,
   projectProtectedPacketForDetail,
-  projectProtectedPacketForIndex
+  projectProtectedPacketForIndex,
+  repairForkRecipeStructuralState
 } from "../src/server/protected-corpus-search-v1.mjs";
 import { onRequestGet as protectedGet, onRequestPost as protectedPost } from "../functions/api/protected-corpus/v1.js";
 
@@ -68,6 +72,30 @@ test("P1 packet projection supports UniTools provenance without granting recomme
     nutritionAuthorityGranted:false,
     dietaryAllergenAuthorityGranted:false
   });
+});
+
+test("P1 projection recognizes ForkRecipe processNodes instructions", () => {
+  const forkRoute = route({
+    recipeId:"forkrecipe_test_stew",
+    corpusVersion:"v8002",
+    shardNumber:1,
+    sourceCohortId:"FORKRECIPE_PINNED_STEP7E"
+  });
+  const packet = {
+    canonicalRecipeId:"forkrecipe_test_stew",
+    sourceId:"FORKRECIPE_PINNED_STEP7E",
+    sourceRecord:{
+      title:"Test Stew",
+      author:"Example",
+      ingredients:[{ name:"Beans", ratioValue:100, defaultUnit:"parts" }],
+      processNodes:[{ nodeId:"step_1", action:"Cook", instructions:"Simmer until tender." }]
+    },
+    rights:{ license:"CC-BY-SA-4.0" }
+  };
+  const projected = projectProtectedPacketForIndex(packet, forkRoute);
+  assert.equal(projected.structuralState, "PARSEABLE");
+  const detail = projectProtectedPacketForDetail(packet, forkRoute);
+  assert.deepEqual(detail.directions, ["Simmer until tender."]);
 });
 
 test("P1 projection supports historical source packets and fails soft on structural exceptions", () => {
@@ -123,9 +151,52 @@ test("P1 search query is bounded FTS syntax and page sizes stay bounded", () => 
   assert.ok(PROTECTED_SEARCH_INDEX_BATCH_SIZE * PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW <= PROTECTED_SEARCH_MAX_BOUND_PARAMETERS);
   assert.ok((PROTECTED_SEARCH_INDEX_BATCH_SIZE + 1) * PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW > PROTECTED_SEARCH_MAX_BOUND_PARAMETERS);
   assert.equal(PROTECTED_SEARCH_EXPECTED_COUNT, 19268);
+  assert.equal(PROTECTED_SEARCH_EXPECTED_STRUCTURAL_PARTIAL_COUNT, 3);
+  assert.equal(PROTECTED_SEARCH_FORKRECIPE_COUNT, 915);
+  assert.equal(PROTECTED_SEARCH_KNOWN_BAD_PARTIAL_COUNT, 918);
   assert.equal(PROTECTED_SEARCH_TARGET_MAX_D1, 8);
   assert.equal(PROTECTED_SEARCH_FREE_DAILY_ROWS_WRITTEN, 100000);
   assert.equal(PROTECTED_SEARCH_BROWSER_DAILY_WRITE_GUARD, 80000);
+});
+
+test("P1 ForkRecipe structural repair is exact, bounded, and preserves FTS count", async () => {
+  let repaired = false;
+  let updateCalls = 0;
+  const db = {
+    prepare(sql) {
+      const statement = {
+        args:[],
+        bind(...args){ this.args=args; return this; },
+        async first(){
+          if (sql.includes("SELECT active_version")) return { active_version:"v8018", previous_version:"v8017", manifest_sha256:"x" };
+          if (sql.includes("AS fork_count")) return {
+            c:19268, partial_count:918, fork_count:915, fork_partial_count:915, fts_count:19268
+          };
+          if (sql.includes("AS fork_partial_count")) return {
+            c:19268, partial_count:repaired ? 3 : 918, fork_partial_count:repaired ? 0 : 915, fts_count:19268
+          };
+          throw new Error("unexpected first SQL: " + sql);
+        },
+        async run(){
+          assert.match(sql, /UPDATE culinary_protected_recipe_search_v1/);
+          updateCalls += 1;
+          repaired = true;
+          return { meta:{ rows_written:915, changes:915 } };
+        }
+      };
+      return statement;
+    }
+  };
+  const result = await repairForkRecipeStructuralState(db);
+  assert.equal(result.pass, true);
+  assert.equal(result.rowsWritten, 915);
+  assert.equal(result.d1Subqueries, 4);
+  assert.equal(result.before.structuralPartialCount, PROTECTED_SEARCH_KNOWN_BAD_PARTIAL_COUNT);
+  assert.equal(result.before.forkRecipeCount, PROTECTED_SEARCH_FORKRECIPE_COUNT);
+  assert.equal(result.after.structuralPartialCount, PROTECTED_SEARCH_EXPECTED_STRUCTURAL_PARTIAL_COUNT);
+  assert.equal(result.after.ftsRecipeCount, 19268);
+  assert.equal(result.after.forkRecipePartialCount, 0);
+  assert.equal(updateCalls, 1);
 });
 
 test("P1 D1 row-write telemetry sums provider meta exactly", () => {
@@ -209,6 +280,14 @@ test("P1 owner browser is network-only and explicitly communicates protected-onl
   assert.match(html, /00:00 UTC/);
   assert.match(html, /D1_DAILY_WRITE_GUARD = 80000/);
   assert.match(html, /PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS/);
+  assert.match(html, /repair-forkrecipe-structural-state/);
+  assert.match(html, /Repair ForkRecipe structural metadata/);
+  assert.match(html, /structuralPartialCount === 918/);
+  assert.match(html, /structuralPartialCount === 3/);
+  assert.match(html, /Refreshing private index status/);
+  assert.match(html, /Private index status request failed safely/);
+  assert.match(html, /refreshButton\.disabled = true/);
+  assert.match(html, /refreshButton\.disabled = false/);
   assert.match(html, /observedStatus:sanitizedStatus/);
   assert.match(html, /structuralPartialCount:Number\(status\?\.structuralPartialCount \|\| 0\)/);
   assert.match(html, /ftsRecipeCount:Number\(status\?\.ftsRecipeCount \|\| 0\)/);

@@ -7,6 +7,7 @@ import {
   indexProtectedCorpusBatch,
   initializeProtectedSearchIndex,
   protectedSearchIndexStatus,
+  repairForkRecipeStructuralState,
   searchProtectedCorpus
 } from "../../../src/server/protected-corpus-search-v1.mjs";
 
@@ -164,6 +165,15 @@ export async function onRequestPost({ request, env }) {
       return withBudget({ ...result, protectedDataReturned: false }, auth.authD1Subqueries, 200);
     } catch (error) {
       return jsonResponse({ ok: false, step: STEP, action, error: "INDEX_INITIALIZATION_FAILED", reason: String(error?.message || error).slice(0,240), protectedDataReturned: false, fullCorpusScans: 0, metrics: metrics(auth.authD1Subqueries) }, 503);
+    }
+  }
+
+  if (action === "repair-forkrecipe-structural-state") {
+    try {
+      const result = await repairForkRecipeStructuralState(env.CULINARY_CONTROL_DB);
+      return withBudget({ ...result, protectedDataReturned: false }, auth.authD1Subqueries, result.pass ? 200 : 409);
+    } catch (error) {
+      return jsonResponse({ ok: false, step: STEP, action, error: "FORKRECIPE_STRUCTURAL_REPAIR_FAILED", reason: String(error?.message || error).slice(0,240), protectedDataReturned: false, fullCorpusScans: 0, metrics: metrics(auth.authD1Subqueries) }, 503);
     }
   }
 

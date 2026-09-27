@@ -71,13 +71,13 @@
   "validation": {
     "deterministic": "PASS",
     "browser": "PASS",
-    "liveOwnerCanary": "FULL_INDEX_BUILT__TERMINAL_STATUS_INVARIANT_DIAGNOSTIC_PENDING",
+    "liveOwnerCanary": "FULL_INDEX_READY__FORKRECIPE_STRUCTURE_ADAPTER_REPAIR_PENDING",
     "exactIndexCount": 19268,
-    "exactStructuralPartialCount": 0,
+    "exactStructuralPartialCount": 918,
     "validationRun": 1093,
     "validationRunId": 36070083309,
     "observedIndexCountApprox": 13000,
-    "observedFailure": "status: exact v8018 19,268 / 19,268 / 3-partial acceptance not met",
+    "observedFailure": "918 structural partials observed; 915 excess partials equal exact ForkRecipe cohort size",
     "providerLimit": {
       "freeDailyRowsWritten": 100000,
       "reset": "00:00 UTC",
@@ -87,7 +87,20 @@
     },
     "observedRowsWrittenToday": 10239,
     "fullIndexBuildCompleted": true,
-    "reindexRequired": false
+    "reindexRequired": false,
+    "exactFtsCount": 19268,
+    "observedStatusD1Subqueries": 4,
+    "rootCause": "P1 direction adapter omitted ForkRecipe processNodes[].instructions plural field",
+    "repair": {
+      "type": "BOUNDED_SUMMARY_METADATA_REPAIR",
+      "forkRecipeCohortId": "FORKRECIPE_PINNED_STEP7E",
+      "expectedForkRecipeRows": 915,
+      "expectedRowsWritten": 915,
+      "expectedPostRepairStructuralPartialCount": 3,
+      "ftsRewriteRequired": false,
+      "protectedBodyRewriteRequired": false,
+      "fullReindexRequired": false
+    }
   },
   "productionReadiness": {
     "state": "BLOCKED_PENDING_ADMIN_MIGRATION_ISOLATION",
