@@ -11,7 +11,7 @@
   "minYoutubeRequestIntervalMs": 1000,
   "candidateBacklogCap": 50,
   "maxCandidatesPerLeaf": 12,
-  "lastCompletedQuotaDate": "2026-09-26",
+  "lastCompletedQuotaDate": "2026-09-27",
   "completedQuotaDays": [
     {
       "quotaDate": "2026-09-25",
@@ -26,6 +26,14 @@
       "completedAt": "2026-09-26T13:46:21.013Z",
       "searchCalls": 10,
       "candidatePointersAdded": 17,
+      "terminalState": "BARBECUE_DAILY_DISCOVERY_CONTINUE",
+      "providerFailure": null
+    },
+    {
+      "quotaDate": "2026-09-27",
+      "completedAt": "2026-09-27T14:43:09.752Z",
+      "searchCalls": 8,
+      "candidatePointersAdded": 9,
       "terminalState": "BARBECUE_DAILY_DISCOVERY_CONTINUE",
       "providerFailure": null
     }
@@ -549,8 +557,8 @@
       "cutForm": "brisket",
       "tradition": "AMERICAN_COMPETITION_BARBECUE",
       "method": "LOW_SLOW_SMOKER_BARBECUE",
-      "status": "DISCOVERY_PENDING",
-      "championshipSearchExhausted": false,
+      "status": "REVIEW_PENDING",
+      "championshipSearchExhausted": true,
       "candidatePointers": [
         {
           "sourceRef": "youtube:uTP-CJh1TdI",
@@ -640,6 +648,66 @@
           "qualificationStatus": "REJECTED",
           "automaticQualificationAuthorized": false,
           "projectAuthoredRejectionRationale": "Creator identity is BeardMeatsFood, a competitive-eating source rather than a verified barbecue-technique practitioner; query/title match does not establish competence."
+        },
+        {
+          "sourceRef": "youtube:ewIEGTVDAJY",
+          "youtubeVideoRef": "ewIEGTVDAJY",
+          "canonicalReference": "https://www.youtube.com/watch?v=ewIEGTVDAJY",
+          "creatorChannelRef": "UCXzL34BZy6Zx-JehfIjGdZQ",
+          "leafId": "beef_brisket_competition",
+          "queryId": "bbq-565d65a5e542bff044",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-27",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:Z2aD16zFP8E",
+          "youtubeVideoRef": "Z2aD16zFP8E",
+          "canonicalReference": "https://www.youtube.com/watch?v=Z2aD16zFP8E",
+          "creatorChannelRef": "UCsLTjOX249AJsrl9iJh4CSw",
+          "leafId": "beef_brisket_competition",
+          "queryId": "bbq-565d65a5e542bff044",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-27",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:Dn5ZJz2Ta78",
+          "youtubeVideoRef": "Dn5ZJz2Ta78",
+          "canonicalReference": "https://www.youtube.com/watch?v=Dn5ZJz2Ta78",
+          "creatorChannelRef": "UC--MxpGXJ3LVD8KvlNzRlcA",
+          "leafId": "beef_brisket_competition",
+          "queryId": "bbq-565d65a5e542bff044",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-27",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:WLBwCA_VXSs",
+          "youtubeVideoRef": "WLBwCA_VXSs",
+          "canonicalReference": "https://www.youtube.com/watch?v=WLBwCA_VXSs",
+          "creatorChannelRef": "UCDemVelh9Wf-CP_q3mTi-Qw",
+          "leafId": "beef_brisket_competition",
+          "queryId": "bbq-fe2f5a170773853eeb",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-27",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:nu4p3l6LuyI",
+          "youtubeVideoRef": "nu4p3l6LuyI",
+          "canonicalReference": "https://www.youtube.com/watch?v=nu4p3l6LuyI",
+          "creatorChannelRef": "UCPQErRghCrtrbWOYiJA3okw",
+          "leafId": "beef_brisket_competition",
+          "queryId": "bbq-fe2f5a170773853eeb",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-27",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
         }
       ],
       "qualifiedSources": [
@@ -672,8 +740,8 @@
       "cutForm": "ribs",
       "tradition": "AMERICAN_COMPETITION_BARBECUE",
       "method": "LOW_SLOW_SMOKER_OR_GRILL",
-      "status": "DISCOVERY_PENDING",
-      "championshipSearchExhausted": false,
+      "status": "REVIEW_PENDING",
+      "championshipSearchExhausted": true,
       "candidatePointers": [
         {
           "sourceRef": "youtube:qsMfq-Jjx7E",
@@ -774,6 +842,54 @@
           "discoveredQuotaDate": "2026-09-26",
           "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:vEJrAdL8_cI",
+          "youtubeVideoRef": "vEJrAdL8_cI",
+          "canonicalReference": "https://www.youtube.com/watch?v=vEJrAdL8_cI",
+          "creatorChannelRef": "UCYJqqMggi9medQkTSiW4Kew",
+          "leafId": "pork_ribs_competition",
+          "queryId": "bbq-9db42f5dbfe3b6187d",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-27",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:tG2ro7UZOUE",
+          "youtubeVideoRef": "tG2ro7UZOUE",
+          "canonicalReference": "https://www.youtube.com/watch?v=tG2ro7UZOUE",
+          "creatorChannelRef": "UC--MxpGXJ3LVD8KvlNzRlcA",
+          "leafId": "pork_ribs_competition",
+          "queryId": "bbq-9db42f5dbfe3b6187d",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-27",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:Fb9roj9CaxY",
+          "youtubeVideoRef": "Fb9roj9CaxY",
+          "canonicalReference": "https://www.youtube.com/watch?v=Fb9roj9CaxY",
+          "creatorChannelRef": "UCRzPUBhXUZHclB7B5bURFXw",
+          "leafId": "pork_ribs_competition",
+          "queryId": "bbq-9db42f5dbfe3b6187d",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-27",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
+        },
+        {
+          "sourceRef": "youtube:4fzy8UyO-KU",
+          "youtubeVideoRef": "4fzy8UyO-KU",
+          "canonicalReference": "https://www.youtube.com/watch?v=4fzy8UyO-KU",
+          "creatorChannelRef": "UC--MxpGXJ3LVD8KvlNzRlcA",
+          "leafId": "pork_ribs_competition",
+          "queryId": "bbq-2a17a9db1ef24f51c5",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "discoveredQuotaDate": "2026-09-27",
+          "qualificationStatus": "PENDING_REVIEW",
+          "automaticQualificationAuthorized": false
         }
       ],
       "qualifiedSources": [
@@ -827,7 +943,7 @@
       "tradition": "SPANISH_PARRILLA",
       "method": "DIRECT_GRILL",
       "status": "DISCOVERY_PENDING",
-      "championshipSearchExhausted": false,
+      "championshipSearchExhausted": true,
       "candidatePointers": [
         {
           "sourceRef": "youtube:06s3t5hB4eY",
@@ -1006,7 +1122,7 @@
       "tradition": "SPANISH_PARRILLA",
       "method": "DIRECT_GRILL",
       "status": "DISCOVERY_PENDING",
-      "championshipSearchExhausted": false,
+      "championshipSearchExhausted": true,
       "candidatePointers": [
         {
           "sourceRef": "youtube:Q8cfH42DTwg",
@@ -1221,7 +1337,15 @@
     "bbq-4c03a57847173b2517",
     "bbq-d1f4c62c6a57139295",
     "bbq-fdf77648c2a9918f45",
-    "bbq-2dc113241c10d4008d"
+    "bbq-2dc113241c10d4008d",
+    "bbq-565d65a5e542bff044",
+    "bbq-9db42f5dbfe3b6187d",
+    "bbq-f098eb05a80cd6742a",
+    "bbq-b4c528447f3098aa31",
+    "bbq-fe2f5a170773853eeb",
+    "bbq-2a17a9db1ef24f51c5",
+    "bbq-87189ba88b39b8497e",
+    "bbq-cdd39dc4c90d5f8523"
   ],
   "controlPlaneStatus": "BARBECUE_TECHNIQUE_CORPUS_CONTROL_PLANE_VALIDATION_PASS",
   "controlPlaneValidation": {
