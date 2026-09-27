@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C3_DETERMINISTIC_PRIOR_CALIBRATION_SUMMARY_V1",
+  "date": "2026-09-27",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY",
+  "protectedCorpusVersion": "v8018",
+  "publicRuntimeRecipeCount": 85,
+  "c2DigestSha256": "15ffb997d0715d72d248ca53ea03f4a95254123a9429e3a2ec4d085e144eaf3d",
+  "brainPolicy": {
+    "id": "culinary-nutrition-brain-public-policy-v1",
+    "status": "CALIBRATION_ONLY_NO_RANKING_CHANGE",
+    "knowledgeCoreDomain": "culinary_nutrition",
+    "knowledgeCoreCommit": "e5dcb29a7c6b78f59c062faf4c963c74aac10743",
+    "runtimeDependency": "PROHIBITED"
+  },
+  "calibration": {
+    "profileCaseCount": 12,
+    "matrixDigestSha256": "764ccca3c654a866138d6214afda97578c8eb401b3eb579e01a7e3d1c8672855",
+    "deterministicMismatchCount": 0,
+    "hardConstraintViolations": 0,
+    "unknownNutritionNonNumericCases": 6,
+    "priorDecisions": [
+      {
+        "field": "dishCategory",
+        "c2State": "CANDIDATE_ONLY_REVIEW_REQUIRED",
+        "currentRecommendationSignal": false,
+        "decision": "HOLD_NO_PRIOR_PROMOTION",
+        "reason": "C2 dish-category proposals remain review-only and the current deterministic scorer has no user-facing dish-category preference signal."
+      },
+      {
+        "field": "mealRole",
+        "c2State": "CANDIDATE_ONLY_REVIEW_REQUIRED",
+        "currentRecommendationSignal": "HARD_MEAL_TYPE_SCOPE",
+        "decision": "HOLD_NO_PRIOR_PROMOTION",
+        "reason": "C2 meal-role proposals remain review-only and current meal-type semantics are a hard eligibility scope; a soft inferred prior must not duplicate or weaken that boundary."
+      }
+    ],
+    "promotedPriorCount": 0,
+    "scorerDisposition": "CURRENT_DETERMINISTIC_SCORER_RETAINED_UNCHANGED",
+    "interpretation": "C3 calibrates the safe prior-admission boundary. C2 review-only fields do not earn runtime ranking influence; current deterministic scoring remains the baseline."
+  },
+  "matrix": [
+    {
+      "id": "DEFAULT_DINNER",
+      "context": {
+        "mealType": "dinner"
+      },
+      "eligibleCount": 63,
+      "rejectedCount": 22,
+      "rankingDigestSha256": "4ab84edc83d5aa4993a486d083c2bf199c47239a68632398ece9591845bffa3c"
+    },
+    {
+      "id": "DEFAULT_LUNCH",
+      "context": {
+        "mealType": "lunch"
+      },
+      "eligibleCount": 63,
+      "rejectedCount": 22,
+      "rankingDigestSha256": "faccceb1c5be67c07ee98513e09432e95737d3c157fb676e7fe0cecf95ef8d96"
+    },
+    {
+      "id": "VEGETARIAN_FAST",
+      "context": {
+        "mealType": "dinner"
+      },
+      "eligibleCount": 37,
+      "rejectedCount": 48,
+      "rankingDigestSha256": "a54509317a80ad5cdc5e2b67200e327ee7d23d9dd2b6bbfc9125a54c98c619e1"
+    },
+    {
+      "id": "VEGAN_BROAD",
+      "context": {
+        "mealType": "dinner"
+      },
+      "eligibleCount": 32,
+      "rejectedCount": 53,
+      "rankingDigestSha256": "2a52cd069f1989318446c36be3ecdc201350ff016bca710dfe3a8bdc47154978"
+    },
+    {
+      "id": "MEDITERRANEAN_PROTEIN",
+      "context": {
+        "mealType": "dinner"
+      },
+      "eligibleCount": 77,
+      "rejectedCount": 8,
+      "rankingDigestSha256": "05c0eaff57e0e7666b8dd919827dd72e8949c7efec1373724b9f14d607a456c2"
+    },
+    {
+      "id": "INDIAN_EXPLORATION",
+      "context": {
+        "mealType": "dinner"
+      },
+      "eligibleCount": 77,
+      "rejectedCount": 8,
+      "rankingDigestSha256": "9882e6175e463462b67be76e65d8ff4b47119a732129576d90897ac5279f6732"
+    },
+    {
+      "id": "HEALTHY_CONVENIENCE",
+      "context": {
+        "mealType": "dinner"
+      },
+      "eligibleCount": 76,
+      "rejectedCount": 9,
+      "rankingDigestSha256": "28f1a9ff5f4f1df58a0fe0ef9d0cb01f66ffeeb353a4d38761d3f8dd4e4368ee"
+    },
+    {
+      "id": "HIGH_PROTEIN_CONVENIENCE",
+      "context": {
+        "mealType": "lunch"
+      },
+      "eligibleCount": 77,
+      "rejectedCount": 8,
+      "rankingDigestSha256": "21a83a4b07f56c766d4c164ba0dbf4547f33f8d29fd6f2693454685034a429d9"
+    },
+    {
+      "id": "BUDGET_EASE",
+      "context": {
+        "mealType": "dinner"
+      },
+      "eligibleCount": 75,
+      "rejectedCount": 10,
+      "rankingDigestSha256": "33af265fb4c9182b6d26a60060aa2e496ab90f4cfc0f11a3540154e691fe93b9"
+    },
+    {
+      "id": "MEAL_PREP",
+      "context": {
+        "mealType": "lunch"
+      },
+      "eligibleCount": 77,
+      "rejectedCount": 8,
+      "rankingDigestSha256": "2d8f861096e57706aece2a6c7e8f0b0b38f48ae19edc95d15644b359d7e40b36"
+    },
+    {
+      "id": "TECHNIQUE_BUILDING",
+      "context": {
+        "mealType": "dinner"
+      },
+      "eligibleCount": 77,
+      "rejectedCount": 8,
+      "rankingDigestSha256": "609e81c40ed58414bc053abc184d5ebb0154a054112890eb241217c5bd9269db"
+    },
+    {
+      "id": "UNKNOWN_NUTRITION_SAFE",
+      "context": {
+        "mealType": "dinner"
+      },
+      "eligibleCount": 77,
+      "rejectedCount": 8,
+      "rankingDigestSha256": "1b5190fd7f9c978ef49034c0b407fc8af4b2e0c7327b9b3eec367b72d1365718"
+    }
+  ],
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesReadOrExported": 0,
+    "publicRuntimeChanged": false,
+    "recommendationBehaviorChanged": false,
+    "recommendationAuthorityWidened": false,
+    "c2CandidatesPromoted": false,
+    "nutritionAuthorityChanged": false,
+    "dietaryAllergenAuthorityChanged": false,
+    "sourceRightsAuthorityChanged": false,
+    "knowledgeCoreRuntimeDependencyAdded": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "C4_REAL_V8018_FAILURE_REPAIR_LOOP"
+}
