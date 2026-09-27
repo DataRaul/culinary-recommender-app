@@ -184,7 +184,7 @@
     },
     {
       "id": "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
-      "state": "BLOCKED_ON_C4_RECIPE_RECONCILIATION_AND_ADMISSION",
+      "state": "BLOCKED_ON_C4_RECIPE_RECONCILIATION_AND_HARD_METADATA",
       "purpose": "Admit bounded recipe subsets only when hard ingredient/dietary/allergen/provenance semantics are sufficient; keep UNKNOWN fail-closed and nutrition independent."
     },
     {
