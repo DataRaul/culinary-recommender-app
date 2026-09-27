@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_EVIDENCE_V1",
+  "date": "2026-09-27",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS",
+  "activeVersion": "v8018",
+  "indexedRecipeCount": 19268,
+  "ftsRecipeCount": 19268,
+  "structuralPartialCount": 3,
+  "frozenSampleRecipeCount": 500,
+  "matchedFrozenRecipeCount": 500,
+  "sourceProvenanceCount": 500,
+  "frozenSampleDigestSha256": "5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408",
+  "membershipQueryCount": 6,
+  "maxFrozenIdChunkSize": 90,
+  "maxObservedD1Subqueries": 8,
+  "protectedBodyReads": 0,
+  "rowsWritten": 0,
+  "fullCorpusScans": 0,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "authority": {
+    "protectedBrowseOnly": true,
+    "publicRuntimeWidening": false,
+    "recommendationAdmission": false,
+    "protectedBodyRewrite": false,
+    "thirdShard": false,
+    "paidInfrastructure": false,
+    "knowledgeCoreWrite": false,
+    "barbecueMutation": false
+  },
+  "provenance": {
+    "source": "owner sanitized production P2 live-alignment output",
+    "implementationPr": 333,
+    "productionCommit": "53cef75051a998c10b013ff0d09f9707566f46f6",
+    "sampleEvidence": "data/generated/culinary-brain-c1-exact-sample-freeze-v1.json"
+  }
+}
