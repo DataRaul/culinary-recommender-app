@@ -17,13 +17,15 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   freeze:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -82,13 +84,24 @@ jobs:
             --ora=.tmp/ora \
             --output=.tmp/culinary-brain-c1-exact-sample-freeze-v1.json
 
-      - name: Verify committed freeze when present
+      - name: Persist exact freeze on same-repository PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: |
-          if [ -f data/generated/culinary-brain-c1-exact-sample-freeze-v1.json ]; then
-            node --input-type=module -e 'import assert from "node:assert/strict"; import {readFileSync} from "node:fs"; assert.deepStrictEqual(JSON.parse(readFileSync("data/generated/culinary-brain-c1-exact-sample-freeze-v1.json","utf8")), JSON.parse(readFileSync(".tmp/culinary-brain-c1-exact-sample-freeze-v1.json","utf8")));'
+          mkdir -p data/generated
+          cp .tmp/culinary-brain-c1-exact-sample-freeze-v1.json data/generated/culinary-brain-c1-exact-sample-freeze-v1.json
+          if git diff --quiet -- data/generated/culinary-brain-c1-exact-sample-freeze-v1.json; then
+            echo "Exact freeze already committed."
           else
-            echo "Committed freeze not present yet; generation-only bootstrap run."
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/generated/culinary-brain-c1-exact-sample-freeze-v1.json
+            git commit -m "Persist exact C1 500-recipe freeze"
+            git push origin HEAD:${{ github.head_ref }}
           fi
+
+      - name: Verify committed freeze
+        run: |
+          node --input-type=module -e 'import assert from "node:assert/strict"; import {readFileSync} from "node:fs"; assert.deepStrictEqual(JSON.parse(readFileSync("data/generated/culinary-brain-c1-exact-sample-freeze-v1.json","utf8")), JSON.parse(readFileSync(".tmp/culinary-brain-c1-exact-sample-freeze-v1.json","utf8")));'
 
       - name: Upload C1 freeze evidence
         uses: actions/upload-artifact@v4
