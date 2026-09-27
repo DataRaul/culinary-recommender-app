@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
-  "date": "2026-09-25",
-  "state": "C0_ZERO_D1_PREP_PASS__C1_PROTECTED_EXECUTION_BLOCKED_ON_P1",
+  "date": "2026-09-27",
+  "state": "C0_PASS__C1_EXACT_500_SAMPLE_FROZEN__EVALUATION_READY",
   "pattern": "FITNESS_BRAIN_CALIBRATION_ANALOGUE",
   "knowledgeCoreDomain": "culinary_nutrition",
   "runtimeDependencyAuthorized": false,
@@ -103,5 +103,39 @@
     "protectedBodiesReadOrExportAuthorized": false,
     "knowledgeCoreWriteAuthorized": false,
     "evidence": "data/generated/culinary-quota-gap-parallel-prep-v1.json"
+  },
+  "postP1Execution": {
+    "p1Gate": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS",
+    "state": "C1_EXACT_SAMPLE_FREEZE_PASS__C1_EVALUATION_AND_P2_READY",
+    "c1ExactSampleFreeze": {
+      "terminal": "CULINARY_BRAIN_C1_EXACT_500_SAMPLE_FROZEN",
+      "protectedCorpusVersion": "v8018",
+      "recipeCount": 500,
+      "sourceCohortCount": 19,
+      "sampleDigestSha256": "5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408",
+      "evidence": "data/generated/culinary-brain-c1-exact-sample-freeze-v1.json",
+      "exactProtectedRecipeIdsSelected": true,
+      "structuralExceptionCount": 3,
+      "ingredientIdentityReadinessCoverage": {
+        "allIdentitiesResolved": 112,
+        "identityGapsPresent": 388
+      }
+    },
+    "next": [
+      "C1_EVALUATION",
+      "P2_FULL_V8018_METADATA_USABILITY_MEASUREMENT"
+    ],
+    "boundaries": {
+      "protectedD1ReadsPerformed": 0,
+      "protectedD1WritesPerformed": 0,
+      "protectedBodiesPersistedOrExported": 0,
+      "publicRuntimeChanged": false,
+      "recommendationBehaviorChanged": false,
+      "recommendationAuthorityWidened": false,
+      "knowledgeCoreWritePerformed": false,
+      "paidModelOrApiUsed": false,
+      "thirdShardUsed": false,
+      "barbecueMutation": false
+    }
   }
 }
