@@ -60,7 +60,7 @@ This section is the concise operational source of truth for the currently discus
 | Stream | Current state | Dependency / next action |
 |---|---|---|
 | Lane 1 — Protected corpus P1 | **TERMINAL PASS / COMPLETE** | Owner terminal canary PASS recorded 2026-09-27: v8018, 19,268/19,268 summary + FTS, exactly 3 structural exceptions, both shards/provenance verified, max 4 D1 subqueries, zero full scans, no public/recommendation widening. No re-index is authorized or needed. |
-| Lane 2 — Brain C1 + live P2 | **C1 EXACT 500 FROZEN / P2 MACHINE PASS / LIVE ALIGNMENT NEXT** | C1 exact sample remains frozen at 500 IDs (digest `5d30214e…`). P2 exact-source/full-v8018 metadata measurement passed with zero D1/body mutation and explicit UNKNOWN preserved. Terminal P2 is deliberately withheld until a bounded authenticated live alignment proves v8018 status, all frozen 500 IDs, provenance, <=8 D1 subqueries and zero full scans. C1 evaluation continues in parallel; C2/P3 remain later gates. |
+| Lane 2 — Brain C1 + live P2 | **P2 TERMINAL PASS / C1 EVALUATION NEXT** | P2 terminal live alignment passed against the exact frozen 500 IDs (digest `5d30214e…`): v8018, 19,268 summary, 19,268 FTS, 3 partials, 500/500 IDs present with provenance, 6 membership queries, max 8 D1 subqueries, zero body reads/writes/full scans, and no public/recommendation widening. C1 evaluation is now the active successor; C2/P3 remain later gates. |
 | Lane 3 — EU regulatory truth | **TERMINAL PASS; PARKED** | Celery P0 + residual semantics audit are complete. No successor is selected. Reactivate only for a new canonical ontology need or a separately designed threshold-aware evidence schema. |
 | Barbecue Technique Corpus | **INDEPENDENT SCHEDULED PILOT; POULTRY COMPLETE; CONTINUE FOUR LEAVES** | Poultry synthesis is complete and routine discovery excludes that leaf. Beef, pork, fish and vegetables continue under the existing daily 09:20 UTC scheduler. Current work-unit remains bounded; hard hold is null. No manual duplicate Search is authorized. |
 
@@ -774,3 +774,12 @@ P2 machine measurement passed over the exact v8018 19,268-recipe source universe
 The frozen user-value priority remains meal role → dish category → culinary tradition → technique families → total time → difficulty → servings → country → region → prep time → cook time → reviewed dietary tags. Current authoritative coverage is sparse: meal role **524/19,268**, dish category **1,079/19,268**, total time **1,371/19,268**, difficulty **1,416/19,268**, country/servings/prep/cook **501/19,268 each**, while tradition/technique/region/reviewed-dietary authority remain **0**. Ingredient identity remains a separate hard-filter diagnostic: **36,760/144,245** occurrences exact-resolved and only **112/19,268** recipes fully identity-ready. P1 proved source provenance across the live protected surface.
 
 Evidence: `data/generated/protected-corpus-p2-metadata-usability-v1.json`. No missing metadata was inferred. The next P2 gate is a bounded authenticated live alignment using the already frozen C1 500 IDs, with no full scan, no body reads, no writes, target <=8 D1 subqueries and hard fail above 16.
+
+
+### 2026-09-27 — P2 terminal live alignment closeout
+
+Protected Corpus P2 is **COMPLETE / PASS**. The owner-supplied sanitized production result returned `PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS` with active `v8018`, exact **19,268** summary rows, exact **19,268** FTS rows, exactly **3** structural partials, and the exact frozen C1 sample confirmed at **500/500 IDs** with source provenance on **500/500**.
+
+The live gate used **6** bounded membership queries with maximum chunk size **90** and observed at most **8 D1 subqueries including authentication**. It performed **0 protected-body reads**, **0 writes**, **0 full-corpus scans**, and changed neither public runtime nor recommendation admission. The verified frozen sample digest remained `5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408`.
+
+Evidence: `data/generated/protected-corpus-p2-live-alignment-v1.json`. P2 no longer blocks successor work. The active app-development gate is now **Culinary Brain C1 evaluation against the already frozen exact 500-recipe sample**; resampling is not authorized by this closeout.
