@@ -176,7 +176,7 @@
     },
     {
       "id": "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
-      "state": "BLOCKED_ON_C4_AND_HARD_METADATA",
+      "state": "BLOCKED_ON_C4_HARD_AUTHORITY_REPAIR_AND_HARD_METADATA",
       "purpose": "Admit bounded recipe subsets only when hard ingredient/dietary/allergen/provenance semantics are sufficient; keep UNKNOWN fail-closed and nutrition independent."
     },
     {
@@ -204,13 +204,13 @@
     "barbecueMutationAuthorized": false
   },
   "nextExecutionSequence": [
-    "CULINARY_BRAIN_C4_REAL_V8018_FAILURE_REPAIR_LOOP",
+    "CULINARY_BRAIN_C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
   ],
   "brainCalibration": {
     "id": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
-    "state": "C3_PASS__C4_READY",
+    "state": "C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY",
     "contract": "config/culinary_brain_corpus_calibration_v1.json",
     "document": "docs/CULINARY_BRAIN_CORPUS_CALIBRATION_V1.md",
     "browseSearchBlocksOnBrain": false,
@@ -259,6 +259,17 @@
       "promotedPriorCount": 0,
       "scorerDisposition": "CURRENT_DETERMINISTIC_SCORER_RETAINED_UNCHANGED",
       "c2CandidatesPromoted": false
+    },
+    "c4FailureMatrix": {
+      "terminal": "CULINARY_BRAIN_C4_FAILURE_MATRIX_PASS__112_IDENTITY_READY_REPAIR_COHORT_FROZEN",
+      "evidence": "data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json",
+      "recipeCount": 19268,
+      "identityReadyRepairCohortCount": 112,
+      "identityReadyRepairCohortDigestSha256": "965876ec6dca2a9a4796417d88e44151a87541b39cfe232c42decf2208913468",
+      "unresolvedIdentityRecipeCount": 19156,
+      "hardDietaryAllergenAuthorityState": "UNIVERSAL_HARD_BLOCKER",
+      "automaticRecommendationReadyCount": 0,
+      "nextGate": "C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1"
     }
   },
   "completedTransitions": [
