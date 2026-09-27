@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_P2_METADATA_USABILITY_CONTRACT_V1",
+  "date": "2026-09-27",
+  "state": "MACHINE_EXACT_SOURCE_MEASUREMENT_PASS__BOUNDED_LIVE_ALIGNMENT_PENDING",
+  "protectedCorpusVersion": "v8018",
+  "expectedRecipeCount": 19268,
+  "objective": "MEASURE_USER_USABLE_METADATA_WITHOUT_INFERENCE_AND_VERIFY_EXACT_LIVE_ALIGNMENT_BEFORE_TERMINAL_CLOSEOUT",
+  "inputs": {
+    "mappingSummary": "data/generated/corpus-normalization-mapping-v1.json",
+    "nutritionApplicabilitySummary": "data/generated/nutrition-vitamin-applicability-audit-v1.json",
+    "p1TerminalEvidence": "data/generated/protected-corpus-p1-live-owner-canary-v1.json",
+    "frozenPriority": "config/culinary_quota_gap_parallel_prep_v1.json",
+    "frozenC1Sample": "data/generated/culinary-brain-c1-exact-sample-freeze-v1.json"
+  },
+  "machineEvidence": "data/generated/protected-corpus-p2-metadata-usability-v1.json",
+  "machineTerminal": "PROTECTED_CORPUS_P2_FULL_V8018_EXACT_SOURCE_MEASUREMENT_PASS__LIVE_ALIGNMENT_PENDING",
+  "rankedDimensionPriority": [
+    "mealRoles",
+    "dishCategory",
+    "culinaryTradition",
+    "techniqueFamilies",
+    "totalMinutes",
+    "difficulty",
+    "servings",
+    "geographyCountry",
+    "geographyRegion",
+    "prepMinutes",
+    "cookMinutes",
+    "reviewedDietaryTags"
+  ],
+  "liveAlignment": {
+    "state": "PENDING",
+    "scope": [
+      "STATUS_V8018_19268_SUMMARY_19268_FTS_3_PARTIAL",
+      "EXACT_FROZEN_C1_500_IDS_PRESENT_IN_PROTECTED_SUMMARY_INDEX",
+      "SOURCE_PROVENANCE_PRESENT",
+      "BOUNDED_CONTROL_D1_ONLY",
+      "MAX_D1_SUBQUERIES_AT_OR_BELOW_8",
+      "ZERO_FULL_CORPUS_SCANS"
+    ],
+    "designTarget": {
+      "maxD1Subqueries": 8,
+      "hardMaxD1Subqueries": 16,
+      "frozenIdChunkSizeMax": 90,
+      "expectedIdMembershipQueries": 6,
+      "protectedBodyReads": 0,
+      "protectedD1Writes": 0
+    },
+    "terminalOnPass": "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS"
+  },
+  "authority": {
+    "missingMetadataInferenceAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedBodyReadOrExportAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "nutritionAuthorityMutationAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  }
+}
