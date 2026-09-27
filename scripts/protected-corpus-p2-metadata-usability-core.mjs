@@ -117,16 +117,16 @@ export function buildP2Measurement({mappingSummary,nutritionSummary,prepEvidence
     };
   });
 
-  const protected = nutritionSummary.protectedCorpusApplicability || {};
+  const protectedStats = nutritionSummary.protectedCorpusApplicability || {};
   const ingredientIdentity = {
-    recipeCount: protected.recipeCount,
-    ingredientOccurrenceCount: protected.ingredientOccurrences,
-    exactCanonicalIngredientOccurrences: protected.resolvedIngredientOccurrences,
-    unresolvedIngredientOccurrences: protected.unresolvedIngredientOccurrences,
-    exactIngredientOccurrenceCoverage: protected.resolvedIngredientOccurrenceRatio,
-    allIngredientIdentityReadyRecipes: protected.recipesWithAllIngredientIdentitiesResolved,
-    allIngredientIdentityReadyCoverage: protected.allIngredientIdentityReadyRatio,
-    unresolvedRecipeCount: 19268 - Number(protected.recipesWithAllIngredientIdentitiesResolved || 0),
+    recipeCount: protectedStats.recipeCount,
+    ingredientOccurrenceCount: protectedStats.ingredientOccurrences,
+    exactCanonicalIngredientOccurrences: protectedStats.resolvedIngredientOccurrences,
+    unresolvedIngredientOccurrences: protectedStats.unresolvedIngredientOccurrences,
+    exactIngredientOccurrenceCoverage: protectedStats.resolvedIngredientOccurrenceRatio,
+    allIngredientIdentityReadyRecipes: protectedStats.recipesWithAllIngredientIdentitiesResolved,
+    allIngredientIdentityReadyCoverage: protectedStats.allIngredientIdentityReadyRatio,
+    unresolvedRecipeCount: 19268 - Number(protectedStats.recipesWithAllIngredientIdentitiesResolved || 0),
     userVisibleLimitation: "Ingredient search may use source text, but deterministic ingredient filtering and recommendation hard filters are not trustworthy for recipes with unresolved identities.",
     repairDifficulty: "HIGH",
     evidenceRequirement: "EXACT_CANONICAL_INGREDIENT_IDENTITY_OR_REVIEWED_ALIAS_MAPPING",
