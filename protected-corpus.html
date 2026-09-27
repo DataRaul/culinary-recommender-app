@@ -55,6 +55,7 @@
       <button id="refresh" type="button">Refresh status</button>
       <button id="repairForkrecipe" type="button" hidden>Repair ForkRecipe structural metadata</button>
       <button id="runCanary" type="button" hidden>Run live verification</button>
+      <button id="runP2Alignment" type="button" hidden>Run P2 live alignment</button>
     </div>
     <p id="prepareProgress" class="muted" hidden aria-live="polite"></p>
     <div id="canaryEvidencePanel" hidden>
@@ -90,6 +91,7 @@
   const prepareButton = document.getElementById('prepare');
   const progressNode = document.getElementById('prepareProgress');
   const runCanaryButton = document.getElementById('runCanary');
+  const runP2AlignmentButton = document.getElementById('runP2Alignment');
   const repairForkrecipeButton = document.getElementById('repairForkrecipe');
   const canaryEvidencePanel = document.getElementById('canaryEvidencePanel');
   const canaryEvidenceNode = document.getElementById('canaryEvidence');
@@ -169,6 +171,7 @@
     prepareButton.hidden = true;
     repairForkrecipeButton.hidden = true;
     runCanaryButton.hidden = true;
+      runP2AlignmentButton.hidden = true;
     canaryEvidencePanel.hidden = true;
     resultsNode.innerHTML = '';
     resultStatus.textContent = 'No protected query was sent before authentication.';
@@ -196,6 +199,7 @@
       prepareButton.hidden = false;
       repairForkrecipeButton.hidden = true;
       runCanaryButton.hidden = true;
+      runP2AlignmentButton.hidden = true;
       return true;
     }
     indexStatus = result;
@@ -206,6 +210,7 @@
     prepareButton.hidden = result.ready === true;
     repairForkrecipeButton.hidden = !(result.ready === true && structuralPartialCount === 918);
     runCanaryButton.hidden = !(result.ready === true && structuralPartialCount === 3);
+    runP2AlignmentButton.hidden = !(result.ready === true && structuralPartialCount === 3);
     prepareButton.textContent = result.indexedRecipeCount ? 'Resume private index' : 'Prepare private index';
       if (result.ready) await loadResults(true);
       return true;
@@ -214,6 +219,7 @@
       prepareButton.hidden = true;
       repairForkrecipeButton.hidden = true;
       runCanaryButton.hidden = true;
+      runP2AlignmentButton.hidden = true;
       return false;
     } finally {
       refreshButton.disabled = false;
@@ -376,6 +382,56 @@
     }
   }
 
+  async function runP2LiveAlignment() {
+    runP2AlignmentButton.disabled = true;
+    canaryEvidencePanel.hidden = false;
+    canaryEvidenceNode.textContent = 'Running bounded P2 live alignment over the frozen 500-ID sample…';
+    try {
+      const result = await apiGet({ action:'p2-live-alignment' });
+      requireCanaryEnvelope('P2 live alignment', result);
+      if (
+        result.terminal !== 'PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS' ||
+        result.activeVersion !== 'v8018' ||
+        Number(result.indexedRecipeCount) !== 19268 ||
+        Number(result.ftsRecipeCount) !== 19268 ||
+        Number(result.structuralPartialCount) !== 3 ||
+        Number(result.frozenSampleRecipeCount) !== 500 ||
+        Number(result.matchedFrozenRecipeCount) !== 500 ||
+        Number(result.sourceProvenanceCount) !== 500 ||
+        Number(result.membershipQueryCount) !== 6 ||
+        Number(result.protectedBodyReads) !== 0 ||
+        Number(result.rowsWritten) !== 0
+      ) throw new Error('P2 live alignment: exact bounded acceptance not met');
+      const evidence = {
+        terminal:'PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS',
+        activeVersion:'v8018',
+        indexedRecipeCount:19268,
+        ftsRecipeCount:19268,
+        structuralPartialCount:3,
+        frozenSampleRecipeCount:500,
+        matchedFrozenRecipeCount:500,
+        sourceProvenanceCount:500,
+        frozenSampleDigestSha256:result.frozenSampleDigestSha256 || null,
+        membershipQueryCount:6,
+        maxFrozenIdChunkSize:Number(result.maxFrozenIdChunkSize || 0),
+        maxObservedD1Subqueries:Number(result.metrics?.d1Subqueries || 0),
+        protectedBodyReads:0,
+        rowsWritten:0,
+        fullCorpusScans:0,
+        publicRuntimeChanged:false,
+        recommendationAdmissionChanged:false
+      };
+      canaryEvidenceNode.textContent = JSON.stringify(evidence, null, 2);
+    } catch (error) {
+      canaryEvidenceNode.textContent = JSON.stringify({
+        terminal:'PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_STOPPED_SAFE',
+        reason:String(error?.message || error).slice(0,240)
+      }, null, 2);
+    } finally {
+      runP2AlignmentButton.disabled = false;
+    }
+  }
+
   function appendResults(items, replace) {
     if (replace) resultsNode.innerHTML = '';
     for (const item of items) {
@@ -436,6 +492,7 @@
   prepareButton.addEventListener('click', prepareIndex);
   repairForkrecipeButton.addEventListener('click', repairForkrecipeStructure);
   runCanaryButton.addEventListener('click', runLiveVerification);
+  runP2AlignmentButton.addEventListener('click', runP2LiveAlignment);
   copyCanaryButton.addEventListener('click', async () => {
     const text = canaryEvidenceNode.textContent || '';
     try {
