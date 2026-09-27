@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_HARD_AUTHORITY_EVIDENCE_AUDIT_SUMMARY_V1",
+  "date": "2026-09-27",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_EVIDENCE_AUDIT_PASS__POLICY_REVIEW_READY",
+  "protectedCorpusVersion": "v8018",
+  "repairCohortCount": 112,
+  "repairCohortDigestSha256": "965876ec6dca2a9a4796417d88e44151a87541b39cfe232c42decf2208913468",
+  "distinctCanonicalIngredientCount": 49,
+  "canonicalIngredientCatalogDigestSha256": "867b5161280acc7afa43676ff22916c5b9e45df559511abd5dde2d6565cfd6fd",
+  "recipesWithPositiveCatalogAllergenSignalCount": 89,
+  "recipesWithoutPositiveCatalogAllergenSignalCount": 23,
+  "positiveAllergenSignalRecipeCounts": {
+    "crustacean": 3,
+    "egg": 38,
+    "fish": 4,
+    "gluten": 12,
+    "milk": 59,
+    "tree_nut": 2
+  },
+  "sourceSystemCounts": {
+    "CC0_MARKDOWN": 1,
+    "OPEN_RECIPE_ARCHIVE_JSONL": 103,
+    "OPEN_RECIPE_ARCHIVE_MARKDOWN": 7,
+    "UNITOOLS": 1
+  },
+  "hardAuthorityEarnedCount": 0,
+  "candidateEvidenceOnly": true,
+  "safetyInterpretation": {
+    "positiveCatalogAllergenSignalMaySupportLaterReviewedDeclaration": true,
+    "emptyCatalogAllergenSignalProvesAllergenFree": false,
+    "ingredientFamilyProvesDietaryCompatibility": false,
+    "titleProvesDietaryCompatibility": false
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedRuntimeBodyReads": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationBehaviorChanged": false,
+    "recommendationAuthorityWidened": false,
+    "dietaryAllergenAuthorityPromoted": false,
+    "nutritionAuthorityPromoted": false,
+    "knowledgeCoreRuntimeDependencyAdded": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "C4_HARD_AUTHORITY_POLICY_REVIEW_V1"
+}

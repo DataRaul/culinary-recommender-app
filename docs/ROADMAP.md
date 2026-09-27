@@ -836,3 +836,10 @@ The failure matrix identifies two upstream recommendation blockers: **19,156** r
 No protected ranking/planner defect is claimed: protected ranking remains unexercised because the hard-authority admission gate correctly blocks the entire corpus first. Nutrition remains explicitly separate and non-authoritative for protected recipes. C1/C2/C3 abstention and candidate-only boundaries remain intact.
 
 Evidence: `data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json`. The next bounded action is **C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1** over the exact 112-recipe cohort. P3 remains blocked until that tranche earns sufficient hard ingredient/dietary/allergen/provenance semantics. No D1 mutation, public/recommendation admission, nutrition/dietary/allergen authority promotion, paid infrastructure, third shard or Barbecue mutation occurred.
+
+
+### 2026-09-27 — C4 hard-authority evidence audit
+
+The frozen 112-recipe C4 repair cohort completed an offline exact-identity evidence audit: **49** distinct canonical ingredient IDs, **89** recipes with positive current-catalog allergen signals and **23** with no positive signal. Positive signal counts are milk **59**, egg **38**, gluten **12**, fish **4**, crustacean **3**, tree_nut **2**. No hard authority was promoted; an empty signal remains explicitly non-equivalent to an allergen-free claim.
+
+Terminal: `CULINARY_BRAIN_C4_HARD_AUTHORITY_EVIDENCE_AUDIT_PASS__POLICY_REVIEW_READY`. Evidence: `data/generated/culinary-brain-c4-hard-authority-evidence-summary-v1.json`. Next: `C4_HARD_AUTHORITY_POLICY_REVIEW_V1`, using explicit ingredient-level dietary/allergen policy rather than title/family inference. P3 remains blocked.

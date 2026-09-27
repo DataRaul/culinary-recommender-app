@@ -488,7 +488,8 @@ const full = {
     resolvedIngredientOccurrenceCount: row.resolvedIngredientOccurrenceCount,
     unresolvedIngredientOccurrenceCount: row.unresolvedIngredientOccurrenceCount,
     allIngredientIdentitiesResolved: row.allIngredientIdentitiesResolved,
-    quantityModel: row.quantityModel
+    quantityModel: row.quantityModel,
+    identityRows: row.identityRows
   }))
 };
 

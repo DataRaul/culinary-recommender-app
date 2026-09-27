@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_HARD_AUTHORITY_EVIDENCE_AUDIT_V1",
+  "date": "2026-09-27",
+  "state": "AUTHORIZED_OFFLINE_CANDIDATE_EVIDENCE_ONLY",
+  "protectedCorpusVersion": "v8018",
+  "expectedProtectedRecipeCount": 19268,
+  "expectedRepairCohortCount": 112,
+  "expectedRepairCohortDigestSha256": "965876ec6dca2a9a4796417d88e44151a87541b39cfe232c42decf2208913468",
+  "entryTerminal": "CULINARY_BRAIN_C4_FAILURE_MATRIX_PASS__112_IDENTITY_READY_REPAIR_COHORT_FROZEN",
+  "objective": "EXTRACT_EXACT_CANONICAL_INGREDIENT_AND_POSITIVE_CATALOG_ALLERGEN_EVIDENCE_FOR_THE_FROZEN_112_WITHOUT_PROMOTING_HARD_AUTHORITY",
+  "semantics": {
+    "exactIngredientIdentityRequired": true,
+    "catalogAllergenSignalsArePositiveCandidateEvidenceOnly": true,
+    "emptyCatalogAllergenSignalIsNotAllergenFreeProof": true,
+    "ingredientFamilyIsNotDietaryAuthority": true,
+    "recipeTitleIsNotDietaryOrAllergenAuthority": true,
+    "dietaryCompatibilityInferenceAuthorized": false,
+    "allergenFreeInferenceAuthorized": false
+  },
+  "authority": {
+    "hardAuthorityPromotionAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationBehaviorChangeAuthorized": false,
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedRuntimeBodyReadsAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "nutritionAuthorityPromotionAuthorized": false,
+    "knowledgeCoreRuntimeDependencyAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_EVIDENCE_AUDIT_PASS__POLICY_REVIEW_READY",
+  "nextGate": "C4_HARD_AUTHORITY_POLICY_REVIEW_V1"
+}
