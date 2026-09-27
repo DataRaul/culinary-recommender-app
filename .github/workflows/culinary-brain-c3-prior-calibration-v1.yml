@@ -37,6 +37,9 @@ jobs:
             --c2=data/generated/culinary-brain-c2-candidate-classification-summary-v1.json \
             --output=.tmp/culinary-brain-c3-prior-calibration-summary-v1.json
 
+      - name: Verify committed C3 calibration evidence is reproducible
+        run: cmp .tmp/culinary-brain-c3-prior-calibration-summary-v1.json data/generated/culinary-brain-c3-prior-calibration-summary-v1.json
+
       - name: Upload C3 calibration evidence
         uses: actions/upload-artifact@v4
         with:
