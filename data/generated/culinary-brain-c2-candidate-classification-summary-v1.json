@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C2_CANDIDATE_CLASSIFICATION_SUMMARY_V1",
+  "date": "2026-09-27",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C2_FULL_V8018_CANDIDATE_CLASSIFICATION_PASS",
+  "protectedCorpusVersion": "v8018",
+  "recipeCount": 19268,
+  "uniqueRecipeKeyCount": 19268,
+  "fullClassificationDigestSha256": "15ffb997d0715d72d248ca53ea03f4a95254123a9429e3a2ec4d085e144eaf3d",
+  "sourcePins": {
+    "unitools": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "forkrecipe": "c32255266af39bd77444d39452f3df8088ac8fd9",
+    "cc0": "b12e481d1c220a13e0847a34e148d5872a16928e",
+    "ora": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8"
+  },
+  "fields": {
+    "dishCategory": {
+      "dispositionCounts": {
+        "ABSTAIN": 11412,
+        "REFERENCE_PRESENT": 1079,
+        "REVIEW": 6777
+      },
+      "candidateValueCounts": {
+        "BEVERAGE": 204,
+        "BREAD": 236,
+        "CONDIMENT": 34,
+        "DESSERT": 1550,
+        "EGG_DISH": 136,
+        "FERMENTED_FOOD": 11,
+        "GRAIN_DISH": 60,
+        "PROTEIN_DISH": 1357,
+        "SALAD": 273,
+        "SAUCE": 1154,
+        "SEAFOOD_DISH": 346,
+        "SOUP": 654,
+        "STOCK": 157
+      },
+      "confidenceCounts": {
+        "LOW": 2308,
+        "MEDIUM": 4469
+      },
+      "ruleMatchCounts": {
+        "DISH_BEVERAGE_EXPLICIT": 243,
+        "DISH_BREAD_EXPLICIT": 340,
+        "DISH_CONDIMENT_EXPLICIT": 62,
+        "DISH_DESSERT_EXPLICIT": 1703,
+        "DISH_EGG_EXPLICIT": 165,
+        "DISH_FERMENTED_EXPLICIT": 13,
+        "DISH_GRAIN_EXPLICIT": 66,
+        "DISH_PROTEIN_EXPLICIT": 1625,
+        "DISH_SALAD_EXPLICIT": 318,
+        "DISH_SAUCE_EXPLICIT": 1390,
+        "DISH_SEAFOOD_EXPLICIT": 498,
+        "DISH_SOUP_EXPLICIT": 775,
+        "DISH_STOCK_EXPLICIT": 207
+      },
+      "referenceStateCounts": {
+        "REVIEWED_MAPPING": 1079,
+        "UNKNOWN": 18189
+      }
+    },
+    "mealRole": {
+      "dispositionCounts": {
+        "ABSTAIN": 16618,
+        "REFERENCE_PRESENT": 524,
+        "REVIEW": 2126
+      },
+      "candidateValueCounts": {
+        "BEVERAGE": 205,
+        "BREAKFAST": 51,
+        "DESSERT": 1777,
+        "MAIN": 8,
+        "SIDE": 14,
+        "SNACK": 11
+      },
+      "confidenceCounts": {
+        "LOW": 60,
+        "MEDIUM": 2066
+      },
+      "ruleMatchCounts": {
+        "ROLE_BEVERAGE_EXPLICIT": 250,
+        "ROLE_BREAKFAST_EXPLICIT": 75,
+        "ROLE_DESSERT_EXPLICIT": 1823,
+        "ROLE_MAIN_EXPLICIT": 8,
+        "ROLE_SIDE_EXPLICIT": 14,
+        "ROLE_SNACK_EXPLICIT": 16
+      },
+      "referenceStateCounts": {
+        "REVIEWED_MAPPING": 524,
+        "UNKNOWN": 18744
+      }
+    }
+  },
+  "invariants": {
+    "knownReferenceOverrideAttempts": 0,
+    "highConfidenceCells": 0,
+    "hardAuthorityViolations": 0,
+    "fullRowsCommittedToRuntime": false,
+    "fullRowsRetainedAsCiArtifact": true
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesReadOrExported": 0,
+    "publicRuntimeChanged": false,
+    "recommendationBehaviorChanged": false,
+    "recommendationAuthorityWidened": false,
+    "nutritionAuthorityChanged": false,
+    "dietaryAllergenAuthorityChanged": false,
+    "sourceRightsAuthorityChanged": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  }
+}

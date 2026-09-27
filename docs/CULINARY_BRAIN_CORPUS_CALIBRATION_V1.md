@@ -170,3 +170,14 @@ Not authorized by this roadmap object:
 - Barbecue workflow mutation.
 
 Any runtime behavior change still requires deterministic tests, normal PR validation and browser acceptance.
+
+
+### 2026-09-27 — Culinary Brain C2 full-v8018 candidate classification
+
+C2 is **COMPLETE / PASS** at `CULINARY_BRAIN_C2_FULL_V8018_CANDIDATE_CLASSIFICATION_PASS`. Exact pinned-source reconstruction classified all **19,268** v8018 identities with deterministic candidate-only / abstention-default semantics for the two C1-calibrated fields.
+
+For dish category, **1,079** cells already had reviewed canonical references and were never overridden; **6,777** rows entered REVIEW and **11,412** abstained. Of the review rows, **6,172** carried one selected LOW/MEDIUM candidate while **605** conflicting lexical-signal rows remained REVIEW with no selected value. For meal role, **524** canonical references were preserved; **2,126** rows entered REVIEW and **16,618** abstained, with **2,066** selected review candidates and **60** conflicting rows left without a selected value.
+
+The deterministic full-classification digest is `15ffb997d0715d72d248ca53ea03f4a95254123a9429e3a2ec4d085e144eaf3d`. Compact evidence is `data/generated/culinary-brain-c2-candidate-classification-summary-v1.json`; full 19,268-row output remains a CI artifact rather than a runtime dependency.
+
+C2 recorded **0 known-reference override attempts, 0 HIGH-confidence cells, 0 hard-authority violations, 0 protected D1 reads/writes, 0 protected-body reads/exports, and no public/recommendation/nutrition/dietary/source-rights/KC/paid/third-shard/Barbecue change**. C2 candidates are review aids only. The Brain advances to **C3 deterministic recommendation-prior calibration**; protected P3 remains blocked on C3 plus existing hard metadata/authority requirements.

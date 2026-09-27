@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
   "date": "2026-09-27",
-  "state": "P1_PASS__P2_PASS__C1_PASS__C2_CANDIDATE_ONLY_READY",
+  "state": "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_READY",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
@@ -173,7 +173,7 @@
     },
     {
       "id": "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
-      "state": "BLOCKED_ON_C2_AND_HARD_METADATA",
+      "state": "BLOCKED_ON_C3_AND_HARD_METADATA",
       "purpose": "Admit bounded recipe subsets only when hard ingredient/dietary/allergen/provenance semantics are sufficient; keep UNKNOWN fail-closed and nutrition independent."
     },
     {
@@ -201,13 +201,13 @@
     "barbecueMutationAuthorized": false
   },
   "nextExecutionSequence": [
-    "CULINARY_BRAIN_C2_FROZEN_FULL_V8018_CANDIDATE_CLASSIFICATION",
+    "CULINARY_BRAIN_C3_DETERMINISTIC_RECOMMENDATION_PRIOR_CALIBRATION",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
   ],
   "brainCalibration": {
     "id": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
-    "state": "C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_CANDIDATE_ONLY_READY",
+    "state": "C2_PASS__C3_READY",
     "contract": "config/culinary_brain_corpus_calibration_v1.json",
     "document": "docs/CULINARY_BRAIN_CORPUS_CALIBRATION_V1.md",
     "browseSearchBlocksOnBrain": false,
@@ -232,6 +232,18 @@
       "entireFrozen500Evaluated": true,
       "independentHistoricalSemanticGeneralizationDemonstrated": false,
       "c2AuthorizedScope": "CANDIDATE_ONLY__ABSTENTION_DEFAULT"
+    },
+    "c2Classification": {
+      "terminal": "CULINARY_BRAIN_C2_FULL_V8018_CANDIDATE_CLASSIFICATION_PASS",
+      "evidence": "data/generated/culinary-brain-c2-candidate-classification-summary-v1.json",
+      "recipeCount": 19268,
+      "uniqueRecipeKeyCount": 19268,
+      "fullClassificationDigestSha256": "15ffb997d0715d72d248ca53ea03f4a95254123a9429e3a2ec4d085e144eaf3d",
+      "candidateOnly": true,
+      "abstentionDefault": true,
+      "knownReferenceOverrideAttempts": 0,
+      "highConfidenceCells": 0,
+      "hardAuthorityViolations": 0
     }
   },
   "completedTransitions": [
@@ -280,6 +292,14 @@
       "terminal": "CULINARY_BRAIN_C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_CANDIDATE_ONLY_READY",
       "evidence": "data/generated/culinary-brain-c1-combined-closeout-v1.json",
       "note": "C2 authority is candidate-only and abstention-default; C1 did not establish independent semantic accuracy over historical UNKNOWN rows."
+    },
+    {
+      "id": "CULINARY_BRAIN_C2_FULL_V8018_CANDIDATE_CLASSIFICATION",
+      "state": "PASS",
+      "date": "2026-09-27",
+      "terminal": "CULINARY_BRAIN_C2_FULL_V8018_CANDIDATE_CLASSIFICATION_PASS",
+      "evidence": "data/generated/culinary-brain-c2-candidate-classification-summary-v1.json",
+      "note": "Candidate-only / abstention-default classification; no metadata, recommendation, public, nutrition, dietary, source-rights or runtime authority granted."
     }
   ],
   "quotaGapParallelPrep": {

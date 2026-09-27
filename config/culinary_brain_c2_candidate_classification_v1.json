@@ -1,0 +1,329 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C2_CANDIDATE_CLASSIFICATION_V1",
+  "date": "2026-09-27",
+  "state": "PASS__FULL_V8018_CANDIDATE_CLASSIFICATION",
+  "protectedCorpusVersion": "v8018",
+  "expectedRecipeCount": 19268,
+  "scope": "FULL_V8018_OFFLINE_CANDIDATE_ONLY__ABSTENTION_DEFAULT",
+  "input": {
+    "source": "EXACT_PINNED_V8018_NORMALIZATION_MAPPING_RECONSTRUCTION",
+    "mappingFull": ".tmp/corpus-normalization-mapping-v1-full.json",
+    "allowedHintFields": [
+      "identity.sourceRecordKey",
+      "sourceHints.category",
+      "sourceHints.tags"
+    ],
+    "protectedD1Required": false,
+    "protectedBodyReadRequired": false
+  },
+  "fields": {
+    "dishCategory": {
+      "vocabulary": [
+        "BEVERAGE",
+        "BREAD",
+        "CONDIMENT",
+        "DESSERT",
+        "EGG_DISH",
+        "FERMENTED_FOOD",
+        "GRAIN_DISH",
+        "PROTEIN_DISH",
+        "SALAD",
+        "SAUCE",
+        "SEAFOOD_DISH",
+        "SOUP",
+        "STOCK",
+        "VEGETABLE_DISH"
+      ],
+      "rules": [
+        {
+          "id": "DISH_SOUP_EXPLICIT",
+          "candidateValue": "SOUP",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bsoup\\b",
+            "\\bbisque\\b",
+            "\\bchowder\\b"
+          ]
+        },
+        {
+          "id": "DISH_STOCK_EXPLICIT",
+          "candidateValue": "STOCK",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bstock\\b",
+            "\\bbroth\\b"
+          ]
+        },
+        {
+          "id": "DISH_SALAD_EXPLICIT",
+          "candidateValue": "SALAD",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bsalad\\b",
+            "\\bslaw\\b"
+          ]
+        },
+        {
+          "id": "DISH_SAUCE_EXPLICIT",
+          "candidateValue": "SAUCE",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bsauce\\b",
+            "\\bgravy\\b"
+          ]
+        },
+        {
+          "id": "DISH_CONDIMENT_EXPLICIT",
+          "candidateValue": "CONDIMENT",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\brelish\\b",
+            "\\bchutney\\b",
+            "\\bketchup\\b",
+            "\\bmustard\\b"
+          ]
+        },
+        {
+          "id": "DISH_BEVERAGE_EXPLICIT",
+          "candidateValue": "BEVERAGE",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bbeverage\\b",
+            "\\bdrink\\b",
+            "\\blemonade\\b",
+            "\\bpunch\\b",
+            "\\bcoffee\\b",
+            "\\btea\\b"
+          ]
+        },
+        {
+          "id": "DISH_BREAD_EXPLICIT",
+          "candidateValue": "BREAD",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bbread\\b",
+            "\\brolls?\\b",
+            "\\bbuns?\\b"
+          ]
+        },
+        {
+          "id": "DISH_DESSERT_EXPLICIT",
+          "candidateValue": "DESSERT",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bcakes?\\b",
+            "\\bcookies?\\b",
+            "\\bpuddings?\\b",
+            "\\bcustards?\\b",
+            "\\bice cream\\b",
+            "\\btarts?\\b",
+            "\\bpies?\\b"
+          ]
+        },
+        {
+          "id": "DISH_EGG_EXPLICIT",
+          "candidateValue": "EGG_DISH",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bomelettes?\\b",
+            "\\bomelets?\\b",
+            "\\bfrittatas?\\b",
+            "\\bscrambled eggs?\\b"
+          ]
+        },
+        {
+          "id": "DISH_FERMENTED_EXPLICIT",
+          "candidateValue": "FERMENTED_FOOD",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bkimchi\\b",
+            "\\bsauerkraut\\b"
+          ]
+        },
+        {
+          "id": "DISH_GRAIN_EXPLICIT",
+          "candidateValue": "GRAIN_DISH",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\brisotto\\b",
+            "\\bpilaf\\b",
+            "\\bporridge\\b"
+          ]
+        },
+        {
+          "id": "DISH_SEAFOOD_EXPLICIT",
+          "candidateValue": "SEAFOOD_DISH",
+          "confidence": "LOW",
+          "patterns": [
+            "\\bsalmon\\b",
+            "\\btrout\\b",
+            "\\bcod\\b",
+            "\\bhaddock\\b",
+            "\\bmackerel\\b",
+            "\\bshrimp\\b",
+            "\\bprawn\\b",
+            "\\boyster\\b",
+            "\\blobster\\b",
+            "\\bcrab\\b"
+          ]
+        },
+        {
+          "id": "DISH_PROTEIN_EXPLICIT",
+          "candidateValue": "PROTEIN_DISH",
+          "confidence": "LOW",
+          "patterns": [
+            "\\bsteak\\b",
+            "\\broast beef\\b",
+            "\\bchicken\\b",
+            "\\bpork\\b",
+            "\\blamb\\b",
+            "\\bveal\\b"
+          ]
+        },
+        {
+          "id": "DISH_VEGETABLE_EXPLICIT",
+          "candidateValue": "VEGETABLE_DISH",
+          "confidence": "LOW",
+          "patterns": [
+            "\\broasted vegetables?\\b",
+            "\\bgrilled vegetables?\\b",
+            "\\bstewed vegetables?\\b"
+          ]
+        }
+      ]
+    },
+    "mealRole": {
+      "vocabulary": [
+        "BEVERAGE",
+        "BREAKFAST",
+        "DESSERT",
+        "MAIN",
+        "SIDE",
+        "SNACK"
+      ],
+      "rules": [
+        {
+          "id": "ROLE_BEVERAGE_EXPLICIT",
+          "candidateValue": "BEVERAGE",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bbeverage\\b",
+            "\\bdrink\\b",
+            "\\blemonade\\b",
+            "\\bpunch\\b",
+            "\\bcoffee\\b",
+            "\\btea\\b"
+          ]
+        },
+        {
+          "id": "ROLE_DESSERT_EXPLICIT",
+          "candidateValue": "DESSERT",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bdessert\\b",
+            "\\bcakes?\\b",
+            "\\bcookies?\\b",
+            "\\bpuddings?\\b",
+            "\\bcustards?\\b",
+            "\\bice cream\\b",
+            "\\btarts?\\b",
+            "\\bpies?\\b"
+          ]
+        },
+        {
+          "id": "ROLE_BREAKFAST_EXPLICIT",
+          "candidateValue": "BREAKFAST",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bbreakfast\\b",
+            "\\bbrunch\\b"
+          ]
+        },
+        {
+          "id": "ROLE_SNACK_EXPLICIT",
+          "candidateValue": "SNACK",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bsnacks?\\b"
+          ]
+        },
+        {
+          "id": "ROLE_MAIN_EXPLICIT",
+          "candidateValue": "MAIN",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bmain course\\b",
+            "\\bentree\\b"
+          ]
+        },
+        {
+          "id": "ROLE_SIDE_EXPLICIT",
+          "candidateValue": "SIDE",
+          "confidence": "MEDIUM",
+          "patterns": [
+            "\\bside dish\\b"
+          ]
+        }
+      ]
+    }
+  },
+  "policy": {
+    "knownCanonicalReferenceDisposition": "REFERENCE_PRESENT__NO_C2_OVERRIDE",
+    "unknownOrAmbiguousDefault": "ABSTAIN",
+    "singleValueLexicalMatch": "REVIEW_CANDIDATE_ONLY",
+    "conflictingLexicalValues": "REVIEW_WITHOUT_SELECTED_VALUE",
+    "maximumConfidence": "MEDIUM",
+    "candidateOutputCreatesAuthority": false,
+    "candidateOutputCreatesRecommendationEligibility": false,
+    "candidateOutputCreatesPublicAdmission": false
+  },
+  "acceptance": [
+    "EXACT_19268_UNIQUE_FULL_V8018_IDENTITIES",
+    "DETERMINISTIC_FULL_CLASSIFICATION_DIGEST",
+    "KNOWN_CANONICAL_REFERENCE_NEVER_OVERRIDDEN",
+    "NO_HIGH_CONFIDENCE_OUTPUTS",
+    "NO_HARD_AUTHORITY_CLAIMS",
+    "NO_RECOMMENDATION_OR_PUBLIC_ADMISSION",
+    "ABSTENTION_DEFAULT_FOR_UNMATCHED_UNKNOWN_OR_AMBIGUOUS_CELLS",
+    "CONFLICTING_LEXICAL_SIGNALS_FAIL_TO_REVIEW_WITHOUT_SELECTED_VALUE",
+    "FULL_CLASSIFICATION_RETAINED_AS_CI_ARTIFACT_NOT_RUNTIME_DEPENDENCY"
+  ],
+  "authority": {
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedBodyReadOrExportAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "nutritionAuthorityAuthorized": false,
+    "dietaryAllergenAuthorityAuthorized": false,
+    "sourceRightsAuthorityAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "CULINARY_BRAIN_C2_FULL_V8018_CANDIDATE_CLASSIFICATION_PASS",
+  "evidence": "data/generated/culinary-brain-c2-candidate-classification-summary-v1.json",
+  "result": {
+    "terminal": "CULINARY_BRAIN_C2_FULL_V8018_CANDIDATE_CLASSIFICATION_PASS",
+    "recipeCount": 19268,
+    "uniqueRecipeKeyCount": 19268,
+    "fullClassificationDigestSha256": "15ffb997d0715d72d248ca53ea03f4a95254123a9429e3a2ec4d085e144eaf3d",
+    "dishCategoryDispositionCounts": {
+      "ABSTAIN": 11412,
+      "REFERENCE_PRESENT": 1079,
+      "REVIEW": 6777
+    },
+    "mealRoleDispositionCounts": {
+      "ABSTAIN": 16618,
+      "REFERENCE_PRESENT": 524,
+      "REVIEW": 2126
+    },
+    "knownReferenceOverrideAttempts": 0,
+    "highConfidenceCells": 0,
+    "hardAuthorityViolations": 0,
+    "fullRowsCommittedToRuntime": false,
+    "fullRowsRetainedAsCiArtifact": true
+  },
+  "nextGate": "C3_DETERMINISTIC_RECOMMENDATION_PRIOR_CALIBRATION"
+}
