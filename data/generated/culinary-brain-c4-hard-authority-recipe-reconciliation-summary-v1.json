@@ -57,5 +57,8 @@
     "thirdShardUsed": false,
     "barbecueMutation": false
   },
-  "nextGate": "C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1"
+  "nextGate": "C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1",
+  "readyExceptDifficultyRecipeKeys": [
+    "unitools-world-recipes-v1_1_0::tortilla-espanola"
+  ]
 }
