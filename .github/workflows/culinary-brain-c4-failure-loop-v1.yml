@@ -13,6 +13,7 @@ on:
       - "config/culinary_brain_c2_candidate_classification_v1.json"
       - "data/generated/culinary-brain-c3-prior-calibration-summary-v1.json"
       - "data/generated/recommendation-readiness-audit-v1.json"
+      - "data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json"
       - "scripts/run-corpus-normalization-mapping-v1.mjs"
       - "scripts/run-nutrition-vitamin-applicability-audit.mjs"
       - "scripts/run-culinary-brain-c2-candidate-classification-v1.mjs"
@@ -93,6 +94,9 @@ jobs:
             --readiness=data/generated/recommendation-readiness-audit-v1.json \
             --output=.tmp/culinary-brain-c4-real-v8018-failure-matrix-v1.json \
             --summary=.tmp/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json
+
+      - name: Verify committed C4 summary is reproducible
+        run: cmp .tmp/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json
 
       - name: Upload C4 evidence
         uses: actions/upload-artifact@v4
