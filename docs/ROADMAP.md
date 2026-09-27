@@ -843,3 +843,12 @@ Evidence: `data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1
 The frozen 112-recipe C4 repair cohort completed an offline exact-identity evidence audit: **49** distinct canonical ingredient IDs, **89** recipes with positive current-catalog allergen signals and **23** with no positive signal. Positive signal counts are milk **59**, egg **38**, gluten **12**, fish **4**, crustacean **3**, tree_nut **2**. No hard authority was promoted; an empty signal remains explicitly non-equivalent to an allergen-free claim.
 
 Terminal: `CULINARY_BRAIN_C4_HARD_AUTHORITY_EVIDENCE_AUDIT_PASS__POLICY_REVIEW_READY`. Evidence: `data/generated/culinary-brain-c4-hard-authority-evidence-summary-v1.json`. Next: `C4_HARD_AUTHORITY_POLICY_REVIEW_V1`, using explicit ingredient-level dietary/allergen policy rather than title/family inference. P3 remains blocked.
+
+
+### 2026-09-27 — C4 hard-authority policy review
+
+The exact frozen-112 hard-authority tranche completed an explicit ingredient-policy review over all **49** canonical ingredients used by the cohort. **45** ingredient identities are complete for the app's current mapped allergen-profile tokens and explicit vegetarian/vegan policy; **4** formulation-variant identities remain fail-closed: `bread`, `curry_powder`, `noodles`, and `pasta`.
+
+Applying only those reviewed ingredient policies yields **100 / 112** policy-complete recipe candidates for the next offline reconciliation gate; **12 / 112** remain held. Candidate dietary-tag coverage among the 100 is unrestricted **100**, vegetarian **91**, vegan **23**. This does not admit recipes or widen public/runtime authority. Empty allergen lists are not global allergen-free claims, cross-contact/product-label guarantees remain out of scope, and unsupported/threshold-dependent EU residual categories remain uninferred.
+
+Terminal: `CULINARY_BRAIN_C4_HARD_AUTHORITY_POLICY_REVIEW_PASS__100_POLICY_COMPLETE_CANDIDATES__RECONCILIATION_READY`. Evidence: `data/generated/culinary-brain-c4-hard-authority-policy-review-summary-v1.json`. Next: `C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1`; P3 remains blocked.

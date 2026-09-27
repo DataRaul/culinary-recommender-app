@@ -89,7 +89,7 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     && c2.hardAuthorityViolations === 0;
   const c3 = brain.c3Calibration || {};
   const c3Passed = c2Passed
-    && ["C3_PASS__C4_READY","C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY"].includes(brain.state)
+    && ["C3_PASS__C4_READY","C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY","C4_POLICY_REVIEW_PASS__RECIPE_RECONCILIATION_READY"].includes(brain.state)
     && c3.terminal === "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY"
     && c3.evidence === "data/generated/culinary-brain-c3-prior-calibration-summary-v1.json"
     && c3.publicRuntimeRecipeCount === 85
@@ -110,7 +110,30 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     && c4.unresolvedIdentityRecipeCount === 19156
     && c4.hardDietaryAllergenAuthorityState === "UNIVERSAL_HARD_BLOCKER"
     && c4.automaticRecommendationReadyCount === 0;
-  const expected = c4MatrixPassed
+  const c4Evidence = brain.c4HardAuthorityEvidence || config.c4HardAuthorityEvidence || {};
+  const c4EvidencePassed = c4MatrixPassed
+    && c4Evidence.terminal === "CULINARY_BRAIN_C4_HARD_AUTHORITY_EVIDENCE_AUDIT_PASS__POLICY_REVIEW_READY"
+    && c4Evidence.evidence === "data/generated/culinary-brain-c4-hard-authority-evidence-summary-v1.json"
+    && c4Evidence.repairCohortCount === 112
+    && c4Evidence.distinctCanonicalIngredientCount === 49
+    && c4Evidence.hardAuthorityEarnedCount === 0;
+  const c4Policy = brain.c4PolicyReview || config.c4PolicyReview || {};
+  const c4PolicyPassed = c4EvidencePassed
+    && c4Policy.terminal === "CULINARY_BRAIN_C4_HARD_AUTHORITY_POLICY_REVIEW_PASS__100_POLICY_COMPLETE_CANDIDATES__RECONCILIATION_READY"
+    && c4Policy.evidence === "data/generated/culinary-brain-c4-hard-authority-policy-review-summary-v1.json"
+    && c4Policy.reviewedIngredientPolicyCount === 49
+    && c4Policy.policyCompleteIngredientCount === 45
+    && JSON.stringify(c4Policy.heldPolicyIngredientIds || []) === JSON.stringify(["bread","curry_powder","noodles","pasta"])
+    && c4Policy.policyCompleteRecipeCandidateCount === 100
+    && c4Policy.policyHeldRecipeCount === 12
+    && c4Policy.recommendationAuthorityPromoted === false;
+  const expected = c4PolicyPassed
+    ? [
+        "CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+      ]
+    : c4MatrixPassed
     ? [
         "CULINARY_BRAIN_C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1",
         "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
@@ -160,7 +183,10 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     if (c1.evidence !== "data/generated/culinary-brain-c1-combined-closeout-v1.json") errors.push("C1 terminal evidence reference mismatch");
     if (c1.independentHistoricalSemanticGeneralizationDemonstrated !== false) errors.push("C1 historical semantic limitation must remain explicit");
   }
-  if (c4MatrixPassed) {
+  if (c4PolicyPassed) {
+    const p3Gate = (config.gates || []).find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
+    if (p3Gate?.state !== "BLOCKED_ON_C4_RECIPE_RECONCILIATION_AND_HARD_METADATA") errors.push("P3 must remain blocked on C4 recipe reconciliation and hard metadata");
+  } else if (c4MatrixPassed) {
     const p3Gate = (config.gates || []).find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
     if (p3Gate?.state !== "BLOCKED_ON_C4_HARD_AUTHORITY_REPAIR_AND_HARD_METADATA") errors.push("P3 must remain blocked on C4 hard-authority repair and hard metadata");
   } else if (c3Passed) {
