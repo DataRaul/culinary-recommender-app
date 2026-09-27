@@ -63,7 +63,9 @@
       "NUTRITION_AUTHORITY",
       "PUBLIC_RECIPE_ADMISSION",
       "RECOMMENDATION_ELIGIBILITY"
-    ]
+    ],
+    "provenance": "GPT_5_6_SOL_CURRENT_CHAT__ROW_LABEL_BLIND__AGGREGATE_SAMPLE_SUMMARY_PREVIOUSLY_VISIBLE",
+    "interpretation": "CALIBRATION_CANARY_ONLY__NOT_AN_INDEPENDENT_BLIND_TERMINAL"
   },
   "preregisteredGates": {
     "exactPredictionRowCount": 100,
@@ -81,7 +83,8 @@
     "tuningOnlyAgainstNamedFailureClasses": true,
     "noRecipeSpecificPostHocThresholdChanges": true,
     "canaryPassDoesNotAuthorizeC2": true,
-    "fullFrozen500EvaluationRequiredBeforeC2": true
+    "fullFrozen500EvaluationRequiredBeforeC2": true,
+    "canaryResultMustDiscloseAggregateAwareness": true
   },
   "authority": {
     "protectedD1ReadsAuthorized": false,
