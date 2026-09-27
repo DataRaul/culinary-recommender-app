@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_BRAIN_C1_EVALUATION_V1",
   "date": "2026-09-27",
-  "state": "PREREGISTERED_CANARY_READY",
+  "state": "CANARY_HOLD__NAMED_FAILURE_CLASS_REPAIR_1_READY",
   "protectedCorpusVersion": "v8018",
   "frozenSample": {
     "recipeCount": 500,
@@ -97,5 +97,25 @@
     "thirdShardAuthorized": false,
     "barbecueMutationAuthorized": false
   },
-  "nextGate": "C1_CANARY_BLIND_EVALUATION"
+  "nextGate": "C1_CANARY_BLIND_EVALUATION",
+  "calibrationHistory": [
+    {
+      "attempt": "V1",
+      "evidence": "data/generated/culinary-brain-c1-evaluation-canary-hold-v1.json",
+      "terminal": "CULINARY_BRAIN_C1_CANARY_HOLD",
+      "precision": 0.875,
+      "threshold": 0.9
+    }
+  ],
+  "calibrationRepair": {
+    "revision": "R1",
+    "predictions": "data/generated/culinary-brain-c1-evaluation-predictions-v1r1.json",
+    "thresholdChanged": false,
+    "sampleChanged": false,
+    "namedFailureClasses": [
+      "PRODUCT_FORM_VS_PROCESS_TAXONOMY_PRIORITY",
+      "SAUCE_VS_CONDIMENT_FUNCTION_BOUNDARY"
+    ],
+    "nextGate": "RERUN_SAME_100_CANARY_THEN_REQUIRE_UNSEEN_FROZEN_REMAINDER_GENERALIZATION"
+  }
 }
