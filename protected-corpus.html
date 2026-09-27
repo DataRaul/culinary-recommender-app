@@ -172,7 +172,11 @@
   }
 
   async function refreshStatus() {
-    const auth = await readJson(await fetch('/api/auth/session', { cache:'no-store', credentials:'same-origin' }));
+    const refreshButton = document.getElementById('refresh');
+    refreshButton.disabled = true;
+    statusNode.textContent = 'Refreshing private index status…';
+    try {
+      const auth = await readJson(await fetch('/api/auth/session', { cache:'no-store', credentials:'same-origin' }));
     if (auth.httpStatus !== 200 || auth.authenticated !== true) { showAuthRequired(); return false; }
     const result = await apiGet({ action:'status' });
     if (result.httpStatus === 409 && result.error === 'INDEX_NOT_INITIALIZED') {
@@ -196,8 +200,16 @@
     prepareButton.hidden = result.ready === true;
     runCanaryButton.hidden = result.ready !== true;
     prepareButton.textContent = result.indexedRecipeCount ? 'Resume private index' : 'Prepare private index';
-    if (result.ready) await loadResults(true);
-    return true;
+      if (result.ready) await loadResults(true);
+      return true;
+    } catch (error) {
+      statusNode.textContent = 'Private index status request failed safely: ' + String(error?.message || error).slice(0,180);
+      prepareButton.hidden = true;
+      runCanaryButton.hidden = true;
+      return false;
+    } finally {
+      refreshButton.disabled = false;
+    }
   }
 
   async function prepareIndex() {
@@ -393,7 +405,7 @@
     detailPanel.scrollIntoView({ behavior:'smooth', block:'start' });
   }
 
-  document.getElementById('refresh').addEventListener('click', refreshStatus);
+  document.getElementById('refresh').addEventListener('click', () => { void refreshStatus(); });
   prepareButton.addEventListener('click', prepareIndex);
   runCanaryButton.addEventListener('click', runLiveVerification);
   copyCanaryButton.addEventListener('click', async () => {
