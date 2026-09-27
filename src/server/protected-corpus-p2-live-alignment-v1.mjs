@@ -1,4 +1,4 @@
-import frozenC1 from "../../data/generated/culinary-brain-c1-exact-sample-freeze-v1.json" with { type: "json" };
+import { sha256Hex } from "./step8b-live.mjs";
 import {
   PROTECTED_SEARCH_CORPUS_VERSION,
   PROTECTED_SEARCH_EXPECTED_COUNT,
@@ -12,6 +12,7 @@ export const PROTECTED_P2_FROZEN_SAMPLE_COUNT = 500;
 export const PROTECTED_P2_ID_CHUNK_SIZE = 90;
 export const PROTECTED_P2_EXPECTED_MEMBERSHIP_QUERIES = 6;
 export const PROTECTED_P2_INTERNAL_D1_SUBQUERY_TARGET = 7;
+export const PROTECTED_P2_FROZEN_SAMPLE_DIGEST_SHA256 = "5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408";
 export const PROTECTED_P2_TERMINAL = "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS";
 
 function chunk(values, size) {
@@ -20,19 +21,18 @@ function chunk(values, size) {
   return out;
 }
 
-function frozenRecipeIds() {
-  const ids = Array.isArray(frozenC1?.recipeIds) ? frozenC1.recipeIds.map(value => String(value || "").trim()).filter(Boolean) : [];
-  if (
-    frozenC1?.terminal !== "CULINARY_BRAIN_C1_EXACT_500_SAMPLE_FROZEN" ||
-    frozenC1?.protectedCorpusVersion !== PROTECTED_SEARCH_CORPUS_VERSION ||
-    ids.length !== PROTECTED_P2_FROZEN_SAMPLE_COUNT ||
-    new Set(ids).size !== PROTECTED_P2_FROZEN_SAMPLE_COUNT
-  ) throw new Error("P2_FROZEN_C1_SAMPLE_INVALID");
+async function exactFrozenRecipeIds(input) {
+  const ids = Array.isArray(input) ? input.map(value => String(value || "").trim()).filter(Boolean).sort() : [];
+  if (ids.length !== PROTECTED_P2_FROZEN_SAMPLE_COUNT || new Set(ids).size !== PROTECTED_P2_FROZEN_SAMPLE_COUNT) {
+    throw new Error("P2_FROZEN_C1_SAMPLE_INVALID");
+  }
+  const digest = await sha256Hex(JSON.stringify(ids));
+  if (digest !== PROTECTED_P2_FROZEN_SAMPLE_DIGEST_SHA256) throw new Error("P2_FROZEN_C1_SAMPLE_DIGEST_MISMATCH");
   return ids;
 }
 
-export async function verifyProtectedCorpusP2LiveAlignment(controlDb) {
-  const ids = frozenRecipeIds();
+export async function verifyProtectedCorpusP2LiveAlignment(controlDb, recipeIds) {
+  const ids = await exactFrozenRecipeIds(recipeIds);
   const groups = chunk(ids, PROTECTED_P2_ID_CHUNK_SIZE);
   if (groups.length !== PROTECTED_P2_EXPECTED_MEMBERSHIP_QUERIES) throw new Error("P2_FROZEN_C1_CHUNK_LAYOUT_INVALID");
 
@@ -72,7 +72,7 @@ export async function verifyProtectedCorpusP2LiveAlignment(controlDb) {
     frozenSampleRecipeCount: ids.length,
     matchedFrozenRecipeCount: found.size,
     sourceProvenanceCount,
-    frozenSampleDigestSha256: String(frozenC1?.summary?.sampleDigestSha256 || "")
+    frozenSampleDigestSha256: PROTECTED_P2_FROZEN_SAMPLE_DIGEST_SHA256
   };
 
   const checks = {
