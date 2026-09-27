@@ -142,6 +142,7 @@ export function buildC4RecipeReconciliation({contract,policyFull,mappingFull,p2M
     instructionsReadyCount:rows.filter(row=>row.instructionsReady).length,
     provenanceReadyCount:rows.filter(row=>row.provenanceReady).length,
     readyExceptDifficultyCount:readyExceptDifficulty.length,
+    readyExceptDifficultyRecipeKeys:readyExceptDifficulty.map(row=>row.recipeKey),
     runtimeHardMetadataReadyCount:runtimeReady.length,
     blockerCounts:Object.fromEntries(Object.entries(blockerCounts).sort(([a],[b])=>a.localeCompare(b))),
     sourceSystemCounts,
