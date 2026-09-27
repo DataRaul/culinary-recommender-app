@@ -10,6 +10,7 @@ import {
   repairForkRecipeStructuralState,
   searchProtectedCorpus
 } from "../../../src/server/protected-corpus-search-v1.mjs";
+import { verifyProtectedCorpusP2LiveAlignment } from "../../../src/server/protected-corpus-p2-live-alignment-v1.mjs";
 
 const STEP = "PROTECTED-CORPUS-P1";
 const shardDbs = env => [env?.CULINARY_RECIPE_SHARD_00_DB, env?.CULINARY_RECIPE_SHARD_01_DB];
@@ -113,6 +114,15 @@ export async function onRequestGet({ request, env }) {
       return withBudget({ ...result, protectedDataReturned: false }, auth.authD1Subqueries, result.pass ? 200 : 409);
     } catch (error) {
       return jsonResponse({ ok: false, step: STEP, action, error: "INDEX_NOT_INITIALIZED", reason: String(error?.message || error).slice(0,240), protectedDataReturned: false, fullCorpusScans: 0, metrics: metrics(auth.authD1Subqueries) }, 409);
+    }
+  }
+
+  if (action === "p2-live-alignment") {
+    try {
+      const result = await verifyProtectedCorpusP2LiveAlignment(env.CULINARY_CONTROL_DB);
+      return withBudget({ ...result, protectedDataReturned: false }, auth.authD1Subqueries, result.pass ? 200 : 409);
+    } catch (error) {
+      return jsonResponse({ ok: false, step: STEP, action, error: "P2_LIVE_ALIGNMENT_FAILED", reason: String(error?.message || error).slice(0,240), protectedDataReturned: false, fullCorpusScans: 0, metrics: metrics(auth.authD1Subqueries) }, 409);
     }
   }
 
