@@ -116,7 +116,7 @@ export function buildC4HardAuthorityEvidence({contract,nutritionFull,c4MatrixSum
     repairCohortDigestSha256:contract.expectedRepairCohortDigestSha256,
     distinctCanonicalIngredientCount:distinctIngredientIds.length,
     canonicalIngredientCatalogDigestSha256:catalogDigestSha256,
-    recipesWithPositiveCatalogAllergenSignalCount,
+    recipesWithPositiveCatalogAllergenSignalCount:recipesWithPositiveAllergenSignalCount,
     recipesWithoutPositiveCatalogAllergenSignalCount:ready.length-recipesWithPositiveAllergenSignalCount,
     positiveAllergenSignalRecipeCounts:Object.fromEntries(Object.entries(allergenSignalCounts).sort(([a],[b])=>a.localeCompare(b))),
     sourceSystemCounts:countBy(recipeRows,row=>row.sourceSystem),
