@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_EVIDENCE_V1",
+  "date": "2026-09-27",
+  "timezone": "Atlantic/Canary",
+  "terminal": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS",
+  "activeVersion": "v8018",
+  "indexedRecipeCount": 19268,
+  "ftsRecipeCount": 19268,
+  "structuralPartialCount": 3,
+  "browsePass": true,
+  "searchPass": true,
+  "detailShard0Pass": true,
+  "detailShard1Pass": true,
+  "sourceProvenancePass": true,
+  "maxObservedD1Subqueries": 4,
+  "fullCorpusScans": 0,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "authority": {
+    "protectedBrowseOnly": true,
+    "publicRuntimeWidening": false,
+    "recommendationAdmission": false,
+    "protectedBodyRewrite": false,
+    "thirdShard": false,
+    "barbecueMutation": false
+  },
+  "provenance": {
+    "source": "OWNER_SANITIZED_LIVE_CANARY_OUTPUT",
+    "recordedAfterRepair": true,
+    "repairScope": "915 ForkRecipe search-summary structural-state rows only",
+    "reindexPerformed": false,
+    "ftsRewritePerformed": false
+  }
+}
