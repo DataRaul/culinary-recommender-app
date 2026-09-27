@@ -1,0 +1,516 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C1_EVALUATION_CANARY_INPUT_V1",
+  "date": "2026-09-27",
+  "protectedCorpusVersion": "v8018",
+  "frozenSampleDigestSha256": "5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408",
+  "selection": "ALL_44_MODERN_OR_CONTEMPORARY_DATASET_IDS_PLUS_FIRST_56_LEXICOGRAPHIC_HISTORICAL_IDS",
+  "recipeCount": 100,
+  "rows": [
+    {
+      "recipeId": "cc0_sgauthier_asian_style_chicken_sticky_sauce",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "cc0_sgauthier_chicken_pasta_casserole",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "cc0_sgauthier_eggs",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_EXCEPTION"
+    },
+    {
+      "recipeId": "cc0_sgauthier_gluehwein",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "cc0_sgauthier_pasta_navy_style",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "cc0_sgauthier_peanut_butter",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_EXCEPTION"
+    },
+    {
+      "recipeId": "cc0_sgauthier_spices_during_pregnancy",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_EXCEPTION"
+    },
+    {
+      "recipeId": "forkrecipe_baguette",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_beet_kvass",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_bibimbap_sauce",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_carbonara",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_confit_canard",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_corn_tortillas",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_crab_cakes",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_eggs_benedict_casserole",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_fish_fumet",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_french_omelette",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_gochujang_mayo",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_gratin_dauphinois",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_green_goddess_dressing",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_horchata",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_kung_pao_chicken",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_lacto_pickles",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_lassi",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_limoncello",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_peperonata",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_prawn_bisque_base",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_profiteroles",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_quick_tsukemono",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_saffron_rice",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "forkrecipe_zaatar_spice_blend",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "unitools:beshbarmak-kyrgyz",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "unitools:chakalaka",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "unitools:chorreadas",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "unitools:mangu",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "unitools:massaman-curry",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "unitools:mbeju",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "unitools:pol-sambol",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "unitools:sopa-de-caracol",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "unitools:suutei-tsai",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "unitools:tabbouleh",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "unitools:torta-frita",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "unitools:tortilla-espanola",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "unitools:tufahije",
+      "sourceContext": "MODERN_OR_CONTEMPORARY_DATASET",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_belvidere_cakes",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_boiled_cod",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_bordeaux_cake",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_burnt_butter",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_buttered_toast",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_eggs_au_miroir",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_eggs_l_ardennaise",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_galette",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_green_peas_8",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_lemon_and_orange_wine",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_mrs_hill_s_cakes",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_neck_of_veal_braised",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_omelettes_aux_huitres",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_scotch_kail",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_spiced_beef_6",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_spinach_5",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_stewed_giblets",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_to_stew_fish_2",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_abbott_1864_veal_cutlets_en_papillote",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_anguilla_arrosto_roasted_eel",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_broccoli_romani_roman_broccoli",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_cappone_in_vescica_capon_in_bladder",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_cotolette_di_baccal_salt_cod_cutlets",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_crostini_di_caviale_acciughe_e_burro_caviar_anchovy_and_butter_crostini",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_fritto_di_pesche_fried_peaches_2",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_gelato_di_ciliege_visciole_sour_cherry_ice_cream",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_gelato_di_limone_lemon_ice_cream",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_krapfen_i_german_yeast_pastries_i",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_kugelhupf_hungarian_yeast_cake",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_minestra_del_paradiso_paradise_soup",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_nocino_walnut_liqueur",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_paste_alla_cacciatora_pasta_hunter_style",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_piccioni_in_umido_braised_pigeons",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_pizza_gravida_pregnant_pizza_2",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_salsa_di_peperoni_pepper_sauce",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_semolino_di_magro_semolina_lean_style",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_stufatino_di_petto_di_vitella_di_latte_coi_finocchi_braised_milk_veal_breast_wit",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_tagliatelle_verdi_green_ribbon_pasta",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_tordi_disossati_in_gelatina_boned_thrushes_in_aspic",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_uccelli_in_salm_birds_in_salmis",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_artusi_1891_zuppa_di_limone_lemon_soup",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_atrutel_1874_boiled_cod_2",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_atrutel_1874_browning_for_soups",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_atrutel_1874_cutlets_with_gherkin_sauce",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_atrutel_1874_eggs_with_butter_whole",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_atrutel_1874_english_macaroons_sweet",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_atrutel_1874_gravy_soup_6",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_atrutel_1874_sole_pie",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_atrutel_1874_steak_stewed_with_walnut_liquor",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_atrutel_1874_to_boil_potatoes_4",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_atrutel_1874_to_make_a_quince_pie",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_atrutel_1874_to_roast_a_loin_of_mutton",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_atrutel_1874_to_roast_ducks_2",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_atrutel_1874_toasted_almonds",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_bosse_watanna_1914_fried_beef_with_mushrooms",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    },
+    {
+      "recipeId": "ora_bosse_watanna_1914_pork_with_green_peppers",
+      "sourceContext": "HISTORICAL_SOURCE",
+      "structuralBoundary": "STRUCTURAL_PARSEABLE"
+    }
+  ],
+  "blinded": {
+    "authoritativeDishCategoryHidden": true,
+    "authoritativeMealRoleHidden": true,
+    "ingredientIdentityReadinessHidden": true,
+    "noProtectedBodyContent": true
+  }
+}
