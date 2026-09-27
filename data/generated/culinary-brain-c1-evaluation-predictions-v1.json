@@ -1,0 +1,1510 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C1_EVALUATION_PREDICTIONS_V1",
+  "date": "2026-09-27",
+  "protectedCorpusVersion": "v8018",
+  "evaluatorProvenance": "GPT_5_6_SOL_CURRENT_CHAT__ROW_LABEL_BLIND__AGGREGATE_SAMPLE_SUMMARY_PREVIOUSLY_VISIBLE",
+  "evaluatorInputAuthority": "RECIPE_IDENTITY_HINT_ONLY",
+  "caveat": "Aggregate frozen-sample label counts were visible earlier in the conversation. This is a calibration canary, not an independent blind terminal evaluation.",
+  "rows": [
+    {
+      "recipeId": "cc0_sgauthier_asian_style_chicken_sticky_sauce",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "cc0_sgauthier_chicken_pasta_casserole",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "cc0_sgauthier_eggs",
+      "dishCategory": {
+        "decision": "REVIEW",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "STRUCTURAL_EXCEPTION"
+      },
+      "mealRole": {
+        "decision": "REVIEW",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "STRUCTURAL_EXCEPTION"
+      }
+    },
+    {
+      "recipeId": "cc0_sgauthier_gluehwein",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "cc0_sgauthier_pasta_navy_style",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "cc0_sgauthier_peanut_butter",
+      "dishCategory": {
+        "decision": "REVIEW",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "STRUCTURAL_EXCEPTION"
+      },
+      "mealRole": {
+        "decision": "REVIEW",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "STRUCTURAL_EXCEPTION"
+      }
+    },
+    {
+      "recipeId": "cc0_sgauthier_spices_during_pregnancy",
+      "dishCategory": {
+        "decision": "REVIEW",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "STRUCTURAL_EXCEPTION"
+      },
+      "mealRole": {
+        "decision": "REVIEW",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "STRUCTURAL_EXCEPTION"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_baguette",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "BREAD",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_beet_kvass",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "FERMENTED_FOOD",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_bibimbap_sauce",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "SAUCE",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_carbonara",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "GRAIN_DISH",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_confit_canard",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "PROTEIN_DISH",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_corn_tortillas",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "BREAD",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_crab_cakes",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "SEAFOOD_DISH",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_eggs_benedict_casserole",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "EGG_DISH",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_fish_fumet",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "STOCK",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_french_omelette",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "EGG_DISH",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_gochujang_mayo",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "SAUCE",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_gratin_dauphinois",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "VEGETABLE_DISH",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_green_goddess_dressing",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "SAUCE",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_horchata",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "BEVERAGE",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_kung_pao_chicken",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "PROTEIN_DISH",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_lacto_pickles",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "FERMENTED_FOOD",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_lassi",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "BEVERAGE",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_limoncello",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "BEVERAGE",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_peperonata",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "VEGETABLE_DISH",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_prawn_bisque_base",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "STOCK",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_profiteroles",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "DESSERT",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_quick_tsukemono",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "CONDIMENT",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_saffron_rice",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "GRAIN_DISH",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "forkrecipe_zaatar_spice_blend",
+      "dishCategory": {
+        "decision": "PROPOSE",
+        "value": "CONDIMENT",
+        "confidence": "MEDIUM",
+        "reasonCode": "IDENTITY_STRONGLY_IMPLIES_CATEGORY"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "unitools:beshbarmak-kyrgyz",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "unitools:chakalaka",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "unitools:chorreadas",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "unitools:mangu",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "unitools:massaman-curry",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "unitools:mbeju",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "unitools:pol-sambol",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "unitools:sopa-de-caracol",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "unitools:suutei-tsai",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "unitools:tabbouleh",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "unitools:torta-frita",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "unitools:tortilla-espanola",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "unitools:tufahije",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_belvidere_cakes",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_boiled_cod",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_bordeaux_cake",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_burnt_butter",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_buttered_toast",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_eggs_au_miroir",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_eggs_l_ardennaise",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_galette",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_green_peas_8",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_lemon_and_orange_wine",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_mrs_hill_s_cakes",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_neck_of_veal_braised",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_omelettes_aux_huitres",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_scotch_kail",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_spiced_beef_6",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_spinach_5",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_stewed_giblets",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_to_stew_fish_2",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_abbott_1864_veal_cutlets_en_papillote",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_anguilla_arrosto_roasted_eel",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_broccoli_romani_roman_broccoli",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_cappone_in_vescica_capon_in_bladder",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_cotolette_di_baccal_salt_cod_cutlets",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_crostini_di_caviale_acciughe_e_burro_caviar_anchovy_and_butter_crostini",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_fritto_di_pesche_fried_peaches_2",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_gelato_di_ciliege_visciole_sour_cherry_ice_cream",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_gelato_di_limone_lemon_ice_cream",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_krapfen_i_german_yeast_pastries_i",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_kugelhupf_hungarian_yeast_cake",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_minestra_del_paradiso_paradise_soup",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_nocino_walnut_liqueur",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_paste_alla_cacciatora_pasta_hunter_style",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_piccioni_in_umido_braised_pigeons",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_pizza_gravida_pregnant_pizza_2",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_salsa_di_peperoni_pepper_sauce",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_semolino_di_magro_semolina_lean_style",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_stufatino_di_petto_di_vitella_di_latte_coi_finocchi_braised_milk_veal_breast_wit",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_tagliatelle_verdi_green_ribbon_pasta",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_tordi_disossati_in_gelatina_boned_thrushes_in_aspic",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_uccelli_in_salm_birds_in_salmis",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_artusi_1891_zuppa_di_limone_lemon_soup",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_atrutel_1874_boiled_cod_2",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_atrutel_1874_browning_for_soups",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_atrutel_1874_cutlets_with_gherkin_sauce",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_atrutel_1874_eggs_with_butter_whole",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_atrutel_1874_english_macaroons_sweet",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_atrutel_1874_gravy_soup_6",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_atrutel_1874_sole_pie",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_atrutel_1874_steak_stewed_with_walnut_liquor",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_atrutel_1874_to_boil_potatoes_4",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_atrutel_1874_to_make_a_quince_pie",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_atrutel_1874_to_roast_a_loin_of_mutton",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_atrutel_1874_to_roast_ducks_2",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_atrutel_1874_toasted_almonds",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_bosse_watanna_1914_fried_beef_with_mushrooms",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    },
+    {
+      "recipeId": "ora_bosse_watanna_1914_pork_with_green_peppers",
+      "dishCategory": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      },
+      "mealRole": {
+        "decision": "ABSTAIN",
+        "value": null,
+        "confidence": "LOW",
+        "reasonCode": "IDENTITY_HINT_INSUFFICIENT"
+      }
+    }
+  ]
+}
