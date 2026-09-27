@@ -17,6 +17,9 @@
   "instructionsReadyCount": 100,
   "provenanceReadyCount": 100,
   "readyExceptDifficultyCount": 1,
+  "readyExceptDifficultyRecipeKeys": [
+    "unitools-world-recipes-v1_1_0::tortilla-espanola"
+  ],
   "runtimeHardMetadataReadyCount": 0,
   "blockerCounts": {
     "DIFFICULTY_AUTHORITY_MISSING": 99,
@@ -57,8 +60,5 @@
     "thirdShardUsed": false,
     "barbecueMutation": false
   },
-  "nextGate": "C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1",
-  "readyExceptDifficultyRecipeKeys": [
-    "unitools-world-recipes-v1_1_0::tortilla-espanola"
-  ]
+  "nextGate": "C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1"
 }
