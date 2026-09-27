@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_P2_METADATA_USABILITY_CONTRACT_V1",
   "date": "2026-09-27",
-  "state": "MACHINE_EXACT_SOURCE_MEASUREMENT_PASS__BOUNDED_LIVE_ALIGNMENT_PENDING",
+  "state": "PASS__LIVE_ALIGNMENT_PASS",
   "protectedCorpusVersion": "v8018",
   "expectedRecipeCount": 19268,
   "objective": "MEASURE_USER_USABLE_METADATA_WITHOUT_INFERENCE_AND_VERIFY_EXACT_LIVE_ALIGNMENT_BEFORE_TERMINAL_CLOSEOUT",
@@ -29,7 +29,7 @@
     "reviewedDietaryTags"
   ],
   "liveAlignment": {
-    "state": "PENDING",
+    "state": "PASS",
     "scope": [
       "STATUS_V8018_19268_SUMMARY_19268_FTS_3_PARTIAL",
       "EXACT_FROZEN_C1_500_IDS_PRESENT_IN_PROTECTED_SUMMARY_INDEX",
@@ -46,7 +46,27 @@
       "protectedBodyReads": 0,
       "protectedD1Writes": 0
     },
-    "terminalOnPass": "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS"
+    "terminalOnPass": "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS",
+    "evidence": "data/generated/protected-corpus-p2-live-alignment-v1.json",
+    "observed": {
+      "terminal": "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS",
+      "activeVersion": "v8018",
+      "indexedRecipeCount": 19268,
+      "ftsRecipeCount": 19268,
+      "structuralPartialCount": 3,
+      "frozenSampleRecipeCount": 500,
+      "matchedFrozenRecipeCount": 500,
+      "sourceProvenanceCount": 500,
+      "frozenSampleDigestSha256": "5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408",
+      "membershipQueryCount": 6,
+      "maxFrozenIdChunkSize": 90,
+      "maxObservedD1Subqueries": 8,
+      "protectedBodyReads": 0,
+      "protectedD1Writes": 0,
+      "fullCorpusScans": 0,
+      "publicRuntimeChanged": false,
+      "recommendationAdmissionChanged": false
+    }
   },
   "authority": {
     "missingMetadataInferenceAuthorized": false,
