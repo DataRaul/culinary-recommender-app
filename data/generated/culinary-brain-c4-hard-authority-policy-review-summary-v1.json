@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_HARD_AUTHORITY_POLICY_REVIEW_SUMMARY_V1",
+  "date": "2026-09-27",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_POLICY_REVIEW_PASS__100_POLICY_COMPLETE_CANDIDATES__RECONCILIATION_READY",
+  "protectedCorpusVersion": "v8018",
+  "repairCohortCount": 112,
+  "repairCohortDigestSha256": "965876ec6dca2a9a4796417d88e44151a87541b39cfe232c42decf2208913468",
+  "canonicalIngredientCatalogDigestSha256": "867b5161280acc7afa43676ff22916c5b9e45df559511abd5dde2d6565cfd6fd",
+  "reviewedIngredientPolicyCount": 49,
+  "policyCompleteIngredientCount": 45,
+  "heldPolicyIngredientCount": 4,
+  "heldPolicyIngredientIds": ["bread","curry_powder","noodles","pasta"],
+  "policyCompleteRecipeCandidateCount": 100,
+  "policyHeldRecipeCount": 12,
+  "dietaryTagCandidateCounts": {"unrestricted":100,"vegetarian":91,"vegan":23},
+  "declaredAllergenCandidateRecipeCounts": {"crustacean":3,"egg":37,"fish":4,"gluten":1,"milk":50,"tree_nut":2},
+  "recommendationAuthorityPromoted": false,
+  "hardSafetyRuntimeAuthorityPromoted": false,
+  "semantics": {
+    "completenessScope": "CURRENT_MAPPED_PROFILE_ALLERGEN_TOKENS_ONLY",
+    "emptyPresentListMeansGlobalAllergenFree": false,
+    "crossContactGuarantee": false,
+    "productLabelGuarantee": false,
+    "residualEuCategoriesInferred": false,
+    "heldIngredientBlocksRecipeCandidate": true
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationBehaviorChanged": false,
+    "recommendationAdmissionChanged": false,
+    "nutritionAuthorityPromoted": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1"
+}
