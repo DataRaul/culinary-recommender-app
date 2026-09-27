@@ -60,7 +60,7 @@ This section is the concise operational source of truth for the currently discus
 | Stream | Current state | Dependency / next action |
 |---|---|---|
 | Lane 1 — Protected corpus P1 | **TERMINAL PASS / COMPLETE** | Owner terminal canary PASS recorded 2026-09-27: v8018, 19,268/19,268 summary + FTS, exactly 3 structural exceptions, both shards/provenance verified, max 4 D1 subqueries, zero full scans, no public/recommendation widening. No re-index is authorized or needed. |
-| Lane 2 — Brain C1 + live P2 | **P2 TERMINAL PASS / C1 EVALUATION NEXT** | P2 terminal live alignment passed against the exact frozen 500 IDs (digest `5d30214e…`): v8018, 19,268 summary, 19,268 FTS, 3 partials, 500/500 IDs present with provenance, 6 membership queries, max 8 D1 subqueries, zero body reads/writes/full scans, and no public/recommendation widening. C1 evaluation is now the active successor; C2/P3 remain later gates. |
+| Lane 2 — Brain C1/C2 + P2 | **P2 PASS / C1 BOUNDED PASS / C2 CANDIDATE-ONLY NEXT** | P2 is terminal PASS. C1 evaluated the frozen 500 without manufacturing missing truth: the 100-row calibration canary moved from 87.5% to 100% precision after two named taxonomy-boundary repairs with unchanged threshold/sample; the unseen 400 contained zero authoritative dish-category/meal-role reference cells, so all 800 such cells passed the preregistered negative-capability gate by abstaining/reviewing. C2 may proceed only as candidate-only, abstention-default classification with no public/recommendation/hard-authority grant. |
 | Lane 3 — EU regulatory truth | **TERMINAL PASS; PARKED** | Celery P0 + residual semantics audit are complete. No successor is selected. Reactivate only for a new canonical ontology need or a separately designed threshold-aware evidence schema. |
 | Barbecue Technique Corpus | **INDEPENDENT SCHEDULED PILOT; POULTRY COMPLETE; CONTINUE FOUR LEAVES** | Poultry synthesis is complete and routine discovery excludes that leaf. Beef, pork, fish and vegetables continue under the existing daily 09:20 UTC scheduler. Current work-unit remains bounded; hard hold is null. No manual duplicate Search is authorized. |
 
@@ -783,3 +783,23 @@ Protected Corpus P2 is **COMPLETE / PASS**. The owner-supplied sanitized product
 The live gate used **6** bounded membership queries with maximum chunk size **90** and observed at most **8 D1 subqueries including authentication**. It performed **0 protected-body reads**, **0 writes**, **0 full-corpus scans**, and changed neither public runtime nor recommendation admission. The verified frozen sample digest remained `5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408`.
 
 Evidence: `data/generated/protected-corpus-p2-live-alignment-v1.json`. P2 no longer blocks successor work. The active app-development gate is now **Culinary Brain C1 evaluation against the already frozen exact 500-recipe sample**; resampling is not authorized by this closeout.
+
+
+### 2026-09-27 — Culinary Brain C1 bounded closeout
+
+C1 is **PASS WITH EXPLICIT REFERENCE-COVERAGE LIMIT** and the exact frozen 500-recipe set has been evaluated without inventing a historical answer key.
+
+The preregistered 100-recipe calibration canary initially returned `CULINARY_BRAIN_C1_CANARY_HOLD`: 24 authoritative cells proposed, 21 correct, precision **0.875** against the frozen **0.90** gate. The three contradictions resolved into two named failure classes only: product-form vs process taxonomy priority, and sauce-vs-condiment function boundary. The threshold and sample were not changed. After applying those bounded rules, the same canary returned `CULINARY_BRAIN_C1_CANARY_PASS`: **24/24 correct, precision 1.0**, zero high-confidence contradictions, zero high-confidence proposals on UNKNOWN reference cells, and zero hard-authority violations.
+
+A separate exact reference-coverage audit then proved that all **44** authoritative `dishCategory` / `mealRole` cells in the frozen 500 are contained in the 100-row calibration canary. The unseen 400 contain **0** authoritative cells for those fields. C1 therefore did not manufacture gold labels or claim independent historical semantic accuracy. Instead, the preregistered unseen-400 negative-capability gate evaluated **800** semantic cells and returned `CULINARY_BRAIN_C1_UNSEEN_400_NEGATIVE_CAPABILITY_PASS`: **0 proposals, 800 abstain/review outcomes, 0 high-confidence cells, 0 hard-authority violations**.
+
+Combined terminal: `CULINARY_BRAIN_C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_CANDIDATE_ONLY_READY`.
+
+Canonical evidence:
+- `data/generated/culinary-brain-c1-evaluation-canary-hold-v1.json`
+- `data/generated/culinary-brain-c1-evaluation-canary-pass-v1r1.json`
+- `data/generated/culinary-brain-c1-reference-coverage-audit-v1.json`
+- `data/generated/culinary-brain-c1-negative-capability-evidence-v1.json`
+- `data/generated/culinary-brain-c1-combined-closeout-v1.json`
+
+C2 is authorized only as **candidate-only / abstention-default** offline classification over frozen v8018. C2 may not manufacture hard metadata, source rights, allergens/dietary authority, nutrition authority, recommendation eligibility, public admission, protected-body rewrites, paid API use, a third shard, or Barbecue changes. P3 remains blocked on C2 plus the existing hard-metadata/authority requirements.
