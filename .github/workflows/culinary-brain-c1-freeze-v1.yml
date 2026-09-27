@@ -89,7 +89,7 @@ jobs:
         run: |
           mkdir -p data/generated
           cp .tmp/culinary-brain-c1-exact-sample-freeze-v1.json data/generated/culinary-brain-c1-exact-sample-freeze-v1.json
-          if git diff --quiet -- data/generated/culinary-brain-c1-exact-sample-freeze-v1.json; then
+          if [ -z "$(git status --porcelain -- data/generated/culinary-brain-c1-exact-sample-freeze-v1.json)" ]; then
             echo "Exact freeze already committed."
           else
             git config user.name "github-actions[bot]"
