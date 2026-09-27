@@ -262,6 +262,8 @@ test("P1 API source preserves public/recommendation firewalls and hard budget", 
   assert.match(source, /HARD_D1_BUDGET_EXCEEDED/);
   assert.match(source, /missingShardBindings/);
   assert.match(source, /currentSessionAccount/);
+  assert.match(source, /p2-live-alignment/);
+  assert.match(source, /verifyProtectedCorpusP2LiveAlignment/);
   assert.doesNotMatch(source, /publicRuntimeChanged:\s*true|recommendationAdmissionChanged:\s*true/);
 });
 
@@ -284,6 +286,12 @@ test("P1 owner browser is network-only and explicitly communicates protected-onl
   assert.match(html, /Repair ForkRecipe structural metadata/);
   assert.match(html, /structuralPartialCount === 918/);
   assert.match(html, /structuralPartialCount === 3/);
+  assert.match(html, /Run P2 live alignment/);
+  assert.match(html, /p2-live-alignment/);
+  assert.match(html, /PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS/);
+  assert.match(html, /membershipQueryCount:6/);
+  assert.match(html, /protectedBodyReads:0/);
+  assert.match(html, /rowsWritten:0/);
   assert.match(html, /Refreshing private index status/);
   assert.match(html, /Private index status request failed safely/);
   assert.match(html, /refreshButton\.disabled = true/);
