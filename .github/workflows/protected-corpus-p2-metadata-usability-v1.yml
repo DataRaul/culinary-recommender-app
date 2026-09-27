@@ -1,0 +1,42 @@
+name: Protected Corpus P2 metadata usability V1
+
+on:
+  pull_request:
+    paths:
+      - "scripts/protected-corpus-p2-metadata-usability-core.mjs"
+      - "scripts/run-protected-corpus-p2-metadata-usability-v1.mjs"
+      - "tests/protected-corpus-p2-metadata-usability-v1.test.js"
+      - "config/protected_corpus_p2_metadata_usability_v1.json"
+      - "config/protected_corpus_runtime_usability_v1.json"
+      - "data/generated/protected-corpus-p2-metadata-usability-v1.json"
+      - "data/generated/corpus-normalization-mapping-v1.json"
+      - "data/generated/nutrition-vitamin-applicability-audit-v1.json"
+      - "data/generated/protected-corpus-p1-live-owner-canary-v1.json"
+      - "config/culinary_quota_gap_parallel_prep_v1.json"
+      - ".github/workflows/protected-corpus-p2-metadata-usability-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Rebuild exact P2 evidence
+        run: |
+          node scripts/run-protected-corpus-p2-metadata-usability-v1.mjs \
+            --mapping=data/generated/corpus-normalization-mapping-v1.json \
+            --nutrition=data/generated/nutrition-vitamin-applicability-audit-v1.json \
+            --prep=config/culinary_quota_gap_parallel_prep_v1.json \
+            --p1=data/generated/protected-corpus-p1-live-owner-canary-v1.json \
+            --output=.tmp/protected-corpus-p2-metadata-usability-v1.json
+      - name: Verify committed evidence is exact
+        run: |
+          node --input-type=module -e 'import assert from "node:assert/strict"; import {readFileSync} from "node:fs"; assert.deepStrictEqual(JSON.parse(readFileSync("data/generated/protected-corpus-p2-metadata-usability-v1.json","utf8")),JSON.parse(readFileSync(".tmp/protected-corpus-p2-metadata-usability-v1.json","utf8")));'
+      - name: Run P2 tests
+        run: node --test tests/protected-corpus-p2-metadata-usability-v1.test.js
