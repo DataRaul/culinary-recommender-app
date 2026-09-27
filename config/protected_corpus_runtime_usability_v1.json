@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
   "date": "2026-09-27",
-  "state": "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY",
+  "state": "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_POLICY_REVIEW_PASS__RECIPE_RECONCILIATION_READY",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
@@ -24,7 +24,15 @@
     "scaleStressProofCount": 250000,
     "c4IdentityReadyRepairCohortCount": 112,
     "c4UnresolvedIdentityRecipeCount": 19156,
-    "c4RepairCohortDigestSha256": "965876ec6dca2a9a4796417d88e44151a87541b39cfe232c42decf2208913468"
+    "c4RepairCohortDigestSha256": "965876ec6dca2a9a4796417d88e44151a87541b39cfe232c42decf2208913468",
+    "c4PolicyCompleteRecipeCandidateCount": 100,
+    "c4PolicyHeldRecipeCount": 12,
+    "c4PolicyHeldIngredientIds": [
+      "bread",
+      "curry_powder",
+      "noodles",
+      "pasta"
+    ]
   },
   "ownerPriority": {
     "finishD5SafeAdapterPrototypeFirst": true,
@@ -176,7 +184,7 @@
     },
     {
       "id": "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
-      "state": "BLOCKED_ON_C4_HARD_AUTHORITY_REPAIR_AND_HARD_METADATA",
+      "state": "BLOCKED_ON_C4_RECIPE_RECONCILIATION_AND_ADMISSION",
       "purpose": "Admit bounded recipe subsets only when hard ingredient/dietary/allergen/provenance semantics are sufficient; keep UNKNOWN fail-closed and nutrition independent."
     },
     {
@@ -204,13 +212,13 @@
     "barbecueMutationAuthorized": false
   },
   "nextExecutionSequence": [
-    "CULINARY_BRAIN_C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1",
+    "CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
   ],
   "brainCalibration": {
     "id": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
-    "state": "C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY",
+    "state": "C4_POLICY_REVIEW_PASS__RECIPE_RECONCILIATION_READY",
     "contract": "config/culinary_brain_corpus_calibration_v1.json",
     "document": "docs/CULINARY_BRAIN_CORPUS_CALIBRATION_V1.md",
     "browseSearchBlocksOnBrain": false,
@@ -270,6 +278,29 @@
       "hardDietaryAllergenAuthorityState": "UNIVERSAL_HARD_BLOCKER",
       "automaticRecommendationReadyCount": 0,
       "nextGate": "C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1"
+    },
+    "c4HardAuthorityEvidence": {
+      "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_EVIDENCE_AUDIT_PASS__POLICY_REVIEW_READY",
+      "evidence": "data/generated/culinary-brain-c4-hard-authority-evidence-summary-v1.json",
+      "repairCohortCount": 112,
+      "distinctCanonicalIngredientCount": 49,
+      "hardAuthorityEarnedCount": 0
+    },
+    "c4PolicyReview": {
+      "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_POLICY_REVIEW_PASS__100_POLICY_COMPLETE_CANDIDATES__RECONCILIATION_READY",
+      "evidence": "data/generated/culinary-brain-c4-hard-authority-policy-review-summary-v1.json",
+      "reviewedIngredientPolicyCount": 49,
+      "policyCompleteIngredientCount": 45,
+      "heldPolicyIngredientIds": [
+        "bread",
+        "curry_powder",
+        "noodles",
+        "pasta"
+      ],
+      "policyCompleteRecipeCandidateCount": 100,
+      "policyHeldRecipeCount": 12,
+      "recommendationAuthorityPromoted": false,
+      "nextGate": "C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1"
     }
   },
   "completedTransitions": [
@@ -334,6 +365,14 @@
       "terminal": "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY",
       "evidence": "data/generated/culinary-brain-c3-prior-calibration-summary-v1.json",
       "note": "Exact current-85 profile matrix remained deterministic with zero hard-constraint violations; C2 review-only fields earned zero runtime prior promotions and the current scorer remained unchanged."
+    },
+    {
+      "id": "CULINARY_BRAIN_C4_HARD_AUTHORITY_POLICY_REVIEW_V1",
+      "state": "PASS__RECIPE_RECONCILIATION_READY",
+      "date": "2026-09-27",
+      "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_POLICY_REVIEW_PASS__100_POLICY_COMPLETE_CANDIDATES__RECONCILIATION_READY",
+      "evidence": "data/generated/culinary-brain-c4-hard-authority-policy-review-summary-v1.json",
+      "note": "Exact frozen-112 policy review produced 100 policy-complete candidates and held 12 recipes fail-closed; no runtime or recommendation authority was promoted."
     }
   ],
   "quotaGapParallelPrep": {
@@ -361,5 +400,20 @@
     "evidence": "data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json",
     "hardDietaryAllergenAuthorityState": "UNIVERSAL_HARD_BLOCKER",
     "nextGate": "C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1"
+  },
+  "c4HardAuthorityEvidence": {
+    "state": "PASS__POLICY_REVIEW_READY",
+    "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_EVIDENCE_AUDIT_PASS__POLICY_REVIEW_READY",
+    "evidence": "data/generated/culinary-brain-c4-hard-authority-evidence-summary-v1.json",
+    "hardAuthorityEarnedCount": 0
+  },
+  "c4PolicyReview": {
+    "state": "PASS__RECIPE_RECONCILIATION_READY",
+    "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_POLICY_REVIEW_PASS__100_POLICY_COMPLETE_CANDIDATES__RECONCILIATION_READY",
+    "evidence": "data/generated/culinary-brain-c4-hard-authority-policy-review-summary-v1.json",
+    "policyCompleteRecipeCandidateCount": 100,
+    "policyHeldRecipeCount": 12,
+    "recommendationAuthorityPromoted": false,
+    "nextGate": "C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1"
   }
 }
