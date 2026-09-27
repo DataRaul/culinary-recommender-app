@@ -2,7 +2,7 @@
 
 Date: **2026-09-24**
 
-Status: **ROADMAP-ENCODED / EXECUTION AFTER D5 PROTOTYPE / PARALLEL WITH REAL-v8018 USABILITY**
+Status: **C1 BOUNDED PASS / C2 CANDIDATE-ONLY READY**
 
 ## Objective
 
@@ -77,9 +77,20 @@ Use a bounded stratified sample from v8018, initially targeting **~500 recipes**
 
 The exact sample is frozen before evaluation. Tune only against named failure classes; do not overfit individual recipes.
 
-### C2 — Frozen full-v8018 classification pass
+### C1 closeout — 2026-09-27
 
-After C0/C1 thresholds pass, run the frozen classification/reconciliation pipeline across all **19,268** protected identities.
+The exact frozen 500 completed a two-part evaluation:
+
+- **100-row calibration canary:** initial precision 0.875 against a frozen 0.90 threshold; two named taxonomy-boundary failure classes were repaired without changing the sample or threshold; calibrated rerun precision 1.0 (24/24 proposed authoritative cells correct), with zero high-confidence contradictions and zero hard-authority violations.
+- **400-row unseen remainder:** exact audit found zero authoritative `dishCategory` / `mealRole` reference cells. No gold labels were manufactured. The negative-capability gate therefore required abstention/review and passed across all 800 evaluated cells with zero proposals and zero hard-authority violations.
+
+Terminal: `CULINARY_BRAIN_C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_CANDIDATE_ONLY_READY`.
+
+This is not a claim of independent semantic accuracy across historical UNKNOWN rows. It proves calibrated precision where references exist and fail-closed behavior where they do not.
+
+### C2 — Frozen full-v8018 candidate classification pass
+
+After the bounded C1 terminal above, run the frozen classification/reconciliation pipeline across all **19,268** protected identities in **candidate-only / abstention-default** mode.
 
 Persist:
 - input corpus version;
@@ -141,7 +152,7 @@ The target is progressive rather than all-or-nothing:
 -> continuously tested real-19k recommender
 ```
 
-Processing or classifying a recipe does **not** imply recommendation readiness.
+Processing or classifying a recipe does **not** imply recommendation readiness. A C2 candidate classification is not authoritative metadata and cannot clear a P3 hard gate by itself.
 
 ## Hard boundaries
 
