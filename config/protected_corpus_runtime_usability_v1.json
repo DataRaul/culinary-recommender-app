@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
   "date": "2026-09-27",
-  "state": "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_POLICY_REVIEW_PASS__RECIPE_RECONCILIATION_READY",
+  "state": "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_RECONCILIATION_PASS__HARD_METADATA_REPAIR_DESIGN_READY",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
@@ -32,7 +32,13 @@
       "curry_powder",
       "noodles",
       "pasta"
-    ]
+    ],
+    "c4MealRoleAuthorityReadyCount": 1,
+    "c4SourceDifficultyEvidencePresentCount": 1,
+    "c4RuntimeDifficultyReadyCount": 0,
+    "c4TotalMinutesAuthorityReadyCount": 1,
+    "c4ReadyExceptDifficultyCount": 1,
+    "c4RuntimeHardMetadataReadyCount": 0
   },
   "ownerPriority": {
     "finishD5SafeAdapterPrototypeFirst": true,
@@ -80,14 +86,14 @@
     {
       "id": "DIETARY_ALLERGEN_AUTHORITY",
       "severity": "HARD_FILTER_BLOCKER",
-      "state": "MISSING_FOR_PROTECTED_AUTOMATIC_ADMISSION",
-      "evidence": "Protected reviewed dietary authority count is 0 under the current mapping/audit contract."
+      "state": "CANDIDATE_POLICY_READY_FOR_100__NO_RUNTIME_ADMISSION",
+      "evidence": "C4 policy review established bounded candidate dietary/allergen metadata for 100 recipes, but no protected recipe has been admitted to recommendation runtime."
     },
     {
       "id": "RECOMMENDATION_ADMISSION",
       "severity": "PRODUCT_BLOCKER",
       "state": "ZERO_AUTOMATICALLY_READY",
-      "evidence": "0 protected recipes are automatically recommendation-ready under the current fail-closed rules."
+      "evidence": "C4 reconciliation found 0/100 runtime-hard-metadata-ready recipes; exactly 1 candidate is ready on every measured hard field except the unreviewed source-label to runtime 1–4 difficulty mapping."
     },
     {
       "id": "NUTRITION_AUTHORITY",
@@ -99,7 +105,7 @@
       "id": "SPARSE_CANONICAL_METADATA",
       "severity": "FILTER_QUALITY_BLOCKER",
       "state": "PARTIAL",
-      "evidence": "Large portions of geography, tradition, technique, time, servings, meal-role and category authority remain UNKNOWN; UNKNOWN must stay explicit rather than inferred."
+      "evidence": "Within the 100 policy-complete C4 candidates, 99 lack authoritative meal role, total time and difficulty; the remaining UniTools candidate has all except runtime-compatible difficulty authority."
     },
     {
       "id": "STRUCTURAL_EXCEPTIONS",
@@ -184,8 +190,8 @@
     },
     {
       "id": "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
-      "state": "BLOCKED_ON_C4_RECIPE_RECONCILIATION_AND_HARD_METADATA",
-      "purpose": "Admit bounded recipe subsets only when hard ingredient/dietary/allergen/provenance semantics are sufficient; keep UNKNOWN fail-closed and nutrition independent."
+      "state": "BLOCKED_ON_C4_REMAINING_HARD_METADATA",
+      "purpose": "Admit bounded recipe subsets only after C4 remaining hard metadata is explicitly repaired and validated; keep UNKNOWN fail-closed and nutrition independent."
     },
     {
       "id": "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE",
@@ -212,13 +218,13 @@
     "barbecueMutationAuthorized": false
   },
   "nextExecutionSequence": [
-    "CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1",
+    "CULINARY_BRAIN_C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
   ],
   "brainCalibration": {
     "id": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
-    "state": "C4_POLICY_REVIEW_PASS__RECIPE_RECONCILIATION_READY",
+    "state": "C4_RECONCILIATION_PASS__HARD_METADATA_REPAIR_DESIGN_READY",
     "contract": "config/culinary_brain_corpus_calibration_v1.json",
     "document": "docs/CULINARY_BRAIN_CORPUS_CALIBRATION_V1.md",
     "browseSearchBlocksOnBrain": false,
@@ -301,6 +307,22 @@
       "policyHeldRecipeCount": 12,
       "recommendationAuthorityPromoted": false,
       "nextGate": "C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1"
+    },
+    "c4RecipeReconciliation": {
+      "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_PASS",
+      "evidence": "data/generated/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json",
+      "policyCompleteCandidateCount": 100,
+      "mealRoleAuthorityReadyCount": 1,
+      "sourceDifficultyEvidencePresentCount": 1,
+      "runtimeDifficultyReadyCount": 0,
+      "totalMinutesAuthorityReadyCount": 1,
+      "readyExceptDifficultyCount": 1,
+      "readyExceptDifficultyRecipeKeys": [
+        "unitools-world-recipes-v1_1_0::tortilla-espanola"
+      ],
+      "runtimeHardMetadataReadyCount": 0,
+      "recommendationAdmissionChanged": false,
+      "nextGate": "C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1"
     }
   },
   "completedTransitions": [
@@ -373,6 +395,14 @@
       "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_POLICY_REVIEW_PASS__100_POLICY_COMPLETE_CANDIDATES__RECONCILIATION_READY",
       "evidence": "data/generated/culinary-brain-c4-hard-authority-policy-review-summary-v1.json",
       "note": "Exact frozen-112 policy review produced 100 policy-complete candidates and held 12 recipes fail-closed; no runtime or recommendation authority was promoted."
+    },
+    {
+      "id": "CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1",
+      "state": "PASS__HARD_METADATA_REPAIR_DESIGN_READY",
+      "date": "2026-09-27",
+      "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_PASS",
+      "evidence": "data/generated/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json",
+      "note": "Exact 100 policy-complete candidates reconciled fail-closed: 0 runtime-hard-metadata-ready; 1 UniTools candidate is ready except for explicit runtime difficulty-scale authority; 99 historical candidates lack authoritative meal role, time and difficulty."
     }
   ],
   "quotaGapParallelPrep": {
@@ -415,5 +445,22 @@
     "policyHeldRecipeCount": 12,
     "recommendationAuthorityPromoted": false,
     "nextGate": "C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1"
+  },
+  "c4RecipeReconciliation": {
+    "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_PASS",
+    "evidence": "data/generated/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json",
+    "policyCompleteCandidateCount": 100,
+    "mealRoleAuthorityReadyCount": 1,
+    "sourceDifficultyEvidencePresentCount": 1,
+    "runtimeDifficultyReadyCount": 0,
+    "totalMinutesAuthorityReadyCount": 1,
+    "readyExceptDifficultyCount": 1,
+    "readyExceptDifficultyRecipeKeys": [
+      "unitools-world-recipes-v1_1_0::tortilla-espanola"
+    ],
+    "runtimeHardMetadataReadyCount": 0,
+    "recommendationAdmissionChanged": false,
+    "nextGate": "C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1",
+    "state": "PASS__HARD_METADATA_REPAIR_DESIGN_READY"
   }
 }
