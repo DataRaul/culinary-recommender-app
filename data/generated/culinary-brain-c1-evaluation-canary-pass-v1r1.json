@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C1_EVALUATION_EVIDENCE_V1",
+  "date": "2026-09-27",
+  "protectedCorpusVersion": "v8018",
+  "frozenSampleDigestSha256": "5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408",
+  "canaryRecipeCount": 100,
+  "evaluatorInputAuthority": "RECIPE_IDENTITY_HINT_ONLY",
+  "evaluatorProvenance": "GPT_5_6_SOL_CURRENT_CHAT__ROW_LABEL_BLIND__AGGREGATE_SAMPLE_SUMMARY_PREVIOUSLY_VISIBLE",
+  "evaluatorInterpretation": "CALIBRATION_CANARY_ONLY__NOT_AN_INDEPENDENT_BLIND_TERMINAL",
+  "calibrationRevision": "R1_AFTER_NAMED_FAILURE_CLASS_REPAIR",
+  "workflowRun": {
+    "id": 36330069873,
+    "runNumber": 7
+  },
+  "score": {
+    "pass": true,
+    "terminal": "CULINARY_BRAIN_C1_CANARY_PASS",
+    "scoredAuthoritativeCells": 44,
+    "proposedAuthoritativeCells": 24,
+    "correctAuthoritativeCells": 24,
+    "precision": 1,
+    "highConfidenceContradictions": 0,
+    "highConfidenceProposalsWhereReferenceUnknown": 0,
+    "hardAuthorityViolations": 0,
+    "invalidVocabularyOutputs": 0,
+    "perField": {
+      "dishCategory": {
+        "known": 30,
+        "proposed": 24,
+        "correct": 24
+      },
+      "mealRole": {
+        "known": 14,
+        "proposed": 0,
+        "correct": 0
+      }
+    }
+  },
+  "diagnostics": {
+    "contradictionCount": 0,
+    "contradictions": []
+  },
+  "calibrationHistory": {
+    "initialHold": "data/generated/culinary-brain-c1-evaluation-canary-hold-v1.json",
+    "thresholdChanged": false,
+    "sampleChanged": false,
+    "namedFailureClasses": [
+      "PRODUCT_FORM_VS_PROCESS_TAXONOMY_PRIORITY",
+      "SAUCE_VS_CONDIMENT_FUNCTION_BOUNDARY"
+    ]
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesReadOrExported": 0,
+    "hardAuthorityGranted": false,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "C1_UNSEEN_REMAINDER_REFERENCE_COVERAGE_AUDIT"
+}
