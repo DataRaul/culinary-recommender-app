@@ -130,11 +130,11 @@ const output={
   summary,
   allocations,
   recipeIds:frozen.recipeIds,
-  compactStrataByRecipeId:Object.fromEntries(frozen.selected.sort((a,b)=>a.recipeId.localeCompare(b.recipeId)).map(row=>[row.recipeId,{
-    cohortId:row.cohortId,layer:row.layer,ingredientIdentityReadiness:row.ingredientIdentityReadiness,
-    metadataBand:row.metadataBand,dishCategory:row.dishCategory,mealRoles:row.mealRoles,
-    sourceContext:row.sourceContext,structuralBoundary:row.structuralBoundary
-  }])),
+  strataReconstruction:{
+    source:"DETERMINISTIC_EXACT_PINNED_RECONSTRUCTION",
+    perRecipeStrataPersisted:false,
+    reason:"Freeze persists exact IDs plus aggregate coverage; per-recipe strata are deterministically reproducible from exact pinned mapping and nutrition diagnostics."
+  },
   boundaries:{
     protectedD1Reads:0,protectedD1Writes:0,protectedBodiesPersistedOrExported:0,
     publicRuntimeChanged:false,recommendationBehaviorChanged:false,recommendationAuthorityWidened:false,
