@@ -64,6 +64,10 @@ jobs:
         run: |
           node scripts/score-culinary-brain-c1-evaluation-v1.mjs \
             --mappingFull=.tmp/corpus-normalization-mapping-v1-full.json \
+            --unitools=.tmp/unitools \
+            --forkrecipe=.tmp/forkrecipe \
+            --cc0=.tmp/cc0 \
+            --ora=.tmp/ora \
             --output=.tmp/culinary-brain-c1-evaluation-evidence-v1.json
 
       - name: Upload C1 evaluation evidence
