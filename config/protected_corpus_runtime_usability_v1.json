@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
   "date": "2026-09-27",
-  "state": "P1_PASS__C1_FROZEN__P2_MACHINE_MEASUREMENT_PASS_LIVE_ALIGNMENT_PENDING",
+  "state": "P1_PASS__P2_PASS__C1_EVALUATION_READY",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
@@ -161,17 +161,19 @@
     },
     {
       "id": "P2_METADATA_USABILITY_MEASUREMENT",
-      "state": "MACHINE_EXACT_SOURCE_MEASUREMENT_PASS__LIVE_ALIGNMENT_PENDING",
+      "state": "PASS",
       "purpose": "Measure which browse/filter dimensions work across v8018 and rank missing metadata by user value and repair leverage.",
       "contract": "config/protected_corpus_p2_metadata_usability_v1.json",
       "evidence": "data/generated/protected-corpus-p2-metadata-usability-v1.json",
       "machineTerminal": "PROTECTED_CORPUS_P2_FULL_V8018_EXACT_SOURCE_MEASUREMENT_PASS__LIVE_ALIGNMENT_PENDING",
       "liveAlignmentRequired": true,
-      "liveAlignmentState": "PENDING"
+      "liveAlignmentState": "PASS",
+      "liveAlignmentTerminal": "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS",
+      "liveAlignmentEvidence": "data/generated/protected-corpus-p2-live-alignment-v1.json"
     },
     {
       "id": "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
-      "state": "BLOCKED_ON_P2_AND_HARD_METADATA",
+      "state": "BLOCKED_ON_C1_AND_HARD_METADATA",
       "purpose": "Admit bounded recipe subsets only when hard ingredient/dietary/allergen/provenance semantics are sufficient; keep UNKNOWN fail-closed and nutrition independent."
     },
     {
@@ -199,7 +201,7 @@
     "barbecueMutationAuthorized": false
   },
   "nextExecutionSequence": [
-    "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
+    "CULINARY_BRAIN_C1_EVALUATION",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
   ],
@@ -254,6 +256,13 @@
       "terminal": "PROTECTED_CORPUS_P2_FULL_V8018_EXACT_SOURCE_MEASUREMENT_PASS__LIVE_ALIGNMENT_PENDING",
       "evidence": "data/generated/protected-corpus-p2-metadata-usability-v1.json",
       "note": "Terminal P2 remains pending bounded live alignment."
+    },
+    {
+      "id": "PROTECTED_CORPUS_RUNTIME_USABILITY_P2_LIVE_ALIGNMENT",
+      "state": "PASS",
+      "date": "2026-09-27",
+      "terminal": "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS",
+      "evidence": "data/generated/protected-corpus-p2-live-alignment-v1.json"
     }
   ],
   "quotaGapParallelPrep": {

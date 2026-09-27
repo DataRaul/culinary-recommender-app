@@ -2,7 +2,7 @@
 
 Date: **2026-09-24**
 
-Status: **P1 IMPLEMENTATION CI PASS / LIVE OWNER CANARY PENDING**
+Status: **P1 PASS / P2 PASS / C1 EVALUATION ACTIVE SUCCESSOR**
 
 Objective: turn the already-populated protected corpus **v8018 / 19,268 recipes** into a corpus the owner can actually use, while preserving the fail-closed recommendation, rights, nutrition, security and cost boundaries.
 
@@ -13,8 +13,9 @@ The owner-priority sequence is now:
 ```text
 D5 Fitness Integration safe adapter prototype — PASS
 -> further D5 behavior work — DEFERRED
--> P1: make all 19,268 privately browsable/searchable — READY
--> Culinary Brain Corpus Calibration V1 + P2 metadata usability measurement
+-> P1: make all 19,268 privately browsable/searchable — PASS
+-> P2 metadata usability + live alignment — PASS
+-> Culinary Brain C1 evaluation — ACTIVE SUCCESSOR
 -> P3 progressively earned recommendation subsets
 -> P4 real-v8018 recommendation/regression matrix
 ```
@@ -213,3 +214,24 @@ The exact-source/full-v8018 machine measurement passed with terminal marker `PRO
 The ranked blocker table is persisted at `data/generated/protected-corpus-p2-metadata-usability-v1.json`. UNKNOWN and AMBIGUOUS remain explicit; no field is inferred to raise coverage. The table records authoritative coverage, user-visible limitation, maximum recipes potentially unlocked by complete authoritative repair, repair difficulty, evidence requirements and the next bounded repair tranche for every frozen P2 priority dimension. Ingredient identity and source provenance are retained as supplemental diagnostics because ingredient identity is a hard-filter/recommendation prerequisite while provenance is already live-proven by P1.
 
 This is not terminal P2 closeout. A final bounded authenticated alignment must prove the live status tuple remains v8018 / 19,268 summaries / 19,268 FTS / 3 structural partials, confirm all frozen C1 500 IDs are present in the protected summary index, preserve source provenance, stay at or below 8 D1 subqueries, perform zero full scans, zero protected-body reads and zero writes. Only that pass may emit `PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS`.
+
+
+## P2 terminal live alignment — 2026-09-27
+
+P2 is terminal **PASS**. The authenticated production alignment emitted `PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS` and proved:
+
+- active corpus `v8018`;
+- 19,268 / 19,268 protected summary rows;
+- 19,268 / 19,268 FTS rows;
+- exactly 3 structural partials;
+- exact frozen C1 sample: 500 / 500 IDs present;
+- source provenance: 500 / 500 present;
+- frozen sample SHA-256 `5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408`;
+- 6 membership queries, maximum chunk size 90;
+- maximum observed D1 subqueries including authentication: 8;
+- zero protected-body reads, zero writes and zero full-corpus scans;
+- no public-runtime or recommendation-admission change.
+
+Canonical evidence is `data/generated/protected-corpus-p2-live-alignment-v1.json`.
+
+The principal successor is now C1 evaluation against the already frozen exact 500-recipe set. P3 remains blocked on C1 plus the existing hard-metadata/authority requirements; P2 is no longer a blocker.
