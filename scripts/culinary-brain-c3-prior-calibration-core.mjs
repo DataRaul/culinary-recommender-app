@@ -143,7 +143,13 @@ export function runC3Calibration({
       scorerDisposition:"CURRENT_DETERMINISTIC_SCORER_RETAINED_UNCHANGED",
       interpretation:"C3 calibrates the safe prior-admission boundary. C2 review-only fields do not earn runtime ranking influence; current deterministic scoring remains the baseline."
     },
-    matrix,
+    matrix:matrix.map(row=>({
+      id:row.id,
+      context:row.context,
+      eligibleCount:row.eligibleCount,
+      rejectedCount:row.rejectedCount,
+      rankingDigestSha256:row.rankingDigestSha256
+    })),
     boundaries:{
       protectedD1Reads:0,
       protectedD1Writes:0,
