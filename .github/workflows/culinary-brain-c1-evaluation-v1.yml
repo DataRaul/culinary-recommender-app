@@ -6,6 +6,8 @@ on:
       - "config/culinary_brain_c1_evaluation_v1.json"
       - "data/generated/culinary-brain-c1-evaluation-canary-input-v1.json"
       - "data/generated/culinary-brain-c1-evaluation-predictions-v1.json"
+      - "data/generated/culinary-brain-c1-evaluation-predictions-v1r1.json"
+      - "data/generated/culinary-brain-c1-evaluation-canary-hold-v1.json"
       - "scripts/culinary-brain-c1-evaluation-core.mjs"
       - "scripts/score-culinary-brain-c1-evaluation-v1.mjs"
       - "tests/culinary-brain-c1-evaluation-v1.test.js"
@@ -64,6 +66,7 @@ jobs:
         run: |
           node scripts/score-culinary-brain-c1-evaluation-v1.mjs \
             --mappingFull=.tmp/corpus-normalization-mapping-v1-full.json \
+            --predictions=data/generated/culinary-brain-c1-evaluation-predictions-v1r1.json \
             --unitools=.tmp/unitools \
             --forkrecipe=.tmp/forkrecipe \
             --cc0=.tmp/cc0 \
