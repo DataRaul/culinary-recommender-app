@@ -14,6 +14,7 @@ import {
 
 const contract=JSON.parse(readFileSync("config/culinary_brain_c3_deterministic_prior_calibration_v1.json","utf8"));
 const c2Summary=JSON.parse(readFileSync("data/generated/culinary-brain-c2-candidate-classification-summary-v1.json","utf8"));
+const committedSummary=JSON.parse(readFileSync("data/generated/culinary-brain-c3-prior-calibration-summary-v1.json","utf8"));
 const recommendationSource=readFileSync("src/domain/recommendation.js","utf8");
 
 test("C3 contract is fail-closed and authorizes no runtime promotion",()=>{
@@ -41,6 +42,8 @@ test("C3 calibration is deterministic over exact current 85 and preserves hard b
   assert.equal(a.calibration.hardConstraintViolations,0);
   assert.equal(a.calibration.promotedPriorCount,0);
   assert.equal(a.calibration.scorerDisposition,"CURRENT_DETERMINISTIC_SCORER_RETAINED_UNCHANGED");
+  assert.deepEqual(a,committedSummary);
+  assert.equal(a.calibration.matrixDigestSha256,"764ccca3c654a866138d6214afda97578c8eb401b3eb579e01a7e3d1c8672855");
 });
 
 test("C3 fails closed if C2 terminal evidence is not exact",()=>{
