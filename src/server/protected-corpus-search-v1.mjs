@@ -4,6 +4,10 @@ import { hydrateStep8GV8018ProtectedRecipesBounded } from "./step8g-v8018-hydrat
 
 export const PROTECTED_SEARCH_CORPUS_VERSION = "v8018";
 export const PROTECTED_SEARCH_EXPECTED_COUNT = 19268;
+export const PROTECTED_SEARCH_EXPECTED_STRUCTURAL_PARTIAL_COUNT = 3;
+export const PROTECTED_SEARCH_FORKRECIPE_COHORT_ID = "FORKRECIPE_PINNED_STEP7E";
+export const PROTECTED_SEARCH_FORKRECIPE_COUNT = 915;
+export const PROTECTED_SEARCH_KNOWN_BAD_PARTIAL_COUNT = 918;
 export const PROTECTED_SEARCH_INDEX_TABLE = "culinary_protected_recipe_search_v1";
 export const PROTECTED_SEARCH_FTS_TABLE = "culinary_protected_recipe_search_fts_v1";
 export const PROTECTED_SEARCH_MAX_PAGE_SIZE = 50;
@@ -86,7 +90,7 @@ function ingredientText(value) {
 function directionText(value) {
   if (typeof value === "string") return value.trim();
   if (!value || typeof value !== "object") return "";
-  return localizedText(value.text) || firstString(value.instruction, value.description, value.name) || "";
+  return localizedText(value.text) || firstString(value.instructions, value.instruction, value.description, value.name) || "";
 }
 
 function packetTitle(packet) {
@@ -379,6 +383,90 @@ export async function protectedSearchIndexStatus(controlDb) {
     lastIndexedRecipeId: summary?.last_recipe_id == null ? null : String(summary.last_recipe_id),
     expectedRecipeCount: PROTECTED_SEARCH_EXPECTED_COUNT,
     d1Subqueries: pointer.d1Subqueries + 2,
+    fullCorpusScans: 0
+  };
+}
+
+export async function repairForkRecipeStructuralState(controlDb) {
+  const pointer = await readStep8GPointer(controlDb);
+  const before = await controlDb.prepare(`SELECT
+      COUNT(*) AS c,
+      SUM(CASE WHEN structural_state='PARTIAL' THEN 1 ELSE 0 END) AS partial_count,
+      SUM(CASE WHEN source_cohort_id=? THEN 1 ELSE 0 END) AS fork_count,
+      SUM(CASE WHEN source_cohort_id=? AND structural_state='PARTIAL' THEN 1 ELSE 0 END) AS fork_partial_count,
+      (SELECT COUNT(*) FROM ${PROTECTED_SEARCH_FTS_TABLE}) AS fts_count
+    FROM ${PROTECTED_SEARCH_INDEX_TABLE}
+    WHERE corpus_version=?`).bind(
+      PROTECTED_SEARCH_FORKRECIPE_COHORT_ID,
+      PROTECTED_SEARCH_FORKRECIPE_COHORT_ID,
+      PROTECTED_SEARCH_CORPUS_VERSION
+    ).first();
+  let q = pointer.d1Subqueries + 1;
+  const beforeState = {
+    activeVersion: pointer.activeVersion,
+    indexedRecipeCount: Number(before?.c || 0),
+    ftsRecipeCount: Number(before?.fts_count || 0),
+    structuralPartialCount: Number(before?.partial_count || 0),
+    forkRecipeCount: Number(before?.fork_count || 0),
+    forkRecipePartialCount: Number(before?.fork_partial_count || 0)
+  };
+  const precondition =
+    beforeState.activeVersion === PROTECTED_SEARCH_CORPUS_VERSION &&
+    beforeState.indexedRecipeCount === PROTECTED_SEARCH_EXPECTED_COUNT &&
+    beforeState.ftsRecipeCount === PROTECTED_SEARCH_EXPECTED_COUNT &&
+    beforeState.structuralPartialCount === PROTECTED_SEARCH_KNOWN_BAD_PARTIAL_COUNT &&
+    beforeState.forkRecipeCount === PROTECTED_SEARCH_FORKRECIPE_COUNT &&
+    beforeState.forkRecipePartialCount === PROTECTED_SEARCH_FORKRECIPE_COUNT;
+  if (!precondition) {
+    return {
+      pass: false,
+      reason: "FORKRECIPE_STRUCTURAL_REPAIR_PRECONDITION_FAILED",
+      before: beforeState,
+      d1Subqueries: q,
+      rowsWritten: 0,
+      fullCorpusScans: 0
+    };
+  }
+
+  const updated = await controlDb.prepare(`UPDATE ${PROTECTED_SEARCH_INDEX_TABLE}
+    SET structural_state='PARSEABLE', indexed_at=CURRENT_TIMESTAMP
+    WHERE corpus_version=? AND source_cohort_id=? AND structural_state='PARTIAL'`).bind(
+      PROTECTED_SEARCH_CORPUS_VERSION,
+      PROTECTED_SEARCH_FORKRECIPE_COHORT_ID
+    ).run();
+  q += 1;
+  const rowsWritten = Number(updated?.meta?.rows_written ?? updated?.meta?.changes ?? 0);
+
+  const after = await controlDb.prepare(`SELECT
+      COUNT(*) AS c,
+      SUM(CASE WHEN structural_state='PARTIAL' THEN 1 ELSE 0 END) AS partial_count,
+      SUM(CASE WHEN source_cohort_id=? AND structural_state='PARTIAL' THEN 1 ELSE 0 END) AS fork_partial_count,
+      (SELECT COUNT(*) FROM ${PROTECTED_SEARCH_FTS_TABLE}) AS fts_count
+    FROM ${PROTECTED_SEARCH_INDEX_TABLE}
+    WHERE corpus_version=?`).bind(
+      PROTECTED_SEARCH_FORKRECIPE_COHORT_ID,
+      PROTECTED_SEARCH_CORPUS_VERSION
+    ).first();
+  q += 1;
+  const afterState = {
+    indexedRecipeCount: Number(after?.c || 0),
+    ftsRecipeCount: Number(after?.fts_count || 0),
+    structuralPartialCount: Number(after?.partial_count || 0),
+    forkRecipePartialCount: Number(after?.fork_partial_count || 0)
+  };
+  const pass =
+    rowsWritten === PROTECTED_SEARCH_FORKRECIPE_COUNT &&
+    afterState.indexedRecipeCount === PROTECTED_SEARCH_EXPECTED_COUNT &&
+    afterState.ftsRecipeCount === PROTECTED_SEARCH_EXPECTED_COUNT &&
+    afterState.structuralPartialCount === PROTECTED_SEARCH_EXPECTED_STRUCTURAL_PARTIAL_COUNT &&
+    afterState.forkRecipePartialCount === 0;
+  return {
+    pass,
+    reason: pass ? null : "FORKRECIPE_STRUCTURAL_REPAIR_POSTCONDITION_FAILED",
+    before: beforeState,
+    after: afterState,
+    rowsWritten,
+    d1Subqueries: q,
     fullCorpusScans: 0
   };
 }
