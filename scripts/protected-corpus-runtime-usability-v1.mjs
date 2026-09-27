@@ -66,19 +66,32 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
   const p1Gate = (config.gates || []).find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY");
   const p1Passed = p1Gate?.state === "PASS"
     && p1Gate?.liveOwnerCanary === "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS";
-  const expected = p1Passed
+  const p2Gate = (config.gates || []).find(gate => gate.id === "P2_METADATA_USABILITY_MEASUREMENT");
+  const p2Passed = p2Gate?.state === "PASS"
+    && p2Gate?.liveAlignmentState === "PASS"
+    && p2Gate?.liveAlignmentTerminal === "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS";
+  const expected = p2Passed
     ? [
-        "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
+        "CULINARY_BRAIN_C1_EVALUATION",
         "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
         "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
       ]
-    : [
-        "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY",
-        "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
-        "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
-        "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
-      ];
+    : p1Passed
+      ? [
+          "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
+          "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+          "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+        ]
+      : [
+          "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY",
+          "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
+          "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+          "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+        ];
   if (JSON.stringify(sequence) !== JSON.stringify(expected)) errors.push("unexpected execution sequence");
+  if (p2Passed) {
+    if (p2Gate.liveAlignmentEvidence !== "data/generated/protected-corpus-p2-live-alignment-v1.json") errors.push("P2 terminal evidence reference mismatch");
+  }
   if (p1Passed) {
     const terminal = p1Gate.terminalEvidence || {};
     if (terminal.activeVersion !== "v8018"
