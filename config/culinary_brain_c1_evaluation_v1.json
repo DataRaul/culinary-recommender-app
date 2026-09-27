@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C1_EVALUATION_V1",
+  "date": "2026-09-27",
+  "state": "PREREGISTERED_CANARY_READY",
+  "protectedCorpusVersion": "v8018",
+  "frozenSample": {
+    "recipeCount": 500,
+    "digestSha256": "5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408",
+    "evidence": "data/generated/culinary-brain-c1-exact-sample-freeze-v1.json"
+  },
+  "canary": {
+    "recipeCount": 100,
+    "selection": "ALL_44_MODERN_OR_CONTEMPORARY_DATASET_IDS_PLUS_FIRST_56_LEXICOGRAPHIC_HISTORICAL_IDS",
+    "blindInput": "data/generated/culinary-brain-c1-evaluation-canary-input-v1.json",
+    "labelsExposedToEvaluator": false,
+    "structuralExceptionsForcedBySelection": true
+  },
+  "evaluator": {
+    "inputAuthority": "RECIPE_IDENTITY_HINT_ONLY",
+    "candidateFields": [
+      "dishCategory",
+      "mealRole"
+    ],
+    "decisions": [
+      "PROPOSE",
+      "ABSTAIN",
+      "REVIEW"
+    ],
+    "confidence": [
+      "LOW",
+      "MEDIUM",
+      "HIGH"
+    ],
+    "dishCategoryVocabulary": [
+      "BEVERAGE",
+      "BREAD",
+      "CONDIMENT",
+      "DESSERT",
+      "EGG_DISH",
+      "FERMENTED_FOOD",
+      "GRAIN_DISH",
+      "PROTEIN_DISH",
+      "SALAD",
+      "SAUCE",
+      "SEAFOOD_DISH",
+      "SOUP",
+      "STOCK",
+      "VEGETABLE_DISH"
+    ],
+    "mealRoleVocabulary": [
+      "BEVERAGE",
+      "BREAKFAST",
+      "DESSERT",
+      "MAIN",
+      "SIDE",
+      "SNACK"
+    ],
+    "hardAuthorityFieldsForbidden": [
+      "SOURCE_RIGHTS",
+      "ALLERGEN_SAFETY",
+      "DIETARY_HARD_AUTHORITY",
+      "PERMANENT_EXCLUSION_OVERRIDE",
+      "NUTRITION_AUTHORITY",
+      "PUBLIC_RECIPE_ADMISSION",
+      "RECOMMENDATION_ELIGIBILITY"
+    ]
+  },
+  "preregisteredGates": {
+    "exactPredictionRowCount": 100,
+    "minimumScoredAuthoritativeCells": 20,
+    "minimumPrecisionOnProposedAuthoritativeCells": 0.9,
+    "maximumHighConfidenceContradictions": 0,
+    "maximumHighConfidenceProposalsWhereReferenceUnknown": 0,
+    "maximumHardAuthorityViolations": 0,
+    "maximumInvalidVocabularyOutputs": 0
+  },
+  "interpretation": {
+    "coverageIsDescriptiveNotPassGate": true,
+    "abstentionIsPreferredToUnsupportedPrecision": true,
+    "unknownReferenceCellsDoNotBecomeNegativeLabels": true,
+    "tuningOnlyAgainstNamedFailureClasses": true,
+    "noRecipeSpecificPostHocThresholdChanges": true,
+    "canaryPassDoesNotAuthorizeC2": true,
+    "fullFrozen500EvaluationRequiredBeforeC2": true
+  },
+  "authority": {
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedBodyReadOrExportAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextGate": "C1_CANARY_BLIND_EVALUATION"
+}
