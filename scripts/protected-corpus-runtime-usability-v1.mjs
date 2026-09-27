@@ -67,7 +67,7 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
   const p1Passed = p1Gate?.state === "PASS"
     && p1Gate?.liveOwnerCanary === "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS";
   const p2Gate = (config.gates || []).find(gate => gate.id === "P2_METADATA_USABILITY_MEASUREMENT");
-  const p2Passed = p2Gate?.state === "PASS"
+  const p2Passed = p1Passed && p2Gate?.state === "PASS"
     && p2Gate?.liveAlignmentState === "PASS"
     && p2Gate?.liveAlignmentTerminal === "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS";
   const expected = p2Passed
