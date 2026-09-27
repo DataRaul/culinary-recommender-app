@@ -31,3 +31,18 @@ test("Brain cannot silently gain hard safety, nutrition, admission or live-runti
   hard.neverGrantedByBrainOrModelAlone = hard.neverGrantedByBrainOrModelAlone.filter(x => x !== "ALLERGEN_SAFETY");
   assert.ok(validateCulinaryBrainCorpusCalibration(hard).some(error => error.includes("ALLERGEN_SAFETY")));
 });
+
+test("C2 terminal classification advances Brain only to bounded C3",()=>{
+  assert.equal(config.state,"C0_PASS__P2_PASS__C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_PASS__C3_READY");
+  const c2=config.postP1Execution.c2Classification;
+  assert.equal(c2.state,"PASS");
+  assert.equal(c2.terminal,"CULINARY_BRAIN_C2_FULL_V8018_CANDIDATE_CLASSIFICATION_PASS");
+  assert.equal(c2.recipeCount,19268);
+  assert.equal(c2.uniqueRecipeKeyCount,19268);
+  assert.equal(c2.candidateOnly,true);
+  assert.equal(c2.abstentionDefault,true);
+  assert.equal(c2.invariants.knownReferenceOverrideAttempts,0);
+  assert.equal(c2.invariants.highConfidenceCells,0);
+  assert.equal(c2.invariants.hardAuthorityViolations,0);
+  assert.deepEqual(config.postP1Execution.next,["C3_DETERMINISTIC_RECOMMENDATION_PRIOR_CALIBRATION"]);
+});
