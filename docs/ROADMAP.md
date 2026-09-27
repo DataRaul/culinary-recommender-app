@@ -825,3 +825,14 @@ C3 deliberately promoted **0** C2 fields into runtime priors. Dish-category prop
 Evidence: `data/generated/culinary-brain-c3-prior-calibration-summary-v1.json`. C3 performed **0 protected D1 reads/writes, 0 protected-body reads/exports, 0 C2 candidate promotions**, and made no public/recommendation/nutrition/dietary/source-rights/KC/paid/third-shard/Barbecue change.
 
 The Brain advances to **C4 real-v8018 failure/repair loop**. Protected P3 remains blocked on C4 plus the existing hard ingredient/dietary/allergen/provenance requirements.
+
+
+### 2026-09-27 — Culinary Brain C4 real-v8018 failure matrix
+
+C4 first-unit reconstruction is **COMPLETE / PASS** at `CULINARY_BRAIN_C4_FAILURE_MATRIX_PASS__112_IDENTITY_READY_REPAIR_COHORT_FROZEN`. Exact pinned-source reconstruction aligned all **19,268** protected identities across normalization, nutrition-identity diagnostics and the full C2 candidate artifact.
+
+The failure matrix identifies two upstream recommendation blockers: **19,156** recipes still lack complete canonical ingredient identity, while **all 19,268** lack earned hard dietary/allergen authority under the current protected contract. Exactly **112** recipes have every ingredient identity resolved and are frozen as the first bounded repair cohort. Cohort digest: `965876ec6dca2a9a4796417d88e44151a87541b39cfe232c42decf2208913468`.
+
+No protected ranking/planner defect is claimed: protected ranking remains unexercised because the hard-authority admission gate correctly blocks the entire corpus first. Nutrition remains explicitly separate and non-authoritative for protected recipes. C1/C2/C3 abstention and candidate-only boundaries remain intact.
+
+Evidence: `data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json`. The next bounded action is **C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1** over the exact 112-recipe cohort. P3 remains blocked until that tranche earns sufficient hard ingredient/dietary/allergen/provenance semantics. No D1 mutation, public/recommendation admission, nutrition/dietary/allergen authority promotion, paid infrastructure, third shard or Barbecue mutation occurred.

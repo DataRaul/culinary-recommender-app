@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_REAL_V8018_FAILURE_MATRIX_SUMMARY_V1",
+  "date": "2026-09-27",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C4_FAILURE_MATRIX_PASS__112_IDENTITY_READY_REPAIR_COHORT_FROZEN",
+  "protectedCorpusVersion": "v8018",
+  "recipeCount": 19268,
+  "c2DigestSha256": "15ffb997d0715d72d248ca53ea03f4a95254123a9429e3a2ec4d085e144eaf3d",
+  "c3MatrixDigestSha256": "764ccca3c654a866138d6214afda97578c8eb401b3eb579e01a7e3d1c8672855",
+  "failureMatrix": {
+    "sourceProvenance": {
+      "state": "NO_CURRENT_MATERIAL_DEFECT",
+      "affectedRecipeCount": 0,
+      "evidence": "Pinned source/cohort identity exists for all reconstructed v8018 records; P1/P2 separately proved protected provenance surface behavior."
+    },
+    "identityNormalization": {
+      "state": "MATERIAL_BLOCKER",
+      "affectedRecipeCount": 19156,
+      "identityReadyRecipeCount": 112,
+      "evidence": "Recommendation hard filters cannot safely reason over unresolved ingredient identities."
+    },
+    "hardDietaryAllergenAuthority": {
+      "state": "UNIVERSAL_HARD_BLOCKER",
+      "affectedRecipeCount": 19268,
+      "reviewedDietaryAuthorityCount": 0,
+      "evidence": "No protected recipe currently has reviewed dietary authority; allergen/dietary safety must not be inferred into authority by C4."
+    },
+    "nutritionEvidence": {
+      "state": "SOFT_FEATURE_GAP_NOT_ADMISSION_HARD_BLOCKER",
+      "affectedRecipeCount": 19268,
+      "directCurrentEngineAuthoritativeCount": 0,
+      "evidence": "Unknown nutrition stays explicit and independent from protected recommendation admission."
+    },
+    "brainClassificationCalibration": {
+      "state": "CALIBRATED_CANDIDATE_ONLY_NO_RUNTIME_PROMOTION",
+      "affectedRecipeCount": 0,
+      "dishCategoryDispositionCounts": {
+        "ABSTAIN": 11412,
+        "REFERENCE_PRESENT": 1079,
+        "REVIEW": 6777
+      },
+      "mealRoleDispositionCounts": {
+        "ABSTAIN": 16618,
+        "REFERENCE_PRESENT": 524,
+        "REVIEW": 2126
+      },
+      "evidence": "C2 candidates remain review aids; C3 promoted zero priors."
+    },
+    "reconciliationAuthority": {
+      "state": "BLOCKED_BY_HARD_AUTHORITY",
+      "affectedRecipeCount": 19268,
+      "automaticRecommendationReadyCount": 0,
+      "evidence": "Candidate classification cannot create recommendation authority."
+    },
+    "rankingPlanner": {
+      "state": "NOT_EXERCISED_FOR_PROTECTED_CORPUS__UPSTREAM_HARD_GATE",
+      "defectCount": 0,
+      "blockedRecipeCount": 19268,
+      "evidence": "Do not label ranking/planner defective before any protected cohort earns admission."
+    },
+    "abstention": {
+      "state": "PASS_FAIL_CLOSED",
+      "affectedRecipeCount": 0,
+      "evidence": "C1/C2/C3 preserve UNKNOWN/REVIEW/abstention and zero automatic promotion."
+    },
+    "runtimePerformance": {
+      "state": "NO_CURRENT_MATERIAL_DEFECT",
+      "affectedRecipeCount": 0,
+      "evidence": "P1/P2 bounded protected runtime passed without full scans and within the D1 request budget."
+    },
+    "browserUx": {
+      "state": "NO_CURRENT_MATERIAL_DEFECT_FOR_PRIVATE_BROWSE_SEARCH",
+      "affectedRecipeCount": 0,
+      "evidence": "Protected browse/search owner canary is terminal PASS; protected recommendation UX remains downstream of admission."
+    }
+  },
+  "repairCohort": {
+    "rule": "ALL_INGREDIENT_IDENTITIES_RESOLVED_AND_NONEMPTY__PINNED_V8018_ONLY",
+    "recipeCount": 112,
+    "digestSha256": "965876ec6dca2a9a4796417d88e44151a87541b39cfe232c42decf2208913468",
+    "cohortCounts": {
+      "ORA_ABBOTT_1864_AE3BD2C": 7,
+      "ORA_ATRUTEL_1874_EASY_ECONOMICAL_JEWISH_COOKERY_B2807967X": 4,
+      "ORA_COCINERA_POBLANA_1890_ANONYMOUS_AE3BD2C": 22,
+      "ORA_FANNIE_FARMER_BOSTON_COOKING_SCHOOL_GUTENBERG_65061": 6,
+      "ORA_FROKEN_JENSEN_1921_KOGEBOG_23RD_FRKENJENSENSKO00JENS": 11,
+      "ORA_GALVAN_RIVERA_1845_DICCIONARIO_COCINA_AE3BD2C": 26,
+      "ORA_HEARN_1885_LA_CUISINE_CREOLE_LACUISINECREOLEC00HEAR": 9,
+      "ORA_KENNEY_HERBERT_1885_CULINARY_JOTTINGS_CULINARYJOTTINGS00KENN": 2,
+      "ORA_MENON_1801_CUISINIERE_BOURGEOISE_B22019935": 5,
+      "ORA_RIGAUD_1785_PORTUGUESE_SOURCE_AE3BD2C": 3,
+      "ORA_SELESKOWITZ_1883_WIENER_KOCHBUCH_BUB_GB_OP8YAQAAMAAJ": 4,
+      "ORA_TURABI_EFENDI_1864_OTTOMAN_SHELF_AE3BD2C": 4,
+      "ORA_VIARD_1806_LE_CUISINIER_IMPERIAL_LECUISINIERIMPE00VIARGOOG": 7,
+      "SGAUTHIER_RECIPES_CC0_B12E481D": 1,
+      "unitools-world-recipes-v1_1_0": 1
+    },
+    "sourceSystemCounts": {
+      "CC0_MARKDOWN": 1,
+      "OPEN_RECIPE_ARCHIVE_JSONL": 103,
+      "OPEN_RECIPE_ARCHIVE_MARKDOWN": 7,
+      "UNITOOLS": 1
+    }
+  },
+  "structuralExceptionCount": 3,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedRuntimeBodyReads": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationBehaviorChanged": false,
+    "recommendationAuthorityWidened": false,
+    "dietaryAllergenAuthorityPromoted": false,
+    "nutritionAuthorityPromoted": false,
+    "c2CandidatesPromoted": false,
+    "knowledgeCoreRuntimeDependencyAdded": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1"
+}

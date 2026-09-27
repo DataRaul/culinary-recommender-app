@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_REAL_V8018_FAILURE_LOOP_V1",
+  "date": "2026-09-27",
+  "state": "FAILURE_MATRIX_AND_REPAIR_COHORT_FREEZE",
+  "protectedCorpusVersion": "v8018",
+  "expectedRecipeCount": 19268,
+  "expectedIdentityReadyCount": 112,
+  "expectedStructuralExceptionCount": 3,
+  "entryTerminal": "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY",
+  "objective": "CLASSIFY_REAL_V8018_RECOMMENDATION_FAILURES_AND_FREEZE_THE_SMALLEST_EVIDENCE_READY_REPAIR_COHORT_WITHOUT_WIDENING_RUNTIME_AUTHORITY",
+  "failureClasses": [
+    "SOURCE_PROVENANCE",
+    "IDENTITY_NORMALIZATION",
+    "HARD_DIETARY_ALLERGEN_AUTHORITY",
+    "NUTRITION_EVIDENCE",
+    "BRAIN_CLASSIFICATION_CALIBRATION",
+    "RECONCILIATION_AUTHORITY",
+    "RANKING_PLANNER",
+    "ABSTENTION",
+    "RUNTIME_PERFORMANCE",
+    "BROWSER_UX"
+  ],
+  "repairPolicy": {
+    "smallestCausalLayerFirst": true,
+    "identityReadyCohortOnly": true,
+    "noDietaryOrAllergenInferencePromotion": true,
+    "canonicalIngredientAllergenMetadataMayBeMeasuredAsCandidateEvidenceOnly": true,
+    "downstreamRankingNotDiagnosedAsDefectiveWhenBlockedByUpstreamHardAuthority": true
+  },
+  "acceptance": [
+    "EXACT_PINNED_V8018_19268_RECONSTRUCTION",
+    "EXACT_112_ALL_INGREDIENT_IDENTITIES_RESOLVED",
+    "EXACT_3_STRUCTURAL_EXCEPTIONS",
+    "C2_FULL_CLASSIFICATION_DIGEST_MATCHES_C3_INPUT",
+    "ZERO_PROTECTED_AUTOMATIC_RECOMMENDATION_READY",
+    "EVERY_MATERIAL_FAILURE_CLASS_EXPLICITLY_CLASSIFIED",
+    "IDENTITY_READY_REPAIR_COHORT_SORTED_AND_DIGESTED",
+    "NO_PROTECTED_D1_OR_BODY_RUNTIME_ACCESS",
+    "NO_PUBLIC_OR_RECOMMENDATION_AUTHORITY_WIDENING",
+    "NO_DIETARY_ALLERGEN_OR_NUTRITION_AUTHORITY_PROMOTION",
+    "NO_BARBECUE_MUTATION"
+  ],
+  "authority": {
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedRuntimeBodyReadsAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationBehaviorChangeAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "dietaryAllergenAuthorityPromotionAuthorized": false,
+    "nutritionAuthorityPromotionAuthorized": false,
+    "c2CandidatePromotionAuthorized": false,
+    "knowledgeCoreRuntimeDependencyAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "CULINARY_BRAIN_C4_FAILURE_MATRIX_PASS__112_IDENTITY_READY_REPAIR_COHORT_FROZEN",
+  "nextGate": "C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1"
+}

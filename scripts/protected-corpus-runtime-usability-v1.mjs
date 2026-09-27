@@ -89,7 +89,7 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     && c2.hardAuthorityViolations === 0;
   const c3 = brain.c3Calibration || {};
   const c3Passed = c2Passed
-    && brain.state === "C3_PASS__C4_READY"
+    && ["C3_PASS__C4_READY","C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY"].includes(brain.state)
     && c3.terminal === "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY"
     && c3.evidence === "data/generated/culinary-brain-c3-prior-calibration-summary-v1.json"
     && c3.publicRuntimeRecipeCount === 85
@@ -100,7 +100,23 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     && c3.promotedPriorCount === 0
     && c3.scorerDisposition === "CURRENT_DETERMINISTIC_SCORER_RETAINED_UNCHANGED"
     && c3.c2CandidatesPromoted === false;
-  const expected = c3Passed
+  const c4 = brain.c4FailureMatrix || config.c4FailureMatrix || {};
+  const c4MatrixPassed = c3Passed
+    && c4.terminal === "CULINARY_BRAIN_C4_FAILURE_MATRIX_PASS__112_IDENTITY_READY_REPAIR_COHORT_FROZEN"
+    && c4.evidence === "data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json"
+    && c4.recipeCount === 19268
+    && c4.identityReadyRepairCohortCount === 112
+    && /^[a-f0-9]{64}$/.test(c4.identityReadyRepairCohortDigestSha256 || "")
+    && c4.unresolvedIdentityRecipeCount === 19156
+    && c4.hardDietaryAllergenAuthorityState === "UNIVERSAL_HARD_BLOCKER"
+    && c4.automaticRecommendationReadyCount === 0;
+  const expected = c4MatrixPassed
+    ? [
+        "CULINARY_BRAIN_C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+      ]
+    : c3Passed
     ? [
         "CULINARY_BRAIN_C4_REAL_V8018_FAILURE_REPAIR_LOOP",
         "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
@@ -144,7 +160,10 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     if (c1.evidence !== "data/generated/culinary-brain-c1-combined-closeout-v1.json") errors.push("C1 terminal evidence reference mismatch");
     if (c1.independentHistoricalSemanticGeneralizationDemonstrated !== false) errors.push("C1 historical semantic limitation must remain explicit");
   }
-  if (c3Passed) {
+  if (c4MatrixPassed) {
+    const p3Gate = (config.gates || []).find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
+    if (p3Gate?.state !== "BLOCKED_ON_C4_HARD_AUTHORITY_REPAIR_AND_HARD_METADATA") errors.push("P3 must remain blocked on C4 hard-authority repair and hard metadata");
+  } else if (c3Passed) {
     const p3Gate = (config.gates || []).find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
     if (p3Gate?.state !== "BLOCKED_ON_C4_AND_HARD_METADATA") errors.push("P3 must remain blocked on C4 and hard metadata after C3");
   } else if (c2Passed) {
