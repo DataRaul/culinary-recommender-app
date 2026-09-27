@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
   "date": "2026-09-25",
-  "state": "P1_IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING",
+  "state": "P1_FULL_INDEX_READY__FORKRECIPE_STRUCTURE_ADAPTER_REPAIR_PENDING",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
@@ -105,7 +105,7 @@
     },
     {
       "id": "P1_PRIVATE_BROWSE_SEARCH_CANARY",
-      "state": "IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING",
+      "state": "FULL_INDEX_READY__FORKRECIPE_STRUCTURE_ADAPTER_REPAIR_PENDING",
       "purpose": "Make all 19,268 protected recipes safely discoverable to an authorized user without granting recommendation authority.",
       "acceptance": [
         "AUTH_REQUIRED_BEFORE_ANY_PROTECTED_RECIPE_SHARD_QUERY",
@@ -123,19 +123,27 @@
       "document": "docs/PROTECTED_CORPUS_P1_PRIVATE_BROWSE_SEARCH_V1.md",
       "page": "protected-corpus.html",
       "api": "/api/protected-corpus/v1",
-      "liveOwnerCanary": "FULL_INDEX_BUILT__TERMINAL_STATUS_INVARIANT_DIAGNOSTIC_PENDING",
+      "liveOwnerCanary": "FULL_INDEX_READY__FORKRECIPE_STRUCTURE_ADAPTER_REPAIR_PENDING",
       "validationRun": 1093,
       "validationRunId": 36070083309,
       "lastLiveAttempt": {
-        "date": "2026-09-26",
+        "date": "2026-09-27",
+        "activeVersion": "v8018",
         "indexedRecipeCount": 19268,
-        "expectedRecipeCount": 19268,
-        "observedRowsWrittenToday": 10239,
-        "terminal": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_STOPPED_SAFE",
-        "observedOwnerMessage": "status: exact v8018 19,268 / 19,268 / 3-partial acceptance not met",
-        "classification": "TERMINAL_STATUS_INVARIANT_DIAGNOSTIC_PENDING",
-        "fullIndexBuildCompleted": true,
+        "ftsRecipeCount": 19268,
+        "structuralPartialCount": 918,
+        "expectedStructuralPartialCount": 3,
+        "d1SubqueriesIncludingAuth": 4,
+        "fullCorpusScans": 0,
+        "publicRuntimeChanged": false,
+        "recommendationAdmissionChanged": false,
+        "classification": "FORKRECIPE_STRUCTURE_ADAPTER_FIELD_MISMATCH",
+        "rootCause": "ForkRecipe processNodes use instructions plural; P1 direction adapter only recognized instruction singular",
+        "excessPartialCount": 915,
+        "exactForkRecipeCohortCount": 915,
+        "repair": "bounded 915-row summary metadata correction after exact precondition check",
         "reindexRequired": false,
+        "ftsRewriteRequired": false,
         "protectedBodyRewriteRequired": false
       }
     },
