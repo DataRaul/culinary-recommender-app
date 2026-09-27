@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
   "date": "2026-09-27",
-  "state": "C0_PASS__P2_PASS__C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_PASS__C3_PASS__C4_READY",
+  "state": "C0_PASS__P2_PASS__C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_PASS__C3_PASS__C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY",
   "pattern": "FITNESS_BRAIN_CALIBRATION_ANALOGUE",
   "knowledgeCoreDomain": "culinary_nutrition",
   "runtimeDependencyAuthorized": false,
@@ -106,7 +106,7 @@
   },
   "postP1Execution": {
     "p1Gate": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS",
-    "state": "P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_READY",
+    "state": "P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY",
     "c1ExactSampleFreeze": {
       "terminal": "CULINARY_BRAIN_C1_EXACT_500_SAMPLE_FROZEN",
       "protectedCorpusVersion": "v8018",
@@ -122,7 +122,7 @@
       }
     },
     "next": [
-      "C4_REAL_V8018_FAILURE_REPAIR_LOOP"
+      "C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1"
     ],
     "boundaries": {
       "protectedD1ReadsPerformed": 0,
@@ -224,6 +224,19 @@
         "dishCategory": "HOLD_NO_PRIOR_PROMOTION",
         "mealRole": "HOLD_NO_PRIOR_PROMOTION"
       }
+    },
+    "c4FailureMatrix": {
+      "state": "PASS__112_IDENTITY_READY_REPAIR_COHORT_FROZEN",
+      "terminal": "CULINARY_BRAIN_C4_FAILURE_MATRIX_PASS__112_IDENTITY_READY_REPAIR_COHORT_FROZEN",
+      "contract": "config/culinary_brain_c4_real_v8018_failure_loop_v1.json",
+      "evidence": "data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json",
+      "recipeCount": 19268,
+      "identityReadyRepairCohortCount": 112,
+      "identityReadyRepairCohortDigestSha256": "965876ec6dca2a9a4796417d88e44151a87541b39cfe232c42decf2208913468",
+      "unresolvedIdentityRecipeCount": 19156,
+      "hardDietaryAllergenAuthorityState": "UNIVERSAL_HARD_BLOCKER",
+      "automaticRecommendationReadyCount": 0,
+      "nextGate": "C4_HARD_AUTHORITY_REPAIR_TRANCHE_V1"
     }
   }
 }
