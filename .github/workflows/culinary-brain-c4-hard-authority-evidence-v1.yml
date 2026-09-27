@@ -11,6 +11,7 @@ on:
       - "config/corpus_normalization_baseline_v1.json"
       - "config/nutrition_vitamin_applicability_audit_v1.json"
       - "data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json"
+      - "data/generated/culinary-brain-c4-hard-authority-evidence-summary-v1.json"
       - ".github/workflows/culinary-brain-c4-hard-authority-evidence-v1.yml"
   workflow_dispatch:
 
@@ -60,6 +61,8 @@ jobs:
             --c4=data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json \
             --output=.tmp/culinary-brain-c4-hard-authority-evidence-v1.json \
             --summary=.tmp/culinary-brain-c4-hard-authority-evidence-summary-v1.json
+      - name: Verify committed hard-authority evidence summary is reproducible
+        run: cmp .tmp/culinary-brain-c4-hard-authority-evidence-summary-v1.json data/generated/culinary-brain-c4-hard-authority-evidence-summary-v1.json
       - name: Upload hard-authority evidence
         uses: actions/upload-artifact@v4
         with:
