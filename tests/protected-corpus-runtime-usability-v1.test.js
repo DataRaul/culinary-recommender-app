@@ -30,13 +30,17 @@ test("programme fails closed if protected evidence drifts", () => {
   assert.ok(validateProtectedCorpusRuntimeUsability(mutated, evidence).some(error => error.includes("recipe count")));
 });
 
-test("programme records terminal P1/P2 pass and advances to C1 evaluation", () => {
-  assert.equal(config.state, "P1_PASS__P2_PASS__C1_EVALUATION_READY");
+test("programme records P1/P2/C1 pass and advances to bounded C2", () => {
+  assert.equal(config.state, "P1_PASS__P2_PASS__C1_PASS__C2_CANDIDATE_ONLY_READY");
   assert.equal(config.gates.find(gate => gate.id === "P0_EVIDENCE_AND_CONTRACT_AUDIT").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").liveOwnerCanary, "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS");
-  assert.equal(config.nextExecutionSequence[0], "CULINARY_BRAIN_C1_EVALUATION");
-  assert.equal(config.brainCalibration.state, "C1_EXACT_500_SAMPLE_FROZEN__EVALUATION_READY");
+  assert.equal(config.nextExecutionSequence[0], "CULINARY_BRAIN_C2_FROZEN_FULL_V8018_CANDIDATE_CLASSIFICATION");
+  assert.equal(config.brainCalibration.state, "C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_CANDIDATE_ONLY_READY");
+  assert.equal(config.brainCalibration.c1Evaluation.entireFrozen500Evaluated, true);
+  assert.equal(config.brainCalibration.c1Evaluation.independentHistoricalSemanticGeneralizationDemonstrated, false);
+  assert.equal(config.brainCalibration.c1Evaluation.c2AuthorizedScope, "CANDIDATE_ONLY__ABSTENTION_DEFAULT");
+  assert.equal(config.gates.find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION").state, "BLOCKED_ON_C2_AND_HARD_METADATA");
   assert.equal(config.gates.find(gate => gate.id === "P2_METADATA_USABILITY_MEASUREMENT").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P2_METADATA_USABILITY_MEASUREMENT").liveAlignmentState, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P2_METADATA_USABILITY_MEASUREMENT").liveAlignmentTerminal, "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS");

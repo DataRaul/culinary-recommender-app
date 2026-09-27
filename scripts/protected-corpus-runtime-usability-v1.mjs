@@ -70,27 +70,43 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
   const p2Passed = p1Passed && p2Gate?.state === "PASS"
     && p2Gate?.liveAlignmentState === "PASS"
     && p2Gate?.liveAlignmentTerminal === "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS";
-  const expected = p2Passed
+  const c1 = brain.c1Evaluation || {};
+  const c1Passed = p2Passed
+    && brain.state === "C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_CANDIDATE_ONLY_READY"
+    && c1.terminal === "CULINARY_BRAIN_C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_CANDIDATE_ONLY_READY"
+    && c1.entireFrozen500Evaluated === true
+    && c1.c2AuthorizedScope === "CANDIDATE_ONLY__ABSTENTION_DEFAULT";
+  const expected = c1Passed
     ? [
-        "CULINARY_BRAIN_C1_EVALUATION",
+        "CULINARY_BRAIN_C2_FROZEN_FULL_V8018_CANDIDATE_CLASSIFICATION",
         "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
         "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
       ]
-    : p1Passed
+    : p2Passed
       ? [
-          "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
+          "CULINARY_BRAIN_C1_EVALUATION",
           "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
           "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
         ]
-      : [
-          "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY",
-          "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
-          "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
-          "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
-        ];
+      : p1Passed
+        ? [
+            "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
+            "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+            "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+          ]
+        : [
+            "PROTECTED_CORPUS_RUNTIME_USABILITY_P1_PRIVATE_BROWSE_SEARCH_CANARY",
+            "CULINARY_BRAIN_CORPUS_CALIBRATION_C0_C1_PARALLEL_WITH_P2",
+            "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+            "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+          ];
   if (JSON.stringify(sequence) !== JSON.stringify(expected)) errors.push("unexpected execution sequence");
   if (p2Passed) {
     if (p2Gate.liveAlignmentEvidence !== "data/generated/protected-corpus-p2-live-alignment-v1.json") errors.push("P2 terminal evidence reference mismatch");
+  }
+  if (c1Passed) {
+    if (c1.evidence !== "data/generated/culinary-brain-c1-combined-closeout-v1.json") errors.push("C1 terminal evidence reference mismatch");
+    if (c1.independentHistoricalSemanticGeneralizationDemonstrated !== false) errors.push("C1 historical semantic limitation must remain explicit");
   }
   if (p1Passed) {
     const terminal = p1Gate.terminalEvidence || {};

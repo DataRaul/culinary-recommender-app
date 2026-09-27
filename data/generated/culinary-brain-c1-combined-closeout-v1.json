@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C1_COMBINED_CLOSEOUT_EVIDENCE_V1",
+  "date": "2026-09-27",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_CANDIDATE_ONLY_READY",
+  "protectedCorpusVersion": "v8018",
+  "frozenSampleDigestSha256": "5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408",
+  "frozenRecipeCount": 500,
+  "calibratedCanary": {
+    "recipeCount": 100,
+    "initialEvidence": "data/generated/culinary-brain-c1-evaluation-canary-hold-v1.json",
+    "initialPrecision": 0.875,
+    "threshold": 0.9,
+    "namedFailureClassRepairCount": 2,
+    "calibratedEvidence": "data/generated/culinary-brain-c1-evaluation-canary-pass-v1r1.json",
+    "calibratedPrecision": 1,
+    "proposedAuthoritativeCells": 24,
+    "correctAuthoritativeCells": 24,
+    "highConfidenceContradictions": 0,
+    "highConfidenceUnknownProposals": 0,
+    "hardAuthorityViolations": 0,
+    "independentlyBlindTerminal": false
+  },
+  "unseenRemainder": {
+    "recipeCount": 400,
+    "referenceCoverageEvidence": "data/generated/culinary-brain-c1-reference-coverage-audit-v1.json",
+    "authoritativeSemanticReferenceCells": 0,
+    "negativeCapabilityEvidence": "data/generated/culinary-brain-c1-negative-capability-evidence-v1.json",
+    "evaluatedCells": 800,
+    "proposedCells": 0,
+    "abstainOrReviewCells": 800,
+    "highConfidenceCells": 0,
+    "hardAuthorityViolations": 0
+  },
+  "interpretation": {
+    "entireFrozen500Evaluated": true,
+    "semanticCalibrationPassedWhereAuthoritativeReferencesExist": true,
+    "unseenHistoricalSemanticAccuracyMeasurable": false,
+    "goldLabelsManufactured": false,
+    "negativeCapabilityPassedOnUnseenRemainder": true,
+    "c2Scope": "CANDIDATE_ONLY__ABSTENTION_DEFAULT",
+    "c2MayNotCreateAuthority": true,
+    "p3NotAuthorizedByC1Alone": true
+  },
+  "authority": {
+    "protectedD1Reads": false,
+    "protectedD1Writes": false,
+    "protectedBodyReadOrExport": false,
+    "knowledgeCoreWrite": false,
+    "paidModelOrApi": false,
+    "publicRuntimeWidening": false,
+    "recommendationAdmission": false,
+    "hardMetadataAuthority": false,
+    "thirdShard": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "C2_FROZEN_FULL_V8018_CANDIDATE_CLASSIFICATION"
+}

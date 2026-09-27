@@ -1,0 +1,41 @@
+name: Culinary Brain C1 unseen negative capability V1
+
+on:
+  pull_request:
+    paths:
+      - "config/culinary_brain_c1_negative_capability_v1.json"
+      - "data/generated/culinary-brain-c1-reference-coverage-audit-v1.json"
+      - "data/generated/culinary-brain-c1-unseen-400-input-v1.json"
+      - "data/generated/culinary-brain-c1-unseen-400-predictions-v1.json"
+      - "scripts/culinary-brain-c1-negative-capability-core.mjs"
+      - "scripts/run-culinary-brain-c1-negative-capability-v1.mjs"
+      - "tests/culinary-brain-c1-negative-capability-v1.test.js"
+      - "tests/protected-corpus-runtime-usability-v1.test.js"
+      - "scripts/protected-corpus-runtime-usability-v1.mjs"
+      - "config/protected_corpus_runtime_usability_v1.json"
+      - "config/culinary_brain_corpus_calibration_v1.json"
+      - "data/generated/culinary-brain-c1-combined-closeout-v1.json"
+      - ".github/workflows/culinary-brain-c1-negative-capability-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run C1 closeout and programme-boundary tests
+        run: node --test tests/culinary-brain-c1-negative-capability-v1.test.js tests/culinary-brain-corpus-calibration-v1.test.js tests/protected-corpus-runtime-usability-v1.test.js
+      - name: Evaluate unseen 400
+        run: node scripts/run-culinary-brain-c1-negative-capability-v1.mjs
+      - name: Upload C1 negative-capability evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: culinary-brain-c1-negative-capability-v1
+          path: .tmp/culinary-brain-c1-negative-capability-evidence-v1.json
+          if-no-files-found: error

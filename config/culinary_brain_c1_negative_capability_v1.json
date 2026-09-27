@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C1_NEGATIVE_CAPABILITY_V1",
+  "date": "2026-09-27",
+  "state": "PREREGISTERED_UNSEEN_400_READY",
+  "protectedCorpusVersion": "v8018",
+  "frozenSampleDigestSha256": "5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408",
+  "input": "data/generated/culinary-brain-c1-unseen-400-input-v1.json",
+  "referenceCoverageEvidence": "data/generated/culinary-brain-c1-reference-coverage-audit-v1.json",
+  "recipeCount": 400,
+  "targetFields": [
+    "dishCategory",
+    "mealRole"
+  ],
+  "knownAuthoritativeReferenceCells": 0,
+  "policy": "WHEN_INDEPENDENT_SEMANTIC_REFERENCE_IS_ABSENT_AND_INPUT_AUTHORITY_IS_IDENTITY_HINT_ONLY__ABSTAIN_OR_REVIEW",
+  "preregisteredGates": {
+    "exactPredictionRowCount": 400,
+    "exactEvaluatedCellCount": 800,
+    "maximumProposedCells": 0,
+    "minimumAbstainOrReviewCells": 800,
+    "maximumHighConfidenceCells": 0,
+    "maximumHardAuthorityViolations": 0,
+    "maximumInvalidVocabularyOutputs": 0
+  },
+  "interpretation": {
+    "semanticAccuracyNotMeasurable": true,
+    "doNotManufactureGoldLabels": true,
+    "passTestsNegativeCapabilityNotSemanticAccuracy": true,
+    "combinedWithCalibratedCanaryCoversAllFrozen500": true,
+    "c2AuthorityIfPass": "CANDIDATE_ONLY__ABSTENTION_DEFAULT__NO_PUBLIC_OR_RECOMMENDATION_AUTHORITY"
+  },
+  "authority": {
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedBodyReadOrExportAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextGate": "C1_UNSEEN_400_NEGATIVE_CAPABILITY_EXECUTION"
+}

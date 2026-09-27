@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C1_REFERENCE_COVERAGE_AUDIT_V1",
+  "date": "2026-09-27",
+  "protectedCorpusVersion": "v8018",
+  "frozenSampleDigestSha256": "5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408",
+  "frozenRecipeCount": 500,
+  "calibratedCanaryRecipeCount": 100,
+  "unseenRemainderRecipeCount": 400,
+  "authoritativeReferenceCells": {
+    "fullFrozen500": {
+      "dishCategory": 30,
+      "mealRole": 14,
+      "total": 44
+    },
+    "calibratedCanary100": {
+      "dishCategory": 30,
+      "mealRole": 14,
+      "total": 44
+    },
+    "unseenRemainder400": {
+      "dishCategory": 0,
+      "mealRole": 0,
+      "total": 0
+    }
+  },
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C1_UNSEEN_REMAINDER_HAS_ZERO_AUTHORITATIVE_SEMANTIC_REFERENCE_CELLS",
+  "interpretation": {
+    "semanticAccuracyGeneralizationMeasurableOnUnseenRemainder": false,
+    "doNotManufactureGoldLabels": true,
+    "canaryPassIsCalibrationEvidenceOnly": true,
+    "unseenRemainderCanTestNegativeCapability": true,
+    "c2NotAuthorizedByCanaryAlone": true
+  },
+  "nextGate": "C1_UNSEEN_400_NEGATIVE_CAPABILITY_EVALUATION"
+}
