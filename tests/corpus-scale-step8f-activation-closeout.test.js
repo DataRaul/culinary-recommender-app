@@ -1,11 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { currentHandoverInvariants } from "./helpers/current-handover-invariants.js";
 import { ALL_RECIPES, ACTIVATED_EXTERNAL_RECIPES, PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
 
 const roadmap = JSON.parse(readFileSync(new URL("../config/corpus_scale_step8_roadmap.json", import.meta.url), "utf8"));
 const evidence = JSON.parse(readFileSync(new URL("../data/generated/step8f/public-runtime-activation-pass.json", import.meta.url), "utf8"));
 const current = JSON.parse(readFileSync(new URL("../docs/handovers/CURRENT.json", import.meta.url), "utf8"));
+const handoverInvariants = currentHandoverInvariants(current);
 const gate = id => roadmap.gates.find(row => row.id === id);
 
 test("Step 8F terminal evidence freezes the exact one-record public activation", () => {
@@ -27,10 +29,9 @@ test("machine roadmap and current handover preserve 8F without broad automatic a
   assert.equal(f.decisionInput.publicRuntimeChanged, true);
   assert.equal(f.decisionInput.publicCorpusRecipeCountAfterDecision, 85);
   assert.equal(roadmap.boundaries.automaticPublicRecommendationAdmission, false);
-  assert.equal(current.live_protected_state.public_runtime_recipe_count, 85);
-  assert.equal(current.live_protected_state.public_runtime_changed, false);
-  assert.match(current.operating_contract.public_activation, /85 recipes/);
-  assert.match(current.operating_contract.public_activation, /not authorized/i);
+  assert.equal(handoverInvariants.publicRuntimeRecipeCount, 85);
+  assert.equal(handoverInvariants.publicRuntimeChanged, false);
+  assert.equal(handoverInvariants.publicAdmissionAuthorized, false);
 });
 
 test("public runtime remains 85 and historical golden corpus 84 as protected Step 8G advances independently", () => {
@@ -38,8 +39,7 @@ test("public runtime remains 85 and historical golden corpus 84 as protected Ste
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
   assert.equal(gate("8G").doesNotDependOn.includes("8F"), true);
-  assert.equal(current.live_protected_state.public_runtime_recipe_count, 85);
-  assert.equal(current.live_protected_state.public_runtime_changed, false);
-  assert.match(current.operating_contract.public_activation, /Public runtime remains 85 recipes/);
-  assert.match(current.operating_contract.public_activation, /not authorized/i);
+  assert.equal(handoverInvariants.publicRuntimeRecipeCount, 85);
+  assert.equal(handoverInvariants.publicRuntimeChanged, false);
+  assert.equal(handoverInvariants.publicAdmissionAuthorized, false);
 });

@@ -1,11 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { currentHandoverInvariants } from "./helpers/current-handover-invariants.js";
 
 const roadmap = JSON.parse(readFileSync(new URL("../config/corpus_scale_step8_roadmap.json", import.meta.url), "utf8"));
 const evidence = JSON.parse(readFileSync(new URL("../data/generated/step8e/admission-evidence.json", import.meta.url), "utf8"));
 const subset = JSON.parse(readFileSync(new URL("../data/generated/step8e/eligible-subset.json", import.meta.url), "utf8"));
 const handover = JSON.parse(readFileSync(new URL("../docs/handovers/CURRENT.json", import.meta.url), "utf8"));
+const handoverInvariants = currentHandoverInvariants(handover);
 const gate = id => roadmap.gates.find(row => row.id === id);
 
 test("Step 8E terminal closeout is exact and bounded", () => {
@@ -31,10 +33,9 @@ test("Step 8F exact one-record activation remains complete while Step 8G advance
   assert.equal(gate("8F").decisionInput.publicCorpusRecipeCountAfterDecision, 85);
   assert.equal(gate("8F").decisionInput.candidatePresentInPublicCorpus, true);
   assert.equal(gate("8G").doesNotDependOn.includes("8F"), true);
-  assert.equal(handover.live_protected_state.public_runtime_recipe_count, 85);
-  assert.equal(handover.live_protected_state.public_runtime_changed, false);
-  assert.match(handover.operating_contract.public_activation, /85 recipes/);
-  assert.match(handover.operating_contract.public_activation, /not authorized/i);
+  assert.equal(handoverInvariants.publicRuntimeRecipeCount, 85);
+  assert.equal(handoverInvariants.publicRuntimeChanged, false);
+  assert.equal(handoverInvariants.publicAdmissionAuthorized, false);
 });
 
 test("Step 8E closeout preserves cost and adjacent-lane firewalls", () => {

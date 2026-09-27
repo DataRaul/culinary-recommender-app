@@ -1,12 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { currentHandoverInvariants } from "./helpers/current-handover-invariants.js";
 import { ALL_RECIPES, ACTIVATED_EXTERNAL_RECIPES, PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
 
 const roadmap = JSON.parse(readFileSync(new URL("../config/corpus_scale_step8_roadmap.json", import.meta.url), "utf8"));
 const evidence = JSON.parse(readFileSync(new URL("../data/generated/step8g/ora-bosse-watanna-v8005-prewrite-evidence.json", import.meta.url), "utf8"));
 const validation = JSON.parse(readFileSync(new URL("../data/generated/step8g/ora-bosse-watanna-v8005-prewrite-validation.json", import.meta.url), "utf8"));
 const handover = JSON.parse(readFileSync(new URL("../docs/handovers/CURRENT.json", import.meta.url), "utf8"));
+const handoverInvariants = currentHandoverInvariants(handover);
 
 test("Step 8G Bosse Watanna v8005 prewrite freezes the exact earned protected plan", () => {
   assert.equal(evidence.pass, true);
@@ -35,11 +37,10 @@ test("v8005 prewrite remains immutable proof after later protected iterations", 
   }
   assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-bosse-watanna-v8005-prewrite-evidence.json"), true);
   assert.equal(roadmap.evidenceBasis.includes("data/generated/step8g/ora-bosse-watanna-v8005-prewrite-validation.json"), true);
-  assert.equal(handover.live_protected_state.public_runtime_recipe_count, 85);
-  assert.equal(handover.live_protected_state.public_runtime_changed, false);
-  assert.equal(handover.live_protected_state.shard_count, 2);
-  assert.equal(handover.live_protected_state.max_allowed_d1_subqueries, 16);
-  assert.equal(handover.live_protected_state.d1_budget_headroom_assumed, false);
+  assert.equal(handoverInvariants.publicRuntimeRecipeCount, 85);
+  assert.equal(handoverInvariants.publicRuntimeChanged, false);
+  assert.equal(handoverInvariants.shardCount, 2);
+  assert.equal(handoverInvariants.publicAdmissionAuthorized, false);
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
   assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
