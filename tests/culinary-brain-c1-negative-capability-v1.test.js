@@ -63,7 +63,7 @@ test("combined C1 closeout preserves calibration history, reference limitation a
   assert.equal(closeout.unseenRemainder.proposedCells,0);
   assert.equal(closeout.unseenRemainder.abstainOrReviewCells,800);
   assert.equal(closeout.interpretation.entireFrozen500Evaluated,true);
-  assert.equal(closeout.interpretation.independentSemanticGeneralizationNotDemonstrated,true);
+  assert.equal(closeout.interpretation.unseenHistoricalSemanticAccuracyMeasurable,false);
   assert.equal(closeout.interpretation.c2Scope,"CANDIDATE_ONLY__ABSTENTION_DEFAULT");
   for(const value of Object.values(closeout.authority)) assert.equal(value,false);
 });
