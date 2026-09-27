@@ -72,12 +72,30 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     && p2Gate?.liveAlignmentTerminal === "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS";
   const c1 = brain.c1Evaluation || {};
   const c1Passed = p2Passed
-    && brain.state === "C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_CANDIDATE_ONLY_READY"
     && c1.terminal === "CULINARY_BRAIN_C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_CANDIDATE_ONLY_READY"
     && c1.entireFrozen500Evaluated === true
     && c1.c2AuthorizedScope === "CANDIDATE_ONLY__ABSTENTION_DEFAULT";
-  const expected = c1Passed
+  const c2 = brain.c2Classification || {};
+  const c2Passed = c1Passed
+    && brain.state === "C2_PASS__C3_READY"
+    && c2.terminal === "CULINARY_BRAIN_C2_FULL_V8018_CANDIDATE_CLASSIFICATION_PASS"
+    && c2.evidence === "data/generated/culinary-brain-c2-candidate-classification-summary-v1.json"
+    && c2.recipeCount === 19268
+    && c2.uniqueRecipeKeyCount === 19268
+    && /^[a-f0-9]{64}$/.test(c2.fullClassificationDigestSha256 || "")
+    && c2.candidateOnly === true
+    && c2.abstentionDefault === true
+    && c2.knownReferenceOverrideAttempts === 0
+    && c2.highConfidenceCells === 0
+    && c2.hardAuthorityViolations === 0;
+  const expected = c2Passed
     ? [
+        "CULINARY_BRAIN_C3_DETERMINISTIC_RECOMMENDATION_PRIOR_CALIBRATION",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+      ]
+    : c1Passed
+      ? [
         "CULINARY_BRAIN_C2_FROZEN_FULL_V8018_CANDIDATE_CLASSIFICATION",
         "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
         "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
@@ -107,6 +125,10 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
   if (c1Passed) {
     if (c1.evidence !== "data/generated/culinary-brain-c1-combined-closeout-v1.json") errors.push("C1 terminal evidence reference mismatch");
     if (c1.independentHistoricalSemanticGeneralizationDemonstrated !== false) errors.push("C1 historical semantic limitation must remain explicit");
+  }
+  if (c2Passed) {
+    const p3Gate = (config.gates || []).find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
+    if (p3Gate?.state !== "BLOCKED_ON_C3_AND_HARD_METADATA") errors.push("P3 must remain blocked on C3 and hard metadata after C2");
   }
   if (p1Passed) {
     const terminal = p1Gate.terminalEvidence || {};
