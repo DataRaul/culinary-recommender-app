@@ -3,3 +3,6 @@
   Cross-Origin-Opener-Policy: same-origin-allow-popups
   Referrer-Policy: no-referrer
   X-Content-Type-Options: nosniff
+
+/protected-corpus.html
+  Cache-Control: no-store
