@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
   "date": "2026-09-27",
-  "state": "C0_PASS__P2_PASS__C1_EXACT_500_SAMPLE_FROZEN__EVALUATION_READY",
+  "state": "C0_PASS__P2_PASS__C1_CANARY_EVALUATION_ACTIVE",
   "pattern": "FITNESS_BRAIN_CALIBRATION_ANALOGUE",
   "knowledgeCoreDomain": "culinary_nutrition",
   "runtimeDependencyAuthorized": false,
@@ -106,7 +106,7 @@
   },
   "postP1Execution": {
     "p1Gate": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS",
-    "state": "P2_LIVE_ALIGNMENT_PASS__C1_EVALUATION_READY",
+    "state": "P2_LIVE_ALIGNMENT_PASS__C1_CANARY_EVALUATION_ACTIVE",
     "c1ExactSampleFreeze": {
       "terminal": "CULINARY_BRAIN_C1_EXACT_500_SAMPLE_FROZEN",
       "protectedCorpusVersion": "v8018",
@@ -122,7 +122,7 @@
       }
     },
     "next": [
-      "C1_EVALUATION"
+      "C1_CANARY_BLIND_EVALUATION"
     ],
     "boundaries": {
       "protectedD1ReadsPerformed": 0,
@@ -145,6 +145,16 @@
       "maxObservedD1Subqueries": 8,
       "protectedBodyReads": 0,
       "protectedD1Writes": 0
+    },
+    "c1Evaluation": {
+      "state": "PREREGISTERED_CANARY_READY",
+      "contract": "config/culinary_brain_c1_evaluation_v1.json",
+      "canaryInput": "data/generated/culinary-brain-c1-evaluation-canary-input-v1.json",
+      "predictions": "data/generated/culinary-brain-c1-evaluation-predictions-v1.json",
+      "recipeCount": 100,
+      "evaluatorInputAuthority": "RECIPE_IDENTITY_HINT_ONLY",
+      "independentBlindTerminal": false,
+      "fullFrozen500EvaluationRequiredBeforeC2": true
     }
   }
 }
