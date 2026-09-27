@@ -10,6 +10,7 @@ import {
 } from "../scripts/culinary-brain-c2-candidate-classification-core.mjs";
 
 const contract=JSON.parse(readFileSync("config/culinary_brain_c2_candidate_classification_v1.json","utf8"));
+const committedSummary=JSON.parse(readFileSync("data/generated/culinary-brain-c2-candidate-classification-summary-v1.json","utf8"));
 
 function overlay({key="recipe.md",dishState="UNKNOWN",dishValue=null,roleState="UNKNOWN",roleValue=[],category=null,tags=[]}={}) {
   return {
@@ -99,4 +100,14 @@ test("summary validator enforces zero-authority boundary",()=>{
   assert.deepEqual(validateC2Summary(summary),[]);
   summary.invariants.highConfidenceCells=1;
   assert.ok(validateC2Summary(summary).includes("highConfidenceCells"));
+});
+
+test("committed C2 summary records exact full-v8018 candidate-only PASS",()=>{
+  assert.deepEqual(validateC2Summary(committedSummary),[]);
+  assert.equal(committedSummary.terminal,C2_TERMINAL);
+  assert.equal(committedSummary.recipeCount,19268);
+  assert.equal(committedSummary.uniqueRecipeKeyCount,19268);
+  assert.equal(committedSummary.fullClassificationDigestSha256,"15ffb997d0715d72d248ca53ea03f4a95254123a9429e3a2ec4d085e144eaf3d");
+  assert.deepEqual(committedSummary.fields.dishCategory.dispositionCounts,{ABSTAIN:11412,REFERENCE_PRESENT:1079,REVIEW:6777});
+  assert.deepEqual(committedSummary.fields.mealRole.dispositionCounts,{ABSTAIN:16618,REFERENCE_PRESENT:524,REVIEW:2126});
 });
