@@ -200,7 +200,7 @@
   ],
   "brainCalibration": {
     "id": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
-    "state": "C0_ZERO_D1_PREP_PASS__C1_READY_AFTER_P1_PASS",
+    "state": "C1_EXACT_500_SAMPLE_FROZEN__EVALUATION_READY",
     "contract": "config/culinary_brain_corpus_calibration_v1.json",
     "document": "docs/CULINARY_BRAIN_CORPUS_CALIBRATION_V1.md",
     "browseSearchBlocksOnBrain": false,
@@ -210,7 +210,13 @@
     "fullCorpusRecipeCount": 19268,
     "liveRuntimeDependencyAuthorized": false,
     "disagreementOutcome": "UNKNOWN_AMBIGUOUS_OR_REVIEW",
-    "preP1PreparationAuthorized": true
+    "preP1PreparationAuthorized": true,
+    "c1ExactSampleFreeze": {
+      "terminal": "CULINARY_BRAIN_C1_EXACT_500_SAMPLE_FROZEN",
+      "recipeCount": 500,
+      "digest": "5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408",
+      "evidence": "data/generated/culinary-brain-c1-exact-sample-freeze-v1.json"
+    }
   },
   "completedTransitions": [
     {
