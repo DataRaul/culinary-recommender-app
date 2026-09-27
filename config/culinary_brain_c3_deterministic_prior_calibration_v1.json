@@ -1,0 +1,256 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C3_DETERMINISTIC_PRIOR_CALIBRATION_V1",
+  "date": "2026-09-27",
+  "state": "PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY",
+  "protectedCorpusVersion": "v8018",
+  "expectedProtectedRecipeCount": 19268,
+  "goldenPublicRuntimeRecipeCount": 85,
+  "entryTerminal": "CULINARY_BRAIN_C2_FULL_V8018_CANDIDATE_CLASSIFICATION_PASS",
+  "c2Evidence": "data/generated/culinary-brain-c2-candidate-classification-summary-v1.json",
+  "brainPolicy": {
+    "module": "src/data/brain-public-policy-v1.js",
+    "requiredStatus": "CALIBRATION_ONLY_NO_RANKING_CHANGE",
+    "knowledgeCoreDomain": "culinary_nutrition",
+    "knowledgeCoreCommit": "e5dcb29a7c6b78f59c062faf4c963c74aac10743"
+  },
+  "objective": "CALIBRATE_WHETHER_C2_RECONCILED_SOFT_FIELDS_CAN_SAFELY_BECOME_DETERMINISTIC_LOCAL_RECOMMENDATION_PRIORS_WITHOUT_CHANGING_RUNTIME_BEHAVIOR",
+  "profileCases": [
+    {
+      "id": "DEFAULT_DINNER",
+      "profile": {},
+      "context": {
+        "mealType": "dinner"
+      }
+    },
+    {
+      "id": "DEFAULT_LUNCH",
+      "profile": {},
+      "context": {
+        "mealType": "lunch"
+      }
+    },
+    {
+      "id": "VEGETARIAN_FAST",
+      "profile": {
+        "dietaryMode": "vegetarian",
+        "maxMinutes": 35,
+        "skill": 2,
+        "budget": 2,
+        "speed": 4,
+        "variety": 2
+      },
+      "context": {
+        "mealType": "dinner"
+      }
+    },
+    {
+      "id": "VEGAN_BROAD",
+      "profile": {
+        "dietaryMode": "vegan",
+        "maxMinutes": 90,
+        "skill": 4,
+        "budget": 4,
+        "variety": 4
+      },
+      "context": {
+        "mealType": "dinner"
+      }
+    },
+    {
+      "id": "MEDITERRANEAN_PROTEIN",
+      "profile": {
+        "maxMinutes": 90,
+        "skill": 4,
+        "budget": 4,
+        "cuisinePreferences": [
+          "Mediterranean"
+        ],
+        "proteinEmphasis": 4
+      },
+      "context": {
+        "mealType": "dinner"
+      }
+    },
+    {
+      "id": "INDIAN_EXPLORATION",
+      "profile": {
+        "maxMinutes": 120,
+        "skill": 4,
+        "budget": 4,
+        "cuisinePreferences": [
+          "Indian"
+        ],
+        "variety": 4,
+        "priorityPacks": [
+          {
+            "id": "culinary_explorer",
+            "scope": "all"
+          }
+        ]
+      },
+      "context": {
+        "mealType": "dinner"
+      }
+    },
+    {
+      "id": "HEALTHY_CONVENIENCE",
+      "profile": {
+        "maxMinutes": 45,
+        "skill": 3,
+        "budget": 3,
+        "nutritionPriority": 4,
+        "priorityPacks": [
+          {
+            "id": "healthy_convenience",
+            "scope": "all"
+          }
+        ]
+      },
+      "context": {
+        "mealType": "dinner"
+      }
+    },
+    {
+      "id": "HIGH_PROTEIN_CONVENIENCE",
+      "profile": {
+        "maxMinutes": 60,
+        "skill": 3,
+        "budget": 3,
+        "proteinEmphasis": 4,
+        "priorityPacks": [
+          {
+            "id": "high_protein_convenience",
+            "scope": "all"
+          }
+        ]
+      },
+      "context": {
+        "mealType": "lunch"
+      }
+    },
+    {
+      "id": "BUDGET_EASE",
+      "profile": {
+        "maxMinutes": 60,
+        "skill": 2,
+        "budget": 1,
+        "priorityPacks": [
+          {
+            "id": "budget_ease",
+            "scope": "all"
+          }
+        ]
+      },
+      "context": {
+        "mealType": "dinner"
+      }
+    },
+    {
+      "id": "MEAL_PREP",
+      "profile": {
+        "maxMinutes": 90,
+        "skill": 3,
+        "budget": 3,
+        "mealPrep": 4,
+        "priorityPacks": [
+          {
+            "id": "meal_prep",
+            "scope": "all"
+          }
+        ]
+      },
+      "context": {
+        "mealType": "lunch"
+      }
+    },
+    {
+      "id": "TECHNIQUE_BUILDING",
+      "profile": {
+        "maxMinutes": 180,
+        "skill": 4,
+        "budget": 4,
+        "variety": 4,
+        "priorityPacks": [
+          {
+            "id": "technique_building",
+            "scope": "all"
+          }
+        ]
+      },
+      "context": {
+        "mealType": "dinner"
+      }
+    },
+    {
+      "id": "UNKNOWN_NUTRITION_SAFE",
+      "profile": {
+        "maxMinutes": 180,
+        "skill": 4,
+        "budget": 4,
+        "nutritionPriority": 4,
+        "proteinEmphasis": 4,
+        "priorityPacks": []
+      },
+      "context": {
+        "mealType": "dinner"
+      }
+    }
+  ],
+  "fieldCalibration": {
+    "dishCategory": {
+      "c2State": "CANDIDATE_ONLY_REVIEW_REQUIRED",
+      "currentRecommendationSignal": false,
+      "decision": "HOLD_NO_PRIOR_PROMOTION",
+      "reason": "C2 dish-category proposals remain review-only and the current deterministic scorer has no user-facing dish-category preference signal."
+    },
+    "mealRole": {
+      "c2State": "CANDIDATE_ONLY_REVIEW_REQUIRED",
+      "currentRecommendationSignal": "HARD_MEAL_TYPE_SCOPE",
+      "decision": "HOLD_NO_PRIOR_PROMOTION",
+      "reason": "C2 meal-role proposals remain review-only and current meal-type semantics are a hard eligibility scope; a soft inferred prior must not duplicate or weaken that boundary."
+    }
+  },
+  "acceptance": [
+    "EXACT_CURRENT_85_PUBLIC_RUNTIME",
+    "C2_TERMINAL_EVIDENCE_REQUIRED",
+    "BRAIN_POLICY_REMAINS_CALIBRATION_ONLY",
+    "NO_BRAIN_POLICY_RUNTIME_IMPORT",
+    "PROFILE_MATRIX_DETERMINISTIC",
+    "ZERO_HARD_CONSTRAINT_VIOLATIONS",
+    "UNKNOWN_NUTRITION_REMAINS_NON_NUMERIC_WHERE_UNAVAILABLE",
+    "ZERO_C2_PRIOR_PROMOTIONS",
+    "CURRENT_RECOMMENDATION_SCORER_UNCHANGED",
+    "NO_PROTECTED_D1_OR_BODY_ACCESS",
+    "NO_PUBLIC_OR_RECOMMENDATION_AUTHORITY_WIDENING"
+  ],
+  "authority": {
+    "runtimeRankingChangeAuthorized": false,
+    "c2CandidatePromotionAuthorized": false,
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedBodyReadOrExportAuthorized": false,
+    "knowledgeCoreRuntimeDependencyAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "nutritionAuthorityAuthorized": false,
+    "dietaryAllergenAuthorityAuthorized": false,
+    "sourceRightsAuthorityAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY",
+  "evidence": "data/generated/culinary-brain-c3-prior-calibration-summary-v1.json",
+  "result": {
+    "terminal": "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY",
+    "profileCaseCount": 12,
+    "matrixDigestSha256": "764ccca3c654a866138d6214afda97578c8eb401b3eb579e01a7e3d1c8672855",
+    "deterministicMismatchCount": 0,
+    "hardConstraintViolations": 0,
+    "unknownNutritionNonNumericCases": 6,
+    "promotedPriorCount": 0,
+    "scorerDisposition": "CURRENT_DETERMINISTIC_SCORER_RETAINED_UNCHANGED"
+  },
+  "nextGate": "C4_REAL_V8018_FAILURE_REPAIR_LOOP"
+}

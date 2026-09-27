@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
   "date": "2026-09-27",
-  "state": "C0_PASS__P2_PASS__C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_PASS__C3_READY",
+  "state": "C0_PASS__P2_PASS__C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_PASS__C3_PASS__C4_READY",
   "pattern": "FITNESS_BRAIN_CALIBRATION_ANALOGUE",
   "knowledgeCoreDomain": "culinary_nutrition",
   "runtimeDependencyAuthorized": false,
@@ -106,7 +106,7 @@
   },
   "postP1Execution": {
     "p1Gate": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS",
-    "state": "P2_PASS__C1_PASS__C2_PASS__C3_READY",
+    "state": "P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_READY",
     "c1ExactSampleFreeze": {
       "terminal": "CULINARY_BRAIN_C1_EXACT_500_SAMPLE_FROZEN",
       "protectedCorpusVersion": "v8018",
@@ -122,7 +122,7 @@
       }
     },
     "next": [
-      "C3_DETERMINISTIC_RECOMMENDATION_PRIOR_CALIBRATION"
+      "C4_REAL_V8018_FAILURE_REPAIR_LOOP"
     ],
     "boundaries": {
       "protectedD1ReadsPerformed": 0,
@@ -205,6 +205,24 @@
         "hardAuthorityViolations": 0,
         "fullRowsCommittedToRuntime": false,
         "fullRowsRetainedAsCiArtifact": true
+      }
+    },
+    "c3Calibration": {
+      "state": "PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION",
+      "terminal": "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY",
+      "contract": "config/culinary_brain_c3_deterministic_prior_calibration_v1.json",
+      "evidence": "data/generated/culinary-brain-c3-prior-calibration-summary-v1.json",
+      "publicRuntimeRecipeCount": 85,
+      "profileCaseCount": 12,
+      "matrixDigestSha256": "764ccca3c654a866138d6214afda97578c8eb401b3eb579e01a7e3d1c8672855",
+      "deterministicMismatchCount": 0,
+      "hardConstraintViolations": 0,
+      "unknownNutritionNonNumericCases": 6,
+      "promotedPriorCount": 0,
+      "scorerDisposition": "CURRENT_DETERMINISTIC_SCORER_RETAINED_UNCHANGED",
+      "priorDecisions": {
+        "dishCategory": "HOLD_NO_PRIOR_PROMOTION",
+        "mealRole": "HOLD_NO_PRIOR_PROMOTION"
       }
     }
   }

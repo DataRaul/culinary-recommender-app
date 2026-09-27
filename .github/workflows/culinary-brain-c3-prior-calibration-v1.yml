@@ -1,0 +1,48 @@
+name: Culinary Brain C3 deterministic prior calibration V1
+
+on:
+  pull_request:
+    paths:
+      - "config/culinary_brain_c3_deterministic_prior_calibration_v1.json"
+      - "scripts/culinary-brain-c3-prior-calibration-core.mjs"
+      - "scripts/run-culinary-brain-c3-prior-calibration-v1.mjs"
+      - "tests/culinary-brain-c3-prior-calibration-v1.test.js"
+      - "data/generated/culinary-brain-c2-candidate-classification-summary-v1.json"
+      - "src/data/brain-public-policy-v1.js"
+      - "src/domain/recommendation.js"
+      - "src/domain/profile.js"
+      - "src/data/corpus-v1.js"
+      - ".github/workflows/culinary-brain-c3-prior-calibration-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  calibrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run C3 contract tests
+        run: node --test tests/culinary-brain-c3-prior-calibration-v1.test.js
+
+      - name: Run deterministic C3 calibration
+        run: |
+          node scripts/run-culinary-brain-c3-prior-calibration-v1.mjs \
+            --contract=config/culinary_brain_c3_deterministic_prior_calibration_v1.json \
+            --c2=data/generated/culinary-brain-c2-candidate-classification-summary-v1.json \
+            --output=.tmp/culinary-brain-c3-prior-calibration-summary-v1.json
+
+      - name: Verify committed C3 calibration evidence is reproducible
+        run: cmp .tmp/culinary-brain-c3-prior-calibration-summary-v1.json data/generated/culinary-brain-c3-prior-calibration-summary-v1.json
+
+      - name: Upload C3 calibration evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: culinary-brain-c3-prior-calibration-v1
+          path: .tmp/culinary-brain-c3-prior-calibration-summary-v1.json
+          if-no-files-found: error

@@ -32,8 +32,7 @@ test("Brain cannot silently gain hard safety, nutrition, admission or live-runti
   assert.ok(validateCulinaryBrainCorpusCalibration(hard).some(error => error.includes("ALLERGEN_SAFETY")));
 });
 
-test("C2 terminal classification advances Brain only to bounded C3",()=>{
-  assert.equal(config.state,"C0_PASS__P2_PASS__C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_PASS__C3_READY");
+test("C2 terminal classification remains recorded after successor advancement",()=>{
   const c2=config.postP1Execution.c2Classification;
   assert.equal(c2.state,"PASS");
   assert.equal(c2.terminal,"CULINARY_BRAIN_C2_FULL_V8018_CANDIDATE_CLASSIFICATION_PASS");
@@ -44,5 +43,18 @@ test("C2 terminal classification advances Brain only to bounded C3",()=>{
   assert.equal(c2.invariants.knownReferenceOverrideAttempts,0);
   assert.equal(c2.invariants.highConfidenceCells,0);
   assert.equal(c2.invariants.hardAuthorityViolations,0);
-  assert.deepEqual(config.postP1Execution.next,["C3_DETERMINISTIC_RECOMMENDATION_PRIOR_CALIBRATION"]);
+});
+
+test("C3 terminal calibration advances Brain only to bounded C4",()=>{
+  assert.equal(config.state,"C0_PASS__P2_PASS__C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_PASS__C3_PASS__C4_READY");
+  const c3=config.postP1Execution.c3Calibration;
+  assert.equal(c3.state,"PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION");
+  assert.equal(c3.terminal,"CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY");
+  assert.equal(c3.publicRuntimeRecipeCount,85);
+  assert.equal(c3.profileCaseCount,12);
+  assert.equal(c3.deterministicMismatchCount,0);
+  assert.equal(c3.hardConstraintViolations,0);
+  assert.equal(c3.promotedPriorCount,0);
+  assert.equal(c3.scorerDisposition,"CURRENT_DETERMINISTIC_SCORER_RETAINED_UNCHANGED");
+  assert.deepEqual(config.postP1Execution.next,["C4_REAL_V8018_FAILURE_REPAIR_LOOP"]);
 });

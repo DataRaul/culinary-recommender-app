@@ -235,3 +235,14 @@ P2 is terminal **PASS**. The authenticated production alignment emitted `PROTECT
 Canonical evidence is `data/generated/protected-corpus-p2-live-alignment-v1.json`.
 
 The principal successor is now C1 evaluation against the already frozen exact 500-recipe set. P3 remains blocked on C1 plus the existing hard-metadata/authority requirements; P2 is no longer a blocker.
+
+
+### 2026-09-27 — Culinary Brain C3 deterministic recommendation-prior calibration
+
+C3 is **COMPLETE / PASS** at `CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY`. The exact current **85-recipe public runtime** was exercised across a fixed **12-case** profile/context calibration matrix. Repeated evaluation produced **0 deterministic mismatches**, **0 hard-constraint violations**, and a matrix digest of `764ccca3c654a866138d6214afda97578c8eb401b3eb579e01a7e3d1c8672855`. Unknown nutrition remained explicitly non-numeric in **6** eligible matrix appearances.
+
+C3 deliberately promoted **0** C2 fields into runtime priors. Dish-category proposals remain review-only and are not a current user-facing scorer signal. Meal-role proposals also remain review-only, while current meal-type semantics are a hard eligibility scope that must not be duplicated or weakened by inferred soft priors. The current deterministic scorer therefore remains **unchanged**.
+
+Evidence: `data/generated/culinary-brain-c3-prior-calibration-summary-v1.json`. C3 performed **0 protected D1 reads/writes, 0 protected-body reads/exports, 0 C2 candidate promotions**, and made no public/recommendation/nutrition/dietary/source-rights/KC/paid/third-shard/Barbecue change.
+
+The Brain advances to **C4 real-v8018 failure/repair loop**. Protected P3 remains blocked on C4 plus the existing hard ingredient/dietary/allergen/provenance requirements.

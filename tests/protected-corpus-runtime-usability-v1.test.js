@@ -30,17 +30,21 @@ test("programme fails closed if protected evidence drifts", () => {
   assert.ok(validateProtectedCorpusRuntimeUsability(mutated, evidence).some(error => error.includes("recipe count")));
 });
 
-test("programme records C2 pass and advances to bounded C3", () => {
-  assert.equal(config.state, "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_READY");
+test("programme records C3 pass and advances to bounded C4", () => {
+  assert.equal(config.state, "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_READY");
   assert.equal(config.gates.find(gate => gate.id === "P0_EVIDENCE_AND_CONTRACT_AUDIT").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").liveOwnerCanary, "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS");
-  assert.equal(config.nextExecutionSequence[0], "CULINARY_BRAIN_C3_DETERMINISTIC_RECOMMENDATION_PRIOR_CALIBRATION");
-  assert.equal(config.brainCalibration.state, "C2_PASS__C3_READY");
+  assert.equal(config.nextExecutionSequence[0], "CULINARY_BRAIN_C4_REAL_V8018_FAILURE_REPAIR_LOOP");
+  assert.equal(config.brainCalibration.state, "C3_PASS__C4_READY");
   assert.equal(config.brainCalibration.c1Evaluation.entireFrozen500Evaluated, true);
   assert.equal(config.brainCalibration.c1Evaluation.independentHistoricalSemanticGeneralizationDemonstrated, false);
   assert.equal(config.brainCalibration.c1Evaluation.c2AuthorizedScope, "CANDIDATE_ONLY__ABSTENTION_DEFAULT");
-  assert.equal(config.gates.find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION").state, "BLOCKED_ON_C3_AND_HARD_METADATA");
+  assert.equal(config.gates.find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION").state, "BLOCKED_ON_C4_AND_HARD_METADATA");
+  assert.equal(config.brainCalibration.c3Calibration.terminal, "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY");
+  assert.equal(config.brainCalibration.c3Calibration.profileCaseCount, 12);
+  assert.equal(config.brainCalibration.c3Calibration.promotedPriorCount, 0);
+  assert.equal(config.brainCalibration.c3Calibration.c2CandidatesPromoted, false);
   assert.equal(config.gates.find(gate => gate.id === "P2_METADATA_USABILITY_MEASUREMENT").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P2_METADATA_USABILITY_MEASUREMENT").liveAlignmentState, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P2_METADATA_USABILITY_MEASUREMENT").liveAlignmentTerminal, "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS");
