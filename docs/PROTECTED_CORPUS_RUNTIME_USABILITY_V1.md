@@ -204,3 +204,12 @@ The first authenticated owner index-build attempt stopped safely at **0 / 19,268
 The repaired live build advanced to approximately **13k / 19,268** before the Workers Free D1 daily operation quota was exhausted. This is now classified as **PROVIDER_D1_DAILY_LIMIT_HOLD__PARTIAL_INDEX_PRESERVED**, not an index-integrity failure. The canonical P1 implementation remains restart-safe by last indexed recipe ID.
 
 The runtime now records per-batch D1 `rows_written` telemetry and the browser enforces an **80,000 observed rows-written/day** guard against Cloudflare's **100,000/day** free-tier ceiling. The initial FTS population may span more than one UTC quota day; that is acceptable under the zero-paid-infrastructure constraint. P2/C0-C1 do not start until P1 reaches its exact terminal live acceptance.
+
+
+## P2 machine measurement — 2026-09-27
+
+The exact-source/full-v8018 machine measurement passed with terminal marker `PROTECTED_CORPUS_P2_FULL_V8018_EXACT_SOURCE_MEASUREMENT_PASS__LIVE_ALIGNMENT_PENDING`. It consumes only frozen repository evidence from the exact pinned source universe and the P1 terminal canary; it performs **0 protected D1 reads/writes** and exports **0 protected bodies**.
+
+The ranked blocker table is persisted at `data/generated/protected-corpus-p2-metadata-usability-v1.json`. UNKNOWN and AMBIGUOUS remain explicit; no field is inferred to raise coverage. The table records authoritative coverage, user-visible limitation, maximum recipes potentially unlocked by complete authoritative repair, repair difficulty, evidence requirements and the next bounded repair tranche for every frozen P2 priority dimension. Ingredient identity and source provenance are retained as supplemental diagnostics because ingredient identity is a hard-filter/recommendation prerequisite while provenance is already live-proven by P1.
+
+This is not terminal P2 closeout. A final bounded authenticated alignment must prove the live status tuple remains v8018 / 19,268 summaries / 19,268 FTS / 3 structural partials, confirm all frozen C1 500 IDs are present in the protected summary index, preserve source provenance, stay at or below 8 D1 subqueries, perform zero full scans, zero protected-body reads and zero writes. Only that pass may emit `PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS`.
