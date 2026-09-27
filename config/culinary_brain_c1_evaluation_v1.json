@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_BRAIN_C1_EVALUATION_V1",
   "date": "2026-09-27",
-  "state": "CANARY_HOLD__NAMED_FAILURE_CLASS_REPAIR_1_READY",
+  "state": "PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_CANDIDATE_ONLY_READY",
   "protectedCorpusVersion": "v8018",
   "frozenSample": {
     "recipeCount": 500,
@@ -97,7 +97,7 @@
     "thirdShardAuthorized": false,
     "barbecueMutationAuthorized": false
   },
-  "nextGate": "C1_CANARY_BLIND_EVALUATION",
+  "nextGate": "C2_FROZEN_FULL_V8018_CANDIDATE_CLASSIFICATION",
   "calibrationHistory": [
     {
       "attempt": "V1",
@@ -105,6 +105,15 @@
       "terminal": "CULINARY_BRAIN_C1_CANARY_HOLD",
       "precision": 0.875,
       "threshold": 0.9
+    },
+    {
+      "attempt": "V1R1",
+      "evidence": "data/generated/culinary-brain-c1-evaluation-canary-pass-v1r1.json",
+      "terminal": "CULINARY_BRAIN_C1_CANARY_PASS",
+      "precision": 1,
+      "threshold": 0.9,
+      "thresholdChanged": false,
+      "sampleChanged": false
     }
   ],
   "calibrationRepair": {
@@ -116,6 +125,26 @@
       "PRODUCT_FORM_VS_PROCESS_TAXONOMY_PRIORITY",
       "SAUCE_VS_CONDIMENT_FUNCTION_BOUNDARY"
     ],
-    "nextGate": "RERUN_SAME_100_CANARY_THEN_REQUIRE_UNSEEN_FROZEN_REMAINDER_GENERALIZATION"
+    "nextGate": "COMPLETE__TRANSFER_TO_UNSEEN_NEGATIVE_CAPABILITY",
+    "state": "PASS"
+  },
+  "unseenRemainder": {
+    "recipeCount": 400,
+    "referenceCoverageAudit": "data/generated/culinary-brain-c1-reference-coverage-audit-v1.json",
+    "authoritativeSemanticReferenceCells": 0,
+    "input": "data/generated/culinary-brain-c1-unseen-400-input-v1.json",
+    "predictions": "data/generated/culinary-brain-c1-unseen-400-predictions-v1.json",
+    "negativeCapabilityContract": "config/culinary_brain_c1_negative_capability_v1.json",
+    "negativeCapabilityEvidence": "data/generated/culinary-brain-c1-negative-capability-evidence-v1.json",
+    "terminal": "CULINARY_BRAIN_C1_UNSEEN_400_NEGATIVE_CAPABILITY_PASS",
+    "semanticAccuracyMeasurable": false
+  },
+  "combinedCloseout": {
+    "pass": true,
+    "terminal": "CULINARY_BRAIN_C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_CANDIDATE_ONLY_READY",
+    "evidence": "data/generated/culinary-brain-c1-combined-closeout-v1.json",
+    "entireFrozen500Evaluated": true,
+    "c2Scope": "CANDIDATE_ONLY__ABSTENTION_DEFAULT",
+    "independentHistoricalSemanticGeneralizationDemonstrated": false
   }
 }
