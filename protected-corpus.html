@@ -388,7 +388,16 @@
     canaryEvidencePanel.hidden = false;
     canaryEvidenceNode.textContent = 'Running bounded P2 live alignment over the frozen 500-ID sample…';
     try {
-      const result = await apiGet({ action:'p2-live-alignment' });
+      const frozenResponse = await fetch('/data/generated/culinary-brain-c1-exact-sample-freeze-v1.json', { cache:'no-store' });
+      if (!frozenResponse.ok) throw new Error('P2 live alignment: frozen C1 sample asset unavailable');
+      const frozen = await frozenResponse.json();
+      if (
+        frozen?.terminal !== 'CULINARY_BRAIN_C1_EXACT_500_SAMPLE_FROZEN' ||
+        frozen?.protectedCorpusVersion !== 'v8018' ||
+        !Array.isArray(frozen?.recipeIds) ||
+        frozen.recipeIds.length !== 500
+      ) throw new Error('P2 live alignment: frozen C1 sample asset invalid');
+      const result = await apiPost({ action:'p2-live-alignment', recipeIds:frozen.recipeIds });
       requireCanaryEnvelope('P2 live alignment', result);
       if (
         result.terminal !== 'PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS' ||
