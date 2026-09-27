@@ -17,6 +17,7 @@ on:
       - "scripts/run-nutrition-vitamin-applicability-audit.mjs"
       - "data/generated/protected-corpus-p2-metadata-usability-v1.json"
       - "data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json"
+      - "data/generated/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json"
       - ".github/workflows/culinary-brain-c4-hard-authority-recipe-reconciliation-v1.yml"
   workflow_dispatch:
 
@@ -91,6 +92,8 @@ jobs:
             --p2=data/generated/protected-corpus-p2-metadata-usability-v1.json \
             --output=.tmp/culinary-brain-c4-hard-authority-recipe-reconciliation-v1.json \
             --summary=.tmp/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json
+      - name: Verify committed reconciliation summary is reproducible
+        run: cmp .tmp/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json data/generated/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json
       - name: Upload recipe reconciliation evidence
         uses: actions/upload-artifact@v4
         with:
