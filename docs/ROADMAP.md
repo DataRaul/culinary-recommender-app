@@ -861,3 +861,7 @@ The exact **100** policy-complete C4 candidates were reconciled against the curr
 The single near-ready recipe is `unitools-world-recipes-v1_1_0::tortilla-espanola`. It is ready on every measured hard field except explicit mapping from source difficulty label `MEDIUM` to the app's runtime 1–4 skill scale. The remaining **99** historical candidates lack authoritative meal role, total time and difficulty and remain fail-closed.
 
 Terminal: `CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_PASS`. Evidence: `data/generated/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json`. Next: `C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1`; no admission/runtime/D1/Barbecue change.
+
+### 2026-09-28 — C4 UniTools canonical gap design
+
+The exact pinned 501-recipe UniTools cohort was remeasured after the high-leverage alias review. Three recipes have precisely one unresolved ingredient and no conflict: `pao-de-queijo` (tapioca starch), `cachapas` (soft white cheese), and `chapati-kenyan` (unspecified flour). The selected bounded next gate is an explicit new tapioca-starch canonical identity and hard-policy review for `pao-de-queijo`; ambiguous cheese and flour remain held. Terminal: `CULINARY_BRAIN_C4_UNITOOLS_CANONICAL_GAP_DESIGN_PASS__TAPIOCA_IDENTITY_REVIEW_READY`. Evidence: `data/generated/culinary-brain-c4-unitools-canonical-gap-design-summary-v1.json`. No authority or admission changed. C4/P3 remain open pending separately earned gates.

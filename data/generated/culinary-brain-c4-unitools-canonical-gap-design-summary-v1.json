@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_UNITOOLS_CANONICAL_GAP_DESIGN_V1",
+  "date": "2026-09-28",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C4_UNITOOLS_CANONICAL_GAP_DESIGN_PASS__TAPIOCA_IDENTITY_REVIEW_READY",
+  "protectedCorpusVersion": "v8018",
+  "sourceCohortId": "unitools-world-recipes-v1_1_0",
+  "sourceRecipeCount": 501,
+  "postAliasResolvedOccurrences": 2638,
+  "postAliasFullyMappedRecipes": 1,
+  "oneUnresolvedIngredientRecipes": [
+    {
+      "slug": "cachapas",
+      "sourceId": "cheese",
+      "sourceName": "Soft white cheese"
+    },
+    {
+      "slug": "chapati-kenyan",
+      "sourceId": "flour",
+      "sourceName": "Flour"
+    },
+    {
+      "slug": "pao-de-queijo",
+      "sourceId": "tapioca",
+      "sourceName": "Tapioca starch"
+    }
+  ],
+  "selectedGap": {
+    "sourceId": "tapioca",
+    "sourceName": "Tapioca starch",
+    "recipeSlug": "pao-de-queijo",
+    "reason": "EXACT_NAMED_SINGLE_INGREDIENT_GAP_WITHOUT_EXISTING_CANONICAL_ID",
+    "potentialNewIdentityReadyRecipes": 1
+  },
+  "heldGaps": [
+    {
+      "sourceId": "cheese",
+      "sourceName": "Soft white cheese",
+      "recipeSlug": "cachapas",
+      "reason": "CHEESE_FORMULATION_AMBIGUOUS"
+    },
+    {
+      "sourceId": "flour",
+      "sourceName": "Flour",
+      "recipeSlug": "chapati-kenyan",
+      "reason": "FLOUR_GRAIN_AND_ALLERGEN_AMBIGUOUS"
+    }
+  ],
+  "newCanonicalIngredients": 0,
+  "newFullyMappedRecipes": 0,
+  "hardAuthorityPromoted": false,
+  "recommendationAdmissionChanged": false,
+  "publicRuntimeChanged": false,
+  "nextGate": "C4_TAPIOCA_CANONICAL_IDENTITY_AND_HARD_POLICY_REVIEW_V1"
+}
