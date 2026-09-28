@@ -1,0 +1,20 @@
+import { execFileSync } from "node:child_process";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
+import { UNITOOLS_STEP8F_RECIPES } from "../src/data/external/unitools-step8f-v1.js";
+import { buildC4UnitoolsDifficultyReuseReview, validateC4UnitoolsDifficultyReuseSummary } from "./culinary-brain-c4-unitools-difficulty-adapter-reuse-review-core.mjs";
+
+const args=Object.fromEntries(process.argv.slice(2).map(arg=>{const [key,...rest]=arg.replace(/^--/,"").split("=");return [key,rest.join("=")];}));
+for(const key of ["contract","design","step8f","unitools","summary"]) if(!args[key]) throw new Error("C4_UNITOOLS_DIFFICULTY_REUSE_ARGUMENT_REQUIRED_"+key);
+const read=path=>readFile(resolve(path),"utf8").then(JSON.parse);
+const [contract,design,step8f,dataset]=await Promise.all([read(args.contract),read(args.design),read(args.step8f),read(resolve(args.unitools,"unitools-recipes-v1.json"))]);
+const sourceRecipe=(dataset.recipes||[]).find(row=>row.slug===contract.sourceSlug);
+if(!sourceRecipe) throw new Error("C4_UNITOOLS_DIFFICULTY_REUSE_SOURCE_RECIPE_MISSING");
+const publicRecipe=UNITOOLS_STEP8F_RECIPES.find(row=>row.id===contract.existingPublicCanonicalRecipeId);
+const observedBlobSha=execFileSync("git",["hash-object",resolve(args.unitools,"unitools-recipes-v1.json")],{encoding:"utf8"}).trim();
+const summary=buildC4UnitoolsDifficultyReuseReview({contract,design,step8f,sourceRecipe,publicRecipe,observedBlobSha});
+const errors=validateC4UnitoolsDifficultyReuseSummary(summary);
+if(errors.length) throw new Error("C4_UNITOOLS_DIFFICULTY_REUSE_SUMMARY_INVALID__"+errors.join(","));
+await mkdir(dirname(resolve(args.summary)),{recursive:true});
+await writeFile(resolve(args.summary),JSON.stringify(summary,null,2)+"\n","utf8");
+process.stdout.write("C4_UNITOOLS_DIFFICULTY_REUSE="+JSON.stringify({terminal:summary.terminal,runtimeDifficulty:summary.adapter.runtimeDifficulty,newProtectedRuntimeHardMetadataReadyCount:summary.readiness.newProtectedRuntimeHardMetadataReadyCount,netNewPublicRecipeCount:summary.readiness.netNewPublicRecipeCount,nextGate:summary.nextGate})+"\n");
