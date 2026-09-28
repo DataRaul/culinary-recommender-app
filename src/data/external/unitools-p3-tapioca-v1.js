@@ -1,0 +1,211 @@
+export const UNITOOLS_P3_TAPIOCA_SOURCE = Object.freeze({
+  id: "UNITOOLS_P3_TAPIOCA_PUBLIC_V1",
+  name: "UniTools World Recipes Dataset",
+  sourceVersionId: "1.1.0@1d09e9548d957dd0375301146a86dddf5e269c1b:a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+  license: "CC-BY-SA-4.0",
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+  runtimeFetch: false,
+  imagesBundled: false,
+  sourceNutritionImportedAsAuthority: false,
+  activationGate: "C4_TAPIOCA_P3_OWNER_ACTIVATION_AUTHORIZED_2026_09_28",
+  activatedRecipeIds: ["unitools_pao_de_queijo"]
+});
+
+export const UNITOOLS_P3_TAPIOCA_RECIPES = Object.freeze([
+  Object.freeze({
+  "id": "unitools_pao_de_queijo",
+  "identity": {
+    "canonicalTitle": "Pão de queijo"
+  },
+  "provenance": {
+    "sourceType": "EXTERNAL_OPEN_RECIPE",
+    "sourceName": "UniTools World Recipes Dataset",
+    "sourceItemId": "pao-de-queijo",
+    "sourceVersionId": "1.1.0@1d09e9548d957dd0375301146a86dddf5e269c1b:a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "sourceUrl": "https://github.com/farcrak/unitools-recipes/blob/1d09e9548d957dd0375301146a86dddf5e269c1b/unitools-recipes-v1.json#pao-de-queijo",
+    "sourceRevisionUrl": "https://github.com/farcrak/unitools-recipes/blob/1d09e9548d957dd0375301146a86dddf5e269c1b/unitools-recipes-v1.json#pao-de-queijo",
+    "attribution": "UniTools — theunitools.com",
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "modifiedFromSource": true,
+    "transformation": "Normalized into the Culinary Recommender schema under the owner-authorized bounded P3 activation contract.",
+    "sourceCategories": [
+      "bread"
+    ],
+    "admissionState": "P3_BOUNDED_ACTIVATED_RECOMMENDATION_ELIGIBLE",
+    "sourceRevisionId": "1.1.0@1d09e954"
+  },
+  "corpusMetadata": {
+    "corpus": "protected_v8018_p3_activated_public_v1",
+    "protectedSourceKey": "unitools-world-recipes-v1_1_0::pao-de-queijo",
+    "sourceMetadataCompleteness": "C4_EXACT_REVIEWED_HARD_METADATA",
+    "admissionState": "P3_BOUNDED_ACTIVATED_RECOMMENDATION_ELIGIBLE"
+  },
+  "governance": {
+    "recommendationState": "ELIGIBLE",
+    "candidateSemanticsOnly": false,
+    "runtimeActivationAuthorized": true,
+    "activationGate": "C4_TAPIOCA_P3_OWNER_ACTIVATION_AUTHORIZED_2026_09_28",
+    "unknownIsNotZero": true,
+    "sourceNutritionIgnoredForAuthority": true,
+    "sourceDietaryMetadataIgnoredForAuthority": true,
+    "sourceScalingMetadataIgnoredForAuthority": true,
+    "mediaExcluded": true
+  },
+  "culinary": {
+    "cuisine": "Brazilian",
+    "mealTypes": [
+      "breakfast",
+      "snack"
+    ],
+    "difficulty": 3,
+    "techniqueTags": [],
+    "activeAttention": 3,
+    "timingSensitivity": 3,
+    "simultaneousTasks": 1,
+    "finishingRisk": 3,
+    "errorRecovery": 2,
+    "equipmentDependence": 1
+  },
+  "time": {
+    "prepMinutes": 25,
+    "activeMinutes": null,
+    "passiveMinutes": null,
+    "totalMinutes": 50,
+    "sourceState": "SOURCE_EXPLICIT_PREP_PLUS_COOK"
+  },
+  "ingredients": [
+    {
+      "canonicalIngredientId": "tapioca_starch",
+      "quantity": 500,
+      "unit": "g",
+      "required": true,
+      "preparation": "",
+      "sourceText": "Tapioca starch"
+    },
+    {
+      "canonicalIngredientId": "milk",
+      "quantity": 250,
+      "unit": "ml",
+      "required": true,
+      "preparation": "",
+      "sourceText": "Milk"
+    },
+    {
+      "canonicalIngredientId": "water",
+      "quantity": 100,
+      "unit": "ml",
+      "required": true,
+      "preparation": "",
+      "sourceText": "Water"
+    },
+    {
+      "canonicalIngredientId": "neutral_oil",
+      "quantity": 120,
+      "unit": "ml",
+      "required": true,
+      "preparation": "",
+      "sourceText": "Neutral oil"
+    },
+    {
+      "canonicalIngredientId": "eggs",
+      "quantity": 2,
+      "unit": "piece",
+      "required": true,
+      "preparation": "",
+      "sourceText": "Eggs"
+    },
+    {
+      "canonicalIngredientId": "parmesan",
+      "quantity": 200,
+      "unit": "g",
+      "required": true,
+      "preparation": "grated",
+      "sourceText": "Parmesan"
+    },
+    {
+      "canonicalIngredientId": "mozzarella",
+      "quantity": 100,
+      "unit": "g",
+      "required": true,
+      "preparation": "grated",
+      "sourceText": "Mozzarella"
+    },
+    {
+      "canonicalIngredientId": "salt",
+      "quantity": 1,
+      "unit": "tsp",
+      "required": true,
+      "preparation": "",
+      "sourceText": "Salt"
+    }
+  ],
+  "instructions": [
+    {
+      "text": "Bring the milk, water, oil and salt to just below boiling."
+    },
+    {
+      "text": "Pour all the hot liquid into the starch at once and stir with a spatula. The mixture looks lumpy and odd; that is correct. Let it cool to warm."
+    },
+    {
+      "text": "Work in the eggs one at a time, then both cheeses. Knead to an even sticky mass — hands are easier than a spoon."
+    },
+    {
+      "text": "With wet hands roll walnut-sized balls and space them three centimetres apart on a tray."
+    },
+    {
+      "text": "Bake at 200 °C for twenty minutes until golden. Do not open the door for the first fifteen: the steam escapes and they collapse."
+    }
+  ],
+  "equipment": [],
+  "serving": {
+    "servings": 6,
+    "sourceState": "SOURCE_EXPLICIT"
+  },
+  "nutrition": {
+    "perServing": {
+      "energyKcal": null,
+      "proteinG": null,
+      "carbohydrateG": null,
+      "fatG": null,
+      "fibreG": null
+    },
+    "estimationState": "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED",
+    "confidence": "unknown",
+    "provenance": "UniTools nutrition metadata is not imported as NutritionSource authority."
+  },
+  "dietaryTags": [
+    "unrestricted"
+  ],
+  "allergySafety": {
+    "declaredAllergens": [
+      "egg",
+      "milk"
+    ],
+    "basis": "EXACT_C4_REVIEW_FOR_CURRENT_MAPPED_PROFILE_TOKENS_ONLY"
+  },
+  "economics": {
+    "costTier": 2,
+    "basis": "PROJECT_HEURISTIC_NOT_SOURCE_METADATA",
+    "note": "Neutral preactivation scorer input; not a UniTools price claim."
+  },
+  "convenience": {
+    "mealPrepSuitability": 2,
+    "batchSuitability": 2,
+    "leftoverSuitability": 2,
+    "portability": 2
+  },
+  "discovery": {
+    "flavourProfile": [],
+    "novelty": 2,
+    "techniqueLearningValue": 3,
+    "provenance": "Neutral project runtime metadata, separately identified from source facts."
+  },
+  "geography": {
+    "region": null,
+    "country": "Brazil",
+    "sourceState": "SOURCE_COUNTRY_CODE_REVIEWED"
+  },
+  "mainProtein": null
+})
+]);
