@@ -46,10 +46,10 @@ test("golden fingerprint and synthetic identity are deterministic", () => {
   assert.equal(golden[0].provenance.benchmarkSynthetic, undefined);
 });
 
-test("Step 1 keeps the frozen 84-record oracle separate from the current 85-record public benchmark seed", () => {
+test("Step 1 keeps the frozen 84-record oracle separate from the current 86-record public benchmark seed", () => {
   assert.equal(ALL_RECIPES.length, 84);
-  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
-  assert.equal(PUBLIC_RUNTIME_RECIPES.length - ALL_RECIPES.length, 1);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 86);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length - ALL_RECIPES.length, 2);
 });
 
 test("index keys preserve hard-filter retrieval dimensions", () => {
