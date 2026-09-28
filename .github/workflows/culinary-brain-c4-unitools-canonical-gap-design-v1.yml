@@ -1,0 +1,29 @@
+name: Culinary Brain C4 UniTools canonical gap design V1
+on:
+  pull_request:
+    paths:
+      - 'scripts/culinary-brain-c4-unitools-canonical-gap-design-core.mjs'
+      - 'scripts/run-culinary-brain-c4-unitools-canonical-gap-design-v1.mjs'
+      - 'tests/culinary-brain-c4-unitools-canonical-gap-design-v1.test.js'
+      - 'data/generated/culinary-brain-c4-unitools-canonical-gap-design-summary-v1.json'
+      - '.github/workflows/culinary-brain-c4-unitools-canonical-gap-design-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  design:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Checkout exact pinned source
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+      - name: Verify exact gap evidence
+        run: |
+          node scripts/run-culinary-brain-c4-unitools-canonical-gap-design-v1.mjs --unitools=.tmp/unitools --summary=.tmp/c4-canonical-gap.json
+          cmp .tmp/c4-canonical-gap.json data/generated/culinary-brain-c4-unitools-canonical-gap-design-summary-v1.json
+          node --test tests/culinary-brain-c4-unitools-canonical-gap-design-v1.test.js
