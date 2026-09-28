@@ -1,0 +1,44 @@
+name: Culinary Brain C4 bounded P3 duplicate-safe admission V1
+
+on:
+  pull_request:
+    paths:
+      - "config/culinary_brain_c4_bounded_p3_duplicate_safe_admission_contract_v1.json"
+      - "scripts/culinary-brain-c4-bounded-p3-duplicate-safe-admission-core.mjs"
+      - "tests/culinary-brain-c4-bounded-p3-duplicate-safe-admission-v1.test.js"
+      - "data/generated/culinary-brain-c4-bounded-p3-duplicate-safe-admission-summary-v1.json"
+      - "data/generated/culinary-brain-c4-unitools-difficulty-adapter-reuse-review-summary-v1.json"
+      - "data/generated/step8f/public-runtime-activation-pass.json"
+      - ".github/workflows/culinary-brain-c4-bounded-p3-duplicate-safe-admission-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  admission:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate duplicate-safe admission
+        run: node --test tests/culinary-brain-c4-bounded-p3-duplicate-safe-admission-v1.test.js
+      - name: Reproduce committed summary
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile, writeFile } from "node:fs/promises";
+          import { buildC4P3DuplicateSafeAdmission, validateC4P3DuplicateSafeSummary } from "./scripts/culinary-brain-c4-bounded-p3-duplicate-safe-admission-core.mjs";
+          const read=p=>readFile(p,"utf8").then(JSON.parse);
+          const [contract,reuseReview,step8f]=await Promise.all([
+            read("config/culinary_brain_c4_bounded_p3_duplicate_safe_admission_contract_v1.json"),
+            read("data/generated/culinary-brain-c4-unitools-difficulty-adapter-reuse-review-summary-v1.json"),
+            read("data/generated/step8f/public-runtime-activation-pass.json")
+          ]);
+          const summary=buildC4P3DuplicateSafeAdmission({contract,reuseReview,step8f});
+          const errors=validateC4P3DuplicateSafeSummary(summary);
+          if(errors.length) throw new Error(errors.join(","));
+          await writeFile("/tmp/c4-p3-duplicate-safe-summary.json",JSON.stringify(summary,null,2)+"\n");
+          NODE
+          cmp /tmp/c4-p3-duplicate-safe-summary.json data/generated/culinary-brain-c4-bounded-p3-duplicate-safe-admission-summary-v1.json
