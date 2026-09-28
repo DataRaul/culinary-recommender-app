@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { RecipeSource } from "../src/core/contracts.js";
-import { ALL_RECIPES, PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
+import { ALL_RECIPES, PRE_P3_PUBLIC_RUNTIME_RECIPES, PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
 import { fingerprintGoldenCorpus } from "../scripts/corpus-scale-step1-core.mjs";
 import {
   PortableJsonRecipeSourceV2,
@@ -191,7 +191,7 @@ test("RecipeSource V2 compatibility fixture stays bound to the reviewed golden c
 });
 
 
-const CURRENT_PUBLIC_RUNTIME_FINGERPRINT = Object.freeze({
+const PRE_P3_PUBLIC_RUNTIME_FINGERPRINT = Object.freeze({
   recipeCount: 85,
   idsSha256: "fbd3e7121f741db2f637fcea917d07ad410c189a0d6c2f1394c23f83ed5bc025",
   recordsSha256: "80da544e464cb83422f80e6a908ab37c863c8e22ee9654e97f22ef2cd8bee7f1"
