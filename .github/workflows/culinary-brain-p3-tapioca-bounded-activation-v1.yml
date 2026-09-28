@@ -1,0 +1,35 @@
+name: Culinary Brain P3 tapioca bounded activation V1
+on:
+  pull_request:
+    paths:
+      - 'config/culinary_brain_p3_tapioca_bounded_activation_v1.json'
+      - 'src/data/external/unitools-p3-tapioca-v1.js'
+      - 'src/data/corpus-v1.js'
+      - 'src/data/ingredients.js'
+      - 'data/generated/culinary-brain-p3-tapioca-bounded-activation-summary-v1.json'
+      - 'scripts/culinary-brain-p3-tapioca-bounded-activation-core.mjs'
+      - 'scripts/run-culinary-brain-p3-tapioca-bounded-activation-v1.mjs'
+      - 'tests/culinary-brain-p3-tapioca-bounded-activation-v1.test.js'
+      - 'scripts/browser-p3-tapioca-bounded-activation.mjs'
+      - '.github/workflows/culinary-brain-p3-tapioca-bounded-activation-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  p3-activation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Pin exact UniTools 1.1.0 source
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+      - name: Verify owner-authorized bounded P3 activation
+        run: |
+          node scripts/run-culinary-brain-p3-tapioca-bounded-activation-v1.mjs --unitools=.tmp/unitools --output=/tmp/p3-activation-summary.json
+          cmp /tmp/p3-activation-summary.json data/generated/culinary-brain-p3-tapioca-bounded-activation-summary-v1.json
+          node --test tests/culinary-brain-p3-tapioca-bounded-activation-v1.test.js
