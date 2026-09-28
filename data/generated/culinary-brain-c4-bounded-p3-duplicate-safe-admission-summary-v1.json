@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_BOUNDED_P3_DUPLICATE_SAFE_ADMISSION_SUMMARY_V1",
+  "date": "2026-09-28",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C4_BOUNDED_P3_DUPLICATE_SAFE_ADMISSION_PASS__EXISTING_CANONICAL_ALIGNMENT_ONLY",
+  "protectedCorpusVersion": "v8018",
+  "protectedReadiness": {
+    "hardMetadataReadyCount": 1,
+    "recipeKeys": [
+      "unitools-world-recipes-v1_1_0::tortilla-espanola"
+    ]
+  },
+  "canonicalAlignment": {
+    "protectedRecipeKey": "unitools-world-recipes-v1_1_0::tortilla-espanola",
+    "publicCanonicalRecipeId": "unitools_tortilla_espanola",
+    "disposition": "ALIGN_TO_EXISTING_PUBLIC_CANONICAL_IDENTITY__DO_NOT_CREATE_SECOND_RUNTIME_RECIPE",
+    "existingPublicRuntimeRecipeCount": 85,
+    "netNewPublicRecipeCount": 0,
+    "publicRuntimeRecipeCountAfter": 85,
+    "duplicateRuntimeRecordCreated": false
+  },
+  "p3": {
+    "newlyAdmittedRuntimeRecipeCount": 0,
+    "existingCanonicalAlignmentCount": 1,
+    "remainingPolicyCompleteBlockedCount": 99,
+    "policyHeldCount": 12,
+    "progressiveProtectedRecommendationStillRequiresDistinctReadyCandidates": true
+  },
+  "recommendationAdmissionChanged": false,
+  "publicRuntimeChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "duplicateRuntimeRecipeCreated": false,
+    "publicRuntimeWidened": false,
+    "nutritionAuthorityPromoted": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "C4_NEXT_REPAIR_COHORT_DESIGN_V1"
+}
