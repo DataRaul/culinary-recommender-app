@@ -32,7 +32,7 @@ export function validateC4UnitoolsAliasReviewContract(contract){
   if(auth.exactCohortReviewedAliasOverlayAuthorizedOnPass!==true) errors.push("overlayAuthority");
   for(const key of ["globalIngredientAliasIndexMutationAuthorized","otherSourceCohortReuseAuthorized","hardDietaryAllergenAuthorityPromoted","recommendationAdmissionAuthorized","publicRuntimeWideningAuthorized","protectedD1ReadAuthorized","protectedD1WriteAuthorized","protectedBodyRewriteAuthorized","knowledgeCoreWriteAuthorized","paidModelOrApiAuthorized","thirdShardAuthorized","barbecueMutationAuthorized"]) if(auth[key]!==false) errors.push("authority."+key);
   if(contract?.targetTerminal!==C4_UNITOOLS_ALIAS_REVIEW_TERMINAL) errors.push("targetTerminal");
-  if(contract?.nextGate!=="C4_UNITOOLS_ALIAS_UNLOCKED_HARD_AUTHORITY_AUDIT_V1") errors.push("nextGate");
+  if(contract?.nextGate!=="C4_UNITOOLS_CANONICAL_GAP_DESIGN_V1") errors.push("nextGate");
   return [...new Set(errors)].sort();
 }
 
