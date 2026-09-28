@@ -196,3 +196,7 @@ The Brain advances to **C4 real-v8018 failure/repair loop**. Protected P3 remain
 ### 2026-09-28 — C4 bounded closeout
 
 C4 is **COMPLETE / PASS WITH CANDIDATE-ONLY LIMIT** at `CULINARY_BRAIN_C4_BOUNDED_FAILURE_REPAIR_PASS__ONE_DISTINCT_P3_CANDIDATE_READY`. The pinned v8018 failure matrix and exact repair chain yielded one distinct protected candidate (`unitools-world-recipes-v1_1_0::pao-de-queijo`) with reviewed hard-metadata proposal. The identity overlay is inactive and P3 has admitted zero new recipes. See `docs/CULINARY_BRAIN_C4_BOUNDED_CLOSEOUT_V1.md`; next is the bounded P3 admission contract and separate browser/live acceptance.
+
+### 2026-09-28 — P3 tapioca bounded preactivation contract
+
+The distinct `pao-de-queijo` C4 result now has a candidate-only P3 preactivation contract. The serialized candidate remains outside the 85-recipe public runtime, uses an exact-recipe-only `tapioca_starch` identity, keeps source nutrition and source dietary claims non-authoritative, and requires browser hard-filter acceptance. Terminal on green acceptance: `CULINARY_BRAIN_C4_TAPIOCA_BOUNDED_P3_CONTRACT_PASS__PREACTIVATION_READY`. Runtime activation remains separately owner-gated.

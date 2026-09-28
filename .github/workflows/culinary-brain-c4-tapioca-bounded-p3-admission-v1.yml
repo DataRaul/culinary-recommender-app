@@ -1,0 +1,32 @@
+name: Culinary Brain C4 tapioca bounded P3 contract V1
+on:
+  pull_request:
+    paths:
+      - 'config/culinary_brain_c4_tapioca_bounded_p3_admission_contract_v1.json'
+      - 'data/generated/culinary-brain-c4-tapioca-p3-candidate-v1.json'
+      - 'data/generated/culinary-brain-c4-tapioca-bounded-p3-admission-summary-v1.json'
+      - 'scripts/culinary-brain-c4-tapioca-bounded-p3-admission-core.mjs'
+      - 'scripts/run-culinary-brain-c4-tapioca-bounded-p3-admission-v1.mjs'
+      - 'tests/culinary-brain-c4-tapioca-bounded-p3-admission-v1.test.js'
+      - '.github/workflows/culinary-brain-c4-tapioca-bounded-p3-admission-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  p3-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Pin exact UniTools 1.1.0 source
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+      - name: Verify exact source-backed P3 preactivation contract
+        run: |
+          node scripts/run-culinary-brain-c4-tapioca-bounded-p3-admission-v1.mjs --unitools=.tmp/unitools --output=/tmp/p3-summary.json
+          cmp /tmp/p3-summary.json data/generated/culinary-brain-c4-tapioca-bounded-p3-admission-summary-v1.json
+          node --test tests/culinary-brain-c4-tapioca-bounded-p3-admission-v1.test.js
