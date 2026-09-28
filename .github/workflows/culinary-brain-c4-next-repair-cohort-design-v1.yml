@@ -8,7 +8,8 @@ on:
       - "scripts/run-culinary-brain-c4-next-repair-cohort-design-v1.mjs"
       - "tests/culinary-brain-c4-next-repair-cohort-design-v1.test.js"
       - "data/generated/culinary-brain-c4-bounded-p3-duplicate-safe-admission-summary-v1.json"
-      - "config/corpus_scale_step8c_sources.json"
+      - "config/corpus_scale_step8d_contract.json"
+      - "scripts/corpus-scale-step8d-core.mjs"
       - "scripts/corpus-scale-step8e-core.mjs"
       - ".github/workflows/culinary-brain-c4-next-repair-cohort-design-v1.yml"
   workflow_dispatch:
@@ -35,7 +36,7 @@ jobs:
           node scripts/run-culinary-brain-c4-next-repair-cohort-design-v1.mjs \
             --contract=config/culinary_brain_c4_next_repair_cohort_design_v1.json \
             --p3=data/generated/culinary-brain-c4-bounded-p3-duplicate-safe-admission-summary-v1.json \
-            --sources=config/corpus_scale_step8c_sources.json \
+            --step8d=config/corpus_scale_step8d_contract.json \
             --unitools=.tmp/unitools \
             --summary=.tmp/culinary-brain-c4-next-repair-cohort-design-summary-v1.json
       - name: Upload measured design evidence
