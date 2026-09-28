@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
   "date": "2026-09-28",
-  "state": "C0_PASS__P2_PASS__C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_PASS__C3_PASS__C4_BOUNDED_PASS__P3_PREACTIVATION_READY",
+  "state": "C0_PASS__P2_PASS__C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_PASS__C3_PASS__C4_BOUNDED_PASS__P3_BOUNDED_ACTIVATION_PASS__P4_READY",
   "pattern": "FITNESS_BRAIN_CALIBRATION_ANALOGUE",
   "knowledgeCoreDomain": "culinary_nutrition",
   "runtimeDependencyAuthorized": false,
@@ -106,7 +106,7 @@
   },
   "postP1Execution": {
     "p1Gate": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS",
-    "state": "P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_RECONCILIATION_PASS__HARD_METADATA_REPAIR_DESIGN_READY",
+    "state": "P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_BOUNDED_PASS__P3_BOUNDED_ACTIVATION_PASS__P4_READY",
     "c1ExactSampleFreeze": {
       "terminal": "CULINARY_BRAIN_C1_EXACT_500_SAMPLE_FROZEN",
       "protectedCorpusVersion": "v8018",
@@ -122,15 +122,15 @@
       }
     },
     "next": [
-      "C4_TAPIOCA_BOUNDED_P3_ADMISSION_CONTRACT_V1"
+      "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
     ],
     "boundaries": {
       "protectedD1ReadsPerformed": 0,
       "protectedD1WritesPerformed": 0,
       "protectedBodiesPersistedOrExported": 0,
-      "publicRuntimeChanged": false,
-      "recommendationBehaviorChanged": false,
-      "recommendationAuthorityWidened": false,
+      "publicRuntimeChanged": true,
+      "recommendationBehaviorChanged": true,
+      "recommendationAuthorityWidened": true,
       "knowledgeCoreWritePerformed": false,
       "paidModelOrApiUsed": false,
       "thirdShardUsed": false,
@@ -303,5 +303,20 @@
     "runtimeActivationAuthorized": false,
     "publicRuntimeWideningCount": 0,
     "nextGate": "C4_TAPIOCA_P3_OWNER_ACTIVATION_AUTHORIZATION"
+  },
+  "p3TapiocaActivation": {
+    "terminal": "CULINARY_BRAIN_P3_TAPIOCA_BOUNDED_ACTIVATION_PASS__P4_READY",
+    "evidence": "data/generated/culinary-brain-p3-tapioca-bounded-activation-summary-v1.json",
+    "candidateId": "unitools_pao_de_queijo",
+    "protectedSourceKey": "unitools-world-recipes-v1_1_0::pao-de-queijo",
+    "ownerActivationAuthorized": true,
+    "publicRuntimeRecipeCountBefore": 85,
+    "publicRuntimeRecipeCountAfter": 86,
+    "publicExternalRecipeCountAfter": 10,
+    "activatedRecipeCount": 1,
+    "exactCanonicalIngredientIdentity": "tapioca_starch",
+    "automaticRecommendationAdmissionAuthorized": false,
+    "furtherProtectedRecipeAdmissionAuthorized": false,
+    "nextGate": "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
   }
 }
