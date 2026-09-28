@@ -1,0 +1,42 @@
+name: Culinary Brain C4 UniTools difficulty adapter reuse review V1
+
+on:
+  pull_request:
+    paths:
+      - "config/culinary_brain_c4_unitools_difficulty_adapter_reuse_review_v1.json"
+      - "scripts/culinary-brain-c4-unitools-difficulty-adapter-reuse-review-core.mjs"
+      - "scripts/run-culinary-brain-c4-unitools-difficulty-adapter-reuse-review-v1.mjs"
+      - "tests/culinary-brain-c4-unitools-difficulty-adapter-reuse-review-v1.test.js"
+      - "data/generated/culinary-brain-c4-unitools-difficulty-adapter-reuse-review-summary-v1.json"
+      - "data/generated/culinary-brain-c4-remaining-hard-metadata-repair-design-summary-v1.json"
+      - "data/generated/step8f/public-runtime-activation-pass.json"
+      - "src/data/external/unitools-step8f-v1.js"
+      - ".github/workflows/culinary-brain-c4-unitools-difficulty-adapter-reuse-review-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run bounded reuse-review tests
+        run: node --test tests/culinary-brain-c4-unitools-difficulty-adapter-reuse-review-v1.test.js
+      - name: Checkout exact pinned UniTools source
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+      - name: Reproduce exact review summary
+        run: |
+          node scripts/run-culinary-brain-c4-unitools-difficulty-adapter-reuse-review-v1.mjs \
+            --contract=config/culinary_brain_c4_unitools_difficulty_adapter_reuse_review_v1.json \
+            --design=data/generated/culinary-brain-c4-remaining-hard-metadata-repair-design-summary-v1.json \
+            --step8f=data/generated/step8f/public-runtime-activation-pass.json \
+            --unitools=.tmp/unitools \
+            --summary=.tmp/culinary-brain-c4-unitools-difficulty-adapter-reuse-review-summary-v1.json
+          cmp .tmp/culinary-brain-c4-unitools-difficulty-adapter-reuse-review-summary-v1.json data/generated/culinary-brain-c4-unitools-difficulty-adapter-reuse-review-summary-v1.json
