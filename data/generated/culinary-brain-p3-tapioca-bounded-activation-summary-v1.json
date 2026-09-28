@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_P3_TAPIOCA_BOUNDED_ACTIVATION_SUMMARY_V1",
+  "date": "2026-09-28",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_P3_TAPIOCA_BOUNDED_ACTIVATION_PASS__P4_READY",
+  "protectedCorpusVersion": "v8018",
+  "ownerAuthorization": {
+    "received": true,
+    "scope": [
+      "unitools_pao_de_queijo"
+    ]
+  },
+  "sourceKey": "unitools-world-recipes-v1_1_0::pao-de-queijo",
+  "candidateId": "unitools_pao_de_queijo",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "publicRuntime": {
+    "recipeCountBefore": 85,
+    "recipeCountAfter": 86,
+    "publicExternalCountBefore": 9,
+    "publicExternalCountAfter": 10,
+    "activatedCandidateCount": 1
+  },
+  "hardSafety": {
+    "declaredAllergens": [
+      "egg",
+      "milk"
+    ],
+    "dietaryTags": [
+      "unrestricted"
+    ],
+    "reviewedMealTypes": [
+      "breakfast",
+      "snack"
+    ],
+    "exactCanonicalIngredientIdentity": "tapioca_starch",
+    "globalAliasWidening": false
+  },
+  "provenance": {
+    "license": "CC-BY-SA-4.0",
+    "attribution": "UniTools — theunitools.com",
+    "sourceNutritionImported": false
+  },
+  "boundaries": {
+    "automaticRecommendationAdmissionAuthorized": false,
+    "furtherProtectedRecipeAdmissionAuthorized": false,
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodyRewrites": 0,
+    "knowledgeCoreWrites": 0,
+    "paidModelOrApi": false,
+    "thirdShard": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+}
