@@ -3,6 +3,7 @@ import { EXPANDED_RECIPES } from "./recipes-v1.js";
 import { SEARCH_COVERAGE_RECIPES } from "./recipes-v1-search.js";
 import { WIKIBOOKS_GATE_F_RECIPES } from "./external/wikibooks-gate-f-v1.js";
 import { UNITOOLS_STEP8F_RECIPES } from "./external/unitools-step8f-v1.js";
+import { UNITOOLS_P3_TAPIOCA_RECIPES } from "./external/unitools-p3-tapioca-v1.js";
 
 const existingIds = new Set(RECIPES.map(recipe => recipe.id));
 for (const recipe of [...EXPANDED_RECIPES, ...SEARCH_COVERAGE_RECIPES]) {
@@ -64,6 +65,11 @@ export const ACTIVATED_EXTERNAL_RECIPES = Object.freeze(UNITOOLS_STEP8F_RECIPES.
   publicIds.add(recipe.id);
   return true;
 }));
-export const PUBLIC_EXTERNAL_RECIPES = Object.freeze([...EXTERNAL_RECIPES, ...ACTIVATED_EXTERNAL_RECIPES]);
-export const PUBLIC_RUNTIME_RECIPES = Object.freeze([...CURRENT_PUBLIC_BASE_RECIPES, ...ACTIVATED_EXTERNAL_RECIPES]);
+export const P3_ACTIVATED_EXTERNAL_RECIPES = Object.freeze(UNITOOLS_P3_TAPIOCA_RECIPES.filter(recipe => {
+  if (publicIds.has(recipe.id)) return false;
+  publicIds.add(recipe.id);
+  return true;
+}));
+export const PUBLIC_EXTERNAL_RECIPES = Object.freeze([...EXTERNAL_RECIPES, ...ACTIVATED_EXTERNAL_RECIPES, ...P3_ACTIVATED_EXTERNAL_RECIPES]);
+export const PUBLIC_RUNTIME_RECIPES = Object.freeze([...CURRENT_PUBLIC_BASE_RECIPES, ...ACTIVATED_EXTERNAL_RECIPES, ...P3_ACTIVATED_EXTERNAL_RECIPES]);
 export const publicRecipeById = id => PUBLIC_RUNTIME_RECIPES.find(recipe => recipe.id === id) || null;
