@@ -89,7 +89,7 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     && c2.hardAuthorityViolations === 0;
   const c3 = brain.c3Calibration || {};
   const c3Passed = c2Passed
-    && ["C3_PASS__C4_READY","C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY","C4_POLICY_REVIEW_PASS__RECIPE_RECONCILIATION_READY","C4_RECONCILIATION_PASS__HARD_METADATA_REPAIR_DESIGN_READY","C4_BOUNDED_PASS__P3_CONTRACT_READY","C4_BOUNDED_PASS__P3_PREACTIVATION_READY"].includes(brain.state)
+    && ["C3_PASS__C4_READY","C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY","C4_POLICY_REVIEW_PASS__RECIPE_RECONCILIATION_READY","C4_RECONCILIATION_PASS__HARD_METADATA_REPAIR_DESIGN_READY","C4_BOUNDED_PASS__P3_CONTRACT_READY","C4_BOUNDED_PASS__P3_PREACTIVATION_READY","C4_BOUNDED_PASS__P3_BOUNDED_ACTIVATION_PASS__P4_READY"].includes(brain.state)
     && c3.terminal === "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY"
     && c3.evidence === "data/generated/culinary-brain-c3-prior-calibration-summary-v1.json"
     && c3.publicRuntimeRecipeCount === 85
@@ -159,7 +159,26 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     && p3Preactivation.runtimeActivationAuthorized===false
     && p3Preactivation.ownerActivationAuthorizationRequired===true
     && p3Preactivation.nextGate==="C4_TAPIOCA_P3_OWNER_ACTIVATION_AUTHORIZATION";
-  const expected = p3PreactivationPassed
+  const p3Activation=config.p3TapiocaActivation||{};
+  const p3ActivationPassed=p3PreactivationPassed
+    && p3Activation.terminal==="CULINARY_BRAIN_P3_TAPIOCA_BOUNDED_ACTIVATION_PASS__P4_READY"
+    && p3Activation.evidence==="data/generated/culinary-brain-p3-tapioca-bounded-activation-summary-v1.json"
+    && p3Activation.candidateId==="unitools_pao_de_queijo"
+    && p3Activation.protectedSourceKey==="unitools-world-recipes-v1_1_0::pao-de-queijo"
+    && p3Activation.ownerActivationAuthorized===true
+    && p3Activation.publicRuntimeRecipeCountBefore===85
+    && p3Activation.publicRuntimeRecipeCountAfter===86
+    && p3Activation.publicExternalRecipeCountAfter===10
+    && p3Activation.activatedRecipeCount===1
+    && p3Activation.exactCanonicalIngredientIdentity==="tapioca_starch"
+    && p3Activation.automaticRecommendationAdmissionAuthorized===false
+    && p3Activation.furtherProtectedRecipeAdmissionAuthorized===false
+    && p3Activation.nextGate==="PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE";
+  const expected = p3ActivationPassed
+    ? [
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+      ]
+    : p3PreactivationPassed
     ? [
         "C4_TAPIOCA_P3_OWNER_ACTIVATION_AUTHORIZATION",
         "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
@@ -233,7 +252,12 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     if (c1.evidence !== "data/generated/culinary-brain-c1-combined-closeout-v1.json") errors.push("C1 terminal evidence reference mismatch");
     if (c1.independentHistoricalSemanticGeneralizationDemonstrated !== false) errors.push("C1 historical semantic limitation must remain explicit");
   }
-  if (p3PreactivationPassed) {
+  if (p3ActivationPassed) {
+    const p3Gate=(config.gates||[]).find(gate=>gate.id==="P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
+    const p4Gate=(config.gates||[]).find(gate=>gate.id==="P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE");
+    if (p3Gate?.state!=="BOUNDED_ACTIVATION_PASS__ONE_RECIPE_ADMITTED") errors.push("P3 bounded activation terminal mismatch");
+    if (p4Gate?.state!=="READY") errors.push("P4 must be ready after bounded P3 activation");
+  } else if (p3PreactivationPassed) {
     const p3Gate=(config.gates||[]).find(gate=>gate.id==="P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
     if (p3Gate?.state!=="PREACTIVATION_CONTRACT_PASS__OWNER_AUTHORIZATION_REQUIRED") errors.push("P3 preactivation must remain owner-gated");
   } else if (c4CloseoutPassed) {
