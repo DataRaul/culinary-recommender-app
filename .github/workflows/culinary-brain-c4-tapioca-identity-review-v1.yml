@@ -1,0 +1,29 @@
+name: Culinary Brain C4 tapioca identity and policy review V1
+on:
+  pull_request:
+    paths:
+      - 'scripts/culinary-brain-c4-tapioca-identity-review-core.mjs'
+      - 'scripts/run-culinary-brain-c4-tapioca-identity-review-v1.mjs'
+      - 'tests/culinary-brain-c4-tapioca-identity-review-v1.test.js'
+      - 'data/generated/culinary-brain-c4-tapioca-identity-review-summary-v1.json'
+      - '.github/workflows/culinary-brain-c4-tapioca-identity-review-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Checkout exact pinned source
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+      - name: Verify frozen identity and policy review
+        run: |
+          node scripts/run-culinary-brain-c4-tapioca-identity-review-v1.mjs --unitools=.tmp/unitools --summary=.tmp/c4-tapioca-review.json
+          cmp .tmp/c4-tapioca-review.json data/generated/culinary-brain-c4-tapioca-identity-review-summary-v1.json
+          node --test tests/culinary-brain-c4-tapioca-identity-review-v1.test.js
