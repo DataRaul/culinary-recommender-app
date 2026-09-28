@@ -77,5 +77,5 @@ test("Turabi historical measurement authority remains bounded after live v8006 a
   assert.equal(gate("8G").nextIteration.billingExpansionAuthorized, false);
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
-  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 86);
 });
