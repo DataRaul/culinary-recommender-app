@@ -10,7 +10,7 @@ await page.goto(baseUrl, { waitUntil: "networkidle" });
 await page.getByRole("heading", { name: "What should you cook?" }).waitFor();
 const statusPill = page.locator("#statusPill");
 await statusPill.waitFor({ state: "attached" });
-if ((await statusPill.textContent())?.trim() !== "85 recipes · 76 curated + 9 open external · deterministic") {
+if ((await statusPill.textContent())?.trim() !== "86 recipes · 76 curated + 10 open external · deterministic") {
   throw new Error(`Gate F runtime status is incorrect: ${(await statusPill.textContent())?.trim()}`);
 }
 
