@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_SUMMARY_V1",
+  "date": "2026-09-28",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_PASS__UNITOOLS_ADAPTER_REUSE_REVIEW_READY",
+  "protectedCorpusVersion": "v8018",
+  "baseline": {
+    "policyCompleteCandidateCount": 100,
+    "runtimeHardMetadataReadyCount": 0,
+    "readyExceptDifficultyCount": 1,
+    "readyExceptDifficultyRecipeKeys": [
+      "unitools-world-recipes-v1_1_0::tortilla-espanola"
+    ],
+    "remainingMultiBlockerCandidateCount": 99,
+    "policyHeldRecipeCount": 12
+  },
+  "firstRepair": {
+    "protectedRecipeKey": "unitools-world-recipes-v1_1_0::tortilla-espanola",
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "sourceSlug": "tortilla-espanola",
+    "sourceCommit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "sourceDataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "existingPublicCanonicalRecipeId": "unitools_tortilla_espanola",
+    "existingPublicActivationTerminal": "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED",
+    "reviewedRuntimeDifficultyMapping": {
+      "easy": 1,
+      "medium": 3,
+      "hard": 4
+    },
+    "disposition": "REVIEW_EXACT_SOURCE_PIN_EQUIVALENT_ADAPTER_REUSE__NO_AUTOMATIC_PROMOTION"
+  },
+  "duplicateSafety": {
+    "sameSourceRecordAlreadyPublic": true,
+    "netNewPublicRecipeExpectedFromFirstRepair": 0,
+    "secondPublicRecipeCreationAuthorized": false,
+    "requiredOutcomeIfReusePasses": "PROTECTED_READINESS_ALIGNMENT_ONLY_UNLESS_A_DISTINCT_CANONICAL_IDENTITY_IS_SEPARATELY_PROVEN"
+  },
+  "remainingCandidates": {
+    "count": 99,
+    "disposition": "HOLD_FAIL_CLOSED_PENDING_EXPLICIT_MEAL_ROLE_TIME_AND_DIFFICULTY_AUTHORITY"
+  },
+  "authorityPromoted": false,
+  "recommendationAdmissionChanged": false,
+  "publicRuntimeChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "difficultyAdapterPromoted": false,
+    "mealRoleInferencePerformed": false,
+    "timeInferencePerformed": false,
+    "publicRuntimeWidened": false,
+    "duplicatePublicRecipeCreated": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "C4_UNITOOLS_DIFFICULTY_ADAPTER_REUSE_REVIEW_V1"
+}

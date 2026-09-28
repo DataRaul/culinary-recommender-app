@@ -1,0 +1,46 @@
+name: Culinary Brain C4 remaining hard-metadata repair design V1
+
+on:
+  pull_request:
+    paths:
+      - "config/culinary_brain_c4_remaining_hard_metadata_repair_design_v1.json"
+      - "scripts/culinary-brain-c4-remaining-hard-metadata-repair-design-core.mjs"
+      - "tests/culinary-brain-c4-remaining-hard-metadata-repair-design-v1.test.js"
+      - "data/generated/culinary-brain-c4-remaining-hard-metadata-repair-design-summary-v1.json"
+      - "data/generated/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json"
+      - "data/generated/step8e/admission-evidence.json"
+      - "data/generated/step8f/public-runtime-activation-pass.json"
+      - ".github/workflows/culinary-brain-c4-remaining-hard-metadata-repair-design-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  design:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate bounded repair design
+        run: node --test tests/culinary-brain-c4-remaining-hard-metadata-repair-design-v1.test.js
+      - name: Reproduce committed design summary
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile, writeFile } from "node:fs/promises";
+          import { buildC4HardMetadataRepairDesign, validateC4HardMetadataRepairDesignSummary } from "./scripts/culinary-brain-c4-remaining-hard-metadata-repair-design-core.mjs";
+          const read=path=>readFile(path,"utf8").then(JSON.parse);
+          const [contract,reconciliation,step8e,step8f]=await Promise.all([
+            read("config/culinary_brain_c4_remaining_hard_metadata_repair_design_v1.json"),
+            read("data/generated/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json"),
+            read("data/generated/step8e/admission-evidence.json"),
+            read("data/generated/step8f/public-runtime-activation-pass.json")
+          ]);
+          const summary=buildC4HardMetadataRepairDesign({contract,reconciliation,step8e,step8f});
+          const errors=validateC4HardMetadataRepairDesignSummary(summary);
+          if(errors.length) throw new Error(errors.join(","));
+          await writeFile("/tmp/c4-hard-metadata-repair-design-summary.json",JSON.stringify(summary,null,2)+"\n");
+          NODE
+          cmp /tmp/c4-hard-metadata-repair-design-summary.json data/generated/culinary-brain-c4-remaining-hard-metadata-repair-design-summary-v1.json
