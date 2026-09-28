@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
-import { PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
+import { PRE_P3_PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
 import {
   validateQuotaGapParallelPrep,
   summarizeGolden85,
