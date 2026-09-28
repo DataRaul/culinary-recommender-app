@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_UNITOOLS_DIFFICULTY_ADAPTER_REUSE_REVIEW_V1",
+  "date": "2026-09-28",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "CULINARY_BRAIN_C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_PASS__UNITOOLS_ADAPTER_REUSE_REVIEW_READY",
+  "protectedRecipeKey": "unitools-world-recipes-v1_1_0::tortilla-espanola",
+  "sourceCohortId": "unitools-world-recipes-v1_1_0",
+  "sourceSlug": "tortilla-espanola",
+  "sourceCommit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+  "sourceDataPath": "unitools-recipes-v1.json",
+  "sourceDataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+  "expectedSourceDifficultyLabel": "medium",
+  "reviewedMapping": {
+    "easy": 1,
+    "medium": 3,
+    "hard": 4
+  },
+  "expectedRuntimeDifficulty": 3,
+  "existingPublicCanonicalRecipeId": "unitools_tortilla_espanola",
+  "existingPublicActivationTerminal": "STEP_8F_PUBLIC_RUNTIME_ACTIVATION_APPROVED",
+  "semantics": {
+    "reuseRequiresExactSourceCommitAndBlob": true,
+    "reuseRequiresExactSourceSlug": true,
+    "reuseRequiresExistingPublicRuntimeValueToMatchReviewedMapping": true,
+    "reuseScopeIsExactProtectedRecipeOnly": true,
+    "reuseDoesNotAuthorizeOtherUnitoolsRecipes": true,
+    "reuseDoesNotAuthorizeNumericOneToFiveOrOtherDifficultyScales": true,
+    "duplicatePublicAdmissionForbidden": true,
+    "unknownMetadataFailsClosed": true
+  },
+  "authority": {
+    "exactCandidateDifficultyAuthorityAuthorizedOnPass": true,
+    "broaderDifficultyAdapterAuthorized": false,
+    "protectedRecommendationAdmissionAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "duplicatePublicRecipeCreationAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "CULINARY_BRAIN_C4_UNITOOLS_DIFFICULTY_ADAPTER_REUSE_REVIEW_PASS__ONE_PROTECTED_HARD_METADATA_READY",
+  "nextGate": "C4_BOUNDED_P3_DUPLICATE_SAFE_ADMISSION_CONTRACT_V1"
+}
