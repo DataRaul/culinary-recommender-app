@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_UNITOOLS_HIGH_LEVERAGE_INGREDIENT_ALIAS_REVIEW_V1",
+  "date": "2026-09-28",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "CULINARY_BRAIN_C4_NEXT_REPAIR_COHORT_DESIGN_PASS__UNITOOLS_ALIAS_REVIEW_READY",
+  "sourceCohortId": "unitools-world-recipes-v1_1_0",
+  "expectedSourceRecipeCount": 501,
+  "baselineEvidence": "data/generated/culinary-brain-c4-next-repair-cohort-design-summary-v1.json",
+  "decisions": [
+    {
+      "sourceId": "cheese",
+      "sourceName": "Soft white cheese",
+      "decision": "HOLD",
+      "reason": "AMBIGUOUS_CHEESE_IDENTITY"
+    },
+    {
+      "sourceId": "tapioca",
+      "sourceName": "Tapioca starch",
+      "decision": "HOLD",
+      "reason": "NO_EXISTING_CANONICAL_INGREDIENT"
+    },
+    {
+      "sourceId": "salt",
+      "sourceName": "Salt and pepper",
+      "decision": "HOLD",
+      "reason": "COMPOSITE_INGREDIENT_PHRASE"
+    },
+    {
+      "sourceId": "flour",
+      "sourceName": "Flour",
+      "decision": "HOLD",
+      "reason": "NO_EXISTING_CANONICAL_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "oil",
+      "sourceName": "Oil for frying",
+      "decision": "HOLD",
+      "reason": "OIL_TYPE_AMBIGUOUS"
+    },
+    {
+      "sourceId": "flour",
+      "sourceName": "Plain flour",
+      "decision": "HOLD",
+      "reason": "NO_EXISTING_CANONICAL_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "water",
+      "sourceName": "Warm water",
+      "decision": "MAP",
+      "canonicalIngredientId": "water",
+      "reason": "TEMPERATURE_QUALIFIER_PRESERVES_WATER_IDENTITY"
+    },
+    {
+      "sourceId": "yeast",
+      "sourceName": "Dry yeast",
+      "decision": "HOLD",
+      "reason": "NO_EXISTING_CANONICAL_YEAST_IDENTITY"
+    },
+    {
+      "sourceId": "lamb",
+      "sourceName": "Lamb",
+      "decision": "HOLD",
+      "reason": "NO_EXISTING_CANONICAL_LAMB_IDENTITY"
+    },
+    {
+      "sourceId": "lime",
+      "sourceName": "Limes",
+      "decision": "MAP",
+      "canonicalIngredientId": "lime",
+      "reason": "PLURAL_ONLY"
+    },
+    {
+      "sourceId": "beef",
+      "sourceName": "Beef",
+      "decision": "HOLD",
+      "reason": "BROADER_THAN_EXISTING_BEEF_MINCE_IDENTITY"
+    },
+    {
+      "sourceId": "ghee",
+      "sourceName": "Ghee",
+      "decision": "HOLD",
+      "reason": "NO_EXISTING_CANONICAL_GHEE_IDENTITY"
+    },
+    {
+      "sourceId": "vanilla",
+      "sourceName": "Vanilla",
+      "decision": "HOLD",
+      "reason": "NO_EXISTING_CANONICAL_VANILLA_IDENTITY"
+    },
+    {
+      "sourceId": "cinnamon",
+      "sourceName": "Cinnamon stick",
+      "decision": "HOLD",
+      "reason": "FORM_DIFFERS_FROM_CANONICAL_GROUND_CINNAMON"
+    },
+    {
+      "sourceId": "cream",
+      "sourceName": "Soured cream",
+      "decision": "HOLD",
+      "reason": "NO_EXISTING_CANONICAL_SOUR_CREAM_IDENTITY"
+    },
+    {
+      "sourceId": "raisins",
+      "sourceName": "Raisins",
+      "decision": "HOLD",
+      "reason": "NO_EXISTING_CANONICAL_RAISIN_IDENTITY"
+    },
+    {
+      "sourceId": "cream",
+      "sourceName": "Cream",
+      "decision": "HOLD",
+      "reason": "NO_EXISTING_CANONICAL_CREAM_IDENTITY"
+    },
+    {
+      "sourceId": "pepper",
+      "sourceName": "Bell peppers",
+      "decision": "HOLD",
+      "reason": "SOURCE_ID_DIAGNOSTIC_CONFLICTS_WITH_BLACK_PEPPER_ALIAS"
+    },
+    {
+      "sourceId": "saffron",
+      "sourceName": "Saffron",
+      "decision": "HOLD",
+      "reason": "NO_EXISTING_CANONICAL_SAFFRON_IDENTITY"
+    },
+    {
+      "sourceId": "lemon",
+      "sourceName": "Lemons",
+      "decision": "MAP",
+      "canonicalIngredientId": "lemon",
+      "reason": "PLURAL_ONLY"
+    },
+    {
+      "sourceId": "spring",
+      "sourceName": "Spring onions",
+      "decision": "MAP",
+      "canonicalIngredientId": "spring_onion",
+      "reason": "PLURAL_ONLY"
+    },
+    {
+      "sourceId": "beef",
+      "sourceName": "Minced beef",
+      "decision": "MAP",
+      "canonicalIngredientId": "beef_mince",
+      "reason": "EXACT_EXISTING_MINCED_BEEF_IDENTITY"
+    },
+    {
+      "sourceId": "eggyolk",
+      "sourceName": "Egg yolks",
+      "decision": "HOLD",
+      "reason": "PART_IDENTITY_DIFFERS_FROM_CANONICAL_WHOLE_EGGS"
+    },
+    {
+      "sourceId": "icingsugar",
+      "sourceName": "Icing sugar",
+      "decision": "HOLD",
+      "reason": "FORM_SPECIFIC_IDENTITY_NOT_REVIEWED_AS_CANONICAL_SUGAR"
+    },
+    {
+      "sourceId": "oregano",
+      "sourceName": "Dried oregano",
+      "decision": "MAP",
+      "canonicalIngredientId": "oregano",
+      "reason": "DRIED_FORM_WITHIN_GENERIC_CANONICAL_OREGANO_IDENTITY"
+    }
+  ],
+  "authority": {
+    "exactCohortReviewedAliasOverlayAuthorizedOnPass": true,
+    "globalIngredientAliasIndexMutationAuthorized": false,
+    "otherSourceCohortReuseAuthorized": false,
+    "hardDietaryAllergenAuthorityPromoted": false,
+    "recommendationAdmissionAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "CULINARY_BRAIN_C4_UNITOOLS_HIGH_LEVERAGE_INGREDIENT_ALIAS_REVIEW_PASS",
+  "nextGate": "C4_UNITOOLS_ALIAS_UNLOCKED_HARD_AUTHORITY_AUDIT_V1"
+}
