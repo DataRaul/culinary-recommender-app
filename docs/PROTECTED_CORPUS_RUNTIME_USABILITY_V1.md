@@ -246,3 +246,7 @@ C3 deliberately promoted **0** C2 fields into runtime priors. Dish-category prop
 Evidence: `data/generated/culinary-brain-c3-prior-calibration-summary-v1.json`. C3 performed **0 protected D1 reads/writes, 0 protected-body reads/exports, 0 C2 candidate promotions**, and made no public/recommendation/nutrition/dietary/source-rights/KC/paid/third-shard/Barbecue change.
 
 The Brain advances to **C4 real-v8018 failure/repair loop**. Protected P3 remains blocked on C4 plus the existing hard ingredient/dietary/allergen/provenance requirements.
+
+### 2026-09-28 — C4 bounded closeout and P3 handoff
+
+C4's offline failure/repair loop is **PASS WITH ONE DISTINCT CANDIDATE ONLY**. P3 is ready for a bounded admission contract for the exact pinned `pao-de-queijo` identity; no protected recommendation admission, identity overlay activation or public runtime change has yet occurred. The original 19,268-record failure matrix remains the baseline. See `docs/CULINARY_BRAIN_C4_BOUNDED_CLOSEOUT_V1.md` and `data/generated/culinary-brain-c4-closeout-summary-v1.json`.

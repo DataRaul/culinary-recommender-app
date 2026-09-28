@@ -35,12 +35,14 @@ test("programme preserves C3 pass while advancing through bounded C4", () => {
   assert.equal(config.gates.find(gate => gate.id === "P0_EVIDENCE_AND_CONTRACT_AUDIT").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").liveOwnerCanary, "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS");
-  assert.match(config.nextExecutionSequence[0], /^CULINARY_BRAIN_C4_/);
+  assert.match(config.nextExecutionSequence[0], /^(?:CULINARY_BRAIN_C4_|C4_TAPIOCA_)/);
   assert.match(config.brainCalibration.state, /^(?:C3_PASS__C4_READY|C4_)/);
   assert.equal(config.brainCalibration.c1Evaluation.entireFrozen500Evaluated, true);
   assert.equal(config.brainCalibration.c1Evaluation.independentHistoricalSemanticGeneralizationDemonstrated, false);
   assert.equal(config.brainCalibration.c1Evaluation.c2AuthorizedScope, "CANDIDATE_ONLY__ABSTENTION_DEFAULT");
-  assert.match(config.gates.find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION").state, /^BLOCKED_ON_C4.*HARD_METADATA$/);
+  assert.equal(config.gates.find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION").state, "READY_FOR_BOUNDED_CONTRACT__NOT_ADMITTED");
+  assert.equal(config.brainCalibration.c4Closeout.distinctCandidateCount,1);
+  assert.equal(config.brainCalibration.c4Closeout.protectedRecommendationAdmissionCount,0);
   assert.equal(config.brainCalibration.c3Calibration.terminal, "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY");
   assert.equal(config.brainCalibration.c3Calibration.profileCaseCount, 12);
   assert.equal(config.brainCalibration.c3Calibration.promotedPriorCount, 0);

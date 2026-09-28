@@ -59,6 +59,8 @@ test("C3 terminal calibration remains preserved through bounded C4 lifecycle adv
   assert.equal(Array.isArray(config.postP1Execution.next),true);
   assert.equal(config.postP1Execution.next.length,1);
   assert.match(config.postP1Execution.next[0],/^C4_/);
+  assert.equal(config.postP1Execution.c4Closeout.terminal,"CULINARY_BRAIN_C4_BOUNDED_FAILURE_REPAIR_PASS__ONE_DISTINCT_P3_CANDIDATE_READY");
+  assert.equal(config.postP1Execution.c4Closeout.protectedRecommendationAdmissionCount,0);
   const c4=config.postP1Execution.c4FailureMatrix;
   if (c4) {
     assert.equal(c4.terminal,"CULINARY_BRAIN_C4_FAILURE_MATRIX_PASS__112_IDENTITY_READY_REPAIR_COHORT_FROZEN");
