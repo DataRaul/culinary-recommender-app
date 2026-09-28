@@ -23,7 +23,10 @@ export const STEP1_BASELINES = Object.freeze({
   currentBenchmarkSeed: Object.freeze({
     sourceMainSha: "P3_BOUNDED_ACTIVATION_2026_09_28",
     expectedRecipeCount: 86,
-    expectedFingerprint: null,
+    expectedFingerprint: Object.freeze({
+      idsSha256: "15ed766f93c605e9d746d6377acbfe87d4237d4149578fda708ae608cd156dc4",
+      recordsSha256: "a954aa1426f66bd98b2ff9aedec1b3e49c631faf03baaa6bac65b0a181d96506"
+    }),
     scope: "PUBLIC_RUNTIME_RECIPES = current 86-record owner-authorized bounded P3 runtime benchmark seed"
   })
 });
