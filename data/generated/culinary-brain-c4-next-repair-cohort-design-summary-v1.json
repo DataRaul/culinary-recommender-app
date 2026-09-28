@@ -1,0 +1,304 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_NEXT_REPAIR_COHORT_DESIGN_SUMMARY_V1",
+  "date": "2026-09-28",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C4_NEXT_REPAIR_COHORT_DESIGN_PASS__UNITOOLS_ALIAS_REVIEW_READY",
+  "protectedCorpusVersion": "v8018",
+  "sourceCohort": {
+    "id": "unitools-world-recipes-v1_1_0",
+    "recipeCount": 501,
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "currentIdentityBaseline": {
+    "ingredientOccurrenceCount": 5404,
+    "resolvedIngredientOccurrenceCount": 2524,
+    "unresolvedIngredientOccurrenceCount": 2807,
+    "conflictingIngredientOccurrenceCount": 73,
+    "recipesAllIngredientsMapped": 1,
+    "storedOnlyRecipeCount": 500
+  },
+  "hardMetadataLeverage": {
+    "recipesWithBothTimeParts": 501,
+    "recipesWithExplicitPositiveServings": 501,
+    "difficultyValues": [
+      {
+        "value": "easy",
+        "count": 219
+      },
+      {
+        "value": "medium",
+        "count": 205
+      },
+      {
+        "value": "hard",
+        "count": 77
+      }
+    ],
+    "categoryValues": [
+      {
+        "value": "main",
+        "count": 256
+      },
+      {
+        "value": "soup",
+        "count": 69
+      },
+      {
+        "value": "dessert",
+        "count": 57
+      },
+      {
+        "value": "snack",
+        "count": 43
+      },
+      {
+        "value": "breakfast",
+        "count": 25
+      },
+      {
+        "value": "bread",
+        "count": 20
+      },
+      {
+        "value": "side",
+        "count": 13
+      },
+      {
+        "value": "salad",
+        "count": 12
+      },
+      {
+        "value": "sauce",
+        "count": 4
+      },
+      {
+        "value": "drink",
+        "count": 2
+      }
+    ]
+  },
+  "selection": {
+    "strategy": "REVIEW_HIGH_LEVERAGE_UNITOOLS_UNRESOLVED_INGREDIENT_NAMES_FIRST",
+    "topCandidateCount": 25,
+    "topCandidates": [
+      {
+        "key": "cheese :: Soft white cheese :: UNRESOLVED",
+        "sourceId": "cheese",
+        "sourceName": "Soft white cheese",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 2,
+        "singleAliasRecipesPotentiallyUnlocked": 1
+      },
+      {
+        "key": "tapioca :: Tapioca starch :: UNRESOLVED",
+        "sourceId": "tapioca",
+        "sourceName": "Tapioca starch",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 1,
+        "singleAliasRecipesPotentiallyUnlocked": 1
+      },
+      {
+        "key": "salt :: Salt and pepper :: UNRESOLVED",
+        "sourceId": "salt",
+        "sourceName": "Salt and pepper",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 207,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "flour :: Flour :: UNRESOLVED",
+        "sourceId": "flour",
+        "sourceName": "Flour",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 101,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "oil :: Oil for frying :: UNRESOLVED",
+        "sourceId": "oil",
+        "sourceName": "Oil for frying",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 41,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "flour :: Plain flour :: UNRESOLVED",
+        "sourceId": "flour",
+        "sourceName": "Plain flour",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 36,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "water :: Warm water :: UNRESOLVED",
+        "sourceId": "water",
+        "sourceName": "Warm water",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 27,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "yeast :: Dry yeast :: UNRESOLVED",
+        "sourceId": "yeast",
+        "sourceName": "Dry yeast",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 27,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "lamb :: Lamb :: UNRESOLVED",
+        "sourceId": "lamb",
+        "sourceName": "Lamb",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 26,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "lime :: Limes :: UNRESOLVED",
+        "sourceId": "lime",
+        "sourceName": "Limes",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 26,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "beef :: Beef :: UNRESOLVED",
+        "sourceId": "beef",
+        "sourceName": "Beef",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 24,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "ghee :: Ghee :: UNRESOLVED",
+        "sourceId": "ghee",
+        "sourceName": "Ghee",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 24,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "vanilla :: Vanilla :: UNRESOLVED",
+        "sourceId": "vanilla",
+        "sourceName": "Vanilla",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 24,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "cinnamon :: Cinnamon stick :: UNRESOLVED",
+        "sourceId": "cinnamon",
+        "sourceName": "Cinnamon stick",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 21,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "cream :: Soured cream :: UNRESOLVED",
+        "sourceId": "cream",
+        "sourceName": "Soured cream",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 21,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "raisins :: Raisins :: UNRESOLVED",
+        "sourceId": "raisins",
+        "sourceName": "Raisins",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 20,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "cream :: Cream :: UNRESOLVED",
+        "sourceId": "cream",
+        "sourceName": "Cream",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 19,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "pepper :: Bell peppers :: UNRESOLVED",
+        "sourceId": "pepper",
+        "sourceName": "Bell peppers",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 18,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "saffron :: Saffron :: UNRESOLVED",
+        "sourceId": "saffron",
+        "sourceName": "Saffron",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 18,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "lemon :: Lemons :: UNRESOLVED",
+        "sourceId": "lemon",
+        "sourceName": "Lemons",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 17,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "spring :: Spring onions :: UNRESOLVED",
+        "sourceId": "spring",
+        "sourceName": "Spring onions",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 16,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "beef :: Minced beef :: UNRESOLVED",
+        "sourceId": "beef",
+        "sourceName": "Minced beef",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 15,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "eggyolk :: Egg yolks :: UNRESOLVED",
+        "sourceId": "eggyolk",
+        "sourceName": "Egg yolks",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 15,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "icingsugar :: Icing sugar :: UNRESOLVED",
+        "sourceId": "icingsugar",
+        "sourceName": "Icing sugar",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 15,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      },
+      {
+        "key": "oregano :: Dried oregano :: UNRESOLVED",
+        "sourceId": "oregano",
+        "sourceName": "Dried oregano",
+        "status": "UNRESOLVED",
+        "occurrenceCount": 13,
+        "singleAliasRecipesPotentiallyUnlocked": 0
+      }
+    ],
+    "sumSingleAliasRecipeUnlockPotentialAcrossTopCandidates": 2,
+    "conflictRowsExcludedFromPromotionCandidates": true
+  },
+  "authorityPromoted": false,
+  "recommendationAdmissionChanged": false,
+  "publicRuntimeChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "ingredientAliasMappingsAdded": 0,
+    "hardDietaryAllergenAuthorityPromoted": false,
+    "publicRuntimeWidened": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "C4_UNITOOLS_HIGH_LEVERAGE_INGREDIENT_ALIAS_REVIEW_V1"
+}

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_NEXT_REPAIR_COHORT_DESIGN_V1",
+  "date": "2026-09-28",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "CULINARY_BRAIN_C4_BOUNDED_P3_DUPLICATE_SAFE_ADMISSION_PASS__EXISTING_CANONICAL_ALIGNMENT_ONLY",
+  "objective": "SELECT_THE_NEXT_BOUNDED_REPAIR_COHORT_BY_MEASURED_RECOMMENDATION_UNLOCK_LEVERAGE_WITHOUT_INVENTING_METADATA",
+  "candidateSourceCohort": {
+    "id": "unitools-world-recipes-v1_1_0",
+    "reason": "UniTools carries explicit time, difficulty and category metadata across the source cohort; its dominant current blocker is canonical ingredient identity, making reviewed alias repair higher-leverage than inferring missing hard metadata for the remaining Open Recipe Archive C4 candidates."
+  },
+  "expectedSourceRecipeCount": 501,
+  "expectedCurrentAllIngredientsMappedCount": 1,
+  "expectedIngredientOccurrenceCount": 5404,
+  "expectedResolvedIngredientOccurrenceCount": 2524,
+  "expectedUnresolvedIngredientOccurrenceCount": 2807,
+  "expectedConflictingIngredientOccurrenceCount": 73,
+  "rankingPolicy": {
+    "primary": "SINGLE_UNRESOLVED_ALIAS_RECIPES_POTENTIALLY_UNLOCKED",
+    "secondary": "UNRESOLVED_OCCURRENCE_COUNT",
+    "tertiary": "LEXICAL_KEY",
+    "excludeConflictRowsFromAliasPromotionCandidates": true,
+    "topCandidateCount": 25
+  },
+  "semantics": {
+    "measurementDoesNotAuthorizeAliasMapping": true,
+    "sourceIdIsDiagnosticNotIdentityAuthority": true,
+    "onlySourceEnglishNameMayFeedExistingAliasNormalizer": true,
+    "conflictsFailClosed": true,
+    "hardDietaryAllergenReviewStillRequiredAfterIdentityRepair": true,
+    "duplicateFamilyReviewStillRequiredBeforeAdmission": true
+  },
+  "authority": {
+    "ingredientAliasMappingAuthorized": false,
+    "hardDietaryAllergenAuthorityPromoted": false,
+    "recommendationAdmissionAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "CULINARY_BRAIN_C4_NEXT_REPAIR_COHORT_DESIGN_PASS__UNITOOLS_ALIAS_REVIEW_READY",
+  "nextGate": "C4_UNITOOLS_HIGH_LEVERAGE_INGREDIENT_ALIAS_REVIEW_V1"
+}
