@@ -57,15 +57,15 @@ test("Step 4 preserves exact Step 3 reads for the historical 84-record oracle", 
   }
 });
 
-test("Step 4 direct model reads exactly the Step 3 canonical current 85-record runtime objects", () => {
+test("Step 4 direct model reads exactly the Step 3 canonical current 86-record runtime objects", () => {
   const portable = materializePortableCorpusArtifacts(PUBLIC_RUNTIME_RECIPES, { version: "v0001" });
   const model = buildStep4RetrievalModel(PUBLIC_RUNTIME_RECIPES, PUBLIC_RUNTIME_RECIPES.length, {
     synthetic: false,
     version: "v0001"
   });
 
-  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
-  assert.equal(model.targetSize, 85);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 86);
+  assert.equal(model.targetSize, 86);
   assert.equal(model.detailStrategy, "CANONICAL_GOLDEN_DETAIL_PAYLOAD_WARMED_PER_SCENARIO");
 
   for (let ordinal = 0; ordinal < PUBLIC_RUNTIME_RECIPES.length; ordinal += 1) {
