@@ -50,5 +50,5 @@ test("prewrite is no-write and does not widen public or cost authority", () => {
   assert.equal(evidence.boundaries.culturalAuthenticityAuthorityImported, false);
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
-  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 86);
 });
