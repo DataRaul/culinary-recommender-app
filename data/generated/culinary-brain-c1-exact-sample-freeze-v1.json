@@ -13,14 +13,14 @@
   "selectionSeed": "CULINARY_BRAIN_C1_V1_2026_09_27",
   "selectionMethod": "SOURCE_COHORT_QUOTA__FORCE_STRUCTURAL_EXCEPTIONS__ROUND_ROBIN_SECONDARY_STRATA__STABLE_SHA256_ORDER",
   "summary": {
-    "sampleDigestSha256": "5d30214e9c0d4127d9c1ce62cff428a1c0621258051d9adecb8a4340ce983408",
+    "sampleDigestSha256": "5cce37f524e693cd64557b1d9b4b10a43ba198a0129c52aff0050f1827931a5a",
     "targetRecipeCount": 500,
     "selectedRecipeCount": 500,
     "uniqueRecipeIdCount": 500,
     "structuralExceptionCount": 3,
     "ingredientIdentityReadinessCounts": {
-      "ALL_IDENTITIES_RESOLVED": 112,
-      "IDENTITY_GAPS_PRESENT": 388
+      "ALL_IDENTITIES_RESOLVED": 113,
+      "IDENTITY_GAPS_PRESENT": 387
     },
     "metadataBandCounts": {
       "KNOWN_HIGH": 16,
@@ -29,7 +29,7 @@
     },
     "dishCategoryCounts": {
       "BEVERAGE": 5,
-      "BREAD": 3,
+      "BREAD": 4,
       "CONDIMENT": 2,
       "DESSERT": 2,
       "EGG_DISH": 2,
@@ -41,17 +41,17 @@
       "SEAFOOD_DISH": 1,
       "SOUP": 1,
       "STOCK": 2,
-      "UNKNOWN": 470,
+      "UNKNOWN": 469,
       "VEGETABLE_DISH": 2
     },
     "mealRoleCounts": {
       "BEVERAGE": 5,
-      "BREAKFAST": 2,
+      "BREAKFAST": 1,
       "DESSERT": 2,
       "MAIN": 3,
       "SIDE": 1,
       "SNACK": 1,
-      "UNKNOWN": 486
+      "UNKNOWN": 487
     },
     "sourceContextCounts": {
       "HISTORICAL_SOURCE": 456,
@@ -666,10 +666,10 @@
     "ora_viard_1806_ufs_brouill_s_au_jambon_scrambled_eggs_with_ham",
     "unitools:beshbarmak-kyrgyz",
     "unitools:chakalaka",
-    "unitools:chorreadas",
     "unitools:mangu",
     "unitools:massaman-curry",
     "unitools:mbeju",
+    "unitools:pao-de-queijo",
     "unitools:pol-sambol",
     "unitools:sopa-de-caracol",
     "unitools:suutei-tsai",
