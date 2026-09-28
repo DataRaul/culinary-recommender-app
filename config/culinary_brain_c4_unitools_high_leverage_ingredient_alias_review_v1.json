@@ -180,5 +180,10 @@
     "barbecueMutationAuthorized": false
   },
   "targetTerminal": "CULINARY_BRAIN_C4_UNITOOLS_HIGH_LEVERAGE_INGREDIENT_ALIAS_REVIEW_PASS",
-  "nextGate": "C4_UNITOOLS_ALIAS_UNLOCKED_HARD_AUTHORITY_AUDIT_V1"
+  "nextGate": "C4_UNITOOLS_CANONICAL_GAP_DESIGN_V1",
+  "measuredDisposition": {
+    "reviewedAliasResolvedOccurrences": 114,
+    "newlyFullyMappedRecipeCount": 0,
+    "consequence": "DO_NOT_RUN_EMPTY_HARD_AUTHORITY_AUDIT__DESIGN_CANONICAL_GAP_REPAIR"
+  }
 }
