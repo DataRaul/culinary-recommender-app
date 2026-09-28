@@ -197,12 +197,12 @@ const PRE_P3_PUBLIC_RUNTIME_FINGERPRINT = Object.freeze({
   recordsSha256: "80da544e464cb83422f80e6a908ab37c863c8e22ee9654e97f22ef2cd8bee7f1"
 });
 
-test("Step 2 reconciles the current 85-record public runtime through the V2 JSON boundary", () => {
-  const fingerprint = fingerprintGoldenCorpus(PUBLIC_RUNTIME_RECIPES);
-  assert.deepEqual(fingerprint, CURRENT_PUBLIC_RUNTIME_FINGERPRINT);
+test("Step 2 preserves the frozen pre-P3 fingerprint and reconciles the current 86-record public runtime through the V2 JSON boundary", () => {
+  const fingerprint = fingerprintGoldenCorpus(PRE_P3_PUBLIC_RUNTIME_RECIPES);
+  assert.deepEqual(fingerprint, PRE_P3_PUBLIC_RUNTIME_FINGERPRINT);
 
   const v2Rows = createRecipeSourceV2(PUBLIC_RUNTIME_RECIPES).list();
-  assert.equal(v2Rows.length, 85);
+  assert.equal(v2Rows.length, 86);
   assert.deepEqual(v2Rows, PUBLIC_RUNTIME_RECIPES);
   assert.deepEqual(v2Rows.map(recipe => recipe.id), PUBLIC_RUNTIME_RECIPES.map(recipe => recipe.id));
 });
