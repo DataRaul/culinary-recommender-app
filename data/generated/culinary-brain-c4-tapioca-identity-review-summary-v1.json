@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_TAPIOCA_IDENTITY_REVIEW_V1",
+  "date": "2026-09-28",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C4_TAPIOCA_IDENTITY_AND_HARD_POLICY_REVIEW_PASS__RECONCILIATION_READY",
+  "protectedCorpusVersion": "v8018",
+  "sourceCohortId": "unitools-world-recipes-v1_1_0",
+  "recipeSlug": "pao-de-queijo",
+  "sourceIngredient": {
+    "id": "tapioca",
+    "name": "Tapioca starch"
+  },
+  "proposedCanonicalIdentity": "tapioca_starch",
+  "identityScope": "EXACT_PINNED_SOURCE_RECIPE_ONLY",
+  "existingResolvedIngredientIds": [
+    "eggs",
+    "milk",
+    "mozzarella",
+    "neutral_oil",
+    "parmesan",
+    "salt",
+    "water"
+  ],
+  "identityReadyAfterProposedOverlay": true,
+  "globalCatalogChanged": false,
+  "overlayActivated": false,
+  "sourceDietClaimsNotPromoted": [
+    "gluten-free",
+    "vegetarian"
+  ],
+  "candidateDeclaredAllergens": [
+    "egg",
+    "milk"
+  ],
+  "candidateDietaryTags": [
+    "unrestricted"
+  ],
+  "vegetarianHeldReason": "PARMESAN_RENNET_NOT_ESTABLISHED",
+  "allergenCoverageScope": "CURRENT_MAPPED_PROFILE_TOKENS_ONLY",
+  "manufacturerOrCrossContactGuarantee": false,
+  "globalAllergenFreeClaim": false,
+  "hardDietaryAllergenRuntimeAuthorityPromoted": false,
+  "newRecommendationReadyRecipes": 0,
+  "recommendationAdmissionChanged": false,
+  "publicRuntimeChanged": false,
+  "nextGate": "C4_TAPIOCA_RECIPE_HARD_POLICY_AND_METADATA_RECONCILIATION_V1"
+}
