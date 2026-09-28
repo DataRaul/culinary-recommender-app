@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
-  "date": "2026-09-27",
-  "state": "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_RECONCILIATION_PASS__HARD_METADATA_REPAIR_DESIGN_READY",
+  "date": "2026-09-28",
+  "state": "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_BOUNDED_PASS__P3_CONTRACT_READY",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
@@ -190,7 +190,7 @@
     },
     {
       "id": "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
-      "state": "BLOCKED_ON_C4_REMAINING_HARD_METADATA",
+      "state": "READY_FOR_BOUNDED_CONTRACT__NOT_ADMITTED",
       "purpose": "Admit bounded recipe subsets only after C4 remaining hard metadata is explicitly repaired and validated; keep UNKNOWN fail-closed and nutrition independent."
     },
     {
@@ -218,13 +218,13 @@
     "barbecueMutationAuthorized": false
   },
   "nextExecutionSequence": [
-    "CULINARY_BRAIN_C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1",
+    "C4_TAPIOCA_BOUNDED_P3_ADMISSION_CONTRACT_V1",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
   ],
   "brainCalibration": {
     "id": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
-    "state": "C4_RECONCILIATION_PASS__HARD_METADATA_REPAIR_DESIGN_READY",
+    "state": "C4_BOUNDED_PASS__P3_CONTRACT_READY",
     "contract": "config/culinary_brain_corpus_calibration_v1.json",
     "document": "docs/CULINARY_BRAIN_CORPUS_CALIBRATION_V1.md",
     "browseSearchBlocksOnBrain": false,
@@ -323,6 +323,14 @@
       "runtimeHardMetadataReadyCount": 0,
       "recommendationAdmissionChanged": false,
       "nextGate": "C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1"
+    },
+    "c4Closeout": {
+      "state": "PASS__CANDIDATE_ONLY",
+      "terminal": "CULINARY_BRAIN_C4_BOUNDED_FAILURE_REPAIR_PASS__ONE_DISTINCT_P3_CANDIDATE_READY",
+      "evidence": "data/generated/culinary-brain-c4-closeout-summary-v1.json",
+      "distinctCandidateCount": 1,
+      "protectedRecommendationAdmissionCount": 0,
+      "nextGate": "C4_TAPIOCA_BOUNDED_P3_ADMISSION_CONTRACT_V1"
     }
   },
   "completedTransitions": [

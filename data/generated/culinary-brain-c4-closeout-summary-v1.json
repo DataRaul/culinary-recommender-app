@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_BOUNDED_CLOSEOUT_V1",
+  "date": "2026-09-28",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C4_BOUNDED_FAILURE_REPAIR_PASS__ONE_DISTINCT_P3_CANDIDATE_READY",
+  "protectedCorpusVersion": "v8018",
+  "protectedRecipeCount": 19268,
+  "originalIdentityReadyCohortCount": 112,
+  "originalIdentityReadyCohortDigestSha256": "965876ec6dca2a9a4796417d88e44151a87541b39cfe232c42decf2208913468",
+  "historicalPolicyCompleteCandidateCount": 100,
+  "historicalPolicyHeldCount": 12,
+  "existingPublicCanonicalAlignmentCount": 1,
+  "distinctProtectedHardMetadataCandidateCount": 1,
+  "distinctCandidate": {
+    "sourceKey": "unitools-world-recipes-v1_1_0::pao-de-queijo",
+    "proposedPublicId": "unitools_pao_de_queijo",
+    "dietaryScope": [
+      "unrestricted"
+    ],
+    "declaredAllergens": [
+      "egg",
+      "milk"
+    ],
+    "proposedIngredientOverlay": "tapioca_starch"
+  },
+  "candidateOnly": true,
+  "identityOverlayActivated": false,
+  "protectedRecommendationAdmissionCount": 0,
+  "newPublicRuntimeRecipeCount": 0,
+  "sourceNutritionImported": false,
+  "fullCorpusMatrixBaselinePreserved": true,
+  "p3State": "BOUNDED_ADMISSION_CONTRACT_READY__NOT_ADMITTED",
+  "nextGate": "C4_TAPIOCA_BOUNDED_P3_ADMISSION_CONTRACT_V1"
+}

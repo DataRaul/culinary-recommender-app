@@ -1,0 +1,25 @@
+name: Culinary Brain C4 bounded closeout V1
+on:
+  pull_request:
+    paths:
+      - 'scripts/culinary-brain-c4-closeout-core.mjs'
+      - 'scripts/run-culinary-brain-c4-closeout-v1.mjs'
+      - 'tests/culinary-brain-c4-closeout-v1.test.js'
+      - 'data/generated/culinary-brain-c4-closeout-summary-v1.json'
+      - '.github/workflows/culinary-brain-c4-closeout-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  closeout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify frozen C4 closeout
+        run: |
+          node scripts/run-culinary-brain-c4-closeout-v1.mjs /tmp/c4-closeout.json
+          cmp /tmp/c4-closeout.json data/generated/culinary-brain-c4-closeout-summary-v1.json
+          node --test tests/culinary-brain-c4-closeout-v1.test.js

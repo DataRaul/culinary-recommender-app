@@ -14,6 +14,7 @@ on:
       - "data/generated/culinary-brain-c3-prior-calibration-summary-v1.json"
       - "data/generated/recommendation-readiness-audit-v1.json"
       - "data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json"
+      - "data/generated/culinary-brain-c4-closeout-summary-v1.json"
       - "scripts/run-corpus-normalization-mapping-v1.mjs"
       - "scripts/run-nutrition-vitamin-applicability-audit.mjs"
       - "scripts/run-culinary-brain-c2-candidate-classification-v1.mjs"
