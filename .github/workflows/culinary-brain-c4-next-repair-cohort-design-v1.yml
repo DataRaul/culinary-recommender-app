@@ -1,0 +1,46 @@
+name: Culinary Brain C4 next repair cohort design V1
+
+on:
+  pull_request:
+    paths:
+      - "config/culinary_brain_c4_next_repair_cohort_design_v1.json"
+      - "scripts/culinary-brain-c4-next-repair-cohort-design-core.mjs"
+      - "scripts/run-culinary-brain-c4-next-repair-cohort-design-v1.mjs"
+      - "tests/culinary-brain-c4-next-repair-cohort-design-v1.test.js"
+      - "data/generated/culinary-brain-c4-bounded-p3-duplicate-safe-admission-summary-v1.json"
+      - "config/corpus_scale_step8c_sources.json"
+      - "scripts/corpus-scale-step8e-core.mjs"
+      - ".github/workflows/culinary-brain-c4-next-repair-cohort-design-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  design:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run design tests
+        run: node --test tests/culinary-brain-c4-next-repair-cohort-design-v1.test.js
+      - name: Checkout exact pinned UniTools
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+      - name: Measure next repair cohort
+        run: |
+          node scripts/run-culinary-brain-c4-next-repair-cohort-design-v1.mjs \
+            --contract=config/culinary_brain_c4_next_repair_cohort_design_v1.json \
+            --p3=data/generated/culinary-brain-c4-bounded-p3-duplicate-safe-admission-summary-v1.json \
+            --sources=config/corpus_scale_step8c_sources.json \
+            --unitools=.tmp/unitools \
+            --summary=.tmp/culinary-brain-c4-next-repair-cohort-design-summary-v1.json
+      - name: Upload measured design evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: culinary-brain-c4-next-repair-cohort-design-v1
+          path: .tmp/culinary-brain-c4-next-repair-cohort-design-summary-v1.json
+          if-no-files-found: error
