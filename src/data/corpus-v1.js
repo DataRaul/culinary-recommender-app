@@ -65,11 +65,13 @@ export const ACTIVATED_EXTERNAL_RECIPES = Object.freeze(UNITOOLS_STEP8F_RECIPES.
   publicIds.add(recipe.id);
   return true;
 }));
+export const PRE_P3_PUBLIC_EXTERNAL_RECIPES = Object.freeze([...EXTERNAL_RECIPES, ...ACTIVATED_EXTERNAL_RECIPES]);
+export const PRE_P3_PUBLIC_RUNTIME_RECIPES = Object.freeze([...CURRENT_PUBLIC_BASE_RECIPES, ...ACTIVATED_EXTERNAL_RECIPES]);
 export const P3_ACTIVATED_EXTERNAL_RECIPES = Object.freeze(UNITOOLS_P3_TAPIOCA_RECIPES.filter(recipe => {
   if (publicIds.has(recipe.id)) return false;
   publicIds.add(recipe.id);
   return true;
 }));
-export const PUBLIC_EXTERNAL_RECIPES = Object.freeze([...EXTERNAL_RECIPES, ...ACTIVATED_EXTERNAL_RECIPES, ...P3_ACTIVATED_EXTERNAL_RECIPES]);
-export const PUBLIC_RUNTIME_RECIPES = Object.freeze([...CURRENT_PUBLIC_BASE_RECIPES, ...ACTIVATED_EXTERNAL_RECIPES, ...P3_ACTIVATED_EXTERNAL_RECIPES]);
+export const PUBLIC_EXTERNAL_RECIPES = Object.freeze([...PRE_P3_PUBLIC_EXTERNAL_RECIPES, ...P3_ACTIVATED_EXTERNAL_RECIPES]);
+export const PUBLIC_RUNTIME_RECIPES = Object.freeze([...PRE_P3_PUBLIC_RUNTIME_RECIPES, ...P3_ACTIVATED_EXTERNAL_RECIPES]);
 export const publicRecipeById = id => PUBLIC_RUNTIME_RECIPES.find(recipe => recipe.id === id) || null;
