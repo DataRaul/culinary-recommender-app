@@ -1,0 +1,14 @@
+import {execFileSync} from 'node:child_process';
+import {readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {reconcileTapiocaCandidate} from './culinary-brain-c4-tapioca-reconciliation-core.mjs';
+const args=Object.fromEntries(process.argv.slice(2).map(arg=>{const [k,...v]=arg.replace(/^--/,'').split('=');return [k,v.join('=')]}));
+if (!args.unitools || !args.summary) throw new Error('C4_TAPIOCA_RECONCILIATION_ARGUMENT_REQUIRED');
+const read=async path=>JSON.parse(await readFile(resolve(path),'utf8'));
+const [dataset,identity,source]=await Promise.all([read(resolve(args.unitools,'unitools-recipes-v1.json')),read('data/generated/culinary-brain-c4-tapioca-identity-review-summary-v1.json'),read('config/corpus_scale_step8d_contract.json')]);
+const commit=execFileSync('git',['-C',resolve(args.unitools),'rev-parse','HEAD'],{encoding:'utf8'}).trim();
+const blob=execFileSync('git',['hash-object',resolve(args.unitools,source.source.dataPath)],{encoding:'utf8'}).trim();
+if (commit!==source.source.commit || blob!==source.source.dataBlobSha) throw new Error('C4_TAPIOCA_RECONCILIATION_SOURCE_PIN_MISMATCH');
+const summary=reconcileTapiocaCandidate({dataset,identity,source});
+await writeFile(resolve(args.summary),JSON.stringify(summary,null,2)+'\n');
+process.stdout.write(summary.terminal+'\n');
