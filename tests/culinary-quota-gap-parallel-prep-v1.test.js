@@ -20,8 +20,8 @@ test("quota-gap contract keeps protected execution fail-closed and zero-D1", () 
   assert.equal(config.c1.exactProtectedRecipeIdsMayBeSelectedBeforeP1Pass, false);
 });
 
-test("C0 Golden-85 harness exercises the exact current public runtime without protected access", () => {
-  const summary = summarizeGolden85(PUBLIC_RUNTIME_RECIPES);
+test("C0 Golden-85 harness preserves the exact pre-P3 public calibration runtime without protected access", () => {
+  const summary = summarizeGolden85(PRE_P3_PUBLIC_RUNTIME_RECIPES);
   assert.equal(summary.pass, true);
   assert.equal(summary.recipeCount, 85);
   assert.equal(summary.uniqueRecipeIdCount, 85);
