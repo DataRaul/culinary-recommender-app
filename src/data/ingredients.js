@@ -98,6 +98,7 @@ export const INGREDIENTS = {
   tortilla: item("tortilla", "flatbread", "tortilla wrap", ["wrap", "flour tortilla", "tortilla de trigo"], ["gluten"], true, ["wheat"]),
   corn_tortilla: item("corn_tortilla", "flatbread", "corn tortilla", ["tortilla de maiz", "tortilla de maíz", "corn tortillas"], [], true, ["corn"]),
   quinoa: item("quinoa", "pseudo_grain", "quinoa", [], [], true),
+  tapioca_starch: item("tapioca_starch", "starch", "tapioca starch", [], [], true),
 
   lentils: item("lentils", "legume", "lentils", ["lentil", "lentejas", "brown lentils"], [], true),
   red_lentils: item("red_lentils", "legume", "red lentils", ["lenteja roja", "red split lentils"], [], true),
