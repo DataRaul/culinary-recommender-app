@@ -34,10 +34,10 @@ test("machine roadmap and current handover preserve 8F without broad automatic a
   assert.equal(handoverInvariants.publicAdmissionAuthorized, false);
 });
 
-test("public runtime remains 85 and historical golden corpus 84 as protected Step 8G advances independently", () => {
+test("public runtime has advanced to 86 while historical golden corpus 84 and Step 8F evidence remain frozen as protected Step 8G advances independently", () => {
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
-  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 86);
   assert.equal(gate("8G").doesNotDependOn.includes("8F"), true);
   assert.equal(handoverInvariants.publicRuntimeRecipeCount, 85);
   assert.equal(handoverInvariants.publicRuntimeChanged, false);
