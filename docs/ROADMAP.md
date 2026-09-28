@@ -881,3 +881,10 @@ C4 is **COMPLETE / PASS WITH CANDIDATE-ONLY LIMIT** at `CULINARY_BRAIN_C4_BOUNDE
 ### 2026-09-28 — P3 tapioca bounded preactivation contract
 
 The first distinct protected C4 candidate, pinned `pao-de-queijo`, is serialized as `unitools_pao_de_queijo` under a candidate-only P3 gate. The exact-recipe `tapioca_starch` identity remains local to the candidate; the global ingredient catalog is unchanged. Hard-filter simulation and browser preactivation acceptance are required while public runtime stays **85**, new runtime recipes stay **0**, source nutrition stays unimported, and Barbecue stays untouched. Terminal on green acceptance: `CULINARY_BRAIN_C4_TAPIOCA_BOUNDED_P3_CONTRACT_PASS__PREACTIVATION_READY`. Next is explicit owner activation authorization; activation is not part of this gate.
+
+
+### 2026-09-28 — P3 bounded pão de queijo activation
+
+Owner authorization was received for exactly one P3 candidate, `unitools_pao_de_queijo`. The pinned UniTools `pao-de-queijo` record is admitted to the deterministic public/recommendation runtime under the reviewed breakfast/snack, difficulty-3, 50-minute, six-serving, egg/milk-allergen and unrestricted-only contract. Public runtime moves **85 → 86** and public open-external records move **9 → 10**. The exact `tapioca_starch` canonical identity is promoted with no generic `tapioca` alias. Source nutrition remains unimported; source vegetarian/gluten-free claims remain unpromoted.
+
+Automatic/further protected-recipe admission remains unauthorized. There are **0 protected D1 reads, 0 D1 writes, 0 protected-body rewrites, 0 Knowledge Core writes, no paid model/API, no third shard and no Barbecue mutation** in this activation. Terminal: `CULINARY_BRAIN_P3_TAPIOCA_BOUNDED_ACTIVATION_PASS__P4_READY`. Evidence: `data/generated/culinary-brain-p3-tapioca-bounded-activation-summary-v1.json`. Next: `PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE`.
