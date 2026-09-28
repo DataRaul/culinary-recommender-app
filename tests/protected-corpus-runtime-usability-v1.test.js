@@ -40,7 +40,10 @@ test("programme preserves C3 pass while advancing through bounded C4", () => {
   assert.equal(config.brainCalibration.c1Evaluation.entireFrozen500Evaluated, true);
   assert.equal(config.brainCalibration.c1Evaluation.independentHistoricalSemanticGeneralizationDemonstrated, false);
   assert.equal(config.brainCalibration.c1Evaluation.c2AuthorizedScope, "CANDIDATE_ONLY__ABSTENTION_DEFAULT");
-  assert.equal(config.gates.find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION").state, "READY_FOR_BOUNDED_CONTRACT__NOT_ADMITTED");
+  assert.equal(config.gates.find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION").state, "PREACTIVATION_CONTRACT_PASS__OWNER_AUTHORIZATION_REQUIRED");
+  assert.equal(config.p3TapiocaPreactivation.terminal, "CULINARY_BRAIN_C4_TAPIOCA_BOUNDED_P3_CONTRACT_PASS__PREACTIVATION_READY");
+  assert.equal(config.p3TapiocaPreactivation.runtimeActivationAuthorized, false);
+  assert.equal(config.p3TapiocaPreactivation.ownerActivationAuthorizationRequired, true);
   assert.equal(config.brainCalibration.c4Closeout.distinctCandidateCount,1);
   assert.equal(config.brainCalibration.c4Closeout.protectedRecommendationAdmissionCount,0);
   assert.equal(config.brainCalibration.c3Calibration.terminal, "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY");

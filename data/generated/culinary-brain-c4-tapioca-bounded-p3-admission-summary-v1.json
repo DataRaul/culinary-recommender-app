@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_TAPIOCA_BOUNDED_P3_ADMISSION_SUMMARY_V1",
+  "date": "2026-09-28",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C4_TAPIOCA_BOUNDED_P3_CONTRACT_PASS__PREACTIVATION_READY",
+  "protectedCorpusVersion": "v8018",
+  "sourceKey": "unitools-world-recipes-v1_1_0::pao-de-queijo",
+  "candidateId": "unitools_pao_de_queijo",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "candidateSerialization": {
+    "ingredientCount": 8,
+    "instructionStepCount": 5,
+    "reviewedMealTypes": [
+      "breakfast",
+      "snack"
+    ],
+    "runtimeDifficulty": 3,
+    "totalMinutes": 50,
+    "servings": 6
+  },
+  "hardSafety": {
+    "declaredAllergens": [
+      "egg",
+      "milk"
+    ],
+    "dietaryTags": [
+      "unrestricted"
+    ],
+    "exactRecipeLocalIngredientOverlay": "tapioca_starch",
+    "globalIngredientCatalogChanged": false
+  },
+  "runtimeBoundary": {
+    "publicRuntimeRecipeCount": 85,
+    "candidatePresentInPublicRuntime": false,
+    "runtimeActivationAuthorized": false,
+    "protectedRecommendationAdmissionCount": 0,
+    "newPublicRuntimeRecipeCount": 0,
+    "sourceNutritionImported": false
+  },
+  "browserPreactivationAcceptanceRequired": true,
+  "ownerActivationAuthorizationRequired": true,
+  "nextGate": "C4_TAPIOCA_P3_OWNER_ACTIVATION_AUTHORIZATION"
+}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
   "date": "2026-09-28",
-  "state": "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_BOUNDED_PASS__P3_CONTRACT_READY",
+  "state": "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_BOUNDED_PASS__P3_PREACTIVATION_READY",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
@@ -190,7 +190,7 @@
     },
     {
       "id": "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
-      "state": "READY_FOR_BOUNDED_CONTRACT__NOT_ADMITTED",
+      "state": "PREACTIVATION_CONTRACT_PASS__OWNER_AUTHORIZATION_REQUIRED",
       "purpose": "Admit bounded recipe subsets only after C4 remaining hard metadata is explicitly repaired and validated; keep UNKNOWN fail-closed and nutrition independent."
     },
     {
@@ -218,13 +218,13 @@
     "barbecueMutationAuthorized": false
   },
   "nextExecutionSequence": [
-    "C4_TAPIOCA_BOUNDED_P3_ADMISSION_CONTRACT_V1",
+    "C4_TAPIOCA_P3_OWNER_ACTIVATION_AUTHORIZATION",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
     "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
   ],
   "brainCalibration": {
     "id": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
-    "state": "C4_BOUNDED_PASS__P3_CONTRACT_READY",
+    "state": "C4_BOUNDED_PASS__P3_PREACTIVATION_READY",
     "contract": "config/culinary_brain_corpus_calibration_v1.json",
     "document": "docs/CULINARY_BRAIN_CORPUS_CALIBRATION_V1.md",
     "browseSearchBlocksOnBrain": false,
@@ -470,5 +470,16 @@
     "recommendationAdmissionChanged": false,
     "nextGate": "C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1",
     "state": "PASS__HARD_METADATA_REPAIR_DESIGN_READY"
+  },
+  "p3TapiocaPreactivation": {
+    "terminal": "CULINARY_BRAIN_C4_TAPIOCA_BOUNDED_P3_CONTRACT_PASS__PREACTIVATION_READY",
+    "evidence": "data/generated/culinary-brain-c4-tapioca-bounded-p3-admission-summary-v1.json",
+    "candidateId": "unitools_pao_de_queijo",
+    "protectedSourceKey": "unitools-world-recipes-v1_1_0::pao-de-queijo",
+    "publicRuntimeRecipeCount": 85,
+    "newPublicRuntimeRecipeCount": 0,
+    "runtimeActivationAuthorized": false,
+    "ownerActivationAuthorizationRequired": true,
+    "nextGate": "C4_TAPIOCA_P3_OWNER_ACTIVATION_AUTHORIZATION"
   }
 }
