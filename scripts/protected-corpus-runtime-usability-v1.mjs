@@ -89,7 +89,7 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     && c2.hardAuthorityViolations === 0;
   const c3 = brain.c3Calibration || {};
   const c3Passed = c2Passed
-    && ["C3_PASS__C4_READY","C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY","C4_POLICY_REVIEW_PASS__RECIPE_RECONCILIATION_READY","C4_RECONCILIATION_PASS__HARD_METADATA_REPAIR_DESIGN_READY","C4_BOUNDED_PASS__P3_CONTRACT_READY"].includes(brain.state)
+    && ["C3_PASS__C4_READY","C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY","C4_POLICY_REVIEW_PASS__RECIPE_RECONCILIATION_READY","C4_RECONCILIATION_PASS__HARD_METADATA_REPAIR_DESIGN_READY","C4_BOUNDED_PASS__P3_CONTRACT_READY","C4_BOUNDED_PASS__P3_PREACTIVATION_READY"].includes(brain.state)
     && c3.terminal === "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY"
     && c3.evidence === "data/generated/culinary-brain-c3-prior-calibration-summary-v1.json"
     && c3.publicRuntimeRecipeCount === 85
@@ -148,7 +148,24 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     && c4Closeout.distinctCandidateCount===1
     && c4Closeout.protectedRecommendationAdmissionCount===0
     && c4Closeout.nextGate==="C4_TAPIOCA_BOUNDED_P3_ADMISSION_CONTRACT_V1";
-  const expected = c4CloseoutPassed
+  const p3Preactivation=config.p3TapiocaPreactivation||{};
+  const p3PreactivationPassed=c4CloseoutPassed
+    && p3Preactivation.terminal==="CULINARY_BRAIN_C4_TAPIOCA_BOUNDED_P3_CONTRACT_PASS__PREACTIVATION_READY"
+    && p3Preactivation.evidence==="data/generated/culinary-brain-c4-tapioca-bounded-p3-admission-summary-v1.json"
+    && p3Preactivation.candidateId==="unitools_pao_de_queijo"
+    && p3Preactivation.protectedSourceKey==="unitools-world-recipes-v1_1_0::pao-de-queijo"
+    && p3Preactivation.publicRuntimeRecipeCount===85
+    && p3Preactivation.newPublicRuntimeRecipeCount===0
+    && p3Preactivation.runtimeActivationAuthorized===false
+    && p3Preactivation.ownerActivationAuthorizationRequired===true
+    && p3Preactivation.nextGate==="C4_TAPIOCA_P3_OWNER_ACTIVATION_AUTHORIZATION";
+  const expected = p3PreactivationPassed
+    ? [
+        "C4_TAPIOCA_P3_OWNER_ACTIVATION_AUTHORIZATION",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+      ]
+    : c4CloseoutPassed
     ? [
         "C4_TAPIOCA_BOUNDED_P3_ADMISSION_CONTRACT_V1",
         "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
@@ -216,7 +233,10 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     if (c1.evidence !== "data/generated/culinary-brain-c1-combined-closeout-v1.json") errors.push("C1 terminal evidence reference mismatch");
     if (c1.independentHistoricalSemanticGeneralizationDemonstrated !== false) errors.push("C1 historical semantic limitation must remain explicit");
   }
-  if (c4CloseoutPassed) {
+  if (p3PreactivationPassed) {
+    const p3Gate=(config.gates||[]).find(gate=>gate.id==="P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
+    if (p3Gate?.state!=="PREACTIVATION_CONTRACT_PASS__OWNER_AUTHORIZATION_REQUIRED") errors.push("P3 preactivation must remain owner-gated");
+  } else if (c4CloseoutPassed) {
     const p3Gate=(config.gates||[]).find(gate=>gate.id==="P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
     if (p3Gate?.state!=="READY_FOR_BOUNDED_CONTRACT__NOT_ADMITTED") errors.push("P3 requires bounded contract before admission");
   } else if (c4ReconciliationPassed) {
