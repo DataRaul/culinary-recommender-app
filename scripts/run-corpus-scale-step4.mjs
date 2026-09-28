@@ -8,10 +8,10 @@ import { CORPUS_SCALE_TARGETS } from "./corpus-scale-step1-core.mjs";
 import { runStep4Benchmark } from "./corpus-scale-step4-core.mjs";
 
 export const STEP4_RUNTIME_BASELINE = Object.freeze({
-  sourceMainSha: "72d792ab0bd17ae5ad418e1b92b27ac2770f8843",
-  expectedRecipeCount: 85,
+  sourceMainSha: "P3_BOUNDED_ACTIVATION_2026_09_28",
+  expectedRecipeCount: 86,
   historicalOracleRecipeCount: 84,
-  scope: "PUBLIC_RUNTIME_RECIPES = frozen historical 84-record oracle + 1 explicitly activated Step 8F UniTools record"
+  scope: "PUBLIC_RUNTIME_RECIPES = frozen historical 84-record oracle + Step 8F tortilla + owner-authorized bounded P3 pão de queijo"
 });
 
 function argumentValue(name) {
