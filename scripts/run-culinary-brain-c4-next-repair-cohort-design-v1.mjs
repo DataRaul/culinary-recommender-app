@@ -1,0 +1,21 @@
+import { execFileSync } from "node:child_process";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
+import { scanStep8EReadiness } from "./corpus-scale-step8e-core.mjs";
+import { buildC4NextRepairCohortDesign } from "./culinary-brain-c4-next-repair-cohort-design-core.mjs";
+
+const args=Object.fromEntries(process.argv.slice(2).map(arg=>{const [key,...rest]=arg.replace(/^--/,"").split("=");return [key,rest.join("=")];}));
+for(const key of ["contract","p3","sources","unitools","summary"]) if(!args[key]) throw new Error("C4_NEXT_REPAIR_DESIGN_ARGUMENT_REQUIRED_"+key);
+const read=p=>readFile(resolve(p),"utf8").then(JSON.parse);
+const [contract,p3,sources,dataset]=await Promise.all([read(args.contract),read(args.p3),read(args.sources),read(resolve(args.unitools,"unitools-recipes-v1.json"))]);
+const src=(sources.sources||[]).find(row=>row.id==="unitools-world-recipes-v1_1_0");
+if(!src) throw new Error("C4_NEXT_REPAIR_DESIGN_UNITOOLS_SOURCE_CONFIG_MISSING");
+const observedCommit=execFileSync("git",["-C",resolve(args.unitools),"rev-parse","HEAD"],{encoding:"utf8"}).trim();
+const observedBlob=execFileSync("git",["hash-object",resolve(args.unitools,src.snapshot.dataPath)],{encoding:"utf8"}).trim();
+if(observedCommit!==src.snapshot.commit||observedBlob!==src.snapshot.dataBlobSha) throw new Error("C4_NEXT_REPAIR_DESIGN_UNITOOLS_SOURCE_PIN_MISMATCH");
+const step8Contract={source:{sourceCohortId:src.id,repository:src.snapshot.repository,commit:src.snapshot.commit,dataPath:src.snapshot.dataPath,dataBlobSha:src.snapshot.dataBlobSha,datasetVersion:src.snapshot.datasetVersion,licenseId:src.rights.licenseId,attributionText:src.rights.attributionText}};
+const preflight=scanStep8EReadiness(dataset,step8Contract);
+const summary=buildC4NextRepairCohortDesign({contract,p3,preflight});
+await mkdir(dirname(resolve(args.summary)),{recursive:true});
+await writeFile(resolve(args.summary),JSON.stringify(summary,null,2)+"\n","utf8");
+process.stdout.write("C4_NEXT_REPAIR_COHORT_DESIGN="+JSON.stringify({terminal:summary.terminal,currentIdentityBaseline:summary.currentIdentityBaseline,hardMetadataLeverage:summary.hardMetadataLeverage,topCandidates:summary.selection.topCandidates.slice(0,10),nextGate:summary.nextGate})+"\n");
