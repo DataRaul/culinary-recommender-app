@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_UNITOOLS_DIFFICULTY_ADAPTER_REUSE_REVIEW_SUMMARY_V1",
+  "date": "2026-09-28",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C4_UNITOOLS_DIFFICULTY_ADAPTER_REUSE_REVIEW_PASS__ONE_PROTECTED_HARD_METADATA_READY",
+  "protectedCorpusVersion": "v8018",
+  "protectedRecipeKey": "unitools-world-recipes-v1_1_0::tortilla-espanola",
+  "source": {
+    "cohortId": "unitools-world-recipes-v1_1_0",
+    "slug": "tortilla-espanola",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "difficultyLabel": "medium"
+  },
+  "adapter": {
+    "reviewedMapping": {
+      "easy": 1,
+      "medium": 3,
+      "hard": 4
+    },
+    "runtimeDifficulty": 3,
+    "authorityScope": "EXACT_PINNED_UNITOOLS_TORTILLA_RECORD_ONLY",
+    "broaderSourceCohortAuthority": false
+  },
+  "readiness": {
+    "previousProtectedRuntimeHardMetadataReadyCount": 0,
+    "newProtectedRuntimeHardMetadataReadyCount": 1,
+    "newlyReadyProtectedRecipeKeys": [
+      "unitools-world-recipes-v1_1_0::tortilla-espanola"
+    ],
+    "existingPublicCanonicalRecipeId": "unitools_tortilla_espanola",
+    "sameCanonicalSourceRecordAlreadyPublic": true,
+    "netNewPublicRecipeCount": 0
+  },
+  "authority": {
+    "exactCandidateDifficultyAuthorityPromoted": true,
+    "protectedRecommendationAdmissionChanged": false,
+    "publicRuntimeChanged": false,
+    "broaderDifficultyAdapterPromoted": false
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "duplicatePublicRecipeCreated": false,
+    "mealRoleInferencePerformed": false,
+    "timeInferencePerformed": false,
+    "nutritionAuthorityPromoted": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "C4_BOUNDED_P3_DUPLICATE_SAFE_ADMISSION_CONTRACT_V1"
+}
