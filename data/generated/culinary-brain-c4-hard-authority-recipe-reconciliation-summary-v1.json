@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_SUMMARY_V1",
+  "date": "2026-09-27",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_PASS",
+  "protectedCorpusVersion": "v8018",
+  "repairCohortCount": 112,
+  "repairCohortDigestSha256": "965876ec6dca2a9a4796417d88e44151a87541b39cfe232c42decf2208913468",
+  "policyCompleteCandidateCount": 100,
+  "policyHeldRecipeCount": 12,
+  "ingredientPolicyReadyCount": 100,
+  "dietaryAllergenPolicyReadyCount": 100,
+  "mealRoleAuthorityReadyCount": 1,
+  "sourceDifficultyEvidencePresentCount": 1,
+  "runtimeDifficultyReadyCount": 0,
+  "totalMinutesAuthorityReadyCount": 1,
+  "instructionsReadyCount": 100,
+  "provenanceReadyCount": 100,
+  "readyExceptDifficultyCount": 1,
+  "readyExceptDifficultyRecipeKeys": [
+    "unitools-world-recipes-v1_1_0::tortilla-espanola"
+  ],
+  "runtimeHardMetadataReadyCount": 0,
+  "blockerCounts": {
+    "DIFFICULTY_AUTHORITY_MISSING": 99,
+    "MEAL_ROLE_AUTHORITY_MISSING": 99,
+    "RUNTIME_DIFFICULTY_SCALE_ADAPTER_NOT_AUTHORIZED": 1,
+    "TOTAL_MINUTES_AUTHORITY_MISSING": 99
+  },
+  "sourceSystemCounts": {
+    "OPEN_RECIPE_ARCHIVE_JSONL": 93,
+    "OPEN_RECIPE_ARCHIVE_MARKDOWN": 6,
+    "UNITOOLS": 1
+  },
+  "candidateRecipeKeyDigestSha256": "6f993c0db53c0eadb95d1d52cc1c5f0daf23a64bf9eb777caf09b5328c79e16c",
+  "runtimeReadyRecipeKeyDigestSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "runtimeReadyRecipeKeys": [],
+  "authorityPromoted": false,
+  "recommendationAdmissionChanged": false,
+  "interpretation": {
+    "policyCompleteDoesNotMeanRecommendationReady": true,
+    "sourceDifficultyEvidenceDoesNotEqualRuntimeDifficultyAuthority": true,
+    "emptyAllergenListIsNotGlobalAllergenFreeProof": true,
+    "nutritionIndependent": true,
+    "unknownHardMetadataFailsClosed": true
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationBehaviorChanged": false,
+    "recommendationAdmissionChanged": false,
+    "difficultyScaleMappingPromoted": false,
+    "mealRoleInferencePerformed": false,
+    "timeInferenceBeyondExistingReviewedNormalizationPerformed": false,
+    "nutritionAuthorityPromoted": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1"
+}

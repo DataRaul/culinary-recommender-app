@@ -89,7 +89,7 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     && c2.hardAuthorityViolations === 0;
   const c3 = brain.c3Calibration || {};
   const c3Passed = c2Passed
-    && ["C3_PASS__C4_READY","C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY","C4_POLICY_REVIEW_PASS__RECIPE_RECONCILIATION_READY"].includes(brain.state)
+    && ["C3_PASS__C4_READY","C4_FAILURE_MATRIX_PASS__HARD_AUTHORITY_REPAIR_READY","C4_POLICY_REVIEW_PASS__RECIPE_RECONCILIATION_READY","C4_RECONCILIATION_PASS__HARD_METADATA_REPAIR_DESIGN_READY"].includes(brain.state)
     && c3.terminal === "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY"
     && c3.evidence === "data/generated/culinary-brain-c3-prior-calibration-summary-v1.json"
     && c3.publicRuntimeRecipeCount === 85
@@ -127,7 +127,27 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     && c4Policy.policyCompleteRecipeCandidateCount === 100
     && c4Policy.policyHeldRecipeCount === 12
     && c4Policy.recommendationAuthorityPromoted === false;
-  const expected = c4PolicyPassed
+  const c4Reconciliation = brain.c4RecipeReconciliation || config.c4RecipeReconciliation || {};
+  const c4ReconciliationPassed = c4PolicyPassed
+    && c4Reconciliation.terminal === "CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_PASS"
+    && c4Reconciliation.evidence === "data/generated/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json"
+    && c4Reconciliation.policyCompleteCandidateCount === 100
+    && c4Reconciliation.mealRoleAuthorityReadyCount === 1
+    && c4Reconciliation.sourceDifficultyEvidencePresentCount === 1
+    && c4Reconciliation.runtimeDifficultyReadyCount === 0
+    && c4Reconciliation.totalMinutesAuthorityReadyCount === 1
+    && c4Reconciliation.readyExceptDifficultyCount === 1
+    && JSON.stringify(c4Reconciliation.readyExceptDifficultyRecipeKeys || []) === JSON.stringify(["unitools-world-recipes-v1_1_0::tortilla-espanola"])
+    && c4Reconciliation.runtimeHardMetadataReadyCount === 0
+    && c4Reconciliation.recommendationAdmissionChanged === false
+    && c4Reconciliation.nextGate === "C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1";
+  const expected = c4ReconciliationPassed
+    ? [
+        "CULINARY_BRAIN_C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
+        "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+      ]
+    : c4PolicyPassed
     ? [
         "CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1",
         "PROTECTED_CORPUS_RUNTIME_USABILITY_P3_PROGRESSIVE_RECOMMENDATION_ADMISSION",
@@ -183,7 +203,10 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     if (c1.evidence !== "data/generated/culinary-brain-c1-combined-closeout-v1.json") errors.push("C1 terminal evidence reference mismatch");
     if (c1.independentHistoricalSemanticGeneralizationDemonstrated !== false) errors.push("C1 historical semantic limitation must remain explicit");
   }
-  if (c4PolicyPassed) {
+  if (c4ReconciliationPassed) {
+    const p3Gate = (config.gates || []).find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
+    if (p3Gate?.state !== "BLOCKED_ON_C4_REMAINING_HARD_METADATA") errors.push("P3 must remain blocked on C4 remaining hard metadata after reconciliation");
+  } else if (c4PolicyPassed) {
     const p3Gate = (config.gates || []).find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
     if (p3Gate?.state !== "BLOCKED_ON_C4_RECIPE_RECONCILIATION_AND_HARD_METADATA") errors.push("P3 must remain blocked on C4 recipe reconciliation and hard metadata");
   } else if (c4MatrixPassed) {

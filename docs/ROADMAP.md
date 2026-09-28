@@ -852,3 +852,12 @@ The exact frozen-112 hard-authority tranche completed an explicit ingredient-pol
 Applying only those reviewed ingredient policies yields **100 / 112** policy-complete recipe candidates for the next offline reconciliation gate; **12 / 112** remain held. Candidate dietary-tag coverage among the 100 is unrestricted **100**, vegetarian **91**, vegan **23**. This does not admit recipes or widen public/runtime authority. Empty allergen lists are not global allergen-free claims, cross-contact/product-label guarantees remain out of scope, and unsupported/threshold-dependent EU residual categories remain uninferred.
 
 Terminal: `CULINARY_BRAIN_C4_HARD_AUTHORITY_POLICY_REVIEW_PASS__100_POLICY_COMPLETE_CANDIDATES__RECONCILIATION_READY`. Evidence: `data/generated/culinary-brain-c4-hard-authority-policy-review-summary-v1.json`. Next: `C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1`; P3 remains blocked.
+
+
+### 2026-09-27 — C4 recipe hard-metadata reconciliation
+
+The exact **100** policy-complete C4 candidates were reconciled against the current deterministic recommender's remaining hard fields. Ingredient identity, reviewed candidate dietary/allergen metadata, instructions and provenance are available for all 100, but only **1 / 100** has authoritative meal role, source difficulty evidence and total time. Runtime-compatible difficulty authority remains **0 / 100**, so no protected recipe is recommendation-ready and P3 remains blocked.
+
+The single near-ready recipe is `unitools-world-recipes-v1_1_0::tortilla-espanola`. It is ready on every measured hard field except explicit mapping from source difficulty label `MEDIUM` to the app's runtime 1–4 skill scale. The remaining **99** historical candidates lack authoritative meal role, total time and difficulty and remain fail-closed.
+
+Terminal: `CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_PASS`. Evidence: `data/generated/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json`. Next: `C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1`; no admission/runtime/D1/Barbecue change.

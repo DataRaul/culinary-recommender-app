@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
   "date": "2026-09-27",
-  "state": "C0_PASS__P2_PASS__C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_PASS__C3_PASS__C4_POLICY_REVIEW_PASS__RECIPE_RECONCILIATION_READY",
+  "state": "C0_PASS__P2_PASS__C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_PASS__C3_PASS__C4_RECONCILIATION_PASS__HARD_METADATA_REPAIR_DESIGN_READY",
   "pattern": "FITNESS_BRAIN_CALIBRATION_ANALOGUE",
   "knowledgeCoreDomain": "culinary_nutrition",
   "runtimeDependencyAuthorized": false,
@@ -106,7 +106,7 @@
   },
   "postP1Execution": {
     "p1Gate": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS",
-    "state": "P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_POLICY_REVIEW_PASS__RECIPE_RECONCILIATION_READY",
+    "state": "P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_RECONCILIATION_PASS__HARD_METADATA_REPAIR_DESIGN_READY",
     "c1ExactSampleFreeze": {
       "terminal": "CULINARY_BRAIN_C1_EXACT_500_SAMPLE_FROZEN",
       "protectedCorpusVersion": "v8018",
@@ -122,7 +122,7 @@
       }
     },
     "next": [
-      "C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1"
+      "C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1"
     ],
     "boundaries": {
       "protectedD1ReadsPerformed": 0,
@@ -264,6 +264,24 @@
       "policyHeldRecipeCount": 12,
       "recommendationAuthorityPromoted": false,
       "nextGate": "C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_V1"
+    },
+    "c4RecipeReconciliation": {
+      "state": "PASS__ZERO_RUNTIME_READY__ONE_NEAR_READY__REPAIR_DESIGN_READY",
+      "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_PASS",
+      "contract": "config/culinary_brain_c4_hard_authority_recipe_reconciliation_v1.json",
+      "evidence": "data/generated/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json",
+      "policyCompleteCandidateCount": 100,
+      "mealRoleAuthorityReadyCount": 1,
+      "sourceDifficultyEvidencePresentCount": 1,
+      "runtimeDifficultyReadyCount": 0,
+      "totalMinutesAuthorityReadyCount": 1,
+      "readyExceptDifficultyCount": 1,
+      "readyExceptDifficultyRecipeKeys": [
+        "unitools-world-recipes-v1_1_0::tortilla-espanola"
+      ],
+      "runtimeHardMetadataReadyCount": 0,
+      "recommendationAdmissionChanged": false,
+      "nextGate": "C4_REMAINING_HARD_METADATA_REPAIR_DESIGN_V1"
     }
   }
 }
