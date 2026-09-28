@@ -8,6 +8,7 @@ on:
       - "scripts/run-culinary-brain-c4-unitools-high-leverage-ingredient-alias-review-v1.mjs"
       - "tests/culinary-brain-c4-unitools-high-leverage-ingredient-alias-review-v1.test.js"
       - "data/generated/culinary-brain-c4-next-repair-cohort-design-summary-v1.json"
+      - "data/generated/culinary-brain-c4-unitools-high-leverage-ingredient-alias-review-summary-v1.json"
       - "config/corpus_scale_step8d_contract.json"
       - "scripts/corpus-scale-step8e-core.mjs"
       - "src/data/ingredients.js"
@@ -39,6 +40,28 @@ jobs:
             --step8d=config/corpus_scale_step8d_contract.json \
             --unitools=.tmp/unitools \
             --summary=.tmp/culinary-brain-c4-unitools-high-leverage-ingredient-alias-review-summary-v1.json
+      - name: Verify compact frozen evidence
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile } from "node:fs/promises";
+          const full=JSON.parse(await readFile(".tmp/culinary-brain-c4-unitools-high-leverage-ingredient-alias-review-summary-v1.json","utf8"));
+          const frozen=JSON.parse(await readFile("data/generated/culinary-brain-c4-unitools-high-leverage-ingredient-alias-review-summary-v1.json","utf8"));
+          const observed={
+            terminal:full.terminal,
+            reviewedDecisionCount:full.review.reviewedDecisionCount,
+            mappedDecisionCount:full.review.mappedDecisionCount,
+            heldDecisionCount:full.review.heldDecisionCount,
+            reviewedAliasResolvedOccurrences:full.identity.reviewedAliasResolvedOccurrences,
+            postReviewResolvedIngredientOccurrences:full.identity.postReviewResolvedIngredientOccurrences,
+            postReviewUnresolvedIngredientOccurrences:full.identity.postReviewUnresolvedIngredientOccurrences,
+            postReviewConflictingIngredientOccurrences:full.identity.postReviewConflictingIngredientOccurrences,
+            postReviewFullyMappedRecipeCount:full.identity.postReviewFullyMappedRecipeCount,
+            newlyFullyMappedRecipeCount:full.identity.newlyFullyMappedRecipeCount,
+            newlyFullyMappedRecipeDigestSha256:full.identity.newlyFullyMappedRecipeDigestSha256,
+            nextGate:full.nextGate
+          };
+          for(const [key,value] of Object.entries(observed)) if(JSON.stringify(frozen[key])!==JSON.stringify(value)) throw new Error("FROZEN_ALIAS_REVIEW_MISMATCH__"+key);
+          NODE
       - name: Upload alias-review evidence
         uses: actions/upload-artifact@v4
         with:
