@@ -33,9 +33,9 @@ test("Step 8F activates exactly one reviewed external record without rewriting t
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ALL_RECIPES.some(recipe => recipe.id === "unitools_tortilla_espanola"), false);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
-  assert.equal(PUBLIC_EXTERNAL_RECIPES.length, 9);
-  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
-  assert.equal(new Set(PUBLIC_RUNTIME_RECIPES.map(recipe => recipe.id)).size, 85);
+  assert.equal(PUBLIC_EXTERNAL_RECIPES.length, 10);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 86);
+  assert.equal(new Set(PUBLIC_RUNTIME_RECIPES.map(recipe => recipe.id)).size, 86);
   assert.equal(candidate?.id, "unitools_tortilla_espanola");
 });
 
@@ -85,5 +85,5 @@ test("activated record preserves attribution and the nutrition-authority firewal
 test("portable RecipeSource V2 preserves the exact activated candidate universe when supplied explicitly", () => {
   const rows = createRecipeSourceV2(PUBLIC_RUNTIME_RECIPES).list();
   assert.deepEqual(rows, PUBLIC_RUNTIME_RECIPES);
-  assert.equal(rows.length, 85);
+  assert.equal(rows.length, 86);
 });
