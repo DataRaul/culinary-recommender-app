@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_C4_UNITOOLS_HIGH_LEVERAGE_INGREDIENT_ALIAS_REVIEW_COMPACT_SUMMARY_V1",
+  "date": "2026-09-28",
+  "pass": true,
+  "terminal": "CULINARY_BRAIN_C4_UNITOOLS_HIGH_LEVERAGE_INGREDIENT_ALIAS_REVIEW_PASS",
+  "protectedCorpusVersion": "v8018",
+  "sourceCohortId": "unitools-world-recipes-v1_1_0",
+  "reviewedDecisionCount": 25,
+  "mappedDecisionCount": 6,
+  "heldDecisionCount": 19,
+  "reviewedAliasResolvedOccurrences": 114,
+  "postReviewResolvedIngredientOccurrences": 2638,
+  "postReviewUnresolvedIngredientOccurrences": 2693,
+  "postReviewConflictingIngredientOccurrences": 73,
+  "postReviewFullyMappedRecipeCount": 1,
+  "newlyFullyMappedRecipeCount": 0,
+  "newlyFullyMappedRecipeDigestSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "interpretation": "SAFE_ALIAS_REPAIRS_IMPROVE_OCCURRENCE_COVERAGE_BUT_UNLOCK_ZERO_NEW_RECIPES",
+  "authorityPromoted": false,
+  "recommendationAdmissionChanged": false,
+  "publicRuntimeChanged": false,
+  "nextGate": "C4_UNITOOLS_CANONICAL_GAP_DESIGN_V1"
+}
