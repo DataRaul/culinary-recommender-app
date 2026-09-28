@@ -25,13 +25,16 @@ test("P3 contract is fail-closed and keeps activation authority off",()=>{
   assert.equal(summary.terminal,"CULINARY_BRAIN_C4_TAPIOCA_BOUNDED_P3_CONTRACT_PASS__PREACTIVATION_READY");
   assert.equal(summary.ownerActivationAuthorizationRequired,true);
 });
-test("candidate is serialized but absent from the exact 85-recipe public runtime",()=>{
-  assert.equal(PUBLIC_RUNTIME_RECIPES.length,85);
-  assert.equal(PUBLIC_RUNTIME_RECIPES.some(recipe=>recipe.id===candidate.id),false);
+test("candidate artifact preserves the frozen preactivation snapshot after the separately authorized activation",()=>{
+  assert.equal(summary.runtimeBoundary.publicRuntimeRecipeCount,85);
+  assert.equal(summary.runtimeBoundary.candidatePresentInPublicRuntime,false);
+  assert.equal(summary.runtimeBoundary.runtimeActivationAuthorized,false);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length,86);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.some(recipe=>recipe.id===candidate.id),true);
   assert.equal(candidate.id,"unitools_pao_de_queijo");
   assert.equal(candidate.governance.candidateSemanticsOnly,true);
   assert.equal(candidate.governance.runtimeActivationAuthorized,false);
-  assert.equal(ingredientById("tapioca_starch"),null);
+  assert.equal(ingredientById("tapioca_starch")?.id,"tapioca_starch");
   assert.deepEqual(candidate.ingredients.map(item=>item.canonicalIngredientId),["tapioca_starch","milk","water","neutral_oil","eggs","parmesan","mozzarella","salt"]);
 });
 test("candidate is eligible only for reviewed breakfast and snack",()=>{
@@ -49,7 +52,7 @@ test("candidate hard safety filters fail closed",()=>{
   assert.match(rankRecipes([candidate],normalizeProfile({...permissive,skill:2}),{mealType:"breakfast"}).rejected[0].hardReasons.join(" | "),/above selected cooking skill/);
 });
 test("candidate search and portable V2 semantics work without admission",()=>{
-  const universe=Object.freeze([...PUBLIC_RUNTIME_RECIPES,candidate]);
+  const universe=Object.freeze([candidate]);
   const result=searchRecipesByIngredients(universe,permissive,{mainIngredientId:"tapioca_starch",mealType:"breakfast",maxMinutes:180,skill:4});
   assert.ok(result.eligible.some(item=>item.recipe.id===candidate.id));
   const v2=createRecipeSourceV2([candidate]).list();
