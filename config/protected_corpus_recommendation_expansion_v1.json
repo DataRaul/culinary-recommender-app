@@ -113,5 +113,28 @@
     "nutritionIndependentOfRecommendationAdmission": true,
     "unknownHardMetadataFailsClosed": true,
     "realV8018RegressionRequiredAfterEveryAdmission": true
+  },
+  "r1FrontierMeasurement": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "expectedSourceRecipeCount": 501,
+    "pinnedSourceCommit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "pinnedSourceDataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "reviewedAliasContract": "config/culinary_brain_c4_unitools_high_leverage_ingredient_alias_review_v1.json",
+    "knownActivatedSourceSlugs": [
+      "pao-de-queijo"
+    ],
+    "knownPublicDuplicateSourceSlugs": [
+      "tortilla-espanola"
+    ],
+    "candidateTrancheMaxRecipes": 10,
+    "requireConflictFree": true,
+    "requireExplicitPrepCookServingsDifficultyCategory": true,
+    "rankingOrder": [
+      "uniqueUnresolvedIngredientKeyCount",
+      "unresolvedIngredientOccurrenceCount",
+      "sourceSlug"
+    ],
+    "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R1_FRONTIER_PASS__R2_REPAIR_TRANCHE_READY",
+    "nextGate": "R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR"
   }
 }
