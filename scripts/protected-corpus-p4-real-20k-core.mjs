@@ -13,6 +13,9 @@ export function validateP4Contract(contract) {
   if (contract?.expectedFrozenSampleRecipeCount !== 500) errors.push("expectedFrozenSampleRecipeCount");
   if (contract?.expectedPublicRuntimeRecipeCount !== 86) errors.push("expectedPublicRuntimeRecipeCount");
   if (contract?.expectedPublicExternalRecipeCount !== 10) errors.push("expectedPublicExternalRecipeCount");
+  if (contract?.expectedPreP3IdentityReadyRecipeCount !== 112) errors.push("expectedPreP3IdentityReadyRecipeCount");
+  if (contract?.expectedCurrentIdentityReadyRecipeCount !== 113) errors.push("expectedCurrentIdentityReadyRecipeCount");
+  if (contract?.expectedCurrentUnresolvedIdentityRecipeCount !== 19155) errors.push("expectedCurrentUnresolvedIdentityRecipeCount");
   if (contract?.expectedP1Terminal !== "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS") errors.push("expectedP1Terminal");
   if (contract?.expectedP2Terminal !== "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS") errors.push("expectedP2Terminal");
   if (contract?.expectedC4Terminal !== "CULINARY_BRAIN_C4_FAILURE_MATRIX_PASS__112_IDENTITY_READY_REPAIR_COHORT_FROZEN") errors.push("expectedC4Terminal");
@@ -21,6 +24,7 @@ export function validateP4Contract(contract) {
   if (contract?.scaleRequiredProofCount !== 170000 || contract?.scaleStressProofCount !== 250000) errors.push("scaleProof");
   if (!Array.isArray(contract?.failureClasses) || contract.failureClasses.length !== 7 || new Set(contract.failureClasses).size !== 7) errors.push("failureClasses");
   if (contract?.machineAcceptance?.reconstructExactV8018FromPinnedSources !== true) errors.push("machineAcceptance.reconstructExactV8018FromPinnedSources");
+  if (contract?.machineAcceptance?.reconcilePostP3IdentityDelta !== true) errors.push("machineAcceptance.reconcilePostP3IdentityDelta");
   if (contract?.machineAcceptance?.requireCommittedC4SummaryReproducible !== true) errors.push("machineAcceptance.requireCommittedC4SummaryReproducible");
   if (contract?.machineAcceptance?.reuseTerminalP1P2LiveEvidence !== true) errors.push("machineAcceptance.reuseTerminalP1P2LiveEvidence");
   if (contract?.machineAcceptance?.requireCurrentP3RuntimeRegression !== true) errors.push("machineAcceptance.requireCurrentP3RuntimeRegression");
@@ -34,12 +38,38 @@ export function validateP4Contract(contract) {
   return errors;
 }
 
+export function measureCurrentV8018({ contract, mappingFull, nutritionFull }) {
+  if (mappingFull?.protectedCorpusVersion !== "v8018" || mappingFull?.observedRecipeCount !== contract.expectedProtectedRecipeCount) {
+    throw new Error("P4_MAPPING_FULL_V8018_REQUIRED");
+  }
+  if (nutritionFull?.protectedCorpusVersion !== "v8018" || nutritionFull?.observedRecipeCount !== contract.expectedProtectedRecipeCount) {
+    throw new Error("P4_NUTRITION_FULL_V8018_REQUIRED");
+  }
+  const diagnostics = nutritionFull.protectedCorpusRecipeDiagnostics;
+  if (!Array.isArray(diagnostics) || diagnostics.length !== contract.expectedProtectedRecipeCount) {
+    throw new Error("P4_NUTRITION_DIAGNOSTIC_COUNT_MISMATCH");
+  }
+  const structuralExceptionCount = Array.isArray(mappingFull.structuralExceptions) ? mappingFull.structuralExceptions.length : -1;
+  const identityReadyRecipeCount = diagnostics.filter(row => row?.allIngredientIdentitiesResolved === true && Number(row?.ingredientOccurrenceCount) > 0).length;
+  const unresolvedIngredientIdentityRecipeCount = contract.expectedProtectedRecipeCount - identityReadyRecipeCount;
+  if (structuralExceptionCount !== contract.expectedStructuralPartialCount) throw new Error("P4_STRUCTURAL_EXCEPTION_COUNT_MISMATCH_" + structuralExceptionCount);
+  if (identityReadyRecipeCount !== contract.expectedCurrentIdentityReadyRecipeCount) throw new Error("P4_CURRENT_IDENTITY_READY_COUNT_MISMATCH_" + identityReadyRecipeCount);
+  if (unresolvedIngredientIdentityRecipeCount !== contract.expectedCurrentUnresolvedIdentityRecipeCount) throw new Error("P4_CURRENT_UNRESOLVED_IDENTITY_COUNT_MISMATCH_" + unresolvedIngredientIdentityRecipeCount);
+  return {
+    recipeCount: contract.expectedProtectedRecipeCount,
+    structuralExceptionCount,
+    identityReadyRecipeCount,
+    unresolvedIngredientIdentityRecipeCount
+  };
+}
+
 export function buildP4MachineBaseline({
   contract,
   p1,
   p2,
   c4,
   p3,
+  currentV8018,
   publicRuntimeRecipeCount,
   publicExternalRecipeCount,
   p3CandidatePresent
@@ -81,12 +111,20 @@ export function buildP4MachineBaseline({
     || c4?.pass !== true
     || c4?.protectedCorpusVersion !== "v8018"
     || c4?.recipeCount !== contract.expectedProtectedRecipeCount
-    || c4?.repairCohort?.recipeCount !== 112
+    || c4?.repairCohort?.recipeCount !== contract.expectedPreP3IdentityReadyRecipeCount
     || c4?.failureMatrix?.identityNormalization?.affectedRecipeCount !== 19156
     || c4?.failureMatrix?.hardDietaryAllergenAuthority?.reviewedDietaryAuthorityCount !== 0
     || c4?.failureMatrix?.abstention?.state !== "PASS_FAIL_CLOSED"
     || c4?.structuralExceptionCount !== contract.expectedStructuralPartialCount) {
-    throw new Error("P4_C4_REAL_V8018_BASELINE_MISMATCH");
+    throw new Error("P4_C4_FROZEN_PRE_P3_BASELINE_MISMATCH");
+  }
+
+  if (currentV8018?.recipeCount !== contract.expectedProtectedRecipeCount
+    || currentV8018?.structuralExceptionCount !== contract.expectedStructuralPartialCount
+    || currentV8018?.identityReadyRecipeCount !== contract.expectedCurrentIdentityReadyRecipeCount
+    || currentV8018?.unresolvedIngredientIdentityRecipeCount !== contract.expectedCurrentUnresolvedIdentityRecipeCount
+    || currentV8018.identityReadyRecipeCount !== c4.repairCohort.recipeCount + 1) {
+    throw new Error("P4_CURRENT_POST_P3_V8018_MISMATCH");
   }
 
   if (p3?.terminal !== contract.expectedP3Terminal
@@ -95,6 +133,7 @@ export function buildP4MachineBaseline({
     || p3?.publicRuntime?.recipeCountAfter !== contract.expectedPublicRuntimeRecipeCount
     || p3?.publicRuntime?.publicExternalCountAfter !== contract.expectedPublicExternalRecipeCount
     || p3?.publicRuntime?.activatedCandidateCount !== 1
+    || p3?.hardSafety?.exactCanonicalIngredientIdentity !== "tapioca_starch"
     || p3?.boundaries?.automaticRecommendationAdmissionAuthorized !== false
     || p3?.boundaries?.furtherProtectedRecipeAdmissionAuthorized !== false) {
     throw new Error("P4_P3_TERMINAL_EVIDENCE_MISMATCH");
@@ -116,13 +155,16 @@ export function buildP4MachineBaseline({
     terminal: P4_TERMINAL,
     protectedCorpusVersion: "v8018",
     realCorpus: {
-      recipeCount: 19268,
+      recipeCount: currentV8018.recipeCount,
       indexedRecipeCount: p1.indexedRecipeCount,
       ftsRecipeCount: p1.ftsRecipeCount,
       structuralPartialCount: p1.structuralPartialCount,
-      exactSourceReconstructionRecipeCount: c4.recipeCount,
-      identityReadyRepairCohortCount: c4.repairCohort.recipeCount,
-      unresolvedIngredientIdentityRecipeCount: c4.failureMatrix.identityNormalization.affectedRecipeCount,
+      exactCurrentSourceReconstructionRecipeCount: currentV8018.recipeCount,
+      historicalPreP3IdentityReadyRecipeCount: c4.repairCohort.recipeCount,
+      currentPostP3IdentityReadyRecipeCount: currentV8018.identityReadyRecipeCount,
+      currentIdentityReadyDeltaFromP3: currentV8018.identityReadyRecipeCount - c4.repairCohort.recipeCount,
+      historicalPreP3UnresolvedIngredientIdentityRecipeCount: c4.failureMatrix.identityNormalization.affectedRecipeCount,
+      currentUnresolvedIngredientIdentityRecipeCount: currentV8018.unresolvedIngredientIdentityRecipeCount,
       frozenSampleRecipeCount: p2.frozenSampleRecipeCount,
       matchedFrozenRecipeCount: p2.matchedFrozenRecipeCount,
       frozenSampleProvenanceCount: p2.sourceProvenanceCount
@@ -143,10 +185,11 @@ export function buildP4MachineBaseline({
         fullCorpusScans: Math.max(Number(p1.fullCorpusScans || 0), Number(p2.fullCorpusScans || 0))
       },
       metadataNormalization: {
-        state: "PASS_WITH_EXPLICIT_LIMITATIONS",
-        structuralPartialCount: p1.structuralPartialCount,
-        unresolvedIngredientIdentityRecipeCount: c4.failureMatrix.identityNormalization.affectedRecipeCount,
-        identityReadyRecipeCount: c4.failureMatrix.identityNormalization.identityReadyRecipeCount
+        state: "PASS_POST_P3_EXACT_IDENTITY_DELTA",
+        structuralPartialCount: currentV8018.structuralExceptionCount,
+        historicalPreP3IdentityReadyRecipeCount: c4.repairCohort.recipeCount,
+        currentPostP3IdentityReadyRecipeCount: currentV8018.identityReadyRecipeCount,
+        currentUnresolvedIngredientIdentityRecipeCount: currentV8018.unresolvedIngredientIdentityRecipeCount
       },
       hardSafetyEligibility: {
         state: "PASS_FAIL_CLOSED",
@@ -216,13 +259,18 @@ export function validateP4Summary(summary) {
     || summary?.realCorpus?.indexedRecipeCount !== 19268
     || summary?.realCorpus?.ftsRecipeCount !== 19268
     || summary?.realCorpus?.structuralPartialCount !== 3
-    || summary?.realCorpus?.exactSourceReconstructionRecipeCount !== 19268) errors.push("realCorpus");
+    || summary?.realCorpus?.exactCurrentSourceReconstructionRecipeCount !== 19268
+    || summary?.realCorpus?.historicalPreP3IdentityReadyRecipeCount !== 112
+    || summary?.realCorpus?.currentPostP3IdentityReadyRecipeCount !== 113
+    || summary?.realCorpus?.currentIdentityReadyDeltaFromP3 !== 1
+    || summary?.realCorpus?.currentUnresolvedIngredientIdentityRecipeCount !== 19155) errors.push("realCorpus");
   if (summary?.currentRuntime?.publicRuntimeRecipeCount !== 86
     || summary?.currentRuntime?.publicExternalRecipeCount !== 10
     || summary?.currentRuntime?.p3CandidateId !== "unitools_pao_de_queijo"
     || summary?.currentRuntime?.p3CandidatePresent !== true) errors.push("currentRuntime");
   if (summary?.regressionMatrix?.runtimeRetrieval?.maxObservedD1Subqueries > 8
     || summary?.regressionMatrix?.runtimeRetrieval?.fullCorpusScans !== 0) errors.push("runtimeRetrieval");
+  if (summary?.regressionMatrix?.metadataNormalization?.currentPostP3IdentityReadyRecipeCount !== 113) errors.push("metadataNormalization");
   if (summary?.regressionMatrix?.hardSafetyEligibility?.broaderAutomaticRecommendationAdmission !== false) errors.push("hardSafetyEligibility");
   if (summary?.regressionMatrix?.recommendationPlannerCompatibility?.activatedCandidateCount !== 1
     || summary?.regressionMatrix?.recommendationPlannerCompatibility?.broaderProtectedAdmission !== false) errors.push("recommendationPlannerCompatibility");
