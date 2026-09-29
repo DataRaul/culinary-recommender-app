@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
+import { PRE_P3_PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
 import { BRAIN_PUBLIC_POLICY_V1 } from "../src/data/brain-public-policy-v1.js";
 import { rankRecipes } from "../src/domain/recommendation.js";
 import { normalizeProfile } from "../src/domain/profile.js";
@@ -25,13 +25,13 @@ test("C3 contract is fail-closed and authorizes no runtime promotion",()=>{
   assert.equal(contract.fieldCalibration.mealRole.decision,"HOLD_NO_PRIOR_PROMOTION");
 });
 
-test("C3 calibration is deterministic over exact current 85 and preserves hard boundaries",()=>{
+test("C3 calibration remains deterministic over the exact frozen pre-P3 85 and preserves hard boundaries",()=>{
   const a=runC3Calibration({
-    recipes:PUBLIC_RUNTIME_RECIPES,contract,c2Summary,brainPolicy:BRAIN_PUBLIC_POLICY_V1,
+    recipes:PRE_P3_PUBLIC_RUNTIME_RECIPES,contract,c2Summary,brainPolicy:BRAIN_PUBLIC_POLICY_V1,
     rankRecipes,normalizeProfile,recommendationSource
   });
   const b=runC3Calibration({
-    recipes:PUBLIC_RUNTIME_RECIPES,contract,c2Summary,brainPolicy:BRAIN_PUBLIC_POLICY_V1,
+    recipes:PRE_P3_PUBLIC_RUNTIME_RECIPES,contract,c2Summary,brainPolicy:BRAIN_PUBLIC_POLICY_V1,
     rankRecipes,normalizeProfile,recommendationSource
   });
   assert.deepEqual(a,b);
@@ -48,7 +48,7 @@ test("C3 calibration is deterministic over exact current 85 and preserves hard b
 
 test("C3 fails closed if C2 terminal evidence is not exact",()=>{
   assert.throws(()=>runC3Calibration({
-    recipes:PUBLIC_RUNTIME_RECIPES,
+    recipes:PRE_P3_PUBLIC_RUNTIME_RECIPES,
     contract,
     c2Summary:{...c2Summary,terminal:"C2_NOT_PASS"},
     brainPolicy:BRAIN_PUBLIC_POLICY_V1,
@@ -58,7 +58,7 @@ test("C3 fails closed if C2 terminal evidence is not exact",()=>{
 
 test("C3 fails closed if Brain public policy becomes a runtime recommendation import",()=>{
   assert.throws(()=>runC3Calibration({
-    recipes:PUBLIC_RUNTIME_RECIPES,contract,c2Summary,brainPolicy:BRAIN_PUBLIC_POLICY_V1,
+    recipes:PRE_P3_PUBLIC_RUNTIME_RECIPES,contract,c2Summary,brainPolicy:BRAIN_PUBLIC_POLICY_V1,
     rankRecipes,normalizeProfile,
     recommendationSource:recommendationSource+"\n// import brain-public-policy-v1"
   }),/C3_RUNTIME_BRAIN_POLICY_IMPORT_DETECTED/);

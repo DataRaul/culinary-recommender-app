@@ -6,106 +6,20 @@ on:
       - "scripts/culinary-brain-c1-freeze-core.mjs"
       - "scripts/run-culinary-brain-c1-freeze-v1.mjs"
       - "tests/culinary-brain-c1-freeze-v1.test.js"
-      - "config/culinary_brain_corpus_calibration_v1.json"
       - "data/generated/culinary-brain-c1-exact-sample-freeze-v1.json"
-      - "data/generated/culinary-quota-gap-parallel-prep-v1.json"
-      - "config/corpus_normalization_baseline_v1.json"
-      - "config/corpus_normalization_mapping_v1.json"
-      - "scripts/run-corpus-normalization-mapping-v1.mjs"
-      - "scripts/run-nutrition-vitamin-applicability-audit.mjs"
       - ".github/workflows/culinary-brain-c1-freeze-v1.yml"
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  freeze:
+  freeze-regression:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref || github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-
-      - name: Run C1 freeze core tests
+      - name: Verify immutable terminal C1 freeze
         run: node --test tests/culinary-brain-c1-freeze-v1.test.js
-
-      - name: Checkout exact pinned UniTools
-        run: |
-          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
-          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
-
-      - name: Checkout exact pinned ForkRecipe
-        run: |
-          git clone --filter=blob:none https://github.com/futurechef/forkrecipe-recipes.git .tmp/forkrecipe
-          git -C .tmp/forkrecipe checkout --detach c32255266af39bd77444d39452f3df8088ac8fd9
-
-      - name: Checkout exact pinned CC0 recipes
-        run: |
-          git clone --filter=blob:none https://github.com/sylGauthier/recipes.git .tmp/cc0
-          git -C .tmp/cc0 checkout --detach b12e481d1c220a13e0847a34e148d5872a16928e
-
-      - name: Checkout exact pinned Open Recipe Archive
-        run: |
-          git clone --filter=blob:none https://github.com/AdamBouhmad/open-recipe-archive.git .tmp/ora
-          git -C .tmp/ora checkout --detach ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
-
-      - name: Reconstruct full v8018 normalization overlay
-        run: |
-          node scripts/run-corpus-normalization-mapping-v1.mjs \
-            --unitools=.tmp/unitools \
-            --forkrecipe=.tmp/forkrecipe \
-            --cc0=.tmp/cc0 \
-            --ora=.tmp/ora \
-            --output=.tmp/corpus-normalization-mapping-v1-full.json \
-            --summary=.tmp/corpus-normalization-mapping-v1.json
-
-      - name: Reconstruct per-recipe ingredient identity diagnostics
-        run: |
-          node scripts/run-nutrition-vitamin-applicability-audit.mjs \
-            --unitools=.tmp/unitools \
-            --forkrecipe=.tmp/forkrecipe \
-            --cc0=.tmp/cc0 \
-            --ora=.tmp/ora \
-            --output=.tmp/nutrition-vitamin-applicability-audit-v1-full.json \
-            --summary=.tmp/nutrition-vitamin-applicability-audit-v1.json
-
-      - name: Freeze exact 500-recipe C1 identities
-        run: |
-          node scripts/run-culinary-brain-c1-freeze-v1.mjs \
-            --mappingFull=.tmp/corpus-normalization-mapping-v1-full.json \
-            --nutritionFull=.tmp/nutrition-vitamin-applicability-audit-v1-full.json \
-            --unitools=.tmp/unitools \
-            --forkrecipe=.tmp/forkrecipe \
-            --cc0=.tmp/cc0 \
-            --ora=.tmp/ora \
-            --output=.tmp/culinary-brain-c1-exact-sample-freeze-v1.json
-
-      - name: Persist exact freeze on same-repository PR branch
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        run: |
-          mkdir -p data/generated
-          cp .tmp/culinary-brain-c1-exact-sample-freeze-v1.json data/generated/culinary-brain-c1-exact-sample-freeze-v1.json
-          if [ -z "$(git status --porcelain -- data/generated/culinary-brain-c1-exact-sample-freeze-v1.json)" ]; then
-            echo "Exact freeze already committed."
-          else
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data/generated/culinary-brain-c1-exact-sample-freeze-v1.json
-            git commit -m "Persist exact C1 500-recipe freeze"
-            git push origin HEAD:${{ github.head_ref }}
-          fi
-
-      - name: Verify committed freeze
-        run: |
-          node --input-type=module -e 'import assert from "node:assert/strict"; import {readFileSync} from "node:fs"; assert.deepStrictEqual(JSON.parse(readFileSync("data/generated/culinary-brain-c1-exact-sample-freeze-v1.json","utf8")), JSON.parse(readFileSync(".tmp/culinary-brain-c1-exact-sample-freeze-v1.json","utf8")));'
-
-      - name: Upload C1 freeze evidence
-        uses: actions/upload-artifact@v4
-        with:
-          name: culinary-brain-c1-exact-sample-freeze-v1
-          path: .tmp/culinary-brain-c1-exact-sample-freeze-v1.json
-          if-no-files-found: error

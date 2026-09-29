@@ -1,5 +1,21 @@
 # Third-Party Notices
 
+## UniTools World Recipes Dataset — bounded public runtime records
+
+The public runtime includes bounded normalized recipe records derived from the UniTools World Recipes Dataset.
+
+- Source project: UniTools World Recipes Dataset / `farcrak/unitools-recipes`
+- Pinned source commit: `1d09e9548d957dd0375301146a86dddf5e269c1b`
+- Pinned `unitools-recipes-v1.json` blob: `a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed`
+- Dataset version: 1.1.0
+- Licence: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+- Licence: https://creativecommons.org/licenses/by-sa/4.0/
+- Attribution: UniTools — theunitools.com
+- Publicly activated records: `tortilla-espanola` (Step 8F) and `pao-de-queijo` (bounded P3 activation)
+- Modification notice: admitted records are normalized into the Culinary Recommender schema under separately reviewed runtime-admission contracts. UniTools-derived recipe expression remains subject to CC BY-SA 4.0.
+
+Source nutrition is not imported as authoritative NutritionSource evidence. Source dietary labels are not automatically promoted into hard runtime authority, and no UniTools images are bundled by these runtime records.
+
 ## English Wikibooks Cookbook text
 
 Gate F may bundle a bounded set of recipe text adapted from the English Wikibooks Cookbook.

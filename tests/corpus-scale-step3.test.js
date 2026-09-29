@@ -48,9 +48,9 @@ test("Step 3 preserves deterministic portable artifacts over the historical 84-r
   assert.equal(manifest.invariants.publicRuntimeSwitchAuthorized, false);
 });
 
-test("Step 3 reconciles the current 85-record public runtime without rewriting the historical oracle", () => {
+test("Step 3 reconciles the current 86-record public runtime without rewriting the historical oracle", () => {
   assert.equal(ALL_RECIPES.length, 84);
-  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 86);
 
   const first = currentRuntimeMaterialized({ metadataShardSize: 11 });
   const second = currentRuntimeMaterialized({ metadataShardSize: 11 });
@@ -58,8 +58,8 @@ test("Step 3 reconciles the current 85-record public runtime without rewriting t
   assert.deepEqual([...first.kinds.entries()], [...second.kinds.entries()]);
 
   const manifest = manifestFrom(first.files);
-  assert.equal(manifest.recipeCount, 85);
-  assert.equal(manifest.detailObjects.objectCount, 85);
+  assert.equal(manifest.recipeCount, 86);
+  assert.equal(manifest.detailObjects.objectCount, 86);
   assert.equal(manifest.metadata.shardCount, 8);
 
   const rows = metadataRows(first.files, manifest).sort((a, b) => a.ordinal - b.ordinal);
@@ -70,7 +70,7 @@ test("Step 3 reconciles the current 85-record public runtime without rewriting t
 
   const validation = validatePortableCorpusArtifacts(first.files, { version: VERSION });
   assert.equal(validation.pass, true);
-  assert.equal(validation.recipeCount, 85);
+  assert.equal(validation.recipeCount, 86);
 });
 
 test("artifact stream emits immutable recipe bodies before corpus-wide index finalization", () => {

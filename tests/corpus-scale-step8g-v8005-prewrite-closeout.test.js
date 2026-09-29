@@ -43,5 +43,5 @@ test("v8005 prewrite remains immutable proof after later protected iterations", 
   assert.equal(handoverInvariants.publicAdmissionAuthorized, false);
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
-  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 86);
 });

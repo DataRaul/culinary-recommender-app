@@ -53,5 +53,5 @@ test("v8004 remains canonical historical evidence after later Step 8G iterations
 
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
-  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 86);
 });

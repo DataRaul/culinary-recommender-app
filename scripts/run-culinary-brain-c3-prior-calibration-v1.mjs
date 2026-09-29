@@ -1,6 +1,6 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
-import { PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
+import { PRE_P3_PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
 import { BRAIN_PUBLIC_POLICY_V1 } from "../src/data/brain-public-policy-v1.js";
 import { rankRecipes } from "../src/domain/recommendation.js";
 import { normalizeProfile } from "../src/domain/profile.js";
@@ -18,7 +18,7 @@ const [contract,c2Summary,recommendationSource]=await Promise.all([
   readFile(resolve("src/domain/recommendation.js"),"utf8")
 ]);
 const summary=runC3Calibration({
-  recipes:PUBLIC_RUNTIME_RECIPES,
+  recipes:PRE_P3_PUBLIC_RUNTIME_RECIPES,
   contract,
   c2Summary,
   brainPolicy:BRAIN_PUBLIC_POLICY_V1,

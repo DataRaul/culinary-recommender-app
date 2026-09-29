@@ -75,5 +75,5 @@ test("v8006 frozen live evidence remains registered while later protected versio
   assert.equal(handoverInvariants.publicAdmissionAuthorized, false);
   assert.equal(ALL_RECIPES.length, 84);
   assert.equal(ACTIVATED_EXTERNAL_RECIPES.length, 1);
-  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 86);
 });

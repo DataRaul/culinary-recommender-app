@@ -9,7 +9,7 @@ page.on("pageerror", error => errors.push(error.message));
 await page.goto(baseUrl, { waitUntil: "networkidle" });
 await page.getByRole("heading", { name: "What should you cook?" }).waitFor();
 const status = (await page.locator("#statusPill").textContent())?.trim();
-if (status !== "85 recipes · 76 curated + 9 open external · deterministic") {
+if (status !== "86 recipes · 76 curated + 10 open external · deterministic") {
   throw new Error(`Step 8F activation browser check detected public-runtime drift: ${status}`);
 }
 
@@ -67,14 +67,14 @@ const result = await page.evaluate(async () => {
 
 if (result.frozenRuntimeActivationAuthorized !== false || result.frozenPublicRuntimeChanged !== false) throw new Error("Step 8E frozen evidence was mutated during activation");
 if (result.goldenCount !== 84) throw new Error(`Historical golden corpus drifted: ${result.goldenCount}`);
-if (result.canonicalPublicCount !== 85 || result.liveRuntimeCount !== 85 || !result.publicContainsCandidate) throw new Error("Step 8F candidate is not active in the 85-record public runtime");
+if (result.canonicalPublicCount !== 86 || result.liveRuntimeCount !== 86 || !result.publicContainsCandidate) throw new Error("Step 8F candidate is not active in the 86-record public runtime");
 if (result.candidateId !== "unitools_tortilla_espanola") throw new Error(`Unexpected Step 8F candidate: ${result.candidateId}`);
 if (result.candidateRuntimeActivationAuthorized !== true) throw new Error("Activated Step 8F record lacks explicit runtime authority");
 if (result.candidateEligible.join(",") !== "unitools_tortilla_espanola") throw new Error("Step 8F candidate did not pass browser ranking semantics");
 if (result.candidatePlan.join(",") !== "unitools_tortilla_espanola") throw new Error("Step 8F candidate did not pass browser planner semantics");
 if (!result.candidateSearchVisible) throw new Error("Step 8F candidate did not pass browser search semantics");
 if (!result.eggHardReasons.includes("declared allergen: egg")) throw new Error("Step 8F browser hard-allergen check failed");
-if (!result.explicitV2IdsMatch || !result.explicitV2RankIdsMatch) throw new Error("Step 8F explicit 85-record V1/direct versus V2 parity failed");
+if (!result.explicitV2IdsMatch || !result.explicitV2RankIdsMatch) throw new Error("Step 8F explicit 86-record V1/direct versus V2 parity failed");
 if (errors.length) throw new Error(`Step 8F browser page errors: ${errors.join(" | ")}`);
 
 await browser.close();

@@ -30,20 +30,27 @@ test("programme fails closed if protected evidence drifts", () => {
   assert.ok(validateProtectedCorpusRuntimeUsability(mutated, evidence).some(error => error.includes("recipe count")));
 });
 
-test("programme preserves C3 pass while advancing through bounded C4", () => {
+test("programme preserves C3/C4 history and advances through bounded P3 activation to P4", () => {
   assert.match(config.state, /^P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_/);
   assert.equal(config.gates.find(gate => gate.id === "P0_EVIDENCE_AND_CONTRACT_AUDIT").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").liveOwnerCanary, "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS");
-  assert.match(config.nextExecutionSequence[0], /^(?:CULINARY_BRAIN_C4_|C4_TAPIOCA_)/);
-  assert.match(config.brainCalibration.state, /^(?:C3_PASS__C4_READY|C4_)/);
+  assert.equal(config.nextExecutionSequence[0], "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE");
+  assert.equal(config.brainCalibration.state, "C4_BOUNDED_PASS__P3_BOUNDED_ACTIVATION_PASS__P4_READY");
   assert.equal(config.brainCalibration.c1Evaluation.entireFrozen500Evaluated, true);
   assert.equal(config.brainCalibration.c1Evaluation.independentHistoricalSemanticGeneralizationDemonstrated, false);
   assert.equal(config.brainCalibration.c1Evaluation.c2AuthorizedScope, "CANDIDATE_ONLY__ABSTENTION_DEFAULT");
-  assert.equal(config.gates.find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION").state, "PREACTIVATION_CONTRACT_PASS__OWNER_AUTHORIZATION_REQUIRED");
+  assert.equal(config.gates.find(gate => gate.id === "P3_PROGRESSIVE_RECOMMENDATION_ADMISSION").state, "BOUNDED_ACTIVATION_PASS__ONE_RECIPE_ADMITTED");
   assert.equal(config.p3TapiocaPreactivation.terminal, "CULINARY_BRAIN_C4_TAPIOCA_BOUNDED_P3_CONTRACT_PASS__PREACTIVATION_READY");
   assert.equal(config.p3TapiocaPreactivation.runtimeActivationAuthorized, false);
   assert.equal(config.p3TapiocaPreactivation.ownerActivationAuthorizationRequired, true);
+  assert.equal(config.p3TapiocaActivation.terminal, "CULINARY_BRAIN_P3_TAPIOCA_BOUNDED_ACTIVATION_PASS__P4_READY");
+  assert.equal(config.p3TapiocaActivation.ownerActivationAuthorized, true);
+  assert.equal(config.p3TapiocaActivation.publicRuntimeRecipeCountAfter, 86);
+  assert.equal(config.p3TapiocaActivation.publicExternalRecipeCountAfter, 10);
+  assert.equal(config.p3TapiocaActivation.activatedRecipeCount, 1);
+  assert.equal(config.p3TapiocaActivation.automaticRecommendationAdmissionAuthorized, false);
+  assert.equal(config.gates.find(gate => gate.id === "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE").state, "READY");
   assert.equal(config.brainCalibration.c4Closeout.distinctCandidateCount,1);
   assert.equal(config.brainCalibration.c4Closeout.protectedRecommendationAdmissionCount,0);
   assert.equal(config.brainCalibration.c3Calibration.terminal, "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY");

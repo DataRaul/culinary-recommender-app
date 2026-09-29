@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "CULINARY_BRAIN_P3_TAPIOCA_BOUNDED_ACTIVATION_CONTRACT_V1",
+  "date": "2026-09-28",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "CULINARY_BRAIN_C4_TAPIOCA_BOUNDED_P3_CONTRACT_PASS__PREACTIVATION_READY",
+  "ownerAuthorization": {
+    "received": true,
+    "date": "2026-09-28",
+    "scope": [
+      "unitools_pao_de_queijo"
+    ],
+    "instruction": "Proceed with the bounded P3 activation; no automatic wider admission."
+  },
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "datasetVersion": "1.1.0",
+    "licenseId": "CC-BY-SA-4.0",
+    "attributionText": "UniTools — theunitools.com",
+    "sourceSlug": "pao-de-queijo"
+  },
+  "activation": {
+    "canonicalRecipeId": "unitools_pao_de_queijo",
+    "exactCanonicalIngredientIdentity": {
+      "id": "tapioca_starch",
+      "name": "tapioca starch",
+      "aliases": [],
+      "scope": "EXACT_CANONICAL_IDENTITY_ONLY__NO_ALIAS_WIDENING"
+    },
+    "publicRuntimeRecipeCountBefore": 85,
+    "publicRuntimeRecipeCountAfter": 86,
+    "publicExternalRecipeCountBefore": 9,
+    "publicExternalRecipeCountAfter": 10,
+    "activatedRecipeCount": 1,
+    "reviewedMealTypes": [
+      "breakfast",
+      "snack"
+    ],
+    "runtimeDifficulty": 3,
+    "totalMinutes": 50,
+    "servings": 6,
+    "declaredAllergens": [
+      "egg",
+      "milk"
+    ],
+    "dietaryTags": [
+      "unrestricted"
+    ]
+  },
+  "authority": {
+    "ownerActivationAuthorized": true,
+    "runtimeActivationAuthorized": true,
+    "publicRuntimeWideningAuthorized": true,
+    "exactCandidateRecommendationAdmissionAuthorized": true,
+    "exactCanonicalIngredientIdentityPromotionAuthorized": true,
+    "globalIngredientAliasWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "furtherProtectedRecipeAdmissionAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "CULINARY_BRAIN_P3_TAPIOCA_BOUNDED_ACTIVATION_PASS__P4_READY",
+  "nextGate": "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+}

@@ -35,7 +35,9 @@ test("EU regulatory source review preserves zero-authority Lane 3 boundary", () 
 test("Annex II audit remains a truthful frozen pre-activation snapshot", () => {
   const actualTokens = [...new Set(Object.values(INGREDIENTS).flatMap(item => item.allergens || []))].sort();
   const preActivationTokens = actualTokens.filter(token => token !== "celery");
-  assert.equal(Object.keys(INGREDIENTS).length, 136);
+  assert.equal(Object.keys(INGREDIENTS).length, 137);
+  assert.equal(Object.keys(INGREDIENTS).filter(id => id !== "tapioca_starch").length, 136);
+  assert.deepEqual(INGREDIENTS.tapioca_starch.allergens, []);
   assert.deepEqual(preActivationTokens, allergenAudit.appBaseline.allergenTokens);
   assert.equal(actualTokens.length, 10);
   assert.ok(actualTokens.includes("celery"));

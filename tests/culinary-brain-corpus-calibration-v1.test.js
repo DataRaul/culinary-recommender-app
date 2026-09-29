@@ -45,7 +45,7 @@ test("C2 terminal classification remains recorded after successor advancement",(
   assert.equal(c2.invariants.hardAuthorityViolations,0);
 });
 
-test("C3 terminal calibration remains preserved through bounded C4 lifecycle advancement",()=>{
+test("C3 and C4 terminal evidence remain preserved after bounded P3 activation",()=>{
   assert.match(config.state,/^C0_PASS__P2_PASS__C1_PASS_WITH_REFERENCE_COVERAGE_LIMIT__C2_PASS__C3_PASS__C4_/);
   const c3=config.postP1Execution.c3Calibration;
   assert.equal(c3.state,"PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION");
@@ -58,9 +58,14 @@ test("C3 terminal calibration remains preserved through bounded C4 lifecycle adv
   assert.equal(c3.scorerDisposition,"CURRENT_DETERMINISTIC_SCORER_RETAINED_UNCHANGED");
   assert.equal(Array.isArray(config.postP1Execution.next),true);
   assert.equal(config.postP1Execution.next.length,1);
-  assert.match(config.postP1Execution.next[0],/^C4_/);
+  assert.equal(config.postP1Execution.next[0],"PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE");
   assert.equal(config.postP1Execution.c4Closeout.terminal,"CULINARY_BRAIN_C4_BOUNDED_FAILURE_REPAIR_PASS__ONE_DISTINCT_P3_CANDIDATE_READY");
   assert.equal(config.postP1Execution.c4Closeout.protectedRecommendationAdmissionCount,0);
+  assert.equal(config.p3TapiocaActivation.terminal,"CULINARY_BRAIN_P3_TAPIOCA_BOUNDED_ACTIVATION_PASS__P4_READY");
+  assert.equal(config.p3TapiocaActivation.ownerActivationAuthorized,true);
+  assert.equal(config.p3TapiocaActivation.publicRuntimeRecipeCountAfter,86);
+  assert.equal(config.p3TapiocaActivation.activatedRecipeCount,1);
+  assert.equal(config.p3TapiocaActivation.automaticRecommendationAdmissionAuthorized,false);
   const c4=config.postP1Execution.c4FailureMatrix;
   if (c4) {
     assert.equal(c4.terminal,"CULINARY_BRAIN_C4_FAILURE_MATRIX_PASS__112_IDENTITY_READY_REPAIR_COHORT_FROZEN");

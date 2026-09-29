@@ -40,9 +40,9 @@ function changedInstructionRecipes() {
   return recipes;
 }
 
-test("Step 6 uses the current 85-record public runtime as the scale seed while retaining the historical 84-record oracle", () => {
+test("Step 6 uses the current 86-record public runtime as the scale seed while retaining the historical 84-record oracle", () => {
   assert.equal(ALL_RECIPES.length, 84);
-  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 85);
+  assert.equal(PUBLIC_RUNTIME_RECIPES.length, 86);
 
   const previous = artifacts(PUBLIC_RUNTIME_RECIPES, "v0001");
   const next = artifacts(cloneRecipes(), "v0002");
@@ -52,14 +52,14 @@ test("Step 6 uses the current 85-record public runtime as the scale seed while r
   });
 
   assert.equal(plan.mode, "INCREMENTAL");
-  assert.equal(plan.previousRecipeCount, 85);
-  assert.equal(plan.nextRecipeCount, 85);
+  assert.equal(plan.previousRecipeCount, 86);
+  assert.equal(plan.nextRecipeCount, 86);
   assert.deepEqual(plan.affectedRecipeIds, []);
   assert.deepEqual(plan.changedIndexKeys, []);
 
   const result = validateIncrementalArtifacts(next.files, plan);
   assert.equal(result.pass, true);
-  assert.equal(result.skippedUnchangedRecipeCount, 85);
+  assert.equal(result.skippedUnchangedRecipeCount, 86);
 
   const currentBaseRetention = validateGoldenRecipeRetention(CURRENT_PUBLIC_BASE_RECIPES, next.files, { nextVersion: "v0002" });
   assert.equal(currentBaseRetention.pass, true);

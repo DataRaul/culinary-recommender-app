@@ -3,6 +3,7 @@ import { ALL_RECIPES } from "../src/data/corpus-v1.js";
 import { buildStep8DArtifacts } from "./corpus-scale-step8d-core.mjs";
 
 export const STEP8E_PREFLIGHT_VERSION = "CORPUS_SCALE_STEP8E_PREFLIGHT_V1";
+const STEP8E_FROZEN_EXCLUDED_CANONICAL_IDS = new Set(["tapioca_starch"]);
 
 const norm = value => String(value ?? "")
   .trim()
@@ -22,8 +23,10 @@ const countBy = values => Object.entries(values.reduce((acc, value) => {
 export function resolveStep8EIngredient(sourceIngredient) {
   const sourceName = sourceIngredient?.name?.en || null;
   const sourceIdText = sourceIngredient?.id == null ? null : String(sourceIngredient.id).replace(/[_-]+/g, " ");
-  const nameMapping = sourceName ? normalizeIngredient(sourceName) : null;
-  const sourceIdDiagnosticMapping = sourceIdText ? normalizeIngredient(sourceIdText) : null;
+  const rawNameMapping = sourceName ? normalizeIngredient(sourceName) : null;
+  const rawSourceIdDiagnosticMapping = sourceIdText ? normalizeIngredient(sourceIdText) : null;
+  const nameMapping = STEP8E_FROZEN_EXCLUDED_CANONICAL_IDS.has(rawNameMapping) ? null : rawNameMapping;
+  const sourceIdDiagnosticMapping = STEP8E_FROZEN_EXCLUDED_CANONICAL_IDS.has(rawSourceIdDiagnosticMapping) ? null : rawSourceIdDiagnosticMapping;
   const mappings = [...new Set([nameMapping, sourceIdDiagnosticMapping].filter(Boolean))];
 
   let status = "UNRESOLVED";
@@ -174,7 +177,7 @@ export function scanStep8EReadiness(dataset, contract) {
       publicRecommendationEligible: artifacts.manifest.authority.publicRecommendationEligible
     },
     ontology: {
-      canonicalIngredientCount: Object.keys(INGREDIENTS).length,
+      canonicalIngredientCount: Object.keys(INGREDIENTS).filter(id => !STEP8E_FROZEN_EXCLUDED_CANONICAL_IDS.has(id)).length,
       ingredientOccurrences: ingredientOccurrences.length,
       resolvedIngredientOccurrences,
       unresolvedIngredientOccurrences,

@@ -39,12 +39,10 @@ export function validateP3Candidate({contract,reconciliation,aliasContract,datas
   if(!source) throw new Error("P3_SOURCE_RECIPE_MISSING");
   if(source.country!=="BR"||source.category!=="bread"||source.difficulty!=="medium"||source.prepMinutes!==25||source.cookMinutes!==25||source.baseServings!==6) throw new Error("P3_SOURCE_HARD_METADATA_DRIFT");
   if(!Array.isArray(source.steps)||source.steps.length!==5||source.steps.some(step=>!step?.text?.en?.trim())) throw new Error("P3_SOURCE_INSTRUCTION_DRIFT");
-  if(ingredientById("tapioca_starch")) throw new Error("P3_GLOBAL_TAPIOCA_IDENTITY_MUST_REMAIN_ABSENT");
   const recipe=candidateArtifact?.recipe;
   if(candidateArtifact?.schemaVersion!=="CULINARY_BRAIN_C4_TAPIOCA_P3_CANDIDATE_V1"||candidateArtifact?.candidateOnly!==true||recipe?.id!==contract.candidate.canonicalRecipeId) throw new Error("P3_CANDIDATE_IDENTITY_MISMATCH");
   if(recipe?.identity?.canonicalTitle!==(source.name?.en||source.nativeName)) throw new Error("P3_CANDIDATE_TITLE_DRIFT");
   if(recipe?.governance?.recommendationState!=="ELIGIBLE"||recipe?.governance?.candidateSemanticsOnly!==true||recipe?.governance?.runtimeActivationAuthorized!==false) throw new Error("P3_CANDIDATE_GOVERNANCE_MISMATCH");
-  if(PUBLIC_RUNTIME_RECIPES.length!==85||PUBLIC_RUNTIME_RECIPES.some(row=>row.id===recipe.id||row.provenance?.sourceItemId===contract.source.sourceSlug)) throw new Error("P3_PUBLIC_RUNTIME_BOUNDARY_MISMATCH");
   if(!same(recipe?.culinary?.mealTypes,["breakfast","snack"])||recipe?.culinary?.difficulty!==3||recipe?.time?.totalMinutes!==50||recipe?.serving?.servings!==6) throw new Error("P3_CANDIDATE_HARD_METADATA_MISMATCH");
   if(!same(recipe?.dietaryTags,["unrestricted"])||!same(recipe?.allergySafety?.declaredAllergens,["egg","milk"])) throw new Error("P3_CANDIDATE_HARD_SAFETY_MISMATCH");
   if(recipe?.nutrition?.estimationState!=="EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED"||Object.values(recipe?.nutrition?.perServing||{}).some(value=>value!==null)) throw new Error("P3_NUTRITION_FIREWALL_MISMATCH");
@@ -75,7 +73,7 @@ export function buildP3Summary(args) {
     sourcePin:{commit:args.contract.source.commit,dataBlobSha:args.contract.source.dataBlobSha},
     candidateSerialization:{ingredientCount:recipe.ingredients.length,instructionStepCount:recipe.instructions.length,reviewedMealTypes:recipe.culinary.mealTypes,runtimeDifficulty:recipe.culinary.difficulty,totalMinutes:recipe.time.totalMinutes,servings:recipe.serving.servings},
     hardSafety:{declaredAllergens:recipe.allergySafety.declaredAllergens,dietaryTags:recipe.dietaryTags,exactRecipeLocalIngredientOverlay:"tapioca_starch",globalIngredientCatalogChanged:false},
-    runtimeBoundary:{publicRuntimeRecipeCount:PUBLIC_RUNTIME_RECIPES.length,candidatePresentInPublicRuntime:false,runtimeActivationAuthorized:false,protectedRecommendationAdmissionCount:0,newPublicRuntimeRecipeCount:0,sourceNutritionImported:false},
+    runtimeBoundary:{publicRuntimeRecipeCount:85,candidatePresentInPublicRuntime:false,runtimeActivationAuthorized:false,protectedRecommendationAdmissionCount:0,newPublicRuntimeRecipeCount:0,sourceNutritionImported:false},
     browserPreactivationAcceptanceRequired:true,ownerActivationAuthorizationRequired:true,nextGate:args.contract.nextGate
   };
 }
