@@ -1,0 +1,15 @@
+import { execFileSync } from "node:child_process";
+import { readFile,writeFile,mkdir } from "node:fs/promises";
+import { dirname,resolve } from "node:path";
+import { buildR2IdentityReview } from "./protected-corpus-recommendation-expansion-r2-identity-core.mjs";
+const args=Object.fromEntries(process.argv.slice(2).map(arg=>{const [k,...v]=arg.replace(/^--/,"").split("=");return [k,v.join("=")];}));
+for(const k of ["contract","r1","alias","unitools","summary"]) if(!args[k]) throw new Error("R2_IDENTITY_ARGUMENT_REQUIRED_"+k);
+const read=p=>readFile(resolve(p),"utf8").then(JSON.parse);
+const [contract,r1,aliasContract,dataset]=await Promise.all([read(args.contract),read(args.r1),read(args.alias),read(resolve(args.unitools,"unitools-recipes-v1.json"))]);
+const observedCommit=execFileSync("git",["-C",resolve(args.unitools),"rev-parse","HEAD"],{encoding:"utf8"}).trim();
+const observedBlob=execFileSync("git",["hash-object",resolve(args.unitools,"unitools-recipes-v1.json")],{encoding:"utf8"}).trim();
+if(observedCommit!==contract.sourceCohort.commit||observedBlob!==contract.sourceCohort.dataBlobSha) throw new Error("R2_IDENTITY_SOURCE_PIN_MISMATCH");
+const summary=buildR2IdentityReview({contract,r1,aliasContract,dataset});
+await mkdir(dirname(resolve(args.summary)),{recursive:true});
+await writeFile(resolve(args.summary),JSON.stringify(summary,null,2)+"\n","utf8");
+process.stdout.write("R2_IDENTITY_SUMMARY="+JSON.stringify(summary)+"\n");
