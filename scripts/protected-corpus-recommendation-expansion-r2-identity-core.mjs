@@ -122,3 +122,28 @@ export function buildR2IdentityReview({contract,r1,aliasContract,dataset}){
     nextGate:"R2_HARD_SAFETY_POLICY_REVIEW"
   };
 }
+
+export function compactR2IdentityEvidence(summary){
+  if(summary?.pass!==true||summary?.terminal!==R2_IDENTITY_TERMINAL) throw new Error("R2_IDENTITY_COMPACT_SOURCE_INVALID");
+  return {
+    schemaVersion:"CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_IDENTITY_REVIEW_COMPACT_V1",
+    date:summary.date,
+    pass:true,
+    terminal:summary.terminal,
+    protectedCorpusVersion:summary.protectedCorpusVersion,
+    frozenCandidateDigestSha256:summary.frozenCandidateDigestSha256,
+    reviewedDecisionCount:summary.reviewedDecisionCount,
+    mappedExistingDecisionCount:summary.mappedExistingDecisionCount,
+    heldDecisionCount:summary.heldDecisionCount,
+    identityReadyCandidateCount:summary.identityReadyCandidateCount,
+    identityReadySourceSlugs:summary.identityReadySourceSlugs,
+    identityReadyDigestSha256:summary.identityReadyDigestSha256,
+    identityReadyCandidates:summary.rows.filter(r=>r.identityReady).map(r=>({sourceSlug:r.sourceSlug,canonicalIngredientIds:r.canonicalIngredientIds,positiveCatalogAllergenSignals:r.positiveCatalogAllergenSignals})),
+    heldCandidates:summary.rows.filter(r=>!r.identityReady).map(r=>({sourceSlug:r.sourceSlug,unresolvedIngredientKeys:r.unresolvedIngredientKeys})),
+    authorityPromoted:summary.authorityPromoted,
+    recommendationAdmissionChanged:summary.recommendationAdmissionChanged,
+    publicRuntimeChanged:summary.publicRuntimeChanged,
+    boundaries:summary.boundaries,
+    nextGate:summary.nextGate
+  };
+}
