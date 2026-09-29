@@ -8,14 +8,14 @@ const contract = read("config/protected_corpus_recommendation_expansion_v1.json"
 const evidence = read("data/generated/protected-corpus-recommendation-expansion-r0-baseline-v1.json");
 const p4 = read("data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json");
 
-test("authorized successor starts from exact terminal P4 baseline and opens only R1 machine work", () => {
+test("authorized successor preserves terminal P4 baseline after R1 and opens R2 machine work", () => {
   assert.deepEqual(validateProtectedCorpusRecommendationExpansion(contract,evidence,p4),[]);
   const summary = summarizeProtectedCorpusRecommendationExpansion(contract,evidence,p4);
   assert.equal(summary.pass,true);
   assert.equal(summary.terminal,"PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R0_PASS__FRONTIER_MEASUREMENT_READY");
   assert.equal(summary.publicRuntimeRecipeCount,86);
   assert.equal(summary.activatedProtectedOriginCount,1);
-  assert.equal(summary.nextExecutionSequence[0],"R1_POST_P3_FRONTIER_MEASUREMENT");
+  assert.equal(summary.nextExecutionSequence[0],"R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR");
 });
 
 test("successor remains fail-closed on runtime widening and automatic admission", () => {
