@@ -93,3 +93,11 @@ Any failed or unavailable required metric emits:
 `PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_STOPPED_SAFE`
 
 Live latency and memory are captured as baseline observations rather than inventing a new performance threshold that was not authorized by the P4 contract.
+
+## Owner live terminal acceptance — 2026-09-29
+
+The authenticated production probe passed with terminal `PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS` and is recorded in `data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json`.
+
+Observed production evidence: exact `v8018`; 19,268 indexed and FTS rows; 3 structural partials; stable repeated search with 173 ms maximum observed search latency; pagination/filter PASS; both shards hydrated; maximum 4 observed D1 subqueries; 9,007 transferred JSON bytes; browser heap signal captured before/after; malformed/unknown detail failed closed; recommendation candidate generation, abstention and planner PASS; 86 public runtime recipes with exactly one protected-origin activation; mobile/browser UX PASS at a 384×694 CSS-pixel viewport. There were 0 full-corpus scans, 0 protected D1 writes, no public-runtime or recommendation-admission change, no protected-body rewrite, no Knowledge Core write, no paid infrastructure, no third shard and no Barbecue mutation.
+
+P4 is therefore **terminal PASS**. The live verifier remains available only as a diagnostic rerun. P4 closeout does **not** authorize another protected-recipe admission and does not invent a successor roadmap gate.
