@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R3_MACHINE_ACCEPTANCE_CONTRACT_V1",
+  "date": "2026-09-29",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_HARD_SAFETY_PASS__R3_READY",
+  "r2HardSafetyEvidence": "data/generated/protected-corpus-recommendation-expansion-r2-hard-safety-summary-v1.json",
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "datasetVersion": "1.1.0",
+    "licenseId": "CC-BY-SA-4.0",
+    "attributionText": "UniTools — theunitools.com",
+    "sourceSlug": "chimichurri"
+  },
+  "candidate": {
+    "canonicalRecipeId": "unitools_chimichurri",
+    "sourceOrderedCanonicalIngredientIds": [
+      "parsley",
+      "oregano",
+      "garlic",
+      "chilli_flakes",
+      "vinegar",
+      "olive_oil",
+      "water",
+      "salt"
+    ],
+    "candidateDeclaredAllergens": [],
+    "candidateDietaryTags": [
+      "unrestricted",
+      "vegetarian",
+      "vegan"
+    ],
+    "reviewedDifficultyMapping": {
+      "sourceDifficulty": "easy",
+      "runtimeDifficulty": 1,
+      "basis": "REUSE_EXISTING_REVIEWED_UNITOOLS_EASY_1_MEDIUM_3_HARD_4_MAPPING"
+    },
+    "mealRoleDecision": {
+      "state": "HOLD",
+      "runtimeMealTypes": [],
+      "reason": "SOURCE_CATEGORY_SAUCE_IS_NOT_STANDALONE_MEAL_ROLE_AUTHORITY"
+    },
+    "timeDecision": {
+      "state": "HOLD",
+      "sourcePrepMinutes": 15,
+      "sourceCookMinutes": 0,
+      "sourceDeclaredTotalMinutes": 15,
+      "sourceInstructionMinuteSum": 20,
+      "sourceInstructionContainsTwoHourStand": true,
+      "runtimeTotalMinutes": null,
+      "reason": "SOURCE_DECLARED_TIME_CONTRADICTS_INSTRUCTION_DWELL_AND_STEP_MINUTES"
+    }
+  },
+  "machineAcceptance": {
+    "serializeCandidateOnlyRuntimeShape": true,
+    "requireRecommendationAbstention": true,
+    "requirePlannerAbstention": true,
+    "requirePublicRuntimeUnchanged": true,
+    "requireNutritionFirewall": true,
+    "requireSourceDietaryClaimsNotPromoted": true
+  },
+  "authority": {
+    "candidateSerializationAuthorized": true,
+    "deterministicMachineAcceptanceAuthorized": true,
+    "reviewedDifficultyMappingReuseAuthorized": true,
+    "runtimeActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "ownerAdmissionGateOpen": false,
+    "mealRoleInferenceAuthorized": false,
+    "sourceTimeOverrideAuthorized": false,
+    "sourceNutritionPromotionAuthorized": false,
+    "sourceDietaryClaimPromotionAuthorized": false,
+    "globalIngredientAliasIndexMutationAuthorized": false,
+    "globalIngredientCatalogMutationAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R3_MACHINE_ACCEPTANCE_PASS__CHIMICHURRI_HELD__NEXT_FRONTIER_READY",
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V2"
+}
