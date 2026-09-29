@@ -33,7 +33,8 @@
     "requireCurrentP3RuntimeRegression": true,
     "requirePullRequestBrowserRegression": true,
     "protectedD1ReadsAuthorized": false,
-    "protectedD1WritesAuthorized": false
+    "protectedD1WritesAuthorized": false,
+    "reconcilePostP3IdentityDelta": true
   },
   "liveAcceptance": {
     "required": true,
@@ -64,5 +65,8 @@
     "barbecueMutationAuthorized": false
   },
   "targetTerminal": "PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED",
-  "nextGate": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE"
+  "nextGate": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE",
+  "expectedPreP3IdentityReadyRecipeCount": 112,
+  "expectedCurrentIdentityReadyRecipeCount": 113,
+  "expectedCurrentUnresolvedIdentityRecipeCount": 19155
 }
