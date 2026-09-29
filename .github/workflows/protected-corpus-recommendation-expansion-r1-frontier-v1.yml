@@ -8,6 +8,7 @@ on:
       - "scripts/run-protected-corpus-recommendation-expansion-r1-frontier-v1.mjs"
       - "tests/protected-corpus-recommendation-expansion-r1-frontier-v1.test.js"
       - "config/culinary_brain_c4_unitools_high_leverage_ingredient_alias_review_v1.json"
+      - "data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json"
       - ".github/workflows/protected-corpus-recommendation-expansion-r1-frontier-v1.yml"
   workflow_dispatch:
 
@@ -34,7 +35,10 @@ jobs:
             --contract=config/protected_corpus_recommendation_expansion_v1.json \
             --alias=config/culinary_brain_c4_unitools_high_leverage_ingredient_alias_review_v1.json \
             --unitools=.tmp/unitools \
-            --summary=.tmp/protected-corpus-recommendation-expansion-r1-frontier-v1.json
+            --summary=.tmp/protected-corpus-recommendation-expansion-r1-frontier-v1.json \
+            --compact=.tmp/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json
+      - name: Verify compact evidence is reproducible
+        run: cmp .tmp/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json
       - name: Show measured frontier
         run: cat .tmp/protected-corpus-recommendation-expansion-r1-frontier-v1.json
       - uses: actions/upload-artifact@v4
