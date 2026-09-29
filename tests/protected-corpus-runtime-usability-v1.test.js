@@ -30,12 +30,12 @@ test("programme fails closed if protected evidence drifts", () => {
   assert.ok(validateProtectedCorpusRuntimeUsability(mutated, evidence).some(error => error.includes("recipe count")));
 });
 
-test("programme preserves C3/C4 history and advances through bounded P3 activation to P4", () => {
+test("programme preserves C3/C4 history and advances through P4 machine baseline to owner live acceptance", () => {
   assert.match(config.state, /^P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_/);
   assert.equal(config.gates.find(gate => gate.id === "P0_EVIDENCE_AND_CONTRACT_AUDIT").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").liveOwnerCanary, "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS");
-  assert.equal(config.nextExecutionSequence[0], "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE");
+  assert.equal(config.nextExecutionSequence[0], "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE");
   assert.equal(config.brainCalibration.state, "C4_BOUNDED_PASS__P3_BOUNDED_ACTIVATION_PASS__P4_READY");
   assert.equal(config.brainCalibration.c1Evaluation.entireFrozen500Evaluated, true);
   assert.equal(config.brainCalibration.c1Evaluation.independentHistoricalSemanticGeneralizationDemonstrated, false);
@@ -50,7 +50,21 @@ test("programme preserves C3/C4 history and advances through bounded P3 activati
   assert.equal(config.p3TapiocaActivation.publicExternalRecipeCountAfter, 10);
   assert.equal(config.p3TapiocaActivation.activatedRecipeCount, 1);
   assert.equal(config.p3TapiocaActivation.automaticRecommendationAdmissionAuthorized, false);
-  assert.equal(config.gates.find(gate => gate.id === "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE").state, "READY");
+  assert.equal(config.gates.find(gate => gate.id === "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE").state, "MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED");
+  assert.equal(config.gates.find(gate => gate.id === "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE").machineTerminal, "PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED");
+  assert.equal(config.gates.find(gate => gate.id === "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE").ownerLiveAcceptanceRequired, true);
+  assert.equal(config.p4MachineBaseline.terminal, "PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED");
+  assert.equal(config.p4MachineBaseline.protectedRecipeCount, 19268);
+  assert.equal(config.p4MachineBaseline.historicalPreP3IdentityReadyRecipeCount, 112);
+  assert.equal(config.p4MachineBaseline.currentPostP3IdentityReadyRecipeCount, 113);
+  assert.equal(config.p4MachineBaseline.currentIdentityReadyDeltaFromP3, 1);
+  assert.equal(config.p4MachineBaseline.currentUnresolvedIngredientIdentityRecipeCount, 19155);
+  assert.equal(config.p4MachineBaseline.publicRuntimeRecipeCount, 86);
+  assert.equal(config.p4MachineBaseline.publicExternalRecipeCount, 10);
+  assert.equal(config.p4MachineBaseline.maxObservedD1Subqueries, 8);
+  assert.equal(config.p4MachineBaseline.protectedD1Writes, 0);
+  assert.equal(config.p4MachineBaseline.ownerLiveAcceptanceRequired, true);
+  assert.equal(config.p4MachineBaseline.nextGate, "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE");
   assert.equal(config.brainCalibration.c4Closeout.distinctCandidateCount,1);
   assert.equal(config.brainCalibration.c4Closeout.protectedRecommendationAdmissionCount,0);
   assert.equal(config.brainCalibration.c3Calibration.terminal, "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY");
@@ -66,6 +80,15 @@ test("programme preserves C3/C4 history and advances through bounded P3 activati
   assert.equal(config.gates.find(gate => gate.id === "P2_METADATA_USABILITY_MEASUREMENT").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P2_METADATA_USABILITY_MEASUREMENT").liveAlignmentState, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P2_METADATA_USABILITY_MEASUREMENT").liveAlignmentTerminal, "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS");
+
+
+  const reopenedP4 = structuredClone(config);
+  reopenedP4.p4MachineBaseline.currentPostP3IdentityReadyRecipeCount = 112;
+  assert.ok(validateProtectedCorpusRuntimeUsability(reopenedP4, evidence).some(error => error.includes("execution sequence")));
+
+  const widenedP4 = structuredClone(config);
+  widenedP4.p4MachineBaseline.protectedD1Writes = 1;
+  assert.ok(validateProtectedCorpusRuntimeUsability(widenedP4, evidence).some(error => error.includes("execution sequence")));
 
   const reopenedP1 = structuredClone(config);
   reopenedP1.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state = "IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING";

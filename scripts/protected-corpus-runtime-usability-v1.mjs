@@ -174,7 +174,31 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     && p3Activation.automaticRecommendationAdmissionAuthorized===false
     && p3Activation.furtherProtectedRecipeAdmissionAuthorized===false
     && p3Activation.nextGate==="PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE";
-  const expected = p3ActivationPassed
+  const p4Machine=config.p4MachineBaseline||{};
+  const p4MachinePassed=p3ActivationPassed
+    && p4Machine.terminal==="PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED"
+    && p4Machine.evidence==="data/generated/protected-corpus-p4-real-20k-machine-baseline-v1.json"
+    && p4Machine.protectedCorpusVersion==="v8018"
+    && p4Machine.protectedRecipeCount===19268
+    && p4Machine.indexedRecipeCount===19268
+    && p4Machine.ftsRecipeCount===19268
+    && p4Machine.structuralPartialCount===3
+    && p4Machine.historicalPreP3IdentityReadyRecipeCount===112
+    && p4Machine.currentPostP3IdentityReadyRecipeCount===113
+    && p4Machine.currentIdentityReadyDeltaFromP3===1
+    && p4Machine.currentUnresolvedIngredientIdentityRecipeCount===19155
+    && p4Machine.publicRuntimeRecipeCount===86
+    && p4Machine.publicExternalRecipeCount===10
+    && p4Machine.maxObservedD1Subqueries<=8
+    && p4Machine.fullCorpusScans===0
+    && p4Machine.protectedD1Writes===0
+    && p4Machine.ownerLiveAcceptanceRequired===true
+    && p4Machine.nextGate==="PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE";
+  const expected = p4MachinePassed
+    ? [
+        "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE"
+      ]
+    : p3ActivationPassed
     ? [
         "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
       ]
@@ -252,7 +276,16 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     if (c1.evidence !== "data/generated/culinary-brain-c1-combined-closeout-v1.json") errors.push("C1 terminal evidence reference mismatch");
     if (c1.independentHistoricalSemanticGeneralizationDemonstrated !== false) errors.push("C1 historical semantic limitation must remain explicit");
   }
-  if (p3ActivationPassed) {
+  if (p4MachinePassed) {
+    const p3Gate=(config.gates||[]).find(gate=>gate.id==="P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
+    const p4Gate=(config.gates||[]).find(gate=>gate.id==="P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE");
+    if (p3Gate?.state!=="BOUNDED_ACTIVATION_PASS__ONE_RECIPE_ADMITTED") errors.push("P3 bounded activation terminal mismatch");
+    if (p4Gate?.state!=="MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED") errors.push("P4 machine baseline state mismatch");
+    if (p4Gate?.machineTerminal!=="PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED") errors.push("P4 machine terminal mismatch");
+    if (p4Gate?.machineEvidence!=="data/generated/protected-corpus-p4-real-20k-machine-baseline-v1.json") errors.push("P4 machine evidence mismatch");
+    if (p4Gate?.ownerLiveAcceptanceRequired!==true) errors.push("P4 owner live acceptance must remain required");
+    if (p4Gate?.nextGate!=="PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE") errors.push("P4 owner live next gate mismatch");
+  } else if (p3ActivationPassed) {
     const p3Gate=(config.gates||[]).find(gate=>gate.id==="P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
     const p4Gate=(config.gates||[]).find(gate=>gate.id==="P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE");
     if (p3Gate?.state!=="BOUNDED_ACTIVATION_PASS__ONE_RECIPE_ADMITTED") errors.push("P3 bounded activation terminal mismatch");

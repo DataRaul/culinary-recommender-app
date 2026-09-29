@@ -16,9 +16,9 @@ P4 may start only after:
 
 ## Machine baseline
 
-The P4 PR gate must reconstruct the exact pinned v8018 source universe, rebuild the normalization/nutrition/C2/C4 chain, and prove that the committed C4 19,268-record summary remains reproducible.
+The P4 PR gate reconstructs the exact pinned v8018 source universe through the current normalization and nutrition-identity diagnostics, then reconciles that current post-P3 measurement against the immutable pre-P3 C4 19,268-record failure-matrix baseline. The old C4 contract is not rerun as if P3 had never changed the canonical ingredient layer.
 
-It then combines that exact-source reconstruction with the already-earned P1/P2 live evidence and current P3 runtime regression. The machine gate covers:
+This reconciliation proves the expected P3 delta explicitly: the frozen pre-P3 C4 cohort had **112** identity-ready recipes / **19,156** unresolved, while current post-P3 v8018 has **113** identity-ready / **19,155** unresolved because the single exact `tapioca_starch` identity was activated. It combines that exact-source measurement with the already-earned P1/P2 live evidence and current P3 runtime regression. The machine gate covers:
 
 - exact 19,268 protected identities;
 - 19,268 search-index rows and 19,268 FTS rows from terminal live evidence;
@@ -31,7 +31,7 @@ It then combines that exact-source reconstruction with the already-earned P1/P2 
 - retained 170k required / 250k stress synthetic headroom as regression-only evidence;
 - normal PR browser regression over the current application.
 
-Successful machine acceptance emits:
+PR #353 machine workflow **#4 / 36556069585 SUCCESS** and Validate public V0 **#1302 / 36556069847 SUCCESS** closed the machine gate. Successful machine acceptance emits:
 
 `PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED`
 

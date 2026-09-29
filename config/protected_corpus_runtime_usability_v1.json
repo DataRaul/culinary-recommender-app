@@ -1,13 +1,13 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
-  "date": "2026-09-28",
-  "state": "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_BOUNDED_PASS__P3_BOUNDED_ACTIVATION_PASS__P4_READY",
+  "date": "2026-09-29",
+  "state": "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_BOUNDED_PASS__P3_BOUNDED_ACTIVATION_PASS__P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
     "protectedCorpusVersion": "v8018",
     "protectedRecipeCount": 19268,
-    "publicRuntimeRecipeCount": 85,
+    "publicRuntimeRecipeCount": 86,
     "protectedShardCount": 2,
     "titleKnownCount": 19268,
     "structurallyParseableCount": 19265,
@@ -38,7 +38,10 @@
     "c4RuntimeDifficultyReadyCount": 0,
     "c4TotalMinutesAuthorityReadyCount": 1,
     "c4ReadyExceptDifficultyCount": 1,
-    "c4RuntimeHardMetadataReadyCount": 0
+    "c4RuntimeHardMetadataReadyCount": 0,
+    "p4CurrentPostP3IdentityReadyRecipes": 113,
+    "p4CurrentPostP3UnresolvedIdentityRecipes": 19155,
+    "p4IdentityReadyDeltaFromP3": 1
   },
   "ownerPriority": {
     "finishD5SafeAdapterPrototypeFirst": true,
@@ -195,8 +198,16 @@
     },
     {
       "id": "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE",
-      "state": "READY",
-      "purpose": "Continuously test search, filters, hydration, ranking/planner candidate generation, abstention, latency, memory, D1 query counts and browser UX against real v8018."
+      "state": "MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED",
+      "purpose": "Continuously test search, filters, hydration, ranking/planner candidate generation, abstention, latency, memory, D1 query counts and browser UX against real v8018.",
+      "machineTerminal": "PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED",
+      "machineEvidence": "data/generated/protected-corpus-p4-real-20k-machine-baseline-v1.json",
+      "machineWorkflowRun": 4,
+      "machineWorkflowRunId": 36556069585,
+      "validationRun": 1302,
+      "validationRunId": 36556069847,
+      "ownerLiveAcceptanceRequired": true,
+      "nextGate": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE"
     }
   ],
   "syntheticScalePolicy": {
@@ -218,7 +229,7 @@
     "barbecueMutationAuthorized": false
   },
   "nextExecutionSequence": [
-    "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+    "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE"
   ],
   "brainCalibration": {
     "id": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
@@ -409,6 +420,18 @@
       "terminal": "CULINARY_BRAIN_C4_HARD_AUTHORITY_RECIPE_RECONCILIATION_PASS",
       "evidence": "data/generated/culinary-brain-c4-hard-authority-recipe-reconciliation-summary-v1.json",
       "note": "Exact 100 policy-complete candidates reconciled fail-closed: 0 runtime-hard-metadata-ready; 1 UniTools candidate is ready except for explicit runtime difficulty-scale authority; 99 historical candidates lack authoritative meal role, time and difficulty."
+    },
+    {
+      "id": "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_MACHINE_BASELINE",
+      "state": "PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED",
+      "date": "2026-09-29",
+      "terminal": "PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED",
+      "evidence": "data/generated/protected-corpus-p4-real-20k-machine-baseline-v1.json",
+      "workflowRun": 4,
+      "workflowRunId": 36556069585,
+      "validationRun": 1302,
+      "validationRunId": 36556069847,
+      "note": "Exact current post-P3 v8018 reconstruction measured 113 identity-ready recipes versus the frozen pre-P3 C4 cohort of 112; final product acceptance remains a read-only authenticated owner live probe."
     }
   ],
   "quotaGapParallelPrep": {
@@ -494,5 +517,29 @@
     "automaticRecommendationAdmissionAuthorized": false,
     "furtherProtectedRecipeAdmissionAuthorized": false,
     "nextGate": "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE"
+  },
+  "p4MachineBaseline": {
+    "terminal": "PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED",
+    "evidence": "data/generated/protected-corpus-p4-real-20k-machine-baseline-v1.json",
+    "protectedCorpusVersion": "v8018",
+    "protectedRecipeCount": 19268,
+    "indexedRecipeCount": 19268,
+    "ftsRecipeCount": 19268,
+    "structuralPartialCount": 3,
+    "historicalPreP3IdentityReadyRecipeCount": 112,
+    "currentPostP3IdentityReadyRecipeCount": 113,
+    "currentIdentityReadyDeltaFromP3": 1,
+    "currentUnresolvedIngredientIdentityRecipeCount": 19155,
+    "publicRuntimeRecipeCount": 86,
+    "publicExternalRecipeCount": 10,
+    "maxObservedD1Subqueries": 8,
+    "fullCorpusScans": 0,
+    "protectedD1Writes": 0,
+    "machineWorkflowRun": 4,
+    "machineWorkflowRunId": 36556069585,
+    "validationRun": 1302,
+    "validationRunId": 36556069847,
+    "ownerLiveAcceptanceRequired": true,
+    "nextGate": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE"
   }
 }
