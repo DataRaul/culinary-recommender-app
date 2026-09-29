@@ -1,11 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { existsSync,readFileSync } from "node:fs";
-import { buildR1FrontierMeasurement,rankFrontierRows,validateR1MeasurementContract } from "../scripts/protected-corpus-recommendation-expansion-r1-frontier-core.mjs";
+import { buildR1FrontierMeasurement,compactR1FrontierEvidence,rankFrontierRows,validateR1MeasurementContract } from "../scripts/protected-corpus-recommendation-expansion-r1-frontier-core.mjs";
 
 const read=path=>JSON.parse(readFileSync(new URL("../"+path,import.meta.url),"utf8"));
 const contract=read("config/protected_corpus_recommendation_expansion_v1.json");
 const aliasContract=read("config/culinary_brain_c4_unitools_high_leverage_ingredient_alias_review_v1.json");
+const committed=read("data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json");
 
 test("R1 measurement is authorized candidate-only and preserves runtime firewalls",()=>{
   assert.deepEqual(validateR1MeasurementContract(contract),[]);
@@ -35,4 +36,5 @@ test("exact pinned UniTools R1 measurement remains reproducible when source chec
   assert.equal(summary.frozenCandidateTranche.recipeCount,10);
   assert.equal(summary.runtimeAdmissionChanged,false);
   assert.equal(summary.publicRuntimeChanged,false);
+  assert.deepEqual(compactR1FrontierEvidence(summary),committed);
 });
