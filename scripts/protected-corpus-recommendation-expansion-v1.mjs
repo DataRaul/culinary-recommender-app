@@ -5,7 +5,7 @@ export const R0_TERMINAL = "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R0_PASS__F
 export function validateProtectedCorpusRecommendationExpansion(contract, evidence, priorP4) {
   const errors = [];
   if (!contract || contract.schemaVersion !== RECOMMENDATION_EXPANSION_SCHEMA) errors.push("schemaVersion");
-  if (!["R0_AUTHORIZED_BASELINE_PASS__R1_FRONTIER_MEASUREMENT_READY","R0_PASS__R1_PASS__R2_REPAIR_READY"].includes(contract?.state)) errors.push("state");
+  if (!["R0_AUTHORIZED_BASELINE_PASS__R1_FRONTIER_MEASUREMENT_READY","R0_PASS__R1_PASS__R2_REPAIR_READY","R0_PASS__R1_PASS__R2_PASS__R3_PASS_WITH_HOLD__NEXT_FRONTIER_READY"].includes(contract?.state)) errors.push("state");
   if (contract?.objective !== "PROGRESSIVELY_EARN_MORE_PROTECTED_RECOMMENDATION_CANDIDATES_WITH_EXPLICIT_BOUNDED_ADMISSION") errors.push("objective");
 
   const entry = contract?.entryEvidence || {};
@@ -35,9 +35,12 @@ export function validateProtectedCorpusRecommendationExpansion(contract, evidenc
   if (gates.get("R0_AUTHORIZATION_AND_BASELINE")?.state !== "PASS") errors.push("r0");
   const r1 = gates.get("R1_POST_P3_FRONTIER_MEASUREMENT");
   const r1Passed = r1?.state === "PASS";
-  const expectedSequence = r1Passed
-    ? ["R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR","R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE","R4_OWNER_BOUNDED_ADMISSION","R5_REAL_V8018_POST_ADMISSION_REGRESSION"]
-    : ["R1_POST_P3_FRONTIER_MEASUREMENT","R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR","R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE","R4_OWNER_BOUNDED_ADMISSION","R5_REAL_V8018_POST_ADMISSION_REGRESSION"];
+  const r3Held = contract?.state === "R0_PASS__R1_PASS__R2_PASS__R3_PASS_WITH_HOLD__NEXT_FRONTIER_READY";
+  const expectedSequence = r3Held
+    ? ["R1_NEXT_FRONTIER_ITERATION_V2","R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR","R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE","R4_OWNER_BOUNDED_ADMISSION","R5_REAL_V8018_POST_ADMISSION_REGRESSION"]
+    : r1Passed
+      ? ["R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR","R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE","R4_OWNER_BOUNDED_ADMISSION","R5_REAL_V8018_POST_ADMISSION_REGRESSION"]
+      : ["R1_POST_P3_FRONTIER_MEASUREMENT","R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR","R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE","R4_OWNER_BOUNDED_ADMISSION","R5_REAL_V8018_POST_ADMISSION_REGRESSION"];
   if (JSON.stringify(contract?.nextExecutionSequence) !== JSON.stringify(expectedSequence)) errors.push("sequence");
   if (!r1Passed && r1?.state !== "READY") errors.push("r1");
   if (r1Passed) {
@@ -46,7 +49,14 @@ export function validateProtectedCorpusRecommendationExpansion(contract, evidenc
     if (r1.frozenCandidateRecipeCount !== 10 || r1.frozenCandidateDigestSha256 !== "6dbf598c8a00e07bd0b1bdfae75146d7683487afcc3f0bfc9c0e07ddf938b9c0") errors.push("r1Freeze");
     if (!["READY","IDENTITY_PASS__HARD_SAFETY_POLICY_READY","PASS"].includes(gates.get("R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR")?.state)) errors.push("r2");
   }
-  if (gates.get("R4_OWNER_BOUNDED_ADMISSION")?.state !== "HUMAN_GATED_AFTER_R3") errors.push("r4");
+  const r2Gate = gates.get("R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR");
+  const r3Gate = gates.get("R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE");
+  const r4Gate = gates.get("R4_OWNER_BOUNDED_ADMISSION");
+  if (r3Held) {
+    if (r2Gate?.state !== "PASS" || r2Gate?.terminal !== "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_HARD_SAFETY_PASS__R3_READY") errors.push("r2Terminal");
+    if (r3Gate?.state !== "PASS_WITH_HOLD__NO_R4_CANDIDATE" || r3Gate?.terminal !== "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R3_MACHINE_ACCEPTANCE_PASS__CHIMICHURRI_HELD__NEXT_FRONTIER_READY" || r3Gate?.admissionReadyCandidateCount !== 0) errors.push("r3");
+    if (r4Gate?.state !== "BLOCKED__NO_ADMISSION_READY_CANDIDATE" || r4Gate?.admissionAuthorized !== false) errors.push("r4");
+  } else if (r4Gate?.state !== "HUMAN_GATED_AFTER_R3") errors.push("r4");
 
   if (!evidence || evidence.schemaVersion !== R0_EVIDENCE_SCHEMA || evidence.pass !== true || evidence.terminal !== R0_TERMINAL) errors.push("r0Evidence");
   if (evidence?.ownerProgrammeAuthorizationRecorded !== true || evidence?.nextGate !== "R1_POST_P3_FRONTIER_MEASUREMENT") errors.push("r0EvidenceGate");
