@@ -263,6 +263,8 @@ async function protectedCorpusAcceptance() {
     });
     await page.goto(`${baseUrl}/protected-corpus.html`, { waitUntil:"networkidle" });
     await page.getByText(/Authenticated access is required/).waitFor();
+    await page.getByRole("button", { name:"Run P4 product acceptance" }).waitFor();
+    if (!(await page.getByRole("button", { name:"Run P4 product acceptance" }).isDisabled())) throw new Error("P4 gate should remain visible but disabled before authentication");
     if (protectedCalls !== 0) throw new Error("Protected corpus page queried protected API before authentication");
     await page.close();
   }
@@ -330,6 +332,8 @@ async function protectedCorpusAcceptance() {
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
   if (overflow) throw new Error("Protected corpus mobile layout has unexpected horizontal overflow");
   await page.getByText(/19,268 \/ 19,268 recipes indexed/).waitFor();
+  await page.getByText(/P4 is the current required gate/).waitFor();
+  if (await page.getByRole("button", { name:"Run P4 product acceptance" }).isDisabled()) throw new Error("P4 gate should be enabled after authenticated ready status");
   if (await page.locator(".recipe").count() !== 2) throw new Error("Protected browse did not render bounded results");
 
   await page.getByLabel("Search protected recipes").fill("soup");
