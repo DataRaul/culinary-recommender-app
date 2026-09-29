@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { readFile,writeFile,mkdir } from "node:fs/promises";
 import { dirname,resolve } from "node:path";
-import { buildR1FrontierMeasurement } from "./protected-corpus-recommendation-expansion-r1-frontier-core.mjs";
+import { buildR1FrontierMeasurement, compactR1FrontierEvidence } from "./protected-corpus-recommendation-expansion-r1-frontier-core.mjs";
 
 const args=Object.fromEntries(process.argv.slice(2).map(arg=>{const [key,...rest]=arg.replace(/^--/,"").split("=");return [key,rest.join("=")];}));
 for(const key of ["contract","alias","unitools","summary"]) if(!args[key]) throw new Error("R1_ARGUMENT_REQUIRED_"+key);
@@ -18,4 +18,8 @@ if(observedCommit!==r1.pinnedSourceCommit||observedBlob!==r1.pinnedSourceDataBlo
 const summary=buildR1FrontierMeasurement({contract,aliasContract,dataset});
 await mkdir(dirname(resolve(args.summary)),{recursive:true});
 await writeFile(resolve(args.summary),JSON.stringify(summary,null,2)+"\n","utf8");
+if(args.compact){
+  await mkdir(dirname(resolve(args.compact)),{recursive:true});
+  await writeFile(resolve(args.compact),JSON.stringify(compactR1FrontierEvidence(summary),null,2)+"\n","utf8");
+}
 process.stdout.write("R1_FRONTIER_SUMMARY="+JSON.stringify(summary)+"\n");
