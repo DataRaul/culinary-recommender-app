@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_P4_MACHINE_BASELINE_SUMMARY_V1",
+  "date": "2026-09-29",
+  "pass": true,
+  "machinePass": true,
+  "terminal": "PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED",
+  "protectedCorpusVersion": "v8018",
+  "realCorpus": {
+    "recipeCount": 19268,
+    "indexedRecipeCount": 19268,
+    "ftsRecipeCount": 19268,
+    "structuralPartialCount": 3,
+    "exactCurrentSourceReconstructionRecipeCount": 19268,
+    "historicalPreP3IdentityReadyRecipeCount": 112,
+    "currentPostP3IdentityReadyRecipeCount": 113,
+    "currentIdentityReadyDeltaFromP3": 1,
+    "historicalPreP3UnresolvedIngredientIdentityRecipeCount": 19156,
+    "currentUnresolvedIngredientIdentityRecipeCount": 19155,
+    "frozenSampleRecipeCount": 500,
+    "matchedFrozenRecipeCount": 500,
+    "frozenSampleProvenanceCount": 500
+  },
+  "currentRuntime": {
+    "publicRuntimeRecipeCount": 86,
+    "publicExternalRecipeCount": 10,
+    "p3CandidateId": "unitools_pao_de_queijo",
+    "p3CandidatePresent": true
+  },
+  "regressionMatrix": {
+    "runtimeRetrieval": {
+      "state": "PASS_INHERITED_LIVE_P1_P2",
+      "browsePass": true,
+      "searchPass": true,
+      "crossShardHydrationPass": true,
+      "maxObservedD1Subqueries": 8,
+      "fullCorpusScans": 0
+    },
+    "metadataNormalization": {
+      "state": "PASS_POST_P3_EXACT_IDENTITY_DELTA",
+      "structuralPartialCount": 3,
+      "historicalPreP3IdentityReadyRecipeCount": 112,
+      "currentPostP3IdentityReadyRecipeCount": 113,
+      "currentUnresolvedIngredientIdentityRecipeCount": 19155
+    },
+    "hardSafetyEligibility": {
+      "state": "PASS_FAIL_CLOSED",
+      "reviewedDietaryAuthorityCount": 0,
+      "broaderAutomaticRecommendationAdmission": false
+    },
+    "recommendationPlannerCompatibility": {
+      "state": "PASS_BOUNDED_P3_ONE_CANDIDATE",
+      "activatedCandidateCount": 1,
+      "candidateId": "unitools_pao_de_queijo",
+      "broaderProtectedAdmission": false
+    },
+    "performanceCost": {
+      "state": "MACHINE_BASELINE_PASS__LIVE_LATENCY_BYTES_MEMORY_REQUIRED",
+      "targetD1SubqueriesPerRequest": 8,
+      "hardMaxD1SubqueriesPerRequest": 16,
+      "maxObservedD1Subqueries": 8,
+      "protectedD1RowsWrittenThisGate": 0
+    },
+    "rightsProvenance": {
+      "state": "PASS",
+      "p1SourceProvenancePass": true,
+      "p2FrozenSampleProvenanceCount": 500,
+      "p3License": "CC-BY-SA-4.0",
+      "p3SourceNutritionImported": false
+    },
+    "browserUx": {
+      "state": "PR_BROWSER_REGRESSION_REQUIRED__OWNER_LIVE_PRODUCT_PROBE_PENDING",
+      "pullRequestBrowserRegressionRequired": true,
+      "ownerLiveProductProbeRequired": true
+    }
+  },
+  "syntheticHeadroom": {
+    "requiredProofCount": 170000,
+    "stressProofCount": 250000,
+    "role": "REGRESSION_AND_HEADROOM_ONLY",
+    "realV8018PrimaryProductCorpus": true
+  },
+  "liveAcceptance": {
+    "required": true,
+    "state": "OWNER_AUTHENTICATED_PRODUCT_PROBE_REQUIRED",
+    "requiredMetrics": [
+      "SEARCH_LATENCY",
+      "SEARCH_RESULT_STABILITY",
+      "PAGINATION_FILTER_BEHAVIOR",
+      "CROSS_SHARD_HYDRATION",
+      "D1_SUBQUERY_COUNTS",
+      "TRANSFERRED_BYTES_AND_MEMORY",
+      "MALFORMED_UNKNOWN_METADATA_HANDLING",
+      "RECOMMENDATION_CANDIDATE_GENERATION_AND_ABSTENTION",
+      "PLANNER_BEHAVIOR",
+      "MOBILE_BROWSER_UX"
+    ]
+  },
+  "boundaries": {
+    "protectedD1ReadsThisGate": 0,
+    "protectedD1WritesThisGate": 0,
+    "protectedBodyReadsThisGate": 0,
+    "protectedBodyRewritesThisGate": 0,
+    "publicRuntimeChangedThisGate": false,
+    "recommendationAdmissionChangedThisGate": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE"
+}
