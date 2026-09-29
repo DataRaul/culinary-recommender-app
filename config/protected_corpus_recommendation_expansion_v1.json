@@ -2,7 +2,7 @@
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_V1",
   "date": "2026-09-29",
   "timezone": "Atlantic/Canary",
-  "state": "R0_AUTHORIZED_BASELINE_PASS__R1_FRONTIER_MEASUREMENT_READY",
+  "state": "R0_PASS__R1_PASS__R2_REPAIR_READY",
   "objective": "PROGRESSIVELY_EARN_MORE_PROTECTED_RECOMMENDATION_CANDIDATES_WITH_EXPLICIT_BOUNDED_ADMISSION",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "entryEvidence": {
@@ -56,13 +56,29 @@
     },
     {
       "id": "R1_POST_P3_FRONTIER_MEASUREMENT",
-      "state": "READY",
+      "state": "PASS",
       "scope": "Reconstruct the pinned UniTools cohort against the current post-P3 canonical ingredient layer plus already-reviewed cohort overlay, rank exact bounded unlock frontiers and freeze a candidate-only repair tranche.",
-      "admissionAuthorized": false
+      "admissionAuthorized": false,
+      "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R1_FRONTIER_PASS__R2_REPAIR_TRANCHE_READY",
+      "evidence": "data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json",
+      "frozenCandidateRecipeCount": 10,
+      "frozenCandidateDigestSha256": "6dbf598c8a00e07bd0b1bdfae75146d7683487afcc3f0bfc9c0e07ddf938b9c0",
+      "frozenCandidateSourceSlugs": [
+        "cachapas",
+        "chapati-kenyan",
+        "ajvar",
+        "arepas",
+        "arroz-con-coco",
+        "avgolemono",
+        "burek-bosanski",
+        "chimichurri",
+        "dograma",
+        "draniki"
+      ]
     },
     {
       "id": "R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR",
-      "state": "BLOCKED_ON_R1",
+      "state": "READY",
       "scope": "Review only the frozen R1 tranche. Exact identities and hard dietary/allergen metadata must be explicit and fail closed.",
       "admissionAuthorized": false
     },
@@ -86,7 +102,6 @@
     }
   ],
   "nextExecutionSequence": [
-    "R1_POST_P3_FRONTIER_MEASUREMENT",
     "R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR",
     "R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE",
     "R4_OWNER_BOUNDED_ADMISSION",
@@ -135,6 +150,14 @@
       "sourceSlug"
     ],
     "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R1_FRONTIER_PASS__R2_REPAIR_TRANCHE_READY",
-    "nextGate": "R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR"
+    "nextGate": "R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR",
+    "evidence": "data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json",
+    "result": {
+      "conflictFreeRequiredHardMetadataRecipeCount": 428,
+      "zeroUnresolvedConflictFreeCandidateCount": 0,
+      "oneUnresolvedConflictFreeCandidateCount": 2,
+      "frozenCandidateRecipeCount": 10,
+      "frozenCandidateDigestSha256": "6dbf598c8a00e07bd0b1bdfae75146d7683487afcc3f0bfc9c0e07ddf938b9c0"
+    }
   }
 }
