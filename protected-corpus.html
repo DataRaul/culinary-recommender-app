@@ -478,6 +478,8 @@
     if (Number.isFinite(heap) && heap > 0) return { kind:'JS_HEAP_USED', bytes:heap };
     const deviceGiB = Number(navigator?.deviceMemory || 0);
     if (Number.isFinite(deviceGiB) && deviceGiB > 0) return { kind:'DEVICE_MEMORY_CAPACITY', gib:deviceGiB };
+    const domBytes = new TextEncoder().encode(document.documentElement?.outerHTML || '').length;
+    if (domBytes > 0) return { kind:'DOM_FOOTPRINT_ESTIMATE', bytes:domBytes };
     return { kind:'UNAVAILABLE' };
   }
 
