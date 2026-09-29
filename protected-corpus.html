@@ -54,10 +54,11 @@
       <button id="prepare" type="button" hidden>Prepare / resume private index</button>
       <button id="refresh" type="button">Refresh status</button>
       <button id="repairForkrecipe" type="button" hidden>Repair ForkRecipe structural metadata</button>
-      <button id="runCanary" type="button" hidden>Run live verification</button>
-      <button id="runP2Alignment" type="button" hidden>Run P2 live alignment</button>
-      <button id="runP4Acceptance" type="button" hidden>Run P4 product acceptance</button>
+      <button id="runCanary" type="button" disabled>Run live verification</button>
+      <button id="runP2Alignment" type="button" disabled>Run P2 live alignment</button>
+      <button id="runP4Acceptance" type="button" disabled>Run P4 product acceptance</button>
     </div>
+    <p id="gateStatus" class="muted" aria-live="polite">P4 is the current gate. Checking authentication and private-index readiness…</p>
     <p id="prepareProgress" class="muted" hidden aria-live="polite"></p>
     <div id="canaryEvidencePanel" hidden>
       <p class="muted">Sanitized verification result — no account, session, or recipe-body data.</p>
@@ -91,6 +92,7 @@
   const statusNode = document.getElementById('status');
   const prepareButton = document.getElementById('prepare');
   const progressNode = document.getElementById('prepareProgress');
+  const gateStatusNode = document.getElementById('gateStatus');
   const runCanaryButton = document.getElementById('runCanary');
   const runP2AlignmentButton = document.getElementById('runP2Alignment');
   const runP4AcceptanceButton = document.getElementById('runP4Acceptance');
@@ -172,9 +174,13 @@
     statusNode.innerHTML = 'Authenticated access is required. <a href="/auth-canary.html">Sign in or check the private session</a>, then return here.';
     prepareButton.hidden = true;
     repairForkrecipeButton.hidden = true;
-    runCanaryButton.hidden = true;
-    runP2AlignmentButton.hidden = true;
-    runP4AcceptanceButton.hidden = true;
+    runCanaryButton.hidden = false;
+    runP2AlignmentButton.hidden = false;
+    runP4AcceptanceButton.hidden = false;
+    runCanaryButton.disabled = true;
+    runP2AlignmentButton.disabled = true;
+    runP4AcceptanceButton.disabled = true;
+    gateStatusNode.textContent = 'P4 is the current gate. Sign in/check the private session first; P1 and P2 are already complete and are shown only as diagnostic reruns.';
     canaryEvidencePanel.hidden = true;
     resultsNode.innerHTML = '';
     resultStatus.textContent = 'No protected query was sent before authentication.';
@@ -193,9 +199,13 @@
       statusNode.textContent = 'Authenticated. Private search index is not initialized yet.';
       prepareButton.hidden = false;
       repairForkrecipeButton.hidden = true;
-      runCanaryButton.hidden = true;
-      runP2AlignmentButton.hidden = true;
-      runP4AcceptanceButton.hidden = true;
+      runCanaryButton.hidden = false;
+      runP2AlignmentButton.hidden = false;
+      runP4AcceptanceButton.hidden = false;
+      runCanaryButton.disabled = true;
+      runP2AlignmentButton.disabled = true;
+      runP4AcceptanceButton.disabled = true;
+      gateStatusNode.textContent = 'P4 is the current gate, but the private index is not initialized in this environment.';
       prepareButton.textContent = 'Prepare private index';
       return true;
     }
@@ -203,9 +213,13 @@
       statusNode.textContent = 'Authenticated, but private index status failed: ' + (result.error || result.reason || 'unknown error');
       prepareButton.hidden = false;
       repairForkrecipeButton.hidden = true;
-      runCanaryButton.hidden = true;
-      runP2AlignmentButton.hidden = true;
-      runP4AcceptanceButton.hidden = true;
+      runCanaryButton.hidden = false;
+      runP2AlignmentButton.hidden = false;
+      runP4AcceptanceButton.hidden = false;
+      runCanaryButton.disabled = true;
+      runP2AlignmentButton.disabled = true;
+      runP4AcceptanceButton.disabled = true;
+      gateStatusNode.textContent = 'P4 is the current gate, but private-index status could not be verified.';
       return true;
     }
     indexStatus = result;
@@ -215,9 +229,16 @@
     const structuralPartialCount = Number(result.structuralPartialCount || 0);
     prepareButton.hidden = result.ready === true;
     repairForkrecipeButton.hidden = !(result.ready === true && structuralPartialCount === 918);
-    runCanaryButton.hidden = !(result.ready === true && structuralPartialCount === 3);
-    runP2AlignmentButton.hidden = !(result.ready === true && structuralPartialCount === 3);
-    runP4AcceptanceButton.hidden = !(result.ready === true && structuralPartialCount === 3);
+    const liveReady = result.ready === true && structuralPartialCount === 3;
+    runCanaryButton.hidden = false;
+    runP2AlignmentButton.hidden = false;
+    runP4AcceptanceButton.hidden = false;
+    runCanaryButton.disabled = !liveReady;
+    runP2AlignmentButton.disabled = !liveReady;
+    runP4AcceptanceButton.disabled = !liveReady;
+    gateStatusNode.textContent = liveReady
+      ? 'P4 is the current required gate. P1 and P2 are already complete; use Run P4 product acceptance.'
+      : 'P4 is the current gate, but it remains disabled until the private index is ready with exactly 3 structural partials.';
     prepareButton.textContent = result.indexedRecipeCount ? 'Resume private index' : 'Prepare private index';
       if (result.ready) await loadResults(true);
       return true;
@@ -225,9 +246,13 @@
       statusNode.textContent = 'Private index status request failed safely: ' + String(error?.message || error).slice(0,180);
       prepareButton.hidden = true;
       repairForkrecipeButton.hidden = true;
-      runCanaryButton.hidden = true;
-      runP2AlignmentButton.hidden = true;
-      runP4AcceptanceButton.hidden = true;
+      runCanaryButton.hidden = false;
+      runP2AlignmentButton.hidden = false;
+      runP4AcceptanceButton.hidden = false;
+      runCanaryButton.disabled = true;
+      runP2AlignmentButton.disabled = true;
+      runP4AcceptanceButton.disabled = true;
+      gateStatusNode.textContent = 'P4 is the current gate, but status verification failed safely. Refresh status after confirming the private session.';
       return false;
     } finally {
       refreshButton.disabled = false;
