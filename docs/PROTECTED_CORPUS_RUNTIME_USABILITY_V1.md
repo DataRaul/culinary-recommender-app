@@ -156,6 +156,9 @@ The expected product shape is progressive:
 
 ### P4 — Real-20k regression and product acceptance
 
+**Machine baseline PASS — owner live acceptance required (2026-09-29).** PR #353 merged after P4 workflow #4 / 36556069585 and Validate public V0 #1302 / 36556069847 passed. Exact current pinned-source reconstruction measures 19,268 recipes, 3 structural exceptions, and the expected post-P3 ingredient-identity delta from frozen C4 112-ready/19,156-unresolved to current 113-ready/19,155-unresolved. Machine terminal: `PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED`. Next gate: `PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE`, a read-only authenticated owner probe.
+
+
 The **real v8018 corpus becomes the primary product-scale test corpus**.
 
 Continuously measure:
