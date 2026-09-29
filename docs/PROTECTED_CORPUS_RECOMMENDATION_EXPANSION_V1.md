@@ -47,3 +47,14 @@ Canonical contract: `config/protected_corpus_recommendation_expansion_v1.json`.
 R0 evidence: `data/generated/protected-corpus-recommendation-expansion-r0-baseline-v1.json`.
 
 Next: `R1_POST_P3_FRONTIER_MEASUREMENT`.
+
+
+## R1 result
+
+R1 passed on the exact pinned 501-recipe UniTools cohort. After applying the current post-P3 canonical layer plus the already-reviewed exact-cohort alias overlay, **428** records are conflict-free with the required explicit time/servings/difficulty/category metadata. Excluding the already activated `pao-de-queijo` and known public duplicate `tortilla-espanola`, there are **0** zero-gap candidates and **2** one-gap candidates.
+
+The frozen 10-recipe R2 tranche is: `cachapas`, `chapati-kenyan`, `ajvar`, `arepas`, `arroz-con-coco`, `avgolemono`, `burek-bosanski`, `chimichurri`, `dograma`, and `draniki`. Digest: `6dbf598c8a00e07bd0b1bdfae75146d7683487afcc3f0bfc9c0e07ddf938b9c0`.
+
+The two closest candidates remain fail-closed on exactly one unresolved identity each: `cachapas` → **Soft white cheese** and `chapati-kenyan` → **Flour**. R1 makes no identity decision and no runtime admission. R2 is now ready to review the frozen tranche only.
+
+Compact evidence: `data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json`.
