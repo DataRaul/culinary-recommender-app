@@ -521,11 +521,11 @@
 
   async function verifyP4RecommendationPlannerRuntime() {
     const [corpus, ingredients, profileModule, recommendation, planner] = await Promise.all([
-      import('/src/data/corpus-v1.js'),
-      import('/src/data/ingredients.js'),
-      import('/src/domain/profile.js'),
-      import('/src/domain/recommendation.js'),
-      import('/src/domain/planner.js')
+      import('/src/data/corpus-v1.js?p4-live=20260929-v2'),
+      import('/src/data/ingredients.js?p4-live=20260929-v2'),
+      import('/src/domain/profile.js?p4-live=20260929-v2'),
+      import('/src/domain/recommendation.js?p4-live=20260929-v2'),
+      import('/src/domain/planner.js?p4-live=20260929-v2')
     ]);
     const candidate = corpus.PUBLIC_RUNTIME_RECIPES.find(recipe => recipe.id === 'unitools_pao_de_queijo');
     if (!candidate) throw new Error('P4 runtime: bounded P3 candidate missing');
