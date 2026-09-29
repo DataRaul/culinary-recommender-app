@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R1_FRONTIER_COMPACT_V1",
+  "date": "2026-09-29",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R1_FRONTIER_PASS__R2_REPAIR_TRANCHE_READY",
+  "protectedCorpusVersion": "v8018",
+  "sourceCohort": {
+    "id": "unitools-world-recipes-v1_1_0",
+    "recipeCount": 501,
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "census": {
+    "conflictFreeRequiredHardMetadataRecipeCount": 428,
+    "zeroUnresolvedConflictFreeCandidateCount": 0,
+    "oneUnresolvedConflictFreeCandidateCount": 2
+  },
+  "frozenCandidateTranche": {
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "cachapas",
+      "chapati-kenyan",
+      "ajvar",
+      "arepas",
+      "arroz-con-coco",
+      "avgolemono",
+      "burek-bosanski",
+      "chimichurri",
+      "dograma",
+      "draniki"
+    ],
+    "digestSha256": "6dbf598c8a00e07bd0b1bdfae75146d7683487afcc3f0bfc9c0e07ddf938b9c0"
+  },
+  "repairQueue": [
+    {
+      "key": "salt :: Salt and pepper",
+      "candidateRecipeCount": 3,
+      "sourceSlugs": [
+        "avgolemono",
+        "burek-bosanski",
+        "draniki"
+      ]
+    },
+    {
+      "key": "flour :: Flour",
+      "candidateRecipeCount": 2,
+      "sourceSlugs": [
+        "burek-bosanski",
+        "chapati-kenyan"
+      ]
+    },
+    {
+      "key": "aubergine :: Aubergines",
+      "candidateRecipeCount": 1,
+      "sourceSlugs": [
+        "ajvar"
+      ]
+    },
+    {
+      "key": "cheese :: Fresh white cheese",
+      "candidateRecipeCount": 1,
+      "sourceSlugs": [
+        "arepas"
+      ]
+    },
+    {
+      "key": "cheese :: Soft white cheese",
+      "candidateRecipeCount": 1,
+      "sourceSlugs": [
+        "cachapas"
+      ]
+    },
+    {
+      "key": "cream :: Soured cream",
+      "candidateRecipeCount": 1,
+      "sourceSlugs": [
+        "draniki"
+      ]
+    },
+    {
+      "key": "flatbread :: Unleavened çörek flatbread",
+      "candidateRecipeCount": 1,
+      "sourceSlugs": [
+        "dograma"
+      ]
+    },
+    {
+      "key": "masarepa :: Precooked corn flour",
+      "candidateRecipeCount": 1,
+      "sourceSlugs": [
+        "arepas"
+      ]
+    },
+    {
+      "key": "mutton :: Mutton on the bone",
+      "candidateRecipeCount": 1,
+      "sourceSlugs": [
+        "dograma"
+      ]
+    },
+    {
+      "key": "parsley :: Flat-leaf parsley",
+      "candidateRecipeCount": 1,
+      "sourceSlugs": [
+        "chimichurri"
+      ]
+    },
+    {
+      "key": "peppers :: Fleshy red peppers",
+      "candidateRecipeCount": 1,
+      "sourceSlugs": [
+        "ajvar"
+      ]
+    },
+    {
+      "key": "raisins :: Raisins",
+      "candidateRecipeCount": 1,
+      "sourceSlugs": [
+        "arroz-con-coco"
+      ]
+    },
+    {
+      "key": "rice :: Long-grain rice",
+      "candidateRecipeCount": 1,
+      "sourceSlugs": [
+        "arroz-con-coco"
+      ]
+    },
+    {
+      "key": "rice :: Short-grain rice",
+      "candidateRecipeCount": 1,
+      "sourceSlugs": [
+        "avgolemono"
+      ]
+    },
+    {
+      "key": "salt :: Coarse salt",
+      "candidateRecipeCount": 1,
+      "sourceSlugs": [
+        "chimichurri"
+      ]
+    }
+  ],
+  "candidateOnly": true,
+  "runtimeAdmissionChanged": false,
+  "publicRuntimeChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "newProtectedSourcesIngested": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR"
+}
