@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_HARD_SAFETY_SUMMARY_V1",
+  "date": "2026-09-29",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_HARD_SAFETY_PASS__R3_READY",
+  "protectedCorpusVersion": "v8018",
+  "candidate": {
+    "sourceSlug": "chimichurri",
+    "canonicalIngredientIds": [
+      "chilli_flakes",
+      "garlic",
+      "olive_oil",
+      "oregano",
+      "parsley",
+      "salt",
+      "vinegar",
+      "water"
+    ],
+    "candidateDeclaredAllergens": [],
+    "candidateDietaryTags": [
+      "unrestricted",
+      "vegetarian",
+      "vegan"
+    ],
+    "authorityScope": "CANDIDATE_ONLY__CURRENT_MAPPED_PROFILE_TOKENS"
+  },
+  "reviewedIngredientPolicyCount": 8,
+  "sourceMetadataDiagnostic": {
+    "prepMinutes": 15,
+    "cookMinutes": 0,
+    "totalMinutes": 15,
+    "baseServings": 8,
+    "sourceDifficulty": "easy",
+    "sourceCategory": "sauce"
+  },
+  "semantics": {
+    "emptyDeclaredAllergensMeansGlobalAllergenFree": false,
+    "crossContactGuarantee": false,
+    "productLabelGuarantee": false,
+    "sourceDietaryClaimsPromoted": false,
+    "sourceNutritionPromoted": false
+  },
+  "runtimeHardSafetyAuthorityPromoted": false,
+  "recommendationAdmissionChanged": false,
+  "publicRuntimeChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R3_CANDIDATE_METADATA_RECONCILIATION_AND_MACHINE_ACCEPTANCE"
+}
