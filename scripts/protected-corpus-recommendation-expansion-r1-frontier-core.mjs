@@ -153,3 +153,31 @@ export function buildR1FrontierMeasurement({contract,aliasContract,dataset}) {
     nextGate:r1.nextGate
   };
 }
+
+export function compactR1FrontierEvidence(summary) {
+  if (summary?.pass !== true || summary?.terminal !== R1_TERMINAL) throw new Error("R1_COMPACT_SOURCE_INVALID");
+  return {
+    schemaVersion:"CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R1_FRONTIER_COMPACT_V1",
+    date:summary.date,
+    pass:true,
+    terminal:summary.terminal,
+    protectedCorpusVersion:summary.protectedCorpusVersion,
+    sourceCohort:summary.sourceCohort,
+    census:{
+      conflictFreeRequiredHardMetadataRecipeCount:summary.census.conflictFreeRequiredHardMetadataRecipeCount,
+      zeroUnresolvedConflictFreeCandidateCount:summary.census.zeroUnresolvedConflictFreeCandidateCount,
+      oneUnresolvedConflictFreeCandidateCount:summary.census.oneUnresolvedConflictFreeCandidateCount
+    },
+    frozenCandidateTranche:{
+      recipeCount:summary.frozenCandidateTranche.recipeCount,
+      sourceSlugs:summary.frozenCandidateTranche.sourceSlugs,
+      digestSha256:summary.frozenCandidateTranche.digestSha256
+    },
+    repairQueue:summary.repairQueue.map(row=>({key:row.key,candidateRecipeCount:row.candidateRecipeCount,sourceSlugs:row.sourceSlugs})),
+    candidateOnly:summary.candidateOnly,
+    runtimeAdmissionChanged:summary.runtimeAdmissionChanged,
+    publicRuntimeChanged:summary.publicRuntimeChanged,
+    boundaries:summary.boundaries,
+    nextGate:summary.nextGate
+  };
+}
