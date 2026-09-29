@@ -31,7 +31,30 @@
     "totalMinutes": 15,
     "baseServings": 8,
     "sourceDifficulty": "easy",
-    "sourceCategory": "sauce"
+    "sourceCategory": "sauce",
+    "topLevelKeys": [
+      "baseServings",
+      "category",
+      "cookMinutes",
+      "country",
+      "diets",
+      "difficulty",
+      "ingredients",
+      "name",
+      "nativeName",
+      "nutritionPerServing",
+      "photo",
+      "prepMinutes",
+      "slug",
+      "steps",
+      "summary",
+      "url"
+    ],
+    "arrayFieldCounts": {
+      "diets": 3,
+      "ingredients": 8,
+      "steps": 4
+    }
   },
   "semantics": {
     "emptyDeclaredAllergensMeansGlobalAllergenFree": false,
