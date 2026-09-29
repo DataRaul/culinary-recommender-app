@@ -1,6 +1,6 @@
 # Protected Corpus Recommendation Expansion V1
 
-Status: **R3 PASS WITH FAIL-CLOSED HOLD / NEXT FRONTIER ITERATION READY**
+Status: **ITERATION V2 PASS WITH FAIL-CLOSED HOLD / NEXT FRONTIER V3 READY**
 
 Owner authorization was received on 2026-09-29 after terminal P4 product acceptance. This is a new successor programme; it does not reopen or rewrite the completed Protected Corpus Runtime Usability V1 history.
 
@@ -78,3 +78,18 @@ Evidence: `data/generated/protected-corpus-recommendation-expansion-r2-hard-safe
 R3 passed by **fail-closed abstention**, not by admission. `chimichurri` is a source-category `sauce`, which is not reviewed authority for a standalone meal role. Its source timing is internally inconsistent for runtime elapsed-time filtering: prep + cook declares 15 minutes, step-minute fields sum to 20, and the final instruction adds a two-hour stand. The candidate therefore keeps empty runtime meal roles and unknown total time, is rejected by recommendation for every current meal type, and produces planner shortfalls instead of being selected.
 
 No owner admission gate opens. Next is `R1_NEXT_FRONTIER_ITERATION_V2` under the existing candidate discovery/repair authority.
+
+
+## Iteration V2 result
+
+The next bounded frontier excluded all previously processed recipes and froze 10 new UniTools candidates: `flia`, `gurasa`, `halloumi-grilled`, `hangi-style-chicken`, `hummus`, `injera`, `jasha-maroo`, `karjalanpiirakka`, `matapa`, and `moros-y-cristianos`. All ten began at two unresolved ingredient identities.
+
+Nineteen exact unresolved keys were reviewed. Six form/variety mappings to existing canonical identities were accepted only inside this iteration and thirteen identities remained held. Exactly one recipe became identity-ready: `jasha-maroo`.
+
+Hard-safety review covered all ten mapped canonical ingredients. The candidate-only result is `unrestricted` with no mapped declared allergens; source dietary claims remain non-authoritative.
+
+Machine acceptance again held fail-closed. Source category `main` is not exact runtime meal-role authority, and source timing declares 55 minutes while explicit step minutes sum to 60. Recommendation and planner therefore abstain; public runtime stays 86 and no owner admission gate opens.
+
+Evidence: `data/generated/protected-corpus-recommendation-expansion-iteration-v2-summary-v1.json`.
+
+Next: `R1_NEXT_FRONTIER_ITERATION_V3`.
