@@ -1,7 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { readFile,writeFile,mkdir } from "node:fs/promises";
 import { dirname,resolve } from "node:path";
-import { buildR2IdentityReview } from "./protected-corpus-recommendation-expansion-r2-identity-core.mjs";
+import { buildR2IdentityReview, compactR2IdentityEvidence } from "./protected-corpus-recommendation-expansion-r2-identity-core.mjs";
 const args=Object.fromEntries(process.argv.slice(2).map(arg=>{const [k,...v]=arg.replace(/^--/,"").split("=");return [k,v.join("=")];}));
 for(const k of ["contract","r1","alias","unitools","summary"]) if(!args[k]) throw new Error("R2_IDENTITY_ARGUMENT_REQUIRED_"+k);
 const read=p=>readFile(resolve(p),"utf8").then(JSON.parse);
@@ -12,4 +12,8 @@ if(observedCommit!==contract.sourceCohort.commit||observedBlob!==contract.source
 const summary=buildR2IdentityReview({contract,r1,aliasContract,dataset});
 await mkdir(dirname(resolve(args.summary)),{recursive:true});
 await writeFile(resolve(args.summary),JSON.stringify(summary,null,2)+"\n","utf8");
+if(args.compact){
+  await mkdir(dirname(resolve(args.compact)),{recursive:true});
+  await writeFile(resolve(args.compact),JSON.stringify(compactR2IdentityEvidence(summary),null,2)+"\n","utf8");
+}
 process.stdout.write("R2_IDENTITY_SUMMARY="+JSON.stringify(summary)+"\n");
