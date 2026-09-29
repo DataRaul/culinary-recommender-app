@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R0_BASELINE_V1",
+  "date": "2026-09-29",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R0_PASS__FRONTIER_MEASUREMENT_READY",
+  "ownerProgrammeAuthorizationRecorded": true,
+  "protectedCorpusVersion": "v8018",
+  "protectedRecipeCount": 19268,
+  "publicRuntimeRecipeCount": 86,
+  "publicExternalRecipeCount": 10,
+  "activatedProtectedOriginCount": 1,
+  "postP3IdentityReadyRecipeCount": 113,
+  "postP3UnresolvedIdentityRecipeCount": 19155,
+  "priorP4OwnerLiveTerminal": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS",
+  "priorP4MaxObservedD1Subqueries": 4,
+  "priorP4ProtectedD1Writes": 0,
+  "priorP4PublicRuntimeChanged": false,
+  "priorP4RecommendationAdmissionChanged": false,
+  "nextGate": "R1_POST_P3_FRONTIER_MEASUREMENT",
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  }
+}
