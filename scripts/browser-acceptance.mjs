@@ -378,3 +378,9 @@ await desktopAcceptance();
 await protectedCorpusAcceptance();
 await browser.close();
 console.log("Comprehensive browser acceptance passed.");
+
+// P4 owner-live probe must cache-bust runtime modules so a stale browser/CDN asset cannot masquerade as missing P3 activation.
+const p4Html = await (await fetch(baseUrl + "/protected-corpus.html")).text();
+for (const path of ["corpus-v1.js","ingredients.js","profile.js","recommendation.js","planner.js"]) {
+  if (!p4Html.includes(path + "?p4-live=20260929-v2")) throw new Error("P4 live runtime import is not versioned: " + path);
+}
