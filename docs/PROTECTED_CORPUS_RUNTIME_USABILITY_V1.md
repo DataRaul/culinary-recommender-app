@@ -253,3 +253,9 @@ The Brain advances to **C4 real-v8018 failure/repair loop**. Protected P3 remain
 ### 2026-09-28 — C4 bounded closeout and P3 handoff
 
 C4's offline failure/repair loop is **PASS WITH ONE DISTINCT CANDIDATE ONLY**. P3 is ready for a bounded admission contract for the exact pinned `pao-de-queijo` identity; no protected recommendation admission, identity overlay activation or public runtime change has yet occurred. The original 19,268-record failure matrix remains the baseline. See `docs/CULINARY_BRAIN_C4_BOUNDED_CLOSEOUT_V1.md` and `data/generated/culinary-brain-c4-closeout-summary-v1.json`.
+
+### P4 terminal owner acceptance — 2026-09-29
+
+P4 is **COMPLETE / PASS** at `PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS`. The production owner probe confirmed stable search, bounded pagination/filter behavior, cross-shard hydration, <=4 observed D1 subqueries, measured transfer/memory signals, fail-closed malformed handling, recommendation candidate + abstention, planner behavior and mobile/browser UX over exact v8018. Public runtime remained 86 with exactly one protected-origin activation, and every write/admission/cost firewall remained unchanged.
+
+Evidence: `data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json`. The current programme has no further encoded execution step after P4; progressive recommendation expansion remains not-yet-proven and requires a separately earned/authorized successor scope rather than automatic admission.
