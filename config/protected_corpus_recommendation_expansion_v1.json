@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_V1",
+  "date": "2026-09-29",
+  "timezone": "Atlantic/Canary",
+  "state": "R0_AUTHORIZED_BASELINE_PASS__R1_FRONTIER_MEASUREMENT_READY",
+  "objective": "PROGRESSIVELY_EARN_MORE_PROTECTED_RECOMMENDATION_CANDIDATES_WITH_EXPLICIT_BOUNDED_ADMISSION",
+  "sourceOfTruth": "DataRaul/culinary-recommender-app",
+  "entryEvidence": {
+    "priorProgrammeTerminal": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS",
+    "priorProgrammeContract": "config/protected_corpus_runtime_usability_v1.json",
+    "priorProgrammeOwnerEvidence": "data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json",
+    "activeVersion": "v8018",
+    "protectedRecipeCount": 19268,
+    "publicRuntimeRecipeCount": 86,
+    "publicExternalRecipeCount": 10,
+    "activatedProtectedOriginCount": 1,
+    "currentPostP3IdentityReadyRecipeCount": 113,
+    "currentPostP3UnresolvedIdentityRecipeCount": 19155,
+    "historicalPolicyCompleteCandidateCount": 100,
+    "historicalPolicyHeldRecipeCount": 12
+  },
+  "ownerAuthorization": {
+    "successorProgrammeAuthorized": true,
+    "authorizationDate": "2026-09-29",
+    "authorizedScope": "BOUNDED_CANDIDATE_DISCOVERY_REPAIR_AND_MACHINE_EVALUATION_WITH_EXPLICIT_OWNER_ADMISSION_GATES",
+    "candidateDiscoveryAuthorized": true,
+    "exactIdentityRepairCandidateWorkAuthorized": true,
+    "reviewedAliasOverlayCandidateWorkAuthorized": true,
+    "hardDietaryAllergenCandidateReviewAuthorized": true,
+    "deterministicRecommendationPlannerEvaluationAuthorized": true,
+    "runtimeActivationRequiresSeparateOwnerAuthorization": true,
+    "maxRecipesPerOwnerActivationGate": 1,
+    "automaticRecommendationAdmissionAuthorized": false
+  },
+  "frontierPolicy": {
+    "primaryCohort": "unitools-world-recipes-v1_1_0",
+    "reason": "501/501 pinned UniTools records expose prep/cook time, positive servings, difficulty and category metadata, making ingredient identity the measured dominant unlock blocker.",
+    "pinnedSourceCommit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "pinnedSourceDataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "candidateEvaluationTrancheMaxRecipes": 10,
+    "preferMeasuredUnlockLeverage": true,
+    "conflictsFailClosed": true,
+    "ambiguousIngredientIdentityFailsClosed": true,
+    "sourceDifficultyRequiresReviewedRuntimeMapping": true,
+    "mealRoleRequiresReviewedAuthority": true,
+    "sourceNutritionPromotionAuthorized": false,
+    "sourceDietaryClaimPromotionAuthorized": false,
+    "duplicatePublicIdentityCreatesNoNetNewAdmission": true
+  },
+  "gates": [
+    {
+      "id": "R0_AUTHORIZATION_AND_BASELINE",
+      "state": "PASS",
+      "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R0_PASS__FRONTIER_MEASUREMENT_READY",
+      "evidence": "data/generated/protected-corpus-recommendation-expansion-r0-baseline-v1.json"
+    },
+    {
+      "id": "R1_POST_P3_FRONTIER_MEASUREMENT",
+      "state": "READY",
+      "scope": "Reconstruct the pinned UniTools cohort against the current post-P3 canonical ingredient layer plus already-reviewed cohort overlay, rank exact bounded unlock frontiers and freeze a candidate-only repair tranche.",
+      "admissionAuthorized": false
+    },
+    {
+      "id": "R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR",
+      "state": "BLOCKED_ON_R1",
+      "scope": "Review only the frozen R1 tranche. Exact identities and hard dietary/allergen metadata must be explicit and fail closed.",
+      "admissionAuthorized": false
+    },
+    {
+      "id": "R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE",
+      "state": "BLOCKED_ON_R2",
+      "scope": "Serialize candidate-only runtime shapes and prove deterministic hard filters, abstention, recommendation and planner behavior without runtime admission.",
+      "admissionAuthorized": false
+    },
+    {
+      "id": "R4_OWNER_BOUNDED_ADMISSION",
+      "state": "HUMAN_GATED_AFTER_R3",
+      "scope": "At most one exact recipe per owner authorization. No implicit carry-forward authorization.",
+      "admissionAuthorized": false
+    },
+    {
+      "id": "R5_REAL_V8018_POST_ADMISSION_REGRESSION",
+      "state": "BLOCKED_ON_R4",
+      "scope": "Re-run real-v8018 machine and live product regression after any admitted recipe before another owner admission gate can open.",
+      "admissionAuthorized": false
+    }
+  ],
+  "nextExecutionSequence": [
+    "R1_POST_P3_FRONTIER_MEASUREMENT",
+    "R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR",
+    "R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE",
+    "R4_OWNER_BOUNDED_ADMISSION",
+    "R5_REAL_V8018_POST_ADMISSION_REGRESSION"
+  ],
+  "authority": {
+    "candidateRepairAndEvaluationAuthorized": true,
+    "publicRuntimeWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "protectedD1ReadForOfflineProgrammeAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "newProtectedSourceIngestionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "paidInfrastructureAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "invariants": {
+    "protectedCorpusVersionFrozen": "v8018",
+    "protectedRecipeCountFrozen": 19268,
+    "protectedShardCountFrozen": 2,
+    "barbecueLaneIndependent": true,
+    "nutritionIndependentOfRecommendationAdmission": true,
+    "unknownHardMetadataFailsClosed": true,
+    "realV8018RegressionRequiredAfterEveryAdmission": true
+  }
+}
