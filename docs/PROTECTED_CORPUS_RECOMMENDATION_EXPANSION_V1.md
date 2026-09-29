@@ -1,0 +1,49 @@
+# Protected Corpus Recommendation Expansion V1
+
+Status: **AUTHORIZED / R0 BASELINE PASS / R1 FRONTIER MEASUREMENT READY**
+
+Owner authorization was received on 2026-09-29 after terminal P4 product acceptance. This is a new successor programme; it does not reopen or rewrite the completed Protected Corpus Runtime Usability V1 history.
+
+## Objective
+
+Progressively earn additional hard-safe recommendation candidates from protected corpus v8018 / 19,268 without automatic mass admission.
+
+The programme starts from the production-validated baseline:
+
+- protected v8018: **19,268** recipes, two shards;
+- public runtime: **86** recipes;
+- protected-origin activations: **1**;
+- current post-P3 ingredient-identity-ready protected recipes: **113**;
+- current unresolved-identity recipes: **19,155**;
+- prior P4 owner live acceptance: **PASS**.
+
+## Execution sequence
+
+```text
+R0 authorization + frozen baseline                         PASS
+-> R1 post-P3 frontier measurement                        READY
+-> R2 bounded identity + hard dietary/allergen repair     BLOCKED ON R1
+-> R3 deterministic recommendation/planner acceptance     BLOCKED ON R2
+-> R4 owner bounded admission                             HUMAN GATE
+-> R5 real-v8018 post-admission regression                BLOCKED ON R4
+```
+
+Candidate-only machine work through R3 is authorized. Runtime activation is not. Each R4 gate may authorize **at most one exact recipe**, and every admitted recipe must pass R5 before another admission gate can open.
+
+## Frontier policy
+
+R1 starts with the pinned UniTools 1.1.0 cohort because all 501 records carry explicit prep/cook time, positive servings, difficulty and category metadata. Ingredient identity is the measured dominant blocker there.
+
+The measurement must use the current post-P3 canonical layer, preserve already-reviewed exact-cohort alias decisions, exclude conflicts, hold ambiguous ingredient identity, and rank measured unlock leverage. The first frozen evaluation tranche is capped at 10 recipes.
+
+Source nutrition and source vegetarian/gluten-free or similar claims do not become runtime authority merely because a recipe enters this programme. Difficulty and meal role require reviewed runtime-compatible authority. Unknowns stay fail-closed.
+
+## Firewalls
+
+This authorization does **not** authorize automatic recommendation admission, public-runtime widening, protected D1 writes, protected-body rewrite, new protected-source ingestion, a third shard, paid infrastructure/API/corpus licensing, Knowledge Core writes, or Barbecue mutation.
+
+Canonical contract: `config/protected_corpus_recommendation_expansion_v1.json`.
+
+R0 evidence: `data/generated/protected-corpus-recommendation-expansion-r0-baseline-v1.json`.
+
+Next: `R1_POST_P3_FRONTIER_MEASUREMENT`.

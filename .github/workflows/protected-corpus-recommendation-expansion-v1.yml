@@ -1,0 +1,26 @@
+name: Protected corpus recommendation expansion V1
+
+on:
+  pull_request:
+    paths:
+      - "config/protected_corpus_recommendation_expansion_v1.json"
+      - "docs/PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_V1.md"
+      - "scripts/protected-corpus-recommendation-expansion-v1.mjs"
+      - "tests/protected-corpus-recommendation-expansion-v1.test.js"
+      - "data/generated/protected-corpus-recommendation-expansion-r0-baseline-v1.json"
+      - "data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json"
+      - ".github/workflows/protected-corpus-recommendation-expansion-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node --test tests/protected-corpus-recommendation-expansion-v1.test.js
