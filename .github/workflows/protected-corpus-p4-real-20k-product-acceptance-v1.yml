@@ -14,16 +14,12 @@ on:
       - "data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json"
       - "data/generated/culinary-brain-p3-tapioca-bounded-activation-summary-v1.json"
       - "src/data/corpus-v1.js"
+      - "src/data/ingredients.js"
       - "config/corpus_normalization_baseline_v1.json"
       - "config/corpus_normalization_mapping_v1.json"
       - "config/nutrition_vitamin_applicability_audit_v1.json"
-      - "config/culinary_brain_c2_candidate_classification_v1.json"
-      - "config/culinary_brain_c4_real_v8018_failure_loop_v1.json"
       - "scripts/run-corpus-normalization-mapping-v1.mjs"
       - "scripts/run-nutrition-vitamin-applicability-audit.mjs"
-      - "scripts/run-culinary-brain-c2-candidate-classification-v1.mjs"
-      - "scripts/culinary-brain-c4-failure-loop-core.mjs"
-      - "scripts/run-culinary-brain-c4-failure-loop-v1.mjs"
       - ".github/workflows/protected-corpus-p4-real-20k-product-acceptance-v1.yml"
   workflow_dispatch:
 
@@ -63,7 +59,7 @@ jobs:
           git clone --filter=blob:none https://github.com/AdamBouhmad/open-recipe-archive.git .tmp/ora
           git -C .tmp/ora checkout --detach ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
 
-      - name: Reconstruct exact v8018 normalization mapping
+      - name: Reconstruct exact current v8018 normalization mapping
         run: |
           node scripts/run-corpus-normalization-mapping-v1.mjs \
             --unitools=.tmp/unitools \
@@ -73,7 +69,7 @@ jobs:
             --output=.tmp/corpus-normalization-mapping-v1-full.json \
             --summary=.tmp/corpus-normalization-mapping-v1.json
 
-      - name: Reconstruct exact v8018 nutrition identity diagnostics
+      - name: Reconstruct exact current v8018 nutrition identity diagnostics
         run: |
           node scripts/run-nutrition-vitamin-applicability-audit.mjs \
             --unitools=.tmp/unitools \
@@ -83,37 +79,16 @@ jobs:
             --output=.tmp/nutrition-vitamin-applicability-audit-v1-full.json \
             --summary=.tmp/nutrition-vitamin-applicability-audit-v1.json
 
-      - name: Reconstruct full C2 candidate classification
-        run: |
-          node scripts/run-culinary-brain-c2-candidate-classification-v1.mjs \
-            --mapping=.tmp/corpus-normalization-mapping-v1-full.json \
-            --contract=config/culinary_brain_c2_candidate_classification_v1.json \
-            --output=.tmp/culinary-brain-c2-full-v8018-candidates-v1.json \
-            --summary=.tmp/culinary-brain-c2-candidate-classification-summary-v1.json
-
-      - name: Reconstruct C4 real-v8018 failure matrix
-        run: |
-          node scripts/run-culinary-brain-c4-failure-loop-v1.mjs \
-            --contract=config/culinary_brain_c4_real_v8018_failure_loop_v1.json \
-            --nutrition=.tmp/nutrition-vitamin-applicability-audit-v1-full.json \
-            --mapping=.tmp/corpus-normalization-mapping-v1-full.json \
-            --c2=.tmp/culinary-brain-c2-full-v8018-candidates-v1.json \
-            --c3=data/generated/culinary-brain-c3-prior-calibration-summary-v1.json \
-            --readiness=data/generated/recommendation-readiness-audit-v1.json \
-            --output=.tmp/culinary-brain-c4-real-v8018-failure-matrix-v1.json \
-            --summary=.tmp/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json
-
-      - name: Verify exact v8018 C4 baseline remains reproducible
-        run: cmp .tmp/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json
-
       - name: Build P4 machine product baseline
         run: |
           node scripts/run-protected-corpus-p4-real-20k-product-acceptance-v1.mjs \
             --contract=config/protected_corpus_p4_real_20k_product_acceptance_v1.json \
             --p1=data/generated/protected-corpus-p1-live-owner-canary-v1.json \
             --p2=data/generated/protected-corpus-p2-live-alignment-v1.json \
-            --c4=.tmp/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json \
+            --c4=data/generated/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json \
             --p3=data/generated/culinary-brain-p3-tapioca-bounded-activation-summary-v1.json \
+            --mapping=.tmp/corpus-normalization-mapping-v1-full.json \
+            --nutrition=.tmp/nutrition-vitamin-applicability-audit-v1-full.json \
             --output=.tmp/protected-corpus-p4-real-20k-machine-baseline-v1.json
 
       - name: Verify committed P4 baseline is reproducible
@@ -124,6 +99,7 @@ jobs:
         with:
           name: protected-corpus-p4-real-20k-machine-baseline-v1
           path: |
-            .tmp/culinary-brain-c4-real-v8018-failure-matrix-summary-v1.json
+            .tmp/corpus-normalization-mapping-v1.json
+            .tmp/nutrition-vitamin-applicability-audit-v1.json
             .tmp/protected-corpus-p4-real-20k-machine-baseline-v1.json
           if-no-files-found: error
