@@ -58,3 +58,10 @@ The frozen 10-recipe R2 tranche is: `cachapas`, `chapati-kenyan`, `ajvar`, `arep
 The two closest candidates remain fail-closed on exactly one unresolved identity each: `cachapas` → **Soft white cheese** and `chapati-kenyan` → **Flour**. R1 makes no identity decision and no runtime admission. R2 is now ready to review the frozen tranche only.
 
 Compact evidence: `data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json`.
+
+
+### R2 identity review
+
+The frozen 10-recipe R1 tranche received 15 explicit identity decisions. Five form-preserving existing-identity mappings are candidate-active only inside the frozen tranche; ten ambiguous/composite/missing identities remain held. The deterministic measurement yields exactly **one** identity-ready recipe: `chimichurri`, with canonical ingredients `chilli_flakes`, `garlic`, `olive_oil`, `oregano`, `parsley`, `salt`, `vinegar`, and `water`. All nine other candidates remain fail-closed.
+
+Identity-ready digest: `49c6c2f288c3f9b07aefec95a4c4212c26e86bfc9abe44e679d69bee6bce3611`. Hard safety remains a separate R2 policy gate; no runtime authority or admission is created by identity readiness.

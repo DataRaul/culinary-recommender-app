@@ -1,0 +1,47 @@
+name: Protected corpus recommendation expansion R2 identity review
+
+on:
+  pull_request:
+    paths:
+      - "config/protected_corpus_recommendation_expansion_r2_identity_review_v1.json"
+      - "scripts/protected-corpus-recommendation-expansion-r2-identity-core.mjs"
+      - "scripts/run-protected-corpus-recommendation-expansion-r2-identity-v1.mjs"
+      - "tests/protected-corpus-recommendation-expansion-r2-identity-v1.test.js"
+      - "data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json"
+      - "config/culinary_brain_c4_unitools_high_leverage_ingredient_alias_review_v1.json"
+      - "data/generated/protected-corpus-recommendation-expansion-r2-identity-compact-v1.json"
+      - ".github/workflows/protected-corpus-recommendation-expansion-r2-identity-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review-identity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Checkout exact pinned UniTools
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+      - name: Run deterministic R2 identity tests
+        run: node --test tests/protected-corpus-recommendation-expansion-r2-identity-v1.test.js
+      - name: Measure bounded identity repair
+        run: |
+          node scripts/run-protected-corpus-recommendation-expansion-r2-identity-v1.mjs \
+            --contract=config/protected_corpus_recommendation_expansion_r2_identity_review_v1.json \
+            --r1=data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json \
+            --alias=config/culinary_brain_c4_unitools_high_leverage_ingredient_alias_review_v1.json \
+            --unitools=.tmp/unitools \
+            --summary=.tmp/protected-corpus-recommendation-expansion-r2-identity-v1.json
+      - name: Show R2 identity result
+        run: cat .tmp/protected-corpus-recommendation-expansion-r2-identity-v1.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: protected-corpus-recommendation-expansion-r2-identity-v1
+          path: .tmp/protected-corpus-recommendation-expansion-r2-identity-v1.json
+          if-no-files-found: error

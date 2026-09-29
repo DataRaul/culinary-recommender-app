@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_IDENTITY_REVIEW_V1",
+  "date": "2026-09-29",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R1_FRONTIER_PASS__R2_REPAIR_TRANCHE_READY",
+  "r1Evidence": "data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json",
+  "expectedCandidateRecipeCount": 10,
+  "expectedCandidateDigestSha256": "6dbf598c8a00e07bd0b1bdfae75146d7683487afcc3f0bfc9c0e07ddf938b9c0",
+  "sourceCohort": {
+    "id": "unitools-world-recipes-v1_1_0",
+    "expectedRecipeCount": 501,
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "identityDecisions": [
+    {
+      "sourceId": "salt",
+      "sourceName": "Salt and pepper",
+      "decision": "HOLD",
+      "reason": "COMPOSITE_INGREDIENT_PHRASE_CANNOT_COLLAPSE_TO_ONE_ID"
+    },
+    {
+      "sourceId": "flour",
+      "sourceName": "Flour",
+      "decision": "HOLD",
+      "reason": "UNSPECIFIED_GRAIN_AND_GLUTEN_SEMANTICS"
+    },
+    {
+      "sourceId": "aubergine",
+      "sourceName": "Aubergines",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "aubergine",
+      "reason": "PLURAL_ONLY_VARIATION_PRESERVES_EXACT_INGREDIENT_IDENTITY"
+    },
+    {
+      "sourceId": "cheese",
+      "sourceName": "Fresh white cheese",
+      "decision": "HOLD",
+      "reason": "CHEESE_FORMULATION_IDENTITY_AMBIGUOUS"
+    },
+    {
+      "sourceId": "cheese",
+      "sourceName": "Soft white cheese",
+      "decision": "HOLD",
+      "reason": "CHEESE_FORMULATION_IDENTITY_AMBIGUOUS"
+    },
+    {
+      "sourceId": "cream",
+      "sourceName": "Soured cream",
+      "decision": "HOLD",
+      "reason": "NO_EXACT_CURRENT_CANONICAL_SOUR_CREAM_IDENTITY"
+    },
+    {
+      "sourceId": "flatbread",
+      "sourceName": "Unleavened çörek flatbread",
+      "decision": "HOLD",
+      "reason": "FORMULATION_AND_GRAIN_IDENTITY_AMBIGUOUS"
+    },
+    {
+      "sourceId": "masarepa",
+      "sourceName": "Precooked corn flour",
+      "decision": "HOLD",
+      "reason": "NO_EXACT_CURRENT_CANONICAL_MASAREPA_IDENTITY"
+    },
+    {
+      "sourceId": "mutton",
+      "sourceName": "Mutton on the bone",
+      "decision": "HOLD",
+      "reason": "NO_EXACT_CURRENT_CANONICAL_MUTTON_IDENTITY"
+    },
+    {
+      "sourceId": "parsley",
+      "sourceName": "Flat-leaf parsley",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "parsley",
+      "reason": "CULTIVAR_QUALIFIER_PRESERVES_PARSLEY_IDENTITY"
+    },
+    {
+      "sourceId": "peppers",
+      "sourceName": "Fleshy red peppers",
+      "decision": "HOLD",
+      "reason": "PEPPER_TYPE_NOT_EXPLICIT_ENOUGH_FOR_BELL_PEPPER_AUTHORITY"
+    },
+    {
+      "sourceId": "raisins",
+      "sourceName": "Raisins",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_RAISIN_IDENTITY"
+    },
+    {
+      "sourceId": "rice",
+      "sourceName": "Long-grain rice",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "rice",
+      "reason": "GRAIN_LENGTH_QUALIFIER_PRESERVES_RICE_IDENTITY"
+    },
+    {
+      "sourceId": "rice",
+      "sourceName": "Short-grain rice",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "rice",
+      "reason": "GRAIN_LENGTH_QUALIFIER_PRESERVES_RICE_IDENTITY"
+    },
+    {
+      "sourceId": "salt",
+      "sourceName": "Coarse salt",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "salt",
+      "reason": "CRYSTAL_SIZE_QUALIFIER_PRESERVES_SALT_IDENTITY"
+    }
+  ],
+  "authority": {
+    "exactFrozenTrancheOverlayAuthorizedOnPass": true,
+    "globalIngredientAliasIndexMutationAuthorized": false,
+    "globalIngredientCatalogMutationAuthorized": false,
+    "hardDietaryAllergenAuthorityPromotionAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "newProtectedSourceIngestionAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_IDENTITY_REVIEW_PASS__HARD_SAFETY_POLICY_READY",
+  "nextGate": "R2_HARD_SAFETY_POLICY_REVIEW"
+}

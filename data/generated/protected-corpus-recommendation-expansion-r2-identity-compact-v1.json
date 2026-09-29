@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_IDENTITY_REVIEW_COMPACT_V1",
+  "date": "2026-09-29",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_IDENTITY_REVIEW_PASS__HARD_SAFETY_POLICY_READY",
+  "protectedCorpusVersion": "v8018",
+  "frozenCandidateDigestSha256": "6dbf598c8a00e07bd0b1bdfae75146d7683487afcc3f0bfc9c0e07ddf938b9c0",
+  "reviewedDecisionCount": 15,
+  "mappedExistingDecisionCount": 5,
+  "heldDecisionCount": 10,
+  "identityReadyCandidateCount": 1,
+  "identityReadySourceSlugs": [
+    "chimichurri"
+  ],
+  "identityReadyDigestSha256": "49c6c2f288c3f9b07aefec95a4c4212c26e86bfc9abe44e679d69bee6bce3611",
+  "identityReadyCandidates": [
+    {
+      "sourceSlug": "chimichurri",
+      "canonicalIngredientIds": [
+        "chilli_flakes",
+        "garlic",
+        "olive_oil",
+        "oregano",
+        "parsley",
+        "salt",
+        "vinegar",
+        "water"
+      ],
+      "positiveCatalogAllergenSignals": []
+    }
+  ],
+  "heldCandidates": [
+    {
+      "sourceSlug": "cachapas",
+      "unresolvedIngredientKeys": [
+        "cheese :: Soft white cheese"
+      ]
+    },
+    {
+      "sourceSlug": "chapati-kenyan",
+      "unresolvedIngredientKeys": [
+        "flour :: Flour"
+      ]
+    },
+    {
+      "sourceSlug": "ajvar",
+      "unresolvedIngredientKeys": [
+        "peppers :: Fleshy red peppers"
+      ]
+    },
+    {
+      "sourceSlug": "arepas",
+      "unresolvedIngredientKeys": [
+        "cheese :: Fresh white cheese",
+        "masarepa :: Precooked corn flour"
+      ]
+    },
+    {
+      "sourceSlug": "arroz-con-coco",
+      "unresolvedIngredientKeys": [
+        "raisins :: Raisins"
+      ]
+    },
+    {
+      "sourceSlug": "avgolemono",
+      "unresolvedIngredientKeys": [
+        "salt :: Salt and pepper"
+      ]
+    },
+    {
+      "sourceSlug": "burek-bosanski",
+      "unresolvedIngredientKeys": [
+        "flour :: Flour",
+        "salt :: Salt and pepper"
+      ]
+    },
+    {
+      "sourceSlug": "dograma",
+      "unresolvedIngredientKeys": [
+        "flatbread :: Unleavened çörek flatbread",
+        "mutton :: Mutton on the bone"
+      ]
+    },
+    {
+      "sourceSlug": "draniki",
+      "unresolvedIngredientKeys": [
+        "cream :: Soured cream",
+        "salt :: Salt and pepper"
+      ]
+    }
+  ],
+  "authorityPromoted": false,
+  "recommendationAdmissionChanged": false,
+  "publicRuntimeChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "newProtectedSourcesIngested": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R2_HARD_SAFETY_POLICY_REVIEW"
+}

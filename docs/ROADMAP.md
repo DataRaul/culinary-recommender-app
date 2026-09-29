@@ -928,3 +928,11 @@ The frozen 10-recipe R2 tranche is `cachapas`, `chapati-kenyan`, `ajvar`, `arepa
 Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R1_FRONTIER_PASS__R2_REPAIR_TRANCHE_READY`.
 Evidence: `data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json`.
 Next: `R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR`.
+
+
+### 2026-09-29 — Protected Corpus Recommendation Expansion R2 identity review
+
+The frozen R1 10-recipe tranche completed a candidate-only identity review. Five exact form-preserving mappings were accepted only inside the frozen tranche (Aubergines→aubergine, Flat-leaf parsley→parsley, Long-grain rice→rice, Short-grain rice→rice, Coarse salt→salt); ten ambiguous/composite/missing identities remain held. Exactly **one** candidate becomes identity-ready: `chimichurri`, with 8 canonical ingredient IDs and zero positive current-catalog allergen signals. The other nine remain fail-closed. No global alias/catalog mutation or runtime authority changed.
+
+Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_IDENTITY_REVIEW_PASS__HARD_SAFETY_POLICY_READY`.
+Next: `R2_HARD_SAFETY_POLICY_REVIEW`.

@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_HARD_SAFETY_POLICY_V1",
+  "date": "2026-09-29",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_IDENTITY_REVIEW_PASS__HARD_SAFETY_POLICY_READY",
+  "identityEvidence": "data/generated/protected-corpus-recommendation-expansion-r2-identity-compact-v1.json",
+  "expectedIdentityReadyCandidateCount": 1,
+  "expectedIdentityReadyDigestSha256": "49c6c2f288c3f9b07aefec95a4c4212c26e86bfc9abe44e679d69bee6bce3611",
+  "candidate": {
+    "sourceSlug": "chimichurri",
+    "canonicalIngredientIds": [
+      "chilli_flakes",
+      "garlic",
+      "olive_oil",
+      "oregano",
+      "parsley",
+      "salt",
+      "vinegar",
+      "water"
+    ]
+  },
+  "supportedAllergenTokens": [
+    "celery",
+    "crustacean",
+    "egg",
+    "fish",
+    "gluten",
+    "milk",
+    "peanut",
+    "sesame",
+    "soy",
+    "tree_nut"
+  ],
+  "policySemantics": {
+    "reviewedPresentListPlusCompleteCoverageMeansOtherSupportedTokensReviewedAbsent": true,
+    "emptyReviewedPresentListIsNotGlobalAllergenFreeClaim": true,
+    "crossContactGuarantee": false,
+    "productLabelGuarantee": false,
+    "unsupportedEuAnnexIICategoriesAreNotInferred": true,
+    "dietaryTagsMayOnlyBeDerivedFromBooleanReviewedRows": true
+  },
+  "ingredientPolicies": [
+    {
+      "ingredientId": "chilli_flakes",
+      "policyState": "REVIEWED_CURRENT_PROFILE_COMPLETE",
+      "reviewedPresentAllergens": [],
+      "supportedAllergenCoverage": "COMPLETE_FOR_CURRENT_MAPPED_PROFILE_TOKENS",
+      "vegetarian": true,
+      "vegan": true
+    },
+    {
+      "ingredientId": "garlic",
+      "policyState": "REVIEWED_CURRENT_PROFILE_COMPLETE",
+      "reviewedPresentAllergens": [],
+      "supportedAllergenCoverage": "COMPLETE_FOR_CURRENT_MAPPED_PROFILE_TOKENS",
+      "vegetarian": true,
+      "vegan": true
+    },
+    {
+      "ingredientId": "olive_oil",
+      "policyState": "REVIEWED_CURRENT_PROFILE_COMPLETE",
+      "reviewedPresentAllergens": [],
+      "supportedAllergenCoverage": "COMPLETE_FOR_CURRENT_MAPPED_PROFILE_TOKENS",
+      "vegetarian": true,
+      "vegan": true
+    },
+    {
+      "ingredientId": "oregano",
+      "policyState": "REVIEWED_CURRENT_PROFILE_COMPLETE",
+      "reviewedPresentAllergens": [],
+      "supportedAllergenCoverage": "COMPLETE_FOR_CURRENT_MAPPED_PROFILE_TOKENS",
+      "vegetarian": true,
+      "vegan": true
+    },
+    {
+      "ingredientId": "parsley",
+      "policyState": "REVIEWED_CURRENT_PROFILE_COMPLETE",
+      "reviewedPresentAllergens": [],
+      "supportedAllergenCoverage": "COMPLETE_FOR_CURRENT_MAPPED_PROFILE_TOKENS",
+      "vegetarian": true,
+      "vegan": true
+    },
+    {
+      "ingredientId": "salt",
+      "policyState": "REVIEWED_CURRENT_PROFILE_COMPLETE",
+      "reviewedPresentAllergens": [],
+      "supportedAllergenCoverage": "COMPLETE_FOR_CURRENT_MAPPED_PROFILE_TOKENS",
+      "vegetarian": true,
+      "vegan": true
+    },
+    {
+      "ingredientId": "vinegar",
+      "policyState": "REVIEWED_CURRENT_PROFILE_COMPLETE",
+      "reviewedPresentAllergens": [],
+      "supportedAllergenCoverage": "COMPLETE_FOR_CURRENT_MAPPED_PROFILE_TOKENS",
+      "vegetarian": true,
+      "vegan": true
+    },
+    {
+      "ingredientId": "water",
+      "policyState": "REVIEWED_CURRENT_PROFILE_COMPLETE",
+      "reviewedPresentAllergens": [],
+      "supportedAllergenCoverage": "COMPLETE_FOR_CURRENT_MAPPED_PROFILE_TOKENS",
+      "vegetarian": true,
+      "vegan": true
+    }
+  ],
+  "authority": {
+    "candidateHardSafetyProposalAuthorizedOnPass": true,
+    "runtimeHardSafetyAuthorityPromotionAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "sourceDietaryClaimPromotionAuthorized": false,
+    "sourceNutritionPromotionAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_HARD_SAFETY_PASS__R3_READY",
+  "nextGate": "R3_CANDIDATE_METADATA_RECONCILIATION_AND_MACHINE_ACCEPTANCE"
+}

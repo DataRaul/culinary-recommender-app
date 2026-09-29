@@ -78,9 +78,14 @@
     },
     {
       "id": "R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR",
-      "state": "READY",
+      "state": "IDENTITY_PASS__HARD_SAFETY_POLICY_READY",
       "scope": "Review only the frozen R1 tranche. Exact identities and hard dietary/allergen metadata must be explicit and fail closed.",
-      "admissionAuthorized": false
+      "admissionAuthorized": false,
+      "identityEvidence": "data/generated/protected-corpus-recommendation-expansion-r2-identity-compact-v1.json",
+      "identityReadyCandidateCount": 1,
+      "identityReadySourceSlugs": [
+        "chimichurri"
+      ]
     },
     {
       "id": "R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE",

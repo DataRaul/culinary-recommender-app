@@ -1,0 +1,14 @@
+import { execFileSync } from "node:child_process";
+import { readFile,writeFile,mkdir } from "node:fs/promises";
+import { dirname,resolve } from "node:path";
+import { buildR2HardSafetyReview } from "./protected-corpus-recommendation-expansion-r2-hard-safety-core.mjs";
+const args=Object.fromEntries(process.argv.slice(2).map(a=>{const [k,...v]=a.replace(/^--/,"").split("=");return [k,v.join("=")];}));
+for(const k of ["contract","identity","unitools","summary"]) if(!args[k]) throw new Error("R2_HARD_SAFETY_ARGUMENT_REQUIRED_"+k);
+const read=p=>readFile(resolve(p),"utf8").then(JSON.parse);
+const [contract,identity,dataset]=await Promise.all([read(args.contract),read(args.identity),read(resolve(args.unitools,"unitools-recipes-v1.json"))]);
+const observedCommit=execFileSync("git",["-C",resolve(args.unitools),"rev-parse","HEAD"],{encoding:"utf8"}).trim();
+if(observedCommit!=="1d09e9548d957dd0375301146a86dddf5e269c1b") throw new Error("R2_HARD_SAFETY_SOURCE_PIN_MISMATCH");
+const summary=buildR2HardSafetyReview({contract,identity,dataset});
+await mkdir(dirname(resolve(args.summary)),{recursive:true});
+await writeFile(resolve(args.summary),JSON.stringify(summary,null,2)+"\n","utf8");
+process.stdout.write("R2_HARD_SAFETY_SUMMARY="+JSON.stringify(summary)+"\n");
