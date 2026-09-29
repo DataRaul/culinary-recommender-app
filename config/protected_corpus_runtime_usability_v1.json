@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RUNTIME_USABILITY_V1",
   "date": "2026-09-29",
-  "state": "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_BOUNDED_PASS__P3_BOUNDED_ACTIVATION_PASS__P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED",
+  "state": "P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_BOUNDED_PASS__P3_BOUNDED_ACTIVATION_PASS__P4_OWNER_LIVE_ACCEPTANCE_PASS",
   "objective": "MAKE_V8018_19268_PROTECTED_RECIPES_USER_USABLE_WITH_MEASURED_PROGRESSIVE_CAPABILITY",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "currentFacts": {
@@ -65,20 +65,21 @@
       "VERSIONED_REVERSIBLE_NORMALIZATION_OVERLAY",
       "170K_REQUIRED_AND_250K_STRESS_SCALE_PROOF",
       "END_USER_BROWSE_OVER_FULL_V8018",
-      "END_USER_SEARCH_OVER_FULL_V8018"
-    ],
-    "notYetProvenAsUserCapability": [
+      "END_USER_SEARCH_OVER_FULL_V8018",
       "PAGINATED_FILTERED_PRIVATE_DISCOVERY_AT_V8018",
       "FULL_V8018_BROWSER_PERFORMANCE_ACCEPTANCE",
+      "BOUNDED_PROTECTED_ORIGIN_RECOMMENDATION_ACCEPTANCE"
+    ],
+    "notYetProvenAsUserCapability": [
       "PROGRESSIVE_RECOMMENDATION_OVER_PROTECTED_CORPUS"
     ]
   },
   "blockers": [
     {
       "id": "BROWSE_SEARCH_PRODUCT_SURFACE",
-      "severity": "FIRST_TEST_TARGET",
-      "state": "NOT_YET_PROVEN",
-      "evidence": "Storage/auth/routing/hydration are proven separately, but the owner-facing 19,268-recipe browse/search experience is not yet an earned product terminal."
+      "severity": "CLOSED",
+      "state": "PASS",
+      "evidence": "Owner production P4 acceptance proved stable search, bounded pagination/filter behavior, cross-shard hydration, malformed-input fail-closed behavior, <=4 observed D1 subqueries, measured transfer/memory signals and mobile browser UX at exact v8018 / 19,268."
     },
     {
       "id": "CANONICAL_INGREDIENT_IDENTITY_COVERAGE",
@@ -198,7 +199,7 @@
     },
     {
       "id": "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE",
-      "state": "MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED",
+      "state": "PASS",
       "purpose": "Continuously test search, filters, hydration, ranking/planner candidate generation, abstention, latency, memory, D1 query counts and browser UX against real v8018.",
       "machineTerminal": "PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED",
       "machineEvidence": "data/generated/protected-corpus-p4-real-20k-machine-baseline-v1.json",
@@ -206,8 +207,15 @@
       "machineWorkflowRunId": 36556069585,
       "validationRun": 1302,
       "validationRunId": 36556069847,
-      "ownerLiveAcceptanceRequired": true,
-      "nextGate": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE"
+      "ownerLiveAcceptanceRequired": false,
+      "nextGate": null,
+      "ownerLiveTerminal": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS",
+      "ownerLiveEvidence": "data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json",
+      "ownerLiveObservedMaxD1Subqueries": 4,
+      "ownerLiveMaxSearchLatencyMs": 173,
+      "ownerLiveTransferredBytes": 9007,
+      "ownerLivePublicRuntimeRecipeCount": 86,
+      "ownerLiveActivatedProtectedOriginCount": 1
     }
   ],
   "syntheticScalePolicy": {
@@ -228,9 +236,7 @@
     "knowledgeCoreWriteAuthorized": false,
     "barbecueMutationAuthorized": false
   },
-  "nextExecutionSequence": [
-    "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE"
-  ],
+  "nextExecutionSequence": [],
   "brainCalibration": {
     "id": "CULINARY_BRAIN_CORPUS_CALIBRATION_V1",
     "state": "C4_BOUNDED_PASS__P3_BOUNDED_ACTIVATION_PASS__P4_READY",
@@ -432,6 +438,14 @@
       "validationRun": 1302,
       "validationRunId": 36556069847,
       "note": "Exact current post-P3 v8018 reconstruction measured 113 identity-ready recipes versus the frozen pre-P3 C4 cohort of 112; final product acceptance remains a read-only authenticated owner live probe."
+    },
+    {
+      "id": "PROTECTED_CORPUS_RUNTIME_USABILITY_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE",
+      "state": "PASS",
+      "date": "2026-09-29",
+      "terminal": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS",
+      "evidence": "data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json",
+      "note": "Owner production probe passed exact v8018 browse/search/product acceptance with 86 public runtime recipes, exactly one protected-origin activation, max 4 observed D1 subqueries, zero writes/full scans, and all authority/cost firewalls unchanged."
     }
   ],
   "quotaGapParallelPrep": {
@@ -541,5 +555,39 @@
     "validationRunId": 36556069847,
     "ownerLiveAcceptanceRequired": true,
     "nextGate": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE"
+  },
+  "p4OwnerLiveAcceptance": {
+    "terminal": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS",
+    "evidence": "data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json",
+    "protectedCorpusVersion": "v8018",
+    "protectedRecipeCount": 19268,
+    "indexedRecipeCount": 19268,
+    "ftsRecipeCount": 19268,
+    "structuralPartialCount": 3,
+    "searchResultStabilityPass": true,
+    "maxSearchLatencyMs": 173,
+    "paginationPass": true,
+    "filterBehaviorPass": true,
+    "crossShardHydrationPass": true,
+    "d1SubqueryPass": true,
+    "maxObservedD1Subqueries": 4,
+    "transferredBytes": 9007,
+    "malformedUnknownPass": true,
+    "recommendationCandidateGenerationPass": true,
+    "recommendationAbstentionPass": true,
+    "plannerPass": true,
+    "publicRuntimeRecipeCount": 86,
+    "activatedProtectedOriginCount": 1,
+    "mobileBrowserUxPass": true,
+    "fullCorpusScans": 0,
+    "protectedD1Writes": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "protectedBodyRewrite": false,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false,
+    "nextGate": null
   }
 }
