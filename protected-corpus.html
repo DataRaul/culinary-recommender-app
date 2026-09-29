@@ -58,7 +58,7 @@
       <button id="runP2Alignment" type="button" disabled>Run P2 live alignment</button>
       <button id="runP4Acceptance" type="button" disabled>Run P4 product acceptance</button>
     </div>
-    <p id="gateStatus" class="muted" aria-live="polite">P4 is the current gate. Checking authentication and private-index readiness…</p>
+    <p id="gateStatus" class="muted" aria-live="polite">P4 terminal PASS is recorded. The verifier is retained for diagnostics; checking authentication and private-index readiness…</p>
     <p id="prepareProgress" class="muted" hidden aria-live="polite"></p>
     <div id="canaryEvidencePanel" hidden>
       <p class="muted">Sanitized verification result — no account, session, or recipe-body data.</p>
@@ -180,7 +180,7 @@
     runCanaryButton.disabled = true;
     runP2AlignmentButton.disabled = true;
     runP4AcceptanceButton.disabled = true;
-    gateStatusNode.textContent = 'P4 is the current gate. Sign in/check the private session first; P1 and P2 are already complete and are shown only as diagnostic reruns.';
+    gateStatusNode.textContent = 'P4 terminal PASS is recorded. A diagnostic rerun requires the private session; P1 and P2 are also retained only as diagnostics.';
     canaryEvidencePanel.hidden = true;
     resultsNode.innerHTML = '';
     resultStatus.textContent = 'No protected query was sent before authentication.';
@@ -205,7 +205,7 @@
       runCanaryButton.disabled = true;
       runP2AlignmentButton.disabled = true;
       runP4AcceptanceButton.disabled = true;
-      gateStatusNode.textContent = 'P4 is the current gate, but the private index is not initialized in this environment.';
+      gateStatusNode.textContent = 'P4 terminal PASS is recorded; diagnostic rerun is disabled because the private index is not initialized in this environment.';
       prepareButton.textContent = 'Prepare private index';
       return true;
     }
@@ -219,7 +219,7 @@
       runCanaryButton.disabled = true;
       runP2AlignmentButton.disabled = true;
       runP4AcceptanceButton.disabled = true;
-      gateStatusNode.textContent = 'P4 is the current gate, but private-index status could not be verified.';
+      gateStatusNode.textContent = 'P4 terminal PASS is recorded; diagnostic rerun is disabled because private-index status could not be verified.';
       return true;
     }
     indexStatus = result;
@@ -237,8 +237,8 @@
     runP2AlignmentButton.disabled = !liveReady;
     runP4AcceptanceButton.disabled = !liveReady;
     gateStatusNode.textContent = liveReady
-      ? 'P4 is the current required gate. P1 and P2 are already complete; use Run P4 product acceptance.'
-      : 'P4 is the current gate, but it remains disabled until the private index is ready with exactly 3 structural partials.';
+      ? 'P4 terminal PASS is recorded. P1, P2 and P4 controls are retained for diagnostic reruns only.'
+      : 'P4 terminal PASS is recorded; diagnostic rerun remains disabled until the private index is ready with exactly 3 structural partials.';
     prepareButton.textContent = result.indexedRecipeCount ? 'Resume private index' : 'Prepare private index';
       if (result.ready) await loadResults(true);
       return true;
@@ -252,7 +252,7 @@
       runCanaryButton.disabled = true;
       runP2AlignmentButton.disabled = true;
       runP4AcceptanceButton.disabled = true;
-      gateStatusNode.textContent = 'P4 is the current gate, but status verification failed safely. Refresh status after confirming the private session.';
+      gateStatusNode.textContent = 'P4 terminal PASS remains recorded; diagnostic status verification failed safely. Refresh status after confirming the private session.';
       return false;
     } finally {
       refreshButton.disabled = false;

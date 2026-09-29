@@ -332,7 +332,7 @@ async function protectedCorpusAcceptance() {
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
   if (overflow) throw new Error("Protected corpus mobile layout has unexpected horizontal overflow");
   await page.getByText(/19,268 \/ 19,268 recipes indexed/).waitFor();
-  await page.getByText(/P4 is the current required gate/).waitFor();
+  await page.getByText(/P4 terminal PASS is recorded/).waitFor();
   if (await page.getByRole("button", { name:"Run P4 product acceptance" }).isDisabled()) throw new Error("P4 gate should be enabled after authenticated ready status");
   if (await page.locator(".recipe").count() !== 2) throw new Error("Protected browse did not render bounded results");
 

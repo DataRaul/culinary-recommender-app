@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_EVIDENCE_V1",
+  "date": "2026-09-29",
+  "timezone": "Atlantic/Canary",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS",
+  "activeVersion": "v8018",
+  "indexedRecipeCount": 19268,
+  "ftsRecipeCount": 19268,
+  "structuralPartialCount": 3,
+  "searchResultStabilityPass": true,
+  "searchLatencyMs": [
+    173,
+    164.2
+  ],
+  "maxSearchLatencyMs": 173,
+  "paginationPass": true,
+  "filterBehaviorPass": true,
+  "crossShardHydrationPass": true,
+  "d1SubqueryPass": true,
+  "maxObservedD1Subqueries": 4,
+  "transferredBytes": 9007,
+  "memoryBefore": {
+    "kind": "JS_HEAP_USED",
+    "bytes": 1006060
+  },
+  "memoryAfter": {
+    "kind": "JS_HEAP_USED",
+    "bytes": 2513971
+  },
+  "malformedUnknownPass": true,
+  "recommendationCandidateGenerationPass": true,
+  "recommendationAbstentionPass": true,
+  "plannerPass": true,
+  "publicRuntimeRecipeCount": 86,
+  "activatedProtectedOriginCount": 1,
+  "mobileBrowserUxPass": true,
+  "viewport": {
+    "width": 384,
+    "height": 694,
+    "devicePixelRatio": 2.8125
+  },
+  "fullCorpusScans": 0,
+  "protectedD1Writes": 0,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "protectedBodyRewrite": false,
+  "knowledgeCoreWrites": 0,
+  "paidInfrastructureUsed": false,
+  "thirdShardUsed": false,
+  "barbecueMutation": false,
+  "provenance": {
+    "source": "OWNER_SANITIZED_PRODUCTION_P4_OUTPUT",
+    "probeImplementationPr": 355,
+    "visibilityRepairPr": 356,
+    "cacheRepairPr": 357,
+    "productionCommit": "3c696c31bd7500d898d5d0bb5e231a65a4d94b50"
+  }
+}
