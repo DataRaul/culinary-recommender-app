@@ -1,0 +1,44 @@
+name: Protected corpus recommendation expansion R2 hard safety
+
+on:
+  pull_request:
+    paths:
+      - "config/protected_corpus_recommendation_expansion_r2_hard_safety_policy_v1.json"
+      - "scripts/protected-corpus-recommendation-expansion-r2-hard-safety-core.mjs"
+      - "scripts/run-protected-corpus-recommendation-expansion-r2-hard-safety-v1.mjs"
+      - "tests/protected-corpus-recommendation-expansion-r2-hard-safety-v1.test.js"
+      - "data/generated/protected-corpus-recommendation-expansion-r2-identity-compact-v1.json"
+      - ".github/workflows/protected-corpus-recommendation-expansion-r2-hard-safety-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review-hard-safety:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Checkout exact pinned UniTools
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+      - name: Run R2 hard-safety tests
+        run: node --test tests/protected-corpus-recommendation-expansion-r2-hard-safety-v1.test.js
+      - name: Measure candidate hard safety and metadata shape
+        run: |
+          node scripts/run-protected-corpus-recommendation-expansion-r2-hard-safety-v1.mjs \
+            --contract=config/protected_corpus_recommendation_expansion_r2_hard_safety_policy_v1.json \
+            --identity=data/generated/protected-corpus-recommendation-expansion-r2-identity-compact-v1.json \
+            --unitools=.tmp/unitools \
+            --summary=.tmp/protected-corpus-recommendation-expansion-r2-hard-safety-v1.json
+      - name: Show R2 hard-safety result
+        run: cat .tmp/protected-corpus-recommendation-expansion-r2-hard-safety-v1.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: protected-corpus-recommendation-expansion-r2-hard-safety-v1
+          path: .tmp/protected-corpus-recommendation-expansion-r2-hard-safety-v1.json
+          if-no-files-found: error
