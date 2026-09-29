@@ -77,7 +77,7 @@ The owner-only `/protected-corpus.html` surface now carries one bounded **Run P4
 - keyset pagination over two bounded pages plus fixed-query filter behavior;
 - live detail hydration on one known recipe from each existing shard;
 - per-request D1 subquery counts, with the existing target of at most eight;
-- transferred JSON bytes plus the best available browser memory signal (`measureUserAgentSpecificMemory`, JS heap usage, or device-memory capacity, accurately labelled);
+- transferred JSON bytes plus the best available browser memory signal (`measureUserAgentSpecificMemory`, JS heap usage, device-memory capacity, or a last-resort DOM-footprint estimate, accurately labelled);
 - fail-closed unknown-detail handling;
 - current production recommendation candidate generation, meal/allergen abstention, exact tapioca identity boundary and planner use of the single P3 candidate;
 - current-browser/mobile viewport and horizontal-overflow acceptance.
