@@ -9,7 +9,7 @@ on:
       - "tests/protected-corpus-recommendation-expansion-r2-identity-v1.test.js"
       - "data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json"
       - "config/culinary_brain_c4_unitools_high_leverage_ingredient_alias_review_v1.json"
-      - ".github/workflows/protected-corpus-recommendation-expansion-r2-identity-v1.yml"
+      - "data/generated/protected-corpus-recommendation-expansion-r2-identity-compact-v1.json"\n      - ".github/workflows/protected-corpus-recommendation-expansion-r2-identity-v1.yml"
   workflow_dispatch:
 
 permissions:
