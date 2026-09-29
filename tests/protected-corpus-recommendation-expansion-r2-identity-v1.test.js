@@ -5,7 +5,8 @@ import { buildR2IdentityReview,compactR2IdentityEvidence,resolveWithR2IdentityDe
 const read=p=>JSON.parse(readFileSync(new URL("../"+p,import.meta.url),"utf8"));
 const contract=read("config/protected_corpus_recommendation_expansion_r2_identity_review_v1.json");
 const r1=read("data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json");
-const alias=read("config/culinary_brain_c4_unitools_high_leverage_ingredient_alias_review_v1.json");\nconst committed=read("data/generated/protected-corpus-recommendation-expansion-r2-identity-compact-v1.json");
+const alias=read("config/culinary_brain_c4_unitools_high_leverage_ingredient_alias_review_v1.json");
+const committed=read("data/generated/protected-corpus-recommendation-expansion-r2-identity-compact-v1.json");
 
 test("R2 identity review covers exactly the frozen R1 repair keys and remains candidate-only",()=>{
   assert.deepEqual(validateR2IdentityContract(contract,r1),[]);
