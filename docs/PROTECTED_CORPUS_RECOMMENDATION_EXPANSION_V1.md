@@ -1,6 +1,6 @@
 # Protected Corpus Recommendation Expansion V1
 
-Status: **AUTHORIZED / R0 BASELINE PASS / R1 FRONTIER MEASUREMENT READY**
+Status: **R3 PASS WITH FAIL-CLOSED HOLD / NEXT FRONTIER ITERATION READY**
 
 Owner authorization was received on 2026-09-29 after terminal P4 product acceptance. This is a new successor programme; it does not reopen or rewrite the completed Protected Corpus Runtime Usability V1 history.
 
@@ -21,11 +21,11 @@ The programme starts from the production-validated baseline:
 
 ```text
 R0 authorization + frozen baseline                         PASS
--> R1 post-P3 frontier measurement                        READY
--> R2 bounded identity + hard dietary/allergen repair     BLOCKED ON R1
--> R3 deterministic recommendation/planner acceptance     BLOCKED ON R2
--> R4 owner bounded admission                             HUMAN GATE
--> R5 real-v8018 post-admission regression                BLOCKED ON R4
+-> R1 post-P3 frontier measurement                        PASS
+-> R2 bounded identity + hard dietary/allergen repair     PASS
+-> R3 deterministic recommendation/planner acceptance     PASS WITH HOLD
+-> R4 owner bounded admission                             NOT OPEN
+-> next frontier iteration                                READY
 ```
 
 Candidate-only machine work through R3 is authorized. Runtime activation is not. Each R4 gate may authorize **at most one exact recipe**, and every admitted recipe must pass R5 before another admission gate can open.
@@ -65,3 +65,16 @@ Compact evidence: `data/generated/protected-corpus-recommendation-expansion-r1-f
 The frozen 10-recipe R1 tranche received 15 explicit identity decisions. Five form-preserving existing-identity mappings are candidate-active only inside the frozen tranche; ten ambiguous/composite/missing identities remain held. The deterministic measurement yields exactly **one** identity-ready recipe: `chimichurri`, with canonical ingredients `chilli_flakes`, `garlic`, `olive_oil`, `oregano`, `parsley`, `salt`, `vinegar`, and `water`. All nine other candidates remain fail-closed.
 
 Identity-ready digest: `49c6c2f288c3f9b07aefec95a4c4212c26e86bfc9abe44e679d69bee6bce3611`. Hard safety remains a separate R2 policy gate; no runtime authority or admission is created by identity readiness.
+
+
+## R2 hard-safety result
+
+The R2 hard-safety policy passed for the sole identity-ready candidate, `chimichurri`. All eight mapped ingredients have reviewed current-profile allergen coverage and boolean vegetarian/vegan policy rows. Candidate-only tags are `unrestricted`, `vegetarian`, and `vegan`; the mapped declared-allergen list is empty, which is explicitly **not** a global allergen-free or cross-contact guarantee. Runtime authority and admission remain unchanged.
+
+Evidence: `data/generated/protected-corpus-recommendation-expansion-r2-hard-safety-summary-v1.json`.
+
+## R3 result
+
+R3 passed by **fail-closed abstention**, not by admission. `chimichurri` is a source-category `sauce`, which is not reviewed authority for a standalone meal role. Its source timing is internally inconsistent for runtime elapsed-time filtering: prep + cook declares 15 minutes, step-minute fields sum to 20, and the final instruction adds a two-hour stand. The candidate therefore keeps empty runtime meal roles and unknown total time, is rejected by recommendation for every current meal type, and produces planner shortfalls instead of being selected.
+
+No owner admission gate opens. Next is `R1_NEXT_FRONTIER_ITERATION_V2` under the existing candidate discovery/repair authority.
