@@ -7,6 +7,7 @@ import {
   P4_TERMINAL,
   P4_NEXT_GATE,
   validateP4Contract,
+  measureCurrentV8018,
   buildP4MachineBaseline,
   validateP4Summary
 } from "../scripts/protected-corpus-p4-real-20k-core.mjs";
@@ -23,7 +24,11 @@ test("P4 contract preserves the real-v8018 primary-product and fail-closed bound
   assert.deepEqual(validateP4Contract(contract), []);
   assert.equal(contract.protectedCorpusVersion, "v8018");
   assert.equal(contract.expectedProtectedRecipeCount, 19268);
+  assert.equal(contract.expectedPreP3IdentityReadyRecipeCount, 112);
+  assert.equal(contract.expectedCurrentIdentityReadyRecipeCount, 113);
+  assert.equal(contract.expectedCurrentUnresolvedIdentityRecipeCount, 19155);
   assert.equal(contract.machineAcceptance.reconstructExactV8018FromPinnedSources, true);
+  assert.equal(contract.machineAcceptance.reconcilePostP3IdentityDelta, true);
   assert.equal(contract.machineAcceptance.reuseTerminalP1P2LiveEvidence, true);
   assert.equal(contract.liveAcceptance.required, true);
   assert.equal(contract.liveAcceptance.ownerAuthenticationRequired, true);
@@ -34,13 +39,43 @@ test("P4 contract preserves the real-v8018 primary-product and fail-closed bound
   assert.equal(contract.nextGate, P4_NEXT_GATE);
 });
 
-test("P4 machine baseline exactly reconciles v8018, current public runtime, and terminal P1-P3 evidence", () => {
+test("P4 current-v8018 measurement recognizes the exact one-recipe identity delta created by bounded P3", () => {
+  const diagnostics = Array.from({ length: 19268 }, (_, index) => ({
+    allIngredientIdentitiesResolved: index < 113,
+    ingredientOccurrenceCount: 1
+  }));
+  const mappingFull = {
+    protectedCorpusVersion: "v8018",
+    observedRecipeCount: 19268,
+    structuralExceptions: [{}, {}, {}]
+  };
+  const nutritionFull = {
+    protectedCorpusVersion: "v8018",
+    observedRecipeCount: 19268,
+    protectedCorpusRecipeDiagnostics: diagnostics
+  };
+  assert.deepEqual(measureCurrentV8018({ contract, mappingFull, nutritionFull }), {
+    recipeCount: 19268,
+    structuralExceptionCount: 3,
+    identityReadyRecipeCount: 113,
+    unresolvedIngredientIdentityRecipeCount: 19155
+  });
+});
+
+test("P4 machine baseline exactly reconciles frozen pre-P3 C4 with current post-P3 v8018 and runtime", () => {
+  const currentV8018 = {
+    recipeCount: 19268,
+    structuralExceptionCount: 3,
+    identityReadyRecipeCount: 113,
+    unresolvedIngredientIdentityRecipeCount: 19155
+  };
   const summary = buildP4MachineBaseline({
     contract,
     p1,
     p2,
     c4,
     p3,
+    currentV8018,
     publicRuntimeRecipeCount: PUBLIC_RUNTIME_RECIPES.length,
     publicExternalRecipeCount: PUBLIC_EXTERNAL_RECIPES.length,
     p3CandidatePresent: PUBLIC_RUNTIME_RECIPES.some(recipe => recipe.id === "unitools_pao_de_queijo")
@@ -48,9 +83,10 @@ test("P4 machine baseline exactly reconciles v8018, current public runtime, and 
   assert.deepEqual(validateP4Summary(summary), []);
   assert.deepEqual(summary, committed);
   assert.equal(summary.realCorpus.recipeCount, 19268);
-  assert.equal(summary.realCorpus.indexedRecipeCount, 19268);
-  assert.equal(summary.realCorpus.ftsRecipeCount, 19268);
-  assert.equal(summary.realCorpus.structuralPartialCount, 3);
+  assert.equal(summary.realCorpus.historicalPreP3IdentityReadyRecipeCount, 112);
+  assert.equal(summary.realCorpus.currentPostP3IdentityReadyRecipeCount, 113);
+  assert.equal(summary.realCorpus.currentIdentityReadyDeltaFromP3, 1);
+  assert.equal(summary.realCorpus.currentUnresolvedIngredientIdentityRecipeCount, 19155);
   assert.equal(summary.currentRuntime.publicRuntimeRecipeCount, 86);
   assert.equal(summary.currentRuntime.publicExternalRecipeCount, 10);
   assert.equal(summary.currentRuntime.p3CandidatePresent, true);
