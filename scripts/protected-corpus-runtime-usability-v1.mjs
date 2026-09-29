@@ -194,7 +194,43 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     && p4Machine.protectedD1Writes===0
     && p4Machine.ownerLiveAcceptanceRequired===true
     && p4Machine.nextGate==="PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE";
-  const expected = p4MachinePassed
+  const p4Live=config.p4OwnerLiveAcceptance||{};
+  const p4LivePassed=p4MachinePassed
+    && p4Live.terminal==="PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS"
+    && p4Live.evidence==="data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json"
+    && p4Live.protectedCorpusVersion==="v8018"
+    && p4Live.protectedRecipeCount===19268
+    && p4Live.indexedRecipeCount===19268
+    && p4Live.ftsRecipeCount===19268
+    && p4Live.structuralPartialCount===3
+    && p4Live.searchResultStabilityPass===true
+    && p4Live.maxSearchLatencyMs===173
+    && p4Live.paginationPass===true
+    && p4Live.filterBehaviorPass===true
+    && p4Live.crossShardHydrationPass===true
+    && p4Live.d1SubqueryPass===true
+    && p4Live.maxObservedD1Subqueries===4
+    && p4Live.transferredBytes===9007
+    && p4Live.malformedUnknownPass===true
+    && p4Live.recommendationCandidateGenerationPass===true
+    && p4Live.recommendationAbstentionPass===true
+    && p4Live.plannerPass===true
+    && p4Live.publicRuntimeRecipeCount===86
+    && p4Live.activatedProtectedOriginCount===1
+    && p4Live.mobileBrowserUxPass===true
+    && p4Live.fullCorpusScans===0
+    && p4Live.protectedD1Writes===0
+    && p4Live.publicRuntimeChanged===false
+    && p4Live.recommendationAdmissionChanged===false
+    && p4Live.protectedBodyRewrite===false
+    && p4Live.knowledgeCoreWrites===0
+    && p4Live.paidInfrastructureUsed===false
+    && p4Live.thirdShardUsed===false
+    && p4Live.barbecueMutation===false
+    && p4Live.nextGate===null;
+  const expected = p4LivePassed
+    ? []
+    : p4MachinePassed
     ? [
         "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE"
       ]
@@ -276,7 +312,18 @@ export function validateProtectedCorpusRuntimeUsability(config, evidence = {}) {
     if (c1.evidence !== "data/generated/culinary-brain-c1-combined-closeout-v1.json") errors.push("C1 terminal evidence reference mismatch");
     if (c1.independentHistoricalSemanticGeneralizationDemonstrated !== false) errors.push("C1 historical semantic limitation must remain explicit");
   }
-  if (p4MachinePassed) {
+  if (p4LivePassed) {
+    const p3Gate=(config.gates||[]).find(gate=>gate.id==="P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
+    const p4Gate=(config.gates||[]).find(gate=>gate.id==="P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE");
+    if (p3Gate?.state!=="BOUNDED_ACTIVATION_PASS__ONE_RECIPE_ADMITTED") errors.push("P3 bounded activation terminal mismatch");
+    if (p4Gate?.state!=="PASS") errors.push("P4 owner live terminal state mismatch");
+    if (p4Gate?.machineTerminal!=="PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED") errors.push("P4 machine terminal mismatch");
+    if (p4Gate?.machineEvidence!=="data/generated/protected-corpus-p4-real-20k-machine-baseline-v1.json") errors.push("P4 machine evidence mismatch");
+    if (p4Gate?.ownerLiveAcceptanceRequired!==false) errors.push("P4 owner live acceptance should be closed");
+    if (p4Gate?.ownerLiveTerminal!=="PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS") errors.push("P4 owner live terminal mismatch");
+    if (p4Gate?.ownerLiveEvidence!=="data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json") errors.push("P4 owner live evidence mismatch");
+    if (p4Gate?.nextGate!==null) errors.push("P4 closeout must not invent a successor gate");
+  } else if (p4MachinePassed) {
     const p3Gate=(config.gates||[]).find(gate=>gate.id==="P3_PROGRESSIVE_RECOMMENDATION_ADMISSION");
     const p4Gate=(config.gates||[]).find(gate=>gate.id==="P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE");
     if (p3Gate?.state!=="BOUNDED_ACTIVATION_PASS__ONE_RECIPE_ADMITTED") errors.push("P3 bounded activation terminal mismatch");
@@ -330,7 +377,7 @@ export function summarizeProtectedCorpusRuntimeUsability(config, evidence) {
   if (errors.length) return { pass: false, errors };
   return {
     pass: true,
-    terminal: "PROTECTED_CORPUS_RUNTIME_USABILITY_P0_EVIDENCE_AUDIT_PASS",
+    terminal: config.p4OwnerLiveAcceptance?.terminal || "PROTECTED_CORPUS_RUNTIME_USABILITY_P0_EVIDENCE_AUDIT_PASS",
     protectedCorpusVersion: config.currentFacts.protectedCorpusVersion,
     protectedRecipeCount: config.currentFacts.protectedRecipeCount,
     structurallyParseableCount: config.currentFacts.structurallyParseableCount,
