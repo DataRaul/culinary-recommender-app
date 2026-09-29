@@ -5,7 +5,7 @@ export const R0_TERMINAL = "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R0_PASS__F
 export function validateProtectedCorpusRecommendationExpansion(contract, evidence, priorP4) {
   const errors = [];
   if (!contract || contract.schemaVersion !== RECOMMENDATION_EXPANSION_SCHEMA) errors.push("schemaVersion");
-  if (contract?.state !== "R0_AUTHORIZED_BASELINE_PASS__R1_FRONTIER_MEASUREMENT_READY") errors.push("state");
+  if (!["R0_AUTHORIZED_BASELINE_PASS__R1_FRONTIER_MEASUREMENT_READY","R0_PASS__R1_PASS__R2_REPAIR_READY"].includes(contract?.state)) errors.push("state");
   if (contract?.objective !== "PROGRESSIVELY_EARN_MORE_PROTECTED_RECOMMENDATION_CANDIDATES_WITH_EXPLICIT_BOUNDED_ADMISSION") errors.push("objective");
 
   const entry = contract?.entryEvidence || {};
@@ -31,11 +31,21 @@ export function validateProtectedCorpusRecommendationExpansion(contract, evidenc
     if (authority[key] !== false) errors.push("authority."+key);
   }
 
-  const expectedSequence = ["R1_POST_P3_FRONTIER_MEASUREMENT","R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR","R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE","R4_OWNER_BOUNDED_ADMISSION","R5_REAL_V8018_POST_ADMISSION_REGRESSION"];
-  if (JSON.stringify(contract?.nextExecutionSequence) !== JSON.stringify(expectedSequence)) errors.push("sequence");
   const gates = new Map((contract?.gates || []).map(g => [g.id,g]));
   if (gates.get("R0_AUTHORIZATION_AND_BASELINE")?.state !== "PASS") errors.push("r0");
-  if (gates.get("R1_POST_P3_FRONTIER_MEASUREMENT")?.state !== "READY") errors.push("r1");
+  const r1 = gates.get("R1_POST_P3_FRONTIER_MEASUREMENT");
+  const r1Passed = r1?.state === "PASS";
+  const expectedSequence = r1Passed
+    ? ["R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR","R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE","R4_OWNER_BOUNDED_ADMISSION","R5_REAL_V8018_POST_ADMISSION_REGRESSION"]
+    : ["R1_POST_P3_FRONTIER_MEASUREMENT","R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR","R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE","R4_OWNER_BOUNDED_ADMISSION","R5_REAL_V8018_POST_ADMISSION_REGRESSION"];
+  if (JSON.stringify(contract?.nextExecutionSequence) !== JSON.stringify(expectedSequence)) errors.push("sequence");
+  if (!r1Passed && r1?.state !== "READY") errors.push("r1");
+  if (r1Passed) {
+    if (r1.terminal !== "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R1_FRONTIER_PASS__R2_REPAIR_TRANCHE_READY") errors.push("r1Terminal");
+    if (r1.evidence !== "data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json") errors.push("r1Evidence");
+    if (r1.frozenCandidateRecipeCount !== 10 || r1.frozenCandidateDigestSha256 !== "6dbf598c8a00e07bd0b1bdfae75146d7683487afcc3f0bfc9c0e07ddf938b9c0") errors.push("r1Freeze");
+    if (gates.get("R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR")?.state !== "READY") errors.push("r2");
+  }
   if (gates.get("R4_OWNER_BOUNDED_ADMISSION")?.state !== "HUMAN_GATED_AFTER_R3") errors.push("r4");
 
   if (!evidence || evidence.schemaVersion !== R0_EVIDENCE_SCHEMA || evidence.pass !== true || evidence.terminal !== R0_TERMINAL) errors.push("r0Evidence");
