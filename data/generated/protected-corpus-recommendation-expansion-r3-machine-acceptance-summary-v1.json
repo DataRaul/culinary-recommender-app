@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R3_MACHINE_ACCEPTANCE_SUMMARY_V1",
+  "date": "2026-09-29",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R3_MACHINE_ACCEPTANCE_PASS__CHIMICHURRI_HELD__NEXT_FRONTIER_READY",
+  "protectedCorpusVersion": "v8018",
+  "candidateId": "unitools_chimichurri",
+  "sourceKey": "unitools-world-recipes-v1_1_0::chimichurri",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "sourceMetadata": {
+    "category": "sauce",
+    "sourceDifficulty": "easy",
+    "prepMinutes": 15,
+    "cookMinutes": 0,
+    "sourceDeclaredTotalMinutes": 15,
+    "sourceInstructionMinuteSum": 20,
+    "sourceInstructionContainsTwoHourStand": true
+  },
+  "reconciledHardMetadata": {
+    "runtimeDifficulty": 1,
+    "mealRoleState": "HOLD",
+    "runtimeMealTypes": [],
+    "timeAuthorityState": "HOLD",
+    "runtimeTotalMinutes": null
+  },
+  "hardSafety": {
+    "declaredAllergens": [],
+    "dietaryTags": [
+      "unrestricted",
+      "vegetarian",
+      "vegan"
+    ],
+    "authorityScope": "CANDIDATE_ONLY__CURRENT_MAPPED_PROFILE_TOKENS"
+  },
+  "machineAcceptance": {
+    "candidateSerializationPass": true,
+    "recommendationAbstentionPass": true,
+    "plannerAbstentionPass": true,
+    "publicRuntimeUnchangedPass": true,
+    "nutritionFirewallPass": true
+  },
+  "admissionReadyCandidateCount": 0,
+  "ownerAdmissionGateOpen": false,
+  "publicRuntimeRecipeCount": 86,
+  "candidatePresentInPublicRuntime": false,
+  "recommendationAdmissionChanged": false,
+  "publicRuntimeChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V2"
+}

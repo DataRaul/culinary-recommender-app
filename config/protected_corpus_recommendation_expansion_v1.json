@@ -2,7 +2,7 @@
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_V1",
   "date": "2026-09-29",
   "timezone": "Atlantic/Canary",
-  "state": "R0_PASS__R1_PASS__R2_REPAIR_READY",
+  "state": "R0_PASS__R1_PASS__R2_PASS__R3_PASS_WITH_HOLD__NEXT_FRONTIER_READY",
   "objective": "PROGRESSIVELY_EARN_MORE_PROTECTED_RECOMMENDATION_CANDIDATES_WITH_EXPLICIT_BOUNDED_ADMISSION",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "entryEvidence": {
@@ -78,24 +78,31 @@
     },
     {
       "id": "R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR",
-      "state": "IDENTITY_PASS__HARD_SAFETY_POLICY_READY",
+      "state": "PASS",
       "scope": "Review only the frozen R1 tranche. Exact identities and hard dietary/allergen metadata must be explicit and fail closed.",
       "admissionAuthorized": false,
       "identityEvidence": "data/generated/protected-corpus-recommendation-expansion-r2-identity-compact-v1.json",
       "identityReadyCandidateCount": 1,
       "identityReadySourceSlugs": [
         "chimichurri"
-      ]
+      ],
+      "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_HARD_SAFETY_PASS__R3_READY",
+      "hardSafetyEvidence": "data/generated/protected-corpus-recommendation-expansion-r2-hard-safety-summary-v1.json",
+      "hardSafetyCandidateCount": 1
     },
     {
       "id": "R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE",
-      "state": "BLOCKED_ON_R2",
+      "state": "PASS_WITH_HOLD__NO_R4_CANDIDATE",
       "scope": "Serialize candidate-only runtime shapes and prove deterministic hard filters, abstention, recommendation and planner behavior without runtime admission.",
-      "admissionAuthorized": false
+      "admissionAuthorized": false,
+      "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R3_MACHINE_ACCEPTANCE_PASS__CHIMICHURRI_HELD__NEXT_FRONTIER_READY",
+      "evidence": "data/generated/protected-corpus-recommendation-expansion-r3-machine-acceptance-summary-v1.json",
+      "admissionReadyCandidateCount": 0,
+      "nextGate": "R1_NEXT_FRONTIER_ITERATION_V2"
     },
     {
       "id": "R4_OWNER_BOUNDED_ADMISSION",
-      "state": "HUMAN_GATED_AFTER_R3",
+      "state": "BLOCKED__NO_ADMISSION_READY_CANDIDATE",
       "scope": "At most one exact recipe per owner authorization. No implicit carry-forward authorization.",
       "admissionAuthorized": false
     },
@@ -107,6 +114,7 @@
     }
   ],
   "nextExecutionSequence": [
+    "R1_NEXT_FRONTIER_ITERATION_V2",
     "R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR",
     "R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE",
     "R4_OWNER_BOUNDED_ADMISSION",
@@ -164,5 +172,19 @@
       "frozenCandidateRecipeCount": 10,
       "frozenCandidateDigestSha256": "6dbf598c8a00e07bd0b1bdfae75146d7683487afcc3f0bfc9c0e07ddf938b9c0"
     }
+  },
+  "r2HardSafetyResult": {
+    "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R2_HARD_SAFETY_PASS__R3_READY",
+    "evidence": "data/generated/protected-corpus-recommendation-expansion-r2-hard-safety-summary-v1.json",
+    "candidateSourceSlug": "chimichurri",
+    "nextGate": "R3_CANDIDATE_METADATA_RECONCILIATION_AND_MACHINE_ACCEPTANCE"
+  },
+  "r3MachineAcceptance": {
+    "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R3_MACHINE_ACCEPTANCE_PASS__CHIMICHURRI_HELD__NEXT_FRONTIER_READY",
+    "evidence": "data/generated/protected-corpus-recommendation-expansion-r3-machine-acceptance-summary-v1.json",
+    "candidateId": "unitools_chimichurri",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false,
+    "nextGate": "R1_NEXT_FRONTIER_ITERATION_V2"
   }
 }

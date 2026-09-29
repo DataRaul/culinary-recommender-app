@@ -1,0 +1,200 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R3_CANDIDATE_V1",
+  "date": "2026-09-29",
+  "candidateOnly": true,
+  "recipe": {
+    "id": "unitools_chimichurri",
+    "identity": {
+      "canonicalTitle": "Chimichurri"
+    },
+    "provenance": {
+      "sourceType": "EXTERNAL_OPEN_RECIPE",
+      "sourceName": "UniTools World Recipes Dataset",
+      "sourceItemId": "chimichurri",
+      "sourceVersionId": "1.1.0@1d09e9548d957dd0375301146a86dddf5e269c1b:a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+      "sourceUrl": "https://github.com/farcrak/unitools-recipes/blob/1d09e9548d957dd0375301146a86dddf5e269c1b/unitools-recipes-v1.json#chimichurri",
+      "attribution": "UniTools — theunitools.com",
+      "license": "CC-BY-SA-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "modifiedFromSource": true,
+      "transformation": "Candidate-only normalization for R3 fail-closed machine acceptance; no runtime admission.",
+      "sourceCategories": [
+        "sauce"
+      ],
+      "admissionState": "R3_CANDIDATE_ONLY_HELD_INCOMPLETE_HARD_METADATA"
+    },
+    "corpusMetadata": {
+      "corpus": "protected_v8018_r3_candidate_only_v1",
+      "protectedSourceKey": "unitools-world-recipes-v1_1_0::chimichurri",
+      "sourceMetadataCompleteness": "R3_HELD_MEAL_ROLE_AND_TIME",
+      "admissionState": "R3_CANDIDATE_ONLY_HELD_INCOMPLETE_HARD_METADATA"
+    },
+    "governance": {
+      "recommendationState": "REFERENCE_ONLY_INCOMPLETE_HARD_METADATA",
+      "candidateSemanticsOnly": true,
+      "runtimeActivationAuthorized": false,
+      "ownerAdmissionGateOpen": false,
+      "holdReasons": [
+        "MEAL_ROLE_AUTHORITY_MISSING",
+        "SOURCE_TIME_CONTRADICTION"
+      ],
+      "unknownIsNotZero": true,
+      "sourceNutritionIgnoredForAuthority": true,
+      "sourceDietaryMetadataIgnoredForAuthority": true,
+      "sourceScalingMetadataIgnoredForAuthority": true,
+      "mediaExcluded": true
+    },
+    "culinary": {
+      "cuisine": "Argentinian",
+      "mealTypes": [],
+      "mealRoleState": "HOLD_NON_STANDALONE_SAUCE",
+      "difficulty": 1,
+      "difficultyBasis": "REUSED_REVIEWED_UNITOOLS_MAPPING",
+      "techniqueTags": [
+        "sauce"
+      ],
+      "activeAttention": 2,
+      "timingSensitivity": 1,
+      "simultaneousTasks": 1,
+      "finishingRisk": 1,
+      "errorRecovery": 3,
+      "equipmentDependence": 1
+    },
+    "time": {
+      "prepMinutes": 15,
+      "activeMinutes": null,
+      "passiveMinutes": null,
+      "totalMinutes": null,
+      "sourceState": "SOURCE_METADATA_CONTRADICTS_INSTRUCTIONS__HOLD",
+      "sourceDeclaredTotalMinutes": 15,
+      "sourceInstructionMinuteSum": 20,
+      "sourceInstructionContainsTwoHourStand": true
+    },
+    "ingredients": [
+      {
+        "canonicalIngredientId": "parsley",
+        "quantity": 60,
+        "unit": "g",
+        "required": true,
+        "preparation": "finely chopped",
+        "sourceText": "Flat-leaf parsley"
+      },
+      {
+        "canonicalIngredientId": "oregano",
+        "quantity": 2,
+        "unit": "tbsp",
+        "required": true,
+        "preparation": "",
+        "sourceText": "Dried oregano"
+      },
+      {
+        "canonicalIngredientId": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "required": true,
+        "preparation": "",
+        "sourceText": "Garlic"
+      },
+      {
+        "canonicalIngredientId": "chilli_flakes",
+        "quantity": 1,
+        "unit": "tsp",
+        "required": true,
+        "preparation": "",
+        "sourceText": "Chilli flakes"
+      },
+      {
+        "canonicalIngredientId": "vinegar",
+        "quantity": 60,
+        "unit": "ml",
+        "required": true,
+        "preparation": "",
+        "sourceText": "Red wine vinegar"
+      },
+      {
+        "canonicalIngredientId": "olive_oil",
+        "quantity": 180,
+        "unit": "ml",
+        "required": true,
+        "preparation": "",
+        "sourceText": "Olive oil"
+      },
+      {
+        "canonicalIngredientId": "water",
+        "quantity": 60,
+        "unit": "ml",
+        "required": true,
+        "preparation": "",
+        "sourceText": "Warm water"
+      },
+      {
+        "canonicalIngredientId": "salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "required": true,
+        "preparation": "",
+        "sourceText": "Coarse salt"
+      }
+    ],
+    "instructions": [
+      {
+        "text": "Dissolve the salt in the warm water: that spreads it evenly instead of leaving it on the bottom of the jar."
+      },
+      {
+        "text": "Rub the dried oregano between your palms and steep it in the vinegar for five minutes: it softens and releases its scent."
+      },
+      {
+        "text": "Chop the parsley and garlic fine with a knife. The garlic is chopped rather than crushed: crushed it gives a sharpness that never leaves."
+      },
+      {
+        "text": "Mix everything together, pour in the oil and stir. Let it stand two hours at room temperature."
+      }
+    ],
+    "equipment": [],
+    "serving": {
+      "servings": 8,
+      "sourceState": "SOURCE_EXPLICIT"
+    },
+    "nutrition": {
+      "perServing": {
+        "energyKcal": null,
+        "proteinG": null,
+        "carbohydrateG": null,
+        "fatG": null,
+        "fibreG": null
+      },
+      "estimationState": "EXTERNAL_RECIPE_NUTRITION_NOT_IMPORTED",
+      "confidence": "unknown",
+      "provenance": "UniTools nutrition metadata is not imported as NutritionSource authority."
+    },
+    "dietaryTags": [
+      "unrestricted",
+      "vegetarian",
+      "vegan"
+    ],
+    "allergySafety": {
+      "declaredAllergens": [],
+      "basis": "R2_REVIEWED_CURRENT_PROFILE_TOKENS_ONLY__NOT_GLOBAL_ALLERGEN_FREE"
+    },
+    "economics": {
+      "costTier": 2
+    },
+    "convenience": {
+      "mealPrepSuitability": 2,
+      "batchSuitability": 2,
+      "leftoverSuitability": 2,
+      "portability": 2
+    },
+    "discovery": {
+      "flavourProfile": [],
+      "novelty": 2,
+      "techniqueLearningValue": 2
+    },
+    "geography": {
+      "region": null,
+      "country": "Argentina",
+      "sourceState": "SOURCE_COUNTRY_CODE_REVIEWED"
+    },
+    "mainProtein": null
+  }
+}
