@@ -44,7 +44,7 @@ export function validateProtectedCorpusRecommendationExpansion(contract, evidenc
     if (r1.terminal !== "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R1_FRONTIER_PASS__R2_REPAIR_TRANCHE_READY") errors.push("r1Terminal");
     if (r1.evidence !== "data/generated/protected-corpus-recommendation-expansion-r1-frontier-compact-v1.json") errors.push("r1Evidence");
     if (r1.frozenCandidateRecipeCount !== 10 || r1.frozenCandidateDigestSha256 !== "6dbf598c8a00e07bd0b1bdfae75146d7683487afcc3f0bfc9c0e07ddf938b9c0") errors.push("r1Freeze");
-    if (gates.get("R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR")?.state !== "READY") errors.push("r2");
+    if (!["READY","IDENTITY_PASS__HARD_SAFETY_POLICY_READY","PASS"].includes(gates.get("R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR")?.state)) errors.push("r2");
   }
   if (gates.get("R4_OWNER_BOUNDED_ADMISSION")?.state !== "HUMAN_GATED_AFTER_R3") errors.push("r4");
 
