@@ -10,9 +10,12 @@
     "indexedRecipeCount": 19268,
     "ftsRecipeCount": 19268,
     "structuralPartialCount": 3,
-    "exactSourceReconstructionRecipeCount": 19268,
-    "identityReadyRepairCohortCount": 112,
-    "unresolvedIngredientIdentityRecipeCount": 19156,
+    "exactCurrentSourceReconstructionRecipeCount": 19268,
+    "historicalPreP3IdentityReadyRecipeCount": 112,
+    "currentPostP3IdentityReadyRecipeCount": 113,
+    "currentIdentityReadyDeltaFromP3": 1,
+    "historicalPreP3UnresolvedIngredientIdentityRecipeCount": 19156,
+    "currentUnresolvedIngredientIdentityRecipeCount": 19155,
     "frozenSampleRecipeCount": 500,
     "matchedFrozenRecipeCount": 500,
     "frozenSampleProvenanceCount": 500
@@ -33,10 +36,11 @@
       "fullCorpusScans": 0
     },
     "metadataNormalization": {
-      "state": "PASS_WITH_EXPLICIT_LIMITATIONS",
+      "state": "PASS_POST_P3_EXACT_IDENTITY_DELTA",
       "structuralPartialCount": 3,
-      "unresolvedIngredientIdentityRecipeCount": 19156,
-      "identityReadyRecipeCount": 112
+      "historicalPreP3IdentityReadyRecipeCount": 112,
+      "currentPostP3IdentityReadyRecipeCount": 113,
+      "currentUnresolvedIngredientIdentityRecipeCount": 19155
     },
     "hardSafetyEligibility": {
       "state": "PASS_FAIL_CLOSED",
