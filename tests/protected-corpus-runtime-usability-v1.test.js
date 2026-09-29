@@ -11,6 +11,7 @@ const config = await readJson("../config/protected_corpus_runtime_usability_v1.j
 const normalization = await readJson("../data/generated/corpus-normalization-baseline-v1.json");
 const nutrition = await readJson("../data/generated/nutrition-vitamin-applicability-audit-v1.json");
 const recommendation = await readJson("../data/generated/recommendation-readiness-audit-v1.json");
+const p4OwnerLive = await readJson("../data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json");
 const evidence = { normalization, nutrition, recommendation };
 
 test("real-v8018 usability baseline matches canonical generated evidence", () => {
@@ -78,6 +79,12 @@ test("programme preserves C3/C4 history and closes P4 on owner live acceptance",
   assert.equal(config.p4OwnerLiveAcceptance.recommendationAdmissionChanged, false);
   assert.equal(config.p4OwnerLiveAcceptance.barbecueMutation, false);
   assert.equal(config.p4OwnerLiveAcceptance.nextGate, null);
+  assert.equal(p4OwnerLive.terminal, config.p4OwnerLiveAcceptance.terminal);
+  assert.equal(p4OwnerLive.maxObservedD1Subqueries, 4);
+  assert.equal(p4OwnerLive.publicRuntimeRecipeCount, 86);
+  assert.equal(p4OwnerLive.activatedProtectedOriginCount, 1);
+  assert.equal(p4OwnerLive.protectedD1Writes, 0);
+  assert.equal(p4OwnerLive.barbecueMutation, false);
   assert.equal(config.brainCalibration.c4Closeout.distinctCandidateCount,1);
   assert.equal(config.brainCalibration.c4Closeout.protectedRecommendationAdmissionCount,0);
   assert.equal(config.brainCalibration.c3Calibration.terminal, "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY");
