@@ -66,3 +66,30 @@ Every P4 failure is assigned to exactly one primary class:
 - browser/UX.
 
 Repair is bounded to the smallest causal layer, followed by rerunning the affected test and the real-v8018 P4 regression gate.
+
+
+## Built-in owner live probe
+
+The owner-only `/protected-corpus.html` surface now carries one bounded **Run P4 product acceptance** action once authenticated v8018 is ready. The action is read-only and batches the remaining P4 evidence into one continuous browser session:
+
+- exact v8018 / 19,268 / 3-partial state;
+- two identical fixed searches with result-stability and live latency capture;
+- keyset pagination over two bounded pages plus fixed-query filter behavior;
+- live detail hydration on one known recipe from each existing shard;
+- per-request D1 subquery counts, with the existing target of at most eight;
+- transferred JSON bytes plus the best available browser memory signal (`measureUserAgentSpecificMemory`, JS heap usage, device-memory capacity, or a last-resort DOM-footprint estimate, accurately labelled);
+- fail-closed unknown-detail handling;
+- current production recommendation candidate generation, meal/allergen abstention, exact tapioca identity boundary and planner use of the single P3 candidate;
+- current-browser/mobile viewport and horizontal-overflow acceptance.
+
+The probe emits only sanitized evidence; it does not include account/session values or recipe bodies. It performs **0 protected D1 writes** and cannot admit recipes, rewrite protected bodies, widen recommendation authority, write Knowledge Core, enable paid infrastructure, add a third shard, or mutate Barbecue.
+
+Successful owner evidence is:
+
+`PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS`
+
+Any failed or unavailable required metric emits:
+
+`PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_STOPPED_SAFE`
+
+Live latency and memory are captured as baseline observations rather than inventing a new performance threshold that was not authorized by the P4 contract.

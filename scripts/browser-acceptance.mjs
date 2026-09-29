@@ -283,13 +283,18 @@ async function protectedCorpusAcceptance() {
       status:200, contentType:"application/json",
       body:JSON.stringify({ ...common, pass:true, ready:true, activeVersion:"v8018", indexedRecipeCount:19268, ftsRecipeCount:19268, structuralPartialCount:3, lastIndexedRecipeId:"zz-last", expectedRecipeCount:19268 })
     });
-    if (action === "browse") return route.fulfill({
-      status:200, contentType:"application/json",
-      body:JSON.stringify({ ...common, protectedDataReturned:true, pass:true, items:[
-        { recipeId:"recipe-a", title:"Alpha Soup", sourceCohortId:"SOURCE_A", sourceWork:"Historic Cookery", sourceAuthor:"Author A", sourceYear:"1901", structuralState:"PARSEABLE" },
-        { recipeId:"recipe-b", title:"Beta Tart", sourceCohortId:"SOURCE_B", sourceWork:"Cookery Book", sourceAuthor:"Author B", sourceYear:"1888", structuralState:"PARTIAL" }
-      ], nextCursor:null })
-    });
+    if (action === "browse") {
+      const limit = Number(url.searchParams.get("limit") || 24);
+      const cursor = url.searchParams.get("cursor") || "";
+      const alpha = { recipeId:"recipe-a", title:"Alpha Soup", sourceCohortId:"SOURCE_A", sourceWork:"Historic Cookery", sourceAuthor:"Author A", sourceYear:"1901", structuralState:"PARSEABLE" };
+      const beta = { recipeId:"recipe-b", title:"Beta Tart", sourceCohortId:"SOURCE_B", sourceWork:"Cookery Book", sourceAuthor:"Author B", sourceYear:"1888", structuralState:"PARTIAL" };
+      const items = limit === 1 ? (cursor ? [beta] : [alpha]) : [alpha,beta];
+      const nextCursor = limit === 1 && !cursor ? "recipe-a" : null;
+      return route.fulfill({
+        status:200, contentType:"application/json",
+        body:JSON.stringify({ ...common, protectedDataReturned:true, pass:true, items, nextCursor })
+      });
+    }
     if (action === "search") {
       const isCarbonara = url.searchParams.get("q") === "carbonara";
       return route.fulfill({
@@ -303,6 +308,10 @@ async function protectedCorpusAcceptance() {
     }
     if (action === "detail") {
       const recipeId = url.searchParams.get("recipeId");
+      if (recipeId === "__p4_unknown_recipe__") return route.fulfill({
+        status:404, contentType:"application/json",
+        body:JSON.stringify({ ...common, ok:false, pass:false, protectedDataReturned:false, error:"NOT_FOUND", item:null })
+      });
       const item = recipeId === "unitools:risotto-alla-milanese"
         ? { recipeId, shardNumber:0, title:"Risotto alla Milanese", sourceCohortId:"unitools-world-recipes-v1_1_0", sourceWork:"UniTools", sourceUrl:"https://example.test/risotto", structuralState:"PARSEABLE", ingredients:["1 cup ingredient"], directions:["Cook carefully."], authority:{ protectedBrowseOnly:true, recommendationEligible:false, publicRuntimeActivated:false, nutritionAuthorityGranted:false, dietaryAllergenAuthorityGranted:false } }
         : recipeId === "unitools:spaghetti-carbonara"
@@ -344,6 +353,17 @@ async function protectedCorpusAcceptance() {
   if (canaryEvidence.browsePass !== true || canaryEvidence.searchPass !== true || canaryEvidence.detailShard0Pass !== true || canaryEvidence.detailShard1Pass !== true || canaryEvidence.sourceProvenancePass !== true) throw new Error("Live verifier functional matrix failed");
   if (canaryEvidence.maxObservedD1Subqueries > 8 || canaryEvidence.fullCorpusScans !== 0) throw new Error("Live verifier D1/scan budget failed");
   if (canaryEvidence.publicRuntimeChanged !== false || canaryEvidence.recommendationAdmissionChanged !== false) throw new Error("Live verifier authority firewall failed");
+
+  await page.getByRole("button", { name:"Run P4 product acceptance" }).click();
+  await page.getByText(/PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS/).waitFor();
+  const p4Evidence = JSON.parse(await page.locator("#canaryEvidence").innerText());
+  if (p4Evidence.activeVersion !== "v8018" || p4Evidence.indexedRecipeCount !== 19268 || p4Evidence.ftsRecipeCount !== 19268 || p4Evidence.structuralPartialCount !== 3) throw new Error("P4 live acceptance exact corpus state failed");
+  if (!p4Evidence.searchResultStabilityPass || !p4Evidence.paginationPass || !p4Evidence.filterBehaviorPass || !p4Evidence.crossShardHydrationPass) throw new Error("P4 live retrieval matrix failed");
+  if (!p4Evidence.d1SubqueryPass || p4Evidence.maxObservedD1Subqueries > 8 || !(p4Evidence.transferredBytes > 0)) throw new Error("P4 live cost/transfer metrics failed");
+  if (!p4Evidence.memoryBefore || !p4Evidence.memoryAfter || p4Evidence.memoryBefore.kind === "UNAVAILABLE" && p4Evidence.memoryAfter.kind === "UNAVAILABLE") throw new Error("P4 live memory metric failed");
+  if (!p4Evidence.malformedUnknownPass || !p4Evidence.recommendationCandidateGenerationPass || !p4Evidence.recommendationAbstentionPass || !p4Evidence.plannerPass || !p4Evidence.mobileBrowserUxPass) throw new Error("P4 live product behavior matrix failed");
+  if (p4Evidence.publicRuntimeRecipeCount !== 86 || p4Evidence.activatedProtectedOriginCount !== 1) throw new Error("P4 live runtime counts failed");
+  if (p4Evidence.protectedD1Writes !== 0 || p4Evidence.publicRuntimeChanged !== false || p4Evidence.recommendationAdmissionChanged !== false || p4Evidence.barbecueMutation !== false) throw new Error("P4 live authority firewall failed");
 
   if (errors.length) throw new Error(`Protected corpus page errors: ${errors.join(" | ")}`);
   await page.close();
