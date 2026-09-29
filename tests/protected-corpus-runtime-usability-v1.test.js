@@ -17,7 +17,7 @@ test("real-v8018 usability baseline matches canonical generated evidence", () =>
   assert.deepEqual(validateProtectedCorpusRuntimeUsability(config, evidence), []);
   const summary = summarizeProtectedCorpusRuntimeUsability(config, evidence);
   assert.equal(summary.pass, true);
-  assert.equal(summary.terminal, "PROTECTED_CORPUS_RUNTIME_USABILITY_P0_EVIDENCE_AUDIT_PASS");
+  assert.equal(summary.terminal, "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS");
   assert.equal(summary.protectedRecipeCount, 19268);
   assert.equal(summary.structurallyParseableCount, 19265);
   assert.equal(summary.allIngredientIdentityReadyRecipes, 112);
@@ -30,12 +30,12 @@ test("programme fails closed if protected evidence drifts", () => {
   assert.ok(validateProtectedCorpusRuntimeUsability(mutated, evidence).some(error => error.includes("recipe count")));
 });
 
-test("programme preserves C3/C4 history and advances through P4 machine baseline to owner live acceptance", () => {
+test("programme preserves C3/C4 history and closes P4 on owner live acceptance", () => {
   assert.match(config.state, /^P1_PASS__P2_PASS__C1_PASS__C2_PASS__C3_PASS__C4_/);
   assert.equal(config.gates.find(gate => gate.id === "P0_EVIDENCE_AND_CONTRACT_AUDIT").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").liveOwnerCanary, "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS");
-  assert.equal(config.nextExecutionSequence[0], "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE");
+  assert.deepEqual(config.nextExecutionSequence, []);
   assert.equal(config.brainCalibration.state, "C4_BOUNDED_PASS__P3_BOUNDED_ACTIVATION_PASS__P4_READY");
   assert.equal(config.brainCalibration.c1Evaluation.entireFrozen500Evaluated, true);
   assert.equal(config.brainCalibration.c1Evaluation.independentHistoricalSemanticGeneralizationDemonstrated, false);
@@ -50,9 +50,12 @@ test("programme preserves C3/C4 history and advances through P4 machine baseline
   assert.equal(config.p3TapiocaActivation.publicExternalRecipeCountAfter, 10);
   assert.equal(config.p3TapiocaActivation.activatedRecipeCount, 1);
   assert.equal(config.p3TapiocaActivation.automaticRecommendationAdmissionAuthorized, false);
-  assert.equal(config.gates.find(gate => gate.id === "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE").state, "MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED");
+  assert.equal(config.gates.find(gate => gate.id === "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE").state, "PASS");
   assert.equal(config.gates.find(gate => gate.id === "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE").machineTerminal, "PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED");
-  assert.equal(config.gates.find(gate => gate.id === "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE").ownerLiveAcceptanceRequired, true);
+  assert.equal(config.gates.find(gate => gate.id === "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE").ownerLiveAcceptanceRequired, false);
+  assert.equal(config.gates.find(gate => gate.id === "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE").ownerLiveTerminal, "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS");
+  assert.equal(config.gates.find(gate => gate.id === "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE").ownerLiveEvidence, "data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json");
+  assert.equal(config.gates.find(gate => gate.id === "P4_REAL_20K_REGRESSION_AND_PRODUCT_ACCEPTANCE").nextGate, null);
   assert.equal(config.p4MachineBaseline.terminal, "PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED");
   assert.equal(config.p4MachineBaseline.protectedRecipeCount, 19268);
   assert.equal(config.p4MachineBaseline.historicalPreP3IdentityReadyRecipeCount, 112);
@@ -65,6 +68,16 @@ test("programme preserves C3/C4 history and advances through P4 machine baseline
   assert.equal(config.p4MachineBaseline.protectedD1Writes, 0);
   assert.equal(config.p4MachineBaseline.ownerLiveAcceptanceRequired, true);
   assert.equal(config.p4MachineBaseline.nextGate, "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE");
+  assert.equal(config.p4OwnerLiveAcceptance.terminal, "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS");
+  assert.equal(config.p4OwnerLiveAcceptance.evidence, "data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json");
+  assert.equal(config.p4OwnerLiveAcceptance.maxObservedD1Subqueries, 4);
+  assert.equal(config.p4OwnerLiveAcceptance.publicRuntimeRecipeCount, 86);
+  assert.equal(config.p4OwnerLiveAcceptance.activatedProtectedOriginCount, 1);
+  assert.equal(config.p4OwnerLiveAcceptance.protectedD1Writes, 0);
+  assert.equal(config.p4OwnerLiveAcceptance.publicRuntimeChanged, false);
+  assert.equal(config.p4OwnerLiveAcceptance.recommendationAdmissionChanged, false);
+  assert.equal(config.p4OwnerLiveAcceptance.barbecueMutation, false);
+  assert.equal(config.p4OwnerLiveAcceptance.nextGate, null);
   assert.equal(config.brainCalibration.c4Closeout.distinctCandidateCount,1);
   assert.equal(config.brainCalibration.c4Closeout.protectedRecommendationAdmissionCount,0);
   assert.equal(config.brainCalibration.c3Calibration.terminal, "CULINARY_BRAIN_C3_PRIOR_CALIBRATION_PASS__NO_NEW_RUNTIME_PRIOR_PROMOTION__C4_READY");
@@ -89,6 +102,10 @@ test("programme preserves C3/C4 history and advances through P4 machine baseline
   const widenedP4 = structuredClone(config);
   widenedP4.p4MachineBaseline.protectedD1Writes = 1;
   assert.ok(validateProtectedCorpusRuntimeUsability(widenedP4, evidence).some(error => error.includes("execution sequence")));
+
+  const corruptedP4Live = structuredClone(config);
+  corruptedP4Live.p4OwnerLiveAcceptance.activatedProtectedOriginCount = 2;
+  assert.ok(validateProtectedCorpusRuntimeUsability(corruptedP4Live, evidence).some(error => error.includes("execution sequence")));
 
   const reopenedP1 = structuredClone(config);
   reopenedP1.gates.find(gate => gate.id === "P1_PRIVATE_BROWSE_SEARCH_CANARY").state = "IMPLEMENTATION_CI_PASS__LIVE_OWNER_CANARY_PENDING";
