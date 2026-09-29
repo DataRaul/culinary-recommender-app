@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_P4_REAL_20K_PRODUCT_ACCEPTANCE_V1",
+  "date": "2026-09-29",
+  "protectedCorpusVersion": "v8018",
+  "expectedProtectedRecipeCount": 19268,
+  "expectedIndexedRecipeCount": 19268,
+  "expectedFtsRecipeCount": 19268,
+  "expectedStructuralPartialCount": 3,
+  "expectedFrozenSampleRecipeCount": 500,
+  "expectedPublicRuntimeRecipeCount": 86,
+  "expectedPublicExternalRecipeCount": 10,
+  "expectedP1Terminal": "PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS",
+  "expectedP2Terminal": "PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS",
+  "expectedC4Terminal": "CULINARY_BRAIN_C4_FAILURE_MATRIX_PASS__112_IDENTITY_READY_REPAIR_COHORT_FROZEN",
+  "expectedP3Terminal": "CULINARY_BRAIN_P3_TAPIOCA_BOUNDED_ACTIVATION_PASS__P4_READY",
+  "targetD1SubqueriesPerRequest": 8,
+  "hardMaxD1SubqueriesPerRequest": 16,
+  "scaleRequiredProofCount": 170000,
+  "scaleStressProofCount": 250000,
+  "failureClasses": [
+    "RUNTIME_RETRIEVAL",
+    "METADATA_NORMALIZATION",
+    "HARD_SAFETY_ELIGIBILITY",
+    "RECOMMENDATION_PLANNER_COMPATIBILITY",
+    "PERFORMANCE_COST",
+    "RIGHTS_PROVENANCE",
+    "BROWSER_UX"
+  ],
+  "machineAcceptance": {
+    "reconstructExactV8018FromPinnedSources": true,
+    "requireCommittedC4SummaryReproducible": true,
+    "reuseTerminalP1P2LiveEvidence": true,
+    "requireCurrentP3RuntimeRegression": true,
+    "requirePullRequestBrowserRegression": true,
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false
+  },
+  "liveAcceptance": {
+    "required": true,
+    "ownerAuthenticationRequired": true,
+    "mustNotWriteProtectedD1": true,
+    "requiredMetrics": [
+      "SEARCH_LATENCY",
+      "SEARCH_RESULT_STABILITY",
+      "PAGINATION_FILTER_BEHAVIOR",
+      "CROSS_SHARD_HYDRATION",
+      "D1_SUBQUERY_COUNTS",
+      "TRANSFERRED_BYTES_AND_MEMORY",
+      "MALFORMED_UNKNOWN_METADATA_HANDLING",
+      "RECOMMENDATION_CANDIDATE_GENERATION_AND_ABSTENTION",
+      "PLANNER_BEHAVIOR",
+      "MOBILE_BROWSER_UX"
+    ]
+  },
+  "authority": {
+    "furtherProtectedRecipeAdmissionAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "newProtectedSourceIngestionAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidInfrastructureAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_P4_MACHINE_BASELINE_PASS__OWNER_LIVE_ACCEPTANCE_REQUIRED",
+  "nextGate": "PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE"
+}
