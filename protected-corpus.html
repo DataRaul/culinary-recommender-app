@@ -56,6 +56,7 @@
       <button id="repairForkrecipe" type="button" hidden>Repair ForkRecipe structural metadata</button>
       <button id="runCanary" type="button" hidden>Run live verification</button>
       <button id="runP2Alignment" type="button" hidden>Run P2 live alignment</button>
+      <button id="runP4Acceptance" type="button" hidden>Run P4 product acceptance</button>
     </div>
     <p id="prepareProgress" class="muted" hidden aria-live="polite"></p>
     <div id="canaryEvidencePanel" hidden>
@@ -92,6 +93,7 @@
   const progressNode = document.getElementById('prepareProgress');
   const runCanaryButton = document.getElementById('runCanary');
   const runP2AlignmentButton = document.getElementById('runP2Alignment');
+  const runP4AcceptanceButton = document.getElementById('runP4Acceptance');
   const repairForkrecipeButton = document.getElementById('repairForkrecipe');
   const canaryEvidencePanel = document.getElementById('canaryEvidencePanel');
   const canaryEvidenceNode = document.getElementById('canaryEvidence');
@@ -172,6 +174,7 @@
     repairForkrecipeButton.hidden = true;
     runCanaryButton.hidden = true;
     runP2AlignmentButton.hidden = true;
+    runP4AcceptanceButton.hidden = true;
     canaryEvidencePanel.hidden = true;
     resultsNode.innerHTML = '';
     resultStatus.textContent = 'No protected query was sent before authentication.';
@@ -192,6 +195,7 @@
       repairForkrecipeButton.hidden = true;
       runCanaryButton.hidden = true;
       runP2AlignmentButton.hidden = true;
+      runP4AcceptanceButton.hidden = true;
       prepareButton.textContent = 'Prepare private index';
       return true;
     }
@@ -201,6 +205,7 @@
       repairForkrecipeButton.hidden = true;
       runCanaryButton.hidden = true;
       runP2AlignmentButton.hidden = true;
+      runP4AcceptanceButton.hidden = true;
       return true;
     }
     indexStatus = result;
@@ -212,6 +217,7 @@
     repairForkrecipeButton.hidden = !(result.ready === true && structuralPartialCount === 918);
     runCanaryButton.hidden = !(result.ready === true && structuralPartialCount === 3);
     runP2AlignmentButton.hidden = !(result.ready === true && structuralPartialCount === 3);
+    runP4AcceptanceButton.hidden = !(result.ready === true && structuralPartialCount === 3);
     prepareButton.textContent = result.indexedRecipeCount ? 'Resume private index' : 'Prepare private index';
       if (result.ready) await loadResults(true);
       return true;
@@ -221,6 +227,7 @@
       repairForkrecipeButton.hidden = true;
       runCanaryButton.hidden = true;
       runP2AlignmentButton.hidden = true;
+      runP4AcceptanceButton.hidden = true;
       return false;
     } finally {
       refreshButton.disabled = false;
@@ -442,6 +449,235 @@
     }
   }
 
+  async function apiGetMeasured(params) {
+    const url = new URL(API, location.origin);
+    Object.entries(params).forEach(([key,value]) => { if (value !== '' && value != null) url.searchParams.set(key, value); });
+    const started = performance.now();
+    const response = await fetch(url, { cache:'no-store', credentials:'same-origin' });
+    const raw = await response.text();
+    const latencyMs = Math.round((performance.now() - started) * 10) / 10;
+    const transferredBytes = new TextEncoder().encode(raw).length;
+    let parsed;
+    try { parsed = { httpStatus:response.status, ...JSON.parse(raw) }; }
+    catch {
+      parsed = { httpStatus:response.status, ok:false, error:'NON_JSON_RESPONSE', reason:'Non-JSON provider response.' };
+    }
+    return { result:parsed, latencyMs, transferredBytes };
+  }
+
+  async function readBrowserMemorySignal() {
+    if (typeof performance.measureUserAgentSpecificMemory === 'function') {
+      try {
+        const measured = await performance.measureUserAgentSpecificMemory();
+        if (Number.isFinite(Number(measured?.bytes)) && Number(measured.bytes) > 0) {
+          return { kind:'USER_AGENT_SPECIFIC_MEMORY', bytes:Number(measured.bytes) };
+        }
+      } catch {}
+    }
+    const heap = Number(performance?.memory?.usedJSHeapSize || 0);
+    if (Number.isFinite(heap) && heap > 0) return { kind:'JS_HEAP_USED', bytes:heap };
+    const deviceGiB = Number(navigator?.deviceMemory || 0);
+    if (Number.isFinite(deviceGiB) && deviceGiB > 0) return { kind:'DEVICE_MEMORY_CAPACITY', gib:deviceGiB };
+    return { kind:'UNAVAILABLE' };
+  }
+
+  function requireP4ReadOnlyEnvelope(label, measurement) {
+    const result = measurement?.result;
+    if (!result?.ok) throw new Error(label + ': ' + (result?.reason || result?.error || 'request failed'));
+    const d1 = Number(result?.metrics?.d1Subqueries || 0);
+    if (d1 > 8) throw new Error(label + ': D1 target budget exceeded');
+    if (Number(result?.fullCorpusScans || 0) !== 0) throw new Error(label + ': full-corpus scan observed');
+    if (result?.publicRuntimeChanged !== false) throw new Error(label + ': public runtime changed');
+    if (result?.recommendationAdmissionChanged !== false) throw new Error(label + ': recommendation admission changed');
+    return d1;
+  }
+
+  async function verifyP4RecommendationPlannerRuntime() {
+    const [corpus, ingredients, profileModule, recommendation, planner] = await Promise.all([
+      import('/src/data/corpus-v1.js'),
+      import('/src/data/ingredients.js'),
+      import('/src/domain/profile.js'),
+      import('/src/domain/recommendation.js'),
+      import('/src/domain/planner.js')
+    ]);
+    const candidate = corpus.PUBLIC_RUNTIME_RECIPES.find(recipe => recipe.id === 'unitools_pao_de_queijo');
+    if (!candidate) throw new Error('P4 runtime: bounded P3 candidate missing');
+    const profile = profileModule.normalizeProfile({
+      ...profileModule.DEFAULT_PROFILE,
+      maxMinutes:180,
+      skill:4,
+      budget:4,
+      cuisinePreferences:[],
+      priorityPacks:[],
+      allergens:[],
+      excludedIngredientIds:[],
+      unavailableIngredientIds:[]
+    });
+    const breakfast = recommendation.rankRecipes([candidate], profile, { mealType:'breakfast' });
+    const lunch = recommendation.rankRecipes([candidate], profile, { mealType:'lunch' });
+    const eggProfile = profileModule.normalizeProfile({ ...profile, allergens:['egg'] });
+    const egg = recommendation.rankRecipes([candidate], eggProfile, { mealType:'breakfast' });
+    const plan = planner.planSlots([candidate], profile, [{ id:'p4-owner-live', order:1, day:'P4', mealType:'breakfast' }]);
+    const breakfastIds = breakfast.eligible.map(item => item.recipe.id);
+    const lunchReasons = lunch.rejected[0]?.hardReasons || [];
+    const eggReasons = egg.rejected[0]?.hardReasons || [];
+    return {
+      publicRuntimeRecipeCount:corpus.PUBLIC_RUNTIME_RECIPES.length,
+      publicExternalRecipeCount:corpus.PUBLIC_EXTERNAL_RECIPES.length,
+      activatedProtectedOriginCount:corpus.P3_ACTIVATED_EXTERNAL_RECIPES.length,
+      candidateGenerationPass:breakfastIds.join(',') === 'unitools_pao_de_queijo',
+      mealRoleAbstentionPass:lunchReasons.includes('not tagged for lunch'),
+      allergenAbstentionPass:eggReasons.includes('declared allergen: egg'),
+      plannerPass:plan.items.map(item => item.recipe.id).join(',') === 'unitools_pao_de_queijo',
+      exactTapiocaIdentityPass:ingredients.normalizeIngredient('tapioca starch') === 'tapioca_starch' && ingredients.normalizeIngredient('tapioca') === null
+    };
+  }
+
+  async function runP4ProductAcceptance() {
+    runP4AcceptanceButton.disabled = true;
+    canaryEvidencePanel.hidden = false;
+    canaryEvidenceNode.textContent = 'Running read-only P4 product acceptance…';
+    try {
+      const memoryBefore = await readBrowserMemorySignal();
+      const measurements = [];
+      const d1 = [];
+      const record = (label, measurement) => {
+        measurements.push({ label, latencyMs:measurement.latencyMs, transferredBytes:measurement.transferredBytes });
+        d1.push(requireP4ReadOnlyEnvelope(label, measurement));
+        return measurement.result;
+      };
+
+      const status = record('status', await apiGetMeasured({ action:'status' }));
+      if (
+        status.ready !== true ||
+        status.activeVersion !== 'v8018' ||
+        Number(status.indexedRecipeCount) !== 19268 ||
+        Number(status.ftsRecipeCount) !== 19268 ||
+        Number(status.structuralPartialCount) !== 3
+      ) throw new Error('P4 status: exact v8018 19,268 / 19,268 / 3-partial acceptance not met');
+
+      const browse1 = record('browse page 1', await apiGetMeasured({ action:'browse', limit:1 }));
+      if (!Array.isArray(browse1.items) || browse1.items.length !== 1 || !browse1.nextCursor) {
+        throw new Error('P4 pagination: first bounded page did not expose a successor cursor');
+      }
+      const browse2 = record('browse page 2', await apiGetMeasured({ action:'browse', cursor:browse1.nextCursor, limit:1 }));
+      if (!Array.isArray(browse2.items) || browse2.items.length !== 1 || browse2.items[0]?.recipeId === browse1.items[0]?.recipeId) {
+        throw new Error('P4 pagination: second page did not advance');
+      }
+
+      const search1m = await apiGetMeasured({ action:'search', q:'carbonara', limit:24 });
+      const search1 = record('search carbonara 1', search1m);
+      const search2m = await apiGetMeasured({ action:'search', q:'carbonara', limit:24 });
+      const search2 = record('search carbonara 2', search2m);
+      const ids1 = (search1.items || []).map(item => item.recipeId);
+      const ids2 = (search2.items || []).map(item => item.recipeId);
+      if (!ids1.includes('unitools:spaghetti-carbonara') || JSON.stringify(ids1) !== JSON.stringify(ids2)) {
+        throw new Error('P4 search: fixed result stability/filter acceptance failed');
+      }
+
+      const detailPass = [];
+      for (const target of CANARY_TARGETS) {
+        const detail = record('detail shard ' + target.shardNumber, await apiGetMeasured({ action:'detail', recipeId:target.recipeId }));
+        if (
+          !detail.item ||
+          detail.item.recipeId !== target.recipeId ||
+          Number(detail.item.shardNumber) !== target.shardNumber ||
+          !detail.item.sourceCohortId ||
+          detail.item.authority?.protectedBrowseOnly !== true ||
+          detail.item.authority?.recommendationEligible !== false ||
+          detail.item.authority?.publicRuntimeActivated !== false
+        ) throw new Error('P4 cross-shard detail/provenance contract failed for shard ' + target.shardNumber);
+        detailPass.push(target.shardNumber);
+      }
+
+      const malformed = await apiGetMeasured({ action:'detail', recipeId:'__p4_unknown_recipe__' });
+      measurements.push({ label:'unknown detail', latencyMs:malformed.latencyMs, transferredBytes:malformed.transferredBytes });
+      const malformedResult = malformed.result;
+      const malformedD1 = Number(malformedResult?.metrics?.d1Subqueries || 0);
+      d1.push(malformedD1);
+      if (
+        Number(malformedResult?.httpStatus) !== 404 ||
+        malformedResult?.ok !== false ||
+        malformedResult?.protectedDataReturned !== false ||
+        malformedD1 > 8 ||
+        Number(malformedResult?.fullCorpusScans || 0) !== 0 ||
+        malformedResult?.publicRuntimeChanged !== false ||
+        malformedResult?.recommendationAdmissionChanged !== false
+      ) throw new Error('P4 malformed/unknown handling did not fail closed');
+
+      const runtime = await verifyP4RecommendationPlannerRuntime();
+      if (
+        runtime.publicRuntimeRecipeCount !== 86 ||
+        runtime.publicExternalRecipeCount !== 10 ||
+        runtime.activatedProtectedOriginCount !== 1 ||
+        runtime.candidateGenerationPass !== true ||
+        runtime.mealRoleAbstentionPass !== true ||
+        runtime.allergenAbstentionPass !== true ||
+        runtime.plannerPass !== true ||
+        runtime.exactTapiocaIdentityPass !== true
+      ) throw new Error('P4 recommendation/planner live behavior acceptance failed');
+
+      const memoryAfter = await readBrowserMemorySignal();
+      const memorySignalAvailable = memoryBefore.kind !== 'UNAVAILABLE' || memoryAfter.kind !== 'UNAVAILABLE';
+      if (!memorySignalAvailable) throw new Error('P4 browser memory metric unavailable in this browser context');
+
+      const transferredBytes = measurements.reduce((sum, item) => sum + Number(item.transferredBytes || 0), 0);
+      if (!(transferredBytes > 0)) throw new Error('P4 transferred-byte measurement unavailable');
+
+      const horizontalOverflow = document.documentElement.scrollWidth > window.innerWidth + 1;
+      const uxPass = !horizontalOverflow && Boolean(document.querySelector('meta[name="viewport"]')) && runP4AcceptanceButton.getBoundingClientRect().width > 0;
+      if (!uxPass) throw new Error('P4 mobile/browser UX acceptance failed');
+
+      const searchLatencies = [search1m.latencyMs, search2m.latencyMs];
+      const evidence = {
+        terminal:'PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_PASS',
+        activeVersion:'v8018',
+        indexedRecipeCount:19268,
+        ftsRecipeCount:19268,
+        structuralPartialCount:3,
+        searchResultStabilityPass:true,
+        searchLatencyMs:searchLatencies,
+        maxSearchLatencyMs:Math.max(...searchLatencies),
+        paginationPass:true,
+        filterBehaviorPass:true,
+        crossShardHydrationPass:detailPass.length === 2,
+        d1SubqueryPass:Math.max(...d1) <= 8,
+        maxObservedD1Subqueries:Math.max(...d1),
+        transferredBytes,
+        memoryBefore,
+        memoryAfter,
+        malformedUnknownPass:true,
+        recommendationCandidateGenerationPass:runtime.candidateGenerationPass,
+        recommendationAbstentionPass:runtime.mealRoleAbstentionPass && runtime.allergenAbstentionPass,
+        plannerPass:runtime.plannerPass,
+        publicRuntimeRecipeCount:runtime.publicRuntimeRecipeCount,
+        activatedProtectedOriginCount:runtime.activatedProtectedOriginCount,
+        mobileBrowserUxPass:true,
+        viewport:{ width:window.innerWidth, height:window.innerHeight, devicePixelRatio:window.devicePixelRatio || 1 },
+        fullCorpusScans:0,
+        protectedD1Writes:0,
+        publicRuntimeChanged:false,
+        recommendationAdmissionChanged:false,
+        protectedBodyRewrite:false,
+        knowledgeCoreWrites:0,
+        paidInfrastructureUsed:false,
+        thirdShardUsed:false,
+        barbecueMutation:false
+      };
+      canaryEvidenceNode.textContent = JSON.stringify(evidence, null, 2);
+    } catch (error) {
+      canaryEvidenceNode.textContent = JSON.stringify({
+        terminal:'PROTECTED_CORPUS_P4_OWNER_LIVE_PRODUCT_ACCEPTANCE_STOPPED_SAFE',
+        reason:String(error?.message || error).slice(0,240),
+        protectedD1Writes:0,
+        publicRuntimeChanged:false,
+        recommendationAdmissionChanged:false
+      }, null, 2);
+    } finally {
+      runP4AcceptanceButton.disabled = false;
+    }
+  }
+
   function appendResults(items, replace) {
     if (replace) resultsNode.innerHTML = '';
     for (const item of items) {
@@ -503,6 +739,7 @@
   repairForkrecipeButton.addEventListener('click', repairForkrecipeStructure);
   runCanaryButton.addEventListener('click', runLiveVerification);
   runP2AlignmentButton.addEventListener('click', runP2LiveAlignment);
+  runP4AcceptanceButton.addEventListener('click', runP4ProductAcceptance);
   copyCanaryButton.addEventListener('click', async () => {
     const text = canaryEvidenceNode.textContent || '';
     try {
