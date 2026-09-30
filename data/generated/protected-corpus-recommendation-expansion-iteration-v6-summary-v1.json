@@ -1,0 +1,250 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V6_SUMMARY_V1",
+  "date": "2026-09-30",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V6_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V7_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V6",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 378,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "miso-soup",
+      "montreal-bagels",
+      "mulgipuder",
+      "ndizi-nyama",
+      "ohridska-pastrmka",
+      "peka",
+      "pelekie-zirni-ar-speki",
+      "pollo-guisado-dominicano",
+      "pulpo-a-feira",
+      "qingzheng-yu"
+    ],
+    "digestSha256": "534440e3231483c8f2add1295391fb78215214fb03e463c9faaa8de4543efaa4",
+    "rows": [
+      {
+        "sourceSlug": "miso-soup",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "katsuobushi :: Bonito flakes",
+          "kombu :: Kombu",
+          "wakame :: Dried wakame"
+        ]
+      },
+      {
+        "sourceSlug": "montreal-bagels",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "flour :: Strong flour",
+          "poppy :: Poppy seeds",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "mulgipuder",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "bacon :: Smoked pork belly",
+          "barley :: Pearl barley",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "ndizi-nyama",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "greenbanana :: Green bananas",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "ohridska-pastrmka",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "salt :: Salt and pepper",
+          "trout :: Trout",
+          "whitewine :: Dry white wine"
+        ]
+      },
+      {
+        "sourceSlug": "peka",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "lamb :: Lamb or veal",
+          "salt :: Salt and pepper",
+          "whitewine :: Dry white wine"
+        ]
+      },
+      {
+        "sourceSlug": "pelekie-zirni-ar-speki",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "bacon :: Smoked pork belly",
+          "kefir :: Kefir",
+          "peas :: Grey peas"
+        ]
+      },
+      {
+        "sourceSlug": "pollo-guisado-dominicano",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "olives :: Olives",
+          "pepper :: Bell peppers",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "pulpo-a-feira",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "coarsesalt :: Coarse salt",
+          "octopus :: Octopus",
+          "paprikahot :: Hot paprika"
+        ]
+      },
+      {
+        "sourceSlug": "qingzheng-yu",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "fish :: Sea bass or bream",
+          "soysauce :: Steamed fish soy sauce",
+          "wine :: Shaoxing wine"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 24,
+    "mappedExistingDecisionCount": 2,
+    "heldDecisionCount": 22,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "miso-soup",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "katsuobushi :: Bonito flakes",
+          "kombu :: Kombu",
+          "wakame :: Dried wakame"
+        ]
+      },
+      {
+        "sourceSlug": "montreal-bagels",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Strong flour",
+          "poppy :: Poppy seeds",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "mulgipuder",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bacon :: Smoked pork belly",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "ndizi-nyama",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "greenbanana :: Green bananas",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "ohridska-pastrmka",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "salt :: Salt and pepper",
+          "trout :: Trout",
+          "whitewine :: Dry white wine"
+        ]
+      },
+      {
+        "sourceSlug": "peka",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "lamb :: Lamb or veal",
+          "salt :: Salt and pepper",
+          "whitewine :: Dry white wine"
+        ]
+      },
+      {
+        "sourceSlug": "pelekie-zirni-ar-speki",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bacon :: Smoked pork belly",
+          "kefir :: Kefir",
+          "peas :: Grey peas"
+        ]
+      },
+      {
+        "sourceSlug": "pollo-guisado-dominicano",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "olives :: Olives",
+          "pepper :: Bell peppers",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "pulpo-a-feira",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "octopus :: Octopus",
+          "paprikahot :: Hot paprika"
+        ]
+      },
+      {
+        "sourceSlug": "qingzheng-yu",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "fish :: Sea bass or bream",
+          "soysauce :: Steamed fish soy sauce",
+          "wine :: Shaoxing wine"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V7"
+}
