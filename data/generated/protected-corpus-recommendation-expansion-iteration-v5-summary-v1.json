@@ -1,0 +1,247 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V5_SUMMARY_V1",
+  "date": "2026-09-30",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V5_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V6_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V5",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 388,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "ghapama",
+      "kacamak",
+      "kurutob",
+      "lahpet-thoke",
+      "maltese-rabbit-stew",
+      "mamaliga",
+      "masgouf",
+      "matoke",
+      "mchuzi-wa-samaki",
+      "melanzane-alla-parmigiana"
+    ],
+    "digestSha256": "1489652c0f8e3558593ffa747b6852d65222d44716fd964a1e554b96d316e66f",
+    "rows": [
+      {
+        "sourceSlug": "ghapama",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "apricots :: Dried apricots",
+          "prunes :: Prunes",
+          "raisins :: Raisins"
+        ]
+      },
+      {
+        "sourceSlug": "kacamak",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "cheese :: Young salted cheese",
+          "cornflour :: Maize flour",
+          "kajmak :: Kajmak"
+        ]
+      },
+      {
+        "sourceSlug": "kurutob",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "basil :: Purple basil",
+          "fatir :: Fatir flatbread",
+          "qurut :: Qurut"
+        ]
+      },
+      {
+        "sourceSlug": "lahpet-thoke",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "broadbeans :: Fried broad beans",
+          "peanuts :: Fried peanuts",
+          "teapaste :: Fermented tea leaves"
+        ]
+      },
+      {
+        "sourceSlug": "maltese-rabbit-stew",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "rabbit :: Rabbit",
+          "redwine :: Dry red wine",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "mamaliga",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "cheese :: Brined cheese",
+          "cornmeal :: Medium cornmeal",
+          "sourcream :: Soured cream"
+        ]
+      },
+      {
+        "sourceSlug": "masgouf",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "carp :: Carp",
+          "salt :: Salt and pepper",
+          "tamarind :: Tamarind paste"
+        ]
+      },
+      {
+        "sourceSlug": "matoke",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "bananaleaf :: Banana leaves",
+          "greenbanana :: Green matoke bananas",
+          "groundnut :: Peanut paste"
+        ]
+      },
+      {
+        "sourceSlug": "mchuzi-wa-samaki",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "chili :: Hot chilli",
+          "fish :: White fish",
+          "tamarind :: Tamarind paste"
+        ]
+      },
+      {
+        "sourceSlug": "melanzane-alla-parmigiana",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "aubergine :: Aubergines",
+          "salt :: Salt and pepper",
+          "tomato :: Tinned tomatoes"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 27,
+    "mappedExistingDecisionCount": 5,
+    "heldDecisionCount": 22,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "ghapama",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "apricots :: Dried apricots",
+          "prunes :: Prunes",
+          "raisins :: Raisins"
+        ]
+      },
+      {
+        "sourceSlug": "kacamak",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cheese :: Young salted cheese",
+          "cornflour :: Maize flour",
+          "kajmak :: Kajmak"
+        ]
+      },
+      {
+        "sourceSlug": "kurutob",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "fatir :: Fatir flatbread",
+          "qurut :: Qurut"
+        ]
+      },
+      {
+        "sourceSlug": "lahpet-thoke",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "broadbeans :: Fried broad beans",
+          "teapaste :: Fermented tea leaves"
+        ]
+      },
+      {
+        "sourceSlug": "maltese-rabbit-stew",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "rabbit :: Rabbit",
+          "redwine :: Dry red wine",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "mamaliga",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cheese :: Brined cheese",
+          "cornmeal :: Medium cornmeal",
+          "sourcream :: Soured cream"
+        ]
+      },
+      {
+        "sourceSlug": "masgouf",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "carp :: Carp",
+          "salt :: Salt and pepper",
+          "tamarind :: Tamarind paste"
+        ]
+      },
+      {
+        "sourceSlug": "matoke",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bananaleaf :: Banana leaves",
+          "greenbanana :: Green matoke bananas",
+          "groundnut :: Peanut paste"
+        ]
+      },
+      {
+        "sourceSlug": "mchuzi-wa-samaki",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "fish :: White fish",
+          "tamarind :: Tamarind paste"
+        ]
+      },
+      {
+        "sourceSlug": "melanzane-alla-parmigiana",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "salt :: Salt and pepper"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V6"
+}
