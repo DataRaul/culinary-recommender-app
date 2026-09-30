@@ -1,0 +1,247 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V4_SUMMARY_V1",
+  "date": "2026-09-30",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V4_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V5_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V4",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 398,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "bolani",
+      "bryndzove-halusky",
+      "byrek-me-spinaq",
+      "caldo-verde",
+      "chakalaka",
+      "colcannon",
+      "ema-datshi",
+      "frango-piri-piri",
+      "ful-sudani",
+      "galayet-bandora"
+    ],
+    "digestSha256": "99d108d6e02caa1f580c6423d362043086c39d36dcf6d74186e35956fa0cc6a2",
+    "rows": [
+      {
+        "sourceSlug": "bolani",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "salt :: Salt and pepper",
+          "yoghurt :: Garlic yoghurt"
+        ]
+      },
+      {
+        "sourceSlug": "bryndzove-halusky",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "bacon :: Smoked bacon",
+          "brynza :: Sheep's brynza",
+          "flour :: Flour"
+        ]
+      },
+      {
+        "sourceSlug": "byrek-me-spinaq",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "feta :: Brined white cheese",
+          "filo :: Filo pastry",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "caldo-verde",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "bread :: Corn bread",
+          "chourico :: Chouriço",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "chakalaka",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "beans :: Baked beans",
+          "pepper :: Bell peppers",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "colcannon",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "cabbage :: Cabbage or kale",
+          "cream :: Cream",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "ema-datshi",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "cheese :: Datshi or feta cheese",
+          "greenchili :: Green chillies",
+          "rice :: Red rice"
+        ]
+      },
+      {
+        "sourceSlug": "frango-piri-piri",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "chicken :: Whole chicken",
+          "piripiri :: Piri-piri chillies",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "ful-sudani",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "cheese :: White brined cheese",
+          "flatbread :: Flatbread",
+          "fulbeans :: Ful medames beans"
+        ]
+      },
+      {
+        "sourceSlug": "galayet-bandora",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "chili :: Green chilli",
+          "flatbread :: Flatbreads",
+          "mint :: Dried mint"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 24,
+    "mappedExistingDecisionCount": 5,
+    "heldDecisionCount": 19,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "bolani",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "salt :: Salt and pepper",
+          "yoghurt :: Garlic yoghurt"
+        ]
+      },
+      {
+        "sourceSlug": "bryndzove-halusky",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bacon :: Smoked bacon",
+          "brynza :: Sheep's brynza",
+          "flour :: Flour"
+        ]
+      },
+      {
+        "sourceSlug": "byrek-me-spinaq",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "feta :: Brined white cheese",
+          "filo :: Filo pastry",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "caldo-verde",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bread :: Corn bread",
+          "chourico :: Chouriço",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "chakalaka",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beans :: Baked beans",
+          "pepper :: Bell peppers",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "colcannon",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cabbage :: Cabbage or kale",
+          "cream :: Cream",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "ema-datshi",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cheese :: Datshi or feta cheese"
+        ]
+      },
+      {
+        "sourceSlug": "frango-piri-piri",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "chicken :: Whole chicken",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "ful-sudani",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cheese :: White brined cheese",
+          "flatbread :: Flatbread",
+          "fulbeans :: Ful medames beans"
+        ]
+      },
+      {
+        "sourceSlug": "galayet-bandora",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flatbread :: Flatbreads"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V5"
+}

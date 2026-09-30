@@ -1,0 +1,241 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V1",
+  "date": "2026-09-30",
+  "iterationId": "V4",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V3_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V4_READY",
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "expectedRecipeCount": 501
+  },
+  "frontier": {
+    "candidateTrancheMaxRecipes": 10,
+    "processedSourceSlugs": [
+      "pao-de-queijo",
+      "tortilla-espanola",
+      "cachapas",
+      "chapati-kenyan",
+      "ajvar",
+      "arepas",
+      "arroz-con-coco",
+      "avgolemono",
+      "burek-bosanski",
+      "chimichurri",
+      "dograma",
+      "draniki",
+      "flia",
+      "gurasa",
+      "halloumi-grilled",
+      "hangi-style-chicken",
+      "hummus",
+      "injera",
+      "jasha-maroo",
+      "karjalanpiirakka",
+      "matapa",
+      "moros-y-cristianos",
+      "muriwo-unedovi",
+      "placinta",
+      "rolex-uganda",
+      "sukuma-wiki",
+      "suutei-tsai",
+      "tarator",
+      "tostones",
+      "baklava",
+      "banitsa",
+      "baursaki"
+    ],
+    "expectedRemainingRankedCount": 398,
+    "expectedZeroGapCount": 0,
+    "expectedOneGapCount": 0,
+    "expectedSourceSlugs": [
+      "bolani",
+      "bryndzove-halusky",
+      "byrek-me-spinaq",
+      "caldo-verde",
+      "chakalaka",
+      "colcannon",
+      "ema-datshi",
+      "frango-piri-piri",
+      "ful-sudani",
+      "galayet-bandora"
+    ],
+    "expectedDigestSha256": "99d108d6e02caa1f580c6423d362043086c39d36dcf6d74186e35956fa0cc6a2"
+  },
+  "identityDecisions": [
+    {
+      "sourceId": "flour",
+      "sourceName": "Flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "salt",
+      "sourceName": "Salt and pepper",
+      "decision": "HOLD",
+      "reason": "COMPOSITE_INGREDIENT_PHRASE"
+    },
+    {
+      "sourceId": "yoghurt",
+      "sourceName": "Garlic yoghurt",
+      "decision": "HOLD",
+      "reason": "COMPOSITE_SEASONED_DAIRY_PREPARATION_NOT_EXACT_GREEK_YOGURT_IDENTITY"
+    },
+    {
+      "sourceId": "bacon",
+      "sourceName": "Smoked bacon",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_BACON_IDENTITY"
+    },
+    {
+      "sourceId": "brynza",
+      "sourceName": "Sheep's brynza",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_BRYNZA_IDENTITY"
+    },
+    {
+      "sourceId": "feta",
+      "sourceName": "Brined white cheese",
+      "decision": "HOLD",
+      "reason": "SOURCE_NAME_BROADER_THAN_EXACT_FETA_IDENTITY"
+    },
+    {
+      "sourceId": "filo",
+      "sourceName": "Filo pastry",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FILO_PASTRY_IDENTITY"
+    },
+    {
+      "sourceId": "bread",
+      "sourceName": "Corn bread",
+      "decision": "HOLD",
+      "reason": "CORN_BREAD_NOT_SAFE_TO_COLLAPSE_TO_GENERIC_GLUTEN_BREAD_IDENTITY"
+    },
+    {
+      "sourceId": "chourico",
+      "sourceName": "Chouriço",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CHOURICO_IDENTITY"
+    },
+    {
+      "sourceId": "beans",
+      "sourceName": "Baked beans",
+      "decision": "HOLD",
+      "reason": "PREPARED_COMPOSITE_BEAN_PRODUCT_HAS_NO_CURRENT_CANONICAL_IDENTITY"
+    },
+    {
+      "sourceId": "pepper",
+      "sourceName": "Bell peppers",
+      "decision": "HOLD",
+      "reason": "SOURCE_ID_DIAGNOSTIC_CONFLICTS_WITH_BLACK_PEPPER_ALIAS"
+    },
+    {
+      "sourceId": "cabbage",
+      "sourceName": "Cabbage or kale",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_PHRASE_CANNOT_BE_ONE_CANONICAL_IDENTITY"
+    },
+    {
+      "sourceId": "cream",
+      "sourceName": "Cream",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CREAM_IDENTITY"
+    },
+    {
+      "sourceId": "cheese",
+      "sourceName": "Datshi or feta cheese",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_CHEESE_PHRASE_CANNOT_BE_ONE_CANONICAL_IDENTITY"
+    },
+    {
+      "sourceId": "greenchili",
+      "sourceName": "Green chillies",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "COLOR_QUALIFIER_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "rice",
+      "sourceName": "Red rice",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "rice",
+      "reason": "COLOR_VARIETY_QUALIFIER_PRESERVES_GENERIC_RICE_IDENTITY"
+    },
+    {
+      "sourceId": "chicken",
+      "sourceName": "Whole chicken",
+      "decision": "HOLD",
+      "reason": "WHOLE_CHICKEN_NOT_EQUIVALENT_TO_CURRENT_BREAST_OR_THIGH_IDENTITIES"
+    },
+    {
+      "sourceId": "piripiri",
+      "sourceName": "Piri-piri chillies",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "CULTIVAR_QUALIFIER_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "cheese",
+      "sourceName": "White brined cheese",
+      "decision": "HOLD",
+      "reason": "AMBIGUOUS_BRINED_CHEESE_IDENTITY"
+    },
+    {
+      "sourceId": "flatbread",
+      "sourceName": "Flatbread",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_GENERIC_FLATBREAD_CANONICAL_IDENTITY"
+    },
+    {
+      "sourceId": "fulbeans",
+      "sourceName": "Ful medames beans",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FAVA_FUL_BEAN_IDENTITY"
+    },
+    {
+      "sourceId": "chili",
+      "sourceName": "Green chilli",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "COLOR_QUALIFIER_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "flatbread",
+      "sourceName": "Flatbreads",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_GENERIC_FLATBREAD_CANONICAL_IDENTITY"
+    },
+    {
+      "sourceId": "mint",
+      "sourceName": "Dried mint",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "mint",
+      "reason": "DRIED_FORM_WITHIN_GENERIC_CANONICAL_MINT_IDENTITY"
+    }
+  ],
+  "expectedIdentityReadySourceSlugs": [],
+  "authority": {
+    "candidateDiscoveryAuthorized": true,
+    "candidateIdentityReviewAuthorized": true,
+    "candidateHardSafetyReviewAuthorized": true,
+    "deterministicMachineAcceptanceAuthorized": true,
+    "runtimeActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "ownerAdmissionGateOpen": false,
+    "globalIngredientAliasIndexMutationAuthorized": false,
+    "globalIngredientCatalogMutationAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V4_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V5_READY",
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V5"
+}
