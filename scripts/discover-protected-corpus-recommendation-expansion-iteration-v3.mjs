@@ -10,28 +10,10 @@ const aliasContract = JSON.parse(await readFile(resolve("config/culinary_brain_c
 const dataset = JSON.parse(await readFile(resolve(unitoolsPath), "utf8"));
 
 const processedSourceSlugs = new Set([
-  "pao-de-queijo",
-  "tortilla-espanola",
-  "cachapas",
-  "chapati-kenyan",
-  "ajvar",
-  "arepas",
-  "arroz-con-coco",
-  "avgolemono",
-  "burek-bosanski",
-  "chimichurri",
-  "dograma",
-  "draniki",
-  "flia",
-  "gurasa",
-  "halloumi-grilled",
-  "hangi-style-chicken",
-  "hummus",
-  "injera",
-  "jasha-maroo",
-  "karjalanpiirakka",
-  "matapa",
-  "moros-y-cristianos"
+  "pao-de-queijo","tortilla-espanola","cachapas","chapati-kenyan","ajvar","arepas",
+  "arroz-con-coco","avgolemono","burek-bosanski","chimichurri","dograma","draniki",
+  "flia","gurasa","halloumi-grilled","hangi-style-chicken","hummus","injera",
+  "jasha-maroo","karjalanpiirakka","matapa","moros-y-cristianos"
 ]);
 
 const rows = dataset.recipes
@@ -47,6 +29,27 @@ const rows = dataset.recipes
 
 const frontier = rows.slice(0, 10);
 const sourceSlugs = frontier.map(row => row.sourceSlug);
+const bySlug = new Map(dataset.recipes.map(recipe => [recipe.slug, recipe]));
+const sourceDetails = sourceSlugs.map(slug => {
+  const recipe = bySlug.get(slug);
+  return {
+    slug,
+    name: recipe?.name?.en ?? null,
+    category: recipe?.category ?? null,
+    difficulty: recipe?.difficulty ?? null,
+    prepMinutes: recipe?.prepMinutes ?? null,
+    cookMinutes: recipe?.cookMinutes ?? null,
+    baseServings: recipe?.baseServings ?? null,
+    ingredients: (recipe?.ingredients || []).map(x => ({
+      id: x.id ?? null,
+      name: x?.name?.en ?? null,
+      quantity: x.quantity ?? null,
+      unit: x.unit ?? null
+    })),
+    steps: (recipe?.steps || []).map(x => ({text:x?.text?.en ?? null, minutes:x.minutes ?? null}))
+  };
+});
+
 const result = {
   schemaVersion: "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V3_DISCOVERY_V1",
   protectedCorpusVersion: "v8018",
@@ -64,7 +67,8 @@ const result = {
     uniqueUnresolvedIngredientKeyCount: row.uniqueUnresolvedIngredientKeyCount,
     unresolvedIngredientKeys: row.unresolvedIngredientKeys
   })),
-  frontierDigestSha256: createHash("sha256").update(JSON.stringify(sourceSlugs)).digest("hex")
+  frontierDigestSha256: createHash("sha256").update(JSON.stringify(sourceSlugs)).digest("hex"),
+  sourceDetails
 };
 
 process.stdout.write("ITERATION_V3_DISCOVERY=" + JSON.stringify(result) + "\n");
