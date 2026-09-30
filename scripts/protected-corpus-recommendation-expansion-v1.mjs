@@ -5,7 +5,7 @@ export const R0_TERMINAL = "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R0_PASS__F
 export function validateProtectedCorpusRecommendationExpansion(contract, evidence, priorP4) {
   const errors = [];
   if (!contract || contract.schemaVersion !== RECOMMENDATION_EXPANSION_SCHEMA) errors.push("schemaVersion");
-  if (!["R0_AUTHORIZED_BASELINE_PASS__R1_FRONTIER_MEASUREMENT_READY","R0_PASS__R1_PASS__R2_REPAIR_READY","R0_PASS__R1_PASS__R2_PASS__R3_PASS_WITH_HOLD__NEXT_FRONTIER_READY","R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__NEXT_FRONTIER_V3_READY","R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__ITERATION_V3_PASS__NEXT_FRONTIER_V4_READY"].includes(contract?.state)) errors.push("state");
+  if (!["R0_AUTHORIZED_BASELINE_PASS__R1_FRONTIER_MEASUREMENT_READY","R0_PASS__R1_PASS__R2_REPAIR_READY","R0_PASS__R1_PASS__R2_PASS__R3_PASS_WITH_HOLD__NEXT_FRONTIER_READY","R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__NEXT_FRONTIER_V3_READY","R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__ITERATION_V3_PASS__NEXT_FRONTIER_V4_READY","R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__ITERATION_V3_PASS__ITERATION_V4_PASS__NEXT_FRONTIER_V5_READY"].includes(contract?.state)) errors.push("state");
   if (contract?.objective !== "PROGRESSIVELY_EARN_MORE_PROTECTED_RECOMMENDATION_CANDIDATES_WITH_EXPLICIT_BOUNDED_ADMISSION") errors.push("objective");
 
   const entry = contract?.entryEvidence || {};
@@ -36,10 +36,13 @@ export function validateProtectedCorpusRecommendationExpansion(contract, evidenc
   const r1 = gates.get("R1_POST_P3_FRONTIER_MEASUREMENT");
   const r1Passed = r1?.state === "PASS";
   const r3Held = contract?.state === "R0_PASS__R1_PASS__R2_PASS__R3_PASS_WITH_HOLD__NEXT_FRONTIER_READY";
-  const iterationV2Passed = ["R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__NEXT_FRONTIER_V3_READY","R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__ITERATION_V3_PASS__NEXT_FRONTIER_V4_READY"].includes(contract?.state);
-  const iterationV3Passed = contract?.state === "R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__ITERATION_V3_PASS__NEXT_FRONTIER_V4_READY";
-  const expectedSequence = iterationV3Passed
-    ? ["R1_NEXT_FRONTIER_ITERATION_V4","R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR","R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE","R4_OWNER_BOUNDED_ADMISSION","R5_REAL_V8018_POST_ADMISSION_REGRESSION"]
+  const iterationV2Passed = ["R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__NEXT_FRONTIER_V3_READY","R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__ITERATION_V3_PASS__NEXT_FRONTIER_V4_READY","R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__ITERATION_V3_PASS__ITERATION_V4_PASS__NEXT_FRONTIER_V5_READY"].includes(contract?.state);
+  const iterationV3Passed = ["R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__ITERATION_V3_PASS__NEXT_FRONTIER_V4_READY","R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__ITERATION_V3_PASS__ITERATION_V4_PASS__NEXT_FRONTIER_V5_READY"].includes(contract?.state);
+  const iterationV4Passed = contract?.state === "R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__ITERATION_V3_PASS__ITERATION_V4_PASS__NEXT_FRONTIER_V5_READY";
+  const expectedSequence = iterationV4Passed
+    ? ["R1_NEXT_FRONTIER_ITERATION_V5","R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR","R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE","R4_OWNER_BOUNDED_ADMISSION","R5_REAL_V8018_POST_ADMISSION_REGRESSION"]
+    : iterationV3Passed
+      ? ["R1_NEXT_FRONTIER_ITERATION_V4","R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR","R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE","R4_OWNER_BOUNDED_ADMISSION","R5_REAL_V8018_POST_ADMISSION_REGRESSION"]
     : iterationV2Passed
       ? ["R1_NEXT_FRONTIER_ITERATION_V3","R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR","R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE","R4_OWNER_BOUNDED_ADMISSION","R5_REAL_V8018_POST_ADMISSION_REGRESSION"]
     : r3Held
@@ -63,7 +66,7 @@ export function validateProtectedCorpusRecommendationExpansion(contract, evidenc
     if (r3Gate?.state !== "PASS_WITH_HOLD__NO_R4_CANDIDATE" || r3Gate?.terminal !== "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R3_MACHINE_ACCEPTANCE_PASS__CHIMICHURRI_HELD__NEXT_FRONTIER_READY" || r3Gate?.admissionReadyCandidateCount !== 0) errors.push("r3");
     if (r4Gate?.state !== "BLOCKED__NO_ADMISSION_READY_CANDIDATE" || r4Gate?.admissionAuthorized !== false) errors.push("r4");
   } else if (r4Gate?.state !== "HUMAN_GATED_AFTER_R3") errors.push("r4");
-  if (iterationV2Passed || iterationV3Passed) {
+  if (iterationV2Passed || iterationV3Passed || iterationV4Passed) {
     const v2 = contract?.iterationV2 || {};
     if (v2.terminal !== "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V2_PASS__JASHA_MAROO_HELD__NEXT_FRONTIER_V3_READY") errors.push("iterationV2Terminal");
     if (v2.contract !== "config/protected_corpus_recommendation_expansion_iteration_v2.json" || v2.evidence !== "data/generated/protected-corpus-recommendation-expansion-iteration-v2-summary-v1.json") errors.push("iterationV2Evidence");
@@ -71,13 +74,21 @@ export function validateProtectedCorpusRecommendationExpansion(contract, evidenc
     if (JSON.stringify(v2.identityReadySourceSlugs) !== JSON.stringify(["jasha-maroo"]) || v2.candidateId !== "unitools_jasha_maroo") errors.push("iterationV2Candidate");
     if (v2.admissionReadyCandidateCount !== 0 || v2.ownerAdmissionGateOpen !== false || v2.nextGate !== "R1_NEXT_FRONTIER_ITERATION_V3") errors.push("iterationV2Gate");
   }
-  if (iterationV3Passed) {
+  if (iterationV3Passed || iterationV4Passed) {
     const v3 = contract?.iterationV3 || {};
     if (v3.terminal !== "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V3_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V4_READY") errors.push("iterationV3Terminal");
     if (v3.contract !== "config/protected_corpus_recommendation_expansion_iteration_v3.json" || v3.evidence !== "data/generated/protected-corpus-recommendation-expansion-iteration-v3-summary-v1.json") errors.push("iterationV3Evidence");
     if (v3.frozenCandidateRecipeCount !== 10 || v3.frozenCandidateDigestSha256 !== "a5bac131f73ca80439def654ca6b88007e15cd43ab2ef373b20a69e87ee7cf1c") errors.push("iterationV3Freeze");
     if (JSON.stringify(v3.identityReadySourceSlugs) !== JSON.stringify([])) errors.push("iterationV3Identity");
     if (v3.admissionReadyCandidateCount !== 0 || v3.ownerAdmissionGateOpen !== false || v3.nextGate !== "R1_NEXT_FRONTIER_ITERATION_V4") errors.push("iterationV3Gate");
+  }
+  if (iterationV4Passed) {
+    const v4 = contract?.iterationV4 || {};
+    if (v4.terminal !== "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V4_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V5_READY") errors.push("iterationV4Terminal");
+    if (v4.contract !== "config/protected_corpus_recommendation_expansion_iteration_v4.json" || v4.evidence !== "data/generated/protected-corpus-recommendation-expansion-iteration-v4-summary-v1.json") errors.push("iterationV4Evidence");
+    if (v4.frozenCandidateRecipeCount !== 10 || v4.frozenCandidateDigestSha256 !== "99d108d6e02caa1f580c6423d362043086c39d36dcf6d74186e35956fa0cc6a2") errors.push("iterationV4Freeze");
+    if (JSON.stringify(v4.identityReadySourceSlugs) !== JSON.stringify([])) errors.push("iterationV4Identity");
+    if (v4.admissionReadyCandidateCount !== 0 || v4.ownerAdmissionGateOpen !== false || v4.nextGate !== "R1_NEXT_FRONTIER_ITERATION_V5") errors.push("iterationV4Gate");
   }
 
   if (!evidence || evidence.schemaVersion !== R0_EVIDENCE_SCHEMA || evidence.pass !== true || evidence.terminal !== R0_TERMINAL) errors.push("r0Evidence");
