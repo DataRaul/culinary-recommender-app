@@ -1,0 +1,269 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V1",
+  "date": "2026-09-30",
+  "iterationId": "V5",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V4_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V5_READY",
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "expectedRecipeCount": 501
+  },
+  "frontier": {
+    "candidateTrancheMaxRecipes": 10,
+    "processedSourceSlugs": [
+      "pao-de-queijo",
+      "tortilla-espanola",
+      "cachapas",
+      "chapati-kenyan",
+      "ajvar",
+      "arepas",
+      "arroz-con-coco",
+      "avgolemono",
+      "burek-bosanski",
+      "chimichurri",
+      "dograma",
+      "draniki",
+      "flia",
+      "gurasa",
+      "halloumi-grilled",
+      "hangi-style-chicken",
+      "hummus",
+      "injera",
+      "jasha-maroo",
+      "karjalanpiirakka",
+      "matapa",
+      "moros-y-cristianos",
+      "muriwo-unedovi",
+      "placinta",
+      "rolex-uganda",
+      "sukuma-wiki",
+      "suutei-tsai",
+      "tarator",
+      "tostones",
+      "baklava",
+      "banitsa",
+      "baursaki",
+      "bolani",
+      "bryndzove-halusky",
+      "byrek-me-spinaq",
+      "caldo-verde",
+      "chakalaka",
+      "colcannon",
+      "ema-datshi",
+      "frango-piri-piri",
+      "ful-sudani",
+      "galayet-bandora"
+    ],
+    "expectedRemainingRankedCount": 388,
+    "expectedZeroGapCount": 0,
+    "expectedOneGapCount": 0,
+    "expectedSourceSlugs": [
+      "ghapama",
+      "kacamak",
+      "kurutob",
+      "lahpet-thoke",
+      "maltese-rabbit-stew",
+      "mamaliga",
+      "masgouf",
+      "matoke",
+      "mchuzi-wa-samaki",
+      "melanzane-alla-parmigiana"
+    ],
+    "expectedDigestSha256": "1489652c0f8e3558593ffa747b6852d65222d44716fd964a1e554b96d316e66f"
+  },
+  "identityDecisions": [
+    {
+      "sourceId": "apricots",
+      "sourceName": "Dried apricots",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_DRIED_APRICOT_IDENTITY"
+    },
+    {
+      "sourceId": "prunes",
+      "sourceName": "Prunes",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_PRUNE_IDENTITY"
+    },
+    {
+      "sourceId": "raisins",
+      "sourceName": "Raisins",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_RAISIN_IDENTITY"
+    },
+    {
+      "sourceId": "cheese",
+      "sourceName": "Young salted cheese",
+      "decision": "HOLD",
+      "reason": "AMBIGUOUS_CHEESE_IDENTITY"
+    },
+    {
+      "sourceId": "cornflour",
+      "sourceName": "Maize flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_MAIZE_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "kajmak",
+      "sourceName": "Kajmak",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_KAJMAK_IDENTITY"
+    },
+    {
+      "sourceId": "basil",
+      "sourceName": "Purple basil",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "basil",
+      "reason": "COLOR_VARIETY_QUALIFIER_PRESERVES_GENERIC_BASIL_IDENTITY"
+    },
+    {
+      "sourceId": "fatir",
+      "sourceName": "Fatir flatbread",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FATIR_FLATBREAD_IDENTITY"
+    },
+    {
+      "sourceId": "qurut",
+      "sourceName": "Qurut",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_QURUT_IDENTITY"
+    },
+    {
+      "sourceId": "broadbeans",
+      "sourceName": "Fried broad beans",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_BROAD_BEAN_IDENTITY"
+    },
+    {
+      "sourceId": "peanuts",
+      "sourceName": "Fried peanuts",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "peanuts",
+      "reason": "COOKING_METHOD_QUALIFIER_PRESERVES_PEANUT_IDENTITY"
+    },
+    {
+      "sourceId": "teapaste",
+      "sourceName": "Fermented tea leaves",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FERMENTED_TEA_LEAF_IDENTITY"
+    },
+    {
+      "sourceId": "rabbit",
+      "sourceName": "Rabbit",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_RABBIT_IDENTITY"
+    },
+    {
+      "sourceId": "redwine",
+      "sourceName": "Dry red wine",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_RED_WINE_IDENTITY"
+    },
+    {
+      "sourceId": "salt",
+      "sourceName": "Salt and pepper",
+      "decision": "HOLD",
+      "reason": "COMPOSITE_INGREDIENT_PHRASE"
+    },
+    {
+      "sourceId": "cheese",
+      "sourceName": "Brined cheese",
+      "decision": "HOLD",
+      "reason": "AMBIGUOUS_BRINED_CHEESE_IDENTITY"
+    },
+    {
+      "sourceId": "cornmeal",
+      "sourceName": "Medium cornmeal",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CORNMEAL_IDENTITY"
+    },
+    {
+      "sourceId": "sourcream",
+      "sourceName": "Soured cream",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_SOUR_CREAM_IDENTITY"
+    },
+    {
+      "sourceId": "carp",
+      "sourceName": "Carp",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CARP_IDENTITY"
+    },
+    {
+      "sourceId": "tamarind",
+      "sourceName": "Tamarind paste",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_TAMARIND_PASTE_IDENTITY"
+    },
+    {
+      "sourceId": "bananaleaf",
+      "sourceName": "Banana leaves",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_BANANA_LEAF_IDENTITY"
+    },
+    {
+      "sourceId": "greenbanana",
+      "sourceName": "Green matoke bananas",
+      "decision": "HOLD",
+      "reason": "COOKING_BANANA_VARIETY_NOT_SAFE_TO_COLLAPSE_TO_GENERIC_BANANA"
+    },
+    {
+      "sourceId": "groundnut",
+      "sourceName": "Peanut paste",
+      "decision": "HOLD",
+      "reason": "PEANUT_PASTE_NOT_ESTABLISHED_AS_EXACT_CURRENT_PEANUT_BUTTER_IDENTITY"
+    },
+    {
+      "sourceId": "chili",
+      "sourceName": "Hot chilli",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "HEAT_QUALIFIER_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "fish",
+      "sourceName": "White fish",
+      "decision": "HOLD",
+      "reason": "GENERIC_WHITE_FISH_NOT_EXACT_CURRENT_SPECIES_IDENTITY"
+    },
+    {
+      "sourceId": "aubergine",
+      "sourceName": "Aubergines",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "aubergine",
+      "reason": "PLURAL_ONLY"
+    },
+    {
+      "sourceId": "tomato",
+      "sourceName": "Tinned tomatoes",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "canned_tomato",
+      "reason": "EXACT_CURRENT_CANNED_TOMATO_IDENTITY"
+    }
+  ],
+  "expectedIdentityReadySourceSlugs": [],
+  "authority": {
+    "candidateDiscoveryAuthorized": true,
+    "candidateIdentityReviewAuthorized": true,
+    "candidateHardSafetyReviewAuthorized": true,
+    "deterministicMachineAcceptanceAuthorized": true,
+    "runtimeActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "ownerAdmissionGateOpen": false,
+    "globalIngredientAliasIndexMutationAuthorized": false,
+    "globalIngredientCatalogMutationAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V5_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V6_READY",
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V6"
+}
