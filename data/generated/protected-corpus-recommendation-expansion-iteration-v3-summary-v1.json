@@ -1,0 +1,237 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V3_SUMMARY_V1",
+  "date": "2026-09-30",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V3_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V4_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V3",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 408,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "muriwo-unedovi",
+      "placinta",
+      "rolex-uganda",
+      "sukuma-wiki",
+      "suutei-tsai",
+      "tarator",
+      "tostones",
+      "baklava",
+      "banitsa",
+      "baursaki"
+    ],
+    "digestSha256": "a5bac131f73ca80439def654ca6b88007e15cd43ab2ef373b20a69e87ee7cf1c",
+    "rows": [
+      {
+        "sourceSlug": "muriwo-unedovi",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "collard :: Collard greens",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "placinta",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "brynza :: Brined white cheese",
+          "flour :: Flour"
+        ]
+      },
+      {
+        "sourceSlug": "rolex-uganda",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "sukuma-wiki",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "collard :: Collard greens",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "suutei-tsai",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "flour :: Toasted flour",
+          "greentea :: Green tea"
+        ]
+      },
+      {
+        "sourceSlug": "tarator",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "water :: Cold water",
+          "yogurt :: Bulgarian yoghurt"
+        ]
+      },
+      {
+        "sourceSlug": "tostones",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "oil :: Oil for frying",
+          "plantain :: Green plantains"
+        ]
+      },
+      {
+        "sourceSlug": "baklava",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "ghee :: Clarified butter",
+          "pistachios :: Pistachios",
+          "yufka :: Yufka or filo pastry"
+        ]
+      },
+      {
+        "sourceSlug": "banitsa",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "cheese :: Bulgarian white cheese",
+          "filo :: Filo pastry",
+          "soda :: Bicarbonate of soda"
+        ]
+      },
+      {
+        "sourceSlug": "baursaki",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "oil :: Oil for frying",
+          "yeast :: Dry yeast"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 17,
+    "mappedExistingDecisionCount": 1,
+    "heldDecisionCount": 16,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "muriwo-unedovi",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "collard :: Collard greens",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "placinta",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "brynza :: Brined white cheese",
+          "flour :: Flour"
+        ]
+      },
+      {
+        "sourceSlug": "rolex-uganda",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "sukuma-wiki",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "collard :: Collard greens",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "suutei-tsai",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Toasted flour",
+          "greentea :: Green tea"
+        ]
+      },
+      {
+        "sourceSlug": "tarator",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "yogurt :: Bulgarian yoghurt"
+        ]
+      },
+      {
+        "sourceSlug": "tostones",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "oil :: Oil for frying",
+          "plantain :: Green plantains"
+        ]
+      },
+      {
+        "sourceSlug": "baklava",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "ghee :: Clarified butter",
+          "pistachios :: Pistachios",
+          "yufka :: Yufka or filo pastry"
+        ]
+      },
+      {
+        "sourceSlug": "banitsa",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cheese :: Bulgarian white cheese",
+          "filo :: Filo pastry",
+          "soda :: Bicarbonate of soda"
+        ]
+      },
+      {
+        "sourceSlug": "baursaki",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "oil :: Oil for frying",
+          "yeast :: Dry yeast"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V4"
+}
