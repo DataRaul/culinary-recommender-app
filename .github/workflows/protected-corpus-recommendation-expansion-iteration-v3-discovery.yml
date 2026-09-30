@@ -1,0 +1,28 @@
+name: Protected corpus recommendation expansion iteration V3 discovery
+
+on:
+  pull_request:
+    paths:
+      - "scripts/discover-protected-corpus-recommendation-expansion-iteration-v3.mjs"
+      - ".github/workflows/protected-corpus-recommendation-expansion-iteration-v3-discovery.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  discover-v3:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Checkout exact pinned UniTools
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+          test "$(git -C .tmp/unitools rev-parse HEAD)" = "1d09e9548d957dd0375301146a86dddf5e269c1b"
+          test "$(git hash-object .tmp/unitools/unitools-recipes-v1.json)" = "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+      - name: Discover bounded V3 frontier
+        run: node scripts/discover-protected-corpus-recommendation-expansion-iteration-v3.mjs .tmp/unitools/unitools-recipes-v1.json
