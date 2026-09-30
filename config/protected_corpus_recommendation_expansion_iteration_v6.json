@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V1",
+  "date": "2026-09-30",
+  "iterationId": "V6",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V5_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V6_READY",
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "expectedRecipeCount": 501
+  },
+  "frontier": {
+    "candidateTrancheMaxRecipes": 10,
+    "processedSourceSlugs": [
+      "pao-de-queijo",
+      "tortilla-espanola",
+      "cachapas",
+      "chapati-kenyan",
+      "ajvar",
+      "arepas",
+      "arroz-con-coco",
+      "avgolemono",
+      "burek-bosanski",
+      "chimichurri",
+      "dograma",
+      "draniki",
+      "flia",
+      "gurasa",
+      "halloumi-grilled",
+      "hangi-style-chicken",
+      "hummus",
+      "injera",
+      "jasha-maroo",
+      "karjalanpiirakka",
+      "matapa",
+      "moros-y-cristianos",
+      "muriwo-unedovi",
+      "placinta",
+      "rolex-uganda",
+      "sukuma-wiki",
+      "suutei-tsai",
+      "tarator",
+      "tostones",
+      "baklava",
+      "banitsa",
+      "baursaki",
+      "bolani",
+      "bryndzove-halusky",
+      "byrek-me-spinaq",
+      "caldo-verde",
+      "chakalaka",
+      "colcannon",
+      "ema-datshi",
+      "frango-piri-piri",
+      "ful-sudani",
+      "galayet-bandora",
+      "ghapama",
+      "kacamak",
+      "kurutob",
+      "lahpet-thoke",
+      "maltese-rabbit-stew",
+      "mamaliga",
+      "masgouf",
+      "matoke",
+      "mchuzi-wa-samaki",
+      "melanzane-alla-parmigiana"
+    ],
+    "expectedRemainingRankedCount": 378,
+    "expectedZeroGapCount": 0,
+    "expectedOneGapCount": 0,
+    "expectedSourceSlugs": [
+      "miso-soup",
+      "montreal-bagels",
+      "mulgipuder",
+      "ndizi-nyama",
+      "ohridska-pastrmka",
+      "peka",
+      "pelekie-zirni-ar-speki",
+      "pollo-guisado-dominicano",
+      "pulpo-a-feira",
+      "qingzheng-yu"
+    ],
+    "expectedDigestSha256": "534440e3231483c8f2add1295391fb78215214fb03e463c9faaa8de4543efaa4"
+  },
+  "identityDecisions": [
+    {
+      "sourceId": "katsuobushi",
+      "sourceName": "Bonito flakes",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_BONITO_FLAKE_IDENTITY"
+    },
+    {
+      "sourceId": "kombu",
+      "sourceName": "Kombu",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_KOMBU_IDENTITY"
+    },
+    {
+      "sourceId": "wakame",
+      "sourceName": "Dried wakame",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_WAKAME_IDENTITY"
+    },
+    {
+      "sourceId": "flour",
+      "sourceName": "Strong flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_STRONG_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "poppy",
+      "sourceName": "Poppy seeds",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_POPPY_SEED_IDENTITY"
+    },
+    {
+      "sourceId": "yeast",
+      "sourceName": "Dry yeast",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_YEAST_IDENTITY"
+    },
+    {
+      "sourceId": "bacon",
+      "sourceName": "Smoked pork belly",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_SMOKED_PORK_BELLY_IDENTITY"
+    },
+    {
+      "sourceId": "barley",
+      "sourceName": "Pearl barley",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "barley",
+      "reason": "PROCESSING_QUALIFIER_PRESERVES_GENERIC_BARLEY_IDENTITY"
+    },
+    {
+      "sourceId": "salt",
+      "sourceName": "Salt and pepper",
+      "decision": "HOLD",
+      "reason": "COMPOSITE_INGREDIENT_PHRASE"
+    },
+    {
+      "sourceId": "beef",
+      "sourceName": "Beef",
+      "decision": "HOLD",
+      "reason": "GENERIC_BEEF_NOT_EQUIVALENT_TO_CURRENT_BEEF_MINCE_IDENTITY"
+    },
+    {
+      "sourceId": "greenbanana",
+      "sourceName": "Green bananas",
+      "decision": "HOLD",
+      "reason": "COOKING_BANANA_STATE_NOT_SAFE_TO_COLLAPSE_TO_GENERIC_BANANA"
+    },
+    {
+      "sourceId": "trout",
+      "sourceName": "Trout",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_TROUT_IDENTITY"
+    },
+    {
+      "sourceId": "whitewine",
+      "sourceName": "Dry white wine",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_WHITE_WINE_IDENTITY"
+    },
+    {
+      "sourceId": "lamb",
+      "sourceName": "Lamb or veal",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_MEAT_IDENTITY"
+    },
+    {
+      "sourceId": "kefir",
+      "sourceName": "Kefir",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_KEFIR_IDENTITY"
+    },
+    {
+      "sourceId": "peas",
+      "sourceName": "Grey peas",
+      "decision": "HOLD",
+      "reason": "GREY_PEA_VARIETY_NOT_ESTABLISHED_AS_GENERIC_PEA_IDENTITY"
+    },
+    {
+      "sourceId": "olives",
+      "sourceName": "Olives",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_OLIVE_IDENTITY"
+    },
+    {
+      "sourceId": "pepper",
+      "sourceName": "Bell peppers",
+      "decision": "HOLD",
+      "reason": "SOURCE_ID_DIAGNOSTIC_CONFLICTS_WITH_BLACK_PEPPER_ALIAS"
+    },
+    {
+      "sourceId": "coarsesalt",
+      "sourceName": "Coarse salt",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "salt",
+      "reason": "GRANULARITY_QUALIFIER_PRESERVES_SALT_IDENTITY"
+    },
+    {
+      "sourceId": "octopus",
+      "sourceName": "Octopus",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_OCTOPUS_IDENTITY"
+    },
+    {
+      "sourceId": "paprikahot",
+      "sourceName": "Hot paprika",
+      "decision": "HOLD",
+      "reason": "HOT_PAPRIKA_NOT_SAFE_TO_COLLAPSE_TO_CURRENT_SMOKED_PAPRIKA_IDENTITY"
+    },
+    {
+      "sourceId": "fish",
+      "sourceName": "Sea bass or bream",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_FISH_IDENTITY"
+    },
+    {
+      "sourceId": "soysauce",
+      "sourceName": "Steamed fish soy sauce",
+      "decision": "HOLD",
+      "reason": "PREPARED_SEASONED_SOY_SAUCE_NOT_EXACT_CURRENT_SOY_SAUCE_IDENTITY"
+    },
+    {
+      "sourceId": "wine",
+      "sourceName": "Shaoxing wine",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_SHAOXING_WINE_IDENTITY"
+    }
+  ],
+  "expectedIdentityReadySourceSlugs": [],
+  "authority": {
+    "candidateDiscoveryAuthorized": true,
+    "candidateIdentityReviewAuthorized": true,
+    "candidateHardSafetyReviewAuthorized": true,
+    "deterministicMachineAcceptanceAuthorized": true,
+    "runtimeActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "ownerAdmissionGateOpen": false,
+    "globalIngredientAliasIndexMutationAuthorized": false,
+    "globalIngredientCatalogMutationAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V6_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V7_READY",
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V7"
+}
