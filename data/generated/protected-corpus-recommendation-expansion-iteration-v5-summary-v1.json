@@ -132,8 +132,8 @@
   },
   "identityReview": {
     "reviewedDecisionCount": 27,
-    "mappedExistingDecisionCount": 5,
-    "heldDecisionCount": 22,
+    "mappedExistingDecisionCount": 4,
+    "heldDecisionCount": 23,
     "identityReadySourceSlugs": [],
     "rows": [
       {
@@ -218,7 +218,8 @@
         "sourceSlug": "melanzane-alla-parmigiana",
         "identityReady": false,
         "unresolvedIngredientKeys": [
-          "salt :: Salt and pepper"
+          "salt :: Salt and pepper",
+          "tomato :: Tinned tomatoes"
         ]
       }
     ]
