@@ -239,9 +239,8 @@
     {
       "sourceId": "tomato",
       "sourceName": "Tinned tomatoes",
-      "decision": "MAP_EXISTING",
-      "canonicalIngredientId": "canned_tomato",
-      "reason": "EXACT_CURRENT_CANNED_TOMATO_IDENTITY"
+      "decision": "HOLD",
+      "reason": "SOURCE_ID_DIAGNOSTIC_POINTS_TO_FRESH_TOMATO_CANONICAL_IDENTITY"
     }
   ],
   "expectedIdentityReadySourceSlugs": [],
