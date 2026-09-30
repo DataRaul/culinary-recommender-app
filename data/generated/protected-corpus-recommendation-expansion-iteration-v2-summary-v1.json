@@ -1,0 +1,267 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V2_SUMMARY_V1",
+  "date": "2026-09-29",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V2_PASS__JASHA_MAROO_HELD__NEXT_FRONTIER_V3_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V2",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 418,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "flia",
+      "gurasa",
+      "halloumi-grilled",
+      "hangi-style-chicken",
+      "hummus",
+      "injera",
+      "jasha-maroo",
+      "karjalanpiirakka",
+      "matapa",
+      "moros-y-cristianos"
+    ],
+    "digestSha256": "128ac3e3375ac9dc0e5647c813199eadb9028870ebcabcf808ad2d8f624d56f6",
+    "rows": [
+      {
+        "sourceSlug": "flia",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "cream :: Soured cream",
+          "flour :: Flour"
+        ]
+      },
+      {
+        "sourceSlug": "gurasa",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "halloumi-grilled",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "halloumi :: Halloumi",
+          "watermelon :: Watermelon"
+        ]
+      },
+      {
+        "sourceSlug": "hangi-style-chicken",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "smokedsalt :: Smoked salt",
+          "woodchips :: Smoking wood chips"
+        ]
+      },
+      {
+        "sourceSlug": "hummus",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "chickpeas :: Dried chickpeas",
+          "soda :: Bicarbonate of soda"
+        ]
+      },
+      {
+        "sourceSlug": "injera",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "starter :: Ersho starter",
+          "teff :: Teff flour"
+        ]
+      },
+      {
+        "sourceSlug": "jasha-maroo",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "greenchili :: Green chillies",
+          "rice :: Red rice"
+        ]
+      },
+      {
+        "sourceSlug": "karjalanpiirakka",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "rice :: Short-grain rice",
+          "ryeflour :: Rye flour"
+        ]
+      },
+      {
+        "sourceSlug": "matapa",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "cassavaleaves :: Cassava leaves or spinach",
+          "piripiri :: Piri-piri chilli"
+        ]
+      },
+      {
+        "sourceSlug": "moros-y-cristianos",
+        "unresolvedIngredientOccurrenceCount": 2,
+        "uniqueUnresolvedIngredientKeyCount": 2,
+        "unresolvedIngredientKeys": [
+          "pepper :: Green pepper",
+          "rice :: Long-grain rice"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 19,
+    "mappedExistingDecisionCount": 6,
+    "heldDecisionCount": 13,
+    "identityReadySourceSlugs": [
+      "jasha-maroo"
+    ],
+    "rows": [
+      {
+        "sourceSlug": "flia",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cream :: Soured cream",
+          "flour :: Flour"
+        ],
+        "canonicalIngredientIds": []
+      },
+      {
+        "sourceSlug": "gurasa",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "yeast :: Dry yeast"
+        ],
+        "canonicalIngredientIds": []
+      },
+      {
+        "sourceSlug": "halloumi-grilled",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "halloumi :: Halloumi",
+          "watermelon :: Watermelon"
+        ],
+        "canonicalIngredientIds": []
+      },
+      {
+        "sourceSlug": "hangi-style-chicken",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "smokedsalt :: Smoked salt",
+          "woodchips :: Smoking wood chips"
+        ],
+        "canonicalIngredientIds": []
+      },
+      {
+        "sourceSlug": "hummus",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "soda :: Bicarbonate of soda"
+        ],
+        "canonicalIngredientIds": []
+      },
+      {
+        "sourceSlug": "injera",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "starter :: Ersho starter",
+          "teff :: Teff flour"
+        ],
+        "canonicalIngredientIds": []
+      },
+      {
+        "sourceSlug": "jasha-maroo",
+        "identityReady": true,
+        "unresolvedIngredientKeys": [],
+        "canonicalIngredientIds": [
+          "chicken_breast",
+          "fresh_ginger",
+          "garlic",
+          "onion",
+          "tomato",
+          "chilli",
+          "coriander",
+          "neutral_oil",
+          "rice",
+          "salt"
+        ]
+      },
+      {
+        "sourceSlug": "karjalanpiirakka",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "ryeflour :: Rye flour"
+        ],
+        "canonicalIngredientIds": []
+      },
+      {
+        "sourceSlug": "matapa",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cassavaleaves :: Cassava leaves or spinach"
+        ],
+        "canonicalIngredientIds": []
+      },
+      {
+        "sourceSlug": "moros-y-cristianos",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "pepper :: Green pepper"
+        ],
+        "canonicalIngredientIds": []
+      }
+    ]
+  },
+  "hardSafety": {
+    "candidateSourceSlug": "jasha-maroo",
+    "reviewedIngredientPolicyCount": 10,
+    "declaredAllergens": [],
+    "dietaryTags": [
+      "unrestricted"
+    ],
+    "authorityScope": "CANDIDATE_ONLY__CURRENT_MAPPED_PROFILE_TOKENS"
+  },
+  "r3": {
+    "candidateId": "unitools_jasha_maroo",
+    "sourceCategory": "main",
+    "sourceDifficulty": "easy",
+    "runtimeDifficulty": 1,
+    "mealRoleState": "HOLD",
+    "runtimeMealTypes": [],
+    "sourceDeclaredTotalMinutes": 55,
+    "sourceInstructionMinuteSum": 60,
+    "timeAuthorityState": "HOLD",
+    "runtimeTotalMinutes": null,
+    "recommendationAbstentionPass": true,
+    "plannerAbstentionPass": true,
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V3"
+}

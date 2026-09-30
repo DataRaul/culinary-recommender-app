@@ -1,0 +1,294 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V1",
+  "date": "2026-09-29",
+  "iterationId": "V2",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R3_MACHINE_ACCEPTANCE_PASS__CHIMICHURRI_HELD__NEXT_FRONTIER_READY",
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "expectedRecipeCount": 501
+  },
+  "frontier": {
+    "candidateTrancheMaxRecipes": 10,
+    "processedSourceSlugs": [
+      "pao-de-queijo",
+      "tortilla-espanola",
+      "cachapas",
+      "chapati-kenyan",
+      "ajvar",
+      "arepas",
+      "arroz-con-coco",
+      "avgolemono",
+      "burek-bosanski",
+      "chimichurri",
+      "dograma",
+      "draniki"
+    ],
+    "expectedRemainingRankedCount": 418,
+    "expectedZeroGapCount": 0,
+    "expectedOneGapCount": 0,
+    "expectedSourceSlugs": [
+      "flia",
+      "gurasa",
+      "halloumi-grilled",
+      "hangi-style-chicken",
+      "hummus",
+      "injera",
+      "jasha-maroo",
+      "karjalanpiirakka",
+      "matapa",
+      "moros-y-cristianos"
+    ],
+    "expectedDigestSha256": "128ac3e3375ac9dc0e5647c813199eadb9028870ebcabcf808ad2d8f624d56f6"
+  },
+  "identityDecisions": [
+    {
+      "sourceId": "flour",
+      "sourceName": "Flour",
+      "decision": "HOLD",
+      "reason": "UNSPECIFIED_GRAIN_AND_GLUTEN_SEMANTICS"
+    },
+    {
+      "sourceId": "cream",
+      "sourceName": "Soured cream",
+      "decision": "HOLD",
+      "reason": "NO_EXACT_CURRENT_CANONICAL_SOUR_CREAM_IDENTITY"
+    },
+    {
+      "sourceId": "yeast",
+      "sourceName": "Dry yeast",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_YEAST_IDENTITY"
+    },
+    {
+      "sourceId": "halloumi",
+      "sourceName": "Halloumi",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_HALLOUMI_IDENTITY"
+    },
+    {
+      "sourceId": "watermelon",
+      "sourceName": "Watermelon",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_WATERMELON_IDENTITY"
+    },
+    {
+      "sourceId": "smokedsalt",
+      "sourceName": "Smoked salt",
+      "decision": "HOLD",
+      "reason": "FORMULATION_QUALIFIER_NOT_SAFE_TO_COLLAPSE_TO_PLAIN_SALT"
+    },
+    {
+      "sourceId": "woodchips",
+      "sourceName": "Smoking wood chips",
+      "decision": "HOLD",
+      "reason": "NON_FOOD_PROCESS_INPUT_HAS_NO_CURRENT_CANONICAL_INGREDIENT_IDENTITY"
+    },
+    {
+      "sourceId": "chickpeas",
+      "sourceName": "Dried chickpeas",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chickpeas",
+      "reason": "DRY_FORM_QUALIFIER_PRESERVES_CHICKPEA_INGREDIENT_IDENTITY"
+    },
+    {
+      "sourceId": "soda",
+      "sourceName": "Bicarbonate of soda",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_BICARBONATE_IDENTITY"
+    },
+    {
+      "sourceId": "starter",
+      "sourceName": "Ersho starter",
+      "decision": "HOLD",
+      "reason": "FERMENTATION_STARTER_IDENTITY_REQUIRES_DISTINCT_CANONICAL_MODEL"
+    },
+    {
+      "sourceId": "teff",
+      "sourceName": "Teff flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_TEFF_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "greenchili",
+      "sourceName": "Green chillies",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "COLOR_QUALIFIER_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "rice",
+      "sourceName": "Red rice",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "rice",
+      "reason": "COLOR_VARIETY_QUALIFIER_PRESERVES_GENERIC_RICE_IDENTITY"
+    },
+    {
+      "sourceId": "rice",
+      "sourceName": "Short-grain rice",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "rice",
+      "reason": "GRAIN_LENGTH_QUALIFIER_PRESERVES_RICE_IDENTITY"
+    },
+    {
+      "sourceId": "ryeflour",
+      "sourceName": "Rye flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_RYE_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "cassavaleaves",
+      "sourceName": "Cassava leaves or spinach",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_PHRASE_CANNOT_BE_ONE_CANONICAL_IDENTITY"
+    },
+    {
+      "sourceId": "piripiri",
+      "sourceName": "Piri-piri chilli",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "CULTIVAR_QUALIFIER_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "pepper",
+      "sourceName": "Green pepper",
+      "decision": "HOLD",
+      "reason": "SOURCE_ID_PEPPER_IS_AMBIGUOUS_BETWEEN_BLACK_AND_BELL_PEPPER_SEMANTICS"
+    },
+    {
+      "sourceId": "rice",
+      "sourceName": "Long-grain rice",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "rice",
+      "reason": "GRAIN_LENGTH_QUALIFIER_PRESERVES_RICE_IDENTITY"
+    }
+  ],
+  "expectedIdentityReadySourceSlugs": [
+    "jasha-maroo"
+  ],
+  "hardSafety": {
+    "candidateSourceSlug": "jasha-maroo",
+    "supportedAllergenTokens": [
+      "celery",
+      "crustacean",
+      "egg",
+      "fish",
+      "gluten",
+      "milk",
+      "peanut",
+      "sesame",
+      "soy",
+      "tree_nut"
+    ],
+    "ingredientPolicies": [
+      {
+        "ingredientId": "chicken_breast",
+        "reviewedPresentAllergens": [],
+        "vegetarian": false,
+        "vegan": false
+      },
+      {
+        "ingredientId": "chilli",
+        "reviewedPresentAllergens": [],
+        "vegetarian": true,
+        "vegan": true
+      },
+      {
+        "ingredientId": "coriander",
+        "reviewedPresentAllergens": [],
+        "vegetarian": true,
+        "vegan": true
+      },
+      {
+        "ingredientId": "fresh_ginger",
+        "reviewedPresentAllergens": [],
+        "vegetarian": true,
+        "vegan": true
+      },
+      {
+        "ingredientId": "garlic",
+        "reviewedPresentAllergens": [],
+        "vegetarian": true,
+        "vegan": true
+      },
+      {
+        "ingredientId": "neutral_oil",
+        "reviewedPresentAllergens": [],
+        "vegetarian": true,
+        "vegan": true
+      },
+      {
+        "ingredientId": "onion",
+        "reviewedPresentAllergens": [],
+        "vegetarian": true,
+        "vegan": true
+      },
+      {
+        "ingredientId": "rice",
+        "reviewedPresentAllergens": [],
+        "vegetarian": true,
+        "vegan": true
+      },
+      {
+        "ingredientId": "salt",
+        "reviewedPresentAllergens": [],
+        "vegetarian": true,
+        "vegan": true
+      },
+      {
+        "ingredientId": "tomato",
+        "reviewedPresentAllergens": [],
+        "vegetarian": true,
+        "vegan": true
+      }
+    ]
+  },
+  "r3Decision": {
+    "candidateSourceSlug": "jasha-maroo",
+    "canonicalRecipeId": "unitools_jasha_maroo",
+    "reviewedDifficultyMapping": {
+      "sourceDifficulty": "easy",
+      "runtimeDifficulty": 1,
+      "basis": "REUSE_EXISTING_REVIEWED_UNITOOLS_EASY_1_MEDIUM_3_HARD_4_MAPPING"
+    },
+    "mealRoleDecision": {
+      "state": "HOLD",
+      "runtimeMealTypes": [],
+      "reason": "SOURCE_CATEGORY_MAIN_IS_NOT_EXACT_RUNTIME_MEAL_ROLE_AUTHORITY"
+    },
+    "timeDecision": {
+      "state": "HOLD",
+      "sourcePrepMinutes": 20,
+      "sourceCookMinutes": 35,
+      "sourceDeclaredTotalMinutes": 55,
+      "sourceInstructionMinuteSum": 60,
+      "runtimeTotalMinutes": null,
+      "reason": "SOURCE_DECLARED_TIME_IS_SHORTER_THAN_EXPLICIT_STEP_MINUTE_SUM"
+    }
+  },
+  "authority": {
+    "candidateDiscoveryAuthorized": true,
+    "candidateIdentityReviewAuthorized": true,
+    "candidateHardSafetyReviewAuthorized": true,
+    "deterministicMachineAcceptanceAuthorized": true,
+    "runtimeActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "ownerAdmissionGateOpen": false,
+    "globalIngredientAliasIndexMutationAuthorized": false,
+    "globalIngredientCatalogMutationAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V2_PASS__JASHA_MAROO_HELD__NEXT_FRONTIER_V3_READY",
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V3"
+}

@@ -2,7 +2,7 @@
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_V1",
   "date": "2026-09-29",
   "timezone": "Atlantic/Canary",
-  "state": "R0_PASS__R1_PASS__R2_PASS__R3_PASS_WITH_HOLD__NEXT_FRONTIER_READY",
+  "state": "R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__NEXT_FRONTIER_V3_READY",
   "objective": "PROGRESSIVELY_EARN_MORE_PROTECTED_RECOMMENDATION_CANDIDATES_WITH_EXPLICIT_BOUNDED_ADMISSION",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "entryEvidence": {
@@ -114,7 +114,7 @@
     }
   ],
   "nextExecutionSequence": [
-    "R1_NEXT_FRONTIER_ITERATION_V2",
+    "R1_NEXT_FRONTIER_ITERATION_V3",
     "R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR",
     "R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE",
     "R4_OWNER_BOUNDED_ADMISSION",
@@ -186,5 +186,19 @@
     "admissionReadyCandidateCount": 0,
     "ownerAdmissionGateOpen": false,
     "nextGate": "R1_NEXT_FRONTIER_ITERATION_V2"
+  },
+  "iterationV2": {
+    "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V2_PASS__JASHA_MAROO_HELD__NEXT_FRONTIER_V3_READY",
+    "contract": "config/protected_corpus_recommendation_expansion_iteration_v2.json",
+    "evidence": "data/generated/protected-corpus-recommendation-expansion-iteration-v2-summary-v1.json",
+    "frozenCandidateRecipeCount": 10,
+    "frozenCandidateDigestSha256": "128ac3e3375ac9dc0e5647c813199eadb9028870ebcabcf808ad2d8f624d56f6",
+    "identityReadySourceSlugs": [
+      "jasha-maroo"
+    ],
+    "candidateId": "unitools_jasha_maroo",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false,
+    "nextGate": "R1_NEXT_FRONTIER_ITERATION_V3"
   }
 }
