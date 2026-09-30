@@ -8,7 +8,7 @@ export const ITERATION_SCHEMA = "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANS
 export const ITERATION_TERMINAL = "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V3_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V4_READY";
 export const ITERATION_SUMMARY_SCHEMA = "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V3_SUMMARY_V1";
 const ENTRY_TERMINAL = "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V2_PASS__JASHA_MAROO_HELD__NEXT_FRONTIER_V3_READY";
-const norm = value => String(value ?? "").trim().toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").replace(/\\s+/g, " ");
+const norm = value => String(value ?? "").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, " ");
 const sourceName = ingredient => ingredient?.name?.en == null ? null : String(ingredient.name.en);
 const sourceKey = ingredient => `${ingredient?.id ?? "<no-id>"} :: ${sourceName(ingredient) ?? "<no-name>"}`;
 const decisionKey = (sourceId, name) => norm(sourceId) + " :: " + norm(name);
