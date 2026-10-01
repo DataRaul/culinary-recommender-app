@@ -1018,3 +1018,10 @@ The twelfth bounded frontier froze `poulet-moambe`, `rechta`, `risotto-alla-mila
 Every V12 recipe remains identity-incomplete. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V12_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V13_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V13`.
 
 V11 and V12 share one pull-request/CI tranche only to avoid duplicating the repository-wide public/browser validation. Their contracts, deterministic source pins, evidence, tests, workflows, terminals, and sequential authority boundaries remain separate.
+
+
+### 2026-10-01 — Recommendation expansion iteration V13
+
+The thirteenth bounded frontier froze `shelpek`, `souvlaki`, `spanakopita`, `spas`, `tarte-tatin`, `tave-elbasani`, `tave-kosi`, `tsuivan`, `vigoron`, and `vori-vori` (digest `1e0fbebb08ab3e927702e2cafb8fed41ceff037f83aab7a472bc5a503ebe6bf4`). Twenty-nine distinct exact unresolved identities were reviewed; four narrow candidate-only mappings were accepted (Spring onions→spring_onion, Dried mint→mint, Firm tart apples→apple, Hot chilli→chilli). Twenty-five identities remain held.
+
+Every V13 recipe remains identity-incomplete. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V13_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V14_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V14`.
