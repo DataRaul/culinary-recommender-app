@@ -1,0 +1,286 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V19_SUMMARY_V1",
+  "date": "2026-10-02",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V19_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V20_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V19",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 248,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "mucenici",
+      "muhammara",
+      "ndole",
+      "nikujaga",
+      "olla-de-carne",
+      "omani-halwa",
+      "palak-paneer",
+      "pastelitos-hondurenos",
+      "pastrmajlija",
+      "pierogi-ruskie"
+    ],
+    "digestSha256": "e539099984e3605b95b3b94c63bd36777a7996a03de1977fd1720776245a69d4",
+    "rows": [
+      {
+        "sourceSlug": "mucenici",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "lemonzest :: Lemon zest",
+          "milk :: Warm milk",
+          "vanilla :: Vanilla",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "muhammara",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "aleppopepper :: Aleppo pepper",
+          "breadcrumbs :: Breadcrumbs",
+          "pita :: Pita bread",
+          "pomegranate :: Pomegranate molasses",
+          "redpepper :: Red bell peppers"
+        ]
+      },
+      {
+        "sourceSlug": "ndole",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "bitterleaf :: Bitterleaf or spinach",
+          "driedshrimp :: Dried shrimp",
+          "plantain :: Plantain",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "nikujaga",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "dashi :: Dashi",
+          "mirin :: Mirin",
+          "sake :: Sake",
+          "shirataki :: Shirataki noodles"
+        ]
+      },
+      {
+        "sourceSlug": "olla-de-carne",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "beefshank :: Beef shank",
+          "cassava :: Cassava",
+          "plantain :: Plantain",
+          "salt :: Salt and pepper",
+          "squash :: Squash"
+        ]
+      },
+      {
+        "sourceSlug": "omani-halwa",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "cardamom :: Ground cardamom",
+          "cornstarch :: Cornstarch",
+          "ghee :: Ghee",
+          "rosewater :: Rosewater",
+          "saffron :: Saffron"
+        ]
+      },
+      {
+        "sourceSlug": "palak-paneer",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "cream :: Cream",
+          "cumin :: Cumin seeds",
+          "ghee :: Ghee",
+          "greenchilli :: Green chilli",
+          "paneer :: Paneer"
+        ]
+      },
+      {
+        "sourceSlug": "pastelitos-hondurenos",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "annatto :: Annatto",
+          "masa :: Masa harina",
+          "oil :: Oil for frying",
+          "salt :: Salt and pepper",
+          "tomatosauce :: Tomato sauce"
+        ]
+      },
+      {
+        "sourceSlug": "pastrmajlija",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "chili :: Hot chilli",
+          "flour :: Flour",
+          "pork :: Pork neck",
+          "salt :: Salt and pepper",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "pierogi-ruskie",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "curd :: Dry curd cheese",
+          "flour :: Plain flour",
+          "salt :: Salt and pepper",
+          "sourcream :: Soured cream",
+          "water :: Boiling water"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 41,
+    "mappedExistingDecisionCount": 6,
+    "heldDecisionCount": 35,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "mucenici",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "lemonzest :: Lemon zest",
+          "vanilla :: Vanilla",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "muhammara",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "aleppopepper :: Aleppo pepper",
+          "breadcrumbs :: Breadcrumbs",
+          "pita :: Pita bread",
+          "pomegranate :: Pomegranate molasses"
+        ]
+      },
+      {
+        "sourceSlug": "ndole",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "bitterleaf :: Bitterleaf or spinach",
+          "driedshrimp :: Dried shrimp",
+          "plantain :: Plantain",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "nikujaga",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "dashi :: Dashi",
+          "mirin :: Mirin",
+          "sake :: Sake",
+          "shirataki :: Shirataki noodles"
+        ]
+      },
+      {
+        "sourceSlug": "olla-de-carne",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beefshank :: Beef shank",
+          "cassava :: Cassava",
+          "plantain :: Plantain",
+          "salt :: Salt and pepper",
+          "squash :: Squash"
+        ]
+      },
+      {
+        "sourceSlug": "omani-halwa",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cardamom :: Ground cardamom",
+          "cornstarch :: Cornstarch",
+          "ghee :: Ghee",
+          "rosewater :: Rosewater",
+          "saffron :: Saffron"
+        ]
+      },
+      {
+        "sourceSlug": "palak-paneer",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cream :: Cream",
+          "ghee :: Ghee",
+          "paneer :: Paneer"
+        ]
+      },
+      {
+        "sourceSlug": "pastelitos-hondurenos",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "annatto :: Annatto",
+          "masa :: Masa harina",
+          "oil :: Oil for frying",
+          "salt :: Salt and pepper",
+          "tomatosauce :: Tomato sauce"
+        ]
+      },
+      {
+        "sourceSlug": "pastrmajlija",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "pork :: Pork neck",
+          "salt :: Salt and pepper",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "pierogi-ruskie",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "curd :: Dry curd cheese",
+          "flour :: Plain flour",
+          "salt :: Salt and pepper",
+          "sourcream :: Soured cream"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V20"
+}
