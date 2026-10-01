@@ -9,9 +9,6 @@ on:
       - "scripts/run-protected-corpus-recommendation-expansion-iteration-v3.mjs"
       - "tests/protected-corpus-recommendation-expansion-iteration-v3.test.js"
       - ".github/workflows/protected-corpus-recommendation-expansion-iteration-v3.yml"
-      - "config/protected_corpus_recommendation_expansion_v1.json"
-      - "scripts/protected-corpus-recommendation-expansion-v1.mjs"
-      - "tests/protected-corpus-recommendation-expansion-v1.test.js"
   workflow_dispatch:
 
 permissions:
