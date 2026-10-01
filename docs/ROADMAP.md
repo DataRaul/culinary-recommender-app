@@ -979,3 +979,12 @@ The sixth bounded frontier froze `miso-soup`, `montreal-bagels`, `mulgipuder`, `
 The seventh bounded frontier froze `ravitoto`, `rice-and-peas`, `roti-canai`, `salata-aswad`, `sardinhas-assadas`, `shopska-salata`, `sklandrausis`, `sopa-paraguaya`, `tabbouleh`, and `tigadegena` (digest `ceca6e0ab304e64ce81dba3124d334728ad00fa94277c52b9b4aeaadf4866475`). Twenty-eight exact unresolved identities were reviewed; seven narrow candidate-only mappings were accepted (Long-grain rice→rice, Scotch bonnet→chilli, Aubergines→aubergine, Hot chilli→chilli, Coarse salt→salt, Fine bulgur→bulgur, Flat-leaf parsley→parsley). Twenty-one ambiguous, composite, formulation-specific or absent identities remain held.
 
 Every V7 recipe remains identity-incomplete, so no candidate reaches hard-safety or recommendation/planner machine acceptance. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V7_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V8_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V8`.
+
+
+### 2026-10-01 — Recommendation expansion iteration V8
+
+The eighth bounded frontier froze `vitumbua`, `aji-de-gallina`, `apfelstrudel`, `armenian-tolma`, `ashak`, `attieke-poisson`, `bacalhau-a-bras`, `ballokume`, `banku-with-tilapia`, and `barramundi-on-the-barbie` (digest `d2a614d83ef27a838693973948c0e0803f07e1f0a450d5c696e9d0d6aa708484`). Thirty-three distinct exact unresolved identities were reviewed; four narrow candidate-only mappings were accepted (Tart apples→apple, Minced beef→beef_mince, Dried mint→mint, Habanero chillies→chilli). Twenty-nine identities remain held.
+
+Every V8 recipe remains identity-incomplete, so no candidate reaches hard-safety or recommendation/planner machine acceptance. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V8_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V9_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V9`.
+
+The V8 closeout also narrows completed R1 and V3–V5 pull-request path filters so ordinary successor programme-state updates no longer rerun those historical workflows. Their iteration-specific files remain directly testable and manually dispatchable; the active programme contract continues to be covered by its dedicated V1 workflow.

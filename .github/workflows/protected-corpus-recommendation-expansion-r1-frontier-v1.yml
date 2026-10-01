@@ -3,7 +3,6 @@ name: Protected corpus recommendation expansion R1 frontier
 on:
   pull_request:
     paths:
-      - "config/protected_corpus_recommendation_expansion_v1.json"
       - "scripts/protected-corpus-recommendation-expansion-r1-frontier-core.mjs"
       - "scripts/run-protected-corpus-recommendation-expansion-r1-frontier-v1.mjs"
       - "tests/protected-corpus-recommendation-expansion-r1-frontier-v1.test.js"
