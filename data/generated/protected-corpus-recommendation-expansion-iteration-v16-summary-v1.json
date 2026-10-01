@@ -1,0 +1,285 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V16_SUMMARY_V1",
+  "date": "2026-10-02",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V16_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V17_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V16",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 278,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "empanadas-argentinas",
+      "fahsa",
+      "fattet-hummus",
+      "fergese",
+      "goulash",
+      "gromperekichelcher",
+      "gundruk-soup",
+      "harees",
+      "ichlekli",
+      "indio-viejo"
+    ],
+    "digestSha256": "1e98b3141e24296e42f53943711d6b6a01af58f185748e2a285ae2ee8e75d601",
+    "rows": [
+      {
+        "sourceSlug": "empanadas-argentinas",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "dough :: Empanada discs",
+          "fat :: Lard or oil",
+          "olives :: Green olives",
+          "paprika :: Sweet paprika"
+        ]
+      },
+      {
+        "sourceSlug": "fahsa",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "chili :: Green chilli",
+          "fenugreek :: Ground fenugreek",
+          "flatbread :: Flatbreads",
+          "hawaij :: Hawaij spice mix",
+          "lamb :: Lamb"
+        ]
+      },
+      {
+        "sourceSlug": "fattet-hummus",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "butter :: Ghee",
+          "oil :: Oil for frying",
+          "pinenuts :: Pine nuts",
+          "pita :: Pita bread",
+          "yogurt :: Thick yoghurt"
+        ]
+      },
+      {
+        "sourceSlug": "fergese",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "chili :: Hot chilli",
+          "curdcheese :: Curd cheese gjizë",
+          "flour :: Flour",
+          "greenpepper :: Green peppers",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "goulash",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef shin or shoulder",
+          "caraway :: Caraway seeds",
+          "lard :: Lard or oil",
+          "paprika :: Sweet paprika",
+          "peppers :: Sweet peppers"
+        ]
+      },
+      {
+        "sourceSlug": "gromperekichelcher",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "applesauce :: Apple sauce",
+          "flour :: Flour",
+          "oil :: Oil for frying",
+          "salt :: Salt and pepper",
+          "shallot :: Shallots"
+        ]
+      },
+      {
+        "sourceSlug": "gundruk-soup",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "driedchili :: Dried chillies",
+          "fenugreek :: Fenugreek seeds",
+          "gundruk :: Gundruk",
+          "oil :: Mustard oil",
+          "timur :: Timur pepper"
+        ]
+      },
+      {
+        "sourceSlug": "harees",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "cardamom :: Cardamom pods",
+          "cinnamon :: Cinnamon stick",
+          "ghee :: Ghee",
+          "lamb :: Lamb on the bone",
+          "wheat :: Whole wheat"
+        ]
+      },
+      {
+        "sourceSlug": "ichlekli",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "cumin :: Cumin seed",
+          "fat :: Mutton fat",
+          "flour :: Flour",
+          "mutton :: Mutton",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "indio-viejo",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "annatto :: Annatto",
+          "beefbrisket :: Beef brisket",
+          "masa :: Masa harina",
+          "orangejuice :: Orange juice",
+          "salt :: Salt and pepper"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 43,
+    "mappedExistingDecisionCount": 7,
+    "heldDecisionCount": 36,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "empanadas-argentinas",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "dough :: Empanada discs",
+          "fat :: Lard or oil",
+          "olives :: Green olives",
+          "paprika :: Sweet paprika"
+        ]
+      },
+      {
+        "sourceSlug": "fahsa",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "fenugreek :: Ground fenugreek",
+          "flatbread :: Flatbreads",
+          "hawaij :: Hawaij spice mix",
+          "lamb :: Lamb"
+        ]
+      },
+      {
+        "sourceSlug": "fattet-hummus",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "butter :: Ghee",
+          "oil :: Oil for frying",
+          "pinenuts :: Pine nuts",
+          "pita :: Pita bread",
+          "yogurt :: Thick yoghurt"
+        ]
+      },
+      {
+        "sourceSlug": "fergese",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "curdcheese :: Curd cheese gjizë",
+          "flour :: Flour",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "goulash",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef shin or shoulder",
+          "caraway :: Caraway seeds",
+          "lard :: Lard or oil",
+          "paprika :: Sweet paprika"
+        ]
+      },
+      {
+        "sourceSlug": "gromperekichelcher",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "applesauce :: Apple sauce",
+          "flour :: Flour",
+          "oil :: Oil for frying",
+          "salt :: Salt and pepper",
+          "shallot :: Shallots"
+        ]
+      },
+      {
+        "sourceSlug": "gundruk-soup",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "fenugreek :: Fenugreek seeds",
+          "gundruk :: Gundruk",
+          "oil :: Mustard oil",
+          "timur :: Timur pepper"
+        ]
+      },
+      {
+        "sourceSlug": "harees",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cardamom :: Cardamom pods",
+          "ghee :: Ghee",
+          "lamb :: Lamb on the bone",
+          "wheat :: Whole wheat"
+        ]
+      },
+      {
+        "sourceSlug": "ichlekli",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "fat :: Mutton fat",
+          "flour :: Flour",
+          "mutton :: Mutton",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "indio-viejo",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "annatto :: Annatto",
+          "beefbrisket :: Beef brisket",
+          "masa :: Masa harina",
+          "orangejuice :: Orange juice",
+          "salt :: Salt and pepper"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V17"
+}
