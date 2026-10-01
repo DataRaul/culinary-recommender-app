@@ -1,0 +1,244 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V7_SUMMARY_V1",
+  "date": "2026-10-01",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V7_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V8_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V7",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 368,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "ravitoto",
+      "rice-and-peas",
+      "roti-canai",
+      "salata-aswad",
+      "sardinhas-assadas",
+      "shopska-salata",
+      "sklandrausis",
+      "sopa-paraguaya",
+      "tabbouleh",
+      "tigadegena"
+    ],
+    "digestSha256": "ceca6e0ab304e64ce81dba3124d334728ad00fa94277c52b9b4aeaadf4866475",
+    "rows": [
+      {
+        "sourceSlug": "ravitoto",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "cassavaleaves :: Pounded cassava leaves",
+          "porkbelly :: Pork belly",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "rice-and-peas",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "allspice :: Allspice berries",
+          "rice :: Long-grain rice",
+          "scotchbonnet :: Scotch bonnet"
+        ]
+      },
+      {
+        "sourceSlug": "roti-canai",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "condensedmilk :: Condensed milk",
+          "flour :: Plain flour",
+          "ghee :: Ghee or margarine"
+        ]
+      },
+      {
+        "sourceSlug": "salata-aswad",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "aubergine :: Aubergines",
+          "chili :: Hot chilli",
+          "oil :: Oil for frying"
+        ]
+      },
+      {
+        "sourceSlug": "sardinhas-assadas",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "bread :: Country bread",
+          "coarsesalt :: Coarse salt",
+          "pepper :: Bell peppers"
+        ]
+      },
+      {
+        "sourceSlug": "shopska-salata",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "cheese :: Bulgarian white cheese",
+          "olives :: Olives",
+          "peppers :: Red peppers"
+        ]
+      },
+      {
+        "sourceSlug": "sklandrausis",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "caraway :: Caraway seeds",
+          "cream :: Soured cream",
+          "ryeflour :: Rye flour"
+        ]
+      },
+      {
+        "sourceSlug": "sopa-paraguaya",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "cheese :: Paraguayan cheese or brined white cheese",
+          "cornflour :: Corn flour",
+          "lard :: Lard or butter"
+        ]
+      },
+      {
+        "sourceSlug": "tabbouleh",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "allspice :: Ground allspice",
+          "bulgur :: Fine bulgur",
+          "parsley :: Flat-leaf parsley"
+        ]
+      },
+      {
+        "sourceSlug": "tigadegena",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "aubergine :: Aubergines",
+          "beef :: Beef or lamb",
+          "salt :: Salt and pepper"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 28,
+    "mappedExistingDecisionCount": 7,
+    "heldDecisionCount": 21,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "ravitoto",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cassavaleaves :: Pounded cassava leaves",
+          "porkbelly :: Pork belly",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "rice-and-peas",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "allspice :: Allspice berries"
+        ]
+      },
+      {
+        "sourceSlug": "roti-canai",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "condensedmilk :: Condensed milk",
+          "flour :: Plain flour",
+          "ghee :: Ghee or margarine"
+        ]
+      },
+      {
+        "sourceSlug": "salata-aswad",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "oil :: Oil for frying"
+        ]
+      },
+      {
+        "sourceSlug": "sardinhas-assadas",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bread :: Country bread",
+          "pepper :: Bell peppers"
+        ]
+      },
+      {
+        "sourceSlug": "shopska-salata",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cheese :: Bulgarian white cheese",
+          "olives :: Olives",
+          "peppers :: Red peppers"
+        ]
+      },
+      {
+        "sourceSlug": "sklandrausis",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "caraway :: Caraway seeds",
+          "cream :: Soured cream",
+          "ryeflour :: Rye flour"
+        ]
+      },
+      {
+        "sourceSlug": "sopa-paraguaya",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cheese :: Paraguayan cheese or brined white cheese",
+          "cornflour :: Corn flour",
+          "lard :: Lard or butter"
+        ]
+      },
+      {
+        "sourceSlug": "tabbouleh",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "allspice :: Ground allspice"
+        ]
+      },
+      {
+        "sourceSlug": "tigadegena",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef or lamb",
+          "salt :: Salt and pepper"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V8"
+}
