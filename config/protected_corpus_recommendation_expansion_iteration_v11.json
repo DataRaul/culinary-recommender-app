@@ -1,0 +1,395 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V1",
+  "date": "2026-10-01",
+  "iterationId": "V11",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V10_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V11_READY",
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "expectedRecipeCount": 501
+  },
+  "frontier": {
+    "candidateTrancheMaxRecipes": 10,
+    "processedSourceSlugs": [
+      "pao-de-queijo",
+      "tortilla-espanola",
+      "cachapas",
+      "chapati-kenyan",
+      "ajvar",
+      "arepas",
+      "arroz-con-coco",
+      "avgolemono",
+      "burek-bosanski",
+      "chimichurri",
+      "dograma",
+      "draniki",
+      "flia",
+      "gurasa",
+      "halloumi-grilled",
+      "hangi-style-chicken",
+      "hummus",
+      "injera",
+      "jasha-maroo",
+      "karjalanpiirakka",
+      "matapa",
+      "moros-y-cristianos",
+      "muriwo-unedovi",
+      "placinta",
+      "rolex-uganda",
+      "sukuma-wiki",
+      "suutei-tsai",
+      "tarator",
+      "tostones",
+      "baklava",
+      "banitsa",
+      "baursaki",
+      "bolani",
+      "bryndzove-halusky",
+      "byrek-me-spinaq",
+      "caldo-verde",
+      "chakalaka",
+      "colcannon",
+      "ema-datshi",
+      "frango-piri-piri",
+      "ful-sudani",
+      "galayet-bandora",
+      "ghapama",
+      "kacamak",
+      "kurutob",
+      "lahpet-thoke",
+      "maltese-rabbit-stew",
+      "mamaliga",
+      "masgouf",
+      "matoke",
+      "mchuzi-wa-samaki",
+      "melanzane-alla-parmigiana",
+      "miso-soup",
+      "montreal-bagels",
+      "mulgipuder",
+      "ndizi-nyama",
+      "ohridska-pastrmka",
+      "peka",
+      "pelekie-zirni-ar-speki",
+      "pollo-guisado-dominicano",
+      "pulpo-a-feira",
+      "qingzheng-yu",
+      "ravitoto",
+      "rice-and-peas",
+      "roti-canai",
+      "salata-aswad",
+      "sardinhas-assadas",
+      "shopska-salata",
+      "sklandrausis",
+      "sopa-paraguaya",
+      "tabbouleh",
+      "tigadegena",
+      "vitumbua",
+      "aji-de-gallina",
+      "apfelstrudel",
+      "armenian-tolma",
+      "ashak",
+      "attieke-poisson",
+      "bacalhau-a-bras",
+      "ballokume",
+      "banku-with-tilapia",
+      "barramundi-on-the-barbie",
+      "boorsok",
+      "buseca",
+      "buuz",
+      "callaloo",
+      "casado",
+      "chakhokhbili",
+      "chakka",
+      "chipa",
+      "chorreadas",
+      "doro-wat",
+      "farikal",
+      "gazpacho",
+      "gemista",
+      "kaesespaetzle",
+      "kama",
+      "kholodnik",
+      "kleftiko",
+      "kottu-roti",
+      "kugelis",
+      "kuurdak"
+    ],
+    "expectedRemainingRankedCount": 328,
+    "expectedZeroGapCount": 0,
+    "expectedOneGapCount": 0,
+    "expectedSourceSlugs": [
+      "lohikeitto",
+      "mandazi",
+      "mangu",
+      "maqdeed",
+      "mbeju",
+      "menemen",
+      "moqueca-baiana",
+      "pastizzi",
+      "pepian",
+      "pesto-alla-genovese"
+    ],
+    "expectedDigestSha256": "637d08c0a5f6cc1124b0f9dc529c1a88b78a0a36b68a8323ef877961678976bb"
+  },
+  "identityDecisions": [
+    {
+      "sourceId": "allspice",
+      "sourceName": "Allspice berries",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_ALLSPICE_IDENTITY"
+    },
+    {
+      "sourceId": "cream",
+      "sourceName": "Single cream",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CREAM_IDENTITY"
+    },
+    {
+      "sourceId": "potato",
+      "sourceName": "Waxy potatoes",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "potato",
+      "reason": "VARIETY_QUALIFIER_PRESERVES_POTATO_IDENTITY"
+    },
+    {
+      "sourceId": "salmonbones",
+      "sourceName": "Salmon head and bones",
+      "decision": "HOLD",
+      "reason": "FISH_BYPRODUCT_FORM_NOT_SAFE_TO_COLLAPSE_TO_CANONICAL_SALMON"
+    },
+    {
+      "sourceId": "cardamom",
+      "sourceName": "Ground cardamom",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CARDAMOM_IDENTITY"
+    },
+    {
+      "sourceId": "flour",
+      "sourceName": "Flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "oil",
+      "sourceName": "Oil for frying",
+      "decision": "HOLD",
+      "reason": "OIL_TYPE_AMBIGUOUS"
+    },
+    {
+      "sourceId": "yeast",
+      "sourceName": "Dry yeast",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_YEAST_IDENTITY"
+    },
+    {
+      "sourceId": "cheese",
+      "sourceName": "Frying cheese",
+      "decision": "HOLD",
+      "reason": "AMBIGUOUS_CHEESE_IDENTITY"
+    },
+    {
+      "sourceId": "onion",
+      "sourceName": "Red onions",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "onion",
+      "reason": "COLOR_AND_PLURAL_QUALIFIERS_PRESERVE_ONION_IDENTITY"
+    },
+    {
+      "sourceId": "plantain",
+      "sourceName": "Green plantains",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_PLANTAIN_IDENTITY"
+    },
+    {
+      "sourceId": "salami",
+      "sourceName": "Salami",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_SALAMI_IDENTITY"
+    },
+    {
+      "sourceId": "chili",
+      "sourceName": "Dried chilli",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "DRIED_FORM_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "ghee",
+      "sourceName": "Ghee",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_GHEE_IDENTITY"
+    },
+    {
+      "sourceId": "lamb",
+      "sourceName": "Lamb",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_LAMB_IDENTITY"
+    },
+    {
+      "sourceId": "salt",
+      "sourceName": "Coarse salt",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "salt",
+      "reason": "GRANULARITY_QUALIFIER_PRESERVES_SALT_IDENTITY"
+    },
+    {
+      "sourceId": "cassavastarch",
+      "sourceName": "Cassava starch",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "tapioca_starch",
+      "reason": "EXACT_CASSAVA_STARCH_IDENTITY_MATCHES_CANONICAL_TAPIOCA_STARCH"
+    },
+    {
+      "sourceId": "cheese",
+      "sourceName": "Fresh salty cheese",
+      "decision": "HOLD",
+      "reason": "AMBIGUOUS_CHEESE_IDENTITY"
+    },
+    {
+      "sourceId": "cornflour",
+      "sourceName": "Corn flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CORN_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "lard",
+      "sourceName": "Lard or butter",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_FAT_IDENTITY"
+    },
+    {
+      "sourceId": "feta",
+      "sourceName": "White cheese",
+      "decision": "HOLD",
+      "reason": "GENERIC_SOURCE_NAME_DOES_NOT_ESTABLISH_FETA_IDENTITY"
+    },
+    {
+      "sourceId": "pepperflakes",
+      "sourceName": "Pul biber flakes",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "CULTIVAR_AND_FORM_QUALIFIERS_PRESERVE_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "peppers",
+      "sourceName": "Long green peppers",
+      "decision": "HOLD",
+      "reason": "AMBIGUOUS_PEPPER_IDENTITY"
+    },
+    {
+      "sourceId": "tomatoes",
+      "sourceName": "Ripe tomatoes",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "tomato",
+      "reason": "RIPENESS_AND_PLURAL_QUALIFIERS_PRESERVE_TOMATO_IDENTITY"
+    },
+    {
+      "sourceId": "dende",
+      "sourceName": "Dendê palm oil",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_DENDÊ_PALM_OIL_IDENTITY"
+    },
+    {
+      "sourceId": "fish",
+      "sourceName": "White fish",
+      "decision": "HOLD",
+      "reason": "AMBIGUOUS_FISH_IDENTITY"
+    },
+    {
+      "sourceId": "pepper",
+      "sourceName": "Bell peppers",
+      "decision": "HOLD",
+      "reason": "SOURCE_ID_DIAGNOSTIC_CONFLICTS_WITH_BLACK_PEPPER_ALIAS"
+    },
+    {
+      "sourceId": "salt",
+      "sourceName": "Salt and pepper",
+      "decision": "HOLD",
+      "reason": "COMPOSITE_INGREDIENT_PHRASE"
+    },
+    {
+      "sourceId": "lard",
+      "sourceName": "Lard or margarine",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_FAT_IDENTITY"
+    },
+    {
+      "sourceId": "splitpeas",
+      "sourceName": "Yellow split peas",
+      "decision": "HOLD",
+      "reason": "DRIED_SPLIT_PEA_IDENTITY_NOT_ESTABLISHED_AS_CURRENT_CANONICAL_PEA"
+    },
+    {
+      "sourceId": "cinnamon",
+      "sourceName": "Cinnamon stick",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "cinnamon",
+      "reason": "WHOLE_SPICE_FORM_PRESERVES_CINNAMON_IDENTITY"
+    },
+    {
+      "sourceId": "guajillo",
+      "sourceName": "Guajillo chillies",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "CULTIVAR_IDENTITY_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "pasilla",
+      "sourceName": "Pasilla chillies",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "CULTIVAR_IDENTITY_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "tomatillo",
+      "sourceName": "Tomatillos",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_TOMATILLO_IDENTITY"
+    },
+    {
+      "sourceId": "basil",
+      "sourceName": "Basil leaves",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "basil",
+      "reason": "LEAF_FORM_PRESERVES_BASIL_IDENTITY"
+    },
+    {
+      "sourceId": "pecorino",
+      "sourceName": "Pecorino",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_PECORINO_IDENTITY"
+    },
+    {
+      "sourceId": "pinenuts",
+      "sourceName": "Pine nuts",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_PINE_NUT_IDENTITY"
+    }
+  ],
+  "expectedIdentityReadySourceSlugs": [],
+  "authority": {
+    "candidateDiscoveryAuthorized": true,
+    "candidateIdentityReviewAuthorized": true,
+    "candidateHardSafetyReviewAuthorized": true,
+    "deterministicMachineAcceptanceAuthorized": true,
+    "runtimeActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "ownerAdmissionGateOpen": false,
+    "globalIngredientAliasIndexMutationAuthorized": false,
+    "globalIngredientCatalogMutationAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V11_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V12_READY",
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V12"
+}

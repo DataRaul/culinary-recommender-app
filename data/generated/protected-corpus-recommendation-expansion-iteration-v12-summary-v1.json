@@ -1,0 +1,267 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V12_SUMMARY_V1",
+  "date": "2026-10-01",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V12_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V13_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V12",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 318,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "poulet-moambe",
+      "rechta",
+      "risotto-alla-milanese",
+      "ruisleipa",
+      "sadza-ne-nyama",
+      "sancocho-panameno",
+      "sel-roti",
+      "shakshuka",
+      "shakshuka-tunisienne",
+      "shan-noodles"
+    ],
+    "digestSha256": "8368eae4a3c0e4bb22611cfaba2153e84c0b6b13d2130db1002294259241c622",
+    "rows": [
+      {
+        "sourceSlug": "poulet-moambe",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "aubergine :: Aubergines",
+          "chili :: Pili-pili chilli",
+          "palmpulp :: Palm fruit pulp",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "rechta",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "cinnamon :: Cinnamon stick",
+          "flour :: Flour",
+          "turnip :: Turnips",
+          "whitepepper :: White pepper"
+        ]
+      },
+      {
+        "sourceSlug": "risotto-alla-milanese",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "rice :: Carnaroli rice",
+          "saffron :: Saffron",
+          "stock :: Stock",
+          "wine :: Dry white wine"
+        ]
+      },
+      {
+        "sourceSlug": "ruisleipa",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "caraway :: Caraway seeds",
+          "malt :: Rye malt",
+          "ryeflour :: Rye flour",
+          "starter :: Rye sourdough starter"
+        ]
+      },
+      {
+        "sourceSlug": "sadza-ne-nyama",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "collard :: Collard greens",
+          "maizeflour :: Maize meal",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "sancocho-panameno",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "corn :: Corn cobs",
+          "culantro :: Culantro or coriander",
+          "salt :: Salt and pepper",
+          "yam :: Ñame yam"
+        ]
+      },
+      {
+        "sourceSlug": "sel-roti",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "cardamom :: Ground cardamom",
+          "cloves :: Ground cloves",
+          "ghee :: Ghee",
+          "oil :: Oil for frying"
+        ]
+      },
+      {
+        "sourceSlug": "shakshuka",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "feta :: Feta and coriander",
+          "harissa :: Harissa",
+          "peppers :: Red peppers",
+          "tomatoes :: Tinned tomatoes"
+        ]
+      },
+      {
+        "sourceSlug": "shakshuka-tunisienne",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "bread :: Stale white bread",
+          "capers :: Capers",
+          "harissa :: Harissa",
+          "olives :: Olives"
+        ]
+      },
+      {
+        "sourceSlug": "shan-noodles",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "chicken :: Minced chicken",
+          "peanuts :: Roasted peanuts",
+          "pickledgreens :: Pickled mustard greens",
+          "shallot :: Shallots"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 37,
+    "mappedExistingDecisionCount": 5,
+    "heldDecisionCount": 32,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "poulet-moambe",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "palmpulp :: Palm fruit pulp",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "rechta",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "turnip :: Turnips",
+          "whitepepper :: White pepper"
+        ]
+      },
+      {
+        "sourceSlug": "risotto-alla-milanese",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "saffron :: Saffron",
+          "stock :: Stock",
+          "wine :: Dry white wine"
+        ]
+      },
+      {
+        "sourceSlug": "ruisleipa",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "caraway :: Caraway seeds",
+          "malt :: Rye malt",
+          "ryeflour :: Rye flour",
+          "starter :: Rye sourdough starter"
+        ]
+      },
+      {
+        "sourceSlug": "sadza-ne-nyama",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "collard :: Collard greens",
+          "maizeflour :: Maize meal",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "sancocho-panameno",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "corn :: Corn cobs",
+          "culantro :: Culantro or coriander",
+          "salt :: Salt and pepper",
+          "yam :: Ñame yam"
+        ]
+      },
+      {
+        "sourceSlug": "sel-roti",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cardamom :: Ground cardamom",
+          "cloves :: Ground cloves",
+          "ghee :: Ghee",
+          "oil :: Oil for frying"
+        ]
+      },
+      {
+        "sourceSlug": "shakshuka",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "feta :: Feta and coriander",
+          "harissa :: Harissa",
+          "peppers :: Red peppers",
+          "tomatoes :: Tinned tomatoes"
+        ]
+      },
+      {
+        "sourceSlug": "shakshuka-tunisienne",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bread :: Stale white bread",
+          "capers :: Capers",
+          "harissa :: Harissa",
+          "olives :: Olives"
+        ]
+      },
+      {
+        "sourceSlug": "shan-noodles",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "chicken :: Minced chicken",
+          "pickledgreens :: Pickled mustard greens",
+          "shallot :: Shallots"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V13"
+}
