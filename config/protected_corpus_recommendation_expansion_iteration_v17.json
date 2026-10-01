@@ -1,0 +1,501 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V1",
+  "date": "2026-10-02",
+  "iterationId": "V17",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V16_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V17_READY",
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "expectedRecipeCount": 501
+  },
+  "frontier": {
+    "candidateTrancheMaxRecipes": 10,
+    "processedSourceSlugs": [
+      "pao-de-queijo",
+      "tortilla-espanola",
+      "cachapas",
+      "chapati-kenyan",
+      "ajvar",
+      "arepas",
+      "arroz-con-coco",
+      "avgolemono",
+      "burek-bosanski",
+      "chimichurri",
+      "dograma",
+      "draniki",
+      "flia",
+      "gurasa",
+      "halloumi-grilled",
+      "hangi-style-chicken",
+      "hummus",
+      "injera",
+      "jasha-maroo",
+      "karjalanpiirakka",
+      "matapa",
+      "moros-y-cristianos",
+      "muriwo-unedovi",
+      "placinta",
+      "rolex-uganda",
+      "sukuma-wiki",
+      "suutei-tsai",
+      "tarator",
+      "tostones",
+      "baklava",
+      "banitsa",
+      "baursaki",
+      "bolani",
+      "bryndzove-halusky",
+      "byrek-me-spinaq",
+      "caldo-verde",
+      "chakalaka",
+      "colcannon",
+      "ema-datshi",
+      "frango-piri-piri",
+      "ful-sudani",
+      "galayet-bandora",
+      "ghapama",
+      "kacamak",
+      "kurutob",
+      "lahpet-thoke",
+      "maltese-rabbit-stew",
+      "mamaliga",
+      "masgouf",
+      "matoke",
+      "mchuzi-wa-samaki",
+      "melanzane-alla-parmigiana",
+      "miso-soup",
+      "montreal-bagels",
+      "mulgipuder",
+      "ndizi-nyama",
+      "ohridska-pastrmka",
+      "peka",
+      "pelekie-zirni-ar-speki",
+      "pollo-guisado-dominicano",
+      "pulpo-a-feira",
+      "qingzheng-yu",
+      "ravitoto",
+      "rice-and-peas",
+      "roti-canai",
+      "salata-aswad",
+      "sardinhas-assadas",
+      "shopska-salata",
+      "sklandrausis",
+      "sopa-paraguaya",
+      "tabbouleh",
+      "tigadegena",
+      "vitumbua",
+      "aji-de-gallina",
+      "apfelstrudel",
+      "armenian-tolma",
+      "ashak",
+      "attieke-poisson",
+      "bacalhau-a-bras",
+      "ballokume",
+      "banku-with-tilapia",
+      "barramundi-on-the-barbie",
+      "boorsok",
+      "buseca",
+      "buuz",
+      "callaloo",
+      "casado",
+      "chakhokhbili",
+      "chakka",
+      "chipa",
+      "chorreadas",
+      "doro-wat",
+      "farikal",
+      "gazpacho",
+      "gemista",
+      "kaesespaetzle",
+      "kama",
+      "kholodnik",
+      "kleftiko",
+      "kottu-roti",
+      "kugelis",
+      "kuurdak",
+      "lohikeitto",
+      "mandazi",
+      "mangu",
+      "maqdeed",
+      "mbeju",
+      "menemen",
+      "moqueca-baiana",
+      "pastizzi",
+      "pepian",
+      "pesto-alla-genovese",
+      "poulet-moambe",
+      "rechta",
+      "risotto-alla-milanese",
+      "ruisleipa",
+      "sadza-ne-nyama",
+      "sancocho-panameno",
+      "sel-roti",
+      "shakshuka",
+      "shakshuka-tunisienne",
+      "shan-noodles",
+      "shelpek",
+      "souvlaki",
+      "spanakopita",
+      "spas",
+      "tarte-tatin",
+      "tave-elbasani",
+      "tave-kosi",
+      "tsuivan",
+      "vigoron",
+      "vori-vori",
+      "whitebait-fritters",
+      "wiener-schnitzel",
+      "yassa-poulet",
+      "zemiakove-placky",
+      "api-morado",
+      "asado-argentino",
+      "belgian-waffles",
+      "beshbarmak-kyrgyz",
+      "bibimbap",
+      "bint-al-sahn",
+      "bobotie",
+      "borscht",
+      "brik",
+      "butter-tarts",
+      "capitaine-braise",
+      "causa-limena",
+      "ceviche-ecuatoriano",
+      "chiles-en-nogada",
+      "creme-brulee",
+      "doubles",
+      "empanadas-argentinas",
+      "fahsa",
+      "fattet-hummus",
+      "fergese",
+      "goulash",
+      "gromperekichelcher",
+      "gundruk-soup",
+      "harees",
+      "ichlekli",
+      "indio-viejo"
+    ],
+    "expectedRemainingRankedCount": 268,
+    "expectedZeroGapCount": 0,
+    "expectedOneGapCount": 0,
+    "expectedSourceSlugs": [
+      "irish-stew",
+      "jiaozi",
+      "jollof-rice",
+      "jota",
+      "key-lime-pie",
+      "khachapuri-imeruli",
+      "khinkali",
+      "khuushuur",
+      "kimchi-jjigae",
+      "kjotsupa"
+    ],
+    "expectedDigestSha256": "f8e385cce3c075b215ad2c0bd9bdf15933a196c8a00d3bb22a010f905fac6b59"
+  },
+  "identityDecisions": [
+    {
+      "sourceId": "barley",
+      "sourceName": "Pearl barley",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "barley",
+      "reason": "PEARLING_QUALIFIER_PRESERVES_BARLEY_IDENTITY"
+    },
+    {
+      "sourceId": "beans",
+      "sourceName": "Beans",
+      "decision": "HOLD",
+      "reason": "GENERIC_BEAN_IDENTITY_AMBIGUOUS_ACROSS_CANONICAL_BEAN_TYPES"
+    },
+    {
+      "sourceId": "beef",
+      "sourceName": "Beef",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_GENERIC_BEEF_IDENTITY"
+    },
+    {
+      "sourceId": "broth",
+      "sourceName": "Broth or water",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_LIQUID_IDENTITY"
+    },
+    {
+      "sourceId": "cabbage",
+      "sourceName": "Chinese cabbage",
+      "decision": "HOLD",
+      "reason": "CHINESE_CABBAGE_NOT_REVIEWED_AS_CANONICAL_GENERIC_CABBAGE"
+    },
+    {
+      "sourceId": "coldwater",
+      "sourceName": "Iced water for the filling",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "water",
+      "reason": "TEMPERATURE_AND_USAGE_QUALIFIERS_PRESERVE_WATER_IDENTITY"
+    },
+    {
+      "sourceId": "condensedmilk",
+      "sourceName": "Condensed milk",
+      "decision": "HOLD",
+      "reason": "PROCESSED_MILK_IDENTITY_NOT_CANONICAL_MILK"
+    },
+    {
+      "sourceId": "crackers",
+      "sourceName": "Graham crackers or digestives",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_CRACKER_IDENTITY"
+    },
+    {
+      "sourceId": "cream",
+      "sourceName": "Double cream",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CREAM_IDENTITY"
+    },
+    {
+      "sourceId": "curd",
+      "sourceName": "Fresh curd cheese",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FRESH_CURD_CHEESE_IDENTITY"
+    },
+    {
+      "sourceId": "eggyolk",
+      "sourceName": "Egg yolks",
+      "decision": "HOLD",
+      "reason": "PART_IDENTITY_DIFFERS_FROM_CANONICAL_WHOLE_EGGS"
+    },
+    {
+      "sourceId": "flour",
+      "sourceName": "Flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "flour",
+      "sourceName": "Plain flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "gochugaru",
+      "sourceName": "Gochugaru flakes",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_GOCHUGARU_IDENTITY"
+    },
+    {
+      "sourceId": "gochujang",
+      "sourceName": "Gochujang",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_GOCHUJANG_IDENTITY"
+    },
+    {
+      "sourceId": "herbs",
+      "sourceName": "Dried herbs",
+      "decision": "HOLD",
+      "reason": "GENERIC_HERB_BLEND_IDENTITY_AMBIGUOUS"
+    },
+    {
+      "sourceId": "icingsugar",
+      "sourceName": "Icing sugar",
+      "decision": "HOLD",
+      "reason": "FORM_SPECIFIC_IDENTITY_NOT_REVIEWED_AS_CANONICAL_SUGAR"
+    },
+    {
+      "sourceId": "kimchi",
+      "sourceName": "Over-fermented kimchi",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_KIMCHI_IDENTITY"
+    },
+    {
+      "sourceId": "lamb",
+      "sourceName": "Lamb",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_LAMB_IDENTITY"
+    },
+    {
+      "sourceId": "lamb",
+      "sourceName": "Lamb neck or shoulder",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_LAMB_CUT_IDENTITY"
+    },
+    {
+      "sourceId": "lamb",
+      "sourceName": "Lamb on the bone",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_LAMB_IDENTITY"
+    },
+    {
+      "sourceId": "matsoni",
+      "sourceName": "Matsoni or kefir",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_FERMENTED_DAIRY_IDENTITY"
+    },
+    {
+      "sourceId": "oil",
+      "sourceName": "Oil for frying",
+      "decision": "HOLD",
+      "reason": "OIL_TYPE_AMBIGUOUS"
+    },
+    {
+      "sourceId": "pork",
+      "sourceName": "Minced pork",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_MINCED_PORK_IDENTITY"
+    },
+    {
+      "sourceId": "pork",
+      "sourceName": "Pork",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_GENERIC_PORK_IDENTITY"
+    },
+    {
+      "sourceId": "pork",
+      "sourceName": "Pork belly",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_PORK_BELLY_IDENTITY"
+    },
+    {
+      "sourceId": "porkribs",
+      "sourceName": "Smoked pork ribs",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_SMOKED_PORK_RIB_IDENTITY"
+    },
+    {
+      "sourceId": "potatofirst",
+      "sourceName": "Floury potatoes",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "potato",
+      "reason": "TEXTURE_QUALIFIER_PRESERVES_POTATO_IDENTITY"
+    },
+    {
+      "sourceId": "potatosecond",
+      "sourceName": "Waxy potatoes",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "potato",
+      "reason": "TEXTURE_QUALIFIER_PRESERVES_POTATO_IDENTITY"
+    },
+    {
+      "sourceId": "redpepper",
+      "sourceName": "Red peppers",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "bell_pepper",
+      "reason": "COLOR_QUALIFIER_PRESERVES_BELL_PEPPER_IDENTITY"
+    },
+    {
+      "sourceId": "rice",
+      "sourceName": "Long-grain rice",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "rice",
+      "reason": "GRAIN_LENGTH_QUALIFIER_PRESERVES_GENERIC_RICE_IDENTITY"
+    },
+    {
+      "sourceId": "salt",
+      "sourceName": "Salt and pepper",
+      "decision": "HOLD",
+      "reason": "COMPOSITE_INGREDIENT_PHRASE"
+    },
+    {
+      "sourceId": "sauerkraut",
+      "sourceName": "Soured turnip or sauerkraut",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_FERMENTED_VEGETABLE_IDENTITY"
+    },
+    {
+      "sourceId": "sausage",
+      "sourceName": "Smoked sausage",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_SMOKED_SAUSAGE_IDENTITY"
+    },
+    {
+      "sourceId": "scotchbonnet",
+      "sourceName": "Scotch bonnet",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "CULTIVAR_NAME_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "stock",
+      "sourceName": "Chicken stock",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CHICKEN_STOCK_IDENTITY"
+    },
+    {
+      "sourceId": "stock",
+      "sourceName": "Cold stock",
+      "decision": "HOLD",
+      "reason": "STOCK_TYPE_UNSPECIFIED"
+    },
+    {
+      "sourceId": "stock",
+      "sourceName": "Lamb or vegetable stock",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_STOCK_IDENTITY"
+    },
+    {
+      "sourceId": "stock",
+      "sourceName": "Water or anchovy stock",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_LIQUID_IDENTITY"
+    },
+    {
+      "sourceId": "suluguni",
+      "sourceName": "Suluguni",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_SULUGUNI_IDENTITY"
+    },
+    {
+      "sourceId": "swede",
+      "sourceName": "Swede",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_SWEDE_IDENTITY"
+    },
+    {
+      "sourceId": "thyme",
+      "sourceName": "Dried thyme",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "thyme",
+      "reason": "DRIED_FORM_PRESERVES_GENERIC_THYME_IDENTITY"
+    },
+    {
+      "sourceId": "vinegar",
+      "sourceName": "Black vinegar for dipping",
+      "decision": "HOLD",
+      "reason": "BLACK_VINEGAR_TYPE_NOT_SAFE_TO_COLLAPSE_TO_GENERIC_OR_RICE_VINEGAR"
+    },
+    {
+      "sourceId": "water",
+      "sourceName": "Water for the dough",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "water",
+      "reason": "USAGE_QUALIFIER_PRESERVES_WATER_IDENTITY"
+    },
+    {
+      "sourceId": "yeast",
+      "sourceName": "Dry yeast",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_YEAST_IDENTITY"
+    }
+  ],
+  "expectedIdentityReadySourceSlugs": [],
+  "authority": {
+    "candidateDiscoveryAuthorized": true,
+    "candidateIdentityReviewAuthorized": true,
+    "candidateHardSafetyReviewAuthorized": true,
+    "deterministicMachineAcceptanceAuthorized": true,
+    "runtimeActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "ownerAdmissionGateOpen": false,
+    "globalIngredientAliasIndexMutationAuthorized": false,
+    "globalIngredientCatalogMutationAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V17_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V18_READY",
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V18"
+}

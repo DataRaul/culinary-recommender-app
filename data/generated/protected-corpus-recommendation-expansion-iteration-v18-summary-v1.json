@@ -1,0 +1,284 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V18_SUMMARY_V1",
+  "date": "2026-10-02",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V18_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V19_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V18",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 258,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "koki-corn",
+      "kolduny",
+      "kulajda",
+      "larb-lao",
+      "liboke-de-poisson",
+      "makroud",
+      "malabi",
+      "masala-dosa",
+      "melktert",
+      "moules-marinieres"
+    ],
+    "digestSha256": "f698b1e70bafec2cb93563f63dd48225a300f5de227c48bd96daaf1a9e01e181",
+    "rows": [
+      {
+        "sourceSlug": "koki-corn",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "bananaleaf :: Banana leaves",
+          "blackeyedpeas :: Black-eyed beans",
+          "chili :: Hot chilli",
+          "crayfish :: Ground dried crayfish",
+          "palmoil :: Red palm oil"
+        ]
+      },
+      {
+        "sourceSlug": "kolduny",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "cream :: Soured cream",
+          "marjoram :: Marjoram",
+          "mushrooms :: Dried mushrooms",
+          "pork :: Minced pork",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "kulajda",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "caraway :: Caraway seeds",
+          "cream :: Soured cream",
+          "flour :: Flour",
+          "mushrooms :: Wild mushrooms",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "larb-lao",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "chiliflakes :: Toasted chilli flakes",
+          "lettuce :: Lettuce and raw vegetables",
+          "pork :: Pork",
+          "shallot :: Shallots",
+          "stickyrice :: Sticky rice"
+        ]
+      },
+      {
+        "sourceSlug": "liboke-de-poisson",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "bananaleaf :: Banana leaves",
+          "cassava :: Cassava",
+          "chili :: Pili-pili chilli",
+          "fish :: Tilapia or carp",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "makroud",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "dates :: Dates",
+          "oil :: Oil for frying",
+          "orangeblossom :: Orange blossom water",
+          "orangezest :: Orange zest",
+          "semolina :: Semolina"
+        ]
+      },
+      {
+        "sourceSlug": "malabi",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "cornflour :: Cornflour",
+          "cream :: Cream",
+          "pistachios :: Pistachios",
+          "raspberrysyrup :: Raspberry or pomegranate syrup",
+          "rosewater :: Rose water"
+        ]
+      },
+      {
+        "sourceSlug": "masala-dosa",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "curryleaves :: Curry leaves",
+          "fenugreek :: Fenugreek seeds",
+          "greenchili :: Green chillies",
+          "mustardseeds :: Mustard seeds",
+          "uraddal :: Urad dal"
+        ]
+      },
+      {
+        "sourceSlug": "melktert",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "cinnamonstick :: Cinnamon stick",
+          "cornflour :: Cornflour",
+          "flour :: Flour for the base",
+          "flourfilling :: Flour for the filling",
+          "vanilla :: Vanilla"
+        ]
+      },
+      {
+        "sourceSlug": "moules-marinieres",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "fries :: Chips",
+          "mussels :: Mussels",
+          "shallots :: Shallots",
+          "thyme :: Thyme and bay",
+          "wine :: Dry white wine"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 45,
+    "mappedExistingDecisionCount": 8,
+    "heldDecisionCount": 37,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "koki-corn",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bananaleaf :: Banana leaves",
+          "blackeyedpeas :: Black-eyed beans",
+          "crayfish :: Ground dried crayfish",
+          "palmoil :: Red palm oil"
+        ]
+      },
+      {
+        "sourceSlug": "kolduny",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cream :: Soured cream",
+          "marjoram :: Marjoram",
+          "pork :: Minced pork",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "kulajda",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "caraway :: Caraway seeds",
+          "cream :: Soured cream",
+          "flour :: Flour",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "larb-lao",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "lettuce :: Lettuce and raw vegetables",
+          "pork :: Pork",
+          "shallot :: Shallots"
+        ]
+      },
+      {
+        "sourceSlug": "liboke-de-poisson",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bananaleaf :: Banana leaves",
+          "cassava :: Cassava",
+          "fish :: Tilapia or carp",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "makroud",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "dates :: Dates",
+          "oil :: Oil for frying",
+          "orangeblossom :: Orange blossom water",
+          "orangezest :: Orange zest",
+          "semolina :: Semolina"
+        ]
+      },
+      {
+        "sourceSlug": "malabi",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cornflour :: Cornflour",
+          "cream :: Cream",
+          "pistachios :: Pistachios",
+          "raspberrysyrup :: Raspberry or pomegranate syrup",
+          "rosewater :: Rose water"
+        ]
+      },
+      {
+        "sourceSlug": "masala-dosa",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "curryleaves :: Curry leaves",
+          "fenugreek :: Fenugreek seeds",
+          "mustardseeds :: Mustard seeds",
+          "uraddal :: Urad dal"
+        ]
+      },
+      {
+        "sourceSlug": "melktert",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cornflour :: Cornflour",
+          "flour :: Flour for the base",
+          "flourfilling :: Flour for the filling",
+          "vanilla :: Vanilla"
+        ]
+      },
+      {
+        "sourceSlug": "moules-marinieres",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "fries :: Chips",
+          "mussels :: Mussels",
+          "shallots :: Shallots",
+          "thyme :: Thyme and bay",
+          "wine :: Dry white wine"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V19"
+}
