@@ -988,3 +988,10 @@ The eighth bounded frontier froze `vitumbua`, `aji-de-gallina`, `apfelstrudel`, 
 Every V8 recipe remains identity-incomplete, so no candidate reaches hard-safety or recommendation/planner machine acceptance. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V8_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V9_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V9`.
 
 The V8 closeout also narrows completed R1 and V3–V5 pull-request path filters so ordinary successor programme-state updates no longer rerun those historical workflows. Their iteration-specific files remain directly testable and manually dispatchable; the active programme contract continues to be covered by its dedicated V1 workflow.
+
+
+### 2026-10-01 — Recommendation expansion iteration V9
+
+The ninth bounded frontier froze `boorsok`, `buseca`, `buuz`, `callaloo`, `casado`, `chakhokhbili`, `chakka`, `chipa`, `chorreadas`, and `doro-wat` (digest `9e4e16becfac66ddee4aadb3803141254be17531f5b8c8fb4c95adc37d7026f0`). Thirty-four distinct exact unresolved identities were reviewed; four narrow candidate-only mappings were accepted (Warm milk→milk, Scotch bonnet→chilli, Purple basil→basil, Cassava starch→tapioca_starch). Thirty identities remain held.
+
+Every V9 recipe remains identity-incomplete, so no candidate reaches hard-safety or recommendation/planner machine acceptance. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V9_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V10_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V10`.
