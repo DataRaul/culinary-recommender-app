@@ -1,0 +1,264 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V10_SUMMARY_V1",
+  "date": "2026-10-01",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V10_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V11_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V10",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 338,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "farikal",
+      "gazpacho",
+      "gemista",
+      "kaesespaetzle",
+      "kama",
+      "kholodnik",
+      "kleftiko",
+      "kottu-roti",
+      "kugelis",
+      "kuurdak"
+    ],
+    "digestSha256": "6e802b83265d7dc2385b4421907688aac5223ad98d76c8bed98e4bf269d67527",
+    "rows": [
+      {
+        "sourceSlug": "farikal",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "flour :: Plain flour",
+          "mutton :: Mutton on the bone",
+          "peppercorns :: Black peppercorns",
+          "potato :: Boiled potatoes"
+        ]
+      },
+      {
+        "sourceSlug": "gazpacho",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "bread :: Stale white bread",
+          "pepper :: Green pepper",
+          "tomatoes :: Ripe tomatoes",
+          "vinegar :: Sherry vinegar"
+        ]
+      },
+      {
+        "sourceSlug": "gemista",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "pepper :: Bell peppers",
+          "rice :: Short-grain rice",
+          "salt :: Salt and pepper",
+          "tomato :: Large tomatoes"
+        ]
+      },
+      {
+        "sourceSlug": "kaesespaetzle",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "cheese :: Emmental or Bergkäse",
+          "flour :: Plain flour",
+          "nutmeg :: Nutmeg",
+          "water :: Water or milk"
+        ]
+      },
+      {
+        "sourceSlug": "kama",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "berries :: Forest berries",
+          "cream :: Cream",
+          "kamaflour :: Kama flour",
+          "kefir :: Kefir"
+        ]
+      },
+      {
+        "sourceSlug": "kholodnik",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "beetroot :: Beetroot",
+          "cream :: Soured cream",
+          "kefir :: Kefir",
+          "sorrel :: Sorrel"
+        ]
+      },
+      {
+        "sourceSlug": "kleftiko",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "cinnamon :: Cinnamon stick",
+          "halloumi :: Halloumi",
+          "lamb :: Lamb shoulder",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "kottu-roti",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "chicken :: Cooked chicken",
+          "chillies :: Green chillies",
+          "currysauce :: Chicken curry with sauce",
+          "roti :: Roti or paratha"
+        ]
+      },
+      {
+        "sourceSlug": "kugelis",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "bacon :: Smoked bacon",
+          "cream :: Soured cream",
+          "marjoram :: Marjoram",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "kuurdak",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "flatbread :: Flatbread",
+          "lamb :: Lamb",
+          "salt :: Salt and pepper",
+          "tailfat :: Lamb tail fat"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 34,
+    "mappedExistingDecisionCount": 8,
+    "heldDecisionCount": 26,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "farikal",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Plain flour",
+          "mutton :: Mutton on the bone"
+        ]
+      },
+      {
+        "sourceSlug": "gazpacho",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bread :: Stale white bread",
+          "pepper :: Green pepper"
+        ]
+      },
+      {
+        "sourceSlug": "gemista",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "pepper :: Bell peppers",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "kaesespaetzle",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cheese :: Emmental or Bergkäse",
+          "flour :: Plain flour",
+          "nutmeg :: Nutmeg",
+          "water :: Water or milk"
+        ]
+      },
+      {
+        "sourceSlug": "kama",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "berries :: Forest berries",
+          "cream :: Cream",
+          "kamaflour :: Kama flour",
+          "kefir :: Kefir"
+        ]
+      },
+      {
+        "sourceSlug": "kholodnik",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beetroot :: Beetroot",
+          "cream :: Soured cream",
+          "kefir :: Kefir",
+          "sorrel :: Sorrel"
+        ]
+      },
+      {
+        "sourceSlug": "kleftiko",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "halloumi :: Halloumi",
+          "lamb :: Lamb shoulder",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "kottu-roti",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "chicken :: Cooked chicken",
+          "currysauce :: Chicken curry with sauce",
+          "roti :: Roti or paratha"
+        ]
+      },
+      {
+        "sourceSlug": "kugelis",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bacon :: Smoked bacon",
+          "cream :: Soured cream",
+          "marjoram :: Marjoram",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "kuurdak",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flatbread :: Flatbread",
+          "lamb :: Lamb",
+          "salt :: Salt and pepper",
+          "tailfat :: Lamb tail fat"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V11"
+}
