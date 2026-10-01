@@ -1,0 +1,399 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V1",
+  "date": "2026-10-01",
+  "iterationId": "V12",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V11_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V12_READY",
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "expectedRecipeCount": 501
+  },
+  "frontier": {
+    "candidateTrancheMaxRecipes": 10,
+    "processedSourceSlugs": [
+      "pao-de-queijo",
+      "tortilla-espanola",
+      "cachapas",
+      "chapati-kenyan",
+      "ajvar",
+      "arepas",
+      "arroz-con-coco",
+      "avgolemono",
+      "burek-bosanski",
+      "chimichurri",
+      "dograma",
+      "draniki",
+      "flia",
+      "gurasa",
+      "halloumi-grilled",
+      "hangi-style-chicken",
+      "hummus",
+      "injera",
+      "jasha-maroo",
+      "karjalanpiirakka",
+      "matapa",
+      "moros-y-cristianos",
+      "muriwo-unedovi",
+      "placinta",
+      "rolex-uganda",
+      "sukuma-wiki",
+      "suutei-tsai",
+      "tarator",
+      "tostones",
+      "baklava",
+      "banitsa",
+      "baursaki",
+      "bolani",
+      "bryndzove-halusky",
+      "byrek-me-spinaq",
+      "caldo-verde",
+      "chakalaka",
+      "colcannon",
+      "ema-datshi",
+      "frango-piri-piri",
+      "ful-sudani",
+      "galayet-bandora",
+      "ghapama",
+      "kacamak",
+      "kurutob",
+      "lahpet-thoke",
+      "maltese-rabbit-stew",
+      "mamaliga",
+      "masgouf",
+      "matoke",
+      "mchuzi-wa-samaki",
+      "melanzane-alla-parmigiana",
+      "miso-soup",
+      "montreal-bagels",
+      "mulgipuder",
+      "ndizi-nyama",
+      "ohridska-pastrmka",
+      "peka",
+      "pelekie-zirni-ar-speki",
+      "pollo-guisado-dominicano",
+      "pulpo-a-feira",
+      "qingzheng-yu",
+      "ravitoto",
+      "rice-and-peas",
+      "roti-canai",
+      "salata-aswad",
+      "sardinhas-assadas",
+      "shopska-salata",
+      "sklandrausis",
+      "sopa-paraguaya",
+      "tabbouleh",
+      "tigadegena",
+      "vitumbua",
+      "aji-de-gallina",
+      "apfelstrudel",
+      "armenian-tolma",
+      "ashak",
+      "attieke-poisson",
+      "bacalhau-a-bras",
+      "ballokume",
+      "banku-with-tilapia",
+      "barramundi-on-the-barbie",
+      "boorsok",
+      "buseca",
+      "buuz",
+      "callaloo",
+      "casado",
+      "chakhokhbili",
+      "chakka",
+      "chipa",
+      "chorreadas",
+      "doro-wat",
+      "farikal",
+      "gazpacho",
+      "gemista",
+      "kaesespaetzle",
+      "kama",
+      "kholodnik",
+      "kleftiko",
+      "kottu-roti",
+      "kugelis",
+      "kuurdak",
+      "lohikeitto",
+      "mandazi",
+      "mangu",
+      "maqdeed",
+      "mbeju",
+      "menemen",
+      "moqueca-baiana",
+      "pastizzi",
+      "pepian",
+      "pesto-alla-genovese"
+    ],
+    "expectedRemainingRankedCount": 318,
+    "expectedZeroGapCount": 0,
+    "expectedOneGapCount": 0,
+    "expectedSourceSlugs": [
+      "poulet-moambe",
+      "rechta",
+      "risotto-alla-milanese",
+      "ruisleipa",
+      "sadza-ne-nyama",
+      "sancocho-panameno",
+      "sel-roti",
+      "shakshuka",
+      "shakshuka-tunisienne",
+      "shan-noodles"
+    ],
+    "expectedDigestSha256": "8368eae4a3c0e4bb22611cfaba2153e84c0b6b13d2130db1002294259241c622"
+  },
+  "identityDecisions": [
+    {
+      "sourceId": "aubergine",
+      "sourceName": "Aubergines",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "aubergine",
+      "reason": "PLURAL_ONLY_PRESERVES_AUBERGINE_IDENTITY"
+    },
+    {
+      "sourceId": "chili",
+      "sourceName": "Pili-pili chilli",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "CULTIVAR_IDENTITY_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "palmpulp",
+      "sourceName": "Palm fruit pulp",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_PALM_FRUIT_PULP_IDENTITY"
+    },
+    {
+      "sourceId": "salt",
+      "sourceName": "Salt and pepper",
+      "decision": "HOLD",
+      "reason": "COMPOSITE_INGREDIENT_PHRASE"
+    },
+    {
+      "sourceId": "cinnamon",
+      "sourceName": "Cinnamon stick",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "cinnamon",
+      "reason": "WHOLE_SPICE_FORM_PRESERVES_CINNAMON_IDENTITY"
+    },
+    {
+      "sourceId": "flour",
+      "sourceName": "Flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "turnip",
+      "sourceName": "Turnips",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_TURNIP_IDENTITY"
+    },
+    {
+      "sourceId": "whitepepper",
+      "sourceName": "White pepper",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_WHITE_PEPPER_IDENTITY"
+    },
+    {
+      "sourceId": "rice",
+      "sourceName": "Carnaroli rice",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "rice",
+      "reason": "CULTIVAR_QUALIFIER_PRESERVES_RICE_IDENTITY"
+    },
+    {
+      "sourceId": "saffron",
+      "sourceName": "Saffron",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_SAFFRON_IDENTITY"
+    },
+    {
+      "sourceId": "stock",
+      "sourceName": "Stock",
+      "decision": "HOLD",
+      "reason": "AMBIGUOUS_STOCK_IDENTITY"
+    },
+    {
+      "sourceId": "wine",
+      "sourceName": "Dry white wine",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_WHITE_WINE_IDENTITY"
+    },
+    {
+      "sourceId": "caraway",
+      "sourceName": "Caraway seeds",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CARAWAY_IDENTITY"
+    },
+    {
+      "sourceId": "malt",
+      "sourceName": "Rye malt",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_RYE_MALT_IDENTITY"
+    },
+    {
+      "sourceId": "ryeflour",
+      "sourceName": "Rye flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_RYE_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "starter",
+      "sourceName": "Rye sourdough starter",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_RYE_STARTER_IDENTITY"
+    },
+    {
+      "sourceId": "beef",
+      "sourceName": "Beef",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_GENERIC_BEEF_IDENTITY"
+    },
+    {
+      "sourceId": "collard",
+      "sourceName": "Collard greens",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_COLLARD_GREEN_IDENTITY"
+    },
+    {
+      "sourceId": "maizeflour",
+      "sourceName": "Maize meal",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_MAIZE_MEAL_IDENTITY"
+    },
+    {
+      "sourceId": "corn",
+      "sourceName": "Corn cobs",
+      "decision": "HOLD",
+      "reason": "FORM_SPECIFIC_CORN_IDENTITY_NOT_ESTABLISHED_AS_CANONICAL_SWEETCORN"
+    },
+    {
+      "sourceId": "culantro",
+      "sourceName": "Culantro or coriander",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_HERB_IDENTITY"
+    },
+    {
+      "sourceId": "yam",
+      "sourceName": "Ñame yam",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_YAM_IDENTITY"
+    },
+    {
+      "sourceId": "cardamom",
+      "sourceName": "Ground cardamom",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CARDAMOM_IDENTITY"
+    },
+    {
+      "sourceId": "cloves",
+      "sourceName": "Ground cloves",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CLOVE_IDENTITY"
+    },
+    {
+      "sourceId": "ghee",
+      "sourceName": "Ghee",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_GHEE_IDENTITY"
+    },
+    {
+      "sourceId": "oil",
+      "sourceName": "Oil for frying",
+      "decision": "HOLD",
+      "reason": "OIL_TYPE_AMBIGUOUS"
+    },
+    {
+      "sourceId": "feta",
+      "sourceName": "Feta and coriander",
+      "decision": "HOLD",
+      "reason": "COMPOSITE_INGREDIENT_PHRASE"
+    },
+    {
+      "sourceId": "harissa",
+      "sourceName": "Harissa",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_HARISSA_IDENTITY"
+    },
+    {
+      "sourceId": "peppers",
+      "sourceName": "Red peppers",
+      "decision": "HOLD",
+      "reason": "COLOR_TERM_DOES_NOT_ESTABLISH_EXACT_BELL_PEPPER_IDENTITY"
+    },
+    {
+      "sourceId": "tomatoes",
+      "sourceName": "Tinned tomatoes",
+      "decision": "HOLD",
+      "reason": "PROCESSED_TOMATO_FORM_NOT_SAFE_TO_COLLAPSE_TO_FRESH_TOMATO"
+    },
+    {
+      "sourceId": "bread",
+      "sourceName": "Stale white bread",
+      "decision": "HOLD",
+      "reason": "FORMULATION_SPECIFIC_BREAD_REQUIRES_DISTINCT_HARD_SAFETY_REVIEW"
+    },
+    {
+      "sourceId": "capers",
+      "sourceName": "Capers",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CAPER_IDENTITY"
+    },
+    {
+      "sourceId": "olives",
+      "sourceName": "Olives",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_OLIVE_IDENTITY"
+    },
+    {
+      "sourceId": "chicken",
+      "sourceName": "Minced chicken",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CHICKEN_MINCE_IDENTITY"
+    },
+    {
+      "sourceId": "peanuts",
+      "sourceName": "Roasted peanuts",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "peanuts",
+      "reason": "ROASTED_FORM_PRESERVES_PEANUT_IDENTITY_AND_ALLERGEN_SEMANTICS"
+    },
+    {
+      "sourceId": "pickledgreens",
+      "sourceName": "Pickled mustard greens",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_PICKLED_MUSTARD_GREEN_IDENTITY"
+    },
+    {
+      "sourceId": "shallot",
+      "sourceName": "Shallots",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_SHALLOT_IDENTITY"
+    }
+  ],
+  "expectedIdentityReadySourceSlugs": [],
+  "authority": {
+    "candidateDiscoveryAuthorized": true,
+    "candidateIdentityReviewAuthorized": true,
+    "candidateHardSafetyReviewAuthorized": true,
+    "deterministicMachineAcceptanceAuthorized": true,
+    "runtimeActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "ownerAdmissionGateOpen": false,
+    "globalIngredientAliasIndexMutationAuthorized": false,
+    "globalIngredientCatalogMutationAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V12_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V13_READY",
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V13"
+}
