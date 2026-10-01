@@ -972,3 +972,10 @@ The fifth bounded frontier froze `ghapama`, `kacamak`, `kurutob`, `lahpet-thoke`
 ### 2026-09-30 — Recommendation expansion iteration V6
 
 The sixth bounded frontier froze `miso-soup`, `montreal-bagels`, `mulgipuder`, `ndizi-nyama`, `ohridska-pastrmka`, `peka`, `pelekie-zirni-ar-speki`, `pollo-guisado-dominicano`, `pulpo-a-feira`, and `qingzheng-yu` (digest `534440e3231483c8f2add1295391fb78215214fb03e463c9faaa8de4543efaa4`). Twenty-four exact unresolved identities were reviewed. Only Pearl barley→barley and Coarse salt→salt were accepted; every recipe retained at least one held identity. No candidate reached hard-safety or recommendation/planner machine acceptance. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all mutation/cost firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V6_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V7_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V7`.
+
+
+### 2026-10-01 — Recommendation expansion iteration V7
+
+The seventh bounded frontier froze `ravitoto`, `rice-and-peas`, `roti-canai`, `salata-aswad`, `sardinhas-assadas`, `shopska-salata`, `sklandrausis`, `sopa-paraguaya`, `tabbouleh`, and `tigadegena` (digest `ceca6e0ab304e64ce81dba3124d334728ad00fa94277c52b9b4aeaadf4866475`). Twenty-eight exact unresolved identities were reviewed; seven narrow candidate-only mappings were accepted (Long-grain rice→rice, Scotch bonnet→chilli, Aubergines→aubergine, Hot chilli→chilli, Coarse salt→salt, Fine bulgur→bulgur, Flat-leaf parsley→parsley). Twenty-one ambiguous, composite, formulation-specific or absent identities remain held.
+
+Every V7 recipe remains identity-incomplete, so no candidate reaches hard-safety or recommendation/planner machine acceptance. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V7_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V8_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V8`.
