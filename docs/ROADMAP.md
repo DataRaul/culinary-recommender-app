@@ -1002,3 +1002,19 @@ Every V9 recipe remains identity-incomplete, so no candidate reaches hard-safety
 The tenth bounded frontier froze `farikal`, `gazpacho`, `gemista`, `kaesespaetzle`, `kama`, `kholodnik`, `kleftiko`, `kottu-roti`, `kugelis`, and `kuurdak` (digest `6e802b83265d7dc2385b4421907688aac5223ad98d76c8bed98e4bf269d67527`). Thirty-four distinct exact unresolved identities were reviewed; eight narrow candidate-only mappings were accepted (Black peppercorns→black_pepper, Boiled potatoes→potato, Ripe tomatoes→tomato, Sherry vinegar→vinegar, Short-grain rice→rice, Large tomatoes→tomato, Cinnamon stick→cinnamon, Green chillies→chilli). Twenty-six identities remain held.
 
 Every V10 recipe remains identity-incomplete, so no candidate reaches hard-safety or recommendation/planner machine acceptance. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V10_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V11_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V11`.
+
+
+### 2026-10-01 — Recommendation expansion iteration V11
+
+The eleventh bounded frontier froze `lohikeitto`, `mandazi`, `mangu`, `maqdeed`, `mbeju`, `menemen`, `moqueca-baiana`, `pastizzi`, `pepian`, and `pesto-alla-genovese` (digest `637d08c0a5f6cc1124b0f9dc529c1a88b78a0a36b68a8323ef877961678976bb`). Thirty-seven distinct exact unresolved identities were reviewed; eleven narrow candidate-only mappings were accepted and twenty-six identities remain held. `pepian` narrows to exactly one held identity, `tomatillo :: Tomatillos`, but no new canonical ingredient identity or global ingredient-catalog authority is granted.
+
+No V11 recipe becomes identity-ready. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V11_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V12_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V12`.
+
+
+### 2026-10-01 — Recommendation expansion iteration V12
+
+The twelfth bounded frontier froze `poulet-moambe`, `rechta`, `risotto-alla-milanese`, `ruisleipa`, `sadza-ne-nyama`, `sancocho-panameno`, `sel-roti`, `shakshuka`, `shakshuka-tunisienne`, and `shan-noodles` (digest `8368eae4a3c0e4bb22611cfaba2153e84c0b6b13d2130db1002294259241c622`). Thirty-seven distinct exact unresolved identities were reviewed; five narrow candidate-only mappings were accepted (Aubergines→aubergine, Pili-pili chilli→chilli, Cinnamon stick→cinnamon, Carnaroli rice→rice, Roasted peanuts→peanuts). Thirty-two identities remain held.
+
+Every V12 recipe remains identity-incomplete. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V12_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V13_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V13`.
+
+V11 and V12 share one pull-request/CI tranche only to avoid duplicating the repository-wide public/browser validation. Their contracts, deterministic source pins, evidence, tests, workflows, terminals, and sequential authority boundaries remain separate.
