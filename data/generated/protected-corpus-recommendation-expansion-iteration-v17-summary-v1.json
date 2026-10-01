@@ -1,0 +1,283 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V17_SUMMARY_V1",
+  "date": "2026-10-02",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V17_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V18_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V17",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 268,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "irish-stew",
+      "jiaozi",
+      "jollof-rice",
+      "jota",
+      "key-lime-pie",
+      "khachapuri-imeruli",
+      "khinkali",
+      "khuushuur",
+      "kimchi-jjigae",
+      "kjotsupa"
+    ],
+    "digestSha256": "f8e385cce3c075b215ad2c0bd9bdf15933a196c8a00d3bb22a010f905fac6b59",
+    "rows": [
+      {
+        "sourceSlug": "irish-stew",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "lamb :: Lamb neck or shoulder",
+          "potatofirst :: Floury potatoes",
+          "potatosecond :: Waxy potatoes",
+          "salt :: Salt and pepper",
+          "stock :: Lamb or vegetable stock"
+        ]
+      },
+      {
+        "sourceSlug": "jiaozi",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "cabbage :: Chinese cabbage",
+          "flour :: Plain flour",
+          "pork :: Minced pork",
+          "stock :: Cold stock",
+          "vinegar :: Black vinegar for dipping"
+        ]
+      },
+      {
+        "sourceSlug": "jollof-rice",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "redpepper :: Red peppers",
+          "rice :: Long-grain rice",
+          "scotchbonnet :: Scotch bonnet",
+          "stock :: Chicken stock",
+          "thyme :: Dried thyme"
+        ]
+      },
+      {
+        "sourceSlug": "jota",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "beans :: Beans",
+          "porkribs :: Smoked pork ribs",
+          "salt :: Salt and pepper",
+          "sauerkraut :: Soured turnip or sauerkraut",
+          "sausage :: Smoked sausage"
+        ]
+      },
+      {
+        "sourceSlug": "key-lime-pie",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "condensedmilk :: Condensed milk",
+          "crackers :: Graham crackers or digestives",
+          "cream :: Double cream",
+          "eggyolk :: Egg yolks",
+          "icingsugar :: Icing sugar"
+        ]
+      },
+      {
+        "sourceSlug": "khachapuri-imeruli",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "curd :: Fresh curd cheese",
+          "flour :: Flour",
+          "matsoni :: Matsoni or kefir",
+          "suluguni :: Suluguni",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "khinkali",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "coldwater :: Iced water for the filling",
+          "flour :: Plain flour",
+          "pork :: Pork",
+          "water :: Water for the dough"
+        ]
+      },
+      {
+        "sourceSlug": "khuushuur",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "broth :: Broth or water",
+          "flour :: Flour",
+          "lamb :: Lamb",
+          "oil :: Oil for frying",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "kimchi-jjigae",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "gochugaru :: Gochugaru flakes",
+          "gochujang :: Gochujang",
+          "kimchi :: Over-fermented kimchi",
+          "pork :: Pork belly",
+          "stock :: Water or anchovy stock"
+        ]
+      },
+      {
+        "sourceSlug": "kjotsupa",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "barley :: Pearl barley",
+          "herbs :: Dried herbs",
+          "lamb :: Lamb on the bone",
+          "salt :: Salt and pepper",
+          "swede :: Swede"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 45,
+    "mappedExistingDecisionCount": 9,
+    "heldDecisionCount": 36,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "irish-stew",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "lamb :: Lamb neck or shoulder",
+          "salt :: Salt and pepper",
+          "stock :: Lamb or vegetable stock"
+        ]
+      },
+      {
+        "sourceSlug": "jiaozi",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cabbage :: Chinese cabbage",
+          "flour :: Plain flour",
+          "pork :: Minced pork",
+          "stock :: Cold stock",
+          "vinegar :: Black vinegar for dipping"
+        ]
+      },
+      {
+        "sourceSlug": "jollof-rice",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "stock :: Chicken stock"
+        ]
+      },
+      {
+        "sourceSlug": "jota",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beans :: Beans",
+          "porkribs :: Smoked pork ribs",
+          "salt :: Salt and pepper",
+          "sauerkraut :: Soured turnip or sauerkraut",
+          "sausage :: Smoked sausage"
+        ]
+      },
+      {
+        "sourceSlug": "key-lime-pie",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "condensedmilk :: Condensed milk",
+          "crackers :: Graham crackers or digestives",
+          "cream :: Double cream",
+          "eggyolk :: Egg yolks",
+          "icingsugar :: Icing sugar"
+        ]
+      },
+      {
+        "sourceSlug": "khachapuri-imeruli",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "curd :: Fresh curd cheese",
+          "flour :: Flour",
+          "matsoni :: Matsoni or kefir",
+          "suluguni :: Suluguni",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "khinkali",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "flour :: Plain flour",
+          "pork :: Pork"
+        ]
+      },
+      {
+        "sourceSlug": "khuushuur",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "broth :: Broth or water",
+          "flour :: Flour",
+          "lamb :: Lamb",
+          "oil :: Oil for frying",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "kimchi-jjigae",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "gochugaru :: Gochugaru flakes",
+          "gochujang :: Gochujang",
+          "kimchi :: Over-fermented kimchi",
+          "pork :: Pork belly",
+          "stock :: Water or anchovy stock"
+        ]
+      },
+      {
+        "sourceSlug": "kjotsupa",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "herbs :: Dried herbs",
+          "lamb :: Lamb on the bone",
+          "salt :: Salt and pepper",
+          "swede :: Swede"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V18"
+}
