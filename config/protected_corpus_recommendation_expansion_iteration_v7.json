@@ -1,0 +1,297 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V1",
+  "date": "2026-10-01",
+  "iterationId": "V7",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V6_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V7_READY",
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "expectedRecipeCount": 501
+  },
+  "frontier": {
+    "candidateTrancheMaxRecipes": 10,
+    "processedSourceSlugs": [
+      "pao-de-queijo",
+      "tortilla-espanola",
+      "cachapas",
+      "chapati-kenyan",
+      "ajvar",
+      "arepas",
+      "arroz-con-coco",
+      "avgolemono",
+      "burek-bosanski",
+      "chimichurri",
+      "dograma",
+      "draniki",
+      "flia",
+      "gurasa",
+      "halloumi-grilled",
+      "hangi-style-chicken",
+      "hummus",
+      "injera",
+      "jasha-maroo",
+      "karjalanpiirakka",
+      "matapa",
+      "moros-y-cristianos",
+      "muriwo-unedovi",
+      "placinta",
+      "rolex-uganda",
+      "sukuma-wiki",
+      "suutei-tsai",
+      "tarator",
+      "tostones",
+      "baklava",
+      "banitsa",
+      "baursaki",
+      "bolani",
+      "bryndzove-halusky",
+      "byrek-me-spinaq",
+      "caldo-verde",
+      "chakalaka",
+      "colcannon",
+      "ema-datshi",
+      "frango-piri-piri",
+      "ful-sudani",
+      "galayet-bandora",
+      "ghapama",
+      "kacamak",
+      "kurutob",
+      "lahpet-thoke",
+      "maltese-rabbit-stew",
+      "mamaliga",
+      "masgouf",
+      "matoke",
+      "mchuzi-wa-samaki",
+      "melanzane-alla-parmigiana",
+      "miso-soup",
+      "montreal-bagels",
+      "mulgipuder",
+      "ndizi-nyama",
+      "ohridska-pastrmka",
+      "peka",
+      "pelekie-zirni-ar-speki",
+      "pollo-guisado-dominicano",
+      "pulpo-a-feira",
+      "qingzheng-yu"
+    ],
+    "expectedRemainingRankedCount": 368,
+    "expectedZeroGapCount": 0,
+    "expectedOneGapCount": 0,
+    "expectedSourceSlugs": [
+      "ravitoto",
+      "rice-and-peas",
+      "roti-canai",
+      "salata-aswad",
+      "sardinhas-assadas",
+      "shopska-salata",
+      "sklandrausis",
+      "sopa-paraguaya",
+      "tabbouleh",
+      "tigadegena"
+    ],
+    "expectedDigestSha256": "ceca6e0ab304e64ce81dba3124d334728ad00fa94277c52b9b4aeaadf4866475"
+  },
+  "identityDecisions": [
+    {
+      "sourceId": "cassavaleaves",
+      "sourceName": "Pounded cassava leaves",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CASSAVA_LEAF_IDENTITY"
+    },
+    {
+      "sourceId": "porkbelly",
+      "sourceName": "Pork belly",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_PORK_BELLY_IDENTITY"
+    },
+    {
+      "sourceId": "salt",
+      "sourceName": "Salt and pepper",
+      "decision": "HOLD",
+      "reason": "COMPOSITE_INGREDIENT_PHRASE"
+    },
+    {
+      "sourceId": "allspice",
+      "sourceName": "Allspice berries",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_ALLSPICE_IDENTITY"
+    },
+    {
+      "sourceId": "rice",
+      "sourceName": "Long-grain rice",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "rice",
+      "reason": "GRAIN_LENGTH_QUALIFIER_PRESERVES_RICE_IDENTITY"
+    },
+    {
+      "sourceId": "scotchbonnet",
+      "sourceName": "Scotch bonnet",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "CULTIVAR_IDENTITY_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "condensedmilk",
+      "sourceName": "Condensed milk",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CONDENSED_MILK_IDENTITY"
+    },
+    {
+      "sourceId": "flour",
+      "sourceName": "Plain flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "ghee",
+      "sourceName": "Ghee or margarine",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_FAT_IDENTITY"
+    },
+    {
+      "sourceId": "aubergine",
+      "sourceName": "Aubergines",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "aubergine",
+      "reason": "PLURAL_ONLY_PRESERVES_AUBERGINE_IDENTITY"
+    },
+    {
+      "sourceId": "chili",
+      "sourceName": "Hot chilli",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "HEAT_QUALIFIER_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "oil",
+      "sourceName": "Oil for frying",
+      "decision": "HOLD",
+      "reason": "OIL_TYPE_AMBIGUOUS"
+    },
+    {
+      "sourceId": "bread",
+      "sourceName": "Country bread",
+      "decision": "HOLD",
+      "reason": "FORMULATION_SPECIFIC_BREAD_REQUIRES_DISTINCT_HARD_SAFETY_REVIEW"
+    },
+    {
+      "sourceId": "coarsesalt",
+      "sourceName": "Coarse salt",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "salt",
+      "reason": "GRANULARITY_QUALIFIER_PRESERVES_SALT_IDENTITY"
+    },
+    {
+      "sourceId": "pepper",
+      "sourceName": "Bell peppers",
+      "decision": "HOLD",
+      "reason": "SOURCE_ID_DIAGNOSTIC_CONFLICTS_WITH_BLACK_PEPPER_ALIAS"
+    },
+    {
+      "sourceId": "cheese",
+      "sourceName": "Bulgarian white cheese",
+      "decision": "HOLD",
+      "reason": "NO_EXACT_CURRENT_CANONICAL_BULGARIAN_WHITE_CHEESE_IDENTITY"
+    },
+    {
+      "sourceId": "olives",
+      "sourceName": "Olives",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_OLIVE_IDENTITY"
+    },
+    {
+      "sourceId": "peppers",
+      "sourceName": "Red peppers",
+      "decision": "HOLD",
+      "reason": "COLOR_TERM_DOES_NOT_ESTABLISH_EXACT_BELL_PEPPER_IDENTITY"
+    },
+    {
+      "sourceId": "caraway",
+      "sourceName": "Caraway seeds",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CARAWAY_IDENTITY"
+    },
+    {
+      "sourceId": "cream",
+      "sourceName": "Soured cream",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_SOUR_CREAM_IDENTITY"
+    },
+    {
+      "sourceId": "ryeflour",
+      "sourceName": "Rye flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_RYE_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "cheese",
+      "sourceName": "Paraguayan cheese or brined white cheese",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_CHEESE_IDENTITY"
+    },
+    {
+      "sourceId": "cornflour",
+      "sourceName": "Corn flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CORN_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "lard",
+      "sourceName": "Lard or butter",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_FAT_IDENTITY"
+    },
+    {
+      "sourceId": "allspice",
+      "sourceName": "Ground allspice",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_ALLSPICE_IDENTITY"
+    },
+    {
+      "sourceId": "bulgur",
+      "sourceName": "Fine bulgur",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "bulgur",
+      "reason": "GRANULARITY_QUALIFIER_PRESERVES_BULGUR_IDENTITY"
+    },
+    {
+      "sourceId": "parsley",
+      "sourceName": "Flat-leaf parsley",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "parsley",
+      "reason": "VARIETY_QUALIFIER_PRESERVES_PARSLEY_IDENTITY"
+    },
+    {
+      "sourceId": "beef",
+      "sourceName": "Beef or lamb",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_MEAT_IDENTITY"
+    }
+  ],
+  "expectedIdentityReadySourceSlugs": [],
+  "authority": {
+    "candidateDiscoveryAuthorized": true,
+    "candidateIdentityReviewAuthorized": true,
+    "candidateHardSafetyReviewAuthorized": true,
+    "deterministicMachineAcceptanceAuthorized": true,
+    "runtimeActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "ownerAdmissionGateOpen": false,
+    "globalIngredientAliasIndexMutationAuthorized": false,
+    "globalIngredientCatalogMutationAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V7_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V8_READY",
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V8"
+}
