@@ -1,0 +1,455 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V1",
+  "date": "2026-10-02",
+  "iterationId": "V15",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V14_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V15_READY",
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "expectedRecipeCount": 501
+  },
+  "frontier": {
+    "candidateTrancheMaxRecipes": 10,
+    "processedSourceSlugs": [
+      "pao-de-queijo",
+      "tortilla-espanola",
+      "cachapas",
+      "chapati-kenyan",
+      "ajvar",
+      "arepas",
+      "arroz-con-coco",
+      "avgolemono",
+      "burek-bosanski",
+      "chimichurri",
+      "dograma",
+      "draniki",
+      "flia",
+      "gurasa",
+      "halloumi-grilled",
+      "hangi-style-chicken",
+      "hummus",
+      "injera",
+      "jasha-maroo",
+      "karjalanpiirakka",
+      "matapa",
+      "moros-y-cristianos",
+      "muriwo-unedovi",
+      "placinta",
+      "rolex-uganda",
+      "sukuma-wiki",
+      "suutei-tsai",
+      "tarator",
+      "tostones",
+      "baklava",
+      "banitsa",
+      "baursaki",
+      "bolani",
+      "bryndzove-halusky",
+      "byrek-me-spinaq",
+      "caldo-verde",
+      "chakalaka",
+      "colcannon",
+      "ema-datshi",
+      "frango-piri-piri",
+      "ful-sudani",
+      "galayet-bandora",
+      "ghapama",
+      "kacamak",
+      "kurutob",
+      "lahpet-thoke",
+      "maltese-rabbit-stew",
+      "mamaliga",
+      "masgouf",
+      "matoke",
+      "mchuzi-wa-samaki",
+      "melanzane-alla-parmigiana",
+      "miso-soup",
+      "montreal-bagels",
+      "mulgipuder",
+      "ndizi-nyama",
+      "ohridska-pastrmka",
+      "peka",
+      "pelekie-zirni-ar-speki",
+      "pollo-guisado-dominicano",
+      "pulpo-a-feira",
+      "qingzheng-yu",
+      "ravitoto",
+      "rice-and-peas",
+      "roti-canai",
+      "salata-aswad",
+      "sardinhas-assadas",
+      "shopska-salata",
+      "sklandrausis",
+      "sopa-paraguaya",
+      "tabbouleh",
+      "tigadegena",
+      "vitumbua",
+      "aji-de-gallina",
+      "apfelstrudel",
+      "armenian-tolma",
+      "ashak",
+      "attieke-poisson",
+      "bacalhau-a-bras",
+      "ballokume",
+      "banku-with-tilapia",
+      "barramundi-on-the-barbie",
+      "boorsok",
+      "buseca",
+      "buuz",
+      "callaloo",
+      "casado",
+      "chakhokhbili",
+      "chakka",
+      "chipa",
+      "chorreadas",
+      "doro-wat",
+      "farikal",
+      "gazpacho",
+      "gemista",
+      "kaesespaetzle",
+      "kama",
+      "kholodnik",
+      "kleftiko",
+      "kottu-roti",
+      "kugelis",
+      "kuurdak",
+      "lohikeitto",
+      "mandazi",
+      "mangu",
+      "maqdeed",
+      "mbeju",
+      "menemen",
+      "moqueca-baiana",
+      "pastizzi",
+      "pepian",
+      "pesto-alla-genovese",
+      "poulet-moambe",
+      "rechta",
+      "risotto-alla-milanese",
+      "ruisleipa",
+      "sadza-ne-nyama",
+      "sancocho-panameno",
+      "sel-roti",
+      "shakshuka",
+      "shakshuka-tunisienne",
+      "shan-noodles",
+      "shelpek",
+      "souvlaki",
+      "spanakopita",
+      "spas",
+      "tarte-tatin",
+      "tave-elbasani",
+      "tave-kosi",
+      "tsuivan",
+      "vigoron",
+      "vori-vori",
+      "whitebait-fritters",
+      "wiener-schnitzel",
+      "yassa-poulet",
+      "zemiakove-placky",
+      "api-morado",
+      "asado-argentino",
+      "belgian-waffles",
+      "beshbarmak-kyrgyz",
+      "bibimbap",
+      "bint-al-sahn"
+    ],
+    "expectedRemainingRankedCount": 288,
+    "expectedZeroGapCount": 0,
+    "expectedOneGapCount": 0,
+    "expectedSourceSlugs": [
+      "bobotie",
+      "borscht",
+      "brik",
+      "butter-tarts",
+      "capitaine-braise",
+      "causa-limena",
+      "ceviche-ecuatoriano",
+      "chiles-en-nogada",
+      "creme-brulee",
+      "doubles"
+    ],
+    "expectedDigestSha256": "001164961d081c78de947caadc91b8d01cc9bd10defcf06e4a81cde6e944fe8f"
+  },
+  "identityDecisions": [
+    {
+      "sourceId": "ajiamarillo",
+      "sourceName": "Ají amarillo paste",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_AJI_AMARILLO_PASTE_IDENTITY"
+    },
+    {
+      "sourceId": "apricots",
+      "sourceName": "Dried apricots",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_APRICOT_IDENTITY"
+    },
+    {
+      "sourceId": "beef",
+      "sourceName": "Beef on the bone",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_GENERIC_BEEF_IDENTITY"
+    },
+    {
+      "sourceId": "beetroot",
+      "sourceName": "Beetroot",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_BEETROOT_IDENTITY"
+    },
+    {
+      "sourceId": "bread",
+      "sourceName": "White bread",
+      "decision": "HOLD",
+      "reason": "FORMULATION_SPECIFIC_BREAD_REQUIRES_DISTINCT_HARD_SAFETY_REVIEW"
+    },
+    {
+      "sourceId": "brownsugar",
+      "sourceName": "Brown sugar",
+      "decision": "HOLD",
+      "reason": "FORM_SPECIFIC_SUGAR_IDENTITY_NOT_REVIEWED_AS_CANONICAL_SUGAR"
+    },
+    {
+      "sourceId": "butterpastry",
+      "sourceName": "Butter for the pastry",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "butter",
+      "reason": "USAGE_QUALIFIER_PRESERVES_BUTTER_IDENTITY"
+    },
+    {
+      "sourceId": "capers",
+      "sourceName": "Capers",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CAPER_IDENTITY"
+    },
+    {
+      "sourceId": "cheese",
+      "sourceName": "Oaxaca cheese or mozzarella",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_CHEESE_IDENTITY"
+    },
+    {
+      "sourceId": "chutney",
+      "sourceName": "Apricot chutney",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_APRICOT_CHUTNEY_IDENTITY"
+    },
+    {
+      "sourceId": "cream",
+      "sourceName": "Double cream",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CREAM_IDENTITY"
+    },
+    {
+      "sourceId": "fish",
+      "sourceName": "Nile perch or pike-perch",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_FISH_IDENTITY"
+    },
+    {
+      "sourceId": "flour",
+      "sourceName": "Flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "flour",
+      "sourceName": "Plain flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "harissa",
+      "sourceName": "Harissa",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_HARISSA_IDENTITY"
+    },
+    {
+      "sourceId": "ketchup",
+      "sourceName": "Ketchup",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_KETCHUP_IDENTITY"
+    },
+    {
+      "sourceId": "malsouka",
+      "sourceName": "Malsouka or filo sheets",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_PASTRY_IDENTITY"
+    },
+    {
+      "sourceId": "mayonnaise",
+      "sourceName": "Mayonnaise",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_MAYONNAISE_IDENTITY"
+    },
+    {
+      "sourceId": "mustard",
+      "sourceName": "Mustard",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_MUSTARD_IDENTITY"
+    },
+    {
+      "sourceId": "oil",
+      "sourceName": "Oil for frying",
+      "decision": "HOLD",
+      "reason": "OIL_TYPE_AMBIGUOUS"
+    },
+    {
+      "sourceId": "olives",
+      "sourceName": "Black olives",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_OLIVE_FRUIT_IDENTITY"
+    },
+    {
+      "sourceId": "oregano",
+      "sourceName": "Mexican oregano",
+      "decision": "HOLD",
+      "reason": "MEXICAN_OREGANO_IS_DISTINCT_FROM_CANONICAL_MEDITERRANEAN_OREGANO"
+    },
+    {
+      "sourceId": "plantain",
+      "sourceName": "Plantains",
+      "decision": "HOLD",
+      "reason": "PLANTAIN_NOT_SAFE_TO_COLLAPSE_TO_CANONICAL_BANANA"
+    },
+    {
+      "sourceId": "plantainchips",
+      "sourceName": "Plantain crisps",
+      "decision": "HOLD",
+      "reason": "PROCESSED_PLANTAIN_IDENTITY_NOT_CANONICAL"
+    },
+    {
+      "sourceId": "poblano",
+      "sourceName": "Poblano peppers",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_POBLANO_IDENTITY"
+    },
+    {
+      "sourceId": "popcorn",
+      "sourceName": "Popcorn",
+      "decision": "HOLD",
+      "reason": "PROCESSED_CORN_IDENTITY_NOT_CANONICAL_SWEETCORN"
+    },
+    {
+      "sourceId": "raisins",
+      "sourceName": "Raisins",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_RAISIN_IDENTITY"
+    },
+    {
+      "sourceId": "redonion",
+      "sourceName": "Red onions",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "red_onion",
+      "reason": "PLURAL_ONLY_PRESERVES_RED_ONION_IDENTITY"
+    },
+    {
+      "sourceId": "salt",
+      "sourceName": "Salt and pepper",
+      "decision": "HOLD",
+      "reason": "COMPOSITE_INGREDIENT_PHRASE"
+    },
+    {
+      "sourceId": "scotchbonnet",
+      "sourceName": "Scotch bonnet",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "CULTIVAR_NAME_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "sourcream",
+      "sourceName": "Sour cream",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_SOUR_CREAM_IDENTITY"
+    },
+    {
+      "sourceId": "stockcube",
+      "sourceName": "Stock cube",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_STOCK_CUBE_IDENTITY"
+    },
+    {
+      "sourceId": "sugar",
+      "sourceName": "Sugar for the custard",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "sugar",
+      "reason": "USAGE_QUALIFIER_PRESERVES_SUGAR_IDENTITY"
+    },
+    {
+      "sourceId": "tamarind",
+      "sourceName": "Tamarind sauce",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_TAMARIND_SAUCE_IDENTITY"
+    },
+    {
+      "sourceId": "topsugar",
+      "sourceName": "Sugar for the top",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "sugar",
+      "reason": "USAGE_QUALIFIER_PRESERVES_SUGAR_IDENTITY"
+    },
+    {
+      "sourceId": "vanilla",
+      "sourceName": "Vanilla",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_VANILLA_IDENTITY"
+    },
+    {
+      "sourceId": "vanilla",
+      "sourceName": "Vanilla pod",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_VANILLA_IDENTITY"
+    },
+    {
+      "sourceId": "vinegar",
+      "sourceName": "Vinegar, 9%",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "vinegar",
+      "reason": "CONCENTRATION_QUALIFIER_PRESERVES_VINEGAR_IDENTITY"
+    },
+    {
+      "sourceId": "yeast",
+      "sourceName": "Dry yeast",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_YEAST_IDENTITY"
+    },
+    {
+      "sourceId": "yellowpotato",
+      "sourceName": "Yellow potatoes",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "potato",
+      "reason": "VARIETY_COLOR_QUALIFIER_PRESERVES_POTATO_IDENTITY"
+    },
+    {
+      "sourceId": "yolks",
+      "sourceName": "Egg yolks",
+      "decision": "HOLD",
+      "reason": "PART_IDENTITY_DIFFERS_FROM_CANONICAL_WHOLE_EGGS"
+    }
+  ],
+  "expectedIdentityReadySourceSlugs": [],
+  "authority": {
+    "candidateDiscoveryAuthorized": true,
+    "candidateIdentityReviewAuthorized": true,
+    "candidateHardSafetyReviewAuthorized": true,
+    "deterministicMachineAcceptanceAuthorized": true,
+    "runtimeActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "ownerAdmissionGateOpen": false,
+    "globalIngredientAliasIndexMutationAuthorized": false,
+    "globalIngredientCatalogMutationAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V15_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V16_READY",
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V16"
+}
