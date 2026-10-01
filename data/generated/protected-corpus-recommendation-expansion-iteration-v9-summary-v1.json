@@ -1,0 +1,267 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V9_SUMMARY_V1",
+  "date": "2026-10-01",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V9_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V10_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V9",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 348,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "boorsok",
+      "buseca",
+      "buuz",
+      "callaloo",
+      "casado",
+      "chakhokhbili",
+      "chakka",
+      "chipa",
+      "chorreadas",
+      "doro-wat"
+    ],
+    "digestSha256": "9e4e16becfac66ddee4aadb3803141254be17531f5b8c8fb4c95adc37d7026f0",
+    "rows": [
+      {
+        "sourceSlug": "boorsok",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "milk :: Warm milk",
+          "oil :: Oil for frying",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "buseca",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "chorizo :: Chorizo",
+          "pancetta :: Pancetta",
+          "salt :: Salt and pepper",
+          "tripe :: Beef tripe"
+        ]
+      },
+      {
+        "sourceSlug": "buuz",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "fat :: Mutton fat",
+          "flour :: Flour",
+          "mutton :: Mutton",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "callaloo",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "okra :: Okra",
+          "salt :: Salt and pepper",
+          "scotchbonnet :: Scotch bonnet",
+          "taroleaves :: Taro leaves or spinach"
+        ]
+      },
+      {
+        "sourceSlug": "casado",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "chayote :: Chayote or courgette",
+          "lizano :: Salsa Lizano",
+          "plantain :: Plantain",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "chakhokhbili",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "basil :: Purple basil",
+          "khmelisuneli :: Khmeli suneli",
+          "salt :: Salt and pepper",
+          "tarragon :: Tarragon"
+        ]
+      },
+      {
+        "sourceSlug": "chakka",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "basil :: Purple basil",
+          "flatbread :: Flatbread",
+          "katyk :: Katyk or full-fat kefir",
+          "oliveoil :: Oil"
+        ]
+      },
+      {
+        "sourceSlug": "chipa",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "aniseed :: Aniseed",
+          "cassavastarch :: Cassava starch",
+          "cheese :: Paraguayan cheese or brined white cheese",
+          "lard :: Lard or butter"
+        ]
+      },
+      {
+        "sourceSlug": "chorreadas",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "cheese :: Fresh white cheese",
+          "corn :: Fresh corn",
+          "cornflour :: Corn flour",
+          "natilla :: Natilla or soured cream"
+        ]
+      },
+      {
+        "sourceSlug": "doro-wat",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "berbere :: Berbere",
+          "chicken :: Chicken, jointed",
+          "nitersibbe :: Niter kibbeh spiced butter",
+          "wine :: Red wine or tej"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 34,
+    "mappedExistingDecisionCount": 4,
+    "heldDecisionCount": 30,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "boorsok",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "oil :: Oil for frying",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "buseca",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "chorizo :: Chorizo",
+          "pancetta :: Pancetta",
+          "salt :: Salt and pepper",
+          "tripe :: Beef tripe"
+        ]
+      },
+      {
+        "sourceSlug": "buuz",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "fat :: Mutton fat",
+          "flour :: Flour",
+          "mutton :: Mutton",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "callaloo",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "okra :: Okra",
+          "salt :: Salt and pepper",
+          "taroleaves :: Taro leaves or spinach"
+        ]
+      },
+      {
+        "sourceSlug": "casado",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "chayote :: Chayote or courgette",
+          "lizano :: Salsa Lizano",
+          "plantain :: Plantain",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "chakhokhbili",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "khmelisuneli :: Khmeli suneli",
+          "salt :: Salt and pepper",
+          "tarragon :: Tarragon"
+        ]
+      },
+      {
+        "sourceSlug": "chakka",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flatbread :: Flatbread",
+          "katyk :: Katyk or full-fat kefir",
+          "oliveoil :: Oil"
+        ]
+      },
+      {
+        "sourceSlug": "chipa",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "aniseed :: Aniseed",
+          "cheese :: Paraguayan cheese or brined white cheese",
+          "lard :: Lard or butter"
+        ]
+      },
+      {
+        "sourceSlug": "chorreadas",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cheese :: Fresh white cheese",
+          "corn :: Fresh corn",
+          "cornflour :: Corn flour",
+          "natilla :: Natilla or soured cream"
+        ]
+      },
+      {
+        "sourceSlug": "doro-wat",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "berbere :: Berbere",
+          "chicken :: Chicken, jointed",
+          "nitersibbe :: Niter kibbeh spiced butter",
+          "wine :: Red wine or tej"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V10"
+}
