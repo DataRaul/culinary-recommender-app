@@ -1025,3 +1025,10 @@ V11 and V12 share one pull-request/CI tranche only to avoid duplicating the repo
 The thirteenth bounded frontier froze `shelpek`, `souvlaki`, `spanakopita`, `spas`, `tarte-tatin`, `tave-elbasani`, `tave-kosi`, `tsuivan`, `vigoron`, and `vori-vori` (digest `1e0fbebb08ab3e927702e2cafb8fed41ceff037f83aab7a472bc5a503ebe6bf4`). Twenty-nine distinct exact unresolved identities were reviewed; four narrow candidate-only mappings were accepted (Spring onions→spring_onion, Dried mint→mint, Firm tart apples→apple, Hot chilli→chilli). Twenty-five identities remain held.
 
 Every V13 recipe remains identity-incomplete. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V13_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V14_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V14`.
+
+
+### 2026-10-01 — Recommendation expansion iteration V14
+
+The fourteenth bounded frontier froze `whitebait-fritters`, `wiener-schnitzel`, `yassa-poulet`, `zemiakove-placky`, `api-morado`, `asado-argentino`, `belgian-waffles`, `beshbarmak-kyrgyz`, `bibimbap`, and `bint-al-sahn` (digest `202f34c28850ee3d926537aee02a086cf3e556b3937a9214bfd5952f26d7689b`). Thirty-nine distinct exact unresolved identities were reviewed; six narrow candidate-only mappings were accepted. Thirty-three identities remain held.
+
+Every V14 recipe remains identity-incomplete. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V14_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V15_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V15`.

@@ -2,7 +2,7 @@
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_V1",
   "date": "2026-09-29",
   "timezone": "Atlantic/Canary",
-  "state": "R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__ITERATION_V3_PASS__ITERATION_V4_PASS__ITERATION_V5_PASS__ITERATION_V6_PASS__ITERATION_V7_PASS__ITERATION_V8_PASS__ITERATION_V9_PASS__ITERATION_V10_PASS__ITERATION_V11_PASS__ITERATION_V12_PASS__ITERATION_V13_PASS__NEXT_FRONTIER_V14_READY",
+  "state": "R0_PASS__R1_PASS__R2_PASS__R3_HOLD__ITERATION_V2_PASS__ITERATION_V3_PASS__ITERATION_V4_PASS__ITERATION_V5_PASS__ITERATION_V6_PASS__ITERATION_V7_PASS__ITERATION_V8_PASS__ITERATION_V9_PASS__ITERATION_V10_PASS__ITERATION_V11_PASS__ITERATION_V12_PASS__ITERATION_V13_PASS__ITERATION_V14_PASS__NEXT_FRONTIER_V15_READY",
   "objective": "PROGRESSIVELY_EARN_MORE_PROTECTED_RECOMMENDATION_CANDIDATES_WITH_EXPLICIT_BOUNDED_ADMISSION",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "entryEvidence": {
@@ -114,7 +114,7 @@
     }
   ],
   "nextExecutionSequence": [
-    "R1_NEXT_FRONTIER_ITERATION_V14",
+    "R1_NEXT_FRONTIER_ITERATION_V15",
     "R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR",
     "R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE",
     "R4_OWNER_BOUNDED_ADMISSION",
@@ -321,5 +321,16 @@
     "admissionReadyCandidateCount": 0,
     "ownerAdmissionGateOpen": false,
     "nextGate": "R1_NEXT_FRONTIER_ITERATION_V14"
+  },
+  "iterationV14": {
+    "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V14_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V15_READY",
+    "contract": "config/protected_corpus_recommendation_expansion_iteration_v14.json",
+    "evidence": "data/generated/protected-corpus-recommendation-expansion-iteration-v14-summary-v1.json",
+    "frozenCandidateRecipeCount": 10,
+    "frozenCandidateDigestSha256": "202f34c28850ee3d926537aee02a086cf3e556b3937a9214bfd5952f26d7689b",
+    "identityReadySourceSlugs": [],
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false,
+    "nextGate": "R1_NEXT_FRONTIER_ITERATION_V15"
   }
 }
