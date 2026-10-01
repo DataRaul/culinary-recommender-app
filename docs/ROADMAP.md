@@ -995,3 +995,10 @@ The V8 closeout also narrows completed R1 and V3–V5 pull-request path filters 
 The ninth bounded frontier froze `boorsok`, `buseca`, `buuz`, `callaloo`, `casado`, `chakhokhbili`, `chakka`, `chipa`, `chorreadas`, and `doro-wat` (digest `9e4e16becfac66ddee4aadb3803141254be17531f5b8c8fb4c95adc37d7026f0`). Thirty-four distinct exact unresolved identities were reviewed; four narrow candidate-only mappings were accepted (Warm milk→milk, Scotch bonnet→chilli, Purple basil→basil, Cassava starch→tapioca_starch). Thirty identities remain held.
 
 Every V9 recipe remains identity-incomplete, so no candidate reaches hard-safety or recommendation/planner machine acceptance. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V9_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V10_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V10`.
+
+
+### 2026-10-01 — Recommendation expansion iteration V10
+
+The tenth bounded frontier froze `farikal`, `gazpacho`, `gemista`, `kaesespaetzle`, `kama`, `kholodnik`, `kleftiko`, `kottu-roti`, `kugelis`, and `kuurdak` (digest `6e802b83265d7dc2385b4421907688aac5223ad98d76c8bed98e4bf269d67527`). Thirty-four distinct exact unresolved identities were reviewed; eight narrow candidate-only mappings were accepted (Black peppercorns→black_pepper, Boiled potatoes→potato, Ripe tomatoes→tomato, Sherry vinegar→vinegar, Short-grain rice→rice, Large tomatoes→tomato, Cinnamon stick→cinnamon, Green chillies→chilli). Twenty-six identities remain held.
+
+Every V10 recipe remains identity-incomplete, so no candidate reaches hard-safety or recommendation/planner machine acceptance. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V10_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V11_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V11`.
