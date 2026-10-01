@@ -8,14 +8,14 @@ const contract = read("config/protected_corpus_recommendation_expansion_v1.json"
 const evidence = read("data/generated/protected-corpus-recommendation-expansion-r0-baseline-v1.json");
 const p4 = read("data/generated/protected-corpus-p4-owner-live-product-acceptance-v1.json");
 
-test("authorized successor preserves terminal P4 baseline through iteration V12 and reopens frontier work", () => {
+test("authorized successor preserves terminal P4 baseline through iteration V13 and reopens frontier work", () => {
   assert.deepEqual(validateProtectedCorpusRecommendationExpansion(contract,evidence,p4),[]);
   const summary = summarizeProtectedCorpusRecommendationExpansion(contract,evidence,p4);
   assert.equal(summary.pass,true);
   assert.equal(summary.terminal,"PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_R0_PASS__FRONTIER_MEASUREMENT_READY");
   assert.equal(summary.publicRuntimeRecipeCount,86);
   assert.equal(summary.activatedProtectedOriginCount,1);
-  assert.equal(summary.nextExecutionSequence[0],"R1_NEXT_FRONTIER_ITERATION_V13");
+  assert.equal(summary.nextExecutionSequence[0],"R1_NEXT_FRONTIER_ITERATION_V14");
   assert.equal(contract.iterationV2.terminal,"PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V2_PASS__JASHA_MAROO_HELD__NEXT_FRONTIER_V3_READY");
   assert.equal(contract.iterationV2.admissionReadyCandidateCount,0);
   assert.equal(contract.iterationV2.ownerAdmissionGateOpen,false);
@@ -59,6 +59,10 @@ test("authorized successor preserves terminal P4 baseline through iteration V12 
   assert.deepEqual(contract.iterationV12.identityReadySourceSlugs,[]);
   assert.equal(contract.iterationV12.admissionReadyCandidateCount,0);
   assert.equal(contract.iterationV12.ownerAdmissionGateOpen,false);
+  assert.equal(contract.iterationV13.terminal,"PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V13_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V14_READY");
+  assert.deepEqual(contract.iterationV13.identityReadySourceSlugs,[]);
+  assert.equal(contract.iterationV13.admissionReadyCandidateCount,0);
+  assert.equal(contract.iterationV13.ownerAdmissionGateOpen,false);
   assert.equal(contract.gates.find(g=>g.id==="R2_BOUNDED_IDENTITY_AND_HARD_SAFETY_REPAIR").state,"PASS");
   assert.equal(contract.gates.find(g=>g.id==="R3_RECOMMENDATION_AND_PLANNER_MACHINE_ACCEPTANCE").state,"PASS_WITH_HOLD__NO_R4_CANDIDATE");
   assert.equal(contract.gates.find(g=>g.id==="R4_OWNER_BOUNDED_ADMISSION").state,"BLOCKED__NO_ADMISSION_READY_CANDIDATE");
