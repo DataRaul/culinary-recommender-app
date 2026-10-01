@@ -1,0 +1,285 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V15_SUMMARY_V1",
+  "date": "2026-10-02",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V15_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V16_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V15",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 288,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "bobotie",
+      "borscht",
+      "brik",
+      "butter-tarts",
+      "capitaine-braise",
+      "causa-limena",
+      "ceviche-ecuatoriano",
+      "chiles-en-nogada",
+      "creme-brulee",
+      "doubles"
+    ],
+    "digestSha256": "001164961d081c78de947caadc91b8d01cc9bd10defcf06e4a81cde6e944fe8f",
+    "rows": [
+      {
+        "sourceSlug": "bobotie",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "apricots :: Dried apricots",
+          "bread :: White bread",
+          "chutney :: Apricot chutney",
+          "raisins :: Raisins",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "borscht",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef on the bone",
+          "beetroot :: Beetroot",
+          "salt :: Salt and pepper",
+          "sourcream :: Sour cream",
+          "vinegar :: Vinegar, 9%"
+        ]
+      },
+      {
+        "sourceSlug": "brik",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "capers :: Capers",
+          "harissa :: Harissa",
+          "malsouka :: Malsouka or filo sheets",
+          "oil :: Oil for frying",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "butter-tarts",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "brownsugar :: Brown sugar",
+          "butterpastry :: Butter for the pastry",
+          "flour :: Flour",
+          "raisins :: Raisins",
+          "vanilla :: Vanilla"
+        ]
+      },
+      {
+        "sourceSlug": "capitaine-braise",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "fish :: Nile perch or pike-perch",
+          "mustard :: Mustard",
+          "plantain :: Plantains",
+          "salt :: Salt and pepper",
+          "stockcube :: Stock cube"
+        ]
+      },
+      {
+        "sourceSlug": "causa-limena",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "ajiamarillo :: Ají amarillo paste",
+          "mayonnaise :: Mayonnaise",
+          "olives :: Black olives",
+          "salt :: Salt and pepper",
+          "yellowpotato :: Yellow potatoes"
+        ]
+      },
+      {
+        "sourceSlug": "ceviche-ecuatoriano",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "ketchup :: Ketchup",
+          "mustard :: Mustard",
+          "plantainchips :: Plantain crisps",
+          "popcorn :: Popcorn",
+          "redonion :: Red onions"
+        ]
+      },
+      {
+        "sourceSlug": "chiles-en-nogada",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "cheese :: Oaxaca cheese or mozzarella",
+          "flour :: Plain flour",
+          "oil :: Oil for frying",
+          "oregano :: Mexican oregano",
+          "poblano :: Poblano peppers"
+        ]
+      },
+      {
+        "sourceSlug": "creme-brulee",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "cream :: Double cream",
+          "sugar :: Sugar for the custard",
+          "topsugar :: Sugar for the top",
+          "vanilla :: Vanilla pod",
+          "yolks :: Egg yolks"
+        ]
+      },
+      {
+        "sourceSlug": "doubles",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "oil :: Oil for frying",
+          "scotchbonnet :: Scotch bonnet",
+          "tamarind :: Tamarind sauce",
+          "yeast :: Dry yeast"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 41,
+    "mappedExistingDecisionCount": 7,
+    "heldDecisionCount": 34,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "bobotie",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "apricots :: Dried apricots",
+          "bread :: White bread",
+          "chutney :: Apricot chutney",
+          "raisins :: Raisins",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "borscht",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef on the bone",
+          "beetroot :: Beetroot",
+          "salt :: Salt and pepper",
+          "sourcream :: Sour cream"
+        ]
+      },
+      {
+        "sourceSlug": "brik",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "capers :: Capers",
+          "harissa :: Harissa",
+          "malsouka :: Malsouka or filo sheets",
+          "oil :: Oil for frying",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "butter-tarts",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "brownsugar :: Brown sugar",
+          "flour :: Flour",
+          "raisins :: Raisins",
+          "vanilla :: Vanilla"
+        ]
+      },
+      {
+        "sourceSlug": "capitaine-braise",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "fish :: Nile perch or pike-perch",
+          "mustard :: Mustard",
+          "plantain :: Plantains",
+          "salt :: Salt and pepper",
+          "stockcube :: Stock cube"
+        ]
+      },
+      {
+        "sourceSlug": "causa-limena",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "ajiamarillo :: Ají amarillo paste",
+          "mayonnaise :: Mayonnaise",
+          "olives :: Black olives",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "ceviche-ecuatoriano",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "ketchup :: Ketchup",
+          "mustard :: Mustard",
+          "plantainchips :: Plantain crisps",
+          "popcorn :: Popcorn"
+        ]
+      },
+      {
+        "sourceSlug": "chiles-en-nogada",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cheese :: Oaxaca cheese or mozzarella",
+          "flour :: Plain flour",
+          "oil :: Oil for frying",
+          "oregano :: Mexican oregano",
+          "poblano :: Poblano peppers"
+        ]
+      },
+      {
+        "sourceSlug": "creme-brulee",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cream :: Double cream",
+          "vanilla :: Vanilla pod",
+          "yolks :: Egg yolks"
+        ]
+      },
+      {
+        "sourceSlug": "doubles",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "oil :: Oil for frying",
+          "tamarind :: Tamarind sauce",
+          "yeast :: Dry yeast"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V16"
+}
