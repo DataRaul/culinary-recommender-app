@@ -1,0 +1,278 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V14_SUMMARY_V1",
+  "date": "2026-10-01",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V14_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V15_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V14",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 298,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "whitebait-fritters",
+      "wiener-schnitzel",
+      "yassa-poulet",
+      "zemiakove-placky",
+      "api-morado",
+      "asado-argentino",
+      "belgian-waffles",
+      "beshbarmak-kyrgyz",
+      "bibimbap",
+      "bint-al-sahn"
+    ],
+    "digestSha256": "202f34c28850ee3d926537aee02a086cf3e556b3937a9214bfd5952f26d7689b",
+    "rows": [
+      {
+        "sourceSlug": "whitebait-fritters",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "bread :: White bread",
+          "flour :: Flour",
+          "salt :: Salt and pepper",
+          "whitebait :: Whitebait"
+        ]
+      },
+      {
+        "sourceSlug": "wiener-schnitzel",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "breadcrumbs :: Breadcrumbs",
+          "butterfat :: Clarified butter or lard",
+          "flour :: Plain flour",
+          "veal :: Veal escalope"
+        ]
+      },
+      {
+        "sourceSlug": "yassa-poulet",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "chili :: Scotch bonnet chilli",
+          "mustard :: Dijon mustard",
+          "salt :: Salt and pepper",
+          "stock :: Chicken stock"
+        ]
+      },
+      {
+        "sourceSlug": "zemiakove-placky",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "marjoram :: Marjoram",
+          "oil :: Oil for frying",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "api-morado",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "cheese :: Cheese for the pastel",
+          "cinnamon :: Cinnamon sticks",
+          "cloves :: Cloves",
+          "orangepeel :: Orange peel",
+          "purplecorn :: Purple corn"
+        ]
+      },
+      {
+        "sourceSlug": "asado-argentino",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "chorizo :: Chorizo sausages",
+          "coarsesalt :: Coarse salt",
+          "flanksteak :: Flank or skirt",
+          "morcilla :: Morcilla",
+          "shortribs :: Beef short ribs"
+        ]
+      },
+      {
+        "sourceSlug": "belgian-waffles",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "brownsugar :: Brown sugar",
+          "flour :: Flour",
+          "pearlsugar :: Pearl sugar",
+          "vanilla :: Vanilla",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "beshbarmak-kyrgyz",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "fat :: Mutton fat",
+          "flour :: Flour",
+          "mutton :: Mutton on the bone",
+          "pepper :: Black peppercorns",
+          "water :: Water for the dough"
+        ]
+      },
+      {
+        "sourceSlug": "bibimbap",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "beansprouts :: Soybean sprouts",
+          "beef :: Beef",
+          "gochujang :: Gochujang",
+          "mushrooms :: Shiitake mushrooms",
+          "rice :: Cooked short-grain rice"
+        ]
+      },
+      {
+        "sourceSlug": "bint-al-sahn",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "ghee :: Ghee",
+          "milk :: Warm milk",
+          "nigella :: Nigella seeds",
+          "yeast :: Dry yeast"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 39,
+    "mappedExistingDecisionCount": 6,
+    "heldDecisionCount": 33,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "whitebait-fritters",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bread :: White bread",
+          "flour :: Flour",
+          "salt :: Salt and pepper",
+          "whitebait :: Whitebait"
+        ]
+      },
+      {
+        "sourceSlug": "wiener-schnitzel",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "breadcrumbs :: Breadcrumbs",
+          "butterfat :: Clarified butter or lard",
+          "flour :: Plain flour",
+          "veal :: Veal escalope"
+        ]
+      },
+      {
+        "sourceSlug": "yassa-poulet",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "mustard :: Dijon mustard",
+          "salt :: Salt and pepper",
+          "stock :: Chicken stock"
+        ]
+      },
+      {
+        "sourceSlug": "zemiakove-placky",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "marjoram :: Marjoram",
+          "oil :: Oil for frying",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "api-morado",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cheese :: Cheese for the pastel",
+          "cloves :: Cloves",
+          "orangepeel :: Orange peel",
+          "purplecorn :: Purple corn"
+        ]
+      },
+      {
+        "sourceSlug": "asado-argentino",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "chorizo :: Chorizo sausages",
+          "flanksteak :: Flank or skirt",
+          "morcilla :: Morcilla",
+          "shortribs :: Beef short ribs"
+        ]
+      },
+      {
+        "sourceSlug": "belgian-waffles",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "brownsugar :: Brown sugar",
+          "flour :: Flour",
+          "pearlsugar :: Pearl sugar",
+          "vanilla :: Vanilla",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "beshbarmak-kyrgyz",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "fat :: Mutton fat",
+          "flour :: Flour",
+          "mutton :: Mutton on the bone"
+        ]
+      },
+      {
+        "sourceSlug": "bibimbap",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beansprouts :: Soybean sprouts",
+          "beef :: Beef",
+          "gochujang :: Gochujang",
+          "mushrooms :: Shiitake mushrooms",
+          "rice :: Cooked short-grain rice"
+        ]
+      },
+      {
+        "sourceSlug": "bint-al-sahn",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "ghee :: Ghee",
+          "nigella :: Nigella seeds",
+          "yeast :: Dry yeast"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V15"
+}
