@@ -1,0 +1,36 @@
+name: Protected corpus recommendation expansion iteration V8
+on:
+  pull_request:
+    paths:
+      - "config/protected_corpus_recommendation_expansion_iteration_v8.json"
+      - "data/generated/protected-corpus-recommendation-expansion-iteration-v8-summary-v1.json"
+      - "scripts/protected-corpus-recommendation-expansion-iteration-v8-core.mjs"
+      - "scripts/run-protected-corpus-recommendation-expansion-iteration-v8.mjs"
+      - "tests/protected-corpus-recommendation-expansion-iteration-v8.test.js"
+      - ".github/workflows/protected-corpus-recommendation-expansion-iteration-v8.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-iteration-v8:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Checkout exact pinned UniTools
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+      - name: Run deterministic iteration V8 tests
+        run: node --test tests/protected-corpus-recommendation-expansion-iteration-v8.test.js
+      - name: Reproduce iteration V8 evidence
+        run: |
+          node scripts/run-protected-corpus-recommendation-expansion-iteration-v8.mjs \
+            --contract=config/protected_corpus_recommendation_expansion_iteration_v8.json \
+            --alias=config/culinary_brain_c4_unitools_high_leverage_ingredient_alias_review_v1.json \
+            --unitools=.tmp/unitools \
+            --summary=.tmp/protected-corpus-recommendation-expansion-iteration-v8-summary-v1.json
+      - name: Compare committed iteration V8 evidence
+        run: diff -u data/generated/protected-corpus-recommendation-expansion-iteration-v8-summary-v1.json .tmp/protected-corpus-recommendation-expansion-iteration-v8-summary-v1.json
