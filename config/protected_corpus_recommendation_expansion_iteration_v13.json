@@ -1,0 +1,360 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V1",
+  "date": "2026-10-01",
+  "iterationId": "V13",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V12_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V13_READY",
+  "source": {
+    "sourceCohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed",
+    "expectedRecipeCount": 501
+  },
+  "frontier": {
+    "candidateTrancheMaxRecipes": 10,
+    "processedSourceSlugs": [
+      "pao-de-queijo",
+      "tortilla-espanola",
+      "cachapas",
+      "chapati-kenyan",
+      "ajvar",
+      "arepas",
+      "arroz-con-coco",
+      "avgolemono",
+      "burek-bosanski",
+      "chimichurri",
+      "dograma",
+      "draniki",
+      "flia",
+      "gurasa",
+      "halloumi-grilled",
+      "hangi-style-chicken",
+      "hummus",
+      "injera",
+      "jasha-maroo",
+      "karjalanpiirakka",
+      "matapa",
+      "moros-y-cristianos",
+      "muriwo-unedovi",
+      "placinta",
+      "rolex-uganda",
+      "sukuma-wiki",
+      "suutei-tsai",
+      "tarator",
+      "tostones",
+      "baklava",
+      "banitsa",
+      "baursaki",
+      "bolani",
+      "bryndzove-halusky",
+      "byrek-me-spinaq",
+      "caldo-verde",
+      "chakalaka",
+      "colcannon",
+      "ema-datshi",
+      "frango-piri-piri",
+      "ful-sudani",
+      "galayet-bandora",
+      "ghapama",
+      "kacamak",
+      "kurutob",
+      "lahpet-thoke",
+      "maltese-rabbit-stew",
+      "mamaliga",
+      "masgouf",
+      "matoke",
+      "mchuzi-wa-samaki",
+      "melanzane-alla-parmigiana",
+      "miso-soup",
+      "montreal-bagels",
+      "mulgipuder",
+      "ndizi-nyama",
+      "ohridska-pastrmka",
+      "peka",
+      "pelekie-zirni-ar-speki",
+      "pollo-guisado-dominicano",
+      "pulpo-a-feira",
+      "qingzheng-yu",
+      "ravitoto",
+      "rice-and-peas",
+      "roti-canai",
+      "salata-aswad",
+      "sardinhas-assadas",
+      "shopska-salata",
+      "sklandrausis",
+      "sopa-paraguaya",
+      "tabbouleh",
+      "tigadegena",
+      "vitumbua",
+      "aji-de-gallina",
+      "apfelstrudel",
+      "armenian-tolma",
+      "ashak",
+      "attieke-poisson",
+      "bacalhau-a-bras",
+      "ballokume",
+      "banku-with-tilapia",
+      "barramundi-on-the-barbie",
+      "boorsok",
+      "buseca",
+      "buuz",
+      "callaloo",
+      "casado",
+      "chakhokhbili",
+      "chakka",
+      "chipa",
+      "chorreadas",
+      "doro-wat",
+      "farikal",
+      "gazpacho",
+      "gemista",
+      "kaesespaetzle",
+      "kama",
+      "kholodnik",
+      "kleftiko",
+      "kottu-roti",
+      "kugelis",
+      "kuurdak",
+      "lohikeitto",
+      "mandazi",
+      "mangu",
+      "maqdeed",
+      "mbeju",
+      "menemen",
+      "moqueca-baiana",
+      "pastizzi",
+      "pepian",
+      "pesto-alla-genovese",
+      "poulet-moambe",
+      "rechta",
+      "risotto-alla-milanese",
+      "ruisleipa",
+      "sadza-ne-nyama",
+      "sancocho-panameno",
+      "sel-roti",
+      "shakshuka",
+      "shakshuka-tunisienne",
+      "shan-noodles"
+    ],
+    "expectedRemainingRankedCount": 308,
+    "expectedZeroGapCount": 0,
+    "expectedOneGapCount": 0,
+    "expectedSourceSlugs": [
+      "shelpek",
+      "souvlaki",
+      "spanakopita",
+      "spas",
+      "tarte-tatin",
+      "tave-elbasani",
+      "tave-kosi",
+      "tsuivan",
+      "vigoron",
+      "vori-vori"
+    ],
+    "expectedDigestSha256": "1e0fbebb08ab3e927702e2cafb8fed41ceff037f83aab7a472bc5a503ebe6bf4"
+  },
+  "identityDecisions": [
+    {
+      "sourceId": "flour",
+      "sourceName": "Flour",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FLOUR_IDENTITY"
+    },
+    {
+      "sourceId": "kefir",
+      "sourceName": "Kefir",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_KEFIR_IDENTITY"
+    },
+    {
+      "sourceId": "oil",
+      "sourceName": "Oil for frying",
+      "decision": "HOLD",
+      "reason": "OIL_TYPE_AMBIGUOUS"
+    },
+    {
+      "sourceId": "soda",
+      "sourceName": "Bicarbonate of soda",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_BICARBONATE_IDENTITY"
+    },
+    {
+      "sourceId": "pita",
+      "sourceName": "Pita breads",
+      "decision": "HOLD",
+      "reason": "PITA_IDENTITY_NOT_SAFE_TO_COLLAPSE_TO_GENERIC_BREAD"
+    },
+    {
+      "sourceId": "pork",
+      "sourceName": "Pork shoulder",
+      "decision": "HOLD",
+      "reason": "CUT_SPECIFIC_PORK_IDENTITY_NOT_REPRESENTED_BY_CURRENT_CANONICAL_PORK_TENDERLOIN"
+    },
+    {
+      "sourceId": "salt",
+      "sourceName": "Salt and pepper",
+      "decision": "HOLD",
+      "reason": "COMPOSITE_INGREDIENT_PHRASE"
+    },
+    {
+      "sourceId": "yoghurt",
+      "sourceName": "Thick yoghurt",
+      "decision": "HOLD",
+      "reason": "THICK_YOGHURT_DOES_NOT_ESTABLISH_EXACT_GREEK_YOGURT_IDENTITY"
+    },
+    {
+      "sourceId": "filo",
+      "sourceName": "Filo pastry",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_FILO_PASTRY_IDENTITY"
+    },
+    {
+      "sourceId": "nutmeg",
+      "sourceName": "Nutmeg",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_NUTMEG_IDENTITY"
+    },
+    {
+      "sourceId": "springonion",
+      "sourceName": "Spring onions",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "spring_onion",
+      "reason": "PLURAL_ONLY_PRESERVES_SPRING_ONION_IDENTITY"
+    },
+    {
+      "sourceId": "dzavar",
+      "sourceName": "Dzavar (cracked wheat)",
+      "decision": "HOLD",
+      "reason": "DZAVAR_IDENTITY_NOT_ESTABLISHED_AS_CURRENT_CANONICAL_BULGUR"
+    },
+    {
+      "sourceId": "matsun",
+      "sourceName": "Matsun or plain yoghurt",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_YOGHURT_IDENTITY"
+    },
+    {
+      "sourceId": "mint",
+      "sourceName": "Dried mint",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "mint",
+      "reason": "DRIED_FORM_PRESERVES_GENERIC_MINT_IDENTITY"
+    },
+    {
+      "sourceId": "apples",
+      "sourceName": "Firm tart apples",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "apple",
+      "reason": "TEXTURE_AND_TASTE_QUALIFIERS_PRESERVE_GENERIC_APPLE_IDENTITY"
+    },
+    {
+      "sourceId": "cream",
+      "sourceName": "Cream",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CREAM_IDENTITY"
+    },
+    {
+      "sourceId": "puffpastry",
+      "sourceName": "Puff pastry",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_PUFF_PASTRY_IDENTITY"
+    },
+    {
+      "sourceId": "vanilla",
+      "sourceName": "Vanilla",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_VANILLA_IDENTITY"
+    },
+    {
+      "sourceId": "lamb",
+      "sourceName": "Lamb",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_LAMB_IDENTITY"
+    },
+    {
+      "sourceId": "yogurt",
+      "sourceName": "Thick yoghurt",
+      "decision": "HOLD",
+      "reason": "THICK_YOGHURT_DOES_NOT_ESTABLISH_EXACT_GREEK_YOGURT_IDENTITY"
+    },
+    {
+      "sourceId": "fat",
+      "sourceName": "Mutton fat or oil",
+      "decision": "HOLD",
+      "reason": "ALTERNATIVE_COMPOSITE_FAT_IDENTITY"
+    },
+    {
+      "sourceId": "mutton",
+      "sourceName": "Mutton",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_MUTTON_IDENTITY"
+    },
+    {
+      "sourceId": "bananaleaf",
+      "sourceName": "Banana leaf",
+      "decision": "HOLD",
+      "reason": "BANANA_LEAF_IS_NOT_CANONICAL_BANANA_FRUIT_IDENTITY"
+    },
+    {
+      "sourceId": "cassava",
+      "sourceName": "Cassava",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_CASSAVA_IDENTITY"
+    },
+    {
+      "sourceId": "chili",
+      "sourceName": "Hot chilli",
+      "decision": "MAP_EXISTING",
+      "canonicalIngredientId": "chilli",
+      "reason": "HEAT_QUALIFIER_PRESERVES_GENERIC_CHILLI_IDENTITY"
+    },
+    {
+      "sourceId": "porkbelly",
+      "sourceName": "Pork skin with fat",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_PORK_SKIN_WITH_FAT_IDENTITY"
+    },
+    {
+      "sourceId": "annatto",
+      "sourceName": "Annatto",
+      "decision": "HOLD",
+      "reason": "NO_CURRENT_CANONICAL_ANNATTO_IDENTITY"
+    },
+    {
+      "sourceId": "cheese",
+      "sourceName": "Fresh salty cheese",
+      "decision": "HOLD",
+      "reason": "AMBIGUOUS_CHEESE_IDENTITY"
+    },
+    {
+      "sourceId": "cornflour",
+      "sourceName": "Corn flour",
+      "decision": "HOLD",
+      "reason": "CORN_FLOUR_IDENTITY_NOT_SAFE_TO_COLLAPSE_TO_SWEETCORN_OR_STARCH"
+    }
+  ],
+  "expectedIdentityReadySourceSlugs": [],
+  "authority": {
+    "candidateDiscoveryAuthorized": true,
+    "candidateIdentityReviewAuthorized": true,
+    "candidateHardSafetyReviewAuthorized": true,
+    "deterministicMachineAcceptanceAuthorized": true,
+    "runtimeActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "automaticRecommendationAdmissionAuthorized": false,
+    "ownerAdmissionGateOpen": false,
+    "globalIngredientAliasIndexMutationAuthorized": false,
+    "globalIngredientCatalogMutationAuthorized": false,
+    "protectedD1ReadAuthorized": false,
+    "protectedD1WriteAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V13_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V14_READY",
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V14"
+}

@@ -1,0 +1,268 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V13_SUMMARY_V1",
+  "date": "2026-10-01",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V13_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V14_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V13",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 308,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "shelpek",
+      "souvlaki",
+      "spanakopita",
+      "spas",
+      "tarte-tatin",
+      "tave-elbasani",
+      "tave-kosi",
+      "tsuivan",
+      "vigoron",
+      "vori-vori"
+    ],
+    "digestSha256": "1e0fbebb08ab3e927702e2cafb8fed41ceff037f83aab7a472bc5a503ebe6bf4",
+    "rows": [
+      {
+        "sourceSlug": "shelpek",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "kefir :: Kefir",
+          "oil :: Oil for frying",
+          "soda :: Bicarbonate of soda"
+        ]
+      },
+      {
+        "sourceSlug": "souvlaki",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "pita :: Pita breads",
+          "pork :: Pork shoulder",
+          "salt :: Salt and pepper",
+          "yoghurt :: Thick yoghurt"
+        ]
+      },
+      {
+        "sourceSlug": "spanakopita",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "filo :: Filo pastry",
+          "nutmeg :: Nutmeg",
+          "salt :: Salt and pepper",
+          "springonion :: Spring onions"
+        ]
+      },
+      {
+        "sourceSlug": "spas",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "dzavar :: Dzavar (cracked wheat)",
+          "flour :: Flour",
+          "matsun :: Matsun or plain yoghurt",
+          "mint :: Dried mint"
+        ]
+      },
+      {
+        "sourceSlug": "tarte-tatin",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "apples :: Firm tart apples",
+          "cream :: Cream",
+          "puffpastry :: Puff pastry",
+          "vanilla :: Vanilla"
+        ]
+      },
+      {
+        "sourceSlug": "tave-elbasani",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "lamb :: Lamb",
+          "salt :: Salt and pepper",
+          "yogurt :: Thick yoghurt"
+        ]
+      },
+      {
+        "sourceSlug": "tave-kosi",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "lamb :: Lamb",
+          "salt :: Salt and pepper",
+          "yogurt :: Thick yoghurt"
+        ]
+      },
+      {
+        "sourceSlug": "tsuivan",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "fat :: Mutton fat or oil",
+          "flour :: Flour",
+          "mutton :: Mutton",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "vigoron",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "bananaleaf :: Banana leaf",
+          "cassava :: Cassava",
+          "chili :: Hot chilli",
+          "porkbelly :: Pork skin with fat"
+        ]
+      },
+      {
+        "sourceSlug": "vori-vori",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "annatto :: Annatto",
+          "cheese :: Fresh salty cheese",
+          "cornflour :: Corn flour",
+          "salt :: Salt and pepper"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 29,
+    "mappedExistingDecisionCount": 4,
+    "heldDecisionCount": 25,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "shelpek",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "kefir :: Kefir",
+          "oil :: Oil for frying",
+          "soda :: Bicarbonate of soda"
+        ]
+      },
+      {
+        "sourceSlug": "souvlaki",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "pita :: Pita breads",
+          "pork :: Pork shoulder",
+          "salt :: Salt and pepper",
+          "yoghurt :: Thick yoghurt"
+        ]
+      },
+      {
+        "sourceSlug": "spanakopita",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "filo :: Filo pastry",
+          "nutmeg :: Nutmeg",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "spas",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "dzavar :: Dzavar (cracked wheat)",
+          "flour :: Flour",
+          "matsun :: Matsun or plain yoghurt"
+        ]
+      },
+      {
+        "sourceSlug": "tarte-tatin",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cream :: Cream",
+          "puffpastry :: Puff pastry",
+          "vanilla :: Vanilla"
+        ]
+      },
+      {
+        "sourceSlug": "tave-elbasani",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "lamb :: Lamb",
+          "salt :: Salt and pepper",
+          "yogurt :: Thick yoghurt"
+        ]
+      },
+      {
+        "sourceSlug": "tave-kosi",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "lamb :: Lamb",
+          "salt :: Salt and pepper",
+          "yogurt :: Thick yoghurt"
+        ]
+      },
+      {
+        "sourceSlug": "tsuivan",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "fat :: Mutton fat or oil",
+          "flour :: Flour",
+          "mutton :: Mutton",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "vigoron",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bananaleaf :: Banana leaf",
+          "cassava :: Cassava",
+          "porkbelly :: Pork skin with fat"
+        ]
+      },
+      {
+        "sourceSlug": "vori-vori",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "annatto :: Annatto",
+          "cheese :: Fresh salty cheese",
+          "cornflour :: Corn flour",
+          "salt :: Salt and pepper"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V14"
+}
