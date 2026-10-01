@@ -1,0 +1,266 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V8_SUMMARY_V1",
+  "date": "2026-10-01",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V8_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V9_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V8",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 358,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "vitumbua",
+      "aji-de-gallina",
+      "apfelstrudel",
+      "armenian-tolma",
+      "ashak",
+      "attieke-poisson",
+      "bacalhau-a-bras",
+      "ballokume",
+      "banku-with-tilapia",
+      "barramundi-on-the-barbie"
+    ],
+    "digestSha256": "d2a614d83ef27a838693973948c0e0803f07e1f0a450d5c696e9d0d6aa708484",
+    "rows": [
+      {
+        "sourceSlug": "vitumbua",
+        "unresolvedIngredientOccurrenceCount": 3,
+        "uniqueUnresolvedIngredientKeyCount": 3,
+        "unresolvedIngredientKeys": [
+          "cardamom :: Ground cardamom",
+          "coconut :: Grated coconut",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "aji-de-gallina",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "ajiamarillo :: Ají amarillo paste",
+          "bread :: White bread",
+          "olives :: Black olives",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "apfelstrudel",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "apples :: Tart apples",
+          "breadcrumbs :: Breadcrumbs",
+          "flour :: Strong flour",
+          "raisins :: Raisins"
+        ]
+      },
+      {
+        "sourceSlug": "armenian-tolma",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "crackedwheat :: Cracked wheat",
+          "redbeans :: Red beans",
+          "salt :: Salt and pepper",
+          "sourcabbage :: Soured cabbage leaves"
+        ]
+      },
+      {
+        "sourceSlug": "ashak",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "beefmince :: Minced beef",
+          "driedmint :: Dried mint",
+          "flour :: Flour",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "attieke-poisson",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "attieke :: Attiéké",
+          "fish :: Tilapia or sea bream",
+          "salt :: Salt and pepper",
+          "stockcube :: Stock cube"
+        ]
+      },
+      {
+        "sourceSlug": "bacalhau-a-bras",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "codfish :: Salt cod",
+          "fryoil :: Oil for frying",
+          "olives :: Black olives",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "ballokume",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "bakingsoda :: Bicarbonate of soda",
+          "cornflour :: Cornmeal",
+          "eggyolk :: Egg yolks",
+          "vanilla :: Vanilla"
+        ]
+      },
+      {
+        "sourceSlug": "banku-with-tilapia",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "cassavadough :: Cassava dough",
+          "chili :: Habanero chillies",
+          "cornmeal :: Maize flour",
+          "tilapia :: Tilapia"
+        ]
+      },
+      {
+        "sourceSlug": "barramundi-on-the-barbie",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "barramundi :: Barramundi or sea bass",
+          "fennel :: Fennel",
+          "lemonmyrtle :: Lemon myrtle",
+          "salt :: Salt and pepper"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 33,
+    "mappedExistingDecisionCount": 4,
+    "heldDecisionCount": 29,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "vitumbua",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cardamom :: Ground cardamom",
+          "coconut :: Grated coconut",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "aji-de-gallina",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "ajiamarillo :: Ají amarillo paste",
+          "bread :: White bread",
+          "olives :: Black olives",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "apfelstrudel",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "breadcrumbs :: Breadcrumbs",
+          "flour :: Strong flour",
+          "raisins :: Raisins"
+        ]
+      },
+      {
+        "sourceSlug": "armenian-tolma",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "crackedwheat :: Cracked wheat",
+          "redbeans :: Red beans",
+          "salt :: Salt and pepper",
+          "sourcabbage :: Soured cabbage leaves"
+        ]
+      },
+      {
+        "sourceSlug": "ashak",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "attieke-poisson",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "attieke :: Attiéké",
+          "fish :: Tilapia or sea bream",
+          "salt :: Salt and pepper",
+          "stockcube :: Stock cube"
+        ]
+      },
+      {
+        "sourceSlug": "bacalhau-a-bras",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "codfish :: Salt cod",
+          "fryoil :: Oil for frying",
+          "olives :: Black olives",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "ballokume",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bakingsoda :: Bicarbonate of soda",
+          "cornflour :: Cornmeal",
+          "eggyolk :: Egg yolks",
+          "vanilla :: Vanilla"
+        ]
+      },
+      {
+        "sourceSlug": "banku-with-tilapia",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cassavadough :: Cassava dough",
+          "cornmeal :: Maize flour",
+          "tilapia :: Tilapia"
+        ]
+      },
+      {
+        "sourceSlug": "barramundi-on-the-barbie",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "barramundi :: Barramundi or sea bass",
+          "fennel :: Fennel",
+          "lemonmyrtle :: Lemon myrtle",
+          "salt :: Salt and pepper"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V9"
+}
