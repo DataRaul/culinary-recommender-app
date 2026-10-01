@@ -1,0 +1,260 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V11_SUMMARY_V1",
+  "date": "2026-10-01",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V11_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V12_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V11",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 328,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "lohikeitto",
+      "mandazi",
+      "mangu",
+      "maqdeed",
+      "mbeju",
+      "menemen",
+      "moqueca-baiana",
+      "pastizzi",
+      "pepian",
+      "pesto-alla-genovese"
+    ],
+    "digestSha256": "637d08c0a5f6cc1124b0f9dc529c1a88b78a0a36b68a8323ef877961678976bb",
+    "rows": [
+      {
+        "sourceSlug": "lohikeitto",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "allspice :: Allspice berries",
+          "cream :: Single cream",
+          "potato :: Waxy potatoes",
+          "salmonbones :: Salmon head and bones"
+        ]
+      },
+      {
+        "sourceSlug": "mandazi",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "cardamom :: Ground cardamom",
+          "flour :: Flour",
+          "oil :: Oil for frying",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "mangu",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "cheese :: Frying cheese",
+          "onion :: Red onions",
+          "plantain :: Green plantains",
+          "salami :: Salami"
+        ]
+      },
+      {
+        "sourceSlug": "maqdeed",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "chili :: Dried chilli",
+          "ghee :: Ghee",
+          "lamb :: Lamb",
+          "salt :: Coarse salt"
+        ]
+      },
+      {
+        "sourceSlug": "mbeju",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "cassavastarch :: Cassava starch",
+          "cheese :: Fresh salty cheese",
+          "cornflour :: Corn flour",
+          "lard :: Lard or butter"
+        ]
+      },
+      {
+        "sourceSlug": "menemen",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "feta :: White cheese",
+          "pepperflakes :: Pul biber flakes",
+          "peppers :: Long green peppers",
+          "tomatoes :: Ripe tomatoes"
+        ]
+      },
+      {
+        "sourceSlug": "moqueca-baiana",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "dende :: Dendê palm oil",
+          "fish :: White fish",
+          "pepper :: Bell peppers",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "pastizzi",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "lard :: Lard or margarine",
+          "salt :: Salt and pepper",
+          "splitpeas :: Yellow split peas"
+        ]
+      },
+      {
+        "sourceSlug": "pepian",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "cinnamon :: Cinnamon stick",
+          "guajillo :: Guajillo chillies",
+          "pasilla :: Pasilla chillies",
+          "tomatillo :: Tomatillos"
+        ]
+      },
+      {
+        "sourceSlug": "pesto-alla-genovese",
+        "unresolvedIngredientOccurrenceCount": 4,
+        "uniqueUnresolvedIngredientKeyCount": 4,
+        "unresolvedIngredientKeys": [
+          "basil :: Basil leaves",
+          "pecorino :: Pecorino",
+          "pinenuts :: Pine nuts",
+          "salt :: Coarse salt"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 37,
+    "mappedExistingDecisionCount": 11,
+    "heldDecisionCount": 26,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "lohikeitto",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "allspice :: Allspice berries",
+          "cream :: Single cream",
+          "salmonbones :: Salmon head and bones"
+        ]
+      },
+      {
+        "sourceSlug": "mandazi",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cardamom :: Ground cardamom",
+          "flour :: Flour",
+          "oil :: Oil for frying",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "mangu",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cheese :: Frying cheese",
+          "plantain :: Green plantains",
+          "salami :: Salami"
+        ]
+      },
+      {
+        "sourceSlug": "maqdeed",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "ghee :: Ghee",
+          "lamb :: Lamb"
+        ]
+      },
+      {
+        "sourceSlug": "mbeju",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cheese :: Fresh salty cheese",
+          "cornflour :: Corn flour",
+          "lard :: Lard or butter"
+        ]
+      },
+      {
+        "sourceSlug": "menemen",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "feta :: White cheese",
+          "peppers :: Long green peppers"
+        ]
+      },
+      {
+        "sourceSlug": "moqueca-baiana",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "dende :: Dendê palm oil",
+          "fish :: White fish",
+          "pepper :: Bell peppers",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "pastizzi",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "lard :: Lard or margarine",
+          "salt :: Salt and pepper",
+          "splitpeas :: Yellow split peas"
+        ]
+      },
+      {
+        "sourceSlug": "pepian",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "tomatillo :: Tomatillos"
+        ]
+      },
+      {
+        "sourceSlug": "pesto-alla-genovese",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "pecorino :: Pecorino",
+          "pinenuts :: Pine nuts"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V12"
+}
