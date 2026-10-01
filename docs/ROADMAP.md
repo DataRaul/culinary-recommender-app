@@ -1048,3 +1048,10 @@ The sixteenth bounded frontier froze `empanadas-argentinas`, `fahsa`, `fattet-hu
 Every V16 recipe remains identity-incomplete. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V16_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V17_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V17`.
 
 V15 and V16 share one pull-request/CI tranche to avoid duplicating the repository-wide public/browser validation. Their contracts, deterministic source pins, evidence, tests, workflows, terminals, and sequential authority boundaries remain separate.
+
+
+### 2026-10-02 — Recommendation expansion iteration V17
+
+The seventeenth bounded frontier froze `irish-stew`, `jiaozi`, `jollof-rice`, `jota`, `key-lime-pie`, `khachapuri-imeruli`, `khinkali`, `khuushuur`, `kimchi-jjigae`, and `kjotsupa` (digest `f8e385cce3c075b215ad2c0bd9bdf15933a196c8a00d3bb22a010f905fac6b59`). Forty-five distinct exact unresolved identities were reviewed; nine narrow candidate-only mappings were accepted and thirty-six identities remain held.
+
+Every V17 recipe remains identity-incomplete. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V17_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V18_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V18`.
