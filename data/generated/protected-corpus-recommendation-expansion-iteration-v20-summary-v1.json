@@ -201,6 +201,7 @@
         "identityReady": false,
         "unresolvedIngredientKeys": [
           "oil :: Oil for frying",
+          "pepper :: Bell peppers",
           "plantain :: Plantains",
           "salt :: Salt and pepper"
         ]
