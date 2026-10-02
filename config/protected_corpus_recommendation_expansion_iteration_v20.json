@@ -382,9 +382,8 @@
     {
       "sourceId": "pepper",
       "sourceName": "Bell peppers",
-      "decision": "MAP_EXISTING",
-      "canonicalIngredientId": "bell_pepper",
-      "reason": "PLURAL_ONLY_PRESERVES_BELL_PEPPER_IDENTITY"
+      "decision": "HOLD",
+      "reason": "SOURCE_ID_DIAGNOSTIC_CONFLICTS_WITH_BLACK_PEPPER_ALIAS"
     },
     {
       "sourceId": "pickledcucumber",
