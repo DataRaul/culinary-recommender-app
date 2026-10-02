@@ -1,0 +1,286 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V20_SUMMARY_V1",
+  "date": "2026-10-02",
+  "pass": true,
+  "terminal": "PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V20_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V21_READY",
+  "protectedCorpusVersion": "v8018",
+  "iterationId": "V20",
+  "sourcePin": {
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataBlobSha": "a81e96415f09eac7fc0aec94a4da8d9f6d66d9ed"
+  },
+  "frontier": {
+    "remainingRankedCount": 238,
+    "zeroGapCount": 0,
+    "oneGapCount": 0,
+    "recipeCount": 10,
+    "sourceSlugs": [
+      "pizza-margherita",
+      "plokkfiskur",
+      "poffertjes",
+      "poronkaristys",
+      "poulet-dg",
+      "puff-puff",
+      "roesti",
+      "romazava",
+      "rupjmaizes-kartojums",
+      "sakotis"
+    ],
+    "digestSha256": "db0881bccd77bad17153230e20157ee0daab50ec9c6d2e32ce7b1fbb6a0297a1",
+    "rows": [
+      {
+        "sourceSlug": "pizza-margherita",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "doughsalt :: Salt for the dough",
+          "flour :: Type 00 flour",
+          "mozzarella :: Fior di latte mozzarella",
+          "tomatoes :: San Marzano tomatoes",
+          "yeast :: Fresh yeast"
+        ]
+      },
+      {
+        "sourceSlug": "plokkfiskur",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "chives :: Chives",
+          "flour :: Flour",
+          "mustard :: Mustard",
+          "ryebread :: Rye bread",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "poffertjes",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "buckwheat :: Buckwheat flour",
+          "flour :: Plain flour",
+          "icingsugar :: Icing sugar",
+          "milk :: Warm milk",
+          "yeast :: Dried yeast"
+        ]
+      },
+      {
+        "sourceSlug": "poronkaristys",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "beer :: Dark beer",
+          "lingonberry :: Lingonberries",
+          "pickledcucumber :: Pickled cucumbers",
+          "reindeer :: Reindeer meat",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "poulet-dg",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "oil :: Oil for frying",
+          "pepper :: Bell peppers",
+          "plantain :: Plantains",
+          "salt :: Salt and pepper",
+          "scotchbonnet :: Scotch bonnet"
+        ]
+      },
+      {
+        "sourceSlug": "puff-puff",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "icingsugar :: Icing sugar",
+          "nutmeg :: Nutmeg",
+          "oil :: Oil for frying",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "roesti",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "bacon :: Smoked bacon",
+          "butter :: Clarified butter",
+          "cheese :: Grated Gruyère",
+          "potato :: Waxy potatoes",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "romazava",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "mafana :: Brèdes mafana or watercress",
+          "mustardgreens :: Mustard greens",
+          "pork :: Pork",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "rupjmaizes-kartojums",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "cranberry :: Cranberries",
+          "cranberryjam :: Cranberry jam",
+          "cream :: Double cream",
+          "ryebread :: Dark rye bread",
+          "vanilla :: Vanilla sugar"
+        ]
+      },
+      {
+        "sourceSlug": "sakotis",
+        "unresolvedIngredientOccurrenceCount": 5,
+        "uniqueUnresolvedIngredientKeyCount": 5,
+        "unresolvedIngredientKeys": [
+          "cream :: Soured cream",
+          "flour :: Flour",
+          "lemonzest :: Lemon zest",
+          "potatostarch :: Potato starch",
+          "vanilla :: Vanilla"
+        ]
+      }
+    ]
+  },
+  "identityReview": {
+    "reviewedDecisionCount": 42,
+    "mappedExistingDecisionCount": 6,
+    "heldDecisionCount": 36,
+    "identityReadySourceSlugs": [],
+    "rows": [
+      {
+        "sourceSlug": "pizza-margherita",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Type 00 flour",
+          "yeast :: Fresh yeast"
+        ]
+      },
+      {
+        "sourceSlug": "plokkfiskur",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "chives :: Chives",
+          "flour :: Flour",
+          "mustard :: Mustard",
+          "ryebread :: Rye bread",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "poffertjes",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "buckwheat :: Buckwheat flour",
+          "flour :: Plain flour",
+          "icingsugar :: Icing sugar",
+          "yeast :: Dried yeast"
+        ]
+      },
+      {
+        "sourceSlug": "poronkaristys",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beer :: Dark beer",
+          "lingonberry :: Lingonberries",
+          "pickledcucumber :: Pickled cucumbers",
+          "reindeer :: Reindeer meat",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "poulet-dg",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "oil :: Oil for frying",
+          "pepper :: Bell peppers",
+          "plantain :: Plantains",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "puff-puff",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "flour :: Flour",
+          "icingsugar :: Icing sugar",
+          "nutmeg :: Nutmeg",
+          "oil :: Oil for frying",
+          "yeast :: Dry yeast"
+        ]
+      },
+      {
+        "sourceSlug": "roesti",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "bacon :: Smoked bacon",
+          "butter :: Clarified butter",
+          "cheese :: Grated Gruyère",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "romazava",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "beef :: Beef",
+          "mafana :: Brèdes mafana or watercress",
+          "mustardgreens :: Mustard greens",
+          "pork :: Pork",
+          "salt :: Salt and pepper"
+        ]
+      },
+      {
+        "sourceSlug": "rupjmaizes-kartojums",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cranberry :: Cranberries",
+          "cranberryjam :: Cranberry jam",
+          "cream :: Double cream",
+          "ryebread :: Dark rye bread",
+          "vanilla :: Vanilla sugar"
+        ]
+      },
+      {
+        "sourceSlug": "sakotis",
+        "identityReady": false,
+        "unresolvedIngredientKeys": [
+          "cream :: Soured cream",
+          "flour :: Flour",
+          "lemonzest :: Lemon zest",
+          "potatostarch :: Potato starch",
+          "vanilla :: Vanilla"
+        ]
+      }
+    ]
+  },
+  "machineAcceptance": {
+    "executed": false,
+    "reason": "NO_IDENTITY_READY_CANDIDATE",
+    "admissionReadyCandidateCount": 0,
+    "ownerAdmissionGateOpen": false
+  },
+  "publicRuntimeRecipeCount": 86,
+  "publicRuntimeChanged": false,
+  "recommendationAdmissionChanged": false,
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "globalIngredientAliasIndexMutations": 0,
+    "globalIngredientCatalogMutations": 0,
+    "knowledgeCoreWrites": 0,
+    "paidInfrastructureUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "R1_NEXT_FRONTIER_ITERATION_V21"
+}

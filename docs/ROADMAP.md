@@ -1064,3 +1064,19 @@ The eighteenth bounded frontier froze `koki-corn`, `kolduny`, `kulajda`, `larb-l
 Every V18 recipe remains identity-incomplete. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V18_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V19_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V19`.
 
 V17 and V18 share one pull-request/CI tranche to avoid duplicating the repository-wide public/browser validation. Their contracts, deterministic source pins, evidence, tests, workflows, terminals, and sequential authority boundaries remain separate.
+
+
+### 2026-10-02 — Recommendation expansion iteration V19
+
+The nineteenth bounded frontier froze `mucenici`, `muhammara`, `ndole`, `nikujaga`, `olla-de-carne`, `omani-halwa`, `palak-paneer`, `pastelitos-hondurenos`, `pastrmajlija`, and `pierogi-ruskie` (digest `e539099984e3605b95b3b94c63bd36777a7996a03de1977fd1720776245a69d4`). Forty-one distinct exact unresolved identities were reviewed; six narrow candidate-only mappings were accepted and thirty-five identities remain held.
+
+Every V19 recipe remains identity-incomplete. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V19_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V20_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V20`.
+
+
+### 2026-10-02 — Recommendation expansion iteration V20
+
+The twentieth bounded frontier froze `pizza-margherita`, `plokkfiskur`, `poffertjes`, `poronkaristys`, `poulet-dg`, `puff-puff`, `roesti`, `romazava`, `rupjmaizes-kartojums`, and `sakotis` (digest `db0881bccd77bad17153230e20157ee0daab50ec9c6d2e32ce7b1fbb6a0297a1`). Forty-two distinct exact unresolved identities were reviewed; six narrow candidate-only mappings were accepted and thirty-six identities remain held.
+
+Every V20 recipe remains identity-incomplete. Public runtime remains **86**, admission-ready count remains **0**, no owner gate opens, and all D1/KC/billing/shard/global-alias/catalog/Barbecue firewalls remain unchanged. Terminal: `PROTECTED_CORPUS_RECOMMENDATION_EXPANSION_ITERATION_V20_PASS__NO_IDENTITY_READY_CANDIDATE__NEXT_FRONTIER_V21_READY`. Next: `R1_NEXT_FRONTIER_ITERATION_V21`.
+
+V19 and V20 are prepared on a dependent branch above the V17–V18 tranche so validation can proceed without idling; they must not merge until the V17–V18 parent tranche is green and merged. Their contracts, deterministic source pins, evidence, tests, workflows, terminals, and sequential authority boundaries remain separate.
