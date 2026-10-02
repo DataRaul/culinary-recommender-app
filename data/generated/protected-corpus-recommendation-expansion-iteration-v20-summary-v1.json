@@ -152,8 +152,8 @@
   },
   "identityReview": {
     "reviewedDecisionCount": 42,
-    "mappedExistingDecisionCount": 7,
-    "heldDecisionCount": 35,
+    "mappedExistingDecisionCount": 6,
+    "heldDecisionCount": 36,
     "identityReadySourceSlugs": [],
     "rows": [
       {
