@@ -28,7 +28,7 @@ test("available positive-weight coverage measures scorer evidence rather than mi
 test("planner diversity measures canonical ingredient overlap",()=>{
   const a={id:"a",ingredients:[{canonicalIngredientId:"onion"},{canonicalIngredientId:"tomato"}]};
   const b={id:"b",ingredients:[{canonicalIngredientId:"onion"},{canonicalIngredientId:"garlic"}]};
-  assert.equal(ingredientJaccard(a,b),1/3);
+  assert.equal(ingredientJaccard(a,b),0.333333);
   const d=plannerDiversity({items:[{recipe:a},{recipe:b}]});
   assert.equal(d.uniqueRecipeCount,2);
   assert.equal(d.averagePairwiseIngredientJaccard,0.333333);
