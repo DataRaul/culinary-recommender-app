@@ -138,3 +138,23 @@ On pass:
 `FULL_CORPUS_SHADOW_RECOMMENDATION_V1_ENGINE_ADAPTER_AND_QUALITY_EVALUATION`
 
 That next gate will convert suitable shadow rows into a temporary recommendation-engine-compatible representation, measure recommendation quality and planner behavior, and identify the first meaningful cohort for progressive promotion. It will still not widen live recommendation without a separate acceptance gate.
+
+
+## Terminal baseline result — PASS
+
+Workflow run `37135034332` reconstructed and evaluated the exact 19,268-recipe v8018 corpus.
+
+- searchable recipes: **19,268 / 19,268**
+- unrestricted broad shadow-evaluable: **7,715**
+- unrestricted breakfast shadow-evaluable: **72**
+- vegetarian shadow-evaluable without reviewed dietary authority: **0**
+- egg-allergy shadow-evaluable without reviewed allergen authority: **0**
+- hard-safety violations: **0**
+- deterministic review sample: **500 recipes / 19 cohorts**
+- sample digest: `4fd784be94eeb1be97137fd3518b807decad7507fc051b3f09a62abd26a72bb0`
+
+The largest observed gaps remain reviewed dietary authority, ingredient identity, servings, total time, difficulty, meal-role signal and dish-category signal. These are now measured as corpus-level constraints rather than reasons to hide recipes from owner search.
+
+Closeout evidence: `data/generated/protected-corpus-full-shadow-recommendation-v1-closeout.json`.
+
+Next gate: `FULL_CORPUS_SHADOW_RECOMMENDATION_V1_ENGINE_ADAPTER_AND_QUALITY_EVALUATION`.
