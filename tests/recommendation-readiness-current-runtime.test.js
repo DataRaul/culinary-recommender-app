@@ -12,8 +12,8 @@ const activation = JSON.parse(readFileSync(new URL("../data/generated/culinary-b
 test("current readiness guard reconciles the authorized 86-recipe runtime without rewriting frozen V1 evidence", () => {
   assert.equal(activation.terminal, "CULINARY_BRAIN_P3_TAPIOCA_BOUNDED_ACTIVATION_PASS__P4_READY");
   assert.equal(activation.candidateId, "unitools_pao_de_queijo");
-  assert.equal(activation.publicRuntimeRecipeCountBefore, 85);
-  assert.equal(activation.publicRuntimeRecipeCountAfter, 86);
+  assert.equal(activation.publicRuntime.recipeCountBefore, 85);
+  assert.equal(activation.publicRuntime.recipeCountAfter, 86);
 
   const profile = normalizeProfile({
     ...DEFAULT_PROFILE,
