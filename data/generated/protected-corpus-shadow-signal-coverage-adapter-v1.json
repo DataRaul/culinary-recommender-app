@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_SHADOW_SIGNAL_COVERAGE_ADAPTER_SUMMARY_V1",
+  "date": "2026-10-03",
+  "pass": true,
+  "terminal": "V21_SHADOW_SIGNAL_COVERAGE_ADAPTER_PASS__LIVE_QUALITY_STILL_HELD__EVIDENCE_ENRICHMENT_NEXT",
+  "protectedCorpusVersion": "v8018",
+  "currentPublicRuntimeRecipeCount": 86,
+  "qualityCohort": {
+    "size": 500,
+    "digestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7"
+  },
+  "adapterPolicy": {
+    "id": "SOURCE_DIFFICULTY_TO_RUNTIME_1_4_SHADOW_V1",
+    "scope": "SHADOW_ONLY",
+    "sourceStatesAllowed": [
+      "EXACT_SOURCE_NORMALIZATION",
+      "REVIEWED_MAPPING"
+    ],
+    "numeric1To5Mapping": {
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 4
+    },
+    "labelMapping": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 4
+    },
+    "semanticStatus": "PRODUCT_SCORING_HYPOTHESIS_NOT_SOURCE_FACT",
+    "mayPopulateOtherMissingSignals": false,
+    "liveAuthority": false
+  },
+  "difficultyEvidence": {
+    "adaptedCount": 500,
+    "adaptedShare": 1,
+    "sourceScaleCounts": {
+      "LABEL_EASY_MEDIUM_HARD": 422,
+      "NUMERIC_1_5": 78
+    }
+  },
+  "liveQualityEarned": false,
+  "readinessCriteria": {
+    "coverageGainPass": true,
+    "difficultyEvidencePass": true,
+    "safetyAndModeIsolationPass": true,
+    "plannerPass": true,
+    "liveCoveragePass": false,
+    "minimumCoverageGainRequired": 0.05,
+    "minimumAverageAvailablePositiveWeightCoverageForLiveReadiness": 0.5
+  },
+  "mealTypes": {
+    "breakfast": {
+      "baselineEligibleCount": 22,
+      "adaptedEligibleCount": 22,
+      "normalModeEligibleCount": 0,
+      "semanticRoleViolationCount": 0,
+      "baselineTopKAverageAvailablePositiveWeightCoverage": 0.361345,
+      "adaptedTopKAverageAvailablePositiveWeightCoverage": 0.436975,
+      "coverageGain": 0.07563,
+      "baselineUniqueScoreCount": 13,
+      "adaptedUniqueScoreCount": 15,
+      "adaptedDigestA": "8823d6da089a5c4fced40f2a49afd5bbc9ea15ddfa4691fce8082af16a9382b8",
+      "adaptedDigestB": "8823d6da089a5c4fced40f2a49afd5bbc9ea15ddfa4691fce8082af16a9382b8"
+    },
+    "dinner": {
+      "baselineEligibleCount": 207,
+      "adaptedEligibleCount": 207,
+      "normalModeEligibleCount": 0,
+      "semanticRoleViolationCount": 0,
+      "baselineTopKAverageAvailablePositiveWeightCoverage": 0.361345,
+      "adaptedTopKAverageAvailablePositiveWeightCoverage": 0.436975,
+      "coverageGain": 0.07563,
+      "baselineUniqueScoreCount": 28,
+      "adaptedUniqueScoreCount": 64,
+      "adaptedDigestA": "23cf55459fe647d8c1d0ebfcd446afa0c524ff0ad6f3c48e853a302e2a9a3667",
+      "adaptedDigestB": "23cf55459fe647d8c1d0ebfcd446afa0c524ff0ad6f3c48e853a302e2a9a3667"
+    },
+    "lunch": {
+      "baselineEligibleCount": 207,
+      "adaptedEligibleCount": 207,
+      "normalModeEligibleCount": 0,
+      "semanticRoleViolationCount": 0,
+      "baselineTopKAverageAvailablePositiveWeightCoverage": 0.361345,
+      "adaptedTopKAverageAvailablePositiveWeightCoverage": 0.436975,
+      "coverageGain": 0.07563,
+      "baselineUniqueScoreCount": 28,
+      "adaptedUniqueScoreCount": 64,
+      "adaptedDigestA": "23cf55459fe647d8c1d0ebfcd446afa0c524ff0ad6f3c48e853a302e2a9a3667",
+      "adaptedDigestB": "23cf55459fe647d8c1d0ebfcd446afa0c524ff0ad6f3c48e853a302e2a9a3667"
+    },
+    "snack": {
+      "baselineEligibleCount": 42,
+      "adaptedEligibleCount": 42,
+      "normalModeEligibleCount": 0,
+      "semanticRoleViolationCount": 0,
+      "baselineTopKAverageAvailablePositiveWeightCoverage": 0.361345,
+      "adaptedTopKAverageAvailablePositiveWeightCoverage": 0.436975,
+      "coverageGain": 0.07563,
+      "baselineUniqueScoreCount": 20,
+      "adaptedUniqueScoreCount": 28,
+      "adaptedDigestA": "ed969b4cdacaea9ed759cb9c2ddae39f1fbdf0b0f44f844142e7835d8ca7d199",
+      "adaptedDigestB": "ed969b4cdacaea9ed759cb9c2ddae39f1fbdf0b0f44f844142e7835d8ca7d199"
+    }
+  },
+  "planners": {
+    "breakfast": {
+      "complete": true,
+      "deterministic": true,
+      "selectedRecipeCount": 7,
+      "uniqueRecipeCount": 7,
+      "averagePairwiseIngredientJaccard": 0.125206,
+      "maximumPairwiseIngredientJaccard": 0.3125
+    },
+    "dinner": {
+      "complete": true,
+      "deterministic": true,
+      "selectedRecipeCount": 7,
+      "uniqueRecipeCount": 7,
+      "averagePairwiseIngredientJaccard": 0.092807,
+      "maximumPairwiseIngredientJaccard": 0.222222
+    },
+    "lunch": {
+      "complete": true,
+      "deterministic": true,
+      "selectedRecipeCount": 7,
+      "uniqueRecipeCount": 7,
+      "averagePairwiseIngredientJaccard": 0.092807,
+      "maximumPairwiseIngredientJaccard": 0.222222
+    },
+    "snack": {
+      "complete": true,
+      "deterministic": true,
+      "selectedRecipeCount": 7,
+      "uniqueRecipeCount": 7,
+      "averagePairwiseIngredientJaccard": 0.114725,
+      "maximumPairwiseIngredientJaccard": 0.190476
+    }
+  },
+  "restrictedProfiles": {
+    "vegetarianEligibleCount": 0,
+    "eggAllergyEligibleCount": 0
+  },
+  "disposition": {
+    "evaluationComplete": true,
+    "liveRecommendationAdmissionAuthorized": false,
+    "liveDifficultyTranslationAuthorized": false,
+    "evidenceEnrichmentRequired": true
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "recommendationAuthorityWidened": false,
+    "candidateClassificationPromoted": false,
+    "dietaryAllergenAuthorityPromoted": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "V21_SHADOW_SCORER_EVIDENCE_ENRICHMENT_V1",
+  "initialWorkflowEvidence": {
+    "runId": 37155232982,
+    "artifactId": 11286220044,
+    "artifactName": "protected-corpus-shadow-signal-coverage-adapter-v1",
+    "artifactZipSha256": "13a11446392593a4e244d9412043030463908dc92e3dc2e986b30d03ac3489d0",
+    "headSha": "7d834aed30fbd7b8295b4bf16701d4169ec3f630"
+  }
+}
