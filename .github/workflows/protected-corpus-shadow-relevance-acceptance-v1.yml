@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - "config/protected_corpus_shadow_relevance_acceptance_v1.json"
+      - "data/generated/protected-corpus-shadow-relevance-acceptance-v1.json"
+      - "docs/PROTECTED_CORPUS_SHADOW_RELEVANCE_ACCEPTANCE_V1.md"
       - "config/protected_corpus_shadow_engine_quality_v1.json"
       - "config/protected_corpus_full_shadow_recommendation_v1.json"
       - "scripts/protected-corpus-shadow-relevance-acceptance-v1-core.mjs"
