@@ -59,3 +59,27 @@ On pass:
 `V21_MEAL_ROLE_TO_RUNTIME_SLOT_TRANSLATION_POLICY_V1`
 
 That gate should decide, with explicit semantics, whether and how canonical roles such as `MAIN`, `SIDE`, `DESSERT`, and `BEVERAGE` can participate in the app's breakfast/lunch/dinner/snack slot model.
+
+## Measured result
+
+The deterministic run passed:
+
+- direct runtime-role candidates: **64 / 500** (22 breakfast, 42 snack);
+- known non-runtime canonical roles held for policy: **356 / 500**;
+- unknown meal role held: **80 / 500**;
+- total meal-targeted holds: **436 / 500**;
+- invalid runtime meal-type leakage after repair: **0**;
+- canonical dish category ready: **216 / 500**;
+- candidate-only dish-category suggestions: **12 / 500**, with **0** promoted to authority;
+- obvious lexical DESSERT-vs-MAIN conflicts detected and held: **3**;
+- total-time authority: **500 / 500**;
+- source difficulty evidence: **500 / 500**, with **0** runtime difficulty authority created;
+- servings authority: **422 / 500**.
+
+The broad evidence-weighted top 100 remains diagnostic rather than production-ready: 51 DESSERT, 20 BEVERAGE, 13 MAIN, 9 SNACK, 3 BREAKFAST, 1 SIDE, 3 UNKNOWN.
+
+Terminal:
+
+`V21_FIRST_500_SHADOW_RELEVANCE_ACCEPTANCE_PASS__RUNTIME_ROLE_POLICY_NEXT`
+
+Canonical evidence: `data/generated/protected-corpus-shadow-relevance-acceptance-v1.json`.
