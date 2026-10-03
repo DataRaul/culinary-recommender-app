@@ -20,7 +20,7 @@ export function planSlots(recipes, profile, slots, options = {}) {
   const excludedIds = new Set(options.excludeRecipeIds || []);
   const shortfalls = [];
   for (const slot of slots) {
-    const ranked = rankRecipes(recipes.filter(recipe => !excludedIds.has(recipe.id)), profile, { mealType: slot.mealType });
+    const ranked = rankRecipes(recipes.filter(recipe => !excludedIds.has(recipe.id)), profile, { mealType: slot.mealType, mode: options.mode || null });
     const available = ranked.eligible.filter(item => !chosen.some(chosenItem => chosenItem.recipe.id === item.recipe.id));
     if (!available.length) {
       shortfalls.push({ slot, causes: explainShortfall(ranked.rejected) });
