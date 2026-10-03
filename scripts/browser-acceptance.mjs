@@ -337,14 +337,15 @@ async function protectedCorpusAcceptance() {
   if (await page.locator(".recipe").count() !== 2) throw new Error("Protected browse did not render bounded results");
 
   await page.getByLabel("Search protected recipes").fill("soup");
-  await page.getByRole("button", { name:"Search" }).click();
+  await page.getByRole("button", { name:"Search", exact:true }).click();
   await page.getByText(/1 result\(s\) in this page for/).waitFor();
   await page.getByText("Alpha Soup").waitFor();
   if (await page.locator(".recipe").count() !== 1) throw new Error("Protected search did not replace browse results");
 
   await page.getByText("Alpha Soup").click();
   await page.getByRole("heading", { name:"Alpha Soup" }).waitFor();
-  await page.getByText(/recommendation authority: not granted/i).waitFor();
+  await page.getByText(/recommendation validation is tracked separately from search availability/i).waitFor();
+  await page.getByText(/Searchable · not recommendation-validated/).first().waitFor();
   const provenance = page.getByRole("link", { name:"Open source/provenance" });
   await provenance.waitFor();
   if ((await provenance.getAttribute("href")) !== "https://example.test/source") throw new Error("Protected detail provenance URL missing");
