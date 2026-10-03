@@ -44,7 +44,7 @@
 | V1.x / Recipe Family UI legal conformance | COMPLETE / PASS | PR #276; real Hummus candidate proves generic multi-source attribution + fail-closed UNKNOWN/UNSATISFIABLE behavior; no public/runtime admission |\n| V1.x / Recipe Family 10-family bounded expansion | COMPLETE / PASS WITH EXPLICIT HOLDS | PR #283 green and merged; 10-family closeout = 8 candidate-only APP_AUTHORING_ELIGIBLE + 2 fail-closed HOLD (Carbonara, Pizza Margherita); 0 public/runtime admissions; v8018/D1/shards/KC/billing unchanged |
 | V1.x / Corpus Scale / 100k Readiness | CURRENT SCALE FOUNDATION RECONCILIATION PASS | PRs #291/#294/#295/#296/#297 fresh-reconciled Steps 1–6 to the current 85-record public seed while preserving the historical 84-record oracle; downstream reconciliation confirms the later no-billing D1 architecture is already live and ahead of the original 100k design: Step 7A passed 170k required / 250k stress, Step 8F activated exactly one reviewed public record, and Step 8G reached v8018 / 19,268 protected recipes on exactly two shards before LEGAL_CORPUS_BASELINE_PASS. No replay of provisioning/population; reopen scale foundation only on a measured compatibility gap; Barbecue remains separate |
 | V1.x / Further Product Features | D5 FITNESS P0 ADAPTER PROTOTYPE PASS / BEHAVIOR DEFERRED | Validate public V0 #1080 passed deterministic + Chromium browser acceptance. User-selected workout backup is minimized to schema + goal/days/session-minutes/weekdays only after explicit save; sensitive/unknown fields cannot cross the adapter boundary; no fitness-derived ranking, calorie/TDEE, nutrition/supplement or medical behavior. Further D5 behavior is deferred |
-| V1.x / Protected Corpus Runtime Usability V1 | TERMINAL PASS | P1/P2/C1/C2/C3/C4/P3/P4 closed PASS. Owner production P4 acceptance validated exact v8018 / 19,268, stable browse/search/product behavior, one bounded protected-origin activation, max 4 observed D1 subqueries and unchanged mutation/cost firewalls. Execution sequence exhausted. |\n| V1.x / Protected Corpus Recommendation Expansion V1 | V20 PASS / V21 ARCHITECTURAL PIVOT AUTHORIZED | V2–V20 proved that ten-recipe sequential identity repair is safe but low-yield: public runtime remains 86 and V20 produced 0 identity-ready/admission-ready candidates. V21 therefore stops the default next-10 scan and pivots to Full-Corpus Shadow Recommendation V1: all v8018 / 19,268 protected recipes enter a reversible candidate evaluation plane; hard safety remains fail-closed; recommendation quality is measured in shadow, repaired by dominant failure class, then progressively exposed through bounded cohorts only after declared acceptance thresholds pass. |
+| V1.x / Protected Corpus Runtime Usability V1 | TERMINAL PASS | P1/P2/C1/C2/C3/C4/P3/P4 closed PASS. Owner production P4 acceptance validated exact v8018 / 19,268, stable browse/search/product behavior, one bounded protected-origin activation, max 4 observed D1 subqueries and unchanged mutation/cost firewalls. Execution sequence exhausted. |\n| V1.x / Protected Corpus Recommendation Expansion V1 | V20 PASS / V21 SEARCH-FIRST + SHADOW-RECOMMENDATION PIVOT AUTHORIZED | **P0 product priority: make the complete v8018 / 19,268 protected corpus available to the owner through browse/search now, independently of recommendation readiness.** Recipes may be visibly marked `SEARCHABLE__NOT_RECOMMENDATION_VALIDATED`; recommendation remains a separate earned state. V21 stops the default next-10 scan, keeps all recipes discoverable, evaluates the full corpus in shadow, repairs dominant failure classes, and progressively promotes cohorts into recommendation only after declared quality/safety thresholds pass. |
 | V1.x / Production readiness — D1 write safety | BLOCKED / CONTRACT ENCODED | Full protected-corpus indexing/reindexing is **admin/migration-only**. Normal user/runtime flows must never trigger a bulk rebuild; routine corpus additions require incremental index maintenance. Any full rebuild requires an explicit maintenance gate, projected D1 rows-written + quota-headroom preflight, and rows-written telemetry. Do not mark production ready until runtime isolation is implemented and deterministically tested. |
 | V1.x / Culinary Brain Corpus Calibration V1 | LANE 2 PREP PASS / C1 + LIVE P2 READY IMMEDIATELY AFTER P1 | C0 Golden-85 preparation, the frozen P2 blocker harness and the 500-slot/19-cohort C1 allocation are complete. Exact protected IDs have not been selected. When Lane 1 earns P1 terminal PASS, immediately freeze the exact ~500 C1 identities with the existing secondary strata, execute C1, and run live/full-v8018 P2 measurement in parallel. C2 and P3 remain blocked on those results; no live KC/LLM runtime or hard-authority widening |
 | V1.x / EU regulatory truth lane | LANE 3 TERMINAL PASS / PARKED / NO SUCCESSOR SELECTED | Celery P0 is complete and the residual `tree_nut` / `gluten` semantics audit passed without further runtime change. Canonical nextGate is `NOT_SELECTED__FUTURE_ONTOLOGY_OR_THRESHOLD_SCHEMA_TRIGGER`: Lane 3 is not blocked by P1, but it is currently complete/parked rather than an active work queue. Mustard/lupin/molluscs remain deferred until exact ontology need; sulphites remain deferred until threshold-aware evidence semantics exist |
@@ -59,11 +59,39 @@ V20 is terminal PASS. PR #378 corrected the bell-pepper source-id conflict to re
 
 The owner has selected the Knowledge-Core-aligned **expand → shadow/verify → progressively promote** architecture for V21. The old default `R1_NEXT_FRONTIER_ITERATION_V21` ten-recipe scan is superseded as the primary path. Existing V2–V20 evidence remains valid historical evidence and must not be rewritten.
 
+### P0 product priority — all protected recipes searchable first
+
+The immediate product objective is **not** to wait for recommendation validation before the owner can use the corpus.
+
+For the authenticated owner/private product surface:
+
+- all **19,268 v8018 protected recipes** must be browseable/searchable as the first priority;
+- search/browse availability must **not** depend on recommendation admission, canonical-ingredient completeness, nutrition completeness, meal-role classification or ranking readiness;
+- recipes that have not passed recommendation acceptance must remain usable as ordinary recipe records and carry an explicit state such as `SEARCHABLE__NOT_RECOMMENDATION_VALIDATED`;
+- the UI must distinguish **“available/searchable recipe”** from **“recommended recipe”** so lack of recommendation validation never makes a recipe disappear from owner search;
+- recommendation/planner code must not silently treat a merely-searchable recipe as trusted;
+- where hard-safety metadata is incomplete, the recipe may still be discoverable in owner search, but the product must not claim that it is safe for an active allergen/exclusion profile unless that safety state is actually supported;
+- users with no relevant hard-profile restriction may still open and use searchable recipes without waiting for recommendation promotion.
+
+This preserves the value of the corpus already acquired: **availability first; recommendation quality improves progressively afterwards.**
+
+The required order is therefore:
+
+```text
+1. COMPLETE OWNER SEARCH/BROWSE AVAILABILITY — 19,268
+2. CLEAR SEARCHABLE / NOT-YET-RECOMMENDED LABELING
+3. FULL-CORPUS SHADOW RECOMMENDATION
+4. SHARED FAILURE REPAIR + RE-EVALUATION
+5. PROGRESSIVE RECOMMENDATION PROMOTION
+```
+
+A future recommendation failure or hold must never regress the recipe out of owner browse/search unless there is a separate rights/integrity reason to remove the underlying record.
+
 ### Target state separation
 
 ```text
-AVAILABLE
-  = all v8018 / 19,268 protected recipes remain searchable/browsable and may participate in offline/shadow evaluation
+AVAILABLE / SEARCHABLE
+  = all v8018 / 19,268 protected recipes are owner-visible through browse/search first, independent of recommendation readiness; non-promoted records are explicitly labeled SEARCHABLE__NOT_RECOMMENDATION_VALIDATED and may also participate in offline/shadow evaluation
 
 ELIGIBLE_FOR_REQUEST
   = recipe survives the user's hard constraints with sufficient evidence for each applicable hard constraint;
@@ -79,16 +107,17 @@ Availability, eligibility and recommendation trust are separate states. **Canoni
 ### V21 execution sequence
 
 ```text
-S0 — freeze exact v8018 / 19,268 candidate universe + immutable evaluation version
-S1 — hard-safety eligibility layer
-S2 — full-corpus shadow recommendation/ranking + current-86 baseline comparison
-S3 — deterministic + stratified sampled quality evaluation
-S4 — cluster dominant failure classes / identify highest-leverage repairs
-S5 — repair the binding failure class once at shared ontology/normalization/ranking level
-S6 — rerun the complete shadow corpus and measure delta
-S7 — repeat S4–S6 until predeclared acceptance thresholds are met or a named blocker/stop condition is reached
-S8 — progressive live exposure: bounded cohort → regression → larger cohort
-S9 — full eligible-population release only after cumulative acceptance and rollback evidence
+S0 — prove/ship complete owner browse/search availability for exact v8018 / 19,268 + explicit searchable/not-recommended state
+S1 — freeze exact v8018 / 19,268 shadow candidate universe + immutable evaluation version
+S2 — hard-safety eligibility layer
+S3 — full-corpus shadow recommendation/ranking + current-86 baseline comparison
+S4 — deterministic + stratified sampled quality evaluation
+S5 — cluster dominant failure classes / identify highest-leverage repairs
+S6 — repair the binding failure class once at shared ontology/normalization/ranking level
+S7 — rerun the complete shadow corpus and measure delta
+S8 — repeat S5–S7 until predeclared acceptance thresholds are met or a named blocker/stop condition is reached
+S9 — progressive recommendation exposure: bounded cohort → regression → larger cohort
+S10 — full eligible recommendation population only after cumulative acceptance and rollback evidence
 ```
 
 The programme should optimize **recommendation quality and safe usable coverage**, not ingredient-identity completion as an end in itself.
@@ -144,7 +173,7 @@ The immediate successor to this roadmap pivot is:
 FULL_CORPUS_SHADOW_RECOMMENDATION_V1_DESIGN_AND_BASELINE
 ```
 
-It must define the evaluation schema, hard-safety eligibility semantics, current-86 counterfactual, full-v8018 shadow harness, acceptance metrics, stratified sampling, failure clustering and rollback/exposure contract **before any live recommendation widening**.
+Before that shadow tranche, the product must first verify that the authenticated owner can browse/search the complete v8018 / 19,268 corpus and that non-promoted records are clearly represented as searchable but not recommendation-validated. The shadow tranche must then define the evaluation schema, hard-safety eligibility semantics, current-86 counterfactual, full-v8018 shadow harness, acceptance metrics, stratified sampling, failure clustering and rollback/exposure contract **before any recommendation widening**.
 
 
 ## 2026-09-26 active-lane reconciliation after PR #321
