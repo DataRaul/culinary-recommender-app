@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_SHADOW_MAIN_ROLE_POLICY_V1",
   "date": "2026-10-03",
-  "state": "AUTHORIZED_OFFLINE_SHADOW_POLICY_EVALUATION",
+  "state": "PASS__MAIN_TO_LUNCH_DINNER_SHADOW_POLICY",
   "protectedCorpusVersion": "v8018",
   "entryTerminal": "V21_FIRST_500_SHADOW_RELEVANCE_ACCEPTANCE_PASS__RUNTIME_ROLE_POLICY_NEXT",
   "qualityCohortSize": 500,
@@ -9,7 +9,10 @@
   "candidatePolicy": {
     "id": "MAIN_TO_LUNCH_DINNER_SHADOW_CANDIDATE",
     "canonicalRole": "MAIN",
-    "candidateRuntimeMealTypes": ["lunch", "dinner"],
+    "candidateRuntimeMealTypes": [
+      "lunch",
+      "dinner"
+    ],
     "semanticStatus": "PRODUCT_SLOT_HYPOTHESIS_NOT_SOURCE_FACT",
     "liveAuthority": false
   },
@@ -68,5 +71,12 @@
     "thirdShardAuthorized": false,
     "barbecueMutationAuthorized": false
   },
-  "nextGateOnPass": "V21_SHADOW_MEAL_SLOT_QUALITY_EVALUATION_V1"
+  "nextGateOnPass": "V21_SHADOW_MEAL_SLOT_QUALITY_EVALUATION_V1",
+  "evidence": "data/generated/protected-corpus-shadow-main-role-policy-v1.json",
+  "result": {
+    "terminal": "V21_SHADOW_MAIN_ROLE_POLICY_PASS__MEAL_SLOT_QUALITY_READY",
+    "uniqueMealTargetedShadowCandidateCount": 271,
+    "totalMealTargetedHoldCount": 229,
+    "livePolicyAdoptionAuthorized": false
+  }
 }
