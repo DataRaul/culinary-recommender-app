@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_SHADOW_RELEVANCE_ACCEPTANCE_V1",
+  "date": "2026-10-03",
+  "state": "AUTHORIZED_OFFLINE_RELEVANCE_ACCEPTANCE",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "V21_SHADOW_ENGINE_QUALITY_PASS__FIRST_500_RELEVANCE_ACCEPTANCE_READY",
+  "qualityCohortSize": 500,
+  "qualityCohortDigestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7",
+  "expectedSourceCounts": {
+    "FORKRECIPE_PINNED_STEP7E": 78,
+    "unitools-world-recipes-v1_1_0": 422
+  },
+  "runtimeMealTypeVocabulary": ["breakfast", "lunch", "dinner", "snack"],
+  "directCanonicalRoleMapping": {
+    "BREAKFAST": "breakfast",
+    "SNACK": "snack"
+  },
+  "canonicalRolesRequiringSeparateRuntimeSlotPolicy": ["BEVERAGE", "DESSERT", "MAIN", "SIDE"],
+  "expectedRoleAudit": {
+    "directRuntimeRoleCount": 64,
+    "nonRuntimeRolePolicyHoldCount": 356,
+    "unknownRoleHoldCount": 80,
+    "directRuntimeMealTypeCounts": {
+      "breakfast": 22,
+      "snack": 42
+    },
+    "canonicalRoleCounts": {
+      "BEVERAGE": 25,
+      "BREAKFAST": 22,
+      "DESSERT": 111,
+      "MAIN": 207,
+      "SIDE": 13,
+      "SNACK": 42
+    }
+  },
+  "expectedMetadataAudit": {
+    "canonicalDishCategoryReadyCount": 216,
+    "candidateOnlyDishCategoryCount": 12,
+    "obviousLexicalConflictCount": 3,
+    "totalTimeAuthorityCount": 500,
+    "sourceDifficultyEvidenceCount": 500,
+    "servingsAuthorityCount": 422
+  },
+  "obviousLexicalConflictPolicy": {
+    "candidateDishCategory": "DESSERT",
+    "authoritativeMealRole": "MAIN",
+    "reason": "Candidate-only title lexical rules can misread savory pies as desserts; the signal must stay non-authoritative."
+  },
+  "expectedObviousLexicalConflictRecipeKeys": [
+    "unitools-world-recipes-v1_1_0::lampuki-pie",
+    "unitools-world-recipes-v1_1_0::meat-pie-australian",
+    "unitools-world-recipes-v1_1_0::shepherds-pie"
+  ],
+  "acceptance": [
+    "EXACT_FROZEN_500_COHORT_DIGEST",
+    "NO_NON_RUNTIME_CANONICAL_ROLE_LEAKS_INTO_RUNTIME_MEAL_TYPES",
+    "BREAKFAST_AND_SNACK_ONLY_PASS_THROUGH_WITHOUT_TRANSLATION_POLICY",
+    "UNKNOWN_MEAL_ROLE_REMAINS_FAIL_CLOSED_FOR_MEAL_TARGETING",
+    "CANDIDATE_ONLY_DISH_CATEGORY_NEVER_BECOMES_AUTHORITY",
+    "OBVIOUS_DESSERT_MAIN_LEXICAL_FALSE_POSITIVES_ARE_DETECTED_AND_HELD",
+    "BROAD_RANKING_REMAINS_DIAGNOSTIC_ONLY",
+    "NO_LIVE_RECOMMENDATION_ADMISSION"
+  ],
+  "authority": {
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "runtimeMealRoleTranslationAuthorized": false,
+    "candidateClassificationPromotionAuthorized": false,
+    "dietaryAllergenAuthorityPromotionAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextGateOnPass": "V21_MEAL_ROLE_TO_RUNTIME_SLOT_TRANSLATION_POLICY_V1"
+}
