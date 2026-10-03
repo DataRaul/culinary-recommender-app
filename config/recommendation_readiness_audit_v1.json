@@ -1,9 +1,9 @@
 {
   "schemaVersion": "CULINARY_RECOMMENDATION_READINESS_AUDIT_CONTRACT_V1",
-  "state": "RECONCILED_AFTER_AUTHORIZED_P3_ACTIVATION_NO_NEW_RUNTIME_MUTATION",
+  "state": "FROZEN_AUDIT_CONTRACT_NO_RUNTIME_MUTATION",
   "protectedCorpusVersion": "v8018",
   "expectedProtectedRecipeCount": 19268,
-  "expectedPublicRuntimeRecipeCount": 86,
+  "expectedPublicRuntimeRecipeCount": 85,
   "legalRuntimeConfig": "config/legal_corpus_first_private_runtime.json",
   "normalizationSummary": "data/generated/corpus-normalization-mapping-v1.json",
   "nutritionApplicabilitySummary": "data/generated/nutrition-vitamin-applicability-audit-v1.json",
@@ -33,7 +33,7 @@
   "acceptanceCriteria": [
     "LEGAL_CORPUS_BASELINE_PASS_REMAINS_FROZEN_AT_V8018_19268",
     "NORMALIZATION_MAPPING_AND_NUTRITION_APPLICABILITY_SUMMARIES_BOTH_PASS",
-    "CURRENT_PUBLIC_RUNTIME_IS_EXACTLY_86_AFTER_THE_SINGLE_OWNER_AUTHORIZED_P3_ACTIVATION__THIS_AUDIT_ADMITS_NO_ADDITIONAL_RECIPE",
+    "PUBLIC_RUNTIME_REMAINS_EXACTLY_85_RECIPES_WITH_NO_NEW_ADMISSION",
     "EVERY_RECOMMENDATION_ELIGIBLE_PUBLIC_RECORD_HAS_REQUIRED_HARD_METADATA",
     "SEARCH_ONLY_AND_REFERENCE_ONLY_RECORDS_REMAIN_FAIL_CLOSED_OUTSIDE_THEIR_AUTHORIZED_SURFACE",
     "UNKNOWN_NUTRITION_IS_NOT_NUMERICALLY_COERCED_TO_ZERO_IN_RECOMMENDATION_COMPONENTS",
@@ -42,11 +42,5 @@
     "NO_D1_PUBLIC_CORPUS_RECOMMENDATION_KC_YOUTUBE_SHARD_OR_BILLING_MUTATION"
   ],
   "nextGateOnUsableBaselinePass": "RECIPE_FAMILY_AND_ADAPTATION",
-  "nextActionOnReadinessDefect": "REPAIR_RECOMMENDATION_READINESS_DEFECT_AND_RERUN_AUDIT",
-  "auditDate": "2026-10-03",
-  "originalFrozenBaseline": {
-    "date": "2026-09-23",
-    "publicRuntimeRecipeCount": 85,
-    "recommendationEligibleStateCount": 77
-  }
+  "nextActionOnReadinessDefect": "REPAIR_RECOMMENDATION_READINESS_DEFECT_AND_RERUN_AUDIT"
 }
