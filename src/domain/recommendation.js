@@ -85,7 +85,14 @@ export function hardConstraintReasons(recipe, rawProfile, mealType = null, conte
   const profile = normalizeProfile(rawProfile);
   const reasons = [];
   const externalState = recipe.governance?.recommendationState;
-  if (externalState === "REFERENCE_ONLY_INCOMPLETE_HARD_METADATA") {
+  if (externalState === "SHADOW_CANDIDATE_ONLY") {
+    const unrestrictedShadow = context.mode === "shadow"
+      && profile.dietaryMode === "unrestricted"
+      && profile.allergens.length === 0
+      && profile.excludedIngredientIds.length === 0
+      && profile.unavailableIngredientIds.length === 0;
+    if (!unrestrictedShadow) reasons.push("shadow candidate requires unrestricted no-allergy/no-exclusion evaluation");
+  } else if (externalState === "REFERENCE_ONLY_INCOMPLETE_HARD_METADATA") {
     reasons.push("external recipe lacks source-backed hard recommendation metadata");
   } else if (externalState === "SEARCH_ONLY" && context.mode !== "search") {
     reasons.push("external recipe is admitted for ingredient search only");
