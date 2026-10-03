@@ -76,7 +76,7 @@ test("real engine admits shadow candidates only in unrestricted explicit shadow 
   assert.equal(shadow.eligible.length,1);
   assert.equal(vegetarian.eligible.length,0);
   assert.equal(egg.eligible.length,0);
-  assert.match(normal.rejected[0].reasons.join(" "),/shadow candidate requires unrestricted/);
+  assert.match(normal.rejected[0].hardReasons.join(" "),/shadow candidate requires unrestricted/);
 });
 
 test("planner propagates explicit shadow mode without changing normal planner semantics",()=>{
