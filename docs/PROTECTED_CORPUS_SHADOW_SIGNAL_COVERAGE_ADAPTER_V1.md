@@ -32,3 +32,29 @@ The **50%** live-readiness evidence floor from the preceding gate is unchanged. 
 ## Boundaries
 
 No D1 reads/writes, protected-body rewrite, public-runtime widening, recommendation admission, live difficulty translation, live meal-role translation, candidate classification promotion, dietary/allergen promotion, Knowledge Core write, paid model/API, third shard, or Barbecue mutation is authorized.
+
+## Measured result
+
+The gate passed as an offline adapter evaluation, but live recommendation quality is still not earned.
+
+- source-backed difficulty was available and adapted for **500/500** recipes;
+- source scales: **422** label-based EASY/MEDIUM/HARD and **78** numeric 1–5;
+- top-20 positive scorer-weight coverage increased from **36.1345%** to **43.6975%** for breakfast, lunch, dinner and snack;
+- coverage gain: **+7.563 percentage points**;
+- meal-slot eligible counts remained unchanged: **22 breakfast, 207 lunch, 207 dinner, 42 snack**;
+- normal-mode leakage remained **0**;
+- vegetarian and egg-allergy shadow eligibility remained **0**;
+- rankings and seven-slot planners remained deterministic and complete;
+- score differentiation improved (for example lunch/dinner unique scores increased from **28** to **64**).
+
+The adapter therefore proves that existing source difficulty can safely improve shadow ranking information without inventing unrelated facts. It still misses the unchanged **50%** live-readiness floor, so live exposure remains blocked.
+
+Terminal:
+
+`V21_SHADOW_SIGNAL_COVERAGE_ADAPTER_PASS__LIVE_QUALITY_STILL_HELD__EVIDENCE_ENRICHMENT_NEXT`
+
+Next gate:
+
+`V21_SHADOW_SCORER_EVIDENCE_ENRICHMENT_V1`
+
+Canonical evidence: `data/generated/protected-corpus-shadow-signal-coverage-adapter-v1.json`.
