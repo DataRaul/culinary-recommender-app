@@ -12,11 +12,13 @@ import {
   PROTECTED_SEARCH_INDEX_BATCH_SIZE,
   PROTECTED_SEARCH_MAX_BOUND_PARAMETERS,
   PROTECTED_SEARCH_MAX_PAGE_SIZE,
+  PROTECTED_SEARCH_RECOMMENDATION_VALIDATED_SOURCE_IDS,
   PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW,
   PROTECTED_SEARCH_TARGET_MAX_D1,
   boundedPageSize,
   d1RowsWritten,
   normalizeProtectedSearchQuery,
+  protectedRecommendationState,
   projectProtectedPacketForDetail,
   projectProtectedPacketForIndex,
   repairForkRecipeStructuralState
@@ -65,6 +67,7 @@ test("P1 packet projection supports UniTools provenance without granting recomme
   const detail = projectProtectedPacketForDetail(packet, route());
   assert.deepEqual(detail.ingredients, ["1 cup Water"]);
   assert.deepEqual(detail.directions, ["Simmer."]);
+  assert.equal(detail.recommendationState, "SEARCHABLE__NOT_RECOMMENDATION_VALIDATED");
   assert.deepEqual(detail.authority, {
     protectedBrowseOnly:true,
     recommendationEligible:false,
@@ -137,6 +140,13 @@ test("P1 projection fails closed on identity or source-cohort mismatch rather th
     sourceContent:{ title:"Wrong" }
   };
   assert.throws(() => projectProtectedPacketForIndex(packet, route({ recipeId:"expected", sourceCohortId:"EXPECTED" })), /IDENTITY_MISMATCH/);
+});
+
+test("P1 protected search availability is independent from recommendation validation", () => {
+  assert.deepEqual(PROTECTED_SEARCH_RECOMMENDATION_VALIDATED_SOURCE_IDS, ["unitools:pao-de-queijo"]);
+  assert.equal(protectedRecommendationState("unitools:pao-de-queijo"), "SEARCHABLE__RECOMMENDATION_VALIDATED");
+  assert.equal(protectedRecommendationState("unitools:spaghetti-carbonara"), "SEARCHABLE__NOT_RECOMMENDATION_VALIDATED");
+  assert.equal(protectedRecommendationState("ora_example_partial"), "SEARCHABLE__NOT_RECOMMENDATION_VALIDATED");
 });
 
 test("P1 search query is bounded FTS syntax and page sizes stay bounded", () => {
@@ -270,8 +280,10 @@ test("P1 API source preserves public/recommendation firewalls and hard budget", 
 test("P1 owner browser is network-only and explicitly communicates protected-only authority", () => {
   const html = readFileSync(new URL("../protected-corpus.html", import.meta.url), "utf8");
   const sw = readFileSync(new URL("../sw.js", import.meta.url), "utf8");
-  assert.match(html, /Private browse\/search over 19,268 protected recipes/);
-  assert.match(html, /recommendation authority: not granted/i);
+  assert.match(html, /All 19,268 protected recipes are available here for private browse\/search/);
+  assert.match(html, /Searchable · not recommendation-validated/);
+  assert.match(html, /Searchable · recommendation validated/);
+  assert.match(html, /recommendation validation is tracked separately from search availability/i);
   assert.match(html, /\/api\/auth\/session/);
   assert.match(html, /\/api\/protected-corpus\/v1/);
   assert.match(html, /metrics\?\.d1Subqueries > 8/);
