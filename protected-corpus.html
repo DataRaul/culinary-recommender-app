@@ -24,6 +24,7 @@
     .recipe { width:100%; text-align:left; padding:.9rem; border-radius:.8rem; border:1px solid color-mix(in srgb, CanvasText 18%, transparent); background:transparent; color:inherit; }
     .recipe strong { display:block; font-size:1.03rem; }
     .recipe span { display:block; margin-top:.25rem; opacity:.72; font-size:.9rem; }
+    .recommendation-state { font-weight:700; opacity:1 !important; }
     #detail[hidden],#prepareProgress[hidden] { display:none; }
     ol { padding-left:1.35rem; }
     li { margin:.4rem 0; line-height:1.45; }
@@ -42,7 +43,7 @@
     <div>
       <p class="muted">Owner-only canary · v8018</p>
       <h1>Protected recipe corpus</h1>
-      <p class="muted">Private browse/search over 19,268 protected recipes. This surface does not admit recipes into public or recommendation runtime.</p>
+      <p class="muted">All 19,268 protected recipes are available here for private browse/search. Recommendation validation is a separate state shown on each recipe.</p>
     </div>
     <a class="button" href="/auth-canary.html">Auth controls</a>
   </header>
@@ -128,6 +129,9 @@
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const sourceLine = item => [item.sourceWork,item.sourceAuthor,item.sourceYear].filter(Boolean).join(' · ') || item.sourceCohortId || 'Source recorded';
+  const recommendationStateLabel = state => state === 'SEARCHABLE__RECOMMENDATION_VALIDATED'
+    ? 'Searchable · recommendation validated'
+    : 'Searchable · not recommendation-validated';
 
   async function readJson(response) {
     const raw = await response.text();
@@ -712,7 +716,7 @@
       button.type = 'button';
       button.className = 'recipe';
       button.dataset.recipeId = item.recipeId;
-      button.innerHTML = '<strong>' + escapeHtml(item.title) + '</strong><span>' + escapeHtml(sourceLine(item)) + ' · ' + escapeHtml(item.structuralState) + '</span>';
+      button.innerHTML = '<strong>' + escapeHtml(item.title) + '</strong><span>' + escapeHtml(sourceLine(item)) + ' · ' + escapeHtml(item.structuralState) + '</span><span class="recommendation-state">' + escapeHtml(recommendationStateLabel(item.recommendationState)) + '</span>';
       button.addEventListener('click', () => openDetail(item.recipeId));
       resultsNode.appendChild(button);
     }
@@ -753,7 +757,8 @@
     const sourceUrl = item.sourceUrl ? '<p class="source"><a href="' + escapeHtml(item.sourceUrl) + '" rel="noreferrer">Open source/provenance</a></p>' : '';
     detailBody.innerHTML =
       '<p><strong>Source:</strong> ' + escapeHtml(sourceLine(item)) + '</p>' +
-      '<p class="muted">Protected browse only · recommendation authority: not granted · structural state: ' + escapeHtml(item.structuralState) + '</p>' +
+      '<p class="recommendation-state">' + escapeHtml(recommendationStateLabel(item.recommendationState)) + '</p>' +
+      '<p class="muted">Protected source record · recommendation validation is tracked separately from search availability · structural state: ' + escapeHtml(item.structuralState) + '</p>' +
       sourceUrl +
       '<h3>Ingredients</h3>' + (ingredients ? '<ul>' + ingredients + '</ul>' : '<p>Structure unavailable for this source record.</p>') +
       '<h3>Directions</h3>' + (directions ? '<ol>' + directions + '</ol>' : '<p>Structure unavailable for this source record.</p>');
