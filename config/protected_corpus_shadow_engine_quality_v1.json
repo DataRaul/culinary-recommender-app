@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_SHADOW_ENGINE_QUALITY_V1",
+  "date": "2026-10-03",
+  "state": "AUTHORIZED_OFFLINE_QUALITY_EVALUATION",
+  "protectedCorpusVersion": "v8018",
+  "expectedSearchableRecipeCount": 19268,
+  "expectedCurrentRuntimeRecipeCount": 86,
+  "expectedNewUnrestrictedShadowCandidateCount": 7714,
+  "evidenceRichThreshold": 0.6,
+  "expectedEvidenceRichPoolCount": 539,
+  "firstQualityCohortSize": 500,
+  "objective": "Adapt unrestricted protected shadow candidates to the real deterministic recommendation engine, measure sparse-signal ranking behavior, and freeze an evidence-rich quality cohort without live admission.",
+  "shadowProfile": {
+    "dietaryMode": "unrestricted",
+    "allergens": [],
+    "excludedIngredientIds": [],
+    "unavailableIngredientIds": [],
+    "maxMinutes": 180,
+    "skill": 4,
+    "budget": 4,
+    "cuisinePreferences": [],
+    "priorityPacks": []
+  },
+  "adapterPolicy": {
+    "governanceState": "SHADOW_CANDIDATE_ONLY",
+    "liveModeEligibilityAuthorized": false,
+    "restrictedProfileEligibilityAuthorized": false,
+    "unknownSoftSignalsMayRemainAbsent": true,
+    "unknownSoftSignalsMayBeInvented": false,
+    "candidateOnlyMealRoleMayBecomeHardMealType": false,
+    "candidateOnlyDishCategoryMayBecomeRuntimeAuthority": false,
+    "resolvedIngredientIdentityMayBeCarriedAsExactIdentity": true,
+    "unresolvedIngredientIdentityUsesNoncanonicalShadowToken": true,
+    "knownPositiveCatalogAllergensMayBeRetainedAsPositiveOnlyEvidence": true,
+    "absenceOfKnownAllergenSignalMeansAllergenFree": false
+  },
+  "qualityEvaluation": {
+    "controlRanking": "REAL_ENGINE_SHADOW_MODE_UNMODIFIED_SCORE",
+    "comparisonRanking": "ENGINE_SCORE_MULTIPLIED_BY_SHADOW_EVIDENCE_SCORE",
+    "qualityCohortSelection": "EVIDENCE_SCORE_GTE_THRESHOLD_THEN_COMPARISON_RANKING",
+    "requireComparisonTop100AverageEvidenceNotWorseThanControl": true,
+    "requireQualityCohortMinimumEvidenceScore": 0.6,
+    "requireDeterministicRanking": true,
+    "requireFiniteEligibleScores": true,
+    "requireZeroShadowEligibilityOutsideShadowMode": true,
+    "requireZeroRestrictedShadowEligibility": true,
+    "plannerProbe": {
+      "mealType": "breakfast",
+      "slotCount": 5,
+      "purpose": "COMPATIBILITY_AND_DETERMINISM_ONLY"
+    }
+  },
+  "authority": {
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "dietaryAllergenAuthorityPromotionAuthorized": false,
+    "candidateClassificationPromotionAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "entryEvidence": "data/generated/protected-corpus-full-shadow-recommendation-v1-closeout.json",
+  "nextGateOnPass": "V21_FIRST_500_SHADOW_QUALITY_COHORT_RELEVANCE_ACCEPTANCE"
+}
