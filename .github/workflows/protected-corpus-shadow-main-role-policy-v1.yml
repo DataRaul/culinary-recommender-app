@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - "config/protected_corpus_shadow_main_role_policy_v1.json"
+      - "data/generated/protected-corpus-shadow-main-role-policy-v1.json"
+      - "docs/PROTECTED_CORPUS_SHADOW_MAIN_ROLE_POLICY_V1.md"
       - "scripts/protected-corpus-shadow-main-role-policy-v1-core.mjs"
       - "scripts/run-protected-corpus-shadow-main-role-policy-v1.mjs"
       - "tests/protected-corpus-shadow-main-role-policy-v1.test.js"
