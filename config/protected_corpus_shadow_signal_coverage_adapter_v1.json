@@ -1,7 +1,7 @@
 {
   "schemaVersion": "CULINARY_PROTECTED_CORPUS_SHADOW_SIGNAL_COVERAGE_ADAPTER_V1",
   "date": "2026-10-03",
-  "state": "AUTHORIZED_OFFLINE_SIGNAL_COVERAGE_ADAPTER_EVALUATION",
+  "state": "PASS__SOURCE_DIFFICULTY_ADAPTER_IMPROVES_COVERAGE__LIVE_QUALITY_STILL_HELD",
   "protectedCorpusVersion": "v8018",
   "entryTerminal": "V21_SHADOW_MEAL_SLOT_QUALITY_EVALUATION_PASS__LIVE_QUALITY_NOT_EARNED__SIGNAL_ADAPTER_NEXT",
   "qualityCohortSize": 500,
@@ -56,5 +56,15 @@
     "barbecueMutationAuthorized": false
   },
   "nextGateIfLiveQualityUnearned": "V21_SHADOW_SCORER_EVIDENCE_ENRICHMENT_V1",
-  "nextGateIfLiveQualityEarned": "V21_PROGRESSIVE_LIVE_EXPOSURE_AUTHORIZATION_REVIEW"
+  "nextGateIfLiveQualityEarned": "V21_PROGRESSIVE_LIVE_EXPOSURE_AUTHORIZATION_REVIEW",
+  "evidence": "data/generated/protected-corpus-shadow-signal-coverage-adapter-v1.json",
+  "result": {
+    "terminal": "V21_SHADOW_SIGNAL_COVERAGE_ADAPTER_PASS__LIVE_QUALITY_STILL_HELD__EVIDENCE_ENRICHMENT_NEXT",
+    "difficultyEvidenceAdaptedCount": 500,
+    "baselineAverageAvailablePositiveWeightCoverage": 0.361345,
+    "adaptedAverageAvailablePositiveWeightCoverage": 0.436975,
+    "coverageGain": 0.07563,
+    "liveQualityEarned": false,
+    "nextGate": "V21_SHADOW_SCORER_EVIDENCE_ENRICHMENT_V1"
+  }
 }
