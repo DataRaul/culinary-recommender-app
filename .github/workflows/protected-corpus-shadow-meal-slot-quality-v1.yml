@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "config/protected_corpus_shadow_meal_slot_quality_v1.json"
+      - "data/generated/protected-corpus-shadow-meal-slot-quality-v1.json"
       - "scripts/protected-corpus-shadow-meal-slot-quality-v1-core.mjs"
       - "scripts/run-protected-corpus-shadow-meal-slot-quality-v1.mjs"
       - "tests/protected-corpus-shadow-meal-slot-quality-v1.test.js"
