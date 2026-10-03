@@ -1,28 +1,29 @@
 {
   "schemaVersion": "CULINARY_RECOMMENDATION_READINESS_AUDIT_SUMMARY_V1",
-  "date": "2026-09-23",
+  "date": "2026-10-03",
   "auditExecutionPass": true,
   "usableRecommendationBaselinePass": true,
   "terminal": "USABLE_RECOMMENDATION_BASELINE_PASS",
   "protectedCorpusVersion": "v8018",
   "publicRuntime": {
-    "recipeCount": 85,
+    "recipeCount": 86,
     "authoredRecipeCount": 76,
-    "externalRecipeCount": 9,
+    "externalRecipeCount": 10,
     "recommendationStateCounts": {
-      "ELIGIBLE": 77,
+      "ELIGIBLE": 78,
       "REFERENCE_ONLY_INCOMPLETE_HARD_METADATA": 6,
       "SEARCH_ONLY": 2
     },
-    "recommendationEligibleStateCount": 77,
-    "evaluatorEligibleCount": 77,
-    "hardMetadataReadyRecommendationEligibleCount": 77,
+    "recommendationEligibleStateCount": 78,
+    "evaluatorEligibleCount": 78,
+    "hardMetadataReadyRecommendationEligibleCount": 78,
     "hardMetadataBlockedRecommendationEligibleIds": [],
-    "unknownNutritionRecommendationEligibleCount": 1,
-    "unknownNutritionSafeCount": 1,
+    "unknownNutritionRecommendationEligibleCount": 2,
+    "unknownNutritionSafeCount": 2,
     "unknownNutritionZeroCoercionCount": 0,
-    "unknownNutritionMissingSignalDisclosureCount": 1,
+    "unknownNutritionMissingSignalDisclosureCount": 2,
     "unknownNutritionRecommendationEligibleIds": [
+      "unitools_pao_de_queijo",
       "unitools_tortilla_espanola"
     ]
   },
