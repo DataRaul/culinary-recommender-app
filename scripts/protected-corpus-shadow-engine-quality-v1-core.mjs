@@ -27,9 +27,20 @@ const DIRECT_RUNTIME_MEAL_ROLE_MAP = new Map([
   ["SNACK","snack"]
 ]);
 
+export function canonicalMealRolesFromOverlay(overlay){
+  return known(overlay?.canonical?.culinary?.mealRoles)
+    ? [...new Set(arr(overlay.canonical.culinary.mealRoles).map(v=>String(v).toUpperCase()))].sort()
+    : [];
+}
+
+export function runtimeMealTypesForCanonicalRoles(roles,{mainToLunchDinnerShadowCandidate=false}={}){
+  const out=roles.map(v=>DIRECT_RUNTIME_MEAL_ROLE_MAP.get(String(v).toUpperCase())).filter(Boolean);
+  if(mainToLunchDinnerShadowCandidate && roles.map(v=>String(v).toUpperCase()).includes("MAIN")) out.push("lunch","dinner");
+  return [...new Set(out)].sort();
+}
+
 export function runtimeMealTypesFromCanonicalRoles(overlay){
-  const roles=known(overlay?.canonical?.culinary?.mealRoles) ? arr(overlay.canonical.culinary.mealRoles) : [];
-  return [...new Set(roles.map(v=>DIRECT_RUNTIME_MEAL_ROLE_MAP.get(String(v).toUpperCase())).filter(Boolean))].sort();
+  return runtimeMealTypesForCanonicalRoles(canonicalMealRolesFromOverlay(overlay));
 }
 
 function exactPositiveAllergens(diag){
@@ -69,6 +80,7 @@ export function adaptProtectedShadowRecipe({overlay,diag,evidenceScore}){
   const totalMinutes=knownNumber(overlay?.canonical?.time?.totalMinutes);
   const servings=knownNumber(overlay?.canonical?.serving?.servings);
   const country=known(overlay?.canonical?.geography?.country) ? String(overlay.canonical.geography.country.value||"") : null;
+  const canonicalMealRoles=canonicalMealRolesFromOverlay(overlay);
   return {
     id:"shadow_"+sha(key).slice(0,24),
     identity:{canonicalTitle:String(overlay.identity.sourceRecordKey||key)},
@@ -85,7 +97,9 @@ export function adaptProtectedShadowRecipe({overlay,diag,evidenceScore}){
       runtimeActivationAuthorized:false,
       shadowOnly:true,
       shadowRecipeKey:key,
-      shadowEvidenceScore:Number(evidenceScore)
+      shadowEvidenceScore:Number(evidenceScore),
+      shadowCanonicalMealRoles:canonicalMealRoles,
+      shadowMealRolePolicy:"DIRECT_ONLY"
     },
     culinary:{
       cuisine:"Shadow",

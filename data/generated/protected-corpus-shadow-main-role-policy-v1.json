@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_SHADOW_MAIN_ROLE_POLICY_SUMMARY_V1",
+  "date": "2026-10-03",
+  "pass": true,
+  "terminal": "V21_SHADOW_MAIN_ROLE_POLICY_PASS__MEAL_SLOT_QUALITY_READY",
+  "protectedCorpusVersion": "v8018",
+  "currentPublicRuntimeRecipeCount": 86,
+  "qualityCohort": {
+    "size": 500,
+    "digestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7"
+  },
+  "policy": {
+    "id": "MAIN_TO_LUNCH_DINNER_SHADOW_CANDIDATE",
+    "semanticStatus": "PRODUCT_SLOT_HYPOTHESIS_NOT_SOURCE_FACT",
+    "liveAuthority": false
+  },
+  "dispositions": {
+    "DIRECT_RUNTIME_ROLE": 64,
+    "KNOWN_NON_TRANSLATED_HOLD": 149,
+    "MAIN_SHADOW_TRANSLATED": 207,
+    "UNKNOWN_ROLE_HOLD": 80
+  },
+  "uniqueMealTargetedShadowCandidateCount": 271,
+  "totalMealTargetedHoldCount": 229,
+  "mealTypeEligibleCounts": {
+    "breakfast": 22,
+    "dinner": 207,
+    "lunch": 207,
+    "snack": 42
+  },
+  "normalModeEligibleCounts": {
+    "breakfast": 0,
+    "dinner": 0,
+    "lunch": 0,
+    "snack": 0
+  },
+  "restrictedProfiles": {
+    "vegetarianEligible": 0,
+    "eggAllergyEligible": 0
+  },
+  "plannerProbe": {
+    "lunchComplete": true,
+    "dinnerComplete": true,
+    "lunchSelectedCount": 5,
+    "dinnerSelectedCount": 5,
+    "deterministic": true
+  },
+  "disposition": {
+    "shadowPolicyEvaluationPass": true,
+    "livePolicyAdoptionAuthorized": false,
+    "progressiveLiveExposureAuthorized": false,
+    "dessertBeverageSideTranslationAuthorized": false
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "recommendationAuthorityWidened": false,
+    "candidateClassificationPromoted": false,
+    "dietaryAllergenAuthorityPromoted": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "initialWorkflowEvidence": {
+    "runId": 37148051317,
+    "artifactId": 11283340627,
+    "artifactName": "protected-corpus-shadow-main-role-policy-v1",
+    "artifactZipSha256": "d88174aa3a847c7343560899d8a713b4da0c96cb42eab8c6b45794a2676656ef",
+    "headSha": "a4106e7f7ed3a9450c26437071dcae1f2d1caf11"
+  },
+  "nextGate": "V21_SHADOW_MEAL_SLOT_QUALITY_EVALUATION_V1"
+}

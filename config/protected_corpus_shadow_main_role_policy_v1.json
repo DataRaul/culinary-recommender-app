@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_SHADOW_MAIN_ROLE_POLICY_V1",
+  "date": "2026-10-03",
+  "state": "PASS__MAIN_TO_LUNCH_DINNER_SHADOW_POLICY",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "V21_FIRST_500_SHADOW_RELEVANCE_ACCEPTANCE_PASS__RUNTIME_ROLE_POLICY_NEXT",
+  "qualityCohortSize": 500,
+  "qualityCohortDigestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7",
+  "candidatePolicy": {
+    "id": "MAIN_TO_LUNCH_DINNER_SHADOW_CANDIDATE",
+    "canonicalRole": "MAIN",
+    "candidateRuntimeMealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "semanticStatus": "PRODUCT_SLOT_HYPOTHESIS_NOT_SOURCE_FACT",
+    "liveAuthority": false
+  },
+  "directRolePolicy": {
+    "BREAKFAST": "breakfast",
+    "SNACK": "snack"
+  },
+  "expected": {
+    "mainRoleCandidateCount": 207,
+    "directRuntimeRoleCount": 64,
+    "candidateTranslatedMainCount": 207,
+    "uniqueMealTargetedShadowCandidateCount": 271,
+    "knownNonTranslatedHoldCount": 149,
+    "unknownRoleHoldCount": 80,
+    "totalMealTargetedHoldCount": 229,
+    "mealTypeEligibleCounts": {
+      "breakfast": 22,
+      "dinner": 207,
+      "lunch": 207,
+      "snack": 42
+    },
+    "normalModeEligibleCounts": {
+      "breakfast": 0,
+      "dinner": 0,
+      "lunch": 0,
+      "snack": 0
+    }
+  },
+  "plannerProbe": {
+    "lunchSlots": 5,
+    "dinnerSlots": 5,
+    "requireComplete": true
+  },
+  "acceptance": [
+    "EXACT_FROZEN_500_COHORT",
+    "MAIN_TRANSLATION_EXISTS_ONLY_AS_EXPLICIT_SHADOW_PRODUCT_SLOT_HYPOTHESIS",
+    "BREAKFAST_AND_SNACK_DIRECT_SEMANTICS_UNCHANGED",
+    "DESSERT_BEVERAGE_SIDE_AND_UNKNOWN_REMAIN_HELD",
+    "NORMAL_MODE_SHADOW_ELIGIBILITY_REMAINS_ZERO",
+    "RESTRICTED_PROFILE_SHADOW_ELIGIBILITY_REMAINS_ZERO",
+    "LUNCH_AND_DINNER_SHADOW_PLANNER_PROBES_ARE_DETERMINISTIC_AND_COMPLETE",
+    "NO_LIVE_POLICY_ADOPTION_OR_RECIPE_ADMISSION"
+  ],
+  "authority": {
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "liveRuntimeMealRoleTranslationAuthorized": false,
+    "candidateShadowTranslationEvaluationAuthorized": true,
+    "candidateClassificationPromotionAuthorized": false,
+    "dietaryAllergenAuthorityPromotionAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextGateOnPass": "V21_SHADOW_MEAL_SLOT_QUALITY_EVALUATION_V1",
+  "evidence": "data/generated/protected-corpus-shadow-main-role-policy-v1.json",
+  "result": {
+    "terminal": "V21_SHADOW_MAIN_ROLE_POLICY_PASS__MEAL_SLOT_QUALITY_READY",
+    "uniqueMealTargetedShadowCandidateCount": 271,
+    "totalMealTargetedHoldCount": 229,
+    "livePolicyAdoptionAuthorized": false
+  }
+}
