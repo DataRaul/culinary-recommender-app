@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_FULL_SHADOW_RECOMMENDATION_CLOSEOUT_V1",
+  "date": "2026-10-03",
+  "pass": true,
+  "terminal": "FULL_CORPUS_SHADOW_RECOMMENDATION_V1_DESIGN_AND_BASELINE_PASS",
+  "protectedCorpusVersion": "v8018",
+  "recipeCount": 19268,
+  "searchableRecipeCount": 19268,
+  "currentPublicRuntimeRecipeCount": 86,
+  "unrestrictedBroadShadowEvaluableCount": 7715,
+  "unrestrictedBreakfastShadowEvaluableCount": 72,
+  "vegetarianShadowEvaluableCount": 0,
+  "eggAllergyShadowEvaluableCount": 0,
+  "hardSafetyViolationCount": 0,
+  "structuralExceptionCount": 3,
+  "deterministicSample": {
+    "size": 500,
+    "digestSha256": "4fd784be94eeb1be97137fd3518b807decad7507fc051b3f09a62abd26a72bb0",
+    "sourceCohortCount": 19
+  },
+  "topFailureClusters": [
+    {"failureClass":"NO_REVIEWED_DIETARY_AUTHORITY","affectedRecipeCount":19268},
+    {"failureClass":"UNRESOLVED_INGREDIENT_IDENTITIES","affectedRecipeCount":19155},
+    {"failureClass":"NO_SERVINGS_AUTHORITY","affectedRecipeCount":18767},
+    {"failureClass":"NO_TOTAL_TIME_AUTHORITY","affectedRecipeCount":17897},
+    {"failureClass":"NO_DIFFICULTY_AUTHORITY","affectedRecipeCount":17852},
+    {"failureClass":"NO_MEAL_ROLE_SIGNAL","affectedRecipeCount":16678},
+    {"failureClass":"NO_DISH_CATEGORY_SIGNAL","affectedRecipeCount":12017},
+    {"failureClass":"STRUCTURAL_EXCEPTION","affectedRecipeCount":3}
+  ],
+  "workflowEvidence": {
+    "runId": 37135034332,
+    "artifactId": 11278856050,
+    "artifactName": "protected-corpus-full-shadow-recommendation-v1",
+    "artifactZipSha256": "a018fc884e2c65279498ab7efdd8bfdedb44f69b161d61ae950370f18dfb264a"
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "candidateClassificationPromoted": false,
+    "dietaryAllergenAuthorityPromoted": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "FULL_CORPUS_SHADOW_RECOMMENDATION_V1_ENGINE_ADAPTER_AND_QUALITY_EVALUATION"
+}
