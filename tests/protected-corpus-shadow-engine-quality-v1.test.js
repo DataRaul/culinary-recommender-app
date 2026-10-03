@@ -65,6 +65,14 @@ test("shadow adapter carries known evidence but does not invent missing soft aut
   assert.equal(recipe.economics.costTier,undefined);
 });
 
+
+test("non-runtime canonical meal roles do not leak into runtime slot vocabulary",()=>{
+  const mainOverlay=overlay();
+  mainOverlay.canonical.culinary.mealRoles={state:"REVIEWED_MAPPING",value:["MAIN"]};
+  const recipe=adaptProtectedShadowRecipe({overlay:mainOverlay,diag:diag(),evidenceScore:0.64});
+  assert.deepEqual(recipe.culinary.mealTypes,[]);
+});
+
 test("real engine admits shadow candidates only in unrestricted explicit shadow mode",()=>{
   const recipe=adaptProtectedShadowRecipe({overlay:overlay(),diag:diag(),evidenceScore:0.64});
   const broad=normalizeProfile({...DEFAULT_PROFILE,dietaryMode:"unrestricted",allergens:[],excludedIngredientIds:[],unavailableIngredientIds:[],maxMinutes:180,skill:4,budget:4,cuisinePreferences:[],priorityPacks:[]});
