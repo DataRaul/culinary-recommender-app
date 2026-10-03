@@ -43,3 +43,27 @@ On pass:
 `V21_SHADOW_MEAL_SLOT_QUALITY_EVALUATION_V1`
 
 That gate should evaluate the quality and diversity of the resulting breakfast/lunch/dinner/snack shadow pools before any live-policy adoption is considered.
+
+## Measured result
+
+The deterministic policy run passed:
+
+- canonical MAIN candidates translated in shadow: **207**;
+- direct BREAKFAST/SNACK candidates retained: **64**;
+- unique meal-targetable shadow candidates: **271 / 500**;
+- known DESSERT/BEVERAGE/SIDE holds: **149**;
+- unknown-role holds: **80**;
+- total meal-targeted holds: **229**;
+- lunch shadow eligible: **207**;
+- dinner shadow eligible: **207**;
+- breakfast shadow eligible: **22**;
+- snack shadow eligible: **42**;
+- normal-mode eligibility for all four app meal types: **0**;
+- vegetarian and egg-allergy shadow eligibility: **0**;
+- five-slot lunch and dinner planner probes: **complete and deterministic**.
+
+Terminal:
+
+`V21_SHADOW_MAIN_ROLE_POLICY_PASS__MEAL_SLOT_QUALITY_READY`
+
+Canonical evidence: `data/generated/protected-corpus-shadow-main-role-policy-v1.json`.
