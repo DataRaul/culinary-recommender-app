@@ -334,7 +334,7 @@ export function validateShadowSummary(summary) {
   if (summary?.profiles?.UNRESTRICTED_BROAD?.shadowEvaluableCount<1) errors.push("unrestrictedShadow");
   for (const profile of Object.values(summary?.profiles || {})) if (profile?.hardSafetyViolationCount!==0) errors.push("hardSafetyViolation");
   for (const [key,value] of Object.entries(summary?.boundaries || {})) {
-    if (["protectedD1Reads","protectedD1Writes"].includes(key)) { if (value!==0) errors.push("boundaries."+key); }
+    if (["protectedD1Reads","protectedD1Writes","protectedBodiesRewritten"].includes(key)) { if (value!==0) errors.push("boundaries."+key); }
     else if (value!==false) errors.push("boundaries."+key);
   }
   return errors;
