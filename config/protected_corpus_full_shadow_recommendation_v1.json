@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_FULL_SHADOW_RECOMMENDATION_V1",
+  "date": "2026-10-03",
+  "state": "AUTHORIZED_DESIGN_AND_BASELINE",
+  "protectedCorpusVersion": "v8018",
+  "expectedRecipeCount": 19268,
+  "currentPublicRuntimeRecipeCount": 86,
+  "objective": "Evaluate the complete protected corpus offline/shadow without hiding it from owner search and without widening live recommendation authority.",
+  "inputs": {
+    "normalizationMappingFull": ".tmp/corpus-normalization-mapping-v1-full.json",
+    "nutritionIdentityDiagnosticsFull": ".tmp/nutrition-vitamin-applicability-audit-v1-full.json",
+    "candidateClassificationFull": ".tmp/culinary-brain-c2-full-v8018-candidates-v1.json",
+    "currentRuntimeModule": "src/data/corpus-v1.js"
+  },
+  "searchAvailability": {
+    "required": true,
+    "expectedSearchableRecipeCount": 19268,
+    "notRecommendationValidatedRecipesRemainSearchable": true,
+    "recommendationFailureMayRemoveFromSearch": false
+  },
+  "hardSafetyPolicy": {
+    "unrestrictedNoAllergenNoExclusionMayEnterShadowWithoutReviewedDietaryAuthority": true,
+    "restrictedDietaryModeRequiresReviewedDietaryAuthority": true,
+    "allergenProfileRequiresReviewedAllergenAuthority": true,
+    "ingredientExclusionsRequireResolvedIngredientIdentity": true,
+    "unknownOrAmbiguousSafetyEvidenceDisposition": "HOLD_FAIL_CLOSED",
+    "hardSafetyViolationTolerance": 0,
+    "candidateOnlyClassificationCreatesHardAuthority": false
+  },
+  "validatedProtectedSources": [
+    {
+      "recipeKey": "unitools-world-recipes-v1_1_0::pao-de-queijo",
+      "runtimeId": "unitools_pao_de_queijo",
+      "dietaryTags": ["unrestricted"],
+      "declaredAllergens": ["egg", "milk"],
+      "recommendationValidated": true
+    }
+  ],
+  "shadowScoring": {
+    "role": "OFFLINE_TRIAGE_AND_EVALUATION_ONLY",
+    "weights": {
+      "canonicalDishCategory": 0.16,
+      "canonicalMealRole": 0.18,
+      "canonicalTotalMinutes": 0.18,
+      "canonicalDifficulty": 0.12,
+      "canonicalCountry": 0.08,
+      "canonicalServings": 0.08,
+      "allIngredientIdentitiesResolved": 0.12,
+      "candidateDishCategory": 0.04,
+      "candidateMealRole": 0.04
+    },
+    "minimumSignalWeightForGenericUnrestrictedShadow": 0.04,
+    "candidateClassificationMayAffectLiveRuntime": false
+  },
+  "profileCases": [
+    {
+      "id": "UNRESTRICTED_BROAD",
+      "mealType": null,
+      "profile": {
+        "dietaryMode": "unrestricted",
+        "allergens": [],
+        "excludedIngredientIds": [],
+        "unavailableIngredientIds": [],
+        "maxMinutes": 180,
+        "skill": 4,
+        "budget": 4,
+        "cuisinePreferences": [],
+        "priorityPacks": []
+      }
+    },
+    {
+      "id": "UNRESTRICTED_BREAKFAST",
+      "mealType": "breakfast",
+      "profile": {
+        "dietaryMode": "unrestricted",
+        "allergens": [],
+        "excludedIngredientIds": [],
+        "unavailableIngredientIds": [],
+        "maxMinutes": 180,
+        "skill": 4,
+        "budget": 4,
+        "cuisinePreferences": [],
+        "priorityPacks": []
+      }
+    },
+    {
+      "id": "VEGETARIAN_BROAD",
+      "mealType": null,
+      "profile": {
+        "dietaryMode": "vegetarian",
+        "allergens": [],
+        "excludedIngredientIds": [],
+        "unavailableIngredientIds": [],
+        "maxMinutes": 180,
+        "skill": 4,
+        "budget": 4,
+        "cuisinePreferences": [],
+        "priorityPacks": []
+      }
+    },
+    {
+      "id": "EGG_ALLERGY_BROAD",
+      "mealType": null,
+      "profile": {
+        "dietaryMode": "unrestricted",
+        "allergens": ["egg"],
+        "excludedIngredientIds": [],
+        "unavailableIngredientIds": [],
+        "maxMinutes": 180,
+        "skill": 4,
+        "budget": 4,
+        "cuisinePreferences": [],
+        "priorityPacks": []
+      }
+    }
+  ],
+  "sample": {
+    "size": 500,
+    "minimumOnePerSourceCohort": true,
+    "deterministicHash": "sha256"
+  },
+  "acceptance": {
+    "fullCorpusExactCountRequired": 19268,
+    "uniqueRecipeKeyCountRequired": 19268,
+    "structuralExceptionCountRequired": 3,
+    "searchAvailabilityMustRemainIndependent": true,
+    "restrictedProfilesFailClosedWithoutAuthority": true,
+    "hardSafetyViolationTolerance": 0,
+    "publicRuntimeMutationAllowed": false,
+    "recommendationAdmissionMutationAllowed": false,
+    "protectedD1ReadsAllowed": false,
+    "protectedD1WritesAllowed": false,
+    "protectedBodyRewriteAllowed": false,
+    "knowledgeCoreWriteAllowed": false,
+    "paidModelOrApiAllowed": false,
+    "thirdShardAllowed": false,
+    "barbecueMutationAllowed": false
+  },
+  "nextGateOnPass": "FULL_CORPUS_SHADOW_RECOMMENDATION_V1_ENGINE_ADAPTER_AND_QUALITY_EVALUATION"
+}
