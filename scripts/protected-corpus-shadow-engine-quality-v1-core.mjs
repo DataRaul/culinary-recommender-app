@@ -22,9 +22,14 @@ function mapBy(rows,keyFn){
   return m;
 }
 
-function runtimeMealTypes(overlay){
+const DIRECT_RUNTIME_MEAL_ROLE_MAP = new Map([
+  ["BREAKFAST","breakfast"],
+  ["SNACK","snack"]
+]);
+
+export function runtimeMealTypesFromCanonicalRoles(overlay){
   const roles=known(overlay?.canonical?.culinary?.mealRoles) ? arr(overlay.canonical.culinary.mealRoles) : [];
-  return roles.map(v=>String(v).toLowerCase());
+  return [...new Set(roles.map(v=>DIRECT_RUNTIME_MEAL_ROLE_MAP.get(String(v).toUpperCase())).filter(Boolean))].sort();
 }
 
 function exactPositiveAllergens(diag){
@@ -84,7 +89,7 @@ export function adaptProtectedShadowRecipe({overlay,diag,evidenceScore}){
     },
     culinary:{
       cuisine:"Shadow",
-      mealTypes:runtimeMealTypes(overlay),
+      mealTypes:runtimeMealTypesFromCanonicalRoles(overlay),
       difficulty:undefined,
       techniqueTags:[],
       activeAttention:undefined,
