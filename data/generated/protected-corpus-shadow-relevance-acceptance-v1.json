@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_SHADOW_RELEVANCE_ACCEPTANCE_SUMMARY_V1",
+  "date": "2026-10-03",
+  "pass": true,
+  "terminal": "V21_FIRST_500_SHADOW_RELEVANCE_ACCEPTANCE_PASS__RUNTIME_ROLE_POLICY_NEXT",
+  "protectedCorpusVersion": "v8018",
+  "qualityCohort": {
+    "size": 500,
+    "digestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7",
+    "sourceCounts": {
+      "FORKRECIPE_PINNED_STEP7E": 78,
+      "unitools-world-recipes-v1_1_0": 422
+    }
+  },
+  "mealRoleAudit": {
+    "directRuntimeRoleCount": 64,
+    "nonRuntimeRolePolicyHoldCount": 356,
+    "unknownRoleHoldCount": 80,
+    "directRuntimeMealTypeCounts": {
+      "breakfast": 22,
+      "snack": 42
+    },
+    "canonicalRoleCounts": {
+      "BEVERAGE": 25,
+      "BREAKFAST": 22,
+      "DESSERT": 111,
+      "MAIN": 207,
+      "SIDE": 13,
+      "SNACK": 42
+    },
+    "mealTargetedShadowEligibleCount": 64,
+    "mealTargetedShadowHeldCount": 436,
+    "invalidRuntimeMealTypeLeakCount": 0
+  },
+  "metadataAudit": {
+    "canonicalDishCategoryReadyCount": 216,
+    "candidateOnlyDishCategoryCount": 12,
+    "candidateOnlyDishCategoryAuthorityCount": 0,
+    "obviousLexicalConflictCount": 3,
+    "obviousLexicalConflictRecipeKeys": [
+      "unitools-world-recipes-v1_1_0::lampuki-pie",
+      "unitools-world-recipes-v1_1_0::meat-pie-australian",
+      "unitools-world-recipes-v1_1_0::shepherds-pie"
+    ],
+    "totalTimeAuthorityCount": 500,
+    "sourceDifficultyEvidenceCount": 500,
+    "runtimeDifficultyAuthorityCount": 0,
+    "servingsAuthorityCount": 422
+  },
+  "broadRankingDiagnostic": {
+    "top100CanonicalRoleCounts": {
+      "BEVERAGE": 20,
+      "BREAKFAST": 3,
+      "DESSERT": 51,
+      "MAIN": 13,
+      "SIDE": 1,
+      "SNACK": 9,
+      "UNKNOWN": 3
+    },
+    "liveAcceptanceAuthorized": false
+  },
+  "disposition": {
+    "broadUnrestrictedShadowEvaluationMayContinue": true,
+    "mealTargetedDirectRoleShadowEvaluationMayContinue": true,
+    "progressiveLiveExposureAuthorized": false,
+    "runtimeMealRoleTranslationAuthorized": false,
+    "nonRuntimeCanonicalRolesRequirePolicy": true
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "recommendationAuthorityWidened": false,
+    "candidateClassificationPromoted": false,
+    "dietaryAllergenAuthorityPromoted": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "initialWorkflowEvidence": {
+    "runId": 37147520592,
+    "artifactId": 11282842477,
+    "artifactName": "protected-corpus-shadow-relevance-acceptance-v1",
+    "artifactZipSha256": "29f18c6800b65824982709460fddb6e3a98afcf884b82da2ed38d5efc5fc7c42",
+    "headSha": "c8c8b86cc4e1fa568c6e09cc9fece95b22e6eca8"
+  },
+  "nextGate": "V21_MEAL_ROLE_TO_RUNTIME_SLOT_TRANSLATION_POLICY_V1"
+}
