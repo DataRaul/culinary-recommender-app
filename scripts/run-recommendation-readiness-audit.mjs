@@ -85,7 +85,7 @@ const usableRecommendationBaselinePass =
 
 const summary = {
   schemaVersion: "CULINARY_RECOMMENDATION_READINESS_AUDIT_SUMMARY_V1",
-  date: "2026-09-23",
+  date: contract.auditDate || "2026-09-23",
   auditExecutionPass,
   usableRecommendationBaselinePass,
   terminal: usableRecommendationBaselinePass
