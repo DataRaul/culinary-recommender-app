@@ -19,6 +19,15 @@ export const PROTECTED_SEARCH_HARD_MAX_D1 = 16;
 export const PROTECTED_SEARCH_FREE_DAILY_ROWS_WRITTEN = 100000;
 export const PROTECTED_SEARCH_BROWSER_DAILY_WRITE_GUARD = 80000;
 
+export const PROTECTED_SEARCH_RECOMMENDATION_VALIDATED_SOURCE_IDS = Object.freeze(["unitools:pao-de-queijo"]);
+const PROTECTED_SEARCH_RECOMMENDATION_VALIDATED_SOURCE_ID_SET = new Set(PROTECTED_SEARCH_RECOMMENDATION_VALIDATED_SOURCE_IDS);
+
+export function protectedRecommendationState(recipeId) {
+  return PROTECTED_SEARCH_RECOMMENDATION_VALIDATED_SOURCE_ID_SET.has(String(recipeId || "").trim())
+    ? "SEARCHABLE__RECOMMENDATION_VALIDATED"
+    : "SEARCHABLE__NOT_RECOMMENDATION_VALIDATED";
+}
+
 const ALLOWED_BODY_VERSIONS = new Set(Array.from({ length: 18 }, (_, index) => `v${8001 + index}`));
 const encoder = new TextEncoder();
 const bytes = value => encoder.encode(String(value)).byteLength;
@@ -175,6 +184,7 @@ export function projectProtectedPacketForDetail(packet, route = {}) {
   const index = projectProtectedPacketForIndex(packet, route);
   return {
     ...index,
+    recommendationState: protectedRecommendationState(index.recipeId),
     ingredients: packetIngredients(packet),
     directions: packetDirections(packet),
     authority: {
@@ -479,7 +489,8 @@ function publicSummaryRow(row) {
     sourceWork: row.source_work == null ? null : String(row.source_work),
     sourceAuthor: row.source_author == null ? null : String(row.source_author),
     sourceYear: row.source_year == null ? null : String(row.source_year),
-    structuralState: String(row.structural_state)
+    structuralState: String(row.structural_state),
+    recommendationState: protectedRecommendationState(row.recipe_id)
   };
 }
 
