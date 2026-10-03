@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "config/protected_corpus_shadow_signal_coverage_adapter_v1.json"
+      - "data/generated/protected-corpus-shadow-signal-coverage-adapter-v1.json"
       - "scripts/protected-corpus-shadow-signal-coverage-adapter-v1-core.mjs"
       - "scripts/run-protected-corpus-shadow-signal-coverage-adapter-v1.mjs"
       - "tests/protected-corpus-shadow-signal-coverage-adapter-v1.test.js"
