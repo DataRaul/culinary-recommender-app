@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_SHADOW_MEAL_SLOT_QUALITY_V1",
+  "date": "2026-10-03",
+  "state": "PASS__EVALUATION_COMPLETE__LIVE_QUALITY_NOT_EARNED",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "V21_SHADOW_MAIN_ROLE_POLICY_PASS__MEAL_SLOT_QUALITY_READY",
+  "qualityCohortSize": 500,
+  "qualityCohortDigestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7",
+  "expectedMealTypeEligibleCounts": {
+    "breakfast": 22,
+    "dinner": 207,
+    "lunch": 207,
+    "snack": 42
+  },
+  "rankingEvaluation": {
+    "topK": 20,
+    "minimumEvidenceScore": 0.6,
+    "minimumAverageAvailablePositiveWeightCoverageForLiveReadiness": 0.5,
+    "requireEvidenceWeightedTopKAverageEvidenceNotWorseThanControl": true,
+    "requireDeterministicControlAndWeightedRanking": true,
+    "requireSemanticRoleViolations": 0
+  },
+  "plannerEvaluation": {
+    "slotsPerMealType": 7,
+    "lunchDinnerWeekSlots": 14,
+    "maximumPairwiseIngredientJaccardForLiveReadiness": 0.85,
+    "requireComplete": true,
+    "requireUniqueRecipes": true,
+    "requireDeterministic": true
+  },
+  "qualityInterpretation": {
+    "availablePositiveWeightCoverageMeasures": "fraction of the production scorer's positive weight backed by finite evidence on the candidate",
+    "evidenceWeightedOrderingIsProductionScore": false,
+    "shadowRankingMayEarnLiveAuthority": false,
+    "evaluationMayClosePassWhileLiveQualityRemainsUnearned": true
+  },
+  "authority": {
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "liveRuntimeMealRoleTranslationAuthorized": false,
+    "liveShadowRankingAuthorized": false,
+    "candidateClassificationPromotionAuthorized": false,
+    "dietaryAllergenAuthorityPromotionAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextGateIfLiveQualityUnearned": "V21_SHADOW_SIGNAL_COVERAGE_ADAPTER_V1",
+  "nextGateIfLiveQualityEarned": "V21_PROGRESSIVE_LIVE_EXPOSURE_AUTHORIZATION_REVIEW",
+  "evidence": "data/generated/protected-corpus-shadow-meal-slot-quality-v1.json",
+  "result": {
+    "terminal": "V21_SHADOW_MEAL_SLOT_QUALITY_EVALUATION_PASS__LIVE_QUALITY_NOT_EARNED__SIGNAL_ADAPTER_NEXT",
+    "liveQualityEarned": false,
+    "averageAvailablePositiveWeightCoverage": 0.361345,
+    "minimumRequiredForLiveReadiness": 0.5,
+    "safetyAndModeIsolationPass": true,
+    "evidenceWeightedRankingPass": true,
+    "plannerQualityPass": true,
+    "signalCoveragePass": false
+  }
+}

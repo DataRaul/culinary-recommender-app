@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_SHADOW_MEAL_SLOT_QUALITY_SUMMARY_V1",
+  "date": "2026-10-03",
+  "pass": true,
+  "terminal": "V21_SHADOW_MEAL_SLOT_QUALITY_EVALUATION_PASS__LIVE_QUALITY_NOT_EARNED__SIGNAL_ADAPTER_NEXT",
+  "protectedCorpusVersion": "v8018",
+  "currentPublicRuntimeRecipeCount": 86,
+  "qualityCohort": {
+    "size": 500,
+    "digestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7"
+  },
+  "liveQualityEarned": false,
+  "readinessCriteria": {
+    "eligibleCountsPass": true,
+    "safetyAndModeIsolationPass": true,
+    "evidenceWeightedRankingPass": true,
+    "signalCoveragePass": false,
+    "plannerQualityPass": true,
+    "minimumAverageAvailablePositiveWeightCoverageRequired": 0.5,
+    "maximumPairwiseIngredientJaccardAllowed": 0.85
+  },
+  "mealTypes": {
+    "breakfast": {
+      "eligibleCount": 22,
+      "rejectedCount": 478,
+      "normalModeEligibleCount": 0,
+      "semanticRoleViolationCount": 0,
+      "nonFiniteScoreCount": 0,
+      "uniqueControlScoreCount": 13,
+      "controlScoreSpread": 0.158689,
+      "controlDigestA": "c0c0cc3773384cc14004bd51b61a34a88efd934b158cefb2b0cdde38ec245dfe",
+      "controlDigestB": "c0c0cc3773384cc14004bd51b61a34a88efd934b158cefb2b0cdde38ec245dfe",
+      "weightedDigestA": "c1c92bea9c59393f53a99ed5c9b49b42dad93a754ccedb0ae969dc64fc75020f",
+      "weightedDigestB": "c1c92bea9c59393f53a99ed5c9b49b42dad93a754ccedb0ae969dc64fc75020f",
+      "controlTopKAverageEvidence": 0.64,
+      "weightedTopKAverageEvidence": 0.64,
+      "controlTopKAverageAvailablePositiveWeightCoverage": 0.361345,
+      "weightedTopKAverageAvailablePositiveWeightCoverage": 0.361345,
+      "weightedTopKCanonicalDishCategoryCounts": {
+        "UNKNOWN": 20
+      }
+    },
+    "dinner": {
+      "eligibleCount": 207,
+      "rejectedCount": 293,
+      "normalModeEligibleCount": 0,
+      "semanticRoleViolationCount": 0,
+      "nonFiniteScoreCount": 0,
+      "uniqueControlScoreCount": 28,
+      "controlScoreSpread": 0.246434,
+      "controlDigestA": "34d652aad1efaa4b13bc681c10229bcaf9aa9b3a0995d91a4e7ad3468e779a10",
+      "controlDigestB": "34d652aad1efaa4b13bc681c10229bcaf9aa9b3a0995d91a4e7ad3468e779a10",
+      "weightedDigestA": "8f767490bffd99ee28fd96a9fd9681d674fcd2fc9ea8e889dedac31cae063718",
+      "weightedDigestB": "8f767490bffd99ee28fd96a9fd9681d674fcd2fc9ea8e889dedac31cae063718",
+      "controlTopKAverageEvidence": 0.644,
+      "weightedTopKAverageEvidence": 0.654,
+      "controlTopKAverageAvailablePositiveWeightCoverage": 0.361345,
+      "weightedTopKAverageAvailablePositiveWeightCoverage": 0.361345,
+      "weightedTopKCanonicalDishCategoryCounts": {
+        "UNKNOWN": 20
+      }
+    },
+    "lunch": {
+      "eligibleCount": 207,
+      "rejectedCount": 293,
+      "normalModeEligibleCount": 0,
+      "semanticRoleViolationCount": 0,
+      "nonFiniteScoreCount": 0,
+      "uniqueControlScoreCount": 28,
+      "controlScoreSpread": 0.246434,
+      "controlDigestA": "34d652aad1efaa4b13bc681c10229bcaf9aa9b3a0995d91a4e7ad3468e779a10",
+      "controlDigestB": "34d652aad1efaa4b13bc681c10229bcaf9aa9b3a0995d91a4e7ad3468e779a10",
+      "weightedDigestA": "8f767490bffd99ee28fd96a9fd9681d674fcd2fc9ea8e889dedac31cae063718",
+      "weightedDigestB": "8f767490bffd99ee28fd96a9fd9681d674fcd2fc9ea8e889dedac31cae063718",
+      "controlTopKAverageEvidence": 0.644,
+      "weightedTopKAverageEvidence": 0.654,
+      "controlTopKAverageAvailablePositiveWeightCoverage": 0.361345,
+      "weightedTopKAverageAvailablePositiveWeightCoverage": 0.361345,
+      "weightedTopKCanonicalDishCategoryCounts": {
+        "UNKNOWN": 20
+      }
+    },
+    "snack": {
+      "eligibleCount": 42,
+      "rejectedCount": 458,
+      "normalModeEligibleCount": 0,
+      "semanticRoleViolationCount": 0,
+      "nonFiniteScoreCount": 0,
+      "uniqueControlScoreCount": 20,
+      "controlScoreSpread": 0.205361,
+      "controlDigestA": "200b6a92eb8e3869f5681a4e58304d72c01dac14cbd64d089dc35005ab0e0a17",
+      "controlDigestB": "200b6a92eb8e3869f5681a4e58304d72c01dac14cbd64d089dc35005ab0e0a17",
+      "weightedDigestA": "b531b4ac7e096c6e830aa0e4e272d2c8c2c7705d88b325647e67659faee8b12d",
+      "weightedDigestB": "b531b4ac7e096c6e830aa0e4e272d2c8c2c7705d88b325647e67659faee8b12d",
+      "controlTopKAverageEvidence": 0.64,
+      "weightedTopKAverageEvidence": 0.64,
+      "controlTopKAverageAvailablePositiveWeightCoverage": 0.361345,
+      "weightedTopKAverageAvailablePositiveWeightCoverage": 0.361345,
+      "weightedTopKCanonicalDishCategoryCounts": {
+        "UNKNOWN": 20
+      }
+    }
+  },
+  "planners": {
+    "breakfast": {
+      "complete": true,
+      "deterministic": true,
+      "selectedRecipeCount": 7,
+      "uniqueRecipeCount": 7,
+      "averagePairwiseIngredientJaccard": 0.11707,
+      "maximumPairwiseIngredientJaccard": 0.272727
+    },
+    "dinner": {
+      "complete": true,
+      "deterministic": true,
+      "selectedRecipeCount": 7,
+      "uniqueRecipeCount": 7,
+      "averagePairwiseIngredientJaccard": 0.122044,
+      "maximumPairwiseIngredientJaccard": 0.2
+    },
+    "lunch": {
+      "complete": true,
+      "deterministic": true,
+      "selectedRecipeCount": 7,
+      "uniqueRecipeCount": 7,
+      "averagePairwiseIngredientJaccard": 0.122044,
+      "maximumPairwiseIngredientJaccard": 0.2
+    },
+    "snack": {
+      "complete": true,
+      "deterministic": true,
+      "selectedRecipeCount": 7,
+      "uniqueRecipeCount": 7,
+      "averagePairwiseIngredientJaccard": 0.050221,
+      "maximumPairwiseIngredientJaccard": 0.166667
+    }
+  },
+  "lunchDinnerWeekPlanner": {
+    "complete": true,
+    "deterministic": true,
+    "selectedRecipeCount": 14,
+    "uniqueRecipeCount": 14,
+    "averagePairwiseIngredientJaccard": 0.082435,
+    "maximumPairwiseIngredientJaccard": 0.2
+  },
+  "restrictedProfiles": {
+    "vegetarianEligibleCount": 0,
+    "eggAllergyEligibleCount": 0
+  },
+  "disposition": {
+    "evaluationComplete": true,
+    "liveRecommendationAdmissionAuthorized": false,
+    "liveMealRolePolicyAdoptionAuthorized": false,
+    "signalCoverageAdapterRequired": true
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "recommendationAuthorityWidened": false,
+    "candidateClassificationPromoted": false,
+    "dietaryAllergenAuthorityPromoted": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "V21_SHADOW_SIGNAL_COVERAGE_ADAPTER_V1",
+  "initialWorkflowEvidence": {
+    "runId": 37153356392,
+    "artifactId": 11284622823,
+    "artifactName": "protected-corpus-shadow-meal-slot-quality-v1",
+    "artifactZipSha256": "0954dc300fa42815827653fc2e8e5e4459f69135493e273d625f11628f7d4e30",
+    "headSha": "874658637cb2285c7a504c881b9d4c768afbc1af"
+  }
+}
