@@ -51,9 +51,9 @@ jobs:
           for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
             if curl --fail --silent --show-error --location --max-time 10 \
               -H 'Cache-Control: no-cache' \
-              "$BASE_URL/protected-corpus.html?deploy=v21-owner-canary-20261004-1" \
+              "$BASE_URL/protected-corpus.html?deploy=v21-owner-secondary-271-20261005-1" \
               -o /tmp/culinary-protected-corpus.html \
-              && grep -q 'deployment-revision" content="v21-owner-canary-20261004-1' /tmp/culinary-protected-corpus.html \
+              && grep -q 'deployment-revision" content="v21-owner-secondary-271-20261005-1' /tmp/culinary-protected-corpus.html \
               && grep -q 'Run secondary-lane canary' /tmp/culinary-protected-corpus.html; then
               protected_ready=1
               break
@@ -61,7 +61,7 @@ jobs:
             sleep 5
           done
           test "$protected_ready" = "1"
-          echo "production protected corpus owner-canary control: deployed"
+          echo "production protected corpus owner-secondary-271 control: deployed"
 
           fetch_with_retry "$BASE_URL/api/auth/config" /tmp/culinary-auth-config.json
           node -e 'const fs=require("fs"); const body=JSON.parse(fs.readFileSync("/tmp/culinary-auth-config.json","utf8")); if(body.ok!==true || typeof body.clientId!=="string" || body.clientId.length===0) process.exit(1); console.log("production auth config: reachable");'
@@ -72,3 +72,7 @@ jobs:
           status="$(curl --silent --show-error --location --max-time 10 -o /tmp/culinary-step7e-unauth.json -w '%{http_code}' "$BASE_URL/api/step7e-pilot")"
           test "$status" = "401"
           node -e 'const fs=require("fs"); const body=JSON.parse(fs.readFileSync("/tmp/culinary-step7e-unauth.json","utf8")); if(body.ok!==false || body.error!=="UNAUTHORIZED") process.exit(1); console.log("production Step 7E unauthenticated denial: reachable and fail-closed");'
+
+          secondary_status="$(curl --silent --show-error --location --max-time 10 -X POST -H 'Content-Type: application/json' --data '{"mode":"limited_evidence_secondary","mealType":"dinner","profile":{}}' -o /tmp/culinary-secondary-unauth.json -w '%{http_code}' "$BASE_URL/api/protected-corpus/limited-evidence-secondary")"
+          test "$secondary_status" = "401"
+          node -e 'const fs=require("fs"); const body=JSON.parse(fs.readFileSync("/tmp/culinary-secondary-unauth.json","utf8")); if(body.ok!==false || body.error!=="UNAUTHORIZED" || body.protectedDataReturned!==false) process.exit(1); console.log("production owner secondary endpoint unauthenticated denial: reachable and fail-closed");'
