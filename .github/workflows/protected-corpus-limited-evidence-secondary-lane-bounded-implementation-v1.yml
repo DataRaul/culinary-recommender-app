@@ -89,7 +89,7 @@ jobs:
             --mapping=.tmp/corpus-normalization-mapping-v1-full.json \
             --nutrition=.tmp/nutrition-vitamin-applicability-audit-v1-full.json \
             --c2=.tmp/culinary-brain-c2-full-v8018-candidates-v1.json \
-            --baselineConfig=config/protected_corpus_ful_shadow_recommendation_v1.json \
+            --baselineConfig=config/protected_corpus_full_shadow_recommendation_v1.json \
             --qualityConfig=config/protected_corpus_shadow_engine_quality_v1.json \
             --output=.tmp/protected-corpus-shadow-engine-quality-v1-full.json \
             --summary=.tmp/protected-corpus-shadow-engine-quality-v1-summary.json
@@ -101,7 +101,7 @@ jobs:
             --mapping=.tmp/corpus-normalization-mapping-v1-full.json \
             --nutrition=.tmp/nutrition-vitamin-applicability-audit-v1-full.json \
             --c2=.tmp/culinary-brain-c2-full-v8018-candidates-v1.json \
-            --baselineConfig=config/protected_corpus_ful_shadow_recommendation_v1.json \
+            --baselineConfig=config/protected_corpus_full_shadow_recommendation_v1.json \
             --qualityConfig=config/protected_corpus_shadow_engine_quality_v1.json \
             --policyConfig=config/protected_corpus_shadow_main_role_policy_v1.json \
             --signalConfig=config/protected_corpus_shadow_signal_coverage_adapter_v1.json \
