@@ -1,0 +1,51 @@
+name: V21 shadow scorer evidence enrichment V1
+
+on:
+  pull_request:
+    paths:
+      - "config/protected_corpus_shadow_scorer_evidence_enrichment_v1.json"
+      - "data/generated/protected-corpus-shadow-scorer-evidence-enrichment-v1.json"
+      - "scripts/protected-corpus-shadow-scorer-evidence-enrichment-v1-core.mjs"
+      - "scripts/run-protected-corpus-shadow-scorer-evidence-enrichment-v1.mjs"
+      - "tests/protected-corpus-shadow-scorer-evidence-enrichment-v1.test.js"
+      - "docs/PROTECTED_CORPUS_SHADOW_SCORER_EVIDENCE_ENRICHMENT_V1.md"
+      - "config/protected_corpus_shadow_signal_coverage_adapter_v1.json"
+      - "data/generated/protected-corpus-p2-metadata-usability-v1.json"
+      - "data/generated/nutrition-vitamin-applicability-audit-v1.json"
+      - ".github/workflows/protected-corpus-shadow-scorer-evidence-enrichment-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run scorer evidence enrichment contract tests
+        run: node --test tests/protected-corpus-shadow-scorer-evidence-enrichment-v1.test.js
+
+      - name: Run scorer evidence enrichment audit
+        run: |
+          node scripts/run-protected-corpus-shadow-scorer-evidence-enrichment-v1.mjs \
+            --entry=config/protected_corpus_shadow_signal_coverage_adapter_v1.json \
+            --metadata=data/generated/protected-corpus-p2-metadata-usability-v1.json \
+            --nutrition=data/generated/nutrition-vitamin-applicability-audit-v1.json \
+            --config=config/protected_corpus_shadow_scorer_evidence_enrichment_v1.json \
+            --output=.tmp/protected-corpus-shadow-scorer-evidence-enrichment-v1.json \
+            --summary=.tmp/protected-corpus-shadow-scorer-evidence-enrichment-v1-summary.json
+
+      - name: Verify canonical evidence is reproducible
+        run: cmp .tmp/protected-corpus-shadow-scorer-evidence-enrichment-v1-summary.json data/generated/protected-corpus-shadow-scorer-evidence-enrichment-v1.json
+
+      - name: Upload scorer evidence audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: protected-corpus-shadow-scorer-evidence-enrichment-v1
+          path: .tmp/protected-corpus-shadow-scorer-evidence-enrichment-v1-summary.json
+          if-no-files-found: error
