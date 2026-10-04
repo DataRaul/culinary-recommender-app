@@ -57,7 +57,8 @@
       <button id="repairForkrecipe" type="button" hidden>Repair ForkRecipe structural metadata</button>
       <button id="runCanary" type="button" disabled>Run live verification</button>
       <button id="runP2Alignment" type="button" disabled>Run P2 live alignment</button>
-      <button id="runP4Acceptance" type="button" disabled>Run P4 product acceptance</button>\n      <button id="runSecondaryCanary" type="button">Run secondary-lane canary</button>
+      <button id="runP4Acceptance" type="button" disabled>Run P4 product acceptance</button>
+      <button id="runSecondaryCanary" type="button">Run secondary-lane canary</button>
     </div>
     <p id="gateStatus" class="muted" aria-live="polite">P4 terminal PASS is recorded. The verifier is retained for diagnostics; checking authentication and private-index readiness…</p>
     <p id="prepareProgress" class="muted" hidden aria-live="polite"></p>
@@ -96,7 +97,10 @@
   const gateStatusNode = document.getElementById('gateStatus');
   const runCanaryButton = document.getElementById('runCanary');
   const runP2AlignmentButton = document.getElementById('runP2Alignment');
-  const runP4AcceptanceButton = document.getElementById('runP4Acceptance');\n  const runSecondaryCanaryButton = document.getElementById('runSecondaryCanary');\n  const SECONDARY_CANARY_API = '/api/protected-corpus/limited-evidence-secondary-canary';\n  const SECONDARY_CANARY_PROFILE = {budget:4,nutritionPriority:3,speed:3,skill:4,variety:2,proteinEmphasis:3,mealPrep:2,maxMinutes:180,cuisinePreferences:[],priorityPacks:[],dietaryMode:'unrestricted',allergens:[],excludedIngredientIds:[],unavailableIngredientIds:[],currentPantryIngredientIds:[],pantryStapleIds:[]};
+  const runP4AcceptanceButton = document.getElementById('runP4Acceptance');
+  const runSecondaryCanaryButton = document.getElementById('runSecondaryCanary');
+  const SECONDARY_CANARY_API = '/api/protected-corpus/limited-evidence-secondary-canary';
+  const SECONDARY_CANARY_PROFILE = {budget:4,nutritionPriority:3,speed:3,skill:4,variety:2,proteinEmphasis:3,mealPrep:2,maxMinutes:180,cuisinePreferences:[],priorityPacks:[],dietaryMode:'unrestricted',allergens:[],excludedIngredientIds:[],unavailableIngredientIds:[],currentPantryIngredientIds:[],pantryStapleIds:[]};
   const repairForkrecipeButton = document.getElementById('repairForkrecipe');
   const canaryEvidencePanel = document.getElementById('canaryEvidencePanel');
   const canaryEvidenceNode = document.getElementById('canaryEvidence');
@@ -823,7 +827,8 @@
     }
   }
 
-  runP4AcceptanceButton.addEventListener('click', runP4ProductAcceptance);\n  runSecondaryCanaryButton.addEventListener('click', runSecondaryLaneCanary);
+  runP4AcceptanceButton.addEventListener('click', runP4ProductAcceptance);
+  runSecondaryCanaryButton.addEventListener('click', runSecondaryLaneCanary);
   copyCanaryButton.addEventListener('click', async () => {
     const text = canaryEvidenceNode.textContent || '';
     try {
