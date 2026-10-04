@@ -1,0 +1,47 @@
+name: V21 limited-evidence secondary lane runtime contract V1
+
+on:
+  pull_request:
+    paths:
+      - "config/protected_corpus_limited_evidence_secondary_lane_runtime_contract_v1.json"
+      - "data/generated/protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1.json"
+      - "scripts/protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1-core.mjs"
+      - "scripts/run-protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1.mjs"
+      - "tests/protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1.test.js"
+      - "docs/PROTECTED_CORPUS_LIMITED_EVIDENCE_SECONDARY_LANE_RUNTIME_CONTRACT_V1.md"
+      - "data/generated/protected-corpus-limited-evidence-secondary-lane-evaluation-v1.json"
+      - ".github/workflows/protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run runtime contract tests
+        run: node --test tests/protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1.test.js
+
+      - name: Run runtime contract audit
+        run: |
+          node scripts/run-protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1.mjs \
+            --evaluation=data/generated/protected-corpus-limited-evidence-secondary-lane-evaluation-v1.json \
+            --contract=config/protected_corpus_limited_evidence_secondary_lane_runtime_contract_v1.json \
+            --output=.tmp/protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1.json \
+            --summary=.tmp/protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1-summary.json
+
+      - name: Verify canonical contract evidence is reproducible
+        run: cmp .tmp/protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1-summary.json data/generated/protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1.json
+
+      - name: Upload runtime contract evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1
+          path: .tmp/protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1-summary.json
+          if-no-files-found: error
