@@ -47,6 +47,22 @@ jobs:
           fetch_with_retry "$BASE_URL/" /tmp/culinary-root.html
           grep -q "Culinary Recommender" /tmp/culinary-root.html
 
+          protected_ready=0
+          for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
+            if curl --fail --silent --show-error --location --max-time 10 \
+              -H 'Cache-Control: no-cache' \
+              "$BASE_URL/protected-corpus.html?deploy=v21-owner-canary-20261004-1" \
+              -o /tmp/culinary-protected-corpus.html \
+              && grep -q 'deployment-revision" content="v21-owner-canary-20261004-1' /tmp/culinary-protected-corpus.html \
+              && grep -q 'Run secondary-lane canary' /tmp/culinary-protected-corpus.html; then
+              protected_ready=1
+              break
+            fi
+            sleep 5
+          done
+          test "$protected_ready" = "1"
+          echo "production protected corpus owner-canary control: deployed"
+
           fetch_with_retry "$BASE_URL/api/auth/config" /tmp/culinary-auth-config.json
           node -e 'const fs=require("fs"); const body=JSON.parse(fs.readFileSync("/tmp/culinary-auth-config.json","utf8")); if(body.ok!==true || typeof body.clientId!=="string" || body.clientId.length===0) process.exit(1); console.log("production auth config: reachable");'
 
