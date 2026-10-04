@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="deployment-revision" content="v21-owner-canary-20261004-1">
+  <meta name="deployment-revision" content="v21-owner-secondary-271-20261005-1">
   <meta name="robots" content="noindex,nofollow">
   <title>Private protected corpus</title>
   <style>
@@ -42,7 +42,7 @@
 <main>
   <header>
     <div>
-      <p class="muted">Owner-only canary · v8018</p>
+      <p class="muted">Owner-only protected corpus · v8018</p>
       <h1>Protected recipe corpus</h1>
       <p class="muted">All 19,268 protected recipes are available here for private browse/search. Recommendation validation is a separate state shown on each recipe.</p>
     </div>
@@ -82,6 +82,20 @@
     <div class="row" style="margin-top:.8rem"><button id="more" type="button" hidden>Load more</button></div>
   </section>
 
+  <section class="panel" aria-labelledby="secondaryHeading">
+    <h2 id="secondaryHeading">Limited-evidence suggestions</h2>
+    <p class="muted">Owner-only V21 secondary lane. These suggestions use incomplete soft metadata. Nutrition, protein, budget, meal-prep suitability, and novelty may be unknown. They never displace the validated primary lane.</p>
+    <div class="row" id="secondaryMeals">
+      <button type="button" data-secondary-meal="breakfast">Breakfast</button>
+      <button type="button" data-secondary-meal="lunch">Lunch</button>
+      <button type="button" data-secondary-meal="dinner">Dinner</button>
+      <button type="button" data-secondary-meal="snack">Snack</button>
+    </div>
+    <p id="secondaryStatus" class="muted" aria-live="polite">Choose a meal to load the first page.</p>
+    <div id="secondaryResults"></div>
+    <div class="row" style="margin-top:.8rem"><button id="secondaryMore" type="button" hidden>Load more suggestions</button></div>
+  </section>
+
   <section id="detail" class="panel" hidden aria-labelledby="detailTitle">
     <div class="row" style="justify-content:space-between">
       <h2 id="detailTitle">Recipe</h2>
@@ -102,6 +116,12 @@
   const runSecondaryCanaryButton = document.getElementById('runSecondaryCanary');
   const SECONDARY_CANARY_API = '/api/protected-corpus/limited-evidence-secondary-canary';
   const SECONDARY_CANARY_PROFILE = {budget:4,nutritionPriority:3,speed:3,skill:4,variety:2,proteinEmphasis:3,mealPrep:2,maxMinutes:180,cuisinePreferences:[],priorityPacks:[],dietaryMode:'unrestricted',allergens:[],excludedIngredientIds:[],unavailableIngredientIds:[],currentPantryIngredientIds:[],pantryStapleIds:[]};
+  const SECONDARY_API = '/api/protected-corpus/limited-evidence-secondary';
+  const secondaryStatus = document.getElementById('secondaryStatus');
+  const secondaryResults = document.getElementById('secondaryResults');
+  const secondaryMore = document.getElementById('secondaryMore');
+  let secondaryMeal = '';
+  let secondaryCursor = '';
   const repairForkrecipeButton = document.getElementById('repairForkrecipe');
   const canaryEvidencePanel = document.getElementById('canaryEvidencePanel');
   const canaryEvidenceNode = document.getElementById('canaryEvidence');
@@ -776,6 +796,47 @@
   repairForkrecipeButton.addEventListener('click', repairForkrecipeStructure);
   runCanaryButton.addEventListener('click', runLiveVerification);
   runP2AlignmentButton.addEventListener('click', runP2LiveAlignment);
+  function appendSecondaryResults(items, replace) {
+    if (replace) secondaryResults.innerHTML = '';
+    for (const item of items) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'recipe';
+      button.dataset.recipeId = item.protectedRecipeId;
+      button.innerHTML = '<strong>' + escapeHtml(item.title) + '</strong><span>Rank ' + escapeHtml(item.rank) + ' · score ' + escapeHtml(item.score) + '</span><span class="recommendation-state">Limited-evidence · not primary validated</span>';
+      button.addEventListener('click', () => openDetail(item.protectedRecipeId));
+      secondaryResults.appendChild(button);
+    }
+  }
+
+  async function loadSecondaryResults(replace = false) {
+    if (!secondaryMeal) return;
+    if (replace) secondaryCursor = '';
+    secondaryStatus.textContent = 'Loading ' + secondaryMeal + ' suggestions…';
+    try {
+      const response = await fetch(SECONDARY_API, {
+        method:'POST',
+        credentials:'same-origin',
+        cache:'no-store',
+        headers:{'content-type':'application/json'},
+        body:JSON.stringify({mode:'limited_evidence_secondary',mealType:secondaryMeal,limit:20,cursor:secondaryCursor || '0',profile:SECONDARY_CANARY_PROFILE})
+      });
+      const result = await readJson(response);
+      if (!result.ok) {
+        secondaryStatus.textContent = result.reason || result.error || 'Secondary suggestions failed.';
+        secondaryMore.hidden = true;
+        return;
+      }
+      appendSecondaryResults(result.secondaryLane?.results || [], replace);
+      secondaryCursor = result.secondaryLane?.nextCursor || '';
+      secondaryMore.hidden = !secondaryCursor;
+      secondaryStatus.textContent = (result.secondaryLane?.results || []).length + ' suggestion(s) loaded · ' + result.eligibleCount + ' eligible for ' + secondaryMeal + '.';
+    } catch (error) {
+      secondaryStatus.textContent = 'Secondary suggestions stopped safely: ' + String(error?.message || error).slice(0,180);
+      secondaryMore.hidden = true;
+    }
+  }
+
   async function runSecondaryLaneCanary() {
     runSecondaryCanaryButton.disabled = true;
     canaryEvidencePanel.hidden = false;
@@ -830,6 +891,11 @@
 
   runP4AcceptanceButton.addEventListener('click', runP4ProductAcceptance);
   runSecondaryCanaryButton.addEventListener('click', runSecondaryLaneCanary);
+  document.querySelectorAll('[data-secondary-meal]').forEach(button => button.addEventListener('click', () => {
+    secondaryMeal = button.dataset.secondaryMeal;
+    void loadSecondaryResults(true);
+  }));
+  secondaryMore.addEventListener('click', () => { void loadSecondaryResults(false); });
   copyCanaryButton.addEventListener('click', async () => {
     const text = canaryEvidenceNode.textContent || '';
     try {
