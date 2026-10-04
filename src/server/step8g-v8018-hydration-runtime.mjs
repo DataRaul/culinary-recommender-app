@@ -78,5 +78,5 @@ export async function hydrateStep8GV8018ProtectedRecipesBounded(controlDb, shard
     if (!route || !row || String(row.corpus_version) !== route.corpusVersion || Number(row.body_bytes) !== route.bodyBytes || String(row.body_sha256) !== route.bodySha256 || String(row.source_cohort_id) !== route.sourceCohortId || bytes(body) !== route.bodyBytes || await sha256Hex(body) !== route.bodySha256) return { pass: false, reason: "HYDRATED_BODY_INTEGRITY_MISMATCH", d1Subqueries: routes.d1Subqueries + bodies.shardQueries, routeQueries: routes.d1Subqueries, shardQueries: bodies.shardQueries };
     packets.push(JSON.parse(body));
   }
-  return { pass: true, packets, d1Subqueries: routes.d1Subqueries + bodies.shardQueries, routeQueries: routes.d1Subqueries, shardQueries: bodies.shardQueries, maxInternalD1Subqueries: STEP8G_V8018_MAX_HYDRATION_D1_SUBQUERIES, fullCorpusScans: 0 };
+  return { pass: true, packets, routes: routes.routes, d1Subqueries: routes.d1Subqueries + bodies.shardQueries, routeQueries: routes.d1Subqueries, shardQueries: bodies.shardQueries, maxInternalD1Subqueries: STEP8G_V8018_MAX_HYDRATION_D1_SUBQUERIES, fullCorpusScans: 0 };
 }
