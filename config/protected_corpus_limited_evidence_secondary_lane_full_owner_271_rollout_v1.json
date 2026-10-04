@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_LIMITED_EVIDENCE_SECONDARY_LANE_FULL_OWNER_271_ROLLOUT_V1",
+  "date": "2026-10-05",
+  "state": "AUTHORIZED__FULL_OWNER_271_ROLLOUT",
+  "entryTerminal": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_OWNER_LIVE_ACCEPTANCE_PASS",
+  "ownerAuthorization": {
+    "received": true,
+    "date": "2026-10-05",
+    "scope": "EXACT_FROZEN_271_OWNER_ONLY_SECONDARY_SURFACE",
+    "instruction": "Proceed with the full 271-recipe authenticated-owner secondary-lane rollout while preserving public and primary recommendation boundaries."
+  },
+  "protectedCorpusVersion": "v8018",
+  "candidateUniverseCount": 271,
+  "candidateManifestDigestSha256": "59ba7615f03ea5ab72637fd1f38dc5ebaba4124d50f3cfb412c2f814f8aacd1d",
+  "qualityCohortDigestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7",
+  "primaryRuntimeRecipeCount": 86,
+  "runtime": {
+    "endpoint": "/api/protected-corpus/limited-evidence-secondary",
+    "modeValue": "limited_evidence_secondary",
+    "maximumResultsPerRequest": 20,
+    "pagination": true,
+    "fixedProfileId": "V21_FIXED_UNRESTRICTED_SHADOW_PROFILE_V1",
+    "eligibleCounts": { "breakfast": 22, "lunch": 207, "dinner": 207, "snack": 42 }
+  },
+  "featureFlag": {
+    "name": "CULINARY_LIMITED_EVIDENCE_SECONDARY_LANE_V1",
+    "defaultEnabled": true,
+    "environmentDisableValue": "0",
+    "singleFlagRollback": true
+  },
+  "runtimeCostContract": {
+    "readOnly": true,
+    "maximumD1SubqueriesPerRequestIncludingAuth": 8,
+    "maximumInternalHydrationD1Subqueries": 7,
+    "maximumHydratedResults": 20,
+    "protectedD1WritesAllowed": 0,
+    "fullCorpusScansAllowed": 0,
+    "thirdShardAllowed": false,
+    "paidInfrastructureAllowed": false
+  },
+  "authority": {
+    "fullOwner271RolloutAuthorized": true,
+    "fullSecondaryLanePromotionAuthorized": true,
+    "publicRuntimeWideningAuthorized": false,
+    "primaryRecommendationAdmissionAuthorized": false,
+    "publicRecommendationAdmissionAuthorized": false,
+    "candidateManifestMutationAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_FULL_OWNER_271_ROLLOUT_PASS__OWNER_PRODUCT_ACCEPTANCE_REQUIRED",
+  "nextGate": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_FULL_OWNER_271_OWNER_PRODUCT_ACCEPTANCE_V1"
+}
