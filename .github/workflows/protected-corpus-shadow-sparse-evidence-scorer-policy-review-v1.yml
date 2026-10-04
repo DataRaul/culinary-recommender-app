@@ -1,0 +1,53 @@
+name: V21 sparse-evidence scorer policy review V1
+
+on:
+  pull_request:
+    paths:
+      - "config/protected_corpus_shadow_sparse_evidence_scorer_policy_review_v1.json"
+      - "data/generated/protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1.json"
+      - "scripts/protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1-core.mjs"
+      - "scripts/run-protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1.mjs"
+      - "tests/protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1.test.js"
+      - "docs/PROTECTED_CORPUS_SHADOW_SPARSE_EVIDENCE_SCORER_POLICY_REVIEW_V1.md"
+      - "data/generated/protected-corpus-shadow-scorer-evidence-enrichment-v1.json"
+      - "data/generated/protected-corpus-shadow-signal-coverage-adapter-v1.json"
+      - "data/generated/protected-corpus-shadow-main-role-policy-v1.json"
+      - "data/generated/protected-corpus-shadow-meal-slot-quality-v1.json"
+      - ".github/workflows/protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run sparse-evidence scorer policy tests
+        run: node --test tests/protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1.test.js
+
+      - name: Run sparse-evidence scorer policy review
+        run: |
+          node scripts/run-protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1.mjs \
+            --enrichment=data/generated/protected-corpus-shadow-scorer-evidence-enrichment-v1.json \
+            --signalCoverage=data/generated/protected-corpus-shadow-signal-coverage-adapter-v1.json \
+            --mainRole=data/generated/protected-corpus-shadow-main-role-policy-v1.json \
+            --mealQuality=data/generated/protected-corpus-shadow-meal-slot-quality-v1.json \
+            --config=config/protected_corpus_shadow_sparse_evidence_scorer_policy_review_v1.json \
+            --output=.tmp/protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1.json \
+            --summary=.tmp/protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1-summary.json
+
+      - name: Verify canonical policy evidence is reproducible
+        run: cmp .tmp/protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1-summary.json data/generated/protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1.json
+
+      - name: Upload sparse-evidence policy evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1
+          path: .tmp/protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1-summary.json
+          if-no-files-found: error
