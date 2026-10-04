@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_SHADOW_SCORER_EVIDENCE_ENRICHMENT_V1",
+  "date": "2026-10-04",
+  "state": "AUTHORIZED_OFFLINE_SCORER_EVIDENCE_AUDIT",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "V21_SHADOW_SIGNAL_COVERAGE_ADAPTER_PASS__LIVE_QUALITY_STILL_HELD__EVIDENCE_ENRICHMENT_NEXT",
+  "qualityCohortSize": 500,
+  "qualityCohortDigestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7",
+  "currentAverageAvailablePositiveWeightCoverage": 0.436975,
+  "minimumAverageAvailablePositiveWeightCoverageForLiveReadiness": 0.5,
+  "missingPositiveScorerSignals": ["nutrition","protein","budget","mealPrep","novelty"],
+  "metadataAuthorityDimensionBySignal": {
+    "budget": "costTier",
+    "mealPrep": "mealPrepSuitability",
+    "novelty": "novelty"
+  },
+  "evidencePolicy": {
+    "scope": "SHADOW_ONLY",
+    "unknownSignalsMayRemainAbsent": true,
+    "unknownSignalsMayBeFilledWithNeutralDefaults": false,
+    "nutritionMayBeInferredWithoutAuthoritativeJoinableRecipeValues": false,
+    "budgetMayBeInferredFromIngredientCountOrCuisine": false,
+    "mealPrepMayBeInferredFromTotalTimeAlone": false,
+    "noveltyMayBeInferredFromTitleUniquenessOrCorpusMarginality": false,
+    "existingTimeAndDifficultySignalsMayBeDoubleCountedIntoOtherSignals": false,
+    "liveAuthority": false
+  },
+  "expectedSafeAdditionalSignalCount": 0,
+  "nextGateIfNoSafeEnrichment": "V21_SHADOW_SPARSE_EVIDENCE_SCORER_POLICY_REVIEW_V1",
+  "nextGateIfLiveQualityEarned": "V21_PROGRESSIVE_LIVE_EXPOSURE_AUTHORIZATION_REVIEW",
+  "evidence": "data/generated/protected-corpus-shadow-scorer-evidence-enrichment-v1.json",
+  "authority": {
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "scorerBehaviorChangeAuthorized": false,
+    "liveSignalInferenceAuthorized": false,
+    "candidateClassificationPromotionAuthorized": false,
+    "dietaryAllergenAuthorityPromotionAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "result": {
+    "terminal": "V21_SHADOW_SCORER_EVIDENCE_ENRICHMENT_PASS__NO_ADDITIONAL_SAFE_SCORER_SIGNAL__SCORER_POLICY_REVIEW_NEXT",
+    "safeAdditionalSignalCount": 0,
+    "postAuditAverageAvailablePositiveWeightCoverage": 0.436975,
+    "liveQualityEarned": false,
+    "nextGate": "V21_SHADOW_SPARSE_EVIDENCE_SCORER_POLICY_REVIEW_V1"
+  }
+}
