@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_LIMITED_EVIDENCE_SECONDARY_LANE_RUNTIME_CONTRACT_SUMMARY_V1",
+  "date": "2026-10-04",
+  "pass": true,
+  "terminal": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_RUNTIME_CONTRACT_PASS__BOUNDED_IMPLEMENTATION_NEXT",
+  "protectedCorpusVersion": "v8018",
+  "primaryRuntimeRecipeCount": 86,
+  "secondaryLaneCandidateCount": 271,
+  "heldCandidateCount": 229,
+  "contractChecks": {
+    "ownerOnlyExplicitOptIn": true,
+    "defaultModeDisabled": true,
+    "rankingSeparation": true,
+    "restrictedProfilesFailClosed": true,
+    "maximumSecondaryResults": 20,
+    "boundedReadOnlyCost": true,
+    "maximumD1SubqueriesPerRequest": 8,
+    "fullCorpusScansAllowed": 0,
+    "limitedMetadataDisclosureRequired": true,
+    "singleFlagRollback": true
+  },
+  "fixtures": {
+    "explicitUnrestricted": {
+      "eligible": true,
+      "limit": 20
+    },
+    "defaultMode": {
+      "eligible": false,
+      "reason": "SECONDARY_MODE_NOT_EXPLICITLY_ENABLED"
+    },
+    "restrictedAllergen": {
+      "eligible": false,
+      "reason": "RESTRICTED_PROFILE_NOT_ELIGIBLE"
+    },
+    "responseEnvelope": {
+      "primaryCount": 1,
+      "secondaryCount": 20
+    }
+  },
+  "disposition": {
+    "contractComplete": true,
+    "boundedImplementationCandidateReady": true,
+    "runtimeImplementationAuthorized": false,
+    "ownerCanaryActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "fullCorpusScans": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "secondaryLaneImplemented": false,
+    "candidateManifestWritten": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_BOUNDED_IMPLEMENTATION_V1"
+}

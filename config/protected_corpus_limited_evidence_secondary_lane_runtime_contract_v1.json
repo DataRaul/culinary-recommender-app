@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_LIMITED_EVIDENCE_SECONDARY_LANE_RUNTIME_CONTRACT_V1",
+  "date": "2026-10-04",
+  "state": "PASS__BOUNDED_RUNTIME_CONTRACT_READY_FOR_IMPLEMENTATION",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "V21_LIMITED_EVIDENCE_SECONDARY_RECOMMENDATION_LANE_EVALUATION_PASS__RUNTIME_CONTRACT_NEXT",
+  "primaryRuntimeRecipeCount": 86,
+  "secondaryLaneCandidateCount": 271,
+  "heldCandidateCount": 229,
+  "requestContract": {
+    "surface": "AUTHENTICATED_OWNER_ONLY",
+    "activationMode": "EXPLICIT_OPT_IN",
+    "modeValue": "limited_evidence_secondary",
+    "defaultEnabled": false,
+    "dietaryModeRequired": "unrestricted",
+    "allergensRequiredEmpty": true,
+    "excludedIngredientIdsRequiredEmpty": true,
+    "unavailableIngredientIdsRequiredEmpty": true,
+    "maximumSecondaryResults": 20,
+    "automaticFallbackFromPrimary": false
+  },
+  "responseContract": {
+    "primaryAndSecondarySeparated": true,
+    "secondaryMayDisplacePrimary": false,
+    "secondaryMayBeMergedIntoPrimaryRanking": false,
+    "requiredLaneLabel": "Limited-evidence suggestions",
+    "requiredDisclosure": "These suggestions use incomplete soft metadata. Nutrition, protein, budget, meal-prep suitability, and novelty may be unknown.",
+    "requiredUnknownSoftSignals": [
+      "nutrition",
+      "protein",
+      "budget",
+      "mealPrep",
+      "novelty"
+    ],
+    "unknownValuesMayBeDisplayedAsKnown": false,
+    "sourceProvenanceMustRemainVisible": true,
+    "recommendationValidationStateMustRemainVisible": true
+  },
+  "candidateContract": {
+    "candidateUniverse": "EXACT_FROZEN_271_MEAL_TARGETABLE_COHORT",
+    "candidateManifestMustBeImmutableForV1": true,
+    "mainToLunchDinnerStatus": "PRODUCT_SLOT_HYPOTHESIS_NOT_SOURCE_FACT",
+    "dessertBeverageSideUnknownRemainHeld": true,
+    "restrictedProfileEligibility": false,
+    "allergenProfileEligibility": false,
+    "ingredientExclusionProfileEligibility": false
+  },
+  "runtimeCostContract": {
+    "readOnly": true,
+    "protectedD1WritesAllowed": 0,
+    "fullCorpusScansAllowed": 0,
+    "maximumD1SubqueriesPerRequest": 8,
+    "thirdShardAllowed": false,
+    "paidInfrastructureAllowed": false,
+    "topKHydrationOnly": true
+  },
+  "rollbackContract": {
+    "singleFeatureFlagDisableRequired": true,
+    "disableMustRestoreCurrentPrimaryOnlyBehavior": true,
+    "primary86MustRemainByteForByteBehaviorallyIndependent": true,
+    "noDataMigrationRequiredToRollback": true
+  },
+  "authority": {
+    "runtimeImplementationAuthorized": false,
+    "ownerCanaryActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "candidateManifestWriteAuthorized": false,
+    "protectedD1ReadsAuthorizedForThisContractPackage": false,
+    "protectedD1WritesAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "acceptance": [
+    "OWNER_ONLY_EXPLICIT_OPT_IN",
+    "PRIMARY_AND_SECONDARY_RANKINGS_STAY_SEPARATE",
+    "SECONDARY_CANNOT_DISPLACE_PRIMARY",
+    "EXACT_FROZEN_271_CANDIDATE_UNIVERSE",
+    "RESTRICTED_PROFILES_FAIL_CLOSED",
+    "LIMITED_METADATA_DISCLOSURE_REQUIRED",
+    "TOP_20_RESPONSE_BOUND",
+    "READ_ONLY_MAX_8_D1_SUBQUERIES",
+    "ZERO_FULL_CORPUS_SCANS",
+    "SINGLE_FLAG_ROLLBACK",
+    "NO_LIVE_IMPLEMENTATION_IN_THIS_GATE"
+  ],
+  "nextGateOnPass": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_BOUNDED_IMPLEMENTATION_V1",
+  "evidence": "data/generated/protected-corpus-limited-evidence-secondary-lane-runtime-contract-v1.json",
+  "result": {
+    "terminal": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_RUNTIME_CONTRACT_PASS__BOUNDED_IMPLEMENTATION_NEXT",
+    "runtimeImplementationAuthorized": false,
+    "ownerCanaryActivationAuthorized": false,
+    "nextGate": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_BOUNDED_IMPLEMENTATION_V1"
+  }
+}
