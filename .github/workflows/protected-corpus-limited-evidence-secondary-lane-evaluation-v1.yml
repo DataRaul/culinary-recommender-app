@@ -1,0 +1,55 @@
+name: V21 limited-evidence secondary lane evaluation V1
+
+on:
+  pull_request:
+    paths:
+      - "config/protected_corpus_limited_evidence_secondary_lane_evaluation_v1.json"
+      - "data/generated/protected-corpus-limited-evidence-secondary-lane-evaluation-v1.json"
+      - "scripts/protected-corpus-limited-evidence-secondary-lane-evaluation-v1-core.mjs"
+      - "scripts/run-protected-corpus-limited-evidence-secondary-lane-evaluation-v1.mjs"
+      - "tests/protected-corpus-limited-evidence-secondary-lane-evaluation-v1.test.js"
+      - "docs/PROTECTED_CORPUS_LIMITED_EVIDENCE_SECONDARY_LANE_EVALUATION_V1.md"
+      - "data/generated/protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1.json"
+      - "data/generated/protected-corpus-shadow-signal-coverage-adapter-v1.json"
+      - "data/generated/protected-corpus-shadow-main-role-policy-v1.json"
+      - "data/generated/protected-corpus-shadow-meal-slot-quality-v1.json"
+      - "data/generated/protected-corpus-shadow-scorer-evidence-enrichment-v1.json"
+      - ".github/workflows/protected-corpus-limited-evidence-secondary-lane-evaluation-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run secondary lane evaluation tests
+        run: node --test tests/protected-corpus-limited-evidence-secondary-lane-evaluation-v1.test.js
+
+      - name: Run secondary lane evaluation
+        run: |
+          node scripts/run-protected-corpus-limited-evidence-secondary-lane-evaluation-v1.mjs \
+            --policyReview=data/generated/protected-corpus-shadow-sparse-evidence-scorer-policy-review-v1.json \
+            --signalCoverage=data/generated/protected-corpus-shadow-signal-coverage-adapter-v1.json \
+            --mainRole=data/generated/protected-corpus-shadow-main-role-policy-v1.json \
+            --mealQuality=data/generated/protected-corpus-shadow-meal-slot-quality-v1.json \
+            --enrichment=data/generated/protected-corpus-shadow-scorer-evidence-enrichment-v1.json \
+            --config=config/protected_corpus_limited_evidence_secondary_lane_evaluation_v1.json \
+            --output=.tmp/protected-corpus-limited-evidence-secondary-lane-evaluation-v1.json \
+            --summary=.tmp/protected-corpus-limited-evidence-secondary-lane-evaluation-v1-summary.json
+
+      - name: Verify canonical evidence is reproducible
+        run: cmp .tmp/protected-corpus-limited-evidence-secondary-lane-evaluation-v1-summary.json data/generated/protected-corpus-limited-evidence-secondary-lane-evaluation-v1.json
+
+      - name: Upload secondary lane evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: protected-corpus-limited-evidence-secondary-lane-evaluation-v1
+          path: .tmp/protected-corpus-limited-evidence-secondary-lane-evaluation-v1-summary.json
+          if-no-files-found: error

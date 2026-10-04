@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_LIMITED_EVIDENCE_SECONDARY_LANE_EVALUATION_V1",
+  "date": "2026-10-04",
+  "state": "AUTHORIZED_OFFLINE_SECONDARY_LANE_EVALUATION",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "V21_SHADOW_SPARSE_EVIDENCE_SCORER_POLICY_REVIEW_PASS__SEGREGATED_SECONDARY_LANE_EVALUATION_READY",
+  "qualityCohortSize": 500,
+  "qualityCohortDigestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7",
+  "primaryRuntimeRecipeCount": 86,
+  "expectedSecondaryLaneCandidateCount": 271,
+  "expectedHeldCandidateCount": 229,
+  "expectedMealTypeEligibleCounts": {
+    "breakfast": 22,
+    "dinner": 207,
+    "lunch": 207,
+    "snack": 42
+  },
+  "expectedSparseEvidenceCoverage": 0.436975,
+  "maximumPairwiseIngredientJaccard": 0.85,
+  "minimumUniqueScoreCount": 2,
+  "requiredMissingSoftSignals": [
+    "nutrition",
+    "protein",
+    "budget",
+    "mealPrep",
+    "novelty"
+  ],
+  "evaluationPolicy": {
+    "primaryLaneMayChange": false,
+    "secondaryCandidatesMayDisplacePrimaryRecipes": false,
+    "secondaryCandidatesRankOnlyAgainstSecondaryCandidates": true,
+    "limitedMetadataDisclosureRequired": true,
+    "unknownSoftSignalsRemainUnknown": true,
+    "normalModeEligibilityMustRemainZero": true,
+    "restrictedProfileEligibilityMustRemainZero": true,
+    "plannerMustBeCompleteDeterministicAndUnique": true,
+    "liveAuthority": false
+  },
+  "authority": {
+    "protectedD1ReadsAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "protectedBodyRewriteAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "secondaryLaneRuntimeImplementationAuthorized": false,
+    "scorerBehaviorChangeAuthorized": false,
+    "candidateClassificationPromotionAuthorized": false,
+    "dietaryAllergenAuthorityPromotionAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextGateOnPass": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_RUNTIME_CONTRACT_V1",
+  "evidence": "data/generated/protected-corpus-limited-evidence-secondary-lane-evaluation-v1.json",
+  "result": {
+    "terminal": "V21_LIMITED_EVIDENCE_SECONDARY_RECOMMENDATION_LANE_EVALUATION_PASS__RUNTIME_CONTRACT_NEXT",
+    "secondaryLaneCandidateCount": 271,
+    "heldCandidateCount": 229,
+    "primaryRuntimeRecipeCount": 86,
+    "evaluationPass": true,
+    "liveRecommendationAdmissionAuthorized": false,
+    "nextGate": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_RUNTIME_CONTRACT_V1"
+  }
+}
