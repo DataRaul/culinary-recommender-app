@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_LIMITED_EVIDENCE_SECONDARY_LANE_OWNER_LIVE_ACCEPTANCE_V1",
+  "date": "2026-10-04",
+  "state": "PASS__OWNER_LIVE_CANARY_ACCEPTED__FULL_OWNER_271_ROLLOUT_NOT_AUTHORIZED",
+  "evidenceClass": "HUMAN_OBSERVED_PRODUCTION_CANARY",
+  "source": "Owner-copied sanitized terminal from protected-corpus.html",
+  "protectedCorpusVersion": "v8018",
+  "terminal": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_OWNER_LIVE_ACCEPTANCE_PASS",
+  "candidateUniverseCount": 271,
+  "primaryRuntimeRecipeCount": 86,
+  "probes": {
+    "breakfast": {
+      "resultCount": 3,
+      "rankingDigestSha256": "b861f635e8e337c1e38142044f8f0c03dd337a160912a51ec8bf1d2a1ef2a649",
+      "recipeIds": [
+        "unitools:hoppers",
+        "unitools:masala-dosa",
+        "unitools:skyr-with-berries"
+      ]
+    },
+    "lunch": {
+      "resultCount": 3,
+      "rankingDigestSha256": "72adf284fd8f3ad56c1645f1f3b37b31cdf2e7e629058d16d7299cc245c94934",
+      "recipeIds": [
+        "unitools:char-kway-teow",
+        "unitools:chiles-en-nogada",
+        "unitools:khinkali"
+      ]
+    },
+    "dinner": {
+      "resultCount": 3,
+      "rankingDigestSha256": "72adf284fd8f3ad56c1645f1f3b37b31cdf2e7e629058d16d7299cc245c94934",
+      "recipeIds": [
+        "unitools:char-kway-teow",
+        "unitools:chiles-en-nogada",
+        "unitools:khinkali"
+      ]
+    },
+    "snack": {
+      "resultCount": 3,
+      "rankingDigestSha256": "0507ada6623df336e04da0c5a70bd944cb0d5896c57d3f65d2b3eff31e0fa06a",
+      "recipeIds": [
+        "unitools:bitterballen",
+        "unitools:coxinha",
+        "unitools:brik"
+      ]
+    }
+  },
+  "observedRuntime": {
+    "maxObservedD1Subqueries": 3,
+    "protectedD1Writes": 0,
+    "fullCorpusScans": 0
+  },
+  "unchangedBoundaries": {
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "fullSecondaryLanePromoted": false
+  },
+  "authority": {
+    "liveAcceptanceCloseoutRecorded": true,
+    "fullOwner271RolloutAuthorized": false,
+    "fullSecondaryLanePromotionAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "primaryRecommendationAdmissionAuthorized": false,
+    "publicRecommendationAdmissionAuthorized": false,
+    "candidateManifestMutationAuthorized": false,
+    "protectedD1WritesAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextGate": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_FULL_OWNER_271_ROLLOUT_AUTHORIZATION_REVIEW_V1"
+}
