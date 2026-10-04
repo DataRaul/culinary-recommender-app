@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_SHADOW_SPARSE_EVIDENCE_SCORER_POLICY_REVIEW_SUMMARY_V1",
+  "date": "2026-10-04",
+  "pass": true,
+  "terminal": "V21_SHADOW_SPARSE_EVIDENCE_SCORER_POLICY_REVIEW_PASS__SEGREGATED_SECONDARY_LANE_EVALUATION_READY",
+  "protectedCorpusVersion": "v8018",
+  "qualityCohort": {
+    "size": 500,
+    "digestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7"
+  },
+  "knowledgeCoreBasis": {
+    "repository": "DataRaul/knowledge-core",
+    "commit": "1f164eb32171238caaf7798d00412725fde4a54a",
+    "object": "domains/culinary_nutrition/objects/recommendation_calibration_and_negative_capability.md",
+    "objectBlobSha": "1030717c368c8049772fde6475644e1dfdeac7f7",
+    "principle": "Separate hard constraints, evidence confidence and soft objectives; preserve unresolved uncertainty instead of fabricating precision."
+  },
+  "rationale": {
+    "sparseEvidenceIsNotConvertedIntoKnownFacts": true,
+    "incompleteSoftEvidenceDoesNotBecomeHardSafetyEvidence": true,
+    "uncertaintyMustRemainVisible": true,
+    "sparseCandidatesMustNotDisplaceValidatedPrimaryRecipes": true
+  },
+  "primaryLane": {
+    "runtimeRecipeCount": 86,
+    "minimumCoverageFloor": 0.5,
+    "coverageFloorPreserved": true,
+    "changed": false
+  },
+  "secondaryLane": {
+    "policyId": "SEGREGATED_LIMITED_EVIDENCE_SECONDARY_LANE_V1",
+    "candidateCount": 271,
+    "heldCount": 229,
+    "measuredSparseEvidenceCoverage": 0.436975,
+    "mayDisplacePrimaryValidatedRecipes": false,
+    "limitedMetadataDisclosureRequired": true,
+    "rankSparseCandidatesOnlyAgainstSparseCandidates": true,
+    "unknownNutritionClaimsAllowed": false,
+    "unknownBudgetClaimsAllowed": false,
+    "unknownMealPrepClaimsAllowed": false,
+    "unknownNoveltyClaimsAllowed": false,
+    "restrictedProfileEligibilityAuthorized": false,
+    "allergenProfileEligibilityAuthorized": false,
+    "ingredientExclusionProfileEligibilityAuthorized": false
+  },
+  "mealTypeEligibleCounts": {
+    "breakfast": 22,
+    "dinner": 207,
+    "lunch": 207,
+    "snack": 42
+  },
+  "disposition": {
+    "policyReviewComplete": true,
+    "secondaryLaneEvaluationCandidateReady": true,
+    "liveRecommendationAdmissionAuthorized": false,
+    "secondaryLaneImplementationAuthorized": false,
+    "scorerBehaviorChangeAuthorized": false
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "recommendationAuthorityWidened": false,
+    "secondaryLaneImplemented": false,
+    "scorerBehaviorChanged": false,
+    "candidateClassificationPromoted": false,
+    "dietaryAllergenAuthorityPromoted": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "V21_LIMITED_EVIDENCE_SECONDARY_RECOMMENDATION_LANE_EVALUATION_V1"
+}
