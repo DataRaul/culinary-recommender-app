@@ -5,7 +5,7 @@
   "protectedCorpusVersion": "v8018",
   "entryTerminal": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_RUNTIME_CONTRACT_PASS__BOUNDED_IMPLEMENTATION_NEXT",
   "qualityCohortSize": 500,
-  "qualityCohortDigestSha256": "33a63f8971d0aa6e58f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7",
+  "qualityCohortDigestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7",
   "candidateCount": 271,
   "candidateManifestDigestSha256": "59ba7615f03ea5ab72637fd1f38dc5ebaba4124d50f3cfb412c2f814f8aacd1d",
   "primaryRuntimeRecipeCount": 86,
@@ -32,7 +32,13 @@
   "responseContract": {
     "requiredLaneLabel": "Limited-evidence suggestions",
     "requiredDisclosure": "These suggestions use incomplete soft metadata. Nutrition, protein, budget, meal-prep suitability, and novelty may be unknown.",
-    "requiredUnknownSoftSignals": ["nutrition", "protein", "budget", "mealPrep", "novelty"],
+    "requiredUnknownSoftSignals": [
+      "nutrition",
+      "protein",
+      "budget",
+      "mealPrep",
+      "novelty"
+    ],
     "recommendationValidationState": "LIMITED_EVIDENCE_NOT_PRIMARY_VALIDATED",
     "sourceProvenanceMustRemainVisible": true,
     "secondaryMayDisplacePrimary": false
