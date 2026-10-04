@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_LIMITED_EVIDENCE_SECONDARY_LANE_BOUNDED_IMPLEMENTATION_V1",
+  "date": "2026-10-04",
+  "state": "AUTHORIZED_BOUNDED_IMPLEMENTATION__NO_LIVE_EXPOSURE",
+  "protectedCorpusVersion": "v8018",
+  "entryTerminal": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_RUNTIME_CONTRACT_PASS__BOUNDED_IMPLEMENTATION_NEXT",
+  "qualityCohortSize": 500,
+  "qualityCohortDigestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7",
+  "candidateCount": 271,
+  "candidateManifestDigestSha256": "59ba7615f03ea5ab72637fd1f38dc5ebaba4124d50f3cfb412c2f814f8aacd1d",
+  "primaryRuntimeRecipeCount": 86,
+  "expectedMealTypeEligibleCounts": {
+    "breakfast": 22,
+    "dinner": 207,
+    "lunch": 207,
+    "snack": 42
+  },
+  "featureFlag": {
+    "name": "CULINARY_LIMITED_EVIDENCE_SECONDARY_LANE_V1",
+    "defaultEnabled": false,
+    "singleFlagRollback": true
+  },
+  "requestContract": {
+    "modeValue": "limited_evidence_secondary",
+    "dietaryModeRequired": "unrestricted",
+    "allergensRequiredEmpty": true,
+    "excludedIngredientIdsRequiredEmpty": true,
+    "unavailableIngredientIdsRequiredEmpty": true,
+    "maximumSecondaryResults": 20,
+    "automaticFallbackFromPrimary": false
+  },
+  "responseContract": {
+    "requiredLaneLabel": "Limited-evidence suggestions",
+    "requiredDisclosure": "These suggestions use incomplete soft metadata. Nutrition, protein, budget, meal-prep suitability, and novelty may be unknown.",
+    "requiredUnknownSoftSignals": [
+      "nutrition",
+      "protein",
+      "budget",
+      "mealPrep",
+      "novelty"
+    ],
+    "recommendationValidationState": "LIMITED_EVIDENCE_NOT_PRIMARY_VALIDATED",
+    "sourceProvenanceMustRemainVisible": true,
+    "secondaryMayDisplacePrimary": false
+  },
+  "runtimeCostContract": {
+    "protectedD1WritesAllowed": 0,
+    "fullCorpusScansAllowed": 0,
+    "maximumD1SubqueriesPerRequest": 8,
+    "maximumHydratedResults": 20,
+    "topKHydrationOnly": true,
+    "thirdShardAllowed": false,
+    "paidInfrastructureAllowed": false
+  },
+  "implementationContract": {
+    "runtimeModule": "src/server/protected-corpus-limited-evidence-secondary-lane-v1.mjs",
+    "candidateBundleDelivery": "CI_ARTIFACT_ONLY_IN_THIS_GATE",
+    "candidateBundleCommittedToRuntime": false,
+    "liveApiWiring": false,
+    "ownerCanaryExposure": false,
+    "primaryRankingInputMayIncludeSecondary": false,
+    "secondaryRankingUsesExistingScorerViaInjectedAdapter": true
+  },
+  "authority": {
+    "runtimeImplementationAuthorized": true,
+    "ownerCanaryActivationAuthorized": false,
+    "publicRuntimeWideningAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "candidateManifestMutationAuthorized": false,
+    "protectedD1ReadsAuthorizedInThisGate": false,
+    "protectedD1WritesAuthorized": false,
+    "liveApiWiringAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "paidModelOrApiAuthorized": false,
+    "thirdShardAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "nextGateOnPass": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_OWNER_CANARY_AUTHORIZATION_REVIEW_V1"
+}
