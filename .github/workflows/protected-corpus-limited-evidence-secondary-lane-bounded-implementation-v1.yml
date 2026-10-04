@@ -1,0 +1,120 @@
+name: V21 limited-evidence secondary lane bounded implementation V1
+
+on:
+  pull_request:
+    paths:
+      - "config/protected_corpus_limited_evidence_secondary_lane_bounded_implementation_v1.json"
+      - "config/protected_corpus_limited_evidence_secondary_lane_runtime_contract_v1.json"
+      - "src/server/protected-corpus-limited-evidence-secondary-lane-v1.mjs"
+      - "scripts/protected-corpus-limited-evidence-secondary-lane-bounded-implementation-v1-core.mjs"
+      - "scripts/run-protected-corpus-limited-evidence-secondary-lane-bounded-implementation-v1.mjs"
+      - "tests/protected-corpus-limited-evidence-secondary-lane-bounded-implementation-v1.test.js"
+      - "scripts/protected-corpus-shadow-engine-quality-v1-core.mjs"
+      - "scripts/protected-corpus-shadow-main-role-policy-v1-core.mjs"
+      - "scripts/protected-corpus-shadow-signal-coverage-adapter-v1-core.mjs"
+      - "src/domain/recommendation.js"
+      - "config/protected_corpus_full_shadow_recommendation_v1.json"
+      - "config/protected_corpus_shadow_engine_quality_v1.json"
+      - "config/protected_corpus_shadow_main_role_policy_v1.json"
+      - "config/protected_corpus_shadow_signal_coverage_adapter_v1.json"
+      - ".github/workflows/protected-corpus-limited-evidence-secondary-lane-bounded-implementation-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-implementation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run bounded runtime unit tests
+        run: node --test tests/protected-corpus-limited-evidence-secondary-lane-bounded-implementation-v1.test.js
+
+      - name: Checkout exact pinned UniTools
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+
+      - name: Checkout exact pinned ForkRecipe
+        run: |
+          git clone --filter=blob:none https://github.com/futurechef/forkrecipe-recipes.git .tmp/forkrecipe
+          git -C .tmp/forkrecipe checkout --detach c32255266af39bd77444d39452f3df8088ac8fd9
+
+      - name: Checkout exact pinned CC0 recipes
+        run: |
+          git clone --filter=blob:none https://github.com/sylGauthier/recipes.git .tmp/cc0
+          git -C .tmp/cc0 checkout --detach b12e481d1c220a13e0847a34e148d5872a16928e
+
+      - name: Checkout exact pinned Open Recipe Archive
+        run: |
+          git clone --filter=blob:none https://github.com/AdamBouhmad/open-recipe-archive.git .tmp/ora
+          git -C .tmp/ora checkout --detach ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+
+      - name: Reconstruct exact v8018 normalization mapping
+        run: |
+          node scripts/run-corpus-normalization-mapping-v1.mjs \
+            --unitools=.tmp/unitools \
+            --forkrecipe=.tmp/forkrecipe \
+            --cc0=.tmp/cc0 \
+            --ora=.tmp/ora \
+            --output=.tmp/corpus-normalization-mapping-v1-full.json \
+            --summary=.tmp/corpus-normalization-mapping-v1.json
+
+      - name: Reconstruct exact v8018 ingredient identity diagnostics
+        run: |
+          node scripts/run-nutrition-vitamin-applicability-audit.mjs \
+            --unitools=.tmp/unitools \
+            --forkrecipe=.tmp/forkrecipe \
+            --cc0=.tmp/cc0 \
+            --ora=.tmp/ora \
+            --output=.tmp/nutrition-vitamin-applicability-audit-v1-full.json \
+            --summary=.tmp/nutrition-vitamin-applicability-audit-v1.json
+
+      - name: Reconstruct full C2 candidate classification
+        run: |
+          node scripts/run-culinary-brain-c2-candidate-classification-v1.mjs \
+            --mapping=.tmp/corpus-normalization-mapping-v1-full.json \
+            --contract=config/culinary_brain_c2_candidate_classification_v1.json \
+            --output=.tmp/culinary-brain-c2-full-v8018-candidates-v1.json \
+            --summary=.tmp/culinary-brain-c2-candidate-classification-summary-v1.json
+
+      - name: Reconstruct exact V21 quality cohort
+        run: |
+          node scripts/run-protected-corpus-shadow-engine-quality-v1.mjs \
+            --mapping=.tmp/corpus-normalization-mapping-v1-full.json \
+            --nutrition=.tmp/nutrition-vitamin-applicability-audit-v1-full.json \
+            --c2=.tmp/culinary-brain-c2-full-v8018-candidates-v1.json \
+            --baselineConfig=config/protected_corpus_ful_shadow_recommendation_v1.json \
+            --qualityConfig=config/protected_corpus_shadow_engine_quality_v1.json \
+            --output=.tmp/protected-corpus-shadow-engine-quality-v1-full.json \
+            --summary=.tmp/protected-corpus-shadow-engine-quality-v1-summary.json
+
+      - name: Build and verify dormant secondary-lane runtime bundle
+        run: |
+          node scripts/run-protected-corpus-limited-evidence-secondary-lane-bounded-implementation-v1.mjs \
+            --quality=.tmp/protected-corpus-shadow-engine-quality-v1-full.json \
+            --mapping=.tmp/corpus-normalization-mapping-v1-full.json \
+            --nutrition=.tmp/nutrition-vitamin-applicability-audit-v1-full.json \
+            --c2=.tmp/culinary-brain-c2-full-v8018-candidates-v1.json \
+            --baselineConfig=config/protected_corpus_ful_shadow_recommendation_v1.json \
+            --qualityConfig=config/protected_corpus_shadow_engine_quality_v1.json \
+            --policyConfig=config/protected_corpus_shadow_main_role_policy_v1.json \
+            --signalConfig=config/protected_corpus_shadow_signal_coverage_adapter_v1.json \
+            --runtimeContract=config/protected_corpus_limited_evidence_secondary_lane_runtime_contract_v1.json \
+            --config=config/protected_corpus_limited_evidence_secondary_lane_bounded_implementation_v1.json \
+            --output=.tmp/protected-corpus-limited-evidence-secondary-lane-bounded-implementation-v1-full.json \
+            --summary=.tmp/protected-corpus-limited-evidence-secondary-lane-bounded-implementation-v1-summary.json
+
+      - name: Upload bounded implementation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: protected-corpus-limited-evidence-secondary-lane-bounded-implementation-v1
+          path: |
+            .tmp/protected-corpus-limited-evidence-secondary-lane-bounded-implementation-v1-full.json
+            .tmp/protected-corpus-limited-evidence-secondary-lane-bounded-implementation-v1-summary.json
+          if-no-files-found: error
