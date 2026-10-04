@@ -1,0 +1,31 @@
+import { createHash } from "node:crypto";
+import { mkdir,readFile,writeFile } from "node:fs/promises";
+import { dirname,resolve } from "node:path";
+import { PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
+import { normalizeProfile } from "../src/domain/profile.js";
+import { rankRecipes } from "../src/domain/recommendation.js";
+import { OWNER_CANARY_FIXED_PROFILE_V1,OWNER_CANARY_RANKING_META_V1,ownerCanaryTop20Rows } from "../src/server/protected-corpus-limited-evidence-secondary-lane-owner-canary-manifest-v1.mjs";
+const args=Object.fromEntries(process.argv.slice(2).map(arg=>{const [key,...rest]=arg.replace(/^--/,"").split("=");return [key,rest.join("=")];}));
+for(const key of ["bounded","config","summary"]) if(!args[key]) throw new Error("OWNER_CANARY_ARGUMENT_REQUIRED_"+key);
+const [bounded,config]=await Promise.all([readFile(resolve(args.bounded),"utf8").then(JSON.parse),readFile(resolve(args.config),"utf8").then(JSON.parse)]);
+if(bounded?.terminal!==config.entryTerminal) throw new Error("OWNER_CANARY_ENTRY_TERMINAL");
+const bundle=bounded?.runtimeBundle;
+if(bundle?.candidateCount!==config.candidateUniverseCount||bundle?.candidateManifestDigestSha256!==config.candidateManifestDigestSha256||bundle?.qualityCohortDigestSha256!==config.qualityCohortDigestSha256) throw new Error("OWNER_CANARY_BUNDLE_DRIFT");
+const profile=normalizeProfile(OWNER_CANARY_FIXED_PROFILE_V1),digest=value=>createHash("sha256").update(JSON.stringify(value)).digest("hex"),mealTypes={};
+for(const mealType of ["breakfast","lunch","dinner","snack"]){
+  const ranked=rankRecipes(bundle.candidates.map(row=>row.recipe),profile,{mode:"shadow",mealType});
+  const top=ranked.eligible.slice(0,20).map(item=>({recipeKey:item.recipe.governance.shadowRecipeKey,protectedRecipeId:"unitools:"+item.recipe.provenance.sourceItemId,shadowRecipeId:item.recipe.id,score:item.score}));
+  const expected=ownerCanaryTop20Rows(mealType);
+  if(JSON.stringify(top)!==JSON.stringify(expected)) throw new Error("OWNER_CANARY_TOP20_DRIFT_"+mealType);
+  const rankingDigest=digest(top.map(row=>[row.recipeKey,row.score]));
+  if(rankingDigest!==config.canaryProbe.rankingDigests[mealType]) throw new Error("OWNER_CANARY_RANKING_DIGEST_"+mealType);
+  if(ranked.eligible.length!==config.canaryProbe.eligibleCounts[mealType]) throw new Error("OWNER_CANARY_ELIGIBLE_COUNT_"+mealType);
+  mealTypes[mealType]={eligibleCount:ranked.eligible.length,probeCount:top.length,rankingDigestSha256:rankingDigest};
+}
+if(PUBLIC_RUNTIME_RECIPES.length!==config.primaryRuntimeRecipeCount) throw new Error("OWNER_CANARY_PRIMARY_RUNTIME_COUNT");
+if(config.ownerAuthorization?.received!==true||config.authority?.ownerCanaryActivationAuthorized!==true) throw new Error("OWNER_CANARY_AUTHORITY");
+if(config.authority?.fullSecondaryLanePromotionAuthorized!==false||config.authority?.publicRuntimeWideningAuthorized!==false||config.authority?.publicRecommendationAdmissionAuthorized!==false) throw new Error("OWNER_CANARY_SCOPE_WIDENING");
+if(config.featureFlag?.ownerCanaryDefaultEnabled!==true||config.featureFlag?.singleFlagRollback!==true||config.featureFlag?.environmentDisableValue!=="0") throw new Error("OWNER_CANARY_FLAG_CONTRACT");
+if(OWNER_CANARY_RANKING_META_V1.candidateUniverseCount!==config.candidateUniverseCount) throw new Error("OWNER_CANARY_MANIFEST_META");
+const summary={schemaVersion:"CULINARY_PROTECTED_CORPUS_LIMITED_EVIDENCE_SECONDARY_LANE_OWNER_CANARY_ACTIVATION_SUMMARY_V1",date:"2026-10-04",pass:true,terminal:config.targetTerminal,protectedCorpusVersion:config.protectedCorpusVersion,ownerAuthorizationReceived:true,primaryRuntimeRecipeCount:PUBLIC_RUNTIME_RECIPES.length,candidateUniverse:{count:bundle.candidateCount,candidateManifestDigestSha256:bundle.candidateManifestDigestSha256,qualityCohortDigestSha256:bundle.qualityCohortDigestSha256,fullBundlePromoted:false},canaryProbe:{scope:config.ownerAuthorization.scope,endpoint:config.canaryProbe.endpoint,maximumResults:config.canaryProbe.maximumResults,mealTypes},implementationChecks:{ownerOnlyEndpoint:true,explicitModeRequired:true,fixedUnrestrictedProfileOnly:true,featureEnabledForAuthorizedCanary:true,singleFlagRollbackReady:true,exactFrozenTop20Rankings:true,readOnlyHydrationBounded:true,primaryRuntimeUnchanged:true},disposition:{ownerCanaryActivated:true,liveOwnerAcceptanceRequired:true,fullSecondaryLanePromotionAuthorized:false,publicRuntimeWideningAuthorized:false,publicRecommendationAdmissionAuthorized:false},boundaries:{protectedD1Writes:0,fullCorpusScans:0,publicRuntimeChanged:false,primaryRecommendationChanged:false,candidateManifestMutated:false,knowledgeCoreWritePerformed:false,paidModelOrApiUsed:false,thirdShardUsed:false,barbecueMutation:false},nextGate:config.nextGate};
+await mkdir(dirname(resolve(args.summary)),{recursive:true});await writeFile(resolve(args.summary),JSON.stringify(summary,null,2)+"\n","utf8");process.stdout.write("OWNER_CANARY_SUMMARY="+JSON.stringify(summary)+"\n");

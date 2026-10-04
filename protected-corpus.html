@@ -58,6 +58,7 @@
       <button id="runCanary" type="button" disabled>Run live verification</button>
       <button id="runP2Alignment" type="button" disabled>Run P2 live alignment</button>
       <button id="runP4Acceptance" type="button" disabled>Run P4 product acceptance</button>
+      <button id="runSecondaryCanary" type="button">Run secondary-lane canary</button>
     </div>
     <p id="gateStatus" class="muted" aria-live="polite">P4 terminal PASS is recorded. The verifier is retained for diagnostics; checking authentication and private-index readiness…</p>
     <p id="prepareProgress" class="muted" hidden aria-live="polite"></p>
@@ -97,6 +98,9 @@
   const runCanaryButton = document.getElementById('runCanary');
   const runP2AlignmentButton = document.getElementById('runP2Alignment');
   const runP4AcceptanceButton = document.getElementById('runP4Acceptance');
+  const runSecondaryCanaryButton = document.getElementById('runSecondaryCanary');
+  const SECONDARY_CANARY_API = '/api/protected-corpus/limited-evidence-secondary-canary';
+  const SECONDARY_CANARY_PROFILE = {budget:4,nutritionPriority:3,speed:3,skill:4,variety:2,proteinEmphasis:3,mealPrep:2,maxMinutes:180,cuisinePreferences:[],priorityPacks:[],dietaryMode:'unrestricted',allergens:[],excludedIngredientIds:[],unavailableIngredientIds:[],currentPantryIngredientIds:[],pantryStapleIds:[]};
   const repairForkrecipeButton = document.getElementById('repairForkrecipe');
   const canaryEvidencePanel = document.getElementById('canaryEvidencePanel');
   const canaryEvidenceNode = document.getElementById('canaryEvidence');
@@ -771,7 +775,60 @@
   repairForkrecipeButton.addEventListener('click', repairForkrecipeStructure);
   runCanaryButton.addEventListener('click', runLiveVerification);
   runP2AlignmentButton.addEventListener('click', runP2LiveAlignment);
+  async function runSecondaryLaneCanary() {
+    runSecondaryCanaryButton.disabled = true;
+    canaryEvidencePanel.hidden = false;
+    canaryEvidenceNode.textContent = 'Running owner-only limited-evidence secondary-lane canary…';
+    try {
+      const mealTypes = ['breakfast','lunch','dinner','snack'];
+      const probes = {};
+      let maxD1 = 0;
+      for (const mealType of mealTypes) {
+        const response = await fetch(SECONDARY_CANARY_API, {
+          method:'POST',
+          credentials:'same-origin',
+          cache:'no-store',
+          headers:{'content-type':'application/json'},
+          body:JSON.stringify({mode:'limited_evidence_secondary',mealType,limit:3,profile:SECONDARY_CANARY_PROFILE})
+        });
+        const result = await readJson(response);
+        if (!result.ok) throw new Error(mealType + ': ' + (result.reason || result.error || 'canary failed'));
+        if (result.secondaryLane?.enabled !== true || result.secondaryLane?.mayDisplacePrimary !== false) throw new Error(mealType + ': lane separation failed');
+        if (!Array.isArray(result.secondaryLane?.results) || result.secondaryLane.results.length !== 3) throw new Error(mealType + ': top-3 hydration failed');
+        if (result.secondaryLane.results.some(row => !row?.sourceProvenance?.sourceCohortId || row?.recommendationValidationState !== 'LIMITED_EVIDENCE_NOT_PRIMARY_VALIDATED')) throw new Error(mealType + ': provenance/validation disclosure failed');
+        if (Number(result.metrics?.d1Subqueries || 0) > 8 || Number(result.fullCorpusScans || 0) !== 0 || Number(result.protectedD1Writes || 0) !== 0) throw new Error(mealType + ': bounded read-only envelope failed');
+        if (result.publicRuntimeChanged !== false || result.recommendationAdmissionChanged !== false || Number(result.primaryRuntimeRecipeCount) !== 86 || Number(result.candidateUniverseCount) !== 271) throw new Error(mealType + ': authority boundary failed');
+        maxD1 = Math.max(maxD1, Number(result.metrics?.d1Subqueries || 0));
+        probes[mealType] = {resultCount:3,rankingDigestSha256:result.rankingDigestSha256,recipeIds:result.secondaryLane.results.map(row=>row.protectedRecipeId)};
+      }
+      canaryEvidenceNode.textContent = JSON.stringify({
+        terminal:'V21_LIMITED_EVIDENCE_SECONDARY_LANE_OWNER_LIVE_ACCEPTANCE_PASS',
+        protectedCorpusVersion:'v8018',
+        candidateUniverseCount:271,
+        primaryRuntimeRecipeCount:86,
+        probes,
+        maxObservedD1Subqueries:maxD1,
+        protectedD1Writes:0,
+        fullCorpusScans:0,
+        publicRuntimeChanged:false,
+        recommendationAdmissionChanged:false,
+        fullSecondaryLanePromoted:false
+      }, null, 2);
+    } catch (error) {
+      canaryEvidenceNode.textContent = JSON.stringify({
+        terminal:'V21_LIMITED_EVIDENCE_SECONDARY_LANE_OWNER_LIVE_ACCEPTANCE_STOPPED_SAFE',
+        reason:String(error?.message || error).slice(0,240),
+        protectedD1Writes:0,
+        publicRuntimeChanged:false,
+        recommendationAdmissionChanged:false
+      }, null, 2);
+    } finally {
+      runSecondaryCanaryButton.disabled = false;
+    }
+  }
+
   runP4AcceptanceButton.addEventListener('click', runP4ProductAcceptance);
+  runSecondaryCanaryButton.addEventListener('click', runSecondaryLaneCanary);
   copyCanaryButton.addEventListener('click', async () => {
     const text = canaryEvidenceNode.textContent || '';
     try {
