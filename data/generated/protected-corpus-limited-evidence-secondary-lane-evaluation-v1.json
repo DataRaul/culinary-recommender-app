@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "CULINARY_PROTECTED_CORPUS_LIMITED_EVIDENCE_SECONDARY_LANE_EVALUATION_SUMMARY_V1",
+  "date": "2026-10-04",
+  "pass": true,
+  "terminal": "V21_LIMITED_EVIDENCE_SECONDARY_RECOMMENDATION_LANE_EVALUATION_PASS__RUNTIME_CONTRACT_NEXT",
+  "protectedCorpusVersion": "v8018",
+  "qualityCohort": {
+    "size": 500,
+    "digestSha256": "33a63f8971d0aa6e58f7f7f6e64a7b560f7d195d0624c8f679677d2999bcf7c7"
+  },
+  "primaryLane": {
+    "runtimeRecipeCount": 86,
+    "minimumCoverageFloor": 0.5,
+    "changed": false
+  },
+  "secondaryLane": {
+    "candidateCount": 271,
+    "heldCount": 229,
+    "measuredAverageAvailablePositiveWeightCoverage": 0.436975,
+    "mayDisplacePrimaryValidatedRecipes": false,
+    "rankAgainstPrimaryValidatedRecipes": false,
+    "limitedMetadataDisclosureRequired": true,
+    "disclosedUnknownSoftSignals": [
+      "budget",
+      "mealPrep",
+      "novelty",
+      "nutrition",
+      "protein"
+    ],
+    "restrictedProfileEligibilityAuthorized": false
+  },
+  "mealTypes": {
+    "breakfast": {
+      "eligibleCount": 22,
+      "rankingDeterministic": true,
+      "uniqueScoreCount": 15,
+      "averageAvailablePositiveWeightCoverage": 0.436975,
+      "plannerComplete": true,
+      "plannerDeterministic": true,
+      "plannerUniqueRecipeCount": 7,
+      "maximumPairwiseIngredientJaccard": 0.272727
+    },
+    "dinner": {
+      "eligibleCount": 207,
+      "rankingDeterministic": true,
+      "uniqueScoreCount": 64,
+      "averageAvailablePositiveWeightCoverage": 0.436975,
+      "plannerComplete": true,
+      "plannerDeterministic": true,
+      "plannerUniqueRecipeCount": 7,
+      "maximumPairwiseIngredientJaccard": 0.2
+    },
+    "lunch": {
+      "eligibleCount": 207,
+      "rankingDeterministic": true,
+      "uniqueScoreCount": 64,
+      "averageAvailablePositiveWeightCoverage": 0.436975,
+      "plannerComplete": true,
+      "plannerDeterministic": true,
+      "plannerUniqueRecipeCount": 7,
+      "maximumPairwiseIngredientJaccard": 0.2
+    },
+    "snack": {
+      "eligibleCount": 42,
+      "rankingDeterministic": true,
+      "uniqueScoreCount": 28,
+      "averageAvailablePositiveWeightCoverage": 0.436975,
+      "plannerComplete": true,
+      "plannerDeterministic": true,
+      "plannerUniqueRecipeCount": 7,
+      "maximumPairwiseIngredientJaccard": 0.166667
+    }
+  },
+  "acceptance": {
+    "candidateVolumePass": true,
+    "rankingDeterminismPass": true,
+    "scoreDifferentiationPass": true,
+    "plannerCompletionPass": true,
+    "plannerDiversityPass": true,
+    "limitedMetadataDisclosurePass": true,
+    "restrictedProfileIsolationPass": true,
+    "primaryLaneIsolationPass": true
+  },
+  "disposition": {
+    "evaluationComplete": true,
+    "runtimeContractCandidateReady": true,
+    "liveRecommendationAdmissionAuthorized": false,
+    "runtimeImplementationAuthorized": false
+  },
+  "boundaries": {
+    "protectedD1Reads": 0,
+    "protectedD1Writes": 0,
+    "protectedBodiesRewritten": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "recommendationAuthorityWidened": false,
+    "secondaryLaneImplemented": false,
+    "scorerBehaviorChanged": false,
+    "candidateClassificationPromoted": false,
+    "dietaryAllergenAuthorityPromoted": false,
+    "knowledgeCoreWritePerformed": false,
+    "paidModelOrApiUsed": false,
+    "thirdShardUsed": false,
+    "barbecueMutation": false
+  },
+  "nextGate": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_RUNTIME_CONTRACT_V1"
+}
