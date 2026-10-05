@@ -16,7 +16,8 @@ test("normal product app wires the owner-only V21 secondary endpoint, not the ca
 
 test("owner role is derived server-side from the configured bootstrap identity", () => {
   const session = readFileSync(new URL("../functions/api/auth/session.js", import.meta.url), "utf8");
-  assert.match(session, /normalizeInviteEmail\(current\.account\.email\) === normalizeInviteEmail\(env\?\.OWNER_BOOTSTRAP_EMAIL\)/);
+  assert.match(session, /ownerBootstrapEmail/);
+  assert.match(session, /normalizeInviteEmail\(current\.account\.email\) === ownerBootstrapEmail/);
   assert.match(session, /owner:/);
 });
 
@@ -44,7 +45,8 @@ test("bounded owner rollout preserves hydrated recipe detail for the product car
   assert.equal(result.secondaryLane.mayDisplacePrimary,false);
 });
 
-test("service worker cache is bumped so the normal product does not retain the pre-V21 app shell", () => {
+test("service worker refresh marker updates cached normal-product assets while preserving the established cache contract", () => {
   const sw = readFileSync(new URL("../sw.js", import.meta.url), "utf8");
-  assert.match(sw, /v21-owner-secondary-product-v1 refreshes cached app assets/);\n  assert.match(sw, /culinary-recommender-v1-1-6-eu-celery-allergen-p0/);
+  assert.match(sw, /v21-owner-secondary-product-v1 refreshes cached app assets/);
+  assert.match(sw, /culinary-recommender-v1-1-6-eu-celery-allergen-p0/);
 });
