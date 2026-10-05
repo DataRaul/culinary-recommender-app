@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "CULINARY_V21_RECIPE_DETAIL_COMPLETENESS_V1",
+  "date": "2026-10-05",
+  "state": "BOUNDED_AUDIT_AND_PRODUCT_FIX",
+  "protectedCorpusVersion": "v8018",
+  "candidateUniverseCount": 271,
+  "candidateManifestDigestSha256": "59ba7615f03ea5ab72637fd1f38dc5ebaba4124d50f3cfb412c2f814f8aacd1d",
+  "source": {
+    "cohortId": "unitools-world-recipes-v1_1_0",
+    "repository": "farcrak/unitools-recipes",
+    "commit": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+    "dataPath": "unitools-recipes-v1.json",
+    "datasetVersion": "1.1.0",
+    "expectedDatasetRecipeCount": 501
+  },
+  "measuredPinnedSourceStructure": {
+    "ingredientCount": {
+      "min": 5,
+      "median": 11,
+      "max": 16
+    },
+    "directionStepCount": {
+      "min": 4,
+      "median": 7,
+      "max": 7,
+      "distribution": {
+        "4": 4,
+        "5": 37,
+        "6": 64,
+        "7": 166
+      },
+      "atMost3": 0
+    },
+    "structuralPartialCount": 0
+  },
+  "productContract": {
+    "allAvailableSourceIngredientsMustRender": true,
+    "allAvailableSourceMethodStepsMustRender": true,
+    "sourceStepMinutesMustRemainVisibleWhenPresent": true,
+    "sourceSummaryServingsPrepCookMayRenderWhenPresent": true,
+    "inventMissingInstructions": false,
+    "sparseSourceMustBeLabelledWithoutExpansion": true,
+    "legacyDirectionsArrayRetainedForCompatibility": true
+  },
+  "runtimeBoundaries": {
+    "authenticatedOwnerOnly": true,
+    "fixedUnrestrictedV21ProfileOnly": true,
+    "maximumResultsPerRequest": 20,
+    "maximumTotalD1SubqueriesPerRequest": 8,
+    "protectedD1WritesAllowed": 0,
+    "fullCorpusScansAllowed": 0,
+    "publicRecommendationWideningAuthorized": false,
+    "primaryRecommendationAdmissionAuthorized": false,
+    "dietaryAllergenAuthorityChanged": false,
+    "thirdShardAuthorized": false,
+    "paidApisOrModelsAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "V21_RECIPE_DETAIL_COMPLETENESS_MEASURED_AND_PRODUCT_FIX_PASS__OWNER_PRODUCT_ACCEPTANCE_REQUIRED"
+}
