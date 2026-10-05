@@ -16,8 +16,13 @@ export async function onRequestGet({ request, env }) {
     }, 401, headers);
   }
 
+  const ownerBootstrapEmail = normalizeInviteEmail(env?.OWNER_BOOTSTRAP_EMAIL);
   return jsonResponse({
     authenticated: true,
-    account: { id: current.account.accountId, email: current.account.email, owner: normalizeInviteEmail(current.account.email) === normalizeInviteEmail(env?.OWNER_BOOTSTRAP_EMAIL) }
+    account: {
+      id: current.account.accountId,
+      email: current.account.email,
+      ...(ownerBootstrapEmail ? { owner: normalizeInviteEmail(current.account.email) === ownerBootstrapEmail } : {})
+    }
   });
 }
