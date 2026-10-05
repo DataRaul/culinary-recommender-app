@@ -15,6 +15,10 @@ const statusPill = document.querySelector("#statusPill");
 const toast = document.querySelector("#toast");
 let state = loadState();
 let activeView = state.plan ? "plan" : "start";
+const OWNER_SECONDARY_API = "/api/protected-corpus/limited-evidence-secondary";
+const OWNER_SECONDARY_PROFILE = Object.freeze({budget:4,nutritionPriority:3,speed:3,skill:4,variety:2,proteinEmphasis:3,mealPrep:2,maxMinutes:180,cuisinePreferences:[],priorityPacks:[],dietaryMode:"unrestricted",allergens:[],excludedIngredientIds:[],unavailableIngredientIds:[],currentPantryIngredientIds:[],pantryStapleIds:[]});
+let ownerAccess = false;
+let ownerSecondaryState = { mealType:"", cursor:"", items:[], eligibleCount:0, loading:false, error:"" };
 
 const escapeHtml = value => String(value ?? "").replace(/[&<>"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[char]));
 const euroTier = tier => "€".repeat(Number(tier) || 0);
@@ -36,7 +40,119 @@ function nutritionLine(recipe) {
 }
 
 function renderHeaderStatus() {
-  statusPill.textContent = `${RECIPES.length} curated V0 recipes · deterministic`;
+  statusPill.textContent = ownerAccess
+    ? `${RECIPES.length} primary + 271 owner preview`
+    : `${RECIPES.length} curated V0 recipes · deterministic`;
+}
+
+function ownerSecondarySourceLine(item) {
+  const source = item?.sourceProvenance || {};
+  return [source.sourceWork, source.sourceAuthor, source.sourceYear].filter(Boolean).join(" · ") || source.sourceCohortId || "Source recorded";
+}
+
+function ownerSecondaryCard(item) {
+  const sourceUrl = item?.sourceProvenance?.sourceUrl
+    ? `<p class="micro"><a href="${escapeHtml(item.sourceProvenance.sourceUrl)}" target="_blank" rel="noreferrer">Source / provenance</a></p>`
+    : "";
+  const ingredients = (item.ingredients || []).map(value => `<li>${escapeHtml(value)}</li>`).join("");
+  const directions = (item.directions || []).map(value => `<li>${escapeHtml(value)}</li>`).join("");
+  return `<article class="recipe-card owner-secondary-card">
+    <div class="recipe-top"><div><p class="eyebrow">Limited-evidence · rank ${escapeHtml(item.rank)}</p><h3>${escapeHtml(item.title)}</h3></div><span class="count-badge">${escapeHtml(item.score)}</span></div>
+    <p class="micro">${escapeHtml(ownerSecondarySourceLine(item))}</p>
+    <p class="reason">Owner preview only · not primary recommendation-validated.</p>
+    <details><summary>Ingredients & method</summary><div class="recipe-detail">
+      ${ingredients ? `<ul>${ingredients}</ul>` : "<p class='micro'>Ingredient structure unavailable.</p>"}
+      ${directions ? `<ol>${directions}</ol>` : "<p class='micro'>Method structure unavailable.</p>"}
+      ${sourceUrl}
+    </div></details>
+  </article>`;
+}
+
+function ownerSecondaryPanel() {
+  if (!ownerAccess) return "";
+  const meals = [["breakfast","Breakfast · 22"],["lunch","Lunch · 207"],["dinner","Dinner · 207"],["snack","Snack · 42"]]
+    .map(([value,label]) => `<button type="button" class="secondary-action ${ownerSecondaryState.mealType===value?"owner-secondary-active":""}" data-owner-secondary-meal="${value}">${label}</button>`)
+    .join("");
+  const cards = ownerSecondaryState.items.map(ownerSecondaryCard).join("");
+  const status = ownerSecondaryState.error
+    ? `<p class="shortfall">${escapeHtml(ownerSecondaryState.error)}</p>`
+    : ownerSecondaryState.loading
+      ? "<p class='micro'>Loading owner-only suggestions…</p>"
+      : ownerSecondaryState.mealType
+        ? `<p class="micro">${ownerSecondaryState.items.length} loaded of ${ownerSecondaryState.eligibleCount} eligible ${escapeHtml(ownerSecondaryState.mealType)} recipes.</p>`
+        : "<p class='micro'>Choose a meal to browse the expanded V21 owner recommendation surface.</p>";
+  return `<section class="panel owner-secondary-panel">
+    <div class="section-heading"><div><p class="eyebrow">Owner early access · V21</p><h2>More recipe ideas</h2></div><span class="count-badge">271 candidates</span></div>
+    <p class="hint"><strong>Limited-evidence lane:</strong> this uses the fixed unrestricted V21 evaluation profile, not your saved profile. Nutrition, protein, budget, meal-prep and novelty may be unknown. Do not use this lane for allergy/exclusion-sensitive decisions yet.</p>
+    <div class="button-row owner-secondary-meals">${meals}</div>
+    ${status}
+    <section class="recipe-list">${cards}</section>
+    ${ownerSecondaryState.cursor ? '<button id="ownerSecondaryMore" class="secondary-action compact" type="button">Load more suggestions</button>' : ""}
+  </section>`;
+}
+
+function bindOwnerSecondaryPanel() {
+  document.querySelectorAll("[data-owner-secondary-meal]").forEach(button => button.addEventListener("click", () => {
+    ownerSecondaryState = { mealType:button.dataset.ownerSecondaryMeal, cursor:"", items:[], eligibleCount:0, loading:false, error:"" };
+    void loadOwnerSecondary(false);
+  }));
+  document.querySelector("#ownerSecondaryMore")?.addEventListener("click", () => { void loadOwnerSecondary(true); });
+}
+
+function renderOwnerSecondaryMount() {
+  const mount = document.querySelector("#ownerSecondaryMount");
+  if (!mount) return;
+  mount.innerHTML = ownerSecondaryPanel();
+  bindOwnerSecondaryPanel();
+}
+
+async function loadOwnerSecondary(append) {
+  if (!ownerAccess || !ownerSecondaryState.mealType || ownerSecondaryState.loading) return;
+  ownerSecondaryState.loading = true;
+  ownerSecondaryState.error = "";
+  renderOwnerSecondaryMount();
+  try {
+    const response = await fetch(OWNER_SECONDARY_API, {
+      method:"POST",
+      credentials:"same-origin",
+      cache:"no-store",
+      headers:{"content-type":"application/json"},
+      body:JSON.stringify({
+        mode:"limited_evidence_secondary",
+        mealType:ownerSecondaryState.mealType,
+        limit:20,
+        cursor:append ? (ownerSecondaryState.cursor || "0") : "0",
+        profile:OWNER_SECONDARY_PROFILE
+      })
+    });
+    const body = await response.json().catch(() => null);
+    if (!response.ok || body?.ok !== true || body?.secondaryLane?.enabled !== true) {
+      throw new Error(body?.reason || body?.error || "Owner secondary suggestions are unavailable.");
+    }
+    const nextItems = Array.isArray(body.secondaryLane.results) ? body.secondaryLane.results : [];
+    ownerSecondaryState = {
+      ...ownerSecondaryState,
+      items:append ? [...ownerSecondaryState.items, ...nextItems] : nextItems,
+      eligibleCount:Number(body.eligibleCount || 0),
+      cursor:body.secondaryLane.nextCursor || "",
+      loading:false,
+      error:""
+    };
+  } catch (error) {
+    ownerSecondaryState = { ...ownerSecondaryState, loading:false, error:String(error?.message || error).slice(0,180) };
+  }
+  renderOwnerSecondaryMount();
+}
+
+async function detectOwnerAccess() {
+  try {
+    const response = await fetch("/api/auth/session", { credentials:"same-origin", cache:"no-store" });
+    if (!response.ok) return;
+    const body = await response.json();
+    ownerAccess = body?.authenticated === true && body?.account?.owner === true;
+    renderHeaderStatus();
+    renderOwnerSecondaryMount();
+  } catch {}
 }
 
 function priorityPackControls(profile) {
@@ -94,7 +210,8 @@ function slotPicker() {
 }
 
 function renderStart() {
-  app.innerHTML = `<section class="hero"><p class="eyebrow">Cook for the week you actually have</p><h1>What should you cook?</h1><p class="lede">Choose the meals you need, tune the trade-offs, and get a deterministic plan with clear reasons, ingredient reuse, substitutions and a combined grocery list.</p><div class="trust-row"><span>Local-first</span><span>No account</span><span>No AI API</span><span>Explainable scoring</span></div></section>
+  app.innerHTML = `<section class="hero"><p class="eyebrow">Cook for the week you actually have</p><h1>What should you cook?</h1><p class="lede">Choose the meals you need, tune the trade-offs, and get a deterministic plan with clear reasons, ingredient reuse, substitutions and a combined grocery list.</p><div class="trust-row"><span>Local-first</span><span>No account required</span><span>No AI API</span><span>Explainable scoring</span></div></section>
+  <div id="ownerSecondaryMount">${ownerSecondaryPanel()}</div>
   <section class="panel"><div class="section-heading"><div><p class="eyebrow">1 · Your priorities</p><h2>Shape this week</h2></div><span class="micro">Everything stays editable.</span></div>${profileControls()}</section>
   <section class="panel"><div class="section-heading"><div><p class="eyebrow">2 · Partial-week planning</p><h2>Pick exact meal slots</h2></div><span id="slotCount" class="count-badge">${selectedSlots().length} selected</span></div>${slotPicker()}</section>
   <section class="action-dock"><button id="generatePlan" class="primary-action" type="button">Build my plan <span aria-hidden="true">→</span></button><p>Hard constraints stay hard. If the corpus runs out, the app shows the shortfall instead of quietly weakening them.</p></section>`;
@@ -105,6 +222,7 @@ function renderStart() {
     document.querySelector("#slotCount").textContent = `${state.selectedSlotIds.length} selected`;
   }));
   document.querySelector("#generatePlan").addEventListener("click", generatePlan);
+  bindOwnerSecondaryPanel();
 }
 
 function bindProfileControls() {
@@ -167,6 +285,7 @@ function generatePlan() {
   state.plan = { generatedAt: new Date().toISOString(), items: result.items, shortfalls: result.shortfalls, complete: result.complete };
   state.recommendationHistory = [...state.recommendationHistory.slice(-19), { generatedAt: state.plan.generatedAt, recipeIds: result.items.map(item => item.recipe.id), profile: state.profile }];
   persist(); activeView = "plan"; render();
+void detectOwnerAccess();
 }
 
 function recipeCard(item) {
