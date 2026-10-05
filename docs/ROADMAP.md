@@ -1326,16 +1326,18 @@ The normal Culinary Recommender app is now the intended acceptance surface: an a
 The product acceptance gate remains open until the owner verifies this normal-app surface in production. The diagnostic protected-corpus page is no longer the acceptance target.
 
 
-### 2026-10-05 V21 recipe-detail completeness — IMPLEMENTED / MACHINE VALIDATION PENDING
+### 2026-10-05 V21 recipe-detail completeness — PASS / OWNER PRODUCT ACCEPTANCE REQUIRED
 
 - Product-quality finding: the exact frozen **271** owner-secondary candidates all come from pinned UniTools 1.1.0 at commit 1d09e9548d957dd0375301146a86dddf5e269c1b.
 - Exact pinned-source structural measurement over the frozen 271 manifest: **5–16 ingredients** (median **11**) and **4–7 method steps** (median **7**); step-count distribution is **4:4, 5:37, 6:64, 7:166** and **0/271** sources have three or fewer steps. Structural partials in this lane: **0**.
-- The frozen 271 source itself is not three-step sparse. However PR #397 is not yet merged, so any earlier recipe opened in the normal production app could not yet have come from this new 271 owner-secondary section. Treat that earlier thin-detail observation as a separate primary-surface signal unless it reproduces after #397 deploys. This package still proves the 271 path preserves complete source-backed detail rather than authoring or inferring additional instructions.
+- The frozen 271 source itself is not three-step sparse. The earlier thin-detail observation occurred before PR #397 put the 271 lane into the normal production app, so it remains a separate primary-surface signal unless reproduced in the V21 owner lane.
+- PR #397 merged and production validation/browser/live smoke passed before this package proceeded.
+- PR #398 merged at `820852142310e10f52df10932241941815598a09`; Cloudflare production deployment, push validation, browser tests and production smoke all passed.
 - The bounded fix preserves all source-backed ingredients and method steps end-to-end and additionally carries source step minutes, summary, servings, prep minutes and cook minutes when present. The legacy plain directions array remains for compatibility.
-- Normal product detail now states observed ingredient/method-step counts and labels genuinely sparse source methods without inventing extra instructions.
+- Normal product detail states observed ingredient/method-step counts and labels genuinely sparse source methods without inventing extra instructions.
 - Deterministic anti-truncation coverage uses an 11-ingredient / 7-step protected packet fixture and asserts no step loss through projection and owner-secondary envelope.
 - Dedicated pinned-source audit rechecks the exact 271 manifest and measures ingredient counts, step counts, direction-text length, summary-text length, structural partials and source identity without emitting raw recipe text.
+- Validation evidence: detail-completeness run **37381714597** PASS; owner-canary run **37381714641** PASS; PR validation run **37381714537** PASS; production validation/live-smoke run **37381919320** PASS.
 - Runtime/authority boundaries remain unchanged: authenticated owner only, fixed unrestricted V21 profile, max 20 results, <=8 total D1 subqueries/request, zero protected D1 writes/full scans, two shards only, no public/primary recommendation widening, no dietary/allergen authority change, no paid API/model, no Knowledge Core write and no Barbecue mutation.
-- This work is stacked on PR #397 until its required Validate public V0 gate can run. GitHub Actions is currently experiencing hosted-runner assignment delays; do not merge #397 or this package without green validation.
-- Target terminal after machine validation: V21_RECIPE_DETAIL_COMPLETENESS_MEASURED_AND_PRODUCT_FIX_PASS__OWNER_PRODUCT_ACCEPTANCE_REQUIRED.
-- Owner acceptance target: normal production app; open Breakfast/Lunch/Dinner/Snack V21 recipes, verify complete source-backed ingredients and all source method steps, confirm source detail metadata, and exercise Load more.
+- Terminal: `V21_RECIPE_DETAIL_COMPLETENESS_MEASURED_AND_PRODUCT_FIX_PASS__OWNER_PRODUCT_ACCEPTANCE_REQUIRED`.
+- Next human gate: normal production app; open several Breakfast/Lunch/Dinner/Snack V21 recipes, verify complete source-backed ingredients and all source method steps, confirm source detail metadata, and exercise Load more.
