@@ -2,7 +2,7 @@
   "schemaVersion": "barbecue-technique-corpus-v1",
   "programmeId": "BARBECUE_TECHNIQUE_CORPUS_V1",
   "activationState": "BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY",
-  "queryVintage": "barbecue-v1-world-champion-first-2026-09-24",
+  "queryVintage": "barbecue-v1-specialist-fallback-v2-2026-10-05",
   "assignedDailySearchLimit": 100,
   "protectedReserveCalls": 5,
   "dailySearchBudget": 16,
@@ -10,7 +10,7 @@
   "policyRecheckedAt": "2026-09-24",
   "policyMaxAgeDays": 30,
   "candidateBacklogCap": 50,
-  "maxCandidatesPerLeaf": 12,
+  "maxCandidatesPerLeaf": 24,
   "requiredQualifiedIndependentSourcesPerLeaf": 5,
   "queryClassOrder": [
     "WORLD_CHAMPION_DISCOVERY",
@@ -43,6 +43,22 @@
     {
       "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
       "template": "professional grilling instructor {term}"
+    },
+    {
+      "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+      "template": "award winning pitmaster {term} technique"
+    },
+    {
+      "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+      "template": "barbecue competition pitmaster {term} tutorial"
+    },
+    {
+      "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+      "template": "specialist live fire chef {term} grill"
+    },
+    {
+      "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+      "template": "professional barbecue instructor {term} grill"
     }
   ],
   "pilotLeaves": [

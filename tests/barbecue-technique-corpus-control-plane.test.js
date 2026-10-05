@@ -188,3 +188,52 @@ test("pilot PASS requires all five completed leaves", () => {
   assert.equal(state.pilotPass, true);
   assert.equal(state.programmeStatus, "BARBECUE_TECHNIQUE_CORPUS_PILOT_PASS");
 });
+
+
+test("expanded specialist portfolio remains selectable after legacy fallback exhaustion", () => {
+  let state = createInitialBarbecueState(config);
+  for (const leaf of state.leaves) leaf.championshipSearchExhausted = true;
+  state = validateBarbecueState(state, config);
+  const portfolio = buildBarbecueQueryPortfolio(config, state);
+  assert.equal(portfolio.filter(row => row.queryClass === "SPECIALIST_FALLBACK_DISCOVERY").length, 30);
+
+  // Simulate the two legacy specialist templates having already run for every leaf.
+  for (const leaf of state.leaves) {
+    const leafQueries = portfolio.filter(row => row.leafId === leaf.leafId);
+    state.usedQueryIds.push(...leafQueries.slice(0, 2).map(row => row.queryId));
+  }
+  const selected = selectBarbecueDailyQueries(config, state);
+  assert.equal(selected.length, config.dailySearchBudget);
+  assert.equal(selected.every(row => row.queryClass === "SPECIALIST_FALLBACK_DISCOVERY"), true);
+  assert.equal(selected.some(row => state.usedQueryIds.includes(row.queryId)), false);
+});
+
+test("reviewed candidate history does not prevent the expanded tranche from retaining fresh candidates", () => {
+  let state = createInitialBarbecueState(config);
+  const leaf = state.leaves[0];
+  leaf.championshipSearchExhausted = true;
+  const query = buildBarbecueQueryPortfolio(config, state).find(row => row.leafId === leaf.leafId);
+  leaf.candidatePointers = Array.from({ length: 12 }, (_, i) => ({
+    sourceRef: `youtube:historic-${i}`,
+    youtubeVideoRef: `historic-${i}`,
+    canonicalReference: `https://www.youtube.com/watch?v=historic-${i}`,
+    creatorChannelRef: `historic-channel-${i}`,
+    leafId: leaf.leafId,
+    queryId: `historic-query-${i}`,
+    queryClass: "SPECIALIST_FALLBACK_DISCOVERY",
+    discoveredQuotaDate: "2026-09-26",
+    qualificationStatus: "REJECTED",
+    automaticQualificationAuthorized: false,
+    projectAuthoredRejectionRationale: "Previously reviewed bounded candidate."
+  }));
+  state = validateBarbecueState(state, config);
+  const fresh = createDurableCandidatePointer(
+    { id: { videoId: "fresh-v2" }, snippet: { channelId: "fresh-channel-v2" } },
+    query,
+    "2026-10-06"
+  );
+  state = addCandidatePointers(state, config, [fresh]);
+  assert.equal(state.leaves[0].candidatePointers.length, 13);
+  assert.equal(state.leaves[0].candidatePointers.at(-1).sourceRef, "youtube:fresh-v2");
+  assert.equal(state.leaves[0].candidatePointers.at(-1).qualificationStatus, "PENDING_REVIEW");
+});
