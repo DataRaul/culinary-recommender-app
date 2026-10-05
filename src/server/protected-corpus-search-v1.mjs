@@ -102,6 +102,20 @@ function directionText(value) {
   return localizedText(value.text) || firstString(value.instructions, value.instruction, value.description, value.name) || "";
 }
 
+function directionStep(value) {
+  const text = directionText(value);
+  if (!text) return null;
+  const rawMinutes = value && typeof value === "object" ? value.minutes : null;
+  const minutes = rawMinutes == null || rawMinutes === "" || !Number.isFinite(Number(rawMinutes))
+    ? null
+    : Number(rawMinutes);
+  return { text, minutes };
+}
+
+function finiteSourceNumber(value) {
+  return value == null || value === "" || !Number.isFinite(Number(value)) ? null : Number(value);
+}
+
 function packetTitle(packet) {
   return firstString(
     localizedText(packet?.recipe?.name),
@@ -124,7 +138,7 @@ function packetIngredients(packet) {
   return source.map(ingredientText).filter(Boolean);
 }
 
-function packetDirections(packet) {
+function packetDirectionSteps(packet) {
   const candidates = [
     packet?.recipe?.steps,
     packet?.sourceRecord?.processNodes,
@@ -132,7 +146,20 @@ function packetDirections(packet) {
     packet?.sourceContent?.parsedDirectionsNonAuthoritative
   ];
   const source = candidates.find(Array.isArray) || [];
-  return source.map(directionText).filter(Boolean);
+  return source.map(directionStep).filter(Boolean);
+}
+
+function packetDirections(packet) {
+  return packetDirectionSteps(packet).map(step => step.text);
+}
+
+function packetSourceBackedRecipeMeta(packet) {
+  return {
+    summary: localizedText(packet?.recipe?.summary) || null,
+    servings: finiteSourceNumber(packet?.recipe?.baseServings),
+    prepMinutes: finiteSourceNumber(packet?.recipe?.prepMinutes),
+    cookMinutes: finiteSourceNumber(packet?.recipe?.cookMinutes)
+  };
 }
 
 function packetSource(packet, route) {
@@ -182,11 +209,18 @@ export function projectProtectedPacketForIndex(packet, route = {}) {
 
 export function projectProtectedPacketForDetail(packet, route = {}) {
   const index = projectProtectedPacketForIndex(packet, route);
+  const ingredients = packetIngredients(packet);
+  const methodSteps = packetDirectionSteps(packet);
+  const sourceMeta = packetSourceBackedRecipeMeta(packet);
   return {
     ...index,
     recommendationState: protectedRecommendationState(index.recipeId),
-    ingredients: packetIngredients(packet),
-    directions: packetDirections(packet),
+    ingredients,
+    directions: methodSteps.map(step => step.text),
+    methodSteps,
+    ingredientCount: ingredients.length,
+    directionStepCount: methodSteps.length,
+    ...sourceMeta,
     authority: {
       protectedBrowseOnly: true,
       recommendationEligible: false,
