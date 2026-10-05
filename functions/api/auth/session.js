@@ -1,4 +1,4 @@
-import { clearSessionCookie, currentSessionAccount, jsonResponse } from "../../../src/server/auth-core.mjs";
+import { clearSessionCookie, currentSessionAccount, jsonResponse, normalizeInviteEmail } from "../../../src/server/auth-core.mjs";
 
 export async function onRequestGet({ request, env }) {
   if (!env?.SESSION_SECRET || !env?.CULINARY_CONTROL_DB) {
@@ -18,6 +18,6 @@ export async function onRequestGet({ request, env }) {
 
   return jsonResponse({
     authenticated: true,
-    account: { id: current.account.accountId, email: current.account.email }
+    account: { id: current.account.accountId, email: current.account.email, owner: normalizeInviteEmail(current.account.email) === normalizeInviteEmail(env?.OWNER_BOOTSTRAP_EMAIL) }
   });
 }
