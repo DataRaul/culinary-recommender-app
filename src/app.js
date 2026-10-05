@@ -55,14 +55,36 @@ function ownerSecondaryCard(item) {
     ? `<p class="micro"><a href="${escapeHtml(item.sourceProvenance.sourceUrl)}" target="_blank" rel="noreferrer">Source / provenance</a></p>`
     : "";
   const ingredients = (item.ingredients || []).map(value => `<li>${escapeHtml(value)}</li>`).join("");
-  const directions = (item.directions || []).map(value => `<li>${escapeHtml(value)}</li>`).join("");
+  const methodSteps = Array.isArray(item.methodSteps) && item.methodSteps.length
+    ? item.methodSteps
+    : (item.directions || []).map(text => ({ text, minutes:null }));
+  const directions = methodSteps.map(step => {
+    const minutes = step?.minutes == null || step.minutes === "" || !Number.isFinite(Number(step.minutes))
+      ? ""
+      : ` <span class="micro">· ${escapeHtml(step.minutes)} min</span>`;
+    return `<li>${escapeHtml(step?.text || "")}${minutes}</li>`;
+  }).join("");
+  const detailFacts = [
+    `${Number(item.ingredientCount ?? item.ingredients?.length ?? 0)} ingredients`,
+    `${Number(item.directionStepCount ?? methodSteps.length)} method steps`,
+    item.servings == null ? null : `serves ${item.servings}`,
+    item.prepMinutes == null ? null : `prep ${item.prepMinutes} min`,
+    item.cookMinutes == null ? null : `cook ${item.cookMinutes} min`
+  ].filter(Boolean).join(" · ");
+  const sourceSummary = item.summary ? `<p>${escapeHtml(item.summary)}</p>` : "";
+  const sparseNote = methodSteps.length > 0 && methodSteps.length <= 3
+    ? `<p class="micro">The source provides a concise ${methodSteps.length}-step method; no extra steps have been invented.</p>`
+    : "";
   return `<article class="recipe-card owner-secondary-card">
     <div class="recipe-top"><div><p class="eyebrow">Limited-evidence · rank ${escapeHtml(item.rank)}</p><h3>${escapeHtml(item.title)}</h3></div><span class="count-badge">${escapeHtml(item.score)}</span></div>
     <p class="micro">${escapeHtml(ownerSecondarySourceLine(item))}</p>
     <p class="reason">Owner preview only · not primary recommendation-validated.</p>
     <details><summary>Ingredients & method</summary><div class="recipe-detail">
+      <p class="micro">Source detail · ${escapeHtml(detailFacts)}</p>
+      ${sourceSummary}
       ${ingredients ? `<ul>${ingredients}</ul>` : "<p class='micro'>Ingredient structure unavailable.</p>"}
       ${directions ? `<ol>${directions}</ol>` : "<p class='micro'>Method structure unavailable.</p>"}
+      ${sparseNote}
       ${sourceUrl}
     </div></details>
   </article>`;
