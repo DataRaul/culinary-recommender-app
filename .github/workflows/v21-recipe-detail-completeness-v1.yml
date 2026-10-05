@@ -1,0 +1,50 @@
+name: V21 recipe detail completeness V1
+
+on:
+  pull_request:
+    paths:
+      - "config/v21_recipe_detail_completeness_v1.json"
+      - "scripts/run-v21-recipe-detail-completeness-audit-v1.mjs"
+      - "src/server/protected-corpus-search-v1.mjs"
+      - "src/server/protected-corpus-limited-evidence-secondary-lane-owner-rollout-v1.mjs"
+      - "src/server/protected-corpus-limited-evidence-secondary-lane-owner-rollout-manifest-v1.mjs"
+      - "functions/api/protected-corpus/limited-evidence-secondary.js"
+      - "src/app.js"
+      - "tests/v21-recipe-detail-completeness-v1.test.js"
+      - ".github/workflows/v21-recipe-detail-completeness-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  detail-completeness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run deterministic anti-truncation tests
+        run: node --test tests/v21-recipe-detail-completeness-v1.test.js
+
+      - name: Checkout exact pinned UniTools source
+        run: |
+          git clone --filter=blob:none https://github.com/farcrak/unitools-recipes.git .tmp/unitools
+          git -C .tmp/unitools checkout --detach 1d09e9548d957dd0375301146a86dddf5e269c1b
+
+      - name: Measure exact 271 source-backed recipe detail
+        run: |
+          node scripts/run-v21-recipe-detail-completeness-audit-v1.mjs \
+            --sourceRoot=.tmp/unitools \
+            --config=config/v21_recipe_detail_completeness_v1.json \
+            --output=.tmp/v21-recipe-detail-completeness-v1.json
+
+      - name: Upload detail completeness evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: v21-recipe-detail-completeness-v1
+          path: .tmp/v21-recipe-detail-completeness-v1.json
+          if-no-files-found: error

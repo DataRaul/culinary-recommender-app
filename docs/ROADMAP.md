@@ -1324,3 +1324,18 @@ The first full-owner 271 rollout correctly activated the bounded owner-only API,
 The normal Culinary Recommender app is now the intended acceptance surface: an authenticated exact owner session reveals an **Owner early access · V21 / More recipe ideas** section on the Ideas screen. It uses the same frozen 271-candidate manifest and fixed unrestricted V21 profile, preserves limited-evidence disclosure, returns bounded recipe detail from the already-hydrated protected packet, paginates at 20, and does not alter the primary 86 or public recommendation behavior.
 
 The product acceptance gate remains open until the owner verifies this normal-app surface in production. The diagnostic protected-corpus page is no longer the acceptance target.
+
+
+### 2026-10-05 V21 recipe-detail completeness — IMPLEMENTED / MACHINE VALIDATION PENDING
+
+- Product-quality finding: the exact frozen **271** owner-secondary candidates all come from pinned UniTools 1.1.0 at commit 1d09e9548d957dd0375301146a86dddf5e269c1b.
+- Exact pinned-source structural measurement over the frozen 271 manifest: **5–16 ingredients** (median **11**) and **4–7 method steps** (median **7**); step-count distribution is **4:4, 5:37, 6:64, 7:166** and **0/271** sources have three or fewer steps. Structural partials in this lane: **0**.
+- The frozen 271 source itself is not three-step sparse. However PR #397 is not yet merged, so any earlier recipe opened in the normal production app could not yet have come from this new 271 owner-secondary section. Treat that earlier thin-detail observation as a separate primary-surface signal unless it reproduces after #397 deploys. This package still proves the 271 path preserves complete source-backed detail rather than authoring or inferring additional instructions.
+- The bounded fix preserves all source-backed ingredients and method steps end-to-end and additionally carries source step minutes, summary, servings, prep minutes and cook minutes when present. The legacy plain directions array remains for compatibility.
+- Normal product detail now states observed ingredient/method-step counts and labels genuinely sparse source methods without inventing extra instructions.
+- Deterministic anti-truncation coverage uses an 11-ingredient / 7-step protected packet fixture and asserts no step loss through projection and owner-secondary envelope.
+- Dedicated pinned-source audit rechecks the exact 271 manifest and measures ingredient counts, step counts, direction-text length, summary-text length, structural partials and source identity without emitting raw recipe text.
+- Runtime/authority boundaries remain unchanged: authenticated owner only, fixed unrestricted V21 profile, max 20 results, <=8 total D1 subqueries/request, zero protected D1 writes/full scans, two shards only, no public/primary recommendation widening, no dietary/allergen authority change, no paid API/model, no Knowledge Core write and no Barbecue mutation.
+- This work is stacked on PR #397 until its required Validate public V0 gate can run. GitHub Actions is currently experiencing hosted-runner assignment delays; do not merge #397 or this package without green validation.
+- Target terminal after machine validation: V21_RECIPE_DETAIL_COMPLETENESS_MEASURED_AND_PRODUCT_FIX_PASS__OWNER_PRODUCT_ACCEPTANCE_REQUIRED.
+- Owner acceptance target: normal production app; open Breakfast/Lunch/Dinner/Snack V21 recipes, verify complete source-backed ingredients and all source method steps, confirm source detail metadata, and exercise Load more.
