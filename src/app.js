@@ -285,7 +285,6 @@ function generatePlan() {
   state.plan = { generatedAt: new Date().toISOString(), items: result.items, shortfalls: result.shortfalls, complete: result.complete };
   state.recommendationHistory = [...state.recommendationHistory.slice(-19), { generatedAt: state.plan.generatedAt, recipeIds: result.items.map(item => item.recipe.id), profile: state.profile }];
   persist(); activeView = "plan"; render();
-void detectOwnerAccess();
 }
 
 function recipeCard(item) {
@@ -448,3 +447,4 @@ document.querySelector("#brandButton").addEventListener("click",()=>{activeView=
 
 if ("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 render();
+void detectOwnerAccess();
