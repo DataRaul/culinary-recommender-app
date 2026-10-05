@@ -121,3 +121,8 @@ summary { font-weight: 750; cursor: pointer; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }
+
+.owner-secondary-panel { border-color: #9aaa72; background: #fbfdf6; }
+.owner-secondary-meals { margin: 1rem 0 .5rem; }
+.owner-secondary-active { background: #e4eadb; border-color: #8b9d63; color: var(--primary); box-shadow: inset 0 0 0 1px #8b9d63; }
+.owner-secondary-card .count-badge { min-width: 4.25rem; text-align: center; }

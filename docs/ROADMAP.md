@@ -1315,3 +1315,12 @@ Terminal: `V21_LIMITED_EVIDENCE_SECONDARY_LANE_RUNTIME_CONTRACT_PASS__BOUNDED_IM
 - Public runtime, primary/public recommendation admission, Knowledge Core, paid infrastructure, third-shard and Barbecue boundaries remain unchanged.
 - Target terminal: `V21_LIMITED_EVIDENCE_SECONDARY_LANE_FULL_OWNER_271_ROLLOUT_PASS__OWNER_PRODUCT_ACCEPTANCE_REQUIRED`.
 - Next gate: `V21_LIMITED_EVIDENCE_SECONDARY_LANE_FULL_OWNER_271_OWNER_PRODUCT_ACCEPTANCE_V1`.
+
+
+### 2026-10-05 V21 owner secondary product-surface correction — NORMAL APP WIRING / ACCEPTANCE STILL REQUIRED
+
+The first full-owner 271 rollout correctly activated the bounded owner-only API, but the initial UI exposure existed only on the protected-corpus diagnostic page. That was not sufficient for an owner **product** acceptance gate.
+
+The normal Culinary Recommender app is now the intended acceptance surface: an authenticated exact owner session reveals an **Owner early access · V21 / More recipe ideas** section on the Ideas screen. It uses the same frozen 271-candidate manifest and fixed unrestricted V21 profile, preserves limited-evidence disclosure, returns bounded recipe detail from the already-hydrated protected packet, paginates at 20, and does not alter the primary 86 or public recommendation behavior.
+
+The product acceptance gate remains open until the owner verifies this normal-app surface in production. The diagnostic protected-corpus page is no longer the acceptance target.
