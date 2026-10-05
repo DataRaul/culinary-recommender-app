@@ -46,5 +46,5 @@ test("bounded owner rollout preserves hydrated recipe detail for the product car
 
 test("service worker cache is bumped so the normal product does not retain the pre-V21 app shell", () => {
   const sw = readFileSync(new URL("../sw.js", import.meta.url), "utf8");
-  assert.match(sw, /culinary-recommender-v21-owner-secondary-product-v1/);
+  assert.match(sw, /v21-owner-secondary-product-v1 refreshes cached app assets/);\n  assert.match(sw, /culinary-recommender-v1-1-6-eu-celery-allergen-p0/);
 });
