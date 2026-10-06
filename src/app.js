@@ -551,10 +551,12 @@ function renderPlan() {
   const fallbackError = state.plan.secondaryFallback?.error
     ? `<section class="shortfall"><strong>Owner fallback unavailable</strong><p>${escapeHtml(state.plan.secondaryFallback.error)}</p></section>`
     : "";
+  const fallbackReasons = state.plan.secondaryFallback?.reasons || [];
+  const ownerSignInRequired = fallbackReasons.includes("OWNER_ACCESS_REQUIRED");
   const fallbackDiagnostic = state.plan.shortfalls.length && !secondaryItems.length && state.plan.secondaryFallback && !state.plan.secondaryFallback?.error
     ? `<section class="shortfall"><strong>Owner fallback diagnostic</strong><p>${state.plan.secondaryFallback.eligible === false
-        ? `Fallback was not attempted: ${escapeHtml((state.plan.secondaryFallback.reasons || ["UNKNOWN"]).join(", "))}.`
-        : `Fallback was attempted for ${escapeHtml(state.plan.secondaryFallback.requestedShortfallSlots || state.plan.shortfalls.length)} shortfall slot(s), but filled ${escapeHtml(state.plan.secondaryFallback.filledSlots || 0)}. This is acceptance evidence and should not be treated as a pass.`}</p></section>`
+        ? `Fallback was not attempted: ${escapeHtml(fallbackReasons.length ? fallbackReasons.join(", ") : "UNKNOWN")}.`
+        : `Fallback was attempted for ${escapeHtml(state.plan.secondaryFallback.requestedShortfallSlots || state.plan.shortfalls.length)} shortfall slot(s), but filled ${escapeHtml(state.plan.secondaryFallback.filledSlots || 0)}. This is acceptance evidence and should not be treated as a pass.`}</p>${ownerSignInRequired ? `<p>Your owner session is not active in this browser. <a class="button" href="/auth-canary.html">Sign in for owner access</a> using the configured owner Google account, then return here and rebuild the plan.</p>` : ""}</section>`
     : "";
   app.innerHTML = `<section class="page-heading"><div><p class="eyebrow">Your deterministic plan</p><h1>${totalMeals} meal${totalMeals === 1 ? "" : "s"}, built as a portfolio · primary-first</h1><p class="lede">Validated primary recipes are selected first. Owner limited-evidence recipes can fill only otherwise-unfilled slots when their hard source evidence remains compatible.</p></div><button id="editWeek" class="secondary-action" type="button">Edit priorities</button></section>
     <section class="summary-strip"><div><strong>${totalMeals}</strong><span>planned meals</span></div><div><strong>${state.plan.items.length}</strong><span>primary validated</span></div><div><strong>${secondaryItems.length}</strong><span>owner fallback</span></div><div><strong>${grocery.shopping.length}</strong><span>primary grocery lines</span></div><div><strong>${cost.label}</strong><span>primary basket tier</span></div></section>

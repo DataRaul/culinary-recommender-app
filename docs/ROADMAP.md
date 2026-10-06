@@ -1428,4 +1428,9 @@ Recommendation refinement remains a parallel lane and must not block that librar
 - Bounded repair scope: resolve the owner session immediately before plan generation; move the service worker to a fresh cache epoch; version the bootstrap/app module request so an existing service worker cannot serve the pre-repair app bundle for the acceptance navigation; expose an explicit fallback diagnostic when shortfalls remain with zero secondary fills.
 - Recommendation/safety semantics are unchanged: primary-first, unrestricted/no-allergy/no-exclusion hard boundary, reviewed source difficulty, source-backed prep+cook time, separate `secondaryItems`, no aggregate grocery/cost/nutrition authority, no public widening.
 - Acceptance remains open until the same production test visibly produces at least one owner limited-evidence fallback or yields a diagnostic that identifies a remaining runtime defect.
+### 2026-10-06 V22 acceptance clarification — OWNER SESSION + NEUTRAL SOFT PROFILE
 
+- V22 acceptance requires an **active authenticated owner session in the same production browser**. If the auth-session endpoint does not identify the configured owner, the protected 271-recipe fallback must fail closed with `OWNER_ACCESS_REQUIRED`.
+- The normal product must provide a direct recovery path from that diagnostic to the existing owner sign-in surface; owner access must not remain a hidden prerequisite.
+- The deterministic acceptance profile is: **Dietary mode = Unrestricted; Maximum total time = 20 min; Cooking skill = Beginner; default five meal slots; all Priority Packs unchecked; no allergens, ingredient exclusions, or unavailable ingredients.**
+- Culinary Explorer, Meal Prep and other priority packs are **not part of this acceptance profile**. They are soft ranking preferences and should not be guessed by the owner during a hard-gate acceptance test.
