@@ -1341,3 +1341,15 @@ The product acceptance gate remains open until the owner verifies this normal-ap
 - Runtime/authority boundaries remain unchanged: authenticated owner only, fixed unrestricted V21 profile, max 20 results, <=8 total D1 subqueries/request, zero protected D1 writes/full scans, two shards only, no public/primary recommendation widening, no dietary/allergen authority change, no paid API/model, no Knowledge Core write and no Barbecue mutation.
 - Terminal: `V21_RECIPE_DETAIL_COMPLETENESS_MEASURED_AND_PRODUCT_FIX_PASS__OWNER_PRODUCT_ACCEPTANCE_REQUIRED`.
 - Next human gate: normal production app; open several Breakfast/Lunch/Dinner/Snack V21 recipes, verify complete source-backed ingredients and all source method steps, confirm source detail metadata, and exercise Load more.
+
+
+### 2026-10-06 V21 full-owner 271 normal-product acceptance — PASS
+
+- The initial owner product attempt exposed the new V21 controls but failed recipe hydration with `PROTECTED_INDEX_IDENTITY_MISMATCH`.
+- Root cause was deterministic-ordering drift: the bounded v8018 hydrator returned packets in requested recipe-ID order while exposing D1 route rows in database-return order, and the owner endpoint paired routes/packets positionally.
+- PR #401 fixed the hydrator to return routes and packets in the same requested-ID order and added a regression test with deliberately scrambled D1 route rows.
+- PR #401 pre-merge checks passed: v8018 runtime, V21 owner-canary, full validation and browser acceptance. Post-merge Pages deployment run `37391982867` PASS and production validation/smoke run `37391983665` PASS.
+- Authenticated owner observation after deployment: the new V21 recipes load successfully and recipe text/detail is materially improved versus the earlier thin presentation.
+- Combined machine + owner evidence therefore closes the normal-product acceptance gate. This does not widen the public/primary 86-recipe recommendation lane and does not change dietary/allergen authority, protected D1 write policy, shard count, billing, Knowledge Core or Barbecue.
+- Terminal: `V21_LIMITED_EVIDENCE_SECONDARY_LANE_FULL_OWNER_271_OWNER_PRODUCT_ACCEPTANCE_PASS`.
+- Evidence: `data/generated/v21-owner-271-normal-product-acceptance-v1.json`.
