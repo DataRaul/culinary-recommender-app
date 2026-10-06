@@ -9,6 +9,7 @@ import {
   chooseOwnerSecondarySwapCandidate,
   ownerSecondaryCandidateFits,
   ownerSecondaryPlanningEligibility,
+  ownerSecondaryRuntimeDifficulty,
   ownerSecondarySourceTotalMinutes
 } from "../src/domain/owner-secondary-planning-v1.js";
 
@@ -18,7 +19,7 @@ const permissive = normalizeProfile({
   allergens:[],
   excludedIngredientIds:[],
   unavailableIngredientIds:[],
-  skill:4,
+  skill:2,
   maxMinutes:60
 });
 
@@ -27,6 +28,7 @@ const candidate = (id, prep=10, cook=20) => ({
   title:id,
   prepMinutes:prep,
   cookMinutes:cook,
+  sourceDifficulty:"easy",
   ingredients:["1 ingredient"],
   methodSteps:[{text:"Cook it.",minutes:null}],
   directions:["Cook it."],
@@ -36,19 +38,13 @@ const candidate = (id, prep=10, cook=20) => ({
 
 test("V22 owner secondary planning eligibility fails closed on hard-profile uncertainty", () => {
   assert.equal(ownerSecondaryPlanningEligibility(permissive).eligible,true);
-  assert.equal(ownerSecondaryPlanningEligibility({...permissive,skill:3}).eligible,false);
   assert.equal(ownerSecondaryPlanningEligibility({...permissive,dietaryMode:"vegetarian"}).eligible,false);
   assert.equal(ownerSecondaryPlanningEligibility({...permissive,allergens:["egg"]}).eligible,false);
   assert.equal(ownerSecondaryPlanningEligibility({...permissive,excludedIngredientIds:["egg"]}).eligible,false);
   assert.equal(ownerSecondaryPlanningEligibility({...permissive,unavailableIngredientIds:["egg"]}).eligible,false);
 });
 
-test("V22 uses only source-backed time and fails closed when source time is missing", () => {
-  assert.equal(ownerSecondarySourceTotalMinutes(candidate("ok")),30);
-  assert.equal(ownerSecondaryCandidateFits(candidate("ok"),permissive),true);
-  assert.equal(ownerSecondaryCandidateFits(candidate("slow",40,30),permissive),false);
-  assert.equal(ownerSecondaryCandidateFits(candidate("unknown",null,20),permissive),false);
-});
+test("V22 uses reviewed source difficulty and source-backed time, failing closed on unknown hard evidence", () => {\n  assert.equal(ownerSecondaryRuntimeDifficulty(candidate("easy")),1);\n  assert.equal(ownerSecondaryRuntimeDifficulty({...candidate("medium"),sourceDifficulty:"medium"}),3);\n  assert.equal(ownerSecondarySourceTotalMinutes(candidate("ok")),30);\n  assert.equal(ownerSecondaryCandidateFits(candidate("ok"),permissive),true);\n  assert.equal(ownerSecondaryCandidateFits({...candidate("harder"),sourceDifficulty:"medium"},permissive),false);\n  assert.equal(ownerSecondaryCandidateFits(candidate("slow",40,30),permissive),false);\n  assert.equal(ownerSecondaryCandidateFits(candidate("unknown-time",null,20),permissive),false);\n  assert.equal(ownerSecondaryCandidateFits({...candidate("unknown-difficulty"),sourceDifficulty:null},permissive),false);\n});
 
 test("V22 fills only primary shortfalls and keeps secondary items structurally separate", () => {
   const primaryItem={recipe:{id:"primary-1"},slot:{id:"mon-lunch",order:1,day:"Monday",mealType:"lunch"}};
