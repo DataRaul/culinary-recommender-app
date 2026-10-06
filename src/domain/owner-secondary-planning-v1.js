@@ -4,6 +4,7 @@ export const OWNER_SECONDARY_PLAN_SOURCE = "OWNER_LIMITED_EVIDENCE_V21";
 export const OWNER_SECONDARY_PLAN_VALIDATION_STATE = "LIMITED_EVIDENCE_NOT_PRIMARY_VALIDATED";
 export const OWNER_SECONDARY_MAX_RESULTS_PER_REQUEST = 20;
 export const OWNER_SECONDARY_MAX_PLANNING_PAGES_PER_MEAL = 11;
+export const OWNER_SECONDARY_REVIEWED_DIFFICULTY_MAP = Object.freeze({ easy:1, medium:3, hard:4 });
 
 const hasValues = value => Array.isArray(value) && value.length > 0;
 const finiteNonNegative = value => typeof value === "number" && Number.isFinite(value) && value >= 0;
@@ -15,8 +16,12 @@ export function ownerSecondaryPlanningEligibility(rawProfile = {}) {
   if (hasValues(profile.allergens)) reasons.push("ALLERGEN_FILTER_PRESENT");
   if (hasValues(profile.excludedIngredientIds)) reasons.push("INGREDIENT_EXCLUSION_PRESENT");
   if (hasValues(profile.unavailableIngredientIds)) reasons.push("UNAVAILABLE_INGREDIENT_PRESENT");
-  if (profile.skill < 4) reasons.push("SKILL_BELOW_OWNER_LANE_MAXIMUM");
   return { eligible: reasons.length === 0, reasons, profile };
+}
+
+export function ownerSecondaryRuntimeDifficulty(item = {}) {
+  const label = String(item?.sourceDifficulty || "").trim().toLowerCase();
+  return OWNER_SECONDARY_REVIEWED_DIFFICULTY_MAP[label] || null;
 }
 
 export function ownerSecondarySourceTotalMinutes(item = {}) {
@@ -31,6 +36,8 @@ export function ownerSecondaryCandidateFits(item, rawProfile, excludedIds = []) 
   if (!id || new Set(excludedIds.map(String)).has(id)) return false;
   if (item?.recommendationValidationState !== OWNER_SECONDARY_PLAN_VALIDATION_STATE) return false;
   if (!item?.sourceProvenance?.sourceCohortId) return false;
+  const runtimeDifficulty = ownerSecondaryRuntimeDifficulty(item);
+  if (runtimeDifficulty == null || runtimeDifficulty > eligibility.profile.skill) return false;
   const totalMinutes = ownerSecondarySourceTotalMinutes(item);
   if (totalMinutes == null || totalMinutes > eligibility.profile.maxMinutes) return false;
   const ingredients = Array.isArray(item?.ingredients) ? item.ingredients.filter(Boolean) : [];
