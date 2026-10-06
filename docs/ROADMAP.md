@@ -1461,3 +1461,11 @@ Recommendation refinement remains a parallel lane and must not block that librar
 - Existing fridge/ingredient search remains the default. The owner-only all-recipes scope provides browse-all, title/source search, pagination and source-backed detail through the already-accepted protected browse/search/detail API.
 - Remove the standalone Library navigation destination. Do not maintain two parallel search/discovery surfaces.
 - Authority boundaries remain unchanged: corpus availability is not recommendation validation; no public widening, no new D1 writes/reindexing, and no recommendation admission are authorized by this UX merge.
+
+
+### 2026-10-06 Owner Recipe Library V1 — recipe-detail visibility repair
+
+- Owner acceptance of unified Search confirmed the consolidated discovery direction works, but reported that **Open recipe** appeared not to open protected recipes.
+- Root cause in the normal-app UI: protected recipe detail was rendered after the full result grid while the generic Search rerender forced the viewport to the top, making a successful open action appear inert.
+- Repair: render the owner recipe detail immediately below the all-recipes search controls, preserve scroll position during detail loading, and scroll/focus the opened detail panel after hydration.
+- Protected detail still uses the existing authenticated bounded API. No recommendation, corpus, D1-write, safety or public-admission semantics change.

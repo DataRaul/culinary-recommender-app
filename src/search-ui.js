@@ -91,7 +91,7 @@ function ownerCatalogDetail(item) {
   const sourceLink = item.sourceUrl
     ? `<p class="micro"><a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">Source / provenance</a></p>`
     : "";
-  return `<section class="panel">
+  return `<section id="ownerCatalogDetailPanel" class="panel" tabindex="-1">
     <div class="section-heading"><div><p class="eyebrow">Recipe detail · all recipes</p><h2>${escapeHtml(item.title)}</h2></div><button id="closeOwnerCatalogDetail" class="secondary-action compact" type="button">Close</button></div>
     <p class="reason">${escapeHtml(ownerCatalogStateLabel(item.recommendationState))}</p>
     <p class="micro">${escapeHtml(ownerCatalogSourceLine(item))}${facts ? ` · ${escapeHtml(facts)}` : ""}</p>
@@ -130,14 +130,18 @@ async function loadOwnerCatalog({ reset = false } = {}) {
 async function openOwnerCatalogDetail(recipeId) {
   if (!ownerCatalogAccess || ownerCatalogState.detailLoading) return;
   ownerCatalogState = { ...ownerCatalogState, detailLoading:true, detail:null, error:"" };
-  renderUnifiedSearch();
+  renderUnifiedSearch({ scrollTop:false });
+  document.querySelector("#ownerCatalogDetailPanel")?.scrollIntoView({ behavior:"smooth", block:"start" });
   try {
     const body = await requestOwnerCatalog({ action:"detail", recipeId });
     ownerCatalogState = { ...ownerCatalogState, detailLoading:false, detail:body.item || null };
   } catch (error) {
     ownerCatalogState = { ...ownerCatalogState, detailLoading:false, error:String(error?.message || error).slice(0,180) };
   }
-  renderUnifiedSearch();
+  renderUnifiedSearch({ scrollTop:false });
+  const detailPanel = document.querySelector("#ownerCatalogDetailPanel");
+  detailPanel?.scrollIntoView({ behavior:"smooth", block:"start" });
+  detailPanel?.focus({ preventScroll:true });
 }
 
 function ownerCatalogForm() {
@@ -149,6 +153,9 @@ function ownerCatalogForm() {
       : ownerCatalogState.items.length
         ? `<p class="micro">${ownerCatalogState.items.length.toLocaleString()} records loaded${ownerCatalogState.query ? ` for “${escapeHtml(ownerCatalogState.query)}”` : ""}.</p>`
         : "<p class='micro'>Browse all recipes or search title and recorded source metadata.</p>";
+  const detail = ownerCatalogState.detailLoading
+    ? "<section id='ownerCatalogDetailPanel' class='panel' tabindex='-1'><p class='micro'>Opening source-backed recipe detail…</p></section>"
+    : ownerCatalogDetail(ownerCatalogState.detail);
   return `<section class="panel">
     <form id="ownerCatalogSearchForm" class="inline-form">
       <label class="field grow"><span>Search all recipes</span><input id="ownerCatalogQuery" type="search" maxlength="80" value="${escapeHtml(ownerCatalogState.query)}" placeholder="Recipe title, source or author"></label>
@@ -157,10 +164,10 @@ function ownerCatalogForm() {
     </form>
     <p class="hint">This searches the exact v8018 owner corpus. Availability is not the same as recommendation validation.</p>
   </section>
+  ${detail}
   ${status}
   <section class="recipe-list">${cards}</section>
-  ${ownerCatalogState.cursor && !ownerCatalogState.loading ? '<button id="ownerCatalogMore" class="secondary-action" type="button">Load more</button>' : ""}
-  ${ownerCatalogState.detailLoading ? "<section class='panel'><p class='micro'>Opening source-backed recipe detail…</p></section>" : ownerCatalogDetail(ownerCatalogState.detail)}`;
+  ${ownerCatalogState.cursor && !ownerCatalogState.loading ? '<button id="ownerCatalogMore" class="secondary-action" type="button">Load more</button>' : ""}`;
 }
 
 function bindSearchScope() {
@@ -192,7 +199,7 @@ function bindOwnerCatalog() {
   }));
   document.querySelector("#closeOwnerCatalogDetail")?.addEventListener("click", () => {
     ownerCatalogState = { ...ownerCatalogState, detail:null, detailLoading:false };
-    renderUnifiedSearch();
+    renderUnifiedSearch({ scrollTop:false });
   });
 }
 
@@ -363,14 +370,14 @@ function bindSearchForm() {
   });
 }
 
-function renderUnifiedSearch() {
+function renderUnifiedSearch({ scrollTop = true } = {}) {
   app.innerHTML = searchSurfaceMode === "all-recipes" && ownerCatalogAccess
     ? `<section class="page-heading search-heading"><div><p class="eyebrow">Recipe discovery</p><h1>Search recipes</h1><p class="lede">Browse or search the full 19,268-recipe owner corpus without treating availability as recommendation validation.</p></div></section>${searchScopeControls()}${ownerCatalogForm()}`
     : searchForm();
   bindSearchScope();
   if (searchSurfaceMode === "all-recipes" && ownerCatalogAccess) bindOwnerCatalog();
   else bindSearchForm();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (scrollTop) window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 export function renderIngredientSearch() {

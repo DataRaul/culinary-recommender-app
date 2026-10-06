@@ -54,11 +54,11 @@ test("bounded owner rollout preserves hydrated recipe detail for the product car
   assert.equal(result.secondaryLane.mayDisplacePrimary,false);
 });
 
-test("Unified owner Search forces a fresh cache epoch and versioned app bootstrap", () => {
+test("Owner recipe detail visibility repair forces a fresh cache epoch and versioned app bootstrap", () => {
   const sw = readFileSync(new URL("../sw.js", import.meta.url), "utf8");
   const index = readFileSync(new URL("../index.html", import.meta.url), "utf8");
   const bootstrap = readFileSync(new URL("../src/bootstrap.js", import.meta.url), "utf8");
-  assert.match(sw, /culinary-recommender-owner-search-unified-v1/);
-  assert.match(index, /bootstrap\.js\?v=owner-search-unified-v1/);
-  assert.match(bootstrap, /app\.js\?v=owner-search-unified-v1/);
+  assert.match(sw, /culinary-recommender-owner-search-detail-open-v1/);
+  assert.match(index, /bootstrap\.js\?v=owner-search-detail-open-v1/);
+  assert.match(bootstrap, /app\.js\?v=owner-search-detail-open-v1/);
 });
