@@ -63,7 +63,7 @@ jobs:
         run: |
           mkdir -p data/generated/step8g
           cp .tmp/v8019-runtime-descriptor.mjs data/generated/step8g/v8019-runtime-descriptor.mjs
-          if git diff --quiet -- data/generated/step8g/v8019-runtime-descriptor.mjs; then
+          if [ -z "$(git status --porcelain -- data/generated/step8g/v8019-runtime-descriptor.mjs)" ]; then
             echo "Descriptor already frozen exactly."
           else
             git config user.name "github-actions[bot]"
