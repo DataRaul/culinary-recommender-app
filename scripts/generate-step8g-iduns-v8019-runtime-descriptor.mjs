@@ -83,16 +83,18 @@ function buildPackets(rows) {
         sourceAuthor: SOURCE.sourceAuthor,
         sourceAuthorClassification: SOURCE.authorClassification,
         sourceAuthorDisplay: SOURCE.canonicalAuthor,
-        digitizedSource: SOURCE.digitizedSource,
+        titlePageAuthor: SOURCE.titlePageAuthor,
         sourceYear: SOURCE.sourceYear,
         digitizedEditionYear: SOURCE.digitizedEditionYear,
         digitizedEditionLabel: SOURCE.digitizedEditionLabel,
+        digitizedSource: SOURCE.digitizedSource,
         publisher: SOURCE.publisher,
         publicationPlace: SOURCE.publicationPlace,
         authorDeathYear: SOURCE.authorDeathYear,
         sourceUrl: SOURCE.sourceUrl,
         licenseId: SOURCE.license,
-                historicalCollectionLabel: SOURCE.collection,
+        wellcomeLicence: SOURCE.wellcomeLicence,
+        historicalCollectionLabel: SOURCE.collection,
         repositoryLayerLicense: "Unlicense"
       },
       sourceContent: {
@@ -139,7 +141,7 @@ function buildPlan(packets) {
       protectedPopulationAllowed: true,
       publicRuntimeActivationAuthorized: false,
       evidenceRefs: [
-        "data/generated/step8g/iduns-1911-v8019-measurement.json",
+        "data/generated/step8g/iduns-1911-v8018-measurement.json",
         "docs/CORPUS_SCALE_STEP8G_IDUNS_1911_RIGHTS_AND_MEASUREMENT.md",
         SOURCE.sourceUrl,
         `https://github.com/${SOURCE_REPOSITORY}/tree/${SOURCE_COMMIT}/collections/${SOURCE.collection}`
