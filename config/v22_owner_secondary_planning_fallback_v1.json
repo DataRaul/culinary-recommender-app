@@ -20,9 +20,15 @@
     "allergensMustBeEmpty": true,
     "excludedIngredientIdsMustBeEmpty": true,
     "unavailableIngredientIdsMustBeEmpty": true,
-    "minimumSkill": 4,
     "timePolicy": "SOURCE_PREP_PLUS_COOK_MUST_BOTH_BE_FINITE_AND_SUM_AT_OR_BELOW_USER_MAX_MINUTES",
-    "unknownTimeFailsClosed": true
+    "unknownTimeFailsClosed": true,
+    "difficultyPolicy": "SOURCE_DIFFICULTY_MUST_MAP_THROUGH_REVIEWED_UNITOOLS_ADAPTER_AND_BE_AT_OR_BELOW_USER_SKILL",
+    "reviewedDifficultyMapping": {
+      "easy": 1,
+      "medium": 3,
+      "hard": 4
+    },
+    "unknownDifficultyFailsClosed": true
   },
   "softSignals": {
     "savedBudgetNotAuthoritativeForSecondary": true,
