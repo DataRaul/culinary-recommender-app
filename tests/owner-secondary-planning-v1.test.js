@@ -44,7 +44,16 @@ test("V22 owner secondary planning eligibility fails closed on hard-profile unce
   assert.equal(ownerSecondaryPlanningEligibility({...permissive,unavailableIngredientIds:["egg"]}).eligible,false);
 });
 
-test("V22 uses reviewed source difficulty and source-backed time, failing closed on unknown hard evidence", () => {\n  assert.equal(ownerSecondaryRuntimeDifficulty(candidate("easy")),1);\n  assert.equal(ownerSecondaryRuntimeDifficulty({...candidate("medium"),sourceDifficulty:"medium"}),3);\n  assert.equal(ownerSecondarySourceTotalMinutes(candidate("ok")),30);\n  assert.equal(ownerSecondaryCandidateFits(candidate("ok"),permissive),true);\n  assert.equal(ownerSecondaryCandidateFits({...candidate("harder"),sourceDifficulty:"medium"},permissive),false);\n  assert.equal(ownerSecondaryCandidateFits(candidate("slow",40,30),permissive),false);\n  assert.equal(ownerSecondaryCandidateFits(candidate("unknown-time",null,20),permissive),false);\n  assert.equal(ownerSecondaryCandidateFits({...candidate("unknown-difficulty"),sourceDifficulty:null},permissive),false);\n});
+test("V22 uses reviewed source difficulty and source-backed time, failing closed on unknown hard evidence", () => {
+  assert.equal(ownerSecondaryRuntimeDifficulty(candidate("easy")),1);
+  assert.equal(ownerSecondaryRuntimeDifficulty({...candidate("medium"),sourceDifficulty:"medium"}),3);
+  assert.equal(ownerSecondarySourceTotalMinutes(candidate("ok")),30);
+  assert.equal(ownerSecondaryCandidateFits(candidate("ok"),permissive),true);
+  assert.equal(ownerSecondaryCandidateFits({...candidate("harder"),sourceDifficulty:"medium"},permissive),false);
+  assert.equal(ownerSecondaryCandidateFits(candidate("slow",40,30),permissive),false);
+  assert.equal(ownerSecondaryCandidateFits(candidate("unknown-time",null,20),permissive),false);
+  assert.equal(ownerSecondaryCandidateFits({...candidate("unknown-difficulty"),sourceDifficulty:null},permissive),false);
+});
 
 test("V22 fills only primary shortfalls and keeps secondary items structurally separate", () => {
   const primaryItem={recipe:{id:"primary-1"},slot:{id:"mon-lunch",order:1,day:"Monday",mealType:"lunch"}};
