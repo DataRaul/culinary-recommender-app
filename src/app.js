@@ -542,7 +542,7 @@ function renderPlan() {
   const fallbackError = state.plan.secondaryFallback?.error
     ? `<section class="shortfall"><strong>Owner fallback unavailable</strong><p>${escapeHtml(state.plan.secondaryFallback.error)}</p></section>`
     : "";
-  app.innerHTML = `<section class="page-heading"><div><p class="eyebrow">Your deterministic plan</p><h1>${totalMeals} meal${totalMeals === 1 ? "" : "s"}, primary-first</h1><p class="lede">Validated primary recipes are selected first. Owner limited-evidence recipes can fill only otherwise-unfilled slots when their hard source evidence remains compatible.</p></div><button id="editWeek" class="secondary-action" type="button">Edit priorities</button></section>
+  app.innerHTML = `<section class="page-heading"><div><p class="eyebrow">Your deterministic plan</p><h1>${totalMeals} meal${totalMeals === 1 ? "" : "s"}, built as a portfolio · primary-first</h1><p class="lede">Validated primary recipes are selected first. Owner limited-evidence recipes can fill only otherwise-unfilled slots when their hard source evidence remains compatible.</p></div><button id="editWeek" class="secondary-action" type="button">Edit priorities</button></section>
     <section class="summary-strip"><div><strong>${totalMeals}</strong><span>planned meals</span></div><div><strong>${state.plan.items.length}</strong><span>primary validated</span></div><div><strong>${secondaryItems.length}</strong><span>owner fallback</span></div><div><strong>${grocery.shopping.length}</strong><span>primary grocery lines</span></div><div><strong>${cost.label}</strong><span>primary basket tier</span></div></section>
     ${fallbackNote}
     ${fallbackError}
