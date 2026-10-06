@@ -256,12 +256,20 @@ async function loadOwnerSecondary(append) {
 async function detectOwnerAccess() {
   try {
     const response = await fetch("/api/auth/session", { credentials:"same-origin", cache:"no-store" });
-    if (!response.ok) return;
+    if (!response.ok) {
+      ownerAccess = false;
+      return false;
+    }
     const body = await response.json();
     ownerAccess = body?.authenticated === true && body?.account?.owner === true;
+    return ownerAccess;
+  } catch {
+    ownerAccess = false;
+    return false;
+  } finally {
     renderHeaderStatus();
     renderOwnerSecondaryMount();
-  } catch {}
+  }
 }
 
 function priorityPackControls(profile) {
@@ -392,6 +400,7 @@ async function generatePlan() {
   if (!slots.length) { announce("Choose at least one meal slot."); return; }
   const button = document.querySelector("#generatePlan");
   if (button) { button.disabled = true; button.textContent = "Building plan…"; }
+  await detectOwnerAccess();
   const primary = planSlots(RECIPES, state.profile, slots);
   const result = await buildOwnerSecondaryPlanFallback(primary, state.profile);
   const generatedAt = new Date().toISOString();
@@ -542,10 +551,16 @@ function renderPlan() {
   const fallbackError = state.plan.secondaryFallback?.error
     ? `<section class="shortfall"><strong>Owner fallback unavailable</strong><p>${escapeHtml(state.plan.secondaryFallback.error)}</p></section>`
     : "";
+  const fallbackDiagnostic = state.plan.shortfalls.length && !secondaryItems.length && state.plan.secondaryFallback && !state.plan.secondaryFallback?.error
+    ? `<section class="shortfall"><strong>Owner fallback diagnostic</strong><p>${state.plan.secondaryFallback.eligible === false
+        ? `Fallback was not attempted: ${escapeHtml((state.plan.secondaryFallback.reasons || ["UNKNOWN"]).join(", "))}.`
+        : `Fallback was attempted for ${escapeHtml(state.plan.secondaryFallback.requestedShortfallSlots || state.plan.shortfalls.length)} shortfall slot(s), but filled ${escapeHtml(state.plan.secondaryFallback.filledSlots || 0)}. This is acceptance evidence and should not be treated as a pass.`}</p></section>`
+    : "";
   app.innerHTML = `<section class="page-heading"><div><p class="eyebrow">Your deterministic plan</p><h1>${totalMeals} meal${totalMeals === 1 ? "" : "s"}, built as a portfolio · primary-first</h1><p class="lede">Validated primary recipes are selected first. Owner limited-evidence recipes can fill only otherwise-unfilled slots when their hard source evidence remains compatible.</p></div><button id="editWeek" class="secondary-action" type="button">Edit priorities</button></section>
     <section class="summary-strip"><div><strong>${totalMeals}</strong><span>planned meals</span></div><div><strong>${state.plan.items.length}</strong><span>primary validated</span></div><div><strong>${secondaryItems.length}</strong><span>owner fallback</span></div><div><strong>${grocery.shopping.length}</strong><span>primary grocery lines</span></div><div><strong>${cost.label}</strong><span>primary basket tier</span></div></section>
     ${fallbackNote}
     ${fallbackError}
+    ${fallbackDiagnostic}
     ${state.plan.shortfalls.length ? `<section class="shortfall"><strong>Plan shortfall</strong><p>I couldn't fill ${state.plan.shortfalls.length} selected slot${state.plan.shortfalls.length === 1 ? "" : "s"} without weakening hard constraints.</p>${state.plan.shortfalls.map(s => `<p>${escapeHtml(s.slot.day)} ${escapeHtml(s.slot.mealType)}: ${s.causes.map(c => `${escapeHtml(c.reason)} (${c.count})`).join("; ") || "no eligible recipe"}</p>`).join("")}</section>` : ""}
     <section class="recipe-list">${cards}</section>`;
   bindRecipeImageFallbacks(app);
