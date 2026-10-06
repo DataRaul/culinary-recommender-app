@@ -1,2 +1,2 @@
 import "./data/corpus-v1.js";
-import "./app.js?v=v22-owner-origin-recovery-v1";
+import "./app.js?v=owner-library-preview-v1";
