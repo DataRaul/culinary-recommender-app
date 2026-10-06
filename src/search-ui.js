@@ -201,7 +201,7 @@ function option(value, label, selected = false) {
 }
 
 function searchForm() {
-  return `<section class="page-heading search-heading"><div><p class="eyebrow">Recipe discovery</p><h1>Search recipes</h1><p class="lede">${ownerCatalogAccess ? "Search by ingredients, or switch to All recipes to browse and search the full 19,268-recipe owner corpus." : "Start with one main ingredient, add whatever else is hanging around, then tune time, skill and discovery."}</p></div></section>
+  return `<section class="page-heading search-heading"><div><p class="eyebrow">Fridge-first discovery</p><h1>Cook what you already have</h1><p class="lede">${ownerCatalogAccess ? "Start with ingredients here, or switch to All recipes to browse and search the full 19,268-recipe owner corpus." : "Start with one main ingredient, add whatever else is hanging around, then temporarily tune time, skill and discovery without rewriting your saved profile."}</p></div></section>
   ${searchScopeControls()}
   <section class="panel">
     <form id="ingredientSearchForm">
