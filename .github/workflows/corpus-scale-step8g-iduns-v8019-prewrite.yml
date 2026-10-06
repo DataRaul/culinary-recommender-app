@@ -1,0 +1,72 @@
+name: Corpus Scale Step 8G Iduns v8019 prewrite
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-iduns-v8019-prewrite.yml'
+      - 'scripts/corpus-scale-step8g-iduns-v8019-prewrite-core.mjs'
+      - 'scripts/run-corpus-scale-step8g-iduns-v8019-prewrite.mjs'
+      - 'tests/corpus-scale-step8g-iduns-v8019-prewrite.test.js'
+      - 'data/generated/step8g/iduns-1911-v8018-measurement.json'
+      - 'data/generated/step8g/atrutel-v8018-prewrite-evidence.json'
+      - 'data/generated/step8g/atrutel-v8018-live-pass.json'
+      - 'data/generated/step8g/v8018-runtime-descriptor.mjs'
+      - 'docs/CORPUS_SCALE_STEP8G_IDUNS_V8019_PREWRITE.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corpus-step8g-iduns-v8019-prewrite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prewrite-v8019:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Test v8019 prewrite contract
+        run: node --test tests/corpus-scale-step8g-iduns-v8019-prewrite.test.js
+      - name: Build exact 2,818-row v8019 no-write prewrite
+        run: >-
+          node scripts/run-corpus-scale-step8g-iduns-v8019-prewrite.mjs
+          --ora=./open-recipe-archive
+          --measurement=data/generated/step8g/iduns-1911-v8018-measurement.json
+          --parent-prewrite=data/generated/step8g/atrutel-v8018-prewrite-evidence.json
+          --parent-live=data/generated/step8g/atrutel-v8018-live-pass.json
+          --out=.tmp/step8g-iduns-v8019-prewrite
+      - name: Verify full-cohort capacity and no-write boundaries
+        run: >-
+          node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-iduns-v8019-prewrite/prewrite-evidence.json","utf8"));
+          if(p.pass!==true||p.terminalCandidate!=="STEP_8G_IDUNS_V8019_PREWRITE_PASS_LIVE_PROTECTED_POPULATION_IMPLEMENTATION_EARNED")process.exit(1);
+          if(p.parent.activeCorpusVersion!=="v8018"||p.parent.composedRecipeCount!==19268||p.layer.corpusVersion!=="v8019"||p.layer.recipeCount!==2818||p.composition.cumulativeRecipeCount!==22086)process.exit(1);
+          if(p.composition.routing.shardCount!==2||p.layer.maxRowsPerBatch>10)process.exit(1);
+          if(p.composition.routing.routeStorageMode!=="V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA_PLUS_V8018_DELTA_PLUS_V8019_DELTA"||p.composition.routing.parentRouteRowsCopied!==0||p.composition.routing.physicalV8019DeltaRouteRows!==2818)process.exit(1);
+          if(p.layer.operationBudget.maxPlannedD1Subqueries>8||p.layer.operationBudget.optimizedTargetMaxD1Subqueries!==8||p.layer.operationBudget.hardFailSafeMaxD1Subqueries!==16)process.exit(1);
+          if(p.layer.logicalWriteEstimate.parentRouteRowsCopied!==0||p.layer.logicalWriteEstimate.parentRouteRowsAvoided!==19268)process.exit(1);
+          if(p.layer.shardDescriptors.reduce((s,x)=>s+x.rowCount,0)!==2818||p.layer.shardDescriptors.length!==2)process.exit(1);
+          if(!Object.values(p.gates).every(Boolean))process.exit(1);
+          const b=p.boundaries;if(b.liveD1WritesPerformed!==0||b.publicRuntimeChanged!==false||b.recommendationAdmissionPerformed!==false||b.thirdShardUsed!==false||b.d1BudgetExpansion!==false||b.billingExpansion!==false)process.exit(1);
+          console.log(JSON.stringify({terminal:p.terminalCandidate,counts:{parent:p.parent.composedRecipeCount,child:p.layer.recipeCount,composed:p.composition.cumulativeRecipeCount},shards:p.layer.shardDescriptors.map(x=>({shardNumber:x.shardNumber,rowCount:x.rowCount,totalBodyBytes:x.totalBodyBytes})),capacity:p.composition.capacity,batches:p.layer.batchCount,maxWriteRequestBytes:p.layer.maxWriteRequestBytes,logicalWriteEstimate:p.layer.logicalWriteEstimate}));'
+      - name: Upload v8019 prewrite evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-iduns-v8019-prewrite
+          path: |
+            .tmp/step8g-iduns-v8019-prewrite/prewrite-evidence.json
+            .tmp/step8g-iduns-v8019-prewrite/prewrite-validation.json
+          if-no-files-found: error
+          retention-days: 30
