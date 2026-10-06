@@ -1526,3 +1526,12 @@ Those are later bucketed programmes. The enlarged corpus will be the substrate f
 The old post-v8018 discovery recorded two structurally measured ORA cohorts totaling **4,304 recipes** — *Iduns kokbok* (2,818) and *Hemmets kokbok* (1,486) — but rejected both from rights review solely because the old internal unique-title ratio was below 0.80 even though each had ~99.7% novel normalized titles relative to the protected baseline.
 
 That marginal-value rejection is no longer controlling. Re-run discovery under the acquisition-first rule, move every structurally valid high-novel-count source into documentary rights/provenance review, and ingest each cohort that clears that review. Historical rights holds remain holds unless new evidence resolves them.
+
+
+### 2026-10-06 acquisition-first tranche 1 — Iduns kokbok 1911
+
+- Reopened ORA discovery identified **Iduns kokbok** as the first acquisition candidate: exact pinned ORA cohort **2,818 recipes**, parseable ratio **1.0**, **1,757** novel normalized titles against v8018 and ~**99.716%** novel-title ratio.
+- The old internal unique-title ratio (~0.625) is retained only as a duplication/variant diagnostic; it is no longer a source-suppression gate under the owner acquisition-first directive.
+- Documentary review ties the cohort to Elisabeth Östman's exact **1911 first edition**, with Project Runeberg first-edition facsimile evidence and independent author identity/death-year evidence (**1869–1933**). Spain-facing exploitation-term analysis uses current LPI transitional provision 4 plus Article 6 of the 1879 Act.
+- This tranche is rights/provenance + deterministic no-write acquisition measurement only. It does not qualify recommendations or add nutrition/classification authority.
+- On green measurement, next authority is `SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`. The prewrite must determine whether the full 2,818-row delta fits the existing authorized two-shard/free-runtime envelope. If not, stop and ask the owner before any topology/cost widening.
