@@ -62,6 +62,28 @@ new latest state -> CURRENT
 
 Only two canonical handover slots are required. Git history already preserves older handover versions, so a third ever-growing in-repo archive is unnecessary unless a future explicit audit requirement earns one.
 
+## Context-safety activation
+
+The canonical runtime policy is `config/context_safety_policy.json`; the human-readable operating contract is `docs/CONTEXT_SAFETY_PROTOCOL.md`.
+
+- Preferred trigger: 65% context used when telemetry exists.
+- Target band: 60–70%.
+- Acceptable safety band: 55–75%.
+- Exact percentages are runtime telemetry, not guesses. If the runtime does not expose usage, use the conservative context-risk signals defined by the policy and checkpoint early.
+- A context-safety trigger is a continuation boundary: do not begin another substantive roadmap package. Reach the nearest safe deterministic boundary, fresh-reconcile authoritative state, then rotate the handover.
+- Pre-compaction/compaction signals from runtimes that expose them are emergency continuation signals, not permission to continue until memory loss.
+- This protocol never requires a scheduled GitHub Action or background poller. Repository reads/writes and `[skip ci]` documentation commits are sufficient.
+
+### Copy-paste parity
+
+At a context-safety continuation boundary, repository durability and user portability are both required:
+
+1. write and verify the new `docs/handovers/CURRENT.json`;
+2. re-read the canonical file from the authoritative branch;
+3. emit that same complete JSON object to the user as one copy-pasteable object.
+
+The user-visible object is a convenience copy, not a second source of truth. GitHub remains authoritative and the next session must still fresh-reconcile current state.
+
 ## Scheduled child-programme state between handover rotations
 
 A full handover object is intentionally not rewritten after every routine scheduled run. Scheduled/state-changing child programmes use `CULINARY_REPOSITORY_WORK_UNIT_LIFECYCLE_V1` and persist a compact current closure state instead.

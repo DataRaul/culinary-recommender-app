@@ -91,9 +91,25 @@ A terminal human verification window should be as short as the evidence contract
 
 Before conversation context becomes unreliable, the active agent must stop ordinary implementation at a safe boundary, warn the user that continuation is being prepared, fresh-reconcile GitHub, and save a complete resumable state through `docs/HANDOVER_PROTOCOL.md` and `docs/handovers/CURRENT.json`.
 
+Apply `config/context_safety_policy.json` and `docs/CONTEXT_SAFETY_PROTOCOL.md` to every substantive long-running Culinary repository session.
+
+- When the active runtime exposes context-use telemetry, target a continuation boundary in the **60–70%** used range, with **65%** as the preferred trigger. **55–75%** is an acceptable safety window; do not intentionally consume beyond 75% merely to finish more scope.
+- When exact telemetry is unavailable, use conservative context-risk detection instead of inventing a percentage. Long tool/result history, multiple implementation/repair cycles, many mutable state transitions, compaction/pre-compaction signals, or increasing difficulty retaining exact identifiers are sufficient reasons to checkpoint early.
+- At a context-safety trigger, do not start another substantive roadmap package. Finish only the smallest atomic operation needed to reach a safe deterministic boundary, then reconcile and hand over.
 - Rotate `CURRENT -> PREVIOUS` and write a new complete CURRENT before context loss, not after.
 - The saved CURRENT must include the exact live main SHA/baseline, open PR/branch/CI state, standing autonomy and CI authority, the next executable action, and any active human/error/cost gate.
-- A new chat must be able to continue from the repository handover without requiring the user to reconstruct or copy-paste prior chat state.
+- After the repository handover is written and re-read, emit the **same complete CURRENT object as one copy-pasteable JSON object** to the user at the continuation boundary.
+- A new chat must be able to continue from the repository handover without requiring the user to reconstruct prior chat state.
+- Context safety must not depend on a scheduled/polling GitHub Action. Handover/documentation-only writes should use `[skip ci]` where repository workflow behavior supports it.
+
+### Bounded roadmap-object discipline
+
+Autonomous Culinary execution is partitioned into bounded outcome-bearing roadmap objects/packages.
+
+- One active package must have a named objective, explicit in/out scope, terminal state, validation/evidence requirement, and exact successor or stop condition.
+- A package may contain several deterministic repair/revalidation iterations, but it must not silently expand into an unbounded chain of successor packages.
+- Completing one package does not itself authorize consuming every later roadmap object. Continue only when the next object is already `READY` and within standing authority; otherwise stop at the applicable human/error/cost/continuation gate.
+- If an object grows too large to hand over safely or its terminal state becomes ambiguous, split future work at a meaningful outcome boundary rather than extending the object indefinitely.
 
 ## Repository work-unit lifecycle
 
