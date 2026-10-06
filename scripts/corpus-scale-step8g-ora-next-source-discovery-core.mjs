@@ -156,6 +156,8 @@ export function discoverOraNextSources({
       ontologyUnresolvedPhraseCount: ontology.unresolvedPhraseCount,
       structuralPass,
       acquisitionValuePass,
+      // Historical source-specific measurement gates still read this field. Preserve it as a compatibility alias; eligibility now uses acquisitionValuePass.
+      marginalValuePass: acquisitionValuePass,
       discoveryEligibleForRightsReview: structuralPass && acquisitionValuePass,
       rightsReviewStatus: "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW",
       measurementEarned: false,
