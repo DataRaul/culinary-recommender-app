@@ -25,9 +25,11 @@ const statusPill = document.querySelector("#statusPill");
 const toast = document.querySelector("#toast");
 let state = loadState();
 let activeView = state.plan ? "plan" : "start";
+const OWNER_LIBRARY_API = "/api/protected-corpus/v1";
 const OWNER_SECONDARY_API = "/api/protected-corpus/limited-evidence-secondary";
 const OWNER_SECONDARY_PROFILE = Object.freeze({budget:4,nutritionPriority:3,speed:3,skill:4,variety:2,proteinEmphasis:3,mealPrep:2,maxMinutes:180,cuisinePreferences:[],priorityPacks:[],dietaryMode:"unrestricted",allergens:[],excludedIngredientIds:[],unavailableIngredientIds:[],currentPantryIngredientIds:[],pantryStapleIds:[]});
 let ownerAccess = false;
+let ownerLibraryState = { mode:"browse", query:"", cursor:"", items:[], loading:false, error:"", detail:null, detailLoading:false };
 let ownerSecondaryState = { mealType:"", cursor:"", items:[], eligibleCount:0, loading:false, error:"" };
 
 const escapeHtml = value => String(value ?? "").replace(/[&<>"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[char]));
@@ -51,8 +53,163 @@ function nutritionLine(recipe) {
 
 function renderHeaderStatus() {
   statusPill.textContent = ownerAccess
-    ? `${RECIPES.length} primary + 271 owner preview`
+    ? `${RECIPES.length} primary · 19,268 owner library`
     : `${RECIPES.length} curated V0 recipes · deterministic`;
+  const libraryNav = document.querySelector("#ownerLibraryNav");
+  if (libraryNav) libraryNav.hidden = !ownerAccess;
+}
+
+
+function ownerLibrarySourceLine(item) {
+  return [item?.sourceWork, item?.sourceAuthor, item?.sourceYear].filter(Boolean).join(" · ") || item?.sourceCohortId || "Source recorded";
+}
+
+function ownerLibraryStateLabel(value) {
+  return value === "SEARCHABLE__RECOMMENDATION_VALIDATED"
+    ? "Available · recommendation validated"
+    : "Available · not recommendation-validated";
+}
+
+async function requestOwnerLibrary(params) {
+  const url = new URL(OWNER_LIBRARY_API, location.origin);
+  Object.entries(params).forEach(([key,value]) => {
+    if (value !== "" && value != null) url.searchParams.set(key, String(value));
+  });
+  const response = await fetch(url, { credentials:"same-origin", cache:"no-store" });
+  const body = await response.json().catch(() => null);
+  if (!response.ok || body?.ok !== true) {
+    throw new Error(body?.reason || body?.error || "Owner library is unavailable.");
+  }
+  return body;
+}
+
+function ownerLibrarySummaryCard(item) {
+  return `<article class="recipe-card owner-library-card">
+    <div class="recipe-top"><div><p class="eyebrow">Owner library · v8018</p><h3>${escapeHtml(item.title)}</h3></div><span class="count-badge">${escapeHtml(item.structuralState || "record")}</span></div>
+    <p class="micro">${escapeHtml(ownerLibrarySourceLine(item))}</p>
+    <p class="reason">${escapeHtml(ownerLibraryStateLabel(item.recommendationState))}</p>
+    <p class="micro">Library availability is separate from recommendation eligibility, nutrition authority and allergen/dietary validation.</p>
+    <button class="secondary-action" type="button" data-owner-library-id="${escapeHtml(item.recipeId)}">Open recipe</button>
+  </article>`;
+}
+
+function ownerLibraryDetailMarkup(item) {
+  if (!item) return "";
+  const ingredients = Array.isArray(item.ingredients) && item.ingredients.length
+    ? `<ul>${item.ingredients.map(value => `<li>${escapeHtml(value)}</li>`).join("")}</ul>`
+    : "<p class='micro'>Ingredient structure unavailable.</p>";
+  const methodSteps = Array.isArray(item.methodSteps) && item.methodSteps.length
+    ? item.methodSteps
+    : (item.directions || []).map(text => ({ text, minutes:null }));
+  const directions = methodSteps.length
+    ? `<ol>${methodSteps.map(step => `<li>${escapeHtml(step?.text || "")}${step?.minutes == null ? "" : ` <span class="micro">· ${escapeHtml(step.minutes)} min</span>`}</li>`).join("")}</ol>`
+    : "<p class='micro'>Method structure unavailable.</p>";
+  const facts = [
+    item.servings == null ? null : `serves ${item.servings}`,
+    item.prepMinutes == null ? null : `prep ${item.prepMinutes} min`,
+    item.cookMinutes == null ? null : `cook ${item.cookMinutes} min`,
+    item.sourceDifficulty ? `source difficulty ${item.sourceDifficulty}` : null
+  ].filter(Boolean).join(" · ");
+  const sourceLink = item.sourceUrl
+    ? `<p class="micro"><a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">Source / provenance</a></p>`
+    : "";
+  return `<section class="panel owner-library-detail">
+    <div class="section-heading"><div><p class="eyebrow">Recipe detail · owner library</p><h2>${escapeHtml(item.title)}</h2></div><button id="closeOwnerLibraryDetail" class="secondary-action compact" type="button">Close</button></div>
+    <p class="reason">${escapeHtml(ownerLibraryStateLabel(item.recommendationState))}</p>
+    <p class="micro">${escapeHtml(ownerLibrarySourceLine(item))}${facts ? ` · ${escapeHtml(facts)}` : ""}</p>
+    ${item.summary ? `<p>${escapeHtml(item.summary)}</p>` : ""}
+    <div class="recipe-detail">${ingredients}${directions}${sourceLink}</div>
+    <p class="micro"><strong>Authority boundary:</strong> owner-library availability does not grant recommendation, nutrition, dietary/allergen or public-runtime authority.</p>
+  </section>`;
+}
+
+async function loadOwnerLibrary({ reset = false } = {}) {
+  if (!ownerAccess || ownerLibraryState.loading) return;
+  ownerLibraryState.loading = true;
+  ownerLibraryState.error = "";
+  renderOwnerLibrary();
+  try {
+    const action = ownerLibraryState.query ? "search" : "browse";
+    const body = await requestOwnerLibrary({
+      action,
+      q: action === "search" ? ownerLibraryState.query : "",
+      cursor: reset ? "" : ownerLibraryState.cursor,
+      limit:24
+    });
+    const nextItems = Array.isArray(body.items) ? body.items : [];
+    ownerLibraryState = {
+      ...ownerLibraryState,
+      mode:action,
+      items:reset ? nextItems : [...ownerLibraryState.items, ...nextItems],
+      cursor:body.nextCursor || "",
+      loading:false,
+      error:""
+    };
+  } catch (error) {
+    ownerLibraryState = { ...ownerLibraryState, loading:false, error:String(error?.message || error).slice(0,180) };
+  }
+  renderOwnerLibrary();
+}
+
+async function openOwnerLibraryDetail(recipeId) {
+  if (!ownerAccess || ownerLibraryState.detailLoading) return;
+  ownerLibraryState = { ...ownerLibraryState, detailLoading:true, detail:null, error:"" };
+  renderOwnerLibrary();
+  try {
+    const body = await requestOwnerLibrary({ action:"detail", recipeId });
+    ownerLibraryState = { ...ownerLibraryState, detailLoading:false, detail:body.item || null };
+  } catch (error) {
+    ownerLibraryState = { ...ownerLibraryState, detailLoading:false, error:String(error?.message || error).slice(0,180) };
+  }
+  renderOwnerLibrary();
+}
+
+function bindOwnerLibrary() {
+  document.querySelector("#ownerLibrarySearch")?.addEventListener("submit", event => {
+    event.preventDefault();
+    const query = document.querySelector("#ownerLibraryQuery")?.value.trim().slice(0,80) || "";
+    ownerLibraryState = { ...ownerLibraryState, query, cursor:"", items:[], detail:null, error:"" };
+    void loadOwnerLibrary({ reset:true });
+  });
+  document.querySelector("#ownerLibraryBrowseAll")?.addEventListener("click", () => {
+    ownerLibraryState = { ...ownerLibraryState, mode:"browse", query:"", cursor:"", items:[], detail:null, error:"" };
+    void loadOwnerLibrary({ reset:true });
+  });
+  document.querySelector("#ownerLibraryMore")?.addEventListener("click", () => { void loadOwnerLibrary({ reset:false }); });
+  document.querySelectorAll("[data-owner-library-id]").forEach(button => button.addEventListener("click", () => {
+    void openOwnerLibraryDetail(button.dataset.ownerLibraryId);
+  }));
+  document.querySelector("#closeOwnerLibraryDetail")?.addEventListener("click", () => {
+    ownerLibraryState = { ...ownerLibraryState, detail:null, detailLoading:false };
+    renderOwnerLibrary();
+  });
+}
+
+function renderOwnerLibrary() {
+  if (!ownerAccess) {
+    app.innerHTML = `<section class="page-heading"><div><p class="eyebrow">Owner recipe library</p><h1>Private recipe library</h1><p class="lede">The 19,268 protected recipes are available only on the authenticated owner production origin.</p></div></section>
+      <section class="shortfall"><strong>Owner access required</strong><p><a href="https://culinary-recommender-app.pages.dev/auth-canary.html">Sign in with the configured owner Google account</a>, then return to the owner-capable app.</p></section>`;
+    return;
+  }
+  const cards = ownerLibraryState.items.map(ownerLibrarySummaryCard).join("");
+  const status = ownerLibraryState.error
+    ? `<section class="shortfall"><strong>Library request stopped safely</strong><p>${escapeHtml(ownerLibraryState.error)}</p></section>`
+    : ownerLibraryState.loading
+      ? "<p class='micro'>Loading owner library…</p>"
+      : ownerLibraryState.items.length
+        ? `<p class="micro">${ownerLibraryState.items.length.toLocaleString()} recipe records loaded${ownerLibraryState.query ? ` for “${escapeHtml(ownerLibraryState.query)}”` : ""}.</p>`
+        : "<p class='micro'>Browse the library or search recipe titles and recorded source metadata.</p>";
+  app.innerHTML = `<section class="page-heading"><div><p class="eyebrow">Owner-only · v8018</p><h1>Recipe library</h1><p class="lede">Browse, search and open all 19,268 protected recipes. Availability here does not mean the recipe is recommendation-validated.</p></div><span class="count-badge">19,268 recipes</span></section>
+    <section class="panel"><form id="ownerLibrarySearch" class="inline-form"><label class="field grow"><span>Search library</span><input id="ownerLibraryQuery" type="search" maxlength="80" value="${escapeHtml(ownerLibraryState.query)}" placeholder="Recipe title, source or author"></label><button class="primary-action compact" type="submit">Search</button><button id="ownerLibraryBrowseAll" class="secondary-action" type="button">Browse all</button></form>
+      <p class="hint">Search covers indexed title and source metadata. Recommendation, nutrition and safety evidence remain separate states.</p></section>
+    ${status}
+    <section class="recipe-list">${cards}</section>
+    ${ownerLibraryState.cursor && !ownerLibraryState.loading ? '<button id="ownerLibraryMore" class="secondary-action" type="button">Load more</button>' : ""}
+    ${ownerLibraryState.detailLoading ? "<section class='panel'><p class='micro'>Opening source-backed recipe detail…</p></section>" : ownerLibraryDetailMarkup(ownerLibraryState.detail)}`;
+  bindOwnerLibrary();
+  if (!ownerLibraryState.items.length && !ownerLibraryState.loading && !ownerLibraryState.error && !ownerLibraryState.query) {
+    void loadOwnerLibrary({ reset:true });
+  }
 }
 
 function ownerSecondarySourceLine(item) {
@@ -269,6 +426,7 @@ async function detectOwnerAccess() {
   } finally {
     renderHeaderStatus();
     renderOwnerSecondaryMount();
+    if (activeView === "library") renderOwnerLibrary();
   }
 }
 
@@ -691,6 +849,7 @@ function render() {
   document.querySelectorAll("#bottomNav button").forEach(button => button.classList.toggle("active", button.dataset.view === activeView));
   if (activeView === "start") renderStart();
   if (activeView === "plan") renderPlan();
+  if (activeView === "library") renderOwnerLibrary();
   if (activeView === "groceries") renderGroceries();
   if (activeView === "pantry") renderPantry();
   if (activeView === "profile") renderProfile();
