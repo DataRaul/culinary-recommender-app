@@ -8,6 +8,16 @@ import { loadState, saveState, exportState, importState } from "./domain/storage
 import { suggestSubstitutions } from "./domain/substitution.js";
 import { bindRecipeImageFallbacks, recipeImageMarkup } from "./recipe-images-p0-runtime.js";
 import { parseWorkoutBackupForFitnessContext } from "./domain/fitness-integration-p0.js";
+import {
+  OWNER_SECONDARY_MAX_PLANNING_PAGES_PER_MEAL,
+  OWNER_SECONDARY_MAX_RESULTS_PER_REQUEST,
+  OWNER_SECONDARY_PLAN_SOURCE,
+  applyOwnerSecondaryFallbacks,
+  chooseOwnerSecondarySwapCandidate,
+  ownerSecondaryCandidateFits,
+  ownerSecondaryPlanningEligibility,
+  ownerSecondarySourceTotalMinutes
+} from "./domain/owner-secondary-planning-v1.js";
 
 const app = document.querySelector("#app");
 const nav = document.querySelector("#bottomNav");
@@ -50,7 +60,7 @@ function ownerSecondarySourceLine(item) {
   return [source.sourceWork, source.sourceAuthor, source.sourceYear].filter(Boolean).join(" · ") || source.sourceCohortId || "Source recorded";
 }
 
-function ownerSecondaryCard(item) {
+function ownerSecondaryCard(item, { planFallback = false } = {}) {
   const sourceUrl = item?.sourceProvenance?.sourceUrl
     ? `<p class="micro"><a href="${escapeHtml(item.sourceProvenance.sourceUrl)}" target="_blank" rel="noreferrer">Source / provenance</a></p>`
     : "";
@@ -64,21 +74,35 @@ function ownerSecondaryCard(item) {
       : ` <span class="micro">· ${escapeHtml(step.minutes)} min</span>`;
     return `<li>${escapeHtml(step?.text || "")}${minutes}</li>`;
   }).join("");
+  const totalMinutes = ownerSecondarySourceTotalMinutes(item);
   const detailFacts = [
     `${Number(item.ingredientCount ?? item.ingredients?.length ?? 0)} ingredients`,
     `${Number(item.directionStepCount ?? methodSteps.length)} method steps`,
     item.servings == null ? null : `serves ${item.servings}`,
     item.prepMinutes == null ? null : `prep ${item.prepMinutes} min`,
-    item.cookMinutes == null ? null : `cook ${item.cookMinutes} min`
+    item.cookMinutes == null ? null : `cook ${item.cookMinutes} min`,
+    item.sourceDifficulty ? `source difficulty ${item.sourceDifficulty}` : null
   ].filter(Boolean).join(" · ");
   const sourceSummary = item.summary ? `<p>${escapeHtml(item.summary)}</p>` : "";
   const sparseNote = methodSteps.length > 0 && methodSteps.length <= 3
     ? `<p class="micro">The source provides a concise ${methodSteps.length}-step method; no extra steps have been invented.</p>`
     : "";
+  const eyebrow = planFallback && item?.slot
+    ? `${escapeHtml(item.slot.day)} · ${escapeHtml(item.slot.mealType)} · limited-evidence fallback`
+    : `Limited-evidence · rank ${escapeHtml(item.rank)}`;
+  const badge = planFallback
+    ? (totalMinutes == null ? "time unknown" : `${escapeHtml(totalMinutes)} min`)
+    : escapeHtml(item.score);
+  const reason = planFallback
+    ? "Owner fallback only · the validated primary 86 had no eligible replacement for this slot. Soft nutrition, protein, budget, meal-prep and novelty signals remain unknown."
+    : "Owner preview only · not primary recommendation-validated.";
+  const swapButton = planFallback && item?.slot
+    ? `<button class="secondary-action swap-button" type="button" data-slot-id="${escapeHtml(item.slot.id)}">Swap this dish</button>`
+    : "";
   return `<article class="recipe-card owner-secondary-card">
-    <div class="recipe-top"><div><p class="eyebrow">Limited-evidence · rank ${escapeHtml(item.rank)}</p><h3>${escapeHtml(item.title)}</h3></div><span class="count-badge">${escapeHtml(item.score)}</span></div>
+    <div class="recipe-top"><div><p class="eyebrow">${eyebrow}</p><h3>${escapeHtml(item.title)}</h3></div><span class="count-badge">${badge}</span></div>
     <p class="micro">${escapeHtml(ownerSecondarySourceLine(item))}</p>
-    <p class="reason">Owner preview only · not primary recommendation-validated.</p>
+    <p class="reason">${escapeHtml(reason)}</p>
     <details><summary>Ingredients & method</summary><div class="recipe-detail">
       <p class="micro">Source detail · ${escapeHtml(detailFacts)}</p>
       ${sourceSummary}
@@ -87,6 +111,7 @@ function ownerSecondaryCard(item) {
       ${sparseNote}
       ${sourceUrl}
     </div></details>
+    ${swapButton}
   </article>`;
 }
 
@@ -105,7 +130,7 @@ function ownerSecondaryPanel() {
         : "<p class='micro'>Choose a meal to browse the expanded V21 owner recommendation surface.</p>";
   return `<section class="panel owner-secondary-panel">
     <div class="section-heading"><div><p class="eyebrow">Owner early access · V21</p><h2>More recipe ideas</h2></div><span class="count-badge">271 candidates</span></div>
-    <p class="hint"><strong>Limited-evidence lane:</strong> this uses the fixed unrestricted V21 evaluation profile, not your saved profile. Nutrition, protein, budget, meal-prep and novelty may be unknown. Do not use this lane for allergy/exclusion-sensitive decisions yet.</p>
+    <p class="hint"><strong>Limited-evidence lane:</strong> this uses the fixed unrestricted V21 evaluation profile, not your saved profile. Nutrition, protein, budget, meal-prep and novelty may be unknown. Do not use this lane for allergy/exclusion-sensitive decisions yet. In planning, these recipes are owner-only fallback candidates after the primary 86 cannot fill a slot, and only when source-backed time/difficulty plus your unrestricted hard profile remain compatible.</p>
     <div class="button-row owner-secondary-meals">${meals}</div>
     ${status}
     <section class="recipe-list">${cards}</section>
@@ -128,29 +153,91 @@ function renderOwnerSecondaryMount() {
   bindOwnerSecondaryPanel();
 }
 
+async function requestOwnerSecondaryPage(mealType, cursor = "0") {
+  const response = await fetch(OWNER_SECONDARY_API, {
+    method:"POST",
+    credentials:"same-origin",
+    cache:"no-store",
+    headers:{"content-type":"application/json"},
+    body:JSON.stringify({
+      mode:"limited_evidence_secondary",
+      mealType,
+      limit:OWNER_SECONDARY_MAX_RESULTS_PER_REQUEST,
+      cursor:String(cursor || "0"),
+      profile:OWNER_SECONDARY_PROFILE
+    })
+  });
+  const body = await response.json().catch(() => null);
+  if (!response.ok || body?.ok !== true || body?.secondaryLane?.enabled !== true) {
+    throw new Error(body?.reason || body?.error || "Owner secondary suggestions are unavailable.");
+  }
+  return body;
+}
+
+async function fetchOwnerSecondaryPlanningPool(mealType, needed, profile, excludedIds = []) {
+  const accepted = [];
+  const seen = new Set(excludedIds.map(String));
+  let cursor = "0";
+  let pages = 0;
+  while (pages < OWNER_SECONDARY_MAX_PLANNING_PAGES_PER_MEAL && accepted.length < needed) {
+    const body = await requestOwnerSecondaryPage(mealType, cursor);
+    pages += 1;
+    const rows = Array.isArray(body?.secondaryLane?.results) ? body.secondaryLane.results : [];
+    for (const row of rows) {
+      const id = String(row?.protectedRecipeId || "");
+      if (!id || seen.has(id) || !ownerSecondaryCandidateFits(row, profile, [...seen])) continue;
+      accepted.push(row);
+      seen.add(id);
+    }
+    const nextCursor = body?.secondaryLane?.nextCursor || "";
+    if (!nextCursor) break;
+    cursor = nextCursor;
+  }
+  return accepted;
+}
+
+async function buildOwnerSecondaryPlanFallback(primaryResult, profile) {
+  if (!ownerAccess || !Array.isArray(primaryResult?.shortfalls) || primaryResult.shortfalls.length === 0) {
+    return { ...primaryResult, secondaryItems:[], secondaryFallback:{ eligible:false, reasons:ownerAccess?["NO_PRIMARY_SHORTFALL"]:["OWNER_ACCESS_REQUIRED"], requestedShortfallSlots:primaryResult?.shortfalls?.length || 0, filledSlots:0 } };
+  }
+  const eligibility = ownerSecondaryPlanningEligibility(profile);
+  if (!eligibility.eligible) return applyOwnerSecondaryFallbacks(primaryResult, {}, profile);
+  const counts = new Map();
+  for (const shortfall of primaryResult.shortfalls) {
+    const mealType = String(shortfall?.slot?.mealType || "");
+    counts.set(mealType, (counts.get(mealType) || 0) + 1);
+  }
+  const pools = {};
+  try {
+    for (const [mealType, count] of counts) {
+      pools[mealType] = await fetchOwnerSecondaryPlanningPool(mealType, count, profile);
+    }
+    return applyOwnerSecondaryFallbacks(primaryResult, pools, profile);
+  } catch (error) {
+    return {
+      ...primaryResult,
+      secondaryItems:[],
+      secondaryFallback:{
+        eligible:true,
+        reasons:[],
+        requestedShortfallSlots:primaryResult.shortfalls.length,
+        filledSlots:0,
+        error:String(error?.message || error).slice(0,180)
+      }
+    };
+  }
+}
+
 async function loadOwnerSecondary(append) {
   if (!ownerAccess || !ownerSecondaryState.mealType || ownerSecondaryState.loading) return;
   ownerSecondaryState.loading = true;
   ownerSecondaryState.error = "";
   renderOwnerSecondaryMount();
   try {
-    const response = await fetch(OWNER_SECONDARY_API, {
-      method:"POST",
-      credentials:"same-origin",
-      cache:"no-store",
-      headers:{"content-type":"application/json"},
-      body:JSON.stringify({
-        mode:"limited_evidence_secondary",
-        mealType:ownerSecondaryState.mealType,
-        limit:20,
-        cursor:append ? (ownerSecondaryState.cursor || "0") : "0",
-        profile:OWNER_SECONDARY_PROFILE
-      })
-    });
-    const body = await response.json().catch(() => null);
-    if (!response.ok || body?.ok !== true || body?.secondaryLane?.enabled !== true) {
-      throw new Error(body?.reason || body?.error || "Owner secondary suggestions are unavailable.");
-    }
+    const body = await requestOwnerSecondaryPage(
+      ownerSecondaryState.mealType,
+      append ? (ownerSecondaryState.cursor || "0") : "0"
+    );
     const nextItems = Array.isArray(body.secondaryLane.results) ? body.secondaryLane.results : [];
     ownerSecondaryState = {
       ...ownerSecondaryState,
@@ -300,13 +387,32 @@ function bindProfileControls() {
   refreshPackUi();
 }
 
-function generatePlan() {
+async function generatePlan() {
   const slots = selectedSlots();
   if (!slots.length) { announce("Choose at least one meal slot."); return; }
-  const result = planSlots(RECIPES, state.profile, slots);
-  state.plan = { generatedAt: new Date().toISOString(), items: result.items, shortfalls: result.shortfalls, complete: result.complete };
-  state.recommendationHistory = [...state.recommendationHistory.slice(-19), { generatedAt: state.plan.generatedAt, recipeIds: result.items.map(item => item.recipe.id), profile: state.profile }];
-  persist(); activeView = "plan"; render();
+  const button = document.querySelector("#generatePlan");
+  if (button) { button.disabled = true; button.textContent = "Building plan…"; }
+  const primary = planSlots(RECIPES, state.profile, slots);
+  const result = await buildOwnerSecondaryPlanFallback(primary, state.profile);
+  const generatedAt = new Date().toISOString();
+  state.plan = {
+    generatedAt,
+    requestedSlotCount:slots.length,
+    items:result.items,
+    secondaryItems:Array.isArray(result.secondaryItems) ? result.secondaryItems : [],
+    shortfalls:result.shortfalls,
+    complete:result.complete,
+    secondaryFallback:result.secondaryFallback || null
+  };
+  state.recommendationHistory = [...state.recommendationHistory.slice(-19), {
+    generatedAt,
+    recipeIds:result.items.map(item => item.recipe.id),
+    secondaryRecipeIds:(result.secondaryItems || []).map(item => item.protectedRecipeId),
+    profile:state.profile
+  }];
+  persist();
+  activeView = "plan";
+  render();
 }
 
 function recipeCard(item) {
@@ -323,31 +429,144 @@ function recipeCard(item) {
   </article>`;
 }
 
+function planSecondaryItems(plan = state.plan) {
+  return Array.isArray(plan?.secondaryItems) ? plan.secondaryItems : [];
+}
+
+function withPlanCompleteness(plan) {
+  const secondaryItems = planSecondaryItems(plan);
+  const requestedSlotCount = Number(plan?.requestedSlotCount) || (plan?.items?.length || 0) + secondaryItems.length + (plan?.shortfalls?.length || 0);
+  return {
+    ...plan,
+    requestedSlotCount,
+    complete:(plan?.items?.length || 0) + secondaryItems.length === requestedSlotCount
+  };
+}
+
+async function swapPlanSlot(slotId) {
+  if (!state.plan) return;
+  const secondaryItems = planSecondaryItems();
+  const primaryCurrent = state.plan.items.find(item => item.slot.id === slotId);
+  const secondaryCurrent = secondaryItems.find(item => item.slot?.id === slotId);
+  const slot = primaryCurrent?.slot || secondaryCurrent?.slot;
+  if (!slot) return;
+
+  if (primaryCurrent) {
+    const swapped = swapSlot(RECIPES, state.profile, state.plan, slotId);
+    const replacement = swapped.items.find(item => item.slot.id === slotId);
+    if (replacement && replacement.recipe.id !== primaryCurrent.recipe.id) {
+      state.plan = withPlanCompleteness({
+        ...state.plan,
+        items:swapped.items,
+        shortfalls:swapped.shortfalls,
+        generatedAt:new Date().toISOString()
+      });
+      persist();
+      announce("Dish swapped within the validated primary recipes.");
+      renderPlan();
+      return;
+    }
+  } else if (secondaryCurrent) {
+    const primaryReplacement = planSlots(RECIPES, state.profile, [slot], {
+      excludeRecipeIds:state.plan.items.map(item => item.recipe.id)
+    });
+    if (primaryReplacement.items.length) {
+      state.plan = withPlanCompleteness({
+        ...state.plan,
+        items:[...state.plan.items, primaryReplacement.items[0]].sort((a,b)=>a.slot.order-b.slot.order),
+        secondaryItems:secondaryItems.filter(item => item.slot?.id !== slotId),
+        shortfalls:state.plan.shortfalls.filter(item => item.slot.id !== slotId),
+        generatedAt:new Date().toISOString()
+      });
+      persist();
+      announce("Dish swapped back into the validated primary recipes.");
+      renderPlan();
+      return;
+    }
+  }
+
+  const eligibility = ownerSecondaryPlanningEligibility(state.profile);
+  if (!ownerAccess || !eligibility.eligible) {
+    announce("No safe validated alternative is available for this slot.");
+    return;
+  }
+
+  try {
+    const excludedIds = secondaryItems.map(item => item.protectedRecipeId);
+    const pool = await fetchOwnerSecondaryPlanningPool(slot.mealType, 1, state.profile, excludedIds);
+    const candidate = chooseOwnerSecondarySwapCandidate(pool, state.profile, excludedIds);
+    if (!candidate) {
+      announce("No additional owner fallback fits the current hard limits.");
+      return;
+    }
+    const fallback = {
+      ...candidate,
+      slot,
+      planSource:OWNER_SECONDARY_PLAN_SOURCE,
+      sourceTotalMinutes:ownerSecondarySourceTotalMinutes(candidate)
+    };
+    const nextPrimary = primaryCurrent
+      ? state.plan.items.filter(item => item.slot.id !== slotId)
+      : state.plan.items;
+    const nextSecondary = secondaryCurrent
+      ? secondaryItems.map(item => item.slot?.id === slotId ? fallback : item)
+      : [...secondaryItems, fallback];
+    state.plan = withPlanCompleteness({
+      ...state.plan,
+      items:nextPrimary,
+      secondaryItems:nextSecondary.sort((a,b)=>(a.slot?.order||0)-(b.slot?.order||0)),
+      shortfalls:state.plan.shortfalls.filter(item => item.slot.id !== slotId),
+      generatedAt:new Date().toISOString()
+    });
+    persist();
+    announce("Dish swapped using the owner limited-evidence fallback.");
+    renderPlan();
+  } catch {
+    announce("Owner fallback is unavailable; the current dish was kept.");
+  }
+}
+
 function renderPlan() {
   if (!state.plan) { activeView = "start"; renderStart(); return; }
+  const secondaryItems = planSecondaryItems();
+  const totalMeals = state.plan.items.length + secondaryItems.length;
   const cost = estimatePortfolioCost(state.plan.items);
   const grocery = buildGroceryList(state.plan.items, state.profile.pantryStapleIds);
-  app.innerHTML = `<section class="page-heading"><div><p class="eyebrow">Your deterministic plan</p><h1>${state.plan.items.length} meal${state.plan.items.length === 1 ? "" : "s"}, built as a portfolio</h1><p class="lede">The planner balances individual fit with ingredient reuse and diversity. It does not simply pick the same highest-scoring pattern repeatedly.</p></div><button id="editWeek" class="secondary-action" type="button">Edit priorities</button></section>
-    <section class="summary-strip"><div><strong>${state.plan.items.length}</strong><span>meals</span></div><div><strong>${grocery.portions}</strong><span>planned portions</span></div><div><strong>${grocery.shopping.length}</strong><span>shopping lines</span></div><div><strong>${grocery.reusedIngredientCount}</strong><span>reused ingredients</span></div><div><strong>${cost.label}</strong><span>basket tier</span></div></section>
+  const cards = [
+    ...state.plan.items.map(item => ({ order:item.slot.order, html:recipeCard(item) })),
+    ...secondaryItems.map(item => ({ order:item.slot?.order || 999, html:ownerSecondaryCard(item,{planFallback:true}) }))
+  ].sort((a,b)=>a.order-b.order).map(row=>row.html).join("");
+  const fallbackNote = secondaryItems.length
+    ? `<section class="confidence-note"><strong>Owner limited-evidence fallback · ${secondaryItems.length} meal${secondaryItems.length===1?"":"s"}</strong><p>These meals filled slots only after the validated primary 86 could not. Their source-backed time and reviewed difficulty satisfy your hard limits, but nutrition, protein, budget, meal-prep and novelty remain incomplete. They are excluded from normalized grocery, nutrition and portfolio-cost calculations; their raw source ingredients remain visible in each card and in Groceries.</p></section>`
+    : "";
+  const fallbackError = state.plan.secondaryFallback?.error
+    ? `<section class="shortfall"><strong>Owner fallback unavailable</strong><p>${escapeHtml(state.plan.secondaryFallback.error)}</p></section>`
+    : "";
+  app.innerHTML = `<section class="page-heading"><div><p class="eyebrow">Your deterministic plan</p><h1>${totalMeals} meal${totalMeals === 1 ? "" : "s"}, built as a portfolio · primary-first</h1><p class="lede">Validated primary recipes are selected first. Owner limited-evidence recipes can fill only otherwise-unfilled slots when their hard source evidence remains compatible.</p></div><button id="editWeek" class="secondary-action" type="button">Edit priorities</button></section>
+    <section class="summary-strip"><div><strong>${totalMeals}</strong><span>planned meals</span></div><div><strong>${state.plan.items.length}</strong><span>primary validated</span></div><div><strong>${secondaryItems.length}</strong><span>owner fallback</span></div><div><strong>${grocery.shopping.length}</strong><span>primary grocery lines</span></div><div><strong>${cost.label}</strong><span>primary basket tier</span></div></section>
+    ${fallbackNote}
+    ${fallbackError}
     ${state.plan.shortfalls.length ? `<section class="shortfall"><strong>Plan shortfall</strong><p>I couldn't fill ${state.plan.shortfalls.length} selected slot${state.plan.shortfalls.length === 1 ? "" : "s"} without weakening hard constraints.</p>${state.plan.shortfalls.map(s => `<p>${escapeHtml(s.slot.day)} ${escapeHtml(s.slot.mealType)}: ${s.causes.map(c => `${escapeHtml(c.reason)} (${c.count})`).join("; ") || "no eligible recipe"}</p>`).join("")}</section>` : ""}
-    <section class="recipe-list">${state.plan.items.map(recipeCard).join("")}</section>`;
+    <section class="recipe-list">${cards}</section>`;
   bindRecipeImageFallbacks(app);
   document.querySelector("#editWeek").addEventListener("click", () => { activeView = "start"; render(); });
-  document.querySelectorAll(".swap-button").forEach(button => button.addEventListener("click", () => {
-    state.plan = { ...swapSlot(RECIPES, state.profile, state.plan, button.dataset.slotId), generatedAt: new Date().toISOString() };
-    persist(); announce("Dish swapped without rebuilding the rest of the plan."); renderPlan();
-  }));
+  document.querySelectorAll(".swap-button").forEach(button => button.addEventListener("click", () => { void swapPlanSlot(button.dataset.slotId); }));
 }
 
 function renderGroceries() {
   if (!state.plan) { app.innerHTML = emptyPrompt("No grocery list yet", "Build a meal plan first."); return; }
+  const secondaryItems = planSecondaryItems();
   const grocery = buildGroceryList(state.plan.items, state.profile.pantryStapleIds);
   const cost = estimatePortfolioCost(state.plan.items);
   const line = item => `<li><span><strong>${escapeHtml(item.name)}</strong><small>${item.uses > 1 ? `used in ${item.uses} recipes` : "used once"}</small></span><span>${Number(item.quantity.toFixed?.(2) ?? item.quantity)} ${escapeHtml(item.unit || "")}</span></li>`;
-  app.innerHTML = `<section class="page-heading"><div><p class="eyebrow">Combined grocery plan</p><h1>One list, normalized where practical</h1><p class="lede">${grocery.meals} meals · ${grocery.portions} planned portions · ${grocery.reusedIngredientCount} reused ingredients · basket tier ${cost.label}</p></div></section>
-  <section class="two-column"><div class="panel"><h2>Buy</h2><ul class="grocery-list">${grocery.shopping.map(line).join("") || "<li>Nothing outside your pantry.</li>"}</ul></div><div class="panel"><h2>Pantry staples</h2><ul class="grocery-list">${grocery.pantryItems.map(line).join("") || "<li>No matching staples.</li>"}</ul></div></section>
-  ${grocery.substitutions.length ? `<section class="panel"><h2>Substitutions in this plan</h2>${grocery.substitutions.map(item => `<p>${escapeHtml(labelIngredient(item.from))} → <strong>${escapeHtml(labelIngredient(item.to))}</strong>: ${escapeHtml(item.note)}</p>`).join("")}</section>` : ""}
-  <section class="confidence-note"><strong>Cost confidence: ${cost.confidence}</strong><p>${escapeHtml(cost.note)}</p></section>`;
+  const secondaryRaw = secondaryItems.length
+    ? `<section class="panel"><p class="eyebrow">Owner limited-evidence meals</p><h2>Raw source ingredients · not normalized</h2><p class="hint">These ingredients are intentionally kept separate from the trusted combined grocery calculation because canonical ingredient identity, cost and nutrition authority are incomplete.</p>${secondaryItems.map(item => `<div class="result-box"><h3>${escapeHtml(item.slot?.day || "")} · ${escapeHtml(item.title)}</h3><ul>${(item.ingredients || []).map(value=>`<li>${escapeHtml(value)}</li>`).join("")}</ul></div>`).join("")}</section>`
+    : "";
+  app.innerHTML = `<section class="page-heading"><div><p class="eyebrow">Combined grocery plan</p><h1>One list, normalized where practical · owner fallback kept separate</h1><p class="lede">${grocery.meals} primary meals · ${grocery.portions} primary planned portions · ${grocery.reusedIngredientCount} reused primary ingredients · basket tier ${cost.label}${secondaryItems.length ? ` · ${secondaryItems.length} limited-evidence meal${secondaryItems.length===1?"":"s"} listed separately` : ""}</p></div></section>
+  <section class="two-column"><div class="panel"><h2>Buy · primary validated meals</h2><ul class="grocery-list">${grocery.shopping.map(line).join("") || "<li>Nothing outside your pantry.</li>"}</ul></div><div class="panel"><h2>Pantry staples · primary validated meals</h2><ul class="grocery-list">${grocery.pantryItems.map(line).join("") || "<li>No matching staples.</li>"}</ul></div></section>
+  ${grocery.substitutions.length ? `<section class="panel"><h2>Substitutions in primary meals</h2>${grocery.substitutions.map(item => `<p>${escapeHtml(labelIngredient(item.from))} → <strong>${escapeHtml(labelIngredient(item.to))}</strong>: ${escapeHtml(item.note)}</p>`).join("")}</section>` : ""}
+  ${secondaryRaw}
+  <section class="confidence-note"><strong>Cost confidence: ${cost.confidence}</strong><p>${escapeHtml(cost.note)}${secondaryItems.length ? " Owner fallback meals are excluded from this estimate." : ""}</p></section>`;
 }
 
 function renderPantry() {

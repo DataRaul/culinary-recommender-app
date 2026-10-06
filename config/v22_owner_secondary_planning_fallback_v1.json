@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "CULINARY_V22_OWNER_SECONDARY_PLANNING_FALLBACK_V1",
+  "date": "2026-10-06",
+  "entryTerminal": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_FULL_OWNER_271_OWNER_PRODUCT_ACCEPTANCE_PASS",
+  "objective": "ALLOW_AUTHENTICATED_OWNER_SECONDARY_RECIPES_TO_FILL_PRIMARY_PLANNER_SHORTFALLS_WITHOUT_FABRICATING_MISSING_AUTHORITY",
+  "primaryRuntimeRecipeCount": 86,
+  "secondaryCandidateUniverseCount": 271,
+  "behavior": {
+    "primaryFirst": true,
+    "automaticUseOnlyForPrimaryShortfalls": true,
+    "explicitSwapMayUseSecondaryOnlyAfterNoPrimaryReplacement": true,
+    "planStorageField": "secondaryItems",
+    "primaryItemsRemainInField": "items",
+    "aggregateGroceriesExcludeSecondary": true,
+    "aggregateCostExcludeSecondary": true,
+    "aggregateNutritionExcludeSecondary": true
+  },
+  "hardEligibility": {
+    "dietaryMode": "unrestricted",
+    "allergensMustBeEmpty": true,
+    "excludedIngredientIdsMustBeEmpty": true,
+    "unavailableIngredientIdsMustBeEmpty": true,
+    "timePolicy": "SOURCE_PREP_PLUS_COOK_MUST_BOTH_BE_FINITE_AND_SUM_AT_OR_BELOW_USER_MAX_MINUTES",
+    "unknownTimeFailsClosed": true,
+    "difficultyPolicy": "SOURCE_DIFFICULTY_MUST_MAP_THROUGH_REVIEWED_UNITOOLS_ADAPTER_AND_BE_AT_OR_BELOW_USER_SKILL",
+    "reviewedDifficultyMapping": {
+      "easy": 1,
+      "medium": 3,
+      "hard": 4
+    },
+    "unknownDifficultyFailsClosed": true
+  },
+  "softSignals": {
+    "savedBudgetNotAuthoritativeForSecondary": true,
+    "savedNutritionPriorityNotAuthoritativeForSecondary": true,
+    "savedCuisinePreferencesNotAuthoritativeForSecondary": true,
+    "savedPriorityPacksNotAuthoritativeForSecondary": true,
+    "savedProteinEmphasisNotAuthoritativeForSecondary": true,
+    "savedMealPrepNotAuthoritativeForSecondary": true,
+    "disclosureRequired": true
+  },
+  "runtime": {
+    "endpoint": "/api/protected-corpus/limited-evidence-secondary",
+    "maximumResultsPerRequest": 20,
+    "maximumPlanningPagesPerMealType": 11,
+    "maximumD1SubqueriesPerRequestIncludingAuth": 8,
+    "protectedD1Writes": 0,
+    "fullCorpusScans": 0,
+    "shardCount": 2
+  },
+  "authority": {
+    "publicPrimaryRecommendationWideningAuthorized": false,
+    "dietaryAllergenAuthorityChanged": false,
+    "protectedWriteAuthorized": false,
+    "thirdShardAuthorized": false,
+    "paidInfrastructureAuthorized": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "barbecueMutationAuthorized": false
+  },
+  "targetTerminal": "V22_OWNER_SECONDARY_PLANNING_FALLBACK_IMPLEMENTATION_PASS__OWNER_PRODUCT_ACCEPTANCE_REQUIRED"
+}

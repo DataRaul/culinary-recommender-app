@@ -1353,3 +1353,17 @@ The product acceptance gate remains open until the owner verifies this normal-ap
 - Combined machine + owner evidence therefore closes the normal-product acceptance gate. This does not widen the public/primary 86-recipe recommendation lane and does not change dietary/allergen authority, protected D1 write policy, shard count, billing, Knowledge Core or Barbecue.
 - Terminal: `V21_LIMITED_EVIDENCE_SECONDARY_LANE_FULL_OWNER_271_OWNER_PRODUCT_ACCEPTANCE_PASS`.
 - Evidence: `data/generated/v21-owner-271-normal-product-acceptance-v1.json`.
+
+
+### 2026-10-06 V22 owner secondary planning fallback — IMPLEMENTED / OWNER PRODUCT ACCEPTANCE REQUIRED
+
+- Entry evidence is the accepted V21 owner-only 271-recipe surface: `V21_LIMITED_EVIDENCE_SECONDARY_LANE_FULL_OWNER_271_OWNER_PRODUCT_ACCEPTANCE_PASS`.
+- Planner behavior is now **primary-first**. The validated **86** recipes are planned normally; the owner-only 271 lane is consulted only for slots left as primary shortfalls. Automatic secondary candidates never displace an eligible primary recipe.
+- Hard safety remains fail-closed. Secondary planning is available only for an unrestricted profile with no allergens, permanent ingredient exclusions or unavailable ingredients. Each candidate must also have source-backed prep + cook time within the user's maximum and a recognized UniTools source difficulty mapped through the already reviewed `easy -> 1 / medium -> 3 / hard -> 4` adapter at or below the user's selected skill.
+- Unknown source time or unknown/unmapped difficulty cannot fill a slot. Soft nutrition, protein, budget, meal-prep, novelty, cuisine and priority-pack signals remain incomplete/not authoritative for this lane and are not silently inferred.
+- Plan storage keeps validated primary meals in `items` and owner fallback meals in a separate `secondaryItems` layer. Aggregate grocery normalization, portfolio cost and nutrition remain primary-only. Raw source ingredients for secondary meals are still shown separately so the owner can shop/cook without pretending canonical identity or cost authority exists.
+- Swap behavior is also primary-first: a primary replacement is attempted first; only when none exists may an explicit owner swap use a safe secondary candidate. A secondary meal likewise returns to a primary recipe whenever a valid primary replacement exists.
+- Runtime remains the accepted read-only owner endpoint with max 20 results/request, <=8 D1 subqueries/request including auth, zero protected writes/full scans, two shards, no public recommendation widening, no paid infrastructure, no Knowledge Core write and no Barbecue mutation.
+- Contract: `config/v22_owner_secondary_planning_fallback_v1.json`.
+- Target terminal: `V22_OWNER_SECONDARY_PLANNING_FALLBACK_IMPLEMENTATION_PASS__OWNER_PRODUCT_ACCEPTANCE_REQUIRED`.
+- Next gate after green deployment: authenticated owner normal-app acceptance of a plan/swap that actually uses at least one limited-evidence fallback, while confirming primary-first labeling and separate grocery handling.

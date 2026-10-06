@@ -38,6 +38,7 @@ const packet = {
     baseServings:4,
     prepMinutes:25,
     cookMinutes:35,
+    difficulty:"medium",
     ingredients:Array.from({length:11},(_,i)=>ingredient(i+1)),
     steps:Array.from({length:7},(_,i)=>step(i+1))
   }
@@ -56,6 +57,7 @@ test("V21 protected detail projection preserves every source ingredient, method 
   assert.equal(detail.servings, 4);
   assert.equal(detail.prepMinutes, 25);
   assert.equal(detail.cookMinutes, 35);
+  assert.equal(detail.sourceDifficulty, "medium");
 });
 
 test("V21 owner secondary envelope does not silently truncate hydrated protected detail", async () => {
@@ -77,6 +79,7 @@ test("V21 owner secondary envelope does not silently truncate hydrated protected
         servings:projected.servings,
         prepMinutes:projected.prepMinutes,
         cookMinutes:projected.cookMinutes,
+        sourceDifficulty:projected.sourceDifficulty,
         ingredients:projected.ingredients,
         directions:projected.directions,
         methodSteps:projected.methodSteps,
@@ -95,6 +98,7 @@ test("V21 owner secondary envelope does not silently truncate hydrated protected
   assert.equal(item.directions.length, 7);
   assert.equal(item.methodSteps.length, 7);
   assert.equal(item.directionStepCount, 7);
+  assert.equal(item.sourceDifficulty, "medium");
   assert.equal(item.methodSteps.at(-1).text, "Source-backed method step 7.");
   assert.equal(item.methodSteps.at(-1).minutes, 7);
   assert.equal(result.secondaryLane.mayDisplacePrimary, false);
