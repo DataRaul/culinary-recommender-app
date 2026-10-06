@@ -133,6 +133,22 @@ test("v8018 hydration resolves base and all delta route layers", async () => {
   assert.equal(result.d1Subqueries,3);
 });
 
+test("v8018 hydration preserves requested route order when D1 returns rows out of order", async () => {
+  const encoder=new TextEncoder();
+  const ids=["unitools:hoppers","unitools:masala-dosa","unitools:skyr-with-berries"];
+  const bodies=Object.fromEntries(ids.map(id=>[id,JSON.stringify({identity:{recipeId:id}})]));
+  const hashes=Object.fromEntries(await Promise.all(ids.map(async id=>[id,await sha256Hex(bodies[id])])));
+  const routeById=Object.fromEntries(ids.map((id,index)=>[id,{recipe_id:id,corpus_version:"v8001",shard_number:index%2,source_cohort_id:"unitools-world-recipes-v1_1_0",body_sha256:hashes[id],body_bytes:encoder.encode(bodies[id]).byteLength}]));
+  const scrambledRoutes=[routeById[ids[2]],routeById[ids[0]],routeById[ids[1]]];
+  const controlDb={prepare(){return{bind(){return{all:async()=>({results:scrambledRoutes})}}}}};
+  const rowsByShard=[0,1].map(shard=>scrambledRoutes.filter(row=>row.shard_number===shard).map(row=>({corpus_version:row.corpus_version,recipe_id:row.recipe_id,body_json:bodies[row.recipe_id],body_bytes:row.body_bytes,body_sha256:row.body_sha256,source_cohort_id:row.source_cohort_id})));
+  const shardDbs=rowsByShard.map(rows=>({prepare(){return{bind(){return{all:async()=>({results:rows})}}}}}));
+  const result=await hydrateStep8GV8018ProtectedRecipesBounded(controlDb,shardDbs,ids);
+  assert.equal(result.pass,true);
+  assert.deepEqual(result.routes.map(route=>route.recipeId),ids);
+  assert.deepEqual(result.packets.map(packet=>packet.identity.recipeId),ids);
+});
+
 test("v8018 hydration fails closed on duplicate ancestry routes", async () => {
   const routeRows=[
     {recipe_id:"duplicate",corpus_version:"v8015",shard_number:0,source_cohort_id:"base",body_sha256:"a".repeat(64),body_bytes:1},
