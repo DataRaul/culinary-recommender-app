@@ -1,6 +1,6 @@
 # Corpus Scale Step 8 — Measured Population and Activation Roadmap
 
-Status: **STEP 8A–8F PASS / STEP 8G ADVANCED TO v8018 / LEGAL CORPUS BASELINE PASS**
+Status: **STEP 8A–8F PASS / STEP 8G REOPENED — ACQUISITION-FIRST MAXIMUM RIGHTS-CLEAN CORPUS**
 
 Decision date: **2026-09-10**  
 Current-state reconciliation: **2026-09-24**
@@ -192,13 +192,13 @@ Any future public activation remains a new explicit gate; this approval does not
 
 ## 10. Step 8G — Continued Protected Scale Expansion Loop
 
-Status: **ADVANCED THROUGH v8018 / LEGAL CORPUS BASELINE PASS**
+Status: **REOPENED AFTER v8018 / OWNER-ORDERED ACQUISITION-FIRST CONTINUATION**
 
 8G remained independent of 8F and advanced through multiple rights-reviewed protected cohorts to **v8018 / 19,268 recipes**. The current topology remains exactly two recipe-body D1 shards; the certified maximum in the final owner run is 8 D1 subqueries/request. Final hold-adjusted discovery then found 0 rights-review-eligible remaining source cohorts, earning `LEGAL_CORPUS_BASELINE_PASS`. Canonical closeout: `docs/CORPUS_SCALE_STEP8G_POST_V8018_BASELINE_REASSESSMENT.md`.
 
-The loop may be reopened only if new source evidence or a new explicitly approved discovery universe earns a material candidate; raw count alone is not a reason to resume population.
+The owner explicitly reopened the loop on 2026-10-06 and changed its optimization objective. Continue acquiring every rights-clean, provenance-preserving, structurally usable cohort that can remain searchable/openable in the protected runtime. Raw count never overrides rights or integrity, but “marginal culinary value” and recommendation-readiness are no longer reasons to reject an otherwise usable source cohort.
 
-Continue only while marginal coverage/quality value justifies ingestion and review complexity. Stop when source rights/provenance are insufficient, marginal coverage is low, Free-plan headroom becomes unsafe, additional shards cross the measured architecture/reserved-slot boundary, a paid/billing authorization would be required, or another genuine human/security/legal gate is reached.
+Continue while lawful usable recipes remain. Deduplicate true duplicate records, but do not stop merely because a source contains variants/repeated titles or adds less culinary diversity than an earlier source. Stop only when source rights/provenance are insufficient, structural integrity is inadequate, Free-plan headroom becomes unsafe, additional topology/cost authority is required, or another genuine human/security/legal gate is reached.
 
 Terminal outcomes per iteration:
 
@@ -265,6 +265,6 @@ Step 8 does not authorize:
 
 ## 14. Current next action
 
-The Step 8 population programme is no longer waiting on Step 8D. Its current protected terminal is **v8018 / 19,268 / LEGAL_CORPUS_BASELINE_PASS**.
+The Step 8 population programme is explicitly **REOPENED** from the historical **v8018 / 19,268 / LEGAL_CORPUS_BASELINE_PASS** state by the 2026-10-06 owner acquisition-first directive.
 
-Follow the post-v8018 product order in `docs/ROADMAP.md` and `docs/CORPUS_SCALE_STEP8G_POST_V8018_BASELINE_REASSESSMENT.md`. Do not restart protected population, create a third shard, or broaden public recommendation behavior without newly earned evidence and the controlling gate.
+Immediate action: rerun source discovery with rights/provenance + structural usability as the admission-review gate, not the old internal unique-title-ratio marginal-value screen. Continue source-by-source population for every cohort that clears documentary rights/provenance and protected-runtime constraints. Do not broaden public recommendation behavior. If a third shard, paid capacity, unresolved rights judgment or another material authority choice becomes necessary, stop and ask the owner rather than looping.
