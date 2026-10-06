@@ -1421,3 +1421,11 @@ After that gate passes, the next product implementation tranche is:
 
 Recommendation refinement remains a parallel lane and must not block that library tranche.
 
+### 2026-10-06 V22 owner product acceptance attempt 1 — FAIL / ACCEPTANCE-PATH REPAIR
+
+- Owner production observation under the intended deterministic profile (**Unrestricted**, **20 min**, **Beginner**, default five slots) returned two unresolved dinner shortfalls and no owner-secondary fallback. This is a failed acceptance attempt; V22 must not be marked accepted.
+- The primary shortfall itself is expected under the narrow profile. The defect is that the owner fallback path did not produce the expected limited-evidence fill.
+- Bounded repair scope: resolve the owner session immediately before plan generation; move the service worker to a fresh cache epoch; version the bootstrap/app module request so an existing service worker cannot serve the pre-repair app bundle for the acceptance navigation; expose an explicit fallback diagnostic when shortfalls remain with zero secondary fills.
+- Recommendation/safety semantics are unchanged: primary-first, unrestricted/no-allergy/no-exclusion hard boundary, reviewed source difficulty, source-backed prep+cook time, separate `secondaryItems`, no aggregate grocery/cost/nutrition authority, no public widening.
+- Acceptance remains open until the same production test visibly produces at least one owner limited-evidence fallback or yields a diagnostic that identifies a remaining runtime defect.
+
