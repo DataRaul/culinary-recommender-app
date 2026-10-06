@@ -54,11 +54,11 @@ test("bounded owner rollout preserves hydrated recipe detail for the product car
   assert.equal(result.secondaryLane.mayDisplacePrimary,false);
 });
 
-test("V22 acceptance repair forces a fresh cache epoch and versioned app bootstrap", () => {
+test("V22 owner-origin recovery forces a fresh cache epoch and versioned app bootstrap", () => {
   const sw = readFileSync(new URL("../sw.js", import.meta.url), "utf8");
   const index = readFileSync(new URL("../index.html", import.meta.url), "utf8");
   const bootstrap = readFileSync(new URL("../src/bootstrap.js", import.meta.url), "utf8");
-  assert.match(sw, /culinary-recommender-v22-owner-fallback-acceptance-repair-v1/);
-  assert.match(index, /bootstrap\.js\?v=v22-owner-fallback-acceptance-repair-v1/);
-  assert.match(bootstrap, /app\.js\?v=v22-owner-fallback-acceptance-repair-v1/);
+  assert.match(sw, /culinary-recommender-v22-owner-origin-recovery-v1/);
+  assert.match(index, /bootstrap\.js\?v=v22-owner-origin-recovery-v1/);
+  assert.match(bootstrap, /app\.js\?v=v22-owner-origin-recovery-v1/);
 });
