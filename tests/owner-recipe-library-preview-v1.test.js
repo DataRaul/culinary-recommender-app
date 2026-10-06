@@ -2,30 +2,28 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
-test("normal app exposes Owner Recipe Library only through authenticated owner navigation", () => {
+test("Owner Recipe Library is unified into Search rather than exposed as a duplicate nav destination", () => {
   const index = readFileSync(new URL("../index.html", import.meta.url), "utf8");
-  const app = readFileSync(new URL("../src/app.js", import.meta.url), "utf8");
-  assert.match(index, /id="ownerLibraryNav"/);
-  assert.match(index, /data-view="library"/);
-  assert.match(index, /ownerLibraryNav[^>]*hidden/);
-  assert.match(app, /const OWNER_LIBRARY_API = "\/api\/protected-corpus\/v1"/);
-  assert.match(app, /libraryNav\.hidden = !ownerAccess/);
-  assert.match(app, /if \(activeView === "library"\) renderOwnerLibrary\(\)/);
+  const search = readFileSync(new URL("../src/search-ui.js", import.meta.url), "utf8");
+  assert.doesNotMatch(index, /data-view="library"/);
+  assert.doesNotMatch(index, /ownerLibraryNav/);
+  assert.match(index, /data-view="search"/);
+  assert.match(search, /All recipes · 19,268/);
+  assert.match(search, /searchSurfaceMode = "all-recipes"/);
+  assert.match(search, /const OWNER_CATALOG_API = "\/api\/protected-corpus\/v1"/);
 });
 
-test("Owner Recipe Library preview supports bounded browse search detail without recommendation admission", () => {
-  const app = readFileSync(new URL("../src/app.js", import.meta.url), "utf8");
-  assert.match(app, /action = ownerLibraryState\.query \? "search" : "browse"/);
-  assert.match(app, /action:"detail"/);
-  assert.match(app, /limit:24/);
-  assert.match(app, /19,268 protected recipes/);
-  assert.match(app, /Available · not recommendation-validated/);
-  assert.match(app, /Library availability is separate from recommendation eligibility/);
-  assert.match(app, /owner-library availability does not grant recommendation, nutrition, dietary\/allergen or public-runtime authority/);
-  assert.doesNotMatch(app, /ownerLibrary.*recommendationAdmissionChanged\s*=\s*true/s);
+test("unified owner Search supports bounded browse search detail without recommendation admission", () => {
+  const search = readFileSync(new URL("../src/search-ui.js", import.meta.url), "utf8");
+  assert.match(search, /const action = ownerCatalogState\.query \? "search" : "browse"/);
+  assert.match(search, /action:"detail"/);
+  assert.match(search, /limit:24/);
+  assert.match(search, /Available · not recommendation-validated/);
+  assert.match(search, /Availability is not the same as recommendation validation/);
+  assert.match(search, /search availability does not grant recommendation, nutrition, dietary\/allergen or public-runtime authority/);
 });
 
-test("Owner Recipe Library reuses fail-closed protected browse/search/detail API", () => {
+test("unified owner Search reuses fail-closed protected browse/search/detail API", () => {
   const route = readFileSync(new URL("../functions/api/protected-corpus/v1.js", import.meta.url), "utf8");
   assert.match(route, /await authorize\(request, env\)/);
   assert.match(route, /action === "browse"/);
