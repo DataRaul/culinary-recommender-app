@@ -70,13 +70,14 @@ export async function hydrateStep8GV8018ProtectedRecipesBounded(controlDb, shard
   if (!routes.pass) return { pass: false, reason: routes.reason, d1Subqueries: routes.d1Subqueries, routeQueries: routes.d1Subqueries, shardQueries: 0 };
   const byRoute = new Map(routes.routes.map(route => [route.recipeId, route]));
   if (byRoute.size !== ids.length || ids.some(id => !byRoute.has(id))) return { pass: false, reason: "ROUTE_LOOKUP_INCOMPLETE_OR_COMPOSITION_INACTIVE", d1Subqueries: routes.d1Subqueries, routeQueries: routes.d1Subqueries, shardQueries: 0 };
-  const bodies = await lookupBodies(shardDbs, routes.routes);
+  const orderedRoutes = ids.map(id => byRoute.get(id));
+  const bodies = await lookupBodies(shardDbs, orderedRoutes);
   if (!bodies.pass) return { pass: false, reason: bodies.reason, d1Subqueries: routes.d1Subqueries + bodies.shardQueries, routeQueries: routes.d1Subqueries, shardQueries: bodies.shardQueries };
   const packets = [];
-  for (const id of ids) {
-    const route = byRoute.get(id), row = bodies.bodiesById.get(id), body = String(row?.body_json || "");
-    if (!route || !row || String(row.corpus_version) !== route.corpusVersion || Number(row.body_bytes) !== route.bodyBytes || String(row.body_sha256) !== route.bodySha256 || String(row.source_cohort_id) !== route.sourceCohortId || bytes(body) !== route.bodyBytes || await sha256Hex(body) !== route.bodySha256) return { pass: false, reason: "HYDRATED_BODY_INTEGRITY_MISMATCH", d1Subqueries: routes.d1Subqueries + bodies.shardQueries, routeQueries: routes.d1Subqueries, shardQueries: bodies.shardQueries };
+  for (const route of orderedRoutes) {
+    const id = route.recipeId, row = bodies.bodiesById.get(id), body = String(row?.body_json || "");
+    if (!row || String(row.corpus_version) !== route.corpusVersion || Number(row.body_bytes) !== route.bodyBytes || String(row.body_sha256) !== route.bodySha256 || String(row.source_cohort_id) !== route.sourceCohortId || bytes(body) !== route.bodyBytes || await sha256Hex(body) !== route.bodySha256) return { pass: false, reason: "HYDRATED_BODY_INTEGRITY_MISMATCH", d1Subqueries: routes.d1Subqueries + bodies.shardQueries, routeQueries: routes.d1Subqueries, shardQueries: bodies.shardQueries };
     packets.push(JSON.parse(body));
   }
-  return { pass: true, packets, routes: routes.routes, d1Subqueries: routes.d1Subqueries + bodies.shardQueries, routeQueries: routes.d1Subqueries, shardQueries: bodies.shardQueries, maxInternalD1Subqueries: STEP8G_V8018_MAX_HYDRATION_D1_SUBQUERIES, fullCorpusScans: 0 };
+  return { pass: true, packets, routes: orderedRoutes, d1Subqueries: routes.d1Subqueries + bodies.shardQueries, routeQueries: routes.d1Subqueries, shardQueries: bodies.shardQueries, maxInternalD1Subqueries: STEP8G_V8018_MAX_HYDRATION_D1_SUBQUERIES, fullCorpusScans: 0 };
 }
