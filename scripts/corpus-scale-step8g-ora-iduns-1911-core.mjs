@@ -1,5 +1,5 @@
 export const ORA_IDUNS_1911_SOURCE = Object.freeze({
-  cohortId: "ORA_IDUNS_1911_FIRST_EDITION_ARKIVKOPIA_RUNEberg",
+  cohortId: "ORA_IDUNS_1911_FIRST_EDITION_ARKIVKOPIA_RUNEBERG",
   repository: "AdamBouhmad/open-recipe-archive",
   commit: "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
   collection: "svenska-koket",
