@@ -11,7 +11,12 @@ test("normal product app wires the owner-only V21 secondary endpoint, not the ca
   assert.match(app, /More recipe ideas/);
   assert.match(app, /271 candidates/);
   assert.match(app, /Do not use this lane for allergy\/exclusion-sensitive decisions yet/);
-  assert.doesNotMatch(app, /limited-evidence-secondary-canary/);\n  assert.match(app, /buildOwnerSecondaryPlanFallback/);\n  assert.match(app, /secondaryItems/);\n  assert.match(app, /primary-first/);\n  assert.match(app, /Raw source ingredients · not normalized/);\n});
+  assert.doesNotMatch(app, /limited-evidence-secondary-canary/);
+  assert.match(app, /buildOwnerSecondaryPlanFallback/);
+  assert.match(app, /secondaryItems/);
+  assert.match(app, /primary-first/);
+  assert.match(app, /Raw source ingredients · not normalized/);
+});
 
 test("owner role is derived server-side from the configured bootstrap identity", () => {
   const session = readFileSync(new URL("../functions/api/auth/session.js", import.meta.url), "utf8");
