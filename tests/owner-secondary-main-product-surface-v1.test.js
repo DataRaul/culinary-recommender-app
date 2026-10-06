@@ -59,6 +59,6 @@ test("V22 owner-origin recovery forces a fresh cache epoch and versioned app boo
   const index = readFileSync(new URL("../index.html", import.meta.url), "utf8");
   const bootstrap = readFileSync(new URL("../src/bootstrap.js", import.meta.url), "utf8");
   assert.match(sw, /culinary-recommender-v22-owner-origin-recovery-v1/);
-  assert.match(index, /bootstrap\.js\?v=v22-owner-fallback-acceptance-repair-v1/);
-  assert.match(bootstrap, /app\.js\?v=v22-owner-fallback-acceptance-repair-v1/);
+  assert.match(index, /bootstrap\.js\?v=v22-owner-origin-recovery-v1/);
+  assert.match(bootstrap, /app\.js\?v=v22-owner-origin-recovery-v1/);
 });
