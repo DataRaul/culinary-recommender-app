@@ -158,7 +158,8 @@ function packetSourceBackedRecipeMeta(packet) {
     summary: localizedText(packet?.recipe?.summary) || null,
     servings: finiteSourceNumber(packet?.recipe?.baseServings),
     prepMinutes: finiteSourceNumber(packet?.recipe?.prepMinutes),
-    cookMinutes: finiteSourceNumber(packet?.recipe?.cookMinutes)
+    cookMinutes: finiteSourceNumber(packet?.recipe?.cookMinutes),
+    sourceDifficulty: firstString(packet?.recipe?.difficulty)
   };
 }
 
