@@ -1535,3 +1535,11 @@ That marginal-value rejection is no longer controlling. Re-run discovery under t
 - Documentary review ties the cohort to Elisabeth Östman's exact **1911 first edition**, with Project Runeberg first-edition facsimile evidence and independent author identity/death-year evidence (**1869–1933**). Spain-facing exploitation-term analysis uses current LPI transitional provision 4 plus Article 6 of the 1879 Act.
 - This tranche is rights/provenance + deterministic no-write acquisition measurement only. It does not qualify recommendations or add nutrition/classification authority.
 - On green measurement, next authority is `SOURCE_SPECIFIC_PREWRITE_CAPACITY_MEASUREMENT_ONLY`. The prewrite must determine whether the full 2,818-row delta fits the existing authorized two-shard/free-runtime envelope. If not, stop and ask the owner before any topology/cost widening.
+
+
+### 2026-10-06 acquisition-first tranche 1 — Iduns v8019 prewrite
+
+- Source-specific measurement is terminal PASS for **2,818 / 2,818** Iduns 1911 rows, with exact v8018 parent **19,268**, structural parseability **1.0**, and **1,757** novel normalized titles.
+- The complete source cohort advances to no-write prewrite as target `v8019 / 22,086`. No sampling or recommendation qualification is used to shrink the acquisition delta.
+- Stable protected IDs include source-row ordinals so repeated/variant titles cannot collide and silently discard otherwise usable source rows.
+- The prewrite must preserve the existing **2-shard**, **zero-paid**, optimized delta-route architecture and <=8 D1 request target. If the full 2,818-row delta fails that capacity/topology gate, stop and ask the owner; do not loop or silently widen infrastructure.
