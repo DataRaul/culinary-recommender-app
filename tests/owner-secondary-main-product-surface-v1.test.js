@@ -19,6 +19,8 @@ test("normal product app wires the owner-only V21 secondary endpoint, not the ca
   assert.match(app, /await detectOwnerAccess\(\)/);
   assert.match(app, /Owner fallback diagnostic/);
   assert.match(app, /should not be treated as a pass/);
+  assert.match(app, /Sign in for owner access/);
+  assert.match(app, /\/auth-canary\.html/);
 });
 
 test("owner role is derived server-side from the configured bootstrap identity", () => {
