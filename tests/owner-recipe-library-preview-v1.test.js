@@ -32,3 +32,14 @@ test("unified owner Search reuses fail-closed protected browse/search/detail API
   assert.match(route, /recommendationAdmissionChanged: false/);
   assert.match(route, /fullCorpusScans: 0/);
 });
+
+test("owner all-recipes detail renders before the result grid and scrolls into view", () => {
+  const search = readFileSync(new URL("../src/search-ui.js", import.meta.url), "utf8");
+  const formStart = search.indexOf('function ownerCatalogForm()');
+  const formEnd = search.indexOf('function bindSearchScope()', formStart);
+  const form = search.slice(formStart, formEnd);
+  assert.ok(form.indexOf('${detail}') < form.indexOf('<section class="recipe-list">'), "detail must render before result cards");
+  assert.match(search, /id="ownerCatalogDetailPanel"/);
+  assert.match(search, /scrollIntoView\(\{ behavior:"smooth", block:"start" \}\)/);
+  assert.match(search, /renderUnifiedSearch\(\{ scrollTop:false \}\)/);
+});
