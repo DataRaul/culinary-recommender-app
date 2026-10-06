@@ -16,6 +16,9 @@ test("normal product app wires the owner-only V21 secondary endpoint, not the ca
   assert.match(app, /secondaryItems/);
   assert.match(app, /primary-first/);
   assert.match(app, /Raw source ingredients · not normalized/);
+  assert.match(app, /await detectOwnerAccess\(\)/);
+  assert.match(app, /Owner fallback diagnostic/);
+  assert.match(app, /should not be treated as a pass/);
 });
 
 test("owner role is derived server-side from the configured bootstrap identity", () => {
@@ -49,8 +52,11 @@ test("bounded owner rollout preserves hydrated recipe detail for the product car
   assert.equal(result.secondaryLane.mayDisplacePrimary,false);
 });
 
-test("service worker refresh marker updates cached normal-product assets while preserving the established cache contract", () => {
+test("V22 acceptance repair forces a fresh cache epoch and versioned app bootstrap", () => {
   const sw = readFileSync(new URL("../sw.js", import.meta.url), "utf8");
-  assert.match(sw, /v22-owner-secondary-planning-v1 refreshes cached app assets/);
-  assert.match(sw, /culinary-recommender-v1-1-6-eu-celery-allergen-p0/);
+  const index = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+  const bootstrap = readFileSync(new URL("../src/bootstrap.js", import.meta.url), "utf8");
+  assert.match(sw, /culinary-recommender-v22-owner-fallback-acceptance-repair-v1/);
+  assert.match(index, /bootstrap\.js\?v=v22-owner-fallback-acceptance-repair-v1/);
+  assert.match(bootstrap, /app\.js\?v=v22-owner-fallback-acceptance-repair-v1/);
 });
