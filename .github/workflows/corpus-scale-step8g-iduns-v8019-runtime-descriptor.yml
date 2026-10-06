@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   descriptor:
@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout Culinary app
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
       - name: Checkout pinned Open Recipe Archive
         uses: actions/checkout@v4
         with:
@@ -54,6 +56,21 @@ jobs:
         run: |
           if [ -f data/generated/step8g/v8019-runtime-descriptor.mjs ]; then
             cmp data/generated/step8g/v8019-runtime-descriptor.mjs .tmp/v8019-runtime-descriptor.mjs
+          fi
+      - name: Freeze generated descriptor on this exact internal branch
+        if: github.event_name == 'pull_request' && github.head_ref == 'corpus-iduns-v8019-descriptor-v1'
+        shell: bash
+        run: |
+          mkdir -p data/generated/step8g
+          cp .tmp/v8019-runtime-descriptor.mjs data/generated/step8g/v8019-runtime-descriptor.mjs
+          if git diff --quiet -- data/generated/step8g/v8019-runtime-descriptor.mjs; then
+            echo "Descriptor already frozen exactly."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/generated/step8g/v8019-runtime-descriptor.mjs
+            git commit -m "Corpus acquisition: freeze exact v8019 runtime descriptor"
+            git push origin HEAD:${GITHUB_HEAD_REF}
           fi
       - name: Upload generated v8019 descriptor
         uses: actions/upload-artifact@v4
