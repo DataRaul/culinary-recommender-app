@@ -6,8 +6,7 @@ export const ORA_NEXT_SOURCE_DISCOVERY_FOUND = "STEP_8G_ORA_NEXT_SOURCE_DISCOVER
 export const ORA_NEXT_SOURCE_DISCOVERY_NONE = "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_NO_MATERIAL_CANDIDATE";
 export const MIN_SOURCE_RECIPE_COUNT = 50;
 export const MIN_PARSEABLE_RATIO = 0.95;
-export const MIN_UNIQUE_TITLE_RATIO = 0.8;
-export const MIN_NOVEL_TITLE_RATIO = 0.5;
+export const MIN_NOVEL_TITLE_COUNT = 50;
 
 const normalize = value => String(value ?? "")
   .normalize("NFKD")
@@ -137,7 +136,7 @@ export function discoverOraNextSources({
     const novelPhrases = difference(phrases, baselinePhrases);
     const ontology = ontologyStats(recipes);
     const structuralPass = parseableRatio >= MIN_PARSEABLE_RATIO;
-    const marginalValuePass = uniqueTitleRatio >= MIN_UNIQUE_TITLE_RATIO && novelTitleRatio >= MIN_NOVEL_TITLE_RATIO;
+    const acquisitionValuePass = novelTitles.length >= MIN_NOVEL_TITLE_COUNT;
 
     candidates.push({
       sourceKey: key,
@@ -156,8 +155,8 @@ export function discoverOraNextSources({
       ontologyResolvedCanonicalIngredientCount: ontology.resolvedCanonicalIngredientCount,
       ontologyUnresolvedPhraseCount: ontology.unresolvedPhraseCount,
       structuralPass,
-      marginalValuePass,
-      discoveryEligibleForRightsReview: structuralPass && marginalValuePass,
+      acquisitionValuePass,
+      discoveryEligibleForRightsReview: structuralPass && acquisitionValuePass,
       rightsReviewStatus: "REQUIRED_SOURCE_SPECIFIC_DOCUMENTARY_REVIEW",
       measurementEarned: false,
       historicalSourceLabelOnly: true,
@@ -194,8 +193,7 @@ export function discoverOraNextSources({
     thresholds: {
       minSourceRecipeCount: MIN_SOURCE_RECIPE_COUNT,
       minParseableRatio: MIN_PARSEABLE_RATIO,
-      minUniqueTitleRatio: MIN_UNIQUE_TITLE_RATIO,
-      minNovelTitleRatio: MIN_NOVEL_TITLE_RATIO
+      minNovelTitleCount: MIN_NOVEL_TITLE_COUNT
     },
     sourceGroupCount: groups.size,
     measuredCandidateCount: candidates.length,
@@ -204,8 +202,8 @@ export function discoverOraNextSources({
     allMeasuredCandidates: candidates,
     excludedSources: excluded,
     interpretation: eligible.length
-      ? "Discovery identified structurally useful source-level cohorts for separate documentary rights review. No source is rights-cleared or measurement-earned by this scan."
-      : "No source-level cohort cleared the discovery structure and marginal-value screen. No rights review, prewrite or population is earned.",
+      ? "Discovery identified structurally usable source-level cohorts with a material absolute count of titles not present in the protected baseline. Internal title repetition remains a deduplication diagnostic, not a reason to suppress rights review. No source is rights-cleared or measurement-earned by this scan."
+      : "No source-level cohort cleared the structural-usability and minimum absolute novel-title screen. No rights review, prewrite or population is earned.",
     boundaries: {
       liveD1WritesPerformed: 0,
       sourceRightsClearedByDiscovery: false,
