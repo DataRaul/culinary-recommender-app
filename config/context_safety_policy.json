@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "policy_id": "CULINARY_CONTEXT_SAFETY_V1",
+  "status": "ACTIVE",
+  "purpose": "Produce an early durable continuation handover before conversation context becomes unreliable without requiring GitHub Actions polling.",
+  "context_detection": {
+    "telemetry": {
+      "use_when_available": true,
+      "preferred_trigger_fraction": 0.65,
+      "target_window_fraction": {
+        "min": 0.6,
+        "max": 0.7
+      },
+      "acceptable_window_fraction": {
+        "min": 0.55,
+        "max": 0.75
+      },
+      "rule": "Trigger at the first safe deterministic boundary in the target window; 65% is preferred. Do not intentionally continue beyond 75% solely to finish more scope."
+    },
+    "heuristic_fallback": {
+      "enabled": true,
+      "invent_percentage": false,
+      "triggers": [
+        "long_tool_or_result_history",
+        "multiple_implementation_repair_revalidation_cycles",
+        "many_mutable_repository_or_external_state_transitions",
+        "runtime_precompact_or_compaction_signal",
+        "increasing_risk_of_losing_exact_branch_pr_sha_gate_or_next_action_state"
+      ],
+      "rule": "When telemetry is unavailable, checkpoint conservatively as soon as context reliability is plausibly at risk."
+    }
+  },
+  "handover": {
+    "protocol": "docs/HANDOVER_PROTOCOL.md",
+    "current": "docs/handovers/CURRENT.json",
+    "previous": "docs/handovers/PREVIOUS.json",
+    "rotation": "old CURRENT -> PREVIOUS; new complete snapshot -> CURRENT",
+    "fresh_reconcile_before_write": true,
+    "verify_canonical_read_after_write": true,
+    "emit_user_copy": true,
+    "user_copy_format": "single_complete_json_object",
+    "user_copy_must_match_current_semantically": true
+  },
+  "roadmap_object_contract": {
+    "bounded_by_default": true,
+    "one_active_package_at_a_time_per_lane": true,
+    "required_fields": [
+      "objective",
+      "in_scope",
+      "out_of_scope",
+      "terminal_state",
+      "validation_or_evidence",
+      "next_action_or_stop_condition"
+    ],
+    "deterministic_repair_cycles_allowed": true,
+    "successor_chain_implicit_authorization": false,
+    "split_when_handover_or_terminal_state_becomes_unsafe": true
+  },
+  "cost_and_execution": {
+    "github_actions_required": false,
+    "scheduled_context_polling_forbidden": true,
+    "background_context_retriever_forbidden": true,
+    "handover_only_commit_preference": "[skip ci] where supported",
+    "context_analysis_location": "active agent/runtime",
+    "repository_role": "durable policy and continuation state"
+  }
+}
