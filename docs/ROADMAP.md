@@ -43,7 +43,7 @@
 | V1.x / Recipe Family P0 prototype | COMPLETE / PASS | bounded Carbonara + Hummus prototype; Hummus APP_AUTHORING_ELIGIBLE, Carbonara held on egg/hard-cheese quantity authority; Consultant + Project Coach blocking review passed |
 | V1.x / Recipe Family UI legal conformance | COMPLETE / PASS | PR #276; real Hummus candidate proves generic multi-source attribution + fail-closed UNKNOWN/UNSATISFIABLE behavior; no public/runtime admission |\n| V1.x / Recipe Family 10-family bounded expansion | COMPLETE / PASS WITH EXPLICIT HOLDS | PR #283 green and merged; 10-family closeout = 8 candidate-only APP_AUTHORING_ELIGIBLE + 2 fail-closed HOLD (Carbonara, Pizza Margherita); 0 public/runtime admissions; v8018/D1/shards/KC/billing unchanged |
 | V1.x / Corpus Scale / 100k Readiness | CURRENT SCALE FOUNDATION RECONCILIATION PASS | PRs #291/#294/#295/#296/#297 fresh-reconciled Steps 1–6 to the current 85-record public seed while preserving the historical 84-record oracle; downstream reconciliation confirms the later no-billing D1 architecture is already live and ahead of the original 100k design: Step 7A passed 170k required / 250k stress, Step 8F activated exactly one reviewed public record, and Step 8G reached v8018 / 19,268 protected recipes on exactly two shards before LEGAL_CORPUS_BASELINE_PASS. No replay of provisioning/population; reopen scale foundation only on a measured compatibility gap; Barbecue remains separate |
-| V1.x / Further Product Features | D5 FITNESS P0 ADAPTER PROTOTYPE PASS / BEHAVIOR DEFERRED | Validate public V0 #1080 passed deterministic + Chromium browser acceptance. User-selected workout backup is minimized to schema + goal/days/session-minutes/weekdays only after explicit save; sensitive/unknown fields cannot cross the adapter boundary; no fitness-derived ranking, calorie/TDEE, nutrition/supplement or medical behavior. Further D5 behavior is deferred |
+| V1.x / Owner Recipe Library V1 | **NEXT P0 AFTER V22 OWNER ACCEPTANCE** | Put the exact v8018 / **19,268** protected recipes into the authenticated owner's normal-app library as browse/search/open recipe records, independent of recommendation readiness. Availability must not wait for nutrition, canonical identity, meal-role or ranking completeness. Recommendation refinement continues separately and progressively. |\n| V1.x / Further Product Features | D5 FITNESS P0 ADAPTER PROTOTYPE PASS / BEHAVIOR DEFERRED | Validate public V0 #1080 passed deterministic + Chromium browser acceptance. User-selected workout backup is minimized to schema + goal/days/session-minutes/weekdays only after explicit save; sensitive/unknown fields cannot cross the adapter boundary; no fitness-derived ranking, calorie/TDEE, nutrition/supplement or medical behavior. Further D5 behavior is deferred |
 | V1.x / Protected Corpus Runtime Usability V1 | TERMINAL PASS | P1/P2/C1/C2/C3/C4/P3/P4 closed PASS. Owner production P4 acceptance validated exact v8018 / 19,268, stable browse/search/product behavior, one bounded protected-origin activation, max 4 observed D1 subqueries and unchanged mutation/cost firewalls. Execution sequence exhausted. |\n| V1.x / Protected Corpus Recommendation Expansion V1 | V21 SEARCH-FIRST COMPLETE / FULL-CORPUS SHADOW PASS / ENGINE QUALITY PASS / FIRST-500 RELEVANCE PASS / MAIN-ROLE SHADOW POLICY PASS / MEAL-SLOT QUALITY CLOSED / SIGNAL COVERAGE CLOSED / EVIDENCE ENRICHMENT CLOSED / SPARSE-EVIDENCE POLICY REVIEW CLOSED / SECONDARY-LANE EVALUATION CLOSED / RUNTIME CONTRACT CLOSED / BOUNDED IMPLEMENTATION CLOSED / OWNER CANARY CLOSED / LIVE OWNER ACCEPTANCE PASS / FULL OWNER 271 ROLLOUT ACTIVATED / OWNER PRODUCT ACCEPTANCE REQUIRED | All v8018 / 19,268 protected recipes remain owner-searchable. The validated primary recommendation lane remains 86. The exact frozen 271-candidate limited-evidence secondary universe is activated only for the authenticated owner under the accepted fixed unrestricted profile, with breakfast 22 / lunch 207 / dinner 207 / snack 42 eligibility, max-20 pagination, source provenance, explicit limited-evidence labeling, read-only two-shard hydration, <=8 D1 subqueries/request including auth, zero writes/full scans, and the existing single-flag rollback. Public runtime and primary/public recommendation admission remain unchanged. Next: `V21_LIMITED_EVIDENCE_SECONDARY_LANE_FULL_OWNER_271_OWNER_PRODUCT_ACCEPTANCE_V1`. |\n| V1.x / Production readiness — D1 write safety | BLOCKED / CONTRACT ENCODED | Full protected-corpus indexing/reindexing is **admin/migration-only**. Normal user/runtime flows must never trigger a bulk rebuild; routine corpus additions require incremental index maintenance. Any full rebuild requires an explicit maintenance gate, projected D1 rows-written + quota-headroom preflight, and rows-written telemetry. Do not mark production ready until runtime isolation is implemented and deterministically tested. |
 | V1.x / Culinary Brain Corpus Calibration V1 | LANE 2 PREP PASS / C1 + LIVE P2 READY IMMEDIATELY AFTER P1 | C0 Golden-85 preparation, the frozen P2 blocker harness and the 500-slot/19-cohort C1 allocation are complete. Exact protected IDs have not been selected. When Lane 1 earns P1 terminal PASS, immediately freeze the exact ~500 C1 identities with the existing secondary strata, execute C1, and run live/full-v8018 P2 measurement in parallel. C2 and P3 remain blocked on those results; no live KC/LLM runtime or hard-authority widening |
 | V1.x / EU regulatory truth lane | LANE 3 TERMINAL PASS / PARKED / NO SUCCESSOR SELECTED | Celery P0 is complete and the residual `tree_nut` / `gluten` semantics audit passed without further runtime change. Canonical nextGate is `NOT_SELECTED__FUTURE_ONTOLOGY_OR_THRESHOLD_SCHEMA_TRIGGER`: Lane 3 is not blocked by P1, but it is currently complete/parked rather than an active work queue. Mustard/lupin/molluscs remain deferred until exact ontology need; sulphites remain deferred until threshold-aware evidence semantics exist |
@@ -1367,3 +1367,56 @@ The product acceptance gate remains open until the owner verifies this normal-ap
 - Contract: `config/v22_owner_secondary_planning_fallback_v1.json`.
 - Target terminal: `V22_OWNER_SECONDARY_PLANNING_FALLBACK_IMPLEMENTATION_PASS__OWNER_PRODUCT_ACCEPTANCE_REQUIRED`.
 - Next gate after green deployment: authenticated owner normal-app acceptance of a plan/swap that actually uses at least one limited-evidence fallback, while confirming primary-first labeling and separate grocery handling.
+
+### 2026-10-06 product acceleration sequence — OWNER LIBRARY FIRST / PREVIEW-BEFORE-SCALE
+
+This is the canonical product sequence after reconciliation of the V21 availability-first architecture, current V22 state and Knowledge Core UX / Project Execution / Decision Framework guidance.
+
+#### P0 sequence
+
+1. **Finish V22 owner product acceptance only.** Close the already-implemented owner secondary planning-fallback gate with one normal-app plan/swap that actually uses at least one limited-evidence fallback and confirms the primary-first / separate-grocery behavior. Do not expand V22 into a larger product programme before this acceptance is closed.
+2. **Ship Owner Recipe Library V1 in the normal app.** The exact v8018 **19,268** protected recipes become authenticated-owner browse/search/open recipe records in the everyday product surface. Library availability is independent of recommendation admission, nutrition completeness, canonical-ingredient completeness, meal-role classification and ranking readiness. Non-promoted records remain explicitly distinguishable from trusted recommendations, e.g. `AVAILABLE__NOT_RECOMMENDATION_VALIDATED`.
+3. **Improve library + recipe-detail UX from early owner feedback.** Preserve source-backed ingredients, steps, servings, timing, summaries and provenance when present; expose missing/unknown fields honestly rather than hiding the recipe. Fix systemic/source/cohort issues once rather than requiring recipe-by-recipe product admission.
+4. **Continue recommendation refinement in parallel.** The validated primary lane remains separately trusted; shadow evaluation, metadata repair, safety/relevance work and bounded secondary lanes continue without blocking library availability.
+5. **Progressively promote recommendation cohorts.** Widen recommendation eligibility only when measured evidence earns it. A recommendation hold/failure must not remove an otherwise valid recipe from the owner library.
+
+#### Product-state separation
+
+```text
+OWNER_LIBRARY_AVAILABLE
+  = rights/integrity-approved recipe is browseable/searchable/openable by the authenticated owner
+
+RECOMMENDATION_ELIGIBLE
+  = sufficient hard-constraint evidence exists for the applicable profile
+
+TRUSTED_RECOMMENDATION
+  = ranking/planner behavior has passed the declared quality, regression and rollback gates
+```
+
+These states are independent. The normal app must not use recommendation validation as a visibility gate for the owner recipe library.
+
+#### Feature-development operating rule — preview → owner decision → implement → acceptance
+
+For a material user-facing feature or meaningful UX change:
+
+1. **Preview first.** Present one concrete representative example before substantial implementation. Use the lowest-fidelity artifact capable of answering the product question: a rendered screen/mockup for layout/visual hierarchy, or a tiny interactive/working vertical slice when behavior/state transitions matter.
+2. **Owner decision.** The owner accepts the direction or requests changes. Do not make the owner discover major product decisions only after a long implementation cycle.
+3. **Implement the accepted pattern.** Scale the approved pattern across the bounded target surface, preserving repository safety, rights, authority and runtime constraints.
+4. **Acceptance in the normal product.** Validate the implemented feature in the real everyday app surface, not only in a diagnostic page or hidden test harness.
+
+Exceptions: trivial implementation details, non-user-visible repairs and urgent correctness/security fixes do not require a visual preview. If a material feature cannot be meaningfully previewed without working behavior, build the smallest reversible vertical slice first.
+
+#### Knowledge Core rationale
+
+This sequence follows the reconciled Knowledge Core guidance: use the lowest prototype fidelity capable of answering the uncertainty; prefer small reversible tests that reduce the most important uncertainty; keep work sliced so verification can keep pace; and avoid large opaque commitments with delayed user feedback. It also preserves the V21 architectural decision that **availability/searchability and recommendation trust are separate concerns**.
+
+#### Next executable gate
+
+`V22_OWNER_SECONDARY_PLANNING_FALLBACK_OWNER_PRODUCT_ACCEPTANCE_V1`
+
+After that gate passes, the next product implementation tranche is:
+
+`OWNER_RECIPE_LIBRARY_V1__NORMAL_APP_19268_AVAILABILITY`
+
+Recommendation refinement remains a parallel lane and must not block that library tranche.
+
