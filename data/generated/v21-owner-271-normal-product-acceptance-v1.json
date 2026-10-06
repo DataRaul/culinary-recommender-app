@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "CULINARY_V21_OWNER_271_NORMAL_PRODUCT_ACCEPTANCE_EVIDENCE_V1",
+  "date": "2026-10-06",
+  "timezone": "Atlantic/Canary",
+  "pass": true,
+  "terminal": "V21_LIMITED_EVIDENCE_SECONDARY_LANE_FULL_OWNER_271_OWNER_PRODUCT_ACCEPTANCE_PASS",
+  "protectedCorpusVersion": "v8018",
+  "candidateUniverseCount": 271,
+  "primaryRuntimeRecipeCount": 86,
+  "repair": {
+    "pullRequest": 401,
+    "mergeCommit": "2b3ea07ade2c8a32377a533d29cf81b9fea9a86f",
+    "rootCause": "D1 route rows were not guaranteed to match requested recipe-ID order while the owner endpoint paired routes and packets positionally.",
+    "regressionCoverage": "Scrambled route-row order must still return routes and packets in requested recipe-ID order."
+  },
+  "machineEvidence": {
+    "preMergeV8018RuntimeRun": 37391813347,
+    "preMergeOwnerCanaryRun": 37391813694,
+    "preMergeValidationRun": 37391813323,
+    "postMergePagesDeploymentRun": 37391982867,
+    "postMergeValidationProductionSmokeRun": 37391983665,
+    "allPassed": true
+  },
+  "ownerObservation": {
+    "evidenceClass": "AUTHENTICATED_OWNER_PRODUCT_OBSERVATION",
+    "observation": "New V21 recipes load successfully after the repair and present improved, fuller recipe text/detail compared with the earlier thin presentation.",
+    "acceptance": true
+  },
+  "boundaries": {
+    "publicPrimaryRecommendationWidened": false,
+    "protectedD1WritesAuthorized": false,
+    "thirdShardAuthorized": false,
+    "paidInfrastructureAuthorized": false,
+    "dietaryAllergenAuthorityChanged": false,
+    "knowledgeCoreWriteAuthorized": false,
+    "barbecueMutationAuthorized": false
+  }
+}
