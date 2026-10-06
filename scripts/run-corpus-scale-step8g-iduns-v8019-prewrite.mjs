@@ -254,7 +254,7 @@ if (measurement?.boundaries?.liveD1WritesPerformed !== 0 ||
     measurement?.boundaries?.thirdShardAuthorized !== false ||
     measurement?.boundaries?.billingExpansionAuthorized !== false) throw new Error("MEASUREMENT_BOUNDARY_MISMATCH");
 
-const parentFingerprint = buildV8017ParentFingerprint({
+const parentFingerprint = buildV8018ParentFingerprint({
   prewriteEvidence: parentPrewrite,
   liveEvidence: parentLive,
   runtimeDescriptor: STEP8G_V8018_RUNTIME_DESCRIPTOR
@@ -262,7 +262,7 @@ const parentFingerprint = buildV8017ParentFingerprint({
 const packets = buildPackets(candidate);
 const plan = buildPlan(packets);
 const capacity = computeCapacity(parentPrewrite, plan);
-const operationBudget = plannedV8018OperationBudget({ maxRowsPerBatch: STEP8G_MAX_ROWS_PER_WRITE_BATCH });
+const operationBudget = plannedV8019OperationBudget({ maxRowsPerBatch: STEP8G_MAX_ROWS_PER_WRITE_BATCH });
 const candidateByOrdinal = new Map(candidate.map(row => [row.ordinal, row]));
 const requestBytes = batchRequestBytes(plan, candidateByOrdinal);
 const maxBodyBytes = Math.max(...packets.map(row => row.bodyBytes));
@@ -299,7 +299,7 @@ const evidence = {
   schema: "CORPUS_SCALE_STEP8G_IDUNS_V8019_PREWRITE_V1",
   pass,
   terminalCandidate: pass ? PREWRITE_PASS_TERMINAL : "STEP_8G_CAPACITY_OR_COST_GATE_REACHED",
-  date: "2026-09-22",
+  date: "2026-10-06",
   source: {
     repository: ORA_REPOSITORY,
     commit: ORA_COMMIT,
@@ -312,7 +312,7 @@ const evidence = {
       sourceAuthor: SOURCE.sourceAuthor,
       sourceAuthorClassification: SOURCE.authorClassification,
       canonicalAuthor: SOURCE.canonicalAuthor,
-      titlePageAuthor: SOURCE.titlePageAuthor,
+      digitizedSource: SOURCE.digitizedSource,
       sourceYear: SOURCE.sourceYear,
       sourceUrl: SOURCE.sourceUrl,
       digitizedEditionYear: SOURCE.digitizedEditionYear,
@@ -387,7 +387,7 @@ assertV8019PrewriteBoundaries(evidence);
 
 const validation = {
   schema: "CORPUS_SCALE_STEP8G_IDUNS_V8019_PREWRITE_VALIDATION_V1",
-  date: "2026-09-22",
+  date: "2026-10-06",
   pass,
   parentFingerprintSha256: parentFingerprint.sha256,
   childDescriptorUniverseSha256: packetDescriptorSha256,
