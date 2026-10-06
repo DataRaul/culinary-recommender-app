@@ -26,7 +26,7 @@ const baseline = Array.from({ length: 80 }, (_, i) => ({
   ingredients: [`baseline ingredient ${i}`]
 }));
 
-test("discovery identifies source-level marginal-value candidates but never clears rights", () => {
+test("discovery identifies structurally usable acquisition candidates but never clears rights", () => {
   const candidate = Array.from({ length: 60 }, (_, i) => row({ title: `Novel Dish ${i}`, slug: `novel-${i}`, ingredient: `novel ingredient ${i}` }));
   const result = discoverOraNextSources({
     collectionRows: candidate,
@@ -76,6 +76,22 @@ test("raw size cannot rescue a structurally duplicate low-novelty source", () =>
   const result = discoverOraNextSources({ collectionRows: rows, baselineRecipes: baseline });
   assert.equal(result.rightsReviewEligibleCount, 0);
   assert.equal(result.allMeasuredCandidates.length, 1);
-  assert.equal(result.allMeasuredCandidates[0].marginalValuePass, false);
+  assert.equal(result.allMeasuredCandidates[0].acquisitionValuePass, false);
   assert.equal(result.allMeasuredCandidates[0].discoveryEligibleForRightsReview, false);
+});
+
+
+test("acquisition-first discovery does not reject a large novel cohort merely for repeated internal titles", () => {
+  const rows = Array.from({ length: 120 }, (_, i) => row({
+    title: `Novel Family ${i % 70}`,
+    slug: `variant-${i}`,
+    sourceTitle: "Variant-Rich Historic Book",
+    url: "https://archive.org/details/variant-rich"
+  }));
+  const result = discoverOraNextSources({ collectionRows: rows, baselineRecipes: baseline });
+  assert.equal(result.allMeasuredCandidates.length, 1);
+  assert.ok(result.allMeasuredCandidates[0].uniqueTitleRatio < 0.8);
+  assert.equal(result.allMeasuredCandidates[0].novelNormalizedTitleCount, 70);
+  assert.equal(result.allMeasuredCandidates[0].acquisitionValuePass, true);
+  assert.equal(result.allMeasuredCandidates[0].discoveryEligibleForRightsReview, true);
 });

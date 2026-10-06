@@ -36,16 +36,16 @@
 | V1.1.2 / Nutrition B8 | CANDIDATE | exact SR Legacy small-onion quantity evidence earns first authoritative authored recipe; strict Foundation review defers partial/wrong-form rows |
 | V1.x / Recipe-unlock evidence | CONTINUOUS | target residual composition/form, nutrient-field and exact quantity blockers by recipe-level unlock value; independent of external RecipeSource breadth |
 | V1.x / Authoritative nutrition coverage | CONTINUOUS | expand reviewed evidence under the approved source policy without guessing |
-| V1.x / Corpus breadth | F2 CONTROL PLANE ACTIVE / RUNTIME GATED | broaden through revision-aware review and measured coverage gaps rather than raw recipe-count growth; no automatic admission |
-| V1.x / Legal Corpus Baseline | COMPLETE / PASS | v8018 protected corpus = 19,268; final hold-adjusted discovery found 0 rights-review-eligible material cohorts; next primary lane is corpus normalization/categorization |\n| V1.x / Corpus normalization baseline | COMPLETE / PASS | exact pinned-source reconstruction 19,268/19,268; 3 explicit legacy CC0 structural exceptions; raw taxonomy signals measured without granting canonical authority |
+| V1.x / Corpus breadth | **P0 ACQUISITION-FIRST / MAXIMIZE RIGHTS-CLEAN CORPUS** | Acquire and ingest every lawfully reusable, provenance-preserving, structurally usable recipe cohort that fits the protected zero-cost runtime. Search/open usability is the product gate; recommendation/nutrition/classification completeness must not block corpus growth. |
+| V1.x / Legal Corpus Baseline | HISTORICAL PASS / **ACQUISITION LOOP REOPENED BY OWNER** | v8018 protected corpus = 19,268 was the prior stop under the old marginal-value screen. On 2026-10-06 the owner explicitly replaced that stopping rule with acquisition-first growth: keep adding every rights-clean, provenance-preserving usable recipe cohort; low marginal culinary value alone is no longer a stop condition. |\n| V1.x / Corpus normalization baseline | COMPLETE / PASS | exact pinned-source reconstruction 19,268/19,268; 3 explicit legacy CC0 structural exceptions; raw taxonomy signals measured without granting canonical authority |
 | V1.x / Corpus normalization mapping V1 | COMPLETE / PASS | reversible 19,268-record overlay; narrow explicit/reviewed authority with UNKNOWN/AMBIGUOUS preserved; no runtime/D1 mutation |
 | V1.x / Nutrition/vitamin applicability audit | COMPLETE / PASS | current authored macro authority 19/76; protected exact ingredient matches 36,760/144,245 and 112 all-identity-ready recipes; 0 protected recipes directly current-engine authoritative; vitamin/mineral schema not implemented |\n| V1.x / Recommendation readiness audit | COMPLETE / PASS — USABLE BASELINE | public runtime 85; 77 recommendation-state eligible and hard-metadata ready; unknown nutrition remains explicit/non-numeric after bounded repair; protected v8018 remains 0 automatically recommendation-ready; Recipe Family/adaptation is next |
 | V1.x / Recipe Family P0 prototype | COMPLETE / PASS | bounded Carbonara + Hummus prototype; Hummus APP_AUTHORING_ELIGIBLE, Carbonara held on egg/hard-cheese quantity authority; Consultant + Project Coach blocking review passed |
 | V1.x / Recipe Family UI legal conformance | COMPLETE / PASS | PR #276; real Hummus candidate proves generic multi-source attribution + fail-closed UNKNOWN/UNSATISFIABLE behavior; no public/runtime admission |\n| V1.x / Recipe Family 10-family bounded expansion | COMPLETE / PASS WITH EXPLICIT HOLDS | PR #283 green and merged; 10-family closeout = 8 candidate-only APP_AUTHORING_ELIGIBLE + 2 fail-closed HOLD (Carbonara, Pizza Margherita); 0 public/runtime admissions; v8018/D1/shards/KC/billing unchanged |
 | V1.x / Corpus Scale / 100k Readiness | CURRENT SCALE FOUNDATION RECONCILIATION PASS | PRs #291/#294/#295/#296/#297 fresh-reconciled Steps 1–6 to the current 85-record public seed while preserving the historical 84-record oracle; downstream reconciliation confirms the later no-billing D1 architecture is already live and ahead of the original 100k design: Step 7A passed 170k required / 250k stress, Step 8F activated exactly one reviewed public record, and Step 8G reached v8018 / 19,268 protected recipes on exactly two shards before LEGAL_CORPUS_BASELINE_PASS. No replay of provisioning/population; reopen scale foundation only on a measured compatibility gap; Barbecue remains separate |
-| V1.x / Owner Recipe Library V1 | **OWNER FEEDBACK: STANDALONE TAB REJECTED / UNIFIED SEARCH IMPLEMENTATION IN PROGRESS** | Put the exact v8018 / **19,268** protected recipes into the authenticated owner's normal-app library as browse/search/open recipe records, independent of recommendation readiness. Availability must not wait for nutrition, canonical identity, meal-role or ranking completeness. Recommendation refinement continues separately and progressively. |
+| V1.x / Owner Recipe Library V1 | **OWNER LIVE ACCEPTANCE PASS** | The authenticated normal-app Search now exposes the exact v8018 / **19,268** protected recipes as browse/search/open records. Availability is independent of recommendation readiness. This capability is the minimum product contract every future acquired cohort must preserve. |
 | V1.x / Further Product Features | D5 FITNESS P0 ADAPTER PROTOTYPE PASS / BEHAVIOR DEFERRED | Validate public V0 #1080 passed deterministic + Chromium browser acceptance. User-selected workout backup is minimized to schema + goal/days/session-minutes/weekdays only after explicit save; sensitive/unknown fields cannot cross the adapter boundary; no fitness-derived ranking, calorie/TDEE, nutrition/supplement or medical behavior. Further D5 behavior is deferred |
-| V1.x / Protected Corpus Runtime Usability V1 | TERMINAL PASS | P1/P2/C1/C2/C3/C4/P3/P4 closed PASS. Owner production P4 acceptance validated exact v8018 / 19,268, stable browse/search/product behavior, one bounded protected-origin activation, max 4 observed D1 subqueries and unchanged mutation/cost firewalls. Execution sequence exhausted. |\n| V1.x / Protected Corpus Recommendation Expansion V1 | V21 SEARCH-FIRST COMPLETE / FULL-CORPUS SHADOW PASS / ENGINE QUALITY PASS / FIRST-500 RELEVANCE PASS / MAIN-ROLE SHADOW POLICY PASS / MEAL-SLOT QUALITY CLOSED / SIGNAL COVERAGE CLOSED / EVIDENCE ENRICHMENT CLOSED / SPARSE-EVIDENCE POLICY REVIEW CLOSED / SECONDARY-LANE EVALUATION CLOSED / RUNTIME CONTRACT CLOSED / BOUNDED IMPLEMENTATION CLOSED / OWNER CANARY CLOSED / LIVE OWNER ACCEPTANCE PASS / FULL OWNER 271 ROLLOUT ACTIVATED / OWNER PRODUCT ACCEPTANCE PASS | All v8018 / 19,268 protected recipes remain owner-searchable. The validated primary recommendation lane remains 86. The exact frozen 271-candidate limited-evidence secondary universe is activated only for the authenticated owner under the accepted fixed unrestricted profile, with breakfast 22 / lunch 207 / dinner 207 / snack 42 eligibility, max-20 pagination, source provenance, explicit limited-evidence labeling, read-only two-shard hydration, <=8 D1 subqueries/request including auth, zero writes/full scans, and the existing single-flag rollback. Public runtime and primary/public recommendation admission remain unchanged. Owner product acceptance is closed PASS; next P0 is `OWNER_RECIPE_LIBRARY_V1__NORMAL_APP_19268_AVAILABILITY`. |\n| V1.x / Production readiness — D1 write safety | BLOCKED / CONTRACT ENCODED | Full protected-corpus indexing/reindexing is **admin/migration-only**. Normal user/runtime flows must never trigger a bulk rebuild; routine corpus additions require incremental index maintenance. Any full rebuild requires an explicit maintenance gate, projected D1 rows-written + quota-headroom preflight, and rows-written telemetry. Do not mark production ready until runtime isolation is implemented and deterministically tested. |
+| V1.x / Protected Corpus Runtime Usability V1 | TERMINAL PASS | P1/P2/C1/C2/C3/C4/P3/P4 closed PASS. Owner production P4 acceptance validated exact v8018 / 19,268, stable browse/search/product behavior, one bounded protected-origin activation, max 4 observed D1 subqueries and unchanged mutation/cost firewalls. Execution sequence exhausted. |\n| V1.x / Protected Corpus Recommendation Expansion V1 | COMPLETE BASELINE / **PARKED BEHIND ACQUISITION-FIRST P0** | Current 86 primary + 271 owner limited-evidence recommendation behavior remains intact, but no further recommendation qualification, classification, nutrition, labeling or scorer work may pre-empt corpus acquisition. Resume only after the acquisition-first programme reaches a real source/cost/security/human gate and the owner selects the next enrichment bucket. |\n| V1.x / Production readiness — D1 write safety | BLOCKED / CONTRACT ENCODED | Full protected-corpus indexing/reindexing is **admin/migration-only**. Normal user/runtime flows must never trigger a bulk rebuild; routine corpus additions require incremental index maintenance. Any full rebuild requires an explicit maintenance gate, projected D1 rows-written + quota-headroom preflight, and rows-written telemetry. Do not mark production ready until runtime isolation is implemented and deterministically tested. |
 | V1.x / Culinary Brain Corpus Calibration V1 | LANE 2 PREP PASS / C1 + LIVE P2 READY IMMEDIATELY AFTER P1 | C0 Golden-85 preparation, the frozen P2 blocker harness and the 500-slot/19-cohort C1 allocation are complete. Exact protected IDs have not been selected. When Lane 1 earns P1 terminal PASS, immediately freeze the exact ~500 C1 identities with the existing secondary strata, execute C1, and run live/full-v8018 P2 measurement in parallel. C2 and P3 remain blocked on those results; no live KC/LLM runtime or hard-authority widening |
 | V1.x / EU regulatory truth lane | LANE 3 TERMINAL PASS / PARKED / NO SUCCESSOR SELECTED | Celery P0 is complete and the residual `tree_nut` / `gluten` semantics audit passed without further runtime change. Canonical nextGate is `NOT_SELECTED__FUTURE_ONTOLOGY_OR_THRESHOLD_SCHEMA_TRIGGER`: Lane 3 is not blocked by P1, but it is currently complete/parked rather than an active work queue. Mustard/lupin/molluscs remain deferred until exact ontology need; sulphites remain deferred until threshold-aware evidence semantics exist |
 | V1.x / Brain-derived behavior | SEPARATELY GATED | only narrow reviewed static exports with deterministic tests and normal PR/browser acceptance |
@@ -1469,3 +1469,60 @@ Recommendation refinement remains a parallel lane and must not block that librar
 - Root cause in the normal-app UI: protected recipe detail was rendered after the full result grid while the generic Search rerender forced the viewport to the top, making a successful open action appear inert.
 - Repair: render the owner recipe detail immediately below the all-recipes search controls, preserve scroll position during detail loading, and scroll/focus the opened detail panel after hydration.
 - Protected detail still uses the existing authenticated bounded API. No recommendation, corpus, D1-write, safety or public-admission semantics change.
+
+
+## 2026-10-06 owner directive — ACQUISITION FIRST / MAXIMUM RIGHTS-CLEAN CORPUS
+
+This directive supersedes earlier sequencing that treated marginal culinary value, recommendation readiness, normalization completeness, classification coverage, nutrition coverage or scorer evidence as reasons to stop protected-corpus growth.
+
+### P0 objective
+
+**Acquire recipes.** Continue expanding the protected owner corpus as far as lawfully and technically possible. The product minimum for a newly admitted recipe is:
+
+```text
+rights/provenance acceptable
+-> source-backed title + ingredients + method/detail preserved where available
+-> structurally retrievable
+-> owner searchable/openable
+```
+
+Recommendation qualification is **not** an ingestion prerequisite. Nutrition, dietary/allergen authority, canonical ingredient identity, meal-role classification, budget, meal-prep suitability, novelty and ranking completeness may remain unknown.
+
+### Acquisition order
+
+1. Ingest every already-held or already-discovered cohort that can now clear rights/provenance and structural integrity.
+2. Reopen the pinned Open Recipe Archive discovery universe without the old internal unique-title-ratio “marginal value” stop rule. True duplicate records may be deduplicated, but a cohort with many useful novel recipes is not rejected merely because it also contains repeated/variant titles.
+3. Continue through other already-recorded rights-clean/open candidates and source-cohort salvage opportunities.
+4. Search for additional lawful sources after the current known source universe is exhausted.
+5. Continue until a real blocker is reached: unresolved rights/provenance, protected-runtime capacity/cost, security/account authority, or a genuinely unknown implementation decision requiring owner input.
+
+There is **no target of 40k** and no artificial stop at a round number. The target is the **maximum rights-clean, provenance-preserving, searchable/openable corpus** achievable under the accepted zero-recurring-cost architecture.
+
+### No-loop / owner-escalation rule
+
+When an acquisition/import step fails:
+
+- perform **one bounded diagnosis** and one clearly justified repair attempt when the cause is understood;
+- do **not** repeat equivalent retries, widen scope blindly, invent metadata, weaken rights gates, or create serial “repair” loops;
+- if the cause remains materially uncertain, the same failure recurs, or the next step requires a new cost/security/legal/product choice, **stop and ask the owner** with the evidence, the blocker and concrete options.
+
+“Keep trying until it works” is not an authorized execution strategy.
+
+### Priority firewall
+
+Until this acquisition-first P0 reaches such a gate, do **not** spend the principal development lane on:
+
+- expanding the 86 primary trusted-recommendation set;
+- further qualification of the 271 secondary recipes;
+- nutrition/protein enrichment;
+- meal-prep/novelty/budget scoring;
+- large-scale ingredient ontology repair for recommendation purposes;
+- new recommendation features.
+
+Those are later bucketed programmes. The enlarged corpus will be the substrate for subsequent classification, labeling, safety and recommendation experiments.
+
+### Immediate executable acquisition gate
+
+The old post-v8018 discovery recorded two structurally measured ORA cohorts totaling **4,304 recipes** — *Iduns kokbok* (2,818) and *Hemmets kokbok* (1,486) — but rejected both from rights review solely because the old internal unique-title ratio was below 0.80 even though each had ~99.7% novel normalized titles relative to the protected baseline.
+
+That marginal-value rejection is no longer controlling. Re-run discovery under the acquisition-first rule, move every structurally valid high-novel-count source into documentary rights/provenance review, and ingest each cohort that clears that review. Historical rights holds remain holds unless new evidence resolves them.

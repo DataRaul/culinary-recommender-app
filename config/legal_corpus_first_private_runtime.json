@@ -1,25 +1,21 @@
 {
-  "contractVersion": "1.0.0",
+  "contractVersion": "1.1.0",
   "decisionId": "LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_2026_09_17",
-  "state": "OWNER_APPROVED_ROADMAP_ORDER",
+  "state": "OWNER_APPROVED_ACQUISITION_FIRST_REOPENED",
   "canonicalDecision": "docs/LEGAL_CORPUS_FIRST_PRIVATE_RUNTIME_DECISION.md",
   "sourceOfTruth": "DataRaul/culinary-recommender-app",
   "sequencing": {
-    "primaryNextMilestone": "FURTHER_PRODUCT_FEATURES",
-    "principalExecutionLane": "FURTHER_PRODUCT_FEATURES_READINESS",
+    "primaryNextMilestone": "MAXIMUM_RIGHTS_CLEAN_CORPUS_ACQUISITION",
+    "principalExecutionLane": "CORPUS_ACQUISITION_FIRST",
     "recipeFamilyPrototypeState": "COMPLETE_10_FAMILY_BOUNDED_EXPANSION__8_ELIGIBLE_2_HOLD",
     "nutritionExpansionPriority": "APPLICABILITY_AUDIT_COMPLETE__CONTINUOUS_EVIDENCE_LANE",
     "youtubeRefinementPriority": "BARBECUE_SCHEDULED_PILOT_ACTIVE__SEPARATE_OWNER_PRIORITY_LANE",
-    "recommendationOptimizationPriority": "USABLE_RECOMMENDATION_BASELINE_PASS__FROZEN",
+    "recommendationOptimizationPriority": "PARKED_UNTIL_ACQUISITION_GATE",
     "postBaselineOrder": [
-      "corpus_normalization_and_categorization",
-      "nutrition_and_vitamin_applicability_audit",
-      "recommendation_readiness",
-      "recipe_family_and_adaptation",
-      "youtube_and_authoritative_evidence_refinement",
-      "further_product_features"
+      "maximum_rights_clean_corpus_acquisition",
+      "owner_selected_bucketed_enrichment_after_acquisition_gate"
     ],
-    "currentPostBaselinePosition": "FURTHER_PRODUCT_FEATURES",
+    "currentPostBaselinePosition": "MAXIMUM_RIGHTS_CLEAN_CORPUS_ACQUISITION",
     "furtherProductFeatures": {
       "status": "D5_FITNESS_INTEGRATION_P0_ADAPTER_DESIGN_PASS",
       "contract": "config/further_product_features_v1.json",
@@ -59,7 +55,20 @@
     "attributionRequirementMustBeClassified": true,
     "requiredAttributionMustBeRenderableForAnyLaterPublicReusablePath": true,
     "provenanceAlwaysRequired": true,
-    "rawCountIsSuccessCriterion": false
+    "rawCountIsSuccessCriterion": false,
+    "countGrowthIsPrimaryOptimizationObjective": true,
+    "maximizeRightsCleanUniqueUsableRecipes": true,
+    "marginalCulinaryValueMayBlockRightsReview": false,
+    "recommendationReadinessMayBlockPopulation": false,
+    "nutritionOrClassificationMayBlockPopulation": false,
+    "trueDuplicateRecordsMayBeDeduplicated": true,
+    "stopOnlyOn": [
+      "RIGHTS_OR_PROVENANCE_UNRESOLVED",
+      "STRUCTURAL_INTEGRITY_INADEQUATE",
+      "FREE_RUNTIME_CAPACITY_OR_COST_GATE",
+      "SECURITY_OR_ACCOUNT_AUTHORITY_GATE",
+      "OWNER_DECISION_REQUIRED"
+    ]
   },
   "runtimeBoundary": {
     "githubRepositoryVisibility": "PUBLIC",
@@ -90,7 +99,7 @@
     "CUSTOM_SHARED_PASSWORD_DOWNGRADE"
   ],
   "legalCorpusBaseline": {
-    "status": "LEGAL_CORPUS_BASELINE_PASS",
+    "status": "HISTORICAL_PASS__ACQUISITION_LOOP_REOPENED",
     "activeProtectedVersion": "v8018",
     "protectedRecipeCount": 19268,
     "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_NO_MATERIAL_CANDIDATE",
@@ -98,7 +107,12 @@
     "finalDiscoveryArtifactId": 10746649788,
     "finalDiscoveryArtifactName": "step8g-ora-next-discovery-c31-g59-m2-e0",
     "measuredCandidateCount": 2,
-    "rightsReviewEligibleCount": 0
+    "rightsReviewEligibleCount": 0,
+    "reopenedByOwner": true,
+    "reopenedDate": "2026-10-06",
+    "reopenedObjective": "MAXIMUM_RIGHTS_CLEAN_SEARCHABLE_OPENABLE_CORPUS",
+    "priorMarginalValueStopNoLongerControlling": true,
+    "nextGate": "ORA_ACQUISITION_FIRST_DISCOVERY_AND_RIGHTS_REVIEW"
   },
   "corpusNormalizationBaseline": {
     "status": "CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_PASS",
@@ -201,5 +215,13 @@
     "unknownNutritionSafeCount": 1,
     "unknownNutritionMissingSignalDisclosureCount": 1,
     "publicRuntimeChangedByAdmission": false
+  },
+  "executionFailurePolicy": {
+    "maximumEquivalentRepairAttemptsBeforeOwnerEscalation": 1,
+    "repeatEquivalentRetryAuthorized": false,
+    "blindScopeWideningAuthorized": false,
+    "unknownMetadataFabricationAuthorized": false,
+    "weakenRightsGateAuthorized": false,
+    "escalation": "STOP_AND_ASK_OWNER_WITH_EVIDENCE_OPTIONS"
   }
 }
