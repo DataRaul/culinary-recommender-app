@@ -115,3 +115,18 @@ test("v8019 owner runner is Iduns-specific, network-only, and reports nineteen-l
   assert.match(sw,/\/step8g-v8019-populate\.html/);
   assert.match(protectedPage,/cloudflare-deploy-pulse: v8019-runner-20261007/);
 });
+
+
+test("v8019 API runner entry bypasses auth and stale service-worker cache", async () => {
+  const { onRequestGet } = await import("../functions/api/step8g/v8019.js");
+  const response = await onRequestGet({
+    request: new Request("https://culinary-recommender-app.pages.dev/api/step8g/v8019?action=runner"),
+    env: {}
+  });
+  assert.equal(response.status,302);
+  assert.equal(response.headers.get("cache-control"),"no-store, max-age=0");
+  assert.equal(
+    response.headers.get("location"),
+    "https://culinary-recommender-app.pages.dev/step8g-v8019-populate.html?sw-bypass=v8019-api-route-v1"
+  );
+});
