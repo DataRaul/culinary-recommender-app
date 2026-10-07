@@ -44,10 +44,21 @@ const metrics = (d1Subqueries, shardQueries = 0, controlQueries = 0) => ({ d1Sub
 function requestTooLarge(request) { const raw = request.headers.get("content-length"); if (!raw) return false; const value = Number(raw); return Number.isFinite(value) && value > MAX_REQUEST_BYTES; }
 
 export async function onRequestGet({ request, env }) {
+  const url = new URL(request.url);
+  if (url.searchParams.get("action") === "runner") {
+    const runnerUrl = new URL("/step8g-v8019-populate.html", url.origin);
+    runnerUrl.searchParams.set("sw-bypass", "v8019-api-route-v1");
+    return new Response(null, {
+      status: 302,
+      headers: {
+        location: runnerUrl.toString(),
+        "cache-control": "no-store, max-age=0"
+      }
+    });
+  }
   const authResult = await authorize(request, env);
   if (authResult.response) return authResult.response;
   const auth = authResult.authD1Subqueries;
-  const url = new URL(request.url);
   if (url.searchParams.get("simulate") === "free-limit") return jsonResponse({ ok: false, step: STEP, error: "STEP8G_V8019_FREE_LIMIT_FAIL_CLOSED", simulated: true, protectedDataReturned: false, publicRuntimeChanged: false, fullCorpusScans: 0, metrics: metrics(auth) }, 503);
   const missing = missingBindings(env);
   if (missing.length) return jsonResponse({ ok: false, step: STEP, error: "STEP8G_V8019_BINDINGS_NOT_CONFIGURED", missingBindings: missing, protectedDataReturned: false, metrics: metrics(auth) }, 503);
