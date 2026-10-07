@@ -43,9 +43,9 @@
 <main>
   <header>
     <div>
-      <p class="muted">Owner-only protected corpus · v8018</p>
+      <p class="muted">Owner-only protected corpus · v8019</p>
       <h1>Protected recipe corpus</h1>
-      <p class="muted">All 19,268 protected recipes are available here for private browse/search. Recommendation validation is a separate state shown on each recipe.</p>
+      <p class="muted">Protected storage is v8019 / 22,086. This page incrementally adds the 2,818 Iduns recipes to private browse/search without rebuilding the accepted v8018 / 19,268 base index.</p>
     </div>
     <a class="button" href="/auth-canary.html">Auth controls</a>
   </header>
@@ -60,6 +60,7 @@
       <button id="runCanary" type="button" disabled>Run live verification</button>
       <button id="runP2Alignment" type="button" disabled>Run P2 live alignment</button>
       <button id="runP4Acceptance" type="button" disabled>Run P4 product acceptance</button>
+      <button id="runV8019SearchAcceptance" type="button" disabled>Run v8019 search acceptance</button>
       <button id="runSecondaryCanary" type="button">Run secondary-lane canary</button>
     </div>
     <p id="gateStatus" class="muted" aria-live="polite">P4 terminal PASS is recorded. The verifier is retained for diagnostics; checking authentication and private-index readiness…</p>
@@ -114,6 +115,7 @@
   const runCanaryButton = document.getElementById('runCanary');
   const runP2AlignmentButton = document.getElementById('runP2Alignment');
   const runP4AcceptanceButton = document.getElementById('runP4Acceptance');
+  const runV8019SearchAcceptanceButton = document.getElementById('runV8019SearchAcceptance');
   const runSecondaryCanaryButton = document.getElementById('runSecondaryCanary');
   const SECONDARY_CANARY_API = '/api/protected-corpus/limited-evidence-secondary-canary';
   const SECONDARY_CANARY_PROFILE = {budget:4,nutritionPriority:3,speed:3,skill:4,variety:2,proteinEmphasis:3,mealPrep:2,maxMinutes:180,cuisinePreferences:[],priorityPacks:[],dietaryMode:'unrestricted',allergens:[],excludedIngredientIds:[],unavailableIngredientIds:[],currentPantryIngredientIds:[],pantryStapleIds:[]};
@@ -207,9 +209,11 @@
     runCanaryButton.hidden = false;
     runP2AlignmentButton.hidden = false;
     runP4AcceptanceButton.hidden = false;
+    runV8019SearchAcceptanceButton.hidden = false;
     runCanaryButton.disabled = true;
     runP2AlignmentButton.disabled = true;
     runP4AcceptanceButton.disabled = true;
+    runV8019SearchAcceptanceButton.disabled = true;
     gateStatusNode.textContent = 'P4 terminal PASS is recorded. A diagnostic rerun requires the private session; P1 and P2 are also retained only as diagnostics.';
     canaryEvidencePanel.hidden = true;
     resultsNode.innerHTML = '';
@@ -232,9 +236,11 @@
       runCanaryButton.hidden = false;
       runP2AlignmentButton.hidden = false;
       runP4AcceptanceButton.hidden = false;
+      runV8019SearchAcceptanceButton.hidden = false;
       runCanaryButton.disabled = true;
       runP2AlignmentButton.disabled = true;
       runP4AcceptanceButton.disabled = true;
+      runV8019SearchAcceptanceButton.disabled = true;
       gateStatusNode.textContent = 'P4 terminal PASS is recorded; diagnostic rerun is disabled because the private index is not initialized in this environment.';
       prepareButton.textContent = 'Prepare private index';
       return true;
@@ -257,19 +263,31 @@
       ? '<span class="status-good">Ready:</span> ' + result.indexedRecipeCount.toLocaleString() + ' / ' + result.expectedRecipeCount.toLocaleString() + ' recipes indexed; ' + result.structuralPartialCount + ' partial structural records.'
       : 'Authenticated. Indexed ' + result.indexedRecipeCount.toLocaleString() + ' / ' + result.expectedRecipeCount.toLocaleString() + ' recipes.';
     const structuralPartialCount = Number(result.structuralPartialCount || 0);
+    const v8019Ready = result.activeVersion === 'v8019'
+      && result.ready === true
+      && Number(result.baseIndexedRecipeCount) === 19268
+      && Number(result.deltaIndexedRecipeCount) === 2818
+      && Number(result.indexedRecipeCount) === 22086
+      && Number(result.ftsRecipeCount) === 22086;
     prepareButton.hidden = result.ready === true;
-    repairForkrecipeButton.hidden = !(result.ready === true && structuralPartialCount === 918);
-    const liveReady = result.ready === true && structuralPartialCount === 3;
+    repairForkrecipeButton.hidden = true;
+    const historicalLiveReady = result.activeVersion === 'v8018' && result.ready === true && structuralPartialCount === 3;
     runCanaryButton.hidden = false;
     runP2AlignmentButton.hidden = false;
     runP4AcceptanceButton.hidden = false;
-    runCanaryButton.disabled = !liveReady;
-    runP2AlignmentButton.disabled = !liveReady;
-    runP4AcceptanceButton.disabled = !liveReady;
-    gateStatusNode.textContent = liveReady
-      ? 'P4 terminal PASS is recorded. P1, P2 and P4 controls are retained for diagnostic reruns only.'
-      : 'P4 terminal PASS is recorded; diagnostic rerun remains disabled until the private index is ready with exactly 3 structural partials.';
-    prepareButton.textContent = result.indexedRecipeCount ? 'Resume private index' : 'Prepare private index';
+    runV8019SearchAcceptanceButton.hidden = false;
+    runCanaryButton.disabled = !historicalLiveReady;
+    runP2AlignmentButton.disabled = !historicalLiveReady;
+    runP4AcceptanceButton.disabled = !historicalLiveReady;
+    runV8019SearchAcceptanceButton.disabled = !v8019Ready;
+    gateStatusNode.textContent = v8019Ready
+      ? 'v8019 / 22,086 incremental search index is ready. Run the v8019 search acceptance to prove browse/search/open for Iduns.'
+      : result.activeVersion === 'v8019'
+        ? 'v8019 protected storage is active; the 2,818-recipe Iduns search delta is incomplete. Prepare/resume only the incremental delta.'
+        : 'Historical P1/P2/P4 diagnostics are available only on the frozen v8018 state.';
+    prepareButton.textContent = result.activeVersion === 'v8019'
+      ? (Number(result.deltaIndexedRecipeCount || 0) ? 'Resume v8019 search delta' : 'Add v8019 search delta')
+      : (result.indexedRecipeCount ? 'Resume private index' : 'Prepare private index');
       if (result.ready) await loadResults(true);
       return true;
     } catch (error) {
@@ -321,28 +339,61 @@
         requireNoDailyProviderHold(status);
       }
       if (!status.ok) throw new Error(status.reason || status.error || 'Index status failed');
-      let next = status.lastIndexedRecipeId || '';
-      let indexed = Number(status.indexedRecipeCount || 0);
       let observedRowsWritten = readObservedDailyWrites();
       if (observedRowsWritten >= D1_DAILY_WRITE_GUARD) {
         throw new Error('D1_DAILY_WRITE_SAFETY_HOLD: browser-observed daily write guard reached; resume after 00:00 UTC');
       }
-      while (indexed < Number(status.expectedRecipeCount || 19268)) {
-        const batch = await apiPost({ action:'index-batch', cursor:next });
-        requireNoDailyProviderHold(batch);
-        if (!batch.ok) throw new Error(batch.reason || batch.error || 'Index batch failed');
-        if (batch.metrics?.d1Subqueries > 8) throw new Error('D1 target budget exceeded');
-        if (batch.indexedCount === 0 && batch.done !== true) throw new Error('Index made no progress');
-        next = batch.nextCursor || next;
-        indexed += Number(batch.indexedCount || 0);
-        observedRowsWritten += Number(batch.metrics?.rowsWritten || batch.rowsWritten || 0);
-        saveObservedDailyWrites(observedRowsWritten);
-        progressNode.textContent = 'Preparing private index: ' + Math.min(indexed,19268).toLocaleString()
-          + ' / 19,268 · observed D1 rows written today: ' + observedRowsWritten.toLocaleString();
-        if (!batch.done && observedRowsWritten >= D1_DAILY_WRITE_GUARD) {
-          throw new Error('D1_DAILY_WRITE_SAFETY_HOLD: 80,000 browser-observed rows written today; resume after 00:00 UTC');
+
+      if (status.activeVersion === 'v8019') {
+        if (status.deltaIndexInitialized !== true) {
+          const initialized = await apiPost({ action:'initialize-index' });
+          requireNoDailyProviderHold(initialized);
+          if (!initialized.ok) throw new Error(initialized.error || initialized.reason || 'v8019 delta index initialization failed');
+          status = await apiGet({ action:'status' });
+          requireNoDailyProviderHold(status);
+          if (!status.ok || status.deltaIndexInitialized !== true) throw new Error('v8019 delta index initialization did not verify');
         }
-        if (batch.done) break;
+        if (Number(status.baseIndexedRecipeCount) !== 19268) throw new Error('V8018_BASE_INDEX_DRIFT: refusing incremental delta over a non-exact base');
+        let next = status.lastIndexedDeltaRecipeId || '';
+        let deltaIndexed = Number(status.deltaIndexedRecipeCount || 0);
+        while (deltaIndexed < 2818) {
+          const batch = await apiPost({ action:'index-v8019-delta-batch', cursor:next });
+          requireNoDailyProviderHold(batch);
+          if (!batch.ok) throw new Error(batch.reason || batch.error || 'v8019 delta index batch failed');
+          if (batch.metrics?.d1Subqueries > 8) throw new Error('D1 target budget exceeded');
+          if (batch.indexedCount === 0 && batch.done !== true) throw new Error('v8019 delta index made no progress');
+          next = batch.nextCursor || next;
+          deltaIndexed += Number(batch.indexedCount || 0);
+          observedRowsWritten += Number(batch.metrics?.rowsWritten || batch.rowsWritten || 0);
+          saveObservedDailyWrites(observedRowsWritten);
+          progressNode.textContent = 'Adding v8019 search delta: ' + Math.min(deltaIndexed,2818).toLocaleString()
+            + ' / 2,818 · total searchable target ' + (19268 + Math.min(deltaIndexed,2818)).toLocaleString()
+            + ' / 22,086 · observed D1 rows written today: ' + observedRowsWritten.toLocaleString();
+          if (!batch.done && observedRowsWritten >= D1_DAILY_WRITE_GUARD) {
+            throw new Error('D1_DAILY_WRITE_SAFETY_HOLD: 80,000 browser-observed rows written today; resume after 00:00 UTC');
+          }
+          if (batch.done) break;
+        }
+      } else {
+        let next = status.lastIndexedRecipeId || '';
+        let indexed = Number(status.indexedRecipeCount || 0);
+        while (indexed < Number(status.expectedRecipeCount || 19268)) {
+          const batch = await apiPost({ action:'index-batch', cursor:next });
+          requireNoDailyProviderHold(batch);
+          if (!batch.ok) throw new Error(batch.reason || batch.error || 'Index batch failed');
+          if (batch.metrics?.d1Subqueries > 8) throw new Error('D1 target budget exceeded');
+          if (batch.indexedCount === 0 && batch.done !== true) throw new Error('Index made no progress');
+          next = batch.nextCursor || next;
+          indexed += Number(batch.indexedCount || 0);
+          observedRowsWritten += Number(batch.metrics?.rowsWritten || batch.rowsWritten || 0);
+          saveObservedDailyWrites(observedRowsWritten);
+          progressNode.textContent = 'Preparing private index: ' + Math.min(indexed,19268).toLocaleString()
+            + ' / 19,268 · observed D1 rows written today: ' + observedRowsWritten.toLocaleString();
+          if (!batch.done && observedRowsWritten >= D1_DAILY_WRITE_GUARD) {
+            throw new Error('D1_DAILY_WRITE_SAFETY_HOLD: 80,000 browser-observed rows written today; resume after 00:00 UTC');
+          }
+          if (batch.done) break;
+        }
       }
       await refreshStatus();
     } catch (error) {
@@ -792,6 +843,87 @@
     detailPanel.scrollIntoView({ behavior:'smooth', block:'start' });
   }
 
+  async function runV8019SearchAcceptance() {
+    runV8019SearchAcceptanceButton.disabled = true;
+    canaryEvidencePanel.hidden = false;
+    canaryEvidenceNode.textContent = 'Running v8019 incremental search acceptance…';
+    try {
+      const d1 = [];
+      const status = await apiGet({ action:'status' });
+      requireCanaryEnvelope('v8019 status', status);
+      d1.push(Number(status.metrics?.d1Subqueries || 0));
+      if (
+        status.ready !== true ||
+        status.activeVersion !== 'v8019' ||
+        Number(status.baseIndexedRecipeCount) !== 19268 ||
+        Number(status.deltaIndexedRecipeCount) !== 2818 ||
+        Number(status.indexedRecipeCount) !== 22086 ||
+        Number(status.ftsRecipeCount) !== 22086 ||
+        status.indexingMode !== 'V8018_BASE_PLUS_V8019_INCREMENTAL_DELTA'
+      ) throw new Error('v8019 status: exact 19,268 + 2,818 = 22,086 incremental composition not met');
+
+      const browse = await apiGet({ action:'browse', cursor:'ora_iduns_1911_', limit:12 });
+      requireCanaryEnvelope('v8019 browse', browse);
+      d1.push(Number(browse.metrics?.d1Subqueries || 0));
+      const browseIduns = (browse.items || []).find(item => item.sourceCohortId === 'ORA_IDUNS_1911_FIRST_EDITION_ARKIVKOPIA_RUNEBERG');
+      if (!browseIduns) throw new Error('v8019 browse: Iduns delta not visible in combined browse');
+
+      const search = await apiGet({ action:'search', q:'Iduns', limit:24 });
+      requireCanaryEnvelope('v8019 search', search);
+      d1.push(Number(search.metrics?.d1Subqueries || 0));
+      const searchIduns = (search.items || []).find(item => item.sourceCohortId === 'ORA_IDUNS_1911_FIRST_EDITION_ARKIVKOPIA_RUNEBERG');
+      if (!searchIduns) throw new Error('v8019 search: Iduns delta not discoverable');
+
+      const detail = await apiGet({ action:'detail', recipeId:searchIduns.recipeId });
+      requireCanaryEnvelope('v8019 detail', detail);
+      d1.push(Number(detail.metrics?.d1Subqueries || 0));
+      if (
+        !detail.item ||
+        detail.item.recipeId !== searchIduns.recipeId ||
+        detail.item.sourceCohortId !== 'ORA_IDUNS_1911_FIRST_EDITION_ARKIVKOPIA_RUNEBERG' ||
+        detail.item.corpusVersion !== 'v8019' ||
+        detail.item.bodyCorpusVersion !== 'v8019' ||
+        detail.item.authority?.protectedBrowseOnly !== true ||
+        detail.item.authority?.recommendationEligible !== false
+      ) throw new Error('v8019 detail: Iduns provenance/hydration boundary failed');
+
+      canaryEvidenceNode.textContent = JSON.stringify({
+        pass:true,
+        terminal:'V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_PASS',
+        activeVersion:'v8019',
+        baseIndexedRecipeCount:19268,
+        deltaIndexedRecipeCount:2818,
+        indexedRecipeCount:22086,
+        ftsRecipeCount:22086,
+        structuralPartialCount:Number(status.structuralPartialCount || 0),
+        deltaStructuralPartialCount:Number(status.deltaStructuralPartialCount || 0),
+        indexingMode:'V8018_BASE_PLUS_V8019_INCREMENTAL_DELTA',
+        browseDeltaPass:true,
+        searchDeltaPass:true,
+        detailDeltaPass:true,
+        acceptedIdunsRecipeId:searchIduns.recipeId,
+        maxObservedD1Subqueries:Math.max(...d1),
+        fullCorpusRebuild:false,
+        fullCorpusScans:0,
+        publicRuntimeChanged:false,
+        recommendationAdmissionChanged:false,
+        thirdShardUsed:false,
+        billingExpansion:false
+      }, null, 2);
+    } catch (error) {
+      canaryEvidenceNode.textContent = JSON.stringify({
+        pass:false,
+        terminal:'V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_STOPPED_SAFE',
+        reason:String(error?.message || error).slice(0,240),
+        fullCorpusRebuild:false,
+        publicRuntimeChanged:false,
+        recommendationAdmissionChanged:false
+      }, null, 2);
+    } finally {
+      runV8019SearchAcceptanceButton.disabled = false;
+    }
+  }
+
   document.getElementById('refresh').addEventListener('click', () => { void refreshStatus(); });
   prepareButton.addEventListener('click', prepareIndex);
   repairForkrecipeButton.addEventListener('click', repairForkrecipeStructure);
@@ -891,6 +1023,7 @@
   }
 
   runP4AcceptanceButton.addEventListener('click', runP4ProductAcceptance);
+  runV8019SearchAcceptanceButton.addEventListener('click', runV8019SearchAcceptance);
   runSecondaryCanaryButton.addEventListener('click', runSecondaryLaneCanary);
   document.querySelectorAll('[data-secondary-meal]').forEach(button => button.addEventListener('click', () => {
     secondaryMeal = button.dataset.secondaryMeal;
