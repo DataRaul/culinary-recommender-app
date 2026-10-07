@@ -334,7 +334,7 @@ test("v8019 incremental index writes only the Iduns delta and stays within the D
       return {
         bind(){ return this; },
         async all(){
-          assert.match(sql, /culinary_step8b_recipe_body/);
+          assert.match(sql, /corpus_recipe_bodies/);
           return { results:[{
             corpus_version:"v8019",
             recipe_id:recipeId,
@@ -437,8 +437,8 @@ test("P1 owner browser is network-only and explicitly communicates protected-onl
   assert.match(html, /PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS/);
   assert.match(html, /repair-forkrecipe-structural-state/);
   assert.match(html, /Repair ForkRecipe structural metadata/);
-  assert.match(html, /structuralPartialCount === 918/);
-  assert.match(html, /structuralPartialCount === 3/);
+  assert.match(html, /deltaIndexedRecipeCount/);
+  assert.match(html, /V8018_BASE_PLUS_V8019_INCREMENTAL_DELTA/);
   assert.match(html, /Run P2 live alignment/);
   assert.match(html, /p2-live-alignment/);
   assert.match(html, /PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS/);
