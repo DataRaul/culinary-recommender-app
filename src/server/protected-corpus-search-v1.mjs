@@ -1,15 +1,20 @@
 import { STEP8B_RECIPE_TABLE, sha256Hex } from "./step8b-live.mjs";
 import { STEP8G_POINTER_SCOPE, STEP8G_ROUTE_TABLE, readStep8GPointer } from "./step8g-live-runtime.mjs";
-import { hydrateStep8GV8018ProtectedRecipesBounded } from "./step8g-v8018-hydration-runtime.mjs";
+import { hydrateStep8GV8019ProtectedRecipesBounded } from "./step8g-v8019-hydration-runtime.mjs";
 
 export const PROTECTED_SEARCH_CORPUS_VERSION = "v8018";
 export const PROTECTED_SEARCH_EXPECTED_COUNT = 19268;
+export const PROTECTED_SEARCH_ACTIVE_CORPUS_VERSION = "v8019";
+export const PROTECTED_SEARCH_CURRENT_EXPECTED_COUNT = 22086;
+export const PROTECTED_SEARCH_V8019_DELTA_EXPECTED_COUNT = 2818;
+export const PROTECTED_SEARCH_V8019_DELTA_COHORT_ID = "ORA_IDUNS_1911_FIRST_EDITION_ARKIVKOPIA_RUNEBERG";
 export const PROTECTED_SEARCH_EXPECTED_STRUCTURAL_PARTIAL_COUNT = 3;
 export const PROTECTED_SEARCH_FORKRECIPE_COHORT_ID = "FORKRECIPE_PINNED_STEP7E";
 export const PROTECTED_SEARCH_FORKRECIPE_COUNT = 915;
 export const PROTECTED_SEARCH_KNOWN_BAD_PARTIAL_COUNT = 918;
 export const PROTECTED_SEARCH_INDEX_TABLE = "culinary_protected_recipe_search_v1";
 export const PROTECTED_SEARCH_FTS_TABLE = "culinary_protected_recipe_search_fts_v1";
+export const PROTECTED_SEARCH_V8019_DELTA_TABLE = "culinary_protected_recipe_search_delta_v8019";
 export const PROTECTED_SEARCH_MAX_PAGE_SIZE = 50;
 export const PROTECTED_SEARCH_MAX_BOUND_PARAMETERS = 100;
 export const PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW = 13;
@@ -28,7 +33,7 @@ export function protectedRecommendationState(recipeId) {
     : "SEARCHABLE__NOT_RECOMMENDATION_VALIDATED";
 }
 
-const ALLOWED_BODY_VERSIONS = new Set(Array.from({ length: 18 }, (_, index) => `v${8001 + index}`));
+const ALLOWED_BODY_VERSIONS = new Set(Array.from({ length: 19 }, (_, index) => `v${8001 + index}`));
 const encoder = new TextEncoder();
 const bytes = value => encoder.encode(String(value)).byteLength;
 const nonEmpty = value => typeof value === "string" && value.trim() ? value.trim() : null;
@@ -51,6 +56,27 @@ CREATE TABLE IF NOT EXISTS ${PROTECTED_SEARCH_INDEX_TABLE} (
   structural_state TEXT NOT NULL,
   indexed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   CHECK (corpus_version='v8018'),
+  CHECK (shard_number IN (0,1)),
+  CHECK (structural_state IN ('PARSEABLE','PARTIAL'))
+)`;
+
+export const PROTECTED_SEARCH_V8019_DELTA_TABLE_SQL = `
+CREATE TABLE IF NOT EXISTS ${PROTECTED_SEARCH_V8019_DELTA_TABLE} (
+  recipe_id TEXT PRIMARY KEY,
+  corpus_version TEXT NOT NULL,
+  body_corpus_version TEXT NOT NULL,
+  shard_number INTEGER NOT NULL,
+  source_cohort_id TEXT NOT NULL,
+  title TEXT NOT NULL,
+  source_work TEXT,
+  source_author TEXT,
+  source_year TEXT,
+  source_url TEXT,
+  source_license TEXT,
+  attribution_text TEXT,
+  structural_state TEXT NOT NULL,
+  indexed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CHECK (corpus_version='v8019'),
   CHECK (shard_number IN (0,1)),
   CHECK (structural_state IN ('PARSEABLE','PARTIAL'))
 )`;
@@ -178,7 +204,7 @@ function packetSource(packet, route) {
   };
 }
 
-export function projectProtectedPacketForIndex(packet, route = {}) {
+export function projectProtectedPacketForIndex(packet, route = {}, searchCorpusVersion = PROTECTED_SEARCH_CORPUS_VERSION) {
   const recipeId = firstString(
     packet?.identity?.recipeId,
     packet?.canonicalRecipeId,
@@ -193,7 +219,7 @@ export function projectProtectedPacketForIndex(packet, route = {}) {
   const directions = packetDirections(packet);
   return {
     recipeId,
-    corpusVersion: PROTECTED_SEARCH_CORPUS_VERSION,
+    corpusVersion: searchCorpusVersion,
     bodyCorpusVersion: route.corpusVersion,
     shardNumber: route.shardNumber,
     sourceCohortId: source.sourceCohortId,
@@ -209,7 +235,7 @@ export function projectProtectedPacketForIndex(packet, route = {}) {
 }
 
 export function projectProtectedPacketForDetail(packet, route = {}) {
-  const index = projectProtectedPacketForIndex(packet, route);
+  const index = projectProtectedPacketForIndex(packet, route, route.searchCorpusVersion || PROTECTED_SEARCH_CORPUS_VERSION);
   const ingredients = packetIngredients(packet);
   const methodSteps = packetDirectionSteps(packet);
   const sourceMeta = packetSourceBackedRecipeMeta(packet);
@@ -247,8 +273,9 @@ export function boundedPageSize(value, fallback = 24) {
 
 export async function initializeProtectedSearchIndex(controlDb) {
   await controlDb.prepare(PROTECTED_SEARCH_INDEX_TABLE_SQL).run();
+  await controlDb.prepare(PROTECTED_SEARCH_V8019_DELTA_TABLE_SQL).run();
   await controlDb.prepare(PROTECTED_SEARCH_FTS_TABLE_SQL).run();
-  return { pass: true, d1Subqueries: 2 };
+  return { pass: true, d1Subqueries: 3 };
 }
 
 async function readRoutePage(controlDb, cursor = "", limit = PROTECTED_SEARCH_INDEX_BATCH_SIZE) {
@@ -278,6 +305,27 @@ async function readRoutePage(controlDb, cursor = "", limit = PROTECTED_SEARCH_IN
     return { pass: false, reason: "PROTECTED_ROUTE_METADATA_INVALID", routes: [], d1Subqueries: 1 };
   }
   return { pass: true, routes, d1Subqueries: 1 };
+}
+
+async function readV8019DeltaRoutePage(controlDb, cursor = "", limit = PROTECTED_SEARCH_INDEX_BATCH_SIZE) {
+  const rows = await controlDb.prepare(`
+    SELECT recipe_id,corpus_version,shard_number,source_cohort_id,body_sha256,body_bytes
+    FROM ${STEP8G_ROUTE_TABLE}
+    WHERE composition_version='v8019' AND corpus_version='v8019' AND recipe_id > ?
+    ORDER BY recipe_id
+    LIMIT ?`).bind(String(cursor || ""), limit).all();
+  const routes = (rows?.results || []).map(routeFromRow);
+  const ids = routes.map(route => route.recipeId);
+  if (new Set(ids).size !== ids.length) return { pass: false, reason: "PROTECTED_V8019_DELTA_ROUTE_DUPLICATE_IN_PAGE", routes: [], d1Subqueries: 1 };
+  if (routes.some(route => !route.recipeId || route.corpusVersion !== "v8019" || ![0,1].includes(route.shardNumber) || route.sourceCohortId !== PROTECTED_SEARCH_V8019_DELTA_COHORT_ID || !/^[0-9a-f]{64}$/.test(route.bodySha256) || route.bodyBytes <= 0)) {
+    return { pass: false, reason: "PROTECTED_V8019_DELTA_ROUTE_METADATA_INVALID", routes: [], d1Subqueries: 1 };
+  }
+  return { pass: true, routes, d1Subqueries: 1 };
+}
+
+async function tableExists(controlDb, tableName) {
+  const row = await controlDb.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=? LIMIT 1").bind(tableName).first();
+  return { exists: String(row?.name || "") === tableName, d1Subqueries: 1 };
 }
 
 async function readBodiesForRoutes(shardDbs, routes) {
@@ -330,7 +378,7 @@ export function d1RowsWritten(results) {
   return (Array.isArray(results) ? results : []).reduce((total, result) => total + Number(result?.meta?.rows_written || 0), 0);
 }
 
-async function writeIndexRows(controlDb, rows) {
+async function writeIndexRows(controlDb, rows, summaryTable = PROTECTED_SEARCH_INDEX_TABLE) {
   if (!rows.length) return { pass: true, d1Subqueries: 0, rowsWritten: 0 };
   if (rows.length > PROTECTED_SEARCH_INDEX_BATCH_SIZE) throw new Error("PROTECTED_INDEX_BATCH_EXCEEDS_D1_PARAMETER_LIMIT");
   const summaryValues = rows.map(() => "(?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP)").join(",");
@@ -342,7 +390,7 @@ async function writeIndexRows(controlDb, rows) {
   const ftsValues = rows.map(() => "(?,?,?,?)").join(",");
   const ftsArgs = rows.flatMap(row => [row.recipeId,row.title,row.sourceWork || "",row.sourceAuthor || ""]);
   const statements = [
-    controlDb.prepare(`INSERT INTO ${PROTECTED_SEARCH_INDEX_TABLE}
+    controlDb.prepare(`INSERT INTO ${summaryTable}
       (recipe_id,corpus_version,body_corpus_version,shard_number,source_cohort_id,title,source_work,source_author,source_year,source_url,source_license,attribution_text,structural_state,indexed_at)
       VALUES ${summaryValues}
       ON CONFLICT(recipe_id) DO UPDATE SET
@@ -412,22 +460,98 @@ export async function indexProtectedCorpusBatch(controlDb, shardDbs, cursor = ""
   };
 }
 
+export async function indexProtectedCorpusV8019DeltaBatch(controlDb, shardDbs, cursor = "") {
+  const pointer = await readStep8GPointer(controlDb);
+  let q = pointer.d1Subqueries;
+  if (pointer.activeVersion !== PROTECTED_SEARCH_ACTIVE_CORPUS_VERSION) {
+    return { pass: false, reason: "V8019_NOT_ACTIVE", activeVersion: pointer.activeVersion, indexedCount: 0, nextCursor: String(cursor || ""), done: false, d1Subqueries: q, rowsWritten: 0, fullCorpusScans: 0 };
+  }
+  const deltaTable = await tableExists(controlDb, PROTECTED_SEARCH_V8019_DELTA_TABLE);
+  q += deltaTable.d1Subqueries;
+  if (!deltaTable.exists) {
+    return { pass: false, reason: "V8019_DELTA_INDEX_NOT_INITIALIZED", activeVersion: pointer.activeVersion, indexedCount: 0, nextCursor: String(cursor || ""), done: false, d1Subqueries: q, rowsWritten: 0, fullCorpusScans: 0 };
+  }
+  const page = await readV8019DeltaRoutePage(controlDb, cursor, PROTECTED_SEARCH_INDEX_BATCH_SIZE);
+  q += page.d1Subqueries;
+  if (!page.pass) return { pass: false, reason: page.reason, indexedCount: 0, nextCursor: String(cursor || ""), done: false, d1Subqueries: q, rowsWritten: 0, fullCorpusScans: 0 };
+  if (!page.routes.length) return { pass: true, indexedCount: 0, nextCursor: String(cursor || ""), done: true, d1Subqueries: q, rowsWritten: 0, fullCorpusScans: 0 };
+
+  const bodies = await readBodiesForRoutes(shardDbs, page.routes);
+  q += bodies.d1Subqueries;
+  if (!bodies.pass) return { pass: false, reason: bodies.reason, indexedCount: 0, nextCursor: String(cursor || ""), done: false, d1Subqueries: q, rowsWritten: 0, fullCorpusScans: 0 };
+
+  let rows;
+  try {
+    rows = await verifyAndProject(page.routes, bodies.bodiesById);
+    rows = rows.map(row => ({ ...row, corpusVersion: PROTECTED_SEARCH_ACTIVE_CORPUS_VERSION }));
+  } catch (error) {
+    return { pass: false, reason: String(error?.message || error), indexedCount: 0, nextCursor: String(cursor || ""), done: false, d1Subqueries: q, rowsWritten: 0, fullCorpusScans: 0 };
+  }
+
+  let written;
+  try { written = await writeIndexRows(controlDb, rows, PROTECTED_SEARCH_V8019_DELTA_TABLE); }
+  catch (error) {
+    return {
+      pass: false,
+      reason: `PROTECTED_V8019_DELTA_INDEX_WRITE_FAILED:${String(error?.message || error).slice(0,180)}`,
+      indexedCount: 0,
+      nextCursor: String(cursor || ""),
+      done: false,
+      d1Subqueries: q,
+      rowsWritten: 0,
+      fullCorpusScans: 0
+    };
+  }
+  q += written.d1Subqueries;
+  return {
+    pass: written.pass && q <= PROTECTED_SEARCH_TARGET_MAX_D1,
+    reason: q > PROTECTED_SEARCH_TARGET_MAX_D1 ? "TARGET_D1_BUDGET_EXCEEDED" : null,
+    indexedCount: rows.length,
+    partialCount: rows.filter(row => row.structuralState === "PARTIAL").length,
+    nextCursor: rows.at(-1)?.recipeId || String(cursor || ""),
+    done: rows.length < PROTECTED_SEARCH_INDEX_BATCH_SIZE,
+    d1Subqueries: q,
+    rowsWritten: Number(written.rowsWritten || 0),
+    fullCorpusScans: 0
+  };
+}
+
 export async function protectedSearchIndexStatus(controlDb) {
   const pointer = await readStep8GPointer(controlDb);
-  const summary = await controlDb.prepare(`SELECT COUNT(*) AS c, SUM(CASE WHEN structural_state='PARTIAL' THEN 1 ELSE 0 END) AS partial_count, MAX(recipe_id) AS last_recipe_id FROM ${PROTECTED_SEARCH_INDEX_TABLE} WHERE corpus_version='v8018'`).first();
+  const base = await controlDb.prepare(`SELECT COUNT(*) AS c, SUM(CASE WHEN structural_state='PARTIAL' THEN 1 ELSE 0 END) AS partial_count, MAX(recipe_id) AS last_recipe_id FROM ${PROTECTED_SEARCH_INDEX_TABLE} WHERE corpus_version='v8018'`).first();
+  const deltaTable = await tableExists(controlDb, PROTECTED_SEARCH_V8019_DELTA_TABLE);
+  const delta = deltaTable.exists
+    ? await controlDb.prepare(`SELECT COUNT(*) AS c, SUM(CASE WHEN structural_state='PARTIAL' THEN 1 ELSE 0 END) AS partial_count, MAX(recipe_id) AS last_recipe_id FROM ${PROTECTED_SEARCH_V8019_DELTA_TABLE} WHERE corpus_version='v8019'`).first()
+    : { c: 0, partial_count: 0, last_recipe_id: null };
   const fts = await controlDb.prepare(`SELECT COUNT(*) AS c FROM ${PROTECTED_SEARCH_FTS_TABLE}`).first();
-  const summaryCount = Number(summary?.c || 0);
+  const baseCount = Number(base?.c || 0);
+  const deltaCount = Number(delta?.c || 0);
+  const indexedRecipeCount = baseCount + deltaCount;
   const ftsCount = Number(fts?.c || 0);
+  const validIncrementalState =
+    pointer.activeVersion === PROTECTED_SEARCH_ACTIVE_CORPUS_VERSION &&
+    baseCount === PROTECTED_SEARCH_EXPECTED_COUNT &&
+    deltaCount <= PROTECTED_SEARCH_V8019_DELTA_EXPECTED_COUNT &&
+    ftsCount === indexedRecipeCount;
   return {
-    pass: pointer.activeVersion === PROTECTED_SEARCH_CORPUS_VERSION && summaryCount <= PROTECTED_SEARCH_EXPECTED_COUNT && ftsCount === summaryCount,
-    ready: pointer.activeVersion === PROTECTED_SEARCH_CORPUS_VERSION && summaryCount === PROTECTED_SEARCH_EXPECTED_COUNT && ftsCount === PROTECTED_SEARCH_EXPECTED_COUNT,
+    pass: validIncrementalState,
+    ready: validIncrementalState && deltaTable.exists && deltaCount === PROTECTED_SEARCH_V8019_DELTA_EXPECTED_COUNT && indexedRecipeCount === PROTECTED_SEARCH_CURRENT_EXPECTED_COUNT,
     activeVersion: pointer.activeVersion,
-    indexedRecipeCount: summaryCount,
+    indexedRecipeCount,
+    baseIndexedRecipeCount: baseCount,
+    deltaIndexedRecipeCount: deltaCount,
     ftsRecipeCount: ftsCount,
-    structuralPartialCount: Number(summary?.partial_count || 0),
-    lastIndexedRecipeId: summary?.last_recipe_id == null ? null : String(summary.last_recipe_id),
-    expectedRecipeCount: PROTECTED_SEARCH_EXPECTED_COUNT,
-    d1Subqueries: pointer.d1Subqueries + 2,
+    structuralPartialCount: Number(base?.partial_count || 0) + Number(delta?.partial_count || 0),
+    baseStructuralPartialCount: Number(base?.partial_count || 0),
+    deltaStructuralPartialCount: Number(delta?.partial_count || 0),
+    lastIndexedRecipeId: delta?.last_recipe_id == null ? (base?.last_recipe_id == null ? null : String(base.last_recipe_id)) : String(delta.last_recipe_id),
+    lastIndexedDeltaRecipeId: delta?.last_recipe_id == null ? null : String(delta.last_recipe_id),
+    expectedRecipeCount: PROTECTED_SEARCH_CURRENT_EXPECTED_COUNT,
+    baseExpectedRecipeCount: PROTECTED_SEARCH_EXPECTED_COUNT,
+    deltaExpectedRecipeCount: PROTECTED_SEARCH_V8019_DELTA_EXPECTED_COUNT,
+    deltaIndexInitialized: deltaTable.exists,
+    indexingMode: "V8018_BASE_PLUS_V8019_INCREMENTAL_DELTA",
+    d1Subqueries: pointer.d1Subqueries + 3 + (deltaTable.exists ? 1 : 0),
     fullCorpusScans: 0
   };
 }
@@ -532,8 +656,14 @@ function publicSummaryRow(row) {
 export async function browseProtectedCorpus(controlDb, { cursor = "", limit = 24 } = {}) {
   const bounded = boundedPageSize(limit);
   const rows = await controlDb.prepare(`SELECT recipe_id,title,source_cohort_id,source_work,source_author,source_year,structural_state
-    FROM ${PROTECTED_SEARCH_INDEX_TABLE}
-    WHERE corpus_version='v8018' AND recipe_id > ?
+    FROM (
+      SELECT recipe_id,title,source_cohort_id,source_work,source_author,source_year,structural_state
+      FROM ${PROTECTED_SEARCH_INDEX_TABLE} WHERE corpus_version='v8018'
+      UNION ALL
+      SELECT recipe_id,title,source_cohort_id,source_work,source_author,source_year,structural_state
+      FROM ${PROTECTED_SEARCH_V8019_DELTA_TABLE} WHERE corpus_version='v8019'
+    )
+    WHERE recipe_id > ?
     ORDER BY recipe_id
     LIMIT ?`).bind(String(cursor || ""), bounded).all();
   const items = (rows?.results || []).map(publicSummaryRow);
@@ -552,8 +682,14 @@ export async function searchProtectedCorpus(controlDb, { query, cursor = "", lim
   const bounded = boundedPageSize(limit);
   const rows = await controlDb.prepare(`SELECT s.recipe_id,s.title,s.source_cohort_id,s.source_work,s.source_author,s.source_year,s.structural_state
     FROM ${PROTECTED_SEARCH_FTS_TABLE}
-    JOIN ${PROTECTED_SEARCH_INDEX_TABLE} s ON s.recipe_id=${PROTECTED_SEARCH_FTS_TABLE}.recipe_id
-    WHERE ${PROTECTED_SEARCH_FTS_TABLE} MATCH ? AND s.corpus_version='v8018' AND s.recipe_id > ?
+    JOIN (
+      SELECT recipe_id,title,source_cohort_id,source_work,source_author,source_year,structural_state
+      FROM ${PROTECTED_SEARCH_INDEX_TABLE} WHERE corpus_version='v8018'
+      UNION ALL
+      SELECT recipe_id,title,source_cohort_id,source_work,source_author,source_year,structural_state
+      FROM ${PROTECTED_SEARCH_V8019_DELTA_TABLE} WHERE corpus_version='v8019'
+    ) s ON s.recipe_id=${PROTECTED_SEARCH_FTS_TABLE}.recipe_id
+    WHERE ${PROTECTED_SEARCH_FTS_TABLE} MATCH ? AND s.recipe_id > ?
     ORDER BY s.recipe_id
     LIMIT ?`).bind(ftsQuery, String(cursor || ""), bounded).all();
   const items = (rows?.results || []).map(publicSummaryRow);
@@ -569,13 +705,20 @@ export async function searchProtectedCorpus(controlDb, { query, cursor = "", lim
 export async function detailProtectedCorpusRecipe(controlDb, shardDbs, recipeId) {
   const id = String(recipeId || "").trim();
   if (!id || id.length > 240) return { pass: false, reason: "RECIPE_ID_REQUIRED", item: null, d1Subqueries: 0, fullCorpusScans: 0 };
-  const hydrated = await hydrateStep8GV8018ProtectedRecipesBounded(controlDb, shardDbs, [id]);
+  const hydrated = await hydrateStep8GV8019ProtectedRecipesBounded(controlDb, shardDbs, [id]);
   if (!hydrated.pass || hydrated.packets.length !== 1) return { pass: false, reason: hydrated.reason || "DETAIL_HYDRATION_FAILED", item: null, d1Subqueries: hydrated.d1Subqueries, fullCorpusScans: 0 };
-  const routeRow = await controlDb.prepare(`SELECT recipe_id,body_corpus_version,shard_number,source_cohort_id FROM ${PROTECTED_SEARCH_INDEX_TABLE} WHERE corpus_version='v8018' AND recipe_id=? LIMIT 1`).bind(id).first();
+  const routeRow = await controlDb.prepare(`SELECT recipe_id,corpus_version AS search_corpus_version,body_corpus_version,shard_number,source_cohort_id
+    FROM (
+      SELECT recipe_id,corpus_version,body_corpus_version,shard_number,source_cohort_id FROM ${PROTECTED_SEARCH_INDEX_TABLE} WHERE corpus_version='v8018'
+      UNION ALL
+      SELECT recipe_id,corpus_version,body_corpus_version,shard_number,source_cohort_id FROM ${PROTECTED_SEARCH_V8019_DELTA_TABLE} WHERE corpus_version='v8019'
+    )
+    WHERE recipe_id=? LIMIT 1`).bind(id).first();
   const d1Subqueries = hydrated.d1Subqueries + 1;
   if (!routeRow) return { pass: false, reason: "DETAIL_NOT_INDEXED", item: null, d1Subqueries, fullCorpusScans: 0 };
   const route = {
     recipeId: String(routeRow.recipe_id),
+    searchCorpusVersion: String(routeRow.search_corpus_version),
     corpusVersion: String(routeRow.body_corpus_version),
     shardNumber: Number(routeRow.shard_number),
     sourceCohortId: String(routeRow.source_cohort_id)
