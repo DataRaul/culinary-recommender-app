@@ -1,0 +1,44 @@
+name: Step 8G Iduns v8019 production runner probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "step8g-v8019-populate.html"
+      - "functions/api/step8g/v8019.js"
+      - "src/server/step8g-v8019-live-runtime.mjs"
+      - "src/server/step8g-v8019-hydration-runtime.mjs"
+      - "sw.js"
+      - "protected-corpus.html"
+      - ".github/workflows/corpus-scale-step8g-iduns-v8019-production-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  production-runner-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Wait for Cloudflare v8019 runner deployment
+        env:
+          BASE_URL: https://culinary-recommender-app.pages.dev
+        run: |
+          set -euo pipefail
+          ready=0
+          for attempt in $(seq 1 24); do
+            page_status="$(curl --silent --show-error --location --max-time 10 -H 'Cache-Control: no-cache' -o /tmp/v8019-runner.html -w '%{http_code}' "$BASE_URL/step8g-v8019-populate.html?deploy=v8019-runner-20261007" || true)"
+            api_status="$(curl --silent --show-error --location --max-time 10 -H 'Cache-Control: no-cache' -o /tmp/v8019-unauth.json -w '%{http_code}' "$BASE_URL/api/step8g/v8019?action=status" || true)"
+            if [ "$page_status" = "200" ] \
+              && grep -q "Step 8G protected Iduns kokbok 1911 v8019 run" /tmp/v8019-runner.html \
+              && grep -q "Run / resume v8019" /tmp/v8019-runner.html \
+              && [ "$api_status" = "401" ]; then
+              ready=1
+              break
+            fi
+            echo "v8019 production runner not ready (attempt $attempt/24; page=$page_status api=$api_status)"
+            sleep 5
+          done
+          test "$ready" = "1"
+          echo "Cloudflare v8019 runner deployed and protected API fails closed unauthenticated."

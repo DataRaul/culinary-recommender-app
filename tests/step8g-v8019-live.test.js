@@ -100,3 +100,18 @@ test("v8019 source IDs preserve immutable source ordinal", () => {
   assert.match(source,/String\(sourceOrdinal\)\.padStart\(4,"0"\)/);
   assert.match(verifier,/String\(sourceOrdinal\)\.padStart\(4,"0"\)/);
 });
+
+
+test("v8019 owner runner is Iduns-specific, network-only, and reports nineteen-layer evidence", () => {
+  const runner=readFileSync(new URL("../step8g-v8019-populate.html",import.meta.url),"utf8");
+  const sw=readFileSync(new URL("../sw.js",import.meta.url),"utf8");
+  const protectedPage=readFileSync(new URL("../protected-corpus.html",import.meta.url),"utf8");
+  assert.match(runner,/Step 8G protected Iduns kokbok 1911 v8019 run/);
+  assert.match(runner,/protected <code>v8018<\/code>/);
+  assert.match(runner,/exact 19,268-route parent ancestry/);
+  assert.match(runner,/fetchPinnedText\(COLLECTION,"Iduns 1911"\)/);
+  assert.match(runner,/nineteenLayerHydrationPass:true/);
+  assert.match(runner,/route composition did not close exactly at 22,086/);
+  assert.match(sw,/\/step8g-v8019-populate\.html/);
+  assert.match(protectedPage,/cloudflare-deploy-pulse: v8019-runner-20261007/);
+});

@@ -10,7 +10,8 @@ const NETWORK_ONLY_PATHS = new Set([
   "/auth-cookie-probe.html",
   "/auth-session-commit-probe.html",
   "/step7e-final.html",
-  "/protected-corpus.html"
+  "/protected-corpus.html",
+  "/step8g-v8019-populate.html"
 ]);
 
 function isNetworkOnly(url) {
