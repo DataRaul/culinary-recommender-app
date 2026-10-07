@@ -3,93 +3,85 @@
 Status: ACTIVE  
 Policy: `config/context_safety_policy.json`
 
-## Purpose
+## What changed after the first live test
 
-Keep long Culinary development sessions resumable before conversation context becomes unreliable, while preserving GitHub as the source of truth and avoiding a recurring GitHub Actions watcher.
+The first live test proved that a repository instruction alone cannot guarantee that an ordinary ChatGPT conversation will notice a hidden context percentage and interrupt itself before failure. The repository therefore no longer relies on percentage detection as the primary continuity mechanism.
 
-This protocol extends the existing repository handover mechanism. It does not create a second handover store, a background service, or new execution authority.
+The primary mechanism is now **rolling event-based checkpointing**. Context telemetry, when available, is an additional early-warning trigger.
 
-## Detection
+## Primary mechanism: rolling checkpoint
 
-### Runtime telemetry available
+The canonical resumability state lives on Git ref `continuity-state`:
 
-When the active agent/runtime exposes context-use telemetry:
+- `docs/handovers/CURRENT.json`
+- `docs/handovers/PREVIOUS.json`
+
+`main` remains the source of truth for implementation, roadmap, contracts and project state. The continuity branch is only a resumability index and must never override newer live GitHub state.
+
+A checkpoint is required after each material bounded-package terminal, merged material PR, material roadmap transition, human/error/cost gate, or validated stable waiting state. **Before starting a successor package, checkpoint the state just completed.**
+
+This bounds worst-case chat failure to at most the currently active package instead of the entire conversation history.
+
+## Rolling checkpoint procedure
+
+1. reach a safe deterministic boundary;
+2. fresh-reconcile live `main`, open PRs/branches and required validation;
+3. read `CURRENT.json` from ref `continuity-state`;
+4. write that exact prior object to `PREVIOUS.json` on `continuity-state`;
+5. write one complete self-contained new `CURRENT.json`;
+6. commit only to `continuity-state` with `[skip ci]`;
+7. re-read CURRENT from `continuity-state`;
+8. only then begin the next bounded package.
+
+Routine rolling checkpoints do not need user-visible narration. They are durable recovery points.
+
+## Secondary early trigger: context risk
+
+When exact runtime telemetry exists:
 
 - preferred trigger: **65% used**;
-- target continuation range: **60–70%**;
-- acceptable safety range: **55–75%**;
-- do not intentionally continue past 75% just to consume more roadmap scope.
+- target: **60–70%**;
+- acceptable safety window: **55–75%**.
 
-The percentage is a runtime observation. Do not fabricate one when the surface does not expose it.
+When telemetry is unavailable, never invent a percentage. Use conservative risk signals: long tool/result history, repeated repair cycles, many mutable state transitions, pre-compaction/compaction signals, or increasing risk of losing exact IDs/gates/next actions.
 
-### Runtime telemetry unavailable
+At a context-risk trigger:
 
-Use conservative context-risk detection. Treat any combination of these as sufficient reason to checkpoint early:
+1. do not start another substantive package;
+2. reach the nearest safe deterministic boundary;
+3. refresh the rolling checkpoint;
+4. emit the same complete CURRENT object to the user as one copy-pasteable JSON object;
+5. stop substantive execution in the current conversation.
 
-- long accumulated tool/result history;
-- several implementation → validation → repair cycles;
-- many branch/PR/SHA/deployment/gate transitions that must remain exact;
-- a pre-compaction or compaction signal exposed by the runtime;
-- increasing risk that exact identifiers, rejected approaches, concurrency state, or next action could be omitted.
+## Bounded packages
 
-The objective is safe continuation, not maximizing use of the context window.
-
-## Trigger behavior
-
-At a context-safety trigger:
-
-1. do not start another substantive roadmap package;
-2. finish only the smallest atomic operation required to reach a safe deterministic boundary;
-3. fresh-reconcile live GitHub and any newer generated programme state;
-4. apply `docs/HANDOVER_PROTOCOL.md`;
-5. rotate `CURRENT -> PREVIOUS`;
-6. write a complete new `CURRENT.json`;
-7. verify the canonical file is readable from the authoritative branch;
-8. emit the same complete CURRENT object to the user as one copy-pasteable JSON object;
-9. stop substantive execution for the current conversation.
-
-A new session must still fresh-reconcile GitHub before continuing because the handover is an index, not the source of truth.
-
-## Bounded roadmap objects
-
-Long autonomous work must be shaped into bounded outcome-bearing packages. Each active package must state:
-
-- objective;
-- in scope;
-- out of scope;
-- terminal state;
-- validation/evidence;
-- next action or stop condition.
-
-Repair/revalidation loops may remain inside the same package when they are deterministic and in scope. Finishing a package does not silently authorize an unlimited chain of successor packages. A successor may continue only if it is already READY and within standing repository authority.
-
-If a package becomes too large for a safe handover or has an ambiguous terminal state, split future work at a meaningful outcome boundary.
+Each substantive package must state objective, in-scope, out-of-scope, terminal state, validation/evidence, and next action/stop condition. Deterministic repairs may stay inside that package; successor packages do not gain implicit authority merely because the previous one completed.
 
 ## Cost model
 
-Context analysis happens in the active agent/runtime. GitHub stores durable policy and handover state.
+There is no context-polling workflow and no background GitHub retriever.
 
-Therefore:
+- Context/risk analysis happens in the active agent/runtime.
+- Rolling state writes go to `continuity-state`, not `main`.
+- The repository's push workflows are scoped to `main`; continuity-state writes therefore do not need an Actions run.
+- Use `[skip ci]` on every continuity-state checkpoint as an additional safeguard.
+- Do not merge continuity-state into main for routine handover refreshes.
 
-- no scheduled context polling workflow is allowed;
-- no background GitHub context retriever is required;
-- ordinary GitHub API reads/writes do not consume Actions minutes;
-- handover/documentation-only commits should use `[skip ci]` where supported;
-- a future runtime-specific local hook may call this policy, but it must not convert the policy into a GitHub polling job.
+## Acceptance tests
 
-## Verification scenarios
-
-The contract is considered structurally sound when these cases hold:
-
-| Scenario | Expected behavior |
+| Case | Expected |
 | --- | --- |
-| Telemetry reports 63% at a safe boundary | Prepare handover now; do not start another package |
-| Telemetry reports 52%, state is simple and exact | Continue current bounded package |
-| Telemetry unavailable after many repair/state cycles | Prepare an early heuristic handover |
-| Runtime emits pre-compaction signal | Treat as emergency continuation signal |
-| Package completes at 66% and successor is READY | Handover first; successor belongs in the next session |
-| Handover-only repository update | Prefer `[skip ci]`; no context polling Action |
+| Package/PR closes at low context | Refresh continuity-state before next package |
+| Chat dies during next package | New chat recovers at previous durable package boundary and fresh-reconciles live GitHub |
+| 63% telemetry at safe boundary | Refresh + emit handover + stop |
+| No telemetry, many state transitions | Early refresh + emit handover + stop |
+| Continuity branch checkpoint | No normal CI/Pages deployment |
+| New chat | Read continuity-state CURRENT, then reconcile live main/open PRs/checks before mutation |
 
-## Limits
+## Runtime-specific hooks
 
-This repository policy cannot force an ordinary ChatGPT surface to expose an exact context percentage. Where exact telemetry is unavailable, compliance is deliberately heuristic. The durable behavior—safe boundary, reconciliation, rotation, and copy-paste object—is still enforceable through repository instructions.
+Codex runtimes that expose `PreCompact` may use it as an emergency additional trigger. Ordinary ChatGPT conversations must not be assumed to expose or execute that hook.
+
+## Limit
+
+No repository file can guarantee an interrupt inside a failing ordinary ChatGPT runtime. Rolling checkpoints solve this by making recovery independent of that interrupt: even if the chat disappears, the next chat has a recent durable state.

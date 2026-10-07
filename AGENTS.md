@@ -87,20 +87,21 @@ all authorized machine implementation
 
 A terminal human verification window should be as short as the evidence contract allows. After the user supplies the final required live evidence, the agent should complete the remaining authorized documentation, reconciliation, merge and closeout steps autonomously.
 
-## Continuation-before-context-loss authority
+## Rolling continuity and context-loss authority
 
-Before conversation context becomes unreliable, the active agent must stop ordinary implementation at a safe boundary, warn the user that continuation is being prepared, fresh-reconcile GitHub, and save a complete resumable state through `docs/HANDOVER_PROTOCOL.md` and `docs/handovers/CURRENT.json`.
+The primary continuity control for ordinary ChatGPT/Culinary repository work is **event-based rolling checkpointing**, not a guessed context-window percentage.
 
-Apply `config/context_safety_policy.json` and `docs/CONTEXT_SAFETY_PROTOCOL.md` to every substantive long-running Culinary repository session.
+Apply `config/context_safety_policy.json`, `docs/CONTEXT_SAFETY_PROTOCOL.md`, and `docs/HANDOVER_PROTOCOL.md` to every substantive long-running Culinary repository session.
 
-- When the active runtime exposes context-use telemetry, target a continuation boundary in the **60–70%** used range, with **65%** as the preferred trigger. **55–75%** is an acceptable safety window; do not intentionally consume beyond 75% merely to finish more scope.
-- When exact telemetry is unavailable, use conservative context-risk detection instead of inventing a percentage. Long tool/result history, multiple implementation/repair cycles, many mutable state transitions, compaction/pre-compaction signals, or increasing difficulty retaining exact identifiers are sufficient reasons to checkpoint early.
-- At a context-safety trigger, do not start another substantive roadmap package. Finish only the smallest atomic operation needed to reach a safe deterministic boundary, then reconcile and hand over.
-- Rotate `CURRENT -> PREVIOUS` and write a new complete CURRENT before context loss, not after.
-- The saved CURRENT must include the exact live main SHA/baseline, open PR/branch/CI state, standing autonomy and CI authority, the next executable action, and any active human/error/cost gate.
-- After the repository handover is written and re-read, emit the **same complete CURRENT object as one copy-pasteable JSON object** to the user at the continuation boundary.
-- A new chat must be able to continue from the repository handover without requiring the user to reconstruct prior chat state.
-- Context safety must not depend on a scheduled/polling GitHub Action. Handover/documentation-only writes should use `[skip ci]` where repository workflow behavior supports it.
+- The canonical rolling handover lives on Git ref **`continuity-state`**, at `docs/handovers/CURRENT.json` and `docs/handovers/PREVIOUS.json`. `main` remains authoritative for project code, roadmap, contracts and implementation state; the continuity branch is only a resumability index.
+- **Before starting the next bounded package**, refresh the rolling handover after any material bounded-package terminal, merged material PR, material roadmap transition, human/error/cost gate, or validated stable waiting state. Do not carry more than one materially changed package forward without a durable checkpoint.
+- A checkpoint must fresh-reconcile live `main`, open PRs/branches and required validation first. Rotate `CURRENT -> PREVIOUS`, write one complete new CURRENT on `continuity-state`, and re-read it from that branch.
+- Routine rolling checkpoints are repository-only and must not interrupt a standing no-narration lane. Emit the complete copy-pasteable CURRENT object to the user only at a context-risk/continuation boundary, terminal report, or when explicitly requested.
+- When runtime context telemetry exists, use it as an **additional early trigger**: preferred 65%, target 60–70%, acceptable 55–75%. When telemetry is unavailable, never invent a percentage.
+- Long tool/result history, repeated implementation/repair cycles, many mutable GitHub state transitions, pre-compaction/compaction signals, or increasing risk of losing exact identifiers require an immediate checkpoint at the nearest safe deterministic boundary even if the current package has not otherwise closed.
+- At a context-risk trigger, do not start another substantive package. Reach the nearest safe deterministic boundary, refresh `continuity-state`, emit the same CURRENT object to the user, and stop substantive work in the current conversation.
+- No scheduled/polling GitHub Action or background context retriever is authorized or required. The rolling checkpoint is written by the active agent as part of normal package closeout.
+- Writes to `continuity-state` must use `[skip ci]` and must not be merged into `main` merely to refresh handover state.
 
 ### Bounded roadmap-object discipline
 
@@ -108,7 +109,8 @@ Autonomous Culinary execution is partitioned into bounded outcome-bearing roadma
 
 - One active package must have a named objective, explicit in/out scope, terminal state, validation/evidence requirement, and exact successor or stop condition.
 - A package may contain several deterministic repair/revalidation iterations, but it must not silently expand into an unbounded chain of successor packages.
-- Completing one package does not itself authorize consuming every later roadmap object. Continue only when the next object is already `READY` and within standing authority; otherwise stop at the applicable human/error/cost/continuation gate.
+- Completing one package does not itself authorize consuming every later roadmap object. Continue only when the next object is already `READY` and within standing authority.
+- Before beginning that successor package, persist the rolling checkpoint described above.
 - If an object grows too large to hand over safely or its terminal state becomes ambiguous, split future work at a meaningful outcome boundary rather than extending the object indefinitely.
 
 ## Repository work-unit lifecycle

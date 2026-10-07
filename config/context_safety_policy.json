@@ -1,9 +1,28 @@
 {
-  "schema_version": 1,
-  "policy_id": "CULINARY_CONTEXT_SAFETY_V1",
+  "schema_version": 2,
+  "policy_id": "CULINARY_CONTEXT_SAFETY_V2",
   "status": "ACTIVE",
-  "purpose": "Produce an early durable continuation handover before conversation context becomes unreliable without requiring GitHub Actions polling.",
-  "context_detection": {
+  "purpose": "Keep Culinary repository work resumable even when an ordinary ChatGPT conversation fails before a context-percentage trigger can fire.",
+  "primary_mechanism": {
+    "type": "EVENT_BASED_ROLLING_CHECKPOINT",
+    "state_branch": "continuity-state",
+    "current_path": "docs/handovers/CURRENT.json",
+    "previous_path": "docs/handovers/PREVIOUS.json",
+    "max_material_packages_without_checkpoint": 1,
+    "checkpoint_required_after": [
+      "material_bounded_package_terminal",
+      "material_pr_merge",
+      "material_roadmap_transition",
+      "human_error_cost_or_security_gate",
+      "validated_stable_waiting_state"
+    ],
+    "before_starting_successor_package": true,
+    "fresh_reconcile_before_write": true,
+    "rotate_current_to_previous": true,
+    "verify_read_after_write": true,
+    "routine_checkpoint_user_output": "SUPPRESS_UNLESS_ALLOWED_RESPONSE_BOUNDARY"
+  },
+  "secondary_context_trigger": {
     "telemetry": {
       "use_when_available": true,
       "preferred_trigger_fraction": 0.65,
@@ -15,7 +34,7 @@
         "min": 0.55,
         "max": 0.75
       },
-      "rule": "Trigger at the first safe deterministic boundary in the target window; 65% is preferred. Do not intentionally continue beyond 75% solely to finish more scope."
+      "rule": "At the first safe boundary in the target window, refresh the rolling checkpoint and hand over. Never invent usage when telemetry is unavailable."
     },
     "heuristic_fallback": {
       "enabled": true,
@@ -26,20 +45,14 @@
         "many_mutable_repository_or_external_state_transitions",
         "runtime_precompact_or_compaction_signal",
         "increasing_risk_of_losing_exact_branch_pr_sha_gate_or_next_action_state"
-      ],
-      "rule": "When telemetry is unavailable, checkpoint conservatively as soon as context reliability is plausibly at risk."
+      ]
     }
   },
-  "handover": {
-    "protocol": "docs/HANDOVER_PROTOCOL.md",
-    "current": "docs/handovers/CURRENT.json",
-    "previous": "docs/handovers/PREVIOUS.json",
-    "rotation": "old CURRENT -> PREVIOUS; new complete snapshot -> CURRENT",
-    "fresh_reconcile_before_write": true,
-    "verify_canonical_read_after_write": true,
-    "emit_user_copy": true,
-    "user_copy_format": "single_complete_json_object",
-    "user_copy_must_match_current_semantically": true
+  "user_handover": {
+    "emit_complete_copy_at_context_boundary": true,
+    "format": "single_complete_json_object",
+    "source": "continuity-state:docs/handovers/CURRENT.json",
+    "repository_snapshot_remains_resumability_index_not_project_truth": true
   },
   "roadmap_object_contract": {
     "bounded_by_default": true,
@@ -53,15 +66,15 @@
       "next_action_or_stop_condition"
     ],
     "deterministic_repair_cycles_allowed": true,
-    "successor_chain_implicit_authorization": false,
-    "split_when_handover_or_terminal_state_becomes_unsafe": true
+    "successor_chain_implicit_authorization": false
   },
   "cost_and_execution": {
     "github_actions_required": false,
     "scheduled_context_polling_forbidden": true,
     "background_context_retriever_forbidden": true,
-    "handover_only_commit_preference": "[skip ci] where supported",
-    "context_analysis_location": "active agent/runtime",
-    "repository_role": "durable policy and continuation state"
+    "continuity_branch_commit_message_suffix": "[skip ci]",
+    "continuity_branch_must_not_be_merged_for_routine_checkpoint": true,
+    "main_branch_role": "authoritative project state",
+    "continuity_branch_role": "durable resumability state only"
   }
 }
