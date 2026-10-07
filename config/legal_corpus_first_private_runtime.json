@@ -223,5 +223,24 @@
     "unknownMetadataFabricationAuthorized": false,
     "weakenRightsGateAuthorized": false,
     "escalation": "STOP_AND_ASK_OWNER_WITH_EVIDENCE_OPTIONS"
+  },
+  "currentAcquisitionState": {
+    "date": "2026-10-07",
+    "terminal": "STEP_8G_IDUNS_V8019_PROTECTED_POPULATION_PASS",
+    "activeProtectedVersion": "v8019",
+    "protectedRecipeCount": 22086,
+    "parentProtectedVersion": "v8018",
+    "parentProtectedRecipeCount": 19268,
+    "acquisitionDeltaRecipeCount": 2818,
+    "acquisitionDeltaCohortId": "ORA_IDUNS_1911_FIRST_EDITION_ARKIVKOPIA_RUNEBERG",
+    "shardCount": 2,
+    "maxObservedD1Subqueries": 8,
+    "normalOwnerSearchVersion": "v8018",
+    "normalOwnerSearchRecipeCount": 19268,
+    "normalOwnerSearchIncludesCurrentDelta": false,
+    "nextGate": "V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_V1",
+    "nextCohortSelectionBlockedUntilSearchGatePass": true,
+    "evidence": "data/generated/step8g/iduns-v8019-live-pass.json",
+    "document": "docs/CORPUS_SCALE_STEP8G_IDUNS_V8019_LIVE_POPULATION_PASS.md"
   }
 }
