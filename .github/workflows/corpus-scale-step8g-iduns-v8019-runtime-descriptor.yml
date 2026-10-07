@@ -1,0 +1,66 @@
+name: Corpus Scale Step 8G Iduns v8019 runtime descriptor
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/corpus-scale-step8g-iduns-v8019-runtime-descriptor.yml'
+      - 'scripts/generate-step8g-iduns-v8019-runtime-descriptor.mjs'
+      - 'scripts/corpus-scale-step8g-iduns-v8019-prewrite-core.mjs'
+      - 'scripts/corpus-scale-step8g-ora-iduns-1911-core.mjs'
+      - 'data/generated/step8g/v8019-runtime-descriptor.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  descriptor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout Culinary app
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - name: Checkout pinned Open Recipe Archive
+        uses: actions/checkout@v4
+        with:
+          repository: AdamBouhmad/open-recipe-archive
+          ref: ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8
+          path: open-recipe-archive
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Generate exact v8019 runtime descriptor
+        run: >-
+          node scripts/generate-step8g-iduns-v8019-runtime-descriptor.mjs
+          --ora=./open-recipe-archive
+          --out=.tmp/v8019-runtime-descriptor.mjs
+      - name: Verify descriptor shape and prewrite fingerprints
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from "node:fs";
+          const text=readFileSync(".tmp/v8019-runtime-descriptor.mjs","utf8");
+          const json=JSON.parse(text.slice(text.indexOf("Object.freeze(")+14,-3));
+          if(json.layerManifestSha256!=="a6e252ec24526bebc797a58d9e65fd21f8f92e2bfcff661c0251dfe12bd1e585") process.exit(1);
+          if(json.populationPlanSha256!=="14a700c0f79159dd77b2ec03b389e352909949d452ff02fdcebbfc679d25b9b4") process.exit(1);
+          if(json.parentCompositionRouteCount!==19268||json.composedRouteCount!==22086) process.exit(1);
+          if(JSON.stringify(json.bodyShardRows)!==JSON.stringify([1363,1455])) process.exit(1);
+          if(JSON.stringify(json.bodyHashHexByShard.map(x=>x.length/64))!==JSON.stringify([137,146])) process.exit(1);
+          if(JSON.stringify(json.routeHashHexByShard.map(x=>x.length/64))!==JSON.stringify([137,146])) process.exit(1);
+          console.log(JSON.stringify({pass:true,manifest:json.layerManifestSha256,plan:json.populationPlanSha256,bodyShardRows:json.bodyShardRows,bodyBatches:json.bodyHashHexByShard.map(x=>x.length/64)}));
+          NODE
+      - name: Compare frozen descriptor when present
+        shell: bash
+        run: |
+          if [ -f data/generated/step8g/v8019-runtime-descriptor.mjs ]; then
+            cmp data/generated/step8g/v8019-runtime-descriptor.mjs .tmp/v8019-runtime-descriptor.mjs
+          fi
+      - name: Upload generated v8019 descriptor
+        uses: actions/upload-artifact@v4
+        with:
+          name: step8g-v8019-runtime-descriptor
+          path: .tmp/v8019-runtime-descriptor.mjs
+          if-no-files-found: error
+          retention-days: 30
