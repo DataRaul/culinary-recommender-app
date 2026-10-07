@@ -78,7 +78,7 @@ test("v8019 API preserves auth and rollback evidence", () => {
   assert.match(api,/STEP8G_V8019_WRITE_BODY_EXCEPTION/);
   assert.match(api,/STEP8G_V8019_FREE_LIMIT_FAIL_CLOSED/);
   assert.match(api,/pointer\.activeVersion === "v8018" && pointer\.previousVersion === "v8019"/);
-  assert.match(api,/requireOwnerSession/);
+  assert.match(api,/currentSessionAccount/);
 });
 test("v8019 hydration resolves v8015 through v8019", async () => {
   const versions=["v8015","v8016","v8017","v8018","v8019"];
