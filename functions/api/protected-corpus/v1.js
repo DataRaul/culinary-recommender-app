@@ -5,6 +5,7 @@ import {
   browseProtectedCorpus,
   detailProtectedCorpusRecipe,
   indexProtectedCorpusBatch,
+  indexProtectedCorpusV8019DeltaBatch,
   initializeProtectedSearchIndex,
   protectedSearchIndexStatus,
   repairForkRecipeStructuralState,
@@ -108,6 +109,12 @@ export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   const action = url.searchParams.get("action") || "status";
 
+  if (action === "v8019-search-runner") {
+    const runnerUrl = new URL("/protected-corpus.html", url.origin);
+    runnerUrl.searchParams.set("v8019-search-delta", "20261007-v1");
+    return new Response(null, { status:302, headers:{ location:runnerUrl.toString(), "cache-control":"no-store, max-age=0" } });
+  }
+
   if (action === "status") {
     try {
       const result = await protectedSearchIndexStatus(env.CULINARY_CONTROL_DB);
@@ -184,6 +191,17 @@ export async function onRequestPost({ request, env }) {
       return withBudget({ ...result, protectedDataReturned: false }, auth.authD1Subqueries, result.pass ? 200 : 409);
     } catch (error) {
       return jsonResponse({ ok: false, step: STEP, action, error: "FORKRECIPE_STRUCTURAL_REPAIR_FAILED", reason: String(error?.message || error).slice(0,240), protectedDataReturned: false, fullCorpusScans: 0, metrics: metrics(auth.authD1Subqueries) }, 503);
+    }
+  }
+
+  if (action === "index-v8019-delta-batch") {
+    const missing = missingShardBindings(env);
+    if (missing.length) return jsonResponse({ ok: false, step: STEP, action, error: "SHARD_BINDINGS_NOT_CONFIGURED", missingBindings: missing, protectedDataReturned: false, fullCorpusScans: 0, metrics: metrics(auth.authD1Subqueries) }, 503);
+    try {
+      const result = await indexProtectedCorpusV8019DeltaBatch(env.CULINARY_CONTROL_DB, shardDbs(env), String(payload?.cursor || ""));
+      return withBudget({ ...result, protectedDataReturned: false }, auth.authD1Subqueries, result.pass ? 200 : 409);
+    } catch (error) {
+      return jsonResponse({ ok: false, step: STEP, action, error: "V8019_DELTA_INDEX_BATCH_FAILED", reason: String(error?.message || error).slice(0,240), protectedDataReturned: false, fullCorpusScans: 0, metrics: metrics(auth.authD1Subqueries) }, 503);
     }
   }
 
