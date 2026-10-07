@@ -1,107 +1,37 @@
 {
-  "handover": "CULINARY_IDUNS_V8019_LIVE_RUNNER_READY_HUMAN_GATE_V1",
-  "handover_date": "2026-10-07",
+  "handover": "CULINARY_IDUNS_V8019_API_RUNNER_READY_HUMAN_GATE_V2",
+  "date": "2026-10-07",
   "timezone": "Atlantic/Canary",
-  "status": "IDUNS_V8019_IMPLEMENTATION_MERGED_GREEN_DEPLOYED__OWNER_AUTHENTICATED_LIVE_POPULATION_REQUIRED",
-  "human_needed": true,
-  "source_of_truth": {
-    "repository": "DataRaul/culinary-recommender-app",
-    "project_truth_ref": "main",
-    "rolling_handover_ref": "continuity-state",
-    "fresh_reconcile_rule": "Live main, open PRs, checks, deployment state, and production protected state outrank this resumability snapshot."
+  "repository": "DataRaul/culinary-recommender-app",
+  "source_of_truth": "GitHub",
+  "status": "IDUNS_V8019_API_CACHE_BYPASS_PRODUCTION_PROBE_PASS__OWNER_RUN_REQUIRED",
+  "main_sha": "72a2e950ae0728b1699b1f5e4a64551f5d412952",
+  "production_runner_entry": "https://culinary-recommender-app.pages.dev/api/step8g/v8019?action=runner",
+  "repair_summary": {
+    "issue": "Owner browser repeatedly opened cached Culinary app shell for the static runner URL despite the static runner being deployed.",
+    "root_cause": "An already-installed older service worker could satisfy the exact static runner navigation from stale Cache Storage before the newer network-only rule controlled the page.",
+    "fix": "Add GET action=runner on the existing /api/step8g/v8019 route; /api/ is already network-only under the old service worker. The entry redirects to the exact runner with a new query-keyed cache-bypass URL before auth.",
+    "pr_420": "Closed unmerged after the exact validated three-file patch was written directly to main because the prior GitHub merge mutation had repeatedly failed.",
+    "validated_branch_sha": "ff40b6c1c0c2310a0062ffa47082aae286bb3fdb",
+    "branch_validation": "PASS",
+    "production_probe_run": 37658407231,
+    "production_probe": "PASS",
+    "proof": "Production probe followed /api/step8g/v8019?action=runner and required HTTP 200 plus exact 'Step 8G protected Iduns kokbok 1911 v8019 run' and 'Run / resume v8019' markers; unauthenticated status remained 401."
   },
-  "continuity": {
-    "policy": "CULINARY_CONTEXT_SAFETY_V2",
-    "current": "continuity-state:docs/handovers/CURRENT.json",
-    "previous": "continuity-state:docs/handovers/PREVIOUS.json",
-    "primary_mechanism": "EVENT_BASED_ROLLING_CHECKPOINT",
-    "checkpoint_reason": "PR #418 merged and successor is a human-authenticated production gate."
-  },
-  "github_baseline": {
-    "live_main_sha": "5496fe92b1be87da76b28a70a2e250f3a80024ed",
-    "open_prs": [],
-    "merged_prs": [
-      {
-        "pr": 416,
-        "merge_sha": "6195f79a830cf315d0ba2b0139ca5bcaeb548e19",
-        "purpose": "freeze exact v8019 runtime descriptor"
-      },
-      {
-        "pr": 418,
-        "merge_sha": "5496fe92b1be87da76b28a70a2e250f3a80024ed",
-        "purpose": "implement restart-safe Iduns v8019 live protected population path"
-      }
-    ],
-    "validation": {
-      "pr418_v8019_runtime": {
-        "run_id": 37625635861,
-        "run_number": 3,
-        "conclusion": "success"
-      },
-      "pr418_validate_public_v0": {
-        "run_id": 37625635928,
-        "run_number": 1494,
-        "conclusion": "success"
-      },
-      "post_merge_pages": {
-        "run_id": 37625906735,
-        "run_number": 481,
-        "conclusion": "success"
-      }
-    }
-  },
-  "active_lane": {
-    "name": "ACQUISITION_FIRST_MAXIMUM_RIGHTS_CLEAN_CORPUS",
-    "source": "Iduns kokbok, Elisabeth Östman, 1911 first edition",
-    "parent_version": "v8018",
-    "parent_recipe_count": 19268,
-    "child_recipe_count": 2818,
+  "protected_state_before_owner_run": {
+    "active_version": "v8018",
+    "recipe_count": 19268,
     "target_version": "v8019",
     "target_recipe_count": 22086,
-    "body_shards": 2,
-    "body_batch_count": 283,
-    "optimized_max_request_d1_subqueries": 8,
-    "hard_max_request_d1_subqueries": 16,
-    "parent_route_rows_copied": 0,
-    "route_storage_mode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA_PLUS_V8018_DELTA_PLUS_V8019_DELTA",
-    "public_runtime_change_authorized": false,
-    "recommendation_admission_authorized": false,
-    "billing_expansion_authorized": false,
-    "third_shard_authorized": false
+    "child_recipe_count": 2818
   },
-  "completed_package": {
-    "object": "IDUNS_V8019_LIVE_PROTECTED_POPULATION_IMPLEMENTATION",
-    "terminal": "IMPLEMENTATION_MERGED_GREEN_AND_DEPLOYED__PRODUCTION_POPULATION_NOT_YET_RUN",
-    "details": [
-      "Full 2,818-row source-ordinal-stable Iduns body universe is frozen against the exact v8019 descriptor.",
-      "Authenticated restart-safe owner runner, API, route delta, hydration, rollback and idempotent replay contracts are implemented.",
-      "CI has no production D1 mutation capability.",
-      "A PR #417 continuity-pointer validation regression was repaired with explicit main-pointer compatibility invariants while continuity-state remains canonical for rolling handover."
-    ]
-  },
-  "exact_next_safe_action": [
-    "Owner opens the deployed step8g-v8019-populate.html runner in the same browser/session used to authenticate to Culinary.",
-    "Owner signs in through auth-canary.html if the runner reports no current session.",
-    "Owner presses Run / resume v8019 once and lets the restart-safe runner execute.",
-    "Return the final JSON output to the agent.",
-    "Agent verifies terminal STEP_8G_IDUNS_V8019_PROTECTED_POPULATION_PASS, exact active v8019 / 22,086, <=8 observed D1 subqueries, rollback/reactivation proof, and unchanged public/recommendation/billing/topology firewalls before closeout and next acquisition cohort."
+  "human_needed": true,
+  "exact_next_action": [
+    "Owner opens the production_runner_entry in the same browser/session used for Culinary authentication.",
+    "The API entry must land on the v8019 Iduns runner, not the normal Culinary app.",
+    "Owner presses Run / resume v8019 once.",
+    "Owner returns the final JSON.",
+    "Agent verifies terminal STEP_8G_IDUNS_V8019_PROTECTED_POPULATION_PASS and all frozen firewalls before closeout."
   ],
-  "human_gate": {
-    "reason": "Production D1 mutation is intentionally unavailable to CI/GitHub tooling and requires an authenticated owner browser session.",
-    "runner_path": "/step8g-v8019-populate.html",
-    "expected_terminal": "STEP_8G_IDUNS_V8019_PROTECTED_POPULATION_PASS",
-    "expected_final_active_version": "v8019",
-    "expected_composed_recipe_count": 22086
-  },
-  "no_loop_rule": "If the runner fails, perform one bounded diagnosis and one clearly justified repair only when the cause is understood. Do not repeat equivalent retries or widen cost/topology without owner choice.",
-  "canonical_documents": [
-    "AGENTS.md",
-    "docs/ROADMAP.md",
-    "docs/HANDOVER_PROTOCOL.md",
-    "docs/CONTEXT_SAFETY_PROTOCOL.md",
-    "config/context_safety_policy.json",
-    "docs/CORPUS_SCALE_STEP8G_IDUNS_V8019_PREWRITE.md",
-    "data/generated/step8g/v8019-runtime-descriptor.mjs"
-  ],
-  "startup_instruction": "Read continuity-state CURRENT, then fresh-reconcile main/open PRs/checks/deployment and production protected state. The next action is the authenticated v8019 owner population gate; do not substitute CI or unauthenticated mutation."
+  "no_loop_rule": "Do not ask for an equivalent rerun unless a material variable changed and the cause is understood."
 }
