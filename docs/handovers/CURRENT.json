@@ -6,5 +6,17 @@
   "previous_path": "docs/handovers/PREVIOUS.json",
   "source_of_truth": "GitHub main + live PR/check state",
   "instruction": "Fetch CURRENT explicitly from ref continuity-state, then fresh-reconcile live main/open PRs/checks before continuing.",
-  "note": "This main-branch file is intentionally not the rolling continuation snapshot."
+  "note": "This main-branch file is intentionally not the rolling continuation snapshot.",
+  "lane": {
+    "billing": "NO_BILLING_AUTHORIZATION"
+  },
+  "compatibility_invariants": {
+    "purpose": "Historical main-branch validation compatibility only; not the rolling continuity snapshot.",
+    "public_runtime_recipe_count": 85,
+    "public_runtime_changed": false,
+    "shard_count": 2,
+    "third_shard_used": false,
+    "billing_expansion": false,
+    "public_admission_authorized": false
+  }
 }
