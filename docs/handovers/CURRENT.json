@@ -1,10 +1,146 @@
 {
-  "handover": "CULINARY_CONTINUITY_STATE_POINTER_V1",
-  "status": "POINTER_ONLY",
-  "canonical_ref": "continuity-state",
-  "current_path": "docs/handovers/CURRENT.json",
-  "previous_path": "docs/handovers/PREVIOUS.json",
-  "source_of_truth": "GitHub main + live PR/check state",
-  "instruction": "Fetch CURRENT explicitly from ref continuity-state, then fresh-reconcile live main/open PRs/checks before continuing.",
-  "note": "This main-branch file is intentionally not the rolling continuation snapshot."
+  "handover": "CULINARY_ACQUISITION_FIRST_IDUNS_V8019_PR416_ROLLING_RECOVERY_V1",
+  "handover_date": "2026-10-07",
+  "timezone": "Atlantic/Canary",
+  "status": "ACQUISITION_FIRST_ACTIVE__IDUNS_V8019_DESCRIPTOR_PR416_OPEN__ROLLING_CONTINUITY_RECOVERED",
+  "human_needed": false,
+  "source_of_truth": {
+    "repository": "DataRaul/culinary-recommender-app",
+    "project_truth_ref": "main",
+    "rolling_handover_ref": "continuity-state",
+    "fresh_reconcile_rule": "Live main, open PRs, checks and authoritative generated state outrank this resumability snapshot."
+  },
+  "continuity": {
+    "policy": "CULINARY_CONTEXT_SAFETY_V2",
+    "current": "continuity-state:docs/handovers/CURRENT.json",
+    "previous": "continuity-state:docs/handovers/PREVIOUS.json",
+    "primary_mechanism": "EVENT_BASED_ROLLING_CHECKPOINT",
+    "max_material_packages_without_checkpoint": 1,
+    "context_telemetry_role": "SECONDARY_EARLY_TRIGGER_ONLY",
+    "preferred_context_trigger_percent": 65,
+    "target_context_window_percent": [
+      60,
+      70
+    ],
+    "acceptable_context_window_percent": [
+      55,
+      75
+    ],
+    "first_live_test_result": "FAIL_CONTEXT_ONLY_TRIGGER_DID_NOT_ROTATE_HANDOVER",
+    "repair_pr": 417,
+    "repair_main_sha": "392d516ebd2251bfcea89f691a46aae56167fa3c"
+  },
+  "github_baseline": {
+    "live_main_sha": "392d516ebd2251bfcea89f691a46aae56167fa3c",
+    "open_prs": [
+      {
+        "pr": 416,
+        "title": "Corpus acquisition: generate exact v8019 runtime descriptor",
+        "head_branch": "corpus-iduns-v8019-descriptor-v1",
+        "head_sha": "d3248569612f6afee6a2f7fe1c5d5ab8463e8fb3",
+        "original_base_sha": "91991ef50f0456fa09265cf41aed6dc876c7b482",
+        "observed_after_continuity_repair": "OPEN__MERGEABILITY_REQUIRES_FRESH_RECONCILIATION",
+        "checks": [
+          {
+            "run_id": 37544194518,
+            "name": "Corpus Scale Step 8G Iduns v8019 runtime descriptor",
+            "conclusion": "success"
+          },
+          {
+            "run_id": 37544194522,
+            "name": "Validate public V0",
+            "conclusion": "success"
+          }
+        ],
+        "changed_files": [
+          ".github/workflows/corpus-scale-step8g-iduns-v8019-runtime-descriptor.yml",
+          "data/generated/step8g/v8019-runtime-descriptor.mjs",
+          "scripts/generate-step8g-iduns-v8019-runtime-descriptor.mjs"
+        ]
+      }
+    ],
+    "latest_material_completed_pr": {
+      "pr": 415,
+      "title": "Corpus acquisition: Iduns v8019 full-cohort prewrite",
+      "merge_sha": "91991ef50f0456fa09265cf41aed6dc876c7b482"
+    }
+  },
+  "active_lane": {
+    "name": "ACQUISITION_FIRST_MAXIMUM_RIGHTS_CLEAN_CORPUS",
+    "directive": "Acquire every lawfully and technically admissible recipe cohort; recommendation readiness is not an ingestion prerequisite.",
+    "target_source": "Iduns kokbok 1911",
+    "source_rows": 2818,
+    "parent_version": "v8018",
+    "parent_routes": 19268,
+    "target_version": "v8019",
+    "target_routes": 22086,
+    "architecture_constraints": [
+      "preserve source-backed title, ingredients and method/detail where available",
+      "stable source-row ordinal IDs preserve repeated/variant titles",
+      "existing two-shard protected architecture",
+      "zero-paid recurring architecture",
+      "<=8 D1 request target",
+      "no recommendation qualification required for ingestion",
+      "no blind retry loops; one bounded diagnosis and one justified repair when understood"
+    ]
+  },
+  "completed_since_legacy_handover": [
+    "V21 owner 271 normal-product acceptance passed",
+    "V22 owner secondary planning fallback acceptance passed",
+    "Owner Recipe Library direction unified into Search and protected recipe detail visibility repaired",
+    "Acquisition-first directive made canonical",
+    "Iduns 1911 rights/provenance measurement passed",
+    "Iduns v8019 full-cohort prewrite PR #415 merged",
+    "Context-safety V1 live test failed because rolling handover did not update",
+    "Rolling continuity V2 repair PR #417 merged and dedicated continuity-state branch created"
+  ],
+  "current_bounded_package": {
+    "object": "IDUNS_V8019_RUNTIME_DESCRIPTOR",
+    "pr": 416,
+    "objective": "Freeze and validate the exact v8019 runtime descriptor for all 2,818 Iduns rows under the existing two-shard architecture.",
+    "in_scope": [
+      "descriptor generation",
+      "frozen manifest/plan fingerprint verification",
+      "19,268 parent-route and 22,086 composed-route checks",
+      "two-shard body-row and batch fingerprint verification"
+    ],
+    "out_of_scope": [
+      "D1 writes",
+      "public/product behavior changes",
+      "recommendation admission",
+      "paid topology widening",
+      "Knowledge Core writes"
+    ],
+    "terminal_state": "PR #416 is merge-ready against current main with required checks green, then merged; checkpoint before any successor package.",
+    "validation_or_evidence": [
+      "descriptor workflow run 37544194518 SUCCESS on head d3248569612f6afee6a2f7fe1c5d5ab8463e8fb3",
+      "Validate public V0 run 37544194522 SUCCESS on the same head"
+    ]
+  },
+  "failures_and_recovery": [
+    {
+      "issue": "The first context-percentage/heuristic handover policy did not fire in the ordinary ChatGPT session.",
+      "evidence": "Repository advanced from PR #407 through PRs #408-#415 and open #416 while main handover remained the 2026-09-26 snapshot.",
+      "repair": "V2 makes event-based rolling checkpoints primary and context percentage secondary; canonical rolling state moved to continuity-state."
+    }
+  ],
+  "exact_next_safe_action": [
+    "Fetch live main and PR #416 again because PR #417 advanced main after #416's original base.",
+    "Re-evaluate PR #416 mergeability/conflicts and required checks against current main.",
+    "If the only divergence is the continuity-policy documentation and the package remains valid, reconcile/update the PR without widening scope; rerun only checks genuinely required by the changed head.",
+    "Merge PR #416 only when current mergeability and validation are green.",
+    "Immediately refresh continuity-state before starting the next acquisition package."
+  ],
+  "human_gates": [],
+  "cost_security_gates": [
+    "Stop before any paid infrastructure/API/corpus-license decision, shard/topology widening, or security/access change."
+  ],
+  "canonical_documents": [
+    "AGENTS.md",
+    "docs/ROADMAP.md",
+    "docs/HANDOVER_PROTOCOL.md",
+    "docs/CONTEXT_SAFETY_PROTOCOL.md",
+    "config/context_safety_policy.json"
+  ],
+  "startup_instruction": "Fetch continuity-state:docs/handovers/CURRENT.json, then fresh-reconcile live main, PR #416 and its checks. Live GitHub outranks this snapshot. Continue only the current bounded acquisition package or the exact READY successor after first writing the required rolling checkpoint."
 }
