@@ -87,31 +87,31 @@ all authorized machine implementation
 
 A terminal human verification window should be as short as the evidence contract allows. After the user supplies the final required live evidence, the agent should complete the remaining authorized documentation, reconciliation, merge and closeout steps autonomously.
 
-## Rolling continuity and context-loss authority
+## Mandatory one-package handover circuit breaker
 
-The primary continuity control for ordinary ChatGPT/Culinary repository work is **event-based rolling checkpointing**, not a guessed context-window percentage.
+For ordinary ChatGPT/Culinary repository development, the primary safety rule is **exactly one bounded package/gate per chat execution cycle**.
 
-Apply `config/context_safety_policy.json`, `docs/CONTEXT_SAFETY_PROTOCOL.md`, and `docs/HANDOVER_PROTOCOL.md` to every substantive long-running Culinary repository session.
+Apply `config/context_safety_policy.json`, `docs/CONTEXT_SAFETY_PROTOCOL.md`, and `docs/HANDOVER_PROTOCOL.md`.
 
-- The canonical rolling handover lives on Git ref **`continuity-state`**, at `docs/handovers/CURRENT.json` and `docs/handovers/PREVIOUS.json`. `main` remains authoritative for project code, roadmap, contracts and implementation state; the continuity branch is only a resumability index.
-- **Before starting the next bounded package**, refresh the rolling handover after any material bounded-package terminal, merged material PR, material roadmap transition, human/error/cost gate, or validated stable waiting state. Do not carry more than one materially changed package forward without a durable checkpoint.
-- A checkpoint must fresh-reconcile live `main`, open PRs/branches and required validation first. Rotate `CURRENT -> PREVIOUS`, write one complete new CURRENT on `continuity-state`, and re-read it from that branch.
-- Routine rolling checkpoints are repository-only and must not interrupt a standing no-narration lane. Emit the complete copy-pasteable CURRENT object to the user only at a context-risk/continuation boundary, terminal report, or when explicitly requested.
-- When runtime context telemetry exists, use it as an **additional early trigger**: preferred 65%, target 60–70%, acceptable 55–75%. When telemetry is unavailable, never invent a percentage.
-- Long tool/result history, repeated implementation/repair cycles, many mutable GitHub state transitions, pre-compaction/compaction signals, or increasing risk of losing exact identifiers require an immediate checkpoint at the nearest safe deterministic boundary even if the current package has not otherwise closed.
-- At a context-risk trigger, do not start another substantive package. Reach the nearest safe deterministic boundary, refresh `continuity-state`, emit the same CURRENT object to the user, and stop substantive work in the current conversation.
-- No scheduled/polling GitHub Action or background context retriever is authorized or required. The rolling checkpoint is written by the active agent as part of normal package closeout.
-- Writes to `continuity-state` must use `[skip ci]` and must not be merged into `main` merely to refresh handover state.
+- Fresh-reconcile live GitHub before the package.
+- Execute one named bounded package only. A package must have objective, in-scope, out-of-scope, terminal state, validation/evidence, and next action or stop condition.
+- When that package reaches a terminal state, a material PR is merged/closed, a human/error/cost/security gate is reached, or a stable external waiting state is reached: **fresh-reconcile, rotate the handover, emit the complete copy-pasteable CURRENT object to the user, and STOP.**
+- **Do not start the successor package in the same execution cycle even when it is already READY and within standing authority.** The next chat starts from the handover and fresh-reconciles again.
+- A no-narration instruction does not suppress the terminal handover. The handover is itself an allowed terminal/continuation boundary.
+- Do not silently checkpoint and continue. A durable checkpoint without the user-visible handover is insufficient at the end of the package.
+- Do not wait for a context-percentage trigger. If runtime telemetry exists, treat roughly **50% used** as an optional early stop trigger; earlier is acceptable. If telemetry is unavailable, do not invent a percentage.
+- If context/tool history is becoming large before package terminal, stop at the nearest safe deterministic boundary, persist the partial package state, emit the handover, and STOP.
+- **No polling loops:** after one bounded re-check of an unchanged external status/wait condition, do not keep polling in the same chat. Record the exact waiting state and next re-check action in CURRENT, emit the handover, and STOP.
+- **No repair loops:** one bounded diagnosis plus one clearly justified repair/revalidation cycle is allowed inside the package. If the same failure recurs or the cause remains materially uncertain, hand over and STOP rather than continuing equivalent retries.
+- The canonical rolling handover remains on Git ref `continuity-state` at `docs/handovers/CURRENT.json` and `docs/handovers/PREVIOUS.json`. `main` remains authoritative project state; `continuity-state` is a resumability index only.
+- Continuity-state writes use `[skip ci]` and do not require GitHub Actions.
 
 ### Bounded roadmap-object discipline
 
-Autonomous Culinary execution is partitioned into bounded outcome-bearing roadmap objects/packages.
-
-- One active package must have a named objective, explicit in/out scope, terminal state, validation/evidence requirement, and exact successor or stop condition.
-- A package may contain several deterministic repair/revalidation iterations, but it must not silently expand into an unbounded chain of successor packages.
-- Completing one package does not itself authorize consuming every later roadmap object. Continue only when the next object is already `READY` and within standing authority.
-- Before beginning that successor package, persist the rolling checkpoint described above.
-- If an object grows too large to hand over safely or its terminal state becomes ambiguous, split future work at a meaningful outcome boundary rather than extending the object indefinitely.
+- One chat execution cycle owns one bounded package.
+- A package may contain deterministic substeps needed for its single terminal outcome, but not an unbounded successor chain.
+- Successor authority is recorded in the handover, never consumed automatically in the same cycle.
+- If a proposed package is too large to reach a safe terminal boundary reliably, split it **before** implementation.
 
 ## Repository work-unit lifecycle
 
