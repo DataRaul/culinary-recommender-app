@@ -1,52 +1,38 @@
 {
-  "handover": "CULINARY_V8019_OWNER_SEARCH_DELTA_READY_FOR_OWNER_RUN_V1",
+  "handover": "CULINARY_V8019_SEARCH_RUNNER_AUTH_FIX_READY_FOR_OWNER_RUN_V1",
   "date": "2026-10-08",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
   "source_of_truth": "GitHub",
-  "main_sha": "37a9cc7c8aa7a66780ea0d25a237f033498224f1",
+  "main_sha": "08ddde2f6ba0c748f3c1709bf8584ee85162a911",
   "open_prs": [],
-  "protected_state": {
-    "active_version": "v8019",
-    "protected_recipe_count": 22086,
-    "base_search_recipe_count": 19268,
-    "search_delta_target_count": 2818,
-    "shards": 2
-  },
-  "implementation": {
-    "pr_422": "merged",
-    "pr_423": "merged",
-    "search_architecture": "V8018_BASE_PLUS_V8019_INCREMENTAL_DELTA",
-    "base_index_rebuild": false,
-    "delta_table": "culinary_protected_recipe_search_delta_v8019",
-    "combined_search_target": 22086,
-    "two_shard_internal_d1_subqueries": 7,
-    "authenticated_max_d1_subqueries": 8
-  },
-  "validation": {
-    "pr_validation": "PASS",
-    "browser_acceptance": "PASS",
-    "detail_completeness": "PASS",
-    "owner_canary": "PASS",
-    "production_cloudflare_deploy": "PASS",
-    "main_validation": "PASS"
-  },
-  "next_gate": "OWNER_RUN_V8019_SEARCH_DELTA",
-  "owner_action": [
-    "Open the v8019 owner search runner in the authenticated Culinary browser session.",
-    "Press Add v8019 search delta or Resume v8019 search delta.",
-    "After indexing reaches 22086, press Run v8019 search acceptance.",
-    "Return the final acceptance JSON."
+  "merged_prs": [
+    422,
+    423,
+    424
   ],
-  "expected_terminal": "V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_PASS",
-  "acquisition_next_cohort_blocked_until_terminal": true,
-  "firewalls": {
-    "full_corpus_rebuild": false,
-    "public_runtime_changed": false,
-    "recommendation_admission_changed": false,
-    "third_shard_used": false,
-    "billing_expansion": false,
-    "barbecue_mutation": false
+  "terminal_before_owner_run": "V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_READY",
+  "production": {
+    "cloudflare_deploy": "PASS",
+    "main_validation": "PASS",
+    "browser_acceptance": "PASS",
+    "runner_auth_order_fix": "PASS"
   },
-  "human_needed": true
+  "owner_action": {
+    "url": "https://culinary-recommender-app.pages.dev/api/protected-corpus/v1?action=v8019-search-runner",
+    "expected_landing": "/protected-corpus.html?v8019-search-delta=20261008-v2",
+    "buttons": [
+      "Add v8019 search delta",
+      "Run v8019 search acceptance"
+    ],
+    "expected_terminal": "V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_PASS"
+  },
+  "search_target": {
+    "base_v8018": 19268,
+    "delta_v8019": 2818,
+    "total": 22086,
+    "architecture": "V8018_BASE_PLUS_V8019_INCREMENTAL_DELTA",
+    "authenticated_d1_target_max": 8
+  },
+  "no_loop_rule": "If the repaired runner still does not land on the protected corpus page, diagnose the observed final URL/state before any further retry."
 }
