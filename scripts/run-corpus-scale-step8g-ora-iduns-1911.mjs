@@ -42,6 +42,7 @@ execFileSync(process.execPath,[
   `--forkrecipe=${resolve(args.forkrecipe)}`,
   `--unitools=${resolve(args.unitools)}`,
   `--cc0=${resolve(args.cc0)}`,
+  "--historical-v8018",
   `--out=${discoveryRoot}`
 ],{cwd:process.cwd(),stdio:["ignore","pipe","inherit"]});
 
