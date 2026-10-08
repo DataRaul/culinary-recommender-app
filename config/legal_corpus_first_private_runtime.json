@@ -100,8 +100,8 @@
   ],
   "legalCorpusBaseline": {
     "status": "HISTORICAL_PASS__ACQUISITION_LOOP_REOPENED",
-    "activeProtectedVersion": "v8018",
-    "protectedRecipeCount": 19268,
+    "activeProtectedVersion": "v8019",
+    "protectedRecipeCount": 22086,
     "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_NO_MATERIAL_CANDIDATE",
     "finalDiscoveryRun": 35854872418,
     "finalDiscoveryArtifactId": 10746649788,
@@ -225,8 +225,8 @@
     "escalation": "STOP_AND_ASK_OWNER_WITH_EVIDENCE_OPTIONS"
   },
   "currentAcquisitionState": {
-    "date": "2026-10-07",
-    "terminal": "STEP_8G_IDUNS_V8019_PROTECTED_POPULATION_PASS",
+    "date": "2026-10-08",
+    "terminal": "V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_PASS",
     "activeProtectedVersion": "v8019",
     "protectedRecipeCount": 22086,
     "parentProtectedVersion": "v8018",
@@ -234,13 +234,17 @@
     "acquisitionDeltaRecipeCount": 2818,
     "acquisitionDeltaCohortId": "ORA_IDUNS_1911_FIRST_EDITION_ARKIVKOPIA_RUNEBERG",
     "shardCount": 2,
-    "maxObservedD1Subqueries": 8,
-    "normalOwnerSearchVersion": "v8018",
-    "normalOwnerSearchRecipeCount": 19268,
-    "normalOwnerSearchIncludesCurrentDelta": false,
-    "nextGate": "V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_V1",
-    "nextCohortSelectionBlockedUntilSearchGatePass": true,
-    "evidence": "data/generated/step8g/iduns-v8019-live-pass.json",
+    "maxObservedD1Subqueries": 6,
+    "normalOwnerSearchVersion": "v8019",
+    "normalOwnerSearchRecipeCount": 22086,
+    "normalOwnerSearchIncludesCurrentDelta": true,
+    "ownerBrowseSearchOpenPass": true,
+    "fullCorpusRebuild": false,
+    "fullCorpusScans": 0,
+    "nextGate": "ORA_ACQUISITION_FIRST_DISCOVERY_AND_RIGHTS_REVIEW",
+    "nextCohortSelectionBlockedUntilSearchGatePass": false,
+    "searchAcceptanceEvidence": "data/generated/protected-corpus/v8019-owner-search-delta-live-pass.json",
+    "populationEvidence": "data/generated/step8g/iduns-v8019-live-pass.json",
     "document": "docs/CORPUS_SCALE_STEP8G_IDUNS_V8019_LIVE_POPULATION_PASS.md"
   }
 }
