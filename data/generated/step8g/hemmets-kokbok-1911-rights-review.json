@@ -1,0 +1,50 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_HEMMETS_KOKBOK_1911_RIGHTS_REVIEW_V1",
+  "date": "2026-10-08",
+  "candidate": {
+    "collection": "svenska-koket",
+    "sourceTitle": "Hemmets kokbok",
+    "sourceUrl": "https://archive.org/details/hemmetskokbok_1911",
+    "sourceAuthorAsInOra": "Fackskolan för huslig ekonomi",
+    "sourceYear": "1911",
+    "recipeCount": 1486,
+    "parseableRecipeRatio": 1,
+    "uniqueTitleRatio": 0.7092866756393001,
+    "novelTitleRatio": 0.7922201138519924,
+    "novelNormalizedTitleCount": 835
+  },
+  "sourceRepository": {
+    "repository": "AdamBouhmad/open-recipe-archive",
+    "commit": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "metadataLicense": "public-domain"
+  },
+  "independentEvidence": [
+    {
+      "source": "Wellcome Collection",
+      "url": "https://wellcomecollection.org/works/kxybanv5",
+      "finding": "Catalogues a 1911 Stockholm/Norstedt edition issued by Fackskolan för huslig ekonomi, identifies it as a later edition, and currently labels the digitized work In copyright."
+    },
+    {
+      "source": "Svenskt Biografiskt Lexikon / Riksarkivet",
+      "url": "https://sok.riksarkivet.se/sbl/Presentation.aspx?forceOrdinarySite=true&id=8396",
+      "finding": "Bibliography records Hemmets kokbok as anonymously issued by Fackskolan för huslig ekonomi from 1903 with multiple subsequent editions."
+    }
+  ],
+  "review": {
+    "outcome": "HOLD",
+    "rightsCleared": false,
+    "provenanceCleared": false,
+    "reason": "EXACT_1911_LATER_INSTITUTIONAL_EDITION_AND_COLLECTIVE_CONTRIBUTOR_RIGHTS_LAYER_UNRESOLVED__INDEPENDENT_CATALOGUE_MARKS_1911_COPY_IN_COPYRIGHT",
+    "interpretation": "ORA public-domain metadata is not sufficient to override unresolved exact-edition and contributor-rights questions under the project fail-closed source-admission policy."
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "protectedPopulationAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "billingExpansionAuthorized": false,
+    "barbecueLaneModified": false
+  },
+  "nextAuthority": "RETURN_TO_NO_WRITE_DISCOVERY_AFTER_HOLD"
+}

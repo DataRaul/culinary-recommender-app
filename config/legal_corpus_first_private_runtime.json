@@ -99,20 +99,20 @@
     "CUSTOM_SHARED_PASSWORD_DOWNGRADE"
   ],
   "legalCorpusBaseline": {
-    "status": "HISTORICAL_PASS__ACQUISITION_LOOP_REOPENED",
+    "status": "POST_V8019_ORA_DISCOVERY_EXHAUSTED__ACQUISITION_CONTINUES_OTHER_SOURCE_FAMILY",
     "activeProtectedVersion": "v8019",
     "protectedRecipeCount": 22086,
     "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_NO_MATERIAL_CANDIDATE",
-    "finalDiscoveryRun": 35854872418,
-    "finalDiscoveryArtifactId": 10746649788,
-    "finalDiscoveryArtifactName": "step8g-ora-next-discovery-c31-g59-m2-e0",
-    "measuredCandidateCount": 2,
+    "finalDiscoveryRun": 37790177199,
+    "finalDiscoveryArtifactId": 11555488549,
+    "finalDiscoveryArtifactName": "step8g-ora-next-discovery-c31-g59-m0-e0",
+    "measuredCandidateCount": 0,
     "rightsReviewEligibleCount": 0,
     "reopenedByOwner": true,
     "reopenedDate": "2026-10-06",
     "reopenedObjective": "MAXIMUM_RIGHTS_CLEAN_SEARCHABLE_OPENABLE_CORPUS",
     "priorMarginalValueStopNoLongerControlling": true,
-    "nextGate": "ORA_ACQUISITION_FIRST_DISCOVERY_AND_RIGHTS_REVIEW"
+    "nextGate": "ACQUISITION_FIRST_OTHER_SOURCE_FAMILY_DISCOVERY"
   },
   "corpusNormalizationBaseline": {
     "status": "CORPUS_NORMALIZATION_CATEGORIZATION_BASELINE_PASS",
@@ -226,7 +226,7 @@
   },
   "currentAcquisitionState": {
     "date": "2026-10-08",
-    "terminal": "V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_PASS",
+    "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_NO_MATERIAL_CANDIDATE",
     "activeProtectedVersion": "v8019",
     "protectedRecipeCount": 22086,
     "parentProtectedVersion": "v8018",
@@ -241,10 +241,17 @@
     "ownerBrowseSearchOpenPass": true,
     "fullCorpusRebuild": false,
     "fullCorpusScans": 0,
-    "nextGate": "ORA_ACQUISITION_FIRST_DISCOVERY_AND_RIGHTS_REVIEW",
+    "nextGate": "ACQUISITION_FIRST_OTHER_SOURCE_FAMILY_DISCOVERY",
     "nextCohortSelectionBlockedUntilSearchGatePass": false,
     "searchAcceptanceEvidence": "data/generated/protected-corpus/v8019-owner-search-delta-live-pass.json",
     "populationEvidence": "data/generated/step8g/iduns-v8019-live-pass.json",
-    "document": "docs/CORPUS_SCALE_STEP8G_IDUNS_V8019_LIVE_POPULATION_PASS.md"
+    "document": "docs/CORPUS_SCALE_STEP8G_IDUNS_V8019_LIVE_POPULATION_PASS.md",
+    "currentSourceFamily": "OPEN_RECIPE_ARCHIVE_PINNED_SET",
+    "sourceFamilyDisposition": "EXHAUSTED_AFTER_HEMMETS_RIGHTS_HOLD",
+    "measuredCandidateCount": 0,
+    "rightsReviewEligibleCount": 0,
+    "heldCandidate": "Hemmets kokbok 1911",
+    "heldCandidateEvidence": "data/generated/step8g/hemmets-kokbok-1911-rights-review.json",
+    "discoveryEvidence": "data/generated/step8g/ora-post-v8019-discovery-closeout.json"
   }
 }

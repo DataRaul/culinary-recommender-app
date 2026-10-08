@@ -13,6 +13,7 @@ import { ORA_CHAN_1917_SOURCE } from "./corpus-scale-step8g-ora-chan-1917-core.m
 import { ORA_KENNEY_HERBERT_1885_SOURCE } from "./corpus-scale-step8g-ora-kenney-herbert-1885-core.mjs";
 import { ORA_FANNIE_FARMER_1910_SOURCE } from "./corpus-scale-step8g-ora-fannie-farmer-1910-core.mjs";
 import { ORA_ATRUTEL_1874_SOURCE } from "./corpus-scale-step8g-ora-atrutel-1874-core.mjs";
+import { ORA_IDUNS_1911_SOURCE } from "./corpus-scale-step8g-ora-iduns-1911-core.mjs";
 import { discoverOraNextSources, oraSourceKey } from "./corpus-scale-step8g-ora-next-source-discovery-core.mjs";
 
 const ORA_EXPECTED_COMMIT = "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8";
@@ -230,6 +231,14 @@ const JEWISH_MANUAL_1846_ATTRIBUTION_HOLD = Object.freeze({
   source_year: "1846",
   license: "public-domain"
 });
+const HEMMETS_KOKBOK_1911_RIGHTS_HOLD = Object.freeze({
+  collection: "svenska-koket",
+  source_url: "https://archive.org/details/hemmetskokbok_1911",
+  source_title: "Hemmets kokbok",
+  author: "Fackskolan för huslig ekonomi",
+  source_year: "1911",
+  license: "public-domain"
+});
 const COCINA_SOURCES = Object.freeze([
   Object.freeze({
     collection: "cocina-mexicana",
@@ -254,16 +263,18 @@ const CHAN_EXPECTED_COUNT = 145;
 const KENNEY_HERBERT_EXPECTED_COUNT = 501;
 const FANNIE_FARMER_EXPECTED_COUNT = 1776;
 const ATRUTEL_EXPECTED_COUNT = 481;
-const EXPECTED_PROTECTED_COUNT = 19268;
+const EXPECTED_PROTECTED_COUNT_V8018 = 19268;
+const EXPECTED_PROTECTED_COUNT_V8019 = 22086;
 
 function parseArgs(argv) {
-  const options = { ora: null, forkrecipe: null, unitools: null, cc0: null, output: ".tmp/step8g-ora-next-source-discovery" };
+  const options = { ora: null, forkrecipe: null, unitools: null, cc0: null, output: ".tmp/step8g-ora-next-source-discovery", historicalV8018: false };
   for (const arg of argv) {
     if (arg.startsWith("--ora=")) options.ora = arg.slice(6);
     else if (arg.startsWith("--forkrecipe=")) options.forkrecipe = arg.slice(13);
     else if (arg.startsWith("--unitools=")) options.unitools = arg.slice(11);
     else if (arg.startsWith("--cc0=")) options.cc0 = arg.slice(6);
     else if (arg.startsWith("--out=")) options.output = arg.slice(6) || options.output;
+    else if (arg === "--historical-v8018") options.historicalV8018 = true;
     else throw new Error(`Unknown argument: ${arg}`);
   }
   for (const key of ["ora", "forkrecipe", "unitools", "cc0"]) if (!options[key]) throw new Error(`--${key} is required`);
@@ -348,6 +359,7 @@ const chanIdentity = sourceIdentityRow(ORA_CHAN_1917_SOURCE);
 const kenneyHerbertIdentity = sourceIdentityRow(ORA_KENNEY_HERBERT_1885_SOURCE);
 const fannieFarmerIdentity = sourceIdentityRow(ORA_FANNIE_FARMER_1910_SOURCE);
 const atrutelIdentity = sourceIdentityRow(ORA_ATRUTEL_1874_SOURCE);
+const idunsIdentity = sourceIdentityRow(ORA_IDUNS_1911_SOURCE);
 const cocinaIdentities = COCINA_SOURCES.map(sourceIdentityRow);
 const bwRows = allRows.filter(row => matchesIdentity(row, bwIdentity));
 const turabiRows = allRows.filter(row => matchesIdentity(row, turabiIdentity));
@@ -362,6 +374,7 @@ const chanRows = allRows.filter(row => matchesIdentity(row, chanIdentity));
 const kenneyHerbertRows = allRows.filter(row => matchesIdentity(row, kenneyHerbertIdentity));
 const fannieFarmerRows = allRows.filter(row => matchesIdentity(row, fannieFarmerIdentity));
 const atrutelRows = allRows.filter(row => matchesIdentity(row, atrutelIdentity));
+const idunsRows = allRows.filter(row => matchesIdentity(row, idunsIdentity));
 const cocinaRows = cocinaIdentities.map(identity => allRows.filter(row => matchesIdentity(row, identity)));
 if (abbottRows.length !== ABBOTT_EXPECTED_COUNT) throw new Error(`ABBOTT_EXPECTED_${ABBOTT_EXPECTED_COUNT}_GOT_${abbottRows.length}`);
 if (bwRows.length !== ORA_BW_SOURCE.expectedRecipeCount) throw new Error(`BOSSE_WATANNA_EXPECTED_${ORA_BW_SOURCE.expectedRecipeCount}_GOT_${bwRows.length}`);
@@ -377,13 +390,14 @@ if (chanRows.length !== CHAN_EXPECTED_COUNT) throw new Error(`CHAN_EXPECTED_${CH
 if (kenneyHerbertRows.length !== KENNEY_HERBERT_EXPECTED_COUNT) throw new Error(`KENNEY_HERBERT_EXPECTED_${KENNEY_HERBERT_EXPECTED_COUNT}_GOT_${kenneyHerbertRows.length}`);
 if (fannieFarmerRows.length !== FANNIE_FARMER_EXPECTED_COUNT) throw new Error(`FANNIE_FARMER_EXPECTED_${FANNIE_FARMER_EXPECTED_COUNT}_GOT_${fannieFarmerRows.length}`);
 if (atrutelRows.length !== ATRUTEL_EXPECTED_COUNT) throw new Error(`ATRUTEL_EXPECTED_${ATRUTEL_EXPECTED_COUNT}_GOT_${atrutelRows.length}`);
+if (idunsRows.length !== ORA_IDUNS_1911_SOURCE.expectedRecipeCount) throw new Error(`IDUNS_EXPECTED_${ORA_IDUNS_1911_SOURCE.expectedRecipeCount}_GOT_${idunsRows.length}`);
 for (let i = 0; i < COCINA_SOURCES.length; i++) {
   if (cocinaRows[i].length !== COCINA_SOURCES[i].expectedRecipeCount) {
     throw new Error(`COCINA_SOURCE_${i}_EXPECTED_${COCINA_SOURCES[i].expectedRecipeCount}_GOT_${cocinaRows[i].length}`);
   }
 }
 
-const protectedBaseline = [
+const protectedBaselineV8018 = [
   ...unitoolsDataset.recipes,
   ...forkRecipes,
   ...cc0Recipes,
@@ -403,7 +417,13 @@ const protectedBaseline = [
   ...fannieFarmerRows.map(parseOraJsonlRecipe),
   ...atrutelRows.map(parseOraJsonlRecipe)
 ];
-if (protectedBaseline.length !== EXPECTED_PROTECTED_COUNT) throw new Error(`V8018_PROTECTED_BASELINE_COUNT_${protectedBaseline.length}`);
+if (protectedBaselineV8018.length !== EXPECTED_PROTECTED_COUNT_V8018) throw new Error(`V8018_PROTECTED_BASELINE_COUNT_${protectedBaselineV8018.length}`);
+const protectedBaseline = args.historicalV8018
+  ? protectedBaselineV8018
+  : [...protectedBaselineV8018, ...idunsRows.map(parseOraJsonlRecipe)];
+const expectedProtectedCount = args.historicalV8018 ? EXPECTED_PROTECTED_COUNT_V8018 : EXPECTED_PROTECTED_COUNT_V8019;
+const activeProtectedVersion = args.historicalV8018 ? "v8018" : "v8019";
+if (protectedBaseline.length !== expectedProtectedCount) throw new Error(`${activeProtectedVersion.toUpperCase()}_PROTECTED_BASELINE_COUNT_${protectedBaseline.length}`);
 
 const excludedSourceKeys = new Set([
   oraSourceKey(ABBOTT_IDENTITY),
@@ -420,7 +440,8 @@ const excludedSourceKeys = new Set([
   oraSourceKey(chanIdentity),
   oraSourceKey(kenneyHerbertIdentity),
   oraSourceKey(fannieFarmerIdentity),
-  oraSourceKey(atrutelIdentity)
+  oraSourceKey(atrutelIdentity),
+  ...(args.historicalV8018 ? [] : [oraSourceKey(idunsIdentity)])
 ]);
 const heldSourceKeys = new Set([
   oraSourceKey(MAGYAR_KONYHA_PROVENANCE_HOLD),
@@ -441,7 +462,8 @@ const heldSourceKeys = new Set([
   oraSourceKey(CREOLE_COOKERY_1885_CONTRIBUTOR_PROVENANCE_HOLD),
   oraSourceKey(ART_OF_LIVING_1893_WICKEN_ATTRIBUTION_HOLD),
   oraSourceKey(CANADIAN_FAMILY_1914_CONTRIBUTOR_PROVENANCE_HOLD),
-  oraSourceKey(JEWISH_MANUAL_1846_ATTRIBUTION_HOLD)
+  oraSourceKey(JEWISH_MANUAL_1846_ATTRIBUTION_HOLD),
+  oraSourceKey(HEMMETS_KOKBOK_1911_RIGHTS_HOLD)
 ]);
 const heldCollections = new Set(["cocina-espanola"]);
 const result = discoverOraNextSources({
@@ -450,13 +472,13 @@ const result = discoverOraNextSources({
   excludedSourceKeys,
   heldSourceKeys,
   heldCollections,
-  activeProtectedVersion: "v8018",
-  activeProtectedCount: EXPECTED_PROTECTED_COUNT
+  activeProtectedVersion,
+  activeProtectedCount: expectedProtectedCount
 });
 
 const output = {
   ...result,
-  date: "2026-09-23",
+  date: "2026-10-08",
   sourceRepository: "AdamBouhmad/open-recipe-archive",
   sourceCommit: pins.ora,
   collectionCount: index.length,
@@ -467,7 +489,7 @@ const output = {
     cc0Baseline: pins.cc0
   },
   exclusions: {
-    alreadyProtectedSources: 16,
+    alreadyProtectedSources: args.historicalV8018 ? 16 : 17,
     heldSources: [
       {
         collection: MAGYAR_KONYHA_PROVENANCE_HOLD.collection,
@@ -620,10 +642,18 @@ const output = {
         sourceAuthorAsInOra: JEWISH_MANUAL_1846_ATTRIBUTION_HOLD.author,
         sourceYear: JEWISH_MANUAL_1846_ATTRIBUTION_HOLD.source_year,
         reason: "EXACT_1846_WORK_CREDITS_ONLY_A_LADY__JUDITH_MONTEFIORE_ATTRIBUTION_LACKS_DOCUMENTARY_PROOF"
+      },
+      {
+        collection: HEMMETS_KOKBOK_1911_RIGHTS_HOLD.collection,
+        sourceUrl: HEMMETS_KOKBOK_1911_RIGHTS_HOLD.source_url,
+        sourceTitle: HEMMETS_KOKBOK_1911_RIGHTS_HOLD.source_title,
+        sourceAuthorAsInOra: HEMMETS_KOKBOK_1911_RIGHTS_HOLD.author,
+        sourceYear: HEMMETS_KOKBOK_1911_RIGHTS_HOLD.source_year,
+        reason: "EXACT_1911_LATER_INSTITUTIONAL_EDITION_AND_COLLECTIVE_CONTRIBUTOR_RIGHTS_LAYER_UNRESOLVED__INDEPENDENT_CATALOGUE_MARKS_1911_COPY_IN_COPYRIGHT"
       }
     ],
     heldCollections: [...heldCollections],
-    reason: "All exact sources protected through v8018 are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883, Viard 1806, Hearn 1885, Chan 1917, Kenney-Herbert 1885, the exact Fannie Farmer 1910 revised edition represented by the ORA work-year tuple 1896, and Estella Atrutel 1874. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; the 1905 Volks-Kochbuch source is held because the exact edition credits an unidentified Frau Dr. Engelken with new ordering and additions and her contribution term cannot be resolved; Cocina Ecléctica 1890 is held because its community-contributor layer contains separately attributed recipe contributions whose Spain-facing terms have not been established cohort-wide; American Cookery 1796 is held because its exact errata attributes material recipe alterations to an unnamed press preparer and the pinned ORA extraction demonstrably preserves uncorrected altered values; The Book of Household Management 1861 is held because its own preface documents recipe matter from unnamed correspondents, a private circle and other cookery writers while the pinned ORA cohort flattens all recipe attribution to Isabella Beeton; Miss Leslie's Complete Cookery is held because ORA source_year 1851 conflicts with the exact Gutenberg 1853 forty-ninth edition marked thoroughly revised with additions; The Whitehouse Cookbook 1887 is held because ORA assigns sole authorship to F.L. Gillette while the exact title page names both Gillette and Hugo Ziemann; The International Jewish Cook Book 1918 is held because the exact work identity is established but an authoritative Greenbaum death date needed to compute the Spain-facing author term is not; The Virginia Housewife ORA source_year 1824 is held because the exact Gutenberg source reproduces an 1860 edition; Common Sense in the Household is held because ORA source_year 1871 points to an exact Gutenberg representation printed in 1883 with an expressly revised 1880 editorial layer and the book itself documents receipts obtained from unnamed friends and trustworthy housewives; The Creole Cookery Book 1885 is held because the exact title-page/bibliographic record identifies the Christian Woman's Exchange as editor and the recipes as contributions from multiple housekeepers while ORA flattens the cohort to the Exchange as author; The Art of Living in Australia 1893 is held because the exact work explicitly assigns the cookery recipes to Mrs. H. Wicken while ORA assigns the recipe cohort to Philip E. Muskett; The Canadian Family Cook Book 1914 is held because the exact work presents recipes by prominent Canadian ladies and includes a contributor list while ORA flattens the cohort to Grace E. Denison as author; The Jewish Manual 1846 is held because the exact title credits only 'A Lady' while ORA uses an attributed Judith Cohen Montefiore identity that the National Library of Israel reports lacks documentary or concrete proof; and cocina-espanola remains under its existing collection rights hold."
+    reason: `All exact sources protected through ${activeProtectedVersion} are excluded, including Menon 1801, Artusi 1891, Frøken Jensen 1921, Seleskowitz 1883, Viard 1806, Hearn 1885, Chan 1917, Kenney-Herbert 1885, the exact Fannie Farmer 1910 revised edition represented by the ORA work-year tuple 1896, Estella Atrutel 1874${args.historicalV8018 ? "" : ", and Iduns kokbok 1911"}. The exact 1901 magyar-konyha and 1883 Česká kuchařka source keys remain held for provenance/author mismatch; the ORA Anna Dorn 1825 source tuple is held because independent bibliography identifies the exact work as Anna Hofbauer; the Wannée source is held because its ORA 1910 work-year points to a later 1958 revised digitized edition with a separate editorial rights layer; the Schiller source is held because ORA source_year=1858 conflicts with the exact Gutenberg 1843 title page; the Indian Cookery and Confectionery tuple is held because ORA author E.P. Veerasawmy conflicts with the exact Internet Archive/Open Library attribution to Mrs I.R. Dey; the 1905 Volks-Kochbuch source is held because the exact edition credits an unidentified Frau Dr. Engelken with new ordering and additions and her contribution term cannot be resolved; Cocina Ecléctica 1890 is held because its community-contributor layer contains separately attributed recipe contributions whose Spain-facing terms have not been established cohort-wide; American Cookery 1796 is held because its exact errata attributes material recipe alterations to an unnamed press preparer and the pinned ORA extraction demonstrably preserves uncorrected altered values; The Book of Household Management 1861 is held because its own preface documents recipe matter from unnamed correspondents, a private circle and other cookery writers while the pinned ORA cohort flattens all recipe attribution to Isabella Beeton; Miss Leslie's Complete Cookery is held because ORA source_year 1851 conflicts with the exact Gutenberg 1853 forty-ninth edition marked thoroughly revised with additions; The Whitehouse Cookbook 1887 is held because ORA assigns sole authorship to F.L. Gillette while the exact title page names both Gillette and Hugo Ziemann; The International Jewish Cook Book 1918 is held because the exact work identity is established but an authoritative Greenbaum death date needed to compute the Spain-facing author term is not; The Virginia Housewife ORA source_year 1824 is held because the exact Gutenberg source reproduces an 1860 edition; Common Sense in the Household is held because ORA source_year 1871 points to an exact Gutenberg representation printed in 1883 with an expressly revised 1880 editorial layer and the book itself documents receipts obtained from unnamed friends and trustworthy housewives; The Creole Cookery Book 1885 is held because the exact title-page/bibliographic record identifies the Christian Woman's Exchange as editor and the recipes as contributions from multiple housekeepers while ORA flattens the cohort to the Exchange as author; The Art of Living in Australia 1893 is held because the exact work explicitly assigns the cookery recipes to Mrs. H. Wicken while ORA assigns the recipe cohort to Philip E. Muskett; The Canadian Family Cook Book 1914 is held because the exact work presents recipes by prominent Canadian ladies and includes a contributor list while ORA flattens the cohort to Grace E. Denison as author; The Jewish Manual 1846 is held because the exact title credits only 'A Lady' while ORA uses an attributed Judith Cohen Montefiore identity that the National Library of Israel reports lacks documentary or concrete proof; Hemmets kokbok 1911 is held because independent records identify the 1911 work as a later institutional edition after an anonymous 1903 first edition, and Wellcome currently marks its 1911 copy in copyright, leaving the exact edition/contributor rights layer unresolved; and cocina-espanola remains under its existing collection rights hold.`
   },
   nextAuthority: result.rightsReviewEligibleCount > 0
     ? "SOURCE_SPECIFIC_DOCUMENTARY_RIGHTS_REVIEW_ONLY"

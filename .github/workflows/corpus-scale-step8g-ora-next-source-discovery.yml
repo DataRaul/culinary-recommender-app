@@ -60,7 +60,7 @@ jobs:
       - name: Test source-discovery contract
         run: node --test tests/corpus-scale-step8g-ora-next-source-discovery.test.js
 
-      - name: Scan source-level ORA cohorts against active v8018 baseline
+      - name: Scan source-level ORA cohorts against active v8019 baseline
         run: >-
           node scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs
           --ora=./open-recipe-archive
@@ -72,7 +72,7 @@ jobs:
       - name: Verify discovery remains no-write and cannot clear rights
         run: >-
           node -e 'const fs=require("fs");const p=JSON.parse(fs.readFileSync(".tmp/step8g-ora-next-source-discovery/discovery.json","utf8"));
-          if(p.baseline.activeProtectedVersion!=="v8018"||p.baseline.activeProtectedCount!==19268)process.exit(1);
+          if(p.baseline.activeProtectedVersion!=="v8019"||p.baseline.activeProtectedCount!==22086)process.exit(1);
           const b=p.boundaries;
           if(b.liveD1WritesPerformed!==0||b.sourceRightsClearedByDiscovery!==false||b.measurementEarnedByDiscovery!==false||b.protectedPopulationAuthorized!==false||b.publicRuntimeChangeAuthorized!==false||b.recommendationAdmissionAuthorized!==false||b.thirdShardAuthorized!==false||b.d1BudgetExpansionAuthorized!==false||b.billingExpansionAuthorized!==false)process.exit(1);
           if(p.exclusions.heldCollections.includes("cocina-espanola")!==true)process.exit(1);
@@ -108,6 +108,8 @@ jobs:
           if(!fannie||!fannie.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
           const atrutel=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/b2807967x");
           if(!atrutel||!atrutel.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
+          const iduns=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/arkivkopia.se-runeberg-idunskok");
+          if(!iduns||!iduns.reasons.includes("ALREADY_PROTECTED_SOURCE"))process.exit(1);
           const wanneeHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/bwb_Y0-BXP-037");
           if(!wanneeHeld||wanneeHeld.reason!=="ORA_1910_WORK_YEAR_POINTS_TO_1958_14TH_EDITION_WITH_LATER_EDITORIAL_RIGHTS_LAYER")process.exit(1);
           const wanneeExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/bwb_Y0-BXP-037");
@@ -183,6 +185,11 @@ jobs:
           const jewishManualExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/b22021371");
           if(!jewishManualExcluded||!jewishManualExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
           if(p.topRightsReviewCandidates?.some(x=>x.sourceUrl==="https://archive.org/details/b22021371"))process.exit(1);
+          const hemmetsHeld=p.exclusions.heldSources?.find(x=>x.sourceUrl==="https://archive.org/details/hemmetskokbok_1911");
+          if(!hemmetsHeld||hemmetsHeld.reason!=="EXACT_1911_LATER_INSTITUTIONAL_EDITION_AND_COLLECTIVE_CONTRIBUTOR_RIGHTS_LAYER_UNRESOLVED__INDEPENDENT_CATALOGUE_MARKS_1911_COPY_IN_COPYRIGHT")process.exit(1);
+          const hemmetsExcluded=p.excludedSources.find(x=>x.sourceUrl==="https://archive.org/details/hemmetskokbok_1911");
+          if(!hemmetsExcluded||!hemmetsExcluded.reasons.includes("SOURCE_RIGHTS_OR_PROVENANCE_HOLD"))process.exit(1);
+          if(p.topRightsReviewCandidates?.some(x=>x.sourceUrl==="https://archive.org/details/hemmetskokbok_1911"))process.exit(1);
           if(!Number.isInteger(p.rightsReviewEligibleCount)||p.rightsReviewEligibleCount<0)process.exit(1);
           console.log(JSON.stringify({terminal:p.terminal,rightsReviewEligibleCount:p.rightsReviewEligibleCount,nextSource:p.topRightsReviewCandidates?.[0]?.sourceTitle||null,nextAuthority:p.nextAuthority}));'
 

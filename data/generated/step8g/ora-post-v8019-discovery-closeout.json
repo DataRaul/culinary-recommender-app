@@ -1,0 +1,35 @@
+{
+  "schema": "CORPUS_SCALE_STEP8G_ORA_POST_V8019_DISCOVERY_CLOSEOUT_V1",
+  "date": "2026-10-08",
+  "baseline": {
+    "activeProtectedVersion": "v8019",
+    "activeProtectedCount": 22086
+  },
+  "terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_NO_MATERIAL_CANDIDATE",
+  "collectionCount": 31,
+  "sourceGroupCount": 59,
+  "measuredCandidateCount": 0,
+  "rightsReviewEligibleCount": 0,
+  "heldCandidate": {
+    "sourceTitle": "Hemmets kokbok",
+    "sourceUrl": "https://archive.org/details/hemmetskokbok_1911",
+    "reviewEvidence": "data/generated/step8g/hemmets-kokbok-1911-rights-review.json",
+    "outcome": "HOLD"
+  },
+  "workflow": {
+    "runId": 37790177199,
+    "artifactId": 11555488549,
+    "artifactName": "step8g-ora-next-discovery-c31-g59-m0-e0"
+  },
+  "boundaries": {
+    "liveD1WritesPerformed": 0,
+    "sourceRightsClearedByDiscovery": false,
+    "protectedPopulationAuthorized": false,
+    "publicRuntimeChangeAuthorized": false,
+    "recommendationAdmissionAuthorized": false,
+    "thirdShardAuthorized": false,
+    "billingExpansionAuthorized": false,
+    "barbecueLaneModified": false
+  },
+  "nextAuthority": "DISCOVER_OTHER_RIGHTS_CLEAN_SOURCE_FAMILY"
+}
