@@ -1,37 +1,53 @@
 {
-  "handover": "CULINARY_IDUNS_V8019_API_RUNNER_READY_HUMAN_GATE_V2",
+  "handover": "CULINARY_IDUNS_V8019_LIVE_PASS__OWNER_SEARCH_DELTA_NEXT_V1",
   "date": "2026-10-07",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
   "source_of_truth": "GitHub",
-  "status": "IDUNS_V8019_API_CACHE_BYPASS_PRODUCTION_PROBE_PASS__OWNER_RUN_REQUIRED",
-  "main_sha": "72a2e950ae0728b1699b1f5e4a64551f5d412952",
-  "production_runner_entry": "https://culinary-recommender-app.pages.dev/api/step8g/v8019?action=runner",
-  "repair_summary": {
-    "issue": "Owner browser repeatedly opened cached Culinary app shell for the static runner URL despite the static runner being deployed.",
-    "root_cause": "An already-installed older service worker could satisfy the exact static runner navigation from stale Cache Storage before the newer network-only rule controlled the page.",
-    "fix": "Add GET action=runner on the existing /api/step8g/v8019 route; /api/ is already network-only under the old service worker. The entry redirects to the exact runner with a new query-keyed cache-bypass URL before auth.",
-    "pr_420": "Closed unmerged after the exact validated three-file patch was written directly to main because the prior GitHub merge mutation had repeatedly failed.",
-    "validated_branch_sha": "ff40b6c1c0c2310a0062ffa47082aae286bb3fdb",
-    "branch_validation": "PASS",
-    "production_probe_run": 37658407231,
-    "production_probe": "PASS",
-    "proof": "Production probe followed /api/step8g/v8019?action=runner and required HTTP 200 plus exact 'Step 8G protected Iduns kokbok 1911 v8019 run' and 'Run / resume v8019' markers; unauthenticated status remained 401."
+  "main_sha": "47cb9a43d24ee5c1b6e8e2582c9abfed280d87fc",
+  "open_prs": [],
+  "terminal": "STEP_8G_IDUNS_V8019_PROTECTED_POPULATION_PASS",
+  "protected_state": {
+    "active_version": "v8019",
+    "parent_version": "v8018",
+    "parent_recipe_count": 19268,
+    "child_recipe_count": 2818,
+    "composed_recipe_count": 22086,
+    "shard_count": 2,
+    "hydration_layers": 19,
+    "max_observed_d1_subqueries": 8,
+    "parent_route_rows_copied": 0,
+    "route_storage_mode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA_PLUS_V8018_DELTA_PLUS_V8019_DELTA"
   },
-  "protected_state_before_owner_run": {
-    "active_version": "v8018",
-    "recipe_count": 19268,
-    "target_version": "v8019",
-    "target_recipe_count": 22086,
-    "child_recipe_count": 2818
+  "firewalls": {
+    "full_corpus_scans": 0,
+    "public_runtime_changed": false,
+    "recommendation_admission_changed": false,
+    "third_shard_used": false,
+    "billing_expansion": false,
+    "cultural_authenticity_authority_imported": false,
+    "barbecue_mutation": false
   },
-  "human_needed": true,
-  "exact_next_action": [
-    "Owner opens the production_runner_entry in the same browser/session used for Culinary authentication.",
-    "The API entry must land on the v8019 Iduns runner, not the normal Culinary app.",
-    "Owner presses Run / resume v8019 once.",
-    "Owner returns the final JSON.",
-    "Agent verifies terminal STEP_8G_IDUNS_V8019_PROTECTED_POPULATION_PASS and all frozen firewalls before closeout."
+  "closeout": {
+    "pr": 421,
+    "merge_sha": "47cb9a43d24ee5c1b6e8e2582c9abfed280d87fc",
+    "evidence": "data/generated/step8g/iduns-v8019-live-pass.json",
+    "document": "docs/CORPUS_SCALE_STEP8G_IDUNS_V8019_LIVE_POPULATION_PASS.md",
+    "validation": "PASS"
+  },
+  "product_gap": {
+    "normal_owner_search_version": "v8018",
+    "normal_owner_search_recipe_count": 19268,
+    "v8019_delta_in_normal_owner_search": false,
+    "reason": "Protected search runtime is still explicitly frozen to v8018 route/index/detail composition."
+  },
+  "next_gate": "V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_V1",
+  "next_gate_contract": [
+    "Incrementally add only the v8019/Iduns delta to private browse/search/detail.",
+    "Do not full-rebuild the 22,086-row index.",
+    "Preserve two shards, free-tier envelope, <=8 optimized D1 subqueries, and zero public/recommendation widening.",
+    "Prove owner live browse/search/open for new Iduns records before selecting the next acquisition cohort."
   ],
-  "no_loop_rule": "Do not ask for an equivalent rerun unless a material variable changed and the cause is understood."
+  "human_needed": false,
+  "no_loop_rule": "One bounded diagnosis and one justified repair. Stop on repeated/uncertain failure or material cost/security/legal/product gate."
 }
