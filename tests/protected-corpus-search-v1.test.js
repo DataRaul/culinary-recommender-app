@@ -1,9 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 
 import {
+  PROTECTED_SEARCH_ACTIVE_CORPUS_VERSION,
   PROTECTED_SEARCH_BROWSER_DAILY_WRITE_GUARD,
+  PROTECTED_SEARCH_CURRENT_EXPECTED_COUNT,
   PROTECTED_SEARCH_EXPECTED_COUNT,
   PROTECTED_SEARCH_EXPECTED_STRUCTURAL_PARTIAL_COUNT,
   PROTECTED_SEARCH_FORKRECIPE_COUNT,
@@ -15,12 +18,17 @@ import {
   PROTECTED_SEARCH_RECOMMENDATION_VALIDATED_SOURCE_IDS,
   PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW,
   PROTECTED_SEARCH_TARGET_MAX_D1,
+  PROTECTED_SEARCH_V8019_DELTA_COHORT_ID,
+  PROTECTED_SEARCH_V8019_DELTA_EXPECTED_COUNT,
+  PROTECTED_SEARCH_V8019_DELTA_TABLE,
   boundedPageSize,
   d1RowsWritten,
+  indexProtectedCorpusV8019DeltaBatch,
   normalizeProtectedSearchQuery,
   protectedRecommendationState,
   projectProtectedPacketForDetail,
   projectProtectedPacketForIndex,
+  protectedSearchIndexStatus,
   repairForkRecipeStructuralState
 } from "../src/server/protected-corpus-search-v1.mjs";
 import { onRequestGet as protectedGet, onRequestPost as protectedPost } from "../functions/api/protected-corpus/v1.js";
@@ -161,6 +169,10 @@ test("P1 search query is bounded FTS syntax and page sizes stay bounded", () => 
   assert.ok(PROTECTED_SEARCH_INDEX_BATCH_SIZE * PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW <= PROTECTED_SEARCH_MAX_BOUND_PARAMETERS);
   assert.ok((PROTECTED_SEARCH_INDEX_BATCH_SIZE + 1) * PROTECTED_SEARCH_SUMMARY_BOUND_PARAMETERS_PER_ROW > PROTECTED_SEARCH_MAX_BOUND_PARAMETERS);
   assert.equal(PROTECTED_SEARCH_EXPECTED_COUNT, 19268);
+  assert.equal(PROTECTED_SEARCH_ACTIVE_CORPUS_VERSION, "v8019");
+  assert.equal(PROTECTED_SEARCH_CURRENT_EXPECTED_COUNT, 22086);
+  assert.equal(PROTECTED_SEARCH_V8019_DELTA_EXPECTED_COUNT, 2818);
+  assert.equal(PROTECTED_SEARCH_V8019_DELTA_COHORT_ID, "ORA_IDUNS_1911_FIRST_EDITION_ARKIVKOPIA_RUNEBERG");
   assert.equal(PROTECTED_SEARCH_EXPECTED_STRUCTURAL_PARTIAL_COUNT, 3);
   assert.equal(PROTECTED_SEARCH_FORKRECIPE_COUNT, 915);
   assert.equal(PROTECTED_SEARCH_KNOWN_BAD_PARTIAL_COUNT, 918);
@@ -233,6 +245,135 @@ test("P1 runtime uses keyset route pagination + FTS5 and contains no request-tim
   assert.match(source, /fullCorpusScans:\s*0/g);
 });
 
+test("v8019 search status composes frozen v8018 base plus incremental Iduns delta", async () => {
+  const db = {
+    prepare(sql) {
+      const statement = {
+        args:[],
+        bind(...args){ this.args=args; return this; },
+        async first(){
+          if (sql.includes("SELECT active_version")) return { active_version:"v8019", previous_version:"v8018", manifest_sha256:"m" };
+          if (sql.includes("sqlite_master")) return { name:PROTECTED_SEARCH_V8019_DELTA_TABLE };
+          if (sql.includes("FROM culinary_protected_recipe_search_v1")) return { c:19268, partial_count:3, last_recipe_id:"z-base" };
+          if (sql.includes("FROM culinary_protected_recipe_search_delta_v8019")) return { c:2818, partial_count:4, last_recipe_id:"z-delta" };
+          if (sql.includes("FROM culinary_protected_recipe_search_fts_v1")) return { c:22086 };
+          throw new Error("unexpected first SQL: " + sql);
+        }
+      };
+      return statement;
+    }
+  };
+  const status = await protectedSearchIndexStatus(db);
+  assert.equal(status.pass, true);
+  assert.equal(status.ready, true);
+  assert.equal(status.activeVersion, "v8019");
+  assert.equal(status.baseIndexedRecipeCount, 19268);
+  assert.equal(status.deltaIndexedRecipeCount, 2818);
+  assert.equal(status.indexedRecipeCount, 22086);
+  assert.equal(status.ftsRecipeCount, 22086);
+  assert.equal(status.structuralPartialCount, 7);
+  assert.equal(status.indexingMode, "V8018_BASE_PLUS_V8019_INCREMENTAL_DELTA");
+  assert.ok(status.d1Subqueries <= PROTECTED_SEARCH_TARGET_MAX_D1);
+});
+
+test("v8019 incremental index writes only the Iduns delta and stays within the D1 target", async () => {
+  const recipeId = "ora_iduns_1911_0000_test";
+  const packet = {
+    canonicalRecipeId:recipeId,
+    source:{
+      cohortId:PROTECTED_SEARCH_V8019_DELTA_COHORT_ID,
+      sourceWork:"Iduns kokbok",
+      sourceAuthor:"Elisabeth Östman",
+      sourceYear:"1911",
+      sourceUrl:"https://archive.org/details/arkivkopia.se-runeberg-idunskok",
+      licenseId:"public-domain"
+    },
+    sourceContent:{
+      title:"Test Iduns Recipe",
+      parsedIngredientsNonAuthoritative:["1 egg"],
+      parsedDirectionsNonAuthoritative:["Cook."]
+    }
+  };
+  const bodyJson = JSON.stringify(packet);
+  const bodySha256 = createHash("sha256").update(bodyJson).digest("hex");
+  const bodyBytes = Buffer.byteLength(bodyJson);
+  const routeRow = {
+    recipe_id:recipeId,
+    corpus_version:"v8019",
+    shard_number:0,
+    source_cohort_id:PROTECTED_SEARCH_V8019_DELTA_COHORT_ID,
+    body_sha256:bodySha256,
+    body_bytes:bodyBytes
+  };
+  let writeBatchCalls = 0;
+  const controlDb = {
+    prepare(sql) {
+      const statement = {
+        args:[],
+        bind(...args){ this.args=args; return this; },
+        async first(){
+          if (sql.includes("SELECT active_version")) return { active_version:"v8019", previous_version:"v8018", manifest_sha256:"m" };
+          if (sql.includes("sqlite_master")) return { name:PROTECTED_SEARCH_V8019_DELTA_TABLE };
+          throw new Error("unexpected first SQL: " + sql);
+        },
+        async all(){
+          if (sql.includes("composition_version='v8019'") && sql.includes("corpus_version='v8019'")) return { results:[routeRow] };
+          throw new Error("unexpected all SQL: " + sql);
+        }
+      };
+      return statement;
+    },
+    async batch(statements) {
+      writeBatchCalls += 1;
+      assert.equal(statements.length, 3);
+      return statements.map(() => ({ meta:{ rows_written:1 } }));
+    }
+  };
+  const shard0 = {
+    prepare(sql) {
+      return {
+        bind(){ return this; },
+        async all(){
+          assert.match(sql, /corpus_recipe_bodies/);
+          return { results:[{
+            corpus_version:"v8019",
+            recipe_id:recipeId,
+            body_json:bodyJson,
+            body_bytes:bodyBytes,
+            body_sha256:bodySha256,
+            source_cohort_id:PROTECTED_SEARCH_V8019_DELTA_COHORT_ID
+          }] };
+        }
+      };
+    }
+  };
+  const shard1 = { prepare(){ throw new Error("shard1 should not be queried"); } };
+  const result = await indexProtectedCorpusV8019DeltaBatch(controlDb, [shard0,shard1], "");
+  assert.equal(result.pass, true);
+  assert.equal(result.indexedCount, 1);
+  assert.equal(result.rowsWritten, 3);
+  assert.equal(result.fullCorpusScans, 0);
+  assert.ok(result.d1Subqueries <= PROTECTED_SEARCH_TARGET_MAX_D1);
+  assert.equal(writeBatchCalls, 1);
+});
+
+test("v8019 owner surface encodes incremental-only delta and live acceptance", () => {
+  const core = readFileSync(new URL("../src/server/protected-corpus-search-v1.mjs", import.meta.url), "utf8");
+  const api = readFileSync(new URL("../functions/api/protected-corpus/v1.js", import.meta.url), "utf8");
+  const html = readFileSync(new URL("../protected-corpus.html", import.meta.url), "utf8");
+  assert.match(core, /PROTECTED_SEARCH_V8019_DELTA_TABLE/);
+  assert.match(core, /composition_version='v8019' AND corpus_version='v8019'/);
+  assert.match(core, /V8018_BASE_PLUS_V8019_INCREMENTAL_DELTA/);
+  assert.match(api, /index-v8019-delta-batch/);
+  assert.match(api, /v8019-search-runner/);
+  assert.match(html, /Add v8019 search delta/);
+  assert.match(html, /index-v8019-delta-batch/);
+  assert.match(html, /V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_PASS/);
+  assert.match(html, /fullCorpusRebuild:false/);
+  assert.match(html, /deltaIndexedRecipeCount\) === 2818/);
+  assert.doesNotMatch(core, /DELETE FROM culinary_protected_recipe_search_v1/);
+});
+
 test("P1 API authenticates before any protected control/shard query on GET and POST", async () => {
   let prepares = 0;
   const failDb = { prepare(){ prepares += 1; throw new Error("must not query without session"); } };
@@ -280,7 +421,7 @@ test("P1 API source preserves public/recommendation firewalls and hard budget", 
 test("P1 owner browser is network-only and explicitly communicates protected-only authority", () => {
   const html = readFileSync(new URL("../protected-corpus.html", import.meta.url), "utf8");
   const sw = readFileSync(new URL("../sw.js", import.meta.url), "utf8");
-  assert.match(html, /All 19,268 protected recipes are available here for private browse\/search/);
+  assert.match(html, /Protected storage is v8019 \/ 22,086/);
   assert.match(html, /Searchable · not recommendation-validated/);
   assert.match(html, /Searchable · recommendation validated/);
   assert.match(html, /recommendation validation is tracked separately from search availability/i);
@@ -296,8 +437,8 @@ test("P1 owner browser is network-only and explicitly communicates protected-onl
   assert.match(html, /PROTECTED_CORPUS_P1_LIVE_OWNER_CANARY_PASS/);
   assert.match(html, /repair-forkrecipe-structural-state/);
   assert.match(html, /Repair ForkRecipe structural metadata/);
-  assert.match(html, /structuralPartialCount === 918/);
-  assert.match(html, /structuralPartialCount === 3/);
+  assert.match(html, /deltaIndexedRecipeCount/);
+  assert.match(html, /V8018_BASE_PLUS_V8019_INCREMENTAL_DELTA/);
   assert.match(html, /Run P2 live alignment/);
   assert.match(html, /p2-live-alignment/);
   assert.match(html, /PROTECTED_CORPUS_P2_LIVE_ALIGNMENT_PASS/);
