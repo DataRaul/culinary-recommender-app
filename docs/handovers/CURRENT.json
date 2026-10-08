@@ -1,53 +1,52 @@
 {
-  "handover": "CULINARY_IDUNS_V8019_LIVE_PASS__OWNER_SEARCH_DELTA_NEXT_V1",
-  "date": "2026-10-07",
+  "handover": "CULINARY_V8019_OWNER_SEARCH_DELTA_READY_FOR_OWNER_RUN_V1",
+  "date": "2026-10-08",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
   "source_of_truth": "GitHub",
-  "main_sha": "47cb9a43d24ee5c1b6e8e2582c9abfed280d87fc",
+  "main_sha": "37a9cc7c8aa7a66780ea0d25a237f033498224f1",
   "open_prs": [],
-  "terminal": "STEP_8G_IDUNS_V8019_PROTECTED_POPULATION_PASS",
   "protected_state": {
     "active_version": "v8019",
-    "parent_version": "v8018",
-    "parent_recipe_count": 19268,
-    "child_recipe_count": 2818,
-    "composed_recipe_count": 22086,
-    "shard_count": 2,
-    "hydration_layers": 19,
-    "max_observed_d1_subqueries": 8,
-    "parent_route_rows_copied": 0,
-    "route_storage_mode": "V8015_BASE_PLUS_V8016_DELTA_PLUS_V8017_DELTA_PLUS_V8018_DELTA_PLUS_V8019_DELTA"
+    "protected_recipe_count": 22086,
+    "base_search_recipe_count": 19268,
+    "search_delta_target_count": 2818,
+    "shards": 2
   },
+  "implementation": {
+    "pr_422": "merged",
+    "pr_423": "merged",
+    "search_architecture": "V8018_BASE_PLUS_V8019_INCREMENTAL_DELTA",
+    "base_index_rebuild": false,
+    "delta_table": "culinary_protected_recipe_search_delta_v8019",
+    "combined_search_target": 22086,
+    "two_shard_internal_d1_subqueries": 7,
+    "authenticated_max_d1_subqueries": 8
+  },
+  "validation": {
+    "pr_validation": "PASS",
+    "browser_acceptance": "PASS",
+    "detail_completeness": "PASS",
+    "owner_canary": "PASS",
+    "production_cloudflare_deploy": "PASS",
+    "main_validation": "PASS"
+  },
+  "next_gate": "OWNER_RUN_V8019_SEARCH_DELTA",
+  "owner_action": [
+    "Open the v8019 owner search runner in the authenticated Culinary browser session.",
+    "Press Add v8019 search delta or Resume v8019 search delta.",
+    "After indexing reaches 22086, press Run v8019 search acceptance.",
+    "Return the final acceptance JSON."
+  ],
+  "expected_terminal": "V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_PASS",
+  "acquisition_next_cohort_blocked_until_terminal": true,
   "firewalls": {
-    "full_corpus_scans": 0,
+    "full_corpus_rebuild": false,
     "public_runtime_changed": false,
     "recommendation_admission_changed": false,
     "third_shard_used": false,
     "billing_expansion": false,
-    "cultural_authenticity_authority_imported": false,
     "barbecue_mutation": false
   },
-  "closeout": {
-    "pr": 421,
-    "merge_sha": "47cb9a43d24ee5c1b6e8e2582c9abfed280d87fc",
-    "evidence": "data/generated/step8g/iduns-v8019-live-pass.json",
-    "document": "docs/CORPUS_SCALE_STEP8G_IDUNS_V8019_LIVE_POPULATION_PASS.md",
-    "validation": "PASS"
-  },
-  "product_gap": {
-    "normal_owner_search_version": "v8018",
-    "normal_owner_search_recipe_count": 19268,
-    "v8019_delta_in_normal_owner_search": false,
-    "reason": "Protected search runtime is still explicitly frozen to v8018 route/index/detail composition."
-  },
-  "next_gate": "V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_V1",
-  "next_gate_contract": [
-    "Incrementally add only the v8019/Iduns delta to private browse/search/detail.",
-    "Do not full-rebuild the 22,086-row index.",
-    "Preserve two shards, free-tier envelope, <=8 optimized D1 subqueries, and zero public/recommendation widening.",
-    "Prove owner live browse/search/open for new Iduns records before selecting the next acquisition cohort."
-  ],
-  "human_needed": false,
-  "no_loop_rule": "One bounded diagnosis and one justified repair. Stop on repeated/uncertain failure or material cost/security/legal/product gate."
+  "human_needed": true
 }
