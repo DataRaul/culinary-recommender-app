@@ -53,5 +53,18 @@
     "no public/recommendation widening unless separately authorized",
     "no full protected search rebuild without maintenance gate",
     "do not interfere with Barbecue scheduled lane"
-  ]
+  ],
+  "continuity_policy": {
+    "id": "CULINARY_HANDOVER_CIRCUIT_BREAKER_V3",
+    "main_sha": "3a4234a69432217636c48da59c4fae197d7c5cc1",
+    "primary_rule": "EXACTLY_ONE_BOUNDED_PACKAGE_THEN_USER_VISIBLE_HANDOVER_AND_STOP",
+    "successor_same_cycle": false,
+    "mandatory_user_visible_handover": true,
+    "no_narration_suppression": false,
+    "optional_early_context_trigger_percent": 50,
+    "external_status_unchanged_rechecks_max": 1,
+    "equivalent_repair_cycles_max": 1,
+    "canonical_ref": "continuity-state"
+  },
+  "startup_instruction": "Fresh-reconcile live main/open PRs/checks, execute exactly ONE bounded package only, then fresh-reconcile, rotate continuity-state CURRENT/PREVIOUS, emit the complete CURRENT JSON to the user, and STOP. Do not start the successor package in the same chat execution cycle."
 }
