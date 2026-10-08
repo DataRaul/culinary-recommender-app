@@ -392,6 +392,19 @@ test("v8019 owner surface encodes incremental-only delta and live acceptance", (
   assert.doesNotMatch(core, /DELETE FROM culinary_protected_recipe_search_v1/);
 });
 
+test("v8019 search runner redirects before auth so the page can perform the normal session check", async () => {
+  const response = await protectedGet({
+    request:new Request(`${ORIGIN}/api/protected-corpus/v1?action=v8019-search-runner`),
+    env:{}
+  });
+  assert.equal(response.status, 302);
+  assert.equal(response.headers.get("cache-control"), "no-store, max-age=0");
+  assert.equal(
+    response.headers.get("location"),
+    `${ORIGIN}/protected-corpus.html?v8019-search-delta=20261008-v2`
+  );
+});
+
 test("P1 API authenticates before any protected control/shard query on GET and POST", async () => {
   let prepares = 0;
   const failDb = { prepare(){ prepares += 1; throw new Error("must not query without session"); } };

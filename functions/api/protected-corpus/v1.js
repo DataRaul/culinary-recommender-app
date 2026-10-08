@@ -104,16 +104,17 @@ function parseLimit(url) {
 }
 
 export async function onRequestGet({ request, env }) {
-  const auth = await authorize(request, env);
-  if (auth.response) return auth.response;
   const url = new URL(request.url);
   const action = url.searchParams.get("action") || "status";
 
   if (action === "v8019-search-runner") {
     const runnerUrl = new URL("/protected-corpus.html", url.origin);
-    runnerUrl.searchParams.set("v8019-search-delta", "20261007-v1");
+    runnerUrl.searchParams.set("v8019-search-delta", "20261008-v2");
     return new Response(null, { status:302, headers:{ location:runnerUrl.toString(), "cache-control":"no-store, max-age=0" } });
   }
+
+  const auth = await authorize(request, env);
+  if (auth.response) return auth.response;
 
   if (action === "status") {
     try {
