@@ -466,11 +466,6 @@ export async function indexProtectedCorpusV8019DeltaBatch(controlDb, shardDbs, c
   if (pointer.activeVersion !== PROTECTED_SEARCH_ACTIVE_CORPUS_VERSION) {
     return { pass: false, reason: "V8019_NOT_ACTIVE", activeVersion: pointer.activeVersion, indexedCount: 0, nextCursor: String(cursor || ""), done: false, d1Subqueries: q, rowsWritten: 0, fullCorpusScans: 0 };
   }
-  const deltaTable = await tableExists(controlDb, PROTECTED_SEARCH_V8019_DELTA_TABLE);
-  q += deltaTable.d1Subqueries;
-  if (!deltaTable.exists) {
-    return { pass: false, reason: "V8019_DELTA_INDEX_NOT_INITIALIZED", activeVersion: pointer.activeVersion, indexedCount: 0, nextCursor: String(cursor || ""), done: false, d1Subqueries: q, rowsWritten: 0, fullCorpusScans: 0 };
-  }
   const page = await readV8019DeltaRoutePage(controlDb, cursor, PROTECTED_SEARCH_INDEX_BATCH_SIZE);
   q += page.d1Subqueries;
   if (!page.pass) return { pass: false, reason: page.reason, indexedCount: 0, nextCursor: String(cursor || ""), done: false, d1Subqueries: q, rowsWritten: 0, fullCorpusScans: 0 };

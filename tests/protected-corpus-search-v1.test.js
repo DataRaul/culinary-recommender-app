@@ -276,36 +276,46 @@ test("v8019 search status composes frozen v8018 base plus incremental Iduns delt
   assert.ok(status.d1Subqueries <= PROTECTED_SEARCH_TARGET_MAX_D1);
 });
 
-test("v8019 incremental index writes only the Iduns delta and stays within the D1 target", async () => {
-  const recipeId = "ora_iduns_1911_0000_test";
-  const packet = {
-    canonicalRecipeId:recipeId,
-    source:{
-      cohortId:PROTECTED_SEARCH_V8019_DELTA_COHORT_ID,
-      sourceWork:"Iduns kokbok",
-      sourceAuthor:"Elisabeth Östman",
-      sourceYear:"1911",
-      sourceUrl:"https://archive.org/details/arkivkopia.se-runeberg-idunskok",
-      licenseId:"public-domain"
-    },
-    sourceContent:{
-      title:"Test Iduns Recipe",
-      parsedIngredientsNonAuthoritative:["1 egg"],
-      parsedDirectionsNonAuthoritative:["Cook."]
-    }
+test("v8019 incremental index spans both shards and stays within the authenticated D1 target", async () => {
+  const makeFixture = (ordinal, shardNumber) => {
+    const recipeId = `ora_iduns_1911_000${ordinal}_test`;
+    const packet = {
+      canonicalRecipeId:recipeId,
+      source:{
+        cohortId:PROTECTED_SEARCH_V8019_DELTA_COHORT_ID,
+        sourceWork:"Iduns kokbok",
+        sourceAuthor:"Elisabeth Östman",
+        sourceYear:"1911",
+        sourceUrl:"https://archive.org/details/arkivkopia.se-runeberg-idunskok",
+        licenseId:"public-domain"
+      },
+      sourceContent:{
+        title:`Test Iduns Recipe ${ordinal}`,
+        parsedIngredientsNonAuthoritative:["1 egg"],
+        parsedDirectionsNonAuthoritative:["Cook."]
+      }
+    };
+    const bodyJson = JSON.stringify(packet);
+    return {
+      recipeId,
+      shardNumber,
+      bodyJson,
+      bodySha256:createHash("sha256").update(bodyJson).digest("hex"),
+      bodyBytes:Buffer.byteLength(bodyJson)
+    };
   };
-  const bodyJson = JSON.stringify(packet);
-  const bodySha256 = createHash("sha256").update(bodyJson).digest("hex");
-  const bodyBytes = Buffer.byteLength(bodyJson);
-  const routeRow = {
-    recipe_id:recipeId,
+  const fixtures = [makeFixture(0,0), makeFixture(1,1)];
+  const routeRows = fixtures.map(fixture => ({
+    recipe_id:fixture.recipeId,
     corpus_version:"v8019",
-    shard_number:0,
+    shard_number:fixture.shardNumber,
     source_cohort_id:PROTECTED_SEARCH_V8019_DELTA_COHORT_ID,
-    body_sha256:bodySha256,
-    body_bytes:bodyBytes
-  };
+    body_sha256:fixture.bodySha256,
+    body_bytes:fixture.bodyBytes
+  }));
+
   let writeBatchCalls = 0;
+  let sqliteMasterReads = 0;
   const controlDb = {
     prepare(sql) {
       const statement = {
@@ -313,11 +323,11 @@ test("v8019 incremental index writes only the Iduns delta and stays within the D
         bind(...args){ this.args=args; return this; },
         async first(){
           if (sql.includes("SELECT active_version")) return { active_version:"v8019", previous_version:"v8018", manifest_sha256:"m" };
-          if (sql.includes("sqlite_master")) return { name:PROTECTED_SEARCH_V8019_DELTA_TABLE };
+          if (sql.includes("sqlite_master")) { sqliteMasterReads += 1; return { name:PROTECTED_SEARCH_V8019_DELTA_TABLE }; }
           throw new Error("unexpected first SQL: " + sql);
         },
         async all(){
-          if (sql.includes("composition_version='v8019'") && sql.includes("corpus_version='v8019'")) return { results:[routeRow] };
+          if (sql.includes("composition_version='v8019'") && sql.includes("corpus_version='v8019'")) return { results:routeRows };
           throw new Error("unexpected all SQL: " + sql);
         }
       };
@@ -326,34 +336,42 @@ test("v8019 incremental index writes only the Iduns delta and stays within the D
     async batch(statements) {
       writeBatchCalls += 1;
       assert.equal(statements.length, 3);
-      return statements.map(() => ({ meta:{ rows_written:1 } }));
+      return [
+        { meta:{ rows_written:2 } },
+        { meta:{ rows_written:0 } },
+        { meta:{ rows_written:2 } }
+      ];
     }
   };
-  const shard0 = {
+
+  const shardDbs = [0,1].map(shardNumber => ({
     prepare(sql) {
       return {
         bind(){ return this; },
         async all(){
           assert.match(sql, /corpus_recipe_bodies/);
+          const fixture = fixtures.find(row => row.shardNumber === shardNumber);
           return { results:[{
             corpus_version:"v8019",
-            recipe_id:recipeId,
-            body_json:bodyJson,
-            body_bytes:bodyBytes,
-            body_sha256:bodySha256,
+            recipe_id:fixture.recipeId,
+            body_json:fixture.bodyJson,
+            body_bytes:fixture.bodyBytes,
+            body_sha256:fixture.bodySha256,
             source_cohort_id:PROTECTED_SEARCH_V8019_DELTA_COHORT_ID
           }] };
         }
       };
     }
-  };
-  const shard1 = { prepare(){ throw new Error("shard1 should not be queried"); } };
-  const result = await indexProtectedCorpusV8019DeltaBatch(controlDb, [shard0,shard1], "");
+  }));
+
+  const result = await indexProtectedCorpusV8019DeltaBatch(controlDb, shardDbs, "");
   assert.equal(result.pass, true);
-  assert.equal(result.indexedCount, 1);
-  assert.equal(result.rowsWritten, 3);
+  assert.equal(result.indexedCount, 2);
+  assert.equal(result.rowsWritten, 4);
   assert.equal(result.fullCorpusScans, 0);
-  assert.ok(result.d1Subqueries <= PROTECTED_SEARCH_TARGET_MAX_D1);
+  assert.equal(result.d1Subqueries, 7);
+  assert.ok(result.d1Subqueries + 1 <= PROTECTED_SEARCH_TARGET_MAX_D1);
+  assert.equal(sqliteMasterReads, 0);
   assert.equal(writeBatchCalls, 1);
 });
 
