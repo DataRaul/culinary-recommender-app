@@ -284,7 +284,7 @@
       ? 'v8019 / 22,086 incremental search index is ready. Run the v8019 search acceptance to prove browse/search/open for Iduns.'
       : result.activeVersion === 'v8019'
         ? 'v8019 protected storage is active; the 2,818-recipe Iduns search delta is incomplete. Prepare/resume only the incremental delta.'
-        : 'Historical P1/P2/P4 diagnostics are available only on the frozen v8018 state.';
+        : 'P4 terminal PASS is recorded. Historical P1/P2/P4 diagnostics are available only on the frozen v8018 state.';
     prepareButton.textContent = result.activeVersion === 'v8019'
       ? (Number(result.deltaIndexedRecipeCount || 0) ? 'Resume v8019 search delta' : 'Add v8019 search delta')
       : (result.indexedRecipeCount ? 'Resume private index' : 'Prepare private index');
