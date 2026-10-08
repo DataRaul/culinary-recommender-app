@@ -1,38 +1,51 @@
 {
-  "handover": "CULINARY_V8019_SEARCH_RUNNER_AUTH_FIX_READY_FOR_OWNER_RUN_V1",
+  "handover": "CULINARY_V8019_OWNER_SEARCH_TERMINAL_PASS__NEXT_ACQUISITION_READY_V1",
   "date": "2026-10-08",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
   "source_of_truth": "GitHub",
-  "main_sha": "08ddde2f6ba0c748f3c1709bf8584ee85162a911",
+  "main_sha": "5a07fef88527dac4be39751c38ee2bf907d40191",
   "open_prs": [],
-  "merged_prs": [
-    422,
-    423,
-    424
-  ],
-  "terminal_before_owner_run": "V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_READY",
-  "production": {
-    "cloudflare_deploy": "PASS",
-    "main_validation": "PASS",
-    "browser_acceptance": "PASS",
-    "runner_auth_order_fix": "PASS"
+  "terminal": "V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_PASS",
+  "protected_corpus": {
+    "activeVersion": "v8019",
+    "protectedRecipeCount": 22086,
+    "baseIndexedRecipeCount": 19268,
+    "deltaIndexedRecipeCount": 2818,
+    "indexedRecipeCount": 22086,
+    "ftsRecipeCount": 22086,
+    "structuralPartialCount": 3,
+    "deltaStructuralPartialCount": 0,
+    "indexingMode": "V8018_BASE_PLUS_V8019_INCREMENTAL_DELTA"
   },
-  "owner_action": {
-    "url": "https://culinary-recommender-app.pages.dev/api/protected-corpus/v1?action=v8019-search-runner",
-    "expected_landing": "/protected-corpus.html?v8019-search-delta=20261008-v2",
-    "buttons": [
-      "Add v8019 search delta",
-      "Run v8019 search acceptance"
-    ],
-    "expected_terminal": "V8019_OWNER_SEARCH_INCREMENTAL_INDEX_DELTA_PASS"
+  "owner_acceptance": {
+    "browseDeltaPass": true,
+    "searchDeltaPass": true,
+    "detailDeltaPass": true,
+    "acceptedIdunsRecipeId": "ora_iduns_1911_0000_giftas_wedding_cream",
+    "maxObservedD1Subqueries": 6,
+    "fullCorpusRebuild": false,
+    "fullCorpusScans": 0,
+    "publicRuntimeChanged": false,
+    "recommendationAdmissionChanged": false,
+    "thirdShardUsed": false,
+    "billingExpansion": false
   },
-  "search_target": {
-    "base_v8018": 19268,
-    "delta_v8019": 2818,
-    "total": 22086,
-    "architecture": "V8018_BASE_PLUS_V8019_INCREMENTAL_DELTA",
-    "authenticated_d1_target_max": 8
+  "closeout": {
+    "evidence": "data/generated/protected-corpus/v8019-owner-search-delta-live-pass.json",
+    "roadmapUpdated": true,
+    "acquisitionConfigUpdated": true,
+    "productionDeploy": "PASS",
+    "mainValidation": "PASS"
   },
-  "no_loop_rule": "If the repaired runner still does not land on the protected corpus page, diagnose the observed final URL/state before any further retry."
+  "nextGate": "ORA_ACQUISITION_FIRST_DISCOVERY_AND_RIGHTS_REVIEW",
+  "nextCohortSelectionBlocked": false,
+  "guardrails": [
+    "rights/provenance fail closed",
+    "no paid infrastructure or billing expansion",
+    "no third D1 shard",
+    "no public/recommendation widening unless separately authorized",
+    "no full protected search rebuild without maintenance gate",
+    "do not interfere with Barbecue scheduled lane"
+  ]
 }
