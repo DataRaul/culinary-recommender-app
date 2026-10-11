@@ -1,17 +1,17 @@
 {
-  "handover": "CULINARY_POST_V8019_ORA_EXHAUSTED__OTHER_SOURCE_FAMILY_DISCOVERY_NEXT_V1",
-  "date": "2026-10-08",
+  "handover": "CULINARY_RECOMMENDER_APP_PACKAGE_QUALITY_PILOT_INSTALLED_V1",
+  "date": "2026-10-11",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
   "source_of_truth": "GitHub",
-  "main_sha": "7b10ec3ee3fa59f5acb515abddc555ffae54e023",
+  "main_sha": "fd104d4d4cd4692979eb22e07274c56b39155751",
   "open_prs": [],
   "protected_corpus": {
     "activeVersion": "v8019",
     "protectedRecipeCount": 22086,
     "ownerSearchRecipeCount": 22086
   },
-  "package_terminal": "STEP_8G_ORA_NEXT_SOURCE_DISCOVERY_NO_MATERIAL_CANDIDATE",
+  "package_terminal": "PACKAGE_QUALITY_PILOT_INSTALLATION_VERIFIED",
   "discovery": {
     "sourceFamily": "AdamBouhmad/open-recipe-archive pinned ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
     "baselineVersion": "v8019",
@@ -38,13 +38,13 @@
     "currentV8019DiscoveryMode": "PASS"
   },
   "main_verification": {
-    "cloudflarePages": "PASS",
-    "pagesDeployment": "PASS",
-    "validatePublicV0": "PASS",
-    "browserAcceptance": "PASS",
-    "productionPublicSmoke": "PASS"
+    "cloudflarePages": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
+    "pagesDeployment": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
+    "validatePublicV0": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
+    "browserAcceptance": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
+    "productionPublicSmoke": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION"
   },
-  "nextGate": "ACQUISITION_FIRST_OTHER_SOURCE_FAMILY_DISCOVERY",
+  "nextGate": "FRESH_RECONCILE_CURRENT_ROADMAP_AND_SELECT_ONE_AUTHORIZED_PRODUCT_PACKAGE",
   "guardrails": [
     "continue acquisition-first; ORA exhaustion is not programme completion",
     "rights/provenance fail closed",
@@ -66,5 +66,138 @@
     "equivalent_repair_cycles_max": 1,
     "canonical_ref": "continuity-state"
   },
-  "startup_instruction": "Fresh-reconcile live main/open PRs/checks, execute exactly ONE bounded package only, then fresh-reconcile, rotate continuity-state CURRENT/PREVIOUS, emit the complete CURRENT JSON to the user, and STOP. Do not start the successor package in the same chat execution cycle."
+  "startup_instruction": "Read live AGENTS.md and the pinned quality protocol; reconcile main, PRs, lane contract and checkpoint. Align and deliver only the next authorized bounded package with separate supporter and critic reviews. Preserve remaining budget and local gates. Re-read the current roadmap/generated programme to select the product successor; after one package, rotate the complete canonical handover, emit it and STOP.",
+  "status": "INSTALLATION_VERIFIED__COMPARATIVE_EFFICACY_UNMEASURED",
+  "installation_verification": {
+    "schema_version": 1,
+    "project": "DataRaul/culinary-recommender-app",
+    "pr": 426,
+    "head_sha": "e68f4d1353e926d7436e1d9c88980073a11f7735",
+    "main_sha": "fd104d4d4cd4692979eb22e07274c56b39155751",
+    "required_ci": [
+      {
+        "id": 38181348510,
+        "name": "Validate public V0",
+        "conclusion": "success"
+      }
+    ],
+    "verified_files": [
+      "AGENTS.md",
+      "config/package_quality_adapter.json",
+      "docs/HANDOVER_PROTOCOL.md",
+      "docs/PACKAGE_QUALITY_PROTOCOL.md",
+      "docs/package_quality/CONTRACT_TEMPLATE.json",
+      "docs/package_quality/contracts/install-quality-pilot-v1.json",
+      "docs/package_quality/evidence/installation/checkpoint-plan.json",
+      "docs/package_quality/evidence/installation/local-checks.txt",
+      "docs/package_quality/evidence/installation/shared-source.json",
+      "docs/package_quality/goals/quality-pilot/v1.json",
+      "scripts/package_quality.py",
+      "docs/package_quality/evidence/installation/packet.json",
+      "docs/package_quality/evidence/installation/supporter.json",
+      "docs/package_quality/evidence/installation/critic.json"
+    ],
+    "verification": "Reviewed bytes/modes verified in exact merged main; existing main pointer, protected runtime descriptor and Barbecue workflow unchanged",
+    "open_prs": [],
+    "scope": "Installation only; old corpus, source-rights and owner acceptance context is historical and not revalidated",
+    "extra_paid_services_activated": false,
+    "usage": "unknown"
+  },
+  "historical_product_context": {
+    "original_handover": "CULINARY_POST_V8019_ORA_EXHAUSTED__OTHER_SOURCE_FAMILY_DISCOVERY_NEXT_V1",
+    "original_main_sha": "7b10ec3ee3fa59f5acb515abddc555ffae54e023",
+    "original_date": "2026-10-08",
+    "original_next_gate": "ACQUISITION_FIRST_OTHER_SOURCE_FAMILY_DISCOVERY",
+    "scope": "Retained continuity context; installation does not reverify corpus, source rights or production product acceptance"
+  },
+  "package_quality": {
+    "schema_version": 1,
+    "goal_ref": {
+      "path": "docs/package_quality/goals/quality-pilot/v1.json",
+      "sha256": "42c436348448d8ac4ade99c819b07f0c44e9e0de1dfdd3c4645fdbc6faee8856"
+    },
+    "package_ref": "docs/package_quality/contracts/install-quality-pilot-v1.json",
+    "status": "INSTALLATION_VERIFIED__EFFICACY_UNMEASURED",
+    "last_evidence": [
+      "docs/package_quality/evidence/installation/local-checks.txt",
+      "docs/package_quality/evidence/installation/shared-source.json",
+      {
+        "schema_version": 1,
+        "project": "DataRaul/culinary-recommender-app",
+        "pr": 426,
+        "head_sha": "e68f4d1353e926d7436e1d9c88980073a11f7735",
+        "main_sha": "fd104d4d4cd4692979eb22e07274c56b39155751",
+        "required_ci": [
+          {
+            "id": 38181348510,
+            "name": "Validate public V0",
+            "conclusion": "success"
+          }
+        ],
+        "verified_files": [
+          "AGENTS.md",
+          "config/package_quality_adapter.json",
+          "docs/HANDOVER_PROTOCOL.md",
+          "docs/PACKAGE_QUALITY_PROTOCOL.md",
+          "docs/package_quality/CONTRACT_TEMPLATE.json",
+          "docs/package_quality/contracts/install-quality-pilot-v1.json",
+          "docs/package_quality/evidence/installation/checkpoint-plan.json",
+          "docs/package_quality/evidence/installation/local-checks.txt",
+          "docs/package_quality/evidence/installation/shared-source.json",
+          "docs/package_quality/goals/quality-pilot/v1.json",
+          "scripts/package_quality.py",
+          "docs/package_quality/evidence/installation/packet.json",
+          "docs/package_quality/evidence/installation/supporter.json",
+          "docs/package_quality/evidence/installation/critic.json"
+        ],
+        "verification": "Reviewed bytes/modes verified in exact merged main; existing main pointer, protected runtime descriptor and Barbecue workflow unchanged",
+        "open_prs": [],
+        "scope": "Installation only; old corpus, source-rights and owner acceptance context is historical and not revalidated",
+        "extra_paid_services_activated": false,
+        "usage": "unknown"
+      }
+    ],
+    "reviews": [
+      {
+        "role": "supporter",
+        "session_id": "/root/culinary_supporter",
+        "path": "docs/package_quality/evidence/installation/supporter.json",
+        "sha256": "5d46309c16b4445fb5d4d43ee8e425a0016afea651f36b9341f498e2b2dbbc23",
+        "candidate_digest": "3651da0d9360c12d76f097bb14619786ead31acfc472100f34dfda858fbf2404",
+        "verdict": "PASS"
+      },
+      {
+        "role": "critic",
+        "session_id": "/root/culinary_critic",
+        "path": "docs/package_quality/evidence/installation/critic.json",
+        "sha256": "51abba1e3fb855544814c932051403323606a4cfcd66d2accb141aa6acd78051",
+        "candidate_digest": "3651da0d9360c12d76f097bb14619786ead31acfc472100f34dfda858fbf2404",
+        "verdict": "PASS"
+      }
+    ],
+    "unfinished_criteria": [],
+    "failures": [
+      "Historical shared-source catalog CI failure corrected; shared PR53 final CI PASS"
+    ],
+    "decisions": [
+      "Owner-selected pilot limited to Market Lab and Culinary",
+      "Existing subscription/native review sessions; no paid API or scheduled quality service",
+      "Installation and comparative efficacy are separate completion claims"
+    ],
+    "budget": {
+      "round": 1,
+      "max_rounds": 1,
+      "usage": "unknown"
+    },
+    "constraints": [
+      "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
+      "One bounded package; full continuity handover; STOP",
+      "One equivalent repair cycle and one unchanged external recheck",
+      "No paid service or application behavior change"
+    ],
+    "next_action": "Use the protocol on the next already-authorized lane package after fresh reconciliation; keep any source, research or owner evidence holds",
+    "predecessor_sha256": "efd5121c8893c27210c01f2352ee51f6750a246f45a72165e5a05175df6b3151",
+    "goal_contribution": "Installs goal alignment, exact-candidate reviews and durable checkpoints; defect reduction and overhead remain unmeasured",
+    "additional_cash_services_activated": false
+  }
 }
