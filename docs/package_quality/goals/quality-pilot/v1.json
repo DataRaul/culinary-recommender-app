@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "goal_id": "package-quality-pilot",
+  "revision": 1,
+  "outcome": "Use alignment, constructive review, fresh critique and durable goal continuity for each bounded project package",
+  "purpose": "Reduce missing requirements, scope drift and unsupported completion before spending Actions",
+  "constraints": [
+    "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
+    "One bounded package; full continuity handover; STOP",
+    "One equivalent repair cycle and one unchanged external recheck",
+    "No paid service or application behavior change"
+  ],
+  "intent_provenance": [
+    {
+      "source": "Owner instructions in ChatGPT, 2026-10-11",
+      "intent": "Implement approved aligner/supporter/critic and goal continuity in Market Lab and Culinary only"
+    }
+  ],
+  "changes": [
+    {
+      "revision": 1,
+      "reason": "Owner-selected installation pilot; efficacy unmeasured"
+    }
+  ],
+  "success_criteria": [
+    {
+      "id": "alignment",
+      "description": "Clear prompts execute with sourced goal and contract without ritual questions"
+    },
+    {
+      "id": "reviews",
+      "description": "Separate ordered reviewer sessions cover exact final candidate/evidence"
+    },
+    {
+      "id": "continuity",
+      "description": "Resume reconstructs goal, state, failures, budget and next action with guarded checkpoint lineage"
+    },
+    {
+      "id": "boundaries",
+      "description": "Local evidence, authority, privacy, cost and stop rules remain controlling"
+    }
+  ]
+}

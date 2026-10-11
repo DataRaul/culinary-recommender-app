@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "project": "FILL_FROM_ADAPTER",
+  "lane_id": "FILL_ACTIVE_LANE",
+  "package_id": "FILL_BOUNDED_PACKAGE",
+  "base_commit": "FILL_FRESH_MAIN_SHA",
+  "author_session_id": "FILL_ACTUAL_SESSION",
+  "goal_path": "FILL_EXISTING_OR_VERSIONED_LANE_GOAL",
+  "adapter_path": "config/package_quality_adapter.json",
+  "intent_provenance": [
+    "FILL_SETTLED_OWNER_INTENT_SOURCE"
+  ],
+  "outcome": "FILL_PACKAGE_OUTCOME",
+  "contribution": "FILL_GOAL_CONTRIBUTION",
+  "scope": [
+    "FILL_DELIVERABLES"
+  ],
+  "non_goals": [],
+  "inputs": [],
+  "criteria": [
+    {
+      "id": "FILL_CRITERION",
+      "description": "FILL_OBSERVABLE_ACCEPTANCE",
+      "goal_criteria": [
+        "FILL_GOAL_CRITERION"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "FILL_CHECK_EVIDENCE_PATH"
+  ],
+  "mandatory_knowledge_domains": [
+    "FILL_REQUIRED_DOMAINS_FROM_LOCAL_GATE"
+  ],
+  "authority": "AUTO + VERIFY",
+  "human_decisions": [],
+  "assumptions": [],
+  "dependencies": [],
+  "next_action": "FILL_AUTHORIZED_NEXT_ACTION",
+  "stop_boundary": "FILL_LOCAL_TERMINAL_BOUNDARY",
+  "budget": {
+    "round": 1,
+    "max_rounds": "FILL_ADAPTER_LIMIT",
+    "usage": "unknown"
+  }
+}

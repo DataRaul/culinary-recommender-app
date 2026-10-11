@@ -146,3 +146,15 @@ PUBLIC BROWSER APPLICATION
 Conversation-time access to private Knowledge Core is therefore permitted for repository reasoning when the project contract allows it; browser-time private Knowledge Core access remains prohibited.
 
 If a future Knowledge Core capability would materially change Culinary behavior or governance, integrate it through this generalized platform boundary with explicit project validation and any required human authorization rather than by silent adoption.
+
+## Package quality pilot — owner selected 2026-10-11
+
+For every substantive bounded package in this repository, including resume/handover, apply `docs/PACKAGE_QUALITY_PROTOCOL.md` and `config/package_quality_adapter.json` before substantive execution. This is explicit owner-selected pilot adoption, confined to this project and the other separately selected project; it is not portfolio-wide adoption or specialist-reviewer benchmark completion.
+
+Align the authorized goal and next package internally, then build/check, invoke a separate constructive supporter, and invoke a fresh critic on the resulting exact candidate. Both independently select relevant Knowledge Core objects and record commit/object/applied-rule provenance. Require final candidate and acceptance coverage from both roles; never label self-review independent. Missing independent sessions or required evidence holds publication.
+
+Run the hash-pinned shared checker through `scripts/package_quality.py` before any push, PR create/update, merge or workflow dispatch/rerun that publishes this package or spends Actions. This is a procedural gate, not a restriction on tool availability. Required CI still follows it. Refresh live base/branch heads and use an expected-head lease; changed files/goal/criteria/evidence invalidate old reviews.
+
+Reuse settled context and canonical mandate harness for alignment. Ask only for consequential missing choices; clear requests and continues do not require template completion or approval. Preserve the canonical conversation router's optional post-task coaching and deduplication. Track criterion → artifact → evidence → contribution to the versioned goal at every package boundary. A PASS does not itself establish the goal.
+
+No new paid API, background service, scheduled quality workflow, runtime data access or application behavior is authorized. Review calls consume existing usage; record unknown telemetry honestly. Preserve stronger local source, privacy, evidence, retry, human and terminal gates. Continue never resets budgets or waives blockers.

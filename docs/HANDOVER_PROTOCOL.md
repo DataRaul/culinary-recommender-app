@@ -82,3 +82,15 @@ Context percentage is not the primary control. Where telemetry exists, ~50% is a
 ## Cost
 
 No scheduled/background context poller is permitted. Direct continuity-state writes use `[skip ci]` and do not require GitHub Actions.
+
+## Package quality pilot extension
+
+For owner-selected package quality adoption, also apply `docs/PACKAGE_QUALITY_PROTOCOL.md`.
+Add a `package_quality` namespace to each next complete checkpoint, with the versioned goal
+path/hash, exact package/review references, last evidence, unfinished criteria, failures,
+decisions, inherited budget/constraints, next action and predecessor SHA-256. Preserve the
+existing checkpoint fields and main-branch pointer. Rotate CURRENT/PREVIOUS together in
+one Git tree/commit with an expected continuity branch-head lease; on conflict reread and
+reconcile. Re-fetch the published object, emit that exact complete JSON, then STOP.
+The aligner is internal for clear requests; separate supporter/critic sessions are required
+for package delivery. Missing independent review means HOLD, not a renamed self-check PASS.

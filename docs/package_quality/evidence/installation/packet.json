@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "subject": {
+    "schema_version": 1,
+    "contract_path": "docs/package_quality/contracts/install-quality-pilot-v1.json",
+    "project": "culinary-recommender-app",
+    "lane_id": "package-quality-pilot",
+    "package_id": "install-quality-pilot-v1",
+    "base_commit": "30a87bb8aa7044beea01c3a268e33969396295c2",
+    "author_session_id": "/root/quality-pilot-resume-20261011",
+    "candidate_paths": [
+      "AGENTS.md",
+      "config/package_quality_adapter.json",
+      "docs/HANDOVER_PROTOCOL.md",
+      "docs/PACKAGE_QUALITY_PROTOCOL.md",
+      "docs/package_quality/CONTRACT_TEMPLATE.json",
+      "docs/package_quality/contracts/install-quality-pilot-v1.json",
+      "docs/package_quality/evidence/installation/checkpoint-plan.json",
+      "docs/package_quality/evidence/installation/local-checks.txt",
+      "docs/package_quality/evidence/installation/shared-source.json",
+      "docs/package_quality/goals/quality-pilot/v1.json",
+      "scripts/package_quality.py"
+    ],
+    "deletions": [],
+    "hashes": {
+      "AGENTS.md": "55f8d544c9095997a3a2d90e2cc7dcf105f6b6be4a4b6ed58b94bb9589acbfbc",
+      "config/package_quality_adapter.json": "5b3eae05bf4306497f311dd2ac8324362700ff66d258a4a96d790a915f217743",
+      "docs/HANDOVER_PROTOCOL.md": "0f63292114cc90bec0a06912fd6f8e61ba1fb30b9bd1da5d79f420237bf11a36",
+      "docs/PACKAGE_QUALITY_PROTOCOL.md": "2017dacb0d79bdec0815ff44988d81ad7a6edaf07cd1d00df57db7ce8b552146",
+      "docs/package_quality/CONTRACT_TEMPLATE.json": "569d43c73c26cc6313d5cb8eef256d9c8c765a5e86e9f469eee5c649c0b4c246",
+      "docs/package_quality/contracts/install-quality-pilot-v1.json": "eb059605abe45ee9b80998e5044541d87c7a4a04dd9f767599f89d057752a31d",
+      "docs/package_quality/evidence/installation/checkpoint-plan.json": "7ef99be7c9a04d046f8f125c20e813798561692e042c0a207ab63c07097cb543",
+      "docs/package_quality/evidence/installation/local-checks.txt": "f505f4b2bc49b9d83651fd95831fe22bd336d3b6a2ca093e533c2c27f77567e0",
+      "docs/package_quality/evidence/installation/shared-source.json": "70fe34619d9c4c326fe19636c8d0a7a529adc978ae776063595ee4220eac9fe9",
+      "docs/package_quality/goals/quality-pilot/v1.json": "42c436348448d8ac4ade99c819b07f0c44e9e0de1dfdd3c4645fdbc6faee8856",
+      "scripts/package_quality.py": "d9a680d52201bf9afb71f10ca8da1ddf6a1e85d07623291301fb86db33b6f366"
+    },
+    "git_modes": {
+      "AGENTS.md": "100644",
+      "config/package_quality_adapter.json": "100644",
+      "docs/HANDOVER_PROTOCOL.md": "100644",
+      "docs/PACKAGE_QUALITY_PROTOCOL.md": "100644",
+      "docs/package_quality/CONTRACT_TEMPLATE.json": "100644",
+      "docs/package_quality/contracts/install-quality-pilot-v1.json": "100644",
+      "docs/package_quality/evidence/installation/checkpoint-plan.json": "100644",
+      "docs/package_quality/evidence/installation/local-checks.txt": "100644",
+      "docs/package_quality/evidence/installation/shared-source.json": "100644",
+      "docs/package_quality/goals/quality-pilot/v1.json": "100644",
+      "scripts/package_quality.py": "100644"
+    }
+  },
+  "candidate_digest": "3651da0d9360c12d76f097bb14619786ead31acfc472100f34dfda858fbf2404"
+}

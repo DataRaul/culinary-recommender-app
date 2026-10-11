@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "repository": "DataRaul/agent-os",
+  "source_commit": "66fb269cb66be7decc3755621f06d970b25a89cf",
+  "verified_main_commit": "436debbcc7462f1c906639e454c698221e1edab0",
+  "pr": 53,
+  "required_ci": [
+    {
+      "id": 38180367597,
+      "name": "publication-gate",
+      "conclusion": "success"
+    },
+    {
+      "id": 38180367611,
+      "name": "validate",
+      "conclusion": "success"
+    }
+  ],
+  "reviewed_candidate": "80c68dad5a0a452c0ee41e37ac62fba003ddcec4263b4e8e35b7b564ee548ea8",
+  "review_reports": {
+    "supporter": {
+      "session": "/root/shared_supporter",
+      "sha256": "0d80a9e843dd4d983aadef2ab7ee2a0a65face0b81789d95baf4db838313f322"
+    },
+    "critic": {
+      "session": "/root/shared_final_critic",
+      "sha256": "bb80302f29b735b3261de151bcc2a58d387064c77612ae8278a4e959df748136"
+    }
+  },
+  "verification": "All eleven reviewed tree entries matched bytes and Git modes on merged main; source pin is reviewed parent reachable from merge",
+  "limits": [
+    "No comparative efficacy or reviewer benchmark admission claimed",
+    "Usage telemetry unknown"
+  ]
+}

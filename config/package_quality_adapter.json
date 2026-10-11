@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "mode": "PROCEDURAL_PILOT",
+  "max_rounds": 1,
+  "constraints": [
+    "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
+    "One bounded package; full continuity handover; STOP",
+    "One equivalent repair cycle and one unchanged external recheck",
+    "No paid service or application behavior change"
+  ],
+  "shared_source": {
+    "repository": "DataRaul/agent-os",
+    "commit": "66fb269cb66be7decc3755621f06d970b25a89cf",
+    "files": {
+      "scripts/package_quality_gate.py": "576a6aef8c4e420a2841a93441a9dabb8046258f3762927c141539a5f6087270",
+      "skills/package-quality-gate/SKILL.md": "5324e1568feb035c32a8937754f6b887c6258c234d8be0b2f4242eb55341d4ae",
+      "skills/package-quality-gate/references/aligner.md": "e6da0d945f2db7b3d84e77cd7aea557c456b58a3eef3e1832b5be370fc168125",
+      "skills/package-quality-gate/references/supporter.md": "c9331039a226e5410e48887b91a8b772aacfad3e71c6d6eacf5ee77987f82723",
+      "skills/package-quality-gate/references/critic.md": "e2db8afa5ec511703a0077cabb6cb84ee76b2cbc08a8e159713eca0d5a56f8cd",
+      "docs/PACKAGE_QUALITY_GATE.md": "b844a592b03f690ef380b9765325d9da7453a1c13f8c57467bcedb4d5982563c"
+    }
+  },
+  "skill": "skills/package-quality-gate/SKILL.md",
+  "roles": {
+    "aligner": "skills/package-quality-gate/references/aligner.md",
+    "supporter": "skills/package-quality-gate/references/supporter.md",
+    "critic": "skills/package-quality-gate/references/critic.md"
+  },
+  "knowledge": {
+    "source": "DataRaul/knowledge-core",
+    "selection": "independent_minimum_task_domains_with_exact_commit_object_rule",
+    "mandate": "domains/project_execution/objects/agentic_work_mandate_harness.md"
+  },
+  "checkpoint": {
+    "branch": "continuity-state",
+    "current": "docs/handovers/CURRENT.json",
+    "previous": "docs/handovers/PREVIOUS.json",
+    "emit_complete_json": true,
+    "stop_after_one_package": true
+  },
+  "enforcement": "PROCEDURAL_NOT_EXCLUSIVE_PUBLISHER",
+  "measured_improvement": false,
+  "additional_paid_services": false,
+  "scheduled_actions": false
+}

@@ -1,0 +1,8 @@
+Observed adapter smoke checks on exact prepared files:
+PASS: pinned shared files verify; wrapper freezes installation contract and paths.
+PASS: unreviewed shared checker mutation produces HOLD before execution.
+PASS: checkpoint rotation prepares CURRENT/PREVIOUS and leaves input unchanged.
+PASS: omitted prior checkpoint field is rejected.
+Shared checker: 17 synthetic/Git regression tests passed; remote shared CI and pin evidence in shared-source.json.
+Application/research files are outside publication inventory; required repository CI remains outstanding at freeze.
+This is scoped procedural evidence, not measured defect reduction or research/product acceptance.

@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "lane_id": "package-quality-pilot",
+  "package_id": "install-quality-pilot-v1",
+  "base_commit": "30a87bb8aa7044beea01c3a268e33969396295c2",
+  "author_session_id": "/root/quality-pilot-resume-20261011",
+  "goal_path": "docs/package_quality/goals/quality-pilot/v1.json",
+  "adapter_path": "config/package_quality_adapter.json",
+  "intent_provenance": [
+    "Owner approved implementation in both apps, 2026-10-11"
+  ],
+  "outcome": "Install approved package quality and goal continuity workflow",
+  "contribution": "Future bounded packages align to goals and use separate reviewers before publication",
+  "scope": [
+    "Root instructions, thin adapter, local protocol and handover navigation"
+  ],
+  "non_goals": [
+    "Application or research runtime changes",
+    "Paid service or scheduled quality workflow",
+    "Broader rollout"
+  ],
+  "inputs": [
+    "Verified exact shared source",
+    "Live project authority and owner intent"
+  ],
+  "criteria": [
+    {
+      "id": "alignment",
+      "description": "Sourced goals and internal alignment selected by root instructions",
+      "goal_criteria": [
+        "alignment"
+      ]
+    },
+    {
+      "id": "reviews",
+      "description": "Pinned separate reviewer procedures and working offline wrapper",
+      "goal_criteria": [
+        "reviews"
+      ]
+    },
+    {
+      "id": "continuity",
+      "description": "Local guarded checkpoint layout and resume/stop rules",
+      "goal_criteria": [
+        "continuity"
+      ]
+    },
+    {
+      "id": "boundaries",
+      "description": "Existing local runtime/research/privacy/cost authority preserved",
+      "goal_criteria": [
+        "boundaries"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "docs/package_quality/evidence/installation/local-checks.txt",
+    "docs/package_quality/evidence/installation/shared-source.json",
+    "docs/package_quality/evidence/installation/checkpoint-plan.json"
+  ],
+  "mandatory_knowledge_domains": [
+    "software_data",
+    "decision_frameworks",
+    "project_execution",
+    "ai_agents"
+  ],
+  "authority": "AUTO + VERIFY",
+  "human_decisions": [],
+  "assumptions": [
+    "Coordinator reads current root instructions and has separate reviewer sessions"
+  ],
+  "dependencies": [
+    "Verified public shared source merge"
+  ],
+  "next_action": "Publish reviewed code through required CI, verify main, then complete canonical checkpoint",
+  "stop_boundary": "Installation package terminal and handover; Culinary STOP before any product successor",
+  "budget": {
+    "round": 1,
+    "max_rounds": 1,
+    "usage": "unknown"
+  }
+}

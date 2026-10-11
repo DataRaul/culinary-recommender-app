@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "role": "supporter",
+  "session_id": "/root/culinary_supporter",
+  "model": "unknown",
+  "candidate_digest": "3651da0d9360c12d76f097bb14619786ead31acfc472100f34dfda858fbf2404",
+  "verdict": "PASS",
+  "knowledge": [
+    {
+      "domain": "software_data",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/software_data/objects/testing_strategy_verification_layers.md",
+      "applied_rule": "Use the cheapest deterministic checks for identity and rejection invariants, plus a real wrapper/shared-checker integration check; local smoke checks cannot establish remote CI or efficacy.",
+      "criterion_id": "reviews"
+    },
+    {
+      "domain": "decision_frameworks",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/decision_frameworks/objects/decision_quality_under_uncertainty.md",
+      "applied_rule": "Preserve decision-time intent and uncertainty; a successful installation or unit suite is not evidence of comparative defect-reduction efficacy. Verify explicitly bounded pilot claims.",
+      "criterion_id": "alignment"
+    },
+    {
+      "domain": "project_execution",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/project_execution/objects/long_run_checkpoint_and_handover_protocol.md",
+      "applied_rule": "Handover is a resumability index; preserve exact authoritative identifiers, failures, gates and next action, and require fresh reconciliation before resume.",
+      "criterion_id": "continuity"
+    },
+    {
+      "domain": "ai_agents",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/ai_agents/objects/memory_state_and_source_of_truth.md",
+      "applied_rule": "Distinguish context, explicit execution state and authoritative GitHub truth; keep canonical continuity-state pair, main pointer, provenance and fresh reconciliation.",
+      "criterion_id": "continuity"
+    },
+    {
+      "domain": "project_execution",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "applied_rule": "Tool availability grants no authority; preserve stronger local runtime/privacy/cost gates and inherited stop/retry/resource boundaries, without silently substituting canonical sources.",
+      "criterion_id": "boundaries"
+    }
+  ],
+  "coverage": [
+    {
+      "criterion_id": "alignment",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/installation/checkpoint-plan.json",
+        "docs/package_quality/evidence/installation/local-checks.txt"
+      ],
+      "assessment": "Read root instructions, installation contract, goal v1 and template. The appended pilot clause selects internal alignment, canonical mandate routing, settled context and criterion-to-goal lineage. The installation goal is explicitly limited to installation and does not replace future product/research goals."
+    },
+    {
+      "criterion_id": "reviews",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/installation/local-checks.txt",
+        "docs/package_quality/evidence/installation/shared-source.json"
+      ],
+      "assessment": "Read all eleven frozen candidate entries and pinned shared skill/roles/checker format. Verified all six shared hashes against the adapter. Independently reproduced exact freeze through the local wrapper in an isolated candidate copy and verified a modified shared checker is rejected before execution. Separate ordered reviewer requirements and HOLD on absent sessions are explicit; publication remains procedural and normal CI remains required."
+    },
+    {
+      "criterion_id": "continuity",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/installation/checkpoint-plan.json",
+        "docs/package_quality/evidence/installation/local-checks.txt"
+      ],
+      "assessment": "Independently fetched exact baseline main CURRENT and prior continuity CURRENT. Main pointer bytes remain unchanged and outside inventory. Full fetched prior checkpoint preserves product/research/rights/Barbecue constraints. Isolated wrapper rotation prepared canonical CURRENT/PREVIOUS together without mutating input and rejected a missing nested rights-review field. Corrected plan now records authoritative prior byte hash/blob/length. One package, full emitted checkpoint, STOP, one unchanged recheck, one equivalent repair and resume budget preservation remain explicit."
+    },
+    {
+      "criterion_id": "boundaries",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/installation/checkpoint-plan.json",
+        "docs/package_quality/evidence/installation/shared-source.json",
+        "docs/package_quality/evidence/installation/local-checks.txt"
+      ],
+      "assessment": "Independently fetched baseline AGENTS at main 30a87bb8aa7044beea01c3a268e33969396295c2 and verified candidate preserves it byte-for-byte as a prefix. Frozen inventory adds only developer workflow instructions/adapter/protocol/evidence/wrapper; no product/runtime/research/Barbecue workflow or billing paths. Adapter max_rounds and contract are one. No paid/scheduled service or private browser runtime dependency is introduced. CI, merged-state verification and canonical closeout remain future actions; efficacy is explicitly unmeasured."
+    }
+  ],
+  "findings": [
+    {
+      "id": "SUP-CONTINUITY-001",
+      "kind": "robustness_defect",
+      "material": true,
+      "evidence": "Initial checkpoint-plan prior_current_sha256 bound the supplied 2970-byte local snapshot (one extra trailing newline), not exact 2969-byte authoritative CURRENT at ed1231c740ad80bb04339aea19a65cae5b0b8535. Independent fetch matched Git blob 22b5ffa0b3c316fce2843863f7bdff5e312e41e3 and SHA256 efd5121c8893c27210c01f2352ee51f6750a246f45a72165e5a05175df6b3151. Using the initial hash could falsely reject correct live predecessor bytes or lose exact predecessor identity.",
+      "remedy": "Reconcile exact remote bytes, record their SHA256/Git blob/length in checkpoint plan, preserve raw predecessor bytes when publishing PREVIOUS, refreeze, and bind both final reviews to corrected candidate.",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "docs/package_quality/evidence/installation/checkpoint-plan.json"
+      ],
+      "resolution": "Read corrected plan and independently verified repaired baseline is 2969 bytes matching authoritative SHA256 and Git blob. Rechecked every final packet hash/mode and canonical digest. Final digest changed only with checkpoint-plan evidence correction; no inherited semantic fields or authority were altered."
+    }
+  ],
+  "provenance": {
+    "knowledge_source": "DataRaul/knowledge-core",
+    "knowledge_retrieval": "Independently fetched all five selected objects through repository connector at exact commit and read their applied rules.",
+    "shared_source_commit": "66fb269cb66be7decc3755621f06d970b25a89cf",
+    "shared_source_evidence": "All adapter-listed hashes matched supplied shared snapshot; merged PR53/source evidence read from frozen shared-source.json. Remote CI is recorded source evidence, not a test this reviewer ran.",
+    "baseline_main_commit": "30a87bb8aa7044beea01c3a268e33969396295c2",
+    "baseline_main_agents_git_blob": "c9e8d38a3900d1a7330c5dc12b6a932b60565224",
+    "baseline_main_current_git_blob": "235e88084717bb0a6c28002c5c35d532dadf8030",
+    "baseline_continuity_ref": "ed1231c740ad80bb04339aea19a65cae5b0b8535",
+    "baseline_continuity_current_git_blob": "22b5ffa0b3c316fce2843863f7bdff5e312e41e3",
+    "baseline_continuity_current_sha256": "efd5121c8893c27210c01f2352ee51f6750a246f45a72165e5a05175df6b3151",
+    "initial_candidate_digest": "e0e0429e4a9d62e65cdb4c2b5b286827026f559e868c3e0656d6143156bac842"
+  },
+  "checks": [
+    "All final subject paths, exact file SHA256 and executable/non-executable modes verified; canonical subject digest independently recomputed.",
+    "Shared six-file adapter pin verified.",
+    "Baseline root instructions preserved as exact prefix; baseline main CURRENT pointer exact bytes unchanged.",
+    "Isolated wrapper freeze regenerated exact original packet; wrapper shared-source mutation rejection verified.",
+    "Isolated wrapper rotate on full authoritative prior CURRENT prepared canonical pair, preserved input, and rejected dropped nested local field.",
+    "Final corrected checkpoint-plan predecessor SHA256/Git blob/byte count verified against independently fetched exact bytes."
+  ],
+  "limits": [
+    "PASS covers this exact installation candidate and required evidence, not subsequent revisions.",
+    "Snapshot has no .git; publication inventory/base freshness and actual outgoing tree verification remain coordinator responsibilities.",
+    "Final project CI, merge, resulting main verification and canonical checkpoint publication have not occurred at review.",
+    "No measured comparative efficacy, hard publisher enforcement, reviewer benchmark admission or product/research acceptance is claimed.",
+    "Usage and model telemetry unavailable; model and usage recorded as unknown."
+  ],
+  "usage": "unknown"
+}

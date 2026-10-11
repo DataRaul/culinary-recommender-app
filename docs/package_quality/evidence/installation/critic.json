@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "role": "critic",
+  "session_id": "/root/culinary_critic",
+  "model": "unknown",
+  "candidate_digest": "3651da0d9360c12d76f097bb14619786ead31acfc472100f34dfda858fbf2404",
+  "verdict": "PASS",
+  "knowledge": [
+    {
+      "domain": "software_data",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/software_data/objects/architecture_boundaries_modularity_evolvability.md",
+      "applied_rule": "Keep ownership/trust/runtime boundaries explicit and add no operational surfaces without a requirement; the pilot is an offline thin developer wrapper and no public runtime dependency.",
+      "criterion_id": "boundaries",
+      "object_sha256": "db3afe8cde7cc7a6543efea70fb6ed24db879127fb87f26e3e557ed8ab49d70f"
+    },
+    {
+      "domain": "decision_frameworks",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/decision_frameworks/objects/decision_quality_under_uncertainty.md",
+      "applied_rule": "Separate evidence of a bounded decision process from realized success or measured efficacy; installation PASS does not claim defect reduction, comparative efficacy, owner acceptance or research success.",
+      "criterion_id": "reviews",
+      "object_sha256": "cf0560ebb4d6174166d403574688d9c4acf189e6f6c8fa2f31ac98813e01d5ed"
+    },
+    {
+      "domain": "project_execution",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/project_execution/objects/long_run_checkpoint_and_handover_protocol.md",
+      "applied_rule": "Handover is a precise resumability index; retain failures, constraints and exact source identifiers, reconcile authority before writing and again on resume.",
+      "criterion_id": "continuity",
+      "object_sha256": "c0676b45026d2cacde436c97f1d9f4afa6c08669b9d2eb7d7c7a7da59faf9f7d"
+    },
+    {
+      "domain": "project_execution",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "applied_rule": "Canonical local gates outrank generic governance; preserve bounded scope, retry and resource ceilings on resume and stop at the next authority boundary.",
+      "criterion_id": "alignment",
+      "object_sha256": "cecf0ebe91f52dd7c1c4eb73a6942c12c583dccc0839922c2571b9cc007c161d"
+    },
+    {
+      "domain": "ai_agents",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/ai_agents/objects/memory_state_and_source_of_truth.md",
+      "applied_rule": "Explicit checkpoint state differs from live external truth; preserve identifiers and restore constraints while requiring fresh main/PR/check reconciliation.",
+      "criterion_id": "continuity",
+      "object_sha256": "30cee95a283e0de9e6510f11dbc3f8268f3349e9fc8235ed8770bfbce98606a7"
+    }
+  ],
+  "coverage": [
+    {
+      "criterion_id": "alignment",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/installation/shared-source.json",
+        "docs/package_quality/evidence/installation/checkpoint-plan.json"
+      ],
+      "assessment": "Append-only root selection invokes internal alignment and the canonical mandate harness, ties four contract criteria to the versioned installation goal, and preserves settled-context/no-ritual-question behavior. Existing research/product goals are explicitly separate."
+    },
+    {
+      "criterion_id": "reviews",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/installation/shared-source.json",
+        "docs/package_quality/evidence/installation/local-checks.txt"
+      ],
+      "assessment": "Independently verified all six adapter source hashes and exact candidate packet; isolated wrapper freeze reproduced the digest, and a changed shared checker was rejected before execution. Protocol requires distinct final-candidate supporter and critic sessions, retains required CI, and acknowledges procedural self-reported identities and unmeasured efficacy."
+    },
+    {
+      "criterion_id": "continuity",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/installation/checkpoint-plan.json",
+        "docs/package_quality/evidence/installation/local-checks.txt"
+      ],
+      "assessment": "Canonical prior CURRENT matched raw SHA-256, Git blob and byte count. Isolated rotation preserved all prior nested fields, returned the complete prior object as PREVIOUS, and rejected a removed rights-review reason. Main CURRENT remains POINTER_ONLY and is excluded from publication. Protocol requires leased atomic pair publication, refetch, complete user-visible JSON and STOP."
+    },
+    {
+      "criterion_id": "boundaries",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/installation/checkpoint-plan.json",
+        "docs/package_quality/evidence/installation/shared-source.json",
+        "docs/package_quality/evidence/installation/local-checks.txt"
+      ],
+      "assessment": "Publication contains only eleven frozen developer-workflow paths plus packet/review sidecars. Baseline AGENTS and HANDOVER content remains intact with appended pilot sections. No product/runtime, recipe, Brain mutable state, private runtime dependency, paid service, scheduler or Barbecue workflow changes occur. Stronger local repair/recheck/cost and terminal boundaries remain controlling."
+    }
+  ],
+  "findings": [],
+  "independence": {
+    "supporter_report_read": false,
+    "author_private_reasoning_read": false,
+    "context_separation": "Fresh critic session under a shared coordinator; same-model context separation is not statistical independence. Actual model telemetry is unavailable."
+  },
+  "provenance_limits": {
+    "knowledge": "Objects independently selected and read from the coordinator-supplied exact-commit snapshot. Object byte hashes are recorded. Remote KC commit provenance was supplied, not independently fetched in this session.",
+    "shared_source": "All six adapter file hashes checked locally against exact supplied source. Remote merge/CI evidence in shared-source.json was supplied, not independently queried by this critic.",
+    "base": "30a87bb8aa7044beea01c3a268e33969396295c2 supplied as current main baseline; checkout is a connector snapshot without .git, so a fresh authoritative base/head read and actual outgoing-tree byte/mode verification remain coordinator publication requirements."
+  },
+  "checks": {
+    "minimum_isolated_local_checks": "Packet reconstruction; six shared hashes; wrapper same-digest freeze; changed-source rejection; canonical CURRENT identity; full-field rotation and dropped-nested-field rejection. No broad application tests or external mutations.",
+    "candidate_edits": false,
+    "usage": "unknown",
+    "elapsed_time": "unknown"
+  },
+  "completion_limits": [
+    "PASS assesses this exact procedural installation candidate. Required repository CI remains outstanding at freeze.",
+    "Successful publication, resulting live main verification, actual leased canonical checkpoint rotation and complete JSON handover/STOP are coordinator postconditions; this report does not claim them complete.",
+    "Publication tools remain available and the checker does not establish semantic truth, actual object reading, forged-identity prevention or measured improvement.",
+    "Protected corpus v8019, rights HOLD, prior discovery results and historic main verification remain prior historical facts; installation does not earn a product successor."
+  ]
+}

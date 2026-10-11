@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "checkpoint_branch": "continuity-state",
+  "publication": "CURRENT and PREVIOUS in one tree/commit; expected-head lease; skip CI",
+  "completion": "Only record observed CI and resulting main verification; retain old research facts as historical",
+  "history": "Retain failures, constraints, decisions and remaining ceilings; resume does not reset budgets",
+  "goal": "docs/package_quality/goals/quality-pilot/v1.json",
+  "next_action": "Fresh reconcile the existing product/research lane; installation does not advance it",
+  "automatic_watcher": false,
+  "current": "docs/handovers/CURRENT.json",
+  "previous": "docs/handovers/PREVIOUS.json",
+  "main_pointer_preserved": true,
+  "prior_current_sha256": "efd5121c8893c27210c01f2352ee51f6750a246f45a72165e5a05175df6b3151",
+  "prior_current_ref": "ed1231c740ad80bb04339aea19a65cae5b0b8535",
+  "stop": "Emit the complete verified checkpoint and stop before a product successor",
+  "prior_current_git_blob": "22b5ffa0b3c316fce2843863f7bdff5e312e41e3",
+  "prior_current_bytes": 2969
+}
