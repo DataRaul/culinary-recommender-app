@@ -6,8 +6,8 @@ GitHub is the project source of truth. The handover is a resumability index.
 
 ## Canonical handover
 
-- `continuity-state:docs/handovers/CURRENT.json` — latest complete checkpoint.
-- `continuity-state:docs/handovers/PREVIOUS.json` — immediately preceding checkpoint.
+- `continuity-state:docs/handovers/<lane>/CURRENT.json` — latest complete checkpoint for the lane selected by `docs/handovers/INDEX.json`.
+- `continuity-state:docs/handovers/<lane>/PREVIOUS.json` — immediately preceding checkpoint for that lane.
 
 Live `main`, open PRs/checks and authoritative generated state outrank these snapshots.
 
@@ -45,7 +45,7 @@ A handover is mandatory when any of these occurs:
 
 A new chat should:
 
-1. fetch CURRENT explicitly from ref `continuity-state`;
+1. read the live main lane index, then fetch that lane CURRENT explicitly from ref `continuity-state`;
 2. fetch current `AGENTS.md`, `docs/ROADMAP.md` and relevant contracts from live `main`;
 3. fresh-reconcile main SHA, open PRs/branches, changed files and checks;
 4. let newer live state override stale handover fields;
@@ -94,3 +94,5 @@ one Git tree/commit with an expected continuity branch-head lease; on conflict r
 reconcile. Re-fetch the published object, emit that exact complete JSON, then STOP.
 The aligner is internal for clear requests; separate supporter/critic sessions are required
 for package delivery. Missing independent review means HOLD, not a renamed self-check PASS.
+
+The original root pair is a read-only archive. Use `docs/CONCURRENT_LANE_HANDOVERS.md` for registered pair ownership, append-only per-lane concurrency logs, bootstrap lineage, fresh-tree publication and expected-head conflict handling. No ordinary writer edits a global handover or log.

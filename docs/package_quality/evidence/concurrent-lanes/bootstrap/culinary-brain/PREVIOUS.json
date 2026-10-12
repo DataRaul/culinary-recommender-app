@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "lane_id": "culinary-brain",
+  "lane_goal_ref": {
+    "path": "docs/package_quality/goals/culinary-brain/v1.json",
+    "sha256": "68efba649337b75ad1298b52473d2faa2803dd131f174d72ed44241cd6cd5c8c"
+  },
+  "status": "BOOTSTRAP_GENESIS_NOT_A_PRIOR_RUN",
+  "constraints": [
+    "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
+    "One bounded package; full continuity handover; STOP",
+    "One equivalent repair cycle and one unchanged external recheck",
+    "No paid service or application behavior change"
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "handover": "CULINARY_RECOMMENDER_APP_CULINARY_APP_CONCURRENT_V1",
+  "date": "2026-10-12",
+  "timezone": "Atlantic/Canary",
+  "repository": "DataRaul/culinary-recommender-app",
+  "source_of_truth": "Live GitHub main, open PRs/checks and lane contracts outrank all handover snapshots",
+  "main_sha": "fd104d4d4cd4692979eb22e07274c56b39155751",
+  "open_prs": [],
+  "protected_corpus": {
+    "activeVersion": "v8019",
+    "protectedRecipeCount": 22086,
+    "ownerSearchRecipeCount": 22086
+  },
+  "package_terminal": "PACKAGE_QUALITY_PILOT_INSTALLATION_VERIFIED",
+  "discovery": {
+    "sourceFamily": "AdamBouhmad/open-recipe-archive pinned ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+    "baselineVersion": "v8019",
+    "baselineCount": 22086,
+    "collectionCount": 31,
+    "sourceGroupCount": 59,
+    "measuredCandidateCount": 0,
+    "rightsReviewEligibleCount": 0,
+    "workflowRunId": 37790177199,
+    "artifactId": 11555488549,
+    "artifactName": "step8g-ora-next-discovery-c31-g59-m0-e0"
+  },
+  "rights_review": {
+    "candidate": "Hemmets kokbok",
+    "sourceYear": "1911",
+    "recipeCount": 1486,
+    "novelNormalizedTitleCount": 835,
+    "outcome": "HOLD",
+    "reason": "EXACT_1911_LATER_INSTITUTIONAL_EDITION_AND_COLLECTIVE_CONTRIBUTOR_RIGHTS_LAYER_UNRESOLVED__INDEPENDENT_CATALOGUE_MARKS_1911_COPY_IN_COPYRIGHT",
+    "evidence": "data/generated/step8g/hemmets-kokbok-1911-rights-review.json"
+  },
+  "historical_compatibility": {
+    "idunsV8018MeasurementMode": "PASS",
+    "currentV8019DiscoveryMode": "PASS"
+  },
+  "main_verification": {
+    "cloudflarePages": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
+    "pagesDeployment": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
+    "validatePublicV0": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
+    "browserAcceptance": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
+    "productionPublicSmoke": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION"
+  },
+  "nextGate": "FRESH_RECONCILE_CURRENT_ROADMAP_AND_SELECT_ONE_AUTHORIZED_PRODUCT_PACKAGE",
+  "guardrails": [
+    "continue acquisition-first; ORA exhaustion is not programme completion",
+    "rights/provenance fail closed",
+    "no paid infrastructure or billing expansion",
+    "no third D1 shard",
+    "no public/recommendation widening unless separately authorized",
+    "no full protected search rebuild without maintenance gate",
+    "do not interfere with Barbecue scheduled lane"
+  ],
+  "continuity_policy": {
+    "id": "CULINARY_HANDOVER_CIRCUIT_BREAKER_V3",
+    "main_sha": "3a4234a69432217636c48da59c4fae197d7c5cc1",
+    "primary_rule": "EXACTLY_ONE_BOUNDED_PACKAGE_THEN_USER_VISIBLE_HANDOVER_AND_STOP",
+    "successor_same_cycle": false,
+    "mandatory_user_visible_handover": true,
+    "no_narration_suppression": false,
+    "optional_early_context_trigger_percent": 50,
+    "external_status_unchanged_rechecks_max": 1,
+    "equivalent_repair_cycles_max": 1,
+    "canonical_ref": "continuity-state"
+  },
+  "startup_instruction": "Fresh-read live main AGENTS.md, docs/ROADMAP.md, authoritative generated programme/corpus state, docs/PACKAGE_QUALITY_PROTOCOL.md, docs/HANDOVER_PROTOCOL.md and docs/CONCURRENT_LANE_HANDOVERS.md. Read the lane index and fetch culinary-app CURRENT explicitly from continuity-state. Reconcile main, open PRs/checks and relevant runtime/deployment evidence without treating historical v8019 context as new acceptance. Select exactly one already-authorized acquisition/product package; retain Hemmets rights HOLD and all public/protected-runtime boundaries. Use internal alignment, build/check, a separate supporter and fresh critic on the exact candidate, then the pinned checker before publication. At terminal/context boundary append this lane concurrency log, atomically rotate only this lane pair with expected-head lease, verify remote bytes, emit the exact complete JSON and STOP.",
+  "status": "RECONCILE_PRODUCT_SUCCESSOR__RIGHTS_HOLDS_RETAINED",
+  "installation_verification": {
+    "schema_version": 1,
+    "project": "DataRaul/culinary-recommender-app",
+    "pr": 426,
+    "head_sha": "e68f4d1353e926d7436e1d9c88980073a11f7735",
+    "main_sha": "fd104d4d4cd4692979eb22e07274c56b39155751",
+    "required_ci": [
+      {
+        "id": 38181348510,
+        "name": "Validate public V0",
+        "conclusion": "success"
+      }
+    ],
+    "verified_files": [
+      "AGENTS.md",
+      "config/package_quality_adapter.json",
+      "docs/HANDOVER_PROTOCOL.md",
+      "docs/PACKAGE_QUALITY_PROTOCOL.md",
+      "docs/package_quality/CONTRACT_TEMPLATE.json",
+      "docs/package_quality/contracts/install-quality-pilot-v1.json",
+      "docs/package_quality/evidence/installation/checkpoint-plan.json",
+      "docs/package_quality/evidence/installation/local-checks.txt",
+      "docs/package_quality/evidence/installation/shared-source.json",
+      "docs/package_quality/goals/quality-pilot/v1.json",
+      "scripts/package_quality.py",
+      "docs/package_quality/evidence/installation/packet.json",
+      "docs/package_quality/evidence/installation/supporter.json",
+      "docs/package_quality/evidence/installation/critic.json"
+    ],
+    "verification": "Reviewed bytes/modes verified in exact merged main; existing main pointer, protected runtime descriptor and Barbecue workflow unchanged",
+    "open_prs": [],
+    "scope": "Installation only; old corpus, source-rights and owner acceptance context is historical and not revalidated",
+    "extra_paid_services_activated": false,
+    "usage": "unknown"
+  },
+  "historical_product_context": {
+    "original_handover": "CULINARY_POST_V8019_ORA_EXHAUSTED__OTHER_SOURCE_FAMILY_DISCOVERY_NEXT_V1",
+    "original_main_sha": "7b10ec3ee3fa59f5acb515abddc555ffae54e023",
+    "original_date": "2026-10-08",
+    "original_next_gate": "ACQUISITION_FIRST_OTHER_SOURCE_FAMILY_DISCOVERY",
+    "scope": "Retained continuity context; installation does not reverify corpus, source rights or production product acceptance"
+  },
+  "package_quality": {
+    "schema_version": 1,
+    "goal_ref": {
+      "path": "docs/package_quality/goals/culinary-app/v1.json",
+      "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
+    },
+    "package_ref": "docs/package_quality/contracts/concurrent-lanes-v1.json",
+    "status": "CONTINUITY_INTEGRATION__PRODUCT_RESEARCH_HOLDS_RETAINED",
+    "last_evidence": [
+      "docs/package_quality/evidence/concurrent-lanes/local-checks.txt",
+      "docs/package_quality/evidence/concurrent-lanes/migration.json"
+    ],
+    "reviews": [
+      {
+        "role": "supporter",
+        "path": "docs/package_quality/evidence/concurrent-lanes/supporter.json",
+        "identity": "Exact candidate report on merged main; inspect before treating integration as reviewed."
+      },
+      {
+        "role": "critic",
+        "path": "docs/package_quality/evidence/concurrent-lanes/critic.json",
+        "identity": "Exact candidate report on merged main; inspect before treating integration as reviewed."
+      }
+    ],
+    "unfinished_criteria": [
+      "Live research/product owner gates remain in the lane contract"
+    ],
+    "failures": [
+      "Historical shared-source catalog CI failure corrected; shared PR53 final CI PASS"
+    ],
+    "decisions": [
+      "Owner-selected pilot limited to Market Lab and Culinary",
+      "Existing subscription/native review sessions; no paid API or scheduled quality service",
+      "Installation and comparative efficacy are separate completion claims",
+      "Separate lane pairs; shared publication serialized with expected-head lease; no automatic chat injection"
+    ],
+    "budget": {
+      "round": 1,
+      "max_rounds": 1,
+      "usage": "unknown"
+    },
+    "constraints": [
+      "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
+      "One bounded package; full continuity handover; STOP",
+      "One equivalent repair cycle and one unchanged external recheck",
+      "No paid service or application behavior change"
+    ],
+    "next_action": "Read current roadmap/generated programme and choose exactly one authorized acquisition/product package; preserve the Hemmets rights HOLD.",
+    "predecessor_sha256": "caa99c9b451ce760efaeec64446c3d2d919baccc4b2050b3c4024a56c4a9f8f1",
+    "goal_contribution": "Installs goal alignment, exact-candidate reviews and durable checkpoints; defect reduction and overhead remain unmeasured",
+    "additional_cash_services_activated": false
+  },
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "lane_id": "culinary-app",
+  "lane_name": "CULINARY_APP — Product and recipe acquisition",
+  "lane_goal_ref": {
+    "path": "docs/package_quality/goals/culinary-app/v1.json",
+    "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
+  },
+  "current_contract": "docs/ROADMAP.md",
+  "roadmap": "docs/ROADMAP.md",
+  "current_facts": [
+    "v8019 / 22,086 context retained from original checkpoint; this integration does not reverify production acceptance."
+  ],
+  "next_action": "Read current roadmap/generated programme and choose exactly one authorized acquisition/product package; preserve the Hemmets rights HOLD.",
+  "open_prs_at_reconciliation": [],
+  "owner_run_now": false,
+  "new_implementation": {
+    "quality_protocol": "docs/PACKAGE_QUALITY_PROTOCOL.md",
+    "quality_adapter": "config/package_quality_adapter.json",
+    "lane_protocol": "docs/CONCURRENT_LANE_HANDOVERS.md",
+    "index": "docs/handovers/INDEX.json",
+    "state_branch": "continuity-state",
+    "current": "docs/handovers/culinary-app/CURRENT.json",
+    "previous": "docs/handovers/culinary-app/PREVIOUS.json",
+    "shared_pin": "31c7d9481fbc58a2f6c92d0a1a11293d86bbade4",
+    "roles": "Internal aligner, builder, separate supporter, fresh critic; exact candidate validation before publication"
+  },
+  "concurrency": {
+    "parallel_lanes": [
+      "culinary-brain",
+      "barbecue"
+    ],
+    "write_ownership": [
+      "docs/handovers/culinary-app/CURRENT.json",
+      "docs/handovers/culinary-app/PREVIOUS.json"
+    ],
+    "publication": "One atomic pair commit based on latest tree, expected-head lease, no force, skip CI; verify exact remote bytes.",
+    "conflict": "Other lane moved: reread and rebuild on latest tree. Same lane moved: reconcile work/history/budget. No blind replay.",
+    "shared_resources": "Serialize shared-file integration and any canonical DB writer under existing authority; checkpoint leases do not lock Drive.",
+    "legacy_archive": [
+      "docs/handovers/CURRENT.json",
+      "docs/handovers/PREVIOUS.json"
+    ]
+  },
+  "concurrency_log": [
+    {
+      "event_id": "culinary-recommender-app:culinary-app:bootstrap:20261012",
+      "date": "2026-10-12",
+      "event": "REVIEWED_LANE_BOOTSTRAP",
+      "observed_main": "fd104d4d4cd4692979eb22e07274c56b39155751",
+      "predecessor_sha256": "caa99c9b451ce760efaeec64446c3d2d919baccc4b2050b3c4024a56c4a9f8f1",
+      "authority": "Continuity registration only; no research/product gate advancement",
+      "next_action": "Read current roadmap/generated programme and choose exactly one authorized acquisition/product package; preserve the Hemmets rights HOLD."
+    }
+  ]
+}

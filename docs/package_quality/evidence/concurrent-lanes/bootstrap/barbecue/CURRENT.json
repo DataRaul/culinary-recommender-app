@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "handover": "CULINARY_RECOMMENDER_APP_BARBECUE_CONCURRENT_V1",
+  "project": "culinary-recommender-app",
+  "repository": "DataRaul/culinary-recommender-app",
+  "lane_id": "barbecue",
+  "lane_name": "BARBECUE — Technique corpus scheduled lane",
+  "lane_goal_ref": {
+    "path": "docs/package_quality/goals/barbecue/v1.json",
+    "sha256": "80120a49d2d81a292c3daaa87b8cfcedcdd6eae85258c051e81680f58c88e7ca"
+  },
+  "date": "2026-10-12",
+  "timezone": "Atlantic/Canary",
+  "status": "EXISTING_SCHEDULE_PRESERVED__RECONCILE_LIVE_STATE",
+  "main_sha": "fd104d4d4cd4692979eb22e07274c56b39155751",
+  "source_of_truth": "Live GitHub main, open PRs/checks and lane contracts outrank all handover snapshots",
+  "current_contract": "config/barbecue_technique_corpus_v1.json",
+  "roadmap": "docs/ROADMAP.md",
+  "current_facts": [
+    "Existing schedule and budgets are unchanged; migration performs zero YouTube calls.",
+    "Poultry synthesis COMPLETE and remaining four leaves continue bounded discovery per generated state; no automatic app/Knowledge Core admission."
+  ],
+  "next_action": "Read authoritative Barbecue generated state and existing scheduler; do not manually duplicate a scheduled acquisition or alter its cadence.",
+  "open_prs_at_reconciliation": [],
+  "owner_run_now": false,
+  "new_implementation": {
+    "quality_protocol": "docs/PACKAGE_QUALITY_PROTOCOL.md",
+    "quality_adapter": "config/package_quality_adapter.json",
+    "lane_protocol": "docs/CONCURRENT_LANE_HANDOVERS.md",
+    "index": "docs/handovers/INDEX.json",
+    "state_branch": "continuity-state",
+    "current": "docs/handovers/barbecue/CURRENT.json",
+    "previous": "docs/handovers/barbecue/PREVIOUS.json",
+    "shared_pin": "31c7d9481fbc58a2f6c92d0a1a11293d86bbade4",
+    "roles": "Internal aligner, builder, separate supporter, fresh critic; exact candidate validation before publication"
+  },
+  "concurrency": {
+    "parallel_lanes": [
+      "culinary-app",
+      "culinary-brain"
+    ],
+    "write_ownership": [
+      "docs/handovers/barbecue/CURRENT.json",
+      "docs/handovers/barbecue/PREVIOUS.json"
+    ],
+    "publication": "One atomic pair commit based on latest tree, expected-head lease, no force, skip CI; verify exact remote bytes.",
+    "conflict": "Other lane moved: reread and rebuild on latest tree. Same lane moved: reconcile work/history/budget. No blind replay.",
+    "shared_resources": "Serialize shared-file integration and any canonical DB writer under existing authority; checkpoint leases do not lock Drive.",
+    "legacy_archive": [
+      "docs/handovers/CURRENT.json",
+      "docs/handovers/PREVIOUS.json"
+    ]
+  },
+  "concurrency_log": [
+    {
+      "event_id": "culinary-recommender-app:barbecue:bootstrap:20261012",
+      "date": "2026-10-12",
+      "event": "REVIEWED_LANE_BOOTSTRAP",
+      "observed_main": "fd104d4d4cd4692979eb22e07274c56b39155751",
+      "predecessor_sha256": null,
+      "authority": "Continuity registration only; no research/product gate advancement",
+      "next_action": "Read authoritative Barbecue generated state and existing scheduler; do not manually duplicate a scheduled acquisition or alter its cadence."
+    }
+  ],
+  "startup_instruction": "Fresh-read live main AGENTS.md, docs/ROADMAP.md, config/barbecue_technique_corpus_v1.json, data/generated/barbecue-technique-corpus-state.json and work-unit state, existing Barbecue workflow and quality/handover/concurrency protocols. Read the lane index and fetch barbecue CURRENT explicitly from continuity-state. Reconcile the existing scheduled programme and any active runner before selecting one already-authorized review/continuity package. Preserve exact cadence, quotas, poultry completion, remaining leaves and public/Knowledge Core admission gates; no duplicate manual acquisition or schedule change. Apply independent supporter/critic reviews to a substantive package. At terminal/context boundary append this lane concurrency log, atomically rotate only this lane pair with expected-head lease, verify remote bytes, emit the complete JSON and STOP.",
+  "package_quality": {
+    "schema_version": 1,
+    "goal_ref": {
+      "path": "docs/package_quality/goals/barbecue/v1.json",
+      "sha256": "80120a49d2d81a292c3daaa87b8cfcedcdd6eae85258c051e81680f58c88e7ca"
+    },
+    "package_ref": "docs/package_quality/contracts/concurrent-lanes-v1.json",
+    "status": "CONTINUITY_INTEGRATION__PRODUCT_RESEARCH_HOLDS_RETAINED",
+    "last_evidence": [
+      "docs/package_quality/evidence/concurrent-lanes/local-checks.txt",
+      "docs/package_quality/evidence/concurrent-lanes/migration.json"
+    ],
+    "reviews": [
+      {
+        "role": "supporter",
+        "path": "docs/package_quality/evidence/concurrent-lanes/supporter.json",
+        "identity": "Exact candidate report on merged main; inspect before treating integration as reviewed."
+      },
+      {
+        "role": "critic",
+        "path": "docs/package_quality/evidence/concurrent-lanes/critic.json",
+        "identity": "Exact candidate report on merged main; inspect before treating integration as reviewed."
+      }
+    ],
+    "unfinished_criteria": [
+      "Live research/product owner gates remain in the lane contract"
+    ],
+    "failures": [],
+    "decisions": [
+      "Separate lane pairs; shared publication serialized with expected-head lease; no automatic chat injection"
+    ],
+    "constraints": [
+      "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
+      "One bounded package; full continuity handover; STOP",
+      "One equivalent repair cycle and one unchanged external recheck",
+      "No paid service or application behavior change"
+    ],
+    "budget": {
+      "round": 1,
+      "max_rounds": 1,
+      "usage": "unknown"
+    },
+    "next_action": "Read authoritative Barbecue generated state and existing scheduler; do not manually duplicate a scheduled acquisition or alter its cadence.",
+    "predecessor_sha256": "f1e554767a1f7d6c7947062e8250e32efe64f6fd524bd00272dfe6b4b0c55eca"
+  }
+}

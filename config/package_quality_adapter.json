@@ -11,14 +11,15 @@
   ],
   "shared_source": {
     "repository": "DataRaul/agent-os",
-    "commit": "66fb269cb66be7decc3755621f06d970b25a89cf",
+    "commit": "31c7d9481fbc58a2f6c92d0a1a11293d86bbade4",
     "files": {
       "scripts/package_quality_gate.py": "576a6aef8c4e420a2841a93441a9dabb8046258f3762927c141539a5f6087270",
-      "skills/package-quality-gate/SKILL.md": "5324e1568feb035c32a8937754f6b887c6258c234d8be0b2f4242eb55341d4ae",
+      "skills/package-quality-gate/SKILL.md": "c5ab472606f9b163510cc8130f09eccabf6a4c72f067fe1d005b2999f59b880e",
       "skills/package-quality-gate/references/aligner.md": "e6da0d945f2db7b3d84e77cd7aea557c456b58a3eef3e1832b5be370fc168125",
       "skills/package-quality-gate/references/supporter.md": "c9331039a226e5410e48887b91a8b772aacfad3e71c6d6eacf5ee77987f82723",
       "skills/package-quality-gate/references/critic.md": "e2db8afa5ec511703a0077cabb6cb84ee76b2cbc08a8e159713eca0d5a56f8cd",
-      "docs/PACKAGE_QUALITY_GATE.md": "b844a592b03f690ef380b9765325d9da7453a1c13f8c57467bcedb4d5982563c"
+      "docs/PACKAGE_QUALITY_GATE.md": "f28b0a213ea31af9da7888dad73335bdf3cb5cbe8ac49ffa5f7804de3d364997",
+      "scripts/lane_handover.py": "bd3bb693609061c950ce3d5b91c493cca3f48243d0e056e2bca4acff49a125fb"
     }
   },
   "skill": "skills/package-quality-gate/SKILL.md",
@@ -34,10 +35,12 @@
   },
   "checkpoint": {
     "branch": "continuity-state",
-    "current": "docs/handovers/CURRENT.json",
-    "previous": "docs/handovers/PREVIOUS.json",
+    "layout": "docs/handovers/<lane>/CURRENT.json and PREVIOUS.json",
+    "index": "docs/handovers/INDEX.json",
+    "atomic_pair": true,
     "emit_complete_json": true,
-    "stop_after_one_package": true
+    "stop_after_one_package": true,
+    "legacy_archive": "docs/handovers/CURRENT.json and PREVIOUS.json"
   },
   "enforcement": "PROCEDURAL_NOT_EXCLUSIVE_PUBLISHER",
   "measured_improvement": false,

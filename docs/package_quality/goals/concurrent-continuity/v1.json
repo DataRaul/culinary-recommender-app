@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "goal_id": "culinary-recommender-app:concurrent-continuity-installation",
+  "revision": 1,
+  "outcome": "Complete lane registration, Culinary lane separation, concurrent-write validation and named usable handovers.",
+  "purpose": "Close the explicitly acknowledged integration gap.",
+  "success_criteria": [
+    {
+      "id": "REGISTER",
+      "description": "Named lane index, versioned goals and exact bootstrap bodies exist."
+    },
+    {
+      "id": "ISOLATE",
+      "description": "Lane pair ownership and legacy history prevent cross-lane overwrites."
+    },
+    {
+      "id": "VALIDATE",
+      "description": "Real Git stale-write rejection and latest-tree preservation pass for project mappings."
+    },
+    {
+      "id": "HANDOVER",
+      "description": "Each Culinary handover uses roadmap, quality procedures and concurrency log with valid next action."
+    }
+  ],
+  "constraints": [
+    "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
+    "One bounded package; full continuity handover; STOP",
+    "One equivalent repair cycle and one unchanged external recheck",
+    "No paid service or application behavior change"
+  ],
+  "intent_provenance": [
+    "Owner request 2026-10-12: finish three remaining gaps and provide three Market Lab lane handovers"
+  ],
+  "changes": []
+}

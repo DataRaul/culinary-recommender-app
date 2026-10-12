@@ -103,7 +103,7 @@ Apply `config/context_safety_policy.json`, `docs/CONTEXT_SAFETY_PROTOCOL.md`, an
 - If context/tool history is becoming large before package terminal, stop at the nearest safe deterministic boundary, persist the partial package state, emit the handover, and STOP.
 - **No polling loops:** after one bounded re-check of an unchanged external status/wait condition, do not keep polling in the same chat. Record the exact waiting state and next re-check action in CURRENT, emit the handover, and STOP.
 - **No repair loops:** one bounded diagnosis plus one clearly justified repair/revalidation cycle is allowed inside the package. If the same failure recurs or the cause remains materially uncertain, hand over and STOP rather than continuing equivalent retries.
-- The canonical rolling handover remains on Git ref `continuity-state` at `docs/handovers/CURRENT.json` and `docs/handovers/PREVIOUS.json`. `main` remains authoritative project state; `continuity-state` is a resumability index only.
+- The canonical rolling handover is lane-isolated on Git ref `continuity-state` at `docs/handovers/<lane>/CURRENT.json` and `docs/handovers/<lane>/PREVIOUS.json`, selected by `docs/handovers/INDEX.json`; the original root pair is a read-only archive. `main` remains authoritative project state; `continuity-state` is a resumability index only.
 - Continuity-state writes use `[skip ci]` and do not require GitHub Actions.
 
 ### Bounded roadmap-object discipline
@@ -158,3 +158,7 @@ Run the hash-pinned shared checker through `scripts/package_quality.py` before a
 Reuse settled context and canonical mandate harness for alignment. Ask only for consequential missing choices; clear requests and continues do not require template completion or approval. Preserve the canonical conversation router's optional post-task coaching and deduplication. Track criterion → artifact → evidence → contribution to the versioned goal at every package boundary. A PASS does not itself establish the goal.
 
 No new paid API, background service, scheduled quality workflow, runtime data access or application behavior is authorized. Review calls consume existing usage; record unknown telemetry honestly. Preserve stronger local source, privacy, evidence, retry, human and terminal gates. Continue never resets budgets or waives blockers.
+
+## Registered concurrent handovers — 2026-10-12
+
+Read `docs/handovers/INDEX.json` and `docs/CONCURRENT_LANE_HANDOVERS.md` before every lane continuation/checkpoint. Select the named canonical lane; use its goal and CURRENT/PREVIOUS on the registered state branch. Root/pilot checkpoints are read-only historical archives. Never overwrite another lane, the shared index or a global log during ordinary rotation. Append to this lane CURRENT's concurrency_log, build on the latest tree, update with expected-head lease and verify exact published bytes. A conflict requires fresh reconciliation, not a force push or retry loop. Separate lane checkpoints do not serialize database writes; existing shared-DB and local authority gates still control those.

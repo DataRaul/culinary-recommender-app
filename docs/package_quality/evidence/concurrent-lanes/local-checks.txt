@@ -1,0 +1,8 @@
+Project-specific isolated Git concurrency drill:
+{"status": "PASS", "project": "culinary-recommender-app", "lanes": ["culinary-app", "culinary-brain", "barbecue"], "three_same_head_snapshots": true, "real_git_stale_lease_rejected": true, "all_latest_lane_histories_preserved": true, "previous_exact_bytes_preserved": true, "same_lane_stale_rejected": true, "cross_lane_write_rejected": true, "concurrency_log_erasure_rejected": true, "wrapper_cli_pair_validated": true, "external_writes": 0}
+
+Shared package gate 17 tests PASS; shared lane controls 7 tests PASS.
+Supporter found invalid absolute plan/input invocation examples: corrected to repo-relative evidence paths; real wrapper prepare/verify CLI validated on project mappings.
+No provider calls, canonical DB writes, app runtime changes or scheduler changes.
+Required remote CI, merge and live bootstrap verification remain separate.
+Fresh critic found copied Market Colab startup in Culinary: all three startup fields corrected to Culinary-specific app, Brain and Barbecue authorities; STOP retained. Final project drill rerun PASS.

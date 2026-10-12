@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "branch": "continuity-state",
+  "quality_adapter": "config/package_quality_adapter.json",
+  "purpose": "Lane navigation only; live main and existing local gates remain authoritative",
+  "protocol": "docs/CONCURRENT_LANE_HANDOVERS.md",
+  "existing_authority_index": "docs/ROADMAP.md",
+  "lanes": {
+    "culinary-app": {
+      "name": "CULINARY_APP — Product and recipe acquisition",
+      "aliases": [
+        "app"
+      ],
+      "current": "docs/handovers/culinary-app/CURRENT.json",
+      "previous": "docs/handovers/culinary-app/PREVIOUS.json",
+      "goal_ref": {
+        "path": "docs/package_quality/goals/culinary-app/v1.json",
+        "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
+      },
+      "contract": "docs/ROADMAP.md",
+      "state_snapshot": "RECONCILE_PRODUCT_SUCCESSOR__RIGHTS_HOLDS_RETAINED"
+    },
+    "culinary-brain": {
+      "name": "CULINARY_BRAIN — Knowledge Core and reviewed exports",
+      "aliases": [
+        "brain"
+      ],
+      "current": "docs/handovers/culinary-brain/CURRENT.json",
+      "previous": "docs/handovers/culinary-brain/PREVIOUS.json",
+      "goal_ref": {
+        "path": "docs/package_quality/goals/culinary-brain/v1.json",
+        "sha256": "68efba649337b75ad1298b52473d2faa2803dd131f174d72ed44241cd6cd5c8c"
+      },
+      "contract": "docs/BRAIN_ADAPTER_CONTRACT.md",
+      "state_snapshot": "RECONCILE_BRAIN_AUTHORITY__NO_AUTOMATIC_PROMOTION"
+    },
+    "barbecue": {
+      "name": "BARBECUE — Technique corpus scheduled lane",
+      "aliases": [
+        "barbecue-technique-corpus"
+      ],
+      "current": "docs/handovers/barbecue/CURRENT.json",
+      "previous": "docs/handovers/barbecue/PREVIOUS.json",
+      "goal_ref": {
+        "path": "docs/package_quality/goals/barbecue/v1.json",
+        "sha256": "80120a49d2d81a292c3daaa87b8cfcedcdd6eae85258c051e81680f58c88e7ca"
+      },
+      "contract": "config/barbecue_technique_corpus_v1.json",
+      "state_snapshot": "EXISTING_SCHEDULE_PRESERVED__RECONCILE_LIVE_STATE"
+    }
+  }
+}
