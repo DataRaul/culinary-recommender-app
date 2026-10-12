@@ -36,7 +36,7 @@ function searchScopeControls() {
   if (!ownerCatalogAccess) return "";
   return `<div class="button-row" role="group" aria-label="Search scope">
     <button id="searchIngredientsMode" class="${searchSurfaceMode === "ingredients" ? "primary-action" : "secondary-action"} compact" type="button" aria-pressed="${searchSurfaceMode === "ingredients"}">By ingredients</button>
-    <button id="searchAllRecipesMode" class="${searchSurfaceMode === "all-recipes" ? "primary-action" : "secondary-action"} compact" type="button" aria-pressed="${searchSurfaceMode === "all-recipes"}">All recipes · 19,268</button>
+    <button id="searchAllRecipesMode" class="${searchSurfaceMode === "all-recipes" ? "primary-action" : "secondary-action"} compact" type="button" aria-pressed="${searchSurfaceMode === "all-recipes"}">All recipes · 22,086</button>
   </div>`;
 }
 
@@ -208,7 +208,7 @@ function option(value, label, selected = false) {
 }
 
 function searchForm() {
-  return `<section class="page-heading search-heading"><div><p class="eyebrow">Fridge-first discovery</p><h1>Cook what you already have</h1><p class="lede">${ownerCatalogAccess ? "Start with ingredients here, or switch to All recipes to browse and search the full 19,268-recipe owner corpus." : "Start with one main ingredient, add whatever else is hanging around, then temporarily tune time, skill and discovery without rewriting your saved profile."}</p></div></section>
+  return `<section class="page-heading search-heading"><div><p class="eyebrow">Fridge-first discovery</p><h1>Cook what you already have</h1><p class="lede">${ownerCatalogAccess ? "Start with ingredients here, or switch to All recipes to browse and search the full 22,086-recipe owner corpus." : "Start with one main ingredient, add whatever else is hanging around, then temporarily tune time, skill and discovery without rewriting your saved profile."}</p></div></section>
   ${searchScopeControls()}
   <section class="panel">
     <form id="ingredientSearchForm">
@@ -372,7 +372,7 @@ function bindSearchForm() {
 
 function renderUnifiedSearch({ scrollTop = true } = {}) {
   app.innerHTML = searchSurfaceMode === "all-recipes" && ownerCatalogAccess
-    ? `<section class="page-heading search-heading"><div><p class="eyebrow">Recipe discovery</p><h1>Search recipes</h1><p class="lede">Browse or search the full 19,268-recipe owner corpus without treating availability as recommendation validation.</p></div></section>${searchScopeControls()}${ownerCatalogForm()}`
+    ? `<section class="page-heading search-heading"><div><p class="eyebrow">Recipe discovery</p><h1>Search recipes</h1><p class="lede">Browse or search the full 22,086-recipe owner corpus without treating availability as recommendation validation.</p></div></section>${searchScopeControls()}${ownerCatalogForm()}`
     : searchForm();
   bindSearchScope();
   if (searchSurfaceMode === "all-recipes" && ownerCatalogAccess) bindOwnerCatalog();
