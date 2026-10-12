@@ -1571,3 +1571,10 @@ That marginal-value rejection is no longer controlling. Re-run discovery under t
 - The complete source cohort advances to no-write prewrite as target `v8019 / 22,086`. No sampling or recommendation qualification is used to shrink the acquisition delta.
 - Stable protected IDs include source-row ordinals so repeated/variant titles cannot collide and silently discard otherwise usable source rows.
 - The prewrite must preserve the existing **2-shard**, **zero-paid**, optimized delta-route architecture and <=8 D1 request target. If the full 2,818-row delta fails that capacity/topology gate, stop and ask the owner; do not loop or silently widen infrastructure.
+
+
+## Concurrent lane continuity integration — 2026-10-12
+
+Non-numbered operating sidecar. Registered lanes: `culinary-app` (CULINARY_APP — Product and recipe acquisition), `culinary-brain` (CULINARY_BRAIN — Knowledge Core and reviewed exports), `barbecue` (BARBECUE — Technique corpus scheduled lane). See `docs/handovers/INDEX.json`, `docs/CONCURRENT_LANE_HANDOVERS.md` and the reviewed `docs/package_quality/evidence/concurrent-lanes/migration.json`. Each lane has a versioned goal, separate state-branch CURRENT/PREVIOUS and an append-only concurrency log inside CURRENT. The shared guard is hash-pinned; the local wrapper supports plan/verify; the isolated project-mapping drill checks stale-head rejection, latest-tree preservation, same-lane and cross-lane failures.
+
+This records integration requirements and their governed artifacts; operational completion additionally requires merged-main and state-branch bootstrap byte verification. Original root/pilot pairs remain read-only archives. Shared-state publication and canonical DB writes stay serialized under their own contracts. Existing source/quality/owner holds, frozen research methods, app/Brain/public boundaries and Barbecue schedule remain controlling. Continued chats must load live instructions; no automatic injection, successor chat or timed monitor is claimed.

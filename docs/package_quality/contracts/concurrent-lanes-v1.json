@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "lane_id": "continuity-integration",
+  "package_id": "concurrent-lanes-v1",
+  "base_commit": "fd104d4d4cd4692979eb22e07274c56b39155751",
+  "author_session_id": "/root",
+  "goal_path": "docs/package_quality/goals/concurrent-continuity/v1.json",
+  "adapter_path": "config/package_quality_adapter.json",
+  "intent_provenance": [
+    "Owner request 2026-10-12: finish three remaining gaps and provide three Market Lab lane handovers"
+  ],
+  "outcome": "Complete lane registration, Culinary lane separation, concurrent-write validation and named usable handovers.",
+  "contribution": "Integrates merged guard into actual project lanes; research and product outcomes remain separate.",
+  "scope": [
+    "Lane registration, bootstrap, protocol/roadmap integration and offline validation"
+  ],
+  "non_goals": [
+    "Data acquisition",
+    "Canonical database/runtime changes",
+    "Research advancement",
+    "Barbecue schedule changes",
+    "Measured reliability gain"
+  ],
+  "inputs": [
+    "fd104d4d4cd4692979eb22e07274c56b39155751",
+    "31c7d9481fbc58a2f6c92d0a1a11293d86bbade4",
+    "07534f3c0c44e1da571fc36870835d9ede01e0e3"
+  ],
+  "criteria": [
+    {
+      "id": "REGISTER",
+      "description": "Named lane index, versioned goals and exact bootstrap bodies exist.",
+      "goal_criteria": [
+        "REGISTER"
+      ]
+    },
+    {
+      "id": "ISOLATE",
+      "description": "Lane pair ownership and legacy history prevent cross-lane overwrites.",
+      "goal_criteria": [
+        "ISOLATE"
+      ]
+    },
+    {
+      "id": "VALIDATE",
+      "description": "Real Git stale-write rejection and latest-tree preservation pass for project mappings.",
+      "goal_criteria": [
+        "VALIDATE"
+      ]
+    },
+    {
+      "id": "HANDOVER",
+      "description": "Each Culinary handover uses roadmap, quality procedures and concurrency log with valid next action.",
+      "goal_criteria": [
+        "HANDOVER"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "docs/package_quality/evidence/concurrent-lanes/local-checks.txt",
+    "docs/package_quality/evidence/concurrent-lanes/migration.json",
+    "docs/handovers/INDEX.json",
+    "docs/CONCURRENT_LANE_HANDOVERS.md"
+  ],
+  "mandatory_knowledge_domains": [
+    "software_data",
+    "decision_frameworks",
+    "project_execution"
+  ],
+  "authority": "AUTO + VERIFY",
+  "human_decisions": [],
+  "assumptions": [
+    "Running chats must reload instructions",
+    "Offline plans need live fetch and server-side lease"
+  ],
+  "dependencies": [
+    "Required CI and merged-state verification",
+    "Exact reviewed state bootstrap"
+  ],
+  "next_action": "Publish reviewed integration, verify merged main and bootstrap exact lane pairs, then provide three handovers.",
+  "stop_boundary": "Integration verified; no successor product or research package.",
+  "budget": {
+    "round": 1,
+    "max_rounds": 1,
+    "usage": "unknown"
+  }
+}

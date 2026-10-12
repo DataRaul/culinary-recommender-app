@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "branch": "continuity-state",
+  "observed_main": "fd104d4d4cd4692979eb22e07274c56b39155751",
+  "original_current_sha256": "caa99c9b451ce760efaeec64446c3d2d919baccc4b2050b3c4024a56c4a9f8f1",
+  "legacy_archive_read_only": true,
+  "legacy_paths_preserved": [
+    "docs/handovers/CURRENT.json",
+    "docs/handovers/PREVIOUS.json"
+  ],
+  "bootstrap_writes": [
+    {
+      "source": "docs/package_quality/evidence/concurrent-lanes/bootstrap/culinary-app/CURRENT.json",
+      "target": "docs/handovers/culinary-app/CURRENT.json",
+      "sha256": "22faaf0185e6e1f199818010d0faaef608d46cd9fdfe829899bd6c7f387d3103"
+    },
+    {
+      "source": "docs/package_quality/evidence/concurrent-lanes/bootstrap/culinary-app/PREVIOUS.json",
+      "target": "docs/handovers/culinary-app/PREVIOUS.json",
+      "sha256": "caa99c9b451ce760efaeec64446c3d2d919baccc4b2050b3c4024a56c4a9f8f1"
+    },
+    {
+      "source": "docs/package_quality/evidence/concurrent-lanes/bootstrap/culinary-brain/CURRENT.json",
+      "target": "docs/handovers/culinary-brain/CURRENT.json",
+      "sha256": "b4bd93c875d7923732182d0d42125e71c487b056628f2159a8ae215fc9e698a4"
+    },
+    {
+      "source": "docs/package_quality/evidence/concurrent-lanes/bootstrap/culinary-brain/PREVIOUS.json",
+      "target": "docs/handovers/culinary-brain/PREVIOUS.json",
+      "sha256": "2bd08b0879ac6c96d46587a2b610abf71e207b109c1c029802703189fad3906f"
+    },
+    {
+      "source": "docs/package_quality/evidence/concurrent-lanes/bootstrap/barbecue/CURRENT.json",
+      "target": "docs/handovers/barbecue/CURRENT.json",
+      "sha256": "ee1eaa30a2317d4332c009b70ca666a61c02e1ad48165e04c47d07bcbbc2aaa8"
+    },
+    {
+      "source": "docs/package_quality/evidence/concurrent-lanes/bootstrap/barbecue/PREVIOUS.json",
+      "target": "docs/handovers/barbecue/PREVIOUS.json",
+      "sha256": "f1e554767a1f7d6c7947062e8250e32efe64f6fd524bd00272dfe6b4b0c55eca"
+    }
+  ],
+  "publish_rule": "Latest observed state tree; preserve legacy and all unrelated paths; one expected-head leased commit; skip CI; verify bytes. If existing lane pairs appeared, HOLD and reconcile rather than overwrite."
+}

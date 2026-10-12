@@ -8,6 +8,18 @@ import sys
 from pathlib import Path
 
 
+def check_concurrency_log(old, new):
+    before = old.get("concurrency_log")
+    after = new.get("concurrency_log")
+    if not isinstance(before, list) or not before or not isinstance(after, list):
+        raise ValueError("complete lane concurrency log required")
+    if len(after) <= len(before) or after[:len(before)] != before:
+        raise ValueError("concurrency history erased/changed or new event missing")
+    ids = [row.get("event_id") for row in after if isinstance(row, dict)]
+    if len(ids) != len(after) or any(not isinstance(v, str) or not v for v in ids) or len(ids) != len(set(ids)):
+        raise ValueError("unique concurrency event identities required")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--agent-os-root", type=Path, required=True)
@@ -26,10 +38,26 @@ def main():
             path = (source / name).resolve()
             if not path.is_relative_to(source) or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
                 raise ValueError("shared source hash mismatch: " + name)
-        script = source / "scripts/package_quality_gate.py"
+        lane_command = bool(remainder and remainder[0] in {"lane-prepare", "lane-verify"})
+        if lane_command:
+            remainder[0] = remainder[0].removeprefix("lane-")
+            script = source / "scripts/lane_handover.py"
+        else:
+            script = source / "scripts/package_quality_gate.py"
         if "--root" in remainder:
             raise ValueError("project root is fixed by this adapter")
-        result = subprocess.run([sys.executable, str(script), *remainder, "--root", str(root)], check=False)
+        result = subprocess.run([sys.executable, str(script), *remainder, "--root", str(root)], check=False, capture_output=lane_command, text=lane_command)
+        if lane_command and result.returncode == 0:
+            plan_args = argparse.ArgumentParser(add_help=False)
+            plan_args.add_argument("--output" if remainder[0] == "prepare" else "--plan", required=True)
+            parsed, _ = plan_args.parse_known_args(remainder[1:])
+            plan = json.loads((root / (parsed.output if remainder[0] == "prepare" else parsed.plan)).read_text())
+            current = "docs/handovers/" + plan["lane_id"] + "/CURRENT.json"
+            row = next(r for r in plan["writes"] if r["path"] == current)
+            check_concurrency_log(json.loads((root/current).read_text()), json.loads(row["content"]))
+        if lane_command:
+            print(result.stdout, end="")
+            print(result.stderr, end="", file=sys.stderr)
         raise SystemExit(result.returncode)
     except (OSError, ValueError, KeyError) as exc:
         print(json.dumps({"status": "HOLD", "reason": str(exc)}))
