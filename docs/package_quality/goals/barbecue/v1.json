@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "goal_id": "culinary-recommender-app:barbecue",
+  "revision": 1,
+  "outcome": "Preserve the existing bounded Barbecue discovery programme and independent technique-corpus review gates.",
+  "purpose": "Version the already-authorized lane outcome without changing frozen methods or expanding authority.",
+  "success_criteria": [
+    {
+      "id": "CONTINUITY",
+      "description": "Resume exactly this lane from live authoritative state with unresolved gates and histories intact."
+    },
+    {
+      "id": "OUTCOME",
+      "description": "Preserve the existing bounded Barbecue discovery programme and independent technique-corpus review gates."
+    }
+  ],
+  "constraints": [
+    "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
+    "One bounded package; full continuity handover; STOP",
+    "One equivalent repair cycle and one unchanged external recheck",
+    "No paid service or application behavior change"
+  ],
+  "intent_provenance": [
+    "Owner requested distinct handovers for concurrent lanes; existing lane contract remains controlling",
+    "config/barbecue_technique_corpus_v1.json"
+  ],
+  "changes": []
+}
