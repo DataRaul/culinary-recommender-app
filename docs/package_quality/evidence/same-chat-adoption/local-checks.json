@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "assertions": [
+    "JSON parse/required evidence subset",
+    "Adapter+contract mode matched",
+    "Pinned source integrity matched",
+    "No runtime/other-lane paths in outgoing inventory",
+    "Budget and handover location retained",
+    "New contract does not migrate historical contract"
+  ],
+  "outcome": "PASS_STATIC_SANITY",
+  "not_executed": [
+    "Pinned shared Python next/validate",
+    "Node repository tests in a checkout",
+    "PR CI"
+  ],
+  "publication": "HOLD_PENDING_MANDATORY_VALIDATION"
+}

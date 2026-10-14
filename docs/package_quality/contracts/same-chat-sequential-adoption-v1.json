@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "lane_id": "culinary-app",
+  "package_id": "same-chat-sequential-adoption-v1",
+  "base_commit": "c101f84c6e1002e1c15d922e31ad28c76f4f199d",
+  "author_session_id": "active-chat-culinary-adoption-20261014",
+  "goal_path": "docs/package_quality/goals/quality-pilot/v2.json",
+  "adapter_path": "config/package_quality_adapter.json",
+  "intent_provenance": [
+    "Owner handover CULINARY_SAME_CHAT_QUALITY_WORKFLOW_ADOPTION_V1"
+  ],
+  "outcome": "Integrate same-chat sequential quality control without touching application/runtime or other lanes",
+  "contribution": "Goal-aligned, pinned Supporter/Critic/synthesis procedure replaces separate-session requirement for new contracts",
+  "scope": [
+    "Agent OS pin",
+    "Culinary adapter/template/protocol/root instructions",
+    "offline regression test and evidence"
+  ],
+  "non_goals": [
+    "Recipe and production runtime changes",
+    "Brain and Barbecue state changes",
+    "Paid services and scheduled Actions"
+  ],
+  "inputs": [
+    "c101f84c6e1002e1c15d922e31ad28c76f4f199d",
+    "Agent OS 2e55b320c88df7fa75eaaf47113184ba44f5bb8d",
+    "Market Lab 398a780026e85d2fcd902b06dabf1d541a58b28a"
+  ],
+  "criteria": [
+    {
+      "id": "PIN",
+      "description": "All immutable source-file hashes and selected mode match pinned Agent OS",
+      "goal_criteria": [
+        "reviews"
+      ]
+    },
+    {
+      "id": "SEQUENCE",
+      "description": "Driver, ordered stages, reports, synthesis and instructions are integrated into real thin wrapper",
+      "goal_criteria": [
+        "reviews",
+        "alignment"
+      ]
+    },
+    {
+      "id": "HOLD",
+      "description": "Stale/missing evidence or material finding prevents publication; legacy independent contracts remain supported",
+      "goal_criteria": [
+        "reviews"
+      ]
+    },
+    {
+      "id": "LANE",
+      "description": "Existing checkpoint ownership, inherited budgets and production/Brain/Barbecue boundaries remain intact",
+      "goal_criteria": [
+        "continuity",
+        "boundaries"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "docs/package_quality/evidence/same-chat-adoption/alignment.json",
+    "docs/package_quality/evidence/same-chat-adoption/local-checks.json",
+    "docs/package_quality/evidence/same-chat-adoption/source-pin.json"
+  ],
+  "mandatory_knowledge_domains": [
+    "software_data",
+    "decision_frameworks",
+    "project_execution",
+    "ai_agents"
+  ],
+  "authority": "AUTO + VERIFY",
+  "human_decisions": [],
+  "assumptions": [
+    "No automatic session injection or background runner",
+    "Full shared Python driver still requires compatible host checkout"
+  ],
+  "dependencies": [
+    "Full pinned next and validate with review sidecars",
+    "Required repository CI",
+    "Lane-owned atomic checkpoint rotation"
+  ],
+  "next_action": "Perform exact Python next/Supporter/Critic/synthesis/validate on final candidate, then required PR CI and eligible merge",
+  "stop_boundary": "Single bounded integration package; handover and stop",
+  "budget": {
+    "round": 1,
+    "max_rounds": 1,
+    "usage": "unknown"
+  },
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "stage_evidence": {
+    "align": [
+      "docs/package_quality/evidence/same-chat-adoption/alignment.json"
+    ],
+    "build_qa": [
+      "docs/package_quality/evidence/same-chat-adoption/local-checks.json"
+    ]
+  }
+}

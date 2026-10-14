@@ -27,7 +27,8 @@
     }
   ],
   "required_evidence": [
-    "FILL_CHECK_EVIDENCE_PATH"
+    "FILL_CHECK_EVIDENCE_PATH",
+    "FILL_ALIGNMENT_EVIDENCE_PATH"
   ],
   "mandatory_knowledge_domains": [
     "FILL_REQUIRED_DOMAINS_FROM_LOCAL_GATE"
@@ -42,5 +43,14 @@
     "round": 1,
     "max_rounds": "FILL_ADAPTER_LIMIT",
     "usage": "unknown"
+  },
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "stage_evidence": {
+    "align": [
+      "FILL_ALIGNMENT_EVIDENCE_PATH"
+    ],
+    "build_qa": [
+      "FILL_CHECK_EVIDENCE_PATH"
+    ]
   }
 }

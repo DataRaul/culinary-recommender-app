@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "goal_id": "package-quality-pilot",
+  "revision": 2,
+  "outcome": "Align, build, review constructively, critically review and synthesize in one active chat with checked evidence",
+  "purpose": "Reduce missing requirements, scope drift and unsupported completion before spending Actions",
+  "constraints": [
+    "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
+    "One bounded package; full continuity handover; STOP",
+    "One equivalent repair cycle and one unchanged external recheck",
+    "No paid service or application behavior change"
+  ],
+  "intent_provenance": [
+    {
+      "source": "Owner instructions in ChatGPT, 2026-10-11",
+      "intent": "Implement approved aligner/supporter/critic and goal continuity in Market Lab and Culinary only"
+    },
+    {
+      "source": "CULINARY_SAME_CHAT_QUALITY_WORKFLOW_ADOPTION_V1, 2026-10-14",
+      "intent": "Select same-chat sequential mode for Culinary"
+    }
+  ],
+  "changes": [
+    {
+      "revision": 1,
+      "reason": "Owner-selected installation pilot; efficacy unmeasured"
+    },
+    {
+      "revision": 2,
+      "reason": "Owner-selected same-chat update; v1 remains unchanged for historical evidence"
+    }
+  ],
+  "success_criteria": [
+    {
+      "id": "alignment",
+      "description": "Clear prompts execute with sourced goal and contract without ritual questions"
+    },
+    {
+      "id": "reviews",
+      "description": "Hash-linked Supporter, Critic and synthesis in same active chat with independent:false, full criterion coverage and every finding disposition"
+    },
+    {
+      "id": "continuity",
+      "description": "Resume reconstructs goal, state, failures, budget and next action with guarded checkpoint lineage"
+    },
+    {
+      "id": "boundaries",
+      "description": "Local evidence, authority, privacy, cost and stop rules remain controlling"
+    }
+  ]
+}
