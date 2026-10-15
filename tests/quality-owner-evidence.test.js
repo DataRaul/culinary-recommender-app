@@ -32,6 +32,18 @@ test('unresolved material defect makes the human-readable report HOLD', () => {
   assert.match(text, /1 material unresolved/);
 });
 
+test('a PASS synthesis with its own unresolved material finding is a HOLD', () => {
+  const output = renderOwnerQualityReport({
+    contract, supporter, critic,
+    synthesis: { ...synthesis, findings: [
+      { id: 'SY1', kind: 'robustness_defect', material: true, disposition: 'DEFERRED' }
+    ] }
+  });
+  assert.match(output, /HOLD — no publication authority/);
+  assert.match(output, /1 material unresolved/);
+  assert.doesNotMatch(output, /REVIEWED — CI and merge still required/);
+});
+
 test('report refuses fake independent reviewers or stages', () => {
   assert.throws(() => renderOwnerQualityReport({
     contract, supporter: { ...supporter, independent: true }, critic, synthesis
