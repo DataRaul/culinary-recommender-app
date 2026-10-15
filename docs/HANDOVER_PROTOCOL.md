@@ -92,7 +92,10 @@ decisions, inherited budget/constraints, next action and predecessor SHA-256. Pr
 existing checkpoint fields and main-branch pointer. Rotate CURRENT/PREVIOUS together in
 one Git tree/commit with an expected continuity branch-head lease; on conflict reread and
 reconcile. Re-fetch the published object, emit that exact complete JSON, then STOP.
-The aligner is internal for clear requests; separate supporter/critic sessions are required
-for package delivery. Missing independent review means HOLD, not a renamed self-check PASS.
+The aligner is internal for clear requests. Follow the active adapter and package contract:
+`SAME_CHAT_SEQUENTIAL` requires ordered Supporter, Critic and synthesis passes in the same
+actual chat with `independent: false` and pinned validation. Historical independent-session
+contracts retain their original gate until explicitly migrated by their owning lane and
+refrozen. Missing required reviews or synthesis means HOLD.
 
 The original root pair is a read-only archive. Use `docs/CONCURRENT_LANE_HANDOVERS.md` for registered pair ownership, append-only per-lane concurrency logs, bootstrap lineage, fresh-tree publication and expected-head conflict handling. No ordinary writer edits a global handover or log.

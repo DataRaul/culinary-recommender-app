@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-15",
+  "criteria": {
+    "PIN": "All 8 immutable shared source byte hashes match; no floating-main execution",
+    "SEQUENCE": "Thin wrapper unchanged, forwards shared next and synthesis; real sequence follows freeze, reports bind exact candidate; handover protocol conflict repaired",
+    "HOLD": "Shared tests execute stale candidate/base, wrong identity, false independence, missing stages/synthesis, unresolved material findings, dropped dispositions, unreviewed outgoing path and legacy mode-mismatch rejection",
+    "LANE": "Only workflow governance/docs/regression/evidence in outgoing candidate; original contracts/goals/wrapper/registry preserved; no app/data/workflow changes relative to current main"
+  },
+  "culinary_validate": {
+    "command": "npm run validate",
+    "exit_code": 0,
+    "static_files": 1634,
+    "tests": 1437,
+    "passed": 1411,
+    "failed": 0,
+    "skipped": 26,
+    "log_sha256": "c5f2914f6407bd7c60b599cbbc027af3693101ca5dd7301bfa615cc4d537a57b"
+  },
+  "shared_quality_tests": {
+    "command": "PYTHONPATH=scripts python -m unittest discover -s scripts -p 'test*quality*.py'",
+    "exit_code": 0,
+    "tests": 31,
+    "includes_sequential_controls": 14
+  },
+  "shared_lane_tests": {
+    "command": "PYTHONPATH=scripts python -m unittest discover -s scripts -p 'test_lane_handover.py'",
+    "exit_code": 0,
+    "tests": 7,
+    "covers": "Real isolated git lease rejection, three-lane preservation, same-lane staleness, history/budget and goal/path controls"
+  },
+  "attempt_history": [
+    {
+      "command": "python -m unittest scripts/test_package_quality_gate.py scripts/test_lane_handover.py",
+      "result": "Import path error before tests executed; canonical PYTHONPATH=scripts invocation passed; no product change needed"
+    }
+  ],
+  "repair_cycle": {
+    "phase": "Initial pre-freeze build",
+    "findings": [
+      "BUILD-1 handover protocol contradictory reviewer instruction repaired and regression asserted",
+      "BUILD-2 exact base/session reconciled via successor active contract; old contract untouched"
+    ],
+    "review_round": 1,
+    "max_rounds": 1,
+    "prior_reports": 0
+  },
+  "historical_preservation": "All existing main historical contracts/goals unchanged; original staged v1 contract/evidence unchanged",
+  "publication_paths": [
+    "AGENTS.md",
+    "config/package_quality_adapter.json",
+    "docs/HANDOVER_PROTOCOL.md",
+    "docs/PACKAGE_QUALITY_PROTOCOL.md",
+    "docs/package_quality/CONTRACT_TEMPLATE.json",
+    "docs/package_quality/contracts/same-chat-sequential-adoption-closeout-v2.json",
+    "docs/package_quality/contracts/same-chat-sequential-adoption-v1.json",
+    "docs/package_quality/evidence/same-chat-adoption/alignment.json",
+    "docs/package_quality/evidence/same-chat-adoption/local-checks.json",
+    "docs/package_quality/evidence/same-chat-adoption/source-pin.json",
+    "docs/package_quality/evidence/same-chat-closeout/alignment.json",
+    "docs/package_quality/evidence/same-chat-closeout/qa.json",
+    "docs/package_quality/evidence/same-chat-closeout/source-pin.json",
+    "docs/package_quality/goals/quality-pilot/v2.json",
+    "tests/package-quality-sequential-adoption.test.js"
+  ],
+  "limitations": [
+    "26 existing skipped tests retained; no claim all tests executed",
+    "No local browser acceptance run; required CI includes browser suite",
+    "No comparative reliability improvement measured; identity and chronology self-reported",
+    "No deployment/D1/public runtime action performed"
+  ]
+}

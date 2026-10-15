@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "session_id": "work-session-216ae7e23d79-root",
+  "model": "Codex; exact model build not exposed",
+  "candidate_digest": "f400bd4d9408696b37293c31739df981ddb3eb3370eba059c02fdecc59592597",
+  "verdict": "PASS",
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "independent": false,
+  "role": "synthesis",
+  "stage": 5,
+  "predecessor_digest": "051218a384137ab644be4c2b04b636572043391d4f0933e1017cccae8b247214",
+  "report_digests": {
+    "supporter": "a9e19b0d3b1e649ee4f19d10fc24e8704ecf3ca60f88afea18b38125223b0011",
+    "critic": "051218a384137ab644be4c2b04b636572043391d4f0933e1017cccae8b247214"
+  },
+  "stages": [
+    "align",
+    "build_qa",
+    "supporter",
+    "critic",
+    "synthesis"
+  ],
+  "knowledge": [
+    {
+      "domain": "software_data",
+      "object": "domains/software_data/objects/testing_strategy_verification_layers.md",
+      "criterion_id": "HOLD",
+      "applied_rule": "Check dangerous failure paths rather than config-string assertions alone. Read pinned shared tests, then run six read-only adversarial probes on the actual frozen candidate; every probe rejected as expected.",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3"
+    },
+    {
+      "domain": "project_execution",
+      "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "criterion_id": "LANE",
+      "applied_rule": "Fresh base outranks handover. Preserve one-package scope and one-round remaining limit. Require final CI, verified merged bytes and atomic lane rotation before claiming terminal completion.",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3"
+    },
+    {
+      "domain": "decision_frameworks",
+      "object": "domains/decision_frameworks/objects/bias_resistant_decision_process.md",
+      "criterion_id": "SEQUENCE",
+      "applied_rule": "Seek disconfirmation: challenge stale identity, reviewer order, missing evidence and ability to waive findings. Treat demonstrated workflow execution separately from unmeasured reliability improvement.",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3"
+    },
+    {
+      "domain": "ai_agents",
+      "object": "domains/ai_agents/objects/structured_output_semantic_validation.md",
+      "criterion_id": "PIN",
+      "applied_rule": "Hash-linked JSON is only structural assurance. Compare inspected source/deliverable semantics, disclose actual same-context self-review and refuse authentic independence/chronology claims.",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3"
+    }
+  ],
+  "coverage": [
+    {
+      "criterion_id": "PIN",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/same-chat-closeout/source-pin.json",
+        "docs/package_quality/evidence/same-chat-closeout/qa.json"
+      ],
+      "assessment": "Both passes tie the exact shared commit to verified local file bytes and selected mode."
+    },
+    {
+      "criterion_id": "SEQUENCE",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/same-chat-closeout/alignment.json",
+        "docs/package_quality/evidence/same-chat-closeout/qa.json"
+      ],
+      "assessment": "Same actual chat performed the driver-selected constructive and adversarial passes; this synthesis links both canonical JSON digests and must pass the actual wrapper validation."
+    },
+    {
+      "criterion_id": "HOLD",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/same-chat-closeout/qa.json"
+      ],
+      "assessment": "Failure-path suite plus six actual-packet probes reject missing/stale coverage and improper assurance. No synthesis waiver of material findings; all three dispositions preserved in order."
+    },
+    {
+      "criterion_id": "LANE",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/same-chat-closeout/alignment.json",
+        "docs/package_quality/evidence/same-chat-closeout/qa.json"
+      ],
+      "assessment": "Only authorized governance scope; one-round budget unchanged and historical evidence retained. Merge eligibility and lane-owned remote checkpoint remain later gates, not inferred success."
+    }
+  ],
+  "findings": [],
+  "finding_dispositions": [
+    {
+      "role": "supporter",
+      "id": "S1",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "docs/package_quality/evidence/same-chat-closeout/alignment.json",
+        "docs/package_quality/evidence/same-chat-closeout/qa.json"
+      ]
+    },
+    {
+      "role": "supporter",
+      "id": "S2",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "docs/package_quality/evidence/same-chat-closeout/alignment.json",
+        "docs/package_quality/evidence/same-chat-closeout/qa.json"
+      ]
+    },
+    {
+      "role": "critic",
+      "id": "C1",
+      "disposition": "DEFERRED",
+      "resolution_evidence": []
+    }
+  ],
+  "rationale": "Supporter S1 is resolved by mode-aware handover text with regression assertions; S2 is resolved by an active successor contract binding fresh main and an honestly described actual-session correlation, preserving original evidence, criteria and budget. Critic C1 is non-blocking and deferred because this bounded package installs and demonstrates the owner-selected procedure, without claiming measured efficacy. All four criteria are supported by inspected artifacts, 1437 Culinary tests (1411 pass, 26 skipped, zero failures), 31 shared quality controls and seven lane controls. Full exact-outgoing validation follows; required final SHA CI cannot be skipped.",
+  "goal_contribution": "Culinary can now run alignment, QA, constructive review, adversarial review and synthesis within the active chat, retaining hash-bound evidence, honest non-independence, local authority/budgets and lane continuity. This removes the need for separate reviewer chats for explicitly migrated/new packages; it does not alter recipes or demonstrate comparative defect reduction.",
+  "next_gate": "REQUIRED_CI"
+}

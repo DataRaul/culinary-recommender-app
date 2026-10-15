@@ -42,6 +42,10 @@ test('wrapper and root protocol explicitly support sequential stages and hold ga
     assert.ok(p.includes(word), 'missing protocol item: ' + word);
   }
   assert.match(p, /do not rewrite historical contracts/i);
+  const h = read('docs/HANDOVER_PROTOCOL.md');
+  assert.match(h, /SAME_CHAT_SEQUENTIAL/);
+  assert.match(h, /independent: false/);
+  assert.match(h, /Historical independent-session/);
   const w = read('scripts/package_quality.py');
   assert.match(w, /parse_known_args/);
   assert.match(w, /\*remainder/);
