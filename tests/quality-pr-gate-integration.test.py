@@ -37,7 +37,7 @@ class GateIntegrationTest(unittest.TestCase):
             d.mkdir()
         stub = self.shared / "scripts/package_quality_gate.py"
         stub.parent.mkdir(parents=True)
-        stub.write_text("# Stubbed shared checker; actual pin validated in release checks\\n")
+        stub.write_text("# Stubbed shared checker; actual pin validated in release checks\n")
         pin = hashlib.sha256(stub.read_bytes()).hexdigest()
         self.adapter = {"shared_source": {
             "commit": SHARED,
@@ -65,9 +65,9 @@ class GateIntegrationTest(unittest.TestCase):
     def git(self, root, *args):
         if args[0] == "rev-parse":
             return (HEAD if root == self.candidate else
-                    BASE if root == self.trusted else SHARED).encode() + b"\\n"
+                    BASE if root == self.trusted else SHARED).encode() + b"\n"
         if args[:2] == ("diff", "--name-only"):
-            return ("\\0".join(self.changed) + "\\0").encode()
+            return ("\0".join(self.changed) + "\0").encode()
         raise AssertionError("unexpected git args " + repr(args))
 
     def run_checker(self, *args, **kwargs):
@@ -75,7 +75,7 @@ class GateIntegrationTest(unittest.TestCase):
             json.dumps({"status": self.checker_status}), "checker reported failure")
 
     def assess(self):
-        with patch.object(gate, "git", side_effect=self.git), \\
+        with patch.object(gate, "git", side_effect=self.git), \
              patch.object(gate.subprocess, "run", side_effect=self.run_checker):
             return gate.assess(self.event, self.candidate, self.trusted, self.shared)
 
