@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "subject": {
+    "schema_version": 1,
+    "contract_path": "docs/package_quality/contracts/quality-enforcement-owner-report-v1.json",
+    "project": "culinary-recommender-app",
+    "lane_id": "culinary-app",
+    "package_id": "quality-enforcement-owner-report-v1",
+    "base_commit": "8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
+    "author_session_id": "chatgpt-culinary-pr432-20261015-same-chat",
+    "candidate_paths": [
+      ".github/workflows/quality-evidence.yml",
+      "AGENTS.md",
+      "docs/OWNER_QUALITY_EVIDENCE_GATE.md",
+      "docs/PACKAGE_QUALITY_PROTOCOL.md",
+      "docs/ROADMAP.md",
+      "docs/package_quality/contracts/quality-enforcement-owner-report-v1.json",
+      "docs/package_quality/evidence/quality-enforcement-owner-report/alignment.json",
+      "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json",
+      "scripts/owner-quality-report.mjs",
+      "scripts/quality_pr_gate.py",
+      "tests/quality-owner-evidence.test.js",
+      "tests/quality-pr-gate-integration.test.py"
+    ],
+    "deletions": [],
+    "hashes": {
+      ".github/workflows/quality-evidence.yml": "0f85eb560d54706a0250e397fe5dad39d4c1a4af03dc80e50e8f1a620fa601b1",
+      "AGENTS.md": "9972b45894b1e5c506937880f2745c125a2ef35eb376787455c95d62d3504dbe",
+      "config/package_quality_adapter.json": "cf17d8b313402f6a2a790d156743d74063c149d718ad22e0882379fde20d02f9",
+      "docs/OWNER_QUALITY_EVIDENCE_GATE.md": "37a6456cbaca4650d16c8b226aa2f5a406d009399607ea63b92ce57342e09742",
+      "docs/PACKAGE_QUALITY_PROTOCOL.md": "861afa6173925487ee5e9316c4b48a0040ca6e092ea17a30e86936e116c92959",
+      "docs/ROADMAP.md": "21105350be90fe44d671701f94b196af954e444fad1fadf7894fcaecb7ac8a74",
+      "docs/package_quality/contracts/quality-enforcement-owner-report-v1.json": "38ae7fd37ed5393f92cfdbd61dbb6c553d05df15716bf5b980ca25006da57b89",
+      "docs/package_quality/evidence/quality-enforcement-owner-report/alignment.json": "38a63774ddb805fd25c1d60ad18ea6139b74cd1f9d8e4a7ffbdbdafb707c825a",
+      "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json": "5d48c74fce072a7c850b2a7e7d030b5191a3b226d7a72e827542d1253069b226",
+      "docs/package_quality/goals/culinary-app/v1.json": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa",
+      "scripts/owner-quality-report.mjs": "e4d31edda683ecd77bcffde1089b68f661c642bbd4087cf595a0cbcc8b92ec4a",
+      "scripts/quality_pr_gate.py": "89dd4d4a2ca5e9cab8e5b22e0c8597401a187142ae4251541e692d4848082727",
+      "tests/quality-owner-evidence.test.js": "1c5530880afb4227f27c453291d4966e5b8928ad14f54e6e88ce22b8ed19b3e9",
+      "tests/quality-pr-gate-integration.test.py": "3892d424f4a8bc1df287f5a181383af8732cb495132732421dbdb7bee1fae4d8"
+    },
+    "git_modes": {
+      ".github/workflows/quality-evidence.yml": "100644",
+      "AGENTS.md": "100644",
+      "config/package_quality_adapter.json": "100644",
+      "docs/OWNER_QUALITY_EVIDENCE_GATE.md": "100644",
+      "docs/PACKAGE_QUALITY_PROTOCOL.md": "100644",
+      "docs/ROADMAP.md": "100644",
+      "docs/package_quality/contracts/quality-enforcement-owner-report-v1.json": "100644",
+      "docs/package_quality/evidence/quality-enforcement-owner-report/alignment.json": "100644",
+      "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json": "100644",
+      "docs/package_quality/goals/culinary-app/v1.json": "100644",
+      "scripts/owner-quality-report.mjs": "100644",
+      "scripts/quality_pr_gate.py": "100644",
+      "tests/quality-owner-evidence.test.js": "100644",
+      "tests/quality-pr-gate-integration.test.py": "100644"
+    }
+  },
+  "candidate_digest": "9cc351bf8ba6a75d2dadd6ea8c7a72c63159cd2a05c730b5df79443ea4b56053"
+}

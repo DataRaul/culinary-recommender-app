@@ -1,83 +1,98 @@
 {
   "schema_version": 1,
   "role": "critic",
-  "session_id": "chatgpt-culinary-pr432-20261015-same-chat",
-  "model": "GPT-6 same-chat; exact host build ID unavailable",
-  "candidate_digest": "4a6d24efb4961a96da4898b6c927a1d90aa9f0feb9e8c98f647ce09a864de0ef",
-  "verdict": "HOLD",
+  "session_id": "chatgpt-work-culinary-pr432-round2-20261015",
+  "model": "GPT-6; exact host build unavailable",
+  "candidate_digest": "0438298918934b60f387cfdbb4568ddeff0b38afcc54e9966dc85180d5860593",
+  "verdict": "PASS",
   "review_mode": "SAME_CHAT_SEQUENTIAL",
   "independent": false,
   "stage": 4,
-  "predecessor_digest": "4122e3d3724941db09daf56c8f5e04b5505154406b036cb7eb294e0e876e6b80",
+  "predecessor_digest": "a365374ae9e245eb04067804398f0f2899aaf494cf1e6064e0b791d4540c9603",
   "knowledge": [
     {
       "domain": "project_execution",
       "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
       "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
-      "applied_rule": "Use bounded, current-repo proof; do not elevate unverified pinned validation to publication authority.",
+      "applied_rule": "Keep one bounded installation, preserve consumed budget and explicitly separate source installation from post-installation proof; use latest explicit owner authority only for round 2.",
       "criterion_id": "BOUNDARY"
     },
     {
       "domain": "software_data",
       "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
       "object": "domains/software_data/objects/testing_strategy_verification_layers.md",
-      "applied_rule": "Test failure cases cheaply, but do not substitute stubbed contract tests for real integration verification.",
+      "applied_rule": "Use deterministic regressions for reporting defects, actual pinned dependency validation before publication, and actual target-environment evidence after installation; mocks cannot establish live behavior.",
       "criterion_id": "ENFORCEMENT"
     }
   ],
+  "scope_limit": "Same-chat adversarial review of source installation; PASS is conditional on the separately required actual pinned validator and exact-head CI. Operational activation and required branch-check enforcement remain unverified.",
   "coverage": [
     {
       "criterion_id": "REPORT",
       "result": "PASS",
       "evidence": [
-        "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json",
-        "tests/quality-owner-evidence.test.js"
+        "tests/quality-owner-evidence.test.js",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json"
       ],
-      "assessment": "All three reviewer verdicts now require PASS; HOLD/FAIL/missing and material unresolved cases trigger HOLD; explicit owner value and limitations remain."
+      "assessment": "Adversarially checked all required verdict omissions and mixed PASS/HOLD cases. Synthesis cannot suppress its own unresolved material finding. Reporter is a display layer; immutable packet/report validity remains separately enforced by real shared checker."
     },
     {
       "criterion_id": "ENFORCEMENT",
-      "result": "HOLD",
+      "result": "PASS",
       "evidence": [
-        "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json",
-        "tests/quality-pr-gate-integration.test.py"
+        "tests/quality-pr-gate-integration.test.py",
+        "docs/OWNER_QUALITY_EVIDENCE_GATE.md",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/alignment.json",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json"
       ],
-      "assessment": "Eight simulated boundary tests exercise pre/post-cutover, positive routing, bad pin, missing sidecar, extra path, stale base and checker failures. First actual post-cutover trigger remains unverified."
+      "assessment": "Inspected original contract: it expressly places first live trigger after merge. Requiring that same installed trigger before merge is an ordering error, not an unmet source-code acceptance criterion. Reviewed source rejects missing packet/sidecars, extra inventory, moved base, wrong pins, checker HOLD and non-ready results. Full actual pinned validation on this exact candidate is still mandatory immediately after reports. No operational activation is accepted from mocks."
     },
     {
       "criterion_id": "SECURITY",
       "result": "PASS",
       "evidence": [
-        "docs/package_quality/evidence/quality-enforcement-owner-report/alignment.json",
-        "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json"
+        "tests/quality-owner-evidence.test.js",
+        "docs/OWNER_QUALITY_EVIDENCE_GATE.md"
       ],
-      "assessment": "Diff inspection: trusted-base workflow checkout with read-only permissions, pinned Agent OS checker, candidate scripts never executed. Required branch rule unverified."
+      "assessment": "Checked counterexamples: changing candidate adapter pins is rejected against trusted base; candidate app scripts are never invoked; shared checker rejects symlink/escaping paths and stale packet bytes. Workflow has contents:read and persist-credentials:false. Admin bypass remains possible because main protected:false and no rulesets were observed; docs explicitly preserve that limitation."
     },
     {
       "criterion_id": "BOUNDARY",
       "result": "PASS",
       "evidence": [
         "docs/package_quality/evidence/quality-enforcement-owner-report/alignment.json",
-        "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json"
+        "docs/package_quality/evidence/quality-enforcement-owner-report/round2-authority.json"
       ],
-      "assessment": "PR432 changed governance, tests and its own evidence only; no Based Cooking, recipe corpus, D1, Cloudflare or other-lane checkpoint changes."
+      "assessment": "Compared round 2 to source head a5c426aa: no product source, recipe, D1, production configuration or other-lane state changes. Historical reports remain immutable archives with original HOLD. Dedicated adapter permits exactly the authorized second round for this package; default max_rounds stays one. No independent reviewer claim."
     }
   ],
   "findings": [
     {
       "id": "G432-2",
-      "kind": "robustness_defect",
+      "kind": "requirement_defect",
       "material": true,
-      "evidence": "Post-cutover positive test substitutes a stubbed shared checker; no execution record of actual pinned Agent OS validator on exact frozen candidate, and first live post-cutover PR remains unobserved.",
-      "remedy": "Execute hash-pinned real package checker on frozen exact outgoing inventory; confirm first real PR after cutover and report branch protection truthfully.",
+      "evidence": "Historical finding combined missing real pinned execution and a live-trigger requirement. Real pinned execution now exists (rejected old stale reviews); current candidate is freshly reviewed. Original contract explicitly calls the trigger a post-merge dependency.",
+      "remedy": "Require current-candidate pinned validator PASS and exact-head CI before merging installation; retain actual live event as OPEN post-merge adoption proof on a real separately authorized roadmap PR. No live or non-bypassability PASS may be claimed.",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/alignment.json",
+        "docs/OWNER_QUALITY_EVIDENCE_GATE.md"
+      ]
+    },
+    {
+      "id": "G432-4-ENFORCEMENT-LIMIT",
+      "kind": "optional_enhancement",
+      "material": false,
+      "evidence": "Main reports protected:false, rulesets empty and branch-protection API returns 403. Source installation is explicitly a procedural pilot; hard branch enforcement is a separate administrator task.",
+      "remedy": "An authorized administrator may later require quality-evidence; meanwhile report enforcement as unverified and apply coordinator gates.",
       "disposition": "DEFERRED"
     }
   ],
   "additional_probes": [
-    "G432-1 regressions account for HOLD and missing verdicts",
-    "Positive check path uses an explicitly stubbed shared validator, not real integration evidence",
-    "Branch protection API previously denied 403; no non-bypassability claim",
-    "No live post-cutover trigger available before merge"
-  ],
-  "scope_limit": "Adversarial SAME CHAT assessment, independent:false; substantive release-blocking validation gap."
+    "Current packet reproduces final sources and archives without old reviewer substitution",
+    "Archived round1-packet.json cannot be mistaken for /packet.json by discovery",
+    "Pre-cutover grandfathering is explicit and does not waive ordinary CI",
+    "No test-only PR or owner-stopped acquisition is needed to verify next real roadmap event"
+  ]
 }

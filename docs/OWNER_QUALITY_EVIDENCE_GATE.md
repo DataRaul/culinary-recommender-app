@@ -29,3 +29,11 @@ Do not claim that a reviewer is independent in same-chat mode, that a CI PASS eq
 Consulting `adapters/chatgpt_consulting_advisory.md`: choose the smallest proportional investment and distinguish delivered capability from measured reliability or owner value. Project Coach `adapters/chatgpt_work_project_coach.md`: distinguish reviewed, CI-validated, merged, deployed and accepted states; require exact source and terminal evidence. `domains/ai_agents/objects/structured_output_semantic_validation.md`: schema- and hash-valid results still need substantive human/agent review. `domains/software_data/objects/testing_strategy_verification_layers.md`: cheapest deterministic negative tests plus a real PR trigger verification. These are canonical Knowledge Core routes, not duplicated local reasoning engines.
 
 **Boundary:** Based Cooking pinned review remains owner-stopped; no new recipe acquisition, D1, Cloudflare, Brain or Barbecue action.
+
+## Installation and roadmap verification order
+
+Before merging installation, require current authorized same-chat reviews, the actual pinned checker on the exact outgoing inventory, and exact-head required CI. The contract already names the first live PR trigger as a **post-merge** dependency: a workflow absent from main cannot prove its own installed trigger before installation. This sequencing does not mark live activation as passed.
+
+After installation, verify the first real post-cutover event while delivering the next separately authorized roadmap package. Do not open a testing-only PR or restart owner-stopped acquisition to manufacture an event. Retain operational activation as OPEN until the actual trusted-base job executes; report any failure and keep the affected package unmerged. Required branch-check enforcement remains a separate administrator-controlled fact; report protected:false or unavailable administration access honestly, without claiming hard enforcement.
+
+Owner steering 2026-10-15: evaluate review usefulness during normal roadmap delivery. Record real findings, repairs and effort within those packages; this is not a comparative reliability experiment and adds no paid service or scheduled workflow.

@@ -33,7 +33,8 @@
     "Synthetic gate acceptance is not first real post-cutover PR activation",
     "Actual same-chat Supporter/Critic/Synthesis pending final frozen packet",
     "Required branch protection API access unverified; do not claim non-bypassability",
-    "No local Git clone/network path in current environment"
+    "No local Git clone/network path in current environment",
+    "Round2 verification supersedes earlier host limitations; historical fields retained for audit"
   ],
   "preserved": [
     "PR428/429",
@@ -53,5 +54,37 @@
     ],
     "verification": "CI_REQUIRED_ON_UPDATED_CANDIDATE; no new reviewer authorization claimed",
     "publication": "HOLD_UNTIL_REFROZEN_AND_REVIEW_AUTHORITY_RECONCILED"
+  },
+  "round2_verification": {
+    "head_before_round": "a5c426aa93e76d8b5b225e30c6397788c0ef714e",
+    "shared_commit": "2e55b320c88df7fa75eaaf47113184ba44f5bb8d",
+    "source_pins": "8/8 PASS",
+    "actual_full_validator": "HOLD: stale review",
+    "candidate_reproduction": "PASS",
+    "exact_outgoing_inventory": "PASS:16 paths",
+    "repository_validation": {
+      "static_files": 1665,
+      "tests": 1450,
+      "pass": 1424,
+      "skip": 26,
+      "fail": 0
+    },
+    "focused_node": {
+      "pass": 12,
+      "fail": 0
+    },
+    "python_gate_fixtures": {
+      "pass": 8,
+      "fail": 0
+    },
+    "fixture_limitation": "Stubbed event wiring; no true post-cutover PR proof",
+    "branch_rules": {
+      "protected": false,
+      "rulesets": [],
+      "protection_read": 403
+    },
+    "live_activation": "Not observed; workflow absent from main",
+    "history": "history/round1-*",
+    "gate_order_basis": "Original contract explicitly places live trigger after merge; OWNER_QUALITY_EVIDENCE_GATE.md now makes source-installation versus operational-activation order explicit"
   }
 }

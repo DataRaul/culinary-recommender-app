@@ -4,7 +4,7 @@
   "pr": 432,
   "main_sha": "8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
   "pr_initial_head": "c507cbee42beac6a74e326413333a1ad8db15d5f",
-  "session_id": "chatgpt-culinary-pr432-20261015-same-chat",
+  "session_id": "chatgpt-work-culinary-pr432-round2-20261015",
   "review_mode": "SAME_CHAT_SEQUENTIAL",
   "independent": false,
   "owner_action_now": "NONE",
@@ -44,5 +44,27 @@
   "knowledge": {
     "project_execution": "Bound package; preserve authority and historical budgets",
     "software_data": "Adversarial negative tests and live activation distinguish procedural installation from end-to-end behavior"
+  },
+  "round": 2,
+  "owner_authority": "round2-authority.json",
+  "current_head_before_round": "a5c426aa93e76d8b5b225e30c6397788c0ef714e",
+  "known_holds": [
+    "G432-2: actual validator executed and returned stale review; live activation unobserved",
+    "Required branch enforcement unverified; no waiver authorized"
+  ],
+  "gate_order": {
+    "pre_merge": [
+      "Source acceptance",
+      "Fresh authorized reviews",
+      "Actual pinned exact-inventory validation",
+      "Exact-head CI"
+    ],
+    "post_merge": [
+      "Workflow present on main",
+      "First real post-cutover roadmap PR job",
+      "Branch-policy enforcement truth"
+    ],
+    "basis": "Unchanged contract dependencies explicitly say Post-merge workflow first real post-cutover trigger; owner requests roadmap-integrated evaluation",
+    "no_waiver": "No live activation or hard-enforcement PASS is inferred"
   }
 }
