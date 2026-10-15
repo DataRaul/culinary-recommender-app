@@ -3,11 +3,12 @@
   "date": "2026-10-15",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
-  "source_of_truth": "Live GitHub main, open PRs/checks and lane contracts outrank all handover snapshots",
+  "source_of_truth": "Live GitHub main, PR state, CI and continuity-state CURRENT override this snapshot",
   "main_sha": "8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
   "open_prs": [
     428,
-    429
+    429,
+    432
   ],
   "protected_corpus": {
     "activeVersion": "v8019",
@@ -47,7 +48,7 @@
     "browserAcceptance": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
     "productionPublicSmoke": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION"
   },
-  "nextGate": "BASED_COOKING_PINNED_RECORD_RIGHTS_STRUCTURE_AND_FULL_CORPUS_DEDUP_NO_WRITE",
+  "nextGate": "PR432_FINAL_EVIDENCE_REVIEW_AND_RELEASE_HOLD",
   "guardrails": [
     "continue acquisition-first; ORA exhaustion is not programme completion",
     "rights/provenance fail closed",
@@ -70,7 +71,7 @@
     "canonical_ref": "continuity-state"
   },
   "startup_instruction": "Read live main AGENTS.md, ROADMAP, programme/corpus state, PACKAGE_QUALITY_PROTOCOL, HANDOVER_PROTOCOL, CONCURRENT_LANE_HANDOVERS and INDEX; read culinary-app CURRENT from continuity-state. Live state outranks this snapshot. PR430 integration is closed. Reconcile PR431 first; do not repeat completed discovery or reset its review round. If merged, the next separate package is pinned Based Cooking record rights/structure/full-v8019-corpus dedup with no D1 writes. One bounded package, same actual chat Supporter/Critic/synthesis, exact pinned validation, required CI, eligible merge, app-only checkpoint, full JSON and STOP. Preserve Brain/Barbecue and Hemmets HOLD.",
-  "status": "NON_ORA_DISCOVERY_MERGED",
+  "status": "PR432_OPEN_DRAFT__STATIC_REVIEW_HOLD__INITIAL_CI_PASS",
   "installation_verification": {
     "schema_version": 1,
     "project": "DataRaul/culinary-recommender-app",
@@ -176,14 +177,16 @@
       "Live research/product owner gates remain in the lane contract",
       "Comparative workflow efficacy remains unmeasured; no wider rollout inferred",
       "Pinned record rights/structure and full-corpus dedup remain open; 236 new paths do not establish 236 new recipes.",
-      "No runtime population, owner search or production acceptance change in this package."
+      "No runtime population, owner search or production acceptance change in this package.",
+      "PR432 owner report verdict contradiction, complete frozen evidence/reviews, exact validation, CI/merge and live activation/required check remain OPEN"
     ],
     "failures": [
       "Historical shared-source catalog CI failure corrected; shared PR53 final CI PASS",
       "PR430 build: unconditional separate-session handover text repaired and regression checked before freeze.",
       "PR430 build: stale staged base/session reconciled through preserved-history active successor contract before freeze.",
       "Initial shared unittest invocation failed import-path setup before tests ran; canonical PYTHONPATH=scripts invocation passed.",
-      "Pre-freeze findings: 223 structural versus 226 stored baseline reconciled; extensionless/root recipe omissions prevented. Both resolved and checked on frozen candidate; no review repair round consumed."
+      "Pre-freeze findings: 223 structural versus 226 stored baseline reconciled; extensionless/root recipe omissions prevented. Both resolved and checked on frozen candidate; no review repair round consumed.",
+      "PR432 static Critic finding G432-1: standalone owner report can mark REVIEWED despite HOLD Supporter/Critic verdict; no repair authorized without frozen QA route."
     ],
     "decisions": [
       "Owner-selected pilot limited to Market Lab and Culinary",
@@ -197,7 +200,8 @@
       "Selected one non-ORA upstream lineage opportunity under existing acquisition-first authority; PR428/429 remain untouched.",
       "Baseline includes all 226 stored source files; preserve two malformed-placement exceptions.",
       "Source declaration only; no blanket rights clearance and no safety metadata inferred.",
-      "Distinct discovery contract uses round 1/max 1; prior PR430 exhausted budget remains closed in history."
+      "Distinct discovery contract uses round 1/max 1; prior PR430 exhausted budget remains closed in history.",
+      "2026-10-15: kept PR432 draft and Based Cooking stopped; no fabricated review evidence or CI/merge status; admin branch protection access unavailable."
     ],
     "budget": {
       "round": 1,
@@ -210,8 +214,8 @@
       "One equivalent repair cycle and one unchanged external recheck",
       "No paid service or application behavior change"
     ],
-    "next_action": "Fresh-reconcile main and culinary-app CURRENT; execute exactly one BASED_COOKING_PINNED_RECORD_RIGHTS_STRUCTURE_AND_FULL_CORPUS_DEDUP_NO_WRITE package. Preserve all holds and capacity/import gates.",
-    "predecessor_sha256": "e5dde894e53b1a11ed23918a8752e7b964ac806a0acc0d3aabaa5d597eb8d200",
+    "next_action": "Resume ONLY PR432: repair reporter verdict inconsistency, regression test and full post-cutover PR positive/negative paths; prepare actual bounded align/build evidence and final Supporter/Critic/synthesis reports, execute pinned full validation, final CI, eligible merge, live activation; verify branch required-check separately. Do not resume Based Cooking.",
+    "predecessor_sha256": "03614c25b6e91d5b9e26ac6f2113dd96ce092b1abd3ef9cb2c47a1c9824423f2",
     "goal_contribution": "A pinned 442-file non-ORA lineage worklist and reproducible comparison now identify the next acquisition opportunity; no recipe count or rights/readiness claim is inflated.",
     "additional_cash_services_activated": false,
     "review_mode": "SAME_CHAT_SEQUENTIAL",
@@ -232,7 +236,9 @@
         "remaining_review_rounds": 0,
         "note": "Closed PR430 workflow installation remains historical; this is a distinct authorized discovery package with adapter cap unchanged."
       }
-    ]
+    ],
+    "pending_package": "culinary-quality-enforcement-owner-report-20261015",
+    "pending_status": "PR432_STATIC_REVIEW_HOLD__NO_CANONICAL_PACKET"
   },
   "schema_version": 1,
   "project": "culinary-recommender-app",
@@ -251,10 +257,11 @@
     "Historical sylGauthier cohort stores all 226 rows although its original structural measurement parsed 223; comparison includes all 226.",
     "No recipes imported; accepted baseline remains v8019 / 22,086 and production owner acceptance is not reverified."
   ],
-  "next_action": "Fresh-reconcile main and culinary-app CURRENT; execute exactly one BASED_COOKING_PINNED_RECORD_RIGHTS_STRUCTURE_AND_FULL_CORPUS_DEDUP_NO_WRITE package. Preserve all holds and capacity/import gates.",
+  "next_action": "Resume ONLY PR432: repair reporter verdict inconsistency, regression test and full post-cutover PR positive/negative paths; prepare actual bounded align/build evidence and final Supporter/Critic/synthesis reports, execute pinned full validation, final CI, eligible merge, live activation; verify branch required-check separately. Do not resume Based Cooking.",
   "open_prs_at_reconciliation": [
     428,
-    429
+    429,
+    432
   ],
   "owner_run_now": false,
   "new_implementation": {
@@ -320,9 +327,22 @@
       "result": "442 candidates inventoried; 236 new paths, 206 overlaps; zero imports. PR431 MERGED",
       "authority": "Acquisition discovery and own checkpoint only; no runtime/Brain/Barbecue writes",
       "next_action": "Fresh-reconcile main and culinary-app CURRENT; execute exactly one BASED_COOKING_PINNED_RECORD_RIGHTS_STRUCTURE_AND_FULL_CORPUS_DEDUP_NO_WRITE package. Preserve all holds and capacity/import gates."
+    },
+    {
+      "event_id": "culinary-recommender-app:culinary-app:pr432-review-hold:20261015",
+      "date": "2026-10-15",
+      "event": "PR432_STATIC_ADVERSARIAL_REVIEW_HOLD",
+      "lane_id": "culinary-app",
+      "observed_main": "8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
+      "observed_state_head": "ecaf212eda797ad14b2800aa3792941d2b55563e",
+      "predecessor_sha256": "03614c25b6e91d5b9e26ac6f2113dd96ce092b1abd3ef9cb2c47a1c9824423f2",
+      "package": "culinary-quality-enforcement-owner-report-20261015",
+      "result": "Draft, initial CI PASS; static report defect found; exact candidate review and new workflow live proof uncompleted",
+      "authority": "No product/recipe/runtime changes; only culinary-app checkpoint pair",
+      "next_action": "Resume ONLY PR432: repair reporter verdict inconsistency, regression test and full post-cutover PR positive/negative paths; prepare actual bounded align/build evidence and final Supporter/Critic/synthesis reports, execute pinned full validation, final CI, eligible merge, live activation; verify branch required-check separately. Do not resume Based Cooking."
     }
   ],
-  "owner_action_now": "NONE",
+  "owner_action_now": "NONE; continue PR432 in a tool-capable Work session; branch-rule configuration remains admin-only",
   "same_chat_closeout": {
     "pr": 430,
     "url": "https://github.com/DataRaul/culinary-recommender-app/pull/430",
@@ -428,5 +448,80 @@
     ],
     "next_action": "Fresh-reconcile main and culinary-app CURRENT; execute exactly one BASED_COOKING_PINNED_RECORD_RIGHTS_STRUCTURE_AND_FULL_CORPUS_DEDUP_NO_WRITE package. Preserve all holds and capacity/import gates.",
     "stop_after_package": true
+  },
+  "governance_pr432": {
+    "schema_version": 1,
+    "package_id": "culinary-quality-enforcement-owner-report-20261015",
+    "pr": 432,
+    "url": "https://github.com/DataRaul/culinary-recommender-app/pull/432",
+    "head_sha": "c507cbee42beac6a74e326413333a1ad8db15d5f",
+    "branch": "culinary-quality-enforcement-owner-report-20261015",
+    "review_comment_id": 6201354206,
+    "baseline_main_sha": "8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
+    "initial_validate_run_id": 38787128266,
+    "initial_validate_conclusion": "success",
+    "reviewed_files": [
+      "scripts/owner-quality-report.mjs",
+      "scripts/quality_pr_gate.py",
+      ".github/workflows/quality-evidence.yml",
+      "tests/quality-owner-evidence.test.js",
+      "docs/OWNER_QUALITY_EVIDENCE_GATE.md",
+      "docs/PACKAGE_QUALITY_PROTOCOL.md",
+      "AGENTS.md",
+      "config/package_quality_adapter.json"
+    ],
+    "stages": {
+      "aligner": "PROVISIONAL_SCOPE_ALIGNED_NO_FROZEN_PACKET",
+      "builder": "STAGED_INITIAL_CI_PASS",
+      "supporter": "HOLD_NO_CANONICAL_REPORT",
+      "critic": "STATIC_CORRECTNESS_FINDING_HOLD_NOT_CANONICAL_REPORT",
+      "synthesis": "HOLD_NO_MERGE_AUTHORITY"
+    },
+    "findings": [
+      {
+        "id": "G432-1",
+        "material": true,
+        "status": "UNRESOLVED",
+        "source": "scripts/owner-quality-report.mjs",
+        "detail": "Owner report can print REVIEWED even when Supporter or Critic verdict is HOLD and synthesis PASS; fix verdict consistency and test"
+      },
+      {
+        "id": "G432-2",
+        "material": true,
+        "status": "UNVERIFIED",
+        "detail": "No final frozen contract/packet, Supporter/Critic/synthesis reports and pinned outgoing validation"
+      },
+      {
+        "id": "G432-3",
+        "material": true,
+        "status": "UNVERIFIED",
+        "detail": "No successful and failing true post-cutover PR integration trigger; new workflow not yet installed on main"
+      },
+      {
+        "id": "G432-4",
+        "material": true,
+        "status": "HUMAN_ADMIN_GATE",
+        "detail": "Main branch protection query 403; rulesets query returned []. quality-evidence required-check not proven"
+      }
+    ],
+    "consulted_knowledge_core": [
+      "adapters/chatgpt_consulting_advisory.md",
+      "adapters/chatgpt_work_project_coach.md",
+      "domains/ai_agents/objects/structured_output_semantic_validation.md",
+      "domains/software_data/objects/testing_strategy_verification_layers.md"
+    ],
+    "consultant_verdict": "CONDITIONAL_APPROVAL_DESIGN_VALUE_NOT_MEASURED",
+    "project_coach_verdict": "HOLD_IMPLEMENTATION_NOT_TERMINAL",
+    "independent": false,
+    "quality_assurance": "STATIC_SOURCE_REVIEW_ONLY_NOT_PINNED_EXACT_CANDIDATE",
+    "ci": "INITIAL_VALIDATE_PASS_ONLY",
+    "merge": "NOT_MERGED",
+    "live_check": "NOT_TRIGGERED",
+    "branch_required_check": "UNVERIFIED",
+    "future_cutover_utc": "2026-10-16T00:00:00Z",
+    "comparative_efficacy": "NOT_MEASURED",
+    "based_cooking": "STOPPED_BY_OWNER",
+    "owner_action": "NONE_NOW; branch-rule authorization may be required once technical release is ready",
+    "next_gate": "FIX_AND_TEST__FREEZE__REVIEW__PINNED_VALIDATE__CI__MERGE__LIVE_TRIGGER__REQUIRED_CHECK__ROTATE"
   }
 }
