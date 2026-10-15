@@ -95,3 +95,10 @@ test('a HOLD or missing synthesis verdict cannot promote valid prior stages', ()
     assert.match(text, /HOLD — no publication authority/);
   }
 });
+
+test('post-cutover passing and failing trusted-gate wiring scenarios execute', () => {
+  const run = spawnSync('python3', ['tests/quality-pr-gate-integration.test.py'], { encoding: 'utf8' });
+  assert.equal(run.status, 0, run.stderr || run.stdout);
+  assert.match(run.stderr, /Ran 8 tests/);
+  assert.match(run.stderr, /OK/);
+});
