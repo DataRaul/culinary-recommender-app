@@ -16,7 +16,8 @@ export function renderOwnerQualityReport({ contract, supporter, critic, synthesi
       supporter.stage !== 3 || critic.stage !== 4 || synthesis.stage !== 5) {
     throw new Error('Unreviewed or wrongly identified reports cannot produce an owner summary');
   }
-  const reports = [supporter, critic];
+  // Include Synthesis-owned material findings: a PASS verdict cannot suppress one.
+  const reports = [supporter, critic, synthesis];
   const unresolved = reports.flatMap(r => (r.findings ?? []).filter(f => f.material && f.disposition !== 'RESOLVED'));
   // Fail closed: synthesis cannot overrule a HOLD or missing verdict in either review.
   const reviewHold = [supporter, critic, synthesis].some(r => r.verdict !== 'PASS') || unresolved.length > 0;
