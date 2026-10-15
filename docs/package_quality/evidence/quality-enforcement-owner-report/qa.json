@@ -41,5 +41,17 @@
     "barbecue",
     "Based Cooking stopped",
     "v8019 protected corpus unchanged by PR432"
-  ]
+  ],
+  "additional_repair": {
+    "id": "G432-3",
+    "summary": "The owner report previously ignored Synthesis-owned material findings when all verdict strings were PASS.",
+    "implementation_commit": "d287b370a0801c1fb291929e8b12908b102e532f",
+    "regression_commit": "76cec5e212cb29dbdae306b47c3ff566318838fd",
+    "paths": [
+      "scripts/owner-quality-report.mjs",
+      "tests/quality-owner-evidence.test.js"
+    ],
+    "verification": "CI_REQUIRED_ON_UPDATED_CANDIDATE; no new reviewer authorization claimed",
+    "publication": "HOLD_UNTIL_REFROZEN_AND_REVIEW_AUTHORITY_RECONCILED"
+  }
 }
