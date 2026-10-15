@@ -18,8 +18,9 @@ export function renderOwnerQualityReport({ contract, supporter, critic, synthesi
   }
   const reports = [supporter, critic];
   const unresolved = reports.flatMap(r => (r.findings ?? []).filter(f => f.material && f.disposition !== 'RESOLVED'));
-  const synthesisHold = synthesis.verdict !== 'PASS' || unresolved.length > 0;
-  const result = synthesisHold ? 'HOLD — no publication authority' : 'REVIEWED — CI and merge still required';
+  // Fail closed: synthesis cannot overrule a HOLD or missing verdict in either review.
+  const reviewHold = [supporter, critic, synthesis].some(r => r.verdict !== 'PASS') || unresolved.length > 0;
+  const result = reviewHold ? 'HOLD — no publication authority' : 'REVIEWED — CI and merge still required';
   const resolved = reports.reduce((n, r) => n + count(r, f => f.disposition === 'RESOLVED'), 0);
   const deferred = reports.reduce((n, r) => n + count(r, f => f.disposition === 'DEFERRED'), 0);
   const lines = [
@@ -31,7 +32,7 @@ export function renderOwnerQualityReport({ contract, supporter, critic, synthesi
     `- **Critic:** ${safe(critic.verdict)}; ${(critic.findings ?? []).length} finding(s).`,
     `- **Synthesis:** ${safe(synthesis.verdict)}; ${resolved} finding(s) resolved, ${deferred} deferred, ${unresolved.length} material unresolved.`,
     `- **Business value:** ${safe(synthesis.goal_contribution)}`,
-    `- **Remaining gate:** ${synthesisHold ? 'Repair or human decision before publication' : 'Required PR CI, eligible merge, verified lane checkpoint and STOP'}.`,
+    `- **Remaining gate:** ${reviewHold ? 'Repair or human decision before publication' : 'Required PR CI, eligible merge, verified lane checkpoint and STOP'}.`,
     `- **Owner action:** ${contract.human_decisions?.length ? 'Human decision remains required' : 'None recorded at this review boundary'}.`,
     '- **Assurance limitation:** Same-chat self-review (independent:false). Evidence validity is checked separately; neither this report nor its PASS proves merge, deployment or user acceptance.'
   ];
