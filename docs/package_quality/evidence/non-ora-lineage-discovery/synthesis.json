@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "role": "synthesis",
+  "session_id": "work-session-415526c273d0-root",
+  "model": "Codex; exact host model build unavailable",
+  "candidate_digest": "f59d70c9eaedb44bc070f49bbeb191bf128f9d1c82053c6acee3553b3e9dae1d",
+  "verdict": "PASS",
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "independent": false,
+  "stage": 5,
+  "predecessor_digest": "0d0773391f9e8e12dc46234dee6f51f8b6a337e4b94e96aa54347e10cc275169",
+  "report_digests": {
+    "supporter": "144758086983ba5c78cfa7c798a6feb4d43a6bd211f0057356fbdc861cc64bbd",
+    "critic": "0d0773391f9e8e12dc46234dee6f51f8b6a337e4b94e96aa54347e10cc275169"
+  },
+  "stages": [
+    "align",
+    "build_qa",
+    "supporter",
+    "critic",
+    "synthesis"
+  ],
+  "knowledge": [
+    {
+      "domain": "project_execution",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "criterion_id": "BOUNDARY",
+      "applied_rule": "Challenge false completion and authority escalation: discovery is complete only as discovery, while source rights, record deduplication, capacity and runtime remain unearned gates."
+    },
+    {
+      "domain": "software_data",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/software_data/objects/testing_strategy_verification_layers.md",
+      "criterion_id": "DISCOVERY",
+      "applied_rule": "Use counterexamples at the actual boundary: a renamed and rewritten known recipe must not become confirmed-new, while source/tree metadata must never grant safety or production acceptance."
+    }
+  ],
+  "coverage": [
+    {
+      "criterion_id": "DISCOVERY",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
+        "data/generated/step8g/based-cooking-lineage-discovery.json"
+      ],
+      "assessment": "Reread original criteria and selector. Inventories are untruncated and pinned; partitions sum exactly. Actual additional counterexample rewrote and renamed a baseline recipe: it becomes path-new but confirmed_new_usable_recipes remains null and added count remains zero. This directly checks the main false-growth risk."
+    },
+    {
+      "criterion_id": "EVIDENCE",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/non-ora-lineage-discovery/source-pin.json",
+        "data/generated/step8g/based-cooking-lineage-discovery.json"
+      ],
+      "assessment": "README declaration alone cannot establish third-party rights; candidate explicitly requires record review and preserves the software/content license distinction. Three source observations do not imply 442 usable recipes; malformed placement and source ingredient omissions remain explicit. No source text/image is published in the candidate."
+    },
+    {
+      "criterion_id": "BOUNDARY",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json",
+        "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json"
+      ],
+      "assessment": "Read exact outgoing paths and programme diff. No src/functions/workflows/checkpoint changes, adapter cap untouched. Existing ORA terminal remains historical and additive otherSourceFamilyDiscovery names the new current no-write successor. PR428/429 remain outside this package; Hemmets stays held. Required CI and checkpoint publication are still future actions."
+    }
+  ],
+  "findings": [],
+  "finding_dispositions": [
+    {
+      "role": "supporter",
+      "id": "S1",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json",
+        "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
+        "data/generated/step8g/based-cooking-lineage-discovery.json"
+      ]
+    },
+    {
+      "role": "supporter",
+      "id": "S2",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
+        "data/generated/step8g/based-cooking-lineage-discovery.json"
+      ]
+    }
+  ],
+  "rationale": "The package resolves exactly one discovery outcome beyond exhausted ORA. S1 is resolved by comparison against all 226 stored source paths while retaining 223 historical parseable rows. S2 is resolved by preserving extensionless Mead and root cinnaroll as explicit structural exceptions. Critic found no further material defect and challenged renamed/rewritten false novelty directly. The candidate inventories 442 potential files, 236 path-new and 206 path-overlap; it claims zero admissions and leaves full-corpus novelty unknown. Pinned source declarations and actual samples justify record-level review, not blanket rights clearance. Local validation: 1646 static files, 1441 tests, 1415 pass, 26 skipped, zero failures. Required CI and exact merged/checkpoint verification remain required.",
+  "goal_contribution": "Acquisition now has a specific pinned non-ORA lineage opportunity and reproducible dedup worklist instead of stopping at ORA exhaustion. The value is a concrete route toward additional usable recipes, with no unsupported increase in the 22,086 stored corpus count.",
+  "next_gate": "REQUIRED_CI"
+}

@@ -1,0 +1,3178 @@
+{
+  "schema_version": 1,
+  "terminal": "NON_ORA_LINEAGE_DISCOVERY_COMPLETE__RECORD_MEASUREMENT_NEXT",
+  "source": {
+    "repository": "LukeSmithxyz/based.cooking",
+    "commit": "9d4a31a040eedd61e4fb608cb0c114ff9a7c4dd2"
+  },
+  "baseline": {
+    "repository": "sylGauthier/recipes",
+    "commit": "b12e481d1c220a13e0847a34e148d5872a16928e",
+    "file_count": 226,
+    "stored_count": 226,
+    "historical_structurally_parseable_count": 223,
+    "evidence": "data/generated/step8g/cc0-markdown-measurement.json"
+  },
+  "counts": {
+    "candidate_files": 442,
+    "exact_baseline_blobs": 0,
+    "overlapping_paths": 206,
+    "new_paths": 236,
+    "exceptions": 2,
+    "confirmed_new_usable_recipes": null,
+    "added_to_protected_corpus": 0
+  },
+  "rights": {
+    "status": "SOURCE_DECLARATION_FOUND__RECORD_REVIEW_REQUIRED",
+    "license_evidence": [
+      {
+        "path": "README.md",
+        "git_blob_sha": "23196a05e9c67cd56acbf1b88b53bf910441845c",
+        "content_sha256": "207a6e49834bf21011f98d50b895ecb45233102de7e6fc0d391cc70560b68923",
+        "url": "https://github.com/LukeSmithxyz/based.cooking/blob/9d4a31a040eedd61e4fb608cb0c114ff9a7c4dd2/README.md"
+      },
+      {
+        "path": "LICENSE.md",
+        "git_blob_sha": "fdddb29aa445bf3d6a5d843d6dd77e10a9f99657",
+        "content_sha256": "6b0382b16279f26ff69014300541967a356a666eb0b91b422f6862f6b7dad17e",
+        "url": "https://github.com/LukeSmithxyz/based.cooking/blob/9d4a31a040eedd61e4fb608cb0c114ff9a7c4dd2/LICENSE.md"
+      }
+    ],
+    "attribution": "Preserve author, source URL, pinned commit and change history; final obligations require record review.",
+    "scope": "README explicitly declares website content public domain; LICENSE.md is software-worded Unlicense. This is discovery evidence, not completed Spain-facing per-record clearance."
+  },
+  "sample_observations": [
+    {
+      "path": "content/air-fryer-zucchini.md",
+      "git_blob_sha": "05caad93428e2f5f9c31faaee678081213a8b6fd",
+      "has_title": true,
+      "has_ingredient_section": true,
+      "has_method_section": true,
+      "markdown_heading_shape": "STANDARD",
+      "full_cohort_parseability_proved": false
+    },
+    {
+      "path": "content/popcorn.md",
+      "git_blob_sha": "013dc40b46b13a61a2be9d0c58f39bbdaaf2787f",
+      "has_title": true,
+      "has_ingredient_section": true,
+      "has_method_section": true,
+      "markdown_heading_shape": "STANDARD",
+      "full_cohort_parseability_proved": false
+    },
+    {
+      "path": "content/Mead",
+      "git_blob_sha": "20a639ce1f0dc3ebb073d72f79202a14e11bc129",
+      "has_title": true,
+      "has_ingredient_section": true,
+      "has_method_section": true,
+      "markdown_heading_shape": "NONSTANDARD_PLAIN_HEADINGS",
+      "full_cohort_parseability_proved": false
+    }
+  ],
+  "next_gate": "BASED_COOKING_PINNED_RECORD_RIGHTS_STRUCTURE_AND_FULL_CORPUS_DEDUP_NO_WRITE",
+  "constraints": [
+    "No recipe bodies or images in public Git",
+    "No D1 writes or runtime activation",
+    "No recommendation admission",
+    "Hemmets remains HOLD",
+    "No paid infrastructure or third shard",
+    "Preserve source omissions; do not infer safety metadata"
+  ],
+  "rows": [
+    {
+      "path": "cinnaroll.md",
+      "git_blob_sha": "fb849df37fae9e3475a427a1cf7f54fcbece112c",
+      "bytes": 1068,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": "ROOT_ORPHAN_RESCUE"
+    },
+    {
+      "path": "content/aelplermagronen.md",
+      "git_blob_sha": "7103c943208f9962cbb51c65fe33ec3d2c6580dd",
+      "bytes": 1779,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/aglio-e-olio.md",
+      "git_blob_sha": "e3263ab88334256806b9d99b80be92ae382b0423",
+      "bytes": 1326,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/air-fryer-zucchini.md",
+      "git_blob_sha": "05caad93428e2f5f9c31faaee678081213a8b6fd",
+      "bytes": 608,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/aljotta.md",
+      "git_blob_sha": "19de070c8402975a9773d5087a0aa6bb3dc3ce40",
+      "bytes": 2556,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/almeirim-stone-soup.md",
+      "git_blob_sha": "aeebcc44172285572057866100cffc6568a11309",
+      "bytes": 2636,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/apple-chicken.md",
+      "git_blob_sha": "c57dd820bc513c7063e427b2042270e2c731ba29",
+      "bytes": 1117,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/apple-pie.md",
+      "git_blob_sha": "05340168990a43a67997837fafd7ac8b1bc44e97",
+      "bytes": 2244,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/apple-strudel.md",
+      "git_blob_sha": "53e5d057ea4e5f0e4c461ae40c4fff3ec5e80b64",
+      "bytes": 847,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/ardei-umpluti.md",
+      "git_blob_sha": "7e9cfc3eedc50a9a117834982a6bfa8093607625",
+      "bytes": 1267,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/arroz-chaufa.md",
+      "git_blob_sha": "4b39aa256f566fb9f6427eb931b0375a39a4bd2d",
+      "bytes": 847,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/asian-style-chicken-sticky-sauce.md",
+      "git_blob_sha": "0211d635b56d1b551073bcf8f00195c6c605b599",
+      "bytes": 1667,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/assam-tea.md",
+      "git_blob_sha": "3e09b58e209394b3ca89dee1b16977d66ecf2c23",
+      "bytes": 564,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/aussie-snags.md",
+      "git_blob_sha": "080aa612ea57b815df1ba8c7a20f944f3bf806ea",
+      "bytes": 982,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/autumn-soup.md",
+      "git_blob_sha": "daaa844b316cfc3406fbaf21e63b7f33d8798dba",
+      "bytes": 845,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/ayran.md",
+      "git_blob_sha": "5470561b82bd941f788359bc6f9c7a64c80a8e4d",
+      "bytes": 635,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/babas-feta-pasta.md",
+      "git_blob_sha": "fe7f91d7e26c3ba9b8cef6bc95acf4a2c6f0d548",
+      "bytes": 2768,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/baby-back-ribs.md",
+      "git_blob_sha": "8339301c65c72b9866b140a61fc2a2b80ac9a9a1",
+      "bytes": 1723,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/baked-mostaccioli.md",
+      "git_blob_sha": "87a663a3cab2336f9dc080790fc2d8e3762dc632",
+      "bytes": 876,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/baked-pasta-with-broccoli.md",
+      "git_blob_sha": "21430263857c0a552635115f2dfb9aa5c025ba1c",
+      "bytes": 994,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/baked-rice.md",
+      "git_blob_sha": "b4d895fa971317fe1adce4d4b82e7ae551a48817",
+      "bytes": 2258,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/baked-salmon.md",
+      "git_blob_sha": "26299c2502260eec41ae9a86c8126c004ad85c1a",
+      "bytes": 639,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/baked-trout.md",
+      "git_blob_sha": "88e99f43b28a1cac95135a383040b5647a01ce02",
+      "bytes": 682,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/banana-bread.md",
+      "git_blob_sha": "5e1854b511605deef9cdb6d8ec85ce6f612f43c7",
+      "bytes": 1007,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/banana-muffins-with-chocolate.md",
+      "git_blob_sha": "db48367f974eb8532e148a62e456c79cbed412b4",
+      "bytes": 1010,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/banana-oatmeal-cookies.md",
+      "git_blob_sha": "38c7422737cc341c552dc6aae8860756649bde63",
+      "bytes": 925,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/banana-pancakes.md",
+      "git_blob_sha": "e0a0418c07cc3262766c87ba7400a3e1ab180078",
+      "bytes": 936,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/basic-meatballs.md",
+      "git_blob_sha": "260612e7f48f790e6fdd4ae6a3b5b66df7f87485",
+      "bytes": 1910,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/basic-waffles.md",
+      "git_blob_sha": "f259935f4ec34d8f81232669ab14d320dbb3d72b",
+      "bytes": 1041,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/batter-pudding.md",
+      "git_blob_sha": "382c24bbd6df16d5e0a639af3282d2cc0045b27a",
+      "bytes": 986,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/bean-salad.md",
+      "git_blob_sha": "876882dd9f83497cd2dc738da6f7d08a1dc41f34",
+      "bytes": 859,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/bebek-mropol.md",
+      "git_blob_sha": "0a4d8029beadd797f203c46c9abe02c688b9423d",
+      "bytes": 1273,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/beef-and-broccoli.md",
+      "git_blob_sha": "e6f91b431bbd037f467b355af6673d2876ec59fa",
+      "bytes": 830,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/beef-goulash.md",
+      "git_blob_sha": "5d7c5297347ca738b64130dab2663c99b700326d",
+      "bytes": 1576,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/beef-jerky.md",
+      "git_blob_sha": "4c9c78a55c88f719ec7ef269718e438d9cfcf9c2",
+      "bytes": 1474,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/beef-kidney.md",
+      "git_blob_sha": "cecb0a02fe6479ff5b476cbd30c25ed7659c0253",
+      "bytes": 804,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/beef-liver-and-onions.md",
+      "git_blob_sha": "6710562eb6848099fa9b0b48bd83f18e6f457d2a",
+      "bytes": 1135,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/beef-stew.md",
+      "git_blob_sha": "251ed67f854249035ec4669fec92095a3a60a136",
+      "bytes": 2184,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/beef-tips.md",
+      "git_blob_sha": "479038c68f7998c224102acb5b88a321d361bed9",
+      "bytes": 2992,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/beef-wellington.md",
+      "git_blob_sha": "17e8ec9dec2353ba38309bf1096d0e18945f9c7c",
+      "bytes": 2378,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/beijinho.md",
+      "git_blob_sha": "fb1db56b24eb51203f5215372174c9b2bd216e32",
+      "bytes": 1260,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/belgian-pear-syrup.md",
+      "git_blob_sha": "8db2171b2086b80a0f52cf51fb2dbeaf1bd705c5",
+      "bytes": 2155,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/bloody-mary-mix.md",
+      "git_blob_sha": "7e6bfb02b6e1a3f0f2259f781f0fda8566b05a39",
+      "bytes": 710,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/blueberry-muffins.md",
+      "git_blob_sha": "31af8bbf644b69f19ed947fed7933652381fd948",
+      "bytes": 1311,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/blueberry-smoothie.md",
+      "git_blob_sha": "99630ee90ef830838076b7192a00dace923251ad",
+      "bytes": 567,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/bolinhos-de-coco.md",
+      "git_blob_sha": "8f640a54916cd700c2543eb320ced2ee7ad88538",
+      "bytes": 777,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/bolo-do-caco.md",
+      "git_blob_sha": "af5c081a2f668671734561173c28451f607d061a",
+      "bytes": 1667,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/bolognese-sauce.md",
+      "git_blob_sha": "04ef622754cb0093ebf96126cd125f30fa1ae41a",
+      "bytes": 2609,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/bread-pudding.md",
+      "git_blob_sha": "bd69cb30c8b1d03c7658e92d94afa91ae1015ffd",
+      "bytes": 841,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/bread.md",
+      "git_blob_sha": "bad36c3a1d3b22bae19aa16c2ab27b573d368d1f",
+      "bytes": 3116,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/breakfast-wrap.md",
+      "git_blob_sha": "aaa2cf6314e5f9bc071ceae3272dcb65b8cc9dd2",
+      "bytes": 957,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/breton-crepes.md",
+      "git_blob_sha": "d86b3482ce694d45d1b55c85958d2446164ce942",
+      "bytes": 697,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/brigadeiro.md",
+      "git_blob_sha": "d854c98e1c8200b6d609932db33e05a45f254326",
+      "bytes": 1067,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/broiled-trevally.md",
+      "git_blob_sha": "67d720cf94074fa3580d73d009ba486f0326eee1",
+      "bytes": 1039,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/broiled-venison-steaks.md",
+      "git_blob_sha": "d45c4417047e15bcfe656ded385dde1492704feb",
+      "bytes": 965,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/brown-sauce.md",
+      "git_blob_sha": "aafe9853e98628f625644051bf736f70fcd40ebd",
+      "bytes": 737,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/burger-dressing.md",
+      "git_blob_sha": "58ea4e662311dc7a01f51838223d2e7367f0fe96",
+      "bytes": 459,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/butter-based-biscuit.md",
+      "git_blob_sha": "99cca4c6f271aaa686446232ae3facaa851c8389",
+      "bytes": 1871,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/butter-biscuits.md",
+      "git_blob_sha": "ab8cc7495e64d709764afa67725984852942749a",
+      "bytes": 815,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/butter-cake.md",
+      "git_blob_sha": "b1428488ce2090a457190a8375f05c626dfbaf94",
+      "bytes": 1944,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/butter-chicken-masala.md",
+      "git_blob_sha": "eb0235849d28ffc58a2338ecd886b2790a411914",
+      "bytes": 1817,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/cacio-e-pepe.md",
+      "git_blob_sha": "ee65fccfaae4fa72387481bf59eebccd71952e49",
+      "bytes": 1354,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/caesar-salad.md",
+      "git_blob_sha": "74721d5c2b37e97296fd567eb9806b97d4226e0d",
+      "bytes": 636,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/cannellini-bean-salad.md",
+      "git_blob_sha": "9a0c2cebd58f03b5a498e426f90a911f8196309d",
+      "bytes": 732,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/carbonade.md",
+      "git_blob_sha": "5646d4b77e89f2f00bc2b5f9b1d6dbe62bf5cebc",
+      "bytes": 1548,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/carbonara.md",
+      "git_blob_sha": "d2462d224908d64b9ebfb726022ff1f00d1740cb",
+      "bytes": 1946,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/casio-in-pastelletto.md",
+      "git_blob_sha": "5230f6fdece970026987ad20d2cdfb62e5030743",
+      "bytes": 998,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/castagnole.md",
+      "git_blob_sha": "a57ddd353b5d03c65cd315b7a020b3385a2af2ab",
+      "bytes": 654,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/ceviche.md",
+      "git_blob_sha": "463bad19df63064dcaefa3db2a612313ee99780e",
+      "bytes": 1565,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/challah-bread.md",
+      "git_blob_sha": "e421c2c222c28e841f4c7e12192e2f6105fc4f90",
+      "bytes": 1618,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/cheddar-crusted-chicken.md",
+      "git_blob_sha": "7b27c8d3b1a942a53d172bfe15609b9b4142f67c",
+      "bytes": 1062,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/cheese.md",
+      "git_blob_sha": "1db766dee7b19cf9d55e3ca96bb83b89d3599f2f",
+      "bytes": 1996,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/cheesy-ham-and-potato-bake.md",
+      "git_blob_sha": "11f6d85448b43cd95b66a996648f202ffa5f9ccf",
+      "bytes": 1196,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/cheesy-meatballs.md",
+      "git_blob_sha": "d0b3a71cfbf26880f71f5f1a59bbd1941256a32e",
+      "bytes": 1953,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/cheesy-pasta-bake.md",
+      "git_blob_sha": "830f853869bf39f897b592a43ce8de883539e884",
+      "bytes": 1256,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/cheesy-potatoe-bake.md",
+      "git_blob_sha": "11c6502e4b5fa12db3e5df0c1abba342833db7d7",
+      "bytes": 1153,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/chicharrones.md",
+      "git_blob_sha": "666940898f7e2ae521a8d34305a6da2b1297b53a",
+      "bytes": 1119,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/chicken-biscuit-potpie.md",
+      "git_blob_sha": "b30d0331a13db67f52aa9860dcc39e10a97f45a5",
+      "bytes": 698,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/chicken-in-red-wine-vinegar-sauce.md",
+      "git_blob_sha": "44194ff297c9aac27c1ff57385d329b315e4dca8",
+      "bytes": 1289,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/chicken-paprikash.md",
+      "git_blob_sha": "1b50280560ae7a3544c83b81813ffeb914b65cc5",
+      "bytes": 1997,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/chicken-parmesan.md",
+      "git_blob_sha": "b2bc9ccacb921d7ec1c6151a069d6d15e9afbc4d",
+      "bytes": 1640,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/chicken-pasta-casserole.md",
+      "git_blob_sha": "faf3855ec1dfbfdb30cb9149eb546b2e8c97fb22",
+      "bytes": 1139,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/chicken-satay.md",
+      "git_blob_sha": "e4a1c723707354b11c13e064cc44fc9c38096b38",
+      "bytes": 931,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/chicken-soup.md",
+      "git_blob_sha": "d1d7956a0825df14972116d5443aa97e96115752",
+      "bytes": 819,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/chicken-stock-bone-broth.md",
+      "git_blob_sha": "0ee929d5943b8fc47b11a4b348a3ce5d4a26c074",
+      "bytes": 1621,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/chicken-tacos.md",
+      "git_blob_sha": "3327e3301fd4e81cfa2f6c4241e00ddee0ce719e",
+      "bytes": 1071,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/chicken-tenders-airfried.md",
+      "git_blob_sha": "d8763e11ac994d0c9b498219ee80df5f505d2aec",
+      "bytes": 953,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/chicken-tikka-masala.md",
+      "git_blob_sha": "9d0c6b1fbe8e3fb03131e898100ca0cb53da6056",
+      "bytes": 1270,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/chicken-tomato-spinach-curry.md",
+      "git_blob_sha": "10a25daa13bd5cc4af22c994872175829d75021f",
+      "bytes": 1638,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/chicken-wings.md",
+      "git_blob_sha": "d6e4befbb25c706d6012155981870b27a8c910b0",
+      "bytes": 678,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/chili-con-carne.md",
+      "git_blob_sha": "0ce455fce767c9539ce775f6664b87b2a29d373f",
+      "bytes": 1171,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/chimichanga.md",
+      "git_blob_sha": "ea79cd6e0b64e4b464a0a24db2bef34486639010",
+      "bytes": 1114,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/chipolata-in-balsamic-vinegar.md",
+      "git_blob_sha": "3efb781c3e77c26b1f905fe8218c4deea0ea2abe",
+      "bytes": 1678,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/chocolate_cake.md",
+      "git_blob_sha": "7f12db5e620b9c78fecbededa5502837daeb23e2",
+      "bytes": 1264,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/chocolate-chip-cookies.md",
+      "git_blob_sha": "ccb7d9de35c71baae4ae48862acd6026083b26d2",
+      "bytes": 1184,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/chorizo-and-chickpea-soup.md",
+      "git_blob_sha": "bdfe8b614c45ce88ff528ac9416d22d7b2d79440",
+      "bytes": 641,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/cinnamon-biscuits.md",
+      "git_blob_sha": "6cc55762bfa785f9705e8b8e5239571765a34b41",
+      "bytes": 2264,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/cinnamon-waffles.md",
+      "git_blob_sha": "8d7c70d7c4ed7bf784f1be4a78f46105f099258e",
+      "bytes": 631,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/cinnaroll.md",
+      "git_blob_sha": "9cd4941f8341b1273e33effb6de920bd1d9718b2",
+      "bytes": 1256,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/cinque-pi.md",
+      "git_blob_sha": "a6de855c5a4400ea60c9320076d1cd86cb05f46d",
+      "bytes": 855,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/clam-chowder.md",
+      "git_blob_sha": "8a2b337b4f9ecb5f175eaac5d8f408e2f65d7e7f",
+      "bytes": 1094,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/classic-bechamel-sauce.md",
+      "git_blob_sha": "f2ee5808b873fc1822aa80abecdc2d77d3f5f9bf",
+      "bytes": 1286,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/cochinita-pibil.md",
+      "git_blob_sha": "f512e4c5bb348c4b38b9128246421c047a06ad8e",
+      "bytes": 1946,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/cocoanut-pudding.md",
+      "git_blob_sha": "616894d819899b7bbd7fe33e100cfada4e1ce215",
+      "bytes": 1223,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/coconut-flour-bread.md",
+      "git_blob_sha": "ee63bf238853f5d952b963e1978ed753a0fcd15c",
+      "bytes": 1356,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/coconut-oil-coffee.md",
+      "git_blob_sha": "f3c1e4f2de943cee339ebf759e979882ba6efbf4",
+      "bytes": 351,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/colcannon-bake.md",
+      "git_blob_sha": "011a4d56fe0a5274b03c0e2feb213c112b16a6eb",
+      "bytes": 1339,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/coleslaw.md",
+      "git_blob_sha": "86d8fe3ff917f4a1e9b51e8106fc454522e2bda6",
+      "bytes": 1365,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/collard-greens-with-smoked-duck-and-parnips.md",
+      "git_blob_sha": "cbd45dd119cbc638dcf6f35eaa47fac5ec32b6e0",
+      "bytes": 1378,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/cooked-chickpeas.md",
+      "git_blob_sha": "446836f2419ec1aeff3ed4c56ad9b3967ba035ae",
+      "bytes": 568,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/coriander-chicken.md",
+      "git_blob_sha": "df1a4fbf2af2b044aca12f5523630a035534d6d7",
+      "bytes": 1730,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/corn-polenta.md",
+      "git_blob_sha": "82df7833d1c44f11ae0d0fa98db1f131d9239e06",
+      "bytes": 1045,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/corn-salsa.md",
+      "git_blob_sha": "560165704e3696d7169766e5586b43724ff27061",
+      "bytes": 582,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/country-crisp-cereals.md",
+      "git_blob_sha": "cb0a5ce5f3c74de171109b79ea27add0421bb2bf",
+      "bytes": 1229,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/country-skillet.md",
+      "git_blob_sha": "60be5ec7ffbdfcbeff8247cbf0eb42bfa3cbd397",
+      "bytes": 2579,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/couscous.md",
+      "git_blob_sha": "9a761869fef34ea912dcab6572884a10738a84fb",
+      "bytes": 2543,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/crab-salad.md",
+      "git_blob_sha": "f21e6cc4988b5d8f9e2051facecdad7bbd5298c5",
+      "bytes": 501,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/cream-cheese.md",
+      "git_blob_sha": "b6c64d610e15b795fe59eba028077df16d2d9459",
+      "bytes": 676,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/creamy-mashed-potatoes.md",
+      "git_blob_sha": "7751f46b524b394581fd62b9cb89c587fc56a226",
+      "bytes": 1767,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/creme-brulee.md",
+      "git_blob_sha": "b8d7abc6943de351cd5650b670f88e57859a297c",
+      "bytes": 984,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/croque-monsieur.md",
+      "git_blob_sha": "de8bedd3a3a4579f4d3205bc432b4501e71ee446",
+      "bytes": 1400,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/crostata.md",
+      "git_blob_sha": "1df2228b97fa8256405dd118005b8f12d4b5c4ea",
+      "bytes": 1038,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/croutons.md",
+      "git_blob_sha": "e03423a5a6381b25023244707a81fb1ad2fe1ec5",
+      "bytes": 1077,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/crunchy-coated-chicken-breasts.md",
+      "git_blob_sha": "43fb15703cec84387a0329ddcf4d25cdb5f09b96",
+      "bytes": 1114,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/cuca-italiana.md",
+      "git_blob_sha": "3652516326b1eb57342c6c161f6d3f05ec87da5c",
+      "bytes": 1719,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/curry-sauce.md",
+      "git_blob_sha": "c1ef43b34bd4681248d42c78f677635589d40978",
+      "bytes": 964,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/damper.md",
+      "git_blob_sha": "09b9b3649ef48bcfe665fcf9e7b27ddd446f1599",
+      "bytes": 659,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/danish-pancake.md",
+      "git_blob_sha": "ff0ff9419de67056150cbb1287fb7bb2257d07f5",
+      "bytes": 646,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/demi-glace.md",
+      "git_blob_sha": "40da16a318fac897b8d2911b78bf836ae70d2c40",
+      "bytes": 1088,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/diannes-southwest-salad.md",
+      "git_blob_sha": "809ee7aae8a2e35366972ace484f24a65bc897c6",
+      "bytes": 1103,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/dominican-spaghetti.md",
+      "git_blob_sha": "ba31dc05046cb4feff0fbadc11a867a48759877f",
+      "bytes": 947,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/dou-sha-bao.md",
+      "git_blob_sha": "0c8b23b1377237d809fbd92d9211ca1fee2ef70d",
+      "bytes": 1956,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/dried-tomato-plum-spread.md",
+      "git_blob_sha": "79c76fcc79bae60ad630e74afde613ea209ae4df",
+      "bytes": 667,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/drunken-beans.md",
+      "git_blob_sha": "f4d40e88fd21be086a48dee09d116a1aaf18cc4c",
+      "bytes": 852,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/dulce-de-leche.md",
+      "git_blob_sha": "acda35cdc7f34aefa4048d65140713885c589398",
+      "bytes": 1763,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/easy-chicken-and-rice-casserole.md",
+      "git_blob_sha": "6e17e06acad029a9df24987f466fc3cbfc1a14c7",
+      "bytes": 708,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/easy-pizza-sauce.md",
+      "git_blob_sha": "576004f1f7d7a30abe6e1c1569a3f2e2f87be8e1",
+      "bytes": 946,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/eggroll-in-a-bowl.md",
+      "git_blob_sha": "32e1b3bfc9f932642446572c8fca60a3389e1e67",
+      "bytes": 1304,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/eggs-benedict.md",
+      "git_blob_sha": "3f8ba8f91434944288c7834bd01f125ac9b6833d",
+      "bytes": 2250,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/eggs.md",
+      "git_blob_sha": "6e408fe35e91f536bb5c1790c003ca0ed91428c3",
+      "bytes": 1852,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/egyptian-lentils.md",
+      "git_blob_sha": "c7d6f3c633d89515c15d83f71287f39a8f682309",
+      "bytes": 1170,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/erwtensoep.md",
+      "git_blob_sha": "a2d7b9df5e9093d782a1a7374e1be8b71beefc47",
+      "bytes": 2064,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/exotic-ginger-cumin-chicken.md",
+      "git_blob_sha": "0abcb123fddae65545d887547b2ace790fbaa50f",
+      "bytes": 1082,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/fajita-seasoning.md",
+      "git_blob_sha": "ee436024af1cf0ec7bb6e3031285a84a2b78ec11",
+      "bytes": 558,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/fajitas.md",
+      "git_blob_sha": "f0e25d39a1c40b810e2430f53c175e8898827a39",
+      "bytes": 1354,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/fall-vegetable-and-chickpea-curry.md",
+      "git_blob_sha": "1c3a49d07f9e38b164662c4c8b044601dd5d5999",
+      "bytes": 1378,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/farci-tomatoes.md",
+      "git_blob_sha": "76820f009b281207d6c77789a32d106851fb1dda",
+      "bytes": 894,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/fennel-beans-and-kale-soup.md",
+      "git_blob_sha": "d900e0e4eb20d75c6b91b24735a9c28f39f74e63",
+      "bytes": 1351,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/finnish-salmon-soup.md",
+      "git_blob_sha": "324ba9e488ea3470730b2d16df2a3e0868cfadf4",
+      "bytes": 977,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/fish-curry.md",
+      "git_blob_sha": "2a42b85b072ec72788e45d75bd8225cc85381d59",
+      "bytes": 681,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/flammkuchen.md",
+      "git_blob_sha": "e5d508e124f6122957c8be29cb8176293a4ee66f",
+      "bytes": 1668,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/fondue.md",
+      "git_blob_sha": "49007f6929ef058813a384f18296e834dc89913b",
+      "bytes": 917,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/francesinha.md",
+      "git_blob_sha": "d2636d9ca5f400ad33f84bff1da1180991a7a17e",
+      "bytes": 1616,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/french-crepes.md",
+      "git_blob_sha": "e293dd4c69ebf596fac64d6674c3fae169065b0d",
+      "bytes": 852,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/french-mustard-sauce-porkchops.md",
+      "git_blob_sha": "ec4a3e3e4076d03084899f5c9b3ad6a0d09eba80",
+      "bytes": 1203,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/french-onion-soup.md",
+      "git_blob_sha": "20b5f9b1d1ca3bcd171677506f9b54198c16f19a",
+      "bytes": 1923,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/french-toast.md",
+      "git_blob_sha": "0833a161c9108dca8580f1a044eb5bede6ff1b09",
+      "bytes": 1230,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/fried-anglerfish-fillet.md",
+      "git_blob_sha": "792ee8ab086708624ab301354ef698e1304a6716",
+      "bytes": 2245,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/fried-potatoes.md",
+      "git_blob_sha": "e10946af027abcffa80055b40dab70a0686a797e",
+      "bytes": 408,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/frijol-con-puerco.md",
+      "git_blob_sha": "aa16e62acd1430138b70a603b5da80160bd7de82",
+      "bytes": 1432,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/fritatem-pomeranciis.md",
+      "git_blob_sha": "834c900442e9688c7e88ed1d5c065fcfa8c9bcb5",
+      "bytes": 884,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/frittata.md",
+      "git_blob_sha": "e3ea7532a7095428ea528864597dff849ddf94c3",
+      "bytes": 1552,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/full-english-breakfast.md",
+      "git_blob_sha": "76923b81190be763a9c406b8347e0df1c8e98205",
+      "bytes": 1925,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/fume-sauce.md",
+      "git_blob_sha": "2a1f0ceb057233eb98722225a002706abe35f612",
+      "bytes": 893,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/galinha-caipira.md",
+      "git_blob_sha": "4ceff9a2908dc8d8b2bb6d763b6b18a41e64e12e",
+      "bytes": 1109,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/garam-masala.md",
+      "git_blob_sha": "6e52f74c361504dad3ca36a74b0ba9846d1fefce",
+      "bytes": 1496,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/garlic-toast.md",
+      "git_blob_sha": "e640a676c6a0c00ea6c850f383854fd8bb70de0a",
+      "bytes": 760,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/ginataang-kalabasa.md",
+      "git_blob_sha": "6a15810a9618d22f4c63efd044b8f14212793eaa",
+      "bytes": 1016,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/ginger-garlic-broccoli.md",
+      "git_blob_sha": "69add790247c6e3050a7edf9cd4f94dab2f2efc7",
+      "bytes": 1323,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/gluehwein.md",
+      "git_blob_sha": "eba00ce583c51a3e266c25071cc334d1215f35a4",
+      "bytes": 1119,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/gnocchi.md",
+      "git_blob_sha": "db86942d49e827905eff535b3f81571d30c2e94b",
+      "bytes": 1480,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/gooseberry-pudding.md",
+      "git_blob_sha": "5f3b8e70b44eead1fed3d180764e3cb6383243fc",
+      "bytes": 820,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/grands-peres.md",
+      "git_blob_sha": "8622822463748d9b70caa24d8e8b5bac5fdb90d4",
+      "bytes": 791,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/granita.md",
+      "git_blob_sha": "c7c3fd443fcf4a6edc334747954c19d9e76aa641",
+      "bytes": 2437,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/granola.md",
+      "git_blob_sha": "18f001700ae1ba39d47cf90546f08a0db80a712e",
+      "bytes": 1000,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/greek-easter-cookies.md",
+      "git_blob_sha": "ef97d076bef935dd422f9c5e84b3e3349b199db0",
+      "bytes": 1668,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/greek-salad.md",
+      "git_blob_sha": "bcd98b788c12d1e1456fcd5bcc6e303d081a865c",
+      "bytes": 931,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/greek-yogurt.md",
+      "git_blob_sha": "19758db328f399fc2249d1d2e807361301ac12d1",
+      "bytes": 772,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/grilled-mackerel-with-miso-soup-and-squash.md",
+      "git_blob_sha": "0b1feb16ff5f1e7ee6076bb13fd6dc3a3af80db0",
+      "bytes": 1299,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/grostoli.md",
+      "git_blob_sha": "dee6f5cf3bb08bd82489fe4bd31e1cafb3b51d6f",
+      "bytes": 1218,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/guacamole.md",
+      "git_blob_sha": "cf25e368da508c1fb60382f22fee223fbb1cc831",
+      "bytes": 948,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/gumbo-shrimp-and-sausage.md",
+      "git_blob_sha": "c72367d498288d19b5edb60a2a97a2964b874aae",
+      "bytes": 1813,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/guobaorou.md",
+      "git_blob_sha": "c53dfd5d136e074b4bb2c7e17798625e033df042",
+      "bytes": 1239,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/gypsy-soup.md",
+      "git_blob_sha": "c9caa697eb53cd25488c8723eb6d7165fa831dc6",
+      "bytes": 1148,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/hakka-style-meatballs.md",
+      "git_blob_sha": "7b7286f69031bf21d361e4d9f0c1d13538eb119d",
+      "bytes": 2020,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/ham-and-lentil-soup.md",
+      "git_blob_sha": "f106286bf2c20fdd931c6241a93966b4837cf667",
+      "bytes": 552,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/hamburger-patties-all-beef.md",
+      "git_blob_sha": "43b8fe86e0860daa26514d0fa7891c2747975d7b",
+      "bytes": 567,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/hamburger-patties.md",
+      "git_blob_sha": "9a3eba72a80e797084966236e970d4d448a6d727",
+      "bytes": 580,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/hangover-eggs.md",
+      "git_blob_sha": "1db79dd3af1f052b5b57cb907008afde92fe988f",
+      "bytes": 1902,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/hearty-breakfast-oatmeal.md",
+      "git_blob_sha": "45f51ce798f568b76c3eb688926e48673c10735e",
+      "bytes": 962,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/hellfire-steak.md",
+      "git_blob_sha": "30ab77e30063a45a589a3847277f48e230a62d99",
+      "bytes": 673,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/herbs-pizza.md",
+      "git_blob_sha": "9551b60e4c01b9320d7f8db53bc0753b7ccad708",
+      "bytes": 1473,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/hoisin-pork-belly.md",
+      "git_blob_sha": "d0b6411e9d543e9d75c3e172485a8d04c2bdf867",
+      "bytes": 1560,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/hoisin-tofu-and-broccoli.md",
+      "git_blob_sha": "1e17d3701d4ae8e9801d1774f3af2d19d70ab81d",
+      "bytes": 1944,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/homemade-ice-cream.md",
+      "git_blob_sha": "48acb62ab5b4cd66d2173653e37799daa2967058",
+      "bytes": 1221,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/honey-garlic-chicken.md",
+      "git_blob_sha": "b3581e0c8b2bc2c60521798a090d42410a727782",
+      "bytes": 993,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/honey-sriracha-chicken-thighs.md",
+      "git_blob_sha": "d0bd7d333b70819d7fdf76978a4fff492701fa1a",
+      "bytes": 1770,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/honey-vanilla-ice-cream.md",
+      "git_blob_sha": "7fefc98ad960bf7e4b49d0b6fc5590ffd60469d1",
+      "bytes": 918,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/hummus.md",
+      "git_blob_sha": "1b5520cec33ac1fe1cf585b712a3028fb324cd95",
+      "bytes": 3419,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/indian-tea.md",
+      "git_blob_sha": "33d528384b031f220dbb0d7426d2df2c781fef4d",
+      "bytes": 785,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/instant-tom-yam-kung-noodle-soup.md",
+      "git_blob_sha": "b8056ad4b19b9a12106c984b31f4b376b7b73c77",
+      "bytes": 1289,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/irish-coffee.md",
+      "git_blob_sha": "c7aa457baa9d4e7ebcc932494a38f4c5bc3acbcc",
+      "bytes": 518,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/irish-potato-casserole.md",
+      "git_blob_sha": "aaee7f391c86968f250e8bae267df060b9ed6718",
+      "bytes": 760,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/italian-bread.md",
+      "git_blob_sha": "2f5e121d39774567d756bcf5af68f6556f376239",
+      "bytes": 1402,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/italian-mulled-wine.md",
+      "git_blob_sha": "1e3b931519003f4c7d3365a62f6154880a99cde9",
+      "bytes": 1345,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/jam.md",
+      "git_blob_sha": "ef7a3c9dac0e4848c0b89b95d133adc15b3ebd3d",
+      "bytes": 986,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/japanese-noodle-soup.md",
+      "git_blob_sha": "c40920c53d0569d4e0039efd016d407300d7b1d2",
+      "bytes": 1743,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/kaiserschmarrn.md",
+      "git_blob_sha": "64078b8a0655ab5429ef90b3f28bc7e71e072f8f",
+      "bytes": 979,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/kalderetang-manok.md",
+      "git_blob_sha": "1149ebbc88889e986f7ba81c651c3cf6865b2631",
+      "bytes": 1170,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/ketchup.md",
+      "git_blob_sha": "aebf9cb82ef74db15de6661a9d9d726193b94c05",
+      "bytes": 981,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/kettle-chips.md",
+      "git_blob_sha": "e70c532c67bf010d368dd578aeca878193cfab33",
+      "bytes": 2510,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/kettlecorn.md",
+      "git_blob_sha": "1d08743814f696e1ecaee1aeaecfec4661b29ce9",
+      "bytes": 1359,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/kombucha.md",
+      "git_blob_sha": "518bda47e21a801f8ec5db34b186c8bfb7a7522d",
+      "bytes": 2535,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/korv-stroganoff.md",
+      "git_blob_sha": "7b80073d1f224a4578e2b02be063187c8db788c6",
+      "bytes": 878,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/kropsua.md",
+      "git_blob_sha": "ab2fed9c7ed6771dd603e459a6a827e49f7db6c9",
+      "bytes": 1373,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/kvass.md",
+      "git_blob_sha": "c7eb6c5455f09c7f5f5e8f2aba10e071bbd4e23b",
+      "bytes": 1750,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/lamb-biriyani.md",
+      "git_blob_sha": "aebbb4526c8bd1799c4ac6f7f88bab04ef2a54c3",
+      "bytes": 2549,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/lasagna.md",
+      "git_blob_sha": "d148be8cba9a1b51ec7077645566ce85c90c139a",
+      "bytes": 1787,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/lavacake.md",
+      "git_blob_sha": "44e5bacb72d4ed0bd4b054debcdd21e4bb8e819a",
+      "bytes": 638,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/lebanese-lentil-soup.md",
+      "git_blob_sha": "8200aef7ce11d88cb5b26009e35395b89f8583c7",
+      "bytes": 1142,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/lemon-and-oregano-chicken-traybake.md",
+      "git_blob_sha": "7180d1d124ae28fe39e1208969a8f037426cfc6d",
+      "bytes": 1511,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/lemon-juice-salad-dressing.md",
+      "git_blob_sha": "7b53836e8eeca05ec792cdc6be546dc22bcae7b7",
+      "bytes": 458,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/lemon-pudding.md",
+      "git_blob_sha": "32ca3e8905fe59000f49f2b3d1d869b149ba3651",
+      "bytes": 2349,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/lentejas.md",
+      "git_blob_sha": "c48e0fcb65b175f81abbed4d3c9f8735bb524ce1",
+      "bytes": 1040,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/lenten-chili.md",
+      "git_blob_sha": "ef0bc962109b0ab173b691735675559ab307402e",
+      "bytes": 1293,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/lenten-lentil-curry.md",
+      "git_blob_sha": "f4d2a83579665e8ff5b06814be82a5d748ebc7d6",
+      "bytes": 868,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/limoncello.md",
+      "git_blob_sha": "bc7e1b58429ea45aad356e2cf292e3e9769386d5",
+      "bytes": 993,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/limoncini.md",
+      "git_blob_sha": "dd7f389643cb52db046e56248d72d60154e97907",
+      "bytes": 1565,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/lithuanian-cold-borscht.md",
+      "git_blob_sha": "e33da2b4ffd8cf294cc0782679d12720a0c1b3fe",
+      "bytes": 1997,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/liverpate.md",
+      "git_blob_sha": "840586ddf5856e8095253654e728d83e7d1366ae",
+      "bytes": 860,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/loaded-mexican-rice.md",
+      "git_blob_sha": "4034e350259676e114bb5190bd4e17fda411b7f2",
+      "bytes": 1036,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/lobster-bisque.md",
+      "git_blob_sha": "4eaa2119c8126929b6d9ba26dd8974ccc440ba87",
+      "bytes": 2040,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/long-cooked-chuck-steak.md",
+      "git_blob_sha": "91bc0a8dc26a18791c2386a8e50986dc6b56bb59",
+      "bytes": 792,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/manhattan.md",
+      "git_blob_sha": "0542c03ece4ec766d922750591433d569a91e2d1",
+      "bytes": 443,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/mapo-tofu.md",
+      "git_blob_sha": "5d2772da0edc844d95d237bf2ac7945c76506728",
+      "bytes": 1446,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/maque-choux.md",
+      "git_blob_sha": "1bcd12433e896c8109b4dc59d1c849759602b22b",
+      "bytes": 898,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/marinated-pork-steaks.md",
+      "git_blob_sha": "4302d992f88768e19998a06a24a2f012397a9be7",
+      "bytes": 972,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/matcha-cookies.md",
+      "git_blob_sha": "b995a7e1764b7665a8e6d3abaf8adb152ef13f11",
+      "bytes": 1605,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/mayonnaise-or-aioli.md",
+      "git_blob_sha": "4f1bd52b991683a5eac8b7b7f42551f7c6d91b23",
+      "bytes": 1168,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/mazurek.md",
+      "git_blob_sha": "aa02d5a2d0ea6b71e92d778e5de81987d4bf9cc6",
+      "bytes": 1106,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/Mead",
+      "git_blob_sha": "20a639ce1f0dc3ebb073d72f79202a14e11bc129",
+      "bytes": 1440,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": "MISSING_MARKDOWN_EXTENSION"
+    },
+    {
+      "path": "content/meatloaf.md",
+      "git_blob_sha": "09e6f00767d83f4bf73d89cd0b67c928816f0bd1",
+      "bytes": 1954,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/medieval-beef-soup.md",
+      "git_blob_sha": "4f0e1b5b12f98d5e5600ecd46f993300fc2884cb",
+      "bytes": 1852,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/menemen.md",
+      "git_blob_sha": "66d5a6b273590a628d942534c6613ce3936b4df4",
+      "bytes": 1029,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/merchants-buckwheat.md",
+      "git_blob_sha": "495c7a8933b6cbc37968084bbc09b20b0a233979",
+      "bytes": 1523,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/mexican-meat-loaf.md",
+      "git_blob_sha": "76a0c593109fbe83a5c5eebe34e69c4f91a28580",
+      "bytes": 614,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/milus-fast-kvass.md",
+      "git_blob_sha": "6e5785defccb254c3a19e43eef143c40a0d25a8d",
+      "bytes": 2781,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/miso-ginger-pork.md",
+      "git_blob_sha": "7218253f144c7c6bd7b71a4c3c331dbd4dc8674c",
+      "bytes": 1002,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/miso-soup.md",
+      "git_blob_sha": "fb36c791b076d08b8dbf02742728ba4c762ec0f0",
+      "bytes": 646,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/modern-borscht.md",
+      "git_blob_sha": "7a36142e722462fdc356ce556375b4c956dc73cc",
+      "bytes": 3527,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/mushroom-risotto.md",
+      "git_blob_sha": "2e4d5d34ba20cce01c6e3b431b5e68e4d68d1b54",
+      "bytes": 1415,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/mushroom-sauce.md",
+      "git_blob_sha": "b4896d591a8a269eaceb062775bc223be80039f6",
+      "bytes": 788,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/mushroom-stragonov.md",
+      "git_blob_sha": "d22345b42e29d0412f2dbb89026ceebc5df5956c",
+      "bytes": 1399,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/naan-bread.md",
+      "git_blob_sha": "864e489bf36a8d74e29ccafca786a28761eaab3f",
+      "bytes": 1447,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/nashville-chicken.md",
+      "git_blob_sha": "7c36a5d51f02a19161f955323d46dfd1d74ab7ed",
+      "bytes": 2865,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/newfoundland-cod-chowder.md",
+      "git_blob_sha": "1f29f7917d5f00294fe072a0ed9ac6499ef4dfeb",
+      "bytes": 983,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/no-knead-bread.md",
+      "git_blob_sha": "ccbdc4937afde257228518662e77912e484f9a19",
+      "bytes": 715,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/no-knead-pizza-dough.md",
+      "git_blob_sha": "09bd41de20a36565b47c05b625953490ef571375",
+      "bytes": 761,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/oat-milk.md",
+      "git_blob_sha": "abd323248c827aa3e6fde967219cc297c0dc92ae",
+      "bytes": 842,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/oatmeal-cookies.md",
+      "git_blob_sha": "ef1c22ae22ca456020c9b08c42188c4eb166a1e5",
+      "bytes": 612,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/oatmeal-pancakes.md",
+      "git_blob_sha": "19cbf19f5ec7b2b55914fef00341037e767542d3",
+      "bytes": 861,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/oats.md",
+      "git_blob_sha": "63f6c24cd1d7a069f32113e751977dc9f93aeae8",
+      "bytes": 1268,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/oaty-pancakes.md",
+      "git_blob_sha": "ed6ffa8d90567a26caca93ae95ea9294f0a515db",
+      "bytes": 1143,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/okonomiyaki.md",
+      "git_blob_sha": "0e3b5bec2a09b014104aa86513d338bbe7bd6326",
+      "bytes": 1704,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/okroshka.md",
+      "git_blob_sha": "db87dc1ad95c72047b596951f18fa1ca0df19d28",
+      "bytes": 904,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/omelet.md",
+      "git_blob_sha": "49b91d44ce3c91a7fb25a5bc40f23179e693bc72",
+      "bytes": 1270,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/one-pot-chicken-tetrazzini.md",
+      "git_blob_sha": "6c774adce1e7cbb8a77e6cf48c4e5cd77dc0dcae",
+      "bytes": 1238,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/onion-raitha.md",
+      "git_blob_sha": "2d6f4d556118e7fbcdb7f555631d72cb920878a1",
+      "bytes": 1050,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/orange-glorious.md",
+      "git_blob_sha": "bfb0ef93e763732192151def619978f17eee5422",
+      "bytes": 509,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/orange-jam.md",
+      "git_blob_sha": "cc2142d2df53573abad01dccea6523a98946a41d",
+      "bytes": 814,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/orange-pudding.md",
+      "git_blob_sha": "1b3edd1b8ff01e397da8dc139dee6cec58877c88",
+      "bytes": 1094,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/original-gatorade.md",
+      "git_blob_sha": "c8efd26aa91ed21d84dd059ffa9804382424a642",
+      "bytes": 699,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/oven-asado.md",
+      "git_blob_sha": "8112f09a32e24a4651566caf2697720c27ca86dc",
+      "bytes": 1138,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/overnight-oats.md",
+      "git_blob_sha": "ebb88e50634bded966f07219a517224d6623dec1",
+      "bytes": 1400,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/paella.md",
+      "git_blob_sha": "1467708af8de79facf5fa488f8806a06dbbe576d",
+      "bytes": 2110,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pan-pizza.md",
+      "git_blob_sha": "1ac6c45869cbf0771cdfb651797b9443c7a2e526",
+      "bytes": 1142,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/pan-seared-chicken.md",
+      "git_blob_sha": "50663cac2f49f8e2f1a6ff357576355a9e72e993",
+      "bytes": 1329,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/panang-style-beef-curry.md",
+      "git_blob_sha": "a4d918127be1f6790c3daf3cb777610974212494",
+      "bytes": 1583,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pancake.md",
+      "git_blob_sha": "5799b46ba9c4ef5c8486fabc1397ba4a2d35595c",
+      "bytes": 683,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/paneer-tikka-masala.md",
+      "git_blob_sha": "03e0405cd9bcf8a374cc8cb535b06656d5141a40",
+      "bytes": 1845,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/parmesan-potatoes.md",
+      "git_blob_sha": "3a0304561bd03582eabe4c243ab1834d796ef837",
+      "bytes": 1123,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/party-mimosa.md",
+      "git_blob_sha": "1ace19fdee8c561ed9a24ffeec68d16831c6352d",
+      "bytes": 526,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/pasta-alla-norma.md",
+      "git_blob_sha": "e00daf4e5a0a8d867d94e24637c5a51a04220a63",
+      "bytes": 1704,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/pasta-arrabbiata.md",
+      "git_blob_sha": "f5bb543809108e2b25eea5bd2c027d9255727c14",
+      "bytes": 1590,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pasta-navy-style.md",
+      "git_blob_sha": "c7aeafeee11b534191d4b46a39e455b348dd0913",
+      "bytes": 1654,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/pasta-sauce.md",
+      "git_blob_sha": "2d02a81079f7e2a651572d5abfd71afec8f0312f",
+      "bytes": 755,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/pasta.md",
+      "git_blob_sha": "72fc7a9b8fc789138bf6b3f2c624203ab28e8242",
+      "bytes": 1271,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/pastitsio.md",
+      "git_blob_sha": "a49dde3f6dd8b188dd4f447b8ee7b539d7b7dccd",
+      "bytes": 1531,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pate-chinois.md",
+      "git_blob_sha": "56a4227cba7aebae7b700edd1b773d84a5ae052b",
+      "bytes": 2657,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/pavlova.md",
+      "git_blob_sha": "d933c5c42087c174a3deced6a99eefccea074522",
+      "bytes": 888,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/peanut-butter.md",
+      "git_blob_sha": "ade044bd84a2bdb3b74bef554065775570efec76",
+      "bytes": 671,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/peat-carrot-salad.md",
+      "git_blob_sha": "19b8bfbd38c5e849efa0b682c9a99c30e4e820ed",
+      "bytes": 580,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pepper-sauce.md",
+      "git_blob_sha": "c633061b6836a7ad61551077b8cbe21d1f004d49",
+      "bytes": 720,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/perfect-potato-salad.md",
+      "git_blob_sha": "bffd3dd7f687ab88b4503476c61f773da8f84f9a",
+      "bytes": 995,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pesto-chicken-quinoa-bowls.md",
+      "git_blob_sha": "7e371f689c12359885b889a708c2d1c2f0a48eec",
+      "bytes": 1646,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pho-soup.md",
+      "git_blob_sha": "fc677e564f4610543558dfdf8fdb9b461b26ce6f",
+      "bytes": 1881,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/pickled-onions.md",
+      "git_blob_sha": "9b6b0838cef78df8b6cd861e67c9dfaeab9f701a",
+      "bytes": 836,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/pilaf.md",
+      "git_blob_sha": "7917e2e0e0a89b7fa1e1c758402b60a328f661b3",
+      "bytes": 1404,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/pineapple-lentil-curry.md",
+      "git_blob_sha": "6d6e6cb3318ccaa811951811486d350fdd0e3bfb",
+      "bytes": 1041,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pininyahang-manok.md",
+      "git_blob_sha": "db9651a353bd912c36619af47b34cdbf232437d5",
+      "bytes": 1336,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pizza-dough.md",
+      "git_blob_sha": "530998f6e6a2a82808a39e5324cd81f91a17beca",
+      "bytes": 612,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/pizza-sauce.md",
+      "git_blob_sha": "37b5f25788d8320dcceddebd1c5bcaa6d4c0ac03",
+      "bytes": 633,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/plum-pudding.md",
+      "git_blob_sha": "37624a6326a9344435a567c290e388fed42d9ab9",
+      "bytes": 1935,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/popcorn.md",
+      "git_blob_sha": "013dc40b46b13a61a2be9d0c58f39bbdaaf2787f",
+      "bytes": 1374,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pork-based-chili-con-carne.md",
+      "git_blob_sha": "9f42919d11a9f8fa1463259a4de02a9f97eece53",
+      "bytes": 874,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/pork-carnitas.md",
+      "git_blob_sha": "717176468519d3dd9bb0fe990da5eed0bcaeb312",
+      "bytes": 1253,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/portuguese-creamy-cod.md",
+      "git_blob_sha": "0126c36c2173fa27ec3cfb13adf3f329615860e0",
+      "bytes": 1614,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/portuguese-steak-with-beer-sauce.md",
+      "git_blob_sha": "09e28ee67173b605458f56e9d3906cf6c068b827",
+      "bytes": 1661,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/potato-and-eggplant-curry.md",
+      "git_blob_sha": "dc54346fd684c988dc0fd08a416dd6885758348d",
+      "bytes": 1343,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/potato-leek-soup.md",
+      "git_blob_sha": "f5f9120455ab95cf10a89e55d2ed55ace8197317",
+      "bytes": 1042,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/potato-pure.md",
+      "git_blob_sha": "338761d5168815161f7bdf00f2435bd55b4a5f53",
+      "bytes": 932,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/potato-soup.md",
+      "git_blob_sha": "0c238937637e00f72110787b4cc66950950f4219",
+      "bytes": 1132,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pozharskiye-cutlets.md",
+      "git_blob_sha": "0a4f77bb174c188b5979fcbd042a5fb5a351dd66",
+      "bytes": 2070,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/pretzels.md",
+      "git_blob_sha": "cbef068a3580469ace9f0aa0d4f2ccc5682a960b",
+      "bytes": 2779,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/puff-pastry.md",
+      "git_blob_sha": "7c1f5a042a457409a9bfc767bbde6d515f65867d",
+      "bytes": 1664,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pulled-rabbit.md",
+      "git_blob_sha": "73ca69bad9eb5d7884faef4e743e4b18f4c27b44",
+      "bytes": 895,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pulpo-gallega.md",
+      "git_blob_sha": "6c563adce2473bd28fe6a1e078380fe6a7d296b5",
+      "bytes": 1143,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pumpkin-flatbread.md",
+      "git_blob_sha": "7a1683148119ba057bfd6a6cdf6821337b025b04",
+      "bytes": 1794,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/pumpkin-loaves.md",
+      "git_blob_sha": "9dede8c46d3642d38041ecb9ff361e05b7d20e93",
+      "bytes": 841,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/quarkbaellchen.md",
+      "git_blob_sha": "bff80967ee0526aad1eaec1102723027dbd56dcd",
+      "bytes": 950,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/quesadilla.md",
+      "git_blob_sha": "2d59db4bdf05b5fd168f149af9c0ea3475cb5a9d",
+      "bytes": 1707,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/quiche.md",
+      "git_blob_sha": "7848228a76debd178abde9c646629764aff28316",
+      "bytes": 1611,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/quickbreakfastspaghetti.md",
+      "git_blob_sha": "a6d8bbe301aa8ce9fc9cd5ef257eed4fbd08f917",
+      "bytes": 1522,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/rabbit-onions.md",
+      "git_blob_sha": "90de3555d883f105600446024028d35d02ccde0e",
+      "bytes": 660,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/ragu-napoletano.md",
+      "git_blob_sha": "142668259a05433117b30fbcbb760dcd03466e7a",
+      "bytes": 2622,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/ragu.md",
+      "git_blob_sha": "75daa42730a407f799758c759b6dcc3ca48c9beb",
+      "bytes": 1394,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/ratatouille.md",
+      "git_blob_sha": "0d974c82a67e87d6f8ab1fb4c3452a6efe3182ae",
+      "bytes": 1327,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/ravioli.md",
+      "git_blob_sha": "6f61202985230546c8592ff1b661e68b87c21199",
+      "bytes": 3663,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/red-lentil-dahl.md",
+      "git_blob_sha": "fb7f903465b9187044e3b61851894fe1a213fbee",
+      "bytes": 1040,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/red-sauce.md",
+      "git_blob_sha": "f9f200b799cdc67d667f3a55f00b3fb4727327eb",
+      "bytes": 1016,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/refried-beans.md",
+      "git_blob_sha": "de3299b33e89e9eb8ff4bba47fc623405a28fa89",
+      "bytes": 1384,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/rice-pudding.md",
+      "git_blob_sha": "1532ed3f828794ce8ef7dc508e3ae32eb4b9f641",
+      "bytes": 907,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/rice.md",
+      "git_blob_sha": "4eb48757a70b285bbc2718be42bddce150abf608",
+      "bytes": 1099,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/ricotta-lasagna-filling.md",
+      "git_blob_sha": "9b2465a9f3537c108677e024f6a0dc104a0a8dca",
+      "bytes": 496,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/ricotta.md",
+      "git_blob_sha": "48aefc7675daedd07220ef9dbb90074fba085d24",
+      "bytes": 1042,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/risengroed.md",
+      "git_blob_sha": "5f2350fde2c4a93eed058c9e6304fe017779150a",
+      "bytes": 1195,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/roasted-chicken-breast.md",
+      "git_blob_sha": "3409757753b5b5f9e2a003248a2382f10d285346",
+      "bytes": 1495,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/roesti.md",
+      "git_blob_sha": "e1f88d6b78d364b286b682bbc66618f92feda291",
+      "bytes": 1986,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/russian-1000-islands-sauce.md",
+      "git_blob_sha": "966d0c3557daa47a0997c73ee8cc711ef206496e",
+      "bytes": 464,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/salsa-verde.md",
+      "git_blob_sha": "6ee0ec11b97e0d1cdd9cc7a3a6a2064b2a13c66e",
+      "bytes": 817,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/salsa.md",
+      "git_blob_sha": "b1bb2bfdcc9c5b37804acc5c4715e1e3ffdddb41",
+      "bytes": 634,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/sand-tarts.md",
+      "git_blob_sha": "2889ba7f25da04b37760f40fc7e89d587dd56cbd",
+      "bytes": 617,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/sardine-cakes.md",
+      "git_blob_sha": "9119b1297db67e8cd6c7c969650011c6e9a62ba1",
+      "bytes": 1477,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/sauerkraut.md",
+      "git_blob_sha": "d64713e19b939f2123387ac43384167495675f70",
+      "bytes": 1157,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/sausage-rolls.md",
+      "git_blob_sha": "21ef3ef87fc8ab60e1c84232950b239d1e2da59e",
+      "bytes": 518,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/savory-squash.md",
+      "git_blob_sha": "f208e50a4bf43e4bccb7dd54d0898424d4ce5286",
+      "bytes": 890,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/scandinavian-coffee-cake.md",
+      "git_blob_sha": "65472413aa472f0e4f844eba847a1eea017ce603",
+      "bytes": 1628,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/schinkenfleckerl-gratinated.md",
+      "git_blob_sha": "2d2e87deb84f479af4cc4844865bf88e49412b72",
+      "bytes": 1593,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/schnitzel.md",
+      "git_blob_sha": "0785698cbc712357d20aaddca8a0ffd3dce907ff",
+      "bytes": 1070,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/scouse.md",
+      "git_blob_sha": "ea55f0b4088d025caa82aed64a234b78aaa1c78f",
+      "bytes": 1312,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/seafood-pasta.md",
+      "git_blob_sha": "6146e3234905579a2960a78901bb7c462810e725",
+      "bytes": 1266,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/shakshouka.md",
+      "git_blob_sha": "c6473fe11a20c2adf24b90ce9822462e39c91d9e",
+      "bytes": 899,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/shepherds-pie.md",
+      "git_blob_sha": "5495cafee530522c01f9aa89dd95912e05c81192",
+      "bytes": 1118,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/shortcrust-pastry-biscuits.md",
+      "git_blob_sha": "dc4780bec6ed866a6fa505c1ab104dc51eaf1763",
+      "bytes": 1031,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/shortcrust-pastry.md",
+      "git_blob_sha": "96682f9f29621b9f497f3756793dc6e43e8b86e1",
+      "bytes": 1274,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/shrimp-and-chicken-jambalaya.md",
+      "git_blob_sha": "77fde1b765027a753d600104846875f8f8c2e2a4",
+      "bytes": 1845,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/shrimp-and-grits.md",
+      "git_blob_sha": "88bd6a4ae0e6c7eab1c19d79098e9666d0adf5aa",
+      "bytes": 1200,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/shrimp-creole.md",
+      "git_blob_sha": "8b2492f5f83529721554e40e430f5dbc268a4f2d",
+      "bytes": 1116,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/shrimp-fettuccine-alfredo.md",
+      "git_blob_sha": "5017fd86ef3a22ad4f957464842500d162f27334",
+      "bytes": 1825,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/simple-chicken-curry.md",
+      "git_blob_sha": "f5f16cf7a83067022dad25842127fde1553b1dd2",
+      "bytes": 1020,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/simple-pasta-cream-sauce.md",
+      "git_blob_sha": "80499376e3614708ceaf457b46e3bdadb05ef026",
+      "bytes": 640,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/simple-sauce.md",
+      "git_blob_sha": "d5fb53a2f71f5084de3ef142e1df23d9bdeec198",
+      "bytes": 579,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/slow-cooked-lamb-with-lemon.md",
+      "git_blob_sha": "b329d634fe46e32e9518a41a79406f631a7ae052",
+      "bytes": 1794,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/slowcooked-green-bean-beef-soup-supreme.md",
+      "git_blob_sha": "c84cb711844e6db18a288bc7af1c8964f79c3152",
+      "bytes": 1992,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/smoked-salmon-pasta-primavera.md",
+      "git_blob_sha": "ecd9fa50ee2546782efd5aaa8457ac49cb0f3c1e",
+      "bytes": 1150,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/smoked-salmon-quiche.md",
+      "git_blob_sha": "f4302dd8dac502ca9dcda8e277cb78efd8bdb3f3",
+      "bytes": 1075,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/smoked-turkey.md",
+      "git_blob_sha": "1a2abb6e84ee08b652d38608dcdacd5463900cf5",
+      "bytes": 1511,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/soleier.md",
+      "git_blob_sha": "2b16e3d940a3401efc60cec39701b762c82d2328",
+      "bytes": 1424,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/sourdough-bread-with-seeds-and-grains.md",
+      "git_blob_sha": "131e63d963a9192123f6b109218441b01f70f574",
+      "bytes": 1174,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/sourdough-loaf.md",
+      "git_blob_sha": "3747eac577a8e2451f71ec3f96228360a81fe8ab",
+      "bytes": 4089,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/sourdough-potato-bread.md",
+      "git_blob_sha": "7f4bcdce8d8f1a463d17a7c1710f08c5b4260235",
+      "bytes": 732,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/sourdough-starter.md",
+      "git_blob_sha": "a2e58d441df21a4b8d11cf6849106c7dfc9e40f2",
+      "bytes": 1514,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/southern-biscuits.md",
+      "git_blob_sha": "a9ce8e859473e35aad45f35384e1395e2450a617",
+      "bytes": 771,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/spaghetti-all-amatriciana.md",
+      "git_blob_sha": "f3c5da433dc62b687d6e27ab80efde2c7fda3544",
+      "bytes": 1328,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/spaghetti-alla-puttanesca.md",
+      "git_blob_sha": "337bf086b52fe63f69bc01984435d532a119e500",
+      "bytes": 1307,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/spaghetti-and-meatballs.md",
+      "git_blob_sha": "3325b4c88c901b4c88bbb9b8c62e2cb0972b2a4c",
+      "bytes": 2816,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/spaghetti-sauce.md",
+      "git_blob_sha": "27f65271ef6142263e26e6d7ab27592cd07bec2a",
+      "bytes": 814,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/spanish-tortilla.md",
+      "git_blob_sha": "949af40d3d4a8b60434a9e2504ab288dee017cd9",
+      "bytes": 1617,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/spatchcock-chicken.md",
+      "git_blob_sha": "12c62d4bb53ea5a2c4b70ba90070bf3b0f604d8c",
+      "bytes": 1265,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/spiced-apple-pancakes.md",
+      "git_blob_sha": "717e8e35f5e543c4e3de33b0ba976538dfebf829",
+      "bytes": 910,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/spiced-cantaloupe.md",
+      "git_blob_sha": "a1e3b1e5b202a7c731b190b73440b373e65d4bc0",
+      "bytes": 798,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/spicy-kung-pao-style-chicken.md",
+      "git_blob_sha": "e9cfd7af83b2684d6fc4975a5977c4ccc21fd5a1",
+      "bytes": 2013,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/spicy-mayo.md",
+      "git_blob_sha": "98c95ddeff0a35c66a74f01d8953125c7557dd68",
+      "bytes": 577,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/spicy-sausage-pasta.md",
+      "git_blob_sha": "90473e5593aa19db76744ae392b65069c568d421",
+      "bytes": 1452,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/spinach-rice-casserole.md",
+      "git_blob_sha": "31d68da1d8b17edcdee3487eadb344ec297c8996",
+      "bytes": 835,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/steak-tartare.md",
+      "git_blob_sha": "797a0059b438a3962c88f464922cd977ce6d0e2d",
+      "bytes": 1123,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/sticky-porkchops.md",
+      "git_blob_sha": "2e38e87e8431934a3db5d1d25efcd769d461eb96",
+      "bytes": 1127,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/stir-fried-chicken-with-an-orange-sauce.md",
+      "git_blob_sha": "e332ca6b4974e6295b7e723c82f1d757e96b7d66",
+      "bytes": 1573,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/stoemp.md",
+      "git_blob_sha": "c7d1681db68c5e4aeacb6ecdd63bf34d46a72bfd",
+      "bytes": 671,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/stoofvlees.md",
+      "git_blob_sha": "964a2434c8d6bbece13c4d0405b106cd340a9066",
+      "bytes": 2330,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/stracciatella-soup.md",
+      "git_blob_sha": "edb634d0ae8d1c04a4cf0d7b924fbb4801d9be3a",
+      "bytes": 585,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/strawberry-compote.md",
+      "git_blob_sha": "6a773079c01abc377799070c1767e8af85ab5d92",
+      "bytes": 1714,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/stroganoff.md",
+      "git_blob_sha": "7d8f7a36bc496bae079b07c3d8b33e2e104a04dd",
+      "bytes": 1393,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/stuffed-round-squash.md",
+      "git_blob_sha": "17ada20011c58ee546530aeee6ea4e702ed41f3a",
+      "bytes": 1218,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/stuffed-vegetables.md",
+      "git_blob_sha": "bd620ead882a97930b19380a0551d5e12aeeb000",
+      "bytes": 1094,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/sugar-free-brown-sugar-peanut-butter-cookies.md",
+      "git_blob_sha": "51bc443ad15c3c6ec23520d9abafa6d66f40de31",
+      "bytes": 2708,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/sunday-milkshake.md",
+      "git_blob_sha": "e6a9eedbb8056d5afd29cda6cb5a859348a2a2c0",
+      "bytes": 1184,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/swedish-pancakes.md",
+      "git_blob_sha": "d1c1d23c451fbfe66617586f8a7df4fd99eb27af",
+      "bytes": 1189,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/sweet-potato-fries.md",
+      "git_blob_sha": "7eac820cd1d46d3cb39ac028d496a3ca6d8d8f04",
+      "bytes": 1547,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/tabouleh.md",
+      "git_blob_sha": "1d07649cbc566f5fb2d14c37f89303570f670868",
+      "bytes": 906,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/taco-meat.md",
+      "git_blob_sha": "c99d0a4cec6440038102c813a71aaea9fbb2eadd",
+      "bytes": 751,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/tahini-short-bread.md",
+      "git_blob_sha": "1f1583bc492bc6d5d27acdd604209bbdf591fd82",
+      "bytes": 1410,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/tajine.md",
+      "git_blob_sha": "c9aa5bfea00ab8e8a61d971f0cca6531dbcd8f53",
+      "bytes": 1828,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/tanzania-tea-with-milk.md",
+      "git_blob_sha": "ac755030d644ee7680decfd989643b45a03b7715",
+      "bytes": 1128,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/tarta-de-santiago.md",
+      "git_blob_sha": "b1b4e6534e774eb000fcc7916a55ef338877bf3c",
+      "bytes": 1467,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/tarte-merengada.md",
+      "git_blob_sha": "4261ea132c3d31725dcf6d87ece3e5377e680860",
+      "bytes": 1447,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/teriyaki-beef.md",
+      "git_blob_sha": "88fda3d53c81ba3f854da486c08be06b9b94415b",
+      "bytes": 889,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/tiramisu.md",
+      "git_blob_sha": "f51395569a71c883deb577c96f7731c64e6ef7b0",
+      "bytes": 1064,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/tiroler-groestl.md",
+      "git_blob_sha": "93857f6b2b89664a97bedc34fd840495a8d7782c",
+      "bytes": 774,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/tofu-and-cashew-chow-mein.md",
+      "git_blob_sha": "1ad0d7185da734bb0a19f4e2cdbf662959df3ab6",
+      "bytes": 1206,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/tofu-stir-fry.md",
+      "git_blob_sha": "5345b5148b41e504789c3808e565db4a2ee01695",
+      "bytes": 1622,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/tomato-and-grilled-paprika-soup.md",
+      "git_blob_sha": "74fc97754079c7a89272a084638b950fb6b6987e",
+      "bytes": 783,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/tomato-flavored-hamburger-macaroni.md",
+      "git_blob_sha": "92d332e1c48c257bc2e5d74b21689c0c22833c4f",
+      "bytes": 1683,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/torrijas.md",
+      "git_blob_sha": "bf378ec2f7f45277993cbb7d35cd1c04085b7031",
+      "bytes": 1170,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/torta-frita-criolla.md",
+      "git_blob_sha": "3aebdfab33b2584ac3de576a0314a7c782ea4506",
+      "bytes": 1551,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/tortellini.md",
+      "git_blob_sha": "d8d5c58b2f2946f45622f1252bf924e9c73ce621",
+      "bytes": 733,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/tuhu.md",
+      "git_blob_sha": "c0557359fd3f4974edd9bb875d3cd7686b6f74e4",
+      "bytes": 1578,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/tuna-salad.md",
+      "git_blob_sha": "f4cd989a82210452370a01e335c526075149dde3",
+      "bytes": 700,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/tuna-sub.md",
+      "git_blob_sha": "c8111a44fc5920847079d5d8436657e6890edddb",
+      "bytes": 736,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/tunisian-tajine.md",
+      "git_blob_sha": "b13d5038e407d83b4b48e82946d304bed5fa3b41",
+      "bytes": 1979,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/turkish-red-lentil-soup.md",
+      "git_blob_sha": "6962b029e890503e2bc0a15423c872416f46868e",
+      "bytes": 1657,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/turkish-style-spiced-chicken.md",
+      "git_blob_sha": "819ce65939e130fc93e9b2aa1c138e438b819bba",
+      "bytes": 2223,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/turkish-yogurt-soup.md",
+      "git_blob_sha": "e36de0e9212f77f72724070895df7690033af4cb",
+      "bytes": 776,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/turmeric-flatbread.md",
+      "git_blob_sha": "cc35cdb094b2a8c9bd8a160a4517da49a75ca303",
+      "bytes": 702,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/tuscan-style-pork-roast.md",
+      "git_blob_sha": "abdd62b27db719f76e47f2680abe1dc52d0cca99",
+      "bytes": 2838,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/two-ingredient-pancakes.md",
+      "git_blob_sha": "d41ed1443d5ae9011bdecb0a26446ad3898e34c3",
+      "bytes": 948,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/tzatziki.md",
+      "git_blob_sha": "15b53b2d651fc4a50e42fbe0bc8d506db7bdd2e3",
+      "bytes": 1020,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/ukrainian-borscht.md",
+      "git_blob_sha": "700e711ff9e5bc70f2b9f62d92610b94109c54fb",
+      "bytes": 1960,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/ukrainian-vareniki.md",
+      "git_blob_sha": "48dd7b8accb46dcc00f707bebb92da9b92855a50",
+      "bytes": 1696,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/venezuelan-arepa.md",
+      "git_blob_sha": "787edfe2eb7632773d1b90eacf921e293e4b6495",
+      "bytes": 1336,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/wholemeal-pizza.md",
+      "git_blob_sha": "cd7b7cf24e2315c4054931e9d7b0ea0a2b534d1a",
+      "bytes": 1255,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/wholemeal-wheat-flour-pizza-dough.md",
+      "git_blob_sha": "d54e966ed701d47c54f7ab8570570994cbdb7441",
+      "bytes": 711,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/winter-risotto.md",
+      "git_blob_sha": "e41713b2a42a2286127f0d9d9759e43f1f520fbb",
+      "bytes": 1663,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/yibin-burning-noodles.md",
+      "git_blob_sha": "bc1b50bc2f0c12b18da5a17f8fec76cf7e0751b8",
+      "bytes": 1648,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/yogurt-cake.md",
+      "git_blob_sha": "99f1330fb421b7927770548c32462c607648dabf",
+      "bytes": 1291,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/yogurt.md",
+      "git_blob_sha": "b948eba8ca7b1a64bcc86a0004ea5172c530b25b",
+      "bytes": 598,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/yorkshire-puddings.md",
+      "git_blob_sha": "1bc9525c27635889b14f5cd48a15ba6340962266",
+      "bytes": 1176,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/zaatar-chicken-bulgur-bowls.md",
+      "git_blob_sha": "b34ae2c4552241b1d8e3c473bd0f9badfd8988b3",
+      "bytes": 1620,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/zaatar.md",
+      "git_blob_sha": "8a2f6d292efc81d20853787d6785a2203a4345c4",
+      "bytes": 967,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    },
+    {
+      "path": "content/zarangollo.md",
+      "git_blob_sha": "c21942729c06567923c5db49e953caff0b4d1c9d",
+      "bytes": 1036,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/zopf.md",
+      "git_blob_sha": "6dae10ac4097f2c9ad8cd74eff00168b4babe2b0",
+      "bytes": 1226,
+      "status": "PATH_OVERLAP_REQUIRES_CONTENT_COMPARE",
+      "exception": null
+    },
+    {
+      "path": "content/zurich-sytle-meat-saute.md",
+      "git_blob_sha": "9aa9e638e02d7c9a85f486bb593f9f532fb5ff6c",
+      "bytes": 1204,
+      "status": "PATH_NEW_REQUIRES_CORPUS_DEDUP",
+      "exception": null
+    }
+  ]
+}

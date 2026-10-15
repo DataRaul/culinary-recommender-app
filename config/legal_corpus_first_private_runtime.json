@@ -253,5 +253,18 @@
     "heldCandidate": "Hemmets kokbok 1911",
     "heldCandidateEvidence": "data/generated/step8g/hemmets-kokbok-1911-rights-review.json",
     "discoveryEvidence": "data/generated/step8g/ora-post-v8019-discovery-closeout.json"
+  },
+  "otherSourceFamilyDiscovery": {
+    "status": "NON_ORA_LINEAGE_DISCOVERY_COMPLETE__RECORD_MEASUREMENT_NEXT",
+    "sourceRepository": "LukeSmithxyz/based.cooking",
+    "sourceCommit": "9d4a31a040eedd61e4fb608cb0c114ff9a7c4dd2",
+    "evidence": "data/generated/step8g/based-cooking-lineage-discovery.json",
+    "candidateFileCount": 442,
+    "newPathCountAgainstPriorLineage": 236,
+    "overlappingPathCount": 206,
+    "confirmedNewUsableRecipeCount": null,
+    "protectedRecipeCountUnchanged": 22086,
+    "nextGate": "BASED_COOKING_PINNED_RECORD_RIGHTS_STRUCTURE_AND_FULL_CORPUS_DEDUP_NO_WRITE",
+    "runtimeWritesAuthorized": false
   }
 }

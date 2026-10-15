@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "main_sha": "30c2814f31b92414a8515f30c571b6725402bad7",
+  "state_head": "6e067465801d6720f2321c4982211063cd4009bf",
+  "open_prs": [
+    428,
+    429
+  ],
+  "session": "work-session-415526c273d0-root",
+  "authority": "Existing acquisition-first discovery only; no runtime or rights gate advancement",
+  "selection": "Based Cooking upstream outside exhausted ORA; compare with already-stored sylGauthier lineage before any growth claim",
+  "baseline_correction": "Historical measurement has 223 structurally parseable rows, while v8003 live evidence records all 226 stored source rows. All 226 baseline source paths must participate in deduplication.",
+  "criteria_mapping": {
+    "DISCOVERY": "Replay complete pinned tree comparison with exact partitions; distinguish path novelty from full-corpus recipe novelty",
+    "EVIDENCE": "Tie source declarations and sample structural observations to exact revisions; leave final record rights/structure and novelty unresolved",
+    "BOUNDARY": "Preserve stored corpus/runtime/Brain/Barbecue, inherited holds and one-package scope; name one no-write successor"
+  },
+  "constraints": [
+    "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
+    "One bounded package; full continuity handover; STOP",
+    "One equivalent repair cycle and one unchanged external recheck",
+    "No paid service or application behavior change"
+  ],
+  "budget": {
+    "round": 1,
+    "max_rounds": 1,
+    "usage": "unknown"
+  },
+  "alternatives": [
+    "Wikibooks has an existing separate reviewed pipeline and share-alike obligations; not selected in this one-source package",
+    "Grimgrains surfaced a code license; content scope requires separate documentary review, no clearance inferred"
+  ],
+  "source_access": "Canonical GitHub connector supplied pinned trees, README, LICENSE.md and three samples after shell network path unavailable; no scraping or repeated failed source calls",
+  "remaining_gates": [
+    "Per-record rights and third-party-source exceptions",
+    "Full candidate structural measurement",
+    "Deduplication against exact entire v8019 corpus",
+    "Capacity prewrite before any later import"
+  ],
+  "knowledge_commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3"
+}

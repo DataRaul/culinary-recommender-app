@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "lane_id": "culinary-app",
+  "package_id": "non-ora-lineage-discovery-v1",
+  "base_commit": "30c2814f31b92414a8515f30c571b6725402bad7",
+  "author_session_id": "work-session-415526c273d0-root",
+  "goal_path": "docs/package_quality/goals/culinary-app/v1.json",
+  "adapter_path": "config/package_quality_adapter.json",
+  "intent_provenance": [
+    "Owner acquisition-first directive 2026-10-06 in docs/ROADMAP.md",
+    "CULINARY_SAME_CHAT_WORKFLOW_PR430_TERMINAL_V3; next authorized acquisition package"
+  ],
+  "outcome": "Identify and reproducibly inventory one non-ORA acquisition opportunity without claiming ingestion or completed rights clearance",
+  "contribution": "Open a concrete next acquisition path after ORA exhaustion, preserving prior lineage overlap and record gates",
+  "scope": [
+    "Pinned Based Cooking lineage metadata inventory",
+    "Comparison to already-held sylGauthier source",
+    "Source declaration and three structural observations",
+    "Replay tool, failure-path tests, generated discovery result and roadmap pointer"
+  ],
+  "non_goals": [
+    "Recipe body publication",
+    "Bulk source body acquisition or import",
+    "D1/Cloudflare/public/recommendation changes",
+    "Hemmets clearance",
+    "Other lane or PR428/429 changes"
+  ],
+  "inputs": [
+    "main 30c2814f31b92414a8515f30c571b6725402bad7",
+    "continuity-state 6e067465801d6720f2321c4982211063cd4009bf",
+    "9d4a31a040eedd61e4fb608cb0c114ff9a7c4dd2",
+    "b12e481d1c220a13e0847a34e148d5872a16928e"
+  ],
+  "criteria": [
+    {
+      "id": "DISCOVERY",
+      "description": "Replay complete pinned tree comparison with exact partitions; distinguish path novelty from full-corpus recipe novelty",
+      "goal_criteria": [
+        "OUTCOME"
+      ]
+    },
+    {
+      "id": "EVIDENCE",
+      "description": "Tie source declarations and sample structural observations to exact revisions; leave final record rights/structure and novelty unresolved",
+      "goal_criteria": [
+        "OUTCOME"
+      ]
+    },
+    {
+      "id": "BOUNDARY",
+      "description": "Preserve stored corpus/runtime/Brain/Barbecue, inherited holds and one-package scope; name one no-write successor",
+      "goal_criteria": [
+        "CONTINUITY",
+        "OUTCOME"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json",
+    "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
+    "docs/package_quality/evidence/non-ora-lineage-discovery/source-pin.json",
+    "data/generated/step8g/based-cooking-lineage-discovery.json"
+  ],
+  "mandatory_knowledge_domains": [
+    "project_execution",
+    "software_data"
+  ],
+  "authority": "AUTO + VERIFY",
+  "human_decisions": [],
+  "assumptions": [
+    "Git path overlap is a lineage diagnostic only; every nonidentical candidate requires full-corpus deduplication",
+    "Same active chat performs all review passes; no independent-review claim"
+  ],
+  "dependencies": [
+    "Pinned source and baseline metadata",
+    "Required repository CI",
+    "Lane-owned checkpoint rotation"
+  ],
+  "next_action": "Pinned same-chat reviews, required CI, eligible merge; then handover to record rights/structure/full-corpus dedup without writes",
+  "stop_boundary": "One discovery outcome, checkpoint and STOP",
+  "budget": {
+    "round": 1,
+    "max_rounds": 1,
+    "usage": "unknown"
+  },
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "stage_evidence": {
+    "align": [
+      "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json"
+    ],
+    "build_qa": [
+      "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json"
+    ]
+  }
+}

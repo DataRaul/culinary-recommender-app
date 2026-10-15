@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "shared_commit": "2e55b320c88df7fa75eaaf47113184ba44f5bb8d",
+  "shared_file_checks": {
+    "scripts/package_quality_gate.py": true,
+    "skills/package-quality-gate/SKILL.md": true,
+    "skills/package-quality-gate/references/aligner.md": true,
+    "skills/package-quality-gate/references/supporter.md": true,
+    "skills/package-quality-gate/references/critic.md": true,
+    "docs/PACKAGE_QUALITY_GATE.md": true,
+    "scripts/lane_handover.py": true,
+    "skills/package-quality-gate/references/sequential.md": true
+  },
+  "knowledge_commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+  "knowledge_objects": [
+    {
+      "path": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "git_blob_sha": "632a78a10772c923173e30190a9d987d733405b4",
+      "sha256": "cecf0ebe91f52dd7c1c4eb73a6942c12c583dccc0839922c2571b9cc007c161d"
+    },
+    {
+      "path": "domains/software_data/objects/testing_strategy_verification_layers.md",
+      "git_blob_sha": "72b320c71032091fddc90de5e84e04f781dae156",
+      "sha256": "38482fdacecd6857ef361d19a0e9173b89cacd1eaba465e2323d4c6a815a37bc"
+    },
+    {
+      "path": "adapters/chatgpt_conversation_runtime_router.md",
+      "git_blob_sha": "ed5c9880b36b5e6d8666cf803df65dca0b01f4c9",
+      "sha256": "5806aadab376cc979e2934f86d12ff11e968707712e96276dfb1f716df57ca0c"
+    }
+  ],
+  "source": "9d4a31a040eedd61e4fb608cb0c114ff9a7c4dd2",
+  "baseline": "b12e481d1c220a13e0847a34e148d5872a16928e",
+  "license_evidence": [
+    {
+      "path": "README.md",
+      "git_blob_sha": "23196a05e9c67cd56acbf1b88b53bf910441845c",
+      "content_sha256": "207a6e49834bf21011f98d50b895ecb45233102de7e6fc0d391cc70560b68923",
+      "url": "https://github.com/LukeSmithxyz/based.cooking/blob/9d4a31a040eedd61e4fb608cb0c114ff9a7c4dd2/README.md"
+    },
+    {
+      "path": "LICENSE.md",
+      "git_blob_sha": "fdddb29aa445bf3d6a5d843d6dd77e10a9f99657",
+      "content_sha256": "6b0382b16279f26ff69014300541967a356a666eb0b91b422f6862f6b7dad17e",
+      "url": "https://github.com/LukeSmithxyz/based.cooking/blob/9d4a31a040eedd61e4fb608cb0c114ff9a7c4dd2/LICENSE.md"
+    }
+  ]
+}

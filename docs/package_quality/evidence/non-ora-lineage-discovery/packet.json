@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "subject": {
+    "schema_version": 1,
+    "contract_path": "docs/package_quality/contracts/non-ora-lineage-discovery-v1.json",
+    "project": "culinary-recommender-app",
+    "lane_id": "culinary-app",
+    "package_id": "non-ora-lineage-discovery-v1",
+    "base_commit": "30c2814f31b92414a8515f30c571b6725402bad7",
+    "author_session_id": "work-session-415526c273d0-root",
+    "candidate_paths": [
+      "config/legal_corpus_first_private_runtime.json",
+      "data/generated/step8g/based-cooking-discovery-inputs.json",
+      "data/generated/step8g/based-cooking-lineage-discovery.json",
+      "docs/ROADMAP.md",
+      "docs/package_quality/contracts/non-ora-lineage-discovery-v1.json",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/source-pin.json",
+      "scripts/discover-based-cooking-lineage.mjs",
+      "tests/based-cooking-lineage-discovery.test.js"
+    ],
+    "deletions": [],
+    "hashes": {
+      "config/legal_corpus_first_private_runtime.json": "5022a66683cf031ca1c7b51620d6169665195717d7e2fe1a8a5a9d54acf161ed",
+      "config/package_quality_adapter.json": "cf17d8b313402f6a2a790d156743d74063c149d718ad22e0882379fde20d02f9",
+      "data/generated/step8g/based-cooking-discovery-inputs.json": "d14d855fd94aff97d33f1948fb33408bde2c9a034e22e1172c5d73b69cfdc0d4",
+      "data/generated/step8g/based-cooking-lineage-discovery.json": "1af1df76306bc91b2601819ff8446576ae2bfc5836be3cdf06dcf1d2893ad4b8",
+      "docs/ROADMAP.md": "ac79e603ff15bf429af0edc9e745f47016e3ee5c7c5ed085554df3c0556b486f",
+      "docs/package_quality/contracts/non-ora-lineage-discovery-v1.json": "fece011408c90bfe1c3aec5a84a7542992fb5dc354a24b8806332957c772f1f3",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json": "e3ac4f22826a78b53bd7c66d923ca6cba9c89337a4840ccb6eb88ca4db0fabc0",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json": "63cb4d7fedb43f39ce41b8c495ab80743a8a88d80166c4fbf185cdb9170866db",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/source-pin.json": "3293e880b4fff45f16a0b523abbde94d39022d3502f8b93af807bf85055de1d2",
+      "docs/package_quality/goals/culinary-app/v1.json": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa",
+      "scripts/discover-based-cooking-lineage.mjs": "e90f208edf224fc29bbcc3bf5047ac0d311414b9b0d5473abe4b8f779582068a",
+      "tests/based-cooking-lineage-discovery.test.js": "bff7c946967ab6c297fe8a2af422d506ad34890bfae05b807912b0bcae15afb8"
+    },
+    "git_modes": {
+      "config/legal_corpus_first_private_runtime.json": "100644",
+      "config/package_quality_adapter.json": "100644",
+      "data/generated/step8g/based-cooking-discovery-inputs.json": "100644",
+      "data/generated/step8g/based-cooking-lineage-discovery.json": "100644",
+      "docs/ROADMAP.md": "100644",
+      "docs/package_quality/contracts/non-ora-lineage-discovery-v1.json": "100644",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json": "100644",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json": "100644",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/source-pin.json": "100644",
+      "docs/package_quality/goals/culinary-app/v1.json": "100644",
+      "scripts/discover-based-cooking-lineage.mjs": "100644",
+      "tests/based-cooking-lineage-discovery.test.js": "100644"
+    }
+  },
+  "candidate_digest": "f59d70c9eaedb44bc070f49bbeb191bf128f9d1c82053c6acee3553b3e9dae1d"
+}

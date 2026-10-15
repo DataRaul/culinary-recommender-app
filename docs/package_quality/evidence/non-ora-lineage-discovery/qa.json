@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "local_validation": {
+    "command": "npm run validate",
+    "exit_code": 0,
+    "static_files": 1646,
+    "tests": 1441,
+    "pass": 1415,
+    "fail": 0,
+    "skipped": 26,
+    "log_sha256": "d24145d3279cbe1615a5b0c740679e8645ffd775acdabfe9d8aea6152bdecde9"
+  },
+  "targeted_failure_paths": [
+    "Exact saved replay",
+    "Truncated/floating/duplicate/unsafe tree rejection",
+    "Renamed byte-identical blobs classified duplicate",
+    "Symlink recipes excluded",
+    "Extensionless and root orphan records preserved"
+  ],
+  "source_measurement": {
+    "candidate_files": 442,
+    "exact_baseline_blobs": 0,
+    "overlapping_paths": 206,
+    "new_paths": 236,
+    "exceptions": 2,
+    "confirmed_new_usable_recipes": null,
+    "added_to_protected_corpus": 0
+  },
+  "boundary_verification": {
+    "changed_paths": [
+      "config/legal_corpus_first_private_runtime.json",
+      "data/generated/step8g/based-cooking-discovery-inputs.json",
+      "data/generated/step8g/based-cooking-lineage-discovery.json",
+      "docs/ROADMAP.md",
+      "docs/package_quality/contracts/non-ora-lineage-discovery-v1.json",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/source-pin.json",
+      "scripts/discover-based-cooking-lineage.mjs",
+      "tests/based-cooking-lineage-discovery.test.js"
+    ],
+    "unchanged_runtime_paths": true,
+    "unchanged_workflows": true,
+    "other_lanes_not_written": true,
+    "recipe_bodies_published": false,
+    "protected_count_changed": false
+  },
+  "limitations": [
+    "No production acceptance or protected DB query performed",
+    "No full record rights/structure/dedup claim",
+    "All novel counts remain path-level",
+    "Local browser suite delegated to required CI"
+  ],
+  "build_findings": [
+    {
+      "id": "BUILD-1",
+      "issue": "Historical 223 parseable rows differs from 226 actually stored; using 223 as lineage baseline would undercount held records",
+      "resolution": "Use all 226 pinned source files; retain both historical structural and live stored counts."
+    },
+    {
+      "id": "BUILD-2",
+      "issue": "Extensionless content and root orphan would disappear under a content/*.md-only inventory",
+      "resolution": "Preserve both as explicit record-review exceptions."
+    }
+  ]
+}
