@@ -72,3 +72,26 @@ test('CI workflow uses trusted base and never executes scripts from PR checkout'
   assert.match(flow, /persist-credentials: false/g);
   assert.doesNotMatch(flow, /python3 candidate\/scripts|node candidate\/scripts|npm .*candidate/);
 });
+
+
+test('a PASS synthesis cannot override HOLD or missing Supporter/Critic verdicts', () => {
+  for (const role of ['supporter', 'critic']) {
+    for (const verdict of ['HOLD', 'FAIL', undefined]) {
+      const altered = { ...(role === 'supporter' ? supporter : critic), verdict };
+      const input = {
+        contract, supporter: role === 'supporter' ? altered : supporter,
+        critic: role === 'critic' ? altered : critic, synthesis
+      };
+      const text = renderOwnerQualityReport(input);
+      assert.match(text, /HOLD — no publication authority/, `${role} ${verdict}`);
+      assert.doesNotMatch(text, /REVIEWED — CI and merge still required/);
+    }
+  }
+});
+
+test('a HOLD or missing synthesis verdict cannot promote valid prior stages', () => {
+  for (const verdict of ['HOLD', undefined]) {
+    const text = renderOwnerQualityReport({ contract, supporter, critic, synthesis: { ...synthesis, verdict } });
+    assert.match(text, /HOLD — no publication authority/);
+  }
+});
