@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "phase": "build_qa",
+  "pr": 432,
+  "baseline_head": "c507cbee42beac6a74e326413333a1ad8db15d5f",
+  "repair_commits": [
+    "67ca845cd52ff3913daf9009c40472e72d55ea02",
+    "8d6ef11512ef6d08f40845e43b3c1be46aa4c8a1",
+    "d4d94430917ea0cce33de47feaeea6a9b136d4b3",
+    "15b296dca5240a9b46428ed1d5fc558bd9238346"
+  ],
+  "defect": {
+    "id": "G432-1",
+    "resolution": "owner-quality-report.mjs now holds on any non-PASS Supporter, Critic, Synthesis or unresolved material finding",
+    "regression": "tests/quality-owner-evidence.test.js checks HOLD, FAIL and missing verdicts"
+  },
+  "post_cutover": {
+    "file": "tests/quality-pr-gate-integration.test.py",
+    "harness": "stubbed shared checker; validates positive event routing and fail-closed negative wiring only",
+    "cases": 8,
+    "real_pinned_validator": "NOT_PROVEN_BY_STUB"
+  },
+  "observed_ci": {
+    "sha": "15b296dca5240a9b46428ed1d5fc558bd9238346",
+    "run_id": 38803297678,
+    "step": "npm run validate",
+    "step_conclusion": "success",
+    "overall": "CANCELLED_BY_NEWER_PR_UPDATE",
+    "final_exact_head_ci": "PENDING"
+  },
+  "execution_limitations": [
+    "Github CI npm validation observed on intermediate source commit only; final exact SHA CI still required",
+    "Synthetic gate acceptance is not first real post-cutover PR activation",
+    "Actual same-chat Supporter/Critic/Synthesis pending final frozen packet",
+    "Required branch protection API access unverified; do not claim non-bypassability",
+    "No local Git clone/network path in current environment",
+    "Round2 verification supersedes earlier host limitations; historical fields retained for audit"
+  ],
+  "preserved": [
+    "PR428/429",
+    "culinary-brain",
+    "barbecue",
+    "Based Cooking stopped",
+    "v8019 protected corpus unchanged by PR432"
+  ],
+  "additional_repair": {
+    "id": "G432-3",
+    "summary": "The owner report previously ignored Synthesis-owned material findings when all verdict strings were PASS.",
+    "implementation_commit": "d287b370a0801c1fb291929e8b12908b102e532f",
+    "regression_commit": "76cec5e212cb29dbdae306b47c3ff566318838fd",
+    "paths": [
+      "scripts/owner-quality-report.mjs",
+      "tests/quality-owner-evidence.test.js"
+    ],
+    "verification": "CI_REQUIRED_ON_UPDATED_CANDIDATE; no new reviewer authorization claimed",
+    "publication": "HOLD_UNTIL_REFROZEN_AND_REVIEW_AUTHORITY_RECONCILED"
+  },
+  "round2_verification": {
+    "head_before_round": "a5c426aa93e76d8b5b225e30c6397788c0ef714e",
+    "shared_commit": "2e55b320c88df7fa75eaaf47113184ba44f5bb8d",
+    "source_pins": "8/8 PASS",
+    "actual_full_validator": "HOLD: stale review",
+    "candidate_reproduction": "PASS",
+    "exact_outgoing_inventory": "PASS:16 paths",
+    "repository_validation": {
+      "static_files": 1665,
+      "tests": 1450,
+      "pass": 1424,
+      "skip": 26,
+      "fail": 0
+    },
+    "focused_node": {
+      "pass": 12,
+      "fail": 0
+    },
+    "python_gate_fixtures": {
+      "pass": 8,
+      "fail": 0
+    },
+    "fixture_limitation": "Stubbed event wiring; no true post-cutover PR proof",
+    "branch_rules": {
+      "protected": false,
+      "rulesets": [],
+      "protection_read": 403
+    },
+    "live_activation": "Not observed; workflow absent from main",
+    "history": "history/round1-*",
+    "gate_order_basis": "Original contract explicitly places live trigger after merge; OWNER_QUALITY_EVIDENCE_GATE.md now makes source-installation versus operational-activation order explicit"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "lane_id": "culinary-app",
+  "package_id": "quality-enforcement-owner-report-v1",
+  "base_commit": "8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
+  "author_session_id": "chatgpt-work-culinary-pr432-round2-20261015",
+  "goal_path": "docs/package_quality/goals/culinary-app/v1.json",
+  "adapter_path": "config/package_quality_pr432_round2_adapter.json",
+  "intent_provenance": [
+    "Owner instruction 2026-10-15 to resume CULINARY_PR432_REVIEW_HOLD_V2 only",
+    "PR432 existing draft with G432-1 material defect and post-cutover verification gap",
+    "Owner 2026-10-15 explicitly answered yes to one additional PR432 round and requested roadmap-integrated testing"
+  ],
+  "outcome": "Add accurate owner-readable five-stage quality feedback and a trusted-base reviewed-package PR check, with explicit enforcement limitations.",
+  "contribution": "Make package review outcome understandable and prevent false reviewed status; add procedural quality evidence checks without modifying recipes or production runtime.",
+  "scope": [
+    "Repair report HOLD verdict priority and regressions",
+    "Test pre-cutover grandfathering and post-cutover trusted gate pass/fail wiring",
+    "Document CI enforcement limit, immutable shared source and first-live-trigger requirement",
+    "Same-chat quality sequence, CI and own-lane terminal handover"
+  ],
+  "non_goals": [
+    "Based Cooking or any acquisition",
+    "D1, Cloudflare, recipe search or recommendation changes",
+    "Branch rules without authorized verified API capability",
+    "Comparative reliability measurement",
+    "Independent external reviewer session"
+  ],
+  "inputs": [
+    "main 8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
+    "PR432 initial head c507cbee42beac6a74e326413333a1ad8db15d5f",
+    "CULINARY_PR432_REVIEW_HOLD_V2 2026-10-15",
+    "Knowledge Core Consultant conditional approval and Project Coach terminal hold"
+  ],
+  "criteria": [
+    {
+      "id": "REPORT",
+      "description": "Never label a package REVIEWED if any required review holds or is absent; present owner outcomes, value and limitations.",
+      "goal_criteria": [
+        "CONTINUITY"
+      ]
+    },
+    {
+      "id": "ENFORCEMENT",
+      "description": "New PRs at/after cutover require exactly one base-pinned reviewed packet; fail closed on missing paths/pin/checker and keep legacy PRs outside this new check.",
+      "goal_criteria": [
+        "CONTINUITY"
+      ]
+    },
+    {
+      "id": "SECURITY",
+      "description": "Run trusted scripts only, never run candidate checkout scripts, preserve no elevated write credentials; explicitly distinguish PR check from enforced branch restrictions.",
+      "goal_criteria": [
+        "CONTINUITY"
+      ]
+    },
+    {
+      "id": "BOUNDARY",
+      "description": "Preserve all pre-existing product gates, PR428/429, Brain/Barbecue, Based Cooking STOP and one bounded app-only checkpoint.",
+      "goal_criteria": [
+        "CONTINUITY",
+        "OUTCOME"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "docs/package_quality/evidence/quality-enforcement-owner-report/alignment.json",
+    "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json",
+    "tests/quality-owner-evidence.test.js",
+    "tests/quality-pr-gate-integration.test.py",
+    "docs/package_quality/evidence/quality-enforcement-owner-report/round2-authority.json",
+    "docs/OWNER_QUALITY_EVIDENCE_GATE.md"
+  ],
+  "mandatory_knowledge_domains": [
+    "project_execution",
+    "software_data"
+  ],
+  "authority": "AUTO + VERIFY",
+  "human_decisions": [],
+  "assumptions": [
+    "Same-chat stages are procedural and not independent",
+    "Actual GitHub branch required-check status may remain unverified, preventing non-bypassability claim"
+  ],
+  "dependencies": [
+    "Exact pinned shared Agent OS source",
+    "Required CI on final exact PR head",
+    "Post-merge workflow first real post-cutover trigger not yet observed",
+    "Lane-only expected-head checkpoint"
+  ],
+  "next_action": "Complete authorized round 2, actual pinned exact-inventory validation and exact-head CI; eligible source installation; retain separate post-merge activation and branch enforcement truth; own-lane checkpoint and STOP",
+  "stop_boundary": "One PR432 package only; no Based Cooking",
+  "budget": {
+    "round": 2,
+    "max_rounds": 2,
+    "usage": "unknown; one explicitly authorized additional round; historical round 1 retained"
+  },
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "stage_evidence": {
+    "align": [
+      "docs/package_quality/evidence/quality-enforcement-owner-report/alignment.json"
+    ],
+    "build_qa": [
+      "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json",
+      "tests/quality-owner-evidence.test.js",
+      "tests/quality-pr-gate-integration.test.py"
+    ]
+  }
+}

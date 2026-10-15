@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "role": "synthesis",
+  "session_id": "chatgpt-work-culinary-pr432-round2-20261015",
+  "model": "GPT-6; exact host build unavailable",
+  "candidate_digest": "0438298918934b60f387cfdbb4568ddeff0b38afcc54e9966dc85180d5860593",
+  "verdict": "PASS",
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "independent": false,
+  "stage": 5,
+  "predecessor_digest": "9f046d1c13c81847978341f7abc204c336692526a27b850e707413d600e3ba94",
+  "knowledge": [
+    {
+      "domain": "project_execution",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "applied_rule": "Keep one bounded installation, preserve consumed budget and explicitly separate source installation from post-installation proof; use latest explicit owner authority only for round 2.",
+      "criterion_id": "BOUNDARY"
+    },
+    {
+      "domain": "software_data",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/software_data/objects/testing_strategy_verification_layers.md",
+      "applied_rule": "Use deterministic regressions for reporting defects, actual pinned dependency validation before publication, and actual target-environment evidence after installation; mocks cannot establish live behavior.",
+      "criterion_id": "ENFORCEMENT"
+    }
+  ],
+  "scope_limit": "Source-installation readiness only; actual pinned validation, exact-head CI, eligible merge and lane checkpoint still required. First live event and hard enforcement remain unverified.",
+  "coverage": [
+    {
+      "criterion_id": "REPORT",
+      "result": "PASS",
+      "evidence": [
+        "tests/quality-owner-evidence.test.js",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json"
+      ],
+      "assessment": "Adversarially checked all required verdict omissions and mixed PASS/HOLD cases. Synthesis cannot suppress its own unresolved material finding. Reporter is a display layer; immutable packet/report validity remains separately enforced by real shared checker."
+    },
+    {
+      "criterion_id": "ENFORCEMENT",
+      "result": "PASS",
+      "evidence": [
+        "tests/quality-pr-gate-integration.test.py",
+        "docs/OWNER_QUALITY_EVIDENCE_GATE.md",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/alignment.json",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json"
+      ],
+      "assessment": "Inspected original contract: it expressly places first live trigger after merge. Requiring that same installed trigger before merge is an ordering error, not an unmet source-code acceptance criterion. Reviewed source rejects missing packet/sidecars, extra inventory, moved base, wrong pins, checker HOLD and non-ready results. Full actual pinned validation on this exact candidate is still mandatory immediately after reports. No operational activation is accepted from mocks."
+    },
+    {
+      "criterion_id": "SECURITY",
+      "result": "PASS",
+      "evidence": [
+        "tests/quality-owner-evidence.test.js",
+        "docs/OWNER_QUALITY_EVIDENCE_GATE.md"
+      ],
+      "assessment": "Checked counterexamples: changing candidate adapter pins is rejected against trusted base; candidate app scripts are never invoked; shared checker rejects symlink/escaping paths and stale packet bytes. Workflow has contents:read and persist-credentials:false. Admin bypass remains possible because main protected:false and no rulesets were observed; docs explicitly preserve that limitation."
+    },
+    {
+      "criterion_id": "BOUNDARY",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/quality-enforcement-owner-report/alignment.json",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/round2-authority.json"
+      ],
+      "assessment": "Compared round 2 to source head a5c426aa: no product source, recipe, D1, production configuration or other-lane state changes. Historical reports remain immutable archives with original HOLD. Dedicated adapter permits exactly the authorized second round for this package; default max_rounds stays one. No independent reviewer claim."
+    }
+  ],
+  "findings": [],
+  "report_digests": {
+    "supporter": "a365374ae9e245eb04067804398f0f2899aaf494cf1e6064e0b791d4540c9603",
+    "critic": "9f046d1c13c81847978341f7abc204c336692526a27b850e707413d600e3ba94"
+  },
+  "stages": [
+    "align",
+    "build_qa",
+    "supporter",
+    "critic",
+    "synthesis"
+  ],
+  "finding_dispositions": [
+    {
+      "role": "supporter",
+      "id": "G432-1",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "tests/quality-owner-evidence.test.js",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json"
+      ]
+    },
+    {
+      "role": "supporter",
+      "id": "G432-3",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "tests/quality-owner-evidence.test.js",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json"
+      ]
+    },
+    {
+      "role": "critic",
+      "id": "G432-2",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/alignment.json",
+        "docs/OWNER_QUALITY_EVIDENCE_GATE.md"
+      ]
+    },
+    {
+      "role": "critic",
+      "id": "G432-4-ENFORCEMENT-LIMIT",
+      "disposition": "DEFERRED",
+      "resolution_evidence": []
+    }
+  ],
+  "rationale": "Both current-candidate same-chat passes accept the repaired source installation. Historical G432-1 and synthesis-finding omission are covered by passing negative regressions. G432-2 is reconciled against the original contract: genuine pinned execution is available and current reports now replace stale evidence; the final full pinned validator must pass before publication. The original first-live-trigger dependency is post-merge and remains OPEN, to be checked during the next authorized roadmap package. This is sequencing correction supported by the existing contract, not a declaration of live success or a branch-enforcement waiver. Preserve historical HOLD evidence and the separately authorized second-round limit.",
+  "goal_contribution": "Accurate five-stage owner feedback and fail-closed procedural PR evidence checks, with real roadmap delivery used for subsequent operational evaluation. No recipe/runtime value is claimed by this governance installation.",
+  "next_gate": "REQUIRED_CI"
+}

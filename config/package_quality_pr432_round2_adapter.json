@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "mode": "PROCEDURAL_PILOT",
+  "max_rounds": 2,
+  "constraints": [
+    "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
+    "One bounded package; full continuity handover; STOP",
+    "One equivalent repair cycle and one unchanged external recheck",
+    "No paid service or application behavior change",
+    "PR432 only: owner explicitly authorized one additional round on 2026-10-15; default adapter remains max_rounds=1"
+  ],
+  "shared_source": {
+    "repository": "DataRaul/agent-os",
+    "commit": "2e55b320c88df7fa75eaaf47113184ba44f5bb8d",
+    "files": {
+      "scripts/package_quality_gate.py": "3c28236dc8c4ec2f52a33c2a54b4155606d0eb99ad7130b0a62ace27bdd06907",
+      "skills/package-quality-gate/SKILL.md": "7e17975efa0d47ef962461cc5310a423933e86b3225a1048e94aa4cd0595f0cc",
+      "skills/package-quality-gate/references/aligner.md": "e6da0d945f2db7b3d84e77cd7aea557c456b58a3eef3e1832b5be370fc168125",
+      "skills/package-quality-gate/references/supporter.md": "8d185d9b5778494a03e537b3b50a3d6b4bbbd97d03a965b5c4ade6e585cf4994",
+      "skills/package-quality-gate/references/critic.md": "a13c65c2de0051a64b9d42b21de197762dccc5c79604c5befe0331a1f8583c37",
+      "docs/PACKAGE_QUALITY_GATE.md": "6f9357406e7f4e52807012d64be678ecbba030d3f6fc097cdd14c4ad3889e335",
+      "scripts/lane_handover.py": "bd3bb693609061c950ce3d5b91c493cca3f48243d0e056e2bca4acff49a125fb",
+      "skills/package-quality-gate/references/sequential.md": "f0ccfd8a508d424944ed299d9292320320348ed7d85b436e4e0c23a621dbf37d"
+    }
+  },
+  "skill": "skills/package-quality-gate/SKILL.md",
+  "roles": {
+    "aligner": "skills/package-quality-gate/references/aligner.md",
+    "supporter": "skills/package-quality-gate/references/supporter.md",
+    "critic": "skills/package-quality-gate/references/critic.md",
+    "synthesis": "skills/package-quality-gate/references/sequential.md"
+  },
+  "knowledge": {
+    "source": "DataRaul/knowledge-core",
+    "selection": "independent_minimum_task_domains_with_exact_commit_object_rule",
+    "mandate": "domains/project_execution/objects/agentic_work_mandate_harness.md"
+  },
+  "checkpoint": {
+    "branch": "continuity-state",
+    "layout": "docs/handovers/<lane>/CURRENT.json and PREVIOUS.json",
+    "index": "docs/handovers/INDEX.json",
+    "atomic_pair": true,
+    "emit_complete_json": true,
+    "stop_after_one_package": true,
+    "legacy_archive": "docs/handovers/CURRENT.json and PREVIOUS.json"
+  },
+  "enforcement": "PROCEDURAL_NOT_EXCLUSIVE_PUBLISHER",
+  "measured_improvement": false,
+  "additional_paid_services": false,
+  "scheduled_actions": false,
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "trigger": {
+    "boundary": "every_substantive_package_in_active_chat_including_resume",
+    "driver": "next",
+    "execution": "coordinator_performs_returned_pass_in_same_turn",
+    "background_launcher": false
+  },
+  "scope_package_id": "quality-enforcement-owner-report-v1"
+}

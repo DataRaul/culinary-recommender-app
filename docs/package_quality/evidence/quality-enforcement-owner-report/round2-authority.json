@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "pr": 432,
+  "scope": "Exactly one additional same-chat PR432 review round; no gate waivers",
+  "owner_message": "yes, and i though the test would be conducted while working on the roadmap. which is more efficient",
+  "prior_budget": {
+    "round": 1,
+    "max_rounds": 1,
+    "remaining": 0
+  },
+  "authorized_budget": {
+    "round": 2,
+    "max_rounds": 2,
+    "remaining_after_this_round": 0
+  },
+  "roadmap_policy": "Evaluate workflow while delivering authorized roadmap packages; no stand-alone reliability campaign or Based Cooking restart authorized",
+  "historical_evidence": "history/round1-* plus immutable Git a5c426aa93e76d8b5b225e30c6397788c0ef714e"
+}

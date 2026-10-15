@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "phase": "align",
+  "pr": 432,
+  "main_sha": "8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
+  "pr_initial_head": "c507cbee42beac6a74e326413333a1ad8db15d5f",
+  "session_id": "chatgpt-culinary-pr432-20261015-same-chat",
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "independent": false,
+  "owner_action_now": "NONE",
+  "known_material_finding": {
+    "id": "G432-1",
+    "description": "Owner summary marked REVIEWED when Supporter or Critic verdict HOLD",
+    "remedy": "All three verdicts must PASS and material findings resolved"
+  },
+  "criteria": [
+    {
+      "id": "REPORT",
+      "criterion": "Never label a package REVIEWED if any required review holds or is absent; present owner outcomes, value and limitations."
+    },
+    {
+      "id": "ENFORCEMENT",
+      "criterion": "New PRs at/after cutover require exactly one base-pinned reviewed packet; fail closed on missing paths/pin/checker and keep legacy PRs outside this new check."
+    },
+    {
+      "id": "SECURITY",
+      "criterion": "Run trusted scripts only, never run candidate checkout scripts, preserve no elevated write credentials; explicitly distinguish PR check from enforced branch restrictions."
+    },
+    {
+      "id": "BOUNDARY",
+      "criterion": "Preserve all pre-existing product gates, PR428/429, Brain/Barbecue, Based Cooking STOP and one bounded app-only checkpoint."
+    }
+  ],
+  "constraints": [
+    "No product runtime writes",
+    "Preserve PR428/429, culinary-brain and barbecue",
+    "Based Cooking remains stopped",
+    "No paid services",
+    "No premature merge",
+    "No claim of independent reviews or comparative reliability"
+  ],
+  "first_live_trigger": "Not completed at pre-merge alignment",
+  "admin_required_status": "UNVERIFIED",
+  "knowledge": {
+    "project_execution": "Bound package; preserve authority and historical budgets",
+    "software_data": "Adversarial negative tests and live activation distinguish procedural installation from end-to-end behavior"
+  }
+}
