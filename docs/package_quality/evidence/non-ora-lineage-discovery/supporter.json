@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "role": "supporter",
+  "session_id": "work-session-415526c273d0-root",
+  "model": "Codex; exact host model build unavailable",
+  "candidate_digest": "f59d70c9eaedb44bc070f49bbeb191bf128f9d1c82053c6acee3553b3e9dae1d",
+  "verdict": "PASS",
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "independent": false,
+  "stage": 3,
+  "predecessor_digest": "f59d70c9eaedb44bc070f49bbeb191bf128f9d1c82053c6acee3553b3e9dae1d",
+  "knowledge": [
+    {
+      "domain": "project_execution",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "criterion_id": "BOUNDARY",
+      "applied_rule": "Use current repository truth, one observable bounded discovery outcome and a named successor; do not turn source metadata into ingestion authority."
+    },
+    {
+      "domain": "software_data",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/software_data/objects/testing_strategy_verification_layers.md",
+      "criterion_id": "DISCOVERY",
+      "applied_rule": "Verify source-boundary reality with actual pinned inventories and representative source files, then test replay and failure modes; passing inventory tests does not prove downstream recipe quality."
+    }
+  ],
+  "coverage": [
+    {
+      "criterion_id": "DISCOVERY",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
+        "data/generated/step8g/based-cooking-lineage-discovery.json"
+      ],
+      "assessment": "Inspected source and baseline inventories plus selector and partitioning: 442 candidates = 206 path overlaps + 236 new paths, zero exact baseline blobs. Baseline correctly includes all 226 stored rows, not merely the 223 structurally parseable rows. Full-corpus novelty stays null."
+    },
+    {
+      "criterion_id": "EVIDENCE",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/non-ora-lineage-discovery/source-pin.json",
+        "data/generated/step8g/based-cooking-lineage-discovery.json"
+      ],
+      "assessment": "Pinned README content declaration complements software-worded LICENSE.md without pretending complete Spain-facing clearance. Three sampled source files show actual title/ingredient/method structure, with extensionless plain headings preserved as nonstandard. No full-cohort parseability claim."
+    },
+    {
+      "criterion_id": "BOUNDARY",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json",
+        "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json"
+      ],
+      "assessment": "Only discovery metadata, replay/tests and additive programme/roadmap pointer change. No public recipe body, D1/runtime/workflow or other-lane write. Next action is a no-write record review and full-corpus dedup package, not automatic import."
+    }
+  ],
+  "findings": [
+    {
+      "id": "S1",
+      "kind": "requirement_defect",
+      "material": true,
+      "evidence": "Build inspection distinguished 226 historically stored rows from 223 structurally parseable rows; using the latter would omit prior-held source records from lineage comparison.",
+      "remedy": "Compare all 226 baseline source paths and keep both historical counts explicit.",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json",
+        "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
+        "data/generated/step8g/based-cooking-lineage-discovery.json"
+      ]
+    },
+    {
+      "id": "S2",
+      "kind": "robustness_defect",
+      "material": true,
+      "evidence": "A standard content/*.md selector would lose content/Mead and root cinnaroll.md despite apparent recipe content.",
+      "remedy": "Retain both as named exceptions for structural salvage; do not claim parseability.",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
+        "data/generated/step8g/based-cooking-lineage-discovery.json"
+      ]
+    }
+  ],
+  "scope_limit": "Constructive same-context review only; no independent review, ingestion, legal clearance or production acceptance claimed."
+}
