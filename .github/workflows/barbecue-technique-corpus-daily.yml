@@ -71,6 +71,7 @@ jobs:
         run: >-
           node --test
           tests/barbecue-technique-corpus-control-plane.test.js
+          tests/barbecue-review-audit.test.js
           tests/barbecue-technique-corpus-work-unit-lifecycle.test.js
           tests/youtube-culinary-adaptive-portfolio.test.js
           tests/youtube-culinary-work-unit-lifecycle.test.js
