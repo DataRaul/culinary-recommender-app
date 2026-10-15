@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-15",
+  "main_sha": "9fd768e6d4bc8a34809ece30ed73b4ff71717a7f",
+  "pr": 430,
+  "head_at_takeover": "71951b106a5cc8108220472fb4c855e6a7a71d7f",
+  "state_head": "7a5552924f27f9811155b4d62614946163dbb5d7",
+  "other_pr_heads": {
+    "428": "8b586a2c42863e5abd8ccdf7c422e14ff1365e3e",
+    "429": "2f3d14a02a22670b154fdba2679e3064c34bc4d3"
+  },
+  "authority": "AUTO + VERIFY through eligible PR430 merge and culinary-app-only rotation; then STOP",
+  "scope": "Reuse staged implementation; no corpus/runtime/D1/auth/Cloudflare mutation",
+  "reconciliation": "Main advanced once in Barbecue generated state; merged latest main locally, preserve bytes unchanged relative to current main",
+  "contract_revision": "Original staged contract and static evidence remain untouched. Active successor contract corrects actual session correlation and fresh base; same round 1/max 1, no prior reports existed.",
+  "criteria_mapping": {
+    "PIN": "source-pin.json and qa.json",
+    "SEQUENCE": "qa.json; actual wrapper driver plus same-session ordered reports",
+    "HOLD": "qa.json failure-path shared tests and legacy independent support",
+    "LANE": "original contracts retained, scope inventory and state pair isolation"
+  },
+  "knowledge_commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+  "knowledge_route": [
+    "software_data/testing_strategy_verification_layers",
+    "project_execution/agentic_work_mandate_harness",
+    "decision_frameworks/bias_resistant_decision_process",
+    "ai_agents/structured_output_semantic_validation"
+  ],
+  "budget": {
+    "round": 1,
+    "max_rounds": 1,
+    "usage": "unknown"
+  },
+  "identity": "Local correlation label for this actual /root chat execution in workspace 216ae7e23d79; opaque host conversation ID and model build not exposed. All three passes are this same session.",
+  "build_findings": [
+    {
+      "id": "BUILD-1",
+      "issue": "Handover protocol unconditionally required independent sessions, conflicting with selected same-chat adapter",
+      "resolution": "Updated only its active review instructions; legacy independent contracts retain owning-lane migration gate; regression asserts both branches."
+    },
+    {
+      "id": "BUILD-2",
+      "issue": "Staged base and author identity were stale/descriptive",
+      "resolution": "Preserved original contract; active closeout contract binds current main and honest same-session correlation, unchanged criteria/goal/round cap."
+    }
+  ]
+}

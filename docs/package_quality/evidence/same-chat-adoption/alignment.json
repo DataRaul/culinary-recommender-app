@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-14",
+  "main_sha": "c101f84c6e1002e1c15d922e31ad28c76f4f199d",
+  "other_open_prs": [
+    428,
+    429
+  ],
+  "owner_mode": "SAME_CHAT_SEQUENTIAL",
+  "target_lane": "culinary-app",
+  "unmodified_lanes": [
+    "culinary-brain",
+    "barbecue"
+  ],
+  "historical_contracts": "preserved unchanged",
+  "status": "ALIGNMENT_ONLY"
+}
