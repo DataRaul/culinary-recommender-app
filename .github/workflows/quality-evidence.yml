@@ -1,0 +1,48 @@
+name: Quality evidence — reviewed packages
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+permissions:
+  contents: read
+jobs:
+  quality-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # pull_request_target keeps workflow/script trusted from BASE.
+      # Candidate content is treated only as data: NEVER execute code from candidate.
+      - name: Trusted base checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: trusted
+          persist-credentials: false
+      - name: Candidate data checkout
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Fetch pinned public quality checker
+        run: |
+          git clone --quiet --filter=blob:none --no-checkout https://github.com/DataRaul/agent-os.git /tmp/culinary-agent-os
+          git -C /tmp/culinary-agent-os checkout --quiet 2e55b320c88df7fa75eaaf47113184ba44f5bb8d
+      - name: Validate package evidence or preserve legacy PR
+        env:
+          EVENT_PATH: ${{ github.event_path }}
+        run: |
+          python3 trusted/scripts/quality_pr_gate.py \
+            --event "$EVENT_PATH" --trusted trusted --candidate candidate \
+            --shared /tmp/culinary-agent-os > /tmp/quality-result.json
+          cat /tmp/quality-result.json
+      - name: Show business-readable reviewer feedback
+        if: success()
+        run: |
+          python3 - <<'PY'
+          import json, subprocess
+          result = json.load(open('/tmp/quality-result.json'))
+          if result['status'] == 'QUALITY_EVIDENCE_PASS':
+              subprocess.run(['node', 'trusted/scripts/owner-quality-report.mjs', 'candidate', result['packet']], check=True)
+          PY
