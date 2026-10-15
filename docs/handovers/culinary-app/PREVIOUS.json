@@ -1,17 +1,20 @@
 {
-  "handover": "CULINARY_RECOMMENDER_APP_CULINARY_APP_CONCURRENT_V1",
-  "date": "2026-10-12",
+  "handover": "CULINARY_SAME_CHAT_WORKFLOW_PR430_TERMINAL_V3",
+  "date": "2026-10-15",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
   "source_of_truth": "Live GitHub main, open PRs/checks and lane contracts outrank all handover snapshots",
-  "main_sha": "fd104d4d4cd4692979eb22e07274c56b39155751",
-  "open_prs": [],
+  "main_sha": "30c2814f31b92414a8515f30c571b6725402bad7",
+  "open_prs": [
+    428,
+    429
+  ],
   "protected_corpus": {
     "activeVersion": "v8019",
     "protectedRecipeCount": 22086,
     "ownerSearchRecipeCount": 22086
   },
-  "package_terminal": "PACKAGE_QUALITY_PILOT_INSTALLATION_VERIFIED",
+  "package_terminal": "PR430_MERGED__GENUINE_SAME_CHAT_SEQUENCE_VALIDATED",
   "discovery": {
     "sourceFamily": "AdamBouhmad/open-recipe-archive pinned ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
     "baselineVersion": "v8019",
@@ -66,8 +69,8 @@
     "equivalent_repair_cycles_max": 1,
     "canonical_ref": "continuity-state"
   },
-  "startup_instruction": "Fresh-read live main AGENTS.md, docs/ROADMAP.md, authoritative generated programme/corpus state, docs/PACKAGE_QUALITY_PROTOCOL.md, docs/HANDOVER_PROTOCOL.md and docs/CONCURRENT_LANE_HANDOVERS.md. Read the lane index and fetch culinary-app CURRENT explicitly from continuity-state. Reconcile main, open PRs/checks and relevant runtime/deployment evidence without treating historical v8019 context as new acceptance. Select exactly one already-authorized acquisition/product package; retain Hemmets rights HOLD and all public/protected-runtime boundaries. Use internal alignment, build/check, a separate supporter and fresh critic on the exact candidate, then the pinned checker before publication. At terminal/context boundary append this lane concurrency log, atomically rotate only this lane pair with expected-head lease, verify remote bytes, emit the exact complete JSON and STOP.",
-  "status": "RECONCILE_PRODUCT_SUCCESSOR__RIGHTS_HOLDS_RETAINED",
+  "startup_instruction": "Fresh-read live main AGENTS.md, docs/ROADMAP.md, generated programme/corpus state, PACKAGE_QUALITY_PROTOCOL.md, HANDOVER_PROTOCOL.md and CONCURRENT_LANE_HANDOVERS.md. Resolve docs/handovers/INDEX.json and culinary-app CURRENT from continuity-state. PR430 installed SAME_CHAT_SEQUENTIAL: new or explicitly migrated contracts use one actual chat, independent:false, Align -> Build/QA -> Freeze -> pinned next/Supporter -> next/Critic -> next/synthesis -> full validate --synthesis -> required CI -> eligible merge -> own checkpoint. Historical contracts retain their original gates until owning-lane migration/refreeze. Do not restart this completed integration or consume its exhausted round. Select one already-authorized product/acquisition package under its own contract and unchanged adapter cap, preserve rights holds and runtime gates, rotate only this lane pair, emit complete JSON and STOP.",
+  "status": "SAME_CHAT_WORKFLOW_INSTALLED__PRODUCT_RIGHTS_HOLDS_RETAINED",
   "installation_verification": {
     "schema_version": 1,
     "project": "DataRaul/culinary-recommender-app",
@@ -113,14 +116,19 @@
   "package_quality": {
     "schema_version": 1,
     "goal_ref": {
-      "path": "docs/package_quality/goals/culinary-app/v1.json",
-      "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
+      "path": "docs/package_quality/goals/quality-pilot/v2.json",
+      "sha256": "917ff6a132d5c946ce3cf4feb794bf13f25f4ce1e7c08450d750c282b5933388"
     },
-    "package_ref": "docs/package_quality/contracts/concurrent-lanes-v1.json",
-    "status": "CONTINUITY_INTEGRATION__PRODUCT_RESEARCH_HOLDS_RETAINED",
+    "package_ref": "docs/package_quality/contracts/same-chat-sequential-adoption-closeout-v2.json",
+    "status": "PR430_MERGED__SEQUENTIALLY_REVIEWED__REQUIRED_CI_PASS",
     "last_evidence": [
-      "docs/package_quality/evidence/concurrent-lanes/local-checks.txt",
-      "docs/package_quality/evidence/concurrent-lanes/migration.json"
+      "docs/package_quality/evidence/same-chat-closeout/alignment.json",
+      "docs/package_quality/evidence/same-chat-closeout/qa.json",
+      "docs/package_quality/evidence/same-chat-closeout/source-pin.json",
+      "docs/package_quality/evidence/same-chat-closeout/packet.json",
+      "docs/package_quality/evidence/same-chat-closeout/supporter.json",
+      "docs/package_quality/evidence/same-chat-closeout/critic.json",
+      "docs/package_quality/evidence/same-chat-closeout/synthesis.json"
     ],
     "reviews": [
       {
@@ -132,19 +140,42 @@
         "role": "critic",
         "path": "docs/package_quality/evidence/concurrent-lanes/critic.json",
         "identity": "Exact candidate report on merged main; inspect before treating integration as reviewed."
+      },
+      {
+        "role": "supporter",
+        "path": "docs/package_quality/evidence/same-chat-closeout/supporter.json",
+        "identity": "Same actual active /root chat, independent:false; local correlation label, opaque host ID/model build unavailable."
+      },
+      {
+        "role": "critic",
+        "path": "docs/package_quality/evidence/same-chat-closeout/critic.json",
+        "identity": "Same actual active /root chat, independent:false; local correlation label, opaque host ID/model build unavailable."
+      },
+      {
+        "role": "synthesis",
+        "path": "docs/package_quality/evidence/same-chat-closeout/synthesis.json",
+        "identity": "Same actual active /root chat, independent:false; local correlation label, opaque host ID/model build unavailable."
       }
     ],
     "unfinished_criteria": [
-      "Live research/product owner gates remain in the lane contract"
+      "Live research/product owner gates remain in the lane contract",
+      "Comparative workflow efficacy remains unmeasured; no wider rollout inferred"
     ],
     "failures": [
-      "Historical shared-source catalog CI failure corrected; shared PR53 final CI PASS"
+      "Historical shared-source catalog CI failure corrected; shared PR53 final CI PASS",
+      "PR430 build: unconditional separate-session handover text repaired and regression checked before freeze.",
+      "PR430 build: stale staged base/session reconciled through preserved-history active successor contract before freeze.",
+      "Initial shared unittest invocation failed import-path setup before tests ran; canonical PYTHONPATH=scripts invocation passed."
     ],
     "decisions": [
       "Owner-selected pilot limited to Market Lab and Culinary",
       "Existing subscription/native review sessions; no paid API or scheduled quality service",
       "Installation and comparative efficacy are separate completion claims",
-      "Separate lane pairs; shared publication serialized with expected-head lease; no automatic chat injection"
+      "Separate lane pairs; shared publication serialized with expected-head lease; no automatic chat injection",
+      "Owner explicitly selected SAME_CHAT_SEQUENTIAL; no separate reviewer chats or background launcher.",
+      "Original staged contract and static evidence retained; new active contract preserves all four criteria, goal v2 and round 1/max 1.",
+      "Two material build findings resolved; optional comparative effectiveness measurement deferred without a reliability claim.",
+      "Required final-SHA CI passed before merge; reviewed full Git tree verified against merged main; state publication restricted to app pair."
     ],
     "budget": {
       "round": 1,
@@ -157,10 +188,15 @@
       "One equivalent repair cycle and one unchanged external recheck",
       "No paid service or application behavior change"
     ],
-    "next_action": "Read current roadmap/generated programme and choose exactly one authorized acquisition/product package; preserve the Hemmets rights HOLD.",
-    "predecessor_sha256": "caa99c9b451ce760efaeec64446c3d2d919baccc4b2050b3c4024a56c4a9f8f1",
-    "goal_contribution": "Installs goal alignment, exact-candidate reviews and durable checkpoints; defect reduction and overhead remain unmeasured",
-    "additional_cash_services_activated": false
+    "next_action": "Stop this package. Next chat fresh-reads main and culinary-app CURRENT, then selects one authorized product/acquisition package; retain Hemmets rights HOLD and preserve other lanes.",
+    "predecessor_sha256": "22faaf0185e6e1f199818010d0faaef608d46cd9fdfe829899bd6c7f387d3103",
+    "goal_contribution": "Culinary can execute constructive and adversarial review plus synthesis in one active chat, with exact pinned evidence, same-session disclosure and lane-safe continuity. Recipes and recommendation behavior are unchanged.",
+    "additional_cash_services_activated": false,
+    "review_mode": "SAME_CHAT_SEQUENTIAL",
+    "independent": false,
+    "session_id": "work-session-216ae7e23d79-root",
+    "candidate_digest": "f400bd4d9408696b37293c31739df981ddb3eb3370eba059c02fdecc59592597",
+    "remaining_review_rounds": 0
   },
   "schema_version": 1,
   "project": "culinary-recommender-app",
@@ -173,10 +209,14 @@
   "current_contract": "docs/ROADMAP.md",
   "roadmap": "docs/ROADMAP.md",
   "current_facts": [
-    "v8019 / 22,086 context retained from original checkpoint; this integration does not reverify production acceptance."
+    "v8019 / 22,086 context retained from original checkpoint; this integration does not reverify production acceptance.",
+    "PR430 closes workflow integration only; historical v8019 recipe counts and owner/runtime acceptance were not reverified."
   ],
-  "next_action": "Read current roadmap/generated programme and choose exactly one authorized acquisition/product package; preserve the Hemmets rights HOLD.",
-  "open_prs_at_reconciliation": [],
+  "next_action": "Stop this package. Next chat fresh-reads main and culinary-app CURRENT, then selects one authorized product/acquisition package; retain Hemmets rights HOLD and preserve other lanes.",
+  "open_prs_at_reconciliation": [
+    428,
+    429
+  ],
   "owner_run_now": false,
   "new_implementation": {
     "quality_protocol": "docs/PACKAGE_QUALITY_PROTOCOL.md",
@@ -186,8 +226,8 @@
     "state_branch": "continuity-state",
     "current": "docs/handovers/culinary-app/CURRENT.json",
     "previous": "docs/handovers/culinary-app/PREVIOUS.json",
-    "shared_pin": "31c7d9481fbc58a2f6c92d0a1a11293d86bbade4",
-    "roles": "Internal aligner, builder, separate supporter, fresh critic; exact candidate validation before publication"
+    "shared_pin": "2e55b320c88df7fa75eaaf47113184ba44f5bb8d",
+    "roles": "Same actual chat: internal alignment, build/QA, Supporter, Critic and synthesis; independent:false; pinned exact-candidate validation before publication"
   },
   "concurrency": {
     "parallel_lanes": [
@@ -215,6 +255,65 @@
       "predecessor_sha256": "caa99c9b451ce760efaeec64446c3d2d919baccc4b2050b3c4024a56c4a9f8f1",
       "authority": "Continuity registration only; no research/product gate advancement",
       "next_action": "Read current roadmap/generated programme and choose exactly one authorized acquisition/product package; preserve the Hemmets rights HOLD."
+    },
+    {
+      "event_id": "culinary-recommender-app:culinary-app:pr430-closeout:20261015",
+      "timestamp": "2026-10-15T15:30:06.321511+00:00",
+      "event": "PR430_SAME_CHAT_WORKFLOW_CLOSEOUT",
+      "lane_id": "culinary-app",
+      "observed_main": "30c2814f31b92414a8515f30c571b6725402bad7",
+      "observed_state_head": "7a5552924f27f9811155b4d62614946163dbb5d7",
+      "predecessor_sha256": "22faaf0185e6e1f199818010d0faaef608d46cd9fdfe829899bd6c7f387d3103",
+      "package": "same-chat-sequential-adoption-v1",
+      "result": "Merged after actual same-chat reviews, synthesis validation and final required CI",
+      "authority": "Only culinary-app CURRENT/PREVIOUS; no product/Brain/Barbecue gate advancement",
+      "next_action": "Stop this package. Next chat fresh-reads main and culinary-app CURRENT, then selects one authorized product/acquisition package; retain Hemmets rights HOLD and preserve other lanes."
     }
-  ]
+  ],
+  "owner_action_now": "NONE",
+  "same_chat_closeout": {
+    "pr": 430,
+    "url": "https://github.com/DataRaul/culinary-recommender-app/pull/430",
+    "candidate_sha": "3d67c3c0a1baf7d8bbf7e7b946c2745ff09d38aa",
+    "reviewed_base_sha": "9fd768e6d4bc8a34809ece30ed73b4ff71717a7f",
+    "merged_main_sha": "30c2814f31b92414a8515f30c571b6725402bad7",
+    "reviewed_tree": "c3a8a3e4ba38e3608dbd4b18c1d765fa44d70c68",
+    "required_ci": {
+      "run_id": 38760378237,
+      "head_sha": "3d67c3c0a1baf7d8bbf7e7b946c2745ff09d38aa",
+      "conclusion": "success"
+    },
+    "local_qa": {
+      "static_files": 1634,
+      "tests": 1437,
+      "pass": 1411,
+      "skipped": 26,
+      "fail": 0,
+      "shared_quality_controls": 31,
+      "shared_lane_controls": 7,
+      "actual_packet_negative_probes": 6
+    },
+    "findings": {
+      "S1": "RESOLVED: handover reviewer instruction conflict",
+      "S2": "RESOLVED: fresh base and actual-session correlation",
+      "C1": "DEFERRED_OPTIONAL: comparative efficacy measurement"
+    },
+    "validation": "SEQUENTIALLY_REVIEWED_READY_FOR_REQUIRED_CI via actual pinned wrapper, exact outgoing paths and git-base",
+    "limitations": [
+      "Same-context procedural review; identity and chronology self-reported",
+      "Effectiveness versus baseline unmeasured",
+      "No production acceptance or recipe/runtime/auth/admission changes claimed"
+    ],
+    "checkpoint_predecessor_head": "7a5552924f27f9811155b4d62614946163dbb5d7",
+    "checkpoint_predecessor_current_sha256": "22faaf0185e6e1f199818010d0faaef608d46cd9fdfe829899bd6c7f387d3103",
+    "publication_rule": "Prepare/verify exact app pair; publish on fresh state tree with expected-head lease, no force and skip CI; reread exact bytes and verify other lanes before final report.",
+    "expected_other_lane_sha256": {
+      "docs/handovers/culinary-brain/CURRENT.json": "b4bd93c875d7923732182d0d42125e71c487b056628f2159a8ae215fc9e698a4",
+      "docs/handovers/culinary-brain/PREVIOUS.json": "2bd08b0879ac6c96d46587a2b610abf71e207b109c1c029802703189fad3906f",
+      "docs/handovers/barbecue/CURRENT.json": "ee1eaa30a2317d4332c009b70ca666a61c02e1ad48165e04c47d07bcbbc2aaa8",
+      "docs/handovers/barbecue/PREVIOUS.json": "f1e554767a1f7d6c7947062e8250e32efe64f6fd524bd00272dfe6b4b0c55eca"
+    },
+    "usage": "unknown",
+    "stop_after_package": true
+  }
 }

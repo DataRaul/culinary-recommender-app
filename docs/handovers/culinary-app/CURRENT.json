@@ -1,10 +1,10 @@
 {
-  "handover": "CULINARY_SAME_CHAT_WORKFLOW_PR430_TERMINAL_V3",
+  "handover": "CULINARY_NON_ORA_LINEAGE_DISCOVERY_PR431_V1",
   "date": "2026-10-15",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
   "source_of_truth": "Live GitHub main, open PRs/checks and lane contracts outrank all handover snapshots",
-  "main_sha": "30c2814f31b92414a8515f30c571b6725402bad7",
+  "main_sha": "8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
   "open_prs": [
     428,
     429
@@ -14,7 +14,7 @@
     "protectedRecipeCount": 22086,
     "ownerSearchRecipeCount": 22086
   },
-  "package_terminal": "PR430_MERGED__GENUINE_SAME_CHAT_SEQUENCE_VALIDATED",
+  "package_terminal": "PR431_MERGED",
   "discovery": {
     "sourceFamily": "AdamBouhmad/open-recipe-archive pinned ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
     "baselineVersion": "v8019",
@@ -47,7 +47,7 @@
     "browserAcceptance": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
     "productionPublicSmoke": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION"
   },
-  "nextGate": "FRESH_RECONCILE_CURRENT_ROADMAP_AND_SELECT_ONE_AUTHORIZED_PRODUCT_PACKAGE",
+  "nextGate": "BASED_COOKING_PINNED_RECORD_RIGHTS_STRUCTURE_AND_FULL_CORPUS_DEDUP_NO_WRITE",
   "guardrails": [
     "continue acquisition-first; ORA exhaustion is not programme completion",
     "rights/provenance fail closed",
@@ -69,8 +69,8 @@
     "equivalent_repair_cycles_max": 1,
     "canonical_ref": "continuity-state"
   },
-  "startup_instruction": "Fresh-read live main AGENTS.md, docs/ROADMAP.md, generated programme/corpus state, PACKAGE_QUALITY_PROTOCOL.md, HANDOVER_PROTOCOL.md and CONCURRENT_LANE_HANDOVERS.md. Resolve docs/handovers/INDEX.json and culinary-app CURRENT from continuity-state. PR430 installed SAME_CHAT_SEQUENTIAL: new or explicitly migrated contracts use one actual chat, independent:false, Align -> Build/QA -> Freeze -> pinned next/Supporter -> next/Critic -> next/synthesis -> full validate --synthesis -> required CI -> eligible merge -> own checkpoint. Historical contracts retain their original gates until owning-lane migration/refreeze. Do not restart this completed integration or consume its exhausted round. Select one already-authorized product/acquisition package under its own contract and unchanged adapter cap, preserve rights holds and runtime gates, rotate only this lane pair, emit complete JSON and STOP.",
-  "status": "SAME_CHAT_WORKFLOW_INSTALLED__PRODUCT_RIGHTS_HOLDS_RETAINED",
+  "startup_instruction": "Read live main AGENTS.md, ROADMAP, programme/corpus state, PACKAGE_QUALITY_PROTOCOL, HANDOVER_PROTOCOL, CONCURRENT_LANE_HANDOVERS and INDEX; read culinary-app CURRENT from continuity-state. Live state outranks this snapshot. PR430 integration is closed. Reconcile PR431 first; do not repeat completed discovery or reset its review round. If merged, the next separate package is pinned Based Cooking record rights/structure/full-v8019-corpus dedup with no D1 writes. One bounded package, same actual chat Supporter/Critic/synthesis, exact pinned validation, required CI, eligible merge, app-only checkpoint, full JSON and STOP. Preserve Brain/Barbecue and Hemmets HOLD.",
+  "status": "NON_ORA_DISCOVERY_MERGED",
   "installation_verification": {
     "schema_version": 1,
     "project": "DataRaul/culinary-recommender-app",
@@ -116,19 +116,19 @@
   "package_quality": {
     "schema_version": 1,
     "goal_ref": {
-      "path": "docs/package_quality/goals/quality-pilot/v2.json",
-      "sha256": "917ff6a132d5c946ce3cf4feb794bf13f25f4ce1e7c08450d750c282b5933388"
+      "path": "docs/package_quality/goals/culinary-app/v1.json",
+      "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
     },
-    "package_ref": "docs/package_quality/contracts/same-chat-sequential-adoption-closeout-v2.json",
-    "status": "PR430_MERGED__SEQUENTIALLY_REVIEWED__REQUIRED_CI_PASS",
+    "package_ref": "docs/package_quality/contracts/non-ora-lineage-discovery-v1.json",
+    "status": "PR431_MERGED",
     "last_evidence": [
-      "docs/package_quality/evidence/same-chat-closeout/alignment.json",
-      "docs/package_quality/evidence/same-chat-closeout/qa.json",
-      "docs/package_quality/evidence/same-chat-closeout/source-pin.json",
-      "docs/package_quality/evidence/same-chat-closeout/packet.json",
-      "docs/package_quality/evidence/same-chat-closeout/supporter.json",
-      "docs/package_quality/evidence/same-chat-closeout/critic.json",
-      "docs/package_quality/evidence/same-chat-closeout/synthesis.json"
+      "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/source-pin.json",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/packet.json",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/supporter.json",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/critic.json",
+      "docs/package_quality/evidence/non-ora-lineage-discovery/synthesis.json"
     ],
     "reviews": [
       {
@@ -155,17 +155,35 @@
         "role": "synthesis",
         "path": "docs/package_quality/evidence/same-chat-closeout/synthesis.json",
         "identity": "Same actual active /root chat, independent:false; local correlation label, opaque host ID/model build unavailable."
+      },
+      {
+        "role": "supporter",
+        "path": "docs/package_quality/evidence/non-ora-lineage-discovery/supporter.json",
+        "identity": "Same actual active /root chat in workspace 415526c273d0; independent:false; opaque host identity and exact model build unavailable."
+      },
+      {
+        "role": "critic",
+        "path": "docs/package_quality/evidence/non-ora-lineage-discovery/critic.json",
+        "identity": "Same actual active /root chat in workspace 415526c273d0; independent:false; opaque host identity and exact model build unavailable."
+      },
+      {
+        "role": "synthesis",
+        "path": "docs/package_quality/evidence/non-ora-lineage-discovery/synthesis.json",
+        "identity": "Same actual active /root chat in workspace 415526c273d0; independent:false; opaque host identity and exact model build unavailable."
       }
     ],
     "unfinished_criteria": [
       "Live research/product owner gates remain in the lane contract",
-      "Comparative workflow efficacy remains unmeasured; no wider rollout inferred"
+      "Comparative workflow efficacy remains unmeasured; no wider rollout inferred",
+      "Pinned record rights/structure and full-corpus dedup remain open; 236 new paths do not establish 236 new recipes.",
+      "No runtime population, owner search or production acceptance change in this package."
     ],
     "failures": [
       "Historical shared-source catalog CI failure corrected; shared PR53 final CI PASS",
       "PR430 build: unconditional separate-session handover text repaired and regression checked before freeze.",
       "PR430 build: stale staged base/session reconciled through preserved-history active successor contract before freeze.",
-      "Initial shared unittest invocation failed import-path setup before tests ran; canonical PYTHONPATH=scripts invocation passed."
+      "Initial shared unittest invocation failed import-path setup before tests ran; canonical PYTHONPATH=scripts invocation passed.",
+      "Pre-freeze findings: 223 structural versus 226 stored baseline reconciled; extensionless/root recipe omissions prevented. Both resolved and checked on frozen candidate; no review repair round consumed."
     ],
     "decisions": [
       "Owner-selected pilot limited to Market Lab and Culinary",
@@ -175,7 +193,11 @@
       "Owner explicitly selected SAME_CHAT_SEQUENTIAL; no separate reviewer chats or background launcher.",
       "Original staged contract and static evidence retained; new active contract preserves all four criteria, goal v2 and round 1/max 1.",
       "Two material build findings resolved; optional comparative effectiveness measurement deferred without a reliability claim.",
-      "Required final-SHA CI passed before merge; reviewed full Git tree verified against merged main; state publication restricted to app pair."
+      "Required final-SHA CI passed before merge; reviewed full Git tree verified against merged main; state publication restricted to app pair.",
+      "Selected one non-ORA upstream lineage opportunity under existing acquisition-first authority; PR428/429 remain untouched.",
+      "Baseline includes all 226 stored source files; preserve two malformed-placement exceptions.",
+      "Source declaration only; no blanket rights clearance and no safety metadata inferred.",
+      "Distinct discovery contract uses round 1/max 1; prior PR430 exhausted budget remains closed in history."
     ],
     "budget": {
       "round": 1,
@@ -188,15 +210,29 @@
       "One equivalent repair cycle and one unchanged external recheck",
       "No paid service or application behavior change"
     ],
-    "next_action": "Stop this package. Next chat fresh-reads main and culinary-app CURRENT, then selects one authorized product/acquisition package; retain Hemmets rights HOLD and preserve other lanes.",
-    "predecessor_sha256": "22faaf0185e6e1f199818010d0faaef608d46cd9fdfe829899bd6c7f387d3103",
-    "goal_contribution": "Culinary can execute constructive and adversarial review plus synthesis in one active chat, with exact pinned evidence, same-session disclosure and lane-safe continuity. Recipes and recommendation behavior are unchanged.",
+    "next_action": "Fresh-reconcile main and culinary-app CURRENT; execute exactly one BASED_COOKING_PINNED_RECORD_RIGHTS_STRUCTURE_AND_FULL_CORPUS_DEDUP_NO_WRITE package. Preserve all holds and capacity/import gates.",
+    "predecessor_sha256": "e5dde894e53b1a11ed23918a8752e7b964ac806a0acc0d3aabaa5d597eb8d200",
+    "goal_contribution": "A pinned 442-file non-ORA lineage worklist and reproducible comparison now identify the next acquisition opportunity; no recipe count or rights/readiness claim is inflated.",
     "additional_cash_services_activated": false,
     "review_mode": "SAME_CHAT_SEQUENTIAL",
     "independent": false,
-    "session_id": "work-session-216ae7e23d79-root",
-    "candidate_digest": "f400bd4d9408696b37293c31739df981ddb3eb3370eba059c02fdecc59592597",
-    "remaining_review_rounds": 0
+    "session_id": "work-session-415526c273d0-root",
+    "candidate_digest": "f59d70c9eaedb44bc070f49bbeb191bf128f9d1c82053c6acee3553b3e9dae1d",
+    "remaining_review_rounds": 0,
+    "package_history": [
+      {
+        "package_ref": "docs/package_quality/contracts/same-chat-sequential-adoption-closeout-v2.json",
+        "status": "PR430_MERGED__SEQUENTIALLY_REVIEWED__REQUIRED_CI_PASS",
+        "candidate_digest": "f400bd4d9408696b37293c31739df981ddb3eb3370eba059c02fdecc59592597",
+        "budget": {
+          "round": 1,
+          "max_rounds": 1,
+          "usage": "unknown"
+        },
+        "remaining_review_rounds": 0,
+        "note": "Closed PR430 workflow installation remains historical; this is a distinct authorized discovery package with adapter cap unchanged."
+      }
+    ]
   },
   "schema_version": 1,
   "project": "culinary-recommender-app",
@@ -206,13 +242,16 @@
     "path": "docs/package_quality/goals/culinary-app/v1.json",
     "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
   },
-  "current_contract": "docs/ROADMAP.md",
+  "current_contract": "docs/package_quality/contracts/non-ora-lineage-discovery-v1.json",
   "roadmap": "docs/ROADMAP.md",
   "current_facts": [
     "v8019 / 22,086 context retained from original checkpoint; this integration does not reverify production acceptance.",
-    "PR430 closes workflow integration only; historical v8019 recipe counts and owner/runtime acceptance were not reverified."
+    "PR430 closes workflow integration only; historical v8019 recipe counts and owner/runtime acceptance were not reverified.",
+    "Pinned Based Cooking upstream outside ORA: 442 potential files; 236 new paths, 206 overlaps, zero exact baseline blobs. Path novelty is not confirmed recipe novelty.",
+    "Historical sylGauthier cohort stores all 226 rows although its original structural measurement parsed 223; comparison includes all 226.",
+    "No recipes imported; accepted baseline remains v8019 / 22,086 and production owner acceptance is not reverified."
   ],
-  "next_action": "Stop this package. Next chat fresh-reads main and culinary-app CURRENT, then selects one authorized product/acquisition package; retain Hemmets rights HOLD and preserve other lanes.",
+  "next_action": "Fresh-reconcile main and culinary-app CURRENT; execute exactly one BASED_COOKING_PINNED_RECORD_RIGHTS_STRUCTURE_AND_FULL_CORPUS_DEDUP_NO_WRITE package. Preserve all holds and capacity/import gates.",
   "open_prs_at_reconciliation": [
     428,
     429
@@ -268,6 +307,19 @@
       "result": "Merged after actual same-chat reviews, synthesis validation and final required CI",
       "authority": "Only culinary-app CURRENT/PREVIOUS; no product/Brain/Barbecue gate advancement",
       "next_action": "Stop this package. Next chat fresh-reads main and culinary-app CURRENT, then selects one authorized product/acquisition package; retain Hemmets rights HOLD and preserve other lanes."
+    },
+    {
+      "event_id": "culinary-recommender-app:culinary-app:non-ora-pr431:20261015",
+      "timestamp": "2026-10-15T16:47:19.500664+00:00",
+      "event": "NON_ORA_LINEAGE_DISCOVERY_MERGED",
+      "lane_id": "culinary-app",
+      "observed_main": "8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
+      "observed_state_head": "6e067465801d6720f2321c4982211063cd4009bf",
+      "predecessor_sha256": "e5dde894e53b1a11ed23918a8752e7b964ac806a0acc0d3aabaa5d597eb8d200",
+      "package": "non-ora-lineage-discovery-v1",
+      "result": "442 candidates inventoried; 236 new paths, 206 overlaps; zero imports. PR431 MERGED",
+      "authority": "Acquisition discovery and own checkpoint only; no runtime/Brain/Barbecue writes",
+      "next_action": "Fresh-reconcile main and culinary-app CURRENT; execute exactly one BASED_COOKING_PINNED_RECORD_RIGHTS_STRUCTURE_AND_FULL_CORPUS_DEDUP_NO_WRITE package. Preserve all holds and capacity/import gates."
     }
   ],
   "owner_action_now": "NONE",
@@ -314,6 +366,67 @@
       "docs/handovers/barbecue/PREVIOUS.json": "f1e554767a1f7d6c7947062e8250e32efe64f6fd524bd00272dfe6b4b0c55eca"
     },
     "usage": "unknown",
+    "stop_after_package": true
+  },
+  "non_ora_discovery": {
+    "package": "non-ora-lineage-discovery-v1",
+    "pr": 431,
+    "url": "https://github.com/DataRaul/culinary-recommender-app/pull/431",
+    "branch": "culinary-source-family-discovery-20261015",
+    "head_sha": "f7fb13969deea68f0a1433ee9590cf1637396a7a",
+    "base_sha": "30c2814f31b92414a8515f30c571b6725402bad7",
+    "reviewed_tree": "f1549a5a3c35b012868d4c04236ab8a1738cd5c8",
+    "objective": "Find and reproducibly inventory one concrete acquisition path beyond exhausted ORA.",
+    "source": {
+      "repository": "LukeSmithxyz/based.cooking",
+      "commit": "9d4a31a040eedd61e4fb608cb0c114ff9a7c4dd2"
+    },
+    "lineage_baseline": {
+      "repository": "sylGauthier/recipes",
+      "commit": "b12e481d1c220a13e0847a34e148d5872a16928e",
+      "stored_rows": 226,
+      "historical_parseable_rows": 223
+    },
+    "counts": {
+      "potential_files": 442,
+      "new_paths": 236,
+      "overlapping_paths": 206,
+      "exact_baseline_blobs": 0,
+      "confirmed_new_usable_recipes": null,
+      "added_to_protected_corpus": 0
+    },
+    "exceptions": [
+      "content/Mead: extensionless, nonstandard headings",
+      "cinnaroll.md: root orphan"
+    ],
+    "rights": "SOURCE_DECLARATION_FOUND__RECORD_REVIEW_REQUIRED; README covers content, LICENSE.md is software-worded Unlicense; no blanket Spain-facing clearance inferred.",
+    "source_safety": "Submission guidance permits ubiquitous-ingredient omissions; no dietary/allergen authority inferred.",
+    "evidence": [
+      "data/generated/step8g/based-cooking-discovery-inputs.json",
+      "data/generated/step8g/based-cooking-lineage-discovery.json"
+    ],
+    "required_ci": {
+      "run_id": 38771579699,
+      "name": "Validate public V0",
+      "head_sha": "f7fb13969deea68f0a1433ee9590cf1637396a7a",
+      "conclusion": "success"
+    },
+    "local_qa": {
+      "static_files": 1646,
+      "tests": 1441,
+      "pass": 1415,
+      "skipped": 26,
+      "fail": 0
+    },
+    "merge_status": "MERGED",
+    "merge_main_sha": "8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
+    "remaining_gates": [
+      "Per-record rights/provenance and third-party-origin exceptions",
+      "Full-cohort structural measurement",
+      "Dedup against entire exact v8019 corpus",
+      "Separate capacity prewrite and import authorization before any D1 population"
+    ],
+    "next_action": "Fresh-reconcile main and culinary-app CURRENT; execute exactly one BASED_COOKING_PINNED_RECORD_RIGHTS_STRUCTURE_AND_FULL_CORPUS_DEDUP_NO_WRITE package. Preserve all holds and capacity/import gates.",
     "stop_after_package": true
   }
 }
