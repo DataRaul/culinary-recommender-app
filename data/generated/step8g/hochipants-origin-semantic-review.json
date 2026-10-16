@@ -1,0 +1,198 @@
+{
+  "schema": "HOCHIPANTS_ORIGIN_SEMANTIC_REVIEW_V1",
+  "date": "2026-10-16",
+  "lane": "culinary-app",
+  "targetMainSha": "78daee797184d31737c1ab215b5e37b0a7345042",
+  "source": {
+    "repository": "HoChiPants/open-recipe-archive",
+    "sha": "1d20e28de6df5bbe49447b3042336575f5b7bc01",
+    "initialCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+    "subsequentCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+    "initialCommitDate": "2026-07-14",
+    "commitAuthorDisplay": "Austin Stephens",
+    "commitAccount": "HoChiPants",
+    "sourcePolicy": "docs/CONTENT_POLICY.md",
+    "sourceLicense": "LICENSE.md",
+    "rightsRegistry": "scraping/config/publication-rights.json",
+    "rightsRegistrySourceCount": 0,
+    "provenanceFinding": "Seven recipe files trace to repository initial commit with no per-record source attribution. Commit author identity and CC0 repository declaration do not independently establish original authorship, third-party rights, or Spain-facing reuse clearance.",
+    "historyLimit": "Inspected pinned source file histories; Git authorship and repository metadata are not author attestations. No external permission obtained."
+  },
+  "baseline": {
+    "version": "v8019",
+    "count": 22086,
+    "fingerprintSha256": "426e44c607151b19ec85aeab7993e0a098a55c84c63202e227df18ae4b71562a",
+    "literalTitleMatches": 0,
+    "literalWordingMatches": 0,
+    "completeWordingFingerprints": 22083,
+    "incompleteWordingFingerprints": 3,
+    "incompleteBaselineRecordIndices": [],
+    "incompleteBaselineRecordIdentification": "NOT_AVAILABLE_IN_PR433_COMMITTED_METADATA",
+    "incompleteBaselineStatus": "REVIEW_REQUIRED__NO_MANUAL_EXCLUSION",
+    "semanticSimilarityExecution": "NOT_EXECUTED__FULL_BASELINE_METADATA_OR_RECONSTRUCTED_SOURCE_REQUIRED",
+    "limitations": "Prior exact hashes exclude ingredient quantities and do not cover translated titles, aliases, recipe variants, or semantically similar methods. No original corpus reconstruction occurred in this package."
+  },
+  "records": [
+    {
+      "id": "strawberry-overnight-oats",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": null,
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "strawberry oatmeal",
+        "overnight oatmeal with berries",
+        "bircher muesli"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_NOT_MATCHED_BASELINE_RECORDS",
+      "semanticDisposition": "HOLD_FULL_V8019_SEMANTIC_AND_TRANSLATED_DEDUP_NOT_EXECUTED",
+      "baselineThreeIncompleteRecords": "REQUIRES_MANUAL_COMPARISON_WHEN_IDENTIFIED",
+      "admissible": false,
+      "importAuthorized": false
+    },
+    {
+      "id": "one-bowl-banana-cake",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "banana bread",
+        "banana loaf",
+        "banana sponge cake"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_NOT_MATCHED_BASELINE_RECORDS",
+      "semanticDisposition": "HOLD_FULL_V8019_SEMANTIC_AND_TRANSLATED_DEDUP_NOT_EXECUTED",
+      "baselineThreeIncompleteRecords": "REQUIRES_MANUAL_COMPARISON_WHEN_IDENTIFIED",
+      "admissible": false,
+      "importAuthorized": false
+    },
+    {
+      "id": "strawberry-lemon-spritz",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "strawberry lemonade",
+        "strawberry soda",
+        "berry spritzer"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_NOT_MATCHED_BASELINE_RECORDS",
+      "semanticDisposition": "HOLD_FULL_V8019_SEMANTIC_AND_TRANSLATED_DEDUP_NOT_EXECUTED",
+      "baselineThreeIncompleteRecords": "REQUIRES_MANUAL_COMPARISON_WHEN_IDENTIFIED",
+      "admissible": false,
+      "importAuthorized": false
+    },
+    {
+      "id": "tomato-cucumber-salad",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "cucumber tomato salad",
+        "ensalada de tomate y pepino",
+        "salade de tomate concombre"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_NOT_MATCHED_BASELINE_RECORDS",
+      "semanticDisposition": "HOLD_FULL_V8019_SEMANTIC_AND_TRANSLATED_DEDUP_NOT_EXECUTED",
+      "baselineThreeIncompleteRecords": "REQUIRES_MANUAL_COMPARISON_WHEN_IDENTIFIED",
+      "admissible": false,
+      "importAuthorized": false
+    },
+    {
+      "id": "caprese-grilled-cheese",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "caprese panini",
+        "mozzarella tomato toastie",
+        "grilled mozzarella sandwich"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_NOT_MATCHED_BASELINE_RECORDS",
+      "semanticDisposition": "HOLD_FULL_V8019_SEMANTIC_AND_TRANSLATED_DEDUP_NOT_EXECUTED",
+      "baselineThreeIncompleteRecords": "REQUIRES_MANUAL_COMPARISON_WHEN_IDENTIFIED",
+      "admissible": false,
+      "importAuthorized": false
+    },
+    {
+      "id": "classic-hummus",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "houmous",
+        "hummus bi tahini",
+        "chickpea dip"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_NOT_MATCHED_BASELINE_RECORDS",
+      "semanticDisposition": "HOLD_FULL_V8019_SEMANTIC_AND_TRANSLATED_DEDUP_NOT_EXECUTED",
+      "baselineThreeIncompleteRecords": "REQUIRES_MANUAL_COMPARISON_WHEN_IDENTIFIED",
+      "admissible": false,
+      "importAuthorized": false
+    },
+    {
+      "id": "everyday-lentil-soup",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "sopa de lentejas",
+        "lentil pottage",
+        "lentejas guisadas"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_NOT_MATCHED_BASELINE_RECORDS",
+      "semanticDisposition": "HOLD_FULL_V8019_SEMANTIC_AND_TRANSLATED_DEDUP_NOT_EXECUTED",
+      "baselineThreeIncompleteRecords": "REQUIRES_MANUAL_COMPARISON_WHEN_IDENTIFIED",
+      "admissible": false,
+      "importAuthorized": false
+    }
+  ],
+  "counts": {
+    "inspected": 7,
+    "originHistoryTraced": 7,
+    "originUnattested": 7,
+    "semanticResolved": 0,
+    "admissible": 0,
+    "imported": 0,
+    "adaptationsPreservedOnHold": 6
+  },
+  "boundary": {
+    "productionWrites": false,
+    "sourceBodiesPublished": false,
+    "baselineRecipesPublished": false,
+    "protectedCorpusChanges": false,
+    "otherLanesChanged": false,
+    "pr432": "HOLD_BUDGET_PRESERVED",
+    "basedCooking": "STOPPED",
+    "pr428": "UNCHANGED",
+    "pr429": "UNCHANGED"
+  },
+  "status": "PROVENANCE_TRACED__ORIGIN_HOLD__SEMANTIC_BASELINE_REVIEW_PENDING",
+  "nextAction": "In a terminal with four pinned source checkouts, rebuild v8019 offline metadata, identify the three incomplete wording records by index/title, perform ranked multilingual/ingredient-method candidate matching for all seven, manually adjudicate candidates and provenance; preserve no-import if unresolved. No D1 or protected corpus write.",
+  "quality": {
+    "sameChatMode": "SAME_CHAT_SEQUENTIAL",
+    "independent": false,
+    "pinnedValidator": "NOT_EXECUTED",
+    "disposition": "HOLD_NO_PUBLICATION_CLEARANCE"
+  }
+}
