@@ -1,0 +1,23 @@
+{
+  "stage": "align",
+  "session": "work-0886d49b5e7a-root",
+  "authority": "CULINARY_REAL_ACQUISITION_CONTINUATION_V12 overrides stale PR432-only checkpoint; PR432 remains HOLD with exhausted budget preserved.",
+  "objective": "Implement and replay a pinned 13-record rights/structure/full-v8019 syntactic duplicate assessment; no import or legal clearance.",
+  "scope": [
+    "source assessment CLI and deterministic metadata evidence",
+    "reuse pinned baseline reconstruction",
+    "bounded failure-path tests"
+  ],
+  "terminal": "Reviewed acquisition assessment PR and own lane checkpoint; STOP",
+  "constraints": [
+    "No recipe body publication",
+    "No D1, runtime, Based Cooking, PR428/429/432 or other-lane changes",
+    "No paid APIs"
+  ],
+  "criteria": [
+    "RECORDS",
+    "BASELINE",
+    "BOUNDARY"
+  ],
+  "knowledge_commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3"
+}

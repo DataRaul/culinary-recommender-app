@@ -1,0 +1,63 @@
+{
+  "stage": "build_qa",
+  "session": "work-0886d49b5e7a-root",
+  "result": "PASS",
+  "counts": {
+    "records": 13,
+    "structured": 13,
+    "namedSources": 6,
+    "withoutNamedSource": 7,
+    "titleMatchCandidates": 0,
+    "wordingMatchCandidates": 0,
+    "imports": 0
+  },
+  "baseline": {
+    "version": "v8019",
+    "count": 22086,
+    "sourcePins": {
+      "ora": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "forkrecipe": "c32255266af39bd77444d39452f3df8088ac8fd9",
+      "unitools": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+      "cc0": "b12e481d1c220a13e0847a34e148d5872a16928e"
+    },
+    "fingerprintSha256": "426e44c607151b19ec85aeab7993e0a098a55c84c63202e227df18ae4b71562a"
+  },
+  "coverage": {
+    "title": 22086,
+    "wording": 22083
+  },
+  "source_input": "Pinned source Git objects; exact catalog/finalized equality for all 13",
+  "baseline_input": "Four clean pinned source checkouts via existing baseline reconstruction; no live D1 read",
+  "validation": {
+    "tests": 1445,
+    "pass": 1419,
+    "fail": 0,
+    "skipped": 26
+  },
+  "focused_tests": 4,
+  "replay": "Generated exact source assessment from clean full baseline; all 13 retained.",
+  "negative_cases": [
+    "Wrong source/baseline pins",
+    "Missing baseline record",
+    "Duplicate baseline index",
+    "Catalog/finalized drift",
+    "Empty method yields structure HOLD and no duplicate hash"
+  ],
+  "limits": [
+    "Literal wording screen, quantities excluded; no semantic novelty",
+    "Three baseline records lack complete wording fingerprints",
+    "Six adaptation holds; seven origin reviews; zero import authority",
+    "No browser QA: data/CLI/documentation only; no runtime changes"
+  ],
+  "workflow_feedback": [
+    "Validation stayed inside the acquisition package.",
+    "A duplicate full validation was inadvertently started while the first was still running; no further repetition is needed.",
+    "Same-chat reviews remain non-independent; efficacy unmeasured."
+  ],
+  "preserved": [
+    "PR432 head ed39f17789d967bce24c9c0f22f3d6d0412f1c6a HOLD and consumed review budget",
+    "PR428/429",
+    "Based Cooking STOP",
+    "All protected/runtime/D1/Brain/Barbecue state"
+  ]
+}

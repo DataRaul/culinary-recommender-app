@@ -1,0 +1,287 @@
+{
+  "schema": "HOCHIPANTS_ACQUISITION_RECORD_ASSESSMENT_V1",
+  "source": {
+    "repository": "HoChiPants/open-recipe-archive",
+    "commit": "1d20e28de6df5bbe49447b3042336575f5b7bc01"
+  },
+  "baseline": {
+    "version": "v8019",
+    "count": 22086,
+    "sourcePins": {
+      "ora": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "forkrecipe": "c32255266af39bd77444d39452f3df8088ac8fd9",
+      "unitools": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+      "cc0": "b12e481d1c220a13e0847a34e148d5872a16928e"
+    },
+    "fingerprintSha256": "426e44c607151b19ec85aeab7993e0a098a55c84c63202e227df18ae4b71562a"
+  },
+  "comparisonScope": "Every v8019 reconstructed record compared by normalized title and ingredient/method wording; wording excludes quantities. No semantic dedup or live D1 equality claim.",
+  "counts": {
+    "records": 13,
+    "structured": 13,
+    "namedSources": 6,
+    "withoutNamedSource": 7,
+    "titleMatchCandidates": 0,
+    "wordingMatchCandidates": 0,
+    "imports": 0
+  },
+  "baselineCoverage": {
+    "title": 22086,
+    "wording": 22083
+  },
+  "records": [
+    {
+      "id": "strawberry-overnight-oats",
+      "path": "recipes/breakfast/strawberry-overnight-oats.json",
+      "sha256": "28043ade9c1ddc7ac3be1177245c927710fde6893976ad1329a4cc86ec1bb91e",
+      "ingredients": 5,
+      "steps": 3,
+      "structure": "PASS",
+      "declaredSource": null,
+      "rights": "CC0_DECLARATION_FOUND__ORIGIN_REVIEW_REQUIRED",
+      "rightsReason": "No named source; absence does not independently prove original authorship. Repository CC0 declaration is preserved, not converted to import authority.",
+      "comparison": {
+        "normalizedTitleMatches": [],
+        "ingredientMethodWordingMatches": [],
+        "recipeNovelty": "UNRESOLVED_SEMANTIC_AND_TRANSLATION_REVIEW"
+      },
+      "importAuthorized": false
+    },
+    {
+      "id": "one-bowl-banana-cake",
+      "path": "recipes/desserts/one-bowl-banana-cake.json",
+      "sha256": "ee2f2201aefecaf3b9a03375e43955075d1e7d2eb73c17224e8f1c00dd63f8e2",
+      "ingredients": 7,
+      "steps": 4,
+      "structure": "PASS",
+      "declaredSource": null,
+      "rights": "CC0_DECLARATION_FOUND__ORIGIN_REVIEW_REQUIRED",
+      "rightsReason": "No named source; absence does not independently prove original authorship. Repository CC0 declaration is preserved, not converted to import authority.",
+      "comparison": {
+        "normalizedTitleMatches": [],
+        "ingredientMethodWordingMatches": [],
+        "recipeNovelty": "UNRESOLVED_SEMANTIC_AND_TRANSLATION_REVIEW"
+      },
+      "importAuthorized": false
+    },
+    {
+      "id": "strawberry-lemon-spritz",
+      "path": "recipes/drinks/strawberry-lemon-spritz.json",
+      "sha256": "b576bdf55fcb38db44685376c064dd74a9a175af376c3203fda5ad65c5a2f71b",
+      "ingredients": 5,
+      "steps": 3,
+      "structure": "PASS",
+      "declaredSource": null,
+      "rights": "CC0_DECLARATION_FOUND__ORIGIN_REVIEW_REQUIRED",
+      "rightsReason": "No named source; absence does not independently prove original authorship. Repository CC0 declaration is preserved, not converted to import authority.",
+      "comparison": {
+        "normalizedTitleMatches": [],
+        "ingredientMethodWordingMatches": [],
+        "recipeNovelty": "UNRESOLVED_SEMANTIC_AND_TRANSLATION_REVIEW"
+      },
+      "importAuthorized": false
+    },
+    {
+      "id": "crisp-arugula-and-orange-fennel-salad",
+      "path": "recipes/salads/crisp-arugula-and-orange-fennel-salad.json",
+      "sha256": "9c7d8a5094892802b70dda099c39a3fd32780eff12ed5e1e058d927a5cf068d8",
+      "ingredients": 9,
+      "steps": 3,
+      "structure": "PASS",
+      "declaredSource": {
+        "name": "Allrecipes",
+        "url": "https://www.allrecipes.com/recipe/174365/arugula-fennel-and-orange-salad/",
+        "adapted": true
+      },
+      "rights": "HOLD_THIRD_PARTY_ADAPTATION",
+      "rightsReason": "CC0 covers original repository data only; source attribution is not third-party permission.",
+      "comparison": {
+        "normalizedTitleMatches": [],
+        "ingredientMethodWordingMatches": [],
+        "recipeNovelty": "UNRESOLVED_SEMANTIC_AND_TRANSLATION_REVIEW"
+      },
+      "importAuthorized": false
+    },
+    {
+      "id": "dill-marinated-cucumber-tomato-salad",
+      "path": "recipes/salads/dill-marinated-cucumber-tomato-salad.json",
+      "sha256": "6a2b501eda1e37393383d6038569261fd8d32c28f339bc0826ac806c12257bb1",
+      "ingredients": 9,
+      "steps": 3,
+      "structure": "PASS",
+      "declaredSource": {
+        "name": "Allrecipes",
+        "url": "https://www.allrecipes.com/recipe/237984/marinated-cucumber-onion-and-tomato-salad/",
+        "adapted": true
+      },
+      "rights": "HOLD_THIRD_PARTY_ADAPTATION",
+      "rightsReason": "CC0 covers original repository data only; source attribution is not third-party permission.",
+      "comparison": {
+        "normalizedTitleMatches": [],
+        "ingredientMethodWordingMatches": [],
+        "recipeNovelty": "UNRESOLVED_SEMANTIC_AND_TRANSLATION_REVIEW"
+      },
+      "importAuthorized": false
+    },
+    {
+      "id": "tomato-avocado-feta-salad",
+      "path": "recipes/salads/tomato-avocado-feta-salad.json",
+      "sha256": "bd0f265137f2798970a446f39719b337f9fef790084f093861011e2574a8b6ab",
+      "ingredients": 8,
+      "steps": 3,
+      "structure": "PASS",
+      "declaredSource": {
+        "name": "Allrecipes",
+        "url": "https://www.allrecipes.com/recipe/87678/avocado-feta-salsa/",
+        "adapted": true
+      },
+      "rights": "HOLD_THIRD_PARTY_ADAPTATION",
+      "rightsReason": "CC0 covers original repository data only; source attribution is not third-party permission.",
+      "comparison": {
+        "normalizedTitleMatches": [],
+        "ingredientMethodWordingMatches": [],
+        "recipeNovelty": "UNRESOLVED_SEMANTIC_AND_TRANSLATION_REVIEW"
+      },
+      "importAuthorized": false
+    },
+    {
+      "id": "tomato-cucumber-salad",
+      "path": "recipes/salads/tomato-cucumber-salad.json",
+      "sha256": "76ff174dad53e0fe0530fa44132b73cab79e6b313596e2330c2e61fdad56a5e2",
+      "ingredients": 7,
+      "steps": 3,
+      "structure": "PASS",
+      "declaredSource": null,
+      "rights": "CC0_DECLARATION_FOUND__ORIGIN_REVIEW_REQUIRED",
+      "rightsReason": "No named source; absence does not independently prove original authorship. Repository CC0 declaration is preserved, not converted to import authority.",
+      "comparison": {
+        "normalizedTitleMatches": [],
+        "ingredientMethodWordingMatches": [],
+        "recipeNovelty": "UNRESOLVED_SEMANTIC_AND_TRANSLATION_REVIEW"
+      },
+      "importAuthorized": false
+    },
+    {
+      "id": "caprese-grilled-cheese",
+      "path": "recipes/sandwiches/caprese-grilled-cheese.json",
+      "sha256": "ebe4c7acf258877e5e265a5e3d71ef8841d695625e3e99bd41e87d759c346e99",
+      "ingredients": 6,
+      "steps": 3,
+      "structure": "PASS",
+      "declaredSource": null,
+      "rights": "CC0_DECLARATION_FOUND__ORIGIN_REVIEW_REQUIRED",
+      "rightsReason": "No named source; absence does not independently prove original authorship. Repository CC0 declaration is preserved, not converted to import authority.",
+      "comparison": {
+        "normalizedTitleMatches": [],
+        "ingredientMethodWordingMatches": [],
+        "recipeNovelty": "UNRESOLVED_SEMANTIC_AND_TRANSLATION_REVIEW"
+      },
+      "importAuthorized": false
+    },
+    {
+      "id": "classic-hummus",
+      "path": "recipes/sides/classic-hummus.json",
+      "sha256": "6bc6b39b0591b3e924a90cc7bbe2d956974ced09b0a6aefda66f7aae26d5c06b",
+      "ingredients": 7,
+      "steps": 3,
+      "structure": "PASS",
+      "declaredSource": null,
+      "rights": "CC0_DECLARATION_FOUND__ORIGIN_REVIEW_REQUIRED",
+      "rightsReason": "No named source; absence does not independently prove original authorship. Repository CC0 declaration is preserved, not converted to import authority.",
+      "comparison": {
+        "normalizedTitleMatches": [],
+        "ingredientMethodWordingMatches": [],
+        "recipeNovelty": "UNRESOLVED_SEMANTIC_AND_TRANSLATION_REVIEW"
+      },
+      "importAuthorized": false
+    },
+    {
+      "id": "ginger-chile-air-fryer-sweet-potatoes",
+      "path": "recipes/sides/ginger-chile-air-fryer-sweet-potatoes.json",
+      "sha256": "bf8618a0c9d06bcece5625c5967190bd13f393a4aab3a3d6787e853a48614ced",
+      "ingredients": 5,
+      "steps": 3,
+      "structure": "PASS",
+      "declaredSource": {
+        "name": "Allrecipes",
+        "url": "https://www.allrecipes.com/recipe/285746/air-fryer-roasted-sweet-potatoes/",
+        "adapted": true
+      },
+      "rights": "HOLD_THIRD_PARTY_ADAPTATION",
+      "rightsReason": "CC0 covers original repository data only; source attribution is not third-party permission.",
+      "comparison": {
+        "normalizedTitleMatches": [],
+        "ingredientMethodWordingMatches": [],
+        "recipeNovelty": "UNRESOLVED_SEMANTIC_AND_TRANSLATION_REVIEW"
+      },
+      "importAuthorized": false
+    },
+    {
+      "id": "lime-black-bean-corn-salsa",
+      "path": "recipes/snacks/lime-black-bean-corn-salsa.json",
+      "sha256": "20590b36df81e875691da534513c5ae8fc66755e3782734997769ab815d13529",
+      "ingredients": 9,
+      "steps": 3,
+      "structure": "PASS",
+      "declaredSource": {
+        "name": "Allrecipes",
+        "url": "https://www.allrecipes.com/recipe/24182/black-bean-salsa/",
+        "adapted": true
+      },
+      "rights": "HOLD_THIRD_PARTY_ADAPTATION",
+      "rightsReason": "CC0 covers original repository data only; source attribution is not third-party permission.",
+      "comparison": {
+        "normalizedTitleMatches": [],
+        "ingredientMethodWordingMatches": [],
+        "recipeNovelty": "UNRESOLVED_SEMANTIC_AND_TRANSLATION_REVIEW"
+      },
+      "importAuthorized": false
+    },
+    {
+      "id": "rosemary-balsamic-roasted-grapes",
+      "path": "recipes/snacks/rosemary-balsamic-roasted-grapes.json",
+      "sha256": "b68f31299f504f6d19765b54eff793ddcbc19e8838f6213ac94f11ca5f7e79e5",
+      "ingredients": 6,
+      "steps": 4,
+      "structure": "PASS",
+      "declaredSource": {
+        "name": "Allrecipes",
+        "url": "https://www.allrecipes.com/recipe/244980/balsamic-roasted-grapes/",
+        "adapted": true
+      },
+      "rights": "HOLD_THIRD_PARTY_ADAPTATION",
+      "rightsReason": "CC0 covers original repository data only; source attribution is not third-party permission.",
+      "comparison": {
+        "normalizedTitleMatches": [],
+        "ingredientMethodWordingMatches": [],
+        "recipeNovelty": "UNRESOLVED_SEMANTIC_AND_TRANSLATION_REVIEW"
+      },
+      "importAuthorized": false
+    },
+    {
+      "id": "everyday-lentil-soup",
+      "path": "recipes/soups/everyday-lentil-soup.json",
+      "sha256": "5d21a858a335cddabe0546a762ad81e5778f23873777a8e4bb87c2d060bfff5c",
+      "ingredients": 8,
+      "steps": 4,
+      "structure": "PASS",
+      "declaredSource": null,
+      "rights": "CC0_DECLARATION_FOUND__ORIGIN_REVIEW_REQUIRED",
+      "rightsReason": "No named source; absence does not independently prove original authorship. Repository CC0 declaration is preserved, not converted to import authority.",
+      "comparison": {
+        "normalizedTitleMatches": [],
+        "ingredientMethodWordingMatches": [],
+        "recipeNovelty": "UNRESOLVED_SEMANTIC_AND_TRANSLATION_REVIEW"
+      },
+      "importAuthorized": false
+    }
+  ],
+  "status": "ASSESSMENT_COMPLETE__IMPORT_HOLD",
+  "nextAction": "Review origin of the seven CC0-declared records and semantic/translated duplicate candidates in one no-write package; six third-party adaptations remain held. Capacity/prewrite and import authority remain separate gates.",
+  "sourceFiles": {
+    "LICENSE.md": "39972d099b35db4c05ace842b694424d43ade4249f467cb4cf1c2d62afbbdd3d",
+    "docs/CONTENT_POLICY.md": "59c7c1b455326fbd84992373d77c1ee2870c21333015d3ba2b55c02fa000e394",
+    "scraping/config/publication-rights.json": "269877f4505a93ae375c21f20c98cd565be44d58d70730ed026d7d47526bb597",
+    "public/data/catalog.json": "480f59abc4f89c9f058c2435926aa6cb47ce517fe6a68b6b67870a698294b4c9"
+  }
+}

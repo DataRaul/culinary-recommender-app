@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "subject": {
+    "schema_version": 1,
+    "contract_path": "docs/package_quality/contracts/hochipants-assessment-v1.json",
+    "project": "culinary-recommender-app",
+    "lane_id": "culinary-app",
+    "package_id": "hochipants-assessment-v1",
+    "base_commit": "8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
+    "author_session_id": "work-0886d49b5e7a-root",
+    "candidate_paths": [
+      "data/generated/step8g/hochipants-acquisition-assessment.json",
+      "docs/HOCHIPANTS_ACQUISITION_ASSESSMENT.md",
+      "docs/ROADMAP.md",
+      "docs/package_quality/contracts/hochipants-assessment-v1.json",
+      "docs/package_quality/evidence/hochipants-assessment/alignment.json",
+      "docs/package_quality/evidence/hochipants-assessment/qa.json",
+      "scripts/acquisition-record-assessment-core.mjs",
+      "scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs",
+      "scripts/run-hochipants-acquisition-assessment.mjs",
+      "tests/acquisition-record-assessment.test.js"
+    ],
+    "deletions": [],
+    "hashes": {
+      "config/package_quality_adapter.json": "cf17d8b313402f6a2a790d156743d74063c149d718ad22e0882379fde20d02f9",
+      "data/generated/step8g/hochipants-acquisition-assessment.json": "36bd098ab4ed72d430e62d3fbbaa7e285cc2ce3b8a27afb26cd10474c9c36986",
+      "docs/HOCHIPANTS_ACQUISITION_ASSESSMENT.md": "8b6562e168dd91c25b64b783177ef45cd6cbdf6dbe2edbd1e2f8dbb564843302",
+      "docs/ROADMAP.md": "79bae1e19ab84bec68db66561511e0cf224141abf91ab6fad83dc4daf0a72cdf",
+      "docs/package_quality/contracts/hochipants-assessment-v1.json": "36a636219dd186b810cfb0e484007fb6a479bf60b1b4e4985d1ccd958b926ad5",
+      "docs/package_quality/evidence/hochipants-assessment/alignment.json": "8095539411a8d841f4d4c9e1d27f175ae8a6331ba278a2c2f79502b36d09e906",
+      "docs/package_quality/evidence/hochipants-assessment/qa.json": "be054096e1b96b9013d44bf5422b2bbb735429026f5594ef96a1bab2ffd984a7",
+      "docs/package_quality/goals/culinary-app/v1.json": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa",
+      "scripts/acquisition-record-assessment-core.mjs": "09246727dc82b43e39207570179e0414ff44d6da838e543ce61752b47aafcc79",
+      "scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs": "c0a18867b6b54b786e041ed6ad2c887428dd3a61c5f4fe3b6fa4d3c177f8bbdc",
+      "scripts/run-hochipants-acquisition-assessment.mjs": "48991345052b8a6b563d98a1cbbe4ce1aff9dcae83aa50f12852a0c68ef4a72a",
+      "tests/acquisition-record-assessment.test.js": "99959da2da9c21700782011a86978705f52fe88a5c9c023c2226fc8ea7593716"
+    },
+    "git_modes": {
+      "config/package_quality_adapter.json": "100644",
+      "data/generated/step8g/hochipants-acquisition-assessment.json": "100644",
+      "docs/HOCHIPANTS_ACQUISITION_ASSESSMENT.md": "100644",
+      "docs/ROADMAP.md": "100644",
+      "docs/package_quality/contracts/hochipants-assessment-v1.json": "100644",
+      "docs/package_quality/evidence/hochipants-assessment/alignment.json": "100644",
+      "docs/package_quality/evidence/hochipants-assessment/qa.json": "100644",
+      "docs/package_quality/goals/culinary-app/v1.json": "100644",
+      "scripts/acquisition-record-assessment-core.mjs": "100644",
+      "scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs": "100644",
+      "scripts/run-hochipants-acquisition-assessment.mjs": "100644",
+      "tests/acquisition-record-assessment.test.js": "100644"
+    }
+  },
+  "candidate_digest": "4addcc051bcc0c24b4de05a78e357a28245a4bb62f3c00d99f7241888f970b34"
+}

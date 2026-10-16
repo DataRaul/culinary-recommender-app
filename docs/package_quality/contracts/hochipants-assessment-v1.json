@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "lane_id": "culinary-app",
+  "package_id": "hochipants-assessment-v1",
+  "base_commit": "8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
+  "author_session_id": "work-0886d49b5e7a-root",
+  "goal_path": "docs/package_quality/goals/culinary-app/v1.json",
+  "adapter_path": "config/package_quality_adapter.json",
+  "intent_provenance": [
+    "CULINARY_REAL_ACQUISITION_CONTINUATION_V12",
+    "docs/ROADMAP.md acquisition-first directive"
+  ],
+  "outcome": "Resolve structure, declared rights and full-v8019 literal duplicate screen for the pinned 13-record catalog without importing.",
+  "contribution": "Turns a speculative source into an auditable per-record acquisition decision and reusable offline comparison.",
+  "scope": [
+    "Metadata-only baseline export",
+    "Pinned source assessment and generated record dispositions",
+    "Regression tests and roadmap documentation"
+  ],
+  "non_goals": [
+    "Recipe import or body publication",
+    "Legal clearance or semantic novelty claims",
+    "PR432 repair, Based Cooking or other lanes"
+  ],
+  "inputs": [
+    "main 8492b3bf6c825f2d37bdb014f77b39df3de9ee2a",
+    "HoChiPants 1d20e28de6df5bbe49447b3042336575f5b7bc01",
+    "Four exact existing v8019 source pins"
+  ],
+  "criteria": [
+    {
+      "id": "RECORDS",
+      "description": "All 13 source records assessed individually for structure and declared rights; six third-party adaptations held; no source prose republished.",
+      "goal_criteria": [
+        "OUTCOME"
+      ]
+    },
+    {
+      "id": "BASELINE",
+      "description": "Compare every candidate with all 22,086 pinned reconstructed records; disclose incomplete fingerprints and literal comparison limits; deterministic replay and negative cases pass.",
+      "goal_criteria": [
+        "OUTCOME"
+      ]
+    },
+    {
+      "id": "BOUNDARY",
+      "description": "No corpus/runtime/D1 or prior PR/lane mutations; preserve exhausted PR432 budget and Based Cooking STOP; explicit no-write successor.",
+      "goal_criteria": [
+        "CONTINUITY"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "docs/package_quality/evidence/hochipants-assessment/alignment.json",
+    "docs/package_quality/evidence/hochipants-assessment/qa.json",
+    "data/generated/step8g/hochipants-acquisition-assessment.json"
+  ],
+  "mandatory_knowledge_domains": [
+    "project_execution",
+    "software_data"
+  ],
+  "authority": "AUTO + VERIFY",
+  "human_decisions": [],
+  "assumptions": [
+    "CC0 declaration applies to original data only; no-source does not independently prove origin",
+    "Literal wording comparison excludes quantities and does not prove semantic novelty",
+    "Actual same-chat sequential reviews are not independent"
+  ],
+  "dependencies": [
+    "Pinned clean source checkouts",
+    "Required CI",
+    "Own-lane checkpoint compatibility retained"
+  ],
+  "next_action": "Required CI and eligible merge of acquisition assessment; checkpoint and STOP. Next chat: no-write origin and semantic review of seven CC0-declared records.",
+  "stop_boundary": "One acquisition assessment package; own lane checkpoint and STOP",
+  "budget": {
+    "round": 1,
+    "max_rounds": 1,
+    "usage": "unknown"
+  },
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "stage_evidence": {
+    "align": [
+      "docs/package_quality/evidence/hochipants-assessment/alignment.json"
+    ],
+    "build_qa": [
+      "docs/package_quality/evidence/hochipants-assessment/qa.json"
+    ]
+  }
+}
