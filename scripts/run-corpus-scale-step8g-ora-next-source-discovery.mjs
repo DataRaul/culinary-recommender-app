@@ -16,6 +16,8 @@ import { ORA_ATRUTEL_1874_SOURCE } from "./corpus-scale-step8g-ora-atrutel-1874-
 import { ORA_IDUNS_1911_SOURCE } from "./corpus-scale-step8g-ora-iduns-1911-core.mjs";
 import { discoverOraNextSources, oraSourceKey } from "./corpus-scale-step8g-ora-next-source-discovery-core.mjs";
 
+import { fingerprintRecipe } from "./acquisition-record-assessment-core.mjs";
+
 const ORA_EXPECTED_COMMIT = "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8";
 const FORKRECIPE_EXPECTED_COMMIT = "c32255266af39bd77444d39452f3df8088ac8fd9";
 const UNITOOLS_EXPECTED_COMMIT = "1d09e9548d957dd0375301146a86dddf5e269c1b";
@@ -267,13 +269,14 @@ const EXPECTED_PROTECTED_COUNT_V8018 = 19268;
 const EXPECTED_PROTECTED_COUNT_V8019 = 22086;
 
 function parseArgs(argv) {
-  const options = { ora: null, forkrecipe: null, unitools: null, cc0: null, output: ".tmp/step8g-ora-next-source-discovery", historicalV8018: false };
+  const options = { ora: null, forkrecipe: null, unitools: null, cc0: null, output: ".tmp/step8g-ora-next-source-discovery", historicalV8018: false, baselineFingerprints: null };
   for (const arg of argv) {
     if (arg.startsWith("--ora=")) options.ora = arg.slice(6);
     else if (arg.startsWith("--forkrecipe=")) options.forkrecipe = arg.slice(13);
     else if (arg.startsWith("--unitools=")) options.unitools = arg.slice(11);
     else if (arg.startsWith("--cc0=")) options.cc0 = arg.slice(6);
     else if (arg.startsWith("--out=")) options.output = arg.slice(6) || options.output;
+    else if (arg.startsWith("--baseline-fingerprints=")) options.baselineFingerprints = arg.slice(24);
     else if (arg === "--historical-v8018") options.historicalV8018 = true;
     else throw new Error(`Unknown argument: ${arg}`);
   }
@@ -332,6 +335,12 @@ if (pins.ora !== ORA_EXPECTED_COMMIT) throw new Error(`ORA_PIN_MISMATCH_${pins.o
 if (pins.forkrecipe !== FORKRECIPE_EXPECTED_COMMIT) throw new Error(`FORKRECIPE_PIN_MISMATCH_${pins.forkrecipe}`);
 if (pins.unitools !== UNITOOLS_EXPECTED_COMMIT) throw new Error(`UNITOOLS_PIN_MISMATCH_${pins.unitools}`);
 if (pins.cc0 !== CC0_EXPECTED_COMMIT) throw new Error(`CC0_PIN_MISMATCH_${pins.cc0}`);
+
+if (args.baselineFingerprints) {
+  for (const [key, root] of Object.entries(roots)) {
+    if (execFileSync("git", ["-C", root, "status", "--porcelain"], { encoding: "utf8" }).trim()) throw new Error(`BASELINE_WORKTREE_DIRTY_${key}`);
+  }
+}
 
 const [index, forkRecipes, unitoolsDataset, cc0Recipes] = await Promise.all([
   readFile(resolve(roots.ora, "index/collections.json"), "utf8").then(JSON.parse),
@@ -424,6 +433,15 @@ const protectedBaseline = args.historicalV8018
 const expectedProtectedCount = args.historicalV8018 ? EXPECTED_PROTECTED_COUNT_V8018 : EXPECTED_PROTECTED_COUNT_V8019;
 const activeProtectedVersion = args.historicalV8018 ? "v8018" : "v8019";
 if (protectedBaseline.length !== expectedProtectedCount) throw new Error(`${activeProtectedVersion.toUpperCase()}_PROTECTED_BASELINE_COUNT_${protectedBaseline.length}`);
+
+// Offline acquisition consumers reuse this exact pinned full-corpus reconstruction.
+// Export metadata hashes only; recipe bodies stay in their source checkouts.
+if (args.baselineFingerprints) {
+  const fingerprintPath = resolve(args.baselineFingerprints);
+  await mkdir(resolve(fingerprintPath, ".."), { recursive: true });
+  await writeFile(fingerprintPath, JSON.stringify({ version: activeProtectedVersion, count: expectedProtectedCount, sourcePins: pins, records: protectedBaseline.map((recipe, index) => ({ index, ...fingerprintRecipe(recipe) })) }, null, 2) + "\n");
+  process.exit(0);
+}
 
 const excludedSourceKeys = new Set([
   oraSourceKey(ABBOTT_IDENTITY),
