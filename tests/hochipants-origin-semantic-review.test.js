@@ -35,6 +35,14 @@ test('incomplete baseline fingerprints remain an explicit manual review gate', (
   assert.equal(origin.baseline.completeWordingFingerprints, assessment.baselineCoverage.wording);
   assert.equal(origin.baseline.count - origin.baseline.completeWordingFingerprints, 3);
   assert.equal(origin.baseline.incompleteWordingFingerprints, 3);
+  assert.deepEqual(origin.baseline.incompleteBaselineRecordIndices, [1490, 1569, 1618]);
+  assert.deepEqual(origin.baseline.incompleteBaselineRecords.map(row => row.sourceRecordKey), ['eggs.md', 'peanut-butter.md', 'spices-during-pregnancy.md']);
+  assert.deepEqual(origin.baseline.incompleteBaselineRecords.map(row => row.index), origin.baseline.incompleteBaselineRecordIndices);
+  for (const row of origin.baseline.incompleteBaselineRecords) {
+    assert.equal(row.index, origin.baseline.incompleteBaselineIndexEvidence.cohortStartIndex + row.cohortSortedIndex);
+    assert.equal(row.ingredientCount, 0);
+    assert.equal(row.comparisonStatus, 'NOT_MANUALLY_COMPARED');
+  }
   assert.equal(origin.baseline.incompleteBaselineStatus, 'REVIEW_REQUIRED__NO_MANUAL_EXCLUSION');
   assert.match(origin.baseline.semanticSimilarityExecution, /^NOT_EXECUTED_/);
   assert.equal(origin.quality.pinnedValidator, 'NOT_EXECUTED');
