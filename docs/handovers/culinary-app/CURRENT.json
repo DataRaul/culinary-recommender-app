@@ -1,5 +1,5 @@
 {
-  "handover": "CULINARY_HOCHIPANTS_ACQUISITION_ASSESSMENT_V13",
+  "handover": "CULINARY_PR434_INDEX_IDENTIFIED__FULL_SEMANTIC_AND_RIGHTS_HOLD_V16",
   "date": "2026-10-16",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
@@ -8,14 +8,15 @@
   "open_prs": [
     428,
     429,
-    432
+    432,
+    434
   ],
   "protected_corpus": {
     "activeVersion": "v8019",
     "protectedRecipeCount": 22086,
     "ownerSearchRecipeCount": 22086
   },
-  "package_terminal": "PR433_MERGED__EXACT_REVIEWED_TREE_VERIFIED",
+  "package_terminal": "PR434_WORK_RUNTIME_GATE__UNMERGED",
   "discovery": {
     "sourceFamily": "AdamBouhmad/open-recipe-archive pinned ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
     "baselineVersion": "v8019",
@@ -48,7 +49,7 @@
     "browserAcceptance": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
     "productionPublicSmoke": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION"
   },
-  "nextGate": "HOCHIPANTS_SEVEN_RECORD_ORIGIN_AND_SEMANTIC_DEDUP_NO_WRITE",
+  "nextGate": "PR434_RECONSTRUCT_PINNED_V8019_AND_FULL_SEMANTIC_DEDUP",
   "guardrails": [
     "continue acquisition-first; ORA exhaustion is not programme completion",
     "rights/provenance fail closed",
@@ -70,8 +71,8 @@
     "equivalent_repair_cycles_max": 1,
     "canonical_ref": "continuity-state"
   },
-  "startup_instruction": "PR433 terminal: STOP this package. Next chat fresh-reconciles main, open PRs, roadmap and culinary-app CURRENT; execute one no-write origin and semantic/translated duplicate review of the seven CC0-declared HoChiPants records. Include the three incomplete baseline wording records in manual comparison. No D1/import authority; six adaptations held. PR432 remains HOLD with exhausted budget; Based Cooking remains STOPPED.",
-  "status": "PR433_MERGED__ACQUISITION_ASSESSMENT_COMPLETE__IMPORT_HOLD",
+  "startup_instruction": "Continue existing PR434 only in Work with a network-enabled terminal; fetch fresh live state; rebuild pinned v8019 metadata from four source checkouts; verify the three derived indices, manually compare them, run all seven semantic/translated dedups and assess rights; then focused tests, same-chat quality stages, pinned validator, CI and eligible publication. Never grant import authority from index identification.",
+  "status": "PR434_OPEN_DRAFT__THREE_BASELINE_IDENTITIES_DERIVED__SEMANTIC_RIGHTS_HOLD",
   "installation_verification": {
     "schema_version": 1,
     "project": "DataRaul/culinary-recommender-app",
@@ -319,7 +320,26 @@
       }
     ],
     "pending_package": "quality-enforcement-owner-report-v1",
-    "pending_status": "CRITIC_HOLD__UNMERGED"
+    "pending_status": "CRITIC_HOLD__UNMERGED",
+    "active_pr434": {
+      "goal_ref": {
+        "path": "docs/package_quality/goals/culinary-app/v1.json",
+        "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
+      },
+      "revision": "ac8571771c777edd0b18aa829aabb72f4d0228fe",
+      "predecessor_sha256": "069882a0a474b820446b8ea59cd330d07f0d330db2833fa4fe992d9dccb05a3e",
+      "review_mode": "SAME_CHAT_SEQUENTIAL",
+      "independent": false,
+      "review_budget": "NOT_RESET_OR_ASSUMED",
+      "source_artifacts": [
+        "data/generated/step8g/hochipants-origin-semantic-review.json",
+        "docs/HOCHIPANTS_ORIGIN_SEMANTIC_REVIEW.md",
+        "tests/hochipants-origin-semantic-review.test.js"
+      ],
+      "quality_gate": "HOLD__FULL_BASELINE_AND_PINNED_VALIDATOR_NOT_EXECUTED",
+      "reviews": "NOT_CLAIMED",
+      "next_action": "Continue existing PR434 only in Work with a network-enabled terminal; fetch fresh live state; rebuild pinned v8019 metadata from four source checkouts; verify the three derived indices, manually compare them, run all seven semantic/translated dedups and assess rights; then focused tests, same-chat quality stages, pinned validator, CI and eligible publication. Never grant import authority from index identification."
+    }
   },
   "schema_version": 1,
   "project": "culinary-recommender-app",
@@ -339,13 +359,16 @@
     "No recipes imported; accepted baseline remains v8019 / 22,086 and production owner acceptance is not reverified.",
     "HoChiPants 13 records structurally pass; six named adaptations held, seven CC0-declared origin reviews.",
     "Full reconstructed v8019 literal comparison executed: 22,086 titles / 22,083 complete wording hashes; zero matches; no semantic novelty or current D1 equality claimed.",
-    "PR433 at aae255d12929e107f139fbf272160d0a1d4d45c9; exact tree 252c23a616d90c99f1acfba6895a5a24c1d750e5; four focused tests and 1,419 tests pass, 26 skipped."
+    "PR433 at aae255d12929e107f139fbf272160d0a1d4d45c9; exact tree 252c23a616d90c99f1acfba6895a5a24c1d750e5; four focused tests and 1,419 tests pass, 26 skipped.",
+    "PR434 pinned CC0 tree analysis derived missing-wording record identities at zero-based v8019 indices: eggs.md=1490, peanut-butter.md=1569, spices-during-pregnancy.md=1618; full replay and all seven manual comparison gates remain open.",
+    "PR434 head ac8571771c777edd0b18aa829aabb72f4d0228fe; Validate public V0 run 38913527472 was in progress at last check; exact three updated files reread and eight connector assertions PASS, but local node/pinned validator unexecuted. Zero imports."
   ],
-  "next_action": "PR433 terminal: STOP this package. Next chat fresh-reconciles main, open PRs, roadmap and culinary-app CURRENT; execute one no-write origin and semantic/translated duplicate review of the seven CC0-declared HoChiPants records. Include the three incomplete baseline wording records in manual comparison. No D1/import authority; six adaptations held. PR432 remains HOLD with exhausted budget; Based Cooking remains STOPPED.",
+  "next_action": "Continue existing PR434 only in Work with a network-enabled terminal; fetch fresh live state; rebuild pinned v8019 metadata from four source checkouts; verify the three derived indices, manually compare them, run all seven semantic/translated dedups and assess rights; then focused tests, same-chat quality stages, pinned validator, CI and eligible publication. Never grant import authority from index identification.",
   "open_prs_at_reconciliation": [
     428,
     429,
-    432
+    432,
+    434
   ],
   "owner_run_now": false,
   "new_implementation": {
@@ -461,9 +484,21 @@
       "package": "hochipants-assessment-v1",
       "result": "Merged; exact tree verified; all CI pass; zero import",
       "next_action": "PR433 terminal: STOP this package. Next chat fresh-reconciles main, open PRs, roadmap and culinary-app CURRENT; execute one no-write origin and semantic/translated duplicate review of the seven CC0-declared HoChiPants records. Include the three incomplete baseline wording records in manual comparison. No D1/import authority; six adaptations held. PR432 remains HOLD with exhausted budget; Based Cooking remains STOPPED."
+    },
+    {
+      "event_id": "culinary-recommender-app:culinary-app:pr434-index-identified:20261016",
+      "timestamp": "2026-10-16T14:13:26.577Z",
+      "event": "PR434_SOURCE_BASELINE_IDENTIFICATION_GATE",
+      "lane_id": "culinary-app",
+      "observed_main": "78daee797184d31737c1ab215b5e37b0a7345042",
+      "observed_state_head": "747dd4e159e39af8fca4e482a16d8c1b509ec3d7",
+      "predecessor_sha256": "069882a0a474b820446b8ea59cd330d07f0d330db2833fa4fe992d9dccb05a3e",
+      "package": "pr434-origin-semantic-audit",
+      "result": "3 missing-fingerprint v8019 CC0 records identified by deterministic source tree; PR head patched; CI pending; no import",
+      "next_action": "Continue existing PR434 only in Work with a network-enabled terminal; fetch fresh live state; rebuild pinned v8019 metadata from four source checkouts; verify the three derived indices, manually compare them, run all seven semantic/translated dedups and assess rights; then focused tests, same-chat quality stages, pinned validator, CI and eligible publication. Never grant import authority from index identification."
     }
   ],
-  "owner_action_now": "NONE",
+  "owner_action_now": "OPEN_THIS_HANDOVER_IN_WORK_FOR_NETWORK_ENABLED_PINNED_SOURCE_CHECKOUTS_AND_VALIDATOR",
   "same_chat_closeout": {
     "pr": 430,
     "url": "https://github.com/DataRaul/culinary-recommender-app/pull/430",
@@ -750,5 +785,60 @@
     "next_action": "PR433 terminal: STOP this package. Next chat fresh-reconciles main, open PRs, roadmap and culinary-app CURRENT; execute one no-write origin and semantic/translated duplicate review of the seven CC0-declared HoChiPants records. Include the three incomplete baseline wording records in manual comparison. No D1/import authority; six adaptations held. PR432 remains HOLD with exhausted budget; Based Cooking remains STOPPED.",
     "merged_main_sha": "78daee797184d31737c1ab215b5e37b0a7345042",
     "merged_tree_verified": true
+  },
+  "pr434": {
+    "pr": 434,
+    "url": "https://github.com/DataRaul/culinary-recommender-app/pull/434",
+    "branch": "acquisition/hochipants-origin-review-20261016",
+    "head_sha": "ac8571771c777edd0b18aa829aabb72f4d0228fe",
+    "base_sha": "78daee797184d31737c1ab215b5e37b0a7345042",
+    "state": "OPEN_DRAFT",
+    "mergeable_last_observed": true,
+    "latest_commit": "Identify three incomplete v8019 baseline records by pinned CC0 order",
+    "changed_files": [
+      "data/generated/step8g/hochipants-origin-semantic-review.json",
+      "docs/HOCHIPANTS_ORIGIN_SEMANTIC_REVIEW.md",
+      "tests/hochipants-origin-semantic-review.test.js"
+    ],
+    "incomplete_baseline_records": [
+      {
+        "source_key": "eggs.md",
+        "index": 1490
+      },
+      {
+        "source_key": "peanut-butter.md",
+        "index": 1569
+      },
+      {
+        "source_key": "spices-during-pregnancy.md",
+        "index": 1618
+      }
+    ],
+    "baseline_version": "v8019",
+    "baseline_count": 22086,
+    "admissible": 0,
+    "imported": 0,
+    "rights_hold": 7,
+    "adaptation_hold": 6,
+    "semantic_review": "NOT_EXECUTED",
+    "manual_baseline_comparison": "NOT_EXECUTED",
+    "ci": {
+      "workflow": "Validate public V0",
+      "run_id": 38913527472,
+      "status": "IN_PROGRESS",
+      "conclusion": null
+    },
+    "focused_tests": "8_CONNECTOR_ASSERTIONS_PASS__NODE_NOT_EXECUTED",
+    "pinned_validator": "NOT_EXECUTED",
+    "publication": "HOLD",
+    "remaining": [
+      "complete full v8019 multilingual and ingredient-method semantic review",
+      "replay three source-derived missing-fingerprint indices against full metadata and manually compare",
+      "resolve seven per-record origin/rights holds",
+      "run focused tests, Supporter/Critic/Synthesis and pinned quality validator",
+      "verify all required CI then eligible merge",
+      "rotate culinary-app CURRENT on actual PR terminal"
+    ],
+    "owner_action": "OPEN_IN_WORK_WITH_NETWORK_ENABLED_TERMINAL"
   }
 }
