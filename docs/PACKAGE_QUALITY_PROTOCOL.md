@@ -2,6 +2,22 @@
 
 Status: PROCEDURAL_PILOT; owner-selected `SAME_CHAT_SEQUENTIAL` (2026-10-14). Apply to every substantive bounded package in this project. Read the root AGENTS instructions, existing contracts and `config/package_quality_adapter.json`. Fetch the shared skill, role references and checker from the exact public source commit in that adapter; verify file hashes before execution. A connector can materialize those exact files; a local checkout can supply `--agent-os-root`. Never fetch floating main for execution or install a paid API/service. This is developer workflow only, outside application/notebook runtime.
 
+## Plan-first roadmap and business-value steering — new packages
+
+**Opt-in capability approved for this project.** The local adapter now pins the shared Agent OS plan-first validator and selects `plan_first: AVAILABLE`. The `plan_first_new_packages: REQUIRED` field is a local prospective policy, **not** authority to change or invalidate any existing package. For **new** packages created after this integration, fill the `plan_first` fields already in `docs/package_quality/CONTRACT_TEMPLATE.json`. Existing frozen contracts, active PRs, review budgets, findings, research/source gates, lane ownership and CURRENT/PREVIOUS checkpoints remain unchanged unless explicitly migrated.
+
+Before Builder, reconcile the **fresh** `docs/ROADMAP.md`, the canonical lane goal, live main/open PR state, saved CURRENT, and latest owner steering. Select the next genuinely authorized milestone, not a completed, blocked or lower-priority item merely to produce more tests. Record an exact roadmap SHA-256, one verbatim roadmap milestone line, exact goal SHA-256 and mapped criterion IDs, priority rationale, relevant constraints/conflicts and a business-value signal in `plan.roadmap_alignment`. The selected roadmap file and four plan artifacts are frozen `required_evidence`. If priorities conflict or the milestone is blocked, HOLD until reconciled by the applicable project authority; do not change the roadmap to make a test pass.
+
+Run the **Pre-Build Solution Review** with substantive alternative/tradeoff, risk, cost, acceptance and roadmap checks, using the actual same-chat session identity (`independent: false`). Generate the accepted plan receipt **before** substantive build:
+
+```bash
+python scripts/package_quality.py --agent-os-root /exact/pinned/agent-os plan-accept --plan docs/package_quality/plans/<package>.json --review docs/package_quality/plans/<package>-review.json --output docs/package_quality/plans/<package>-receipt.json
+```
+
+The plan file itself supplies the project-local roadmap/goal locators; the shared gate checks their exact bytes. The Builder then records a decision-to-implementation trace, with no material unapproved deviation. Existing freeze → Supporter → Critic → Synthesis → mandatory CI → authorized publication → lane checkpoint follows without new independent sessions. The final Synthesis includes a business-value verdict; distinguish measured outcomes from expected benefits. Use `VALUE_NOT_YET_MEASURED` until credible after-change measurements exist. Consult [the pinned Agent OS plan-first contract](https://github.com/DataRaul/agent-os/blob/85384d6615953de1fd968cf7af25480e5d65d798/docs/PLAN_FIRST_PORTABILITY.md) for reusable schemas. Agent OS cannot prove the strategic quality of a claimed alignment or grant local authority.
+
+**Portability:** This is a thin project configuration over the same Agent OS core; onboarding another repository requires local roadmap/goal paths, an exact source commit and file hashes, an authorized new-package template and local validation. Never copy/fork the shared validator or silently upgrade another project. No paid API, persistent service or automatic successor chat is introduced.
+
 ## Normal cycle
 
 1. **Align internally.** Reconcile live main/open PRs/checks, lane authority, latest user steering, versioned lane goal and checkpoint. Route through canonical KC `domains/project_execution/objects/agentic_work_mandate_harness.md`; the canonical conversation router retains optional post-task coaching. Retrieve known context before asking. A clear request or continue needs no ritual question.
