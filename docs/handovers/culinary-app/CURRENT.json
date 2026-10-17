@@ -1,5 +1,5 @@
 {
-  "handover": "CULINARY_PR434_REPLAY_RANKED_REVIEW_PUBLISHED__FULL_MISSION_HOLD_V19",
+  "handover": "CULINARY_PR434_CI_PASS_PENDING_84_ADJUDICATION_V20",
   "date": "2026-10-17",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
@@ -16,7 +16,7 @@
     "protectedRecipeCount": 22086,
     "ownerSearchRecipeCount": 22086
   },
-  "package_terminal": "PR434_INCREMENTAL_ASSESSMENT_PUBLISHED__ORIGINAL_SEMANTIC_RIGHTS_HOLD__CI_WAIT",
+  "package_terminal": "PR434_CONTINUATION_WORK_PRESERVED__PUBLICATION_REVIEW_BUDGET_AND_ORIGINAL_GATES_HOLD",
   "discovery": {
     "sourceFamily": "AdamBouhmad/open-recipe-archive pinned ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
     "baselineVersion": "v8019",
@@ -49,7 +49,7 @@
     "browserAcceptance": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
     "productionPublicSmoke": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION"
   },
-  "nextGate": "PR434_REQUIRED_CI_AND_ORIGINAL_FULL_SEMANTIC_RIGHTS_GATES",
+  "nextGate": "ADDITIONAL_REVIEW_AUTHORITY_FOR_NEW_PUBLICATION__FULL_SEMANTIC_TRANSLATED_AND_RIGHTS_HOLD",
   "guardrails": [
     "continue acquisition-first; ORA exhaustion is not programme completion",
     "rights/provenance fail closed",
@@ -71,8 +71,8 @@
     "equivalent_repair_cycles_max": 1,
     "canonical_ref": "continuity-state"
   },
-  "startup_instruction": "PR434 only: fresh-reconcile exact published head and required CI once. Reuse verified full baseline replay and ranked findings; do not reconstruct or repeat tests without changed inputs. Exhaustive semantic/translated novelty and seven record-level origin/reuse holds remain open; investigate remaining source-level evidence before any new publication. Keep draft and no imports; merge only if all original gates are legitimately satisfied. Preserve consumed review budgets; never infer a new round from continue. No successor package.",
-  "status": "PR434_DRAFT__FULL_BASELINE_REPLAY_PASS__RANKED_REVIEW_EXECUTED__EXHAUSTIVE_NOVELTY_AND_RIGHTS_HOLD",
+  "startup_instruction": "PR434 only. Published head f59096ff378bd9ce857acbe84f2cd8ed390520e0 has all 3 triggered workflows SUCCESS. Preserve pending_ranked_adjudication as UNREVIEWED working evidence: 84/84 retained ranked pairs source-inspected, no full semantic/translated PASS. Do not repeat baseline reconstruction, scoring, tests or unchanged CI. No new review round or PR publication is authorized by continue: inherited round 1/max 1 is consumed. Remaining title/alias shortlist and original-language/quantity/equivalence review remain incomplete; do not mistake all ranks for exhaustive novelty. Seven origin/reuse holds and six named adaptations remain. Keep PR434 draft and zero imports. Before a new PR assessment publication, obtain explicit bounded additional review authority; before rights clearance obtain record-specific origin/permission evidence. Do not contact authors, waive original gates, start successors or change other lanes.",
+  "status": "PUBLISHED_HEAD_CI_PASS__84_RANKED_PAIRS_INSPECTED_PENDING_QUALITY__ORIGINAL_MISSION_HOLD",
   "installation_verification": {
     "schema_version": 1,
     "project": "DataRaul/culinary-recommender-app",
@@ -122,7 +122,7 @@
       "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
     },
     "package_ref": "docs/package_quality/contracts/hochipants-origin-review-v1.json",
-    "status": "PR434_INCREMENTAL_ASSESSMENT_SEQUENTIALLY_REVIEWED__PINNED_VALIDATOR_PASS__CI_WAIT__ORIGINAL_MERGE_HOLD",
+    "status": "PUBLISHED_ASSESSMENT_CI_PASS__PENDING_RESEARCH_UNREVIEWED__BUDGET_EXHAUSTED__ORIGINAL_GATES_HOLD",
     "last_evidence": [
       "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json",
       "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
@@ -242,10 +242,10 @@
       }
     ],
     "unfinished_criteria": [
-      "Original PR434 exhaustive semantic/translated novelty not established",
-      "Seven per-record origin/reuse-rights holds remain",
-      "Validate public V0 still in progress on f59096ff378bd9ce857acbe84f2cd8ed390520e0",
-      "No eligible merge; original gates remain binding"
+      "Full semantic and translated deduplication not established; title/alias and original-language equivalence remain incomplete",
+      "Seven record-level origin/reuse-rights holds remain; six adaptations held",
+      "Pending 84-pair source findings have not received package quality review; no additional review round authorized",
+      "Original PR434 merge gates remain binding; no import or merge eligibility"
     ],
     "failures": [
       "Historical shared-source catalog CI failure corrected; shared PR53 final CI PASS",
@@ -284,7 +284,11 @@
       "PR434 first actual final assessment review round uses unchanged adapter round 1/max 1; no prior PR434 final reports existed. PR432 exhausted budget remains untouched.",
       "Incremental assessment validation does not replace original full-semantic/rights mission; publish only to existing draft PR, no merge or admission.",
       "One bounded new-head CI recheck: two workflows complete successfully, Validate remains in progress; checkpoint and STOP without polling.",
-      "Checkpoint checked with live-main adapter 2e55b320c88df7fa75eaaf47113184ba44f5bb8d and exact state CURRENT/PREVIOUS from e4570bae228818c7d50e120efae51ad833ec1292. Only the validated lane pair may be published."
+      "Checkpoint checked with live-main adapter 2e55b320c88df7fa75eaaf47113184ba44f5bb8d and exact state CURRENT/PREVIOUS from e4570bae228818c7d50e120efae51ad833ec1292. Only the validated lane pair may be published.",
+      "Continuation V20 checked final published-head CI once: all three triggered workflows SUCCESS; did not rerun unchanged tests or reconstruction.",
+      "Inspected normalized ingredient and method text for every retained ranked pair (84/84); preserve as pending working evidence inside own-lane checkpoint only, not as a reviewed PR assessment.",
+      "Inherited round 1/max 1 and remaining rounds 0 preserved. No new same-chat final review, PR update, adapter/contract change, import or merge performed.",
+      "Normalized historical English/bilingual records are not an original-language fidelity audit; uninspected alias hits and unknown recall keep exhaustive translated novelty on HOLD."
     ],
     "budget": {
       "round": 1,
@@ -297,8 +301,8 @@
       "One equivalent repair cycle and one unchanged external recheck",
       "No paid service or application behavior change"
     ],
-    "next_action": "PR434 only: fresh-reconcile exact published head and required CI once. Reuse verified full baseline replay and ranked findings; do not reconstruct or repeat tests without changed inputs. Exhaustive semantic/translated novelty and seven record-level origin/reuse holds remain open; investigate remaining source-level evidence before any new publication. Keep draft and no imports; merge only if all original gates are legitimately satisfied. Preserve consumed review budgets; never infer a new round from continue. No successor package.",
-    "predecessor_sha256": "1a58068df5d7ed78beca9255d5358c89f1664f626be95538360fb7b67ec5caca",
+    "next_action": "PR434 only. Published head f59096ff378bd9ce857acbe84f2cd8ed390520e0 has all 3 triggered workflows SUCCESS. Preserve pending_ranked_adjudication as UNREVIEWED working evidence: 84/84 retained ranked pairs source-inspected, no full semantic/translated PASS. Do not repeat baseline reconstruction, scoring, tests or unchanged CI. No new review round or PR publication is authorized by continue: inherited round 1/max 1 is consumed. Remaining title/alias shortlist and original-language/quantity/equivalence review remain incomplete; do not mistake all ranks for exhaustive novelty. Seven origin/reuse holds and six named adaptations remain. Keep PR434 draft and zero imports. Before a new PR assessment publication, obtain explicit bounded additional review authority; before rights clearance obtain record-specific origin/permission evidence. Do not contact authors, waive original gates, start successors or change other lanes.",
+    "predecessor_sha256": "b94cdf682d30012cfc4d5c56e6e8199c2128a9477a8404db78f09f312cd2695b",
     "goal_contribution": "Reproduces 22086-record identity and adds full-range retrieval plus 19 selected manual comparisons; no false novelty or rights clearance.",
     "additional_cash_services_activated": false,
     "review_mode": "SAME_CHAT_SEQUENTIAL",
@@ -376,7 +380,7 @@
       ],
       "quality_gate": "PINNED_ASSESSMENT_VALIDATOR_PASS__ORIGINAL_SEMANTIC_RIGHTS_MERGE_HOLD",
       "reviews": "ACTUAL_SAME_CHAT_SUPPORTER_CRITIC_SYNTHESIS_PASS_FOR_INCREMENTAL_ASSESSMENT",
-      "next_action": "PR434 only: fresh-reconcile exact published head and required CI once. Reuse verified full baseline replay and ranked findings; do not reconstruct or repeat tests without changed inputs. Exhaustive semantic/translated novelty and seven record-level origin/reuse holds remain open; investigate remaining source-level evidence before any new publication. Keep draft and no imports; merge only if all original gates are legitimately satisfied. Preserve consumed review budgets; never infer a new round from continue. No successor package.",
+      "next_action": "PR434 only. Published head f59096ff378bd9ce857acbe84f2cd8ed390520e0 has all 3 triggered workflows SUCCESS. Preserve pending_ranked_adjudication as UNREVIEWED working evidence: 84/84 retained ranked pairs source-inspected, no full semantic/translated PASS. Do not repeat baseline reconstruction, scoring, tests or unchanged CI. No new review round or PR publication is authorized by continue: inherited round 1/max 1 is consumed. Remaining title/alias shortlist and original-language/quantity/equivalence review remain incomplete; do not mistake all ranks for exhaustive novelty. Seven origin/reuse holds and six named adaptations remain. Keep PR434 draft and zero imports. Before a new PR assessment publication, obtain explicit bounded additional review authority; before rights clearance obtain record-specific origin/permission evidence. Do not contact authors, waive original gates, start successors or change other lanes.",
       "candidate_digest": "2f4756bddd485b97d963f41846dd5fa2048ebf8033122c1f59094045bc3fa48a"
     }
   },
@@ -405,9 +409,11 @@
     "PR434: all 154602 pairs scored with finite multilingual ingredient/method vocabulary; 84 top ranks retained; 19 selected full available normalized ingredient/method comparisons. Exhaustive semantic/translated novelty remains unproven.",
     "All seven origin holds and six named adaptation holds remain. Two later scraped candidates with shared IDs do not prove copying or original authorship.",
     "Published f59096ff378bd9ce857acbe84f2cd8ed390520e0, exact tree 5503e84f59ef263c717ac68d5c8a1c464dbbe847; 11 focused tests pass; npm validation 1452 total, 1426 pass, 26 skipped, zero failures.",
-    "Actual same-chat five stages and genuine pinned validator pass for incremental draft assessment update only. Original PR434 merge gates not waived. CI: Iduns and ORA discovery pass; Validate public V0 still in progress at bounded final observation."
+    "Actual same-chat five stages and genuine pinned validator pass for incremental draft assessment update only. Original PR434 merge gates not waived. CI: Iduns and ORA discovery pass; Validate public V0 still in progress at bounded final observation.",
+    "2026-10-17 V20: final exact published-head CI all three triggered workflows SUCCESS.",
+    "V20 continuation source-inspected all 84 retained ranked pairs. Pending findings distinguish cooked porridge from cold-soaked oats, breadcrumb meat dishes from sandwiches, optional oven warming from pancake baking, and close hummus/banana variants from certified equivalence. No full semantic or translated clearance; seven rights holds/six adaptations remain."
   ],
-  "next_action": "PR434 only: fresh-reconcile exact published head and required CI once. Reuse verified full baseline replay and ranked findings; do not reconstruct or repeat tests without changed inputs. Exhaustive semantic/translated novelty and seven record-level origin/reuse holds remain open; investigate remaining source-level evidence before any new publication. Keep draft and no imports; merge only if all original gates are legitimately satisfied. Preserve consumed review budgets; never infer a new round from continue. No successor package.",
+  "next_action": "PR434 only. Published head f59096ff378bd9ce857acbe84f2cd8ed390520e0 has all 3 triggered workflows SUCCESS. Preserve pending_ranked_adjudication as UNREVIEWED working evidence: 84/84 retained ranked pairs source-inspected, no full semantic/translated PASS. Do not repeat baseline reconstruction, scoring, tests or unchanged CI. No new review round or PR publication is authorized by continue: inherited round 1/max 1 is consumed. Remaining title/alias shortlist and original-language/quantity/equivalence review remain incomplete; do not mistake all ranks for exhaustive novelty. Seven origin/reuse holds and six named adaptations remain. Keep PR434 draft and zero imports. Before a new PR assessment publication, obtain explicit bounded additional review authority; before rights clearance obtain record-specific origin/permission evidence. Do not contact authors, waive original gates, start successors or change other lanes.",
   "open_prs_at_reconciliation": [
     428,
     429,
@@ -552,9 +558,21 @@
       "package": "hochipants-origin-review-v1",
       "result": "Full replay PASS; 154602 ranked pairs and 19 selected manual findings; pinned actual same-chat validator PASS for assessment; 2 CI PASS/1 running; no import or merge.",
       "next_action": "PR434 only: fresh-reconcile exact published head and required CI once. Reuse verified full baseline replay and ranked findings; do not reconstruct or repeat tests without changed inputs. Exhaustive semantic/translated novelty and seven record-level origin/reuse holds remain open; investigate remaining source-level evidence before any new publication. Keep draft and no imports; merge only if all original gates are legitimately satisfied. Preserve consumed review budgets; never infer a new round from continue. No successor package."
+    },
+    {
+      "event_id": "culinary-app:pr434-ci-pass-pending-84-adjudication:20261017-work-8a5d28cfc7b7",
+      "timestamp": "2026-10-17T15:22:57.455276+00:00",
+      "lane_id": "culinary-app",
+      "event": "PR434_CI_PASS_PENDING_SOURCE_ADJUDICATION_CHECKPOINT",
+      "predecessor_sha256": "b94cdf682d30012cfc4d5c56e6e8199c2128a9477a8404db78f09f312cd2695b",
+      "observed_main": "faf02d0b5ad7603826df9aab73a3fcba5a72245d",
+      "observed_state_head": "1345095a24cdd869889e2a66579c2f3a7a02d87b",
+      "package": "hochipants-origin-review-v1",
+      "result": "All 3 CI PASS on unchanged published head; 84 ranked pairs inspected as pending working evidence; no new review round/publication to PR, import or merge.",
+      "next_action": "PR434 only. Published head f59096ff378bd9ce857acbe84f2cd8ed390520e0 has all 3 triggered workflows SUCCESS. Preserve pending_ranked_adjudication as UNREVIEWED working evidence: 84/84 retained ranked pairs source-inspected, no full semantic/translated PASS. Do not repeat baseline reconstruction, scoring, tests or unchanged CI. No new review round or PR publication is authorized by continue: inherited round 1/max 1 is consumed. Remaining title/alias shortlist and original-language/quantity/equivalence review remain incomplete; do not mistake all ranks for exhaustive novelty. Seven origin/reuse holds and six named adaptations remain. Keep PR434 draft and zero imports. Before a new PR assessment publication, obtain explicit bounded additional review authority; before rights clearance obtain record-specific origin/permission evidence. Do not contact authors, waive original gates, start successors or change other lanes."
     }
   ],
-  "owner_action_now": "No routine execution action. Record-specific origin/permission evidence is needed to clear rights; none obtained. Do not contact authors or accept legal risk without explicit authorization.",
+  "owner_action_now": "No imports or merge eligible. Explicit bounded additional review authority is needed before publishing the pending new assessment to PR434; record-specific origin/permission evidence remains needed for rights clearance. No external contact authorized.",
   "same_chat_closeout": {
     "pr": 430,
     "url": "https://github.com/DataRaul/culinary-recommender-app/pull/430",
@@ -893,14 +911,14 @@
     "ci": {
       "workflow": "Validate public V0",
       "run_id": 39040767797,
-      "status": "IN_PROGRESS",
-      "conclusion": null,
+      "status": "SUCCESS",
+      "conclusion": "success",
       "all_triggered_workflows": [
         {
           "id": 39040767797,
           "name": "Validate public V0",
-          "status": "in_progress",
-          "conclusion": null
+          "status": "completed",
+          "conclusion": "success"
         },
         {
           "id": 39040767788,
@@ -915,16 +933,17 @@
           "conclusion": "success"
         }
       ],
-      "bounded_recheck_consumed": true
+      "bounded_recheck_consumed": true,
+      "fresh_checked_utc": "2026-10-17T15:22:57.455276+00:00"
     },
     "focused_tests": "11_PASS; NPM_VALIDATE_1426_PASS_26_SKIPPED_0_FAIL",
     "pinned_validator": "SEQUENTIALLY_REVIEWED_READY_FOR_REQUIRED_CI_FOR_INCREMENTAL_ASSESSMENT_ONLY",
     "publication": "DRAFT_ASSESSMENT_UPDATE_PUBLISHED__NO_MERGE_NO_IMPORT",
     "remaining": [
-      "Original PR434 exhaustive semantic/translated novelty not established",
-      "Seven per-record origin/reuse-rights holds remain",
-      "Validate public V0 still in progress on f59096ff378bd9ce857acbe84f2cd8ed390520e0",
-      "No eligible merge; original gates remain binding"
+      "Full semantic and translated deduplication not established; title/alias and original-language equivalence remain incomplete",
+      "Seven record-level origin/reuse-rights holds remain; six adaptations held",
+      "Pending 84-pair source findings have not received package quality review; no additional review round authorized",
+      "Original PR434 merge gates remain binding; no import or merge eligibility"
     ],
     "owner_action": "No routine execution action. Record-specific origin/permission evidence is needed to clear rights; none obtained. Do not contact authors or accept legal risk without explicit authorization.",
     "baseline_replay": {
@@ -950,9 +969,630 @@
     "candidate_digest": "2f4756bddd485b97d963f41846dd5fa2048ebf8033122c1f59094045bc3fa48a",
     "published_tree": "5503e84f59ef263c717ac68d5c8a1c464dbbe847",
     "original_mission_completed": false,
-    "new_recipes_imported": 0
+    "new_recipes_imported": 0,
+    "pending_ranked_adjudication": {
+      "schema": "PR434_PENDING_RANKED_SOURCE_ADJUDICATION_V1",
+      "session": "work-8a5d28cfc7b7-root",
+      "timestamp_utc": "2026-10-17T15:21:31.055730+00:00",
+      "publication_status": "UNREVIEWED_WORKING_EVIDENCE_ONLY__NOT_ADDED_TO_PR",
+      "inputs": {
+        "head": "f59096ff378bd9ce857acbe84f2cd8ed390520e0",
+        "local_records_sha256": "159a3e53da1c9530c258913014f1baebebb700e87703b4e4a407d4f8bb1deb57",
+        "ranked_report_sha256": "a71c2087f5577730f6637cc26ef0388c241253018113e8ee7caf7cb19c73c3e3",
+        "candidate_source": "1d20e28de6df5bbe49447b3042336575f5b7bc01"
+      },
+      "method": "Actual same-chat inspection of all available normalized ingredient and method text for all 84 retained ranked pairs against the seven pinned catalog records. Existing bilingual/English normalized records were used; original-language source audit is not claimed. This is source-content review, not another quality review round.",
+      "coverage": {
+        "ranked_pairs": 84,
+        "ranked_pairs_inspected": 84,
+        "candidate_count": 7,
+        "title_alias_hits_fully_adjudicated": false,
+        "all_corpus_pairs_semantically_adjudicated": false
+      },
+      "findings": [
+        {
+          "candidate_id": "strawberry-overnight-oats",
+          "baseline_index": 12143,
+          "baseline_title": "havregrød (oatmeal porridge)",
+          "finding": "Optional overnight soak is followed by boiling; water porridge rather than uncooked strawberry-milk oats.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-overnight-oats",
+          "baseline_index": 1003,
+          "baseline_title": "strawberry daifuku mochi",
+          "finding": "Strawberries enclosed in bean paste and cooked rice-flour dough; refrigeration is an intermediate step, not oat soaking.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-overnight-oats",
+          "baseline_index": 380,
+          "baseline_title": "bircher muesli",
+          "finding": "Related overnight-oat preparation; water/apple juice soak followed by yogurt, cream, condensed milk, apples and nuts differs from milk/strawberry soak.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-overnight-oats",
+          "baseline_index": 20131,
+          "baseline_title": "havregrynsgröt ii (oat groat porridge ii)",
+          "finding": "Groats swell overnight then boil about an hour and finish with cream; no strawberry cold breakfast.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-overnight-oats",
+          "baseline_index": 20132,
+          "baseline_title": "havregrynsgröt ii (oatmeal porridge ii)",
+          "finding": "Overnight swelling precedes an hour of cooking and cream finish; distinct from uncooked milk soak.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-overnight-oats",
+          "baseline_index": 20133,
+          "baseline_title": "havregrynsgröt ii (oatmeal porridge ii)",
+          "finding": "Groats soak then boil and finish with cream; overnight keyword does not mean a cold-soaked final dish.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-overnight-oats",
+          "baseline_index": 2048,
+          "baseline_title": "oat cakes",
+          "finding": "Buttermilk-soaked oats are combined with flour/soda, rolled and baked; a cake rather than raw overnight breakfast.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-overnight-oats",
+          "baseline_index": 5449,
+          "baseline_title": "grasones with oats (oat pottage)",
+          "finding": "Oats cooked in milk with cloves to cream consistency; no cold-soak strawberry process.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-overnight-oats",
+          "baseline_index": 17455,
+          "baseline_title": "claret cup",
+          "finding": "Wine/liqueur drink with strawberries and chilled mineral water; no oats or dairy soak.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-overnight-oats",
+          "baseline_index": 18076,
+          "baseline_title": "mint julep",
+          "finding": "Mint syrup and fruit juices mixed with claret and chilled; no oat preparation.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-overnight-oats",
+          "baseline_index": 19178,
+          "baseline_title": "to make a trifle",
+          "finding": "Alcohol-soaked cake layers with jam and custard/cream or egg-white topping; not oat soaking.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-overnight-oats",
+          "baseline_index": 16336,
+          "baseline_title": "water gruel of corn meal or oat meal",
+          "finding": "Meal dispersed into boiling water, cooked half an hour and optionally enriched; no overnight strawberry-milk process.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "one-bowl-banana-cake",
+          "baseline_index": 1428,
+          "baseline_title": "banana bread",
+          "finding": "Related banana batter; loaf form, spices/nuts and leavening options differ; full proportions cannot be reconciled from quantity-incomplete normalized ingredient lines.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "one-bowl-banana-cake",
+          "baseline_index": 1430,
+          "baseline_title": "banana muffins with chocolate",
+          "finding": "Banana muffins add chocolate and use a distinct mixing order and muffin bake; related variant, no equivalence determination.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "one-bowl-banana-cake",
+          "baseline_index": 1431,
+          "baseline_title": "banana pancakes",
+          "finding": "Banana batter is pan-fried; oven use is optional holding warmth, not baking the batter. Milk and baking powder differ.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "one-bowl-banana-cake",
+          "baseline_index": 546,
+          "baseline_title": "banana bread",
+          "finding": "Very close banana quick-bread process: wet mixture then gentle flour fold and 175 C bake; loaf size, eggs/banana amounts and vanilla/spices differ. Retain equivalence HOLD.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "one-bowl-banana-cake",
+          "baseline_index": 4106,
+          "baseline_title": "bizcochos duros (hard biscuits)",
+          "finding": "Yeasted flour/egg/butter biscuit dough is kneaded and risen; no banana batter.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "one-bowl-banana-cake",
+          "baseline_index": 4107,
+          "baseline_title": "bizcochos embebidos (soaked biscuits)",
+          "finding": "Yeast and many beaten eggs form biscuits; no banana and different dough process.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "one-bowl-banana-cake",
+          "baseline_index": 4109,
+          "baseline_title": "bizcochos huecos (hollow sponge cakes)",
+          "finding": "Almond and egg-white sponge with almond topping; no banana.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "one-bowl-banana-cake",
+          "baseline_index": 5379,
+          "baseline_title": "gato de almendras (almond gâteau)",
+          "finding": "Kneaded almond cake finished with sugar/hot shovel; no banana.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "one-bowl-banana-cake",
+          "baseline_index": 10483,
+          "baseline_title": "gâteau d'amandes (almond cake)",
+          "finding": "Almond cake dough and sugar glaze; no banana wet batter.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "one-bowl-banana-cake",
+          "baseline_index": 11683,
+          "baseline_title": "torta tedesca (german cake)",
+          "finding": "Almond/egg-rich creamed cake with whipped whites and cream of tartar; no banana.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "one-bowl-banana-cake",
+          "baseline_index": 13573,
+          "baseline_title": "feiner mürber teig zu flauem kuchen (fine short dough for flat cake)",
+          "finding": "Chilled wine-containing short pastry rolled under fruit; not banana batter.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "one-bowl-banana-cake",
+          "baseline_index": 11166,
+          "baseline_title": "dolce alle chiare d'uovo (egg white cake)",
+          "finding": "Whipped egg-white cake with raisins; no banana, different aeration.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-lemon-spritz",
+          "baseline_index": 2025,
+          "baseline_title": "moselle cup no. 2",
+          "finding": "Carbonated strawberry/lemon family; wine and sherry/brandy, lemon peel and hour-long steep differ from honey/lemon-juice crush with water.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-lemon-spritz",
+          "baseline_index": 18452,
+          "baseline_title": "sauterne cup",
+          "finding": "Sauterne/liqueur and citrus rind steeped before chilled soda; differs in alcohol, sweetener and method.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-lemon-spritz",
+          "baseline_index": 14635,
+          "baseline_title": "strawberry frozen dessert (glace aux fraises)",
+          "finding": "Strawberry/lemon puree measured for sugar concentration then frozen; no carbonated drink.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-lemon-spritz",
+          "baseline_index": 14637,
+          "baseline_title": "strawberry frozen dessert with wine (glace de fraises au vin)",
+          "finding": "Wine/strawberry/lemon mixture frozen; not sparkling-water beverage.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-lemon-spritz",
+          "baseline_index": 16234,
+          "baseline_title": "strawberry sherbet",
+          "finding": "Crushed strawberry/lemon drink steeped, filtered and chilled with sugar/orange-flower water; no carbonation or honey, but related nonalcoholic fruit-drink family.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-lemon-spritz",
+          "baseline_index": 21618,
+          "baseline_title": "strawberry glacé (jordgubbsglace)",
+          "finding": "Strawberry/lemon puree frozen in a mold; no sparkling-water service.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-lemon-spritz",
+          "baseline_index": 1791,
+          "baseline_title": "claret cup no. 1",
+          "finding": "Claret/sherry drink with lemon peel and soda; no strawberry-honey crush.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-lemon-spritz",
+          "baseline_index": 2024,
+          "baseline_title": "moselle cup no. 1",
+          "finding": "Moselle/sherry soda cup with pineapple and lemon peel; not strawberry-honey preparation.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-lemon-spritz",
+          "baseline_index": 2026,
+          "baseline_title": "moselle cup no. 3",
+          "finding": "Moselle cup flavored with woodruff instead of fruit; no strawberry preparation.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-lemon-spritz",
+          "baseline_index": 13959,
+          "baseline_title": "kalte erdbeerensupptie (cold strawberry soup)",
+          "finding": "Strawberry puree with white wine/sugar/lemon chilled for hours as soup; alcoholic and noncarbonated.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-lemon-spritz",
+          "baseline_index": 15658,
+          "baseline_title": "a fine temperance beverage",
+          "finding": "Close alcohol-free crushed berry/lemon drink family; pineapple, refined sugar and still ice water differ from honey and sparkling water.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "strawberry-lemon-spritz",
+          "baseline_index": 16114,
+          "baseline_title": "poches in large glasses",
+          "finding": "Mixed liquor/raspberry syrup/fruit topped with seltzer; no honey/lemon crush and alcohol is central.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "tomato-cucumber-salad",
+          "baseline_index": 13,
+          "baseline_title": "horiatiki salad",
+          "finding": "Related raw tomato/cucumber/onion salad; feta, olives, pepper and oregano with tomato juice/oil differ from lemon vinaigrette.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "tomato-cucumber-salad",
+          "baseline_index": 18671,
+          "baseline_title": "tomato and cucumber salad",
+          "finding": "Stacked tomato/cucumber slices on lettuce with parboiled pepper and French/mayonnaise dressing; different assembly and dressing.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "tomato-cucumber-salad",
+          "baseline_index": 770,
+          "baseline_title": "farro salad",
+          "finding": "Cooked farro with vegetables, rocket and pecorino; lemon-oil dressing shared but grain cooking and additions materially differ.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "tomato-cucumber-salad",
+          "baseline_index": 1150,
+          "baseline_title": "quinoa tabbouleh",
+          "finding": "Cooked quinoa and finely chopped herb-dominant salad; lemon-oil dressing shared but preparation and dominant ingredients differ.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "tomato-cucumber-salad",
+          "baseline_index": 18772,
+          "baseline_title": "wiersbick's salad",
+          "finding": "Hollowed tomatoes with cucumber/truffle/pepper garnish and mustard-vinegar-Worcestershire emulsion; distinct dressing and presentation.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "tomato-cucumber-salad",
+          "baseline_index": 213,
+          "baseline_title": "fattoush",
+          "finding": "Fried pita, radish, lettuce, herbs and sumac/pomegranate dressing distinguish this related salad.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "tomato-cucumber-salad",
+          "baseline_index": 127,
+          "baseline_title": "shopska salad",
+          "finding": "Charred peppers and grated cheese with sunflower oil/vinegar distinguish related tomato/cucumber/onion salad.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "tomato-cucumber-salad",
+          "baseline_index": 17582,
+          "baseline_title": "cucumber and tomato salad",
+          "finding": "Tomato slices topped with cucumber on lettuce, French/mayonnaise dressing; different acid/dressing and presentation.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "tomato-cucumber-salad",
+          "baseline_index": 18417,
+          "baseline_title": "salad à la russe",
+          "finding": "Stuffed tomato with cooked chicken/peas/pickles/capers and mayonnaise; not simple fresh vegetable toss.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "tomato-cucumber-salad",
+          "baseline_index": 20065,
+          "baseline_title": "grönsalad med olja (green salad with oil)",
+          "finding": "Close tossed vegetable salad process, but lettuce dominates and vinegar/table oil replace lemon/olive oil; no onion listed.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "tomato-cucumber-salad",
+          "baseline_index": 772,
+          "baseline_title": "fattoush",
+          "finding": "Baked/fried pita and sumac/herb/radish salad; shared lemon-oil toss does not establish equivalence.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "tomato-cucumber-salad",
+          "baseline_index": 20021,
+          "baseline_title": "green salad with oil (grönsalad med olja)",
+          "finding": "Lettuce/tomato/cucumber toss with vinegar/table oil, no onion listed; related but distinct dressing and composition.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "caprese-grilled-cheese",
+          "baseline_index": 10199,
+          "baseline_title": "beignets de fraise de veau (calf sweetbread fritters)",
+          "finding": "Calf offal simmered, marinated, egged and breadcrumb-fried; bread crumbs do not form a sandwich.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "caprese-grilled-cheese",
+          "baseline_index": 10740,
+          "baseline_title": "poulets à la sainte-menehould (chickens sainte-menehould style)",
+          "finding": "Whole chickens braised in wine/herbs then breaded/grilled; no mozzarella-tomato sandwich.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "caprese-grilled-cheese",
+          "baseline_index": 1464,
+          "baseline_title": "chicken parmesan",
+          "finding": "Breaded fried chicken with melted mozzarella and tomato sauce; crumbs are coating, not sandwich bread.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "caprese-grilled-cheese",
+          "baseline_index": 10644,
+          "baseline_title": "pieds de veau à la sainte-menehould (calf's feet sainte-menehould style)",
+          "finding": "Calf feet braised then breadcrumb-coated and grilled; no cheese sandwich.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "caprese-grilled-cheese",
+          "baseline_index": 10645,
+          "baseline_title": "pigeons au basilic (pigeons with basil)",
+          "finding": "Pigeons braised with basil, egged and breadcrumb-fried; not sandwich assembly.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "caprese-grilled-cheese",
+          "baseline_index": 13690,
+          "baseline_title": "gefüllte kalbsmilch (stuffed calf sweetbread)",
+          "finding": "Stuffed calf sweetbread with milk-soaked crumbs, egg and herbs, boiled then roasted/fried; no sandwich.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "caprese-grilled-cheese",
+          "baseline_index": 5101,
+          "baseline_title": "entripado de cerdo con leche (pork tripe sausage with milk)",
+          "finding": "Tripe sausage containing meats/milk/eggs, boiled and breadcrumb-grilled; no sandwich.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "caprese-grilled-cheese",
+          "baseline_index": 5869,
+          "baseline_title": "lechugas rellenas y fritas (stuffed and fried lettuces)",
+          "finding": "Lettuce with meat stuffing, egg and breadcrumbs fried in lard; no mozzarella sandwich.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "caprese-grilled-cheese",
+          "baseline_index": 10672,
+          "baseline_title": "poitrine de veau au basilic (veal breast with basil)",
+          "finding": "Veal pieces braised with herbs, egged, breadcrumb-coated and fried; no sandwich.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "caprese-grilled-cheese",
+          "baseline_index": 9745,
+          "baseline_title": "quesadillas (cheese turnovers)",
+          "finding": "Tortilla turnovers with pork rind/chile fried in lard; English cheese-turnover title does not establish mozzarella filling.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "caprese-grilled-cheese",
+          "baseline_index": 5921,
+          "baseline_title": "lenguas de cordero envueltas (wrapped lamb tongues)",
+          "finding": "Lamb tongues filled with mushrooms, wrapped in pork and grilled with sauce; bread crumbs are stuffing binder.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "caprese-grilled-cheese",
+          "baseline_index": 12569,
+          "baseline_title": "omelet with tomatoes (omelet med tomater)",
+          "finding": "Egg/breadcrumb-coated tomato slices fried, then enclosed in omelet; no sliced-bread mozzarella sandwich.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "classic-hummus",
+          "baseline_index": 859,
+          "baseline_title": "hummus",
+          "finding": "Close chickpea/tahini/lemon/garlic/ice-water dip family; dry-chickpea cooking, warm puree before tahini sauce and olive-oil garnish differ. Starting-state differences alone do not resolve semantic equivalence.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "classic-hummus",
+          "baseline_index": 47,
+          "baseline_title": "hummus",
+          "finding": "Close tahini-first emulsification family; dry-chickpea cooking, cumin, water timing and oil garnish differ. Retain equivalence HOLD.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "classic-hummus",
+          "baseline_index": 1520,
+          "baseline_title": "hummus",
+          "finding": "Canned chickpea/tahini/lemon/oil dip blended together; garlic/ice-water emulsion and proportions differ; related variant with incomplete quantities.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "classic-hummus",
+          "baseline_index": 335,
+          "baseline_title": "fattet hummus",
+          "finding": "Layered fried pita/chickpeas/yogurt with nuts and ghee; not blended chickpea dip despite hummus in title.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "classic-hummus",
+          "baseline_index": 537,
+          "baseline_title": "baba ghanoush",
+          "finding": "Charred eggplant mashed with tahini/lemon/garlic; eggplant replaces chickpeas and texture/process differ.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "classic-hummus",
+          "baseline_index": 536,
+          "baseline_title": "baba ganoush",
+          "finding": "Charred/drained eggplant fork-mashed with tahini and cumin; no chickpea puree.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "classic-hummus",
+          "baseline_index": 1327,
+          "baseline_title": "tarator",
+          "finding": "Walnut/bread/vinegar/tahini sauce; no chickpeas and acid/base differ.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "classic-hummus",
+          "baseline_index": 1308,
+          "baseline_title": "lamb, chickpea and apricot tagine",
+          "finding": "Lamb/apricot/chickpea stew braised in a tagine; not tahini dip.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "classic-hummus",
+          "baseline_index": 5367,
+          "baseline_title": "garbanzate dulce a la italiana (sweet chickpea paste italian style)",
+          "finding": "Milk/sugar/nut/chickpea paste cooked to syrup thickness and crusted; sweet cooked preparation, no tahini/lemon dip.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "classic-hummus",
+          "baseline_index": 1311,
+          "baseline_title": "tahini sauce",
+          "finding": "Tahini/lemon/garlic/ice-water emulsion resembles a component of hummus but contains no chickpeas; component is not whole-dish duplicate.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "classic-hummus",
+          "baseline_index": 8849,
+          "baseline_title": "garbanzos comunes (common chickpeas)",
+          "finding": "Chickpeas cooked in greens stock with onion/spices and optional egg/rice thickening; no tahini dip.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "classic-hummus",
+          "baseline_index": 8549,
+          "baseline_title": "col rellena para vitualla (stuffed cabbage for provisions)",
+          "finding": "Whole cabbage filled with chickpeas, meats and vegetables then sauced; not chickpea puree.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "everyday-lentil-soup",
+          "baseline_index": 945,
+          "baseline_title": "red lentil soup",
+          "finding": "Red lentils/carrot/spices, butter and final blending differ from intact brown/green lentils with simple olive-oil/onion base.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "everyday-lentil-soup",
+          "baseline_index": 1382,
+          "baseline_title": "turkish red lentil soup",
+          "finding": "Red lentils/potato/spices pureed smooth and finished with spiced butter; related soup, different texture and composition.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "everyday-lentil-soup",
+          "baseline_index": 991,
+          "baseline_title": "misir wot (red lentil stew)",
+          "finding": "Dry-caramelized onion, spiced butter/berbere/ginger and dissolved red-lentil stew differ from simple brown/green soup.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "everyday-lentil-soup",
+          "baseline_index": 1159,
+          "baseline_title": "turkish red lentil soup",
+          "finding": "Red lentils, carrot/tomato paste/spices, puree and chili-butter finish distinguish related soup.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "everyday-lentil-soup",
+          "baseline_index": 1383,
+          "baseline_title": "turkish red lentil soup (mercimek çorbası)",
+          "finding": "Red lentil/carrot soup blended smooth with cumin and pepper-butter finish differs from whole brown/green lentils.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "everyday-lentil-soup",
+          "baseline_index": 11305,
+          "baseline_title": "lenticchie intere per contorno (whole lentils as a side dish)",
+          "finding": "Cooked/drained lentils finished in strained prosciutto/butter/onion broth sauce as a side; not lemon/garlic vegetable soup.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "everyday-lentil-soup",
+          "baseline_index": 3612,
+          "baseline_title": "sopa de perdiz com lentilhas (partridge soup with lentils)",
+          "finding": "Partridge/bacon/veal-based lentil puree served with birds and bread; not vegetarian whole-lentil soup.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "everyday-lentil-soup",
+          "baseline_index": 3649,
+          "baseline_title": "terrina de perdizes com lentilhas (partridge terrine with lentils)",
+          "finding": "Roasted-partridge/pork lentil broth sieved with veal/cullis and served over birds; not simple whole-lentil soup.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "everyday-lentil-soup",
+          "baseline_index": 1281,
+          "baseline_title": "spanish lentil stew (lentejas estofadas)",
+          "finding": "Related brown/green lentil stew but chorizo, potato/carrot, spices and vinegar distinguish ingredients and staged cooking.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "everyday-lentil-soup",
+          "baseline_index": 7551,
+          "baseline_title": "sustancia de lentejas (lentil substance)",
+          "finding": "Pork/beef lentil stock strained and reduced with Spanish sauce; not intact-lentil lemon soup.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "everyday-lentil-soup",
+          "baseline_index": 15312,
+          "baseline_title": "pheasant thighs with lentil purée (cuisses de faisan à la parée de lentilles)",
+          "finding": "Stuffed/braised pheasant thighs served with lentil puree; lentil puree is accompaniment rather than standalone soup.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        },
+        {
+          "candidate_id": "everyday-lentil-soup",
+          "baseline_index": 1533,
+          "baseline_title": "sopa de lentejas",
+          "finding": "Related brown-lentil soup with carrot/pepper/tomato/bay/paprika and optional chorizo, overnight soak and water; no lemon/stock simplicity.",
+          "disposition": "PAIR_REVIEWED__GLOBAL_NOVELTY_HOLD"
+        }
+      ],
+      "limitations": [
+        "No independent review or new package quality round performed; inherited budget 0 remains.",
+        "All 84 ranks inspected does not establish recall outside the shortlist or exhaustive translated equivalence.",
+        "Original-language fidelity, quantity completeness, optionality and useful-variant equivalence remain unresolved.",
+        "No exact-duplicate or global novelty certificate issued; no admission/rejection based only on family overlap.",
+        "Seven origin rights holds and six third-party adaptations remain; no external contacts or permissions."
+      ],
+      "new_recipes_imported": 0,
+      "full_semantic_pass": false,
+      "translated_dedup_pass": false,
+      "merge_eligible": false
+    }
   },
-  "checkpoint_timestamp_utc": "2026-10-17T14:28:58.994379+00:00",
+  "checkpoint_timestamp_utc": "2026-10-17T15:22:57.455276+00:00",
   "historical_context_rule": "Prior installation, PR430/431/432/433 and older current_facts entries are retained history. Only current PR434 state, this next_action and original PR434 remaining gates govern this continuation.",
   "completion_this_cycle": {
     "published_head": "f59096ff378bd9ce857acbe84f2cd8ed390520e0",
@@ -968,6 +1608,13 @@
     "original_mission_completed": false,
     "merge": "HOLD",
     "imports": 0,
-    "stop": true
+    "stop": true,
+    "published_head_unchanged": "f59096ff378bd9ce857acbe84f2cd8ed390520e0",
+    "final_ci": "ALL_3_TRIGGERED_WORKFLOWS_SUCCESS",
+    "ranked_source_pairs_inspected": 84,
+    "pending_research_quality_review": "NOT_EXECUTED_NO_BUDGET",
+    "review_budget_reset": false,
+    "tests_repeated": false,
+    "source_reconstruction_repeated": false
   }
 }
