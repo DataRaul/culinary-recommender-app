@@ -6,7 +6,7 @@
   "base_commit": "FILL_FRESH_MAIN_SHA",
   "author_session_id": "FILL_ACTUAL_SESSION",
   "goal_path": "FILL_EXISTING_OR_VERSIONED_LANE_GOAL",
-  "adapter_path": "config/package_quality_adapter.json",
+  "adapter_path": "config/package_quality_plan_first_adapter.json",
   "intent_provenance": [
     "FILL_SETTLED_OWNER_INTENT_SOURCE"
   ],
@@ -28,7 +28,12 @@
   ],
   "required_evidence": [
     "FILL_CHECK_EVIDENCE_PATH",
-    "FILL_ALIGNMENT_EVIDENCE_PATH"
+    "FILL_ALIGNMENT_EVIDENCE_PATH",
+    "docs/ROADMAP.md",
+    "FILL_NEW_PACKAGE_PLAN_PATH",
+    "FILL_NEW_PACKAGE_SOLUTION_REVIEW_PATH",
+    "FILL_NEW_PACKAGE_PREBUILD_RECEIPT_PATH",
+    "FILL_NEW_PACKAGE_DECISION_TRACE_PATH"
   ],
   "mandatory_knowledge_domains": [
     "FILL_REQUIRED_DOMAINS_FROM_LOCAL_GATE"
@@ -52,5 +57,11 @@
     "build_qa": [
       "FILL_CHECK_EVIDENCE_PATH"
     ]
+  },
+  "plan_first": {
+    "plan_path": "FILL_NEW_PACKAGE_PLAN_PATH",
+    "review_path": "FILL_NEW_PACKAGE_SOLUTION_REVIEW_PATH",
+    "receipt_path": "FILL_NEW_PACKAGE_PREBUILD_RECEIPT_PATH",
+    "trace_path": "FILL_NEW_PACKAGE_DECISION_TRACE_PATH"
   }
 }

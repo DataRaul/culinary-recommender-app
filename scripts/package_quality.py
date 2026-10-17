@@ -23,9 +23,13 @@ def check_concurrency_log(old, new):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--agent-os-root", type=Path, required=True)
+    parser.add_argument("--quality-adapter", choices=("legacy", "plan-first"), default="legacy")
     args, remainder = parser.parse_known_args()
     root = Path(__file__).resolve().parents[1]
-    adapter = json.loads((root / "config/package_quality_adapter.json").read_text())
+    adapter_file = ("config/package_quality_plan_first_adapter.json"
+                    if args.quality_adapter == "plan-first"
+                    else "config/package_quality_adapter.json")
+    adapter = json.loads((root / adapter_file).read_text())
     source = args.agent_os_root.resolve()
     try:
         shared = adapter["shared_source"]
@@ -39,9 +43,13 @@ def main():
             if not path.is_relative_to(source) or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
                 raise ValueError("shared source hash mismatch: " + name)
         lane_command = bool(remainder and remainder[0] in {"lane-prepare", "lane-verify"})
+        plan_command = bool(remainder and remainder[0] == "plan-accept")
         if lane_command:
             remainder[0] = remainder[0].removeprefix("lane-")
             script = source / "scripts/lane_handover.py"
+        elif plan_command:
+            remainder.pop(0)
+            script = source / "scripts/plan_first_gate.py"
         else:
             script = source / "scripts/package_quality_gate.py"
         if "--root" in remainder:

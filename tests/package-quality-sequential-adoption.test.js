@@ -50,3 +50,26 @@ test('wrapper and root protocol explicitly support sequential stages and hold ga
   assert.match(w, /parse_known_args/);
   assert.match(w, /\*remainder/);
 });
+
+test('new packages opt in to portable roadmap-first plan review without changing frozen contracts', () => {
+  const legacy = json('config/package_quality_adapter.json');
+  const a = json('config/package_quality_plan_first_adapter.json');
+  const t = json('docs/package_quality/CONTRACT_TEMPLATE.json');
+  const old = json('docs/package_quality/contracts/same-chat-sequential-adoption-v1.json');
+  assert.equal(legacy.shared_source.commit, '2e55b320c88df7fa75eaaf47113184ba44f5bb8d');
+  assert.equal(legacy.plan_first, undefined);
+  assert.equal(a.shared_source.commit, '85384d6615953de1fd968cf7af25480e5d65d798');
+  assert.equal(a.plan_first, 'AVAILABLE');
+  assert.equal(a.plan_first_new_packages, 'REQUIRED');
+  assert.equal(old.plan_first, undefined);
+  assert.equal(old.adapter_path, 'config/package_quality_adapter.json');
+  assert.equal(t.adapter_path, 'config/package_quality_plan_first_adapter.json');
+  assert.deepEqual(Object.keys(t.plan_first).sort(),
+    ['plan_path', 'receipt_path', 'review_path', 'trace_path']);
+  assert.ok(t.required_evidence.includes('docs/ROADMAP.md'));
+  for (const path of Object.values(t.plan_first)) assert.ok(t.required_evidence.includes(path));
+  assert.match(read('scripts/package_quality.py'), /plan-accept/);
+  assert.match(read('scripts/package_quality.py'), /quality-adapter/);
+  assert.ok(a.shared_source.files['scripts/plan_first_gate.py']);
+  assert.match(read('docs/PACKAGE_QUALITY_PROTOCOL.md'), /roadmap_alignment/);
+});
