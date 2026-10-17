@@ -23,9 +23,13 @@ def check_concurrency_log(old, new):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--agent-os-root", type=Path, required=True)
+    parser.add_argument("--quality-adapter", choices=("legacy", "plan-first"), default="legacy")
     args, remainder = parser.parse_known_args()
     root = Path(__file__).resolve().parents[1]
-    adapter = json.loads((root / "config/package_quality_adapter.json").read_text())
+    adapter_file = ("config/package_quality_plan_first_adapter.json"
+                    if args.quality_adapter == "plan-first"
+                    else "config/package_quality_adapter.json")
+    adapter = json.loads((root / adapter_file).read_text())
     source = args.agent_os_root.resolve()
     try:
         shared = adapter["shared_source"]
