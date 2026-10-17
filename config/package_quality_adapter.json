@@ -11,18 +11,16 @@
   ],
   "shared_source": {
     "repository": "DataRaul/agent-os",
-    "commit": "85384d6615953de1fd968cf7af25480e5d65d798",
+    "commit": "2e55b320c88df7fa75eaaf47113184ba44f5bb8d",
     "files": {
-      "scripts/package_quality_gate.py": "a699488914134b5303fd376e72ecad6ff13bf5153dfab8be76cafc18ab89fdfd",
-      "scripts/plan_first_gate.py": "1d83c4654488de9c2951d9046df6dd6b33bfa90d68bdcba1ed1c4eba60a8f730",
-      "skills/package-quality-gate/SKILL.md": "798adf60919d7e493af4540311df62d4bb9a1f91892392e7b31406abd6a140de",
+      "scripts/package_quality_gate.py": "3c28236dc8c4ec2f52a33c2a54b4155606d0eb99ad7130b0a62ace27bdd06907",
+      "skills/package-quality-gate/SKILL.md": "7e17975efa0d47ef962461cc5310a423933e86b3225a1048e94aa4cd0595f0cc",
       "skills/package-quality-gate/references/aligner.md": "e6da0d945f2db7b3d84e77cd7aea557c456b58a3eef3e1832b5be370fc168125",
       "skills/package-quality-gate/references/supporter.md": "8d185d9b5778494a03e537b3b50a3d6b4bbbd97d03a965b5c4ade6e585cf4994",
       "skills/package-quality-gate/references/critic.md": "a13c65c2de0051a64b9d42b21de197762dccc5c79604c5befe0331a1f8583c37",
-      "docs/PACKAGE_QUALITY_GATE.md": "9c7f34053c9fa3475f563985454b1d4be9aeaa93a0f811870401806a451bf605",
-      "docs/PLAN_FIRST_PORTABILITY.md": "8eae6e8e62467ddaed501d68f55c000e34d771a5b0e478df3bea73073850f5b3",
+      "docs/PACKAGE_QUALITY_GATE.md": "6f9357406e7f4e52807012d64be678ecbba030d3f6fc097cdd14c4ad3889e335",
       "scripts/lane_handover.py": "bd3bb693609061c950ce3d5b91c493cca3f48243d0e056e2bca4acff49a125fb",
-      "skills/package-quality-gate/references/sequential.md": "76379265b261d13562029eacf5fd09c79c648e84574024ee4c8fb51e514353b5"
+      "skills/package-quality-gate/references/sequential.md": "f0ccfd8a508d424944ed299d9292320320348ed7d85b436e4e0c23a621dbf37d"
     }
   },
   "skill": "skills/package-quality-gate/SKILL.md",
@@ -56,7 +54,5 @@
     "driver": "next",
     "execution": "coordinator_performs_returned_pass_in_same_turn",
     "background_launcher": false
-  },
-  "plan_first": "AVAILABLE",
-  "plan_first_new_packages": "REQUIRED"
+  }
 }
