@@ -31,7 +31,7 @@ test('per-record origin and semantic holds never authorize imports', () => {
     assert.ok(row.semanticProbeTerms.length >= 2);
   }
 });
-test('incomplete baseline fingerprints remain an explicit manual review gate', () => {
+test('three pinned missing-fingerprint source files have scoped 21-pair manual comparison while full replay remains gated', () => {
   assert.equal(origin.baseline.completeWordingFingerprints, assessment.baselineCoverage.wording);
   assert.equal(origin.baseline.count - origin.baseline.completeWordingFingerprints, 3);
   assert.equal(origin.baseline.incompleteWordingFingerprints, 3);
@@ -41,9 +41,24 @@ test('incomplete baseline fingerprints remain an explicit manual review gate', (
   for (const row of origin.baseline.incompleteBaselineRecords) {
     assert.equal(row.index, origin.baseline.incompleteBaselineIndexEvidence.cohortStartIndex + row.cohortSortedIndex);
     assert.equal(row.ingredientCount, 0);
-    assert.equal(row.comparisonStatus, 'NOT_MANUALLY_COMPARED');
+    assert.equal(row.comparisonStatus, 'SOURCE_CONTENT_COMPARED_TO_SEVEN_CANDIDATES__FULL_CORPUS_REPLAY_PENDING');
+    assert.equal(typeof row.sourceContentFinding, 'string');
+    assert.deepEqual(row.recipeEquivalentCandidateIds, []);
   }
-  assert.equal(origin.baseline.incompleteBaselineStatus, 'REVIEW_REQUIRED__NO_MANUAL_EXCLUSION');
+  assert.equal(origin.baseline.incompleteBaselineStatus, 'THREE_SOURCE_FILES_REVIEWED__FULL_BASELINE_FINGERPRINT_REPLAY_REQUIRED');
+  const manual = origin.baseline.sourceContentReview;
+  assert.equal(manual.sourceCommit, origin.baseline.incompleteBaselineRecords[0].sourceCommit);
+  assert.equal(manual.candidateCommit, origin.source.sha);
+  assert.equal(manual.pinnedRecursiveTreeTruncated, false);
+  assert.equal(manual.lexicallyOrderedSourceMdFiles, 226);
+  assert.equal(manual.priorCohortCount, origin.baseline.incompleteBaselineIndexEvidence.cohortStartIndex);
+  assert.equal(manual.sourceFilesReviewed, 3);
+  assert.equal(manual.candidateRecipesReviewed, 7);
+  assert.deepEqual([...manual.candidateIds].sort(), origin.records.map(row => row.id).sort());
+  assert.equal(manual.crossProductPairsReviewed, 21);
+  assert.equal(manual.recipeEquivalentPairsIdentified, 0);
+  assert.equal(manual.noImportAuthority, true);
+  assert.match(manual.scopeLimit, /does not/i);
   assert.match(origin.baseline.semanticSimilarityExecution, /^NOT_EXECUTED_/);
   assert.equal(origin.quality.pinnedValidator, 'NOT_EXECUTED');
 });

@@ -31,8 +31,8 @@
       1569,
       1618
     ],
-    "incompleteBaselineRecordIdentification": "DETERMINISTIC_SOURCE_TREE_AND_RECONSTRUCTION_ORDER__FULL_FINGERPRINT_REPLAY_PENDING",
-    "incompleteBaselineStatus": "REVIEW_REQUIRED__NO_MANUAL_EXCLUSION",
+    "incompleteBaselineRecordIdentification": "PINNED_RECURSIVE_GIT_TREE_POSITIONS_VERIFIED__FULL_V8019_FINGERPRINT_REPLAY_PENDING",
+    "incompleteBaselineStatus": "THREE_SOURCE_FILES_REVIEWED__FULL_BASELINE_FINGERPRINT_REPLAY_REQUIRED",
     "semanticSimilarityExecution": "NOT_EXECUTED__FULL_BASELINE_METADATA_OR_RECONSTRUCTED_SOURCE_REQUIRED",
     "limitations": "Prior exact hashes exclude ingredient quantities and do not cover translated titles, aliases, recipe variants, or semantically similar methods. No original corpus reconstruction occurred in this package.",
     "incompleteBaselineRecords": [
@@ -44,7 +44,9 @@
         "directionCount": 0,
         "sourceCohort": "SGAUTHIER_RECIPES_CC0_B12E481D",
         "sourceCommit": "b12e481d1c220a13e0847a34e148d5872a16928e",
-        "comparisonStatus": "NOT_MANUALLY_COMPARED"
+        "comparisonStatus": "SOURCE_CONTENT_COMPARED_TO_SEVEN_CANDIDATES__FULL_CORPUS_REPLAY_PENDING",
+        "sourceContentFinding": "Instructions for preparing boiled/fried/scrambled eggs; banana cake includes egg only as an ingredient, without equivalent recipe or method.",
+        "recipeEquivalentCandidateIds": []
       },
       {
         "index": 1569,
@@ -54,7 +56,9 @@
         "directionCount": 8,
         "sourceCohort": "SGAUTHIER_RECIPES_CC0_B12E481D",
         "sourceCommit": "b12e481d1c220a13e0847a34e148d5872a16928e",
-        "comparisonStatus": "NOT_MANUALLY_COMPARED"
+        "comparisonStatus": "SOURCE_CONTENT_COMPARED_TO_SEVEN_CANDIDATES__FULL_CORPUS_REPLAY_PENDING",
+        "sourceContentFinding": "Roast and grind peanuts into a spread; hummus is a chickpea/tahini blended dip, sharing broad spread category but not primary ingredients or equivalent method.",
+        "recipeEquivalentCandidateIds": []
       },
       {
         "index": 1618,
@@ -64,14 +68,44 @@
         "directionCount": 0,
         "sourceCohort": "SGAUTHIER_RECIPES_CC0_B12E481D",
         "sourceCommit": "b12e481d1c220a13e0847a34e148d5872a16928e",
-        "comparisonStatus": "NOT_MANUALLY_COMPARED"
+        "comparisonStatus": "SOURCE_CONTENT_COMPARED_TO_SEVEN_CANDIDATES__FULL_CORPUS_REPLAY_PENDING",
+        "sourceContentFinding": "Non-recipe guidance on spices during pregnancy; no candidate is a corresponding preparation or process. Health claims were not evaluated or endorsed.",
+        "recipeEquivalentCandidateIds": []
       }
     ],
     "incompleteBaselineIndexEvidence": {
       "method": "Pinned CC0 Git tree src/*.md lexicographic sort with v8019 concatenation: 501 UniTools + 915 ForkRecipe before 226 CC0",
       "cohortStartIndex": 1416,
       "referenceSource": "data/generated/corpus-normalization-mapping-v1.json",
-      "remainingGate": "Re-run full fingerprint export to verify indices and manually compare all three records against seven source candidates"
+      "remainingGate": "Execute full v8019 fingerprint replay and full multilingual, ingredient and method semantic comparison for all seven candidates; retain rights holds."
+    },
+    "sourceContentReview": {
+      "status": "THREE_PINNED_SOURCE_FILES_COMPARED__FULL_CORPUS_REPLAY_PENDING",
+      "date": "2026-10-17",
+      "sourceRepository": "sylGauthier/recipes",
+      "sourceCommit": "b12e481d1c220a13e0847a34e148d5872a16928e",
+      "candidateRepository": "HoChiPants/open-recipe-archive",
+      "candidateCommit": "1d20e28de6df5bbe49447b3042336575f5b7bc01",
+      "pinnedRecursiveTreeTruncated": false,
+      "pinnedRecursiveTreeEntries": 230,
+      "lexicallyOrderedSourceMdFiles": 226,
+      "priorCohortCount": 1416,
+      "sourceFilesReviewed": 3,
+      "candidateRecipesReviewed": 7,
+      "candidateIds": [
+        "strawberry-overnight-oats",
+        "one-bowl-banana-cake",
+        "strawberry-lemon-spritz",
+        "tomato-cucumber-salad",
+        "caprese-grilled-cheese",
+        "classic-hummus",
+        "everyday-lentil-soup"
+      ],
+      "crossProductPairsReviewed": 21,
+      "recipeEquivalentPairsIdentified": 0,
+      "method": "Read all three pinned Markdown source documents and seven pinned candidate recipe JSON records; assess primary ingredients, cooking purpose and method for recipe equivalence, including superficial ingredient/category overlap.",
+      "scopeLimit": "Source-content pair checks only. Does not replay v8019 generated fingerprints, verify materialized v8019 record content or establish semantic novelty across 22086 corpus records.",
+      "noImportAuthority": true
     }
   },
   "records": [
