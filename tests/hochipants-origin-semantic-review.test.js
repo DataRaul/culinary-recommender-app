@@ -27,11 +27,13 @@ test('per-record origin and semantic holds never authorize imports', () => {
     assert.equal(row.importAuthorized, false);
     assert.match(row.rightsDisposition, /^HOLD_/);
     assert.match(row.semanticDisposition, /^HOLD_/);
-    assert.equal(row.semanticTermsType, 'REVIEW_SEARCH_TERMS_NOT_MATCHED_BASELINE_RECORDS');
+    assert.equal(row.semanticTermsType, 'REVIEW_SEARCH_TERMS_WITH_RECORDED_RANKED_EXECUTION');
+    assert.ok(row.semanticReview.reviewedMatches.length >= 2);
+    assert.equal(row.semanticReview.exhaustiveNoveltyEstablished, false);
     assert.ok(row.semanticProbeTerms.length >= 2);
   }
 });
-test('three pinned missing-fingerprint source files have scoped 21-pair manual comparison while full replay remains gated', () => {
+test('full replay verifies three exceptional identities without promoting ranked review to semantic novelty', () => {
   assert.equal(origin.baseline.completeWordingFingerprints, assessment.baselineCoverage.wording);
   assert.equal(origin.baseline.count - origin.baseline.completeWordingFingerprints, 3);
   assert.equal(origin.baseline.incompleteWordingFingerprints, 3);
@@ -41,11 +43,11 @@ test('three pinned missing-fingerprint source files have scoped 21-pair manual c
   for (const row of origin.baseline.incompleteBaselineRecords) {
     assert.equal(row.index, origin.baseline.incompleteBaselineIndexEvidence.cohortStartIndex + row.cohortSortedIndex);
     assert.equal(row.ingredientCount, 0);
-    assert.equal(row.comparisonStatus, 'SOURCE_CONTENT_COMPARED_TO_SEVEN_CANDIDATES__FULL_CORPUS_REPLAY_PENDING');
+    assert.equal(row.comparisonStatus, 'FULL_REPLAY_VERIFIED__SOURCE_AND_NORMALIZED_RECORD_COMPARED');
     assert.equal(typeof row.sourceContentFinding, 'string');
     assert.deepEqual(row.recipeEquivalentCandidateIds, []);
   }
-  assert.equal(origin.baseline.incompleteBaselineStatus, 'THREE_SOURCE_FILES_REVIEWED__FULL_BASELINE_FINGERPRINT_REPLAY_REQUIRED');
+  assert.equal(origin.baseline.incompleteBaselineStatus, 'FULL_REPLAY_VERIFIED__THREE_SOURCE_FILES_AND_NORMALIZED_RECORDS_REVIEWED');
   const manual = origin.baseline.sourceContentReview;
   assert.equal(manual.sourceCommit, origin.baseline.incompleteBaselineRecords[0].sourceCommit);
   assert.equal(manual.candidateCommit, origin.source.sha);
@@ -58,9 +60,14 @@ test('three pinned missing-fingerprint source files have scoped 21-pair manual c
   assert.equal(manual.crossProductPairsReviewed, 21);
   assert.equal(manual.recipeEquivalentPairsIdentified, 0);
   assert.equal(manual.noImportAuthority, true);
-  assert.match(manual.scopeLimit, /does not/i);
-  assert.match(origin.baseline.semanticSimilarityExecution, /^NOT_EXECUTED_/);
-  assert.equal(origin.quality.pinnedValidator, 'NOT_EXECUTED');
+  assert.match(manual.scopeLimit, /not established/i);
+  assert.match(origin.baseline.semanticSimilarityExecution, /^EXECUTED_FULL_RANGE_RANKED_RETRIEVAL/);
+  assert.equal(origin.baseline.replay.canonicalPriorFingerprintMatch, true);
+  assert.equal(origin.baseline.rankedReview.pairsScored, 154602);
+  assert.equal(origin.baseline.rankedReview.manuallyAdjudicatedPairs, 19);
+  assert.equal(origin.baseline.rankedReview.fullSemanticNoveltyPass, false);
+  assert.equal(origin.baseline.rankedReview.translatedDedupPass, false);
+  assert.equal(origin.quality.pinnedValidator, 'REFER_TO_FINAL_REVIEW_SIDECARS');
 });
 test('adaptations and production boundaries remain held', () => {
   assert.equal(assessment.records.filter(row => row.rights === 'HOLD_THIRD_PARTY_ADAPTATION').length, 6);

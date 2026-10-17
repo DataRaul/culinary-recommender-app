@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
-import { resolve } from "node:path";
+import { resolve, dirname } from "node:path";
+import { realpathSync, existsSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 
 import { PUBLIC_RUNTIME_RECIPES } from "../src/data/corpus-v1.js";
@@ -269,18 +270,28 @@ const EXPECTED_PROTECTED_COUNT_V8018 = 19268;
 const EXPECTED_PROTECTED_COUNT_V8019 = 22086;
 
 function parseArgs(argv) {
-  const options = { ora: null, forkrecipe: null, unitools: null, cc0: null, output: ".tmp/step8g-ora-next-source-discovery", historicalV8018: false, baselineFingerprints: null };
+  const options = { ora: null, forkrecipe: null, unitools: null, cc0: null, output: ".tmp/step8g-ora-next-source-discovery", historicalV8018: false, baselineFingerprints: null, localReviewRecords: null };
   for (const arg of argv) {
     if (arg.startsWith("--ora=")) options.ora = arg.slice(6);
     else if (arg.startsWith("--forkrecipe=")) options.forkrecipe = arg.slice(13);
     else if (arg.startsWith("--unitools=")) options.unitools = arg.slice(11);
     else if (arg.startsWith("--cc0=")) options.cc0 = arg.slice(6);
     else if (arg.startsWith("--out=")) options.output = arg.slice(6) || options.output;
+    else if (arg.startsWith("--local-review-records=")) options.localReviewRecords = arg.slice(23);
     else if (arg.startsWith("--baseline-fingerprints=")) options.baselineFingerprints = arg.slice(24);
     else if (arg === "--historical-v8018") options.historicalV8018 = true;
     else throw new Error(`Unknown argument: ${arg}`);
   }
   for (const key of ["ora", "forkrecipe", "unitools", "cc0"]) if (!options[key]) throw new Error(`--${key} is required`);
+  if (options.localReviewRecords && !options.baselineFingerprints) throw new Error("LOCAL_REVIEW_REQUIRES_FINGERPRINT_EXPORT");
+  if (options.localReviewRecords) {
+    const requested = resolve(options.localReviewRecords);
+    const output = resolve(realpathSync(dirname(requested)), requested.split("/").pop());
+    if (existsSync(output)) throw new Error("LOCAL_REVIEW_OUTPUT_MUST_NOT_EXIST");
+    options.localReviewRecords = output;
+    const repo = execFileSync("git", ["rev-parse", "--show-toplevel"], { encoding: "utf8" }).trim();
+    if (output === repo || output.startsWith(repo + "/")) throw new Error("LOCAL_REVIEW_MUST_STAY_OUTSIDE_REPOSITORY");
+  }
   return options;
 }
 
@@ -440,6 +451,12 @@ if (args.baselineFingerprints) {
   const fingerprintPath = resolve(args.baselineFingerprints);
   await mkdir(resolve(fingerprintPath, ".."), { recursive: true });
   await writeFile(fingerprintPath, JSON.stringify({ version: activeProtectedVersion, count: expectedProtectedCount, sourcePins: pins, records: protectedBaseline.map((recipe, index) => ({ index, ...fingerprintRecipe(recipe) })) }, null, 2) + "\n");
+  // Private analysis input only: never commit or publish source recipe prose.
+  if (args.localReviewRecords) {
+    const output = resolve(args.localReviewRecords);
+    await mkdir(resolve(output, ".."), { recursive: true });
+    await writeFile(output, JSON.stringify({ version: activeProtectedVersion, count: expectedProtectedCount, sourcePins: pins, records: protectedBaseline }), { flag: "wx", mode: 0o600 });
+  }
   process.exit(0);
 }
 
