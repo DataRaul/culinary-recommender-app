@@ -1,10 +1,10 @@
 {
-  "handover": "CULINARY_PR434_INDEX_IDENTIFIED__FULL_SEMANTIC_AND_RIGHTS_HOLD_V16",
-  "date": "2026-10-16",
+  "handover": "CULINARY_PR434_REPLAY_RANKED_REVIEW_PUBLISHED__FULL_MISSION_HOLD_V19",
+  "date": "2026-10-17",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
   "source_of_truth": "Live GitHub main, PR state, CI and continuity-state CURRENT override this snapshot",
-  "main_sha": "78daee797184d31737c1ab215b5e37b0a7345042",
+  "main_sha": "faf02d0b5ad7603826df9aab73a3fcba5a72245d",
   "open_prs": [
     428,
     429,
@@ -16,7 +16,7 @@
     "protectedRecipeCount": 22086,
     "ownerSearchRecipeCount": 22086
   },
-  "package_terminal": "PR434_WORK_RUNTIME_GATE__UNMERGED",
+  "package_terminal": "PR434_INCREMENTAL_ASSESSMENT_PUBLISHED__ORIGINAL_SEMANTIC_RIGHTS_HOLD__CI_WAIT",
   "discovery": {
     "sourceFamily": "AdamBouhmad/open-recipe-archive pinned ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
     "baselineVersion": "v8019",
@@ -49,7 +49,7 @@
     "browserAcceptance": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
     "productionPublicSmoke": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION"
   },
-  "nextGate": "PR434_RECONSTRUCT_PINNED_V8019_AND_FULL_SEMANTIC_DEDUP",
+  "nextGate": "PR434_REQUIRED_CI_AND_ORIGINAL_FULL_SEMANTIC_RIGHTS_GATES",
   "guardrails": [
     "continue acquisition-first; ORA exhaustion is not programme completion",
     "rights/provenance fail closed",
@@ -71,8 +71,8 @@
     "equivalent_repair_cycles_max": 1,
     "canonical_ref": "continuity-state"
   },
-  "startup_instruction": "Continue existing PR434 only in Work with a network-enabled terminal; fetch fresh live state; rebuild pinned v8019 metadata from four source checkouts; verify the three derived indices, manually compare them, run all seven semantic/translated dedups and assess rights; then focused tests, same-chat quality stages, pinned validator, CI and eligible publication. Never grant import authority from index identification.",
-  "status": "PR434_OPEN_DRAFT__THREE_BASELINE_IDENTITIES_DERIVED__SEMANTIC_RIGHTS_HOLD",
+  "startup_instruction": "PR434 only: fresh-reconcile exact published head and required CI once. Reuse verified full baseline replay and ranked findings; do not reconstruct or repeat tests without changed inputs. Exhaustive semantic/translated novelty and seven record-level origin/reuse holds remain open; investigate remaining source-level evidence before any new publication. Keep draft and no imports; merge only if all original gates are legitimately satisfied. Preserve consumed review budgets; never infer a new round from continue. No successor package.",
+  "status": "PR434_DRAFT__FULL_BASELINE_REPLAY_PASS__RANKED_REVIEW_EXECUTED__EXHAUSTIVE_NOVELTY_AND_RIGHTS_HOLD",
   "installation_verification": {
     "schema_version": 1,
     "project": "DataRaul/culinary-recommender-app",
@@ -121,8 +121,8 @@
       "path": "docs/package_quality/goals/culinary-app/v1.json",
       "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
     },
-    "package_ref": "docs/package_quality/contracts/hochipants-assessment-v1.json",
-    "status": "PR433_MERGED__ALL_REQUIRED_CI_PASS",
+    "package_ref": "docs/package_quality/contracts/hochipants-origin-review-v1.json",
+    "status": "PR434_INCREMENTAL_ASSESSMENT_SEQUENTIALLY_REVIEWED__PINNED_VALIDATOR_PASS__CI_WAIT__ORIGINAL_MERGE_HOLD",
     "last_evidence": [
       "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json",
       "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
@@ -144,7 +144,15 @@
       "docs/package_quality/evidence/hochipants-assessment/packet.json",
       "docs/package_quality/evidence/hochipants-assessment/supporter.json",
       "docs/package_quality/evidence/hochipants-assessment/critic.json",
-      "docs/package_quality/evidence/hochipants-assessment/synthesis.json"
+      "docs/package_quality/evidence/hochipants-assessment/synthesis.json",
+      "docs/package_quality/evidence/hochipants-origin-review/alignment.json",
+      "docs/package_quality/evidence/hochipants-origin-review/qa.json",
+      "docs/package_quality/evidence/hochipants-origin-review/packet.json",
+      "docs/package_quality/evidence/hochipants-origin-review/supporter.json",
+      "docs/package_quality/evidence/hochipants-origin-review/critic.json",
+      "docs/package_quality/evidence/hochipants-origin-review/synthesis.json",
+      "data/generated/step8g/hochipants-semantic-ranked-matches.json",
+      "data/generated/step8g/hochipants-origin-semantic-review.json"
     ],
     "reviews": [
       {
@@ -216,18 +224,28 @@
         "role": "synthesis",
         "path": "docs/package_quality/evidence/hochipants-assessment/synthesis.json",
         "identity": "Actual work-0886d49b5e7a-root, SAME_CHAT_SEQUENTIAL, independent:false"
+      },
+      {
+        "role": "supporter",
+        "path": "docs/package_quality/evidence/hochipants-origin-review/supporter.json",
+        "identity": "work-e35e83d5b388-root; actual same chat, independent:false; incremental assessment only"
+      },
+      {
+        "role": "critic",
+        "path": "docs/package_quality/evidence/hochipants-origin-review/critic.json",
+        "identity": "work-e35e83d5b388-root; actual same chat, independent:false; incremental assessment only"
+      },
+      {
+        "role": "synthesis",
+        "path": "docs/package_quality/evidence/hochipants-origin-review/synthesis.json",
+        "identity": "work-e35e83d5b388-root; actual same chat, independent:false; incremental assessment only"
       }
     ],
     "unfinished_criteria": [
-      "Live research/product owner gates remain in the lane contract",
-      "Comparative workflow efficacy remains unmeasured; no wider rollout inferred",
-      "Pinned record rights/structure and full-corpus dedup remain open; 236 new paths do not establish 236 new recipes.",
-      "No runtime population, owner search or production acceptance change in this package.",
-      "PR432 owner report verdict contradiction, complete frozen evidence/reviews, exact validation, CI/merge and live activation/required check remain OPEN",
-      "PR432 pinned validator must be executed against exact outgoing inventory; final SHA CI, merge, first real post-cutover PR, branch-rule truth remain unverified",
-      "HoChiPants origin review of seven CC0-declared records and semantic/translated duplicates; three baseline records lack complete wording fingerprints.",
-      "PR433 final required CI and eligible merge pending; assessment alone grants no import authority.",
-      "PR433 CI/merge pending entry above is historical: RESOLVED by four exact-head successful workflows and merged tree equality. Origin and semantic review remain OPEN."
+      "Original PR434 exhaustive semantic/translated novelty not established",
+      "Seven per-record origin/reuse-rights holds remain",
+      "Validate public V0 still in progress on f59096ff378bd9ce857acbe84f2cd8ed390520e0",
+      "No eligible merge; original gates remain binding"
     ],
     "failures": [
       "Historical shared-source catalog CI failure corrected; shared PR53 final CI PASS",
@@ -239,7 +257,10 @@
       "G432-2 actual pinned source not executable with available shell network; simulated checker test is insufficient for publication.",
       "G432-4 branch-protection API 403, required check unverified.",
       "PR433 build QA: duplicate full validation accidentally started; no further duplicate testing needed.",
-      "State ref fetched into FETCH_HEAD by shallow clone; origin/continuity-state alias absent. Resolved locator using actual fetched head without a new network retry."
+      "State ref fetched into FETCH_HEAD by shallow clone; origin/continuity-state alias absent. Resolved locator using actual fetched head without a new network retry.",
+      "PR434 terminal git push had no credentials; authenticated GitHub connector published exact identical tree with expected-head lease and force=false. No access change required.",
+      "PR434 finite multilingual retrieval and selected manual inspection do not establish exhaustive novelty. Seven origin attestations remain absent; original merge gate remains HOLD.",
+      "Checkpoint preparation first rejected historical continuity-state adapter pin; live-main verification worktree initially lacked lane directories, which were provisioned from exact state snapshot. No state governance files changed."
     ],
     "decisions": [
       "Owner-selected pilot limited to Market Lab and Culinary",
@@ -259,7 +280,11 @@
       "User V12 supersedes stale PR432-only continuation. Acquisition work resumes; PR432 HOLD and exhausted budget preserved.",
       "PR433 is a distinct bounded acquisition package under unchanged round 1/max 1 cap.",
       "No source bodies, D1/runtime or other-lane changes; assessment reads pinned Git objects.",
-      "PR433 merged at 78daee797184d31737c1ab215b5e37b0a7345042 after four successful workflows; merged Git tree exactly equals reviewed 252c23a616d90c99f1acfba6895a5a24c1d750e5. No recipe added."
+      "PR433 merged at 78daee797184d31737c1ab215b5e37b0a7345042 after four successful workflows; merged Git tree exactly equals reviewed 252c23a616d90c99f1acfba6895a5a24c1d750e5. No recipe added.",
+      "PR434 first actual final assessment review round uses unchanged adapter round 1/max 1; no prior PR434 final reports existed. PR432 exhausted budget remains untouched.",
+      "Incremental assessment validation does not replace original full-semantic/rights mission; publish only to existing draft PR, no merge or admission.",
+      "One bounded new-head CI recheck: two workflows complete successfully, Validate remains in progress; checkpoint and STOP without polling.",
+      "Checkpoint checked with live-main adapter 2e55b320c88df7fa75eaaf47113184ba44f5bb8d and exact state CURRENT/PREVIOUS from e4570bae228818c7d50e120efae51ad833ec1292. Only the validated lane pair may be published."
     ],
     "budget": {
       "round": 1,
@@ -272,14 +297,14 @@
       "One equivalent repair cycle and one unchanged external recheck",
       "No paid service or application behavior change"
     ],
-    "next_action": "PR433 terminal: STOP this package. Next chat fresh-reconciles main, open PRs, roadmap and culinary-app CURRENT; execute one no-write origin and semantic/translated duplicate review of the seven CC0-declared HoChiPants records. Include the three incomplete baseline wording records in manual comparison. No D1/import authority; six adaptations held. PR432 remains HOLD with exhausted budget; Based Cooking remains STOPPED.",
-    "predecessor_sha256": "b1451b2df4788390f167eefa4b7ca37618dc52ff40e1259187482e010ce6a05d",
-    "goal_contribution": "13 records assessed; six adaptation holds and seven origin-review candidates; full 22,086-record literal screen; zero imports.",
+    "next_action": "PR434 only: fresh-reconcile exact published head and required CI once. Reuse verified full baseline replay and ranked findings; do not reconstruct or repeat tests without changed inputs. Exhaustive semantic/translated novelty and seven record-level origin/reuse holds remain open; investigate remaining source-level evidence before any new publication. Keep draft and no imports; merge only if all original gates are legitimately satisfied. Preserve consumed review budgets; never infer a new round from continue. No successor package.",
+    "predecessor_sha256": "1a58068df5d7ed78beca9255d5358c89f1664f626be95538360fb7b67ec5caca",
+    "goal_contribution": "Reproduces 22086-record identity and adds full-range retrieval plus 19 selected manual comparisons; no false novelty or rights clearance.",
     "additional_cash_services_activated": false,
     "review_mode": "SAME_CHAT_SEQUENTIAL",
     "independent": false,
-    "session_id": "work-0886d49b5e7a-root",
-    "candidate_digest": "4addcc051bcc0c24b4de05a78e357a28245a4bb62f3c00d99f7241888f970b34",
+    "session_id": "work-e35e83d5b388-root",
+    "candidate_digest": "2f4756bddd485b97d963f41846dd5fa2048ebf8033122c1f59094045bc3fa48a",
     "remaining_review_rounds": 0,
     "package_history": [
       {
@@ -317,6 +342,18 @@
         },
         "remaining_review_rounds": 0,
         "note": "PR432 remains HOLD and exhausted. Latest handover V12 authorizes acquisition package independently; no PR432 gate waived."
+      },
+      {
+        "package_ref": "docs/package_quality/contracts/hochipants-assessment-v1.json",
+        "status": "PR433_MERGED__ALL_REQUIRED_CI_PASS",
+        "candidate_digest": "4addcc051bcc0c24b4de05a78e357a28245a4bb62f3c00d99f7241888f970b34",
+        "budget": {
+          "round": 1,
+          "max_rounds": 1,
+          "usage": "unknown"
+        },
+        "remaining_review_rounds": 0,
+        "note": "Historical PR433 completed package preserved while PR434 active incremental assessment is recorded; no budget reset."
       }
     ],
     "pending_package": "quality-enforcement-owner-report-v1",
@@ -326,19 +363,21 @@
         "path": "docs/package_quality/goals/culinary-app/v1.json",
         "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
       },
-      "revision": "ac8571771c777edd0b18aa829aabb72f4d0228fe",
-      "predecessor_sha256": "069882a0a474b820446b8ea59cd330d07f0d330db2833fa4fe992d9dccb05a3e",
+      "revision": "f59096ff378bd9ce857acbe84f2cd8ed390520e0",
+      "predecessor_sha256": "1a58068df5d7ed78beca9255d5358c89f1664f626be95538360fb7b67ec5caca",
       "review_mode": "SAME_CHAT_SEQUENTIAL",
       "independent": false,
-      "review_budget": "NOT_RESET_OR_ASSUMED",
+      "review_budget": "FIRST_FINAL_INCREMENTAL_ASSESSMENT_ROUND_CONSUMED__ROUND_1_MAX_1__NO_RESET",
       "source_artifacts": [
         "data/generated/step8g/hochipants-origin-semantic-review.json",
         "docs/HOCHIPANTS_ORIGIN_SEMANTIC_REVIEW.md",
-        "tests/hochipants-origin-semantic-review.test.js"
+        "tests/hochipants-origin-semantic-review.test.js",
+        "data/generated/step8g/hochipants-semantic-ranked-matches.json"
       ],
-      "quality_gate": "HOLD__FULL_BASELINE_AND_PINNED_VALIDATOR_NOT_EXECUTED",
-      "reviews": "NOT_CLAIMED",
-      "next_action": "Continue existing PR434 only in Work with a network-enabled terminal; fetch fresh live state; rebuild pinned v8019 metadata from four source checkouts; verify the three derived indices, manually compare them, run all seven semantic/translated dedups and assess rights; then focused tests, same-chat quality stages, pinned validator, CI and eligible publication. Never grant import authority from index identification."
+      "quality_gate": "PINNED_ASSESSMENT_VALIDATOR_PASS__ORIGINAL_SEMANTIC_RIGHTS_MERGE_HOLD",
+      "reviews": "ACTUAL_SAME_CHAT_SUPPORTER_CRITIC_SYNTHESIS_PASS_FOR_INCREMENTAL_ASSESSMENT",
+      "next_action": "PR434 only: fresh-reconcile exact published head and required CI once. Reuse verified full baseline replay and ranked findings; do not reconstruct or repeat tests without changed inputs. Exhaustive semantic/translated novelty and seven record-level origin/reuse holds remain open; investigate remaining source-level evidence before any new publication. Keep draft and no imports; merge only if all original gates are legitimately satisfied. Preserve consumed review budgets; never infer a new round from continue. No successor package.",
+      "candidate_digest": "2f4756bddd485b97d963f41846dd5fa2048ebf8033122c1f59094045bc3fa48a"
     }
   },
   "schema_version": 1,
@@ -349,7 +388,7 @@
     "path": "docs/package_quality/goals/culinary-app/v1.json",
     "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
   },
-  "current_contract": "docs/package_quality/contracts/hochipants-assessment-v1.json",
+  "current_contract": "docs/package_quality/contracts/hochipants-origin-review-v1.json",
   "roadmap": "docs/ROADMAP.md",
   "current_facts": [
     "v8019 / 22,086 context retained from original checkpoint; this integration does not reverify production acceptance.",
@@ -361,9 +400,14 @@
     "Full reconstructed v8019 literal comparison executed: 22,086 titles / 22,083 complete wording hashes; zero matches; no semantic novelty or current D1 equality claimed.",
     "PR433 at aae255d12929e107f139fbf272160d0a1d4d45c9; exact tree 252c23a616d90c99f1acfba6895a5a24c1d750e5; four focused tests and 1,419 tests pass, 26 skipped.",
     "PR434 pinned CC0 tree analysis derived missing-wording record identities at zero-based v8019 indices: eggs.md=1490, peanut-butter.md=1569, spices-during-pregnancy.md=1618; full replay and all seven manual comparison gates remain open.",
-    "PR434 head ac8571771c777edd0b18aa829aabb72f4d0228fe; Validate public V0 run 38913527472 was in progress at last check; exact three updated files reread and eight connector assertions PASS, but local node/pinned validator unexecuted. Zero imports."
+    "PR434 head ac8571771c777edd0b18aa829aabb72f4d0228fe; Validate public V0 run 38913527472 was in progress at last check; exact three updated files reread and eight connector assertions PASS, but local node/pinned validator unexecuted. Zero imports.",
+    "2026-10-17 PR434: all four clean source pins replayed; 22086 records; canonical prior fingerprint hash matched exactly and indices 1490/1569/1618 confirmed.",
+    "PR434: all 154602 pairs scored with finite multilingual ingredient/method vocabulary; 84 top ranks retained; 19 selected full available normalized ingredient/method comparisons. Exhaustive semantic/translated novelty remains unproven.",
+    "All seven origin holds and six named adaptation holds remain. Two later scraped candidates with shared IDs do not prove copying or original authorship.",
+    "Published f59096ff378bd9ce857acbe84f2cd8ed390520e0, exact tree 5503e84f59ef263c717ac68d5c8a1c464dbbe847; 11 focused tests pass; npm validation 1452 total, 1426 pass, 26 skipped, zero failures.",
+    "Actual same-chat five stages and genuine pinned validator pass for incremental draft assessment update only. Original PR434 merge gates not waived. CI: Iduns and ORA discovery pass; Validate public V0 still in progress at bounded final observation."
   ],
-  "next_action": "Continue existing PR434 only in Work with a network-enabled terminal; fetch fresh live state; rebuild pinned v8019 metadata from four source checkouts; verify the three derived indices, manually compare them, run all seven semantic/translated dedups and assess rights; then focused tests, same-chat quality stages, pinned validator, CI and eligible publication. Never grant import authority from index identification.",
+  "next_action": "PR434 only: fresh-reconcile exact published head and required CI once. Reuse verified full baseline replay and ranked findings; do not reconstruct or repeat tests without changed inputs. Exhaustive semantic/translated novelty and seven record-level origin/reuse holds remain open; investigate remaining source-level evidence before any new publication. Keep draft and no imports; merge only if all original gates are legitimately satisfied. Preserve consumed review budgets; never infer a new round from continue. No successor package.",
   "open_prs_at_reconciliation": [
     428,
     429,
@@ -496,9 +540,21 @@
       "package": "pr434-origin-semantic-audit",
       "result": "3 missing-fingerprint v8019 CC0 records identified by deterministic source tree; PR head patched; CI pending; no import",
       "next_action": "Continue existing PR434 only in Work with a network-enabled terminal; fetch fresh live state; rebuild pinned v8019 metadata from four source checkouts; verify the three derived indices, manually compare them, run all seven semantic/translated dedups and assess rights; then focused tests, same-chat quality stages, pinned validator, CI and eligible publication. Never grant import authority from index identification."
+    },
+    {
+      "event_id": "culinary-recommender-app:culinary-app:pr434-full-replay-ranked-review:20261017",
+      "timestamp": "2026-10-17T14:28:58.994379+00:00",
+      "event": "PR434_INCREMENTAL_ASSESSMENT_PUBLISHED_ORIGINAL_HOLD",
+      "lane_id": "culinary-app",
+      "observed_main": "faf02d0b5ad7603826df9aab73a3fcba5a72245d",
+      "observed_state_head": "e4570bae228818c7d50e120efae51ad833ec1292",
+      "predecessor_sha256": "1a58068df5d7ed78beca9255d5358c89f1664f626be95538360fb7b67ec5caca",
+      "package": "hochipants-origin-review-v1",
+      "result": "Full replay PASS; 154602 ranked pairs and 19 selected manual findings; pinned actual same-chat validator PASS for assessment; 2 CI PASS/1 running; no import or merge.",
+      "next_action": "PR434 only: fresh-reconcile exact published head and required CI once. Reuse verified full baseline replay and ranked findings; do not reconstruct or repeat tests without changed inputs. Exhaustive semantic/translated novelty and seven record-level origin/reuse holds remain open; investigate remaining source-level evidence before any new publication. Keep draft and no imports; merge only if all original gates are legitimately satisfied. Preserve consumed review budgets; never infer a new round from continue. No successor package."
     }
   ],
-  "owner_action_now": "OPEN_THIS_HANDOVER_IN_WORK_FOR_NETWORK_ENABLED_PINNED_SOURCE_CHECKOUTS_AND_VALIDATOR",
+  "owner_action_now": "No routine execution action. Record-specific origin/permission evidence is needed to clear rights; none obtained. Do not contact authors or accept legal risk without explicit authorization.",
   "same_chat_closeout": {
     "pr": 430,
     "url": "https://github.com/DataRaul/culinary-recommender-app/pull/430",
@@ -790,15 +846,27 @@
     "pr": 434,
     "url": "https://github.com/DataRaul/culinary-recommender-app/pull/434",
     "branch": "acquisition/hochipants-origin-review-20261016",
-    "head_sha": "ac8571771c777edd0b18aa829aabb72f4d0228fe",
-    "base_sha": "78daee797184d31737c1ab215b5e37b0a7345042",
+    "head_sha": "f59096ff378bd9ce857acbe84f2cd8ed390520e0",
+    "base_sha": "faf02d0b5ad7603826df9aab73a3fcba5a72245d",
     "state": "OPEN_DRAFT",
     "mergeable_last_observed": true,
-    "latest_commit": "Identify three incomplete v8019 baseline records by pinned CC0 order",
+    "latest_commit": "PR434: replay full baseline and record bounded multilingual semantic assessment",
     "changed_files": [
       "data/generated/step8g/hochipants-origin-semantic-review.json",
+      "data/generated/step8g/hochipants-semantic-ranked-matches.json",
       "docs/HOCHIPANTS_ORIGIN_SEMANTIC_REVIEW.md",
-      "tests/hochipants-origin-semantic-review.test.js"
+      "docs/package_quality/contracts/hochipants-origin-review-v1.json",
+      "docs/package_quality/evidence/hochipants-origin-review/alignment.json",
+      "docs/package_quality/evidence/hochipants-origin-review/critic.json",
+      "docs/package_quality/evidence/hochipants-origin-review/packet.json",
+      "docs/package_quality/evidence/hochipants-origin-review/qa.json",
+      "docs/package_quality/evidence/hochipants-origin-review/supporter.json",
+      "docs/package_quality/evidence/hochipants-origin-review/synthesis.json",
+      "scripts/hochipants-semantic-review-core.mjs",
+      "scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs",
+      "scripts/run-hochipants-semantic-review.mjs",
+      "tests/hochipants-origin-semantic-review.test.js",
+      "tests/hochipants-semantic-review.test.js"
     ],
     "incomplete_baseline_records": [
       {
@@ -820,25 +888,86 @@
     "imported": 0,
     "rights_hold": 7,
     "adaptation_hold": 6,
-    "semantic_review": "NOT_EXECUTED",
-    "manual_baseline_comparison": "NOT_EXECUTED",
+    "semantic_review": "FULL_RANGE_RANKED_RETRIEVAL_EXECUTED__EXHAUSTIVE_NOVELTY_HOLD",
+    "manual_baseline_comparison": "THREE_EXCEPTIONAL_RECORDS_VERIFIED__21_PAIRS_NO_EQUIVALENCE_IDENTIFIED; 19_SELECTED_RANKED_OR_ALIAS_PAIRS_ADJUDICATED",
     "ci": {
       "workflow": "Validate public V0",
-      "run_id": 38913527472,
+      "run_id": 39040767797,
       "status": "IN_PROGRESS",
-      "conclusion": null
+      "conclusion": null,
+      "all_triggered_workflows": [
+        {
+          "id": 39040767797,
+          "name": "Validate public V0",
+          "status": "in_progress",
+          "conclusion": null
+        },
+        {
+          "id": 39040767788,
+          "name": "Corpus Scale Step 8G Iduns 1911 acquisition measurement",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 39040767937,
+          "name": "Corpus Scale Step 8G ORA next-source discovery",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "bounded_recheck_consumed": true
     },
-    "focused_tests": "8_CONNECTOR_ASSERTIONS_PASS__NODE_NOT_EXECUTED",
-    "pinned_validator": "NOT_EXECUTED",
-    "publication": "HOLD",
+    "focused_tests": "11_PASS; NPM_VALIDATE_1426_PASS_26_SKIPPED_0_FAIL",
+    "pinned_validator": "SEQUENTIALLY_REVIEWED_READY_FOR_REQUIRED_CI_FOR_INCREMENTAL_ASSESSMENT_ONLY",
+    "publication": "DRAFT_ASSESSMENT_UPDATE_PUBLISHED__NO_MERGE_NO_IMPORT",
     "remaining": [
-      "complete full v8019 multilingual and ingredient-method semantic review",
-      "replay three source-derived missing-fingerprint indices against full metadata and manually compare",
-      "resolve seven per-record origin/rights holds",
-      "run focused tests, Supporter/Critic/Synthesis and pinned quality validator",
-      "verify all required CI then eligible merge",
-      "rotate culinary-app CURRENT on actual PR terminal"
+      "Original PR434 exhaustive semantic/translated novelty not established",
+      "Seven per-record origin/reuse-rights holds remain",
+      "Validate public V0 still in progress on f59096ff378bd9ce857acbe84f2cd8ed390520e0",
+      "No eligible merge; original gates remain binding"
     ],
-    "owner_action": "OPEN_IN_WORK_WITH_NETWORK_ENABLED_TERMINAL"
+    "owner_action": "No routine execution action. Record-specific origin/permission evidence is needed to clear rights; none obtained. Do not contact authors or accept legal risk without explicit authorization.",
+    "baseline_replay": {
+      "baseline_records": 22086,
+      "canonical_fingerprint_sha256": "426e44c607151b19ec85aeab7993e0a098a55c84c63202e227df18ae4b71562a",
+      "canonical_prior_hash_match": true,
+      "all_four_source_checkouts_clean": true,
+      "second_fingerprint_export_byte_equal": true,
+      "second_local_records_byte_equal": true,
+      "second_ranked_report_byte_equal": true,
+      "local_records_sha256": "159a3e53da1c9530c258913014f1baebebb700e87703b4e4a407d4f8bb1deb57"
+    },
+    "semantic_execution": {
+      "pairs_scored": 154602,
+      "manual_ranked_or_alias_pairs": 19,
+      "exceptional_source_pairs": 21,
+      "full_semantic_pass": false,
+      "translated_dedup_pass": false,
+      "scope_limit": "Finite multilingual vocabulary; selected manual pairs only. Unknown recall, negation, optional ingredients, quantities and ordering preclude exhaustive novelty clearance."
+    },
+    "review_mode": "SAME_CHAT_SEQUENTIAL",
+    "independent": false,
+    "candidate_digest": "2f4756bddd485b97d963f41846dd5fa2048ebf8033122c1f59094045bc3fa48a",
+    "published_tree": "5503e84f59ef263c717ac68d5c8a1c464dbbe847",
+    "original_mission_completed": false,
+    "new_recipes_imported": 0
+  },
+  "checkpoint_timestamp_utc": "2026-10-17T14:28:58.994379+00:00",
+  "historical_context_rule": "Prior installation, PR430/431/432/433 and older current_facts entries are retained history. Only current PR434 state, this next_action and original PR434 remaining gates govern this continuation.",
+  "completion_this_cycle": {
+    "published_head": "f59096ff378bd9ce857acbe84f2cd8ed390520e0",
+    "baseline_records": 22086,
+    "ranked_pairs": 154602,
+    "manual_ranked_or_alias_pairs": 19,
+    "exceptional_source_pairs": 21,
+    "focused_tests_pass": 11,
+    "all_tests_pass": 1426,
+    "all_tests_skipped": 26,
+    "all_tests_fail": 0,
+    "pinned_validator": "PASS_FOR_INCREMENTAL_DRAFT_ASSESSMENT",
+    "original_mission_completed": false,
+    "merge": "HOLD",
+    "imports": 0,
+    "stop": true
   }
 }
