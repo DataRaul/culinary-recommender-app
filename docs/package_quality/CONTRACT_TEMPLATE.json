@@ -6,7 +6,7 @@
   "base_commit": "FILL_FRESH_MAIN_SHA",
   "author_session_id": "FILL_ACTUAL_SESSION",
   "goal_path": "FILL_EXISTING_OR_VERSIONED_LANE_GOAL",
-  "adapter_path": "config/package_quality_adapter.json",
+  "adapter_path": "config/package_quality_plan_first_adapter.json",
   "intent_provenance": [
     "FILL_SETTLED_OWNER_INTENT_SOURCE"
   ],
