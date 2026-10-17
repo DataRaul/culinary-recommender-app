@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "subject": {
+    "schema_version": 1,
+    "contract_path": "docs/package_quality/contracts/hochipants-origin-review-v1.json",
+    "project": "culinary-recommender-app",
+    "lane_id": "culinary-app",
+    "package_id": "hochipants-origin-review-v1",
+    "base_commit": "faf02d0b5ad7603826df9aab73a3fcba5a72245d",
+    "author_session_id": "work-e35e83d5b388-root",
+    "candidate_paths": [
+      "data/generated/step8g/hochipants-origin-semantic-review.json",
+      "data/generated/step8g/hochipants-semantic-ranked-matches.json",
+      "docs/HOCHIPANTS_ORIGIN_SEMANTIC_REVIEW.md",
+      "docs/package_quality/contracts/hochipants-origin-review-v1.json",
+      "docs/package_quality/evidence/hochipants-origin-review/alignment.json",
+      "docs/package_quality/evidence/hochipants-origin-review/qa.json",
+      "scripts/hochipants-semantic-review-core.mjs",
+      "scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs",
+      "scripts/run-hochipants-semantic-review.mjs",
+      "tests/hochipants-origin-semantic-review.test.js",
+      "tests/hochipants-semantic-review.test.js"
+    ],
+    "deletions": [],
+    "hashes": {
+      "config/package_quality_adapter.json": "cf17d8b313402f6a2a790d156743d74063c149d718ad22e0882379fde20d02f9",
+      "data/generated/step8g/hochipants-origin-semantic-review.json": "7c158cb93fe7d180a51a88de8f0c61319027ebda3344314b8431abe8161b8e88",
+      "data/generated/step8g/hochipants-semantic-ranked-matches.json": "a71c2087f5577730f6637cc26ef0388c241253018113e8ee7caf7cb19c73c3e3",
+      "docs/HOCHIPANTS_ORIGIN_SEMANTIC_REVIEW.md": "c3040a086e6a6505548247afc9153bd33f92e03831710c234408f0fc2dd0fe8e",
+      "docs/package_quality/contracts/hochipants-origin-review-v1.json": "ffccdec13cf2cb0fe1466b242d2d8729f9fdf93a3efb88fa78141d410d62a464",
+      "docs/package_quality/evidence/hochipants-origin-review/alignment.json": "ec7767eba018f1e4cc70bb6517d65d89572f2d26358d1f08c58445dc1666667e",
+      "docs/package_quality/evidence/hochipants-origin-review/qa.json": "e8f8fccb5ca844c5d6f2e0c20211af7d431fadecb1dea28e1ea5ee9544f00683",
+      "docs/package_quality/goals/culinary-app/v1.json": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa",
+      "scripts/hochipants-semantic-review-core.mjs": "bb1df00604dcbd929ded590fcc67e13f73ebd9dd8dfa14c0fdf293b6e4c6b7b4",
+      "scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs": "7420c2059f0113122ddbb8e1af3aadbfd7f9172228263554c3a2a7b4f86ef050",
+      "scripts/run-hochipants-semantic-review.mjs": "7be9f7209a1deeaf0ed31920f0a664ecf7f70b8a9b439a169fadc77ec55ede81",
+      "tests/hochipants-origin-semantic-review.test.js": "1b4cfebd4147830d5e9f5c48e215f15ebc7bb75f1c711c75feba518d444de7a2",
+      "tests/hochipants-semantic-review.test.js": "a7c3d917c6e4617f5df77d314b35c7305d01a09baa95d7129a9f5903bb96645e"
+    },
+    "git_modes": {
+      "config/package_quality_adapter.json": "100644",
+      "data/generated/step8g/hochipants-origin-semantic-review.json": "100644",
+      "data/generated/step8g/hochipants-semantic-ranked-matches.json": "100644",
+      "docs/HOCHIPANTS_ORIGIN_SEMANTIC_REVIEW.md": "100644",
+      "docs/package_quality/contracts/hochipants-origin-review-v1.json": "100644",
+      "docs/package_quality/evidence/hochipants-origin-review/alignment.json": "100644",
+      "docs/package_quality/evidence/hochipants-origin-review/qa.json": "100644",
+      "docs/package_quality/goals/culinary-app/v1.json": "100644",
+      "scripts/hochipants-semantic-review-core.mjs": "100644",
+      "scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs": "100644",
+      "scripts/run-hochipants-semantic-review.mjs": "100644",
+      "tests/hochipants-origin-semantic-review.test.js": "100644",
+      "tests/hochipants-semantic-review.test.js": "100644"
+    }
+  },
+  "candidate_digest": "2f4756bddd485b97d963f41846dd5fa2048ebf8033122c1f59094045bc3fa48a"
+}

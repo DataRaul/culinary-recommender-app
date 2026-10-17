@@ -1,0 +1,3074 @@
+{
+  "schema": "HOCHIPANTS_FULL_RANGE_SEMANTIC_RETRIEVAL_V1",
+  "baselineFingerprintSha256": "426e44c607151b19ec85aeab7993e0a098a55c84c63202e227df18ae4b71562a",
+  "baselineCount": 22086,
+  "candidateCount": 7,
+  "pairsScored": 154602,
+  "vocabularyLanguages": [
+    "English",
+    "Spanish",
+    "French",
+    "German",
+    "Danish",
+    "Swedish",
+    "Italian",
+    "Russian"
+  ],
+  "method": "Bounded concept vocabulary, token-prefix aliases; score = .35 essential-ingredient recall + .30 ingredient Jaccard + .20 method Jaccard + .15 title-concept Jaccard. All pairs scored, top 12 retained; scores are retrieval signals, never calibrated equivalence probabilities.",
+  "limits": [
+    "Finite vocabulary is not exhaustive translation or synonym coverage.",
+    "Negation, optional ingredients, quantities, ordering and historical language are not resolved by scores.",
+    "Missing parsed text and weak concept coverage cannot prove novelty.",
+    "Manual adjudication covers retained ranks, not every source body. All candidates retain novelty/rights HOLD."
+  ],
+  "results": [
+    {
+      "id": "strawberry-overnight-oats",
+      "comparedRecords": 22086,
+      "candidateFeatures": {
+        "title": "strawberry overnight oats",
+        "titleConcepts": [
+          "oat",
+          "strawberry"
+        ],
+        "ingredients": [
+          "oat",
+          "strawberry",
+          "milk",
+          "honey",
+          "salt"
+        ],
+        "methods": [
+          "cold_soak"
+        ]
+      },
+      "topMatches": [
+        {
+          "index": 12143,
+          "title": "havregrød (oatmeal porridge)",
+          "score": 0.57,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 1003,
+          "title": "strawberry daifuku mochi",
+          "score": 0.492857,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "strawberry"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 380,
+          "title": "bircher muesli",
+          "score": 0.466667,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "honey"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 20131,
+          "title": "havregrynsgröt ii (oat groat porridge ii)",
+          "score": 0.45,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 20132,
+          "title": "havregrynsgröt ii (oatmeal porridge ii)",
+          "score": 0.45,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 20133,
+          "title": "havregrynsgröt ii (oatmeal porridge ii)",
+          "score": 0.45,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 2048,
+          "title": "oat cakes",
+          "score": 0.435714,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 5449,
+          "title": "grasones with oats (oat pottage)",
+          "score": 0.43,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 17455,
+          "title": "claret cup",
+          "score": 0.417857,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "strawberry"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 18076,
+          "title": "mint julep",
+          "score": 0.417857,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "strawberry"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 19178,
+          "title": "to make a trifle",
+          "score": 0.417857,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "strawberry"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 16336,
+          "title": "water gruel of corn meal or oat meal",
+          "score": 0.4,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "salt"
+          ],
+          "methodOverlap": []
+        }
+      ],
+      "titleProbeHits": [
+        {
+          "index": 12143,
+          "title": "havregrød (oatmeal porridge)",
+          "score": 0.57,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 380,
+          "title": "bircher muesli",
+          "score": 0.466667,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "honey"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 20131,
+          "title": "havregrynsgröt ii (oat groat porridge ii)",
+          "score": 0.45,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 20132,
+          "title": "havregrynsgröt ii (oatmeal porridge ii)",
+          "score": 0.45,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 20133,
+          "title": "havregrynsgröt ii (oatmeal porridge ii)",
+          "score": 0.45,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 2048,
+          "title": "oat cakes",
+          "score": 0.435714,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": [
+            "cold_soak"
+          ]
+        },
+        {
+          "index": 5449,
+          "title": "grasones with oats (oat pottage)",
+          "score": 0.43,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 16336,
+          "title": "water gruel of corn meal or oat meal",
+          "score": 0.4,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 20134,
+          "title": "havregrynsvälling (oat porridge)",
+          "score": 0.378571,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 18146,
+          "title": "oatmeal cookies",
+          "score": 0.3625,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 18327,
+          "title": "raised oatmeal muffins",
+          "score": 0.3625,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 20142,
+          "title": "havresoppa med mjölk (oat soup with milk)",
+          "score": 0.3625,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 20143,
+          "title": "havresoppa med mjölk (oat soup with milk)",
+          "score": 0.3625,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 20144,
+          "title": "havresoppa med mjölk (oat soup with milk)",
+          "score": 0.3625,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 20145,
+          "title": "havresoppa med mjölk (oat soup with milk)",
+          "score": 0.3625,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 20138,
+          "title": "havremjölsvälling (oat flour porridge)",
+          "score": 0.353571,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 10481,
+          "title": "gruau (oatmeal gruel)",
+          "score": 0.35,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 18147,
+          "title": "oatmeal muffins",
+          "score": 0.35,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 20129,
+          "title": "havregrynsgröt i (oat groat porridge i)",
+          "score": 0.35,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 20130,
+          "title": "havregrynsgröt i (oatmeal porridge i)",
+          "score": 0.35,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 1518,
+          "title": "hearty breakfast oatmeal",
+          "score": 0.335714,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "milk"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 1552,
+          "title": "oats",
+          "score": 0.335714,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 20139,
+          "title": "havresoppa med grädde (oat soup with cream)",
+          "score": 0.325,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 20140,
+          "title": "havresoppa med grädde (oat soup with cream)",
+          "score": 0.325,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 20141,
+          "title": "havresoppa med grädde (oat soup with cream)",
+          "score": 0.325,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 12144,
+          "title": "havregrød med kakao (oatmeal porridge with cocoa)",
+          "score": 0.3,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 18148,
+          "title": "oatmeal mush with apples",
+          "score": 0.3,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 18386,
+          "title": "rolled oats bread",
+          "score": 0.3,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 2049,
+          "title": "oatmeal biscuits",
+          "score": 0.2875,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 20135,
+          "title": "havrekakor (oat cakes)",
+          "score": 0.2875,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "oat"
+          ],
+          "methodOverlap": []
+        }
+      ],
+      "titleProbeHitLimit": 30,
+      "essentialIngredientHits": 0,
+      "noveltyDisposition": "HOLD_NOT_PROVEN_BY_RETRIEVAL"
+    },
+    {
+      "id": "one-bowl-banana-cake",
+      "comparedRecords": 22086,
+      "candidateFeatures": {
+        "title": "one-bowl banana cake",
+        "titleConcepts": [
+          "banana",
+          "cake"
+        ],
+        "ingredients": [
+          "banana",
+          "sugar",
+          "flour",
+          "butter",
+          "egg",
+          "soda",
+          "salt"
+        ],
+        "methods": [
+          "bake"
+        ]
+      },
+      "topMatches": [
+        {
+          "index": 1428,
+          "title": "banana bread",
+          "score": 0.857143,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "flour",
+            "butter",
+            "soda",
+            "salt"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 1430,
+          "title": "banana muffins with chocolate",
+          "score": 0.775,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "flour",
+            "butter"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 1431,
+          "title": "banana pancakes",
+          "score": 0.775,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "flour",
+            "egg"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 546,
+          "title": "banana bread",
+          "score": 0.757143,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "flour",
+            "butter",
+            "soda",
+            "salt"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 4106,
+          "title": "bizcochos duros (hard biscuits)",
+          "score": 0.664286,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "sugar",
+            "flour",
+            "butter",
+            "egg",
+            "salt"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 4107,
+          "title": "bizcochos embebidos (soaked biscuits)",
+          "score": 0.664286,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "sugar",
+            "flour",
+            "butter",
+            "egg",
+            "salt"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 4109,
+          "title": "bizcochos huecos (hollow sponge cakes)",
+          "score": 0.664286,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "sugar",
+            "flour",
+            "butter",
+            "egg",
+            "salt"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 5379,
+          "title": "gato de almendras (almond gâteau)",
+          "score": 0.664286,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "sugar",
+            "flour",
+            "butter",
+            "egg",
+            "salt"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 10483,
+          "title": "gâteau d'amandes (almond cake)",
+          "score": 0.664286,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "sugar",
+            "flour",
+            "butter",
+            "egg",
+            "salt"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 11683,
+          "title": "torta tedesca (german cake)",
+          "score": 0.664286,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "sugar",
+            "flour",
+            "butter",
+            "egg",
+            "soda"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 13573,
+          "title": "feiner mürber teig zu flauem kuchen (fine short dough for flat cake)",
+          "score": 0.664286,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "sugar",
+            "flour",
+            "butter",
+            "egg",
+            "salt"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 11166,
+          "title": "dolce alle chiare d'uovo (egg white cake)",
+          "score": 0.639286,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "sugar",
+            "flour",
+            "butter",
+            "egg",
+            "soda"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        }
+      ],
+      "titleProbeHits": [
+        {
+          "index": 1428,
+          "title": "banana bread",
+          "score": 0.857143,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "flour",
+            "butter",
+            "soda",
+            "salt"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 1430,
+          "title": "banana muffins with chocolate",
+          "score": 0.775,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "flour",
+            "butter"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 1431,
+          "title": "banana pancakes",
+          "score": 0.775,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "flour",
+            "egg"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 546,
+          "title": "banana bread",
+          "score": 0.757143,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "flour",
+            "butter",
+            "soda",
+            "salt"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 18455,
+          "title": "sautéd bananas",
+          "score": 0.596429,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "flour",
+            "butter"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 17097,
+          "title": "banana fritters ii",
+          "score": 0.575,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "flour",
+            "egg",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 17060,
+          "title": "baked bananas i",
+          "score": 0.5625,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "butter"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 2359,
+          "title": "baked bananas",
+          "score": 0.535714,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 17061,
+          "title": "baked bananas ii",
+          "score": 0.535714,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 2442,
+          "title": "stuffed bananas",
+          "score": 0.525,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar"
+          ],
+          "methodOverlap": [
+            "bake"
+          ]
+        },
+        {
+          "index": 6728,
+          "title": "platanitos fingidos (mock bananas)",
+          "score": 0.378571,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "sugar",
+            "flour",
+            "egg"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 21567,
+          "title": "stekta bananer (fried bananas)",
+          "score": 0.378571,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "butter"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 21568,
+          "title": "stekta bananer (fried bananas)",
+          "score": 0.378571,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "butter"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 21569,
+          "title": "stekta bananer (fried bananas)",
+          "score": 0.378571,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "butter"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 17098,
+          "title": "banana ice cream",
+          "score": 0.3375,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 7574,
+          "title": "tamales en hojas de plátano (tamales in plantain leaves)",
+          "score": 0.335714,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 19356,
+          "title": "banankompott (banana compote)",
+          "score": 0.335714,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 19357,
+          "title": "banankompott (banana compote)",
+          "score": 0.335714,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 11829,
+          "title": "banan-kompot (banana compote)",
+          "score": 0.325,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 17093,
+          "title": "banana cantaloupe",
+          "score": 0.325,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 17094,
+          "title": "banana charlotte russe",
+          "score": 0.325,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 17096,
+          "title": "banana fritters i",
+          "score": 0.325,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 19354,
+          "title": "banana glacé (bananglace)",
+          "score": 0.325,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 17095,
+          "title": "banana croquettes",
+          "score": 0.310714,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "egg"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 11262,
+          "title": "gelato di banane (banana ice cream)",
+          "score": 0.3,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 19355,
+          "title": "bananglace (banana ice cream)",
+          "score": 0.3,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "sugar"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 1538,
+          "title": "mango-banana smoothie",
+          "score": 0.292857,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 1568,
+          "title": "peanut butter banana smoothie",
+          "score": 0.285,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana",
+            "butter"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 1429,
+          "title": "banana green smoothie",
+          "score": 0.283333,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 1525,
+          "title": "kale banana smoothie",
+          "score": 0.283333,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "banana"
+          ],
+          "methodOverlap": []
+        }
+      ],
+      "titleProbeHitLimit": 30,
+      "essentialIngredientHits": 11,
+      "noveltyDisposition": "HOLD_NOT_PROVEN_BY_RETRIEVAL"
+    },
+    {
+      "id": "strawberry-lemon-spritz",
+      "comparedRecords": 22086,
+      "candidateFeatures": {
+        "title": "strawberry lemon spritz",
+        "titleConcepts": [
+          "strawberry",
+          "lemon"
+        ],
+        "ingredients": [
+          "strawberry",
+          "honey",
+          "lemon",
+          "sparkling",
+          "ice"
+        ],
+        "methods": [
+          "blend",
+          "carbonate"
+        ]
+      },
+      "topMatches": [
+        {
+          "index": 2025,
+          "title": "moselle cup no. 2",
+          "score": 0.65,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "strawberry",
+            "lemon",
+            "sparkling",
+            "ice"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 18452,
+          "title": "sauterne cup",
+          "score": 0.566667,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "strawberry",
+            "lemon",
+            "sparkling"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 14635,
+          "title": "strawberry frozen dessert (glace aux fraises)",
+          "score": 0.508333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "strawberry",
+            "lemon"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 14637,
+          "title": "strawberry frozen dessert with wine (glace de fraises au vin)",
+          "score": 0.508333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "strawberry",
+            "lemon"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 16234,
+          "title": "strawberry sherbet",
+          "score": 0.508333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "strawberry",
+            "lemon"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 21618,
+          "title": "strawberry glacé (jordgubbsglace)",
+          "score": 0.508333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "strawberry",
+            "lemon"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 1791,
+          "title": "claret cup no. 1",
+          "score": 0.483333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "lemon",
+            "sparkling",
+            "ice"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 2024,
+          "title": "moselle cup no. 1",
+          "score": 0.483333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "lemon",
+            "sparkling",
+            "ice"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 2026,
+          "title": "moselle cup no. 3",
+          "score": 0.483333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "lemon",
+            "sparkling",
+            "ice"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 13959,
+          "title": "kalte erdbeerensupptie (cold strawberry soup)",
+          "score": 0.483333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "strawberry",
+            "lemon"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 15658,
+          "title": "a fine temperance beverage",
+          "score": 0.483333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "strawberry",
+            "lemon",
+            "ice"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 16114,
+          "title": "poches in large glasses",
+          "score": 0.483333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "strawberry",
+            "sparkling",
+            "ice"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        }
+      ],
+      "titleProbeHits": [
+        {
+          "index": 2025,
+          "title": "moselle cup no. 2",
+          "score": 0.65,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "strawberry",
+            "lemon",
+            "sparkling",
+            "ice"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 18452,
+          "title": "sauterne cup",
+          "score": 0.566667,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "strawberry",
+            "lemon",
+            "sparkling"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 1791,
+          "title": "claret cup no. 1",
+          "score": 0.483333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "lemon",
+            "sparkling",
+            "ice"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 2024,
+          "title": "moselle cup no. 1",
+          "score": 0.483333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "lemon",
+            "sparkling",
+            "ice"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 2026,
+          "title": "moselle cup no. 3",
+          "score": 0.483333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "lemon",
+            "sparkling",
+            "ice"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 1792,
+          "title": "claret cup no. 2",
+          "score": 0.461905,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "lemon",
+            "sparkling",
+            "ice"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 2027,
+          "title": "moselle cup no. 4",
+          "score": 0.461905,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "lemon",
+            "sparkling",
+            "ice"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 1790,
+          "title": "claret cup",
+          "score": 0.45,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "lemon",
+            "sparkling",
+            "ice"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 1793,
+          "title": "claret cup no. 3",
+          "score": 0.316667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "sparkling",
+            "ice"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 18243,
+          "title": "pineapple lemonade",
+          "score": 0.291667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon",
+            "ice"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 1984,
+          "title": "lemonade",
+          "score": 0.241667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 5957,
+          "title": "limonada (lemonade)",
+          "score": 0.241667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 9103,
+          "title": "limonada (lemonade)",
+          "score": 0.241667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 13499,
+          "title": "einfache limonade (simple lemonade)",
+          "score": 0.241667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 13867,
+          "title": "himbeer's limonade (raspberry lemonade)",
+          "score": 0.241667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 13986,
+          "title": "kirsch-limonade (cherry lemonade)",
+          "score": 0.241667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 14774,
+          "title": "warme limonade (hot lemonade)",
+          "score": 0.241667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 17968,
+          "title": "lemonade",
+          "score": 0.241667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 19196,
+          "title": "to make lemonade",
+          "score": 0.234524,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 2282,
+          "title": "the loving cup",
+          "score": 0.22619,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "sparkling"
+          ],
+          "methodOverlap": [
+            "carbonate"
+          ]
+        },
+        {
+          "index": 17590,
+          "title": "cup st. jacques",
+          "score": 0.216667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon",
+            "ice"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 1985,
+          "title": "lemonade au lait",
+          "score": 0.209524,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 1789,
+          "title": "cider cup",
+          "score": 0.166667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 1970,
+          "title": "king cup",
+          "score": 0.166667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 2141,
+          "title": "rhenish cup no. 2",
+          "score": 0.166667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "strawberry"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 11099,
+          "title": "claret cup (english beverage)",
+          "score": 0.166667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 17700,
+          "title": "fig cups",
+          "score": 0.166667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 17455,
+          "title": "claret cup",
+          "score": 0.159524,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "strawberry"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 4870,
+          "title": "crema de caramelo (caramel cream cups)",
+          "score": 0.154167,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 4872,
+          "title": "crema de caramelo (tacitas de) (caramel cream in cups)",
+          "score": 0.154167,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "lemon"
+          ],
+          "methodOverlap": []
+        }
+      ],
+      "titleProbeHitLimit": 30,
+      "essentialIngredientHits": 2,
+      "noveltyDisposition": "HOLD_NOT_PROVEN_BY_RETRIEVAL"
+    },
+    {
+      "id": "tomato-cucumber-salad",
+      "comparedRecords": 22086,
+      "candidateFeatures": {
+        "title": "tomato cucumber salad",
+        "titleConcepts": [
+          "tomato",
+          "cucumber",
+          "salad"
+        ],
+        "ingredients": [
+          "lemon",
+          "tomato",
+          "cucumber",
+          "onion",
+          "olive",
+          "salt",
+          "pepper"
+        ],
+        "methods": [
+          "blend",
+          "toss"
+        ]
+      },
+      "topMatches": [
+        {
+          "index": 13,
+          "title": "horiatiki salad",
+          "score": 0.757143,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "tomato",
+            "cucumber",
+            "onion",
+            "olive",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        },
+        {
+          "index": 18671,
+          "title": "tomato and cucumber salad",
+          "score": 0.728571,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "tomato",
+            "cucumber",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        },
+        {
+          "index": 770,
+          "title": "farro salad",
+          "score": 0.72381,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "tomato",
+            "cucumber",
+            "olive",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        },
+        {
+          "index": 1150,
+          "title": "quinoa tabbouleh",
+          "score": 0.716667,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "tomato",
+            "cucumber",
+            "onion",
+            "olive",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        },
+        {
+          "index": 18772,
+          "title": "wiersbick's salad",
+          "score": 0.714286,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "tomato",
+            "cucumber",
+            "olive",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        },
+        {
+          "index": 213,
+          "title": "fattoush",
+          "score": 0.693333,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "tomato",
+            "cucumber",
+            "onion",
+            "olive",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "blend",
+            "toss"
+          ]
+        },
+        {
+          "index": 127,
+          "title": "shopska salad",
+          "score": 0.6875,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "tomato",
+            "cucumber",
+            "onion",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        },
+        {
+          "index": 17582,
+          "title": "cucumber and tomato salad",
+          "score": 0.685714,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "tomato",
+            "cucumber"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        },
+        {
+          "index": 18417,
+          "title": "salad à la russe",
+          "score": 0.671429,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "tomato",
+            "cucumber",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        },
+        {
+          "index": 20065,
+          "title": "grönsalad med olja (green salad with oil)",
+          "score": 0.671429,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "tomato",
+            "cucumber",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        },
+        {
+          "index": 772,
+          "title": "fattoush",
+          "score": 0.6625,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "tomato",
+            "cucumber",
+            "onion",
+            "olive",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        },
+        {
+          "index": 20021,
+          "title": "green salad with oil (grönsalad med olja)",
+          "score": 0.65,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "tomato",
+            "cucumber",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        }
+      ],
+      "titleProbeHits": [
+        {
+          "index": 18671,
+          "title": "tomato and cucumber salad",
+          "score": 0.728571,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "tomato",
+            "cucumber",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        },
+        {
+          "index": 17582,
+          "title": "cucumber and tomato salad",
+          "score": 0.685714,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "tomato",
+            "cucumber"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        },
+        {
+          "index": 15112,
+          "title": "filets de lapereau aux concombres (young rabbit fillets with cucumbers)",
+          "score": 0.585714,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "tomato",
+            "cucumber"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 13422,
+          "title": "concombres farcis (stuffed cucumbers)",
+          "score": 0.410714,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "salt"
+          ],
+          "methodOverlap": [
+            "toss"
+          ]
+        },
+        {
+          "index": 14951,
+          "title": "carbonnades aux concombres (braised meat with cucumbers)",
+          "score": 0.358333,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "onion",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 15054,
+          "title": "côtelettes aux concombres (cutlets with cucumbers)",
+          "score": 0.358333,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "onion",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 15097,
+          "title": "filet d'aloyau aux concombres (sirloin fillet with cucumbers)",
+          "score": 0.353571,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 15077,
+          "title": "emincé de mouton aux concombres (sliced mutton with cucumbers)",
+          "score": 0.325,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 10607,
+          "title": "oeufs à la tripe aux concombres (eggs with cucumbers)",
+          "score": 0.315,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 15366,
+          "title": "potage aux concombres (cucumber soup)",
+          "score": 0.3125,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "onion",
+            "pepper"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 15011,
+          "title": "concombres à la crème (cucumbers in cream sauce)",
+          "score": 0.310714,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 10438,
+          "title": "filets de lapereaux aux concombres (young rabbit fillets with cucumbers)",
+          "score": 0.3,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 15009,
+          "title": "concombres farcis (stuffed cucumbers)",
+          "score": 0.3,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "onion"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 10402,
+          "title": "des concombres (cucumbers ragout)",
+          "score": 0.291667,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 13423,
+          "title": "concombres frits (fried cucumbers)",
+          "score": 0.291667,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 10260,
+          "title": "carré et gigot de mouton aux concombres (lamb square and leg with cucumbers)",
+          "score": 0.285,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 10635,
+          "title": "pieds de mouton aux concombres en fricassée de poulets (sheep's feet with cucumbers in chicken fricassée)",
+          "score": 0.275,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 15010,
+          "title": "concombres à l'espagnole (cucumbers spanish style)",
+          "score": 0.267857,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 14922,
+          "title": "bœuf aux concombres (beef with cucumbers)",
+          "score": 0.2625,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 13421,
+          "title": "concombres (cucumbers)",
+          "score": 0.258333,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 10696,
+          "title": "potages de concombres (cucumber soup)",
+          "score": 0.25,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 10697,
+          "title": "potages de concombres (cucumber soup)",
+          "score": 0.25,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 10809,
+          "title": "rôties aux concombres (cucumber toast)",
+          "score": 0.245833,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "cucumber"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 14971,
+          "title": "carré de veau piqué glacé aux concombres (larded glazed veal square with cucumbers)",
+          "score": 0.116667,
+          "essentialRecall": 0,
+          "ingredientOverlap": [
+            "onion",
+            "salt"
+          ],
+          "methodOverlap": []
+        }
+      ],
+      "titleProbeHitLimit": 30,
+      "essentialIngredientHits": 60,
+      "noveltyDisposition": "HOLD_NOT_PROVEN_BY_RETRIEVAL"
+    },
+    {
+      "id": "caprese-grilled-cheese",
+      "comparedRecords": 22086,
+      "candidateFeatures": {
+        "title": "caprese grilled cheese",
+        "titleConcepts": [
+          "cheese",
+          "caprese"
+        ],
+        "ingredients": [
+          "butter",
+          "tomato",
+          "bread",
+          "mozzarella",
+          "basil",
+          "salt"
+        ],
+        "methods": [
+          "fry"
+        ]
+      },
+      "topMatches": [
+        {
+          "index": 10199,
+          "title": "beignets de fraise de veau (calf sweetbread fritters)",
+          "score": 0.566667,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "butter",
+            "bread",
+            "basil",
+            "salt"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        },
+        {
+          "index": 10740,
+          "title": "poulets à la sainte-menehould (chickens sainte-menehould style)",
+          "score": 0.566667,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "butter",
+            "bread",
+            "basil",
+            "salt"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        },
+        {
+          "index": 1464,
+          "title": "chicken parmesan",
+          "score": 0.545833,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "tomato",
+            "bread",
+            "mozzarella"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        },
+        {
+          "index": 10644,
+          "title": "pieds de veau à la sainte-menehould (calf's feet sainte-menehould style)",
+          "score": 0.533333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "bread",
+            "basil",
+            "salt"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        },
+        {
+          "index": 10645,
+          "title": "pigeons au basilic (pigeons with basil)",
+          "score": 0.533333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "bread",
+            "basil"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        },
+        {
+          "index": 13690,
+          "title": "gefüllte kalbsmilch (stuffed calf sweetbread)",
+          "score": 0.533333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "bread",
+            "basil",
+            "salt"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        },
+        {
+          "index": 5101,
+          "title": "entripado de cerdo con leche (pork tripe sausage with milk)",
+          "score": 0.523333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "bread",
+            "basil",
+            "salt"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        },
+        {
+          "index": 5869,
+          "title": "lechugas rellenas y fritas (stuffed and fried lettuces)",
+          "score": 0.523333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "bread",
+            "basil",
+            "salt"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        },
+        {
+          "index": 10672,
+          "title": "poitrine de veau au basilic (veal breast with basil)",
+          "score": 0.523333,
+          "essentialRecall": 0.6666666666666666,
+          "ingredientOverlap": [
+            "bread",
+            "basil",
+            "salt"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        },
+        {
+          "index": 9745,
+          "title": "quesadillas (cheese turnovers)",
+          "score": 0.491667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "bread",
+            "salt"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        },
+        {
+          "index": 5921,
+          "title": "lenguas de cordero envueltas (wrapped lamb tongues)",
+          "score": 0.488095,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "butter",
+            "tomato",
+            "bread",
+            "salt"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        },
+        {
+          "index": 12569,
+          "title": "omelet with tomatoes (omelet med tomater)",
+          "score": 0.488095,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "butter",
+            "tomato",
+            "bread",
+            "salt"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        }
+      ],
+      "titleProbeHits": [
+        {
+          "index": 12574,
+          "title": "oste-sandwiches (cheese sandwiches)",
+          "score": 0.352381,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "butter",
+            "bread"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        },
+        {
+          "index": 708,
+          "title": "croque-monsieur",
+          "score": 0.316667,
+          "essentialRecall": 0.3333333333333333,
+          "ingredientOverlap": [
+            "butter",
+            "bread",
+            "salt"
+          ],
+          "methodOverlap": [
+            "fry"
+          ]
+        },
+        {
+          "index": 1370,
+          "title": "torta caprese",
+          "score": 0.125,
+          "essentialRecall": 0,
+          "ingredientOverlap": [
+            "butter",
+            "salt"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 18133,
+          "title": "nut and cheese sandwiches",
+          "score": 0.092857,
+          "essentialRecall": 0,
+          "ingredientOverlap": [
+            "salt"
+          ],
+          "methodOverlap": []
+        }
+      ],
+      "titleProbeHitLimit": 30,
+      "essentialIngredientHits": 0,
+      "noveltyDisposition": "HOLD_NOT_PROVEN_BY_RETRIEVAL"
+    },
+    {
+      "id": "classic-hummus",
+      "comparedRecords": 22086,
+      "candidateFeatures": {
+        "title": "classic hummus",
+        "titleConcepts": [
+          "hummus"
+        ],
+        "ingredients": [
+          "lemon",
+          "olive",
+          "chickpea",
+          "tahini",
+          "garlic",
+          "salt",
+          "ice"
+        ],
+        "methods": [
+          "blend"
+        ]
+      },
+      "topMatches": [
+        {
+          "index": 859,
+          "title": "hummus",
+          "score": 0.829167,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "olive",
+            "chickpea",
+            "tahini",
+            "garlic",
+            "salt",
+            "ice"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 47,
+          "title": "hummus",
+          "score": 0.791667,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "olive",
+            "chickpea",
+            "tahini",
+            "garlic",
+            "salt"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 1520,
+          "title": "hummus",
+          "score": 0.771429,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "olive",
+            "chickpea",
+            "tahini"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 335,
+          "title": "fattet hummus",
+          "score": 0.754167,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "chickpea",
+            "tahini",
+            "garlic",
+            "salt"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 537,
+          "title": "baba ghanoush",
+          "score": 0.489286,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "lemon",
+            "olive",
+            "tahini",
+            "garlic",
+            "salt"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 536,
+          "title": "baba ganoush",
+          "score": 0.455952,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "lemon",
+            "olive",
+            "tahini",
+            "garlic",
+            "salt"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 1327,
+          "title": "tarator",
+          "score": 0.429167,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "olive",
+            "tahini",
+            "garlic",
+            "salt",
+            "ice"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 1308,
+          "title": "lamb, chickpea and apricot tagine",
+          "score": 0.408333,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "lemon",
+            "olive",
+            "chickpea",
+            "garlic",
+            "salt"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 5367,
+          "title": "garbanzate dulce a la italiana (sweet chickpea paste italian style)",
+          "score": 0.408333,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "chickpea"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 1311,
+          "title": "tahini sauce",
+          "score": 0.389286,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "lemon",
+            "tahini",
+            "garlic",
+            "salt",
+            "ice"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 8849,
+          "title": "garbanzos comunes (common chickpeas)",
+          "score": 0.375,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "chickpea",
+            "garlic",
+            "salt"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 8549,
+          "title": "col rellena para vitualla (stuffed cabbage for provisions)",
+          "score": 0.365,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "chickpea",
+            "garlic",
+            "salt"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        }
+      ],
+      "titleProbeHits": [
+        {
+          "index": 859,
+          "title": "hummus",
+          "score": 0.829167,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "olive",
+            "chickpea",
+            "tahini",
+            "garlic",
+            "salt",
+            "ice"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 47,
+          "title": "hummus",
+          "score": 0.791667,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "olive",
+            "chickpea",
+            "tahini",
+            "garlic",
+            "salt"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 1520,
+          "title": "hummus",
+          "score": 0.771429,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "olive",
+            "chickpea",
+            "tahini"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        },
+        {
+          "index": 335,
+          "title": "fattet hummus",
+          "score": 0.754167,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "chickpea",
+            "tahini",
+            "garlic",
+            "salt"
+          ],
+          "methodOverlap": [
+            "blend"
+          ]
+        }
+      ],
+      "titleProbeHitLimit": 30,
+      "essentialIngredientHits": 4,
+      "noveltyDisposition": "HOLD_NOT_PROVEN_BY_RETRIEVAL"
+    },
+    {
+      "id": "everyday-lentil-soup",
+      "comparedRecords": 22086,
+      "candidateFeatures": {
+        "title": "everyday lentil soup",
+        "titleConcepts": [
+          "lentil",
+          "soup"
+        ],
+        "ingredients": [
+          "lemon",
+          "onion",
+          "olive",
+          "garlic",
+          "lentil",
+          "broth",
+          "salt",
+          "pepper"
+        ],
+        "methods": [
+          "simmer"
+        ]
+      },
+      "topMatches": [
+        {
+          "index": 945,
+          "title": "red lentil soup",
+          "score": 0.833333,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "onion",
+            "garlic",
+            "lentil",
+            "broth",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 1382,
+          "title": "turkish red lentil soup",
+          "score": 0.833333,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "onion",
+            "olive",
+            "garlic",
+            "lentil",
+            "broth",
+            "salt"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 991,
+          "title": "misir wot (red lentil stew)",
+          "score": 0.825,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "onion",
+            "garlic",
+            "lentil",
+            "broth",
+            "salt"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 1159,
+          "title": "turkish red lentil soup",
+          "score": 0.81,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "onion",
+            "olive",
+            "garlic",
+            "lentil",
+            "broth",
+            "salt"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 1383,
+          "title": "turkish red lentil soup (mercimek çorbası)",
+          "score": 0.8,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "onion",
+            "olive",
+            "lentil",
+            "broth",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 11305,
+          "title": "lenticchie intere per contorno (whole lentils as a side dish)",
+          "score": 0.791667,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "onion",
+            "lentil",
+            "broth",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 3612,
+          "title": "sopa de perdiz com lentilhas (partridge soup with lentils)",
+          "score": 0.775,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lentil",
+            "broth"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 3649,
+          "title": "terrina de perdizes com lentilhas (partridge terrine with lentils)",
+          "score": 0.775,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "onion",
+            "garlic",
+            "lentil",
+            "broth"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 1281,
+          "title": "spanish lentil stew (lentejas estofadas)",
+          "score": 0.75,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "onion",
+            "olive",
+            "garlic",
+            "lentil",
+            "broth",
+            "salt"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 7551,
+          "title": "sustancia de lentejas (lentil substance)",
+          "score": 0.7375,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "onion",
+            "lentil",
+            "broth"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 15312,
+          "title": "pheasant thighs with lentil purée (cuisses de faisan à la parée de lentilles)",
+          "score": 0.7125,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "onion",
+            "lentil",
+            "broth",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 1533,
+          "title": "sopa de lentejas",
+          "score": 0.691667,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "onion",
+            "olive",
+            "garlic",
+            "lentil",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        }
+      ],
+      "titleProbeHits": [
+        {
+          "index": 945,
+          "title": "red lentil soup",
+          "score": 0.833333,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "onion",
+            "garlic",
+            "lentil",
+            "broth",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 1382,
+          "title": "turkish red lentil soup",
+          "score": 0.833333,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "onion",
+            "olive",
+            "garlic",
+            "lentil",
+            "broth",
+            "salt"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 1159,
+          "title": "turkish red lentil soup",
+          "score": 0.81,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "onion",
+            "olive",
+            "garlic",
+            "lentil",
+            "broth",
+            "salt"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 1383,
+          "title": "turkish red lentil soup (mercimek çorbası)",
+          "score": 0.8,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lemon",
+            "onion",
+            "olive",
+            "lentil",
+            "broth",
+            "salt",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 1533,
+          "title": "sopa de lentejas",
+          "score": 0.691667,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "onion",
+            "olive",
+            "garlic",
+            "lentil",
+            "pepper"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 7469,
+          "title": "sopa de sustancia de lentejas (lentil soup)",
+          "score": 0.69,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "onion",
+            "lentil",
+            "broth"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 1530,
+          "title": "lebanese lentil soup",
+          "score": 0.6375,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "lemon",
+            "onion",
+            "lentil"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        },
+        {
+          "index": 9939,
+          "title": "sopa de lenteja (lentil soup)",
+          "score": 0.566667,
+          "essentialRecall": 1,
+          "ingredientOverlap": [
+            "lentil",
+            "broth"
+          ],
+          "methodOverlap": []
+        },
+        {
+          "index": 975,
+          "title": "masoor dal (red lentil soup)",
+          "score": 0.558333,
+          "essentialRecall": 0.5,
+          "ingredientOverlap": [
+            "lemon",
+            "onion",
+            "garlic",
+            "lentil"
+          ],
+          "methodOverlap": [
+            "simmer"
+          ]
+        }
+      ],
+      "titleProbeHitLimit": 30,
+      "essentialIngredientHits": 41,
+      "noveltyDisposition": "HOLD_NOT_PROVEN_BY_RETRIEVAL"
+    }
+  ],
+  "localRecordsSha256": "159a3e53da1c9530c258913014f1baebebb700e87703b4e4a407d4f8bb1deb57",
+  "sourceCommit": "1d20e28de6df5bbe49447b3042336575f5b7bc01"
+}
