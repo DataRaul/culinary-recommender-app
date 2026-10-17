@@ -39,9 +39,13 @@ def main():
             if not path.is_relative_to(source) or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
                 raise ValueError("shared source hash mismatch: " + name)
         lane_command = bool(remainder and remainder[0] in {"lane-prepare", "lane-verify"})
+        plan_command = bool(remainder and remainder[0] == "plan-accept")
         if lane_command:
             remainder[0] = remainder[0].removeprefix("lane-")
             script = source / "scripts/lane_handover.py"
+        elif plan_command:
+            remainder.pop(0)
+            script = source / "scripts/plan_first_gate.py"
         else:
             script = source / "scripts/package_quality_gate.py"
         if "--root" in remainder:
