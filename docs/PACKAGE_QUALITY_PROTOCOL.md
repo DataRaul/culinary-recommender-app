@@ -4,7 +4,7 @@ Status: PROCEDURAL_PILOT; owner-selected `SAME_CHAT_SEQUENTIAL` (2026-10-14). Ap
 
 ### Select the actual portfolio quality command for new packages
 
-After reviewed activation, use **`python scripts/package_quality.py --quality-adapter portfolio --portfolio-decision docs/package_quality/plans/<package>-portfolio-decision.json --agent-os-root /exact/pinned/agent-os ...`** for `plan-accept`, `freeze`, `next` and `validate`. The wrapper runs the signed/pinned portfolio gate first, then the unchanged plan-first/sequential checker. At freeze it rejects contracts that did not freeze **both** the portfolio decision and `config/portfolio_priority_policy.json`. Legacy or already-open packages keep their exact original `--quality-adapter` selection and inherited budgets.
+After reviewed activation, use **`python scripts/package_quality.py --quality-adapter portfolio --portfolio-decision docs/package_quality/plans/<package>-portfolio-decision.json --agent-os-root /exact/pinned/agent-os ...`** for `plan-accept`, `freeze`, `next` and `validate`. The wrapper runs the signed/pinned portfolio gate first, then the unchanged plan-first/sequential checker. At freeze it rejects contracts that did not freeze **all three** the portfolio adapter, portfolio decision and `config/portfolio_priority_policy.json`. Legacy or already-open packages keep their exact original `--quality-adapter` selection and inherited budgets.
 
 ## Portfolio priority, isolated lane routing and continuous value — prospective adapter
 
