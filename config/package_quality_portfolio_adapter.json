@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "project": "culinary-recommender-app",
-  "activation": "PROSPECTIVE_AFTER_AGENT_OS_PR57_AND_LOCAL_PR_REVIEW",
+  "activation": "PROSPECTIVE_AFTER_LOCAL_PR_REVIEW_AND_MAIN_INTEGRATION",
   "extends": "config/package_quality_plan_first_adapter.json",
   "frozen_legacy_adapters_unchanged": true,
   "shared_portfolio_gate": {
     "repository": "DataRaul/agent-os",
-    "commit": "f2ea348888a1baf86a07a067280b94ff97b34ea5",
+    "commit": "6a21ad1a9b1ed854d6f53b60fd3219dc50a5a02b",
     "path": "scripts/portfolio_priority_gate.py",
     "sha256": "25896cc001d1dae66b400f346daefb65bd01600ccaae05d71f7d404ed56d8f6f",
-    "branch": "feature/portfolio-lane-value-gate-20261018",
-    "source_status": "DRAFT_PENDING_REQUIRED_REVIEW"
+    "branch": "main",
+    "source_status": "MERGED_AGENT_OS_CORE_VALIDATED"
   },
   "portfolio_priority": {
     "policy_path": "config/portfolio_priority_policy.json",
