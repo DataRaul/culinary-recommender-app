@@ -1,10 +1,10 @@
 {
-  "handover": "CULINARY_PR434_CI_PASS_PENDING_84_ADJUDICATION_V20",
-  "date": "2026-10-17",
+  "handover": "CULINARY_WIKIBOOKS_ACQUISITION_IMPLEMENTED_V2",
+  "date": "2026-10-18",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
   "source_of_truth": "Live GitHub main, PR state, CI and continuity-state CURRENT override this snapshot",
-  "main_sha": "faf02d0b5ad7603826df9aab73a3fcba5a72245d",
+  "main_sha": "8641c8b6d0034e3d105fed1d602093aedea95afd",
   "open_prs": [
     428,
     429,
@@ -16,7 +16,7 @@
     "protectedRecipeCount": 22086,
     "ownerSearchRecipeCount": 22086
   },
-  "package_terminal": "PR434_CONTINUATION_WORK_PRESERVED__PUBLICATION_REVIEW_BUDGET_AND_ORIGINAL_GATES_HOLD",
+  "package_terminal": "IMPLEMENTATION_PUBLISHED__CI_PENDING__PRODUCT_MISSION_INCOMPLETE",
   "discovery": {
     "sourceFamily": "AdamBouhmad/open-recipe-archive pinned ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
     "baselineVersion": "v8019",
@@ -49,7 +49,7 @@
     "browserAcceptance": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
     "productionPublicSmoke": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION"
   },
-  "nextGate": "ADDITIONAL_REVIEW_AUTHORITY_FOR_NEW_PUBLICATION__FULL_SEMANTIC_TRANSLATED_AND_RIGHTS_HOLD",
+  "nextGate": "PR438_REQUIRED_CI_THEN_SAFE_MERGE",
   "guardrails": [
     "continue acquisition-first; ORA exhaustion is not programme completion",
     "rights/provenance fail closed",
@@ -71,8 +71,8 @@
     "equivalent_repair_cycles_max": 1,
     "canonical_ref": "continuity-state"
   },
-  "startup_instruction": "PR434 only. Published head f59096ff378bd9ce857acbe84f2cd8ed390520e0 has all 3 triggered workflows SUCCESS. Preserve pending_ranked_adjudication as UNREVIEWED working evidence: 84/84 retained ranked pairs source-inspected, no full semantic/translated PASS. Do not repeat baseline reconstruction, scoring, tests or unchanged CI. No new review round or PR publication is authorized by continue: inherited round 1/max 1 is consumed. Remaining title/alias shortlist and original-language/quantity/equivalence review remain incomplete; do not mistake all ranks for exhaustive novelty. Seven origin/reuse holds and six named adaptations remain. Keep PR434 draft and zero imports. Before a new PR assessment publication, obtain explicit bounded additional review authority; before rights clearance obtain record-specific origin/permission evidence. Do not contact authors, waive original gates, start successors or change other lanes.",
-  "status": "PUBLISHED_HEAD_CI_PASS__84_RANKED_PAIRS_INSPECTED_PENDING_QUALITY__ORIGINAL_MISSION_HOLD",
+  "startup_instruction": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition.",
+  "status": "PR438_IMPLEMENTED__PINNED_VALIDATOR_PASS__CI_PENDING__ADMISSION_HOLD",
   "installation_verification": {
     "schema_version": 1,
     "project": "DataRaul/culinary-recommender-app",
@@ -121,8 +121,8 @@
       "path": "docs/package_quality/goals/culinary-app/v1.json",
       "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
     },
-    "package_ref": "docs/package_quality/contracts/hochipants-origin-review-v1.json",
-    "status": "PUBLISHED_ASSESSMENT_CI_PASS__PENDING_RESEARCH_UNREVIEWED__BUDGET_EXHAUSTED__ORIGINAL_GATES_HOLD",
+    "package_ref": "docs/package_quality/contracts/wikibooks-20261018.json",
+    "status": "PR438_IMPLEMENTED__PINNED_VALIDATOR_PASS__CI_PENDING__ADMISSION_HOLD",
     "last_evidence": [
       "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json",
       "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
@@ -152,7 +152,15 @@
       "docs/package_quality/evidence/hochipants-origin-review/critic.json",
       "docs/package_quality/evidence/hochipants-origin-review/synthesis.json",
       "data/generated/step8g/hochipants-semantic-ranked-matches.json",
-      "data/generated/step8g/hochipants-origin-semantic-review.json"
+      "data/generated/step8g/hochipants-origin-semantic-review.json",
+      "docs/package_quality/evidence/wikibooks-20261018/alignment.json",
+      "docs/package_quality/evidence/wikibooks-20261018/qa.json",
+      "docs/package_quality/evidence/wikibooks-20261018/packet.json",
+      "docs/package_quality/evidence/wikibooks-20261018/supporter.json",
+      "docs/package_quality/evidence/wikibooks-20261018/critic.json",
+      "docs/package_quality/evidence/wikibooks-20261018/synthesis.json",
+      "data/generated/wikibooks-20261018/assessment.json",
+      "docs/WIKIBOOKS_ACQUISITION_20261018.md"
     ],
     "reviews": [
       {
@@ -239,13 +247,30 @@
         "role": "synthesis",
         "path": "docs/package_quality/evidence/hochipants-origin-review/synthesis.json",
         "identity": "work-e35e83d5b388-root; actual same chat, independent:false; incremental assessment only"
+      },
+      {
+        "role": "supporter",
+        "path": "docs/package_quality/evidence/wikibooks-20261018/supporter.json",
+        "identity": "work-fe0edaeb37fa-20261018; actual same chat, independent:false"
+      },
+      {
+        "role": "critic",
+        "path": "docs/package_quality/evidence/wikibooks-20261018/critic.json",
+        "identity": "work-fe0edaeb37fa-20261018; actual same chat, independent:false"
+      },
+      {
+        "role": "synthesis",
+        "path": "docs/package_quality/evidence/wikibooks-20261018/synthesis.json",
+        "identity": "work-fe0edaeb37fa-20261018; actual same chat, independent:false"
       }
     ],
     "unfinished_criteria": [
       "Full semantic and translated deduplication not established; title/alias and original-language equivalence remain incomplete",
       "Seven record-level origin/reuse-rights holds remain; six adaptations held",
       "Pending 84-pair source findings have not received package quality review; no additional review round authorized",
-      "Original PR434 merge gates remain binding; no import or merge eligibility"
+      "Original PR434 merge gates remain binding; no import or merge eligibility",
+      "Wikibooks source/admission, semantic/translated dedup, real prewrite, runtime and incremental FTS/product gates remain incomplete.",
+      "PR438 required CI and eligible merge pending."
     ],
     "failures": [
       "Historical shared-source catalog CI failure corrected; shared PR53 final CI PASS",
@@ -260,7 +285,9 @@
       "State ref fetched into FETCH_HEAD by shallow clone; origin/continuity-state alias absent. Resolved locator using actual fetched head without a new network retry.",
       "PR434 terminal git push had no credentials; authenticated GitHub connector published exact identical tree with expected-head lease and force=false. No access change required.",
       "PR434 finite multilingual retrieval and selected manual inspection do not establish exhaustive novelty. Seven origin attestations remain absent; original merge gate remains HOLD.",
-      "Checkpoint preparation first rejected historical continuity-state adapter pin; live-main verification worktree initially lacked lane directories, which were provisioned from exact state snapshot. No state governance files changed."
+      "Checkpoint preparation first rejected historical continuity-state adapter pin; live-main verification worktree initially lacked lane directories, which were provisioned from exact state snapshot. No state governance files changed.",
+      "Wikibooks synthetic planner fixture omitted existing protectedPopulationAllowed field; corrected before freeze; focused/full tests passed.",
+      "Shell git push had no credentials; connected publisher verified 23 blobs and identical reviewed tree."
     ],
     "decisions": [
       "Owner-selected pilot limited to Market Lab and Culinary",
@@ -288,7 +315,11 @@
       "Continuation V20 checked final published-head CI once: all three triggered workflows SUCCESS; did not rerun unchanged tests or reconstruction.",
       "Inspected normalized ingredient and method text for every retained ranked pair (84/84); preserve as pending working evidence inside own-lane checkpoint only, not as a reviewed PR assessment.",
       "Inherited round 1/max 1 and remaining rounds 0 preserved. No new same-chat final review, PR update, adapter/contract change, import or merge performed.",
-      "Normalized historical English/bilingual records are not an original-language fidelity audit; uninspected alias hits and unknown recall keep exhaustive translated novelty on HOLD."
+      "Normalized historical English/bilingual records are not an original-language fidelity audit; uninspected alias hits and unknown recall keep exhaustive translated novelty on HOLD.",
+      "All 3797 pinned source pages and talk snapshots acquired; no per-chat recipe cap.",
+      "Held source bodies stored privately; public Git contains metadata and implementation only.",
+      "1999 normalized candidates do not imply rights-cleared novel recipes; all admission gates remain.",
+      "Distinct Wikibooks package at unchanged round 1/max 1; PR434/432 budgets and holds preserved."
     ],
     "budget": {
       "round": 1,
@@ -301,14 +332,14 @@
       "One equivalent repair cycle and one unchanged external recheck",
       "No paid service or application behavior change"
     ],
-    "next_action": "PR434 only. Published head f59096ff378bd9ce857acbe84f2cd8ed390520e0 has all 3 triggered workflows SUCCESS. Preserve pending_ranked_adjudication as UNREVIEWED working evidence: 84/84 retained ranked pairs source-inspected, no full semantic/translated PASS. Do not repeat baseline reconstruction, scoring, tests or unchanged CI. No new review round or PR publication is authorized by continue: inherited round 1/max 1 is consumed. Remaining title/alias shortlist and original-language/quantity/equivalence review remain incomplete; do not mistake all ranks for exhaustive novelty. Seven origin/reuse holds and six named adaptations remain. Keep PR434 draft and zero imports. Before a new PR assessment publication, obtain explicit bounded additional review authority; before rights clearance obtain record-specific origin/permission evidence. Do not contact authors, waive original gates, start successors or change other lanes.",
-    "predecessor_sha256": "b94cdf682d30012cfc4d5c56e6e8199c2128a9477a8404db78f09f312cd2695b",
-    "goal_contribution": "Reproduces 22086-record identity and adds full-range retrieval plus 19 selected manual comparisons; no false novelty or rights clearance.",
+    "next_action": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition.",
+    "predecessor_sha256": "7b477f244dfdff8a809bb363b44025c4646fa5f367eac90751bcacee1b20058b",
+    "goal_contribution": "Whole source acquired and normalized with reviewed-only planner integration; net new searchable recipes remains 0.",
     "additional_cash_services_activated": false,
     "review_mode": "SAME_CHAT_SEQUENTIAL",
     "independent": false,
-    "session_id": "work-e35e83d5b388-root",
-    "candidate_digest": "2f4756bddd485b97d963f41846dd5fa2048ebf8033122c1f59094045bc3fa48a",
+    "session_id": "work-fe0edaeb37fa-20261018",
+    "candidate_digest": "202fbaa1bb0be131a43a75e71a131cc1a316e87d87b24b448339da582bf1bcf3",
     "remaining_review_rounds": 0,
     "package_history": [
       {
@@ -358,6 +389,17 @@
         },
         "remaining_review_rounds": 0,
         "note": "Historical PR433 completed package preserved while PR434 active incremental assessment is recorded; no budget reset."
+      },
+      {
+        "package_ref": "docs/package_quality/contracts/hochipants-origin-review-v1.json",
+        "status": "PUBLISHED_ASSESSMENT_CI_PASS__PENDING_RESEARCH_UNREVIEWED__BUDGET_EXHAUSTED__ORIGINAL_GATES_HOLD",
+        "budget": {
+          "round": 1,
+          "max_rounds": 1,
+          "usage": "unknown"
+        },
+        "remaining_review_rounds": 0,
+        "note": "PR434 remains historical/draft/held. Owner selects a distinct Wikibooks source package; no prior budget reset."
       }
     ],
     "pending_package": "quality-enforcement-owner-report-v1",
@@ -411,9 +453,10 @@
     "Published f59096ff378bd9ce857acbe84f2cd8ed390520e0, exact tree 5503e84f59ef263c717ac68d5c8a1c464dbbe847; 11 focused tests pass; npm validation 1452 total, 1426 pass, 26 skipped, zero failures.",
     "Actual same-chat five stages and genuine pinned validator pass for incremental draft assessment update only. Original PR434 merge gates not waived. CI: Iduns and ORA discovery pass; Validate public V0 still in progress at bounded final observation.",
     "2026-10-17 V20: final exact published-head CI all three triggered workflows SUCCESS.",
-    "V20 continuation source-inspected all 84 retained ranked pairs. Pending findings distinguish cooked porridge from cold-soaked oats, breadcrumb meat dishes from sandwiches, optional oven warming from pancake baking, and close hummus/banana variants from certified equivalence. No full semantic or translated clearance; seven rights holds/six adaptations remain."
+    "V20 continuation source-inspected all 84 retained ranked pairs. Pending findings distinguish cooked porridge from cold-soaked oats, breadcrumb meat dishes from sandwiches, optional oven warming from pancake baking, and close hummus/banana variants from certified equivalence. No full semantic or translated clearance; seven rights holds/six adaptations remain.",
+    "2026-10-18 Wikibooks: 3797 pinned texts acquired, 1999 normalized review candidates, 1798 extraction/notice holds, 0 admitted/searchable; PR438 implemented."
   ],
-  "next_action": "PR434 only. Published head f59096ff378bd9ce857acbe84f2cd8ed390520e0 has all 3 triggered workflows SUCCESS. Preserve pending_ranked_adjudication as UNREVIEWED working evidence: 84/84 retained ranked pairs source-inspected, no full semantic/translated PASS. Do not repeat baseline reconstruction, scoring, tests or unchanged CI. No new review round or PR publication is authorized by continue: inherited round 1/max 1 is consumed. Remaining title/alias shortlist and original-language/quantity/equivalence review remain incomplete; do not mistake all ranks for exhaustive novelty. Seven origin/reuse holds and six named adaptations remain. Keep PR434 draft and zero imports. Before a new PR assessment publication, obtain explicit bounded additional review authority; before rights clearance obtain record-specific origin/permission evidence. Do not contact authors, waive original gates, start successors or change other lanes.",
+  "next_action": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition.",
   "open_prs_at_reconciliation": [
     428,
     429,
@@ -430,7 +473,8 @@
     "current": "docs/handovers/culinary-app/CURRENT.json",
     "previous": "docs/handovers/culinary-app/PREVIOUS.json",
     "shared_pin": "2e55b320c88df7fa75eaaf47113184ba44f5bb8d",
-    "roles": "Same actual chat: internal alignment, build/QA, Supporter, Critic and synthesis; independent:false; pinned exact-candidate validation before publication"
+    "roles": "Same actual chat: internal alignment, build/QA, Supporter, Critic and synthesis; independent:false; pinned exact-candidate validation before publication",
+    "wikibooks": "All-source reader, conservative normalizer, full pinned baseline export and reviewed-only Step8A planner; no actual v8020 cohort admitted."
   },
   "concurrency": {
     "parallel_lanes": [
@@ -570,9 +614,20 @@
       "package": "hochipants-origin-review-v1",
       "result": "All 3 CI PASS on unchanged published head; 84 ranked pairs inspected as pending working evidence; no new review round/publication to PR, import or merge.",
       "next_action": "PR434 only. Published head f59096ff378bd9ce857acbe84f2cd8ed390520e0 has all 3 triggered workflows SUCCESS. Preserve pending_ranked_adjudication as UNREVIEWED working evidence: 84/84 retained ranked pairs source-inspected, no full semantic/translated PASS. Do not repeat baseline reconstruction, scoring, tests or unchanged CI. No new review round or PR publication is authorized by continue: inherited round 1/max 1 is consumed. Remaining title/alias shortlist and original-language/quantity/equivalence review remain incomplete; do not mistake all ranks for exhaustive novelty. Seven origin/reuse holds and six named adaptations remain. Keep PR434 draft and zero imports. Before a new PR assessment publication, obtain explicit bounded additional review authority; before rights clearance obtain record-specific origin/permission evidence. Do not contact authors, waive original gates, start successors or change other lanes."
+    },
+    {
+      "event_id": "wikibooks-acquisition-20261018-fe0edaeb37fa",
+      "timestamp": "2026-10-18T12:03:47.437Z",
+      "lane_id": "culinary-app",
+      "predecessor_sha256": "7b477f244dfdff8a809bb363b44025c4646fa5f367eac90751bcacee1b20058b",
+      "observed_main": "8641c8b6d0034e3d105fed1d602093aedea95afd",
+      "observed_state_head": "fffde9eaa6cd9f7edb7026dd197b79f3794640f3",
+      "package": "wikibooks-20261018",
+      "result": "PR438_IMPLEMENTED__PINNED_VALIDATOR_PASS__CI_PENDING__ADMISSION_HOLD",
+      "next_action": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition."
     }
   ],
-  "owner_action_now": "No imports or merge eligible. Explicit bounded additional review authority is needed before publishing the pending new assessment to PR434; record-specific origin/permission evidence remains needed for rights clearance. No external contact authorized.",
+  "owner_action_now": "NONE. No manual recipe processing or additional approval requested.",
   "same_chat_closeout": {
     "pr": 430,
     "url": "https://github.com/DataRaul/culinary-recommender-app/pull/430",
@@ -1592,8 +1647,8 @@
       "merge_eligible": false
     }
   },
-  "checkpoint_timestamp_utc": "2026-10-17T15:22:57.455276+00:00",
-  "historical_context_rule": "Prior installation, PR430/431/432/433 and older current_facts entries are retained history. Only current PR434 state, this next_action and original PR434 remaining gates govern this continuation.",
+  "checkpoint_timestamp_utc": "2026-10-18T12:03:47.436Z",
+  "historical_context_rule": "Pre-Wikibooks PR434/432/433 objects and embedded next-action strings are preserved history and holds. Current Wikibooks package, latest owner acquisition-first steering, live main and root next_action govern. No prior budget or rights gate waived.",
   "completion_this_cycle": {
     "published_head": "f59096ff378bd9ce857acbe84f2cd8ed390520e0",
     "baseline_records": 22086,
@@ -1615,6 +1670,108 @@
     "pending_research_quality_review": "NOT_EXECUTED_NO_BUDGET",
     "review_budget_reset": false,
     "tests_repeated": false,
-    "source_reconstruction_repeated": false
+    "source_reconstruction_repeated": false,
+    "wikibooks_current": {
+      "source_pages": 3797,
+      "normalized_review_candidates": 1999,
+      "new_searchable": 0,
+      "overall_mission_complete": false
+    }
+  },
+  "wikibooks_acquisition": {
+    "package": "wikibooks-20261018",
+    "pr": 438,
+    "url": "https://github.com/DataRaul/culinary-recommender-app/pull/438",
+    "branch": "acquisition/wikibooks-20261018",
+    "head_sha": "54825370ed1170d46f4c8f3653f26f0a67ab91f5",
+    "reviewed_tree": "b234075fd635229488392bb75fb9c8680d09ad69",
+    "source_pages": 3797,
+    "normalized_review_candidates": 1999,
+    "extraction_or_rights_holds": 1798,
+    "admission_ready": 0,
+    "new_searchable": 0,
+    "all_admission_held": 3797,
+    "baseline_version": "v8019",
+    "baseline_count": 22086,
+    "baseline_wording_coverage": 22083,
+    "baseline_full_sha256": "b410d549925beb456dbdea55b90e4d6c349ea6bb5e5c9d68766c4359bb8a95a9",
+    "private_artifact": {
+      "operation": "create_library_file",
+      "status": "succeeded",
+      "path": "/culinary recommender/Wikibooks_acquisition_20261018.tar.gz",
+      "file_id": "file_000000002ce88210a06b1eb43959e333",
+      "library_file_id": "libfile_2cdefd9c9e3881919b9c877104019f0b",
+      "file_name": "Wikibooks_acquisition_20261018.tar.gz",
+      "current_version_number": 0,
+      "restored_from_version_number": null,
+      "xattrs": [
+        {
+          "name": "user.library-file-version",
+          "value": "0"
+        }
+      ],
+      "directory_id": "6aa82a6f2954819191c1d01db0db6a73",
+      "mime_type": "application/x-tar",
+      "library_artifact_type": "other",
+      "file_size_bytes": 15922826,
+      "external_connectors_accessed": false,
+      "sha256": "c3b7a7c883474f842a57e70b1b1a7d6bc8a7bd1b42937febcaf71cd99815bf28",
+      "contents": [
+        "recipes.json.gz: 3797 normalized candidates and exact source/talk wikitext",
+        "source-cache.tar.gz: 152 original API response files and receipt",
+        "v8019-baseline-full.json: all 22086 reconstructed baseline records"
+      ],
+      "privacy": "Do not publish held source bodies to public Git"
+    },
+    "validation": {
+      "focused_pass": 7,
+      "full_pass": 1427,
+      "full_skip": 26,
+      "fail": 0,
+      "static": "PASS",
+      "pinned_validator": "PASS_FOR_IMPLEMENTATION_ONLY",
+      "candidate_digest": "202fbaa1bb0be131a43a75e71a131cc1a316e87d87b24b448339da582bf1bcf3",
+      "review_mode": "SAME_CHAT_SEQUENTIAL",
+      "independent": false,
+      "ci": "THREE_CHECKS_SUCCESS__VALIDATE_IN_PROGRESS",
+      "checks": [
+        {
+          "name": "Cloudflare Pages",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://dash.cloudflare.com/?to=/23cb13f65b1996158ea10539889c8f50/pages/view/culinary-recommender-app/8bca097b-fd80-4284-96fa-46f3743ad5ed"
+        },
+        {
+          "name": "discover-next-ora-source",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/DataRaul/culinary-recommender-app/actions/runs/39125621310/job/117670006824"
+        },
+        {
+          "name": "measure-iduns-1911",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/DataRaul/culinary-recommender-app/actions/runs/39125621116/job/117670006256"
+        },
+        {
+          "name": "validate",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/DataRaul/culinary-recommender-app/actions/runs/39125621131/job/117670006232"
+        }
+      ]
+    },
+    "remaining": [
+      "Semantic/translated equivalence and 3 baseline structural exceptions unresolved; 71 title-match signals are not duplicate/novelty findings.",
+      "Resolve held page notices or unsupported extraction without inventing text.",
+      "Earn real admitted cohort, capacity/quota prewrite, protected hydration/rendering/attribution and incremental FTS.",
+      "Obtain existing production write authority and verify actual owner browse/search/detail and deployment."
+    ],
+    "production_writes": 0,
+    "fts_rebuilds": 0,
+    "recommendation_promotions": 0,
+    "paid_services": 0,
+    "owner_action": "NONE",
+    "ci_wait_rule": "One bounded recheck consumed in this cycle; no polling loop. Next cycle rechecks exact head and merges only after required CI passes."
   }
 }
