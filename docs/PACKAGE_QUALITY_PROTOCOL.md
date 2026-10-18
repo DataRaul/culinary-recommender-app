@@ -14,7 +14,7 @@ The reviewed activation chain for **new** work is `config/package_quality_portfo
 python scripts/portfolio_priority.py --agent-os-root /exact/pinned/agent-os --decision docs/package_quality/plans/<package>-portfolio-decision.json
 ```
 
-Include `config/portfolio_priority_policy.json` and this new decision as frozen evidence in the package. Recheck on material discovery and before repeated work; one unchanged blocker recheck/zero-value cycle leads to owner options and an isolated or parked research branch, while independent main acquisition proceeds. A merely declared PASS never proves actual business benefit. The pin currently references a **draft shared-core PR**, so enforcement remains a proposed adoption until both PRs satisfy required gates. Core lane checkpoint ownership and all recipe-rights admission gates remain unchanged. Never replay prior real stalled source scenarios to manufacture tests.
+Include `config/portfolio_priority_policy.json` and this new decision as frozen evidence in the package. Recheck on material discovery and before repeated work; one unchanged blocker recheck/zero-value cycle leads to owner options and an isolated or parked research branch, while independent main acquisition proceeds. A merely declared PASS never proves actual business benefit. The pin references merged Agent OS PR57; enforcement activates prospectively only when this Culinary consumer PR passes its own review/CI and merges. Core lane checkpoint ownership and all recipe-rights admission gates remain unchanged. Never replay prior real stalled source scenarios to manufacture tests.
 
 ## Plan-first roadmap and business-value steering — new packages
 
