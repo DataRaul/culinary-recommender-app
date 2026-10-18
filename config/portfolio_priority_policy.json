@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "roadmap_path": "docs/ROADMAP.md",
+  "roadmap_sha256": "10e4e84d782c3e1eb911cf1e445fed8aaef5ea27ae98a9ccce75ccd97bf020f3",
+  "primary_lane": "culinary-app",
+  "owner_steering_source": "docs/ACQUISITION_PARALLEL_LANE_POLICY.md",
+  "lanes": {
+    "culinary-app": {
+      "priority": "P0",
+      "branch_policy": "MAIN_DELIVERY"
+    },
+    "culinary-soyer-research": {
+      "priority": "P2",
+      "branch_policy": "ISOLATED"
+    },
+    "culinary-brain": {
+      "priority": "P2",
+      "branch_policy": "ISOLATED"
+    },
+    "barbecue": {
+      "priority": "P2",
+      "branch_policy": "ISOLATED"
+    }
+  },
+  "limits": {
+    "unchanged_blocker_checks": 1,
+    "cycles_without_value": 1
+  }
+}

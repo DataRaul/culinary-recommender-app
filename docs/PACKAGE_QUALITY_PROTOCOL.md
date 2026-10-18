@@ -2,6 +2,16 @@
 
 Status: PROCEDURAL_PILOT; owner-selected `SAME_CHAT_SEQUENTIAL` (2026-10-14). Apply to every substantive bounded package in this project. Read the root AGENTS instructions, existing contracts and `config/package_quality_adapter.json`. Fetch the shared skill, role references and checker from the exact public source commit in that adapter; verify file hashes before execution. A connector can materialize those exact files; a local checkout can supply `--agent-os-root`. Never fetch floating main for execution or install a paid API/service. This is developer workflow only, outside application/notebook runtime.
 
+## Portfolio priority, isolated lane routing and continuous value — prospective adapter
+
+The reviewed activation chain for **new** work is `config/package_quality_portfolio_adapter.json` → exact pinned public Agent OS `scripts/portfolio_priority_gate.py` → local roadmap/owner priority policy `config/portfolio_priority_policy.json`. Do not mutate the frozen legacy or plan-first adapters or old package contracts. Before a new package's Aligner/Plan-first review, record a portfolio decision with the active roadmap SHA-256 and literal milestone, primary-next-action, measured-vs-unmeasured value status, blocker history, P0/P2 route and a strategic-Critic opportunity-cost challenge. Validate with:
+
+```
+python scripts/portfolio_priority.py --agent-os-root /exact/pinned/agent-os --decision docs/package_quality/plans/<package>-portfolio-decision.json
+```
+
+Include `config/portfolio_priority_policy.json` and this new decision as frozen evidence in the package. Recheck on material discovery and before repeated work; one unchanged blocker recheck/zero-value cycle leads to owner options and an isolated or parked research branch, while independent main acquisition proceeds. A merely declared PASS never proves actual business benefit. The pin currently references a **draft shared-core PR**, so enforcement remains a proposed adoption until both PRs satisfy required gates. Core lane checkpoint ownership and all recipe-rights admission gates remain unchanged. Never replay prior real stalled source scenarios to manufacture tests.
+
 ## Plan-first roadmap and business-value steering — new packages
 
 **Opt-in capability approved for this project.** The separate `config/package_quality_plan_first_adapter.json` pins the shared Agent OS plan-first validator and selects `plan_first: AVAILABLE`. The canonical `config/package_quality_adapter.json` remains byte-for-byte unchanged so frozen legacy contracts retain their original hashes. The `plan_first_new_packages: REQUIRED` field on the **new** adapter is a prospective policy, **not** authority to change or invalidate any existing package. For **new** packages created after this integration, fill the `plan_first` fields already in `docs/package_quality/CONTRACT_TEMPLATE.json`. Existing frozen contracts, active PRs, review budgets, findings, research/source gates, lane ownership and CURRENT/PREVIOUS checkpoints remain unchanged unless explicitly migrated.
