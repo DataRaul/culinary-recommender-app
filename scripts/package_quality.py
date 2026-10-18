@@ -23,8 +23,8 @@ def check_concurrency_log(old, new):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--agent-os-root", type=Path, required=True)
-    parser.add_argument("--quality-adapter", choices=("legacy", "plan-first", "portfolio")
-    parser.add_argument("--portfolio-decision", help="Frozen portfolio decision for new-package priority check"), default="legacy")
+    parser.add_argument("--quality-adapter", choices=("legacy", "plan-first", "portfolio"), default="legacy")
+    parser.add_argument("--portfolio-decision", help="Frozen portfolio decision for new-package priority check")
     args, remainder = parser.parse_known_args()
     root = Path(__file__).resolve().parents[1]
     adapter_file = ("config/package_quality_plan_first_adapter.json"
