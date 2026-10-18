@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "handover": "CULINARY_MAIN_P0_ACQUISITION_CONTINUE_V1",
+  "date": "2026-10-18",
+  "repository": "DataRaul/culinary-recommender-app",
+  "lane_id": "culinary-app",
+  "priority": "P0",
+  "execution_mode": "NORMAL_CHAT_OR_WORK_WITH_GITHUB",
+  "source_of_truth": "Fresh GitHub main, docs/ROADMAP.md and canonical continuity-state:docs/handovers/culinary-app/CURRENT.json outrank this seed handover",
+  "handover_type": "STATIC_CHAT_START_SEED_NOT_CANONICAL_CURRENT",
+  "last_observed": {
+    "main_sha": "8641c8b6d0034e3d105fed1d602093aedea95afd",
+    "baseline": "v8019",
+    "searchable_recipes": 22086,
+    "fts_indexed": 22086,
+    "hochipants_pr434": {
+      "state": "OPEN_DRAFT",
+      "head_sha": "f59096ff378bd9ce857acbe84f2cd8ed390520e0",
+      "rights_novelty": "HOLD"
+    },
+    "soyer_secondary_branch": "research/soyer-secondary-20261018"
+  },
+  "mission": "Resume roadmap P0 acquisition-first: discover a NEW rights-clean recipe source family, assess provenance and structural usability, deduplicate against pinned protected baseline, admit authorized cohorts, and verify incremental indexed search/open visibility. Do not restart Soyer, PR434 or standalone review loops.",
+  "priority_rule": "Secondary source research never blocks independent P0 source discovery/implementation. Escalate material blocker after first focused check and recommend isolation as secondary lane or park; owner chooses any reprioritization.",
+  "next_action": "Fresh-reconcile current main, lane CURRENT, PR/CI state and exact next roadmap gate; identify and execute the strongest other-source-family acquisition package with actual usable recipe outcomes. If no source eligible, assess another candidate rather than repeat held research.",
+  "acceptance": {
+    "primary_metric": "net new rights-cleared structurally usable recipes added and owner-searchable",
+    "secondary_metrics": [
+      "source families screened",
+      "admitted versus held counts with evidence",
+      "incremental index/search/open checks"
+    ],
+    "validation": "Embedded in actual acquisition work, existing plan-first Solution Review + same-chat quality and CI, no standalone validation program"
+  },
+  "isolation": {
+    "soyer": "P2 separate branch and separate chat, input-recovery HOLD; may PR into main only when clearance is earned",
+    "pr434": "Unmerged HoChiPants origin review retains seven origin holds and six adaptation holds; do not fold into Soyer or silently merge",
+    "shared_writes": "Serialize protected D1/index writes, safeguard existing cost and admission gates"
+  },
+  "guardrails": [
+    "No paid services",
+    "No source-rights bypass",
+    "No automatic recommendation promotion",
+    "No unapproved public-runtime or D1 writes",
+    "Preserve Based Cooking STOP, PR428/429/432, Brain and Barbecue",
+    "Existing canonical CURRENT/PREVIOUS ownership unchanged",
+    "Owner raised first on materially new blockers or scope changes"
+  ]
+}
