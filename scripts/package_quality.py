@@ -23,15 +23,40 @@ def check_concurrency_log(old, new):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--agent-os-root", type=Path, required=True)
-    parser.add_argument("--quality-adapter", choices=("legacy", "plan-first"), default="legacy")
+    parser.add_argument("--quality-adapter", choices=("legacy", "plan-first", "portfolio")
+    parser.add_argument("--portfolio-decision", help="Frozen portfolio decision for new-package priority check"), default="legacy")
     args, remainder = parser.parse_known_args()
     root = Path(__file__).resolve().parents[1]
     adapter_file = ("config/package_quality_plan_first_adapter.json"
-                    if args.quality_adapter == "plan-first"
+                    if args.quality_adapter in ("plan-first", "portfolio")
                     else "config/package_quality_adapter.json")
     adapter = json.loads((root / adapter_file).read_text())
     source = args.agent_os_root.resolve()
     try:
+        if args.quality_adapter == "portfolio":
+            if not args.portfolio_decision or Path(args.portfolio_decision).is_absolute() or ".." in Path(args.portfolio_decision).parts:
+                raise ValueError("portfolio decision must be a safe relative path")
+            decision = (root / args.portfolio_decision).resolve()
+            if not decision.is_relative_to(root) or not decision.is_file():
+                raise ValueError("portfolio decision missing/unsafe")
+            gate = subprocess.run(
+                [sys.executable, str(root / "scripts/portfolio_priority.py"),
+                 "--agent-os-root", str(source), "--decision", args.portfolio_decision],
+                check=False)
+            if gate.returncode != 0:
+                raise ValueError("PORTFOLIO_PRIORITY_GATE_HOLD")
+            if remainder and remainder[0] == "freeze":
+                contract_parser = argparse.ArgumentParser(add_help=False)
+                contract_parser.add_argument("--contract", required=True)
+                parsed, _ = contract_parser.parse_known_args(remainder[1:])
+                contract_path = (root / parsed.contract).resolve()
+                if not contract_path.is_relative_to(root):
+                    raise ValueError("unsafe contract path")
+                contract = json.loads(contract_path.read_text())
+                required = contract.get("required_evidence", [])
+                policy_path = json.loads((root / "config/package_quality_portfolio_adapter.json").read_text())["portfolio_priority"]["policy_path"]
+                if args.portfolio_decision not in required or policy_path not in required:
+                    raise ValueError("portfolio decision and policy must be frozen in required evidence")
         shared = adapter["shared_source"]
         if not re.fullmatch(r"[0-9a-f]{40}", shared["commit"]):
             raise ValueError("verified shared source commit missing")
