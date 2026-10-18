@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "handover": "CULINARY_SOYER_SECONDARY_CHAT_LANE_V8",
+  "date": "2026-10-18",
+  "repository": "DataRaul/culinary-recommender-app",
+  "lane_id": "culinary-soyer-research",
+  "lane_type": "SECONDARY_READ_ONLY_ACQUISITION_RESEARCH",
+  "priority": "P2_NON_BLOCKING",
+  "branch": "research/soyer-secondary-20261018",
+  "branch_base_main_sha": "8641c8b6d0034e3d105fed1d602093aedea95afd",
+  "execution_mode": "NORMAL_CHAT_WITH_GITHUB_AND_FILES",
+  "state": "RESEARCH_HOLD_PINNED_INPUTS_MISSING",
+  "mission": "Preserve and, when source inputs permit, complete Alexis Soyer sixth-edition (1849) research in an isolated chat branch without slowing P0 acquisition. Existing research is retained; no endless metadata cycles.",
+  "owner_direction": {
+    "independent_from_main": true,
+    "no_artificial_batches": true,
+    "raise_new_blockers_early": true,
+    "never_preempt_main_p0": true,
+    "default_when_blocked": "CHECK_ONCE_REPORT_OPTIONS_AND_PARK",
+    "main_work_continues": true,
+    "no_background_execution_claim": true
+  },
+  "source": {
+    "title": "The Gastronomic Regenerator",
+    "author": "Alexis Soyer",
+    "year": 1849,
+    "edition": "Sixth",
+    "url": "https://www.gutenberg.org/cache/epub/47444/pg47444-images.html",
+    "required_sha256": "462e55c1e02faada5687a89764a8dcaf89eedc507743f7c77cf6aafadacbb7de",
+    "rights": "DOCUMENTARY_REVIEW_HOLD"
+  },
+  "baseline": {
+    "version": "v8019",
+    "count": 22086,
+    "required_snapshot_sha256": "159a3e53da1c9530c258913014f1baebebb700e87703b4e4a407d4f8bb1deb57"
+  },
+  "evidence": {
+    "library_report": "Soyer_integrated_research_report_V5.md",
+    "library_pair_queue": "Soyer_150_pair_review_queue_V4.csv",
+    "library_reference_graph": "Soyer_reference_research.md",
+    "v7_report": "Soyer_V7_research_report.md",
+    "v7_audit": "Soyer_V7_complete_metadata_audit.json",
+    "v7_checkpoint": "Soyer_V7_checkpoint.json",
+    "published_research_reused": true
+  },
+  "preserved_metrics": {
+    "source_numbered_entries": 1673,
+    "title_hit_pairs": 150,
+    "preliminary_manual_screens": 24,
+    "machine_only_pending_full_review": 126,
+    "full_original_source_adjudications": 0,
+    "reference_mentions": 1747,
+    "identified_reference_locations": 1745,
+    "known_reference_conflicts": 2,
+    "recipes_imported": 0
+  },
+  "next_action": "Attempt one targeted recovery of byte-exact source HTML and the normalized v8019 baseline through authorized files/checkouts. If both SHA-256 pins match, conduct full body-level comparisons, reference completion, broad semantic/translated deduplication and documentary rights checks. Otherwise record the two exact missing files, send concise decision options to owner and park without any extra metadata-only version.",
+  "dependencies": {
+    "independent_pr": "PR434 is the separate HoChiPants draft/origin lane, not the Soyer branch",
+    "canonical_main_handover": "continuity-state:docs/handovers/culinary-app/CURRENT.json",
+    "roadmap_adoption": "docs/ACQUISITION_PARALLEL_LANE_POLICY.md (on reviewed integration branch until merged)"
+  },
+  "guardrails": [
+    "No import or production D1 writes",
+    "No protected source text in public Git history",
+    "No paid services or external contact",
+    "Preserve seven HoChiPants origin holds, six adaptation holds, PR428/429/432, Brain and Barbecue",
+    "No merge into main until source rights, dedup, source fidelity, tests and required reviews/CI pass",
+    "Do not reset exhausted review budgets",
+    "If blocked, P0 main acquisition proceeds independently"
+  ],
+  "merge_readiness": "NOT_READY_RESEARCH_HOLD",
+  "success_metric": "new rights-cleared structurally usable recipes admissible without duplication, not report versions"
+}
