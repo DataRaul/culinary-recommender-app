@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "plan_digest": "a1427379937bb80110a22dea3d3da844b1345664424e93cc95e142650347c3bf",
+  "decisions": [
+    {
+      "id": "D1",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "scripts/acquire-wikibooks-text.mjs",
+        "scripts/wikibooks-text-core.mjs",
+        "data/generated/wikibooks-20261018/acquisition-receipt.json",
+        "docs/WIKIBOOKS_ACQUISITION_20261018.md"
+      ]
+    },
+    {
+      "id": "D2",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "scripts/assess-wikibooks-text.mjs",
+        "scripts/wikibooks-prewrite-core.mjs",
+        "data/generated/wikibooks-20261018/assessment.json",
+        "tests/wikibooks-text-acquisition.test.js"
+      ]
+    }
+  ],
+  "material_deviations": []
+}

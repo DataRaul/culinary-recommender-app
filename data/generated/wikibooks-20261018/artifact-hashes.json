@@ -1,0 +1,32 @@
+{
+  "acquisition-receipt.json": {
+    "bytes": 286095,
+    "sha256": "76be5b866e1d466fc55056adeb201e93743e2c566f1ebd1d0133b5e8abbcb3b3",
+    "availability": "REPOSITORY_METADATA_ONLY"
+  },
+  "assessment.json": {
+    "bytes": 2092,
+    "sha256": "d192588de2904e7660d0486f9367f524964ec14fb2cfb97d263e903f0b171e90",
+    "availability": "REPOSITORY_METADATA_ONLY"
+  },
+  "baseline-fingerprints.json.gz": {
+    "bytes": 1344048,
+    "sha256": "4bc9b254ed2fd16607211b96b357baf6d8ad9a45eb2d216840d289b9f3b883fc",
+    "availability": "REPOSITORY_METADATA_ONLY"
+  },
+  "discovery.json": {
+    "bytes": 1810694,
+    "sha256": "4e08e2142e1e986e368d0f835352585312a2b310d22db007f81f810e02b5856f",
+    "availability": "REPOSITORY_METADATA_ONLY"
+  },
+  "recipes.json.gz": {
+    "bytes": 3890647,
+    "sha256": "5676af35cb28858c153685c1d54b50a41599a24deba30b07f5793337fab67239",
+    "availability": "PRIVATE_ACQUISITION_ARCHIVE"
+  },
+  "source-cache.tar.gz": {
+    "bytes": 2920616,
+    "sha256": "5edaa2e9dafc897356f2f86ecca5ca4d802622b410c2a41a81ebe06b7cc0122e",
+    "availability": "PRIVATE_ACQUISITION_ARCHIVE"
+  }
+}

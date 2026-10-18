@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "plan_id": "WIKIBOOKS_ACQUISITION_20261018",
+  "revision": 1,
+  "problem": "Acquisition-first has delivered zero additions since v8019.",
+  "affected_users": "Authenticated owner recipe search users",
+  "root_cause": "Next source requires pinned text extraction and per-record rights and dedup gates.",
+  "desired_outcome": "Material normalized Wikibooks cohort; production search only if all existing gates are earned.",
+  "expected_value": "More usable searchable recipes; prepared rows alone are not product delivery.",
+  "options": [
+    {
+      "id": "REUSE",
+      "description": "Reuse F2 discovery and implement conservative pinned-text extraction with cached evidence.",
+      "pros": "Reuses provenance and source contracts, no paid service.",
+      "cons": "Unsupported wikitext and ambiguous rights remain held."
+    },
+    {
+      "id": "MANUAL",
+      "description": "Manually author every recipe into the old public seed schema.",
+      "pros": "Individual controls are straightforward.",
+      "cons": "Low throughput, recommendation metadata would delay search."
+    }
+  ],
+  "selected_option_id": "REUSE",
+  "architecture": "Offline acquisition bundle, separate CC-BY-SA recipe text, no runtime fetch; reuse protected incremental storage only after prewrite.",
+  "tradeoffs": "Conservative parse and rights holds reduce yield but preserve source fidelity. Discovery count is not recipe delivery.",
+  "estimated_cost": "0 EUR; sequential cached free API reads and ordinary required CI only.",
+  "authority": "AUTO + VERIFY",
+  "decisions": [
+    {
+      "id": "D1",
+      "decision": "Acquire exact revision source and talk snapshots and fail closed on unsupported expression or notices.",
+      "rationale": "Existing rights contract requires page-specific provenance.",
+      "expected_consequences": "Recoverable cache and explicit held records.",
+      "authority": "AUTO + VERIFY",
+      "material": false
+    },
+    {
+      "id": "D2",
+      "decision": "Compare with complete pinned v8019 before novelty and prewrite; do not infer global semantic novelty from title absence.",
+      "rationale": "Owner requires full baseline and meaningful variants.",
+      "expected_consequences": "Unresolved comparisons stay held and production authority is not assumed.",
+      "authority": "AUTO + VERIFY",
+      "material": false
+    }
+  ],
+  "acceptance_criteria": [
+    "C1 Complete revision-pinned acquisition or precise access failure with cache.",
+    "C2 Source-faithful structural extraction and per-record rights states.",
+    "C3 Full baseline comparison and conservative unresolved semantic states.",
+    "C4 Required deterministic validation and honest product/write terminal state."
+  ],
+  "risks": [
+    "Transclusions and extra source notices need explicit holds.",
+    "Production requires separately earned admission/write gates."
+  ],
+  "roadmap_alignment": {
+    "roadmap_path": "docs/ROADMAP.md",
+    "roadmap_sha256": "79bae1e19ab84bec68db66561511e0cf224141abf91ab6fad83dc4daf0a72cdf",
+    "milestone_line": "| V1.x / Corpus breadth | **P0 ACQUISITION-FIRST / MAXIMIZE RIGHTS-CLEAN CORPUS** | Acquire and ingest every lawfully reusable, provenance-preserving, structurally usable recipe cohort that fits the protected zero-cost runtime. Search/open usability is the product gate; recommendation/nutrition/classification completeness must not block corpus growth. |",
+    "goal_path": "docs/package_quality/goals/culinary-app/v1.json",
+    "goal_sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa",
+    "goal_criteria": [
+      "OUTCOME",
+      "CONTINUITY"
+    ],
+    "steering_source": "Owner handover CULINARY_P0_WIKIBOOKS_ACQUISITION_EXECUTE_V1, 2026-10-18",
+    "priority_rationale": "Wikibooks selected as next eligible source; other research lanes preserved.",
+    "goal_contribution": "Prepare usable additions and advance to real search only with earned gates.",
+    "value_signal": "Net new recipes actually searchable/openable; baseline 22086.",
+    "status": "ALIGNED",
+    "conflicts": []
+  }
+}
