@@ -55,7 +55,8 @@ def main():
                 contract = json.loads(contract_path.read_text())
                 required = contract.get("required_evidence", [])
                 policy_path = json.loads((root / "config/package_quality_portfolio_adapter.json").read_text())["portfolio_priority"]["policy_path"]
-                if args.portfolio_decision not in required or policy_path not in required:
+                if (args.portfolio_decision not in required or policy_path not in required
+                    or "config/package_quality_portfolio_adapter.json" not in required):
                     raise ValueError("portfolio decision and policy must be frozen in required evidence")
         shared = adapter["shared_source"]
         if not re.fullmatch(r"[0-9a-f]{40}", shared["commit"]):
