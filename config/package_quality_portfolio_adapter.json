@@ -6,7 +6,7 @@
   "frozen_legacy_adapters_unchanged": true,
   "shared_portfolio_gate": {
     "repository": "DataRaul/agent-os",
-    "commit": "5917b67d75c019354662e1432e777bc87bc6a28f",
+    "commit": "f2ea348888a1baf86a07a067280b94ff97b34ea5",
     "path": "scripts/portfolio_priority_gate.py",
     "sha256": "25896cc001d1dae66b400f346daefb65bd01600ccaae05d71f7d404ed56d8f6f",
     "branch": "feature/portfolio-lane-value-gate-20261018",
