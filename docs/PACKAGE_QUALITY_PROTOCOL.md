@@ -2,6 +2,10 @@
 
 Status: PROCEDURAL_PILOT; owner-selected `SAME_CHAT_SEQUENTIAL` (2026-10-14). Apply to every substantive bounded package in this project. Read the root AGENTS instructions, existing contracts and `config/package_quality_adapter.json`. Fetch the shared skill, role references and checker from the exact public source commit in that adapter; verify file hashes before execution. A connector can materialize those exact files; a local checkout can supply `--agent-os-root`. Never fetch floating main for execution or install a paid API/service. This is developer workflow only, outside application/notebook runtime.
 
+### Select the actual portfolio quality command for new packages
+
+After reviewed activation, use **`python scripts/package_quality.py --quality-adapter portfolio --portfolio-decision docs/package_quality/plans/<package>-portfolio-decision.json --agent-os-root /exact/pinned/agent-os ...`** for `plan-accept`, `freeze`, `next` and `validate`. The wrapper runs the signed/pinned portfolio gate first, then the unchanged plan-first/sequential checker. At freeze it rejects contracts that did not freeze **both** the portfolio decision and `config/portfolio_priority_policy.json`. Legacy or already-open packages keep their exact original `--quality-adapter` selection and inherited budgets.
+
 ## Portfolio priority, isolated lane routing and continuous value — prospective adapter
 
 The reviewed activation chain for **new** work is `config/package_quality_portfolio_adapter.json` → exact pinned public Agent OS `scripts/portfolio_priority_gate.py` → local roadmap/owner priority policy `config/portfolio_priority_policy.json`. Do not mutate the frozen legacy or plan-first adapters or old package contracts. Before a new package's Aligner/Plan-first review, record a portfolio decision with the active roadmap SHA-256 and literal milestone, primary-next-action, measured-vs-unmeasured value status, blocker history, P0/P2 route and a strategic-Critic opportunity-cost challenge. Validate with:
