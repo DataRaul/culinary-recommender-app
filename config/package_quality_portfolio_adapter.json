@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "activation": "PROSPECTIVE_AFTER_LOCAL_PR_REVIEW_AND_MAIN_INTEGRATION",
+  "extends": "config/package_quality_plan_first_adapter.json",
+  "frozen_legacy_adapters_unchanged": true,
+  "shared_portfolio_gate": {
+    "repository": "DataRaul/agent-os",
+    "commit": "6a21ad1a9b1ed854d6f53b60fd3219dc50a5a02b",
+    "path": "scripts/portfolio_priority_gate.py",
+    "sha256": "25896cc001d1dae66b400f346daefb65bd01600ccaae05d71f7d404ed56d8f6f",
+    "branch": "main",
+    "source_status": "MERGED_AGENT_OS_CORE_VALIDATED"
+  },
+  "portfolio_priority": {
+    "policy_path": "config/portfolio_priority_policy.json",
+    "new_packages": "REQUIRED_ON_ACTIVATION",
+    "execution_points": [
+      "before_aligner",
+      "material_discovery",
+      "before_next_substantial_cycle",
+      "critic",
+      "synthesis"
+    ],
+    "decision_path_template": "docs/package_quality/plans/<package>-portfolio-decision.json",
+    "decision_and_policy_must_be_frozen": true,
+    "actual_business_value_metric": "net new rights-cleared usable searchable recipes",
+    "owner_escalation": "before_repeating_blocked_or_zero_value_work",
+    "secondary_lane_isolated": "culinary-soyer-research",
+    "control_scope": "new_packages_only_no_retroactive_review_rewrites"
+  },
+  "resources": {
+    "new_paid_services": false,
+    "background_agents": false,
+    "source_body_writes": false
+  }
+}

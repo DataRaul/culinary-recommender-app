@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "author_session": "/root:b5413e2aa6d0",
+  "observed_main": "dded9ec9aa6b3249e0dba322972e259f279663c3",
+  "observed_head": "a221934dbbd4c0a89860ef0e5d9d2dc0eab5ee52",
+  "scope": "Existing PR437 only; new controls activate prospectively after merged core, dependency and consumer gates.",
+  "owner_action_now": "NONE",
+  "holds": "P0 acquisition remains primary; Soyer stays P2; all PR434 source/rights/budget holds and canonical lane boundaries preserved.",
+  "stack": "Reconcile onto actual merged PR436 main, preserving latest generated state and dependency review evidence.",
+  "dependency_pr436": {
+    "status": "MERGED_VERIFIED",
+    "merge_sha": "dded9ec9aa6b3249e0dba322972e259f279663c3"
+  }
+}

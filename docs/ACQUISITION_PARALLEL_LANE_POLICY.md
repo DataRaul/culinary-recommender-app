@@ -35,3 +35,7 @@ At each terminal gate report: candidate source families examined; rights-cleared
 
 ## Chat boundary
 Separate chats can continue these branches independently when the user runs them; no asynchronous or unattended execution is implied. Within an individual implementation lane, retain the already-adopted same-chat Aligner → Solution Review → Builder → Supporter → Critic → Synthesis sequence and inherited local quality gates. Do not require the owner to shuttle between reviewer chats or repeat settled scope.
+
+## Enforceable prospective adapter
+
+The generic shared portfolio-priority contract is staged in Agent OS PR57, and the Culinary adapter is in this stacked consumer change. `config/package_quality_portfolio_adapter.json` pins the shared checker without changing frozen legacy contracts; `config/portfolio_priority_policy.json` sets P0 and isolated P2 lanes. At each new package boundary a validated decision and strategic Critic response must precede another research cycle. This only becomes active after both reviewed merges; no historical replay is authorized or necessary.

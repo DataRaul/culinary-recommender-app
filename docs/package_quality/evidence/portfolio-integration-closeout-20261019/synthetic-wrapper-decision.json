@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "lane_id": "culinary-app",
+  "milestone_line": "## 2026-10-18 owner decision — secondary acquisition research must not halt main P0",
+  "business_metric": "Synthetic integration fixture only; no measured business effect",
+  "next_primary_action": "Continue already-authorized independent delivery after integration",
+  "route": "CONTINUE",
+  "owner_steering_source": "docs/ACQUISITION_PARALLEL_LANE_POLICY.md",
+  "roadmap_sha256": "10e4e84d782c3e1eb911cf1e445fed8aaef5ea27ae98a9ccce75ccd97bf020f3",
+  "selected_priority": "P0",
+  "blocks_primary": false,
+  "unchanged_blocker_checks": 0,
+  "cycles_without_value": 0,
+  "material_progress": true,
+  "blocker": "",
+  "strategic_critic": {
+    "roadmap_challenge": "Fixture checks local wrapper integration; no standalone business evaluation.",
+    "higher_priority_alternative": "Resume real product work immediately after closeout.",
+    "opportunity_cost": "Only bounded integration checks; no real blocked-source replay.",
+    "lane_routing_challenge": "Virtual coordination does not acquire lane CURRENT or DB ownership.",
+    "value_checkpoint_challenge": "Business benefit remains unmeasured until future real delivery.",
+    "disposition": "ALIGNED"
+  }
+}

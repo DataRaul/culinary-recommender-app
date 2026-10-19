@@ -38,6 +38,10 @@ For every substantive user request at a normal user-facing response boundary, ap
 
 For acquisition-first work, apply the owner-approved `docs/ACQUISITION_PARALLEL_LANE_POLICY.md`. On a material research, source, rights or semantic-dedup blocker—or one full research cycle with zero direct recipe-delivery benefit—**tell the owner the issue, value, and choices before investing another substantial cycle**. Recommend an independent P2 chat/branch lane or parking when the work is not P0-critical, and keep P0 recipe acquisition moving in its own branch. The standing Soyer split is already authorized; do not re-ask for it. Neither a secondary lane nor repeated metadata/validation reports can become an implicit critical-path blocker. All existing rights, budget, protected D1, no-paid-service, review, CI and merge gates remain in force. Separate chats are user-driven, not automatic background jobs.
 
+## Prospective portable portfolio-priority gate — new packages only
+
+Use `config/package_quality_portfolio_adapter.json` and its exact-pinned Agent OS generic validator after Agent OS PR57 and this consumer integration meet their own CI/review/merge gates. The earlier `config/package_quality_plan_first_adapter.json` and legacy adapter remain unchanged. Before Aligner, recheck main roadmap priority, lane routing, immediate business-value measure, and owner steering; at every material discovery/next cycle re-evaluate blocker and value drift. The Critic must challenge the higher-value alternative and cost of occupying P0. If a research loop yields no material new input/value, escalate early and isolate/park it without blocking independently deliverable recipes. No replay of any prior blocked historical scenario is required. This is a prospective operational control, never a bypass of rights, CI or continuity-state gates.
+
 ## Standing autonomous execution authority
 
 The user has explicitly authorized autonomous continuation of technically resolvable Culinary App / Culinary Lab repository work without repeated approvals.
