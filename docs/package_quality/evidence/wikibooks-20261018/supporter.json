@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "role": "supporter",
+  "session_id": "work-fe0edaeb37fa-20261018",
+  "model": "GPT-6",
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "independent": false,
+  "stage": 3,
+  "predecessor_digest": "202fbaa1bb0be131a43a75e71a131cc1a316e87d87b24b448339da582bf1bcf3",
+  "candidate_digest": "202fbaa1bb0be131a43a75e71a131cc1a316e87d87b24b448339da582bf1bcf3",
+  "verdict": "PASS",
+  "knowledge": [
+    {
+      "domain": "project_execution",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "applied_rule": "Reuse canonical sources; evidence of implementation is not evidence of production completion; preserve exact resumable artifacts.",
+      "criterion_id": "C4"
+    }
+  ],
+  "coverage": [
+    {
+      "criterion_id": "C1",
+      "result": "PASS",
+      "evidence": [
+        "data/generated/wikibooks-20261018/acquisition-receipt.json",
+        "data/generated/wikibooks-20261018/discovery.json",
+        "docs/package_quality/evidence/wikibooks-20261018/qa.json"
+      ],
+      "rationale": "All 3797 source revisions and corresponding talk snapshots obtained; 152 cache receipts bind request identities and hashes."
+    },
+    {
+      "criterion_id": "C2",
+      "result": "PASS",
+      "evidence": [
+        "scripts/wikibooks-text-core.mjs",
+        "tests/wikibooks-text-acquisition.test.js",
+        "data/generated/wikibooks-20261018/assessment.json"
+      ],
+      "rationale": "Literal quantities and optionality preserved; unresolved templates, nested sections, notices and nonempty talk explicitly held. 1999 candidates are not claimed admission-ready."
+    },
+    {
+      "criterion_id": "C3",
+      "result": "PASS",
+      "evidence": [
+        "scripts/assess-wikibooks-text.mjs",
+        "scripts/wikibooks-prewrite-core.mjs",
+        "scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs",
+        "tests/wikibooks-text-acquisition.test.js"
+      ],
+      "rationale": "Pinned 22086 baseline reconstructed and replayed identically; full literal screen is explicitly narrower than semantic/translated dedup; prewrite rejects unresolved or stale reviews and changed text."
+    },
+    {
+      "criterion_id": "C4",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/wikibooks-20261018/qa.json",
+        "docs/WIKIBOOKS_ACQUISITION_20261018.md",
+        "data/generated/wikibooks-20261018/artifact-hashes.json"
+      ],
+      "rationale": "1427 full-suite passes, 26 skips, 7 focused tests, static pass. Private archive persisted; bodies absent from public outgoing candidate. 0 production writes/index additions disclosed."
+    }
+  ],
+  "findings": [
+    {
+      "id": "S1",
+      "kind": "optional_enhancement",
+      "material": false,
+      "evidence": "docs/WIKIBOOKS_ACQUISITION_20261018.md: no source-body runtime/hydration/FTS integration or real cohort prewrite yet.",
+      "remedy": "After semantic and notice review earn a real prewrite cohort and implement exact rendering/attribution and incremental indexing; use saved whole-source archive.",
+      "disposition": "DEFERRED",
+      "resolution_evidence": []
+    }
+  ],
+  "rationale": "Accept this implemented all-source acquisition package. It removes the metadata-only gap and keeps downstream admission fail-closed; it does not satisfy the overall searchable-delta mission."
+}

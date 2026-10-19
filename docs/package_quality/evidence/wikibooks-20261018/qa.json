@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "focused_tests": {
+    "pass": 7,
+    "fail": 0
+  },
+  "full_tests": {
+    "pass": 1427,
+    "skip": 26,
+    "fail": 0
+  },
+  "static": "PASS_FINAL_CANDIDATE",
+  "baseline_reconstruction_sha256": "b410d549925beb456dbdea55b90e4d6c349ea6bb5e5c9d68766c4359bb8a95a9",
+  "baseline_replay_identical": true,
+  "acquired": 3797,
+  "normalizedReviewCandidates": 1999,
+  "admissionReady": 0,
+  "productionDelta": 0,
+  "productionWrites": 0,
+  "source_archive": {
+    "filename": "Wikibooks_acquisition_20261018.tar.gz",
+    "bytes": 15922826,
+    "sha256": "c3b7a7c883474f842a57e70b1b1a7d6bc8a7bd1b42937febcaf71cd99815bf28",
+    "storage": "PRIVATE_OWNER_ARTIFACT__IDENTITY_IN_LANE_CHECKPOINT"
+  },
+  "repairs": [
+    "Initial synthetic prewrite fixture omitted the existing protectedPopulationAllowed planner field; fixed before freeze and 7/7 focused tests passed.",
+    "Pre-freeze inspection added source-hash and normalized-text replay to prevent altered candidate text reaching prewrite."
+  ],
+  "not_run": [
+    "Full semantic/translated dedup adjudication",
+    "Real cohort prewrite/capacity/quota validation",
+    "Protected-body runtime hydration/FTS integration",
+    "Production D1 population/indexing",
+    "Production search/detail acceptance",
+    "Deployment"
+  ],
+  "value": "Pipeline and durable source bodies delivered; net searchable product value remains 0."
+}

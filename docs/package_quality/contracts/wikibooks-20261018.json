@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "lane_id": "culinary-app",
+  "package_id": "wikibooks-20261018",
+  "base_commit": "8641c8b6d0034e3d105fed1d602093aedea95afd",
+  "author_session_id": "work-fe0edaeb37fa-20261018",
+  "goal_path": "docs/package_quality/goals/culinary-app/v1.json",
+  "adapter_path": "config/package_quality_plan_first_adapter.json",
+  "intent_provenance": [
+    "Owner CULINARY_P0_WIKIBOOKS_ACQUISITION_EXECUTE_V1, 2026-10-18",
+    "docs/ROADMAP.md"
+  ],
+  "outcome": "Acquire all Wikibooks pinned text and deliver conservative normalization plus reviewed-only protected prewrite adapter; unresolved admission remains HOLD.",
+  "contribution": "Eliminates metadata-only blocker and preserves all source bodies for one full cohort adjudication; does not claim searchable additions.",
+  "scope": [
+    "Source reader, parser, full baseline literal comparison and prewrite adapter",
+    "All-source acquisition evidence and private source archive",
+    "Embedded validation and exact checkpoint"
+  ],
+  "non_goals": [
+    "Production write authority or v8020 activation without earned admission",
+    "Recommendation promotion",
+    "PR434/Soyer/Brain/Barbecue changes"
+  ],
+  "inputs": [
+    "Exact live main",
+    "Wikibooks F2 discovery",
+    "Pinned v8019 reconstructed full baseline"
+  ],
+  "criteria": [
+    {
+      "id": "C1",
+      "description": "All-source revision-pinned text and talk acquisition with verified reusable cache.",
+      "goal_criteria": [
+        "CONTINUITY",
+        "OUTCOME"
+      ]
+    },
+    {
+      "id": "C2",
+      "description": "Conservative source-faithful normalization with attribution and explicit rights/extraction holds.",
+      "goal_criteria": [
+        "OUTCOME"
+      ]
+    },
+    {
+      "id": "C3",
+      "description": "Complete pinned baseline literal comparison; unresolved semantic/translated cases cannot reach reviewed prewrite.",
+      "goal_criteria": [
+        "OUTCOME"
+      ]
+    },
+    {
+      "id": "C4",
+      "description": "Deterministic validation, private persistence and explicit production gap; zero unauthorized writes.",
+      "goal_criteria": [
+        "CONTINUITY",
+        "OUTCOME"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "docs/package_quality/evidence/wikibooks-20261018/alignment.json",
+    "docs/package_quality/evidence/wikibooks-20261018/qa.json",
+    "docs/ROADMAP.md",
+    "docs/WIKIBOOKS_GATE_F_RIGHTS_AUDIT.md",
+    "docs/WIKIBOOKS_ACQUISITION_20261018.md",
+    "docs/package_quality/plans/wikibooks-20261018/plan.json",
+    "docs/package_quality/plans/wikibooks-20261018/review.json",
+    "docs/package_quality/plans/wikibooks-20261018/receipt.json",
+    "docs/package_quality/plans/wikibooks-20261018/trace.json",
+    "scripts/acquire-wikibooks-text.mjs",
+    "scripts/wikibooks-text-core.mjs",
+    "scripts/assess-wikibooks-text.mjs",
+    "scripts/wikibooks-prewrite-core.mjs",
+    "scripts/run-corpus-scale-step8g-ora-next-source-discovery.mjs",
+    "tests/wikibooks-text-acquisition.test.js",
+    "data/generated/wikibooks-20261018/artifact-hashes.json",
+    "data/generated/wikibooks-20261018/baseline-fingerprints.json.gz",
+    "data/generated/wikibooks-20261018/discovery.json",
+    "data/generated/wikibooks-20261018/acquisition-receipt.json",
+    "data/generated/wikibooks-20261018/assessment.json"
+  ],
+  "mandatory_knowledge_domains": [
+    "project_execution"
+  ],
+  "authority": "AUTO + VERIFY",
+  "human_decisions": [],
+  "assumptions": [
+    "Standard page licence is conditional; no blanket admission from screening."
+  ],
+  "dependencies": [
+    "Semantic/translated adjudication and downstream runtime/write gates remain unearned."
+  ],
+  "next_action": "Resolve the saved cohort semantic/translated and page-notice holds before real protected prewrite; do not reacquire source.",
+  "stop_boundary": "Material implementation PR publication terminal or stable required CI wait; checkpoint this lane only.",
+  "budget": {
+    "round": 1,
+    "max_rounds": 1,
+    "usage": "unknown"
+  },
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "stage_evidence": {
+    "align": [
+      "docs/package_quality/evidence/wikibooks-20261018/alignment.json"
+    ],
+    "build_qa": [
+      "docs/package_quality/evidence/wikibooks-20261018/qa.json"
+    ]
+  },
+  "plan_first": {
+    "plan_path": "docs/package_quality/plans/wikibooks-20261018/plan.json",
+    "review_path": "docs/package_quality/plans/wikibooks-20261018/review.json",
+    "receipt_path": "docs/package_quality/plans/wikibooks-20261018/receipt.json",
+    "trace_path": "docs/package_quality/plans/wikibooks-20261018/trace.json"
+  }
+}

@@ -277,6 +277,7 @@ function parseArgs(argv) {
     else if (arg.startsWith("--cc0=")) options.cc0 = arg.slice(6);
     else if (arg.startsWith("--out=")) options.output = arg.slice(6) || options.output;
     else if (arg.startsWith("--baseline-fingerprints=")) options.baselineFingerprints = arg.slice(24);
+    else if (arg.startsWith("--baseline-records=")) options.baselineRecords = arg.slice(19);
     else if (arg === "--historical-v8018") options.historicalV8018 = true;
     else throw new Error(`Unknown argument: ${arg}`);
   }
@@ -336,7 +337,7 @@ if (pins.forkrecipe !== FORKRECIPE_EXPECTED_COMMIT) throw new Error(`FORKRECIPE_
 if (pins.unitools !== UNITOOLS_EXPECTED_COMMIT) throw new Error(`UNITOOLS_PIN_MISMATCH_${pins.unitools}`);
 if (pins.cc0 !== CC0_EXPECTED_COMMIT) throw new Error(`CC0_PIN_MISMATCH_${pins.cc0}`);
 
-if (args.baselineFingerprints) {
+if (args.baselineFingerprints || args.baselineRecords) {
   for (const [key, root] of Object.entries(roots)) {
     if (execFileSync("git", ["-C", root, "status", "--porcelain"], { encoding: "utf8" }).trim()) throw new Error(`BASELINE_WORKTREE_DIRTY_${key}`);
   }
@@ -436,6 +437,14 @@ if (protectedBaseline.length !== expectedProtectedCount) throw new Error(`${acti
 
 // Offline acquisition consumers reuse this exact pinned full-corpus reconstruction.
 // Export metadata hashes only; recipe bodies stay in their source checkouts.
+// Explicit private offline export for semantic acquisition review. Never import
+// this body-bearing artifact into public runtime or a public generated bundle.
+if (args.baselineRecords) {
+  const output = resolve(args.baselineRecords);
+  await mkdir(resolve(output, ".."), { recursive: true });
+  await writeFile(output, JSON.stringify({ version: activeProtectedVersion, count: expectedProtectedCount, sourcePins: pins, records: protectedBaseline.map((recipe, index) => ({ index, ...fingerprintRecipe(recipe), recipe })) }, null, 2) + "\n");
+  process.exit(0);
+}
 if (args.baselineFingerprints) {
   const fingerprintPath = resolve(args.baselineFingerprints);
   await mkdir(resolve(fingerprintPath, ".."), { recursive: true });

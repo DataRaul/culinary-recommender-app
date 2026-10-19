@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "PLAN_ACCEPTED",
+  "plan_digest": "a1427379937bb80110a22dea3d3da844b1345664424e93cc95e142650347c3bf",
+  "review_digest": "6c82246ff726040286e8ec4bbd6830c86209b277f8a112bde7da6797d55f523e",
+  "roadmap_digest": "79bae1e19ab84bec68db66561511e0cf224141abf91ab6fad83dc4daf0a72cdf",
+  "goal_digest": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa",
+  "authority": "AUTO + VERIFY",
+  "session_id": "work-fe0edaeb37fa-20261018",
+  "assurance": "PROCEDURAL_SELF_REPORTED_PREBUILD"
+}

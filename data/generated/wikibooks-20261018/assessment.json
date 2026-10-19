@@ -1,0 +1,50 @@
+{
+  "schema": "WIKIBOOKS_ACQUISITION_TEXT_ASSESSMENT_V1",
+  "sourceAcquiredAt": "2026-10-18T11:51:55.070Z",
+  "discoverySha256": "4e08e2142e1e986e368d0f835352585312a2b310d22db007f81f810e02b5856f",
+  "sourceUniverseComplete": true,
+  "baseline": {
+    "version": "v8019",
+    "count": 22086,
+    "sourcePins": {
+      "ora": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+      "forkrecipe": "c32255266af39bd77444d39452f3df8088ac8fd9",
+      "unitools": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+      "cc0": "b12e481d1c220a13e0847a34e148d5872a16928e"
+    },
+    "sha256": "b410d549925beb456dbdea55b90e4d6c349ea6bb5e5c9d68766c4359bb8a95a9",
+    "wordingCoverage": 22083
+  },
+  "counts": {
+    "acquired": 3797,
+    "structurallyExtracted": 2803,
+    "standardTextPathScreenPass": 2422,
+    "normalizedReviewCandidates": 1999,
+    "heldAtExtractionOrRights": 1798,
+    "wordingMatchCandidates": 0,
+    "normalizedTitleMatchCandidates": 71,
+    "novelAdmitted": 0,
+    "indexedDelta": 0,
+    "productionWrites": 0
+  },
+  "holdReasonCounts": {
+    "TEMPLATE_REVIEW_REQUIRED": 620,
+    "TALK_REVIEW_REQUIRED": 856,
+    "NON_LIST_OR_NESTED_CONTENT": 212,
+    "SUBDIVIDED_RECIPE_SECTION": 547,
+    "UNSUPPORTED_WIKITEXT": 184,
+    "ADDITIONAL_NOTICE_REVIEW_REQUIRED": 417,
+    "AMBIGUOUS_RECIPE_SECTIONS": 51
+  },
+  "semanticDedupComplete": false,
+  "translatedDedupComplete": false,
+  "prewrite": "NOT_EARNED__PAGE_REVIEW_AND_SEMANTIC_DEDUP_REQUIRED",
+  "productionVersion": "v8019_UNCHANGED_NO_LIVE_PROBE",
+  "status": "PINNED_TEXT_ACQUIRED_AND_NORMALIZED__ADMISSION_HOLD",
+  "nextAction": "Review the cached normalized cohort and held notices; resolve full baseline semantic/translated equivalence before generating protected prewrite. Do not repeat source discovery or acquisition.",
+  "limitations": [
+    "Standard text notice screening is not a page-by-page legal opinion.",
+    "Literal wording excludes heterogeneous quantity fields and is not semantic deduplication.",
+    "No v8020 version, protected-body population, FTS writes, deployment or owner live tests have been performed."
+  ]
+}
