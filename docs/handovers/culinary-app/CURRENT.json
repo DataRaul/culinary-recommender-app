@@ -1,10 +1,10 @@
 {
-  "handover": "CULINARY_WIKIBOOKS_ACQUISITION_IMPLEMENTED_V2",
+  "handover": "CULINARY_WIKIBOOKS_PR438_MERGED_VERIFIED_V3",
   "date": "2026-10-19",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
   "source_of_truth": "Live GitHub main, PR state, CI and continuity-state CURRENT override this snapshot",
-  "main_sha": "015e609e56c104339e0f23873170d434faceb2c7",
+  "main_sha": "5364c6c8d0a1545fafce725a4d402da991c317a8",
   "open_prs": [
     428,
     429,
@@ -16,7 +16,7 @@
     "protectedRecipeCount": 22086,
     "ownerSearchRecipeCount": 22086
   },
-  "package_terminal": "IMPLEMENTATION_PUBLISHED__CI_PENDING__PRODUCT_MISSION_INCOMPLETE",
+  "package_terminal": "PR438_MERGED_VERIFIED__ADMISSION_HOLD__PRODUCT_MISSION_INCOMPLETE",
   "discovery": {
     "sourceFamily": "AdamBouhmad/open-recipe-archive pinned ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
     "baselineVersion": "v8019",
@@ -47,9 +47,10 @@
     "pagesDeployment": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
     "validatePublicV0": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
     "browserAcceptance": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
-    "productionPublicSmoke": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION"
+    "productionPublicSmoke": "HISTORICAL_PRIOR_HANDOVER_NOT_REVERIFIED_BY_INSTALLATION",
+    "githubPr438": "MERGED_VERIFIED_ON_MAIN_AT_5364c6c8d0a1545fafce725a4d402da991c317a8"
   },
-  "nextGate": "PR438_REQUIRED_CI_THEN_SAFE_MERGE",
+  "nextGate": "WIKIBOOKS_SAVED_COHORT_RIGHTS_SEMANTIC_ADJUDICATION",
   "guardrails": [
     "continue acquisition-first; ORA exhaustion is not programme completion",
     "rights/provenance fail closed",
@@ -71,8 +72,8 @@
     "equivalent_repair_cycles_max": 1,
     "canonical_ref": "continuity-state"
   },
-  "startup_instruction": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition.",
-  "status": "PR438_IMPLEMENTED__PINNED_VALIDATOR_PASS__CI_PENDING__ADMISSION_HOLD",
+  "startup_instruction": "PR438 package is terminal MERGED_VERIFIED. Stop this package after canonical checkpoint publication. The next independent package may execute the saved-cohort review with the inherited rights/dedup/cost/CI gates. Use the saved exact 3,797-page private Wikibooks archive and 1,999 normalized review candidates. Complete rights/page-notice and full semantic/translated equivalence adjudication against pinned v8019 (22,086) before earned real protected prewrite. Do not repeat acquisition, relax corpus gates, or touch unrelated lanes.",
+  "status": "PR438_MERGED_VERIFIED__WIKIBOOKS_ADMISSION_HOLD",
   "installation_verification": {
     "schema_version": 1,
     "project": "DataRaul/culinary-recommender-app",
@@ -292,8 +293,7 @@
       "Seven record-level origin/reuse-rights holds remain; six adaptations held",
       "Pending 84-pair source findings have not received package quality review; no additional review round authorized",
       "Original PR434 merge gates remain binding; no import or merge eligibility",
-      "Wikibooks source/admission, semantic/translated dedup, real prewrite, runtime and incremental FTS/product gates remain incomplete.",
-      "PR438 required CI and eligible merge pending."
+      "Wikibooks source/admission, semantic/translated dedup, real prewrite, runtime and incremental FTS/product gates remain incomplete."
     ],
     "failures": [
       "Historical shared-source catalog CI failure corrected; shared PR53 final CI PASS",
@@ -356,7 +356,7 @@
       "One equivalent repair cycle and one unchanged external recheck",
       "No paid service or application behavior change"
     ],
-    "next_action": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition.",
+    "next_action": "Use the saved exact 3,797-page private Wikibooks archive and 1,999 normalized review candidates. Complete rights/page-notice and full semantic/translated equivalence adjudication against pinned v8019 (22,086) before earned real protected prewrite. Do not repeat acquisition, relax corpus gates, or touch unrelated lanes.",
     "predecessor_sha256": "cf6ff1211d3217cea78f25710b565b7abe0aaaf9fc57ac69f2c0c1f3011c6e1f",
     "goal_contribution": "Whole source acquired and normalized with reviewed-only planner integration; net new searchable recipes remains 0.",
     "additional_cash_services_activated": false,
@@ -789,9 +789,10 @@
     "Actual same-chat five stages and genuine pinned validator pass for incremental draft assessment update only. Original PR434 merge gates not waived. CI: Iduns and ORA discovery pass; Validate public V0 still in progress at bounded final observation.",
     "2026-10-17 V20: final exact published-head CI all three triggered workflows SUCCESS.",
     "V20 continuation source-inspected all 84 retained ranked pairs. Pending findings distinguish cooked porridge from cold-soaked oats, breadcrumb meat dishes from sandwiches, optional oven warming from pancake baking, and close hummus/banana variants from certified equivalence. No full semantic or translated clearance; seven rights holds/six adaptations remain.",
-    "2026-10-18 Wikibooks: 3797 pinned texts acquired, 1999 normalized review candidates, 1798 extraction/notice holds, 0 admitted/searchable; PR438 implemented."
+    "2026-10-18 Wikibooks: 3797 pinned texts acquired, 1999 normalized review candidates, 1798 extraction/notice holds, 0 admitted/searchable; PR438 implemented.",
+    "2026-10-19 PR438 at exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 passed Validate public V0, ORA discovery and Iduns measurement CI; mergeability and current-main disjoint changed paths verified; merged into main 5364c6c8d0a1545fafce725a4d402da991c317a8. 3,797 Wikibooks pages cached, 1,999 normalized review candidates, 0 admitted/searchable."
   ],
-  "next_action": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition.",
+  "next_action": "Use the saved exact 3,797-page private Wikibooks archive and 1,999 normalized review candidates. Complete rights/page-notice and full semantic/translated equivalence adjudication against pinned v8019 (22,086) before earned real protected prewrite. Do not repeat acquisition, relax corpus gates, or touch unrelated lanes.",
   "open_prs_at_reconciliation": [
     428,
     429,
@@ -1003,7 +1004,7 @@
       "next_action": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition."
     }
   ],
-  "owner_action_now": "NONE. No manual recipe processing or additional approval requested.",
+  "owner_action_now": "NONE. PR438 safely merged; no production or recipe admission authorized.",
   "same_chat_closeout": {
     "pr": 430,
     "url": "https://github.com/DataRaul/culinary-recommender-app/pull/430",
@@ -2023,7 +2024,7 @@
       "merge_eligible": false
     }
   },
-  "checkpoint_timestamp_utc": "2026-10-18T12:03:47.436Z",
+  "checkpoint_timestamp_utc": "2026-10-19T20:18:30Z",
   "historical_context_rule": "Pre-Wikibooks PR434/432/433 objects and embedded next-action strings are preserved history and holds. Current Wikibooks package, latest owner acquisition-first steering, live main and root next_action govern. No prior budget or rights gate waived.",
   "completion_this_cycle": {
     "published_head": "f59096ff378bd9ce857acbe84f2cd8ed390520e0",
@@ -2109,7 +2110,7 @@
       "candidate_digest": "202fbaa1bb0be131a43a75e71a131cc1a316e87d87b24b448339da582bf1bcf3",
       "review_mode": "SAME_CHAT_SEQUENTIAL",
       "independent": false,
-      "ci": "THREE_CHECKS_SUCCESS__VALIDATE_IN_PROGRESS",
+      "ci": "ALL_THREE_TRIGGERED_WORKFLOWS_SUCCESS",
       "checks": [
         {
           "name": "Cloudflare Pages",
@@ -2131,8 +2132,8 @@
         },
         {
           "name": "validate",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "url": "https://github.com/DataRaul/culinary-recommender-app/actions/runs/39125621131/job/117670006232"
         }
       ]
@@ -2148,7 +2149,11 @@
     "recommendation_promotions": 0,
     "paid_services": 0,
     "owner_action": "NONE",
-    "ci_wait_rule": "One bounded recheck consumed in this cycle; no polling loop. Next cycle rechecks exact head and merges only after required CI passes."
+    "ci_wait_rule": "Completed; all three required workflow runs succeeded on exact reviewed head. Do not recheck this package.",
+    "merge_sha": "5364c6c8d0a1545fafce725a4d402da991c317a8",
+    "pr_status": "MERGED_VERIFIED",
+    "main_verified_sha": "5364c6c8d0a1545fafce725a4d402da991c317a8",
+    "next_action": "Use the saved exact 3,797-page private Wikibooks archive and 1,999 normalized review candidates. Complete rights/page-notice and full semantic/translated equivalence adjudication against pinned v8019 (22,086) before earned real protected prewrite. Do not repeat acquisition, relax corpus gates, or touch unrelated lanes."
   },
   "portfolio_integration_closeout_20261019": {
     "status": "MERGED_VERIFIED",
