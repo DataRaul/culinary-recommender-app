@@ -1,10 +1,10 @@
 {
   "handover": "CULINARY_WIKIBOOKS_ACQUISITION_IMPLEMENTED_V2",
-  "date": "2026-10-18",
+  "date": "2026-10-19",
   "timezone": "Atlantic/Canary",
   "repository": "DataRaul/culinary-recommender-app",
   "source_of_truth": "Live GitHub main, PR state, CI and continuity-state CURRENT override this snapshot",
-  "main_sha": "8641c8b6d0034e3d105fed1d602093aedea95afd",
+  "main_sha": "015e609e56c104339e0f23873170d434faceb2c7",
   "open_prs": [
     428,
     429,
@@ -121,8 +121,8 @@
       "path": "docs/package_quality/goals/culinary-app/v1.json",
       "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
     },
-    "package_ref": "docs/package_quality/contracts/wikibooks-20261018.json",
-    "status": "PR438_IMPLEMENTED__PINNED_VALIDATOR_PASS__CI_PENDING__ADMISSION_HOLD",
+    "package_ref": "docs/package_quality/contracts/portfolio-integration-closeout-20261019.json",
+    "status": "INTEGRATION_MERGED_VERIFIED__UNDERLYING_LANE_HOLDS_RETAINED",
     "last_evidence": [
       "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json",
       "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
@@ -160,7 +160,15 @@
       "docs/package_quality/evidence/wikibooks-20261018/critic.json",
       "docs/package_quality/evidence/wikibooks-20261018/synthesis.json",
       "data/generated/wikibooks-20261018/assessment.json",
-      "docs/WIKIBOOKS_ACQUISITION_20261018.md"
+      "docs/WIKIBOOKS_ACQUISITION_20261018.md",
+      "docs/package_quality/evidence/portfolio-integration-closeout-20261019/packet.json",
+      "docs/package_quality/evidence/portfolio-integration-closeout-20261019/supporter.json",
+      "docs/package_quality/evidence/portfolio-integration-closeout-20261019/critic.json",
+      "docs/package_quality/evidence/portfolio-integration-closeout-20261019/synthesis.json",
+      "docs/package_quality/evidence/portfolio-integration-closeout-20261019/qa.json",
+      "docs/package_quality/evidence/portfolio-integration-closeout-20261019/authority.json",
+      "https://github.com/DataRaul/culinary-recommender-app/pull/437",
+      "https://github.com/DataRaul/culinary-recommender-app/actions/runs/39316362380"
     ],
     "reviews": [
       {
@@ -262,6 +270,21 @@
         "role": "synthesis",
         "path": "docs/package_quality/evidence/wikibooks-20261018/synthesis.json",
         "identity": "work-fe0edaeb37fa-20261018; actual same chat, independent:false"
+      },
+      {
+        "role": "supporter",
+        "path": "docs/package_quality/evidence/portfolio-integration-closeout-20261019/supporter.json",
+        "identity": "Actual /root:b5413e2aa6d0 same-chat pass; independent false"
+      },
+      {
+        "role": "critic",
+        "path": "docs/package_quality/evidence/portfolio-integration-closeout-20261019/critic.json",
+        "identity": "Actual /root:b5413e2aa6d0 same-chat pass; independent false"
+      },
+      {
+        "role": "synthesis",
+        "path": "docs/package_quality/evidence/portfolio-integration-closeout-20261019/synthesis.json",
+        "identity": "Actual /root:b5413e2aa6d0 same-chat pass; independent false"
       }
     ],
     "unfinished_criteria": [
@@ -319,12 +342,13 @@
       "All 3797 pinned source pages and talk snapshots acquired; no per-chat recipe cap.",
       "Held source bodies stored privately; public Git contains metadata and implementation only.",
       "1999 normalized candidates do not imply rights-cleared novel recipes; all admission gates remain.",
-      "Distinct Wikibooks package at unchanged round 1/max 1; PR434/432 budgets and holds preserved."
+      "Distinct Wikibooks package at unchanged round 1/max 1; PR434/432 budgets and holds preserved.",
+      "Approved portfolio integration closed after pinned same-chat reviews and exact-head required CI; no source/data/empirical hold or old package budget changed."
     ],
     "budget": {
       "round": 1,
       "max_rounds": 1,
-      "usage": "unknown"
+      "usage": "unknown; first recorded integration review only; historical budgets retained"
     },
     "constraints": [
       "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
@@ -333,13 +357,13 @@
       "No paid service or application behavior change"
     ],
     "next_action": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition.",
-    "predecessor_sha256": "7b477f244dfdff8a809bb363b44025c4646fa5f367eac90751bcacee1b20058b",
+    "predecessor_sha256": "cf6ff1211d3217cea78f25710b565b7abe0aaaf9fc57ac69f2c0c1f3011c6e1f",
     "goal_contribution": "Whole source acquired and normalized with reviewed-only planner integration; net new searchable recipes remains 0.",
     "additional_cash_services_activated": false,
     "review_mode": "SAME_CHAT_SEQUENTIAL",
     "independent": false,
-    "session_id": "work-fe0edaeb37fa-20261018",
-    "candidate_digest": "202fbaa1bb0be131a43a75e71a131cc1a316e87d87b24b448339da582bf1bcf3",
+    "session_id": "/root:b5413e2aa6d0",
+    "candidate_digest": "a770d623f1fea70b20fef5ae96c5c614e26884eddd5215185efcf85fbb0f0b86",
     "remaining_review_rounds": 0,
     "package_history": [
       {
@@ -424,6 +448,317 @@
       "reviews": "ACTUAL_SAME_CHAT_SUPPORTER_CRITIC_SYNTHESIS_PASS_FOR_INCREMENTAL_ASSESSMENT",
       "next_action": "PR434 only. Published head f59096ff378bd9ce857acbe84f2cd8ed390520e0 has all 3 triggered workflows SUCCESS. Preserve pending_ranked_adjudication as UNREVIEWED working evidence: 84/84 retained ranked pairs source-inspected, no full semantic/translated PASS. Do not repeat baseline reconstruction, scoring, tests or unchanged CI. No new review round or PR publication is authorized by continue: inherited round 1/max 1 is consumed. Remaining title/alias shortlist and original-language/quantity/equivalence review remain incomplete; do not mistake all ranks for exhaustive novelty. Seven origin/reuse holds and six named adaptations remain. Keep PR434 draft and zero imports. Before a new PR assessment publication, obtain explicit bounded additional review authority; before rights clearance obtain record-specific origin/permission evidence. Do not contact authors, waive original gates, start successors or change other lanes.",
       "candidate_digest": "2f4756bddd485b97d963f41846dd5fa2048ebf8033122c1f59094045bc3fa48a"
+    },
+    "historical_preintegration_quality": {
+      "schema_version": 1,
+      "goal_ref": {
+        "path": "docs/package_quality/goals/culinary-app/v1.json",
+        "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
+      },
+      "package_ref": "docs/package_quality/contracts/wikibooks-20261018.json",
+      "status": "PR438_IMPLEMENTED__PINNED_VALIDATOR_PASS__CI_PENDING__ADMISSION_HOLD",
+      "last_evidence": [
+        "docs/package_quality/evidence/non-ora-lineage-discovery/alignment.json",
+        "docs/package_quality/evidence/non-ora-lineage-discovery/qa.json",
+        "docs/package_quality/evidence/non-ora-lineage-discovery/source-pin.json",
+        "docs/package_quality/evidence/non-ora-lineage-discovery/packet.json",
+        "docs/package_quality/evidence/non-ora-lineage-discovery/supporter.json",
+        "docs/package_quality/evidence/non-ora-lineage-discovery/critic.json",
+        "docs/package_quality/evidence/non-ora-lineage-discovery/synthesis.json",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/alignment.json",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/qa.json",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/packet.json",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/supporter.json",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/critic.json",
+        "docs/package_quality/evidence/quality-enforcement-owner-report/synthesis.json",
+        "tests/quality-owner-evidence.test.js",
+        "tests/quality-pr-gate-integration.test.py",
+        "docs/package_quality/evidence/hochipants-assessment/alignment.json",
+        "docs/package_quality/evidence/hochipants-assessment/qa.json",
+        "docs/package_quality/evidence/hochipants-assessment/packet.json",
+        "docs/package_quality/evidence/hochipants-assessment/supporter.json",
+        "docs/package_quality/evidence/hochipants-assessment/critic.json",
+        "docs/package_quality/evidence/hochipants-assessment/synthesis.json",
+        "docs/package_quality/evidence/hochipants-origin-review/alignment.json",
+        "docs/package_quality/evidence/hochipants-origin-review/qa.json",
+        "docs/package_quality/evidence/hochipants-origin-review/packet.json",
+        "docs/package_quality/evidence/hochipants-origin-review/supporter.json",
+        "docs/package_quality/evidence/hochipants-origin-review/critic.json",
+        "docs/package_quality/evidence/hochipants-origin-review/synthesis.json",
+        "data/generated/step8g/hochipants-semantic-ranked-matches.json",
+        "data/generated/step8g/hochipants-origin-semantic-review.json",
+        "docs/package_quality/evidence/wikibooks-20261018/alignment.json",
+        "docs/package_quality/evidence/wikibooks-20261018/qa.json",
+        "docs/package_quality/evidence/wikibooks-20261018/packet.json",
+        "docs/package_quality/evidence/wikibooks-20261018/supporter.json",
+        "docs/package_quality/evidence/wikibooks-20261018/critic.json",
+        "docs/package_quality/evidence/wikibooks-20261018/synthesis.json",
+        "data/generated/wikibooks-20261018/assessment.json",
+        "docs/WIKIBOOKS_ACQUISITION_20261018.md"
+      ],
+      "reviews": [
+        {
+          "role": "supporter",
+          "path": "docs/package_quality/evidence/concurrent-lanes/supporter.json",
+          "identity": "Exact candidate report on merged main; inspect before treating integration as reviewed."
+        },
+        {
+          "role": "critic",
+          "path": "docs/package_quality/evidence/concurrent-lanes/critic.json",
+          "identity": "Exact candidate report on merged main; inspect before treating integration as reviewed."
+        },
+        {
+          "role": "supporter",
+          "path": "docs/package_quality/evidence/same-chat-closeout/supporter.json",
+          "identity": "Same actual active /root chat, independent:false; local correlation label, opaque host ID/model build unavailable."
+        },
+        {
+          "role": "critic",
+          "path": "docs/package_quality/evidence/same-chat-closeout/critic.json",
+          "identity": "Same actual active /root chat, independent:false; local correlation label, opaque host ID/model build unavailable."
+        },
+        {
+          "role": "synthesis",
+          "path": "docs/package_quality/evidence/same-chat-closeout/synthesis.json",
+          "identity": "Same actual active /root chat, independent:false; local correlation label, opaque host ID/model build unavailable."
+        },
+        {
+          "role": "supporter",
+          "path": "docs/package_quality/evidence/non-ora-lineage-discovery/supporter.json",
+          "identity": "Same actual active /root chat in workspace 415526c273d0; independent:false; opaque host identity and exact model build unavailable."
+        },
+        {
+          "role": "critic",
+          "path": "docs/package_quality/evidence/non-ora-lineage-discovery/critic.json",
+          "identity": "Same actual active /root chat in workspace 415526c273d0; independent:false; opaque host identity and exact model build unavailable."
+        },
+        {
+          "role": "synthesis",
+          "path": "docs/package_quality/evidence/non-ora-lineage-discovery/synthesis.json",
+          "identity": "Same actual active /root chat in workspace 415526c273d0; independent:false; opaque host identity and exact model build unavailable."
+        },
+        {
+          "role": "supporter",
+          "path": "docs/package_quality/evidence/quality-enforcement-owner-report/supporter.json",
+          "identity": "Actual same conversation, independent:false; PASS reviewed reporting repair"
+        },
+        {
+          "role": "critic",
+          "path": "docs/package_quality/evidence/quality-enforcement-owner-report/critic.json",
+          "identity": "Actual same conversation, independent:false; HOLD on missing actual pinned validator"
+        },
+        {
+          "role": "synthesis",
+          "path": "docs/package_quality/evidence/quality-enforcement-owner-report/synthesis.json",
+          "identity": "Actual same conversation, independent:false; HOLD no merge authority"
+        },
+        {
+          "role": "supporter",
+          "path": "docs/package_quality/evidence/hochipants-assessment/supporter.json",
+          "identity": "Actual work-0886d49b5e7a-root, SAME_CHAT_SEQUENTIAL, independent:false"
+        },
+        {
+          "role": "critic",
+          "path": "docs/package_quality/evidence/hochipants-assessment/critic.json",
+          "identity": "Actual work-0886d49b5e7a-root, SAME_CHAT_SEQUENTIAL, independent:false"
+        },
+        {
+          "role": "synthesis",
+          "path": "docs/package_quality/evidence/hochipants-assessment/synthesis.json",
+          "identity": "Actual work-0886d49b5e7a-root, SAME_CHAT_SEQUENTIAL, independent:false"
+        },
+        {
+          "role": "supporter",
+          "path": "docs/package_quality/evidence/hochipants-origin-review/supporter.json",
+          "identity": "work-e35e83d5b388-root; actual same chat, independent:false; incremental assessment only"
+        },
+        {
+          "role": "critic",
+          "path": "docs/package_quality/evidence/hochipants-origin-review/critic.json",
+          "identity": "work-e35e83d5b388-root; actual same chat, independent:false; incremental assessment only"
+        },
+        {
+          "role": "synthesis",
+          "path": "docs/package_quality/evidence/hochipants-origin-review/synthesis.json",
+          "identity": "work-e35e83d5b388-root; actual same chat, independent:false; incremental assessment only"
+        },
+        {
+          "role": "supporter",
+          "path": "docs/package_quality/evidence/wikibooks-20261018/supporter.json",
+          "identity": "work-fe0edaeb37fa-20261018; actual same chat, independent:false"
+        },
+        {
+          "role": "critic",
+          "path": "docs/package_quality/evidence/wikibooks-20261018/critic.json",
+          "identity": "work-fe0edaeb37fa-20261018; actual same chat, independent:false"
+        },
+        {
+          "role": "synthesis",
+          "path": "docs/package_quality/evidence/wikibooks-20261018/synthesis.json",
+          "identity": "work-fe0edaeb37fa-20261018; actual same chat, independent:false"
+        }
+      ],
+      "unfinished_criteria": [
+        "Full semantic and translated deduplication not established; title/alias and original-language equivalence remain incomplete",
+        "Seven record-level origin/reuse-rights holds remain; six adaptations held",
+        "Pending 84-pair source findings have not received package quality review; no additional review round authorized",
+        "Original PR434 merge gates remain binding; no import or merge eligibility",
+        "Wikibooks source/admission, semantic/translated dedup, real prewrite, runtime and incremental FTS/product gates remain incomplete.",
+        "PR438 required CI and eligible merge pending."
+      ],
+      "failures": [
+        "Historical shared-source catalog CI failure corrected; shared PR53 final CI PASS",
+        "PR430 build: unconditional separate-session handover text repaired and regression checked before freeze.",
+        "PR430 build: stale staged base/session reconciled through preserved-history active successor contract before freeze.",
+        "Initial shared unittest invocation failed import-path setup before tests ran; canonical PYTHONPATH=scripts invocation passed.",
+        "Pre-freeze findings: 223 structural versus 226 stored baseline reconciled; extensionless/root recipe omissions prevented. Both resolved and checked on frozen candidate; no review repair round consumed.",
+        "PR432 static Critic finding G432-1: standalone owner report can mark REVIEWED despite HOLD Supporter/Critic verdict; no repair authorized without frozen QA route.",
+        "G432-2 actual pinned source not executable with available shell network; simulated checker test is insufficient for publication.",
+        "G432-4 branch-protection API 403, required check unverified.",
+        "PR433 build QA: duplicate full validation accidentally started; no further duplicate testing needed.",
+        "State ref fetched into FETCH_HEAD by shallow clone; origin/continuity-state alias absent. Resolved locator using actual fetched head without a new network retry.",
+        "PR434 terminal git push had no credentials; authenticated GitHub connector published exact identical tree with expected-head lease and force=false. No access change required.",
+        "PR434 finite multilingual retrieval and selected manual inspection do not establish exhaustive novelty. Seven origin attestations remain absent; original merge gate remains HOLD.",
+        "Checkpoint preparation first rejected historical continuity-state adapter pin; live-main verification worktree initially lacked lane directories, which were provisioned from exact state snapshot. No state governance files changed.",
+        "Wikibooks synthetic planner fixture omitted existing protectedPopulationAllowed field; corrected before freeze; focused/full tests passed.",
+        "Shell git push had no credentials; connected publisher verified 23 blobs and identical reviewed tree."
+      ],
+      "decisions": [
+        "Owner-selected pilot limited to Market Lab and Culinary",
+        "Existing subscription/native review sessions; no paid API or scheduled quality service",
+        "Installation and comparative efficacy are separate completion claims",
+        "Separate lane pairs; shared publication serialized with expected-head lease; no automatic chat injection",
+        "Owner explicitly selected SAME_CHAT_SEQUENTIAL; no separate reviewer chats or background launcher.",
+        "Original staged contract and static evidence retained; new active contract preserves all four criteria, goal v2 and round 1/max 1.",
+        "Two material build findings resolved; optional comparative effectiveness measurement deferred without a reliability claim.",
+        "Required final-SHA CI passed before merge; reviewed full Git tree verified against merged main; state publication restricted to app pair.",
+        "Selected one non-ORA upstream lineage opportunity under existing acquisition-first authority; PR428/429 remain untouched.",
+        "Baseline includes all 226 stored source files; preserve two malformed-placement exceptions.",
+        "Source declaration only; no blanket rights clearance and no safety metadata inferred.",
+        "Distinct discovery contract uses round 1/max 1; prior PR430 exhausted budget remains closed in history.",
+        "2026-10-15: kept PR432 draft and Based Cooking stopped; no fabricated review evidence or CI/merge status; admin branch protection access unavailable.",
+        "PR432 report defect resolved, same-chat Supporter PASS/Critic HOLD/Synthesis HOLD; remain draft and do not merge.",
+        "User V12 supersedes stale PR432-only continuation. Acquisition work resumes; PR432 HOLD and exhausted budget preserved.",
+        "PR433 is a distinct bounded acquisition package under unchanged round 1/max 1 cap.",
+        "No source bodies, D1/runtime or other-lane changes; assessment reads pinned Git objects.",
+        "PR433 merged at 78daee797184d31737c1ab215b5e37b0a7345042 after four successful workflows; merged Git tree exactly equals reviewed 252c23a616d90c99f1acfba6895a5a24c1d750e5. No recipe added.",
+        "PR434 first actual final assessment review round uses unchanged adapter round 1/max 1; no prior PR434 final reports existed. PR432 exhausted budget remains untouched.",
+        "Incremental assessment validation does not replace original full-semantic/rights mission; publish only to existing draft PR, no merge or admission.",
+        "One bounded new-head CI recheck: two workflows complete successfully, Validate remains in progress; checkpoint and STOP without polling.",
+        "Checkpoint checked with live-main adapter 2e55b320c88df7fa75eaaf47113184ba44f5bb8d and exact state CURRENT/PREVIOUS from e4570bae228818c7d50e120efae51ad833ec1292. Only the validated lane pair may be published.",
+        "Continuation V20 checked final published-head CI once: all three triggered workflows SUCCESS; did not rerun unchanged tests or reconstruction.",
+        "Inspected normalized ingredient and method text for every retained ranked pair (84/84); preserve as pending working evidence inside own-lane checkpoint only, not as a reviewed PR assessment.",
+        "Inherited round 1/max 1 and remaining rounds 0 preserved. No new same-chat final review, PR update, adapter/contract change, import or merge performed.",
+        "Normalized historical English/bilingual records are not an original-language fidelity audit; uninspected alias hits and unknown recall keep exhaustive translated novelty on HOLD.",
+        "All 3797 pinned source pages and talk snapshots acquired; no per-chat recipe cap.",
+        "Held source bodies stored privately; public Git contains metadata and implementation only.",
+        "1999 normalized candidates do not imply rights-cleared novel recipes; all admission gates remain.",
+        "Distinct Wikibooks package at unchanged round 1/max 1; PR434/432 budgets and holds preserved."
+      ],
+      "budget": {
+        "round": 1,
+        "max_rounds": 1,
+        "usage": "unknown"
+      },
+      "constraints": [
+        "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
+        "One bounded package; full continuity handover; STOP",
+        "One equivalent repair cycle and one unchanged external recheck",
+        "No paid service or application behavior change"
+      ],
+      "next_action": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition.",
+      "predecessor_sha256": "7b477f244dfdff8a809bb363b44025c4646fa5f367eac90751bcacee1b20058b",
+      "goal_contribution": "Whole source acquired and normalized with reviewed-only planner integration; net new searchable recipes remains 0.",
+      "additional_cash_services_activated": false,
+      "review_mode": "SAME_CHAT_SEQUENTIAL",
+      "independent": false,
+      "session_id": "work-fe0edaeb37fa-20261018",
+      "candidate_digest": "202fbaa1bb0be131a43a75e71a131cc1a316e87d87b24b448339da582bf1bcf3",
+      "remaining_review_rounds": 0,
+      "package_history": [
+        {
+          "package_ref": "docs/package_quality/contracts/same-chat-sequential-adoption-closeout-v2.json",
+          "status": "PR430_MERGED__SEQUENTIALLY_REVIEWED__REQUIRED_CI_PASS",
+          "candidate_digest": "f400bd4d9408696b37293c31739df981ddb3eb3370eba059c02fdecc59592597",
+          "budget": {
+            "round": 1,
+            "max_rounds": 1,
+            "usage": "unknown"
+          },
+          "remaining_review_rounds": 0,
+          "note": "Closed PR430 workflow installation remains historical; this is a distinct authorized discovery package with adapter cap unchanged."
+        },
+        {
+          "package_ref": "docs/package_quality/contracts/non-ora-lineage-discovery-v1.json",
+          "status": "PR431_MERGED",
+          "budget": {
+            "round": 1,
+            "max_rounds": 1,
+            "usage": "unknown"
+          },
+          "candidate_digest": "f59d70c9eaedb44bc070f49bbeb191bf128f9d1c82053c6acee3553b3e9dae1d",
+          "remaining_review_rounds": 0,
+          "note": "Closed PR431 distinct package; pre-existing budgets preserved."
+        },
+        {
+          "package_ref": "docs/package_quality/contracts/quality-enforcement-owner-report-v1.json",
+          "status": "PR432_DRAFT__SAME_CHAT_CRITIC_HOLD__PINNED_VALIDATOR_MISSING",
+          "candidate_digest": "4a6d24efb4961a96da4898b6c927a1d90aa9f0feb9e8c98f647ce09a864de0ef",
+          "budget": {
+            "round": 1,
+            "max_rounds": 1,
+            "usage": "unknown"
+          },
+          "remaining_review_rounds": 0,
+          "note": "PR432 remains HOLD and exhausted. Latest handover V12 authorizes acquisition package independently; no PR432 gate waived."
+        },
+        {
+          "package_ref": "docs/package_quality/contracts/hochipants-assessment-v1.json",
+          "status": "PR433_MERGED__ALL_REQUIRED_CI_PASS",
+          "candidate_digest": "4addcc051bcc0c24b4de05a78e357a28245a4bb62f3c00d99f7241888f970b34",
+          "budget": {
+            "round": 1,
+            "max_rounds": 1,
+            "usage": "unknown"
+          },
+          "remaining_review_rounds": 0,
+          "note": "Historical PR433 completed package preserved while PR434 active incremental assessment is recorded; no budget reset."
+        },
+        {
+          "package_ref": "docs/package_quality/contracts/hochipants-origin-review-v1.json",
+          "status": "PUBLISHED_ASSESSMENT_CI_PASS__PENDING_RESEARCH_UNREVIEWED__BUDGET_EXHAUSTED__ORIGINAL_GATES_HOLD",
+          "budget": {
+            "round": 1,
+            "max_rounds": 1,
+            "usage": "unknown"
+          },
+          "remaining_review_rounds": 0,
+          "note": "PR434 remains historical/draft/held. Owner selects a distinct Wikibooks source package; no prior budget reset."
+        }
+      ],
+      "pending_package": "quality-enforcement-owner-report-v1",
+      "pending_status": "CRITIC_HOLD__UNMERGED",
+      "active_pr434": {
+        "goal_ref": {
+          "path": "docs/package_quality/goals/culinary-app/v1.json",
+          "sha256": "5aa54801db871731b17e857113f5b9f8d99dfdb9208f9f4548e8ccd1abfff1fa"
+        },
+        "revision": "f59096ff378bd9ce857acbe84f2cd8ed390520e0",
+        "predecessor_sha256": "1a58068df5d7ed78beca9255d5358c89f1664f626be95538360fb7b67ec5caca",
+        "review_mode": "SAME_CHAT_SEQUENTIAL",
+        "independent": false,
+        "review_budget": "FIRST_FINAL_INCREMENTAL_ASSESSMENT_ROUND_CONSUMED__ROUND_1_MAX_1__NO_RESET",
+        "source_artifacts": [
+          "data/generated/step8g/hochipants-origin-semantic-review.json",
+          "docs/HOCHIPANTS_ORIGIN_SEMANTIC_REVIEW.md",
+          "tests/hochipants-origin-semantic-review.test.js",
+          "data/generated/step8g/hochipants-semantic-ranked-matches.json"
+        ],
+        "quality_gate": "PINNED_ASSESSMENT_VALIDATOR_PASS__ORIGINAL_SEMANTIC_RIGHTS_MERGE_HOLD",
+        "reviews": "ACTUAL_SAME_CHAT_SUPPORTER_CRITIC_SYNTHESIS_PASS_FOR_INCREMENTAL_ASSESSMENT",
+        "next_action": "PR434 only. Published head f59096ff378bd9ce857acbe84f2cd8ed390520e0 has all 3 triggered workflows SUCCESS. Preserve pending_ranked_adjudication as UNREVIEWED working evidence: 84/84 retained ranked pairs source-inspected, no full semantic/translated PASS. Do not repeat baseline reconstruction, scoring, tests or unchanged CI. No new review round or PR publication is authorized by continue: inherited round 1/max 1 is consumed. Remaining title/alias shortlist and original-language/quantity/equivalence review remain incomplete; do not mistake all ranks for exhaustive novelty. Seven origin/reuse holds and six named adaptations remain. Keep PR434 draft and zero imports. Before a new PR assessment publication, obtain explicit bounded additional review authority; before rights clearance obtain record-specific origin/permission evidence. Do not contact authors, waive original gates, start successors or change other lanes.",
+        "candidate_digest": "2f4756bddd485b97d963f41846dd5fa2048ebf8033122c1f59094045bc3fa48a"
+      }
     }
   },
   "schema_version": 1,
@@ -624,6 +959,47 @@
       "observed_state_head": "fffde9eaa6cd9f7edb7026dd197b79f3794640f3",
       "package": "wikibooks-20261018",
       "result": "PR438_IMPLEMENTED__PINNED_VALIDATOR_PASS__CI_PENDING__ADMISSION_HOLD",
+      "next_action": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition."
+    },
+    {
+      "event_id": "culinary-recommender-app:culinary-app:portfolio-integration-20261019",
+      "timestamp": "2026-10-19T20:07:27.525945+00:00",
+      "lane_id": "culinary-app",
+      "predecessor_sha256": "cf6ff1211d3217cea78f25710b565b7abe0aaaf9fc57ac69f2c0c1f3011c6e1f",
+      "observed_main": "015e609e56c104339e0f23873170d434faceb2c7",
+      "observed_state_head": "0c9ca93dd87bf4df8e1a6620c7eab5c6e2a4c7a9",
+      "package": "portfolio-integration-closeout-20261019",
+      "event": "PORTFOLIO_INTEGRATION_MERGED_VERIFIED",
+      "result": {
+        "status": "MERGED_VERIFIED",
+        "pr": 437,
+        "url": "https://github.com/DataRaul/culinary-recommender-app/pull/437",
+        "reviewed_head": "f7654ba8358043b395f7bfe53846272cde59a538",
+        "merge_sha": "015e609e56c104339e0f23873170d434faceb2c7",
+        "required_ci": {
+          "run": 39316362380,
+          "conclusion": "success"
+        },
+        "shared_core_pin": "6a21ad1a9b1ed854d6f53b60fd3219dc50a5a02b",
+        "shared_checker_sha256": "25896cc001d1dae66b400f346daefb65bd01600ccaae05d71f7d404ed56d8f6f",
+        "review_mode": "SAME_CHAT_SEQUENTIAL",
+        "independent": false,
+        "review_session": "/root:b5413e2aa6d0",
+        "activation": "PROSPECTIVE_NEW_PACKAGES_ONLY",
+        "business_effectiveness": "VALUE_NOT_YET_MEASURED; assess through subsequent real delivery",
+        "owner_action_now": "NONE",
+        "data_writes": 0,
+        "historical_budgets_reset": false,
+        "underlying_lane_next_action": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition.",
+        "policy_pr": {
+          "pr": 436,
+          "merge_sha": "dded9ec9aa6b3249e0dba322972e259f279663c3",
+          "reviewed_head": "2e4183f99752cc4514b8978473b34ab5b29bcdbc",
+          "ci": 39315855389
+        },
+        "consumer_wrapper_chain": "PORTFOLIO_LANE_VALUE_GATE_PASS then SEQUENTIALLY_REVIEWED_READY_FOR_REQUIRED_CI on synthetic fixture; actual CI success separately recorded",
+        "new_packages": "Invoke portfolio adapter and freeze decision/policy/adapter; already-open packages retain original selection and budget"
+      },
       "next_action": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition."
     }
   ],
@@ -1773,5 +2149,35 @@
     "paid_services": 0,
     "owner_action": "NONE",
     "ci_wait_rule": "One bounded recheck consumed in this cycle; no polling loop. Next cycle rechecks exact head and merges only after required CI passes."
+  },
+  "portfolio_integration_closeout_20261019": {
+    "status": "MERGED_VERIFIED",
+    "pr": 437,
+    "url": "https://github.com/DataRaul/culinary-recommender-app/pull/437",
+    "reviewed_head": "f7654ba8358043b395f7bfe53846272cde59a538",
+    "merge_sha": "015e609e56c104339e0f23873170d434faceb2c7",
+    "required_ci": {
+      "run": 39316362380,
+      "conclusion": "success"
+    },
+    "shared_core_pin": "6a21ad1a9b1ed854d6f53b60fd3219dc50a5a02b",
+    "shared_checker_sha256": "25896cc001d1dae66b400f346daefb65bd01600ccaae05d71f7d404ed56d8f6f",
+    "review_mode": "SAME_CHAT_SEQUENTIAL",
+    "independent": false,
+    "review_session": "/root:b5413e2aa6d0",
+    "activation": "PROSPECTIVE_NEW_PACKAGES_ONLY",
+    "business_effectiveness": "VALUE_NOT_YET_MEASURED; assess through subsequent real delivery",
+    "owner_action_now": "NONE",
+    "data_writes": 0,
+    "historical_budgets_reset": false,
+    "underlying_lane_next_action": "Check PR438 exact head 54825370ed1170d46f4c8f3653f26f0a67ab91f5 required CI once; merge only if all required checks pass and live main/head remain unchanged, then reconcile, checkpoint and stop. The successor uses the saved whole-source cohort for semantic/translated adjudication and held notice/extraction review before real protected prewrite. Do not repeat discovery or source acquisition.",
+    "policy_pr": {
+      "pr": 436,
+      "merge_sha": "dded9ec9aa6b3249e0dba322972e259f279663c3",
+      "reviewed_head": "2e4183f99752cc4514b8978473b34ab5b29bcdbc",
+      "ci": 39315855389
+    },
+    "consumer_wrapper_chain": "PORTFOLIO_LANE_VALUE_GATE_PASS then SEQUENTIALLY_REVIEWED_READY_FOR_REQUIRED_CI on synthetic fixture; actual CI success separately recorded",
+    "new_packages": "Invoke portfolio adapter and freeze decision/policy/adapter; already-open packages retain original selection and budget"
   }
 }
