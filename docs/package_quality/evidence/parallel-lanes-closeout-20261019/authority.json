@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "source": "Current owner message AGENT_OS_PORTFOLIO_INTEGRATION_FINISH_V2",
+  "authorized": [
+    "Complete mandatory reviews and normal CI",
+    "Repair demonstrated defects",
+    "Safe merge after required gates",
+    "Canonical checkpoint"
+  ],
+  "constraints": [
+    "Do not reset historical review budgets",
+    "No dataset changes",
+    "No blocked-source replay",
+    "Current owner explicitly requests PR296, PR436 and PR437 in this continuous closeout; the historical one-package chat stopping rule does not truncate this authorized integration."
+  ],
+  "historical_evidence_audit": {
+    "branch_head": "b0a530da96f9cb32140d73518c0d9b3ab36fa35a",
+    "state_branch": "continuity-state",
+    "state_head": "0c9ca93dd87bf4df8e1a6620c7eab5c6e2a4c7a9",
+    "finding": "PR436 exact tree, discussion and continuity-state contain no integration-specific frozen contract or review budget. PR434 and all other packages retain their recorded budgets and holds.",
+    "budget": "First recorded review round of existing integration; no historical round is erased or reset."
+  },
+  "chronology": "Original implementation predates this chat. This receipt governs only remaining closeout evidence, demonstrated repairs, validation and publication; it is not proof of pre-build review of the original implementation."
+}

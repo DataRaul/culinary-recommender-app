@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "goal_id": "culinary:parallel-lanes-integration",
+  "revision": 1,
+  "outcome": "Integrate approved non-blocking P0 acquisition and P2 source-research policy.",
+  "purpose": "Finish existing PR436 review while retaining source/admission gates.",
+  "success_criteria": [
+    {
+      "id": "INTEGRATE",
+      "description": "Approved acquisition-first lane policy integrated."
+    },
+    {
+      "id": "PRESERVE",
+      "description": "Existing boundaries and historical budgets retained."
+    },
+    {
+      "id": "VERIFY",
+      "description": "Reviewed candidate, CI and merged-main evidence."
+    }
+  ],
+  "constraints": [
+    "No datasets or frozen research changes",
+    "No paid services",
+    "Existing lane ownership unchanged"
+  ],
+  "intent_provenance": [
+    "Owner AGENT_OS_PORTFOLIO_INTEGRATION_FINISH_V2, 2026-10-19"
+  ],
+  "changes": []
+}

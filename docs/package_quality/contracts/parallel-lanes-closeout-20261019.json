@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "lane_id": "culinary-app",
+  "package_id": "parallel-lanes-closeout-20261019",
+  "base_commit": "954e0e44db87ea77e61458f598e77f4e1b61b89b",
+  "author_session_id": "/root:b5413e2aa6d0",
+  "goal_path": "docs/package_quality/goals/parallel-lanes-integration/v1.json",
+  "adapter_path": "config/package_quality_plan_first_adapter.json",
+  "intent_provenance": [
+    "Owner AGENT_OS_PORTFOLIO_INTEGRATION_FINISH_V2",
+    "docs/package_quality/evidence/parallel-lanes-closeout-20261019/authority.json"
+  ],
+  "outcome": "Finish and integrate approved non-blocking acquisition lane policy.",
+  "contribution": "Keep P0 recipe delivery independent of held source research.",
+  "scope": [
+    "AGENTS.md",
+    "docs/ACQUISITION_PARALLEL_LANE_POLICY.md",
+    "docs/ROADMAP.md",
+    "docs/handovers/parallel-acquisition/MAIN_ACQUISITION_HANDOVER_20261018.json",
+    "docs/package_quality/goals/parallel-lanes-integration/v1.json",
+    "docs/package_quality/plans/parallel-lanes-closeout-20261019",
+    "docs/package_quality/evidence/parallel-lanes-closeout-20261019"
+  ],
+  "non_goals": [
+    "Research advancement",
+    "Data acquisition",
+    "Business-effectiveness evaluation"
+  ],
+  "inputs": [
+    "b0a530da96f9cb32140d73518c0d9b3ab36fa35a",
+    "954e0e44db87ea77e61458f598e77f4e1b61b89b"
+  ],
+  "criteria": [
+    {
+      "id": "POLICY",
+      "description": "P0 acquisition remains primary and P2 source research cannot block independent delivery.",
+      "goal_criteria": [
+        "INTEGRATE"
+      ]
+    },
+    {
+      "id": "BOUNDARIES",
+      "description": "Rights, semantic-dedup, protected D1 and lane ownership gates preserved.",
+      "goal_criteria": [
+        "PRESERVE"
+      ]
+    },
+    {
+      "id": "REVIEW",
+      "description": "Honest frozen same-chat reviews and required CI.",
+      "goal_criteria": [
+        "VERIFY"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "AGENTS.md",
+    "docs/ACQUISITION_PARALLEL_LANE_POLICY.md",
+    "docs/ROADMAP.md",
+    "docs/handovers/parallel-acquisition/MAIN_ACQUISITION_HANDOVER_20261018.json",
+    "docs/package_quality/evidence/parallel-lanes-closeout-20261019/authority.json",
+    "docs/package_quality/evidence/parallel-lanes-closeout-20261019/alignment.json",
+    "docs/package_quality/evidence/parallel-lanes-closeout-20261019/qa.json",
+    "docs/package_quality/evidence/parallel-lanes-closeout-20261019/existing-ci.json",
+    "docs/package_quality/plans/parallel-lanes-closeout-20261019.json",
+    "docs/package_quality/plans/parallel-lanes-closeout-20261019-review.json",
+    "docs/package_quality/plans/parallel-lanes-closeout-20261019-receipt.json",
+    "docs/package_quality/plans/parallel-lanes-closeout-20261019-trace.json"
+  ],
+  "mandatory_knowledge_domains": [
+    "software_data",
+    "decision_frameworks",
+    "project_execution"
+  ],
+  "authority": "AUTO + VERIFY",
+  "human_decisions": [],
+  "assumptions": [
+    "No undiscovered historical integration contract; audit retained in authority evidence."
+  ],
+  "dependencies": [
+    "Required GitHub Actions CI"
+  ],
+  "next_action": "Finish same-chat reviews, validate exact outgoing tree, publish and merge after CI.",
+  "stop_boundary": "Verified merge or genuine unsatisfied gate.",
+  "budget": {
+    "round": 1,
+    "max_rounds": 1,
+    "usage": "unknown; first recorded integration review, no prior budget reset"
+  },
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "stage_evidence": {
+    "align": [
+      "docs/package_quality/evidence/parallel-lanes-closeout-20261019/alignment.json"
+    ],
+    "build_qa": [
+      "docs/package_quality/evidence/parallel-lanes-closeout-20261019/qa.json"
+    ]
+  },
+  "plan_first": {
+    "plan_path": "docs/package_quality/plans/parallel-lanes-closeout-20261019.json",
+    "review_path": "docs/package_quality/plans/parallel-lanes-closeout-20261019-review.json",
+    "receipt_path": "docs/package_quality/plans/parallel-lanes-closeout-20261019-receipt.json",
+    "trace_path": "docs/package_quality/plans/parallel-lanes-closeout-20261019-trace.json"
+  }
+}

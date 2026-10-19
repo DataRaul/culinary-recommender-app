@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "plan_digest": "f026a54783e87d47a6a2620ed3137eed80b9faff89c0b40ce9d464e22b34860e",
+  "decisions": [
+    {
+      "id": "D1",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "docs/package_quality/evidence/parallel-lanes-closeout-20261019/qa.json",
+        "docs/package_quality/evidence/parallel-lanes-closeout-20261019/alignment.json"
+      ]
+    }
+  ],
+  "material_deviations": []
+}
