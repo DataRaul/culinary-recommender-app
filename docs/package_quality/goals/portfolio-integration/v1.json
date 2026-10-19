@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "goal_id": "culinary:portfolio-integration",
+  "revision": 1,
+  "outcome": "Integrate the approved prospective portfolio-priority architecture.",
+  "purpose": "Close existing PR437 after its policy dependency PR436; no recipe or runtime change.",
+  "success_criteria": [
+    {
+      "id": "INTEGRATE",
+      "description": "Exact shared core and local wrapper integrated."
+    },
+    {
+      "id": "PRESERVE",
+      "description": "Existing boundaries and historical budgets retained."
+    },
+    {
+      "id": "VERIFY",
+      "description": "Reviewed candidate, CI and merged-main evidence."
+    }
+  ],
+  "constraints": [
+    "No datasets or frozen research changes",
+    "No paid services",
+    "Existing lane ownership unchanged"
+  ],
+  "intent_provenance": [
+    "Owner AGENT_OS_PORTFOLIO_INTEGRATION_FINISH_V2, 2026-10-19"
+  ],
+  "changes": []
+}

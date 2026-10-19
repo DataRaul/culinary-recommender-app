@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "PLAN_ACCEPTED",
+  "plan_digest": "2313f2e2958c8a66af50f4ee3dd017a9800608acc5858c02f57b028bbb71615d",
+  "review_digest": "cb4dbec26eff437d8b5d5d543e55a736f13769b82551038da71fee023a143464",
+  "roadmap_digest": "10e4e84d782c3e1eb911cf1e445fed8aaef5ea27ae98a9ccce75ccd97bf020f3",
+  "goal_digest": "741c4bf2e7c414d37984b3eb8e9d03f91cc739633710a49ea132a288e3ef39cf",
+  "authority": "AUTO + VERIFY",
+  "session_id": "/root:b5413e2aa6d0",
+  "assurance": "PROCEDURAL_SELF_REPORTED_PREBUILD"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "plan_digest": "2313f2e2958c8a66af50f4ee3dd017a9800608acc5858c02f57b028bbb71615d",
+  "decisions": [
+    {
+      "id": "D1",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "docs/package_quality/evidence/portfolio-integration-closeout-20261019/qa.json",
+        "docs/package_quality/evidence/portfolio-integration-closeout-20261019/reasoning.json",
+        "docs/package_quality/evidence/portfolio-integration-closeout-20261019/alignment.json"
+      ]
+    }
+  ],
+  "material_deviations": []
+}

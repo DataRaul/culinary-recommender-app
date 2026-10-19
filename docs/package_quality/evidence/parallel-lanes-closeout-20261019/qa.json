@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "candidate_head": "b0a530da96f9cb32140d73518c0d9b3ab36fa35a",
+  "results": [
+    "Static startup JSON parsed; explicitly noncanonical, P0 culinary-app and v8019 baseline retained.",
+    "Policy preserves isolated P2 research, source/admission/CI and budget holds; Soyer registry migration is separately gated.",
+    "Roadmap P0 acquisition-first remains present and implementation surface is documentation/JSON only.",
+    "Live main delta consists only of two Barbecue generated-state files outside this PR; preserve latest-main tree during merge."
+  ],
+  "ci": "Reuse passing exact original-head validation; new receipts commit requires normal validation before merge.",
+  "scope": "No source-body replay, recipe import, D1, runtime, recommendation or protected-data operation.",
+  "effectiveness": "VALUE_NOT_YET_MEASURED; no standalone business-effectiveness validation."
+}

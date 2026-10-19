@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "results": [
+    "Exact merged shared core pin and roadmap digest PASS",
+    "Actual portfolio wrapper: valid synthetic decision dispatch PASS",
+    "Unsafe decision path rejected PASS",
+    "Missing decision rejected PASS",
+    "Tampered shared script rejected PASS",
+    "Portfolio freeze rejects missing adapter/policy/decision binding PASS"
+  ],
+  "source_head": "a221934dbbd4c0a89860ef0e5d9d2dc0eab5ee52",
+  "existing_ci_run": null,
+  "full_tests": "No required Actions run on original stacked head; require Validate public V0 after main retarget and publication.",
+  "scope": "Synthetic wrapper integration only; no business-effectiveness study, blocked-source replay, data access or writes.",
+  "source_snapshot": "Connector-materialized exact files, not a complete authenticated Git clone.",
+  "legacy_adapter_sha256": "cf17d8b313402f6a2a790d156743d74063c149d718ad22e0882379fde20d02f9",
+  "plan_first_adapter_sha256": "c60ba445a1b9ba40d085e8181c6ec2b4e35c6c0bdae0f257911120ee1d1f8bd3"
+}

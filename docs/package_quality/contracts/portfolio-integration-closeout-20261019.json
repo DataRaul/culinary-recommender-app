@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "lane_id": "culinary-app",
+  "package_id": "portfolio-integration-closeout-20261019",
+  "base_commit": "dded9ec9aa6b3249e0dba322972e259f279663c3",
+  "author_session_id": "/root:b5413e2aa6d0",
+  "goal_path": "docs/package_quality/goals/portfolio-integration/v1.json",
+  "adapter_path": "config/package_quality_plan_first_adapter.json",
+  "intent_provenance": [
+    "Owner handover AGENT_OS_PORTFOLIO_INTEGRATION_FINISH_V2",
+    "docs/package_quality/evidence/portfolio-integration-closeout-20261019/authority.json"
+  ],
+  "outcome": "Complete review and integration of existing PR296.",
+  "contribution": "Make approved prospective controls usable without altering legacy gates.",
+  "scope": [
+    "AGENTS.md",
+    "config/package_quality_portfolio_adapter.json",
+    "config/portfolio_priority_policy.json",
+    "docs/ACQUISITION_PARALLEL_LANE_POLICY.md",
+    "docs/PACKAGE_QUALITY_PROTOCOL.md",
+    "scripts/package_quality.py",
+    "scripts/portfolio_priority.py",
+    "docs/package_quality/evidence/portfolio-integration-closeout-20261019",
+    "docs/package_quality/plans/portfolio-integration-closeout-20261019",
+    "docs/package_quality/goals/portfolio-integration/v1.json"
+  ],
+  "non_goals": [
+    "Research advancement",
+    "Data acquisition",
+    "Business-effectiveness evaluation"
+  ],
+  "inputs": [
+    "a221934dbbd4c0a89860ef0e5d9d2dc0eab5ee52",
+    "dded9ec9aa6b3249e0dba322972e259f279663c3"
+  ],
+  "criteria": [
+    {
+      "id": "PIN",
+      "description": "Use merged exact Agent OS portfolio checker and unchanged legacy adapters.",
+      "goal_criteria": [
+        "INTEGRATE"
+      ]
+    },
+    {
+      "id": "BOUNDARIES",
+      "description": "Preserve lane ownership, frozen research, datasets and source authority.",
+      "goal_criteria": [
+        "PRESERVE"
+      ]
+    },
+    {
+      "id": "REVIEW",
+      "description": "Freeze reviewed candidate with honest same-chat provenance and required CI.",
+      "goal_criteria": [
+        "VERIFY"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "AGENTS.md",
+    "config/package_quality_portfolio_adapter.json",
+    "config/portfolio_priority_policy.json",
+    "docs/PACKAGE_QUALITY_PROTOCOL.md",
+    "scripts/package_quality.py",
+    "scripts/portfolio_priority.py",
+    "docs/package_quality/evidence/portfolio-integration-closeout-20261019/authority.json",
+    "docs/package_quality/evidence/portfolio-integration-closeout-20261019/alignment.json",
+    "docs/package_quality/evidence/portfolio-integration-closeout-20261019/qa.json",
+    "docs/package_quality/evidence/portfolio-integration-closeout-20261019/reasoning.json",
+    "docs/package_quality/evidence/portfolio-integration-closeout-20261019/existing-ci.json",
+    "docs/package_quality/plans/portfolio-integration-closeout-20261019.json",
+    "docs/package_quality/plans/portfolio-integration-closeout-20261019-review.json",
+    "docs/package_quality/plans/portfolio-integration-closeout-20261019-receipt.json",
+    "docs/package_quality/plans/portfolio-integration-closeout-20261019-trace.json",
+    "docs/package_quality/evidence/portfolio-integration-closeout-20261019/synthetic-wrapper-decision.json",
+    "docs/ROADMAP.md"
+  ],
+  "mandatory_knowledge_domains": [
+    "software_data",
+    "decision_frameworks",
+    "project_execution"
+  ],
+  "authority": "AUTO + VERIFY",
+  "human_decisions": [],
+  "assumptions": [
+    "No undiscovered historical integration contract; audit retained in authority evidence."
+  ],
+  "dependencies": [
+    "PR436 merged",
+    "Required GitHub Actions Validate public V0"
+  ],
+  "next_action": "Finish same-chat reviews, validate exact outgoing tree, publish and merge after CI.",
+  "stop_boundary": "Verified merge or genuine unsatisfied gate.",
+  "budget": {
+    "round": 1,
+    "max_rounds": 1,
+    "usage": "unknown; first recorded integration review, no reset of other packages"
+  },
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "stage_evidence": {
+    "align": [
+      "docs/package_quality/evidence/portfolio-integration-closeout-20261019/alignment.json"
+    ],
+    "build_qa": [
+      "docs/package_quality/evidence/portfolio-integration-closeout-20261019/qa.json"
+    ]
+  },
+  "plan_first": {
+    "plan_path": "docs/package_quality/plans/portfolio-integration-closeout-20261019.json",
+    "review_path": "docs/package_quality/plans/portfolio-integration-closeout-20261019-review.json",
+    "receipt_path": "docs/package_quality/plans/portfolio-integration-closeout-20261019-receipt.json",
+    "trace_path": "docs/package_quality/plans/portfolio-integration-closeout-20261019-trace.json"
+  }
+}

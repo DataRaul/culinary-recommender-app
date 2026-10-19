@@ -1,0 +1,24 @@
+{
+  "workflow_runs": [
+    {
+      "id": 39123352221,
+      "name": "V21 limited-evidence secondary lane owner canary V1",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 59,
+      "jobs_url": "https://api.github.com/repos/DataRaul/culinary-recommender-app/actions/runs/39123352221/jobs",
+      "logs_url": "https://api.github.com/repos/DataRaul/culinary-recommender-app/actions/runs/39123352221/logs",
+      "workflow_id": 374790391
+    },
+    {
+      "id": 39123352235,
+      "name": "Validate public V0",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 1567,
+      "jobs_url": "https://api.github.com/repos/DataRaul/culinary-recommender-app/actions/runs/39123352235/jobs",
+      "logs_url": "https://api.github.com/repos/DataRaul/culinary-recommender-app/actions/runs/39123352235/logs",
+      "workflow_id": 346109433
+    }
+  ]
+}

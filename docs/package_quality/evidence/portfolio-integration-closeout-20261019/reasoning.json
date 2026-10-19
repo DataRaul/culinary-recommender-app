@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "decision_type": "architecture_integration_closeout",
+  "knowledge_core_commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+  "mandatory_domains": [
+    "software_data",
+    "decision_frameworks",
+    "project_execution"
+  ],
+  "consulted_objects": [
+    "domains/software_data/objects/architecture_boundaries_modularity_evolvability.md",
+    "domains/decision_frameworks/objects/decision_quality_under_uncertainty.md",
+    "domains/project_execution/objects/agentic_work_mandate_harness.md"
+  ],
+  "established": "Exact shared pin, wrapper failure paths, prospective adoption and isolated ownership reviewed.",
+  "not_established": [
+    "Business effectiveness",
+    "Recipe admission",
+    "Independent mental review"
+  ],
+  "authority": "Current owner closeout mandate; no new source, recipe or D1 authority."
+}

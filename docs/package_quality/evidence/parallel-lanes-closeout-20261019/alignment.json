@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "author_session": "/root:b5413e2aa6d0",
+  "observed_main": "954e0e44db87ea77e61458f598e77f4e1b61b89b",
+  "observed_head": "b0a530da96f9cb32140d73518c0d9b3ab36fa35a",
+  "scope": "Finish existing PR436 governance review; PR437 remains dependent.",
+  "main_reconciliation": "Main advanced from 8641c8b6 only in two Barbecue generated-state JSON files; no overlap with four policy paths. Preserve them through merge; no destructive rebase or reset.",
+  "owner_action_now": "NONE",
+  "holds": "PR434, source rights, semantic equivalence, exhausted budgets, D1 authority and all independent lanes remain unchanged."
+}

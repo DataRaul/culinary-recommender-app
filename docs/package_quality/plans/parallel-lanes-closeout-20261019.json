@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "plan_id": "parallel-lanes-closeout-20261019",
+  "revision": 1,
+  "roadmap_alignment": {
+    "roadmap_path": "docs/ROADMAP.md",
+    "roadmap_sha256": "10e4e84d782c3e1eb911cf1e445fed8aaef5ea27ae98a9ccce75ccd97bf020f3",
+    "milestone_line": "## 2026-10-18 owner decision — secondary acquisition research must not halt main P0",
+    "goal_path": "docs/package_quality/goals/parallel-lanes-integration/v1.json",
+    "goal_sha256": "aa8103782cfad166a17ad4fceb05dc1d46dfb303cd3d9316b9a3e9617bf362d7",
+    "goal_criteria": [
+      "INTEGRATE",
+      "PRESERVE",
+      "VERIFY"
+    ],
+    "steering_source": "docs/package_quality/evidence/parallel-lanes-closeout-20261019/authority.json",
+    "priority_rationale": "Owner selected P0 integration closeout; remaining review makes the already-built controls eligible for safe merge.",
+    "goal_contribution": "Complete the review and integration boundary without restarting design.",
+    "value_signal": "Merged controls available for subsequent real delivery; effectiveness remains unmeasured.",
+    "status": "ALIGNED",
+    "conflicts": []
+  },
+  "problem": "Approved acquisition-priority and isolated research policy remains a draft without package review.",
+  "affected_users": "Culinary owner and independent source research lanes.",
+  "root_cause": "Existing governance implementation lacks frozen closeout receipts.",
+  "desired_outcome": "Reviewed policy ready for required CI and safe PR436 merge.",
+  "expected_value": "Finish the integration and return capacity to product delivery.",
+  "options": [
+    {
+      "id": "CLOSE",
+      "description": "Review and close existing integration.",
+      "pros": "Reuses passing CI and existing design.",
+      "cons": "Requires honest review of existing artifacts."
+    },
+    {
+      "id": "REDESIGN",
+      "description": "Restart architecture and reimplement.",
+      "pros": "Could reconsider design.",
+      "cons": "Unrequested rework delays delivery without demonstrated defect."
+    }
+  ],
+  "selected_option_id": "CLOSE",
+  "architecture": "Documentation and static starter only; no runtime or database change.",
+  "tradeoffs": "Keep procedural self-reported review assurance; do not claim authenticated chronology or measured effectiveness.",
+  "estimated_cost": "Existing account usage and normal CI only; no paid API.",
+  "authority": "AUTO + VERIFY",
+  "decisions": [
+    {
+      "id": "D1",
+      "decision": "Review and integrate existing PR436 after required gates.",
+      "rationale": "The owner explicitly requests closure without restarting completed work.",
+      "expected_consequences": "Prospective gate becomes available only after review, CI and merge.",
+      "authority": "AUTO + VERIFY",
+      "material": true,
+      "delegation_reference": "docs/package_quality/evidence/parallel-lanes-closeout-20261019/authority.json"
+    }
+  ],
+  "acceptance_criteria": [
+    "P0 acquisition remains primary and P2 source research cannot block independent delivery.",
+    "Rights, semantic-dedup, protected D1 and lane ownership gates preserved.",
+    "Honest frozen same-chat reviews and required CI."
+  ],
+  "risks": [
+    "Self-reported receipts do not prove independent mental review.",
+    "Business-effectiveness outcome requires future real delivery."
+  ]
+}

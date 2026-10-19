@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "head_sha": "a221934dbbd4c0a89860ef0e5d9d2dc0eab5ee52",
+  "github_actions_runs": [],
+  "cloudflare_preview": "success; not a substitute for required GitHub Actions CI",
+  "next": "Retarget main after PR436 and require validation on published exact head."
+}

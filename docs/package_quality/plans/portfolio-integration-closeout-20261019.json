@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "plan_id": "portfolio-integration-closeout-20261019",
+  "revision": 1,
+  "roadmap_alignment": {
+    "roadmap_path": "docs/ROADMAP.md",
+    "roadmap_sha256": "10e4e84d782c3e1eb911cf1e445fed8aaef5ea27ae98a9ccce75ccd97bf020f3",
+    "milestone_line": "## 2026-10-18 owner decision — secondary acquisition research must not halt main P0",
+    "goal_path": "docs/package_quality/goals/portfolio-integration/v1.json",
+    "goal_sha256": "741c4bf2e7c414d37984b3eb8e9d03f91cc739633710a49ea132a288e3ef39cf",
+    "goal_criteria": [
+      "INTEGRATE",
+      "PRESERVE",
+      "VERIFY"
+    ],
+    "steering_source": "docs/package_quality/evidence/portfolio-integration-closeout-20261019/authority.json",
+    "priority_rationale": "Owner selected P0 integration closeout; remaining review makes the already-built controls eligible for safe merge.",
+    "goal_contribution": "Complete the review and integration boundary without restarting design.",
+    "value_signal": "Merged controls available for subsequent real delivery; effectiveness remains unmeasured.",
+    "status": "ALIGNED",
+    "conflicts": []
+  },
+  "problem": "Approved portfolio controls remain unmerged because mandatory local reviews are missing.",
+  "affected_users": "Culinary owner, acquisition lane and isolated research lanes.",
+  "root_cause": "Shared prospective adapter awaits policy dependency, frozen reviews and required CI.",
+  "desired_outcome": "Reviewed exact candidate ready for required CI and eligible merge.",
+  "expected_value": "Finish the integration and return capacity to product delivery.",
+  "options": [
+    {
+      "id": "CLOSE",
+      "description": "Review and close existing integration.",
+      "pros": "Reuses passing CI and existing design.",
+      "cons": "Requires honest review of existing artifacts."
+    },
+    {
+      "id": "REDESIGN",
+      "description": "Restart architecture and reimplement.",
+      "pros": "Could reconsider design.",
+      "cons": "Unrequested rework delays delivery without demonstrated defect."
+    }
+  ],
+  "selected_option_id": "CLOSE",
+  "architecture": "Unchanged shared core plus local hash-pinned launchers; evidence sidecars only.",
+  "tradeoffs": "Keep procedural self-reported review assurance; do not claim authenticated chronology or measured effectiveness.",
+  "estimated_cost": "Existing account usage and normal CI only; no paid API.",
+  "authority": "AUTO + VERIFY",
+  "decisions": [
+    {
+      "id": "D1",
+      "decision": "Review and integrate existing PR437 after PR436, preserving exact shared core and historical adapters.",
+      "rationale": "The owner explicitly requests closure without restarting completed work.",
+      "expected_consequences": "Prospective gate becomes available only after review, CI and merge.",
+      "authority": "AUTO + VERIFY",
+      "material": true,
+      "delegation_reference": "docs/package_quality/evidence/portfolio-integration-closeout-20261019/authority.json"
+    }
+  ],
+  "acceptance_criteria": [
+    "Use merged exact Agent OS portfolio checker and unchanged legacy adapters.",
+    "Preserve lane ownership, frozen research, datasets and source authority.",
+    "Freeze reviewed candidate with honest same-chat provenance and required CI."
+  ],
+  "risks": [
+    "Self-reported receipts do not prove independent mental review.",
+    "Business-effectiveness outcome requires future real delivery."
+  ]
+}
