@@ -1,7 +1,7 @@
 {
   "schemaVersion": "barbecue-technique-corpus-state-v1",
   "programmeId": "BARBECUE_TECHNIQUE_CORPUS_V1",
-  "programmeStatus": "ACTIVE_BOUNDED_DISCOVERY",
+  "programmeStatus": "BARBECUE_SEARCH_HOLD_POLICY_OR_QUOTA",
   "activationState": "BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY",
   "queryVintage": "barbecue-v1-world-champion-first-2026-09-24",
   "policyRecheckedAt": "2026-09-24",
@@ -246,7 +246,7 @@
       "providerFailure": null
     }
   ],
-  "hardHold": null,
+  "hardHold": "BARBECUE_SEARCH_HOLD_POLICY_OR_QUOTA",
   "pilotPass": false,
   "leaves": [
     {
