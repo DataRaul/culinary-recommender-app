@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "session_id": "work-e35e83d5b388-root",
+  "authority": "AUTO + VERIFY",
+  "base": "faf02d0b5ad7603826df9aab73a3fcba5a72245d",
+  "input_head": "9d02e10829c7cbd42fa694479e4daef3d91c0009",
+  "criteria": [
+    {
+      "id": "REPLAY",
+      "deliverable": "data/generated/step8g/hochipants-origin-semantic-review.json",
+      "contribution": "Reconstruct all 22086 records at exact source pins; reproduce canonical fingerprint hash and manually reconcile indices 1490/1569/1618."
+    },
+    {
+      "id": "SEMANTIC",
+      "deliverable": "data/generated/step8g/hochipants-origin-semantic-review.json",
+      "contribution": "Score every seven-by-22086 pair using disclosed multilingual titles, ingredients and method features, manually adjudicate ranked candidates and preserve uncertain novelty on HOLD; no heuristic absence becomes novelty proof."
+    },
+    {
+      "id": "ORIGIN",
+      "deliverable": "data/generated/step8g/hochipants-origin-semantic-review.json",
+      "contribution": "Record individual origin/reuse dispositions and relevant competing scraped-source evidence; keep six named adaptations on HOLD."
+    },
+    {
+      "id": "BOUNDARY",
+      "deliverable": "data/generated/step8g/hochipants-origin-semantic-review.json",
+      "contribution": "Publish metadata only, no protected corpus/D1/runtime changes; preserve other lanes and PR432 exhausted budget, validate actual candidate and checkpoint own lane."
+    }
+  ],
+  "knowledge": {
+    "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+    "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+    "applied_rule": "Use existing pinned canonical inputs, one no-write assessment, disclose incomplete semantic certainty and preserve rights holds."
+  },
+  "budget_inheritance": "PR434 first final review round, maximum one. PR433 and PR432 budgets preserved, not reused.",
+  "no_import_authority": true
+}
