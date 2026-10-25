@@ -7,7 +7,7 @@
   "protectedReserveCalls": 5,
   "dailySearchBudget": 16,
   "minYoutubeRequestIntervalMs": 1000,
-  "policyRecheckedAt": "2026-09-24",
+  "policyRecheckedAt": "2026-10-25",
   "policyMaxAgeDays": 30,
   "candidateBacklogCap": 50,
   "maxCandidatesPerLeaf": 24,
