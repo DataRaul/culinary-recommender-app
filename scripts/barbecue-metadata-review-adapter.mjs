@@ -202,9 +202,7 @@ export async function runMetadataAdapter({ state, config, selected, fetchImpl, n
       const payload = await response.json();
       if (!Array.isArray(payload?.items) || payload.nextPageToken)
         throw new Error("UNEXPECTED_METADATA_RESPONSE_OR_PAGINATION");
-      entry.status = "COMPLETED";
-      await persist();
-      return payload.items;
+      return { items: payload.items, entry };
     } catch (error) {
       entry.status = "FAILED";
       entry.failureClass = String(error.message).slice(0, 60).replace(/[^A-Z0-9_]/gi, "_");
@@ -212,12 +210,16 @@ export async function runMetadataAdapter({ state, config, selected, fetchImpl, n
       throw new Error("BLOCKED_METADATA_PROVIDER_OR_UNCERTAIN_SPEND");
     }
   }
+  async function finishRequest(result) {
+    result.entry.status = "COMPLETED";
+    await persist(); // evidence + completed ledger are committed in the same checkpoint
+  }
   try {
     const ids = selected.map(x => x.youtubeVideoRef);
     for (const batch of chunks(ids, METADATA_MAX_BATCH)) {
-      const items = await call("videos.list", batch);
-      if (!items) continue;
-      const seen = new Map(items.filter(x => batch.includes(x.id) && isText(x.snippet?.channelId))
+      const result = await call("videos.list", batch);
+      if (!result) continue;
+      const seen = new Map(result.items.filter(x => batch.includes(x.id) && isText(x.snippet?.channelId))
         .map(x => [x.id, x.snippet.channelId]));
       for (const videoRef of batch) {
         const q = selected.find(x => x.youtubeVideoRef === videoRef);
@@ -237,16 +239,16 @@ export async function runMetadataAdapter({ state, config, selected, fetchImpl, n
           retrievedAt: now.toISOString()
         });
       }
-      await persist();
+      await finishRequest(result);
     }
     const channelIds = [...new Set(out.records.map(r => r.observedCreatorChannelRef).filter(Boolean))];
     for (const batch of chunks(channelIds, METADATA_MAX_BATCH)) {
-      const items = await call("channels.list", batch);
-      if (!items) continue;
-      const found = new Set(items.filter(x => batch.includes(x.id)).map(x => x.id));
+      const result = await call("channels.list", batch);
+      if (!result) continue;
+      const found = new Set(result.items.filter(x => batch.includes(x.id)).map(x => x.id));
       for (const record of out.records) if (batch.includes(record.observedCreatorChannelRef))
         record.channelAvailability = found.has(record.observedCreatorChannelRef) ? "FOUND" : "UNAVAILABLE";
-      await persist();
+      await finishRequest(result);
     }
     for (const record of out.records) if (!record.observedCreatorChannelRef)
       record.channelAvailability = "UNRESOLVED";
