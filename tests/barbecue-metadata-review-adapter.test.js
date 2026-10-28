@@ -20,7 +20,7 @@ function quotaProof(remaining = 20, reserve = 5) {
     remainingMetadataUnits: remaining, protectedReserveUnits: reserve };
 }
 function mockResponses({ missing = [], mismatch = [], missingChannels = [], failOn = null,
-  nextPage = false } = {}) {
+  nextPage = false, lookupQueue = queue } = {}) {
   const calls = [];
   const fn = async (url, options) => {
     const u = new URL(url);
@@ -31,7 +31,7 @@ function mockResponses({ missing = [], mismatch = [], missingChannels = [], fail
     if (failOn === endpoint) return { ok: false, status: 403, json: async () => ({ error: { message: "SECRET_RAW_PROVIDER_RESPONSE" } }) };
     const items = endpoint === "videos.list" ?
       ids.filter(id => !missing.includes(id)).map(id => {
-        const q = queue.find(r => r.youtubeVideoRef === id);
+        const q = lookupQueue.find(r => r.youtubeVideoRef === id);
         return { id, snippet: { channelId: mismatch.includes(id) ? "different-channel" : q.priorCreatorChannelRefs[0],
           title: "RAW FORBIDDEN TITLE", description: "RAW FORBIDDEN DESCRIPTION" } };
       }) :
@@ -121,21 +121,27 @@ test("P0C mock all 44 pointers with dedup, channel reuse, and <=50 batching; no 
   assert.deepEqual(again.snapshot, r.snapshot);
 });
 
-test("P0C 51+ source mock has bounded batches, no pagination replay", async () => {
-  const extra = [];
-  for (let i = 0; i < 52; i++) {
-    const src = queue[i % queue.length];
-    extra.push({ ...src, sourceRef: "youtube:" + String(i).padStart(11, "0"),
-      youtubeVideoRef: String(i).padStart(11, "0") });
+test("P0C larger existing-ID fixture uses 50-ID batches and never follows pages", async () => {
+  const synthetic = structuredClone(state);
+  for (let i = 0; i < 20; i++) {
+    const target = synthetic.leaves.find(x => x.leafId === (i < 10 ? "fish_parrilla" : "vegetables_parrilla"));
+    const id = String(i).padStart(11, "0");
+    target.candidatePointers.push({
+      sourceRef: "youtube:" + id, youtubeVideoRef: id, creatorChannelRef: "unique-channel-" + id,
+      canonicalReference: "https://www.youtube.com/watch?v=" + id, leafId: target.leafId,
+      queryId: "synthetic-only", queryClass: "SPECIALIST_FALLBACK_DISCOVERY",
+      discoveredQuotaDate: "2026-10-28", qualificationStatus: "PENDING_REVIEW",
+      automaticQualificationAuthorized: false
+    });
   }
-  // Additional fixture IDs cannot be admitted by the mock: only real pending IDs may be fetched.
-  const mock = mockResponses();
-  await assert.rejects(async () => {
-    // Simulate exactly the guard that protects real ID scope and forbids request expansion.
-    const r = await runMetadataAdapter(args(extra, mock, { mode: "mock" }));
-    if (r.terminal.startsWith("BLOCKED")) throw new Error(r.terminal);
-  }, /unknown source/);
-  assert.equal(mock.calls.length, 0);
+  const extended = metadataReviewQueue(synthetic, config);
+  assert.ok(extended.length > 50);
+  const mock = mockResponses({ lookupQueue: extended });
+  const result = await runMetadataAdapter(args(extended, mock, { mode: "mock", state: synthetic }));
+  assert.equal(result.terminal, "METADATA_TECHNICAL_PASS_EVIDENCE_PENDING");
+  assert.equal(result.snapshot.records.length, extended.length);
+  assert.equal(mock.calls.filter(x => x.endpoint === "videos.list").length, 2);
+  assert.ok(mock.calls.every(x => x.ids.length <= 50 && !x.url.includes("pageToken")));
 });
 
 test("P0C missing, deleted or private unknown remain unresolved rather than falsely rejected", async () => {
