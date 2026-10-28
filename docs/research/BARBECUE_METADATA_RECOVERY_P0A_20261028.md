@@ -23,3 +23,15 @@ Date: 2026-10-28. Scope: existing `DataRaul/culinary-recommender-app`, roadmap P
 ## Owner action if live gate remains blocked
 
 Provide **only** non-secret Cloud Console evidence for the existing Culinary project: quota date, quota remaining for metadata endpoints, protected reserve, and confirmation that `CULINARY_YOUTUBE_API_KEY` is enabled for metadata reads in the permitted execution environment. Do not paste the API key. No automatic fallback to another project or paid quota.
+
+## Evidence leads located independently of YouTube API (NOT qualification)
+
+Three existing pork-rib candidate IDs have independent public-web cross-references. These are research leads only, **not** source qualification, not proof of current YouTube availability, and not a substitute for gated P0D and creator/channel identity matching.
+
+| Existing candidate ref | Independent source-specific link | Independent competence reference | Unresolved before any QUALIFIED decision |
+|---|---|---|---|
+| `youtube:vEJrAdL8_cI` | https://www.bbq-brethren.com/threads/rub-deosnt-stick-to-fat.299187/ (discussion identifies Myron Mixon as presenter) | https://myronmixon.com/pages/about-myron | Confirm exact video and publisher against stored channel; distinguish competition instruction from general advice |
+| `youtube:Fb9roj9CaxY` | https://www.bilibili.com/video/BV1ip4y1k7xK/ (third-party repost attributes an Eater feature to Rodney Scott; treat repost as untrusted identity lead) | https://www.jamesbeard.org/stories/the-2018-james-beard-award-winners (2018 Best Chef Southeast: Rodney Scott) | Verify exact original YouTube uploader, on-screen practitioner, independent source unit, pork-rib scope and provenance; Eater publisher != presenter |
+| `youtube:6xUZleFdLn8` | https://cookingwithcheftuan.com/blog/f/make-delicious-bbq-ribs-at-home-like-a-pro (links exact video as Tuffy Stone's competition-rib technique) | https://www.weber.com/US/en/weber-ambassadors-Tuffy-Stone.html | Verify exact video uploader/creator channel, present availability, independently normalized technique and identity |
+
+No YouTube `search.list`, `videos.list`, or `channels.list` call was made to collect these web leads. No new `QUALIFIED` or `REJECTED` decision was written; all affected candidates remain pending `NEEDS_EVIDENCE`. The third-party repost is a finding aid only and must not be admitted as a separate independent source.
