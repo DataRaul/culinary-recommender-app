@@ -335,3 +335,22 @@ Recorded boundary:
 ### Follow-up protocol
 
 This roadmap object is the canonical continuation checkpoint. Next work session should read this section and live repository state, execute **P0A → P0F** in order, and report gate-by-gate verified outcomes. Resume from the last proven gate rather than redesigning or rerunning earlier work. The daily scheduler remains independent; it is not a substitute for the bounded metadata/evidence task. Do not schedule autonomous API calls or additional monitoring without separate authorization.
+
+## 2026-10-28 — P0A–P0F metadata recovery implementation checkpoint
+
+**Source of truth:** roadmap PR #441 merged `5c3a602dc3b2a6be8385e9e8f807750da8305560`; implementation PR #442 merged `eaf74c2b4d9e1e7c7e9d1d493b76df3eb6a336f3` after successful `validate` and Cloudflare Pages on exact implementation head `2a9f1805651575205a791a35813350d3f8ae3ba5`.
+
+| Gate | Verified disposition |
+|---|---|
+| P0A inventory, policy, state and bounded design | PASS for offline implementation; **live quota and key access remain unverified** |
+| P0B bounded default-off metadata adapter | IMPLEMENTED ON MAIN — `scripts/barbecue-metadata-review-adapter.mjs` |
+| P0C deterministic mocked tests | CI PASS — `tests/barbecue-metadata-review-adapter.test.js`, including 44-candidate reconciliation, >50 fixture batching, fail-closed error/expiry/quota/independence/replay cases |
+| P0D max-three existing rib video live pilot | **BLOCKED_LIVE_METADATA_ACCESS / BLOCKED_METADATA_QUOTA_UNVERIFIED** — 0 live metadata requests; do not run without real existing-project key availability and owner-verified date-matched remaining metadata units preserving reserve |
+| P0E exact-source credential, relevance and independence adjudication | **NEEDS_EVIDENCE** — three web leads recorded for existing rib IDs, no video/channel identity or source-specific technique claim admitted; all existing pending candidates remain pending |
+| P0F code persistence, PR reviews and scheduled-loop preservation | CODE INTEGRATION PASS on main after required CI; no pilot/corpus PASS; existing daily workflow unchanged |
+
+**Observed post-merge state:** chicken COMPLETE 6; ribs 4 qualified/11 pending; brisket 2/14; vegetables 2/10; fish 1/9. Total **15 qualified records**, **44 pending candidate occurrences**, **0 newly qualified**, **0 new YouTube Search**, **0 live `videos.list`/`channels.list`**, and no app/KC/D1/billing widening. The last persisted scheduled work unit is 2026-10-28 with zero Search calls and no new candidates. The schedule remains `20 9 * * *`; verifying its next *actual* execution requires the next quota-day run, not a claim of future PASS.
+
+**Next executable gate:** On a fresh authorized run, prove the existing Culinary project identity and key can access permitted metadata endpoints; obtain actual Google Cloud Console quota-date remaining units, reserve and access confirmation. Then run the default-off, max-three existing-ribs pilot (at most two 1-unit requests) only when the gate reports allowed, inspect compact ID/channel observations, and separately adjudicate credential and exact-leaf relevance with independent evidence. Source counts do not increase from metadata alone. If unavailable, retain the explicit blocker and stop. Do not manually dispatch the existing discovery workflow, purchase services, create another API project or widen public/KC/D1.
+
+Detailed audit and independent unqualified leads: `docs/research/BARBECUE_METADATA_RECOVERY_P0A_20261028.md`.
