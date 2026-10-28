@@ -310,3 +310,28 @@ Recorded boundary:
 
 `POULTRY_CHICKEN_COMPETITION_COMPLETE__OTHER_FOUR_LEAVES_CONTINUE_DISCOVERY__PILOT_NOT_YET_PASS`
 
+
+
+## 2026-10-28 — P0 evidence-retrieval recovery gate (proposed)
+
+**Status: PLANNED / NOT EXECUTED.** After 15 scheduled runs (October 14–28), scheduling was reliable but produced zero new candidates. Corpus snapshot: 15 qualified independent sources, 44 pending review, chicken complete, ribs 4/5, brisket 2/5, vegetables 2/5, fish 1/5. PR #429 merged the read-only review audit; PR #440 merged the triage findings. No active hard hold. **Do not mistake successful CI for successful evidence acquisition.**
+
+### Ordered execution and explicit gates
+
+1. **Inventory and rights/quota preflight (P0A):** inspect existing YouTube client, credentials availability, quota ledger, policy freshness, retention and existing state schema. Confirm permission for metadata-only `videos.list` and `channels.list` for previously discovered IDs; record request costs and protected reserve. If any authority, policy or quota check is missing, STOP with exact blocker. No Search requests.
+2. **Implement default-off metadata adapter (P0B):** bounded batch of existing video IDs; fetch only permitted video/channel metadata, preserve provenance and access dates, avoid raw payload history, transcripts, audiovisual content, copied prose or new provider/project. Missing/deleted/private videos remain explicit unresolved states. No automatic source qualification.
+3. **Offline proof (P0C):** deterministic mocked tests for all 44 IDs, pagination/batching, missing/duplicate IDs, same-channel independence, provider errors, restart safety, idempotence, policy expiry, quota exhaustion, zero unauthorized calls, and unchanged publication/KC/D1 controls. Passing tests alone is NOT a live success.
+4. **Bounded live pilot (P0D):** only after P0A–C pass and existing credentials/quota are confirmed, use at most three existing pork-rib video IDs in one authorized metadata-only pilot. Log exact calls, quota cost, returned IDs and evidence sufficiency. No manual dispatch of daily discovery workflow; do not consume protected reserve. If live access unavailable, report BLOCKED_LIVE_METADATA_ACCESS without asserting success.
+5. **Evidence adjudication (P0E):** verify creator identity, demonstrated technique expertise, relevance, independence and exact claim scope with independent references. Record evidence URLs, reviewer rationale, date and normalized project-authored observations. Use QUALIFIED only when every existing admission gate passes; otherwise REJECTED with evidence or NEEDS_EVIDENCE. Prioritize ribs, brisket, vegetables, fish; handle cross-leaf duplicate `5zuQFx2J0jM` and already-qualified ribs channel explicitly.
+6. **Persist and close (P0F):** submit reviewed changes via PR, pass required CI, verify main state and next scheduled run. Report technical, evidence and corpus outcomes separately, including candidate counts, qualified independent sources, remaining gaps, backlog and exact follow-up. Never auto-publish or widen scope.
+
+### Completion contract
+
+- **Technical PASS:** permitted metadata retrieved for pilot IDs, quota accounted, durable compact evidence, mocked and integration tests green, no forbidden side effects.
+- **Evidence PASS:** verifiable credential/domain competence, relevance and independence adjudicated with source-specific rationale; unresolved sources remain pending.
+- **Corpus PASS:** measurable independently qualified-source progress **or** documented evidence-based insufficiency, with no false completion claims.
+- **Blocked:** explicit terminal code and smallest owner action; no silent retries or automatic escalation.
+
+### Follow-up protocol
+
+This roadmap object is the canonical continuation checkpoint. Next work session should read this section and live repository state, execute **P0A → P0F** in order, and report gate-by-gate verified outcomes. Resume from the last proven gate rather than redesigning or rerunning earlier work. The daily scheduler remains independent; it is not a substitute for the bounded metadata/evidence task. Do not schedule autonomous API calls or additional monitoring without separate authorization.
