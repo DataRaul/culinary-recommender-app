@@ -18,6 +18,7 @@ const ENDPOINTS = Object.freeze({
 });
 const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const outputPath = "data/generated/barbecue-metadata-pilot-evidence.json";
+const EXISTING_PROJECT_IDENTITY = "culinary-youtube-discovery";
 const isText = v => typeof v === "string" && v.length > 0;
 const validDate = v => isText(v) && Number.isFinite(Date.parse(v));
 const chunks = (items, n) => Array.from({ length: Math.ceil(items.length / n) }, (_, i) => items.slice(i * n, (i + 1) * n));
@@ -80,15 +81,24 @@ export function preflightMetadataPilot({ state, config, now = new Date(), enable
   validateBarbecueConfig(config);
   validateBarbecueState(state, config);
   if (!enabled) return { allowed: false, code: "BLOCKED_METADATA_DEFAULT_OFF" };
+  if (state.policyRecheckedAt !== config.policyRecheckedAt) return { allowed: false, code: "BLOCKED_METADATA_POLICY_STATE_MISMATCH" };
   if (!metadataPolicyFresh(config, now)) return { allowed: false, code: "BLOCKED_METADATA_POLICY_EXPIRED" };
   if (!approved) return { allowed: false, code: "BLOCKED_LIVE_METADATA_NOT_APPROVED" };
-  if (!isText(apiKey) || !isText(identity) || /blue[ _-]*lagoon|music/i.test(identity)) {
+  if (!isText(apiKey) || identity !== EXISTING_PROJECT_IDENTITY || /blue[ _-]*lagoon|music/i.test(identity)) {
     return { allowed: false, code: "BLOCKED_LIVE_METADATA_ACCESS" };
   }
   if (!Array.isArray(selected) || selected.length < 1 || selected.length > METADATA_PILOT_MAX_IDS ||
       selected.some(r => !r.leafIds?.includes("pork_ribs_competition"))) {
     return { allowed: false, code: "BLOCKED_METADATA_PILOT_SCOPE" };
   }
+  const authoritativeQueue = new Map(metadataReviewQueue(state, config).map(r => [r.sourceRef, r]));
+  if (selected.some(r => {
+    const original = authoritativeQueue.get(r.sourceRef);
+    return !original || original.youtubeVideoRef !== r.youtubeVideoRef ||
+      JSON.stringify(original.priorCreatorChannelRefs) !== JSON.stringify(r.priorCreatorChannelRefs) ||
+      original.sameChannelAlreadyQualified || !original.leafIds.includes("pork_ribs_competition");
+  }) || new Set(selected.map(r => r.priorCreatorChannelRefs[0])).size !== selected.length)
+    return { allowed: false, code: "BLOCKED_METADATA_PILOT_SCOPE" };
   const quotaDate = getYoutubeQuotaDate(now);
   // Explicit Google Cloud Console evidence is mandatory; repository search limits are NOT metadata quota evidence.
   if (quotaProof?.source !== "OWNER_VERIFIED_GOOGLE_CLOUD_CONSOLE" ||
@@ -175,7 +185,7 @@ export async function runMetadataAdapter({ state, config, selected, fetchImpl, n
     validateBarbecueState(state, config);
     if (!metadataPolicyFresh(config, now)) return { terminal: "BLOCKED_METADATA_POLICY_EXPIRED", snapshot: null, calls: 0 };
     const queueIds = new Set(metadataReviewQueue(state, config).map(x => x.sourceRef));
-    if (selected.some(x => !queueIds.has(x.sourceRef))) throw new Error("mock selected unknown source");
+    if (selected.some(x => !queueIds.has(x.sourceRef) || x.youtubeVideoRef !== x.sourceRef.slice(8))) throw new Error("mock selected unknown source");
   }
   if (!Array.isArray(selected) || !selected.length || new Set(selected.map(x => x.sourceRef)).size !== selected.length)
     throw new Error("missing or repeated metadata selection");
