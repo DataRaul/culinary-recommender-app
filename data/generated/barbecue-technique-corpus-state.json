@@ -1128,7 +1128,7 @@
       "cutForm": "ribs",
       "tradition": "AMERICAN_COMPETITION_BARBECUE",
       "method": "LOW_SLOW_SMOKER_OR_GRILL",
-      "status": "REVIEW_PENDING",
+      "status": "SYNTHESIS_PENDING",
       "championshipSearchExhausted": true,
       "candidatePointers": [
         {
@@ -1240,7 +1240,7 @@
           "queryId": "bbq-9db42f5dbfe3b6187d",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-09-27",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -1252,8 +1252,9 @@
           "queryId": "bbq-9db42f5dbfe3b6187d",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-09-27",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Stored channel UC--MxpGXJ3LVD8KvlNzRlcA matches already-qualified ribs source Hy5wnwuIZ2M; another video from the same creator cannot add an independent source."
         },
         {
           "sourceRef": "youtube:Fb9roj9CaxY",
@@ -1276,8 +1277,9 @@
           "queryId": "bbq-2a17a9db1ef24f51c5",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-09-27",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Stored channel UC--MxpGXJ3LVD8KvlNzRlcA matches already-qualified ribs source Hy5wnwuIZ2M; a second candidate video from that lineage is not a fifth independent source."
         },
         {
           "sourceRef": "youtube:6xUZleFdLn8",
@@ -1403,6 +1405,16 @@
           "independenceKey": "heath-riles-bbq",
           "qualificationEvidenceRef": "https://memphisinmay.org/winners/",
           "projectAuthoredRationale": "Official Memphis in May results list Heath Riles BBQ as 2025 and 2026 World Championship Barbecue Cooking Contest Grand Champion, with a 2026 first-place ribs finish; qualification is championship-credential based.",
+          "normalizedObservations": {}
+        },
+        {
+          "sourceRef": "youtube:vEJrAdL8_cI",
+          "canonicalReference": "https://www.youtube.com/watch?v=vEJrAdL8_cI",
+          "creatorChannelRef": "UCYJqqMggi9medQkTSiW4Kew",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "myron-mixon-jacks-old-south",
+          "qualificationEvidenceRef": "https://www.prweb.com/releases/american_royal_announces_inductees_for_barbecue_hall_of_fame_/prweb11130008.htm",
+          "projectAuthoredRationale": "Original YouTube title names Myron Mixon and Daily Meal separately. Independent exact-video discussion verifies the ribs technique demonstrator; American Royal release verifies championship competence. No existing ribs-qualified source uses this practitioner identity; admit one new independent expert without treating Daily Meal as a separate expert.",
           "normalizedObservations": {}
         }
       ],
@@ -1677,8 +1689,9 @@
           "queryId": "bbq-2c265acf3ec7da11bb",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-10-06",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Independent exact-ID external listings identify a Char-Griller product/equipment demo rather than any demonstrated fish cook or fish-parrilla specialist; reject off-leaf rather than asserting an unknown presenter."
         }
       ],
       "qualifiedSources": [
