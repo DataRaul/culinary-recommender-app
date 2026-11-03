@@ -94,7 +94,9 @@ test("poultry earns COMPLETE with structured axes while pilot remains open", () 
 
   const plannedLeaves = new Set(buildBarbecueQueryPortfolio(config, state).map(row => row.leafId));
   assert.equal(plannedLeaves.has(packet.leafId), false);
-  for (const id of ["beef_brisket_competition","pork_ribs_competition","fish_parrilla","vegetables_parrilla"]) {
+  assert.equal(plannedLeaves.has("pork_ribs_competition"), false, "ribs now has five sources and is synthesis-pending");
+  assert.equal(state.leaves.find(leaf => leaf.leafId === "pork_ribs_competition").status, "SYNTHESIS_PENDING");
+  for (const id of ["beef_brisket_competition","fish_parrilla","vegetables_parrilla"]) {
     assert.equal(plannedLeaves.has(id), true, id);
   }
 });
