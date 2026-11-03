@@ -6,6 +6,7 @@ import { getYoutubeQuotaDate } from "./youtube-culinary-daily-control-plane.mjs"
 import {
   addCandidatePointers,
   buildBarbecueQueryPortfolio,
+  classifyBarbecueQueryAvailability,
   createDurableCandidatePointer,
   createInitialBarbecueState,
   loadBarbecueConfig,
@@ -86,12 +87,6 @@ export async function runBarbecueDiscovery({fetchImpl=fetch,now=new Date()}={}) 
   const quotaDate=getYoutubeQuotaDate(now);
   if (state.pilotPass) return {result:"BARBECUE_TECHNIQUE_CORPUS_PILOT_PASS",quotaDate,dryRun:DRY_RUN,searchCallsExecuted:0,candidatePointersAdded:0};
   if (state.hardHold) return {result:state.hardHold,quotaDate,dryRun:DRY_RUN,searchCallsExecuted:0,candidatePointersAdded:0};
-  if (!policyFresh(config.policyRecheckedAt,config.policyMaxAgeDays,now)) {
-    state.hardHold="BARBECUE_SEARCH_HOLD_POLICY_OR_QUOTA";
-    state.programmeStatus=state.hardHold;
-    if (!DRY_RUN) await saveState(state,config);
-    return {result:state.hardHold,quotaDate,dryRun:DRY_RUN,searchCallsExecuted:0,candidatePointersAdded:0};
-  }
   if (state.lastCompletedQuotaDate===quotaDate) return {result:"BARBECUE_DAILY_ALREADY_COMPLETED",quotaDate,dryRun:DRY_RUN,searchCallsExecuted:0,candidatePointersAdded:0};
   if (pendingCandidateCount(state)>=config.candidateBacklogCap) {
     state.hardHold="BARBECUE_REVIEW_BACKLOG";
@@ -101,6 +96,33 @@ export async function runBarbecueDiscovery({fetchImpl=fetch,now=new Date()}={}) 
   }
 
   const queries=selectBarbecueDailyQueries(config,state);
+  const availability=classifyBarbecueQueryAvailability(config,state);
+  if (queries.length===0) {
+    // No provider call is authorized or useful. Record the review/synthesis successor
+    // without requiring an API key, replaying used query IDs or manufacturing progress.
+    if (!DRY_RUN) {
+      state.completedQuotaDays.push({
+        quotaDate,completedAt:now.toISOString(),searchCalls:0,candidatePointersAdded:0,
+        terminalState:availability.status,providerFailure:null
+      });
+      state.lastCompletedQuotaDate=quotaDate;
+      state.programmeStatus=availability.status;
+      await saveState(state,config);
+    }
+    return {
+      result:availability.status,quotaDate,dryRun:DRY_RUN,plannedSearchCalls:0,
+      searchCallsExecuted:0,candidatePointersAdded:0,
+      pendingCandidateBacklog:pendingCandidateCount(state),rawYoutubeApiDataDurable:false,
+      automaticPublicationAuthorized:false,automaticAppAdmissionAuthorized:false,automaticKnowledgeCorePromotionAuthorized:false
+    };
+  }
+  // The policy and key are mandatory only when a provider request is actually eligible.
+  if (!policyFresh(config.policyRecheckedAt,config.policyMaxAgeDays,now)) {
+    state.hardHold="BARBECUE_SEARCH_HOLD_POLICY_OR_QUOTA";
+    state.programmeStatus=state.hardHold;
+    if (!DRY_RUN) await saveState(state,config);
+    return {result:state.hardHold,quotaDate,dryRun:DRY_RUN,searchCallsExecuted:0,candidatePointersAdded:0};
+  }
   if (DRY_RUN) return {result:"BARBECUE_DRY_RUN_PASS",quotaDate,dryRun:true,plannedSearchCalls:queries.length,queryClasses:[...new Set(queries.map(row=>row.queryClass))],searchCallsExecuted:0,candidatePointersAdded:0};
 
   const apiKey=process.env[API_KEY_NAME];
@@ -137,12 +159,15 @@ export async function runBarbecueDiscovery({fetchImpl=fetch,now=new Date()}={}) 
   }
 
   const beforeCount=state.leaves.reduce((sum,leaf)=>sum+leaf.candidatePointers.length,0);
-  state=addCandidatePointers(state,config,dailyPointers);
+  state=refreshBarbecueDiscoveryPhases(addCandidatePointers(state,config,dailyPointers),config);
   const afterCount=state.leaves.reduce((sum,leaf)=>sum+leaf.candidatePointers.length,0);
   candidatePointersAdded=afterCount-beforeCount;
+  if (!providerFailure && selectBarbecueDailyQueries(config,state).length===0) {
+    terminalState=classifyBarbecueQueryAvailability(config,state).status;
+  }
   state.completedQuotaDays.push({quotaDate,completedAt:now.toISOString(),searchCalls:searchCallsExecuted,candidatePointersAdded,terminalState,providerFailure});
   state.lastCompletedQuotaDate=quotaDate;
-  state.programmeStatus=state.hardHold ?? "ACTIVE_BOUNDED_DISCOVERY";
+  state.programmeStatus=state.hardHold ?? (terminalState==="BARBECUE_DAILY_DISCOVERY_CONTINUE" ? "ACTIVE_BOUNDED_DISCOVERY" : terminalState);
   await saveState(state,config);
   return {
     result:terminalState,quotaDate,dryRun:false,searchCallsExecuted,candidatePointersAdded,
