@@ -11,7 +11,7 @@
   },
   "date": "2026-11-03",
   "timezone": "Atlantic/Canary",
-  "status": "BBQ_R2_MONITOR_UPDATED_AND_CHECKED__R3_READY__SCHEDULED_DELIVERY_NOT_YET_VERIFIED",
+  "status": "BBQ_R3_PARTIAL_EVIDENCE_REVIEW__PR445_DRAFT_CI_SUCCESS_QUALITY_HOLD",
   "main_sha": "40f29ca5e36b74fe8403386eeb967f33838ceb2c",
   "source_of_truth": "Live GitHub main, open PRs/checks and lane contracts outrank all handover snapshots",
   "current_contract": "config/barbecue_technique_corpus_v1.json",
@@ -20,7 +20,6 @@
     "PR #441, PR #442 and R1 PR #444 are merged. PR #444 merge 40f29ca5e36b74fe8403386eeb967f33838ceb2c; required CI run #41684939901 Validate public V0 SUCCESS.",
     "R1 code detects fully exhausted and review-gated query portfolios, records zero-call quota days idempotently, distinguishes acquisition outcome from runner success and selects review/decision rather than meaningless Search. No live YouTube Search dispatched.",
     "Last scheduled run #41681073430 (Nov 3, 17:07 UTC) PRE-DATES R1 merge: actual persisted generated state still ACTIVE_BOUNDED_DISCOVERY, work-unit CLOSED_CONTINUE, zero Search calls and zero new pointers. Post-merge schedule output not yet verified.",
-    "Current 44 pending leaf-level occurrences / 43 unique video IDs: ribs 11, brisket 14, vegetables 10, fish 9. Fifteen qualified source records including poultry 6/COMPLETE. R3 evidence review remains unstarted.",
     "Existing enabled watcher ID 6ab813aa86048191a690e453d1d8b5d7 has false missing-run alert from Nov 2 delayed GitHub schedule (actual 19:32 UTC); R2 must modify this watcher only, with delayed cron grace and useful-vs-infra distinctions.",
     "Default-off metadata adapter is unpiloted; existing-project API key, date-matched quota proof and protected reserve remain unverified. No paid, second project, new Search, publication, KC or D1 widening.",
     "BBQ-R2 updated EXISTING enabled Barbecue Scheduler Watch ID 6ab813aa86048191a690e453d1d8b5d7 on 2026-11-03. Daily check moved to 23:40 Atlantic/Canary; preserves condition-watch cadence, no new automation.",
@@ -28,10 +27,35 @@
     "R2 change is the live ChatGPT automation prompt and schedule, NOT a GitHub repository code change; no R2 PR/commit or CI applies. GitHub code/main remains R1 merge 40f29ca5e36b74fe8403386eeb967f33838ceb2c.",
     "14 bounded synthetic decision-rule scenarios passed for delayed vs after-grace absence, queued/running, failure, success zero-work/useful, coherence mismatch, hard hold and repeat exhaustion. Synthetic classifications do NOT prove actual scheduled notification delivery or persistent deduplication.",
     "On-demand existing watcher run_now accepted inline on 2026-11-03 and live GitHub was checked: scheduled #41681073430 SUCCESS, data/work-unit dates 2026-11-03 match, zero Search calls, zero candidate pointers, no hard hold. It was BEFORE R1 merge; no post-merge scheduled R1 run observed.",
-    "One enabled Barbecue Scheduler Watch found; inactive historical BBQ 15-run review and one-shot Barbecue Run Reconcile are not duplicate enabled watchers. No workflow manually dispatched, no YouTube API used."
+    "One enabled Barbecue Scheduler Watch found; inactive historical BBQ 15-run review and one-shot Barbecue Run Reconcile are not duplicate enabled watchers. No workflow manually dispatched, no YouTube API used.",
+    "R3 audited all 44 leaf-level occurrences / 43 distinct IDs from main and persisted 44 exact-source decisions in DRAFT PR #445: 1 qualified (ribs Myron Mixon), 3 rejected (two already-qualified ribs channel duplicates, one off-leaf fish-equipment demonstration), 40 NEEDS_EVIDENCE with precise per-item missing proof. Not merged; main still has original 15 qualified and 44 pending.",
+    "Proposed PR branch independent-source counts: chicken 6, ribs 5, brisket 2, vegetables 2, fish 1. Source gaps: chicken 0, ribs 0, brisket 3, vegetables 3, fish 4. Ribs synthesis pending and pilot false.",
+    "PR #445 head 71e64da3482399837566b9b9017d0bc173cb0e4f: initial Validate public V0 #41711816881 failed two stale tests; one bounded repair completed; replacement #41712282350 SUCCESS, npm validate PASS and browser acceptance PASS. No merge because mandatory pinned Agent OS portfolio/plan-first/sequential quality validation, freeze/reports/receipt were not executed in GitHub-only context. Procedural same-chat review is not a substitute.",
+    "Myron exact YouTube page names Myron Mixon and Daily Meal; stored channel UCYJqqMggi9medQkTSiW4Kew is the Daily Meal channel, confirmed by public webpage; PR comment #6614655031 captures this without Data API.",
+    "No YouTube Search, videos.list, channels.list, paid services, app/KC/D1 publication or new monitor. Existing Barbecue Scheduler Watch at 23:40 Canary remains. Post-R1 scheduled execution and first actual R2 alert delivery not yet verified. Live metadata access and current project quota unverified."
   ],
-  "next_action": "BBQ-R3 only in next bounded cycle: review all 44 pending leaf occurrences (43 distinct videos), persist evidence-backed exact-leaf decisions and independent coverage outcomes, pass required CI and rotate checkpoint; do not qualify from metadata alone. Existing watcher continues daily at 23:40 Atlantic/Canary. Follow up a future scheduled monitor result before claiming real delivery verification.",
-  "open_prs_at_reconciliation": [],
+  "next_action": "Next bounded continuation: fresh-reconcile PR #445 exact head, run mandatory pinned portfolio/plan-first SAME_CHAT_SEQUENTIAL quality freeze→Supporter→Critic→Synthesis→validate in an executable checkout, repair if required, then merge only after complete quality gate and required CI. Verify main and rotate checkpoint after eligible merge; otherwise preserve draft HOLD. Forty evidence gaps are individually documented; metadata access/quota gate still unverified. No repeated R1/R2 or YouTube Search.",
+  "open_prs_at_reconciliation": [
+    {
+      "number": 445,
+      "status": "DRAFT_CI_SUCCESS_QUALITY_GATE_UNVERIFIED",
+      "head_sha": "71e64da3482399837566b9b9017d0bc173cb0e4f",
+      "base_sha": "40f29ca5e36b74fe8403386eeb967f33838ceb2c",
+      "url": "https://github.com/DataRaul/culinary-recommender-app/pull/445"
+    },
+    {
+      "number": 434,
+      "status": "OTHER_LANE_EXISTING"
+    },
+    {
+      "number": 432,
+      "status": "OTHER_LANE_EXISTING"
+    },
+    {
+      "number": 428,
+      "status": "OTHER_LANE_EXISTING"
+    }
+  ],
   "owner_run_now": false,
   "new_implementation": {
     "quality_protocol": "docs/PACKAGE_QUALITY_PROTOCOL.md",
@@ -110,9 +134,28 @@
       "synthetic_scenarios_passed": 14,
       "synthetic_scenarios_total": 14,
       "next_action": "BBQ-R3 only: all 44 leaf-occurrence evidence reviews; verify scheduled watcher on next run"
+    },
+    {
+      "event_id": "culinary-recommender-app:barbecue:r3-evidence-review-partial:20261103",
+      "date": "2026-11-03",
+      "event": "BBQ_R3_REVIEWED_44_DRAFT_PR445_CI_SUCCESS_QUALITY_HOLD",
+      "observed_main": "40f29ca5e36b74fe8403386eeb967f33838ceb2c",
+      "observed_state_head": "39081dd38976a2ef3d4d735922c4d16e6fc7afba",
+      "predecessor_sha256": "1b074b44087b5d808dae675593f3377d43e2cad1e43ca3a5f52d296554b330a7",
+      "package": "BBQ-R3",
+      "pr": 445,
+      "pr_head_sha": "71e64da3482399837566b9b9017d0bc173cb0e4f",
+      "ci_run_id": 41712282350,
+      "outcome": "EVIDENCE_REVIEW_PARTIALLY_BLOCKED_WITH_EXACT_REASONS",
+      "reviewed": 44,
+      "qualified": 1,
+      "rejected": 3,
+      "needs_evidence": 40,
+      "merge_status": "UNMERGED_PINNED_PACKAGE_QUALITY_HOLD",
+      "next_action": "Run pinned package-quality gate on PR445, then safe merge if eligible"
     }
   ],
-  "startup_instruction": "Fresh-read live GitHub main/PRs/Actions, Barbecue generated state and work-unit, roadmap/contracts, continuity-state Barbecue CURRENT/PREVIOUS, and existing automation ID 6ab813aa86048191a690e453d1d8b5d7. Execute BBQ-R2 monitoring repair only; validate delayed/missing, running, failed, completed-noop, completed-progress and coherent state; update existing watcher (do not create another); after terminal verify and rotate this lane pair, emit full handover and STOP. R3 remains separate.",
+  "startup_instruction": "BBQ-R3 evidence ledger and six regression tests are persisted in DRAFT PR #445 with final CI SUCCESS, but pinned quality validation is not executed; main unchanged. Reconcile live GitHub + canonical checkpoint, complete mandatory quality checker on exact PR tree before safe merge, and preserve 40 per-leaf NEEDS_EVIDENCE. No new provider calls, new monitor or discovery. One bounded package then checkpoint and STOP.",
   "package_quality": {
     "schema_version": 1,
     "goal_ref": {
@@ -120,7 +163,7 @@
       "sha256": "80120a49d2d81a292c3daaa87b8cfcedcdd6eae85258c051e81680f58c88e7ca"
     },
     "package_ref": "docs/package_quality/contracts/concurrent-lanes-v1.json",
-    "status": "BBQ_R2_UPDATED_CONFIG_VERIFIED__SCHEDULED_ALERT_DELIVERY_PENDING__R3_NEXT",
+    "status": "BBQ_R3_NORMAL_CI_SUCCESS__PACKAGE_QUALITY_GATE_HOLD__DRAFT_PR445",
     "last_evidence": [
       "docs/package_quality/evidence/concurrent-lanes/local-checks.txt",
       "docs/package_quality/evidence/concurrent-lanes/migration.json",
@@ -136,7 +179,12 @@
       "2026-11-03 synthetic decision cases: 14/14 PASSED; not an end-to-end scheduled automation test",
       "2026-11-03 on-demand automation inline run requested; live scheduled run #41681073430 SUCCESS with persisted date matched, no acquisition progress",
       "GitHub main remains R1 merge 40f29ca5e36b74fe8403386eeb967f33838ceb2c; R2 changed automation configuration only",
-      "Pinned lane-prepare/lane-verify executable not available in connected GitHub-only runtime; atomic two-file lease and byte comparison performed instead, retain this validation limitation"
+      "Pinned lane-prepare/lane-verify executable not available in connected GitHub-only runtime; atomic two-file lease and byte comparison performed instead, retain this validation limitation",
+      "PR #445 DRAFT head 71e64da3482399837566b9b9017d0bc173cb0e4f",
+      "config/barbecue_technique_corpus_candidate_review_2026_11_03.json on draft branch ONLY",
+      "tests/barbecue-r3-evidence-review.test.js on draft branch ONLY",
+      "GitHub Actions #41712282350 SUCCESS after #41711816881 stale-test repair",
+      "PR #445 original publisher/channel verification comment #6614655031"
     ],
     "reviews": [
       {
@@ -152,16 +200,34 @@
       {
         "role": "R2_test_limitation",
         "identity": "14 synthetic case rule checks; no injected fault or actual scheduled alert-delivery proof"
+      },
+      {
+        "role": "R3_supporter",
+        "status": "PROCEDURAL_ONLY",
+        "evidence": "44 occurrence ledger, source checks and regression tests; 40 missing evidence held"
+      },
+      {
+        "role": "R3_critic",
+        "status": "PINNED_QUALITY_GATE_HOLD",
+        "evidence": "Independence, duplicate leaf, off-scope and publication gates checked; executable receipt unavailable"
+      },
+      {
+        "role": "R3_synthesis",
+        "status": "PARTIAL_BLOCKED",
+        "evidence": "PR445 normal CI PASS, 40 unresolved, no merge"
       }
     ],
     "unfinished_criteria": [
-      "BBQ-R3 evidence adjudication for 44 leaf occurrences, 43 unique video identities, independent source coverage and any gated metadata pilot",
-      "Observe first actual 23:40 scheduled watcher result and delivery/suppression semantics; synthetic tests alone insufficient",
-      "Observe first post-R1-merge scheduled acquisition run on main, with exhaustion classification and review successor"
+      "Run exact-head pinned portfolio/plan-first/sequential package-quality validator; missing signed/frozen receipt currently blocks merge",
+      "40 exact-source reviewer obligations with specific missing evidence persisted in draft PR #445",
+      "Independent qualified source deficits brisket 3, vegetables 3, fish 4; ribs synthesis is separate pending gate",
+      "No authorized metadata access/current existing-project quota proof; do not call provider",
+      "First post-R1 scheduled execution and first actual R2 watcher notification delivery unverified"
     ],
     "failures": [
-      "Last production generated state/work-unit are pre-merge and remain falsely generic until a new scheduled run writes R1 classification",
-      "44 leaf occurrences await source-specific evidence review"
+      "Initial CI run #41711816881 failed two stale tests, repaired once; final run #41712282350 SUCCESS",
+      "Pinned Agent OS validator unavailable in GitHub-only runtime; PR remains draft and unmerged",
+      "40 candidate occurrences still lack full independent evidence"
     ],
     "decisions": [
       "No new Search; evidence-first reviewer queue",
@@ -169,7 +235,10 @@
       "Three distinct one-package sequential execution cycles; handover itself performs no code or API",
       "BBQ-R1 successfully merged in PR #444 without new Search, provider calls, schedule changes or automatic qualification",
       "Next one-package cycle is R2 watcher only; R3 separate",
-      "R2 updates existing ChatGPT automation only, after 13h+ grace; no repo code/PR or extra scheduled monitor."
+      "R2 updates existing ChatGPT automation only, after 13h+ grace; no repo code/PR or extra scheduled monitor.",
+      "BBQ-R3 44/44 reviewed; evidence-led QUALIFIED 1, REJECTED 3, NEEDS_EVIDENCE 40",
+      "No automatic qualification, no premature ribs synthesis",
+      "Normal CI green is not substitute for signed pinned quality receipt; hold integration"
     ],
     "constraints": [
       "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
@@ -182,48 +251,58 @@
       "max_rounds": 1,
       "usage": "unknown"
     },
-    "next_action": "BBQ-R3 only in next bounded cycle: review all 44 pending leaf occurrences (43 distinct videos), persist evidence-backed exact-leaf decisions and independent coverage outcomes, pass required CI and rotate checkpoint; do not qualify from metadata alone. Existing watcher continues daily at 23:40 Atlantic/Canary. Follow up a future scheduled monitor result before claiming real delivery verification.",
-    "predecessor_sha256": "5c4d340cac373398320cb3d8af5aff3aa166797d04c51d194b667cf698677ec8"
+    "next_action": "Next bounded continuation: fresh-reconcile PR #445 exact head, run mandatory pinned portfolio/plan-first SAME_CHAT_SEQUENTIAL quality freeze→Supporter→Critic→Synthesis→validate in an executable checkout, repair if required, then merge only after complete quality gate and required CI. Verify main and rotate checkpoint after eligible merge; otherwise preserve draft HOLD. Forty evidence gaps are individually documented; metadata access/quota gate still unverified. No repeated R1/R2 or YouTube Search.",
+    "predecessor_sha256": "1b074b44087b5d808dae675593f3377d43e2cad1e43ca3a5f52d296554b330a7"
   },
   "handover_generated_at": "2026-11-03",
   "current_package": {
-    "id": "BBQ-R2-MONITORING-20261103",
-    "purpose": "Repair existing delayed GitHub scheduler watch and distinguish infrastructure success from actual acquisition or review progress.",
-    "scope": "Existing ChatGPT automation prompt and schedule only; no repository code modification, workflow dispatch, new monitor, API calls or corpus admission.",
-    "terminal": "MONITOR_CONFIG_UPDATED_VERIFIED__ON_DEMAND_CHECK_PASS__SCHEDULED_DELIVERY_UNOBSERVED",
-    "watcher_id": "6ab813aa86048191a690e453d1d8b5d7",
-    "watcher_enabled": true,
-    "watch_timezone": "Atlantic/Canary",
-    "schedule": "daily 23:40 Atlantic/Canary",
-    "workflow_cron_utc": "09:20 UTC",
-    "test_evidence": {
-      "synthetic_decision_cases": {
-        "passed": 14,
-        "total": 14,
-        "limitations": "model-rule simulation not end-to-end task-run fault injection"
-      },
-      "on_demand": {
-        "called": true,
-        "live_run_id": 41681073430,
-        "state_date_match": true,
-        "zero_search_calls": true,
-        "zero_candidates": true
-      },
-      "scheduled_delivery_verified": false
+    "id": "BBQ-R3-EVIDENCE-REVIEW-20261103",
+    "terminal": "EVIDENCE_REVIEW_PARTIALLY_BLOCKED_WITH_EXACT_REASONS",
+    "reviewed": 44,
+    "distinct_video_ids": 43,
+    "qualified": 1,
+    "rejected": 3,
+    "needs_evidence": 40,
+    "pr": 445,
+    "pr_status": "DRAFT_NOT_MERGED",
+    "pr_head_sha": "71e64da3482399837566b9b9017d0bc173cb0e4f",
+    "main_sha": "40f29ca5e36b74fe8403386eeb967f33838ceb2c",
+    "ci": {
+      "run": 41712282350,
+      "conclusion": "SUCCESS",
+      "head": "71e64da3482399837566b9b9017d0bc173cb0e4f",
+      "full_tests": true,
+      "browser_tests": true,
+      "first_failed_run": 41711816881,
+      "one_repair_round": true
     },
-    "repo_main": "40f29ca5e36b74fe8403386eeb967f33838ceb2c",
-    "repo_pr": null,
-    "repo_ci": "NOT_APPLICABLE_AUTOMATION_ONLY",
-    "observed_qualified_source_records": 15,
-    "pending_leaf_occurrences": 44,
-    "unique_pending_video_ids": 43,
-    "remaining_blockers": [
-      "R3 evidence review not performed",
-      "First post-R1 scheduled run not observed",
-      "First post-update scheduled watch delivery/alert dedup not observed",
-      "Live metadata pilot key and date-matched quota not verified"
+    "quality": "HOLD_PINNED_AGENT_OS_VALIDATION_UNEXECUTED",
+    "evidence_file": "config/barbecue_technique_corpus_candidate_review_2026_11_03.json",
+    "state_file": "data/generated/barbecue-technique-corpus-state.json",
+    "test_file": "tests/barbecue-r3-evidence-review.test.js",
+    "coverage": {
+      "chicken": 6,
+      "ribs": 5,
+      "brisket": 2,
+      "vegetables": 2,
+      "fish": 1
+    },
+    "source_gaps": {
+      "chicken": 0,
+      "ribs": 0,
+      "brisket": 3,
+      "vegetables": 3,
+      "fish": 4
+    },
+    "no_live_api_calls": true,
+    "metadata_blockers": [
+      "BLOCKED_LIVE_METADATA_ACCESS",
+      "BLOCKED_METADATA_QUOTA_UNVERIFIED"
     ],
-    "next_package": "BBQ-R3"
+    "monitor_unchanged": true,
+    "post_r1_scheduled_run_verified": false,
+    "actual_r2_monitor_delivery_verified": false,
+    "next_gate": "PINNED_QUALITY_THEN_ELIGIBLE_MERGE"
   },
   "execution_sequence": [
     {
@@ -269,7 +348,17 @@
         "Use independent safety authorities and source-specific normalized observations for any synthesis. Commit only reviewed changes through required CI; verify main, count per-leaf qualified-independent sources, remaining unresolved/rejected and actual corpus gap."
       ],
       "acceptance": "Each of 44 occurrences receives an evidence-backed decision or explicit NEEDS_EVIDENCE with specific missing proof; independent count gates retained, all references independently reviewed, no fake corpus completion; reviewed PR CI and main verification.",
-      "terminal": "EVIDENCE_REVIEW_VERIFIED with exact counts, or named blocked residuals; rotate handover and STOP"
+      "terminal": "EVIDENCE_REVIEW_VERIFIED with exact counts, or named blocked residuals; rotate handover and STOP",
+      "observed_status": "EVIDENCE_REVIEW_PARTIALLY_BLOCKED_WITH_EXACT_REASONS",
+      "pr": 445,
+      "pr_head_sha": "71e64da3482399837566b9b9017d0bc173cb0e4f",
+      "ci_run_id": 41712282350,
+      "ci_status": "SUCCESS",
+      "merge_status": "UNMERGED_PINNED_QUALITY_HOLD",
+      "reviewed": 44,
+      "qualified": 1,
+      "rejected": 3,
+      "needs_evidence": 40
     }
   ],
   "human_gates": [
@@ -283,12 +372,14 @@
     "Use GitHub as source of truth, existing controls, one bounded package per chat, mandatory CI and independent quality review, terminal handover and STOP"
   ],
   "remaining_definition_of_done": [
-    "R3 all 44 occurrences evidence assessed; statuses and precise remaining qualifications are persisted and verified",
-    "Live metadata pilot only when authority/quota gates pass; otherwise exact residual blocker persists",
-    "No forbidden side effects, and no incorrect completion or effectiveness claims"
+    "Pinned Agent OS quality receipt on PR445 exact tree, then eligible CI/merge/main verification",
+    "40 remaining source-specific identity/credential/technique/independence evidence gaps",
+    "Further source gaps brisket +3, vegetables +3, fish +4; ribs synthesis separate",
+    "Live metadata key/quota and real scheduled/monitor delivery independent future gates"
   ],
   "completed_definition_of_done": [
     "R1 merged and CI verified with explicit zero-eligible-query review status.",
-    "R2 existing watcher updated and on-demand GitHub state verified; 14 synthetic cases passed; actual scheduled alert delivery remains pending observation"
+    "R2 existing watcher updated and on-demand GitHub state verified; 14 synthetic cases passed; actual scheduled alert delivery remains pending observation",
+    "R3 reviewed all 44 and persisted exact evidence decisions plus independent-source coverage in draft PR #445. Validate public V0 #41712282350 SUCCESS; no quality-gated merge."
   ]
 }
