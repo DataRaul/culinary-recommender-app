@@ -2,6 +2,12 @@ import { createHash } from "node:crypto";
 import { BARBECUE_PROGRAMME_ID, BARBECUE_WORKFLOW_PATH, BARBECUE_WORK_UNIT_SCHEMA } from "./barbecue-technique-corpus-control-plane.mjs";
 
 const HARD_HOLDS=new Set(["BARBECUE_SEARCH_HOLD_RATE_LIMIT","BARBECUE_SEARCH_HOLD_POLICY_OR_QUOTA","BARBECUE_REVIEW_BACKLOG","BARBECUE_SEARCH_HOLD_PROVIDER_OTHER"]);
+const NO_QUERY_TERMINALS=new Set([
+  "BARBECUE_SEARCH_PORTFOLIO_EXHAUSTED_REVIEW_PENDING",
+  "BARBECUE_SEARCH_PORTFOLIO_EXHAUSTED_NO_REVIEW_CANDIDATES",
+  "BARBECUE_DISCOVERY_WAITING_FOR_REVIEW_GATE",
+  "BARBECUE_DISCOVERY_WAITING_FOR_SYNTHESIS"
+]);
 
 function fingerprint(value){return createHash("sha256").update(JSON.stringify(value)).digest("hex");}
 
@@ -31,10 +37,28 @@ export function deriveBarbecueWorkUnitState(state,{primaryOutcome="success",gene
     nextTriggerDisposition="NO_LIVE_SEARCH_UNTIL_HOLD_RESOLVED";
     schedulerDisposition="HOLD_FAIL_CLOSED";
     reconciliation="STATIC_ROADMAP_AND_HANDOVER_RECONCILIATION_REQUIRED";
+  } else if (NO_QUERY_TERMINALS.has(state.programmeStatus)) {
+    closureStatus=state.programmeStatus;
+    const days=state.completedQuotaDays ?? [];
+    materialTransition=days.length<2 || days.at(-2)?.terminalState!==closureStatus;
+    successorAction=closureStatus==="BARBECUE_DISCOVERY_WAITING_FOR_SYNTHESIS"
+      ? "REVIEW_REQUIRED_SYNTHESIS_FOR_QUALIFIED_LEAVES"
+      : closureStatus==="BARBECUE_SEARCH_PORTFOLIO_EXHAUSTED_NO_REVIEW_CANDIDATES"
+        ? "OWNER_DECISION_REQUIRED_FOR_UNFILLED_SOURCE_GAPS"
+        : "EVIDENCE_REVIEW_PENDING_BARBECUE_CANDIDATES";
+    nextTriggerDisposition="SCHEDULED_SAFE_WAKEUP_NO_SEARCH_UNLESS_ELIGIBILITY_CHANGES";
+    schedulerDisposition="CONTINUE_BOUNDED_ZERO_CALL_WAKEUP";
+    reconciliation="STATIC_ROADMAP_AND_HANDOVER_RECONCILIATION_REQUIRED";
   }
+  const lastDay=state.completedQuotaDays?.at(-1) ?? null;
+  const acquisitionOutcome=NO_QUERY_TERMINALS.has(closureStatus) ? "NO_NEW_DISCOVERY_REVIEW_OR_DECISION_REQUIRED"
+    : lastDay?.candidatePointersAdded>0 ? "NEW_CANDIDATE_POINTERS"
+    : lastDay?.searchCalls>0 ? "SEARCH_EXECUTED_NO_NEW_POINTERS" : "NO_ACQUISITION_PROGRESS";
   return {
     schemaVersion:BARBECUE_WORK_UNIT_SCHEMA,programmeId:BARBECUE_PROGRAMME_ID,workflow:BARBECUE_WORKFLOW_PATH,
     generatedAt,sourceStateFingerprint:fingerprint(state),primaryOutcome,
+    acquisitionOutcome,latestSearchCalls:lastDay?.searchCalls ?? 0,
+    latestCandidatePointersAdded:lastDay?.candidatePointersAdded ?? 0,
     latestQuotaDate:state.lastCompletedQuotaDate ?? null,closureStatus,materialTransition,
     roadmapHandoverReconciliation:reconciliation,successorAction,nextTriggerDisposition,schedulerDisposition,
     authority:{automaticKnowledgeCorePromotionAuthorized:false,automaticAppAdmissionAuthorized:false,automaticPublicationAuthorized:false,paidInfrastructureAuthorized:false}

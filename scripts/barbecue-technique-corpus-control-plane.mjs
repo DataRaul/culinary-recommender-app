@@ -171,6 +171,37 @@ export function selectBarbecueDailyQueries(config, state, usedQueryIds = state.u
   return selected;
 }
 
+export const BARBECUE_DISCOVERY_EXHAUSTED_REVIEW_PENDING = "BARBECUE_SEARCH_PORTFOLIO_EXHAUSTED_REVIEW_PENDING";
+export const BARBECUE_DISCOVERY_WAITING_FOR_REVIEW_GATE = "BARBECUE_DISCOVERY_WAITING_FOR_REVIEW_GATE";
+export const BARBECUE_DISCOVERY_EXHAUSTED_NO_CANDIDATES = "BARBECUE_SEARCH_PORTFOLIO_EXHAUSTED_NO_REVIEW_CANDIDATES";
+
+/**
+ * Pure, zero-provider-call classification. A pending championship review can unlock
+ * already-approved fallback templates; it must not be misreported as full exhaustion.
+ * Does not unlock templates, re-use query IDs or change source admission.
+ */
+export function classifyBarbecueQueryAvailability(config, state) {
+  const available = selectBarbecueDailyQueries(config, state);
+  if (available.length > 0) return { status: "QUERIES_AVAILABLE", availableQueries: available.length };
+  const remaining = state.leaves.filter(leaf =>
+    leaf.status !== "COMPLETE" &&
+    leaf.qualifiedSources.length < config.requiredQualifiedIndependentSourcesPerLeaf
+  );
+  if (remaining.length === 0) return { status: "BARBECUE_DISCOVERY_WAITING_FOR_SYNTHESIS", availableQueries: 0 };
+  const prospective = clone(state);
+  for (const leaf of prospective.leaves) {
+    if (remaining.some(row => row.leafId === leaf.leafId)) leaf.championshipSearchExhausted = true;
+  }
+  const futureFallbackExists = selectBarbecueDailyQueries(config, prospective).length > 0;
+  return {
+    status: futureFallbackExists ? BARBECUE_DISCOVERY_WAITING_FOR_REVIEW_GATE
+      : pendingCandidateCount(state) > 0 ? BARBECUE_DISCOVERY_EXHAUSTED_REVIEW_PENDING
+      : BARBECUE_DISCOVERY_EXHAUSTED_NO_CANDIDATES,
+    availableQueries: 0,
+    pendingReviewOccurrences: pendingCandidateCount(state)
+  };
+}
+
 export function createDurableCandidatePointer(rawItem, query, quotaDate) {
   const youtubeVideoRef=rawItem?.id?.videoId;
   const creatorChannelRef=rawItem?.snippet?.channelId;
