@@ -59,11 +59,10 @@ jobs:
             echo "::error::YT_BBQ_DRY_RUN must resolve to true or false."
             exit 2
           fi
-          if [[ "${YT_BBQ_DRY_RUN}" == "false" ]]; then
-            if [[ -z "${CULINARY_YOUTUBE_API_KEY:-}" ]]; then
-              echo "::error::CULINARY_YOUTUBE_API_KEY is required for live barbecue discovery."
-              exit 2
-            fi
+          # Query selection occurs inside the runner before key enforcement.
+          # An exhausted portfolio must close safely with zero calls even without a key.
+          # Eligible requests still fail closed in run-barbecue-technique-corpus-discovery.mjs.
+          if [[ -n "${CULINARY_YOUTUBE_API_KEY:-}" ]]; then
             echo "::add-mask::$CULINARY_YOUTUBE_API_KEY"
           fi
 
@@ -71,6 +70,7 @@ jobs:
         run: >-
           node --test
           tests/barbecue-technique-corpus-control-plane.test.js
+          tests/barbecue-r1-discovery-lifecycle.test.js
           tests/barbecue-review-audit.test.js
           tests/barbecue-technique-corpus-work-unit-lifecycle.test.js
           tests/youtube-culinary-adaptive-portfolio.test.js
@@ -144,6 +144,7 @@ jobs:
             `- Automatic publication: ${summary?.automaticPublicationAuthorized ?? false}`,
             `- Automatic app admission: ${summary?.automaticAppAdmissionAuthorized ?? false}`,
             `- Automatic Knowledge Core promotion: ${summary?.automaticKnowledgeCorePromotionAuthorized ?? false}`,
+            `- Acquisition outcome: **${work?.acquisitionOutcome ?? 'NOT_AVAILABLE'}**`,
             `- Work-unit closure: **${work?.closureStatus ?? 'NO_CLOSURE_STATE'}**`,
             `- Successor: ${work?.successorAction ?? 'unknown'}`,
             `- Scheduler disposition: ${work?.schedulerDisposition ?? 'unknown'}`,
