@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "plan_digest": "9e639724253b40155b5520bc86d2f48233f79029e46073c9ced8e9e75302fada",
+  "decisions": [
+    {
+      "id": "D1",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "config/barbecue_technique_corpus_candidate_review_2026_11_03.json",
+        "data/generated/barbecue-technique-corpus-state.json",
+        "tests/barbecue-r3-evidence-review.test.js",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/qa.json"
+      ]
+    },
+    {
+      "id": "D2",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        ".github/workflows/barbecue-r3-quality.yml",
+        "scripts/package_quality.py",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/alignment.json"
+      ]
+    },
+    {
+      "id": "D3",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/authority.json",
+        "docs/package_quality/contracts/barbecue-r3-integration-20261104.json",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/qa.json"
+      ]
+    }
+  ],
+  "material_deviations": []
+}

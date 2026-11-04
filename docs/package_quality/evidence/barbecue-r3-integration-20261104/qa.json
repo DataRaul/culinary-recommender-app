@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "package_id": "barbecue-r3-integration-20261104",
+  "source_branch_status": "DRAFT_NOT_MERGED",
+  "review_inventory": {
+    "leaf_occurrences": 44,
+    "distinct_video_ids": 43,
+    "qualified_new": 1,
+    "rejected": 3,
+    "needs_evidence": 40
+  },
+  "coverage_proposed": {
+    "chicken": 6,
+    "ribs": 5,
+    "brisket": 2,
+    "vegetables": 2,
+    "fish": 1
+  },
+  "source_deficits": {
+    "brisket": 3,
+    "vegetables": 3,
+    "fish": 4
+  },
+  "prior_normal_ci": {
+    "run_id": 41712282350,
+    "head_sha": "71e64da3482399837566b9b9017d0bc173cb0e4f",
+    "conclusion": "SUCCESS",
+    "full_tests": true,
+    "browser_acceptance": true
+  },
+  "original_review_limitations": {
+    "no_independent_evidence_urls": 25,
+    "unresolved_approvals": 40,
+    "source_identity_unconfirmed_for_many": true,
+    "provenance_consequence": "These remain NEEDS_EVIDENCE, not qualified; review-count does not equal verified sources."
+  },
+  "exclusions": {
+    "youtube_search_calls": 0,
+    "youtube_data_api_calls": 0,
+    "paid_spend": 0,
+    "public_app_widening": false,
+    "protected_d1_writes": 0,
+    "knowledge_core_writes": 0
+  },
+  "quality_status": "PINNED_QUALITY_EXECUTION_NOT_YET_COMPLETED",
+  "expected_final_gate": "EXACT_SHA_SIGNED_PROCEDURAL_REVIEWS_PLUS_CI"
+}
