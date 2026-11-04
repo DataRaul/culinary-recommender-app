@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "session_id": "chatgpt-session-barbecue-r3-integration-20261104",
+  "model": "GPT-6",
+  "independent": false,
+  "authority": "AUTO + VERIFY",
+  "plan_digest": "9e639724253b40155b5520bc86d2f48233f79029e46073c9ced8e9e75302fada",
+  "roadmap_digest": "10e4e84d782c3e1eb911cf1e445fed8aaef5ea27ae98a9ccce75ccd97bf020f3",
+  "verdict": "PLAN_ACCEPTED",
+  "rationale": "Accept only the existing R3 integration/quality closeout, not retrospective approval of R3 implementation. The bounded Actions validation surface is an execution mechanism, not a new discovery or monitoring workflow.",
+  "dimensions": {
+    "problem_solution_fit": "The missing gate is executable pinned validation, not more search or a new corpus; reuse PR #445 unchanged unless a proven defect requires repair.",
+    "alternatives": "A Work checkout would be simpler but is unavailable from this session. One bounded branch-specific GitHub Actions job is the least intrusive executable alternative.",
+    "architecture_tradeoffs": "Keep the canonical Agent OS scripts and exact hash pins; checkout alongside Culinary in the existing GitHub runner and leave public runtime unchanged.",
+    "complexity": "Limit new code to a branch-scoped validation workflow and versioned quality evidence/receipt; do not create a generalized quality orchestration service.",
+    "security_compliance": "No additional provider access, keys or permissions needed; CI read-only checkout and no publication until gate.",
+    "cost": "Existing normal GitHub Actions allowance only; forbid new paid calls and limit retries to the inherited bounded round.",
+    "failure_scenarios": "Hash mismatch, stale roadmap, unverified knowledge provenance, source evidence uncertainty, changed PR head, or missing sidecar must HOLD not merge.",
+    "acceptance_criteria": "Require exact 44 occurrence decisions, five-source counts by unique practitioner, 40 conservative NEEDS_EVIDENCE, quality receipt and final-head CI.",
+    "roadmap_alignment": "Barbecue isolated lane P2 under standing policy; owner-requested recovery has an authorized bounded continuation and does not block main acquisition."
+  },
+  "findings": []
+}

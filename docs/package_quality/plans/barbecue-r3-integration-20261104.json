@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "plan_id": "barbecue-r3-integration-20261104",
+  "revision": 1,
+  "roadmap_alignment": {
+    "roadmap_path": "docs/ROADMAP.md",
+    "roadmap_sha256": "10e4e84d782c3e1eb911cf1e445fed8aaef5ea27ae98a9ccce75ccd97bf020f3",
+    "milestone_line": "| Post-usable-app / Barbecue Technique Corpus | INDEPENDENT SCHEDULED PILOT ACTIVE / POULTRY SYNTHESIS COMPLETE / FOUR LEAVES CONTINUE | Poultry now has 6 qualified independent sources, 6/6 bounded normalized source observations, 12/12 structured adjustment axes and separate USDA/FSIS safety authority; the leaf is `COMPLETE` with 0 additional YouTube Search and remains excluded from discovery. Beef 2, pork 4, fish 1 and vegetables 2 continue bounded discovery. Pilot PASS remains false; scheduler/work-unit remains bounded with no public/KC/D1/billing widening |",
+    "goal_path": "docs/package_quality/goals/barbecue/v1.json",
+    "goal_sha256": "80120a49d2d81a292c3daaa87b8cfcedcdd6eae85258c051e81680f58c88e7ca",
+    "goal_criteria": [
+      "CONTINUITY",
+      "OUTCOME"
+    ],
+    "steering_source": "docs/package_quality/evidence/barbecue-r3-integration-20261104/authority.json",
+    "priority_rationale": "Owner requests completion of R3 recovery; this is an isolated P2 quality closeout of existing PR #445, not a new research lane or interruption of primary acquisition.",
+    "goal_contribution": "Verify exact R3 evidence work, maintain independent qualification constraints, and integrate only after reviewer and CI gates.",
+    "value_signal": "No new recipes; goal is verified provenance and safer independent technique coverage, effectiveness unmeasured.",
+    "status": "ALIGNED",
+    "conflicts": []
+  },
+  "problem": "PR #445 contains 44 candidate decisions and passing normal CI but lacks the required pinned same-chat sequential package-quality receipt.",
+  "affected_users": "Culinary owner and future BBQ technique-corpus reviewers.",
+  "root_cause": "Earlier GitHub-only context could not execute the exact pinned Agent OS validator; the PR remains draft.",
+  "desired_outcome": "Complete the pinned quality and CI chain on an unchanged evidence candidate, merge if all gates permit, and preserve unresolved 40 source records.",
+  "expected_value": "Auditably close the evidence-gated R3 integration without granting false qualifications or rebuilding discovery.",
+  "options": [
+    {
+      "id": "PINNED_GITHUB_CI",
+      "description": "Use a one-time branch-scoped GitHub Actions quality job to invoke the exact pinned Agent OS validators.",
+      "pros": "Uses existing free CI execution surface and existing quality contracts; can persist validator outputs.",
+      "cons": "Adds temporary development workflow and requires bounded sequential commits for receipts and reports."
+    },
+    {
+      "id": "WORK_CHECKOUT",
+      "description": "Leave PR draft and require an external executable Work checkout to validate before integration.",
+      "pros": "No branch-scoped workflow is added.",
+      "cons": "Blocks autonomous completion despite existing GitHub CI and permission."
+    }
+  ],
+  "selected_option_id": "PINNED_GITHUB_CI",
+  "architecture": "Reuse scripts/package_quality.py and scripts/portfolio_priority.py with exact pinned DataRaul/agent-os checkout 6a21ad1; no new persistent runtime, only a branch-scoped GitHub Actions verification job.",
+  "tradeoffs": "A self-reported sequential review is procedural rather than independent. Original R3 source work pre-dates this integration plan and must not be presented as preapproved. Publish only source-bounded partial outcome.",
+  "estimated_cost": "GitHub-hosted normal Actions within existing allowance; 0 paid provider units, 0 recurring services.",
+  "authority": "AUTO + VERIFY",
+  "decisions": [
+    {
+      "id": "D1",
+      "decision": "Verify existing R3 source decisions and all 44 occurrences without widening source admission.",
+      "rationale": "Preserve evidence-first independence and explicit 40 unknowns.",
+      "expected_consequences": "Misleading qualification is held; numeric ribs source threshold does not imply technique synthesis.",
+      "authority": "AUTO + VERIFY",
+      "material": true,
+      "delegation_reference": "docs/package_quality/evidence/barbecue-r3-integration-20261104/authority.json"
+    },
+    {
+      "id": "D2",
+      "decision": "Execute hash-pinned package checks on bounded existing GitHub Actions runner and persist actual receipts.",
+      "rationale": "Workstation checkout inaccessible in this host; no new external API or runtime is needed.",
+      "expected_consequences": "A deterministic validator can verify exact candidate and report chain before merge.",
+      "authority": "AUTO + VERIFY",
+      "material": true,
+      "delegation_reference": "docs/package_quality/evidence/barbecue-r3-integration-20261104/authority.json"
+    },
+    {
+      "id": "D3",
+      "decision": "Merge PR #445 only if pinned procedural gate and required CI pass against exact head, otherwise hold.",
+      "rationale": "The current draft is safe only when no quality bypass occurs.",
+      "expected_consequences": "Canonical main and checkpoint remain truthful; new source/pilot/synthesis work not implied.",
+      "authority": "AUTO + VERIFY",
+      "material": true,
+      "delegation_reference": "docs/package_quality/evidence/barbecue-r3-integration-20261104/authority.json"
+    }
+  ],
+  "acceptance_criteria": [
+    "Exact source/main and candidate inventory; no automatic qualification and unresolved 40 retained.",
+    "Pinned portfolio, plan-first, freeze, supporter, critic, synthesis, validation on exact outgoing tree.",
+    "Required normal CI green at final head; merge only when eligible, verify main and atomic checkpoint."
+  ],
+  "risks": [
+    "Original R3 candidate evidence has only sparse independent source URLs; never claim the 40 are resolved.",
+    "One wrong channel or authority attribution could undermine Myron and fish decisions.",
+    "CI workflow could become accidental recurring overhead; restrict to named branch with no schedules."
+  ]
+}
