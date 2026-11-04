@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "session_id": "chatgpt-session-barbecue-r3-integration-20261104",
+  "model": "GPT-6",
+  "candidate_digest": "6c71ee969d6b74e5afad290503c37de3f2556641f41b1e582ec0bdc8489688cb",
+  "verdict": "PASS",
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "independent": false,
+  "knowledge": [
+    {
+      "domain": "software_data",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/software_data/objects/architecture_boundaries_modularity_evolvability.md",
+      "applied_rule": "Keep frozen source state separate from the public app and from procedural reviewer evidence; no runtime or database write follows.",
+      "criterion_id": "SAFETY"
+    },
+    {
+      "domain": "decision_frameworks",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/decision_frameworks/objects/decision_quality_under_uncertainty.md",
+      "applied_rule": "Retain explicit abstention where exact-video creator or leaf-specific technique cannot be independently verified; a review count is not a qualification count.",
+      "criterion_id": "SOURCE"
+    },
+    {
+      "domain": "project_execution",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "applied_rule": "Require pinned reviewer receipt, exact candidate, current main/CI and safe merge/checkpoint before asserting terminal integration.",
+      "criterion_id": "PINNED"
+    }
+  ],
+  "coverage": [
+    {
+      "criterion_id": "SOURCE",
+      "result": "PASS",
+      "evidence": [
+        "config/barbecue_technique_corpus_candidate_review_2026_11_03.json",
+        "data/generated/barbecue-technique-corpus-state.json",
+        "tests/barbecue-r3-evidence-review.test.js",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/qa.json"
+      ],
+      "rationale": "The exact 44 leaf occurrence IDs remain distinct, 43 unique video refs, cross-leaf duplicate retained separately; one Myron qualification and three evidence-based rejections only; 40 unresolved stay PENDING_REVIEW in generated state."
+    },
+    {
+      "criterion_id": "PINNED",
+      "result": "PASS",
+      "evidence": [
+        "config/package_quality_portfolio_adapter.json",
+        "config/portfolio_priority_policy.json",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/alignment.json",
+        "docs/package_quality/plans/barbecue-r3-integration-20261104-receipt.json",
+        "scripts/package_quality.py"
+      ],
+      "rationale": "Observed real branch-only GitHub Actions portfolio gate PASS, Python-generated plan-first receipt with exact SHA digests, and Python-frozen subject; Supporter/Critic/Synthesis and validator remain bound to that subject."
+    },
+    {
+      "criterion_id": "SAFETY",
+      "result": "PASS",
+      "evidence": [
+        "AGENTS.md",
+        "config/barbecue_technique_corpus_v1.json",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/qa.json",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/reasoning.json"
+      ],
+      "rationale": "No provider API, new Search, paid services, production D1, app/KC, scheduler or monitoring mutations; new workflow runs only on this named branch and uses read-only GitHub access."
+    },
+    {
+      "criterion_id": "MERGE_GATES",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/authority.json",
+        ".github/workflows/barbecue-r3-quality.yml",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/qa.json"
+      ],
+      "rationale": "Safe integration remains conditional: existing CI success is historical, the final head must re-earn normal CI and pinned quality before any draft conversion, merge and main/checkpoint verification."
+    }
+  ],
+  "role": "supporter",
+  "stage": 3,
+  "predecessor_digest": "6c71ee969d6b74e5afad290503c37de3f2556641f41b1e582ec0bdc8489688cb",
+  "findings": [
+    {
+      "id": "S1_NO_EXTERNAL_URL_FOR_25",
+      "kind": "optional_enhancement",
+      "material": false,
+      "evidence": "docs/package_quality/evidence/barbecue-r3-integration-20261104/qa.json",
+      "remedy": "If later evidence is obtained, attach exact-source identity and practitioner credentials per leaf. Keep all 25 with no independent URLs in NEEDS_EVIDENCE; do not interpret absence of URL as a rejection or verification.",
+      "disposition": "DEFERRED",
+      "resolution_evidence": []
+    }
+  ],
+  "rationale": "Constructive same-chat review inspected PR #445 evidence ledger, current generated state and the six dedicated regression tests plus two repaired legacy tests. Source counts are independently keyed: chicken 6, ribs 5, brisket 2, vegetables 2, fish 1 on draft branch only. The new ribs source is a Myron Mixon demonstration published by Daily Meal; independent forum exact-ID reference and American Royal Hall of Fame credentials support the conservative one-source admission. Ribs synthesis remains null and pilot false. The 40 entries lack full proof and are not promoted."
+}
