@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "package": "barbecue-r3-integration-20261104",
+  "phase": "POST_R3_EVIDENCE_REVIEW_INTEGRATION",
+  "owner_authority": "Use prior 2026-11-03 R3 handover and 2026-11-04 continue; existing AGENTS.md permits normal CI and safe merge only after all required gates.",
+  "original_r3_implementation_precedes_this_plan": true,
+  "scope": "Review and integrate existing draft PR #445 only; do not retroactively invent prebuild approval for original R3 source decisions.",
+  "existing_pr_head": "71e64da3482399837566b9b9017d0bc173cb0e4f",
+  "baseline_main": "40f29ca5e36b74fe8403386eeb967f33838ceb2c",
+  "constraints": [
+    "No YouTube provider calls or new search",
+    "No D1, app or Knowledge Core widening",
+    "No changes to R1/R2, existing monitor or scheduler",
+    "Retain 40 NEEDS_EVIDENCE unless new independent proof",
+    "Zero paid services and preserve evidence-specific gate"
+  ]
+}

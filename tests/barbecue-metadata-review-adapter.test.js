@@ -12,6 +12,7 @@ const config = await loadBarbecueConfig();
 const state = JSON.parse(await readFile("data/generated/barbecue-technique-corpus-state.json", "utf8"));
 const now = new Date("2026-10-28T19:00:00.000Z");
 const queue = metadataReviewQueue(state, config);
+const r3 = JSON.parse(await readFile("config/barbecue_technique_corpus_candidate_review_2026_11_03.json", "utf8"));
 const pilot = selectMetadataPilot(queue);
 const identity = "culinary-youtube-discovery";
 function quotaProof(remaining = 20, reserve = 5) {
@@ -46,9 +47,13 @@ function args(selected, mock, overrides = {}) {
     beforeRequest: async () => {}, ...overrides };
 }
 
-test("P0A inventory: all 44 pending pointers, canonical IDs only, stable cross-leaf dedup", () => {
+test("P0A inventory: R3-reviewed remaining pointers, canonical IDs only, stable cross-leaf dedup", () => {
   const pending = state.leaves.flatMap(l => l.candidatePointers.filter(p => p.qualificationStatus === "PENDING_REVIEW"));
-  assert.equal(pending.length, 44);
+  assert.equal(r3.decisions.length, 44);
+  assert.equal(r3.counts.reviewed, 44);
+  assert.equal(pending.length, r3.counts.NEEDS_EVIDENCE);
+  assert.equal(pending.length, 40);
+  assert.deepEqual(new Set(pending.map(p => p.leafId + "|" + p.sourceRef)), new Set(r3.decisions.filter(d => d.decision === "NEEDS_EVIDENCE").map(d => d.leaf_id + "|" + d.source_ref)));
   assert.equal(queue.length, new Set(pending.map(p => p.youtubeVideoRef)).size);
   assert.equal(queue.filter(x => x.crossLeafDuplicate).length >= 1, true);
   assert.ok(queue.find(x => x.youtubeVideoRef === "5zuQFx2J0jM")?.crossLeafDuplicate);
@@ -103,7 +108,7 @@ test("P0B pilot: only existing ID lookups, 2 read-only calls, minimal metadata a
   assert.doesNotMatch(retained, /RAW FORBIDDEN|RAW CHANNEL|SECRET_RAW|title|description|thumbnail|rawPayload/i);
 });
 
-test("P0C mock all 44 pointers with dedup, channel reuse, and <=50 batching; no external calls", async () => {
+test("P0C mock remaining pending pointers with dedup, channel reuse, and <=50 batching; no external calls", async () => {
   const mock = mockResponses();
   const selected = queue;
   const r = await runMetadataAdapter(args(selected, mock, { mode: "mock" }));

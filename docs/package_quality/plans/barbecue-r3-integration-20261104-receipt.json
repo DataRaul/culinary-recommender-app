@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "status": "PLAN_ACCEPTED",
+  "plan_digest": "9e639724253b40155b5520bc86d2f48233f79029e46073c9ced8e9e75302fada",
+  "review_digest": "ab772b3035804698bf2c57b33ae0cb8d852d9a2b44ec49d25bd42384b8b4a99c",
+  "roadmap_digest": "10e4e84d782c3e1eb911cf1e445fed8aaef5ea27ae98a9ccce75ccd97bf020f3",
+  "goal_digest": "80120a49d2d81a292c3daaa87b8cfcedcdd6eae85258c051e81680f58c88e7ca",
+  "authority": "AUTO + VERIFY",
+  "session_id": "chatgpt-session-barbecue-r3-integration-20261104",
+  "assurance": "PROCEDURAL_SELF_REPORTED_PREBUILD"
+}

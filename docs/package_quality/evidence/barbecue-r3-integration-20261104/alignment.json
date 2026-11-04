@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "package_id": "barbecue-r3-integration-20261104",
+  "active_lane": "barbecue",
+  "configured_priority": "P2_ISOLATED",
+  "owner_direction": "Continue approved BBQ-R3 recovery PR quality and conditional integration",
+  "initial_main": "40f29ca5e36b74fe8403386eeb967f33838ceb2c",
+  "initial_pr_head": "71e64da3482399837566b9b9017d0bc173cb0e4f",
+  "initial_checkpoint_commit": "9a4532d2a4fd2fc507b3021f63e84e22fd9b97fa",
+  "roadmap_sha256": "10e4e84d782c3e1eb911cf1e445fed8aaef5ea27ae98a9ccce75ccd97bf020f3",
+  "goal_sha256": "80120a49d2d81a292c3daaa87b8cfcedcdd6eae85258c051e81680f58c88e7ca",
+  "alignment": "The user's P0_RECOVERY refers to this discrete recovery package, not a priority overwrite of the registered Barbecue P2 lane. Keep primary recipe acquisition independent.",
+  "value_status": "VALUE_NOT_YET_MEASURED",
+  "boundaries": [
+    "No new provider or search calls",
+    "No public, Knowledge Core, D1 or runtime change",
+    "No scheduler/monitor change",
+    "40 unresolved exact-source evidence decisions remain closed to qualification"
+  ]
+}

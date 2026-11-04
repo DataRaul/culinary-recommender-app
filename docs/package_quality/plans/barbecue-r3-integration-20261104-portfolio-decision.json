@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "lane_id": "barbecue",
+  "roadmap_sha256": "10e4e84d782c3e1eb911cf1e445fed8aaef5ea27ae98a9ccce75ccd97bf020f3",
+  "milestone_line": "| Post-usable-app / Barbecue Technique Corpus | INDEPENDENT SCHEDULED PILOT ACTIVE / POULTRY SYNTHESIS COMPLETE / FOUR LEAVES CONTINUE | Poultry now has 6 qualified independent sources, 6/6 bounded normalized source observations, 12/12 structured adjustment axes and separate USDA/FSIS safety authority; the leaf is `COMPLETE` with 0 additional YouTube Search and remains excluded from discovery. Beef 2, pork 4, fish 1 and vegetables 2 continue bounded discovery. Pilot PASS remains false; scheduler/work-unit remains bounded with no public/KC/D1/billing widening |",
+  "selected_priority": "P2",
+  "business_metric": "net new rights-cleared usable searchable recipes",
+  "next_primary_action": "Keep culinary-app P0 acquisition-first lane independently moving; BBQ-R3 quality closeout does not block it.",
+  "route": "CONTINUE",
+  "owner_steering_source": "docs/ACQUISITION_PARALLEL_LANE_POLICY.md",
+  "blocks_primary": false,
+  "unchanged_blocker_checks": 0,
+  "cycles_without_value": 0,
+  "material_progress": true,
+  "blocker": "PR #445 has green normal CI but lacks required exact-head pinned Agent OS package validation.",
+  "strategic_critic": {
+    "roadmap_challenge": "Barbecue is registered P2, despite the owner-directed P0 recovery work package. Keep it isolated and avoid impeding recipe acquisition.",
+    "higher_priority_alternative": "Continue rights-cleared searchable recipe acquisition on the primary culinary-app lane.",
+    "opportunity_cost": "Additional evidence or validation cycles can consume attention without delivering recipes; restrict continuation to the exact quality/merge gate.",
+    "lane_routing_challenge": "Do not turn BBQ-R3 integration into a new P0 project, provider search, or additional monitoring loop.",
+    "value_checkpoint_challenge": "Business value is quality assurance of existing evidence, not new recipe revenue or deployed features; value not measured.",
+    "disposition": "ALIGNED"
+  }
+}

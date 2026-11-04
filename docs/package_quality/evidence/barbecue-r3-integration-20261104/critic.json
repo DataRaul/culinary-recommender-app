@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "session_id": "chatgpt-session-barbecue-r3-integration-20261104",
+  "model": "GPT-6",
+  "candidate_digest": "6c71ee969d6b74e5afad290503c37de3f2556641f41b1e582ec0bdc8489688cb",
+  "verdict": "PASS",
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "independent": false,
+  "knowledge": [
+    {
+      "domain": "software_data",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/software_data/objects/architecture_boundaries_modularity_evolvability.md",
+      "applied_rule": "Keep frozen source state separate from the public app and from procedural reviewer evidence; no runtime or database write follows.",
+      "criterion_id": "SAFETY"
+    },
+    {
+      "domain": "decision_frameworks",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/decision_frameworks/objects/decision_quality_under_uncertainty.md",
+      "applied_rule": "Retain explicit abstention where exact-video creator or leaf-specific technique cannot be independently verified; a review count is not a qualification count.",
+      "criterion_id": "SOURCE"
+    },
+    {
+      "domain": "project_execution",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "applied_rule": "Require pinned reviewer receipt, exact candidate, current main/CI and safe merge/checkpoint before asserting terminal integration.",
+      "criterion_id": "PINNED"
+    }
+  ],
+  "coverage": [
+    {
+      "criterion_id": "SOURCE",
+      "result": "PASS",
+      "evidence": [
+        "config/barbecue_technique_corpus_candidate_review_2026_11_03.json",
+        "data/generated/barbecue-technique-corpus-state.json",
+        "tests/barbecue-r3-evidence-review.test.js",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/qa.json"
+      ],
+      "rationale": "The exact 44 leaf occurrence IDs remain distinct, 43 unique video refs, cross-leaf duplicate retained separately; one Myron qualification and three evidence-based rejections only; 40 unresolved stay PENDING_REVIEW in generated state."
+    },
+    {
+      "criterion_id": "PINNED",
+      "result": "PASS",
+      "evidence": [
+        "config/package_quality_portfolio_adapter.json",
+        "config/portfolio_priority_policy.json",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/alignment.json",
+        "docs/package_quality/plans/barbecue-r3-integration-20261104-receipt.json",
+        "scripts/package_quality.py"
+      ],
+      "rationale": "Observed real branch-only GitHub Actions portfolio gate PASS, Python-generated plan-first receipt with exact SHA digests, and Python-frozen subject; Supporter/Critic/Synthesis and validator remain bound to that subject."
+    },
+    {
+      "criterion_id": "SAFETY",
+      "result": "PASS",
+      "evidence": [
+        "AGENTS.md",
+        "config/barbecue_technique_corpus_v1.json",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/qa.json",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/reasoning.json"
+      ],
+      "rationale": "No provider API, new Search, paid services, production D1, app/KC, scheduler or monitoring mutations; new workflow runs only on this named branch and uses read-only GitHub access."
+    },
+    {
+      "criterion_id": "MERGE_GATES",
+      "result": "PASS",
+      "evidence": [
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/authority.json",
+        ".github/workflows/barbecue-r3-quality.yml",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/qa.json"
+      ],
+      "rationale": "Safe integration remains conditional: existing CI success is historical, the final head must re-earn normal CI and pinned quality before any draft conversion, merge and main/checkpoint verification."
+    }
+  ],
+  "role": "critic",
+  "stage": 4,
+  "predecessor_digest": "c81b0e162afbe576ce4f502e35f1d63edac5672c613dc0ec4a2cb42227c4b067",
+  "findings": [
+    {
+      "id": "C1_FALSE_COMPLETENESS",
+      "kind": "requirement_defect",
+      "material": true,
+      "evidence": "docs/package_quality/evidence/barbecue-r3-integration-20261104/qa.json",
+      "remedy": "Do not represent 44 evaluated entries as 44 verified sources. Preserve all 40 as NEEDS_EVIDENCE with source-specific fields and explicitly call out the 25 with no independent URL.",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "config/barbecue_technique_corpus_candidate_review_2026_11_03.json",
+        "docs/package_quality/evidence/barbecue-r3-integration-20261104/qa.json",
+        "tests/barbecue-r3-evidence-review.test.js"
+      ]
+    },
+    {
+      "id": "C2_NUMERIC_RIBS_NOT_SYNTHESIS",
+      "kind": "robustness_defect",
+      "material": true,
+      "evidence": "data/generated/barbecue-technique-corpus-state.json",
+      "remedy": "Keep ribs SYNTHESIS_PENDING and pilotPass=false; source count alone cannot earn synthesis nor any app admission.",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "data/generated/barbecue-technique-corpus-state.json",
+        "tests/barbecue-r3-evidence-review.test.js"
+      ]
+    },
+    {
+      "id": "C3_MISSING_LIVE_METADATA_RIGHTS",
+      "kind": "optional_enhancement",
+      "material": false,
+      "evidence": "docs/package_quality/evidence/barbecue-r3-integration-20261104/qa.json",
+      "remedy": "Do not pilot videos.list/channels.list until existing project access and same-day quota proof with reserve >=5 units pass. Preserve HOLD for a future separately scoped package.",
+      "disposition": "DEFERRED",
+      "resolution_evidence": []
+    }
+  ],
+  "rationale": "Adversarial same-chat review challenged title-derived expertise, publisher-versus-demonstrator confusion, channel independence, cross-leaf source double counts, 25 missing external URLs, incomplete technique observation, retroactive prebuild claims, stale roadmap and improper CI/merge inference. Three evidence-backed candidate decisions were rejected conservatively; Myron is the sole supported new qualification, sourced to an independent competition record and exact-video corroboration. All other 40 retain explicit unresolved proof; the branch-only action and plan-first receipt do not grant semantic truth or source rights. Future synthesis, metadata and alert delivery remain out of scope.",
+  "strategic_critic": {
+    "higher_value_alternative": "Protect primary rights-clean searchable recipe acquisition on culinary-app rather than reopen barbecue discovery.",
+    "opportunity_cost": "No repeated source search or new architecture; close existing R3 integration and stop.",
+    "priority_verdict": "ALIGNED_P2_ISOLATED_BOUNDED_RECOVERY"
+  }
+}

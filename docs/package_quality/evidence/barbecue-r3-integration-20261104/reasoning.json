@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "package_id": "barbecue-r3-integration-20261104",
+  "supporter_direction": "Check code and evidence completeness, counters and durable state mapping without assuming a source from title or metadata.",
+  "critic_challenges": [
+    "Can 25 no-URL candidates legitimately remain NEEDS_EVIDENCE? Yes, as explicit missing proof, not as positive identity validation.",
+    "Does Myron original channel match Daily Meal versus on-screen demonstrator? Public video/page and independent expertise and ribs cross-reference indicate yes; still no synthetic source inference.",
+    "Do two pre-qualified Malcom Reed ribs channels count as independent? No; explicitly rejected duplicates.",
+    "Does a product demo video qualify fish parrilla? No; exact external ID links a charcoal chimney product.",
+    "Does numeric 5 ribs mean synthesis? No; ribs is SYNTHESIS_PENDING and pilot false.",
+    "Does ordinary CI green satisfy Agent OS pinned review? No; this package must pass pinned freeze/next/validate.",
+    "Was R3 implementation already built before this plan? Yes; plan governs only current integration closeout, not backdated R3 work."
+  ],
+  "safety": "No API keys, project switch, new Search, extra monitor, paid calls, public runtime or D1/Knowledge Core mutation.",
+  "business_value": "Assurance of existing research; no additional rights-clean searchable recipes measured."
+}

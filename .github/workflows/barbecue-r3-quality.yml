@@ -1,0 +1,57 @@
+name: BBQ-R3 pinned quality (branch-only)
+on:
+  push:
+    branches:
+      - bbq-r3-evidence-review-20261103
+permissions:
+  contents: read
+jobs:
+  pinned-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: culinary
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: DataRaul/agent-os
+          ref: 6a21ad1a9b1ed854d6f53b60fd3219dc50a5a02b
+          path: agent-os
+          fetch-depth: 1
+      - name: Pinned portfolio, plan-first and same-chat gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE/culinary"
+          BASE="40f29ca5e36b74fe8403386eeb967f33838ceb2c"
+          AGENT="$GITHUB_WORKSPACE/agent-os"
+          PREFIX=(python scripts/package_quality.py --quality-adapter portfolio --portfolio-decision "docs/package_quality/plans/barbecue-r3-integration-20261104-portfolio-decision.json" --agent-os-root "$AGENT")
+          RECEIPT="docs/package_quality/plans/barbecue-r3-integration-20261104-receipt.json"
+          PACKET="docs/package_quality/evidence/barbecue-r3-integration-20261104/packet.json"
+          if [ ! -f "$RECEIPT" ]; then
+            "${PREFIX[@]}" plan-accept --plan "docs/package_quality/plans/barbecue-r3-integration-20261104.json" --review "docs/package_quality/plans/barbecue-r3-integration-20261104-review.json" --output "$RECEIPT"
+            echo "BBQ_R3_RECEIPT_BEGIN"
+            cat "$RECEIPT"
+            echo "BBQ_R3_RECEIPT_END"
+            echo "HOLD: Python-generated receipt requires a pinned commit before continuing"
+            exit 1
+          fi
+          if [ ! -f "$PACKET" ]; then
+            git fetch origin "$BASE" --no-tags || true
+            mapfile -t PATHS < <(git diff --name-only "$BASE" HEAD)
+            "${PREFIX[@]}" freeze --contract "docs/package_quality/contracts/barbecue-r3-integration-20261104.json" --paths "${PATHS[@]}" --output "$PACKET" --git-base "$BASE"
+            echo "BBQ_R3_PACKET_BEGIN"
+            cat "$PACKET"
+            echo "BBQ_R3_PACKET_END"
+            echo "HOLD: frozen packet requires a pinned commit and sequential reviews"
+            exit 1
+          fi
+          if [ ! -f "docs/package_quality/evidence/barbecue-r3-integration-20261104/supporter.json" ] || [ ! -f "docs/package_quality/evidence/barbecue-r3-integration-20261104/critic.json" ] || [ ! -f "docs/package_quality/evidence/barbecue-r3-integration-20261104/synthesis.json" ]; then
+            echo "HOLD: frozen supporter/critic/synthesis reports are missing"
+            exit 1
+          fi
+          "${PREFIX[@]}" next --packet "$PACKET" --supporter "docs/package_quality/evidence/barbecue-r3-integration-20261104/supporter.json" --critic "docs/package_quality/evidence/barbecue-r3-integration-20261104/critic.json" --synthesis "docs/package_quality/evidence/barbecue-r3-integration-20261104/synthesis.json" --current-base "$BASE"
+          "${PREFIX[@]}" validate --packet "$PACKET" --supporter "docs/package_quality/evidence/barbecue-r3-integration-20261104/supporter.json" --critic "docs/package_quality/evidence/barbecue-r3-integration-20261104/critic.json" --synthesis "docs/package_quality/evidence/barbecue-r3-integration-20261104/synthesis.json" --current-base "$BASE" --publication-list "docs/package_quality/evidence/barbecue-r3-integration-20261104/outgoing.json"
+          echo "BBQ_R3_PINNED_QUALITY_PASS"

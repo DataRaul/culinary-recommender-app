@@ -1,0 +1,23 @@
+[
+  ".github/workflows/barbecue-r3-quality.yml",
+  "config/barbecue_technique_corpus_candidate_review_2026_11_03.json",
+  "data/generated/barbecue-technique-corpus-state.json",
+  "docs/package_quality/contracts/barbecue-r3-integration-20261104.json",
+  "docs/package_quality/evidence/barbecue-r3-integration-20261104/alignment.json",
+  "docs/package_quality/evidence/barbecue-r3-integration-20261104/authority.json",
+  "docs/package_quality/evidence/barbecue-r3-integration-20261104/critic.json",
+  "docs/package_quality/evidence/barbecue-r3-integration-20261104/outgoing.json",
+  "docs/package_quality/evidence/barbecue-r3-integration-20261104/packet.json",
+  "docs/package_quality/evidence/barbecue-r3-integration-20261104/qa.json",
+  "docs/package_quality/evidence/barbecue-r3-integration-20261104/reasoning.json",
+  "docs/package_quality/evidence/barbecue-r3-integration-20261104/supporter.json",
+  "docs/package_quality/evidence/barbecue-r3-integration-20261104/synthesis.json",
+  "docs/package_quality/plans/barbecue-r3-integration-20261104-portfolio-decision.json",
+  "docs/package_quality/plans/barbecue-r3-integration-20261104-receipt.json",
+  "docs/package_quality/plans/barbecue-r3-integration-20261104-review.json",
+  "docs/package_quality/plans/barbecue-r3-integration-20261104-trace.json",
+  "docs/package_quality/plans/barbecue-r3-integration-20261104.json",
+  "tests/barbecue-metadata-review-adapter.test.js",
+  "tests/barbecue-r3-evidence-review.test.js",
+  "tests/barbecue-technique-corpus-poultry-synthesis.test.js"
+]
