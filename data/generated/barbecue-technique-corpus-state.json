@@ -1,7 +1,7 @@
 {
   "schemaVersion": "barbecue-technique-corpus-state-v1",
   "programmeId": "BARBECUE_TECHNIQUE_CORPUS_V1",
-  "programmeStatus": "ACTIVE_BOUNDED_DISCOVERY",
+  "programmeStatus": "BARBECUE_SEARCH_PORTFOLIO_EXHAUSTED_REVIEW_PENDING",
   "activationState": "BARBECUE_TECHNIQUE_CORPUS_ACTIVATION_READY",
   "queryVintage": "barbecue-v1-world-champion-first-2026-09-24",
   "policyRecheckedAt": "2026-10-25",
@@ -11,7 +11,7 @@
   "minYoutubeRequestIntervalMs": 1000,
   "candidateBacklogCap": 50,
   "maxCandidatesPerLeaf": 12,
-  "lastCompletedQuotaDate": "2026-11-03",
+  "lastCompletedQuotaDate": "2026-11-04",
   "completedQuotaDays": [
     {
       "quotaDate": "2026-09-25",
@@ -315,6 +315,14 @@
       "searchCalls": 0,
       "candidatePointersAdded": 0,
       "terminalState": "BARBECUE_DAILY_DISCOVERY_CONTINUE",
+      "providerFailure": null
+    },
+    {
+      "quotaDate": "2026-11-04",
+      "completedAt": "2026-11-04T17:19:25.394Z",
+      "searchCalls": 0,
+      "candidatePointersAdded": 0,
+      "terminalState": "BARBECUE_SEARCH_PORTFOLIO_EXHAUSTED_REVIEW_PENDING",
       "providerFailure": null
     }
   ],
