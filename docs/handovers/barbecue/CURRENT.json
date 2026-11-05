@@ -9,33 +9,23 @@
     "path": "docs/package_quality/goals/barbecue/v1.json",
     "sha256": "80120a49d2d81a292c3daaa87b8cfcedcdd6eae85258c051e81680f58c88e7ca"
   },
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "timezone": "Atlantic/Canary",
-  "status": "BBQ_R3_MERGED_VERIFIED__EVIDENCE_REVIEW_PARTIALLY_BLOCKED_40_EXACT_GAPS",
-  "main_sha": "971ed3f6a6c8944f88724bf636f3361ae408ff96",
+  "status": "BBQ_R3_RECOVERY_MERGED_VERIFIED__25_SOURCE_PROOF_GAPS_REMAIN",
+  "main_sha": "82c0c82ae394b55018b776e2ecc2469e95ff2b92",
   "source_of_truth": "Live GitHub main, open PRs/checks and lane contracts outrank all handover snapshots",
   "current_contract": "config/barbecue_technique_corpus_v1.json",
   "roadmap": "docs/ROADMAP.md",
   "current_facts": [
-    "PR #441, PR #442 and R1 PR #444 are merged. PR #444 merge 40f29ca5e36b74fe8403386eeb967f33838ceb2c; required CI run #41684939901 Validate public V0 SUCCESS.",
-    "R1 code detects fully exhausted and review-gated query portfolios, records zero-call quota days idempotently, distinguishes acquisition outcome from runner success and selects review/decision rather than meaningless Search. No live YouTube Search dispatched.",
-    "Last scheduled run #41681073430 (Nov 3, 17:07 UTC) PRE-DATES R1 merge: actual persisted generated state still ACTIVE_BOUNDED_DISCOVERY, work-unit CLOSED_CONTINUE, zero Search calls and zero new pointers. Post-merge schedule output not yet verified.",
-    "Existing enabled watcher ID 6ab813aa86048191a690e453d1d8b5d7 has false missing-run alert from Nov 2 delayed GitHub schedule (actual 19:32 UTC); R2 must modify this watcher only, with delayed cron grace and useful-vs-infra distinctions.",
-    "Default-off metadata adapter is unpiloted; existing-project API key, date-matched quota proof and protected reserve remain unverified. No paid, second project, new Search, publication, KC or D1 widening.",
-    "BBQ-R2 updated EXISTING enabled Barbecue Scheduler Watch ID 6ab813aa86048191a690e453d1d8b5d7 on 2026-11-03. Daily check moved to 23:40 Atlantic/Canary; preserves condition-watch cadence, no new automation.",
-    "Monitor checks exact scheduled Actions run separately from durable data/work-unit date, extraction counts and per-leaf independent source coverage. Classifies missing only after 13h+ cron grace with one fresh re-read, running/failed, no-op/useful, hard hold, state mismatch, exhausted/review-pending; known terminal repeats suppressed by transition/fingerprint logic.",
-    "R2 change is the live ChatGPT automation prompt and schedule, NOT a GitHub repository code change; no R2 PR/commit or CI applies. GitHub code/main remains R1 merge 40f29ca5e36b74fe8403386eeb967f33838ceb2c.",
-    "14 bounded synthetic decision-rule scenarios passed for delayed vs after-grace absence, queued/running, failure, success zero-work/useful, coherence mismatch, hard hold and repeat exhaustion. Synthetic classifications do NOT prove actual scheduled notification delivery or persistent deduplication.",
-    "On-demand existing watcher run_now accepted inline on 2026-11-03 and live GitHub was checked: scheduled #41681073430 SUCCESS, data/work-unit dates 2026-11-03 match, zero Search calls, zero candidate pointers, no hard hold. It was BEFORE R1 merge; no post-merge scheduled R1 run observed.",
-    "One enabled Barbecue Scheduler Watch found; inactive historical BBQ 15-run review and one-shot Barbecue Run Reconcile are not duplicate enabled watchers. No workflow manually dispatched, no YouTube API used.",
-    "Myron exact YouTube page names Myron Mixon and Daily Meal; stored channel UCYJqqMggi9medQkTSiW4Kew is the Daily Meal channel, confirmed by public webpage; PR comment #6614655031 captures this without Data API.",
-    "BBQ-R3 PR #445 MERGED VERIFIED on 2026-11-04 at main 971ed3f6a6c8944f88724bf636f3361ae408ff96. The source evidence ledger contains all 44 leaf occurrence assessments (43 distinct videos), status QUALIFIED 1, REJECTED 3, NEEDS_EVIDENCE 40. New R3 qualification only Myron Mixon ribs; two ribs duplicate-creator and one fish off-leaf equipment rejections. The 40 remain unqualified; 25 have no external evidence URL and are held, not falsely verified.",
-    "Confirmed main corpus independent qualified source records by leaf: chicken 6/COMPLETE; ribs 5/SYNTHESIS_PENDING (8 pending leaf occurrences); brisket 2/REVIEW_PENDING (14); vegetables 2/REVIEW_PENDING (10); fish 1/REVIEW_PENDING (8). Source gaps to five: 0,0,3,3,4. Synthesis null for ribs; pilotPass=false, no public app/Knowledge Core/D1 promotion.",
-    "Pinned portfolio gate, Python-generated prebuild receipt, frozen packet 6c71ee969d6b74e5afad290503c37de3f2556641f41b1e582ec0bdc8489688cb and SAME_CHAT_SEQUENTIAL Supporter/Critic/Synthesis verified on workflow #41841591364 SUCCESS (procedural review, independence/semantic truth not proven). Required Validate public V0 #41841605022 SUCCESS on exact PR head fc6d5b6ac220845f9cfafc943d896b3c455609bc including npm validate and browser acceptance. Merge used expected-head SHA; no merge bypass.",
-    "R3 integration plan/quality packet and reports committed under docs/package_quality/plans/barbecue-r3-integration-20261104* and docs/package_quality/evidence/barbecue-r3-integration-20261104 on main; branch-only Actions quality workflow has no schedule. Original R3 source work on Nov 3 was not retrospectively described as preapproved.",
-    "Zero YouTube Search/videos.list/channels.list, no paid/second project, no duplicated monitor, no public D1 or Knowledge Core writes. Existing R2 watcher unchanged daily at 23:40 Atlantic/Canary. As of 2026-11-04 13:50 UTC, latest scheduled Barbecue acquisition workflow observed remains #41681073430 from Nov 3, predating R1 merge; post-R1 scheduled runtime output, first real watcher delivery and live metadata access/quota still unverified. The generated work-unit remains 2026-11-03 CLOSED_CONTINUE until a future scheduled run."
+    "PR446 merged at 82c0c82ae394b55018b776e2ecc2469e95ff2b92 after exact-head Validate public V0 run 42117111910 SUCCESS on 0233dfa64c782381e010399b7041649d868d419d.",
+    "The 40 remaining leaf occurrences / 39 unique videos received matched original public-page channel identities. New decisions: QUALIFIED 11, REJECTED 4, NEEDS_EVIDENCE 25. Combined original 44: QUALIFIED 12, REJECTED 7, NEEDS_EVIDENCE 25. Original November 3 ledger remains immutable.",
+    "Heath Riles rib-method attribution corrected across Duce Raymond, HowToBBQRight and Heath Riles references. Historical qualifications preserved; seven ribs references count as five independent method lineages after adding Rodney Scott and Tuffy Stone.",
+    "Independent coverage: chicken 6, brisket 8, ribs 5, fish 2, vegetables 4. Gaps to five: 0,0,0,3,1. Ribs and brisket each have source-scoped selected-five synthesis; poultry existing synthesis preserved. Pilot PASS remains false.",
+    "Actual Work runtime: authored offline replay PASS; focused 57/57 tests; full validation 1457 passed, 26 skipped, 0 failed. Pinned portfolio, prebuild plan, freeze, sequential Supporter/Critic/Synthesis and final validation PASS. Same-chat review is not independent proof.",
+    "No YouTube Data API or new Search, paid service, scheduler/monitor change, public app, KC or D1 mutation. Existing scheduler continues bounded zero-call wakeups; metadata pilot remains OFF.",
+    "Market Lab method/code follow-up separately owner-requested; successful new helper canary ran R3 regression tests and exact pinned validator with source/input/output hashes. Its own publication and CI are separate from this Barbecue checkpoint."
   ],
-  "next_action": "STOP after R3 integration. Forty source-specific NEEDS_EVIDENCE remain recorded; source deficits brisket +3, vegetables +3, fish +4. A separately authorized future bounded package may continue independent evidence review and perform ribs technique synthesis only with source observations and safety authorities; preserve 0 YouTube Search and metadata default-off unless existing-project access/current quota/reserve gate passes. Independently verify first post-R1 scheduled run and real R2 watcher delivery when available, without adding a monitor or duplicate workflow.",
+  "next_action": "Source outcome PARTIALLY_BLOCKED: fish needs three independent sources; vegetables one. Twenty-five exact source holds remain. No immediate owner action. Preserve existing zero-call scheduler and metadata pilot OFF. Any further evidence pass is separately bounded; do not repeat completed qualifications or restart R1/R2.",
   "open_prs_at_reconciliation": [
     {
       "number": 434,
@@ -167,17 +157,32 @@
       "rejected": 3,
       "needs_evidence": 40,
       "next_action": "STOP; remaining proof/synthesis and scheduled delivery are separate future bounded packages."
+    },
+    {
+      "event_id": "culinary-recommender-app:barbecue:r3-recovery:20261105",
+      "date": "2026-11-05",
+      "event": "R3_EVIDENCE_RECOVERY_AND_TWO_SYNTHESES_MERGED",
+      "observed_main": "82c0c82ae394b55018b776e2ecc2469e95ff2b92",
+      "observed_state_head": "7524595c3b1bca268b592177cdc1d38420d5ce63",
+      "predecessor_sha256": "fa936863177d20ac600cfbd549298070df81561b876e79c18f5e2a7b79ce1f75",
+      "package": "barbecue-r3-recovery-20261105",
+      "pr": 446,
+      "pr_head_sha": "0233dfa64c782381e010399b7041649d868d419d",
+      "merge_commit": "82c0c82ae394b55018b776e2ecc2469e95ff2b92",
+      "ci_run_id": 42117111910,
+      "outcome": "PARTIALLY_BLOCKED_25_SOURCE_GAPS__INTEGRATION_VERIFIED",
+      "next_action": "Source outcome PARTIALLY_BLOCKED: fish needs three independent sources; vegetables one. Twenty-five exact source holds remain. No immediate owner action. Preserve existing zero-call scheduler and metadata pilot OFF. Any further evidence pass is separately bounded; do not repeat completed qualifications or restart R1/R2."
     }
   ],
-  "startup_instruction": "R3 PR #445 MERGED verified at 971ed3f6a6c8944f88724bf636f3361ae408ff96, pinned quality and required CI PASS, 44 reviewed with 40 unresolved. Do not reopen R3 or replay discovery. On an owner-selected future package, fresh-check latest main, generated state, separate R2 watcher outcome, then choose either continued independent source evidence, ribs source-supported synthesis or metadata gate if key/quota proof is present. Respect one bounded package and STOP.",
+  "startup_instruction": "Fresh-reconcile GitHub and this lane only. PR446 merged, ribs/brisket syntheses complete, 25 exact holds remain. Do not reset discovery, source or review budgets. Review current source-specific blockers before selecting a further bounded package.",
   "package_quality": {
     "schema_version": 1,
     "goal_ref": {
       "path": "docs/package_quality/goals/barbecue/v1.json",
       "sha256": "80120a49d2d81a292c3daaa87b8cfcedcdd6eae85258c051e81680f58c88e7ca"
     },
-    "package_ref": "docs/package_quality/contracts/barbecue-r3-integration-20261104.json",
-    "status": "BBQ_R3_MERGED_VERIFIED__REVIEWED_44__40_NEEDS_EVIDENCE_REMAIN",
+    "package_ref": "docs/package_quality/contracts/barbecue-r3-recovery-20261105.json",
+    "status": "BBQ_R3_RECOVERY_MERGED_VERIFIED__25_SOURCE_PROOF_GAPS_REMAIN",
     "last_evidence": [
       "docs/package_quality/evidence/concurrent-lanes/local-checks.txt",
       "docs/package_quality/evidence/concurrent-lanes/migration.json",
@@ -205,7 +210,12 @@
       "docs/package_quality/evidence/barbecue-r3-integration-20261104/packet.json (merge)",
       "docs/package_quality/evidence/barbecue-r3-integration-20261104/supporter.json; critic.json; synthesis.json (merge)",
       "config/barbecue_technique_corpus_candidate_review_2026_11_03.json (merged main)",
-      "data/generated/barbecue-technique-corpus-state.json (merged main)"
+      "data/generated/barbecue-technique-corpus-state.json (merged main)",
+      "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+      "docs/research/BARBECUE_R3_RECOVERY_20261105.md",
+      "docs/package_quality/evidence/barbecue-r3-recovery-20261105/packet.json",
+      "docs/package_quality/evidence/barbecue-r3-recovery-20261105/synthesis.json",
+      "PR446 merge 82c0c82ae394b55018b776e2ecc2469e95ff2b92; exact-head CI 42117111910 SUCCESS"
     ],
     "reviews": [
       {
@@ -245,20 +255,27 @@
         "candidate_digest": "6c71ee969d6b74e5afad290503c37de3f2556641f41b1e582ec0bdc8489688cb",
         "required_ci": 41841605022,
         "merge_sha": "971ed3f6a6c8944f88724bf636f3361ae408ff96"
+      },
+      {
+        "role": "R3_recovery_sequential_quality",
+        "status": "PASS_NON_INDEPENDENT",
+        "candidate_digest": "c2df475db97de132314bdb53a02493bcb194ef1d5326ade1550486258a4a7def",
+        "required_ci": 42117111910,
+        "merge_sha": "82c0c82ae394b55018b776e2ecc2469e95ff2b92"
       }
     ],
     "unfinished_criteria": [
-      "Forty exact-source NEEDS_EVIDENCE assessments retained; 25 lack independent evidence URLs, no false qualification",
-      "Three leaves under five independent qualified sources: brisket +3, vegetables +3, fish +4",
-      "Ribs numeric five-source threshold met but source-specific technique observations, safety authority and synthesis remain pending",
-      "Live metadata key/current project quota evidence not verified; no videos.list/channels.list calls",
-      "Observe post-R1 scheduled run and real existing R2 watcher delivery; no duplicate monitor"
+      "25 source-specific NEEDS_EVIDENCE entries remain in the new packet.",
+      "Fish independent source gap three; vegetable gap one.",
+      "Live metadata pilot stays OFF without identity/current quota/reserve gates; public-page recovery did not use Data API."
     ],
     "failures": [
       "Initial CI run #41711816881 failed two stale tests, repaired once; final run #41712282350 SUCCESS",
       "Pinned Agent OS validator unavailable in GitHub-only runtime; PR remains draft and unmerged",
       "40 candidate occurrences still lack full independent evidence",
-      "RESOLVED 2026-11-04: prior R3 pinned package-quality executable HOLD cleared by isolated Actions #41841591364, normal required CI #41841605022 SUCCESS and PR #445 merged. Remaining 40-source evidence holds are not resolved."
+      "RESOLVED 2026-11-04: prior R3 pinned package-quality executable HOLD cleared by isolated Actions #41841591364, normal required CI #41841605022 SUCCESS and PR #445 merged. Remaining 40-source evidence holds are not resolved.",
+      "2026-11-05 local tests exposed stale fixtures/current-state expectations and an async test insertion error; final 1457 passed / 26 skipped / 0 failed.",
+      "RESOLVED 2026-11-05 prior unavailable Work runtime; actual pinned procedural validation and required CI passed. Source-proof gaps remain."
     ],
     "decisions": [
       "No new Search; evidence-first reviewer queue",
@@ -271,7 +288,10 @@
       "No automatic qualification, no premature ribs synthesis",
       "Normal CI green is not substitute for signed pinned quality receipt; hold integration",
       "BBQ-R3 integration merged 2026-11-04 via exact-head protected check; evidence counts 1 qualified, 3 rejected, 40 needs evidence, no automatic source widening.",
-      "Pin and quality evidence retained on main; branch-only workflow no schedule, no new monitor; subsequent source/synthesis work separate."
+      "Pin and quality evidence retained on main; branch-only workflow no schedule, no new monitor; subsequent source/synthesis work separate.",
+      "Preserve prior qualification decisions but correct shared Heath Riles method independence; count unique lineage keys.",
+      "Complete only eligible ribs/brisket synthesis; retain official safety separation and pilot false.",
+      "No owner notebook execution needed for this offline recovery."
     ],
     "constraints": [
       "Preserve recipe/runtime/Brain boundaries and Barbecue lane",
@@ -282,10 +302,10 @@
     "budget": {
       "round": 1,
       "max_rounds": 1,
-      "usage": "unknown"
+      "usage": "Actual local Work checks plus one ordinary required PR CI run; zero paid providers."
     },
-    "next_action": "STOP after R3 integration. Forty source-specific NEEDS_EVIDENCE remain recorded; source deficits brisket +3, vegetables +3, fish +4. A separately authorized future bounded package may continue independent evidence review and perform ribs technique synthesis only with source observations and safety authorities; preserve 0 YouTube Search and metadata default-off unless existing-project access/current quota/reserve gate passes. Independently verify first post-R1 scheduled run and real R2 watcher delivery when available, without adding a monitor or duplicate workflow.",
-    "predecessor_sha256": "d5853c0e84f3f9c8d1da7c1c53dc389248d6abb439a21e809911f3eecb1d72bb"
+    "next_action": "Source outcome PARTIALLY_BLOCKED: fish needs three independent sources; vegetables one. Twenty-five exact source holds remain. No immediate owner action. Preserve existing zero-call scheduler and metadata pilot OFF. Any further evidence pass is separately bounded; do not repeat completed qualifications or restart R1/R2.",
+    "predecessor_sha256": "fa936863177d20ac600cfbd549298070df81561b876e79c18f5e2a7b79ce1f75"
   },
   "handover_generated_at": "2026-11-04",
   "current_package": {
@@ -423,5 +443,30 @@
     "R2 existing watcher updated and on-demand GitHub state verified; 14 synthetic cases passed; actual scheduled alert delivery remains pending observation",
     "R3 reviewed all 44 and persisted exact evidence decisions plus independent-source coverage in draft PR #445. Validate public V0 #41712282350 SUCCESS; no quality-gated merge.",
     "BBQ-R3 PR #445 merged and verified main 971ed3f6a6c8944f88724bf636f3361ae408ff96 after exact-head pinned quality #41841591364 and required CI #41841605022; 44/44 leaf decisions persisted (1 qualified, 3 rejected, 40 needs evidence)."
+  ],
+  "history_snapshots": [
+    {
+      "date": "2026-11-04",
+      "main_sha": "971ed3f6a6c8944f88724bf636f3361ae408ff96",
+      "current_facts": [
+        "PR #441, PR #442 and R1 PR #444 are merged. PR #444 merge 40f29ca5e36b74fe8403386eeb967f33838ceb2c; required CI run #41684939901 Validate public V0 SUCCESS.",
+        "R1 code detects fully exhausted and review-gated query portfolios, records zero-call quota days idempotently, distinguishes acquisition outcome from runner success and selects review/decision rather than meaningless Search. No live YouTube Search dispatched.",
+        "Last scheduled run #41681073430 (Nov 3, 17:07 UTC) PRE-DATES R1 merge: actual persisted generated state still ACTIVE_BOUNDED_DISCOVERY, work-unit CLOSED_CONTINUE, zero Search calls and zero new pointers. Post-merge schedule output not yet verified.",
+        "Existing enabled watcher ID 6ab813aa86048191a690e453d1d8b5d7 has false missing-run alert from Nov 2 delayed GitHub schedule (actual 19:32 UTC); R2 must modify this watcher only, with delayed cron grace and useful-vs-infra distinctions.",
+        "Default-off metadata adapter is unpiloted; existing-project API key, date-matched quota proof and protected reserve remain unverified. No paid, second project, new Search, publication, KC or D1 widening.",
+        "BBQ-R2 updated EXISTING enabled Barbecue Scheduler Watch ID 6ab813aa86048191a690e453d1d8b5d7 on 2026-11-03. Daily check moved to 23:40 Atlantic/Canary; preserves condition-watch cadence, no new automation.",
+        "Monitor checks exact scheduled Actions run separately from durable data/work-unit date, extraction counts and per-leaf independent source coverage. Classifies missing only after 13h+ cron grace with one fresh re-read, running/failed, no-op/useful, hard hold, state mismatch, exhausted/review-pending; known terminal repeats suppressed by transition/fingerprint logic.",
+        "R2 change is the live ChatGPT automation prompt and schedule, NOT a GitHub repository code change; no R2 PR/commit or CI applies. GitHub code/main remains R1 merge 40f29ca5e36b74fe8403386eeb967f33838ceb2c.",
+        "14 bounded synthetic decision-rule scenarios passed for delayed vs after-grace absence, queued/running, failure, success zero-work/useful, coherence mismatch, hard hold and repeat exhaustion. Synthetic classifications do NOT prove actual scheduled notification delivery or persistent deduplication.",
+        "On-demand existing watcher run_now accepted inline on 2026-11-03 and live GitHub was checked: scheduled #41681073430 SUCCESS, data/work-unit dates 2026-11-03 match, zero Search calls, zero candidate pointers, no hard hold. It was BEFORE R1 merge; no post-merge scheduled R1 run observed.",
+        "One enabled Barbecue Scheduler Watch found; inactive historical BBQ 15-run review and one-shot Barbecue Run Reconcile are not duplicate enabled watchers. No workflow manually dispatched, no YouTube API used.",
+        "Myron exact YouTube page names Myron Mixon and Daily Meal; stored channel UCYJqqMggi9medQkTSiW4Kew is the Daily Meal channel, confirmed by public webpage; PR comment #6614655031 captures this without Data API.",
+        "BBQ-R3 PR #445 MERGED VERIFIED on 2026-11-04 at main 971ed3f6a6c8944f88724bf636f3361ae408ff96. The source evidence ledger contains all 44 leaf occurrence assessments (43 distinct videos), status QUALIFIED 1, REJECTED 3, NEEDS_EVIDENCE 40. New R3 qualification only Myron Mixon ribs; two ribs duplicate-creator and one fish off-leaf equipment rejections. The 40 remain unqualified; 25 have no external evidence URL and are held, not falsely verified.",
+        "Confirmed main corpus independent qualified source records by leaf: chicken 6/COMPLETE; ribs 5/SYNTHESIS_PENDING (8 pending leaf occurrences); brisket 2/REVIEW_PENDING (14); vegetables 2/REVIEW_PENDING (10); fish 1/REVIEW_PENDING (8). Source gaps to five: 0,0,3,3,4. Synthesis null for ribs; pilotPass=false, no public app/Knowledge Core/D1 promotion.",
+        "Pinned portfolio gate, Python-generated prebuild receipt, frozen packet 6c71ee969d6b74e5afad290503c37de3f2556641f41b1e582ec0bdc8489688cb and SAME_CHAT_SEQUENTIAL Supporter/Critic/Synthesis verified on workflow #41841591364 SUCCESS (procedural review, independence/semantic truth not proven). Required Validate public V0 #41841605022 SUCCESS on exact PR head fc6d5b6ac220845f9cfafc943d896b3c455609bc including npm validate and browser acceptance. Merge used expected-head SHA; no merge bypass.",
+        "R3 integration plan/quality packet and reports committed under docs/package_quality/plans/barbecue-r3-integration-20261104* and docs/package_quality/evidence/barbecue-r3-integration-20261104 on main; branch-only Actions quality workflow has no schedule. Original R3 source work on Nov 3 was not retrospectively described as preapproved.",
+        "Zero YouTube Search/videos.list/channels.list, no paid/second project, no duplicated monitor, no public D1 or Knowledge Core writes. Existing R2 watcher unchanged daily at 23:40 Atlantic/Canary. As of 2026-11-04 13:50 UTC, latest scheduled Barbecue acquisition workflow observed remains #41681073430 from Nov 3, predating R1 merge; post-R1 scheduled runtime output, first real watcher delivery and live metadata access/quota still unverified. The generated work-unit remains 2026-11-03 CLOSED_CONTINUE until a future scheduled run."
+      ]
+    }
   ]
 }
