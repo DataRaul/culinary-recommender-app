@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "lane_id": "barbecue",
+  "package_id": "barbecue-r3-recovery-20261105",
+  "base_commit": "42d725294efd44bc78346cb94e2c61fde263e17e",
+  "author_session_id": "/root:workspace-41f9df017d7b:20261105",
+  "goal_path": "docs/package_quality/goals/barbecue/v1.json",
+  "adapter_path": "config/package_quality_plan_first_adapter.json",
+  "intent_provenance": [
+    "docs/package_quality/evidence/barbecue-r3-recovery-20261105/authority.json",
+    "Owner 2026-11-05 explicit recovery and traceable assistant execution request"
+  ],
+  "outcome": "Recover remaining evidence, correct source-lineage coverage, synthesize eligible leaves and integrate only when exact gates pass.",
+  "contribution": "Truthful source coverage, source-scoped synthesis and reproducible assistant execution.",
+  "scope": [
+    "Exactly forty unresolved leaf occurrences",
+    "Evidence-established shared lineage correction with historical qualifications preserved",
+    "Eligible ribs and brisket synthesis",
+    "Pinned quality, normal CI and safe integration"
+  ],
+  "non_goals": [
+    "New Search or Data API use",
+    "Scheduler/monitor changes",
+    "Public application, KC or D1 changes",
+    "Five-technique completion without coverage"
+  ],
+  "inputs": [
+    "42d725294efd44bc78346cb94e2c61fde263e17e",
+    "config/barbecue_technique_corpus_candidate_review_2026_11_03.json"
+  ],
+  "criteria": [
+    {
+      "id": "SOURCE",
+      "description": "All forty remaining occurrences receive exact-source evidence-backed recovery decisions; prior decisions retained.",
+      "goal_criteria": [
+        "OUTCOME"
+      ]
+    },
+    {
+      "id": "COVERAGE",
+      "description": "Unique method lineages govern coverage, shared Heath source references count once, eligible syntheses bind five distinct lineages.",
+      "goal_criteria": [
+        "OUTCOME"
+      ]
+    },
+    {
+      "id": "SAFETY",
+      "description": "No provider/scheduler/public/KC/D1 widening; official safety authority remains distinct.",
+      "goal_criteria": [
+        "OUTCOME"
+      ]
+    },
+    {
+      "id": "QUALITY",
+      "description": "Actual replay, tests and pinned sequential quality precede publication; normal CI and exact merge remain downstream.",
+      "goal_criteria": [
+        "CONTINUITY"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "AGENTS.md",
+    "docs/PACKAGE_QUALITY_PROTOCOL.md",
+    "docs/ROADMAP.md",
+    "docs/package_quality/goals/barbecue/v1.json",
+    "config/package_quality_plan_first_adapter.json",
+    "config/package_quality_portfolio_adapter.json",
+    "config/portfolio_priority_policy.json",
+    "config/barbecue_technique_corpus_v1.json",
+    "config/barbecue_technique_corpus_candidate_review_2026_11_03.json",
+    "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+    "data/generated/barbecue-technique-corpus-state.json",
+    "data/generated/barbecue-technique-corpus-work-unit-state.json",
+    "scripts/apply-barbecue-r3-recovery.mjs",
+    "scripts/barbecue-technique-corpus-control-plane.mjs",
+    "scripts/package_quality.py",
+    "scripts/portfolio_priority.py",
+    "tests/barbecue-r3-recovery.test.js",
+    "tests/barbecue-r3-evidence-review.test.js",
+    "docs/research/BARBECUE_R3_RECOVERY_20261105.md",
+    "docs/package_quality/contracts/barbecue-r3-recovery-20261105.json",
+    "docs/package_quality/plans/barbecue-r3-recovery-20261105.json",
+    "docs/package_quality/plans/barbecue-r3-recovery-20261105-review.json",
+    "docs/package_quality/plans/barbecue-r3-recovery-20261105-receipt.json",
+    "docs/package_quality/plans/barbecue-r3-recovery-20261105-trace.json",
+    "docs/package_quality/plans/barbecue-r3-recovery-20261105-portfolio-decision.json",
+    "docs/package_quality/evidence/barbecue-r3-recovery-20261105/authority.json",
+    "docs/package_quality/evidence/barbecue-r3-recovery-20261105/alignment.json",
+    "docs/package_quality/evidence/barbecue-r3-recovery-20261105/qa.json",
+    "docs/package_quality/evidence/barbecue-r3-recovery-20261105/reasoning.json",
+    "docs/package_quality/evidence/barbecue-r3-recovery-20261105/outgoing.json"
+  ],
+  "mandatory_knowledge_domains": [
+    "software_data",
+    "decision_frameworks",
+    "project_execution",
+    "culinary_nutrition"
+  ],
+  "authority": "AUTO + VERIFY",
+  "human_decisions": [],
+  "assumptions": [
+    "Quality checker verifies structure and provenance links, not independent truth or actual review chronology.",
+    "The existing R3 implementation predates this integration plan; this package does not claim otherwise."
+  ],
+  "dependencies": [
+    "Pinned Agent OS source 6a21ad1a9b1ed854d6f53b60fd3219dc50a5a02b",
+    "Exact PR #445 base and head",
+    "Required Validate public V0 on final head"
+  ],
+  "next_action": "Safe PR and required CI; merge if eligible. Persist exact source holds and Barbecue checkpoint. Follow requested Market Lab method/code documentation separately.",
+  "stop_boundary": "One bounded Barbecue evidence recovery and integration; no successor acquisition programme.",
+  "budget": {
+    "round": 1,
+    "max_rounds": 1,
+    "usage": "Unknown chat telemetry; zero paid providers; existing normal Actions."
+  },
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "stage_evidence": {
+    "align": [
+      "docs/package_quality/evidence/barbecue-r3-recovery-20261105/authority.json",
+      "docs/package_quality/evidence/barbecue-r3-recovery-20261105/alignment.json"
+    ],
+    "build_qa": [
+      "docs/package_quality/evidence/barbecue-r3-recovery-20261105/qa.json",
+      "docs/package_quality/evidence/barbecue-r3-recovery-20261105/reasoning.json"
+    ]
+  },
+  "plan_first": {
+    "plan_path": "docs/package_quality/plans/barbecue-r3-recovery-20261105.json",
+    "review_path": "docs/package_quality/plans/barbecue-r3-recovery-20261105-review.json",
+    "receipt_path": "docs/package_quality/plans/barbecue-r3-recovery-20261105-receipt.json",
+    "trace_path": "docs/package_quality/plans/barbecue-r3-recovery-20261105-trace.json"
+  }
+}

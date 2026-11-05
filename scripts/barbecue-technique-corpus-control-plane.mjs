@@ -117,11 +117,15 @@ function fillTemplate(template, term) {
   return template.replaceAll("{term}", term).replace(/\s+/g," ").trim();
 }
 
+export function qualifiedIndependentSourceCount(leaf) {
+  return new Set((leaf?.qualifiedSources ?? []).map(source => source.independenceKey)).size;
+}
+
 export function buildBarbecueQueryPortfolio(config, state) {
   validateBarbecueState(state, config);
   const out=[];
   for (const leaf of state.leaves) {
-    if (leaf.status === "COMPLETE" || leaf.qualifiedSources.length >= config.requiredQualifiedIndependentSourcesPerLeaf) continue;
+    if (leaf.status === "COMPLETE" || qualifiedIndependentSourceCount(leaf) >= config.requiredQualifiedIndependentSourcesPerLeaf) continue;
     const spec=config.pilotLeaves.find(row=>row.leafId===leaf.leafId);
     const templates=leaf.championshipSearchExhausted ? config.specialistFallbackTemplates : config.worldChampionTemplates;
     for (const row of templates) {
@@ -185,7 +189,7 @@ export function classifyBarbecueQueryAvailability(config, state) {
   if (available.length > 0) return { status: "QUERIES_AVAILABLE", availableQueries: available.length };
   const remaining = state.leaves.filter(leaf =>
     leaf.status !== "COMPLETE" &&
-    leaf.qualifiedSources.length < config.requiredQualifiedIndependentSourcesPerLeaf
+    qualifiedIndependentSourceCount(leaf) < config.requiredQualifiedIndependentSourcesPerLeaf
   );
   if (remaining.length === 0) return { status: "BARBECUE_DISCOVERY_WAITING_FOR_SYNTHESIS", availableQueries: 0 };
   const prospective = clone(state);
@@ -249,7 +253,7 @@ export function refreshBarbecueDiscoveryPhases(state, config) {
   const used=new Set(next.usedQueryIds ?? []);
   for (const leaf of next.leaves) {
     if (leaf.status==="COMPLETE") continue;
-    if (leaf.qualifiedSources.length >= config.requiredQualifiedIndependentSourcesPerLeaf) {
+    if (qualifiedIndependentSourceCount(leaf) >= config.requiredQualifiedIndependentSourcesPerLeaf) {
       leaf.status=leaf.synthesis ? (evaluateLeafCompletion(leaf,config) ? "COMPLETE" : "SYNTHESIS_HOLD") : "SYNTHESIS_PENDING";
       continue;
     }

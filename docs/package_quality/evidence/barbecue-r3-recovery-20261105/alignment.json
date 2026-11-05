@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "package_id": "barbecue-r3-recovery-20261105",
+  "base_commit": "42d725294efd44bc78346cb94e2c61fde263e17e",
+  "remaining_occurrences": 40,
+  "preserved_decisions": 4,
+  "plan": "Bounded public-web recovery; eligible synthesis; no source inference from runtime success.",
+  "runtime": "Python 3.12.14 / Node 24.22.1 / Git 2.51.1 verified",
+  "criteria": [
+    "SOURCE",
+    "COVERAGE",
+    "SAFETY",
+    "QUALITY"
+  ]
+}

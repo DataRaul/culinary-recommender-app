@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "plan_id": "barbecue-r3-recovery-20261105",
+  "revision": 2,
+  "roadmap_alignment": {
+    "roadmap_path": "docs/ROADMAP.md",
+    "roadmap_sha256": "10e4e84d782c3e1eb911cf1e445fed8aaef5ea27ae98a9ccce75ccd97bf020f3",
+    "milestone_line": "| Post-usable-app / Barbecue Technique Corpus | INDEPENDENT SCHEDULED PILOT ACTIVE / POULTRY SYNTHESIS COMPLETE / FOUR LEAVES CONTINUE | Poultry now has 6 qualified independent sources, 6/6 bounded normalized source observations, 12/12 structured adjustment axes and separate USDA/FSIS safety authority; the leaf is `COMPLETE` with 0 additional YouTube Search and remains excluded from discovery. Beef 2, pork 4, fish 1 and vegetables 2 continue bounded discovery. Pilot PASS remains false; scheduler/work-unit remains bounded with no public/KC/D1/billing widening |",
+    "goal_path": "docs/package_quality/goals/barbecue/v1.json",
+    "goal_sha256": "80120a49d2d81a292c3daaa87b8cfcedcdd6eae85258c051e81680f58c88e7ca",
+    "goal_criteria": [
+      "CONTINUITY",
+      "OUTCOME"
+    ],
+    "steering_source": "docs/package_quality/evidence/barbecue-r3-recovery-20261105/authority.json",
+    "priority_rationale": "Owner explicitly resumes evidence recovery in isolated barbecue lane; runtime now available. Do not block primary recipe acquisition.",
+    "goal_contribution": "Recover technically available evidence, count independent sources honestly and retain exact unresolved gates.",
+    "value_signal": "Evidence resolution and source-backed technique coverage; no measured recipe-delivery benefit.",
+    "status": "ALIGNED",
+    "conflicts": []
+  },
+  "problem": "Forty leaf occurrences remain NEEDS_EVIDENCE; ribs lacks source observations for synthesis.",
+  "affected_users": "Owner and future technique-corpus consumers.",
+  "root_cause": "Exact-video identity, technique and independent creator evidence incomplete; prior execution host lacked a runtime.",
+  "desired_outcome": "One bounded recovery pass, evidence-backed adjudications, coverage and eligible synthesis; executable quality checks and safe integration.",
+  "expected_value": "Resolve available proof and make residual blockers actionable without false qualification.",
+  "options": [
+    {
+      "id": "WORK_RUNTIME",
+      "description": "Use verified Python/Node/Git runtime with existing source and validators.",
+      "pros": "Assistant executes existing checks without owner notebook steps or new infrastructure.",
+      "cons": "Source availability remains external and cannot be solved by computing."
+    },
+    {
+      "id": "COLAB",
+      "description": "Use repository-controlled Colab as fallback if Work execution fails.",
+      "pros": "Existing execution pattern.",
+      "cons": "Current browser signed out; unnecessary dependency for offline checks."
+    }
+  ],
+  "selected_option_id": "WORK_RUNTIME",
+  "architecture": "Existing Work scratch checkout and pinned Agent OS checker; public-web evidence only, repository state remains canonical.",
+  "tradeoffs": "Public evidence may not resolve uploader mapping or technique observations. Explicit partial closure is valid, invented proof is not.",
+  "estimated_cost": "Zero paid services or provider API use; ordinary required Actions only.",
+  "authority": "AUTO + VERIFY",
+  "decisions": [
+    {
+      "id": "D1",
+      "decision": "Review the current forty unresolved occurrences; preserve completed decisions.",
+      "rationale": "Owner-authorized remaining queue only.",
+      "expected_consequences": "Only evidence-supported changes; no duplicate completed reviews.",
+      "authority": "AUTO + VERIFY",
+      "material": true,
+      "delegation_reference": "docs/package_quality/evidence/barbecue-r3-recovery-20261105/authority.json"
+    },
+    {
+      "id": "D2",
+      "decision": "Execute checks in existing Work runtime and keep metadata pilot off.",
+      "rationale": "No new runtime service or provider authorization needed.",
+      "expected_consequences": "Deterministic proof without owner execution burden.",
+      "authority": "AUTO + VERIFY",
+      "material": true,
+      "delegation_reference": "docs/package_quality/evidence/barbecue-r3-recovery-20261105/authority.json"
+    },
+    {
+      "id": "D3",
+      "decision": "Integrate only after exact-candidate quality and normal CI; synthesize only where observation gates pass.",
+      "rationale": "Numeric qualification is distinct from technique and safety evidence.",
+      "expected_consequences": "Partial coverage remains explicit.",
+      "authority": "AUTO + VERIFY",
+      "material": true,
+      "delegation_reference": "docs/package_quality/evidence/barbecue-r3-recovery-20261105/authority.json"
+    },
+    {
+      "id": "D4",
+      "decision": "Correct evidence-established shared Heath Riles rib-method lineage while preserving historical qualifications; count unique independence keys throughout existing coverage gates.",
+      "rationale": "Original public descriptions name Heath as guest demonstrator on HowToBBQRight and Duce explicitly reproduces Heath method; publishers are not independent method lineages.",
+      "expected_consequences": "Historical qualifications remain; unique coverage may decrease until genuinely independent candidates qualify. No synthesis before five actual lineages.",
+      "authority": "AUTO + VERIFY",
+      "material": true,
+      "delegation_reference": "docs/package_quality/evidence/barbecue-r3-recovery-20261105/authority.json"
+    }
+  ],
+  "acceptance_criteria": [
+    "All forty unresolved leaf occurrences have a dated bounded recovery disposition and supporting source/missing gates.",
+    "Independent-source coverage recalculated; preserve all prior justified qualifications/rejections.",
+    "Synthesis only from qualified observations plus appropriate safety authority; hold otherwise.",
+    "Pinned plan and same-chat quality checks execute; required CI and eligible integration verified."
+  ],
+  "risks": [
+    "Exact public pages may lack uploader metadata.",
+    "Third-party transcript mirrors are not qualification proof and must not be retained.",
+    "A successful procedural run is not five-leaf completion.",
+    "Prior qualified publishers can share the same demonstrated method; preserve snapshots but correct current lineage and count unique keys."
+  ]
+}

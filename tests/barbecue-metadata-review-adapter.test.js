@@ -9,7 +9,19 @@ import {
 } from "../scripts/barbecue-metadata-review-adapter.mjs";
 
 const config = await loadBarbecueConfig();
-const state = JSON.parse(await readFile("data/generated/barbecue-technique-corpus-state.json", "utf8"));
+const canonicalState = JSON.parse(await readFile("data/generated/barbecue-technique-corpus-state.json", "utf8"));
+// API adapter mocks retain an explicitly reconstructed pre-recovery review queue.
+// Completed canonical leaves must never be reopened by the live adapter.
+const state = structuredClone(canonicalState);
+const recovery = JSON.parse(await readFile("config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json", "utf8"));
+for (const d of recovery.decisions) {
+  const leaf = state.leaves.find(l => l.leafId === d.leaf_id);
+  const pointer = leaf.candidatePointers.find(p => p.sourceRef === d.source_ref);
+  pointer.qualificationStatus = "PENDING_REVIEW";
+  leaf.qualifiedSources = leaf.qualifiedSources.filter(q => q.sourceRef !== d.source_ref);
+  leaf.status = "REVIEW_PENDING";
+  leaf.synthesis = null;
+}
 const now = new Date("2026-10-28T19:00:00.000Z");
 const queue = metadataReviewQueue(state, config);
 const r3 = JSON.parse(await readFile("config/barbecue_technique_corpus_candidate_review_2026_11_03.json", "utf8"));
@@ -210,4 +222,10 @@ test("P0C unauthorized external requests remain zero across all preflight failur
     assert.equal(r.calls, 0);
   }
   assert.equal(mock.calls.length, 0);
+});
+
+test("completed canonical ribs never enter the live metadata pilot queue", () => {
+  const liveQueue = metadataReviewQueue(canonicalState, config);
+  assert.equal(liveQueue.some(q => q.leafIds.includes("pork_ribs_competition")), false);
+  assert.throws(() => selectMetadataPilot(liveQueue), /BLOCKED_NO_INDEPENDENT_RIBS_PILOT_IDS/);
 });

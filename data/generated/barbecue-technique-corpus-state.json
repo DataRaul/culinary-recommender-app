@@ -853,7 +853,7 @@
       "cutForm": "brisket",
       "tradition": "AMERICAN_COMPETITION_BARBECUE",
       "method": "LOW_SLOW_SMOKER_BARBECUE",
-      "status": "REVIEW_PENDING",
+      "status": "COMPLETE",
       "championshipSearchExhausted": true,
       "candidatePointers": [
         {
@@ -966,7 +966,7 @@
           "queryId": "bbq-565d65a5e542bff044",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-09-27",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -978,7 +978,7 @@
           "queryId": "bbq-565d65a5e542bff044",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-09-27",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -1002,7 +1002,7 @@
           "queryId": "bbq-fe2f5a170773853eeb",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-09-27",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -1014,8 +1014,9 @@
           "queryId": "bbq-f7fdac074da0a85fa4",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-10-06",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Original HowToBBQRight source and Malcom-authored companion method establish the same practitioner lineage as newly qualified Dn5ZJz2Ta78; it cannot add another independent brisket source."
         },
         {
           "sourceRef": "youtube:klmG0DQgEJs",
@@ -1026,7 +1027,7 @@
           "queryId": "bbq-ad84558b44a85fb3aa",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-10-06",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -1086,7 +1087,7 @@
           "queryId": "bbq-5d94e50bfbda531c6f",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-10-06",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -1110,7 +1111,7 @@
           "queryId": "bbq-5d94e50bfbda531c6f",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-10-06",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         }
       ],
@@ -1134,9 +1135,286 @@
           "qualificationEvidenceRef": "https://www.nbbqa.org/current-members/christie-vanover",
           "projectAuthoredRationale": "Independent National Barbecue & Grilling Association profile identifies Christie Vanover as a championship pitmaster and certified barbecue judge with competition expertise; qualification is competence-based.",
           "normalizedObservations": {}
+        },
+        {
+          "sourceRef": "youtube:Z2aD16zFP8E",
+          "canonicalReference": "https://www.youtube.com/watch?v=Z2aD16zFP8E",
+          "creatorChannelRef": "UCsLTjOX249AJsrl9iJh4CSw",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "bradley-robinson-chuds-bbq",
+          "qualificationEvidenceRef": "https://www.chudsbbq.com/shop",
+          "projectAuthoredRationale": "Bradley Robinson / Chuds BBQ: Independent reporting identifies Bradley Robinson as a professional pitmaster and Chuds BBQ educator. The earlier forum name Robby is not retained as identity proof. Original creator page describes his own brisket experiment; exact-ID independent discussions corroborate smoked brisket, paper wrap and tallow hold.",
+          "normalizedObservations": {
+            "detailLevel": "LOW_RESOLUTION",
+            "method": "SMOKED_BRISKET",
+            "wrap": "BUTCHER_PAPER",
+            "holdTheme": "TALLOW_ASSISTED_HOLD",
+            "numericTechniqueExtracted": false
+          }
+        },
+        {
+          "sourceRef": "youtube:Dn5ZJz2Ta78",
+          "canonicalReference": "https://www.youtube.com/watch?v=Dn5ZJz2Ta78",
+          "creatorChannelRef": "UC--MxpGXJ3LVD8KvlNzRlcA",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "malcom-reed-killer-hogs",
+          "qualificationEvidenceRef": "https://www.royaloak.com/ambassador/malcom-reed/",
+          "projectAuthoredRationale": "Malcom Reed / HowToBBQRight / Killer Hogs: Royal Oak and AmazingRibs independently identify Malcom Reed as HowToBBQRight founder and active competition pitmaster. Original page names Malcom and describes full-packer low-and-slow pellet smoking; his matching companion page identifies the same method.",
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "fuel": "PECAN_PELLETS",
+            "method": "INDIRECT_PELLET_SMOKE",
+            "pitTemperatureFStages": [
+              195,
+              250
+            ],
+            "orientation": "FAT_DOWN",
+            "wrap": "BUTCHER_PAPER",
+            "textureEndpoint": "PROBE_TENDER",
+            "reportedCulinaryEndpointFApprox": 200,
+            "safetyEndpoint": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=Dn5ZJz2Ta78",
+              "https://www.royaloak.com/ambassador/malcom-reed/",
+              "https://amazingribs.com/about-us/meet-our-team/malcom-reed/",
+              "https://howtobbqright.com/2020/05/22/pellet-grill-brisket/"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:nu4p3l6LuyI",
+          "canonicalReference": "https://www.youtube.com/watch?v=nu4p3l6LuyI",
+          "creatorChannelRef": "UCPQErRghCrtrbWOYiJA3okw",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "aaron-franklin",
+          "qualificationEvidenceRef": "https://www.pbs.org/food/chefs/aaron-franklin",
+          "projectAuthoredRationale": "Aaron Franklin; published by PBS Food: PBS biography names Aaron Franklin as host and 2015 James Beard Best Chef Southwest recipient. Original PBS Food video description names Aaron and identifies the episode as a three-method Central Texas brisket experiment; official PBS episode independently matches the programme.",
+          "normalizedObservations": {
+            "detailLevel": "LOW_RESOLUTION",
+            "method": "CENTRAL_TEXAS_BRISKET_THREE_METHOD_COMPARISON",
+            "numericTechniqueExtracted": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=nu4p3l6LuyI",
+              "https://www.pbs.org/food/chefs/aaron-franklin",
+              "https://www.pbs.org/video/bbq-franklin-episode-1-brisket/"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:klmG0DQgEJs",
+          "canonicalReference": "https://www.youtube.com/watch?v=klmG0DQgEJs",
+          "creatorChannelRef": "UCPjkdaqksNWgA63aZfQ2bAQ",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "matt-pittman-meat-church",
+          "qualificationEvidenceRef": "https://www.yeti.com/stories/meat-church.html",
+          "projectAuthoredRationale": "Matt Pittman / Meat Church BBQ: YETI independently identifies Matt Pittman as Meat Church founder, pitmaster and competition practitioner. Commercial sponsorship is disclosed; it is not championship proof. Original video links its exact companion recipe; the companion page embeds this exact ID and describes indirect pellet smoking of full-packer brisket.",
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "method": "INDIRECT_PELLET_SMOKE",
+            "pitTemperatureFStages": [
+              200,
+              225,
+              250
+            ],
+            "orientation": "FAT_UP_SECOND_SHELF",
+            "wrap": "BUTCHER_PAPER",
+            "textureEndpoint": "PROBE_TENDER",
+            "reportedCulinaryEndpointFApprox": 203,
+            "safetyEndpoint": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=klmG0DQgEJs",
+              "https://www.yeti.com/stories/meat-church.html",
+              "https://www.meatchurch.com/blogs/recipes/pellet-grill-brisket"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:LfEEUtyF0is",
+          "canonicalReference": "https://www.youtube.com/watch?v=LfEEUtyF0is",
+          "creatorChannelRef": "UC4dtbTXdvjo272b5x_mxRBw",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "harry-soo-slap-yo-daddy",
+          "qualificationEvidenceRef": "https://amazingribs.com/harry-soo-bio/?p=96127",
+          "projectAuthoredRationale": "Harry Soo / Slap Yo Daddy BBQ: Independent AmazingRibs profile documents Harry Soo as competition pitmaster and barbecue educator; source identity matches the already-established channel. Original source describes Harry performing his seventh Texas-style select-grade brisket trial; retain qualitative scope without inventing cooking stages.",
+          "normalizedObservations": {
+            "detailLevel": "LOW_RESOLUTION",
+            "method": "TEXAS_STYLE_SELECT_GRADE_BRISKET",
+            "seasoningTheme": "SALT_AND_PEPPER",
+            "numericTechniqueExtracted": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=LfEEUtyF0is",
+              "https://amazingribs.com/harry-soo-bio/?p=96127",
+              "https://www.cbbqa.com/awards/"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:nFXQgAHJhbM",
+          "canonicalReference": "https://www.youtube.com/watch?v=nFXQgAHJhbM",
+          "creatorChannelRef": "UCtPVT3HYB5jHMD2NWaMxzxQ",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "heath-riles-bbq",
+          "qualificationEvidenceRef": "https://memphisinmay.org/2022_mim_wcbcc_all_results/",
+          "projectAuthoredRationale": "Heath Riles / Heath Riles BBQ: Memphis in May official results identify Heath Riles BBQ as first-place ribs winner in 2022; independently verified competition competence applies to the named practitioner. Original source gives a full brisket cook on the Traeger Ironwood XL and names Heath; companion creator page corroborates the low-and-slow method.",
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "method": "INDIRECT_PELLET_SMOKE",
+            "pitTemperatureFInitial": 200,
+            "wrap": "COVERED_PAN_WITH_BEEF_LIQUID",
+            "numericTechniqueExtracted": true,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=nFXQgAHJhbM",
+              "https://memphisinmay.org/2022_mim_wcbcc_all_results/",
+              "https://www.heathrilesbbq.com/blogs/favorite-recipes/low-and-slow-brisket-a-tasty-way-to-use-leftovers"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
         }
       ],
-      "synthesis": null
+      "synthesis": {
+        "projectAuthored": true,
+        "leafId": "beef_brisket_competition",
+        "synthesisId": "BEEF_BRISKET_COMPETITION_SYNTHESIS_2026_11_05_V1",
+        "synthesizedAt": "2026-11-05",
+        "qualifiedIndependentSourcesReviewed": 5,
+        "detailedTechniqueSources": 3,
+        "lowerResolutionSources": 2,
+        "selectedSourceRefs": [
+          "youtube:Dn5ZJz2Ta78",
+          "youtube:klmG0DQgEJs",
+          "youtube:nFXQgAHJhbM",
+          "youtube:LfEEUtyF0is",
+          "youtube:nu4p3l6LuyI"
+        ],
+        "safetyAuthorityRefs": [
+          "https://ask.fsis.usda.gov/article/What-is-a-safe-internal-temperature-for-cooking-meat-and-poultry",
+          "https://www.foodsafety.gov/keep-food-safe/4-steps-to-food-safety",
+          "https://ask.fsis.usda.gov/article/How-do-I-handle-leftovers-safely"
+        ],
+        "safetyConstraints": {
+          "authority": "USDA_FSIS_AND_FOODSAFETY_GOV",
+          "wholeMusclePorkAndBeefMinimumInternalF": 145,
+          "minimumRestMinutes": 3,
+          "measurement": "Use a food thermometer in the thickest edible portion away from bone; culinary tenderness temperatures are not safety minima.",
+          "hotHoldingMinimumF": 140,
+          "maximumUncontrolledAmbientHours": 2,
+          "above90FMaximumAmbientHours": 1,
+          "sourceConflictPolicy": "Official safe handling controls override creator advice about long ambient rests or unmeasured cooler holds. Injected or otherwise altered products require applicable product-specific handling; no universal process validation is claimed."
+        },
+        "adjustmentAxes": {
+          "heat_source_fuel": {
+            "status": "SUPPORTED_BRANCH",
+            "decisionNote": "The detailed selected sources demonstrate pellet smoking; fuel blends are source-specific.",
+            "sourceRefs": [
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs",
+              "youtube:nFXQgAHJhbM"
+            ]
+          },
+          "direct_vs_indirect_heat": {
+            "status": "INDIRECT_SMOKE",
+            "decisionNote": "Keep full-packer smoking distinct from direct grilling.",
+            "sourceRefs": [
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs",
+              "youtube:nFXQgAHJhbM"
+            ]
+          },
+          "heat_intensity": {
+            "status": "STAGED_ALTERNATIVES",
+            "decisionNote": "Low initial stages around 195-200F and later hotter finishing belong to separate source timelines, not one blended recipe.",
+            "sourceRefs": [
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs",
+              "youtube:nFXQgAHJhbM"
+            ],
+            "initialPitTemperatureFAnchors": [
+              195,
+              200
+            ]
+          },
+          "time_endpoint": {
+            "status": "TEXTURE_DRIVEN",
+            "decisionNote": "Probe tenderness governs culinary completion in the detailed Malcom and Matt branches. Official minimum and holding controls remain separate.",
+            "sourceRefs": [
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs"
+            ]
+          },
+          "brine_salt_level_duration": {
+            "status": "NO_COMMON_QUANTIFIED_RULE",
+            "decisionNote": "Harry describes a salt-and-pepper select-grade trial; no common concentration is supported.",
+            "sourceRefs": [
+              "youtube:LfEEUtyF0is"
+            ]
+          },
+          "marinade_duration": {
+            "status": "NO_COMMON_RANGE",
+            "decisionNote": "Seasoning adherence and marinating are not interchangeable. No universal duration is asserted.",
+            "sourceRefs": []
+          },
+          "sweetness": {
+            "status": "SOURCE_SPECIFIC",
+            "decisionNote": "No five-source consensus on sweetness is established.",
+            "sourceRefs": []
+          },
+          "acidity": {
+            "status": "SOURCE_SPECIFIC",
+            "decisionNote": "Binder or spritz choices do not establish a required acidity level.",
+            "sourceRefs": [
+              "youtube:klmG0DQgEJs"
+            ]
+          },
+          "spice_heat": {
+            "status": "OPTIONAL_SEASONING_BRANCHES",
+            "decisionNote": "Seasoning choice remains source-specific; Harry supplies a salt-and-pepper branch.",
+            "sourceRefs": [
+              "youtube:LfEEUtyF0is",
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs"
+            ]
+          },
+          "smoke_intensity": {
+            "status": "COOKER_DEPENDENT",
+            "decisionNote": "Long initial pellet-smoke stages are one method family, not a quantitative universal smoke target.",
+            "sourceRefs": [
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs"
+            ]
+          },
+          "glaze_sauce_timing": {
+            "status": "NO_COMMON_RULE",
+            "decisionNote": "No common glaze requirement is asserted.",
+            "sourceRefs": []
+          },
+          "resting_finishing": {
+            "status": "SAFETY_GATED_SOURCE_BRANCHES",
+            "decisionNote": "Wrapping and rest differ: paper versus covered-pan liquid. Creator ambient/cooler-rest advice must not override official holding and cooling controls.",
+            "sourceRefs": [
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs",
+              "youtube:nFXQgAHJhbM"
+            ]
+          }
+        },
+        "synthesisDecision": "COMPLETE_FOR_SELECTED_FIVE_INDEPENDENT_LINEAGES_WITH_EXPLICIT_RESOLUTION_LIMITS",
+        "completionBasis": "Five distinct qualified method/practitioner lineages; supported branches and unknown axes explicit; independent official safety constraints. Extra qualified references do not add votes.",
+        "agreements": [
+          "Use source-specific equipment and texture checks rather than a universal cook time.",
+          "Separate culinary tenderness and flavor from official safety controls."
+        ],
+        "disagreements": [
+          "Preserve different cooker, wrapping and cut branches; do not average incompatible methods."
+        ],
+        "limitations": [
+          "Low-resolution sources do not support numerical stages.",
+          "No Spanish-authenticity, safety-process certification, public application or Knowledge Core promotion is implied."
+        ]
+      }
     },
     {
       "leafId": "pork_ribs_competition",
@@ -1144,7 +1422,7 @@
       "cutForm": "ribs",
       "tradition": "AMERICAN_COMPETITION_BARBECUE",
       "method": "LOW_SLOW_SMOKER_OR_GRILL",
-      "status": "SYNTHESIS_PENDING",
+      "status": "COMPLETE",
       "championshipSearchExhausted": true,
       "candidatePointers": [
         {
@@ -1281,7 +1559,7 @@
           "queryId": "bbq-9db42f5dbfe3b6187d",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-09-27",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -1306,7 +1584,7 @@
           "queryId": "bbq-70d4cfee289f25a037",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-10-06",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -1318,8 +1596,9 @@
           "queryId": "bbq-fd836631a037693788",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-10-06",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Original source names Myron Mixon as demonstrator; that practitioner already supplies the Daily Meal ribs source. Different publisher Munchies does not create independence."
         },
         {
           "sourceRef": "youtube:LjsEkaGNA4A",
@@ -1388,7 +1667,7 @@
           "canonicalReference": "https://www.youtube.com/watch?v=2XNUH5I9_2o",
           "creatorChannelRef": "UCEbFPZr-u8_zOKw6wMNZhUA",
           "queryClass": "WORLD_CHAMPION_DISCOVERY",
-          "independenceKey": "duce-raymond",
+          "independenceKey": "heath-riles-bbq",
           "qualificationEvidenceRef": "https://www.sweetbabyraysbbq.com/duce-raymond",
           "projectAuthoredRationale": "Independent professional profile verifies Duce Raymond as a long-standing barbecue culinary authority and competition cook; qualification is creator-competence based.",
           "normalizedObservations": {}
@@ -1398,7 +1677,7 @@
           "canonicalReference": "https://www.youtube.com/watch?v=Hy5wnwuIZ2M",
           "creatorChannelRef": "UC--MxpGXJ3LVD8KvlNzRlcA",
           "queryClass": "WORLD_CHAMPION_DISCOVERY",
-          "independenceKey": "malcom-reed-killer-hogs",
+          "independenceKey": "heath-riles-bbq",
           "qualificationEvidenceRef": "https://worldfoodchampionships.com/talent/profile/our-competitors/6163/malcom-reed",
           "projectAuthoredRationale": "Independent competition profile verifies Malcom Reed's sustained competition-barbecue experience and educator role; qualification is domain-competence based.",
           "normalizedObservations": {}
@@ -1411,7 +1690,23 @@
           "independenceKey": "elite-bbq-smokers",
           "qualificationEvidenceRef": "https://southeastbbqchampionship.org/results",
           "projectAuthoredRationale": "Independent competition results verify Elite BBQ Smokers as an active competition barbecue team; qualification is competition-credential based.",
-          "normalizedObservations": {}
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "cut": "ST_LOUIS_SPARE_RIBS",
+            "pitTemperatureF": 300,
+            "cooker": "DRUM",
+            "preparation": "TRIM_AND_INJECT",
+            "wrap": "FOIL_WITH_FAT_SWEET_ACID_LIQUID",
+            "finish": "LATE_GLOSSY_GLAZE",
+            "textureEndpoint": "CLEAN_BITE",
+            "reportedCulinaryEndpointFApprox": 208,
+            "restMinutesApprox": 60,
+            "numericTechniqueExtracted": true,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=0gjToA-uKqU"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
         },
         {
           "sourceRef": "youtube:xlQjCdpOJOE",
@@ -1421,7 +1716,23 @@
           "independenceKey": "heath-riles-bbq",
           "qualificationEvidenceRef": "https://memphisinmay.org/winners/",
           "projectAuthoredRationale": "Official Memphis in May results list Heath Riles BBQ as 2025 and 2026 World Championship Barbecue Cooking Contest Grand Champion, with a 2026 first-place ribs finish; qualification is championship-credential based.",
-          "normalizedObservations": {}
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "cut": "BABY_BACK_RIBS",
+            "pitTemperatureF": 300,
+            "fuel": [
+              "CHARCOAL",
+              "HICKORY"
+            ],
+            "binder": "MUSTARD",
+            "wrap": "FOIL_WITH_APPLE_JUICE_FAT_SWEETNESS",
+            "finish": "LATE_SAUCE_SET",
+            "numericTechniqueExtracted": true,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=xlQjCdpOJOE"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
         },
         {
           "sourceRef": "youtube:vEJrAdL8_cI",
@@ -1431,10 +1742,233 @@
           "independenceKey": "myron-mixon-jacks-old-south",
           "qualificationEvidenceRef": "https://www.prweb.com/releases/american_royal_announces_inductees_for_barbecue_hall_of_fame_/prweb11130008.htm",
           "projectAuthoredRationale": "Original YouTube title names Myron Mixon and Daily Meal separately. Independent exact-video discussion verifies the ribs technique demonstrator; American Royal release verifies championship competence. No existing ribs-qualified source uses this practitioner identity; admit one new independent expert without treating Daily Meal as a separate expert.",
-          "normalizedObservations": {}
+          "normalizedObservations": {
+            "detailLevel": "LOW_RESOLUTION",
+            "cut": "BABY_BACK_RIBS",
+            "method": "GRILLED_RIBS",
+            "numericTechniqueExtracted": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=vEJrAdL8_cI"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:Fb9roj9CaxY",
+          "canonicalReference": "https://www.youtube.com/watch?v=Fb9roj9CaxY",
+          "creatorChannelRef": "UCRzPUBhXUZHclB7B5bURFXw",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "rodney-scott",
+          "qualificationEvidenceRef": "https://www.jamesbeard.org/stories/the-2018-james-beard-award-winners",
+          "projectAuthoredRationale": "Rodney Scott; published by Eater, with Ben Turley and Brent Young: James Beard Foundation official 2018 winners identify Rodney Scott as Best Chef Southeast; original Eater reporting documents his barbecue specialism. Original description names Rodney as the guest rib instructor; companion Eater report documents three pork rib forms cooked in a conventional electric smoker.",
+          "normalizedObservations": {
+            "detailLevel": "LOW_RESOLUTION",
+            "method": "ELECTRIC_SMOKER",
+            "cuts": [
+              "PICNIC_RIBS",
+              "BELLY_RIBS",
+              "LOIN_RIBS"
+            ],
+            "textureTheme": "RETAIN_BITE",
+            "numericTechniqueExtracted": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=Fb9roj9CaxY",
+              "https://www.eater.com/2018/7/18/17582690/best-smoked-ribs-recipe-video"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:6xUZleFdLn8",
+          "canonicalReference": "https://www.youtube.com/watch?v=6xUZleFdLn8",
+          "creatorChannelRef": "UCXwIMRa4QTmE-LhKQ4gr67A",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "tuffy-stone-cool-smoke",
+          "qualificationEvidenceRef": "https://americanroyal.com/past-bbq-hall-of-fame-inductees/",
+          "projectAuthoredRationale": "Tuffy Stone / Cool Smoke: American Royal official Hall of Fame history lists Tuffy Stone as a 2018 inductee; NBBQA identifies him as championship pitmaster and educator. Original source names Tuffy, provides a full chaptered competition rib demonstration and directly links the exact companion method.",
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "method": "INDIRECT_SMOKE_OR_TWO_ZONE_GRILL",
+            "cut": "ST_LOUIS_SPARE_RIBS",
+            "pitTemperatureF": 275,
+            "smokeStageHoursApprox": 2,
+            "wrap": "FOIL_WITH_SWEET_FAT_MOISTURE",
+            "wrappedHoursApprox": [
+              2,
+              2.5
+            ],
+            "reportedCulinaryEndpointFRange": [
+              203,
+              205
+            ],
+            "textureEndpoint": "SKEWER_TENDER",
+            "safetyEndpoint": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=6xUZleFdLn8",
+              "https://tuffystone.com/blogs/recipes/competition-ribs"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
         }
       ],
-      "synthesis": null
+      "synthesis": {
+        "projectAuthored": true,
+        "leafId": "pork_ribs_competition",
+        "synthesisId": "PORK_RIBS_COMPETITION_SYNTHESIS_2026_11_05_V1",
+        "synthesizedAt": "2026-11-05",
+        "qualifiedIndependentSourcesReviewed": 5,
+        "detailedTechniqueSources": 3,
+        "lowerResolutionSources": 2,
+        "selectedSourceRefs": [
+          "youtube:xlQjCdpOJOE",
+          "youtube:0gjToA-uKqU",
+          "youtube:vEJrAdL8_cI",
+          "youtube:Fb9roj9CaxY",
+          "youtube:6xUZleFdLn8"
+        ],
+        "safetyAuthorityRefs": [
+          "https://ask.fsis.usda.gov/article/What-is-a-safe-internal-temperature-for-cooking-meat-and-poultry",
+          "https://www.foodsafety.gov/keep-food-safe/4-steps-to-food-safety",
+          "https://ask.fsis.usda.gov/article/How-do-I-handle-leftovers-safely"
+        ],
+        "safetyConstraints": {
+          "authority": "USDA_FSIS_AND_FOODSAFETY_GOV",
+          "wholeMusclePorkAndBeefMinimumInternalF": 145,
+          "minimumRestMinutes": 3,
+          "measurement": "Use a food thermometer in the thickest edible portion away from bone; culinary tenderness temperatures are not safety minima.",
+          "hotHoldingMinimumF": 140,
+          "maximumUncontrolledAmbientHours": 2,
+          "above90FMaximumAmbientHours": 1,
+          "sourceConflictPolicy": "Official safe handling controls override creator advice about long ambient rests or unmeasured cooler holds. Injected or otherwise altered products require applicable product-specific handling; no universal process validation is claimed."
+        },
+        "adjustmentAxes": {
+          "heat_source_fuel": {
+            "status": "SUPPORTED_ALTERNATIVES",
+            "decisionNote": "Keep charcoal/wood, pellet and electric-smoker branches separate.",
+            "sourceRefs": [
+              "youtube:xlQjCdpOJOE",
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8",
+              "youtube:Fb9roj9CaxY"
+            ],
+            "alternatives": [
+              "CHARCOAL_WITH_WOOD",
+              "PELLET_OR_TWO_ZONE_GRILL",
+              "ELECTRIC_SMOKER"
+            ]
+          },
+          "direct_vs_indirect_heat": {
+            "status": "SUPPORTED_BRANCHES",
+            "decisionNote": "Smoking/indirect grilling is the detailed branch; Myron supplies only a lower-resolution grilling reference.",
+            "sourceRefs": [
+              "youtube:xlQjCdpOJOE",
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8",
+              "youtube:vEJrAdL8_cI"
+            ]
+          },
+          "heat_intensity": {
+            "status": "SUPPORTED_BRANCHES",
+            "decisionNote": "Tuffy uses 275F; Heath and Elite use 300F. Do not assign either value to the lower-resolution sources.",
+            "sourceRefs": [
+              "youtube:6xUZleFdLn8",
+              "youtube:xlQjCdpOJOE",
+              "youtube:0gjToA-uKqU"
+            ],
+            "pitTemperatureFAnchors": [
+              275,
+              300
+            ]
+          },
+          "time_endpoint": {
+            "status": "CUT_AND_METHOD_DEPENDENT",
+            "decisionNote": "Clean bite and probe/skewer tenderness are culinary targets. Time is not a safety test; do not impose one universal rib clock.",
+            "sourceRefs": [
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8",
+              "youtube:Fb9roj9CaxY"
+            ],
+            "officialSafetySeparate": true
+          },
+          "brine_salt_level_duration": {
+            "status": "INSUFFICIENT_FOR_COMMON_RANGE",
+            "decisionNote": "Elite documents injection; no common salt concentration or duration is established.",
+            "sourceRefs": [
+              "youtube:0gjToA-uKqU"
+            ]
+          },
+          "marinade_duration": {
+            "status": "INSUFFICIENT_FOR_COMMON_RANGE",
+            "decisionNote": "No cross-source marinade duration is asserted.",
+            "sourceRefs": []
+          },
+          "sweetness": {
+            "status": "SUPPORTED_BRANCHES",
+            "decisionNote": "Detailed competition branches use sweet wrap or glaze components; quantities are source-specific and are not averaged.",
+            "sourceRefs": [
+              "youtube:xlQjCdpOJOE",
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8"
+            ]
+          },
+          "acidity": {
+            "status": "SUPPORTED_OPTION",
+            "decisionNote": "Tuffy adds vinegar to sauce; Elite uses an acidic wrap component. No common acidity target is inferred.",
+            "sourceRefs": [
+              "youtube:6xUZleFdLn8",
+              "youtube:0gjToA-uKqU"
+            ]
+          },
+          "spice_heat": {
+            "status": "SUPPORTED_OPTION",
+            "decisionNote": "Seasoning and spicy accents remain optional source-specific flavor choices.",
+            "sourceRefs": [
+              "youtube:xlQjCdpOJOE",
+              "youtube:6xUZleFdLn8"
+            ]
+          },
+          "smoke_intensity": {
+            "status": "METHOD_DEPENDENT",
+            "decisionNote": "Use the selected cooker/fuel branch; no numeric smoke-dose scale is supported.",
+            "sourceRefs": [
+              "youtube:xlQjCdpOJOE",
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8",
+              "youtube:Fb9roj9CaxY"
+            ]
+          },
+          "glaze_sauce_timing": {
+            "status": "SUPPORTED_LATE_FINISH",
+            "decisionNote": "Detailed competition sources apply a late sauce/glaze finish after tenderizing. Exact setting times remain method-specific.",
+            "sourceRefs": [
+              "youtube:xlQjCdpOJOE",
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8"
+            ]
+          },
+          "resting_finishing": {
+            "status": "SOURCE_SPECIFIC",
+            "decisionNote": "Elite documents a rest; do not export a universal ambient hold. Official temperature/time controls govern.",
+            "sourceRefs": [
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8"
+            ]
+          }
+        },
+        "synthesisDecision": "COMPLETE_FOR_SELECTED_FIVE_INDEPENDENT_LINEAGES_WITH_EXPLICIT_RESOLUTION_LIMITS",
+        "completionBasis": "Five distinct qualified method/practitioner lineages; supported branches and unknown axes explicit; independent official safety constraints. Extra qualified references do not add votes.",
+        "agreements": [
+          "Use source-specific equipment and texture checks rather than a universal cook time.",
+          "Separate culinary tenderness and flavor from official safety controls."
+        ],
+        "disagreements": [
+          "Preserve different cooker, wrapping and cut branches; do not average incompatible methods."
+        ],
+        "limitations": [
+          "Low-resolution sources do not support numerical stages.",
+          "No Spanish-authenticity, safety-process certification, public application or Knowledge Core promotion is implied."
+        ]
+      }
     },
     {
       "leafId": "fish_parrilla",
@@ -1633,7 +2167,7 @@
           "queryId": "bbq-be989733a61fef0494",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-10-06",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -1645,8 +2179,9 @@
           "queryId": "bbq-8e8b79f903676df534",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-10-06",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Original Food Network source describes fish filleting and knife handling, not a fish direct-grill demonstration."
         },
         {
           "sourceRef": "youtube:GcSKJqCiVL4",
@@ -1669,8 +2204,9 @@
           "queryId": "bbq-6dca23d3e0377700a8",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-10-06",
-          "qualificationStatus": "PENDING_REVIEW",
-          "automaticQualificationAuthorized": false
+          "qualificationStatus": "REJECTED",
+          "automaticQualificationAuthorized": false,
+          "projectAuthoredRejectionRationale": "Original source identifies a fish-frying ASMR preparation with oil and fish slices; frying is outside the direct-parrilla leaf."
         },
         {
           "sourceRef": "youtube:5zuQFx2J0jM",
@@ -1720,6 +2256,22 @@
           "qualificationEvidenceRef": "https://www.cbbqa.com/awards/",
           "projectAuthoredRationale": "Independent barbecue-association awards record verifies Harry Soo / Slap Yo' Daddy BBQ competition credentials. This counts only as creator competence for the bounded fish candidate; no fish-specific technique observation is inferred.",
           "normalizedObservations": {}
+        },
+        {
+          "sourceRef": "youtube:Z8Q_D7mRYds",
+          "canonicalReference": "https://www.youtube.com/watch?v=Z8Q_D7mRYds",
+          "creatorChannelRef": "UCWqNUDaH4Yd7RJgeSXE9LhA",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "johnny-stewart",
+          "qualificationEvidenceRef": "https://beeflovingtexans.com/stories/chef-johnny-stewart-lytle-texas/",
+          "projectAuthoredRationale": "Johnny Stewart / Chef Johnny Texas BBQ: Texas Beef Council identifies Johnny Stewart as trained chef, culinary educator and 2023 Ultimate Beef Loving Texan winner. Original source links that same competition and his ChefJohnny identity. Original source describes skin-on pompano fillets grilled over fire with the skin protecting delicate flesh. This supports direct-grill technique, not a Spanish authenticity claim.",
+          "normalizedObservations": {
+            "detailLevel": "LOW_RESOLUTION",
+            "method": "DIRECT_GRILL",
+            "cut": "SKIN_ON_POMPANO_FILLET",
+            "handlingTheme": "SKIN_AS_HEAT_SHIELD",
+            "numericTechniqueExtracted": false
+          }
         }
       ],
       "synthesis": null
@@ -1896,7 +2448,7 @@
           "queryId": "bbq-2e9c1496b974fca526",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-10-06",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -1992,7 +2544,7 @@
           "queryId": "bbq-d3d0f88051f431b0cc",
           "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
           "discoveredQuotaDate": "2026-10-06",
-          "qualificationStatus": "PENDING_REVIEW",
+          "qualificationStatus": "QUALIFIED",
           "automaticQualificationAuthorized": false
         },
         {
@@ -2028,6 +2580,42 @@
           "qualificationEvidenceRef": "https://ibcabbq.org/ibca-top-cooks/",
           "projectAuthoredRationale": "Independent barbecue-association standings verify Bill Purvis / Chicken Fried BBQ competition performance; qualification is competition-credential based.",
           "normalizedObservations": {}
+        },
+        {
+          "sourceRef": "youtube:9rTkpUtFIls",
+          "canonicalReference": "https://www.youtube.com/watch?v=9rTkpUtFIls",
+          "creatorChannelRef": "UCSeKtP7bqePrJqi99UX2NSQ",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "chef-tom-jackson-atbbq",
+          "qualificationEvidenceRef": "https://www.kmuw.org/people/chef-tom-jackson",
+          "projectAuthoredRationale": "Chef Tom Jackson / All Things Barbecue: KMUW identifies Chef Tom Jackson and its Cooking with Fire series as barbecue education; creator companion page explicitly names him. Original video links the exact gas-grilled vegetable companion page, covering corn, asparagus and peppers. Direct-grill technique transfer only; no Spanish authenticity inference.",
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "method": "GAS_GRILL",
+            "products": [
+              "CORN",
+              "ASPARAGUS",
+              "PEPPERS"
+            ],
+            "numericTechniqueExtracted": false
+          }
+        },
+        {
+          "sourceRef": "youtube:M28PPo9gqGk",
+          "canonicalReference": "https://www.youtube.com/watch?v=M28PPo9gqGk",
+          "creatorChannelRef": "UCpSgg_ECBj25s9moCDfSTsA",
+          "queryClass": "SPECIALIST_FALLBACK_DISCOVERY",
+          "independenceKey": "jamie-oliver",
+          "qualificationEvidenceRef": "https://www.weber.com/GB/en/recipes/jamie-oliver/epic-grilled-veg-by-jamie-oliver/weber-2489754.html",
+          "projectAuthoredRationale": "Jamie Oliver; Weber collaboration: Weber independently publishes this named chef collaboration and its barbecue instruction. Sponsorship is explicit, not a championship credential. Original description names Jamie demonstrating vegetable preparation and grilling; matching creator and Weber method pages corroborate staged direct grilling and indirect finishing. No Spanish authenticity claim.",
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "method": "DIRECT_SEAR_THEN_INDIRECT_FINISH",
+            "products": [
+              "MEDITERRANEAN_VEGETABLES"
+            ],
+            "numericTechniqueExtracted": false
+          }
         }
       ],
       "synthesis": null

@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "session_id": "/root:workspace-41f9df017d7b:20261105",
+  "model": "Codex / GPT-6",
+  "candidate_digest": "c2df475db97de132314bdb53a02493bcb194ef1d5326ade1550486258a4a7def",
+  "verdict": "PASS",
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "independent": false,
+  "knowledge": [
+    {
+      "domain": "software_data",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/software_data/objects/software_data_cross_source_synthesis.md",
+      "applied_rule": "Use authoritative input hashes, offline replay and failure checks; count source lineages, not publisher records.",
+      "criterion_id": "QUALITY"
+    },
+    {
+      "domain": "decision_frameworks",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/decision_frameworks/objects/decision_quality_under_uncertainty.md",
+      "applied_rule": "Keep missing expertise or method evidence as explicit uncertainty rather than manufacture qualifications to meet the target.",
+      "criterion_id": "SOURCE"
+    },
+    {
+      "domain": "project_execution",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "applied_rule": "Execute authorized machine work, verify exact candidate and integration, and hand over exact unresolved source blockers.",
+      "criterion_id": "QUALITY"
+    },
+    {
+      "domain": "culinary_nutrition",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/culinary_nutrition/objects/evidence_authority_population_and_inference_boundaries.md",
+      "applied_rule": "Practitioner expertise does not create food-safety authority; official handling controls override unsafe source rest/hold advice.",
+      "criterion_id": "SAFETY"
+    }
+  ],
+  "role": "synthesis",
+  "findings": [],
+  "coverage": [
+    {
+      "criterion_id": "SOURCE",
+      "result": "PASS",
+      "evidence": [
+        "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+        "docs/package_quality/evidence/barbecue-r3-recovery-20261105/qa.json"
+      ],
+      "rationale": "Every originally unresolved occurrence has exact original publisher/channel identity and an explicit evidence decision: eleven qualified, four rejected, twenty-five held. Historical November 3 ledger unchanged."
+    },
+    {
+      "criterion_id": "COVERAGE",
+      "result": "PASS",
+      "evidence": [
+        "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+        "data/generated/barbecue-technique-corpus-state.json",
+        "tests/barbecue-r3-recovery.test.js"
+      ],
+      "rationale": "Ribs has seven references but five source lineages after Heath attribution correction; syntheses select five unique lineages each. Fish gap three and vegetables gap one remain explicit."
+    },
+    {
+      "criterion_id": "SAFETY",
+      "result": "PASS",
+      "evidence": [
+        "config/barbecue_technique_corpus_v1.json",
+        "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+        "docs/package_quality/evidence/barbecue-r3-recovery-20261105/qa.json"
+      ],
+      "rationale": "No provider API, new Search, scheduler, public app, KC or D1 changes. Official safety constraints override practitioner rest/hold advice; numerical culinary endpoints do not become safety minima."
+    },
+    {
+      "criterion_id": "QUALITY",
+      "result": "PASS",
+      "evidence": [
+        "scripts/apply-barbecue-r3-recovery.mjs",
+        "scripts/barbecue-technique-corpus-control-plane.mjs",
+        "tests/barbecue-r3-recovery.test.js",
+        "docs/package_quality/evidence/barbecue-r3-recovery-20261105/qa.json",
+        "docs/package_quality/plans/barbecue-r3-recovery-20261105-receipt.json"
+      ],
+      "rationale": "Actual offline replay and current full npm validation passed. Frozen candidate, pinned procedural sequence, required downstream CI and exact-head merge are distinct gates."
+    }
+  ],
+  "stage": 5,
+  "predecessor_digest": "2d4adfafe3b6972a1fb3fa18443f3234f88bcbed4c7b13a55090ce5f8212ab5b",
+  "rationale": "The constructive and adversarial same-chat passes bind the same final candidate. Shared-lineage and safety/completeness defects are resolved in code, source-scoped synthesis and tests; twenty-five source-proof gaps are deliberately deferred as an explicit partial outcome. Execute the final pinned validator, then require current-head normal CI before integration.",
+  "report_digests": {
+    "supporter": "ba7da1809402c790d031dcf49d8a8bc91fa7297ce48d0e6aa9955c4c41749f67",
+    "critic": "2d4adfafe3b6972a1fb3fa18443f3234f88bcbed4c7b13a55090ce5f8212ab5b"
+  },
+  "finding_dispositions": [
+    {
+      "role": "supporter",
+      "id": "S1_REMAINING_SOURCE_PROOF",
+      "disposition": "DEFERRED",
+      "resolution_evidence": []
+    },
+    {
+      "role": "critic",
+      "id": "C1_SHARED_HEATH_LINEAGE",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "scripts/barbecue-technique-corpus-control-plane.mjs",
+        "tests/barbecue-r3-recovery.test.js",
+        "data/generated/barbecue-technique-corpus-state.json"
+      ]
+    },
+    {
+      "role": "critic",
+      "id": "C2_FALSE_COMPLETENESS_AND_SAFETY",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+        "data/generated/barbecue-technique-corpus-state.json",
+        "tests/barbecue-r3-recovery.test.js"
+      ]
+    }
+  ],
+  "stages": [
+    "align",
+    "build_qa",
+    "supporter",
+    "critic",
+    "synthesis"
+  ],
+  "goal_contribution": "Actual remaining-source evidence recovery, truthful lineage coverage and two source-backed syntheses; no full-pilot or public-admission claim.",
+  "next_gate": "REQUIRED_CI",
+  "business_value": {
+    "problem": "Forty remaining source occurrences lack enough corroborated proof and ribs lacks synthesis.",
+    "solution": "Bounded original-source identity recovery, independent evidence adjudication, corrected lineage counting and eligible synthesis using the existing Work runtime.",
+    "observed_improvement": "Eleven new qualifications, four source rejections, forty exact identities recovered; twenty-five remain held. Two eligible source-scoped syntheses prepared.",
+    "executive_summary": "Executable checks passed and the exact candidate is ready for required PR CI; fish and vegetable source deficits remain.",
+    "verdict": "VALUE_NOT_YET_MEASURED",
+    "acceptance_evidence": [
+      "docs/package_quality/evidence/barbecue-r3-recovery-20261105/qa.json",
+      "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json"
+    ],
+    "observations": [],
+    "expected_but_unverified": [
+      "Downstream usefulness and recipe-delivery benefit."
+    ],
+    "remaining_risks": [
+      "Twenty-five proof gaps; fish needs three independent sources and vegetables one.",
+      "Same-chat reviews are non-independent; procedural hashes do not certify source truth.",
+      "Required CI, merge and checkpoint still need verification."
+    ],
+    "owner_actions": []
+  }
+}

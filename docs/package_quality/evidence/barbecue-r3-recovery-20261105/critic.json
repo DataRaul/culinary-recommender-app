@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "session_id": "/root:workspace-41f9df017d7b:20261105",
+  "model": "Codex / GPT-6",
+  "candidate_digest": "c2df475db97de132314bdb53a02493bcb194ef1d5326ade1550486258a4a7def",
+  "verdict": "PASS",
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "independent": false,
+  "knowledge": [
+    {
+      "domain": "software_data",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/software_data/objects/software_data_cross_source_synthesis.md",
+      "applied_rule": "Use authoritative input hashes, offline replay and failure checks; count source lineages, not publisher records.",
+      "criterion_id": "QUALITY"
+    },
+    {
+      "domain": "decision_frameworks",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/decision_frameworks/objects/decision_quality_under_uncertainty.md",
+      "applied_rule": "Keep missing expertise or method evidence as explicit uncertainty rather than manufacture qualifications to meet the target.",
+      "criterion_id": "SOURCE"
+    },
+    {
+      "domain": "project_execution",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "applied_rule": "Execute authorized machine work, verify exact candidate and integration, and hand over exact unresolved source blockers.",
+      "criterion_id": "QUALITY"
+    },
+    {
+      "domain": "culinary_nutrition",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/culinary_nutrition/objects/evidence_authority_population_and_inference_boundaries.md",
+      "applied_rule": "Practitioner expertise does not create food-safety authority; official handling controls override unsafe source rest/hold advice.",
+      "criterion_id": "SAFETY"
+    }
+  ],
+  "role": "critic",
+  "findings": [
+    {
+      "id": "C1_SHARED_HEATH_LINEAGE",
+      "kind": "requirement_defect",
+      "material": true,
+      "evidence": "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+      "remedy": "Keep three publisher references in one Heath method lineage and enforce unique-key counts throughout threshold decisions.",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "scripts/barbecue-technique-corpus-control-plane.mjs",
+        "tests/barbecue-r3-recovery.test.js",
+        "data/generated/barbecue-technique-corpus-state.json"
+      ]
+    },
+    {
+      "id": "C2_FALSE_COMPLETENESS_AND_SAFETY",
+      "kind": "requirement_defect",
+      "material": true,
+      "evidence": "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+      "remedy": "Expose source deficits and qualitative limits, preserve pilot false, and keep official safety constraints distinct from creator temperatures and rest advice.",
+      "disposition": "RESOLVED",
+      "resolution_evidence": [
+        "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+        "data/generated/barbecue-technique-corpus-state.json",
+        "tests/barbecue-r3-recovery.test.js"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "criterion_id": "SOURCE",
+      "result": "PASS",
+      "evidence": [
+        "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+        "docs/package_quality/evidence/barbecue-r3-recovery-20261105/qa.json"
+      ],
+      "rationale": "Every originally unresolved occurrence has exact original publisher/channel identity and an explicit evidence decision: eleven qualified, four rejected, twenty-five held. Historical November 3 ledger unchanged."
+    },
+    {
+      "criterion_id": "COVERAGE",
+      "result": "PASS",
+      "evidence": [
+        "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+        "data/generated/barbecue-technique-corpus-state.json",
+        "tests/barbecue-r3-recovery.test.js"
+      ],
+      "rationale": "Ribs has seven references but five source lineages after Heath attribution correction; syntheses select five unique lineages each. Fish gap three and vegetables gap one remain explicit."
+    },
+    {
+      "criterion_id": "SAFETY",
+      "result": "PASS",
+      "evidence": [
+        "config/barbecue_technique_corpus_v1.json",
+        "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+        "docs/package_quality/evidence/barbecue-r3-recovery-20261105/qa.json"
+      ],
+      "rationale": "No provider API, new Search, scheduler, public app, KC or D1 changes. Official safety constraints override practitioner rest/hold advice; numerical culinary endpoints do not become safety minima."
+    },
+    {
+      "criterion_id": "QUALITY",
+      "result": "PASS",
+      "evidence": [
+        "scripts/apply-barbecue-r3-recovery.mjs",
+        "scripts/barbecue-technique-corpus-control-plane.mjs",
+        "tests/barbecue-r3-recovery.test.js",
+        "docs/package_quality/evidence/barbecue-r3-recovery-20261105/qa.json",
+        "docs/package_quality/plans/barbecue-r3-recovery-20261105-receipt.json"
+      ],
+      "rationale": "Actual offline replay and current full npm validation passed. Frozen candidate, pinned procedural sequence, required downstream CI and exact-head merge are distinct gates."
+    }
+  ],
+  "stage": 4,
+  "predecessor_digest": "ba7da1809402c790d031dcf49d8a8bc91fa7297ce48d0e6aa9955c4c41749f67",
+  "rationale": "Challenged publisher-versus-demonstrator attribution, duplicate method votes, source title versus expertise, low-resolution numerical inference, unsafe rest advice, automatic qualification and false five-technique completion. The final candidate corrects the shared Heath lineage, uses only five distinct synthesis lineages, retains twenty-five source holds and pilot false. The source-state hash and queue guard prevent equivalent reapplication to a changed baseline. CI and merge are still unearned downstream gates; no independent-review claim is made."
+}

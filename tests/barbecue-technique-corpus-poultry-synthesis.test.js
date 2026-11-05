@@ -90,13 +90,14 @@ test("poultry earns COMPLETE with structured axes while pilot remains open", () 
   assert.equal(Object.keys(poultry.synthesis.adjustmentAxes).length, config.adjustmentAxes.length);
   assert.equal(poultry.synthesis.completionBasis.prohibitedDurableContentRetained, false);
   assert.equal(state.pilotPass, false);
-  assert.equal(state.programmeStatus, "ACTIVE_BOUNDED_DISCOVERY");
+  assert.ok(["ACTIVE_BOUNDED_DISCOVERY", "BARBECUE_SEARCH_PORTFOLIO_EXHAUSTED_REVIEW_PENDING"].includes(state.programmeStatus));
 
   const plannedLeaves = new Set(buildBarbecueQueryPortfolio(config, state).map(row => row.leafId));
   assert.equal(plannedLeaves.has(packet.leafId), false);
-  assert.equal(plannedLeaves.has("pork_ribs_competition"), false, "ribs now has five sources and is synthesis-pending");
-  assert.equal(state.leaves.find(leaf => leaf.leafId === "pork_ribs_competition").status, "SYNTHESIS_PENDING");
-  for (const id of ["beef_brisket_competition","fish_parrilla","vegetables_parrilla"]) {
+  assert.equal(plannedLeaves.has("pork_ribs_competition"), false, "ribs now has five independent lineages and a source-backed synthesis");
+  assert.equal(state.leaves.find(leaf => leaf.leafId === "pork_ribs_competition").status, "COMPLETE");
+  assert.equal(plannedLeaves.has("beef_brisket_competition"), false, "brisket synthesis is now complete");
+  for (const id of ["fish_parrilla","vegetables_parrilla"]) {
     assert.equal(plannedLeaves.has(id), true, id);
   }
 });

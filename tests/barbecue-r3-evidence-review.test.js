@@ -6,6 +6,8 @@ import { loadBarbecueConfig, validateBarbecueState, pendingCandidateCount } from
 const state = JSON.parse(await readFile("data/generated/barbecue-technique-corpus-state.json", "utf8"));
 const review = JSON.parse(await readFile("config/barbecue_technique_corpus_candidate_review_2026_11_03.json", "utf8"));
 const config = await loadBarbecueConfig();
+const recovery = JSON.parse(await readFile("config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json", "utf8"));
+const currentDecision = d => recovery.decisions.find(r => r.leaf_id === d.leaf_id && r.source_ref === d.source_ref) ?? d;
 const byLeaf = new Map(state.leaves.map(leaf => [leaf.leafId, leaf]));
 
 test("BBQ-R3 persisted generated state stays within existing authorization", () => {
@@ -46,7 +48,8 @@ test("all original 44 leaf occurrences have unique exact-source decisions", () =
     const pointer = leaf.candidatePointers.find(p => p.sourceRef === decision.source_ref);
     assert.ok(pointer, "original pointer absent from generated state " + k);
     assert.equal(pointer.creatorChannelRef, decision.stored_channel_ref);
-    const expectedStatus = decision.decision === "NEEDS_EVIDENCE" ? "PENDING_REVIEW" : decision.decision;
+    const latest = currentDecision(decision);
+    const expectedStatus = latest.decision === "NEEDS_EVIDENCE" ? "PENDING_REVIEW" : latest.decision;
     assert.equal(pointer.qualificationStatus, expectedStatus);
     assert.ok(["QUALIFIED", "REJECTED", "NEEDS_EVIDENCE"].includes(decision.decision));
     if (decision.decision === "NEEDS_EVIDENCE") {
@@ -65,7 +68,7 @@ test("all original 44 leaf occurrences have unique exact-source decisions", () =
   assert.equal(review.decisions.filter(d => d.decision === "QUALIFIED").length, 1);
   assert.equal(review.decisions.filter(d => d.decision === "REJECTED").length, 3);
   assert.equal(review.decisions.filter(d => d.decision === "NEEDS_EVIDENCE").length, 40);
-  assert.equal(pendingCandidateCount(state), 40);
+  assert.equal(pendingCandidateCount(state), recovery.counts.NEEDS_EVIDENCE);
 });
 
 test("cross-leaf duplicate remains separately reviewed and not counted twice", () => {
@@ -96,22 +99,22 @@ test("exact-video scope rejection and new Myron independence are supported", () 
   assert.equal(myron.independence_key, "myron-mixon-jacks-old-south");
   const ribs = byLeaf.get("pork_ribs_competition");
   assert.ok(ribs.qualifiedSources.some(q => q.sourceRef === myron.source_ref && q.independenceKey === myron.independence_key));
-  assert.equal(ribs.status, "SYNTHESIS_PENDING");
-  assert.equal(ribs.synthesis, null);
+  assert.equal(ribs.status, "COMPLETE");
+  assert.equal(ribs.synthesis.qualifiedIndependentSourcesReviewed, 5);
 });
 
 test("coverage reports only unique independent qualified creators, never candidate volume", () => {
   const expected = new Map([
     ["poultry_chicken_competition", [6, 0, 0]],
-    ["beef_brisket_competition", [2, 3, 14]],
-    ["pork_ribs_competition", [5, 0, 8]],
-    ["fish_parrilla", [1, 4, 8]],
-    ["vegetables_parrilla", [2, 3, 10]]
+    ["beef_brisket_competition", [8, 0, 7]],
+    ["pork_ribs_competition", [5, 0, 5]],
+    ["fish_parrilla", [2, 3, 5]],
+    ["vegetables_parrilla", [4, 1, 8]]
   ]);
   for (const leaf of state.leaves) {
     const actual = [...new Set(leaf.qualifiedSources.map(q => q.independenceKey))];
-    assert.equal(actual.length, leaf.qualifiedSources.length, "duplicate qualified independence key " + leaf.leafId);
-    const report = review.coverage.find(c => c.leaf_id === leaf.leafId);
+    assert.equal(leaf.qualifiedSources.length - actual.length, leaf.leafId === "pork_ribs_competition" ? 2 : 0);
+    const report = recovery.coverage.find(c => c.leaf_id === leaf.leafId);
     assert.ok(report);
     assert.deepEqual([report.qualified_unique_independence_keys, report.remaining_to_five, report.unresolved_occurrences], expected.get(leaf.leafId));
     assert.equal(report.qualified_unique_independence_keys, actual.length);
