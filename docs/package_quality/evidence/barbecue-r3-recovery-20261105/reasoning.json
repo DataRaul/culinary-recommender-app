@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "package_id": "barbecue-r3-recovery-20261105",
+  "knowledge": [
+    {
+      "domain": "software_data",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/software_data/objects/software_data_cross_source_synthesis.md",
+      "applied_rule": "Use authoritative input hashes, offline replay and failure checks; count source lineages, not publisher records.",
+      "criterion_id": "QUALITY"
+    },
+    {
+      "domain": "decision_frameworks",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/decision_frameworks/objects/decision_quality_under_uncertainty.md",
+      "applied_rule": "Keep missing expertise or method evidence as explicit uncertainty rather than manufacture qualifications to meet the target.",
+      "criterion_id": "SOURCE"
+    },
+    {
+      "domain": "project_execution",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "applied_rule": "Execute authorized machine work, verify exact candidate and integration, and hand over exact unresolved source blockers.",
+      "criterion_id": "QUALITY"
+    },
+    {
+      "domain": "culinary_nutrition",
+      "commit": "2b482455975053c009ebd9261763698ca9c67457",
+      "object": "domains/culinary_nutrition/objects/evidence_authority_population_and_inference_boundaries.md",
+      "applied_rule": "Practitioner expertise does not create food-safety authority; official handling controls override unsafe source rest/hold advice.",
+      "criterion_id": "SAFETY"
+    }
+  ],
+  "source_challenges": [
+    "Original page identity is not expertise.",
+    "Duce and HowToBBQRight rib references share Heath Riles method lineage.",
+    "General direct grilling is not a Spanish-authenticity assertion.",
+    "Five independent source synthesis is not five-technique completion."
+  ],
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "independent": false,
+  "value": "Source gaps reduced from forty to twenty-five; fish and vegetable deficits remain. No recipe-delivery value measured."
+}

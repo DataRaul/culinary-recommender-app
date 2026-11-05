@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "plan_digest": "1b3d14badba081203b719915f89964c174d77a0756c357b6d5301cb8957df47f",
+  "material_deviations": [],
+  "decisions": [
+    {
+      "id": "D1",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+        "docs/package_quality/evidence/barbecue-r3-recovery-20261105/qa.json",
+        "docs/research/BARBECUE_R3_RECOVERY_20261105.md"
+      ]
+    },
+    {
+      "id": "D2",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+        "docs/package_quality/evidence/barbecue-r3-recovery-20261105/qa.json",
+        "docs/research/BARBECUE_R3_RECOVERY_20261105.md"
+      ]
+    },
+    {
+      "id": "D3",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+        "docs/package_quality/evidence/barbecue-r3-recovery-20261105/qa.json",
+        "docs/research/BARBECUE_R3_RECOVERY_20261105.md"
+      ]
+    },
+    {
+      "id": "D4",
+      "status": "IMPLEMENTED",
+      "evidence": [
+        "config/barbecue_technique_corpus_candidate_recovery_2026_11_05.json",
+        "docs/package_quality/evidence/barbecue-r3-recovery-20261105/qa.json",
+        "docs/research/BARBECUE_R3_RECOVERY_20261105.md"
+      ]
+    }
+  ]
+}

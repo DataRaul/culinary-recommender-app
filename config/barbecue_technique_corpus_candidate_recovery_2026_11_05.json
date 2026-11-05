@@ -1,0 +1,2087 @@
+{
+  "schema_version": "barbecue-technique-corpus-r3-recovery-v1",
+  "review_id": "BARBECUE_R3_RECOVERY_2026_11_05",
+  "reviewed_at": "2026-11-05",
+  "source_main_sha": "42d725294efd44bc78346cb94e2c61fde263e17e",
+  "source_state_sha256": "9c7637248f713fe00b0f16858ed248f2a991a167884882845aac3ade5fa59d16",
+  "prior_review_ref": "config/barbecue_technique_corpus_candidate_review_2026_11_03.json",
+  "authority": {
+    "youtube_search_calls": 0,
+    "youtube_metadata_calls": 0,
+    "paid_spend": 0,
+    "protected_d1_writes": 0,
+    "public_app_widening": false,
+    "knowledge_core_promotion": false
+  },
+  "decisions": [
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:ewIEGTVDAJY",
+      "exact_source_reference": "https://www.youtube.com/watch?v=ewIEGTVDAJY",
+      "stored_channel_ref": "UCXzL34BZy6Zx-JehfIjGdZQ",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Destination America",
+        "creator_channel_ref": "UCXzL34BZy6Zx-JehfIjGdZQ",
+        "canonical_reference": "https://www.youtube.com/watch?v=ewIEGTVDAJY",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Destination America / BBQ Pitmasters",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Named on-screen brisket demonstrator and source-method authorship remain unresolved.",
+      "reviewer_rationale": "Named on-screen brisket demonstrator and source-method authorship remain unresolved.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=ewIEGTVDAJY"
+      ],
+      "unresolved_gates": [
+        "Named on-screen brisket demonstrator and source-method authorship remain unresolved."
+      ],
+      "specific_unresolved_reason_if_applicable": "Named on-screen brisket demonstrator and source-method authorship remain unresolved.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:Z2aD16zFP8E",
+      "exact_source_reference": "https://www.youtube.com/watch?v=Z2aD16zFP8E",
+      "stored_channel_ref": "UCsLTjOX249AJsrl9iJh4CSw",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Chuds BBQ",
+        "creator_channel_ref": "UCsLTjOX249AJsrl9iJh4CSw",
+        "canonical_reference": "https://www.youtube.com/watch?v=Z2aD16zFP8E",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "QUALIFIED",
+      "creator_identity": "Bradley Robinson / Chuds BBQ",
+      "independence_key": "bradley-robinson-chuds-bbq",
+      "expertise_claim_and_support": "Independent reporting identifies Bradley Robinson as a professional pitmaster and Chuds BBQ educator. The earlier forum name Robby is not retained as identity proof.",
+      "technique_relevance": "Original creator page describes his own brisket experiment; exact-ID independent discussions corroborate smoked brisket, paper wrap and tallow hold.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=Z2aD16zFP8E",
+        "https://www.chudsbbq.com/shop",
+        "https://www.houstonchronicle.com/food-culture/restaurants-bars/bbq/article/How-video-will-make-future-barbecue-stars-16433706.php",
+        "https://pitmaster.amazingribs.com/forum/the-pit-mastery-program/beef-steak-brisket-roasts-prime-rib-etc/1243624-long-oven-rest-brisket-like-a-restaurant"
+      ],
+      "normalized_observations": {
+        "detailLevel": "LOW_RESOLUTION",
+        "method": "SMOKED_BRISKET",
+        "wrap": "BUTCHER_PAPER",
+        "holdTheme": "TALLOW_ASSISTED_HOLD",
+        "numericTechniqueExtracted": false
+      },
+      "unresolved_gates": [],
+      "reviewer_rationale": "All qualification gates supported by original identity, described demonstration, corroborated expertise and a distinct named source lineage; numeric details retained only where source-backed.",
+      "independence_evaluation": "DISTINCT_NAMED_PRACTITIONER_AND_METHOD_LINEAGE",
+      "specific_unresolved_reason_if_applicable": null
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:Dn5ZJz2Ta78",
+      "exact_source_reference": "https://www.youtube.com/watch?v=Dn5ZJz2Ta78",
+      "stored_channel_ref": "UC--MxpGXJ3LVD8KvlNzRlcA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "HowToBBQRight",
+        "creator_channel_ref": "UC--MxpGXJ3LVD8KvlNzRlcA",
+        "canonical_reference": "https://www.youtube.com/watch?v=Dn5ZJz2Ta78",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "QUALIFIED",
+      "creator_identity": "Malcom Reed / HowToBBQRight / Killer Hogs",
+      "independence_key": "malcom-reed-killer-hogs",
+      "expertise_claim_and_support": "Royal Oak and AmazingRibs independently identify Malcom Reed as HowToBBQRight founder and active competition pitmaster.",
+      "technique_relevance": "Original page names Malcom and describes full-packer low-and-slow pellet smoking; his matching companion page identifies the same method.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=Dn5ZJz2Ta78",
+        "https://www.royaloak.com/ambassador/malcom-reed/",
+        "https://amazingribs.com/about-us/meet-our-team/malcom-reed/",
+        "https://howtobbqright.com/2020/05/22/pellet-grill-brisket/"
+      ],
+      "normalized_observations": {
+        "detailLevel": "HIGH",
+        "fuel": "PECAN_PELLETS",
+        "method": "INDIRECT_PELLET_SMOKE",
+        "pitTemperatureFStages": [
+          195,
+          250
+        ],
+        "orientation": "FAT_DOWN",
+        "wrap": "BUTCHER_PAPER",
+        "textureEndpoint": "PROBE_TENDER",
+        "reportedCulinaryEndpointFApprox": 200,
+        "safetyEndpoint": false
+      },
+      "unresolved_gates": [],
+      "reviewer_rationale": "All qualification gates supported by original identity, described demonstration, corroborated expertise and a distinct named source lineage; numeric details retained only where source-backed.",
+      "independence_evaluation": "DISTINCT_NAMED_PRACTITIONER_AND_METHOD_LINEAGE",
+      "specific_unresolved_reason_if_applicable": null
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:WLBwCA_VXSs",
+      "exact_source_reference": "https://www.youtube.com/watch?v=WLBwCA_VXSs",
+      "stored_channel_ref": "UCDemVelh9Wf-CP_q3mTi-Qw",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Rolling Bones Barbecue",
+        "creator_channel_ref": "UCDemVelh9Wf-CP_q3mTi-Qw",
+        "canonical_reference": "https://www.youtube.com/watch?v=WLBwCA_VXSs",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Rolling Bones Barbecue",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "A branded brisket short and self-published education offer do not independently verify the actual demonstrator and specialist competence.",
+      "reviewer_rationale": "A branded brisket short and self-published education offer do not independently verify the actual demonstrator and specialist competence.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=WLBwCA_VXSs",
+        "https://rollingbonesco.com/pages/education",
+        "https://rollingbonesco.com/pages/about-us"
+      ],
+      "unresolved_gates": [
+        "A branded brisket short and self-published education offer do not independently verify the actual demonstrator and specialist competence."
+      ],
+      "specific_unresolved_reason_if_applicable": "A branded brisket short and self-published education offer do not independently verify the actual demonstrator and specialist competence.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:nu4p3l6LuyI",
+      "exact_source_reference": "https://www.youtube.com/watch?v=nu4p3l6LuyI",
+      "stored_channel_ref": "UCPQErRghCrtrbWOYiJA3okw",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "PBS Food",
+        "creator_channel_ref": "UCPQErRghCrtrbWOYiJA3okw",
+        "canonical_reference": "https://www.youtube.com/watch?v=nu4p3l6LuyI",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "QUALIFIED",
+      "creator_identity": "Aaron Franklin; published by PBS Food",
+      "independence_key": "aaron-franklin",
+      "expertise_claim_and_support": "PBS biography names Aaron Franklin as host and 2015 James Beard Best Chef Southwest recipient.",
+      "technique_relevance": "Original PBS Food video description names Aaron and identifies the episode as a three-method Central Texas brisket experiment; official PBS episode independently matches the programme.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=nu4p3l6LuyI",
+        "https://www.pbs.org/food/chefs/aaron-franklin",
+        "https://www.pbs.org/video/bbq-franklin-episode-1-brisket/"
+      ],
+      "normalized_observations": {
+        "detailLevel": "LOW_RESOLUTION",
+        "method": "CENTRAL_TEXAS_BRISKET_THREE_METHOD_COMPARISON",
+        "numericTechniqueExtracted": false
+      },
+      "unresolved_gates": [],
+      "reviewer_rationale": "All qualification gates supported by original identity, described demonstration, corroborated expertise and a distinct named source lineage; numeric details retained only where source-backed.",
+      "independence_evaluation": "DISTINCT_NAMED_PRACTITIONER_AND_METHOD_LINEAGE",
+      "specific_unresolved_reason_if_applicable": null
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:qP69Gu_pd3Q",
+      "exact_source_reference": "https://www.youtube.com/watch?v=qP69Gu_pd3Q",
+      "stored_channel_ref": "UC--MxpGXJ3LVD8KvlNzRlcA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "HowToBBQRight",
+        "creator_channel_ref": "UC--MxpGXJ3LVD8KvlNzRlcA",
+        "canonical_reference": "https://www.youtube.com/watch?v=qP69Gu_pd3Q",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "REJECTED",
+      "creator_identity": "HowToBBQRight",
+      "independence_key": "malcom-reed-killer-hogs",
+      "expertise_claim_and_support": "Not counted: duplicate lineage or positively evidenced off-method source.",
+      "technique_relevance": "Original HowToBBQRight source and Malcom-authored companion method establish the same practitioner lineage as newly qualified Dn5ZJz2Ta78; it cannot add another independent brisket source.",
+      "reviewer_rationale": "Original HowToBBQRight source and Malcom-authored companion method establish the same practitioner lineage as newly qualified Dn5ZJz2Ta78; it cannot add another independent brisket source.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=qP69Gu_pd3Q",
+        "https://howtobbqright.com/2023/08/17/everything-to-know-about-smoked-brisket/"
+      ],
+      "unresolved_gates": [],
+      "specific_unresolved_reason_if_applicable": null,
+      "independence_evaluation": "DUPLICATE_LINEAGE"
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:klmG0DQgEJs",
+      "exact_source_reference": "https://www.youtube.com/watch?v=klmG0DQgEJs",
+      "stored_channel_ref": "UCPjkdaqksNWgA63aZfQ2bAQ",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Meat Church BBQ",
+        "creator_channel_ref": "UCPjkdaqksNWgA63aZfQ2bAQ",
+        "canonical_reference": "https://www.youtube.com/watch?v=klmG0DQgEJs",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "QUALIFIED",
+      "creator_identity": "Matt Pittman / Meat Church BBQ",
+      "independence_key": "matt-pittman-meat-church",
+      "expertise_claim_and_support": "YETI independently identifies Matt Pittman as Meat Church founder, pitmaster and competition practitioner. Commercial sponsorship is disclosed; it is not championship proof.",
+      "technique_relevance": "Original video links its exact companion recipe; the companion page embeds this exact ID and describes indirect pellet smoking of full-packer brisket.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=klmG0DQgEJs",
+        "https://www.yeti.com/stories/meat-church.html",
+        "https://www.meatchurch.com/blogs/recipes/pellet-grill-brisket"
+      ],
+      "normalized_observations": {
+        "detailLevel": "HIGH",
+        "method": "INDIRECT_PELLET_SMOKE",
+        "pitTemperatureFStages": [
+          200,
+          225,
+          250
+        ],
+        "orientation": "FAT_UP_SECOND_SHELF",
+        "wrap": "BUTCHER_PAPER",
+        "textureEndpoint": "PROBE_TENDER",
+        "reportedCulinaryEndpointFApprox": 203,
+        "safetyEndpoint": false
+      },
+      "unresolved_gates": [],
+      "reviewer_rationale": "All qualification gates supported by original identity, described demonstration, corroborated expertise and a distinct named source lineage; numeric details retained only where source-backed.",
+      "independence_evaluation": "DISTINCT_NAMED_PRACTITIONER_AND_METHOD_LINEAGE",
+      "specific_unresolved_reason_if_applicable": null
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:i0t0q7kDPuo",
+      "exact_source_reference": "https://www.youtube.com/watch?v=i0t0q7kDPuo",
+      "stored_channel_ref": "UCfE5Cz44GlZVyoaYTHJbuZw",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Guga Foods",
+        "creator_channel_ref": "UCfE5Cz44GlZVyoaYTHJbuZw",
+        "canonical_reference": "https://www.youtube.com/watch?v=i0t0q7kDPuo",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Guga Foods, with a guest pitmaster",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Guest specialist identity, credentials and exact method lineage remain unresolved.",
+      "reviewer_rationale": "Guest specialist identity, credentials and exact method lineage remain unresolved.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=i0t0q7kDPuo"
+      ],
+      "unresolved_gates": [
+        "Guest specialist identity, credentials and exact method lineage remain unresolved."
+      ],
+      "specific_unresolved_reason_if_applicable": "Guest specialist identity, credentials and exact method lineage remain unresolved.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:XvuGd_5K4rE",
+      "exact_source_reference": "https://www.youtube.com/watch?v=XvuGd_5K4rE",
+      "stored_channel_ref": "UCvEXwwJKauCrNvj9_TeW0lA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Meltz",
+        "creator_channel_ref": "UCvEXwwJKauCrNvj9_TeW0lA",
+        "canonical_reference": "https://www.youtube.com/watch?v=XvuGd_5K4rE",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Meltz, featuring an unnamed pitmaster in stored evidence",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Actual pitmaster identity and exact source-method lineage need independent corroboration.",
+      "reviewer_rationale": "Actual pitmaster identity and exact source-method lineage need independent corroboration.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=XvuGd_5K4rE"
+      ],
+      "unresolved_gates": [
+        "Actual pitmaster identity and exact source-method lineage need independent corroboration."
+      ],
+      "specific_unresolved_reason_if_applicable": "Actual pitmaster identity and exact source-method lineage need independent corroboration.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:t4PvndA_KO4",
+      "exact_source_reference": "https://www.youtube.com/watch?v=t4PvndA_KO4",
+      "stored_channel_ref": "UCrx66ccB-W88VPRIFNEqNOA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "The Purpose",
+        "creator_channel_ref": "UCrx66ccB-W88VPRIFNEqNOA",
+        "canonical_reference": "https://www.youtube.com/watch?v=t4PvndA_KO4",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "The Purpose / Full BBQ Experience",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Company advertises several pitmasters and instructors; exact brisket demonstrator and technique are unresolved.",
+      "reviewer_rationale": "Company advertises several pitmasters and instructors; exact brisket demonstrator and technique are unresolved.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=t4PvndA_KO4",
+        "https://www.thepurpose-bbq.com/about"
+      ],
+      "unresolved_gates": [
+        "Company advertises several pitmasters and instructors; exact brisket demonstrator and technique are unresolved."
+      ],
+      "specific_unresolved_reason_if_applicable": "Company advertises several pitmasters and instructors; exact brisket demonstrator and technique are unresolved.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:h5o5v_lCXzY",
+      "exact_source_reference": "https://www.youtube.com/watch?v=h5o5v_lCXzY",
+      "stored_channel_ref": "UCwiTOchWeKjrJZw7S1H__1g",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Insider Food",
+        "creator_channel_ref": "UCwiTOchWeKjrJZw7S1H__1g",
+        "canonical_reference": "https://www.youtube.com/watch?v=h5o5v_lCXzY",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Insider Food / Salt Lick feature",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Restaurant reportage does not identify a source-scoped brisket instructor and portable competition method.",
+      "reviewer_rationale": "Restaurant reportage does not identify a source-scoped brisket instructor and portable competition method.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=h5o5v_lCXzY",
+        "https://www.bilibili.com/video/BV1nr4y1g76C/"
+      ],
+      "unresolved_gates": [
+        "Restaurant reportage does not identify a source-scoped brisket instructor and portable competition method."
+      ],
+      "specific_unresolved_reason_if_applicable": "Restaurant reportage does not identify a source-scoped brisket instructor and portable competition method.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:LfEEUtyF0is",
+      "exact_source_reference": "https://www.youtube.com/watch?v=LfEEUtyF0is",
+      "stored_channel_ref": "UC4dtbTXdvjo272b5x_mxRBw",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Harry Soo",
+        "creator_channel_ref": "UC4dtbTXdvjo272b5x_mxRBw",
+        "canonical_reference": "https://www.youtube.com/watch?v=LfEEUtyF0is",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "QUALIFIED",
+      "creator_identity": "Harry Soo / Slap Yo Daddy BBQ",
+      "independence_key": "harry-soo-slap-yo-daddy",
+      "expertise_claim_and_support": "Independent AmazingRibs profile documents Harry Soo as competition pitmaster and barbecue educator; source identity matches the already-established channel.",
+      "technique_relevance": "Original source describes Harry performing his seventh Texas-style select-grade brisket trial; retain qualitative scope without inventing cooking stages.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=LfEEUtyF0is",
+        "https://amazingribs.com/harry-soo-bio/?p=96127",
+        "https://www.cbbqa.com/awards/"
+      ],
+      "normalized_observations": {
+        "detailLevel": "LOW_RESOLUTION",
+        "method": "TEXAS_STYLE_SELECT_GRADE_BRISKET",
+        "seasoningTheme": "SALT_AND_PEPPER",
+        "numericTechniqueExtracted": false
+      },
+      "unresolved_gates": [],
+      "reviewer_rationale": "All qualification gates supported by original identity, described demonstration, corroborated expertise and a distinct named source lineage; numeric details retained only where source-backed.",
+      "independence_evaluation": "DISTINCT_NAMED_PRACTITIONER_AND_METHOD_LINEAGE",
+      "specific_unresolved_reason_if_applicable": null
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:BytLA80y5YE",
+      "exact_source_reference": "https://www.youtube.com/watch?v=BytLA80y5YE",
+      "stored_channel_ref": "UCxC6m7pcZka3P9NZui6thKQ",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Harry The Horse BBQ",
+        "creator_channel_ref": "UCxC6m7pcZka3P9NZui6thKQ",
+        "canonical_reference": "https://www.youtube.com/watch?v=BytLA80y5YE",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Harry Colandrea / Harry The Horse BBQ",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Primary channel identity is resolved; independent specialist/competition competence remains unverified.",
+      "reviewer_rationale": "Primary channel identity is resolved; independent specialist/competition competence remains unverified.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=BytLA80y5YE",
+        "https://vling.net/en/channel/UCxC6m7pcZka3P9NZui6thKQ/channel-info"
+      ],
+      "unresolved_gates": [
+        "Primary channel identity is resolved; independent specialist/competition competence remains unverified."
+      ],
+      "specific_unresolved_reason_if_applicable": "Primary channel identity is resolved; independent specialist/competition competence remains unverified.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "source_ref": "youtube:nFXQgAHJhbM",
+      "exact_source_reference": "https://www.youtube.com/watch?v=nFXQgAHJhbM",
+      "stored_channel_ref": "UCtPVT3HYB5jHMD2NWaMxzxQ",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Heath Riles BBQ",
+        "creator_channel_ref": "UCtPVT3HYB5jHMD2NWaMxzxQ",
+        "canonical_reference": "https://www.youtube.com/watch?v=nFXQgAHJhbM",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "QUALIFIED",
+      "creator_identity": "Heath Riles / Heath Riles BBQ",
+      "independence_key": "heath-riles-bbq",
+      "expertise_claim_and_support": "Memphis in May official results identify Heath Riles BBQ as first-place ribs winner in 2022; independently verified competition competence applies to the named practitioner.",
+      "technique_relevance": "Original source gives a full brisket cook on the Traeger Ironwood XL and names Heath; companion creator page corroborates the low-and-slow method.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=nFXQgAHJhbM",
+        "https://memphisinmay.org/2022_mim_wcbcc_all_results/",
+        "https://www.heathrilesbbq.com/blogs/favorite-recipes/low-and-slow-brisket-a-tasty-way-to-use-leftovers"
+      ],
+      "normalized_observations": {
+        "detailLevel": "HIGH",
+        "method": "INDIRECT_PELLET_SMOKE",
+        "pitTemperatureFInitial": 200,
+        "wrap": "COVERED_PAN_WITH_BEEF_LIQUID",
+        "numericTechniqueExtracted": true
+      },
+      "unresolved_gates": [],
+      "reviewer_rationale": "All qualification gates supported by original identity, described demonstration, corroborated expertise and a distinct named source lineage; numeric details retained only where source-backed.",
+      "independence_evaluation": "DISTINCT_NAMED_PRACTITIONER_AND_METHOD_LINEAGE",
+      "specific_unresolved_reason_if_applicable": null
+    },
+    {
+      "leaf_id": "pork_ribs_competition",
+      "source_ref": "youtube:Fb9roj9CaxY",
+      "exact_source_reference": "https://www.youtube.com/watch?v=Fb9roj9CaxY",
+      "stored_channel_ref": "UCRzPUBhXUZHclB7B5bURFXw",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Eater",
+        "creator_channel_ref": "UCRzPUBhXUZHclB7B5bURFXw",
+        "canonical_reference": "https://www.youtube.com/watch?v=Fb9roj9CaxY",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "QUALIFIED",
+      "creator_identity": "Rodney Scott; published by Eater, with Ben Turley and Brent Young",
+      "independence_key": "rodney-scott",
+      "expertise_claim_and_support": "James Beard Foundation official 2018 winners identify Rodney Scott as Best Chef Southeast; original Eater reporting documents his barbecue specialism.",
+      "technique_relevance": "Original description names Rodney as the guest rib instructor; companion Eater report documents three pork rib forms cooked in a conventional electric smoker.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=Fb9roj9CaxY",
+        "https://www.jamesbeard.org/stories/the-2018-james-beard-award-winners",
+        "https://www.eater.com/2018/7/18/17582690/best-smoked-ribs-recipe-video"
+      ],
+      "normalized_observations": {
+        "detailLevel": "LOW_RESOLUTION",
+        "method": "ELECTRIC_SMOKER",
+        "cuts": [
+          "PICNIC_RIBS",
+          "BELLY_RIBS",
+          "LOIN_RIBS"
+        ],
+        "textureTheme": "RETAIN_BITE",
+        "numericTechniqueExtracted": false
+      },
+      "unresolved_gates": [],
+      "reviewer_rationale": "All qualification gates supported by original identity, described demonstration, corroborated expertise and a distinct named source lineage; numeric details retained only where source-backed.",
+      "independence_evaluation": "DISTINCT_NAMED_PRACTITIONER_AND_METHOD_LINEAGE",
+      "specific_unresolved_reason_if_applicable": null
+    },
+    {
+      "leaf_id": "pork_ribs_competition",
+      "source_ref": "youtube:6xUZleFdLn8",
+      "exact_source_reference": "https://www.youtube.com/watch?v=6xUZleFdLn8",
+      "stored_channel_ref": "UCXwIMRa4QTmE-LhKQ4gr67A",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Tuffy Stone",
+        "creator_channel_ref": "UCXwIMRa4QTmE-LhKQ4gr67A",
+        "canonical_reference": "https://www.youtube.com/watch?v=6xUZleFdLn8",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "QUALIFIED",
+      "creator_identity": "Tuffy Stone / Cool Smoke",
+      "independence_key": "tuffy-stone-cool-smoke",
+      "expertise_claim_and_support": "American Royal official Hall of Fame history lists Tuffy Stone as a 2018 inductee; NBBQA identifies him as championship pitmaster and educator.",
+      "technique_relevance": "Original source names Tuffy, provides a full chaptered competition rib demonstration and directly links the exact companion method.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=6xUZleFdLn8",
+        "https://americanroyal.com/past-bbq-hall-of-fame-inductees/",
+        "https://www.nbbqa.org/2026-conference-speakers-and-panelist",
+        "https://tuffystone.com/blogs/recipes/competition-ribs"
+      ],
+      "normalized_observations": {
+        "detailLevel": "HIGH",
+        "method": "INDIRECT_SMOKE_OR_TWO_ZONE_GRILL",
+        "cut": "ST_LOUIS_SPARE_RIBS",
+        "pitTemperatureF": 275,
+        "smokeStageHoursApprox": 2,
+        "wrap": "FOIL_WITH_SWEET_FAT_MOISTURE",
+        "wrappedHoursApprox": [
+          2,
+          2.5
+        ],
+        "reportedCulinaryEndpointFRange": [
+          203,
+          205
+        ],
+        "textureEndpoint": "SKEWER_TENDER",
+        "safetyEndpoint": false
+      },
+      "unresolved_gates": [],
+      "reviewer_rationale": "All qualification gates supported by original identity, described demonstration, corroborated expertise and a distinct named source lineage; numeric details retained only where source-backed.",
+      "independence_evaluation": "DISTINCT_NAMED_PRACTITIONER_AND_METHOD_LINEAGE",
+      "specific_unresolved_reason_if_applicable": null
+    },
+    {
+      "leaf_id": "pork_ribs_competition",
+      "source_ref": "youtube:QjUn_qUFV1M",
+      "exact_source_reference": "https://www.youtube.com/watch?v=QjUn_qUFV1M",
+      "stored_channel_ref": "UCaLfMkkHhSA_LaCta0BzyhQ",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Munchies",
+        "creator_channel_ref": "UCaLfMkkHhSA_LaCta0BzyhQ",
+        "canonical_reference": "https://www.youtube.com/watch?v=QjUn_qUFV1M",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "REJECTED",
+      "creator_identity": "Munchies",
+      "independence_key": "myron-mixon-jacks-old-south",
+      "expertise_claim_and_support": "Not counted: duplicate lineage or positively evidenced off-method source.",
+      "technique_relevance": "Original source names Myron Mixon as demonstrator; that practitioner already supplies the Daily Meal ribs source. Different publisher Munchies does not create independence.",
+      "reviewer_rationale": "Original source names Myron Mixon as demonstrator; that practitioner already supplies the Daily Meal ribs source. Different publisher Munchies does not create independence.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=QjUn_qUFV1M"
+      ],
+      "unresolved_gates": [],
+      "specific_unresolved_reason_if_applicable": null,
+      "independence_evaluation": "DUPLICATE_LINEAGE"
+    },
+    {
+      "leaf_id": "pork_ribs_competition",
+      "source_ref": "youtube:LjsEkaGNA4A",
+      "exact_source_reference": "https://www.youtube.com/watch?v=LjsEkaGNA4A",
+      "stored_channel_ref": "UCSyaUUiLy30Hwqm7mAFdiOw",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "YouCater",
+        "creator_channel_ref": "UCSyaUUiLy30Hwqm7mAFdiOw",
+        "canonical_reference": "https://www.youtube.com/watch?v=LjsEkaGNA4A",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "YouCater / Holy Smokes",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Catering listing establishes a business, not the actual rib instructor or source-specific method.",
+      "reviewer_rationale": "Catering listing establishes a business, not the actual rib instructor or source-specific method.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=LjsEkaGNA4A",
+        "https://culinary.youcater.me/products/live-fire-experience-ii"
+      ],
+      "unresolved_gates": [
+        "Catering listing establishes a business, not the actual rib instructor or source-specific method."
+      ],
+      "specific_unresolved_reason_if_applicable": "Catering listing establishes a business, not the actual rib instructor or source-specific method.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "pork_ribs_competition",
+      "source_ref": "youtube:IVoCFxnp5o4",
+      "exact_source_reference": "https://www.youtube.com/watch?v=IVoCFxnp5o4",
+      "stored_channel_ref": "UC0r6S4hmYdRcDnw7zey7Myg",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "The Bearded Butchers",
+        "creator_channel_ref": "UC0r6S4hmYdRcDnw7zey7Myg",
+        "canonical_reference": "https://www.youtube.com/watch?v=IVoCFxnp5o4",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "The Bearded Butchers",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Exact reference is presented as bison short-rib butchery. Pork cook relevance is not corroborated; no off-title footage was inspected.",
+      "reviewer_rationale": "Exact reference is presented as bison short-rib butchery. Pork cook relevance is not corroborated; no off-title footage was inspected.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=IVoCFxnp5o4"
+      ],
+      "unresolved_gates": [
+        "Exact reference is presented as bison short-rib butchery. Pork cook relevance is not corroborated; no off-title footage was inspected."
+      ],
+      "specific_unresolved_reason_if_applicable": "Exact reference is presented as bison short-rib butchery. Pork cook relevance is not corroborated; no off-title footage was inspected.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "pork_ribs_competition",
+      "source_ref": "youtube:TubPWDJlCwU",
+      "exact_source_reference": "https://www.youtube.com/watch?v=TubPWDJlCwU",
+      "stored_channel_ref": "UCvVfbT5dboclmMpORzukIfA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Meat & Greet BBQ Podcast",
+        "creator_channel_ref": "UCvVfbT5dboclmMpORzukIfA",
+        "canonical_reference": "https://www.youtube.com/watch?v=TubPWDJlCwU",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Meat & Greet BBQ Podcast / Somerset Grills",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Source-specific pork-rib demonstration and actual instructor competence remain unverified.",
+      "reviewer_rationale": "Source-specific pork-rib demonstration and actual instructor competence remain unverified.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=TubPWDJlCwU"
+      ],
+      "unresolved_gates": [
+        "Source-specific pork-rib demonstration and actual instructor competence remain unverified."
+      ],
+      "specific_unresolved_reason_if_applicable": "Source-specific pork-rib demonstration and actual instructor competence remain unverified.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "pork_ribs_competition",
+      "source_ref": "youtube:gRtwb-amJwg",
+      "exact_source_reference": "https://www.youtube.com/watch?v=gRtwb-amJwg",
+      "stored_channel_ref": "UC6tJ9C5SBvK6b-0cejoc4vg",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Smokin' & Grillin with AB",
+        "creator_channel_ref": "UC6tJ9C5SBvK6b-0cejoc4vg",
+        "canonical_reference": "https://www.youtube.com/watch?v=gRtwb-amJwg",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Smokin and Grillin with AB",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Primary identity and rib subject resolved; independent barbecue-specialist competence and original method lineage not corroborated in this pass.",
+      "reviewer_rationale": "Primary identity and rib subject resolved; independent barbecue-specialist competence and original method lineage not corroborated in this pass.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=gRtwb-amJwg"
+      ],
+      "unresolved_gates": [
+        "Primary identity and rib subject resolved; independent barbecue-specialist competence and original method lineage not corroborated in this pass."
+      ],
+      "specific_unresolved_reason_if_applicable": "Primary identity and rib subject resolved; independent barbecue-specialist competence and original method lineage not corroborated in this pass.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "pork_ribs_competition",
+      "source_ref": "youtube:9PHnsA_2sW8",
+      "exact_source_reference": "https://www.youtube.com/watch?v=9PHnsA_2sW8",
+      "stored_channel_ref": "UCYLpxxyASWauVReIYJrGQIg",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Harry & David",
+        "creator_channel_ref": "UCYLpxxyASWauVReIYJrGQIg",
+        "canonical_reference": "https://www.youtube.com/watch?v=9PHnsA_2sW8",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Harry & David",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Retail publisher verified; actual demonstrator and specialist expertise remain unresolved.",
+      "reviewer_rationale": "Retail publisher verified; actual demonstrator and specialist expertise remain unresolved.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=9PHnsA_2sW8"
+      ],
+      "unresolved_gates": [
+        "Retail publisher verified; actual demonstrator and specialist expertise remain unresolved."
+      ],
+      "specific_unresolved_reason_if_applicable": "Retail publisher verified; actual demonstrator and specialist expertise remain unresolved.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "fish_parrilla",
+      "source_ref": "youtube:WaVRsTXwECI",
+      "exact_source_reference": "https://www.youtube.com/watch?v=WaVRsTXwECI",
+      "stored_channel_ref": "UC8VWQvVMSLLP9hzmyyc5f0Q",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Elite BBQ Smokers",
+        "creator_channel_ref": "UC8VWQvVMSLLP9hzmyyc5f0Q",
+        "canonical_reference": "https://www.youtube.com/watch?v=WaVRsTXwECI",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Elite BBQ Smokers",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Original source describes cedar-plank salmon; direct-parrilla heat configuration and exact specialist demonstrator remain unresolved.",
+      "reviewer_rationale": "Original source describes cedar-plank salmon; direct-parrilla heat configuration and exact specialist demonstrator remain unresolved.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=WaVRsTXwECI"
+      ],
+      "unresolved_gates": [
+        "Original source describes cedar-plank salmon; direct-parrilla heat configuration and exact specialist demonstrator remain unresolved."
+      ],
+      "specific_unresolved_reason_if_applicable": "Original source describes cedar-plank salmon; direct-parrilla heat configuration and exact specialist demonstrator remain unresolved.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "fish_parrilla",
+      "source_ref": "youtube:xXkp3TdOxxk",
+      "exact_source_reference": "https://www.youtube.com/watch?v=xXkp3TdOxxk",
+      "stored_channel_ref": "UC6I8HOb9ZtS-rYqB-M3R9GA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Pitmaster X SHORTS",
+        "creator_channel_ref": "UC6I8HOb9ZtS-rYqB-M3R9GA",
+        "canonical_reference": "https://www.youtube.com/watch?v=xXkp3TdOxxk",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Pitmaster X Shorts",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Primary brand resolved; exact on-screen salmon method, direct-grill relevance and original method authorship remain unverified.",
+      "reviewer_rationale": "Primary brand resolved; exact on-screen salmon method, direct-grill relevance and original method authorship remain unverified.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=xXkp3TdOxxk"
+      ],
+      "unresolved_gates": [
+        "Primary brand resolved; exact on-screen salmon method, direct-grill relevance and original method authorship remain unverified."
+      ],
+      "specific_unresolved_reason_if_applicable": "Primary brand resolved; exact on-screen salmon method, direct-grill relevance and original method authorship remain unverified.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "fish_parrilla",
+      "source_ref": "youtube:Z8Q_D7mRYds",
+      "exact_source_reference": "https://www.youtube.com/watch?v=Z8Q_D7mRYds",
+      "stored_channel_ref": "UCWqNUDaH4Yd7RJgeSXE9LhA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Chef Johnny's Texas BBQ",
+        "creator_channel_ref": "UCWqNUDaH4Yd7RJgeSXE9LhA",
+        "canonical_reference": "https://www.youtube.com/watch?v=Z8Q_D7mRYds",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "QUALIFIED",
+      "creator_identity": "Johnny Stewart / Chef Johnny Texas BBQ",
+      "independence_key": "johnny-stewart",
+      "expertise_claim_and_support": "Texas Beef Council identifies Johnny Stewart as trained chef, culinary educator and 2023 Ultimate Beef Loving Texan winner. Original source links that same competition and his ChefJohnny identity.",
+      "technique_relevance": "Original source describes skin-on pompano fillets grilled over fire with the skin protecting delicate flesh. This supports direct-grill technique, not a Spanish authenticity claim.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=Z8Q_D7mRYds",
+        "https://beeflovingtexans.com/stories/chef-johnny-stewart-lytle-texas/",
+        "https://devinenews.com/local-bbq-youtuber-reaches-50000-subscribers/"
+      ],
+      "normalized_observations": {
+        "detailLevel": "LOW_RESOLUTION",
+        "method": "DIRECT_GRILL",
+        "cut": "SKIN_ON_POMPANO_FILLET",
+        "handlingTheme": "SKIN_AS_HEAT_SHIELD",
+        "numericTechniqueExtracted": false
+      },
+      "unresolved_gates": [],
+      "reviewer_rationale": "All qualification gates supported by original identity, described demonstration, corroborated expertise and a distinct named source lineage; numeric details retained only where source-backed.",
+      "independence_evaluation": "DISTINCT_NAMED_PRACTITIONER_AND_METHOD_LINEAGE",
+      "specific_unresolved_reason_if_applicable": null
+    },
+    {
+      "leaf_id": "fish_parrilla",
+      "source_ref": "youtube:KVXs9Qt1oHM",
+      "exact_source_reference": "https://www.youtube.com/watch?v=KVXs9Qt1oHM",
+      "stored_channel_ref": "UC8Y-jrV8oR3s2Ix4viDkZtA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Food Network",
+        "creator_channel_ref": "UC8Y-jrV8oR3s2Ix4viDkZtA",
+        "canonical_reference": "https://www.youtube.com/watch?v=KVXs9Qt1oHM",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "REJECTED",
+      "creator_identity": "Food Network",
+      "independence_key": null,
+      "expertise_claim_and_support": "Not counted: duplicate lineage or positively evidenced off-method source.",
+      "technique_relevance": "Original Food Network source describes fish filleting and knife handling, not a fish direct-grill demonstration.",
+      "reviewer_rationale": "Original Food Network source describes fish filleting and knife handling, not a fish direct-grill demonstration.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=KVXs9Qt1oHM"
+      ],
+      "unresolved_gates": [],
+      "specific_unresolved_reason_if_applicable": null,
+      "independence_evaluation": "OFF_METHOD"
+    },
+    {
+      "leaf_id": "fish_parrilla",
+      "source_ref": "youtube:GcSKJqCiVL4",
+      "exact_source_reference": "https://www.youtube.com/watch?v=GcSKJqCiVL4",
+      "stored_channel_ref": "UCaObnC_MuLYEYez0iLOSiyg",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "UP Food",
+        "creator_channel_ref": "UCaObnC_MuLYEYez0iLOSiyg",
+        "canonical_reference": "https://www.youtube.com/watch?v=GcSKJqCiVL4",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "UP Food / Master Chef Grill and Gravy feature",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Restaurant feature does not independently establish the named fish demonstrator, specialist expertise and direct-parrilla method.",
+      "reviewer_rationale": "Restaurant feature does not independently establish the named fish demonstrator, specialist expertise and direct-parrilla method.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=GcSKJqCiVL4"
+      ],
+      "unresolved_gates": [
+        "Restaurant feature does not independently establish the named fish demonstrator, specialist expertise and direct-parrilla method."
+      ],
+      "specific_unresolved_reason_if_applicable": "Restaurant feature does not independently establish the named fish demonstrator, specialist expertise and direct-parrilla method.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "fish_parrilla",
+      "source_ref": "youtube:ws2fF5b68jU",
+      "exact_source_reference": "https://www.youtube.com/watch?v=ws2fF5b68jU",
+      "stored_channel_ref": "UCBQTu7jqi7u0dhGLQetdjsA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "The Secret Cook ASMR",
+        "creator_channel_ref": "UCBQTu7jqi7u0dhGLQetdjsA",
+        "canonical_reference": "https://www.youtube.com/watch?v=ws2fF5b68jU",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "REJECTED",
+      "creator_identity": "The Secret Cook ASMR",
+      "independence_key": null,
+      "expertise_claim_and_support": "Not counted: duplicate lineage or positively evidenced off-method source.",
+      "technique_relevance": "Original source identifies a fish-frying ASMR preparation with oil and fish slices; frying is outside the direct-parrilla leaf.",
+      "reviewer_rationale": "Original source identifies a fish-frying ASMR preparation with oil and fish slices; frying is outside the direct-parrilla leaf.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=ws2fF5b68jU"
+      ],
+      "unresolved_gates": [],
+      "specific_unresolved_reason_if_applicable": null,
+      "independence_evaluation": "OFF_METHOD"
+    },
+    {
+      "leaf_id": "fish_parrilla",
+      "source_ref": "youtube:5zuQFx2J0jM",
+      "exact_source_reference": "https://www.youtube.com/watch?v=5zuQFx2J0jM",
+      "stored_channel_ref": "UCBxUPP-GXeTx71RKgcwN_MA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Discover Food Pakistan",
+        "creator_channel_ref": "UCBxUPP-GXeTx71RKgcwN_MA",
+        "canonical_reference": "https://www.youtube.com/watch?v=5zuQFx2J0jM",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Discover Food Pakistan / Samandar Khan beef kebab feature",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Original reference is a beef-tikka and seekh-kebab feature; no fish- or vegetable-specific grilling demonstration was corroborated. Each leaf remains separately held.",
+      "reviewer_rationale": "Original reference is a beef-tikka and seekh-kebab feature; no fish- or vegetable-specific grilling demonstration was corroborated. Each leaf remains separately held.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=5zuQFx2J0jM"
+      ],
+      "unresolved_gates": [
+        "Original reference is a beef-tikka and seekh-kebab feature; no fish- or vegetable-specific grilling demonstration was corroborated. Each leaf remains separately held."
+      ],
+      "specific_unresolved_reason_if_applicable": "Original reference is a beef-tikka and seekh-kebab feature; no fish- or vegetable-specific grilling demonstration was corroborated. Each leaf remains separately held.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "fish_parrilla",
+      "source_ref": "youtube:9nzlGHLHjVQ",
+      "exact_source_reference": "https://www.youtube.com/watch?v=9nzlGHLHjVQ",
+      "stored_channel_ref": "UC6S5a3MQtr_PSWZxysXkOCg",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Serious Eats",
+        "creator_channel_ref": "UC6S5a3MQtr_PSWZxysXkOCg",
+        "canonical_reference": "https://www.youtube.com/watch?v=9nzlGHLHjVQ",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Serious Eats; companion technique credited to Daniel Gritzer",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Original page links a whole-fish method; actual on-screen demonstrator credit and independent specialist evidence remain incomplete. Do not infer the performer from publication authorship.",
+      "reviewer_rationale": "Original page links a whole-fish method; actual on-screen demonstrator credit and independent specialist evidence remain incomplete. Do not infer the performer from publication authorship.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=9nzlGHLHjVQ",
+        "https://www.seriouseats.com/ho-to-grill-whole-fish"
+      ],
+      "unresolved_gates": [
+        "Original page links a whole-fish method; actual on-screen demonstrator credit and independent specialist evidence remain incomplete. Do not infer the performer from publication authorship."
+      ],
+      "specific_unresolved_reason_if_applicable": "Original page links a whole-fish method; actual on-screen demonstrator credit and independent specialist evidence remain incomplete. Do not infer the performer from publication authorship.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "vegetables_parrilla",
+      "source_ref": "youtube:9rTkpUtFIls",
+      "exact_source_reference": "https://www.youtube.com/watch?v=9rTkpUtFIls",
+      "stored_channel_ref": "UCSeKtP7bqePrJqi99UX2NSQ",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "allthingsbbq",
+        "creator_channel_ref": "UCSeKtP7bqePrJqi99UX2NSQ",
+        "canonical_reference": "https://www.youtube.com/watch?v=9rTkpUtFIls",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "QUALIFIED",
+      "creator_identity": "Chef Tom Jackson / All Things Barbecue",
+      "independence_key": "chef-tom-jackson-atbbq",
+      "expertise_claim_and_support": "KMUW identifies Chef Tom Jackson and its Cooking with Fire series as barbecue education; creator companion page explicitly names him.",
+      "technique_relevance": "Original video links the exact gas-grilled vegetable companion page, covering corn, asparagus and peppers. Direct-grill technique transfer only; no Spanish authenticity inference.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=9rTkpUtFIls",
+        "https://www.kmuw.org/people/chef-tom-jackson",
+        "https://www.kmuw.org/cooking-with-fire",
+        "https://www.atbbq.com/blogs/recipes/how-to-cook-veggies-on-a-gas-grill"
+      ],
+      "normalized_observations": {
+        "detailLevel": "HIGH",
+        "method": "GAS_GRILL",
+        "products": [
+          "CORN",
+          "ASPARAGUS",
+          "PEPPERS"
+        ],
+        "numericTechniqueExtracted": false
+      },
+      "unresolved_gates": [],
+      "reviewer_rationale": "All qualification gates supported by original identity, described demonstration, corroborated expertise and a distinct named source lineage; numeric details retained only where source-backed.",
+      "independence_evaluation": "DISTINCT_NAMED_PRACTITIONER_AND_METHOD_LINEAGE",
+      "specific_unresolved_reason_if_applicable": null
+    },
+    {
+      "leaf_id": "vegetables_parrilla",
+      "source_ref": "youtube:OwZGFxG71_8",
+      "exact_source_reference": "https://www.youtube.com/watch?v=OwZGFxG71_8",
+      "stored_channel_ref": "UCV39y3yaYmeZIFvY-cRY-zA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Master Chef Secrets",
+        "creator_channel_ref": "UCV39y3yaYmeZIFvY-cRY-zA",
+        "canonical_reference": "https://www.youtube.com/watch?v=OwZGFxG71_8",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Master Chef Secrets",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Actual demonstrator, independent specialist credentials and original vegetable-method lineage remain unresolved.",
+      "reviewer_rationale": "Actual demonstrator, independent specialist credentials and original vegetable-method lineage remain unresolved.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=OwZGFxG71_8"
+      ],
+      "unresolved_gates": [
+        "Actual demonstrator, independent specialist credentials and original vegetable-method lineage remain unresolved."
+      ],
+      "specific_unresolved_reason_if_applicable": "Actual demonstrator, independent specialist credentials and original vegetable-method lineage remain unresolved.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "vegetables_parrilla",
+      "source_ref": "youtube:3T9aMG4TS_I",
+      "exact_source_reference": "https://www.youtube.com/watch?v=3T9aMG4TS_I",
+      "stored_channel_ref": "UCEbFPZr-u8_zOKw6wMNZhUA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Duce Raymond",
+        "creator_channel_ref": "UCEbFPZr-u8_zOKw6wMNZhUA",
+        "canonical_reference": "https://www.youtube.com/watch?v=3T9aMG4TS_I",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Duce Raymond",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Exact source is the already-reviewed competition-chicken reference; no vegetable-specific demonstration was corroborated. Poultry credentials cannot fill that leaf.",
+      "reviewer_rationale": "Exact source is the already-reviewed competition-chicken reference; no vegetable-specific demonstration was corroborated. Poultry credentials cannot fill that leaf.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=3T9aMG4TS_I"
+      ],
+      "unresolved_gates": [
+        "Exact source is the already-reviewed competition-chicken reference; no vegetable-specific demonstration was corroborated. Poultry credentials cannot fill that leaf."
+      ],
+      "specific_unresolved_reason_if_applicable": "Exact source is the already-reviewed competition-chicken reference; no vegetable-specific demonstration was corroborated. Poultry credentials cannot fill that leaf.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "vegetables_parrilla",
+      "source_ref": "youtube:3m-_t0vUWZs",
+      "exact_source_reference": "https://www.youtube.com/watch?v=3m-_t0vUWZs",
+      "stored_channel_ref": "UCsMS5y1pZo3czn2-iYF5qtA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "videoplr",
+        "creator_channel_ref": "UCsMS5y1pZo3czn2-iYF5qtA",
+        "canonical_reference": "https://www.youtube.com/watch?v=3m-_t0vUWZs",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "videoplr",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Source concerns wood-chip pairing; actual practitioner, original lineage and a vegetable-specific cook remain unverified.",
+      "reviewer_rationale": "Source concerns wood-chip pairing; actual practitioner, original lineage and a vegetable-specific cook remain unverified.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=3m-_t0vUWZs"
+      ],
+      "unresolved_gates": [
+        "Source concerns wood-chip pairing; actual practitioner, original lineage and a vegetable-specific cook remain unverified."
+      ],
+      "specific_unresolved_reason_if_applicable": "Source concerns wood-chip pairing; actual practitioner, original lineage and a vegetable-specific cook remain unverified.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "vegetables_parrilla",
+      "source_ref": "youtube:_Jzke0aGMnQ",
+      "exact_source_reference": "https://www.youtube.com/watch?v=_Jzke0aGMnQ",
+      "stored_channel_ref": "UCANVc-S6fdEhlLPnpkENR_A",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Delectable__crunch",
+        "creator_channel_ref": "UCANVc-S6fdEhlLPnpkENR_A",
+        "canonical_reference": "https://www.youtube.com/watch?v=_Jzke0aGMnQ",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Delectable crunch",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Named demonstrator and independent specialist competence remain unverified; buffet/short presentation is insufficient.",
+      "reviewer_rationale": "Named demonstrator and independent specialist competence remain unverified; buffet/short presentation is insufficient.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=_Jzke0aGMnQ"
+      ],
+      "unresolved_gates": [
+        "Named demonstrator and independent specialist competence remain unverified; buffet/short presentation is insufficient."
+      ],
+      "specific_unresolved_reason_if_applicable": "Named demonstrator and independent specialist competence remain unverified; buffet/short presentation is insufficient.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "vegetables_parrilla",
+      "source_ref": "youtube:5zuQFx2J0jM",
+      "exact_source_reference": "https://www.youtube.com/watch?v=5zuQFx2J0jM",
+      "stored_channel_ref": "UCBxUPP-GXeTx71RKgcwN_MA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Discover Food Pakistan",
+        "creator_channel_ref": "UCBxUPP-GXeTx71RKgcwN_MA",
+        "canonical_reference": "https://www.youtube.com/watch?v=5zuQFx2J0jM",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Discover Food Pakistan / Samandar Khan beef kebab feature",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Original reference is a beef-tikka and seekh-kebab feature; no fish- or vegetable-specific grilling demonstration was corroborated. Each leaf remains separately held.",
+      "reviewer_rationale": "Original reference is a beef-tikka and seekh-kebab feature; no fish- or vegetable-specific grilling demonstration was corroborated. Each leaf remains separately held.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=5zuQFx2J0jM"
+      ],
+      "unresolved_gates": [
+        "Original reference is a beef-tikka and seekh-kebab feature; no fish- or vegetable-specific grilling demonstration was corroborated. Each leaf remains separately held."
+      ],
+      "specific_unresolved_reason_if_applicable": "Original reference is a beef-tikka and seekh-kebab feature; no fish- or vegetable-specific grilling demonstration was corroborated. Each leaf remains separately held.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "vegetables_parrilla",
+      "source_ref": "youtube:vyDXeKV2dZo",
+      "exact_source_reference": "https://www.youtube.com/watch?v=vyDXeKV2dZo",
+      "stored_channel_ref": "UCcG4aW-CgyscygbUZy5AoeA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Complete Learning ,Crafts, Art, Current News & Fun",
+        "creator_channel_ref": "UCcG4aW-CgyscygbUZy5AoeA",
+        "canonical_reference": "https://www.youtube.com/watch?v=vyDXeKV2dZo",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Complete Learning Crafts Art Current News and Fun",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Actual vegetable demonstrator and specialist competence remain unverified.",
+      "reviewer_rationale": "Actual vegetable demonstrator and specialist competence remain unverified.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=vyDXeKV2dZo"
+      ],
+      "unresolved_gates": [
+        "Actual vegetable demonstrator and specialist competence remain unverified."
+      ],
+      "specific_unresolved_reason_if_applicable": "Actual vegetable demonstrator and specialist competence remain unverified.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "vegetables_parrilla",
+      "source_ref": "youtube:P5P3NMJvJTc",
+      "exact_source_reference": "https://www.youtube.com/watch?v=P5P3NMJvJTc",
+      "stored_channel_ref": "UCy_iF2lqOucgmK1BLCl-6vQ",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Recipe30",
+        "creator_channel_ref": "UCy_iF2lqOucgmK1BLCl-6vQ",
+        "canonical_reference": "https://www.youtube.com/watch?v=P5P3NMJvJTc",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Joel Mielle / Recipe30",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Primary professional-chef self-description and companion vegetable recipe are available; independently verified grill-specialist/educator competence remains missing.",
+      "reviewer_rationale": "Primary professional-chef self-description and companion vegetable recipe are available; independently verified grill-specialist/educator competence remains missing.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=P5P3NMJvJTc",
+        "https://recipe30.com/about/",
+        "https://recipe30.com/bbq-grilled-vegetables.html/"
+      ],
+      "unresolved_gates": [
+        "Primary professional-chef self-description and companion vegetable recipe are available; independently verified grill-specialist/educator competence remains missing."
+      ],
+      "specific_unresolved_reason_if_applicable": "Primary professional-chef self-description and companion vegetable recipe are available; independently verified grill-specialist/educator competence remains missing.",
+      "independence_evaluation": "NOT_PROVEN"
+    },
+    {
+      "leaf_id": "vegetables_parrilla",
+      "source_ref": "youtube:M28PPo9gqGk",
+      "exact_source_reference": "https://www.youtube.com/watch?v=M28PPo9gqGk",
+      "stored_channel_ref": "UCpSgg_ECBj25s9moCDfSTsA",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Jamie Oliver",
+        "creator_channel_ref": "UCpSgg_ECBj25s9moCDfSTsA",
+        "canonical_reference": "https://www.youtube.com/watch?v=M28PPo9gqGk",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "QUALIFIED",
+      "creator_identity": "Jamie Oliver; Weber collaboration",
+      "independence_key": "jamie-oliver",
+      "expertise_claim_and_support": "Weber independently publishes this named chef collaboration and its barbecue instruction. Sponsorship is explicit, not a championship credential.",
+      "technique_relevance": "Original description names Jamie demonstrating vegetable preparation and grilling; matching creator and Weber method pages corroborate staged direct grilling and indirect finishing. No Spanish authenticity claim.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=M28PPo9gqGk",
+        "https://www.weber.com/GB/en/recipes/jamie-oliver/epic-grilled-veg-by-jamie-oliver/weber-2489754.html",
+        "https://www.jamieoliver.com/recipes/vegetables/epic-grilled-veg/",
+        "https://anz.weber.com/en-au/pages/jamie-oliver"
+      ],
+      "normalized_observations": {
+        "detailLevel": "HIGH",
+        "method": "DIRECT_SEAR_THEN_INDIRECT_FINISH",
+        "products": [
+          "MEDITERRANEAN_VEGETABLES"
+        ],
+        "numericTechniqueExtracted": false
+      },
+      "unresolved_gates": [],
+      "reviewer_rationale": "All qualification gates supported by original identity, described demonstration, corroborated expertise and a distinct named source lineage; numeric details retained only where source-backed.",
+      "independence_evaluation": "DISTINCT_NAMED_PRACTITIONER_AND_METHOD_LINEAGE",
+      "specific_unresolved_reason_if_applicable": null
+    },
+    {
+      "leaf_id": "vegetables_parrilla",
+      "source_ref": "youtube:wbyqwb-Onzs",
+      "exact_source_reference": "https://www.youtube.com/watch?v=wbyqwb-Onzs",
+      "stored_channel_ref": "UCpIabb1G__qnH8hGdOcVdRw",
+      "checked_at": "2026-11-05",
+      "prior_decision": "NEEDS_EVIDENCE",
+      "reviewer_session": "/root:workspace-41f9df017d7b:20261105",
+      "automatic_qualification_authorized": false,
+      "original_page_identity": {
+        "publisher": "Weber Asia",
+        "creator_channel_ref": "UCpIabb1G__qnH8hGdOcVdRw",
+        "canonical_reference": "https://www.youtube.com/watch?v=wbyqwb-Onzs",
+        "identity_match": true,
+        "evidence_method": "ORIGINAL_PUBLIC_WATCH_HTML_NO_DATA_API"
+      },
+      "publisher_vs_demonstrator": "RECORDED_SEPARATELY_IN_CREATOR_IDENTITY_AND_RATIONALE",
+      "source_research_method": "PUBLIC_WATCH_PAGE_PLUS_BOUNDED_EXTERNAL_CREDENTIAL_AND_TECHNIQUE_REVIEW",
+      "decision": "NEEDS_EVIDENCE",
+      "creator_identity": "Weber Asia",
+      "independence_key": null,
+      "expertise_claim_and_support": "Publisher and original channel verified; essential practitioner/qualification proof remains incomplete.",
+      "technique_relevance": "Equipment publisher is verified; the basket demonstration does not establish a named specialist or source-specific vegetable cooking observations.",
+      "reviewer_rationale": "Equipment publisher is verified; the basket demonstration does not establish a named specialist or source-specific vegetable cooking observations.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=wbyqwb-Onzs"
+      ],
+      "unresolved_gates": [
+        "Equipment publisher is verified; the basket demonstration does not establish a named specialist or source-specific vegetable cooking observations."
+      ],
+      "specific_unresolved_reason_if_applicable": "Equipment publisher is verified; the basket demonstration does not establish a named specialist or source-specific vegetable cooking observations.",
+      "independence_evaluation": "NOT_PROVEN"
+    }
+  ],
+  "lineage_corrections": [
+    {
+      "leaf_id": "pork_ribs_competition",
+      "source_ref": "youtube:2XNUH5I9_2o",
+      "prior_independence_key": "duce-raymond",
+      "independence_key": "heath-riles-bbq",
+      "qualification_status_unchanged": true,
+      "rationale": "Original publisher explicitly attributes the demonstrated rib method to Heath Riles. Count this reference with the existing Heath Riles source, not as another independent recipe lineage.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=2XNUH5I9_2o",
+        "https://www.youtube.com/watch?v=xlQjCdpOJOE",
+        "https://music.amazon.co.uk/podcasts/2199ce74-4685-4874-92da-52fab3930fff/episodes/9ae065c6-79b7-406a-a22f-add8b3957408/the-bbq-beat-podcast-heath-riles-on-burnin%27-up-the-road-and-establishing-a-brand"
+      ]
+    },
+    {
+      "leaf_id": "pork_ribs_competition",
+      "source_ref": "youtube:Hy5wnwuIZ2M",
+      "prior_independence_key": "malcom-reed-killer-hogs",
+      "independence_key": "heath-riles-bbq",
+      "qualification_status_unchanged": true,
+      "rationale": "Original publisher explicitly attributes the demonstrated rib method to Heath Riles. Count this reference with the existing Heath Riles source, not as another independent recipe lineage.",
+      "evidence_urls": [
+        "https://www.youtube.com/watch?v=Hy5wnwuIZ2M",
+        "https://www.youtube.com/watch?v=xlQjCdpOJOE",
+        "https://music.amazon.co.uk/podcasts/2199ce74-4685-4874-92da-52fab3930fff/episodes/9ae065c6-79b7-406a-a22f-add8b3957408/the-bbq-beat-podcast-heath-riles-on-burnin%27-up-the-road-and-establishing-a-brand"
+      ]
+    }
+  ],
+  "historical_qualification_decisions_preserved": true,
+  "identity_recovery": {
+    "unique_pending_video_pages_verified": 39,
+    "pending_occurrences_verified": 40,
+    "stored_channel_matches": 40,
+    "data_api_calls": 0,
+    "transcripts_retained": false,
+    "video_or_audio_downloaded": false
+  },
+  "counts": {
+    "QUALIFIED": 11,
+    "REJECTED": 4,
+    "NEEDS_EVIDENCE": 25
+  },
+  "synthesis_status": "RIBS_AND_BRISKET_SOURCE_SCOPED_SYNTHESIS_PREPARED",
+  "syntheses": [
+    {
+      "leafId": "pork_ribs_competition",
+      "sourceObservations": [
+        {
+          "sourceRef": "youtube:xlQjCdpOJOE",
+          "independenceKey": "heath-riles-bbq",
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "cut": "BABY_BACK_RIBS",
+            "pitTemperatureF": 300,
+            "fuel": [
+              "CHARCOAL",
+              "HICKORY"
+            ],
+            "binder": "MUSTARD",
+            "wrap": "FOIL_WITH_APPLE_JUICE_FAT_SWEETNESS",
+            "finish": "LATE_SAUCE_SET",
+            "numericTechniqueExtracted": true,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=xlQjCdpOJOE"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:0gjToA-uKqU",
+          "independenceKey": "elite-bbq-smokers",
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "cut": "ST_LOUIS_SPARE_RIBS",
+            "pitTemperatureF": 300,
+            "cooker": "DRUM",
+            "preparation": "TRIM_AND_INJECT",
+            "wrap": "FOIL_WITH_FAT_SWEET_ACID_LIQUID",
+            "finish": "LATE_GLOSSY_GLAZE",
+            "textureEndpoint": "CLEAN_BITE",
+            "reportedCulinaryEndpointFApprox": 208,
+            "restMinutesApprox": 60,
+            "numericTechniqueExtracted": true,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=0gjToA-uKqU"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:vEJrAdL8_cI",
+          "independenceKey": "myron-mixon-jacks-old-south",
+          "normalizedObservations": {
+            "detailLevel": "LOW_RESOLUTION",
+            "cut": "BABY_BACK_RIBS",
+            "method": "GRILLED_RIBS",
+            "numericTechniqueExtracted": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=vEJrAdL8_cI"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:Fb9roj9CaxY",
+          "independenceKey": "rodney-scott",
+          "normalizedObservations": {
+            "detailLevel": "LOW_RESOLUTION",
+            "method": "ELECTRIC_SMOKER",
+            "cuts": [
+              "PICNIC_RIBS",
+              "BELLY_RIBS",
+              "LOIN_RIBS"
+            ],
+            "textureTheme": "RETAIN_BITE",
+            "numericTechniqueExtracted": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=Fb9roj9CaxY",
+              "https://www.eater.com/2018/7/18/17582690/best-smoked-ribs-recipe-video"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:6xUZleFdLn8",
+          "independenceKey": "tuffy-stone-cool-smoke",
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "method": "INDIRECT_SMOKE_OR_TWO_ZONE_GRILL",
+            "cut": "ST_LOUIS_SPARE_RIBS",
+            "pitTemperatureF": 275,
+            "smokeStageHoursApprox": 2,
+            "wrap": "FOIL_WITH_SWEET_FAT_MOISTURE",
+            "wrappedHoursApprox": [
+              2,
+              2.5
+            ],
+            "reportedCulinaryEndpointFRange": [
+              203,
+              205
+            ],
+            "textureEndpoint": "SKEWER_TENDER",
+            "safetyEndpoint": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=6xUZleFdLn8",
+              "https://tuffystone.com/blogs/recipes/competition-ribs"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        }
+      ],
+      "synthesis": {
+        "projectAuthored": true,
+        "leafId": "pork_ribs_competition",
+        "synthesisId": "PORK_RIBS_COMPETITION_SYNTHESIS_2026_11_05_V1",
+        "synthesizedAt": "2026-11-05",
+        "qualifiedIndependentSourcesReviewed": 5,
+        "detailedTechniqueSources": 3,
+        "lowerResolutionSources": 2,
+        "selectedSourceRefs": [
+          "youtube:xlQjCdpOJOE",
+          "youtube:0gjToA-uKqU",
+          "youtube:vEJrAdL8_cI",
+          "youtube:Fb9roj9CaxY",
+          "youtube:6xUZleFdLn8"
+        ],
+        "safetyAuthorityRefs": [
+          "https://ask.fsis.usda.gov/article/What-is-a-safe-internal-temperature-for-cooking-meat-and-poultry",
+          "https://www.foodsafety.gov/keep-food-safe/4-steps-to-food-safety",
+          "https://ask.fsis.usda.gov/article/How-do-I-handle-leftovers-safely"
+        ],
+        "safetyConstraints": {
+          "authority": "USDA_FSIS_AND_FOODSAFETY_GOV",
+          "wholeMusclePorkAndBeefMinimumInternalF": 145,
+          "minimumRestMinutes": 3,
+          "measurement": "Use a food thermometer in the thickest edible portion away from bone; culinary tenderness temperatures are not safety minima.",
+          "hotHoldingMinimumF": 140,
+          "maximumUncontrolledAmbientHours": 2,
+          "above90FMaximumAmbientHours": 1,
+          "sourceConflictPolicy": "Official safe handling controls override creator advice about long ambient rests or unmeasured cooler holds. Injected or otherwise altered products require applicable product-specific handling; no universal process validation is claimed."
+        },
+        "adjustmentAxes": {
+          "heat_source_fuel": {
+            "status": "SUPPORTED_ALTERNATIVES",
+            "decisionNote": "Keep charcoal/wood, pellet and electric-smoker branches separate.",
+            "sourceRefs": [
+              "youtube:xlQjCdpOJOE",
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8",
+              "youtube:Fb9roj9CaxY"
+            ],
+            "alternatives": [
+              "CHARCOAL_WITH_WOOD",
+              "PELLET_OR_TWO_ZONE_GRILL",
+              "ELECTRIC_SMOKER"
+            ]
+          },
+          "direct_vs_indirect_heat": {
+            "status": "SUPPORTED_BRANCHES",
+            "decisionNote": "Smoking/indirect grilling is the detailed branch; Myron supplies only a lower-resolution grilling reference.",
+            "sourceRefs": [
+              "youtube:xlQjCdpOJOE",
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8",
+              "youtube:vEJrAdL8_cI"
+            ]
+          },
+          "heat_intensity": {
+            "status": "SUPPORTED_BRANCHES",
+            "decisionNote": "Tuffy uses 275F; Heath and Elite use 300F. Do not assign either value to the lower-resolution sources.",
+            "sourceRefs": [
+              "youtube:6xUZleFdLn8",
+              "youtube:xlQjCdpOJOE",
+              "youtube:0gjToA-uKqU"
+            ],
+            "pitTemperatureFAnchors": [
+              275,
+              300
+            ]
+          },
+          "time_endpoint": {
+            "status": "CUT_AND_METHOD_DEPENDENT",
+            "decisionNote": "Clean bite and probe/skewer tenderness are culinary targets. Time is not a safety test; do not impose one universal rib clock.",
+            "sourceRefs": [
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8",
+              "youtube:Fb9roj9CaxY"
+            ],
+            "officialSafetySeparate": true
+          },
+          "brine_salt_level_duration": {
+            "status": "INSUFFICIENT_FOR_COMMON_RANGE",
+            "decisionNote": "Elite documents injection; no common salt concentration or duration is established.",
+            "sourceRefs": [
+              "youtube:0gjToA-uKqU"
+            ]
+          },
+          "marinade_duration": {
+            "status": "INSUFFICIENT_FOR_COMMON_RANGE",
+            "decisionNote": "No cross-source marinade duration is asserted.",
+            "sourceRefs": []
+          },
+          "sweetness": {
+            "status": "SUPPORTED_BRANCHES",
+            "decisionNote": "Detailed competition branches use sweet wrap or glaze components; quantities are source-specific and are not averaged.",
+            "sourceRefs": [
+              "youtube:xlQjCdpOJOE",
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8"
+            ]
+          },
+          "acidity": {
+            "status": "SUPPORTED_OPTION",
+            "decisionNote": "Tuffy adds vinegar to sauce; Elite uses an acidic wrap component. No common acidity target is inferred.",
+            "sourceRefs": [
+              "youtube:6xUZleFdLn8",
+              "youtube:0gjToA-uKqU"
+            ]
+          },
+          "spice_heat": {
+            "status": "SUPPORTED_OPTION",
+            "decisionNote": "Seasoning and spicy accents remain optional source-specific flavor choices.",
+            "sourceRefs": [
+              "youtube:xlQjCdpOJOE",
+              "youtube:6xUZleFdLn8"
+            ]
+          },
+          "smoke_intensity": {
+            "status": "METHOD_DEPENDENT",
+            "decisionNote": "Use the selected cooker/fuel branch; no numeric smoke-dose scale is supported.",
+            "sourceRefs": [
+              "youtube:xlQjCdpOJOE",
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8",
+              "youtube:Fb9roj9CaxY"
+            ]
+          },
+          "glaze_sauce_timing": {
+            "status": "SUPPORTED_LATE_FINISH",
+            "decisionNote": "Detailed competition sources apply a late sauce/glaze finish after tenderizing. Exact setting times remain method-specific.",
+            "sourceRefs": [
+              "youtube:xlQjCdpOJOE",
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8"
+            ]
+          },
+          "resting_finishing": {
+            "status": "SOURCE_SPECIFIC",
+            "decisionNote": "Elite documents a rest; do not export a universal ambient hold. Official temperature/time controls govern.",
+            "sourceRefs": [
+              "youtube:0gjToA-uKqU",
+              "youtube:6xUZleFdLn8"
+            ]
+          }
+        },
+        "synthesisDecision": "COMPLETE_FOR_SELECTED_FIVE_INDEPENDENT_LINEAGES_WITH_EXPLICIT_RESOLUTION_LIMITS",
+        "completionBasis": "Five distinct qualified method/practitioner lineages; supported branches and unknown axes explicit; independent official safety constraints. Extra qualified references do not add votes.",
+        "agreements": [
+          "Use source-specific equipment and texture checks rather than a universal cook time.",
+          "Separate culinary tenderness and flavor from official safety controls."
+        ],
+        "disagreements": [
+          "Preserve different cooker, wrapping and cut branches; do not average incompatible methods."
+        ],
+        "limitations": [
+          "Low-resolution sources do not support numerical stages.",
+          "No Spanish-authenticity, safety-process certification, public application or Knowledge Core promotion is implied."
+        ]
+      }
+    },
+    {
+      "leafId": "beef_brisket_competition",
+      "sourceObservations": [
+        {
+          "sourceRef": "youtube:Dn5ZJz2Ta78",
+          "independenceKey": "malcom-reed-killer-hogs",
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "fuel": "PECAN_PELLETS",
+            "method": "INDIRECT_PELLET_SMOKE",
+            "pitTemperatureFStages": [
+              195,
+              250
+            ],
+            "orientation": "FAT_DOWN",
+            "wrap": "BUTCHER_PAPER",
+            "textureEndpoint": "PROBE_TENDER",
+            "reportedCulinaryEndpointFApprox": 200,
+            "safetyEndpoint": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=Dn5ZJz2Ta78",
+              "https://www.royaloak.com/ambassador/malcom-reed/",
+              "https://amazingribs.com/about-us/meet-our-team/malcom-reed/",
+              "https://howtobbqright.com/2020/05/22/pellet-grill-brisket/"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:klmG0DQgEJs",
+          "independenceKey": "matt-pittman-meat-church",
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "method": "INDIRECT_PELLET_SMOKE",
+            "pitTemperatureFStages": [
+              200,
+              225,
+              250
+            ],
+            "orientation": "FAT_UP_SECOND_SHELF",
+            "wrap": "BUTCHER_PAPER",
+            "textureEndpoint": "PROBE_TENDER",
+            "reportedCulinaryEndpointFApprox": 203,
+            "safetyEndpoint": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=klmG0DQgEJs",
+              "https://www.yeti.com/stories/meat-church.html",
+              "https://www.meatchurch.com/blogs/recipes/pellet-grill-brisket"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:nFXQgAHJhbM",
+          "independenceKey": "heath-riles-bbq",
+          "normalizedObservations": {
+            "detailLevel": "HIGH",
+            "method": "INDIRECT_PELLET_SMOKE",
+            "pitTemperatureFInitial": 200,
+            "wrap": "COVERED_PAN_WITH_BEEF_LIQUID",
+            "numericTechniqueExtracted": true,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=nFXQgAHJhbM",
+              "https://memphisinmay.org/2022_mim_wcbcc_all_results/",
+              "https://www.heathrilesbbq.com/blogs/favorite-recipes/low-and-slow-brisket-a-tasty-way-to-use-leftovers"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:LfEEUtyF0is",
+          "independenceKey": "harry-soo-slap-yo-daddy",
+          "normalizedObservations": {
+            "detailLevel": "LOW_RESOLUTION",
+            "method": "TEXAS_STYLE_SELECT_GRADE_BRISKET",
+            "seasoningTheme": "SALT_AND_PEPPER",
+            "numericTechniqueExtracted": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=LfEEUtyF0is",
+              "https://amazingribs.com/harry-soo-bio/?p=96127",
+              "https://www.cbbqa.com/awards/"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        },
+        {
+          "sourceRef": "youtube:nu4p3l6LuyI",
+          "independenceKey": "aaron-franklin",
+          "normalizedObservations": {
+            "detailLevel": "LOW_RESOLUTION",
+            "method": "CENTRAL_TEXAS_BRISKET_THREE_METHOD_COMPARISON",
+            "numericTechniqueExtracted": false,
+            "sourceEvidenceRefs": [
+              "https://www.youtube.com/watch?v=nu4p3l6LuyI",
+              "https://www.pbs.org/food/chefs/aaron-franklin",
+              "https://www.pbs.org/video/bbq-franklin-episode-1-brisket/"
+            ],
+            "evidenceBasis": "ORIGINAL_PUBLIC_SOURCE_AND_LINKED_COMPANION_WHERE_PRESENT"
+          }
+        }
+      ],
+      "synthesis": {
+        "projectAuthored": true,
+        "leafId": "beef_brisket_competition",
+        "synthesisId": "BEEF_BRISKET_COMPETITION_SYNTHESIS_2026_11_05_V1",
+        "synthesizedAt": "2026-11-05",
+        "qualifiedIndependentSourcesReviewed": 5,
+        "detailedTechniqueSources": 3,
+        "lowerResolutionSources": 2,
+        "selectedSourceRefs": [
+          "youtube:Dn5ZJz2Ta78",
+          "youtube:klmG0DQgEJs",
+          "youtube:nFXQgAHJhbM",
+          "youtube:LfEEUtyF0is",
+          "youtube:nu4p3l6LuyI"
+        ],
+        "safetyAuthorityRefs": [
+          "https://ask.fsis.usda.gov/article/What-is-a-safe-internal-temperature-for-cooking-meat-and-poultry",
+          "https://www.foodsafety.gov/keep-food-safe/4-steps-to-food-safety",
+          "https://ask.fsis.usda.gov/article/How-do-I-handle-leftovers-safely"
+        ],
+        "safetyConstraints": {
+          "authority": "USDA_FSIS_AND_FOODSAFETY_GOV",
+          "wholeMusclePorkAndBeefMinimumInternalF": 145,
+          "minimumRestMinutes": 3,
+          "measurement": "Use a food thermometer in the thickest edible portion away from bone; culinary tenderness temperatures are not safety minima.",
+          "hotHoldingMinimumF": 140,
+          "maximumUncontrolledAmbientHours": 2,
+          "above90FMaximumAmbientHours": 1,
+          "sourceConflictPolicy": "Official safe handling controls override creator advice about long ambient rests or unmeasured cooler holds. Injected or otherwise altered products require applicable product-specific handling; no universal process validation is claimed."
+        },
+        "adjustmentAxes": {
+          "heat_source_fuel": {
+            "status": "SUPPORTED_BRANCH",
+            "decisionNote": "The detailed selected sources demonstrate pellet smoking; fuel blends are source-specific.",
+            "sourceRefs": [
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs",
+              "youtube:nFXQgAHJhbM"
+            ]
+          },
+          "direct_vs_indirect_heat": {
+            "status": "INDIRECT_SMOKE",
+            "decisionNote": "Keep full-packer smoking distinct from direct grilling.",
+            "sourceRefs": [
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs",
+              "youtube:nFXQgAHJhbM"
+            ]
+          },
+          "heat_intensity": {
+            "status": "STAGED_ALTERNATIVES",
+            "decisionNote": "Low initial stages around 195-200F and later hotter finishing belong to separate source timelines, not one blended recipe.",
+            "sourceRefs": [
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs",
+              "youtube:nFXQgAHJhbM"
+            ],
+            "initialPitTemperatureFAnchors": [
+              195,
+              200
+            ]
+          },
+          "time_endpoint": {
+            "status": "TEXTURE_DRIVEN",
+            "decisionNote": "Probe tenderness governs culinary completion in the detailed Malcom and Matt branches. Official minimum and holding controls remain separate.",
+            "sourceRefs": [
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs"
+            ]
+          },
+          "brine_salt_level_duration": {
+            "status": "NO_COMMON_QUANTIFIED_RULE",
+            "decisionNote": "Harry describes a salt-and-pepper select-grade trial; no common concentration is supported.",
+            "sourceRefs": [
+              "youtube:LfEEUtyF0is"
+            ]
+          },
+          "marinade_duration": {
+            "status": "NO_COMMON_RANGE",
+            "decisionNote": "Seasoning adherence and marinating are not interchangeable. No universal duration is asserted.",
+            "sourceRefs": []
+          },
+          "sweetness": {
+            "status": "SOURCE_SPECIFIC",
+            "decisionNote": "No five-source consensus on sweetness is established.",
+            "sourceRefs": []
+          },
+          "acidity": {
+            "status": "SOURCE_SPECIFIC",
+            "decisionNote": "Binder or spritz choices do not establish a required acidity level.",
+            "sourceRefs": [
+              "youtube:klmG0DQgEJs"
+            ]
+          },
+          "spice_heat": {
+            "status": "OPTIONAL_SEASONING_BRANCHES",
+            "decisionNote": "Seasoning choice remains source-specific; Harry supplies a salt-and-pepper branch.",
+            "sourceRefs": [
+              "youtube:LfEEUtyF0is",
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs"
+            ]
+          },
+          "smoke_intensity": {
+            "status": "COOKER_DEPENDENT",
+            "decisionNote": "Long initial pellet-smoke stages are one method family, not a quantitative universal smoke target.",
+            "sourceRefs": [
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs"
+            ]
+          },
+          "glaze_sauce_timing": {
+            "status": "NO_COMMON_RULE",
+            "decisionNote": "No common glaze requirement is asserted.",
+            "sourceRefs": []
+          },
+          "resting_finishing": {
+            "status": "SAFETY_GATED_SOURCE_BRANCHES",
+            "decisionNote": "Wrapping and rest differ: paper versus covered-pan liquid. Creator ambient/cooler-rest advice must not override official holding and cooling controls.",
+            "sourceRefs": [
+              "youtube:Dn5ZJz2Ta78",
+              "youtube:klmG0DQgEJs",
+              "youtube:nFXQgAHJhbM"
+            ]
+          }
+        },
+        "synthesisDecision": "COMPLETE_FOR_SELECTED_FIVE_INDEPENDENT_LINEAGES_WITH_EXPLICIT_RESOLUTION_LIMITS",
+        "completionBasis": "Five distinct qualified method/practitioner lineages; supported branches and unknown axes explicit; independent official safety constraints. Extra qualified references do not add votes.",
+        "agreements": [
+          "Use source-specific equipment and texture checks rather than a universal cook time.",
+          "Separate culinary tenderness and flavor from official safety controls."
+        ],
+        "disagreements": [
+          "Preserve different cooker, wrapping and cut branches; do not average incompatible methods."
+        ],
+        "limitations": [
+          "Low-resolution sources do not support numerical stages.",
+          "No Spanish-authenticity, safety-process certification, public application or Knowledge Core promotion is implied."
+        ]
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "leaf_id": "poultry_chicken_competition",
+      "qualified_source_records": 6,
+      "qualified_unique_independence_keys": 6,
+      "remaining_to_five": 0,
+      "unresolved_occurrences": 0,
+      "numeric_coverage_status": "MET",
+      "technique_synthesis_status": "COMPLETE",
+      "evidence_blockers": []
+    },
+    {
+      "leaf_id": "beef_brisket_competition",
+      "qualified_source_records": 8,
+      "qualified_unique_independence_keys": 8,
+      "remaining_to_five": 0,
+      "unresolved_occurrences": 7,
+      "numeric_coverage_status": "MET",
+      "technique_synthesis_status": "COMPLETE",
+      "evidence_blockers": [
+        "youtube:ewIEGTVDAJY: Named on-screen brisket demonstrator and source-method authorship remain unresolved.",
+        "youtube:WLBwCA_VXSs: A branded brisket short and self-published education offer do not independently verify the actual demonstrator and specialist competence.",
+        "youtube:i0t0q7kDPuo: Guest specialist identity, credentials and exact method lineage remain unresolved.",
+        "youtube:XvuGd_5K4rE: Actual pitmaster identity and exact source-method lineage need independent corroboration.",
+        "youtube:t4PvndA_KO4: Company advertises several pitmasters and instructors; exact brisket demonstrator and technique are unresolved.",
+        "youtube:h5o5v_lCXzY: Restaurant reportage does not identify a source-scoped brisket instructor and portable competition method.",
+        "youtube:BytLA80y5YE: Primary channel identity is resolved; independent specialist/competition competence remains unverified."
+      ]
+    },
+    {
+      "leaf_id": "pork_ribs_competition",
+      "qualified_source_records": 7,
+      "qualified_unique_independence_keys": 5,
+      "remaining_to_five": 0,
+      "unresolved_occurrences": 5,
+      "numeric_coverage_status": "MET",
+      "technique_synthesis_status": "COMPLETE",
+      "evidence_blockers": [
+        "youtube:LjsEkaGNA4A: Catering listing establishes a business, not the actual rib instructor or source-specific method.",
+        "youtube:IVoCFxnp5o4: Exact reference is presented as bison short-rib butchery. Pork cook relevance is not corroborated; no off-title footage was inspected.",
+        "youtube:TubPWDJlCwU: Source-specific pork-rib demonstration and actual instructor competence remain unverified.",
+        "youtube:gRtwb-amJwg: Primary identity and rib subject resolved; independent barbecue-specialist competence and original method lineage not corroborated in this pass.",
+        "youtube:9PHnsA_2sW8: Retail publisher verified; actual demonstrator and specialist expertise remain unresolved."
+      ]
+    },
+    {
+      "leaf_id": "fish_parrilla",
+      "qualified_source_records": 2,
+      "qualified_unique_independence_keys": 2,
+      "remaining_to_five": 3,
+      "unresolved_occurrences": 5,
+      "numeric_coverage_status": "INSUFFICIENT_QUALIFIED_SOURCE_SET",
+      "technique_synthesis_status": "PENDING_THRESHOLD",
+      "evidence_blockers": [
+        "youtube:WaVRsTXwECI: Original source describes cedar-plank salmon; direct-parrilla heat configuration and exact specialist demonstrator remain unresolved.",
+        "youtube:xXkp3TdOxxk: Primary brand resolved; exact on-screen salmon method, direct-grill relevance and original method authorship remain unverified.",
+        "youtube:GcSKJqCiVL4: Restaurant feature does not independently establish the named fish demonstrator, specialist expertise and direct-parrilla method.",
+        "youtube:5zuQFx2J0jM: Original reference is a beef-tikka and seekh-kebab feature; no fish- or vegetable-specific grilling demonstration was corroborated. Each leaf remains separately held.",
+        "youtube:9nzlGHLHjVQ: Original page links a whole-fish method; actual on-screen demonstrator credit and independent specialist evidence remain incomplete. Do not infer the performer from publication authorship."
+      ]
+    },
+    {
+      "leaf_id": "vegetables_parrilla",
+      "qualified_source_records": 4,
+      "qualified_unique_independence_keys": 4,
+      "remaining_to_five": 1,
+      "unresolved_occurrences": 8,
+      "numeric_coverage_status": "INSUFFICIENT_QUALIFIED_SOURCE_SET",
+      "technique_synthesis_status": "PENDING_THRESHOLD",
+      "evidence_blockers": [
+        "youtube:OwZGFxG71_8: Actual demonstrator, independent specialist credentials and original vegetable-method lineage remain unresolved.",
+        "youtube:3T9aMG4TS_I: Exact source is the already-reviewed competition-chicken reference; no vegetable-specific demonstration was corroborated. Poultry credentials cannot fill that leaf.",
+        "youtube:3m-_t0vUWZs: Source concerns wood-chip pairing; actual practitioner, original lineage and a vegetable-specific cook remain unverified.",
+        "youtube:_Jzke0aGMnQ: Named demonstrator and independent specialist competence remain unverified; buffet/short presentation is insufficient.",
+        "youtube:5zuQFx2J0jM: Original reference is a beef-tikka and seekh-kebab feature; no fish- or vegetable-specific grilling demonstration was corroborated. Each leaf remains separately held.",
+        "youtube:vyDXeKV2dZo: Actual vegetable demonstrator and specialist competence remain unverified.",
+        "youtube:P5P3NMJvJTc: Primary professional-chef self-description and companion vegetable recipe are available; independently verified grill-specialist/educator competence remains missing.",
+        "youtube:wbyqwb-Onzs: Equipment publisher is verified; the basket demonstration does not establish a named specialist or source-specific vegetable cooking observations."
+      ]
+    }
+  ],
+  "terminal": "EVIDENCE_RECOVERY_PARTIALLY_BLOCKED_25_EXACT_GAPS"
+}

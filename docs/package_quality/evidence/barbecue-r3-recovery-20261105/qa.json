@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "package_id": "barbecue-r3-recovery-20261105",
+  "actual_session": "/root:workspace-41f9df017d7b:20261105",
+  "execution_surface": "WORK_LOCAL_PYTHON_NODE_GIT",
+  "versions": {
+    "python": "3.12.14",
+    "node": "24.22.1",
+    "git": "2.51.1"
+  },
+  "checks": [
+    {
+      "command": "node scripts/apply-barbecue-r3-recovery.mjs BASELINE CONFIG PACKET OUTPUT",
+      "exit_code": 0,
+      "outcome": "AUTHORED_REVIEW_REPLAY_PASS"
+    },
+    {
+      "command": "node --test tests/barbecue*.test.js",
+      "exit_code": 0,
+      "tests": 57,
+      "passed": 57
+    },
+    {
+      "command": "npm run validate",
+      "exit_code": 0,
+      "tests": 1483,
+      "passed": 1457,
+      "skipped": 26,
+      "failed": 0,
+      "log_sha256": "63d4931d6945518ac6cc8ac32393bd7e006d3effd17a5ce06c62a88ec9427094"
+    }
+  ],
+  "prior_failures": [
+    "Initial focused run exposed stale current-state fixture assumptions and one async test insertion error; repaired locally.",
+    "First full run passed 1456 with one remaining stale brisket-acquisition assertion; corrected for newly complete brisket. Final full run passed."
+  ],
+  "source_evidence": {
+    "original_pending_occurrences": 40,
+    "original_pages_verified": 39,
+    "new_qualified": 11,
+    "new_rejected": 4,
+    "unresolved": 25,
+    "shared_lineage_corrections": 2
+  },
+  "provider_api_calls": 0,
+  "new_search_calls": 0,
+  "protected_database_access": false,
+  "public_runtime_change": false,
+  "browser_tests": "Required in normal PR CI; not claimed locally.",
+  "validation_scope": "Executable deterministic checks and source-scoped adjudication, not global semantic proof or all-five-leaf completion."
+}
