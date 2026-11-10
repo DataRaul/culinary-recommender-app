@@ -11,7 +11,7 @@
   "minYoutubeRequestIntervalMs": 1000,
   "candidateBacklogCap": 50,
   "maxCandidatesPerLeaf": 12,
-  "lastCompletedQuotaDate": "2026-11-09",
+  "lastCompletedQuotaDate": "2026-11-10",
   "completedQuotaDays": [
     {
       "quotaDate": "2026-09-25",
@@ -360,6 +360,14 @@
     {
       "quotaDate": "2026-11-09",
       "completedAt": "2026-11-09T19:52:47.323Z",
+      "searchCalls": 0,
+      "candidatePointersAdded": 0,
+      "terminalState": "BARBECUE_SEARCH_PORTFOLIO_EXHAUSTED_REVIEW_PENDING",
+      "providerFailure": null
+    },
+    {
+      "quotaDate": "2026-11-10",
+      "completedAt": "2026-11-10T17:06:02.662Z",
       "searchCalls": 0,
       "candidatePointersAdded": 0,
       "terminalState": "BARBECUE_SEARCH_PORTFOLIO_EXHAUSTED_REVIEW_PENDING",
