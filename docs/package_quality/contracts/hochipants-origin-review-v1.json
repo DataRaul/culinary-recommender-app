@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "project": "culinary-recommender-app",
+  "lane_id": "culinary-app",
+  "package_id": "hochipants-origin-review-v1",
+  "base_commit": "faf02d0b5ad7603826df9aab73a3fcba5a72245d",
+  "author_session_id": "work-e35e83d5b388-root",
+  "goal_path": "docs/package_quality/goals/culinary-app/v1.json",
+  "adapter_path": "config/package_quality_adapter.json",
+  "intent_provenance": [
+    "CULINARY_PR434_CONTINUE_V18",
+    "Existing PR434 and canonical CURRENT"
+  ],
+  "outcome": "Publish reproducible PR434 assessment progress: pinned baseline replay, full-range multilingual ingredient/method retrieval, selected manual comparisons and individual provenance holds; original exhaustive-dedup/rights gates remain open.",
+  "contribution": "Resolves missing execution evidence for PR434 and prevents seven unattested or overlapping recipes from being admitted as novel.",
+  "scope": [
+    "PR434 only: source-origin and full-v8019 ranked semantic review",
+    "Offline reconstruction and metadata-only results",
+    "Focused regression tests and same-chat final quality sequence"
+  ],
+  "non_goals": [
+    "Recipe admission, corpus/runtime/D1 writes",
+    "PR432 repair or budget reset",
+    "Based Cooking, Brain, Barbecue or successor packages"
+  ],
+  "inputs": [
+    "PR434 9d02e10829c7cbd42fa694479e4daef3d91c0009",
+    "main faf02d0b5ad7603826df9aab73a3fcba5a72245d",
+    "HoChiPants 1d20e28de6df5bbe49447b3042336575f5b7bc01",
+    "Four clean pinned baseline checkouts"
+  ],
+  "criteria": [
+    {
+      "id": "REPLAY",
+      "description": "Reconstruct all 22086 records at exact source pins; reproduce canonical fingerprint hash and manually reconcile indices 1490/1569/1618.",
+      "goal_criteria": [
+        "OUTCOME"
+      ]
+    },
+    {
+      "id": "SEMANTIC",
+      "description": "Score every seven-by-22086 pair using disclosed multilingual titles, ingredients and method features, manually adjudicate ranked candidates and preserve uncertain novelty on HOLD; no heuristic absence becomes novelty proof.",
+      "goal_criteria": [
+        "OUTCOME"
+      ]
+    },
+    {
+      "id": "ORIGIN",
+      "description": "Record individual origin/reuse dispositions and relevant competing scraped-source evidence; keep six named adaptations on HOLD.",
+      "goal_criteria": [
+        "OUTCOME"
+      ]
+    },
+    {
+      "id": "BOUNDARY",
+      "description": "Publish metadata only, no protected corpus/D1/runtime changes; preserve other lanes and PR432 exhausted budget, validate actual candidate and checkpoint own lane.",
+      "goal_criteria": [
+        "CONTINUITY"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "docs/package_quality/evidence/hochipants-origin-review/alignment.json",
+    "docs/package_quality/evidence/hochipants-origin-review/qa.json",
+    "data/generated/step8g/hochipants-origin-semantic-review.json"
+  ],
+  "mandatory_knowledge_domains": [
+    "project_execution",
+    "software_data"
+  ],
+  "authority": "AUTO + VERIFY",
+  "human_decisions": [],
+  "assumptions": [
+    "A complete pairwise heuristic scan does not establish exhaustive translation equivalence or legal clearance.",
+    "The new PR434 review round has not been executed; PR433 completed budget and PR432 exhausted budget are historical and not reset.",
+    "Same-chat reviews share context and are not independent.",
+    "This incremental assessment contract does not replace or relax the original PR434 full-semantic and rights merge gates; passing it permits a draft PR update only."
+  ],
+  "dependencies": [
+    "Pinned clean local source checkouts",
+    "Required CI before eligible merge",
+    "Rights and corpus novelty holds remain fail-closed"
+  ],
+  "next_action": "Complete PR434 assessment and validation; publish only when eligible, rotate culinary-app checkpoint and STOP.",
+  "stop_boundary": "One acquisition assessment package; own lane checkpoint and STOP",
+  "budget": {
+    "round": 1,
+    "max_rounds": 1,
+    "usage": "unknown"
+  },
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "stage_evidence": {
+    "align": [
+      "docs/package_quality/evidence/hochipants-origin-review/alignment.json"
+    ],
+    "build_qa": [
+      "docs/package_quality/evidence/hochipants-origin-review/qa.json"
+    ]
+  }
+}

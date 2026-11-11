@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "session_id": "work-e35e83d5b388-root",
+  "scope": "Incremental PR434 assessment; no full-semantic or rights clearance, no merge approval.",
+  "focused_tests": {
+    "command": "node --test tests/acquisition-record-assessment.test.js tests/hochipants-origin-semantic-review.test.js tests/hochipants-semantic-review.test.js",
+    "tests": 11,
+    "pass": 11,
+    "fail": 0
+  },
+  "npm_validate": {
+    "command": "npm run validate",
+    "exit_code": 0,
+    "static_files": 1672,
+    "tests": 1452,
+    "pass": 1426,
+    "fail": 0,
+    "skipped": 26
+  },
+  "replay": {
+    "baseline_records": 22086,
+    "canonical_fingerprint_sha256": "426e44c607151b19ec85aeab7993e0a098a55c84c63202e227df18ae4b71562a",
+    "canonical_prior_hash_match": true,
+    "all_four_source_checkouts_clean": true,
+    "second_fingerprint_export_byte_equal": true,
+    "second_local_records_byte_equal": true,
+    "second_ranked_report_byte_equal": true,
+    "local_records_sha256": "159a3e53da1c9530c258913014f1baebebb700e87703b4e4a407d4f8bb1deb57"
+  },
+  "semantic": {
+    "pairs_scored": 154602,
+    "manual_ranked_or_alias_pairs": 19,
+    "exceptional_source_pairs": 21,
+    "full_semantic_pass": false,
+    "translated_dedup_pass": false,
+    "scope_limit": "Finite multilingual vocabulary; selected manual pairs only. Unknown recall, negation, optional ingredients, quantities and ordering preclude exhaustive novelty clearance."
+  },
+  "provenance": {
+    "seven_file_histories_rechecked_at_pinned_source": true,
+    "empty_rights_registry_verified": true,
+    "later_scraped_candidates_compared": 2,
+    "origin_holds": 7,
+    "third_party_adaptations_held": 6
+  },
+  "boundaries": {
+    "source_bodies_published": false,
+    "baseline_recipe_bodies_published": false,
+    "imports": 0,
+    "D1_writes": false,
+    "runtime_changes": false,
+    "other_lanes_mutated": false,
+    "pr432_budget_reset": false,
+    "based_cooking": "STOPPED"
+  },
+  "tests_exercised": [
+    "Last baseline index 22085 retrieval",
+    "French ingredient aliases and actual process-node instructions",
+    "Broth/bread, rice/oat and four-glasses/oven false friends",
+    "Bad pin and tampered fingerprint rejection",
+    "In-repository source-body output rejection"
+  ],
+  "knowledge_commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+  "original_pr434_merge_gate": "HOLD_FULL_SEMANTIC_TRANSLATED_NOVELTY_AND_ORIGIN"
+}

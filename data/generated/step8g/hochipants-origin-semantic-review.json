@@ -1,0 +1,539 @@
+{
+  "schema": "HOCHIPANTS_ORIGIN_SEMANTIC_REVIEW_V1",
+  "date": "2026-10-17",
+  "lane": "culinary-app",
+  "targetMainSha": "faf02d0b5ad7603826df9aab73a3fcba5a72245d",
+  "source": {
+    "repository": "HoChiPants/open-recipe-archive",
+    "sha": "1d20e28de6df5bbe49447b3042336575f5b7bc01",
+    "initialCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+    "subsequentCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+    "initialCommitDate": "2026-07-14",
+    "commitAuthorDisplay": "Austin Stephens",
+    "commitAccount": "HoChiPants",
+    "sourcePolicy": "docs/CONTENT_POLICY.md",
+    "sourceLicense": "LICENSE.md",
+    "rightsRegistry": "scraping/config/publication-rights.json",
+    "rightsRegistrySourceCount": 0,
+    "provenanceFinding": "Seven recipe files trace to repository initial commit with no per-record source attribution. Commit author identity and CC0 repository declaration do not independently establish original authorship, third-party rights, or Spain-facing reuse clearance.",
+    "historyLimit": "Inspected pinned source file histories; Git authorship and repository metadata are not author attestations. No external permission obtained."
+  },
+  "baseline": {
+    "version": "v8019",
+    "count": 22086,
+    "fingerprintSha256": "426e44c607151b19ec85aeab7993e0a098a55c84c63202e227df18ae4b71562a",
+    "literalTitleMatches": 0,
+    "literalWordingMatches": 0,
+    "completeWordingFingerprints": 22083,
+    "incompleteWordingFingerprints": 3,
+    "incompleteBaselineRecordIndices": [
+      1490,
+      1569,
+      1618
+    ],
+    "incompleteBaselineRecordIdentification": "PINNED_FULL_V8019_FINGERPRINT_REPLAY_VERIFIED",
+    "incompleteBaselineStatus": "FULL_REPLAY_VERIFIED__THREE_SOURCE_FILES_AND_NORMALIZED_RECORDS_REVIEWED",
+    "semanticSimilarityExecution": "EXECUTED_FULL_RANGE_RANKED_RETRIEVAL__EXHAUSTIVE_SEMANTIC_NOVELTY_HOLD",
+    "limitations": "All 22086 reconstructed records and 154602 pairs were processed. Bounded multilingual features and selected manual comparisons do not prove exhaustive semantic/translation recall or equality to current D1 records.",
+    "incompleteBaselineRecords": [
+      {
+        "index": 1490,
+        "sourceRecordKey": "eggs.md",
+        "cohortSortedIndex": 74,
+        "ingredientCount": 0,
+        "directionCount": 0,
+        "sourceCohort": "SGAUTHIER_RECIPES_CC0_B12E481D",
+        "sourceCommit": "b12e481d1c220a13e0847a34e148d5872a16928e",
+        "comparisonStatus": "FULL_REPLAY_VERIFIED__SOURCE_AND_NORMALIZED_RECORD_COMPARED",
+        "sourceContentFinding": "Instructions for preparing boiled/fried/scrambled eggs; banana cake includes egg only as an ingredient, without equivalent recipe or method.",
+        "recipeEquivalentCandidateIds": []
+      },
+      {
+        "index": 1569,
+        "sourceRecordKey": "peanut-butter.md",
+        "cohortSortedIndex": 153,
+        "ingredientCount": 0,
+        "directionCount": 8,
+        "sourceCohort": "SGAUTHIER_RECIPES_CC0_B12E481D",
+        "sourceCommit": "b12e481d1c220a13e0847a34e148d5872a16928e",
+        "comparisonStatus": "FULL_REPLAY_VERIFIED__SOURCE_AND_NORMALIZED_RECORD_COMPARED",
+        "sourceContentFinding": "Roast and grind peanuts into a spread; hummus is a chickpea/tahini blended dip, sharing broad spread category but not primary ingredients or equivalent method.",
+        "recipeEquivalentCandidateIds": []
+      },
+      {
+        "index": 1618,
+        "sourceRecordKey": "spices-during-pregnancy.md",
+        "cohortSortedIndex": 202,
+        "ingredientCount": 0,
+        "directionCount": 0,
+        "sourceCohort": "SGAUTHIER_RECIPES_CC0_B12E481D",
+        "sourceCommit": "b12e481d1c220a13e0847a34e148d5872a16928e",
+        "comparisonStatus": "FULL_REPLAY_VERIFIED__SOURCE_AND_NORMALIZED_RECORD_COMPARED",
+        "sourceContentFinding": "Non-recipe guidance on spices during pregnancy; no candidate is a corresponding preparation or process. Health claims were not evaluated or endorsed.",
+        "recipeEquivalentCandidateIds": []
+      }
+    ],
+    "incompleteBaselineIndexEvidence": {
+      "method": "Pinned CC0 Git tree src/*.md lexicographic sort with v8019 concatenation: 501 UniTools + 915 ForkRecipe before 226 CC0",
+      "cohortStartIndex": 1416,
+      "referenceSource": "data/generated/corpus-normalization-mapping-v1.json",
+      "remainingGate": "Exhaustive semantic/translated novelty remains unresolved; source and normalized-record identities were verified by full fingerprint replay."
+    },
+    "sourceContentReview": {
+      "status": "FULL_REPLAY_VERIFIED__THREE_SOURCE_AND_NORMALIZED_RECORDS_COMPARED",
+      "date": "2026-10-17",
+      "sourceRepository": "sylGauthier/recipes",
+      "sourceCommit": "b12e481d1c220a13e0847a34e148d5872a16928e",
+      "candidateRepository": "HoChiPants/open-recipe-archive",
+      "candidateCommit": "1d20e28de6df5bbe49447b3042336575f5b7bc01",
+      "pinnedRecursiveTreeTruncated": false,
+      "pinnedRecursiveTreeEntries": 230,
+      "lexicallyOrderedSourceMdFiles": 226,
+      "priorCohortCount": 1416,
+      "sourceFilesReviewed": 3,
+      "candidateRecipesReviewed": 7,
+      "candidateIds": [
+        "strawberry-overnight-oats",
+        "one-bowl-banana-cake",
+        "strawberry-lemon-spritz",
+        "tomato-cucumber-salad",
+        "caprese-grilled-cheese",
+        "classic-hummus",
+        "everyday-lentil-soup"
+      ],
+      "crossProductPairsReviewed": 21,
+      "recipeEquivalentPairsIdentified": 0,
+      "method": "Read all three pinned Markdown source documents and seven pinned candidate recipe JSON records; assess primary ingredients, cooking purpose and method for recipe equivalence, including superficial ingredient/category overlap.",
+      "scopeLimit": "The 21 exceptional pairs were checked against source files and full reconstructed normalized-record identities. Full-corpus exhaustive semantic novelty is not established.",
+      "noImportAuthority": true
+    },
+    "replay": {
+      "date": "2026-10-17",
+      "status": "PASS",
+      "sourcePins": {
+        "ora": "ae3bd2c009a8899dfe63b9166fa98ae3fa8041a8",
+        "forkrecipe": "c32255266af39bd77444d39452f3df8088ac8fd9",
+        "unitools": "1d09e9548d957dd0375301146a86dddf5e269c1b",
+        "cc0": "b12e481d1c220a13e0847a34e148d5872a16928e"
+      },
+      "sourceWorktreesClean": true,
+      "baselineFingerprintSha256": "426e44c607151b19ec85aeab7993e0a098a55c84c63202e227df18ae4b71562a",
+      "canonicalPriorFingerprintMatch": true,
+      "count": 22086,
+      "incompleteIndices": [
+        1490,
+        1569,
+        1618
+      ],
+      "localRecordsSha256": "159a3e53da1c9530c258913014f1baebebb700e87703b4e4a407d4f8bb1deb57",
+      "productionD1EqualityClaimed": false
+    },
+    "rankedReview": {
+      "artifact": "data/generated/step8g/hochipants-semantic-ranked-matches.json",
+      "pairsScored": 154602,
+      "retainedTopMatches": 84,
+      "manuallyAdjudicatedPairs": 19,
+      "manualCoverage": "Selected ranked and supplementary title/alias probes; not all retained ranks were manually adjudicated.",
+      "fullSemanticNoveltyPass": false,
+      "translatedDedupPass": false
+    }
+  },
+  "records": [
+    {
+      "id": "strawberry-overnight-oats",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": null,
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "strawberry oatmeal",
+        "overnight oatmeal with berries",
+        "bircher muesli"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_WITH_RECORDED_RANKED_EXECUTION",
+      "semanticDisposition": "HOLD_EXHAUSTIVE_SEMANTIC_AND_TRANSLATED_NOVELTY_NOT_ESTABLISHED",
+      "baselineThreeIncompleteRecords": "REPLAY_VERIFIED_AND_MANUALLY_COMPARED_NO_EQUIVALENT_PAIR",
+      "admissible": false,
+      "importAuthorized": false,
+      "semanticReview": {
+        "method": "Manual comparison of primary ingredients and complete available normalized cooking instructions for selected ranked/title-probe records. Family similarity does not establish exact duplication and does not reject useful variants.",
+        "reviewedMatches": [
+          {
+            "baselineIndex": 380,
+            "title": "Bircher muesli",
+            "sourceRecordKey": "birchermuesli",
+            "disposition": "RELATED_VARIANT",
+            "finding": "Cold-soaked oat breakfast with dairy, honey and berries, but apple/nuts/cream and water-soak stages differ from the five-ingredient strawberry preparation."
+          },
+          {
+            "baselineIndex": 12143,
+            "title": "Havregrød (Oatmeal Porridge)",
+            "sourceRecordKey": "havregr-d-oatmeal-porridge",
+            "disposition": "DISTINCT_IN_INSPECTED_PAIR",
+            "finding": "Oats may soak overnight but are then boiled; the candidate remains an uncooked refrigerated strawberry-oat preparation."
+          }
+        ],
+        "exactDuplicateEstablished": false,
+        "exhaustiveNoveltyEstablished": false
+      },
+      "rightsReview": {
+        "status": "HOLD_ORIGIN_UNATTESTED",
+        "reason": "Pinned original-data CC0 declaration and initial commit provenance retained. No record-specific originality attestation or permission evidence was found in the pinned record, content policy, license or empty publication-rights registry. This is evidence disposition, not a legal infringement determination.",
+        "namedAdaptationsRemainHeld": true,
+        "competingSourceEvidence": {
+          "path": "scraping/output/tastesbetterfromscratch/strawberry-overnight-oats-8da6180b2975.json",
+          "sourceUrl": "https://tastesbetterfromscratch.com/strawberry-banana-overnight-oats/",
+          "retrievedAt": "2026-08-19T04:12:02.500Z",
+          "status": "SAME_ID_LATER_SCRAPED_CANDIDATE_NOT_PROOF_OF_DERIVATION",
+          "finding": "Later scrape has yogurt/chia/banana and a different ingredient ratio and assembly. Shared ID and oat/berry concept do not identify original source.",
+          "chronology": "Finalized record exists in July 14 initialization, before August 19 scrape retrieval. Retrieval date does not establish the external recipe publication date or prove independent origin."
+        }
+      }
+    },
+    {
+      "id": "one-bowl-banana-cake",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "banana bread",
+        "banana loaf",
+        "banana sponge cake"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_WITH_RECORDED_RANKED_EXECUTION",
+      "semanticDisposition": "HOLD_EXHAUSTIVE_SEMANTIC_AND_TRANSLATED_NOVELTY_NOT_ESTABLISHED",
+      "baselineThreeIncompleteRecords": "REPLAY_VERIFIED_AND_MANUALLY_COMPARED_NO_EQUIVALENT_PAIR",
+      "admissible": false,
+      "importAuthorized": false,
+      "semanticReview": {
+        "method": "Manual comparison of primary ingredients and complete available normalized cooking instructions for selected ranked/title-probe records. Family similarity does not establish exact duplication and does not reject useful variants.",
+        "reviewedMatches": [
+          {
+            "baselineIndex": 1428,
+            "title": "Banana Bread",
+            "sourceRecordKey": "banana-bread.md",
+            "disposition": "RELATED_VARIANT",
+            "finding": "Same banana/flour/egg/fat/sugar soda-leavened batter family; spiced walnut loaf and two-bowl method differ from a square one-bowl cake."
+          },
+          {
+            "baselineIndex": 546,
+            "title": "Banana Bread",
+            "sourceRecordKey": "banana-bread",
+            "disposition": "CLOSE_METHOD_VARIANT",
+            "finding": "Mashed ripe banana, melted butter, sugar and egg, dry flour/soda/salt folded in then baked at similar temperature. Loaf form, spices, sugar and quantities differ; no exact-equivalence claim."
+          },
+          {
+            "baselineIndex": 1430,
+            "title": "Banana Muffins with Chocolate",
+            "sourceRecordKey": "banana-muffins-with-chocolate.md",
+            "disposition": "RELATED_VARIANT",
+            "finding": "Banana batter with flour, egg, sugar and butter is baked as chocolate muffins with a different mixing and leavening process."
+          }
+        ],
+        "exactDuplicateEstablished": false,
+        "exhaustiveNoveltyEstablished": false
+      },
+      "rightsReview": {
+        "status": "HOLD_ORIGIN_UNATTESTED",
+        "reason": "Pinned original-data CC0 declaration and initial commit provenance retained. No record-specific originality attestation or permission evidence was found in the pinned record, content policy, license or empty publication-rights registry. This is evidence disposition, not a legal infringement determination.",
+        "namedAdaptationsRemainHeld": true
+      }
+    },
+    {
+      "id": "strawberry-lemon-spritz",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "strawberry lemonade",
+        "strawberry soda",
+        "berry spritzer"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_WITH_RECORDED_RANKED_EXECUTION",
+      "semanticDisposition": "HOLD_EXHAUSTIVE_SEMANTIC_AND_TRANSLATED_NOVELTY_NOT_ESTABLISHED",
+      "baselineThreeIncompleteRecords": "REPLAY_VERIFIED_AND_MANUALLY_COMPARED_NO_EQUIVALENT_PAIR",
+      "admissible": false,
+      "importAuthorized": false,
+      "semanticReview": {
+        "method": "Manual comparison of primary ingredients and complete available normalized cooking instructions for selected ranked/title-probe records. Family similarity does not establish exact duplication and does not reject useful variants.",
+        "reviewedMatches": [
+          {
+            "baselineIndex": 2025,
+            "title": "Moselle Cup No. 2",
+            "sourceRecordKey": "moselle-cup-no-2",
+            "disposition": "DISTINCT_IN_INSPECTED_PAIR",
+            "finding": "Strawberry/lemon/soda/ice overlap, but Moselle and sherry or brandy, peel, sugar and standing process differ from the alcohol-free honey/lemon-juice muddled drink."
+          },
+          {
+            "baselineIndex": 18452,
+            "title": "Sauterne Cup",
+            "sourceRecordKey": "sauterne-cup",
+            "disposition": "DISTINCT_IN_INSPECTED_PAIR",
+            "finding": "Wine and orange liqueur cup with citrus rind, sugar infusion and strawberries; candidate has no alcohol and uses crushed fruit, honey and lemon juice."
+          }
+        ],
+        "exactDuplicateEstablished": false,
+        "exhaustiveNoveltyEstablished": false
+      },
+      "rightsReview": {
+        "status": "HOLD_ORIGIN_UNATTESTED",
+        "reason": "Pinned original-data CC0 declaration and initial commit provenance retained. No record-specific originality attestation or permission evidence was found in the pinned record, content policy, license or empty publication-rights registry. This is evidence disposition, not a legal infringement determination.",
+        "namedAdaptationsRemainHeld": true
+      }
+    },
+    {
+      "id": "tomato-cucumber-salad",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "cucumber tomato salad",
+        "ensalada de tomate y pepino",
+        "salade de tomate concombre"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_WITH_RECORDED_RANKED_EXECUTION",
+      "semanticDisposition": "HOLD_EXHAUSTIVE_SEMANTIC_AND_TRANSLATED_NOVELTY_NOT_ESTABLISHED",
+      "baselineThreeIncompleteRecords": "REPLAY_VERIFIED_AND_MANUALLY_COMPARED_NO_EQUIVALENT_PAIR",
+      "admissible": false,
+      "importAuthorized": false,
+      "semanticReview": {
+        "method": "Manual comparison of primary ingredients and complete available normalized cooking instructions for selected ranked/title-probe records. Family similarity does not establish exact duplication and does not reject useful variants.",
+        "reviewedMatches": [
+          {
+            "baselineIndex": 18671,
+            "title": "Tomato and Cucumber Salad",
+            "sourceRecordKey": "tomato-and-cucumber-salad",
+            "disposition": "RELATED_VARIANT",
+            "finding": "Same tomato-cucumber salad family, but stacked slices with lettuce, peppers and French/mayonnaise dressings differ from tossed onion/lemon/olive-oil salad."
+          },
+          {
+            "baselineIndex": 17582,
+            "title": "Cucumber and Tomato Salad",
+            "sourceRecordKey": "cucumber-and-tomato-salad",
+            "disposition": "RELATED_VARIANT",
+            "finding": "Same uncooked tomato/cucumber base, but lettuce presentation and French/mayonnaise dressing differ from candidate onion/lemon vinaigrette."
+          },
+          {
+            "baselineIndex": 13,
+            "title": "Horiatiki salad",
+            "sourceRecordKey": "horiatiki-salata",
+            "disposition": "RELATED_VARIANT",
+            "finding": "Tomato, cucumber, onion, olive oil and salt overlap; feta, olives, green pepper and oregano distinguish Horiatiki from the candidate lemon-dressed vegetables."
+          }
+        ],
+        "exactDuplicateEstablished": false,
+        "exhaustiveNoveltyEstablished": false
+      },
+      "rightsReview": {
+        "status": "HOLD_ORIGIN_UNATTESTED",
+        "reason": "Pinned original-data CC0 declaration and initial commit provenance retained. No record-specific originality attestation or permission evidence was found in the pinned record, content policy, license or empty publication-rights registry. This is evidence disposition, not a legal infringement determination.",
+        "namedAdaptationsRemainHeld": true,
+        "competingSourceEvidence": {
+          "path": "scraping/output/tastesbetterfromscratch/tomato-cucumber-salad-198aab859837.json",
+          "sourceUrl": "https://tastesbetterfromscratch.com/tomato-cucumber-salad/",
+          "retrievedAt": "2026-08-19T05:39:35.194Z",
+          "status": "SAME_ID_LATER_SCRAPED_CANDIDATE_NOT_PROOF_OF_DERIVATION",
+          "finding": "Later scrape includes red-wine vinegar and basil; finalized recipe uses lemon juice without basil. Shared ID and salad family do not identify original source.",
+          "chronology": "Finalized record exists in July 14 initialization, before August 19 scrape retrieval. Retrieval date does not establish the external recipe publication date or prove independent origin."
+        }
+      }
+    },
+    {
+      "id": "caprese-grilled-cheese",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "caprese panini",
+        "mozzarella tomato toastie",
+        "grilled mozzarella sandwich"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_WITH_RECORDED_RANKED_EXECUTION",
+      "semanticDisposition": "HOLD_EXHAUSTIVE_SEMANTIC_AND_TRANSLATED_NOVELTY_NOT_ESTABLISHED",
+      "baselineThreeIncompleteRecords": "REPLAY_VERIFIED_AND_MANUALLY_COMPARED_NO_EQUIVALENT_PAIR",
+      "admissible": false,
+      "importAuthorized": false,
+      "semanticReview": {
+        "method": "Manual comparison of primary ingredients and complete available normalized cooking instructions for selected ranked/title-probe records. Family similarity does not establish exact duplication and does not reject useful variants.",
+        "reviewedMatches": [
+          {
+            "baselineIndex": 1370,
+            "title": "Torta Caprese",
+            "sourceRecordKey": "torta-caprese",
+            "disposition": "DISTINCT_IN_INSPECTED_PAIR",
+            "finding": "Caprese name is a false friend: almond/chocolate baked cake rather than mozzarella/tomato/basil bread sandwich."
+          },
+          {
+            "baselineIndex": 18678,
+            "title": "Tomato Cream Toast",
+            "sourceRecordKey": "tomato-cream-toast",
+            "disposition": "DISTINCT_IN_INSPECTED_PAIR",
+            "finding": "Toast dipped in cooked tomato cream/flour sauce has neither mozzarella-basil filling nor a butter-griddled sandwich."
+          },
+          {
+            "baselineIndex": 708,
+            "title": "Croque-Monsieur",
+            "sourceRecordKey": "croque-monsieur",
+            "disposition": "RELATED_VARIANT",
+            "finding": "Grilled cheese sandwich family, but ham/Gruyere and bechamel baked or broiled rather than mozzarella/tomato/basil pan cooking."
+          },
+          {
+            "baselineIndex": 12574,
+            "title": "Oste-Sandwiches (Cheese Sandwiches)",
+            "sourceRecordKey": "oste-sandwiches-cheese-sandwiches",
+            "disposition": "RELATED_VARIANT",
+            "finding": "Cheese sandwich family; source cheese preparation and presentation differ from the fresh mozzarella/tomato/basil griddled filling."
+          }
+        ],
+        "exactDuplicateEstablished": false,
+        "exhaustiveNoveltyEstablished": false
+      },
+      "rightsReview": {
+        "status": "HOLD_ORIGIN_UNATTESTED",
+        "reason": "Pinned original-data CC0 declaration and initial commit provenance retained. No record-specific originality attestation or permission evidence was found in the pinned record, content policy, license or empty publication-rights registry. This is evidence disposition, not a legal infringement determination.",
+        "namedAdaptationsRemainHeld": true
+      }
+    },
+    {
+      "id": "classic-hummus",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "houmous",
+        "hummus bi tahini",
+        "chickpea dip"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_WITH_RECORDED_RANKED_EXECUTION",
+      "semanticDisposition": "HOLD_EXHAUSTIVE_SEMANTIC_AND_TRANSLATED_NOVELTY_NOT_ESTABLISHED",
+      "baselineThreeIncompleteRecords": "REPLAY_VERIFIED_AND_MANUALLY_COMPARED_NO_EQUIVALENT_PAIR",
+      "admissible": false,
+      "importAuthorized": false,
+      "semanticReview": {
+        "method": "Manual comparison of primary ingredients and complete available normalized cooking instructions for selected ranked/title-probe records. Family similarity does not establish exact duplication and does not reject useful variants.",
+        "reviewedMatches": [
+          {
+            "baselineIndex": 47,
+            "title": "Hummus",
+            "sourceRecordKey": "hummus",
+            "disposition": "CLOSE_METHOD_VARIANT",
+            "finding": "Same chickpea/tahini/lemon/garlic/ice-water puree with olive oil. Source starts with dried chickpeas and adds cumin; candidate starts with cooked chickpeas and blends oil in."
+          },
+          {
+            "baselineIndex": 859,
+            "title": "Hummus",
+            "sourceRecordKey": "hummus",
+            "disposition": "CLOSE_METHOD_VARIANT",
+            "finding": "Same chickpea/tahini/lemon/garlic/ice-water emulsion family. Source includes dry-chickpea soak/boil and separately prepared tahini sauce; candidate uses cooked chickpeas with shorter blending sequence."
+          },
+          {
+            "baselineIndex": 1520,
+            "title": "Hummus",
+            "sourceRecordKey": "hummus.md",
+            "disposition": "RELATED_VARIANT",
+            "finding": "Cooked canned chickpea/tahini/lemon/olive-oil blended dip; simpler unspecified quantities and no explicit garlic/ice-water emulsion stage."
+          }
+        ],
+        "exactDuplicateEstablished": false,
+        "exhaustiveNoveltyEstablished": false
+      },
+      "rightsReview": {
+        "status": "HOLD_ORIGIN_UNATTESTED",
+        "reason": "Pinned original-data CC0 declaration and initial commit provenance retained. No record-specific originality attestation or permission evidence was found in the pinned record, content policy, license or empty publication-rights registry. This is evidence disposition, not a legal infringement determination.",
+        "namedAdaptationsRemainHeld": true
+      }
+    },
+    {
+      "id": "everyday-lentil-soup",
+      "originCommit": "e3c7e0dcdd77d92c74fdc3b10081a7937274347b",
+      "originEvidence": "SOURCE_GIT_COMMIT_HISTORY",
+      "laterCommit": "6e7c6f287dc87e44a47e6d043cebc089764d7c7d",
+      "sourceNamed": false,
+      "perRecordOriginalityAttestation": false,
+      "rightsDisposition": "HOLD_ORIGIN_UNATTESTED",
+      "semanticProbeTerms": [
+        "sopa de lentejas",
+        "lentil pottage",
+        "lentejas guisadas"
+      ],
+      "semanticTermsType": "REVIEW_SEARCH_TERMS_WITH_RECORDED_RANKED_EXECUTION",
+      "semanticDisposition": "HOLD_EXHAUSTIVE_SEMANTIC_AND_TRANSLATED_NOVELTY_NOT_ESTABLISHED",
+      "baselineThreeIncompleteRecords": "REPLAY_VERIFIED_AND_MANUALLY_COMPARED_NO_EQUIVALENT_PAIR",
+      "admissible": false,
+      "importAuthorized": false,
+      "semanticReview": {
+        "method": "Manual comparison of primary ingredients and complete available normalized cooking instructions for selected ranked/title-probe records. Family similarity does not establish exact duplication and does not reject useful variants.",
+        "reviewedMatches": [
+          {
+            "baselineIndex": 945,
+            "title": "Red Lentil Soup",
+            "sourceRecordKey": "lentil-soup",
+            "disposition": "RELATED_VARIANT",
+            "finding": "Lentils/onion/garlic/stock/lemon cooked as soup; red lentils, carrot, spices, butter bloom and pureeing differ from the unpureed brown/green lentil candidate."
+          },
+          {
+            "baselineIndex": 1530,
+            "title": "Lebanese Lentil Soup",
+            "sourceRecordKey": "lebanese-lentil-soup.md",
+            "disposition": "RELATED_VARIANT",
+            "finding": "Lentil/onion/lemon soup family but red lentils, potato, zucchini, chard, cilantro and cumin distinguish it from the candidate stock/garlic base."
+          }
+        ],
+        "exactDuplicateEstablished": false,
+        "exhaustiveNoveltyEstablished": false
+      },
+      "rightsReview": {
+        "status": "HOLD_ORIGIN_UNATTESTED",
+        "reason": "Pinned original-data CC0 declaration and initial commit provenance retained. No record-specific originality attestation or permission evidence was found in the pinned record, content policy, license or empty publication-rights registry. This is evidence disposition, not a legal infringement determination.",
+        "namedAdaptationsRemainHeld": true
+      }
+    }
+  ],
+  "counts": {
+    "inspected": 7,
+    "originHistoryTraced": 7,
+    "originUnattested": 7,
+    "semanticResolved": 0,
+    "admissible": 0,
+    "imported": 0,
+    "adaptationsPreservedOnHold": 6,
+    "rankedPairsScored": 154602,
+    "manuallyAdjudicatedRankedPairs": 19
+  },
+  "boundary": {
+    "productionWrites": false,
+    "sourceBodiesPublished": false,
+    "baselineRecipesPublished": false,
+    "protectedCorpusChanges": false,
+    "otherLanesChanged": false,
+    "pr432": "HOLD_BUDGET_PRESERVED",
+    "basedCooking": "STOPPED",
+    "pr428": "UNCHANGED",
+    "pr429": "UNCHANGED"
+  },
+  "status": "FULL_BASELINE_REPLAY_PASS__RANKED_REVIEW_EXECUTED__SEMANTIC_NOVELTY_AND_ORIGIN_HOLD",
+  "nextAction": "Retain PR434 draft and no import. Exhaustive semantic/translated novelty and seven origin attestations remain unresolved. Do not repeat fingerprint replay without changed inputs; use ranked matches and manual findings for remaining source-level adjudication. Complete pinned package validation/required CI and checkpoint the actual hold.",
+  "quality": {
+    "sameChatMode": "SAME_CHAT_SEQUENTIAL",
+    "independent": false,
+    "pinnedValidator": "REFER_TO_FINAL_REVIEW_SIDECARS",
+    "disposition": "ASSESSMENT_REVIEW_PENDING__IMPORT_AND_FULL_NOVELTY_HOLD"
+  }
+}

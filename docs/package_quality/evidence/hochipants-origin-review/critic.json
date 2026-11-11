@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "role": "critic",
+  "session_id": "work-e35e83d5b388-root",
+  "model": "Codex; exact host model build unavailable",
+  "candidate_digest": "2f4756bddd485b97d963f41846dd5fa2048ebf8033122c1f59094045bc3fa48a",
+  "verdict": "PASS",
+  "review_mode": "SAME_CHAT_SEQUENTIAL",
+  "independent": false,
+  "stage": 4,
+  "predecessor_digest": "9c86cac9d36f858a04c569b94b9075497b209f7d4fba8d15befe9b121b788e2e",
+  "knowledge": [
+    {
+      "domain": "project_execution",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/project_execution/objects/agentic_work_mandate_harness.md",
+      "criterion_id": "BOUNDARY",
+      "applied_rule": "Bound one assessment update under live authority; preserve canonical source inputs, existing unresolved gates and exhausted prior budgets; terminal checkpoint and STOP."
+    },
+    {
+      "domain": "software_data",
+      "commit": "07534f3c0c44e1da571fc36870835d9ede01e0e3",
+      "object": "domains/software_data/objects/testing_strategy_verification_layers.md",
+      "criterion_id": "SEMANTIC",
+      "applied_rule": "Verify replay deterministically and retrieval at actual schema boundaries; distinguish scored candidates from semantic truth and narrow tests from production or legal acceptance."
+    }
+  ],
+  "coverage": [
+    {
+      "criterion_id": "REPLAY",
+      "result": "PASS",
+      "evidence": [
+        "data/generated/step8g/hochipants-origin-semantic-review.json",
+        "docs/package_quality/evidence/hochipants-origin-review/qa.json",
+        "docs/package_quality/evidence/hochipants-origin-review/alignment.json"
+      ],
+      "assessment": "Challenged index/order and tail omission: exact 22086-record fingerprint replay and last-index test pass. Three incomplete records remain visible instead of silently disappearing from dedup. No D1 identity claim is made. Canonical hash uses compact JSON, avoiding confusion with pretty-file hash."
+    },
+    {
+      "criterion_id": "SEMANTIC",
+      "result": "PASS",
+      "evidence": [
+        "data/generated/step8g/hochipants-origin-semantic-review.json",
+        "docs/package_quality/evidence/hochipants-origin-review/qa.json",
+        "docs/package_quality/evidence/hochipants-origin-review/alignment.json"
+      ],
+      "assessment": "Challenged high-score equivalence, low-score absence, historical synonyms, negation, quantities and title false friends. Evidence expressly disclaims exhaustive novelty and translated-dedup PASS; 19 selected inspections are not presented as review of all 84 ranks or all 154602 bodies. Caprese cake and alcoholic cup examples retain concrete distinctions. Retrieval is usable progress, insufficient merge/admission evidence."
+    },
+    {
+      "criterion_id": "ORIGIN",
+      "result": "PASS",
+      "evidence": [
+        "data/generated/step8g/hochipants-origin-semantic-review.json",
+        "docs/package_quality/evidence/hochipants-origin-review/qa.json",
+        "docs/package_quality/evidence/hochipants-origin-review/alignment.json"
+      ],
+      "assessment": "Challenged July finalized versus August scrape chronology: retrieval time is not external publication time. Shared IDs and generic recipe families establish neither copying nor originality. Individual attestation remains absent and no legal clearance is inferred from CC0 or empty source fields."
+    },
+    {
+      "criterion_id": "BOUNDARY",
+      "result": "PASS",
+      "evidence": [
+        "data/generated/step8g/hochipants-origin-semantic-review.json",
+        "docs/package_quality/evidence/hochipants-origin-review/qa.json",
+        "docs/package_quality/evidence/hochipants-origin-review/alignment.json"
+      ],
+      "assessment": "Challenged accidental local-body publication and authority creep: outside-repository realpath guard, exclusive creation and mode 0600 constrain raw export; checked outgoing inventory excludes it. Required CI is pending new head and original PR434 remains draft. Passing this assessment update cannot waive full-semantic/rights gates or reset PR432."
+    }
+  ],
+  "findings": [],
+  "scope_limit": "PASS is confined to truthful incremental assessment publication. Original PR434 exhaustive semantic/translated dedup, seven origin holds and merge eligibility remain HOLD. Same-context non-independent inspection; no import or legal clearance."
+}
